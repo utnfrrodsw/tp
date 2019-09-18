@@ -44,6 +44,10 @@ En la misma deberán indicar: fecha de la reunión, asistentes y por cada asiste
 * Diseño adecuado de la interfaz: uso apropiado de los tags html y de los estilos, ya sea utilizando un FW CSS o un preprocesador.
 * Calidad del código: uso adecuado de las características del FW y de la API. Para Angular usar la guia de estilos oficial [Angular.io Styleguide](https://angular.io/guide/styleguide) [HTML CSS StyleGuide de google](https://google.github.io/styleguide/htmlcssguide.html)
 * Completitud de los requerimientos.
+* Debera pasar la validacion automatica al ejecutar `ng lint`
+* Debera pasar la compilacion completa al ejecutar `ng build --prod`
+
+
 
 ### 2.2 - Planificación
 * Progreso en las capacidades para planificar adecuadamente y tomar acciones correctivas.
