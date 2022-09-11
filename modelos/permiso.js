@@ -17,6 +17,11 @@ const Permiso = db.define('permiso', {
 
 const UsuarioPermiso = db.define('usuario_permiso');
 
+const opcionesUsuarioPermiso={
+    through: UsuarioPermiso
+    ,constraints:false
+};
+
 Permiso.sync()
     .then(()=>{
         Permiso.findAll()
@@ -33,8 +38,8 @@ Permiso.sync()
                 }
             });
 
-        Usuario.belongsToMany(Permiso, { through: UsuarioPermiso });
-        Permiso.belongsToMany(Usuario, { through: UsuarioPermiso });
+        Usuario.belongsToMany(Permiso, opcionesUsuarioPermiso);
+        Permiso.belongsToMany(Usuario, opcionesUsuarioPermiso);
         
         UsuarioPermiso.sync();
     });

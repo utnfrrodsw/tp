@@ -42,14 +42,19 @@ const Usuario = db.define('usuario', {
     }
 });
 
+const opcionesComunes={
+    /* onDelete: 'cascade'
+    , */constraints:false
+}
+
 Token.belongsTo(Usuario,{
     as:'duenio'
-    ,onDelete: 'cascade'
+    ,...opcionesComunes
 })
 Usuario.hasMany(Token,{
     as:'tokensAsociadas'
     ,foreignKey: 'duenioID'
-    ,onDelete: 'cascade'
+    ,...opcionesComunes
 });
 
 Usuario.sync();
