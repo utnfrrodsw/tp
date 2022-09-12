@@ -1,14 +1,43 @@
 # TP Frontend 2022
 
+LightSail de amazon
+
+## 0 - Información del proyecto
+Trabajo: R&MN (Rick & Morty Navigator)
+Año cursado: 2022
+Autor: Santiago Abud, legajo 47015 
+
 ## 1 - Enunciado
 ### 1.1 - Desarrollo
 Crear un nuevo frontend para un sitio que brinde una api pública, utilizando:
 * Un framework de frontend. Se propone Angular pero se admitirán otros. Quienes quieran utilizar otro deberán consultar con los profesores antes de hacerlo.
+  - Angular
 * Utilizar html 5.
 * Crear los css usando un framework (bootstrap, foundation, etc) o un preprocesador (less, sass, stylus).
+  - [chota](https://jenil.github.io/chota/)
 * El backend debe ser una API RESTfull o GraphQL propuesta por los alumnos y aprobada por los docentes de la cátedra. Puede utilizarse la API del trabajo de backend. La aprobación debe darse por escrito por email o telegram.
+  - API del trabajo de backend
 
 ### 1.2 - Funcionalidad
+
+#### Página principal
+Funcionalidad | Cumplido
+-|:-:
+Listado sin filtro|
+Barra de búsqueda|
+Información detallada al cliquear (modal)|
+Redirigir a página de detalle|
+Contenido no tabulado (tarjetas?)|
+
+#### Página de detalle
+Funcionalidad | Cumplido
+-|:-:
+Identificador|
+Detalle|
+Contenido adicional (correo electrónico)|
+Elemento visual (representación de tokens)|
+Modificación (habilitar / deshabilitar)|
+
 * Página principal que:
   * Al acceder a la página liste elementos (listado general, favoritos, recientes o cualquier otra condicion) sin filtro.
   * Incluya un search box que permita devuelva y muestre el listado de elementos filtrados por el contenido del search box.
@@ -25,7 +54,7 @@ Crear un nuevo frontend para un sitio que brinde una api pública, utilizando:
 ### 1.3 - Planificación y documentación
 
 #### 1.3.1 - Entregas
-El equipo deberá planificar y patuar entregas del trabajo práctico con el equipo docente. Indicando las fechas de entrega el alcance y los criterios de aceptación.
+El equipo deberá planificar y pautar entregas del trabajo práctico con el equipo docente. Indicando las fechas de entrega el alcance y los criterios de aceptación.
 
 Las mismas podrán volverse a pactar con los profesores enviando las correcciones a la misma indicando, causas, acciones correctivas que se tomarán y nuevo cronograma.
 

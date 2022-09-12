@@ -1,0 +1,2 @@
+7/9 Inicio del proyecto. Definición.
+11/9 Subí la base de datos y el backend a PlanetScale y Heroku, respectivamente.
