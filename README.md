@@ -24,10 +24,10 @@ Crear un nuevo frontend para un sitio que brinde una api pública, utilizando:
 Funcionalidad | Cumplido
 -|:-:
 Listado sin filtro| :heavy_check_mark:
-Barra de búsqueda|
+Barra de búsqueda| :heavy_check_mark:
 Información detallada al cliquear (modal)|
 Redirigir a página de detalle|
-Contenido no tabulado (tarjetas?)|
+Contenido no tabulado (tarjetas)| :heavy_check_mark:
 
 #### Página de detalle
 Funcionalidad | Cumplido

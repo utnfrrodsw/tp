@@ -2,9 +2,15 @@
 
 <body>
   <div class="container">
-    <div *ngFor="let usuario of usuarios" class="card">
-      <h4>{{usuario.nombreCompleto}}</h4>
-      <p>{{' ('+usuario.tokens+' tokens)'}}</p>
+    <p>
+      <input type="text" id="filtro" placeholder="Escriba para buscar" (input)="filtrar($event.target)">
+    </p>
+
+    <div class="container is-center" id="listado">
+      <div *ngFor="let usuario of usuariosOrdenados()" class="card col-4 {{this.filtrados.includes(usuario.ID)?'is-hidden':''}}">
+        <h4>{{usuario.nombreCompleto}}</h4>
+        <p>{{'('+usuario.tokens+' tokens)'}}</p>
+      </div>
     </div>
   </div>
 </body>

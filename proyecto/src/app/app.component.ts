@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   title = 'proyecto';
 
   usuarios: Usuario[]=<any>[];
+  filtrados:(number|undefined)[]=<any>[];
 
   constructor(private usuarioService: UsuarioService){}
   
@@ -19,5 +20,15 @@ export class AppComponent implements OnInit {
       .subscribe((result: any)=>{
         this.usuarios=result;
       });
+  }
+
+  filtrar(e:EventTarget|null){
+    this.filtrados=this.usuarios
+      .filter((u:Usuario)=>!new RegExp(`${(e as HTMLInputElement).value}`,'gi').test(u.nombreCompleto))
+      .map((u:Usuario)=>u.ID);
+  }
+
+  usuariosOrdenados(){
+    return this.usuarios.sort((a:Usuario,b:Usuario)=>a.nombreCompleto.localeCompare(b.nombreCompleto));
   }
 }

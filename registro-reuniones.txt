@@ -2,3 +2,4 @@
 11/9 Subí la base de datos y el backend a PlanetScale y Heroku, respectivamente.
 12/9 Servicios para uso de la base de datos online.
 13/9 Listado.
+13/9 Barra de filtro y tarjetas.
