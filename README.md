@@ -23,7 +23,7 @@ Crear un nuevo frontend para un sitio que brinde una api pública, utilizando:
 #### Página principal
 Funcionalidad | Cumplido
 -|:-:
-Listado sin filtro|
+Listado sin filtro| :heavy_check_mark:
 Barra de búsqueda|
 Información detallada al cliquear (modal)|
 Redirigir a página de detalle|
