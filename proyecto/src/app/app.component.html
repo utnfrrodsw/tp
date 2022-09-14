@@ -1,35 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/chota@latest">
 
 <body>
-  <div class="container">
-    <p>
-      <input type="text" id="filtro" placeholder="Escriba para buscar" (input)="filtrar($event.target)">
-    </p>
-
-    <div class="container is-center" id="listado">
-      <div *ngFor="let usuario of usuariosOrdenados()" class="card col-4 {{this.filtrados.includes(usuario.ID)?'is-hidden':''}}">
-        <h3 class="enlace" (click)="abrirModal(usuario.ID)">{{usuario.nombreCompleto}}</h3>
-        <p>{{'('+usuario.tokens+' tokens)'}}</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="is-full-screen is-fixed is-vertical-align {{usuarioModal==undefined ? 'is-hidden':''}}" id="modal" (click)="cerrarModal($event.target)">
-    <div class="container card">
-      
-      <h4>Nombre Completo:</h4>
-      <p>{{usuarioModal?.nombreCompleto||''}}</p>
-      
-      <h4>Nombre de Usuario:</h4>
-      <p>{{usuarioModal?.nombreUsuario||''}}</p>
-
-      <h4>Correo Electrónico:</h4>
-      <p>{{usuarioModal?.correo||''}}</p>
-      
-      <h4>Cantidad de Tokens:</h4>
-      <p class="is-vertical-align">{{usuarioModal?.tokens||0}} <img src="https://icongr.am/simple/jsonwebtokens.svg?size=18&color=currentColor&colored=false"></p>
-
-      <a class="enlace">Más info</a>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </body>

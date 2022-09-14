@@ -1,0 +1,15 @@
+.enlace{
+	cursor:pointer;
+	color:var(--color-primary);
+	text-decoration: underline;
+}
+
+#listado{
+	flex-wrap: wrap;
+
+}
+
+#modal{
+	top:0;
+	background-color:#0007
+}
