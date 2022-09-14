@@ -25,7 +25,7 @@ Funcionalidad | Cumplido
 -|:-:
 Listado sin filtro| :heavy_check_mark:
 Barra de búsqueda| :heavy_check_mark:
-Información detallada al cliquear (modal)|
+Información detallada al cliquear (modal)| :heavy_check_mark:
 Redirigir a página de detalle|
 Contenido no tabulado (tarjetas)| :heavy_check_mark:
 
