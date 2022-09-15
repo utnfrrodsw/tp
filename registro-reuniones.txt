@@ -4,4 +4,4 @@
 12/9 (noche) Listado.
 13/9 (tarde) Barra de filtro y tarjetas.
 13/9 (noche) Modal.
-14/9 Implementación de "routeo". Página de detalle.
+14/9 Implementación de "routeo". Página de detalle. Se instaló ESLint.
