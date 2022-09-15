@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { UsuarioService,Usuario } from '../servicios/usuario.service';
+import { UsuarioDetalladoService} from '../servicios/usuario-detallado.service';
 
 @Component({
   selector: 'app-lista',
@@ -13,7 +14,10 @@ export class ListaComponent implements OnInit {
   usuarioModal:(Usuario|undefined)=undefined; // Puaj
   filtrados:(number|undefined)[]=<any>[];
 
-  constructor(private usuarioService: UsuarioService){}
+  constructor(
+    private usuarioService: UsuarioService
+    ,private usuarioDetalladoService:UsuarioDetalladoService
+    ){}
   
   ngOnInit() {
     this.usuarioService
@@ -43,5 +47,10 @@ export class ListaComponent implements OnInit {
   cerrarModal(target:EventTarget|null){
     if((target as HTMLElement).id=='modal')
       this.usuarioModal=undefined;
+  }
+
+  establecerUsuarioADetallar(){
+    if(this.usuarioModal!=undefined)
+      this.usuarioDetalladoService.setUsuarioDetallado(this.usuarioModal);
   }
 }

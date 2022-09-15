@@ -1,1 +1,17 @@
-<p>detalle works!</p>
+<fieldset class="container">
+	<legend>Información del usuario {{this.usuarioActual?.ID}}:</legend>
+
+	<h2>Nombre Completo:</h2>
+	<p>{{this.usuarioActual?.nombreCompleto}}</p>
+	<h2>DNI:</h2>
+	<p>{{(+(this.usuarioActual?.DNI||0)).toLocaleString()}}</p>
+	<h2>Correo electrónico:</h2>
+	<a href="mail:{{this.usuarioActual?.correo}}">{{this.usuarioActual?.correo}}</a>
+	<h2>Tokens:</h2>
+	<div id="particles"></div>
+
+	<hr/>
+	<div class="is-right">
+		<button class="button secondary"></button>
+	</div>
+</fieldset>

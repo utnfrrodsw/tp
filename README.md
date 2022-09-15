@@ -26,16 +26,16 @@ Funcionalidad | Cumplido
 Listado sin filtro| :heavy_check_mark:
 Barra de búsqueda| :heavy_check_mark:
 Información detallada al cliquear (modal)| :heavy_check_mark:
-Redirigir a página de detalle|
+Redirigir a página de detalle| :heavy_check_mark:
 Contenido no tabulado (tarjetas)| :heavy_check_mark:
 
 #### Página de detalle
 Funcionalidad | Cumplido
 -|:-:
-Identificador|
-Detalle|
-Contenido adicional (correo electrónico)|
-Elemento visual (representación de tokens)|
+Identificador| :heavy_check_mark:
+Detalle| :heavy_check_mark:
+Contenido adicional (correo electrónico)| :heavy_check_mark:
+Elemento visual (representación de tokens)| :heavy_check_mark:
 Modificación (habilitar / deshabilitar)|
 
 * Página principal que:
