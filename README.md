@@ -4,8 +4,12 @@ LightSail de amazon
 
 ## 0 - Información del proyecto
 Trabajo: Frontend Tokens
+
 Año cursado: 2022
+
 Autor: Santiago Abud, legajo 47015 
+
+Instrucciones: Ejecutar `ng serve` en la carpeta `proyecto`.
 
 ## 1 - Enunciado
 ### 1.1 - Desarrollo
