@@ -11,6 +11,8 @@ router.put('/:id',usuarioController.updateUsuario)
 
 router.put('/:id/tokens',usuarioController.enviarTokens)
 
+router.post('/:id/habilitado',usuarioController.cambiarHabilitado)
+
 router.get('/',usuarioController.findUsuarios)
 
 router.get('/:id',usuarioController.findUsuarioById)

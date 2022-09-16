@@ -10,6 +10,7 @@ var usuarioDao = {
     updateUsuario: updateUsuario
     ,enviarTokens
     ,findFuzzilyByName
+    ,cambiarHabilitado
 }
 
 async function permisosIDsAPermisos(permisosIDs){
@@ -58,20 +59,23 @@ function findAll({incluirContrasenia=false,incluirHabilitado=false,incluirTokens
     });
 }
 
-async function findById(id) {
+async function findById(id,{incluirHabilitado=false}={}) {
+    let attributes=[
+        'ID'
+        ,'nombreCompleto'
+        ,'nombreUsuario'
+        ,'DNI'
+        ,'correo'
+    ];
+    if(incluirHabilitado)
+        attributes.push('habilitado');
+
     let usuario=await Usuario.findByPk(id,{
         include:[{
             model:Token
             ,as:'tokensAsociadas'
         },Permiso]
-        ,attributes:[
-            'ID'
-            ,'nombreCompleto'
-            ,'nombreUsuario'
-            ,'DNI'
-            ,'correo'
-            // ,[Sequelize.fn('count', Sequelize.col('tokensAsociadas.ID')), 'tokens']
-        ]
+        ,attributes
     });
     usuario.setDataValue('tokens',usuario.tokensAsociadas.length);
     return usuario;
@@ -111,6 +115,7 @@ async function updateUsuario(usuario, id) {
     
     usuario.permisos=permisosIDsAPermisos(usuario.permisos);
 
+    // TODO usar save? probar la base de datos en Planet Scale
     return Usuario.update(usuario, { where: { id } });
 }
 
@@ -152,6 +157,15 @@ async function findFuzzilyByName(consulta){
             }
         }
     });
+}
+
+async function cambiarHabilitado(id,valor){
+
+    let usuario=await findById(id,{incluirHabilitado:true});
+    console.log(usuario.habilitado);
+    usuario.habilitado=valor;
+    console.log(valor);
+    return usuario.save();
 }
 
 module.exports = usuarioDao;
