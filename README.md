@@ -36,7 +36,7 @@ Identificador| :heavy_check_mark:
 Detalle| :heavy_check_mark:
 Contenido adicional (correo electrónico)| :heavy_check_mark:
 Elemento visual (representación de tokens)| :heavy_check_mark:
-Modificación (habilitar / deshabilitar)|
+Modificación (habilitar / deshabilitar)| :heavy_check_mark:
 
 * Página principal que:
   * Al acceder a la página liste elementos (listado general, favoritos, recientes o cualquier otra condicion) sin filtro.

@@ -7,11 +7,14 @@
 	<p>{{(+(this.usuarioActual?.DNI||0)).toLocaleString()}}</p>
 	<h2>Correo electrónico:</h2>
 	<a href="mail:{{this.usuarioActual?.correo}}">{{this.usuarioActual?.correo}}</a>
-	<h2>Tokens:</h2>
+	<h2>Tokens: <small>({{this.usuarioActual?.tokens||0}})</small></h2>
 	<div id="particles"></div>
+	<button class="button error" (click)="cambiarHabilitado()">
+		<h3><b>{{this.usuarioActual?.habilitado?'Desh':'H'}}abilitar</b></h3>
+	</button>
 
 	<hr/>
 	<div class="is-right">
-		<button class="button secondary"></button>
+		<button id="volver" class="button secondary" (click)="volver()">Volver</button>
 	</div>
 </fieldset>

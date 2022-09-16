@@ -11,45 +11,25 @@ export class UsuarioService {
 
   constructor(private clienteHTTP: HttpClient) { }
 
-  create(usuario: Usuario) {
-    return this.clienteHTTP.post(this.URL,usuario);
+  getAll(){
+    return this.clienteHTTP.get(this.URL+'?incluirHabilitado=true');
   }
   
-  getAll(){
-    return this.clienteHTTP.get(this.URL);
-  }
-
-  getByID(id:number){
-    return this.clienteHTTP.get(this.URL+`${id}`);
-  }
-
-  delete(id:number){
-    return this.clienteHTTP.delete(this.URL+`${id}`);
-  }
-
-  edit(usuario: Usuario){
-    return this.clienteHTTP.put(this.URL+`${usuario.ID}`,usuario);
-  }
-  enviarTokens(IDEmisor:number,IDReceptor:number,tokens:number){
-    return this.clienteHTTP.put(this.URL+`${IDEmisor}/tokens`,{
-      receptorID:IDReceptor
-      ,tokens
+  cambiarHabilitado(id:number,valor:boolean){
+    return this.clienteHTTP.post(this.URL+`${id}/habilitado`,{
+      valor
     });
-  }
-  getFuzzilyByName(nombre:string) {
-    return this.clienteHTTP.get(this.URL+`buscar/${nombre}`);
   }
 
 }
 
 export interface Usuario{
-  ID?: number;
+  ID: number;
   correo: string;
-  contrasenia?: string;
   nombreUsuario: string;
   nombreCompleto: string;
-  DNI?: string;
+  DNI: string;
   tokens: number;
-  tokensAsociadas?: any[];
-  permisos?:Permiso[]
+  permisos?:Permiso[];
+  habilitado:boolean;
 }

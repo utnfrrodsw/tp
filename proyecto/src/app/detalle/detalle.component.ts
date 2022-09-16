@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioDetalladoService } from '../servicios/usuario-detallado.service';
-import { Usuario } from '../servicios/usuario.service';
+import { Usuario, UsuarioService } from '../servicios/usuario.service';
 
 declare var particlesJS: any; 
 
@@ -14,11 +14,19 @@ export class DetalleComponent implements OnInit {
   usuarioActual:(Usuario|undefined)=undefined;
   
   constructor(
-    private usuarioDetalladoService:UsuarioDetalladoService
+    private usuarioDetalladoService:UsuarioDetalladoService,
+    private usuarioService:UsuarioService
   ){}
   
   ngOnInit(): void {
     this.usuarioActual=this.usuarioDetalladoService.getUsuarioDetallado();
+    
+    if(this.usuarioActual==undefined){
+      this.volver()
+      return;
+    }
+
+    console.log(this.usuarioActual);
 
     particlesJS("particles", {
       "particles": {
@@ -42,6 +50,23 @@ export class DetalleComponent implements OnInit {
         }
       }
     });
+  }
+
+  volver(){
+    history.back();
+  }
+
+  cambiarHabilitado(){
+    if(this.usuarioActual!=undefined){
+      let valor=!this.usuarioActual?.habilitado;
+      this.usuarioService
+        .cambiarHabilitado(this.usuarioActual.ID,valor)
+        .subscribe(()=>{
+          // TODO if ok
+          if(this.usuarioActual!=undefined)
+            this.usuarioActual.habilitado=valor;
+        });
+    }
   }
 
 }

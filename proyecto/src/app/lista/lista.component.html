@@ -5,7 +5,7 @@
 
 	<div class="container is-center" id="listado">
 		<div *ngFor="let usuario of usuariosOrdenados()" class="card col-4 {{this.filtrados.includes(usuario.ID)?'is-hidden':''}}">
-			<h3 class="button primary" (click)="abrirModal(usuario.ID)">{{usuario.nombreCompleto}}</h3>
+			<h3 class="button {{usuario.habilitado?'primary':'secondary'}}" (click)="abrirModal(usuario.ID)">{{usuario.nombreCompleto}}</h3>
 			<p>{{'('+usuario.tokens+' tokens)'}}</p>
 		</div>
 	</div>
