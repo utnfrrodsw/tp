@@ -80,15 +80,18 @@ En la misma deberán indicar: fecha de la reunión, asistentes y por cada asiste
 * Debera pasar la validacion automatica al ejecutar `ng lint`
 * Debera pasar la compilacion completa al ejecutar `ng build --prod`
 
-
+Comandos | Cumplido
+-|:-:
+`ng lint` | :heavy_check_mark:
+`ng build --prod` | :heavy_check_mark:
 
 ### 2.2 - Planificación
 * Progreso en las capacidades para planificar adecuadamente y tomar acciones correctivas.
 * Adecuación de las entregas con tiempos y acciones.
 
 ### 2.3 - Repositorio
-* El desarrollo deberá realizarse en una plataforma de git gratuita. Se recomienda GitLab o GitHub.
-* Se evaluará el uso de git: Frecuencia y responsables de los commits, uso de branches y merge.
+* El desarrollo deberá realizarse en una plataforma de git gratuita. Se recomienda GitLab o **GitHub**.
+* Se evaluará el uso de git: Frecuencia y responsables de los commits, uso de branches y merge. ([registro-reuniones.txt](registro-reuniones.txt))
 * La creación del repositorio debe hacerse mediante un fork del repositorio del trabajo práctico.
 
 ## 3 - Entrega final
