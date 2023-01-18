@@ -32,6 +32,8 @@ Barra de búsqueda| :heavy_check_mark:
 Información detallada al cliquear (modal)| :heavy_check_mark:
 Redirigir a página de detalle| :heavy_check_mark:
 Contenido no tabulado (tarjetas)| :heavy_check_mark:
+boton de rojo a verde| :heavy_check_mark:
+decorador de input, componente hijo (detalle-token) (importante)|
 
 #### Página de detalle
 Funcionalidad | Cumplido
@@ -41,6 +43,8 @@ Detalle| :heavy_check_mark:
 Contenido adicional (correo electrónico)| :heavy_check_mark:
 Elemento visual (representación de tokens)| :heavy_check_mark:
 Modificación (habilitar / deshabilitar)| :heavy_check_mark:
+/detalle/1|
+detalle de tokens|
 
 * Página principal que:
   * Al acceder a la página liste elementos (listado general, favoritos, recientes o cualquier otra condicion) sin filtro.

@@ -6,3 +6,4 @@
 13/9 (noche) Modal.
 14/9 Implementación de "routeo". Página de detalle. Se instaló ESLint.
 15/9 Edición desde la página de detalle.
+28/9 Defensa. Se añadieron cosas para mejorar.
