@@ -1,1 +1,1 @@
-export const API_URL='https://secret-everglades-00918.herokuapp.com/api/';
+export const API_URL='https://ttads-backend.onrender.com/api/';
