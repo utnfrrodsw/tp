@@ -1,1 +1,1 @@
-export const API_URL='https://ttads-backend.onrender.com/api/';
+export const API_URL='https://ttads-fullstack.onrender.com/api/';
