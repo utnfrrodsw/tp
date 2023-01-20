@@ -1,0 +1,20 @@
+{
+  "name": "proyecto",
+  "version": "16.14.2",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "private": true,
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mysql2": "2.3.3",
+    "nodemon": "^2.0.19",
+    "rxjs": "~7.5.0",
+    "sequelize": "^6.19.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
+  }
+}
