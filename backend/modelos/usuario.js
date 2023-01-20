@@ -43,8 +43,7 @@ const Usuario = db.define('usuario', {
 });
 
 const opcionesComunes={
-    /* onDelete: 'cascade'
-    , */constraints:false
+    constraints:false
 }
 
 Token.belongsTo(Usuario,{

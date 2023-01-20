@@ -4,8 +4,6 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var cors = require("cors");
 
-// var db=require("./backend/datos/db")
-
 // Create new instance of the express server
 var app = express();
 
@@ -24,7 +22,6 @@ app.use(express.static(distDir));
 
 app.use(cors());
 
-// TODO mejor nombre
 app.use('/api',require('./rutas/todas'))
 
 // Init the server
