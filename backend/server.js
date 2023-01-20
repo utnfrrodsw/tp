@@ -25,7 +25,7 @@ app.use(express.static(distDir));
 app.use(cors());
 
 // TODO mejor nombre
-app.use('/api',require('./backend/rutas/rutas'))
+app.use('/api',require('./rutas/todas'))
 
 // Init the server
 var server = app.listen(process.env.PORT || 8080, function () {
