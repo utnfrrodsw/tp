@@ -11,6 +11,7 @@ var usuarioDao = {
     ,enviarTokens
     ,findFuzzilyByName
     ,cambiarHabilitado
+    ,findByUsername
 }
 
 async function permisosIDsAPermisos(permisosIDs){
@@ -166,6 +167,14 @@ async function cambiarHabilitado(id,valor){
     usuario.habilitado=valor;
     console.log(valor);
     return usuario.save();
+}
+
+async function findByUsername(usuario){
+    return Usuario.findAll({
+        where:{
+            nombreUsuario:usuario
+        }
+    });
 }
 
 module.exports = usuarioDao;

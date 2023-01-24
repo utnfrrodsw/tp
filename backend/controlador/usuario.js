@@ -8,6 +8,7 @@ var usuarioController = {
     enviarTokens: enviarTokens
     ,findUsuariosFuzzilyByName
     ,cambiarHabilitado
+    ,ingresar
 }
 
 function addUsuario(req, res) {
@@ -92,6 +93,24 @@ function cambiarHabilitado(req, res) {
     usuarioDao.cambiarHabilitado(req.params.id,req.body.valor)
         .then((data) => {
             res.send(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+function ingresar(req, res) {
+    usuarioDao.findByUsername(req.body.usuario)
+        .then((data) => {
+            bcrypt.compare(req.body.contrasenia, data.contrasenia)
+                .then((err,result)=>{
+                    if(result)
+                        res.send(data.ID);
+                    else res.send(401);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         })
         .catch((error) => {
             console.log(error);
