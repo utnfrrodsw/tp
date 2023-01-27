@@ -23,13 +23,8 @@
 	
 	<p>También puede <button type="button" (click)="registrandose=true">Registrarse</button>.</p>
 </form>
-<!-- (click)="registrandose=(((HTMLElement)$event.target).id=='modal')" -->
+
 <div class="is-full-screen is-fixed is-vertical-align {{registrandose ? '':'is-hidden'}}" id="modal" (click)="cerrarModal($event.target)">
-	<!-- <div> -->
-		<!-- 
-			 id="usuarios-formulario"
-			 (submit)="enviarUsuario($event)" 
-		 -->
 	<form class="container card" (submit)="registrarse($event)">
 
 		<h2>Registro</h2>
@@ -65,13 +60,4 @@
 		</fieldset>
 	</form>
 
-
-		<!-- <h4>Nombre de Usuario:</h4>
-		<p>{{usuarioModal?.nombreUsuario||''}}</p>
-
-		<h4>Correo Electrónico:</h4>
-		<p>{{usuarioModal?.correo||''}}</p>
-		
-		<a routerLink="/detalle" (click)="establecerUsuarioADetallar()">Más info</a> -->
-	<!-- </div> -->
 </div>

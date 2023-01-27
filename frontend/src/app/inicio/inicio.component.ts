@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario, UsuarioService } from '../servicios/usuario.service';
 import { Permiso, } from '../servicios/permiso.service';
+import { UsuarioActualService } from '../servicios/usuario-actual.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-inicio',
@@ -10,10 +12,11 @@ import { Permiso, } from '../servicios/permiso.service';
 export class InicioComponent implements OnInit {
 
   registrandose=false;
-  console=console;
 
   constructor(
-    private usuarioService: UsuarioService
+    private usuarioActualService:UsuarioActualService,
+    private usuarioService: UsuarioService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -25,8 +28,9 @@ export class InicioComponent implements OnInit {
     let form:HTMLFormElement=e.target as HTMLFormElement;
     this.usuarioService
       .ingresar(form['usuario'].value,form['contrasenia'].value)
-      .subscribe((response:any) =>{
-        console.log('Logueado!');
+      .subscribe((u:any) =>{
+        this.usuarioActualService.setUsuarioActual(u as Usuario);
+        this.router.navigate(['/panel'])
       })
   }
 

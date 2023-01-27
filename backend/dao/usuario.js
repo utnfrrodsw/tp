@@ -25,7 +25,12 @@ async function permisosIDsAPermisos(permisosIDs){
     return permisosReales;
 }
 
-function findAll({incluirContrasenia=false,incluirHabilitado=false,incluirTokensAsociadas=false}={}) {
+function findAll({
+    incluirContrasenia=false
+    ,incluirHabilitado=false
+    ,incluirTokensAsociadas=false
+    ,where=null
+}={}) {
     let attributes =[
         'ID'
         ,'nombreCompleto'
@@ -49,6 +54,9 @@ function findAll({incluirContrasenia=false,incluirHabilitado=false,incluirTokens
     if(!incluirTokensAsociadas){
         // attributes.push([Sequelize.fn('count', Sequelize.col('tokensAsociadas.ID')), 'tokens']);
         // findOptions.group=['usuario.ID'];
+    }
+    if(where){
+        findOptions.where=where;
     }
 
     findOptions.attributes = attributes;
@@ -174,10 +182,11 @@ async function cambiarHabilitado(id,valor){
 }
 
 async function findByUsername(usuario){
-    return Usuario.findAll({
+    return findAll({
         where:{
             nombreUsuario:usuario
         }
+        ,incluirContrasenia:true
     });
 }
 

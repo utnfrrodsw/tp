@@ -1,0 +1,23 @@
+<h1>Inicio</h1>
+
+<p>Tus tokens: <b id="tokens">{{usuarioActual.tokens}}</b></p>
+
+<fieldset>
+	<legend>Administración de Tokens</legend>
+	<details>
+		<summary>Envío de tokens</summary>
+		<form id=form-enviar>
+			<fieldset >
+				<input type="number" name="form-enviar-cantidad" id="form-enviar-cantidad" step=1 value=1 min=1 max={{usuarioActual.tokens}} required>
+				<select name="form-enviar-usuario" id="form-enviar-usuario" required>
+					<option value="0" >Elegir destinatario</option>
+					
+					<option *ngFor="let usuario of amigos" value="{{usuario.ID}}">{{usuario.nombreCompleto}}</option>
+					
+				</select>
+				<input type=submit value="Enviar tokens" id=form-enviar-submit disabled title="Debe elegir un usuario para enviarle tokens.">
+			</fieldset>
+		</form>
+	</details>
+</fieldset>
+

@@ -7,13 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { DetalleComponent } from './detalle/detalle.component';
 import { ListaComponent } from './lista/lista.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { PanelComponent } from './panel/panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DetalleComponent,
     ListaComponent,
-    InicioComponent
+    InicioComponent,
+    PanelComponent
   ],
   imports: [
     BrowserModule
