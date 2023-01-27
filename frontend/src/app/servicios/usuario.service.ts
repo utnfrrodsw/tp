@@ -11,6 +11,10 @@ export class UsuarioService {
 
   constructor(private clienteHTTP: HttpClient) { }
 
+  create(usuario: Usuario) {
+    return this.clienteHTTP.post(this.URL,usuario);
+  }
+  
   getAll(){
     return this.clienteHTTP.get(this.URL+'?incluirHabilitado=true');
   }
@@ -21,6 +25,13 @@ export class UsuarioService {
     });
   }
 
+  ingresar(usuario:string, contrasenia:string){
+    return this.clienteHTTP.post(this.URL+`ingresar`,{
+      usuario
+      ,contrasenia
+    });
+  }
+
 }
 
 export interface Usuario{
@@ -28,6 +39,7 @@ export interface Usuario{
   correo: string;
   nombreUsuario: string;
   nombreCompleto: string;
+  contrasenia?: string;
   DNI: string;
   tokens: number;
   permisos?:Permiso[];

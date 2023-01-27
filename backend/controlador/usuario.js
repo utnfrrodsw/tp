@@ -102,16 +102,14 @@ function cambiarHabilitado(req, res) {
 
 function ingresar(req, res) {
     usuarioDao.findByUsername(req.body.usuario)
-        .then((data) => {
-            bcrypt.compare(req.body.contrasenia, data.contrasenia)
-                .then((err,result)=>{
-                    if(result)
-                        res.send(data.ID);
-                    else res.send(401);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        .then((usuarios) => {
+            for(let usuario of usuarios){
+                if(bcrypt.compareSync(req.body.contrasenia, usuario.contrasenia)){
+                    res.send(usuario);
+                    return;
+                }
+            }
+            res.sendStatus(401);
         })
         .catch((error) => {
             console.log(error);

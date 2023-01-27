@@ -19,6 +19,6 @@ router.get('/:id',usuarioController.findUsuarioById)
 
 router.get('/buscar/:query',usuarioController.findUsuariosFuzzilyByName)
 
-router.get('/ingresar',usuarioController.ingresar)
+router.post('/ingresar',usuarioController.ingresar)
 
 module.exports = router
