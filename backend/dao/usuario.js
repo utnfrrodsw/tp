@@ -2,6 +2,7 @@ const {Usuario,Token} = require('../modelos/usuario');
 const {Permiso,UsuarioPermiso} = require('../modelos/permiso');
 const permisoDao = require('./permiso');
 const Sequelize =require('sequelize');
+const bcrypt = require('bcrypt');
 var usuarioDao = {
     findAll: findAll,
     create: create,
@@ -87,9 +88,11 @@ function deleteById(id) {
 }
 
 async function create(usuario) {
-    usuario.tokensAsociadas=new Array(+usuario.tokens).fill({});
+    usuario.tokensAsociadas=new Array(+(usuario.tokens||0)).fill({});
     let permisos=usuario.permisos;
     delete usuario.permisos;
+
+    usuario.contrasenia=bcrypt.hashSync(usuario.contrasenia, bcrypt.genSaltSync(8))
 
     let nuevoUsuario=await Usuario.create(usuario,{
         include:[{
@@ -98,9 +101,10 @@ async function create(usuario) {
         },Permiso]
     });
 
-    let permisosReales=await permisosIDsAPermisos(permisos)
+    let permisosReales=await permisosIDsAPermisos(permisos);
     await nuevoUsuario.setPermisos(permisosReales);
     await nuevoUsuario.save();
+
     return findById(nuevoUsuario.ID);
 }
 

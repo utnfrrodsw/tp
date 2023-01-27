@@ -6,7 +6,7 @@
   },
   "private": true,
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",

@@ -1,4 +1,5 @@
 const usuarioDao = require('../dao/usuario');
+const bcrypt = require('bcrypt');
 var usuarioController = {
     addUsuario: addUsuario,
     findUsuarios: findUsuarios,
