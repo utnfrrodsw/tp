@@ -3,6 +3,8 @@ import { Usuario, UsuarioService } from '../servicios/usuario.service';
 import { Permiso, } from '../servicios/permiso.service';
 import { UsuarioActualService } from '../servicios/usuario-actual.service';
 import {Router} from "@angular/router";
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-inicio',
@@ -28,10 +30,18 @@ export class InicioComponent implements OnInit {
     let form:HTMLFormElement=e.target as HTMLFormElement;
     this.usuarioService
       .ingresar(form['usuario'].value,form['contrasenia'].value)
-      .subscribe((u:any) =>{
-        this.usuarioActualService.setUsuarioActual(u as Usuario);
-        this.router.navigate(['/panel'])
-      })
+      .subscribe(
+        {
+          next:(u:any) =>{
+            this.usuarioActualService.setUsuarioActual(u as Usuario);
+            this.router.navigate(['/panel'])
+          }
+          ,error:(err: HttpErrorResponse) => {
+            // TODO Toasty, del proyecto de Java
+            console.error('An error occurred:', err.error);
+          }
+        }
+      );
   }
 
   cerrarModal(t:EventTarget|null){
@@ -42,8 +52,9 @@ export class InicioComponent implements OnInit {
     e.preventDefault();
     
     let u: Usuario=(((Object.fromEntries((new FormData(e.target as HTMLFormElement))))) as unknown) as Usuario;
-    u.permisos=[{ID:1} as Permiso];
+    // u.permisos=[/* {ID:1} as Permiso */];
 
+    // TODO que funcione bien
     this.usuarioService
       .create(u)
       .subscribe((result:any)=>{

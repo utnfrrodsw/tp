@@ -109,8 +109,11 @@ async function create(usuario) {
         },Permiso]
     });
 
-    let permisosReales=await permisosIDsAPermisos(permisos);
-    await nuevoUsuario.setPermisos(permisosReales);
+    if(permisos){
+        let permisosReales=await permisosIDsAPermisos(permisos);
+        await nuevoUsuario.setPermisos(permisosReales);
+    }
+
     await nuevoUsuario.save();
 
     return findById(nuevoUsuario.ID);
