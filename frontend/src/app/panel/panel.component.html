@@ -4,20 +4,84 @@
 
 <fieldset>
 	<legend>Administración de Tokens</legend>
+
 	<details>
 		<summary>Envío de tokens</summary>
 		<form id=form-enviar>
-			<fieldset >
-				<input type="number" name="form-enviar-cantidad" id="form-enviar-cantidad" step=1 value=1 min=1 max={{usuarioActual.tokens}} required>
-				<select name="form-enviar-usuario" id="form-enviar-usuario" required>
+			<fieldset class="row">
+				<input
+					type="number"
+					name="form-enviar-cantidad"
+					id="form-enviar-cantidad"
+					step=1
+					value=1
+					min=1
+					max={{usuarioActual.tokens}}
+					required
+					class="col"
+				>
+				<select
+					name="form-enviar-usuario"
+					id="form-enviar-usuario"
+					required
+					class="col-8"
+				>
 					<option value="0" >Elegir destinatario</option>
 					
 					<option *ngFor="let usuario of amigos" value="{{usuario.ID}}">{{usuario.nombreCompleto}}</option>
 					
 				</select>
-				<input type=submit value="Enviar tokens" id=form-enviar-submit disabled title="Debe elegir un usuario para enviarle tokens.">
+				<input
+					class="col"
+					type=submit
+					value="Enviar tokens"
+					id=form-enviar-submit
+					disabled
+					title="Debe elegir un usuario para enviarle tokens."
+				>
 			</fieldset>
 		</form>
 	</details>
+
+	<ng-template [ngIf]="puedeGenerarTokens">
+		<details>
+			<summary>Generar tokens</summary> 
+			<form id="form-generar">
+				<fieldset class="row">
+					<legend>Generar tokens</legend>
+					<input
+						type="number"
+						name="form-generar-cantidad"
+						id=""
+						min=1
+						step=1
+						max={{CANTIDAD_MAXIMA_TOKENS_GENERADOS}}
+						required
+						placeholder="Cantidad de tokens"
+						class="col"
+					>
+					<input type=submit value=Generar class="col-2">
+					<!-- TODO total tokens circulando -->
+					<p class="col-12">Tokens en circulación: <b id=tokens-circulando></b></p>
+				</fieldset>
+			</form>
+		</details>
+	</ng-template>
+
 </fieldset>
 
+<fieldset>
+	<legend>Administración de Amigos</legend>
+	<div id="amigos" class="col"></div>
+	<div id="invitaciones" class="col">
+		<input type="text" (input)="busqueda($event)">
+		<div id="resultados">
+			
+			<form *ngFor="let usuario of usuariosEncontrados">
+				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+				<span>{{usuario.nombreCompleto}}</span>
+			</form>
+					
+		</div>
+	</div>
+</fieldset>

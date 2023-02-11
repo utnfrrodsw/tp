@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Permiso } from '../servicios/permiso.service';
 import { UsuarioActualService } from '../servicios/usuario-actual.service';
+import {Router} from "@angular/router";
 import { Usuario, UsuarioService } from '../servicios/usuario.service';
 
 @Component({
@@ -16,21 +18,51 @@ export class PanelComponent implements OnInit {
 
   usuarioActual:Usuario={} as Usuario;
   amigos:Usuario[]=[];
+
+  puedeGenerarTokens:boolean = false;
   
   console=console;
 
-  /* 
-	usuarioActual=Usuario logueado
-  */
+  busquedaID=0;
+  usuariosEncontrados:Usuario[] = [];
 
   constructor(
     private usuarioActualService:UsuarioActualService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.usuarioActual=this.usuarioActualService.getUsuarioActual() as Usuario;
+    // TODO permitir que se pueda recargar la pagina
+    /* if(this.usuarioActual.ID==null) {
+      let IDGuardada=sessionStorage.getItem('ID');
+      if(IDGuardada){
+        this.usuarioService.
+      }else{
+        this.router.navigate(['/panel'])
+        return;
+      }
+    } */
+
+    this.puedeGenerarTokens=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==1) || false;
+      
+      
     this.console.log(this.usuarioActual);
   }
 
+  busqueda(e:Event){
+    let busquedaID=++this.busquedaID;
+
+    let consulta=(e.target as HTMLInputElement).value.trim();
+
+    if(consulta.length>3)
+      this.usuarioService
+        .buscarDifusamentePorNombre(consulta)
+        .subscribe((result: any)=>{
+          if(this.busquedaID==busquedaID)
+            this.usuariosEncontrados=result;
+        });
+    else this.usuariosEncontrados=[];
+  }
 }

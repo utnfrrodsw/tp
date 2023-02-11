@@ -39,11 +39,18 @@ function findAll({
         ,'correo'
     ];
     let findOptions={
-        include:[{
-            model:Token
-            // ,attributes: incluirTokensAsociadas?['ID']:[]
-            ,as:'tokensAsociadas'
-        },Permiso]
+        include:[
+            {
+                model:Token
+                // ,attributes: incluirTokensAsociadas?['ID']:[]
+                ,as:'tokensAsociadas'
+            }
+            ,Permiso
+            ,{
+                model:Usuario
+                ,as:'amigos'
+            }
+        ]
         ,attributes
     }
 

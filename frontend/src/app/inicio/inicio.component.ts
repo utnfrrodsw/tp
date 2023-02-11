@@ -21,8 +21,7 @@ export class InicioComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   intentarIngresar(e:SubmitEvent){
     e.preventDefault();

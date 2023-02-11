@@ -32,6 +32,21 @@ export class UsuarioService {
     });
   }
 
+  buscarDifusamentePorNombre(nombre:string) {
+    return this.clienteHTTP.get(this.URL+`buscar/${nombre}`);
+  }
+
+}
+
+enum EstadosAmistades {
+  Esperando = 'esperando',
+  Amigos='amigos'
+}
+
+interface Amistad{
+  estado:EstadosAmistades
+  ,amigo:Usuario
+  ,iniciador:Usuario
 }
 
 export interface Usuario{
@@ -43,5 +58,6 @@ export interface Usuario{
   DNI: string;
   tokens: number;
   permisos?:Permiso[];
+  amigos?:Amistad[];
   habilitado:boolean;
 }

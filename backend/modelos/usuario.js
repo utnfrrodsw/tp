@@ -56,6 +56,42 @@ Usuario.hasMany(Token,{
     ,...opcionesComunes
 });
 
+// Relaciones:
+// Persona A / 
+// Persona B
+// Estado: Esperando, amigos, bloqueado
+
+const ESTADOS_AMISTADES={
+    ESPERANDO:'esperando',
+    AMIGOS:'amigos'
+};
+
+const Amistades=db.define('amistades',{
+    estado: {
+        type: Sequelize.ENUM(...Object.values(ESTADOS_AMISTADES)),
+        defaultValue:ESTADOS_AMISTADES.ESPERANDO,
+        allowNull: false
+    }
+});
+
+Amistades.belongsTo(Usuario,{
+    as:'iniciador'
+    ,...opcionesComunes
+})
+Usuario.hasMany(Amistades,{
+    as:'invitaciones'
+    ,...opcionesComunes
+});
+
+
+Usuario.belongsToMany(Usuario,{
+    as:'amigos'
+    ,through:Amistades
+    ,...opcionesComunes
+});
+
+Amistades.sync();
+
 Usuario.sync();
 Token.sync();
 
