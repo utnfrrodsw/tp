@@ -25,12 +25,14 @@ function addUsuario(req, res) {
 }
 
 function findUsuarioById(req, res) {
-    usuarioDao.findById(req.params.id).
-        then((data) => {
-            res.send(data);
+    usuarioDao.findById(req.params.id)
+        .then((data) => {
+            if(data)
+                res.send(data);
+            else res.status(404).send();
         })
         .catch((error) => {
-            console.log(error);
+            res.status(500).send(error);
         });
 }
 

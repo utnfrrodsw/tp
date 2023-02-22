@@ -36,17 +36,24 @@ export class PanelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.usuarioActualService.getUsuarioActual().subscribe((usuario:any) => {
-      this.usuarioActual= usuario;
+    this.usuarioActualService.getUsuarioActual()
+      .subscribe({
+        next:(usuario:any) => {
+          this.usuarioActual= usuario;
 
-      this.puedeGenerarTokens=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==1) || false;
-      if(this.puedeGenerarTokens)
-        this.tokensService
-          .obtenerCantidadCirculando()
-          .subscribe((result: any)=>{
-            this.tokensCirculando=result;
-          });
-    });
+          this.puedeGenerarTokens=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==1) || false;
+          if(this.puedeGenerarTokens)
+            this.tokensService
+              .obtenerCantidadCirculando()
+              .subscribe((result: any)=>{
+                this.tokensCirculando=result;
+              });
+        }
+        ,error:error=>{
+          this.console.log(error);
+          this.router.navigate(['/'])
+        }
+      });
   }
 
   busqueda(e:Event):void{

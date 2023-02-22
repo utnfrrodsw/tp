@@ -18,8 +18,8 @@ Las tokens las crea un usuario administrador que las da por alguna razón ajena 
 <table>
   <tr><th>Funcionalidad</th><th>Cumplido</th></tr>
   <tr><td>Todo el sistema de amigos habría que agregar.</td><td></td></tr>
-  <tr><td>También hay que hacer un login, un register... un "about us" no estaría mal.</td><td></td></tr>
-  <tr><td>Contraseñas hasheadas.</td><td></td></tr>
+  <tr><td>También hay que hacer un login, un register... un "about us" no estaría mal.</td><td>:yellow_circle:</td></tr>
+  <tr><td>Contraseñas hasheadas.</td><td>:heavy_check_mark:</td></tr>
   <tr><td colspan=2 align=center><b>Cosas que me dijeron los profesores de los proyectos en los que está basado este:</b></td></tr>
   <tr><td>body-parser está obsoleto</td><td></td></tr>
   <tr><td>El manejo de errores debe ser total.</td><td></td></tr>
