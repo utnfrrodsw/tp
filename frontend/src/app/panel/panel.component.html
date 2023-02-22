@@ -1,6 +1,6 @@
 <h1>Inicio</h1>
 
-<p>Tus tokens: <b id="tokens">{{usuarioActual.tokens}}</b></p>
+<p>Tus tokens: <b id="tokens">{{usuarioActual?.tokens}}</b></p>
 
 <fieldset>
 	<legend>Administración de Tokens</legend>
@@ -16,7 +16,7 @@
 					step=1
 					value=1
 					min=1
-					max={{usuarioActual.tokens}}
+					max={{usuarioActual?.tokens}}
 					required
 					class="col"
 				>

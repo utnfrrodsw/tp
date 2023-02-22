@@ -33,21 +33,12 @@ export class PanelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.usuarioActual=this.usuarioActualService.getUsuarioActual() as Usuario;
-    // TODO permitir que se pueda recargar la pagina
-    /* if(this.usuarioActual.ID==null) {
-      let IDGuardada=sessionStorage.getItem('ID');
-      if(IDGuardada){
-        this.usuarioService.
-      }else{
-        this.router.navigate(['/panel'])
-        return;
-      }
-    } */
+    this.usuarioActualService.getUsuarioActual().subscribe((usuario:any) => {
+      this.usuarioActual= usuario;
+      
+      this.puedeGenerarTokens=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==1) || false;
+    });
 
-    this.puedeGenerarTokens=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==1) || false;
-      
-      
     this.console.log(this.usuarioActual);
   }
 

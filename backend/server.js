@@ -3,9 +3,16 @@ var express = require("express");
 // Use body-parser
 var bodyParser = require("body-parser");
 var cors = require("cors");
+var session = require('express-session');
 
 // Create new instance of the express server
 var app = express();
+
+app.use(session({
+    secret: 'sobambalauea',
+    resave:true,
+    saveUninitialized: false
+}));
 
 // Define the JSON parser as a default way 
 // to consume and produce data through the 
@@ -20,7 +27,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
-app.use(cors());
+var corsOptions = {
+    origin: true,
+    credentials: true
+};
+app.use(cors(corsOptions));
 
 app.use('/api',require('./rutas/todas'))
 

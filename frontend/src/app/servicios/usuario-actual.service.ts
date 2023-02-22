@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from './usuario.service';
+import { HttpClient} from '@angular/common/http';
+import { API_URL } from './api-url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioActualService {
 
-  // TODO Esto no me gusta.
-  usuarioActual:(Usuario|null) =null;
-
-  setUsuarioActual(usuario:Usuario) {
-    this.usuarioActual = usuario;
-  }
+  constructor(private clienteHTTP: HttpClient){}
 
   getUsuarioActual(){
-    return this.usuarioActual;
+    return this.clienteHTTP.get(API_URL+'usuarios/actual',{withCredentials: true});
   }
 }

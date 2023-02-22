@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario, UsuarioService } from '../servicios/usuario.service';
 import { Permiso, } from '../servicios/permiso.service';
-import { UsuarioActualService } from '../servicios/usuario-actual.service';
 import {Router} from "@angular/router";
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observer } from 'rxjs';
@@ -16,7 +15,6 @@ export class InicioComponent implements OnInit {
   registrandose=false;
 
   constructor(
-    private usuarioActualService:UsuarioActualService,
     private usuarioService: UsuarioService,
     private router: Router
   ) { }
@@ -32,7 +30,6 @@ export class InicioComponent implements OnInit {
       .subscribe(
         {
           next:(u:any) =>{
-            this.usuarioActualService.setUsuarioActual(u as Usuario);
             this.router.navigate(['/panel'])
           }
           ,error:(err: HttpErrorResponse) => {

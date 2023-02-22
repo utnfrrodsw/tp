@@ -105,11 +105,11 @@ function ingresar(req, res) {
         .then((usuarios) => {
             for(let usuario of usuarios){
                 if(bcrypt.compareSync(req.body.contrasenia, usuario.contrasenia)){
+                    req.session.usuarioID=usuario.ID;
                     res.send(usuario);
-                    return;
+                    return; // break;
                 }
             }
-            res.sendStatus(401);
         })
         .catch((error) => {
             console.log(error);

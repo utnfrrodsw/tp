@@ -29,7 +29,7 @@ export class UsuarioService {
     return this.clienteHTTP.post(this.URL+`ingresar`,{
       usuario
       ,contrasenia
-    });
+    },{withCredentials: true});
   }
 
   buscarDifusamentePorNombre(nombre:string) {

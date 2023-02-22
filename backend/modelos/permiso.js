@@ -40,7 +40,7 @@ Permiso.sync()
 
         Usuario.belongsToMany(Permiso, opcionesUsuarioPermiso);
         Permiso.belongsToMany(Usuario, opcionesUsuarioPermiso);
-        
+    
         UsuarioPermiso.sync();
     });
 
