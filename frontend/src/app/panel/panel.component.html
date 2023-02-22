@@ -2,10 +2,10 @@
 
 <p>Tus tokens: <b id="tokens">{{usuarioActual?.tokens}}</b></p>
 
-<fieldset>
+<fieldset class="row">
 	<legend>Administración de Tokens</legend>
 
-	<details>
+	<details class="col-12">
 		<summary>Envío de tokens</summary>
 		<form id=form-enviar>
 			<fieldset class="row">
@@ -44,7 +44,7 @@
 	</details>
 
 	<ng-template [ngIf]="puedeGenerarTokens">
-		<details>
+		<details class="col-12">
 			<summary>Generar tokens</summary> 
 			<form id="form-generar">
 				<fieldset class="row">
@@ -61,8 +61,7 @@
 						class="col"
 					>
 					<input type=submit value=Generar class="col-2">
-					<!-- TODO total tokens circulando -->
-					<p class="col-12">Tokens en circulación: <b id=tokens-circulando></b></p>
+					<p class="col-12">Tokens en circulación: <b id=tokens-circulando>{{tokensCirculando}}</b></p>
 				</fieldset>
 			</form>
 		</details>

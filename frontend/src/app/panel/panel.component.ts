@@ -3,6 +3,7 @@ import { Permiso } from '../servicios/permiso.service';
 import { UsuarioActualService } from '../servicios/usuario-actual.service';
 import {Router} from "@angular/router";
 import { Usuario, UsuarioService } from '../servicios/usuario.service';
+import { TokensService } from '../servicios/tokens.service';
 
 @Component({
   selector: 'app-panel',
@@ -20,6 +21,7 @@ export class PanelComponent implements OnInit {
   amigos:Usuario[]=[];
 
   puedeGenerarTokens:boolean = false;
+  tokensCirculando:number = 0;
   
   console=console;
 
@@ -29,20 +31,25 @@ export class PanelComponent implements OnInit {
   constructor(
     private usuarioActualService:UsuarioActualService,
     private usuarioService: UsuarioService,
+    private tokensService: TokensService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.usuarioActualService.getUsuarioActual().subscribe((usuario:any) => {
       this.usuarioActual= usuario;
-      
-      this.puedeGenerarTokens=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==1) || false;
-    });
 
-    this.console.log(this.usuarioActual);
+      this.puedeGenerarTokens=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==1) || false;
+      if(this.puedeGenerarTokens)
+        this.tokensService
+          .obtenerCantidadCirculando()
+          .subscribe((result: any)=>{
+            this.tokensCirculando=result;
+          });
+    });
   }
 
-  busqueda(e:Event){
+  busqueda(e:Event):void{
     let busquedaID=++this.busquedaID;
 
     let consulta=(e.target as HTMLInputElement).value.trim();
@@ -55,5 +62,20 @@ export class PanelComponent implements OnInit {
             this.usuariosEncontrados=result;
         });
     else this.usuariosEncontrados=[];
+  }
+
+  invitar(e:Event):void {
+    e.preventDefault();
+
+    (document.getElementById('resultados') as HTMLFieldSetElement).disabled=true;
+    this.console.log(e);
+  }
+
+  eliminar(e:Event):void{
+    console.log(e);
+  }
+
+  generar(e:Event):void{
+    
   }
 }
