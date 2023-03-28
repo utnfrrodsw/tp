@@ -46,6 +46,7 @@
 	<ng-template [ngIf]="puedeGenerarTokens">
 		<details class="col-12">
 			<summary>Generar tokens</summary> 
+			<!-- <form id="form-generar" (submit)="generar"> -->
 			<form id="form-generar">
 				<fieldset class="row">
 					<legend>Generar tokens</legend>
@@ -69,18 +70,42 @@
 
 </fieldset>
 
-<fieldset>
+<fieldset class="row">
 	<legend>Administración de Amigos</legend>
-	<div id="amigos" class="col"></div>
+	<div id="amigos" class="col">
+		
+<!-- 		<form *ngFor="let usuario of invitacionesEntrantes" (submit)="responder($event)" class="col-12 row">
+			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+			<span class="col">{{usuario.nombreCompleto}}</span> -->
+			<!-- detect button on event -->
+<!-- 			<button type="submit" class="fas fa-plus"></button>
+			<button type="submit" class="fas fa-plus"></button>
+		</form> -->
+				
+		<form *ngFor="let usuario of amigos" (submit)="eliminar($event)" class="col-12 row">
+			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+			<span class="col">{{usuario.nombreCompleto}}</span>
+			<button type="submit" class="fas fa-plus"></button>
+		</form>
+				<!-- 
+		<form *ngFor="let usuario of invitacionesSalientes" (submit)="invitar($event)" class="col-12 row">
+			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+			<span class="col">{{usuario.nombreCompleto}}</span>
+			<button type="submit" class="fas fa-plus"></button>
+		</form>
+				 -->
+	</div>
 	<div id="invitaciones" class="col">
-		<input type="text" (input)="busqueda($event)">
-		<div id="resultados">
+		<input type="text" (input)="busqueda($event)" placeholder="Busque por nombre">
+		<fieldset id="resultados" class="row">
+			<!-- TODO capturar el submit en el fieldset? -->
 			
-			<form *ngFor="let usuario of usuariosEncontrados">
+			<form *ngFor="let usuario of usuariosEncontrados" (submit)="invitar($event)" class="col-12 row">
 				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-				<span>{{usuario.nombreCompleto}}</span>
+				<span class="col">{{usuario.nombreCompleto}}</span>
+				<button type="submit" class="fas fa-plus"></button>
 			</form>
 					
-		</div>
+		</fieldset>
 	</div>
 </fieldset>

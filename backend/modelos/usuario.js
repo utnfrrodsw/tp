@@ -95,4 +95,4 @@ Amistades.sync();
 Usuario.sync();
 Token.sync();
 
-module.exports = {Usuario,Token};
+module.exports = {Usuario,Token,Amistades,ESTADOS_AMISTADES};

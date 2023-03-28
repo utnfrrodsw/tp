@@ -1,4 +1,4 @@
-const {Usuario,Token} = require('../modelos/usuario');
+const {Usuario,Token,Amistades,ESTADOS_AMISTADES} = require('../modelos/usuario');
 const {Permiso,UsuarioPermiso} = require('../modelos/permiso');
 const permisoDao = require('./permiso');
 const Sequelize =require('sequelize');
@@ -13,6 +13,7 @@ var usuarioDao = {
     ,findFuzzilyByName
     ,cambiarHabilitado
     ,findByUsername
+    ,invitar
 }
 
 async function permisosIDsAPermisos(permisosIDs){
@@ -91,10 +92,14 @@ async function findById(id,{incluirHabilitado=false}={}) {
         include:[{
             model:Token
             ,as:'tokensAsociadas'
-        },Permiso]
+        },Permiso ,{
+            model:Usuario
+            ,as:'amigos'
+        }]
         ,attributes
     });
-    usuario.setDataValue('tokens',usuario.tokensAsociadas.length);
+    if(usuario)
+        usuario.setDataValue('tokens',usuario.tokensAsociadas.length);
     return usuario;
 }
 
@@ -185,9 +190,7 @@ async function findFuzzilyByName(consulta){
 async function cambiarHabilitado(id,valor){
 
     let usuario=await findById(id,{incluirHabilitado:true});
-    console.log(usuario.habilitado);
     usuario.habilitado=valor;
-    console.log(valor);
     return usuario.save();
 }
 
@@ -198,6 +201,17 @@ async function findByUsername(usuario){
         }
         ,incluirContrasenia:true
     });
+}
+
+async function invitar(invitadorID,invitadoID){
+    Promise.all([findById(invitadorID),findById(invitadoID)])
+        .then(usuarios=>{
+            usuarios[0].addAmigos(
+                usuarios[1]
+            );
+            console.log(usuarios[0]);
+            return usuarios[0].save();
+        })
 }
 
 module.exports = usuarioDao;

@@ -26,8 +26,6 @@ export class DetalleComponent implements OnInit {
       return;
     }
 
-    console.log(this.usuarioActual);
-
     particlesJS("particles", {
       "particles": {
         "number": {

@@ -10,6 +10,8 @@ router.get('/actual',(req,res)=>{
 
 router.post('/',usuarioController.addUsuario)
 
+router.post('/invitar/:id',usuarioController.invitar)
+
 router.delete('/:id',usuarioController.deleteById)
 
 router.put('/:id',usuarioController.updateUsuario)

@@ -18,7 +18,10 @@ export class PanelComponent implements OnInit {
 	CANTIDAD_MAXIMA_TOKENS_GENERADOS=100000;
 
   usuarioActual:Usuario={} as Usuario;
-  amigos:Usuario[]=[];
+  // amigos:Usuario[]=[];
+  get amigos() {
+    return this.usuarioActual?.amigos??[];
+  }
 
   puedeGenerarTokens:boolean = false;
   tokensCirculando:number = 0;
@@ -40,6 +43,8 @@ export class PanelComponent implements OnInit {
       .subscribe({
         next:(usuario:any) => {
           this.usuarioActual= usuario;
+
+          /* Acá debería traer todas las amistades, en todos los estados, y meterlas en orden en respectivo div */
 
           this.puedeGenerarTokens=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==1) || false;
           if(this.puedeGenerarTokens)
@@ -75,7 +80,17 @@ export class PanelComponent implements OnInit {
     e.preventDefault();
 
     (document.getElementById('resultados') as HTMLFieldSetElement).disabled=true;
-    this.console.log(e);
+    this.usuarioService
+      .invitar((e.target as any)['usuarioID'].value)
+      .subscribe({
+        next:(result: any)=>{
+          /* Guardar la invitación... en el usuario? que de ahí se tome directamente para el frontend, new Amistad(result)?? */
+          this.console.log(result);
+        }
+        ,error:error=>{
+          this.console.log(error);
+        }
+      });
   }
 
   eliminar(e:Event):void{

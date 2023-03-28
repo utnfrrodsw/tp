@@ -36,6 +36,10 @@ export class UsuarioService {
     return this.clienteHTTP.get(this.URL+`buscar/${nombre}`);
   }
 
+  invitar(ID:number) {
+    return this.clienteHTTP.post(this.URL+`invitar/${ID}`,null,{withCredentials: true});
+  }
+
 }
 
 enum EstadosAmistades {
@@ -58,6 +62,6 @@ export interface Usuario{
   DNI: string;
   tokens: number;
   permisos?:Permiso[];
-  amigos?:Amistad[];
+  amigos?:Usuario[];
   habilitado:boolean;
 }
