@@ -47,7 +47,7 @@ enum EstadosAmistades {
   Amigos='amigos'
 }
 
-interface Amistad{
+export interface Amistad{
   estado:EstadosAmistades
   // ,amigo:Usuario
   ,amigoID:number

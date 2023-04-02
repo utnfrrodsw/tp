@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Permiso } from '../servicios/permiso.service';
 import { UsuarioActualService } from '../servicios/usuario-actual.service';
 import {Router} from "@angular/router";
-import { Usuario, UsuarioService } from '../servicios/usuario.service';
+import { Usuario, UsuarioService,Amistad } from '../servicios/usuario.service';
 import { TokensService } from '../servicios/tokens.service';
 
 @Component({
@@ -19,6 +19,8 @@ export class PanelComponent implements OnInit {
 
   usuarioActual:Usuario={} as Usuario;
   
+  // TODO DRY
+  // TODO sort
   get amigosEntrantes() {
     return (this.usuarioActual?.amigos??[]).filter(ami=> ami.amistades.estado=='esperando' && ami.amistades.amigoID==this.usuarioActual.ID);
   }
@@ -87,18 +89,27 @@ export class PanelComponent implements OnInit {
   invitar(e:Event):void {
     e.preventDefault();
 
+    let usuarioID=(e.target as any)['usuarioID'].value;
+
     (document.getElementById('resultados') as HTMLFieldSetElement).disabled=true;
     this.usuarioService
-      .invitar((e.target as any)['usuarioID'].value)
+      .invitar(usuarioID)
       .subscribe({
         next:(result: any)=>{
           /* TODO Guardar la invitación... en el usuario? que de ahí se tome directamente para el frontend, new Amistad(result)?? */
-          this.console.log(result);
+
+          let nuevoAmigo:Usuario=this.usuariosEncontrados.find(usu=>usu.ID==usuarioID) as Usuario;
+          nuevoAmigo.amistades=({estado:'esperando',amigoID:usuarioID}) as Amistad;
+          this.usuarioActual.amigos?.push(nuevoAmigo as Usuario);
         }
         ,error:error=>{
           this.console.log(error);
         }
-      });
+        ,complete:()=>{
+          (document.getElementById('resultados') as HTMLFieldSetElement).disabled=false;
+        }
+      })
+
   }
 
   eliminar(e:Event):void{
