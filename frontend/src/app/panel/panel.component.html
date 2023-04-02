@@ -3,10 +3,10 @@
 <p>Tus tokens: <b id="tokens">{{usuarioActual?.tokens}}</b></p>
 
 <fieldset class="row">
-	<legend>Administración de Tokens</legend>
+	<legend><h2>Administración de Tokens</h2></legend>
 
 	<details class="col-12">
-		<summary>Envío de tokens</summary>
+		<summary><h3>Envío de tokens</h3></summary>
 		<form id=form-enviar>
 			<fieldset class="row">
 				<input
@@ -45,7 +45,7 @@
 
 	<ng-template [ngIf]="puedeGenerarTokens">
 		<details class="col-12">
-			<summary>Generar tokens</summary> 
+			<summary><h3>Generar tokens</h3></summary> 
 			<!-- <form id="form-generar" (submit)="generar"> -->
 			<form id="form-generar">
 				<fieldset class="row">
@@ -71,19 +71,27 @@
 </fieldset>
 
 <fieldset class="row">
-	<legend>Administración de Amigos</legend>
+	<legend><h2>Administración de Amigos</h2></legend>
 	<div id="amigos" class="col">
 		
+		<h3>Invitaciones Recibidas</h3>
+
 		<form *ngFor="let usuario of amigosEntrantes" (submit)="eliminar($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>
 			<button type="submit" class="button error fas fa-ban"></button>
 		</form>
+		
+		<h3>Invitaciones Enviadas</h3>
+
 		<form *ngFor="let usuario of amigosSalientes" (submit)="eliminar($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>
 			<button type="submit" class="button error fas fa-xmark"></button>
 		</form>
+		
+		<h3>Amigos</h3>
+
 		<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>
