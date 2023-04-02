@@ -28,7 +28,7 @@
 				>
 					<option value="0" >Elegir destinatario</option>
 					
-					<option *ngFor="let usuario of amigos" value="{{usuario.ID}}">{{usuario.nombreCompleto}}</option>
+					<option *ngFor="let usuario of amigosReales" value="{{usuario.ID}}">{{usuario.nombreCompleto}}</option>
 					
 				</select>
 				<input
@@ -74,26 +74,22 @@
 	<legend>Administración de Amigos</legend>
 	<div id="amigos" class="col">
 		
-<!-- 		<form *ngFor="let usuario of invitacionesEntrantes" (submit)="responder($event)" class="col-12 row">
-			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-			<span class="col">{{usuario.nombreCompleto}}</span> -->
-			<!-- detect button on event -->
-<!-- 			<button type="submit" class="fas fa-plus"></button>
-			<button type="submit" class="fas fa-plus"></button>
-		</form> -->
-				
-		<form *ngFor="let usuario of amigos" (submit)="eliminar($event)" class="col-12 row">
+		<form *ngFor="let usuario of amigosEntrantes" (submit)="eliminar($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>
-			<button type="submit" class="fas fa-plus"></button>
+			<button type="submit" class="button error fas fa-ban"></button>
 		</form>
-				<!-- 
-		<form *ngFor="let usuario of invitacionesSalientes" (submit)="invitar($event)" class="col-12 row">
+		<form *ngFor="let usuario of amigosSalientes" (submit)="eliminar($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>
-			<button type="submit" class="fas fa-plus"></button>
+			<button type="submit" class="button error fas fa-xmark"></button>
 		</form>
-				 -->
+		<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-12 row">
+			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+			<span class="col">{{usuario.nombreCompleto}}</span>
+			<button type="submit" class="button error fas fa-trash-can"></button>
+		</form>
+		
 	</div>
 	<div id="invitaciones" class="col">
 		<input type="text" (input)="busqueda($event)" placeholder="Busque por nombre">

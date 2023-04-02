@@ -49,8 +49,9 @@ enum EstadosAmistades {
 
 interface Amistad{
   estado:EstadosAmistades
-  ,amigo:Usuario
-  ,iniciador:Usuario
+  // ,amigo:Usuario
+  ,amigoID:number
+  // ,iniciador:Usuario
 }
 
 export interface Usuario{
@@ -63,5 +64,6 @@ export interface Usuario{
   tokens: number;
   permisos?:Permiso[];
   amigos?:Usuario[];
+  amistades:Amistad
   habilitado:boolean;
 }

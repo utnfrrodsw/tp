@@ -18,9 +18,15 @@ export class PanelComponent implements OnInit {
 	CANTIDAD_MAXIMA_TOKENS_GENERADOS=100000;
 
   usuarioActual:Usuario={} as Usuario;
-  // amigos:Usuario[]=[];
-  get amigos() {
-    return this.usuarioActual?.amigos??[];
+  
+  get amigosEntrantes() {
+    return (this.usuarioActual?.amigos??[]).filter(ami=> ami.amistades.estado=='esperando' && ami.amistades.amigoID==this.usuarioActual.ID);
+  }
+  get amigosSalientes() {
+    return (this.usuarioActual?.amigos??[]).filter(ami=> ami.amistades.estado=='esperando' && ami.amistades.amigoID!=this.usuarioActual.ID);
+  }
+  get amigosReales() {
+    return (this.usuarioActual?.amigos??[]).filter(ami=> ami.amistades.estado!='esperando');
   }
 
   puedeGenerarTokens:boolean = false;
@@ -44,7 +50,9 @@ export class PanelComponent implements OnInit {
         next:(usuario:any) => {
           this.usuarioActual= usuario;
 
-          /* Acá debería traer todas las amistades, en todos los estados, y meterlas en orden en respectivo div */
+          /* * Cada Usuario.amigos tiene un .amistad con los detalles de la invitación; estado y quien la mando */
+
+          /* TODO Que solo se puedan enviar tokens a amigos */
 
           this.puedeGenerarTokens=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==1) || false;
           if(this.puedeGenerarTokens)
@@ -84,7 +92,7 @@ export class PanelComponent implements OnInit {
       .invitar((e.target as any)['usuarioID'].value)
       .subscribe({
         next:(result: any)=>{
-          /* Guardar la invitación... en el usuario? que de ahí se tome directamente para el frontend, new Amistad(result)?? */
+          /* TODO Guardar la invitación... en el usuario? que de ahí se tome directamente para el frontend, new Amistad(result)?? */
           this.console.log(result);
         }
         ,error:error=>{
