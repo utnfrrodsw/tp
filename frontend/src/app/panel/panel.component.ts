@@ -98,9 +98,12 @@ export class PanelComponent implements OnInit {
         next:(result: any)=>{
           /* TODO Guardar la invitación... en el usuario? que de ahí se tome directamente para el frontend, new Amistad(result)?? */
 
-          let nuevoAmigo:Usuario=this.usuariosEncontrados.find(usu=>usu.ID==usuarioID) as Usuario;
+          let indice:number =this.usuariosEncontrados.findIndex(usu=>usu.ID==usuarioID);
+          let nuevoAmigo:Usuario= this.usuariosEncontrados[indice] as Usuario;
           nuevoAmigo.amistades=({estado:'esperando',amigoID:usuarioID}) as Amistad;
           this.usuarioActual.amigos?.push(nuevoAmigo as Usuario);
+          
+          this.usuariosEncontrados.splice(indice, 1);
         }
         ,error:error=>{
           this.console.log(error);
