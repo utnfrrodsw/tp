@@ -31,6 +31,7 @@ var include=[
         ,as:'amigosAceptados'
     }
 ];
+// var atributosIniciales=; // ? si lo toco en un par de metodos, se altera?
 function valoresEspecialesUsuario(usuario,incluirTokensAsociadas=false,incluirAmigos=true) {
     usuario.setDataValue('tokens',usuario.tokensAsociadas.length);
     if(!incluirTokensAsociadas){ // TODO
@@ -38,7 +39,8 @@ function valoresEspecialesUsuario(usuario,incluirTokensAsociadas=false,incluirAm
         // findOptions.group=['usuario.ID'];
     }
     // TODO incluirAmigos?
-    usuario.setDataValue('amigos',[...usuario.amigosInvitados,...usuario.amigosAceptados])
+    usuario.setDataValue('amigos',[...usuario.amigosInvitados,...usuario.amigosAceptados]);
+    console.log(usuario.amigos);
     return usuario;
 }
 
@@ -52,7 +54,7 @@ async function permisosIDsAPermisos(permisosIDs){
     return permisosReales;
 }
 
-function findAll({
+async function findAll({
     incluirContrasenia=false
     ,incluirHabilitado=false
     ,incluirTokensAsociadas=false
@@ -68,7 +70,6 @@ function findAll({
     ];
     let findOptions={
         include
-        ,attributes
     }
 
     if(incluirContrasenia)
@@ -82,10 +83,9 @@ function findAll({
         findOptions.where=where;
     }
 
+    // ? findOptions está de más?
     findOptions.attributes = attributes;
-    return Usuario.findAll(findOptions).then(usuarios=>{
-        return usuarios.map(usu=>valoresEspecialesUsuario(usu,incluirTokensAsociadas))
-    });
+    return (await Usuario.findAll(findOptions)).map(usu=>valoresEspecialesUsuario(usu,incluirTokensAsociadas));
 }
 
 async function findById(id,{incluirHabilitado=false}={}) {
@@ -184,7 +184,7 @@ async function enviarTokens(emisorID,receptorID,cantidad){
 }
 
 async function findFuzzilyByName(consulta,usuarioID){
-    return findAll({
+    return (await findAll({
         // incluirAmigos:true,
         where:{
             [Sequelize.Op.and]:[
@@ -200,13 +200,12 @@ async function findFuzzilyByName(consulta,usuarioID){
                 }
             ]
         }
-    })
-        .then(usuarios=>usuarios.filter(usu=>{
-            // TODO No traer gente que ya es amigo
-            // ? Convertir en configuración? tipo, esAmigo: si | no
-            console.log(usu);
-            return true || usu.ID!=usuarioID;
-        }));
+    })).filter(usu=>{
+        // TODO hacer que .amigos ande
+        return !(usu.amigos?
+            usu.amigos
+            :[...usu.amigosInvitados,...usu.amigosAceptados]).some(ami=>ami.ID==usuarioID);
+    });
 }
 
 async function cambiarHabilitado(id,valor){
