@@ -84,7 +84,7 @@ function enviarTokens(req, res) {
 }
 
 function findUsuariosFuzzilyByName(req, res) {
-    usuarioDao.findFuzzilyByName(req.params.query)
+    usuarioDao.findFuzzilyByName(req.params.query,req.session.usuarioID)
         .then((data) => {
             res.send(data);
         })

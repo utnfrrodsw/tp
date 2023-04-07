@@ -74,19 +74,17 @@ const Amistades=db.define('amistades',{
     }
 });
 
-Amistades.belongsTo(Usuario,{
-    as:'iniciador'
-    ,...opcionesComunes
-})
-Usuario.hasMany(Amistades,{
-    as:'invitaciones'
+Usuario.belongsToMany(Usuario,{
+    as:'amigosAceptados'
+    ,through:Amistades
+    ,foreignKey:'amigoID'
     ,...opcionesComunes
 });
 
-
 Usuario.belongsToMany(Usuario,{
-    as:'amigos'
+    as:'amigosInvitados'
     ,through:Amistades
+    ,foreignKey:'usuarioID'
     ,...opcionesComunes
 });
 

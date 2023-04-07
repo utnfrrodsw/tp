@@ -33,7 +33,7 @@ export class UsuarioService {
   }
 
   buscarDifusamentePorNombre(nombre:string) {
-    return this.clienteHTTP.get(this.URL+`buscar/${nombre}`);
+    return this.clienteHTTP.get(this.URL+`buscar/${nombre}`,{withCredentials: true});
   }
 
   invitar(ID:number) {

@@ -16,6 +16,32 @@ var usuarioDao = {
     ,invitar
 }
 
+var include=[
+    {
+        model:Token
+        ,as:'tokensAsociadas'
+    }
+    ,Permiso
+    ,{
+        model:Usuario
+        ,as:'amigosInvitados'
+    }
+    ,{
+        model:Usuario
+        ,as:'amigosAceptados'
+    }
+];
+function valoresEspecialesUsuario(usuario,incluirTokensAsociadas=false,incluirAmigos=true) {
+    usuario.setDataValue('tokens',usuario.tokensAsociadas.length);
+    if(!incluirTokensAsociadas){ // TODO
+        // attributes.push([Sequelize.fn('count', Sequelize.col('tokensAsociadas.ID')), 'tokens']);
+        // findOptions.group=['usuario.ID'];
+    }
+    // TODO incluirAmigos?
+    usuario.setDataValue('amigos',[...usuario.amigosInvitados,...usuario.amigosAceptados])
+    return usuario;
+}
+
 async function permisosIDsAPermisos(permisosIDs){
     let permisosReales=[];
     for(let {ID:permisoID} of permisosIDs) {
@@ -30,6 +56,7 @@ function findAll({
     incluirContrasenia=false
     ,incluirHabilitado=false
     ,incluirTokensAsociadas=false
+    // ,incluirAmigos=false
     ,where=null
 }={}) {
     let attributes =[
@@ -40,18 +67,7 @@ function findAll({
         ,'correo'
     ];
     let findOptions={
-        include:[
-            {
-                model:Token
-                // ,attributes: incluirTokensAsociadas?['ID']:[]
-                ,as:'tokensAsociadas'
-            }
-            ,Permiso
-            ,{
-                model:Usuario
-                ,as:'amigos'
-            }
-        ]
+        include
         ,attributes
     }
 
@@ -59,21 +75,16 @@ function findAll({
         attributes.push('contrasenia');
     if(incluirHabilitado)
         attributes.push('habilitado');
-    if(!incluirTokensAsociadas){
-        // attributes.push([Sequelize.fn('count', Sequelize.col('tokensAsociadas.ID')), 'tokens']);
-        // findOptions.group=['usuario.ID'];
-    }
+    /* if(incluirAmigos){
+        attributes.push('amigos');
+    } */
     if(where){
         findOptions.where=where;
     }
 
     findOptions.attributes = attributes;
     return Usuario.findAll(findOptions).then(usuarios=>{
-        return usuarios.map(usuario=>{
-            // TODO DRY
-            usuario.setDataValue('tokens',usuario.tokensAsociadas.length);
-            return usuario;
-        })
+        return usuarios.map(usu=>valoresEspecialesUsuario(usu,incluirTokensAsociadas))
     });
 }
 
@@ -89,17 +100,12 @@ async function findById(id,{incluirHabilitado=false}={}) {
         attributes.push('habilitado');
 
     let usuario=await Usuario.findByPk(id,{
-        include:[{
-            model:Token
-            ,as:'tokensAsociadas'
-        },Permiso ,{
-            model:Usuario
-            ,as:'amigos'
-        }]
+        include
         ,attributes
     });
-    if(usuario)
-        usuario.setDataValue('tokens',usuario.tokensAsociadas.length);
+    if(usuario){
+        usuario=valoresEspecialesUsuario(usuario);
+    }
     return usuario;
 }
 
@@ -177,14 +183,30 @@ async function enviarTokens(emisorID,receptorID,cantidad){
     return receptor.save();
 }
 
-async function findFuzzilyByName(consulta){
-    return Usuario.findAll({
+async function findFuzzilyByName(consulta,usuarioID){
+    return findAll({
+        // incluirAmigos:true,
         where:{
-            nombreCompleto:{
-                [Sequelize.Op.like]:`%${consulta}%`
-            }
+            [Sequelize.Op.and]:[
+                {
+                    nombreCompleto:{
+                        [Sequelize.Op.like]:`%${consulta}%`
+                    }
+                }
+                ,{
+                    ID:{
+                        [Sequelize.Op.not]:usuarioID
+                    }
+                }
+            ]
         }
-    });
+    })
+        .then(usuarios=>usuarios.filter(usu=>{
+            // TODO No traer gente que ya es amigo
+            // ? Convertir en configuración? tipo, esAmigo: si | no
+            console.log(usu);
+            return true || usu.ID!=usuarioID;
+        }));
 }
 
 async function cambiarHabilitado(id,valor){
@@ -206,7 +228,7 @@ async function findByUsername(usuario){
 async function invitar(invitadorID,invitadoID){
     Promise.all([findById(invitadorID),findById(invitadoID)])
         .then(usuarios=>{
-            usuarios[0].addAmigos(
+            usuarios[0].addAmigosInvitados(
                 usuarios[1]
             );
             console.log(usuarios[0]);
