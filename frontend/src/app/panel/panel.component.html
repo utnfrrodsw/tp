@@ -76,7 +76,7 @@
 		
 		<h3>Invitaciones Recibidas</h3>
 
-		<form *ngFor="let usuario of amigosEntrantes" (submit)="eliminar($event)" class="col-12 row">
+		<form *ngFor="let usuario of amigosEntrantes" (submit)="rechazar($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>
 			<button type="submit" class="button error fas fa-ban"></button>
@@ -85,14 +85,14 @@
 		
 		<h3>Invitaciones Enviadas</h3>
 
-		<form *ngFor="let usuario of amigosSalientes" (submit)="eliminar($event)" class="col-12 row">
+		<form *ngFor="let usuario of amigosSalientes" (submit)="cancelar($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>
 			<button type="submit" class="button error fas fa-xmark"></button>
 		</form>
 		
 		<h3>Amigos</h3>
-
+		<!-- TODO para cada uno de estos, esconder si uno es el invitador o no... -->
 		<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>

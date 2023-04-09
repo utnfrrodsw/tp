@@ -37,7 +37,14 @@ export class UsuarioService {
   }
 
   invitar(ID:number) {
-    return this.clienteHTTP.post(this.URL+`invitar/${ID}`,null,{withCredentials: true});
+    return this.clienteHTTP.post(this.URL+`invitacion/${ID}`,null,{withCredentials: true});
+  }
+
+  eliminarInvitacion(ID:number,soyInvitador:boolean) {
+    return this.clienteHTTP.delete(this.URL+`invitacion/${ID}`,{
+      withCredentials: true
+      ,body:{soyInvitador}
+    });
   }
 
 }

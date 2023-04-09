@@ -55,6 +55,7 @@ export class PanelComponent implements OnInit {
       .subscribe({
         next:(usuario:any) => {
           this.usuarioActual= usuario;
+          this.console.log(this.usuarioActual.amigos);
 
           /* * Cada Usuario.amigos tiene un .amistad con los detalles de la invitación; estado y quien la mando */
 
@@ -120,8 +121,6 @@ export class PanelComponent implements OnInit {
       .invitar(usuarioID)
       .subscribe({
         next:(result: any)=>{
-          /* TODO Guardar la invitación... en el usuario? que de ahí se tome directamente para el frontend, new Amistad(result)?? */
-
           let indice:number =this.usuariosEncontrados.findIndex(usu=>usu.ID==usuarioID);
           let nuevoAmigo:Usuario= this.usuariosEncontrados[indice] as Usuario;
           nuevoAmigo.amistades=({estado:'esperando',amigoID:usuarioID}) as Amistad;
@@ -139,8 +138,30 @@ export class PanelComponent implements OnInit {
 
   }
 
+  cancelar(e:Event):void{
+    e.preventDefault();
+
+    let usuarioID=(e.target as any)['usuarioID'].value;
+
+    this.usuarioService
+      .eliminarInvitacion(usuarioID,true)
+      .subscribe({
+        next:(result: any)=>{
+          let indice:number =(this.usuarioActual.amigos||[]).findIndex(usu=>usu.ID==usuarioID);
+          this.usuarioActual.amigos?.splice(indice, 1);
+        }
+        ,error:error=>{
+          this.console.log(error);
+        }
+      })
+  }
+
+  rechazar(e:Event):void{
+    
+  }
+
   eliminar(e:Event):void{
-    console.log(e);
+    
   }
 
   generar(e:Event):void{

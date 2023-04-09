@@ -14,6 +14,7 @@ var usuarioDao = {
     ,cambiarHabilitado
     ,findByUsername
     ,invitar
+    ,eliminarInvitacion
 }
 
 var include=[
@@ -40,7 +41,6 @@ function valoresEspecialesUsuario(usuario,incluirTokensAsociadas=false,incluirAm
     }
     // TODO incluirAmigos?
     usuario.setDataValue('amigos',[...usuario.amigosInvitados,...usuario.amigosAceptados]);
-    console.log(usuario.amigos);
     return usuario;
 }
 
@@ -230,7 +230,17 @@ async function invitar(invitadorID,invitadoID){
             usuarios[0].addAmigosInvitados(
                 usuarios[1]
             );
-            console.log(usuarios[0]);
+            return usuarios[0].save();
+        })
+}
+
+async function eliminarInvitacion(invitadorID,invitadoID){
+    Promise.all([findById(invitadorID),findById(invitadoID)])
+        .then(usuarios=>{
+            console.log(usuarios);
+            usuarios[0].removeAmigosInvitados(
+                usuarios[1]
+            );
             return usuarios[0].save();
         })
 }

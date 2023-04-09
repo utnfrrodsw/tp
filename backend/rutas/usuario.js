@@ -10,7 +10,9 @@ router.get('/actual',(req,res)=>{
 
 router.post('/',usuarioController.addUsuario)
 
-router.post('/invitar/:id',usuarioController.invitar)
+router.post('/invitacion/:id',usuarioController.invitar)
+
+router.delete('/invitacion/:id',usuarioController.eliminarInvitacion)
 
 router.delete('/:id',usuarioController.deleteById)
 
