@@ -157,7 +157,21 @@ export class PanelComponent implements OnInit {
   }
 
   rechazar(e:Event):void{
-    
+    e.preventDefault();
+
+    let usuarioID=(e.target as any)['usuarioID'].value;
+
+    this.usuarioService
+      .eliminarInvitacion(usuarioID,false)
+      .subscribe({
+        next:(result: any)=>{
+          let indice:number =(this.usuarioActual.amigos||[]).findIndex(usu=>usu.ID==usuarioID);
+          this.usuarioActual.amigos?.splice(indice, 1);
+        }
+        ,error:error=>{
+          this.console.log(error);
+        }
+      })
   }
 
   eliminar(e:Event):void{
