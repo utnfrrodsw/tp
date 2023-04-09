@@ -120,11 +120,9 @@ function ingresar(req, res) {
 }
 
 function invitar(req,res){
-    console.log('controlador',req.session,req.session.usuarioID,req.params.id);
     usuarioDao.invitar(req.session.usuarioID,req.params.id)
-        .then((usuario) => {
-            // console.log(usuario);
-            res.send(/* usuario.amistad */);
+        .then(() => {
+            res.send();
         })
         .catch((error) => {
             console.log(error);
