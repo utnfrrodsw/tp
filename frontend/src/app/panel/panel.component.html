@@ -100,8 +100,12 @@
 		</form>
 		
 	</div>
+
 	<div id="invitaciones" class="col">
 		<input type="text" (input)="busqueda($event)" placeholder="Busque por nombre">
+		<ng-template [ngIf]="this.mostrarVacio">
+			<span>No se han encontrado usuarios.</span>
+		</ng-template>
 		<fieldset id="resultados" class="row">
 			<!-- TODO capturar el submit en el fieldset? -->
 			

@@ -38,6 +38,10 @@ export class PanelComponent implements OnInit {
 
   busquedaID=0;
   usuariosEncontrados:Usuario[] = [];
+  puedeMostrarVacio=false;
+  get mostrarVacio(){
+    return this.puedeMostrarVacio && this.usuariosEncontrados.length==0;
+  }
 
   constructor(
     private usuarioActualService:UsuarioActualService,
@@ -72,18 +76,38 @@ export class PanelComponent implements OnInit {
   }
 
   busqueda(e:Event):void{
+
+    /* Estados de la búsqueda:
+    Esperando entrada del usuario (inicial)
+      ❌ Hoy es this.mostrarVacío=false y this.usuariosEncontrados vacío, y es literalmente nada. Podría ser una llamada a la acción.
+    Buscando (cargando)
+      ❌ Falta. Hoy es igual al inicial
+    Repuesta positiva, listado de gente
+      ✔ Caracterizado por usuariosEncontrados con gente
+    Respuesta negativa, vacío, mensaje
+      ✔ this.mostrarVacío=false y this.usuariosEncontrados vacío
+     */
+
     let busquedaID=++this.busquedaID;
 
     let consulta=(e.target as HTMLInputElement).value.trim();
+
+      this.puedeMostrarVacio=false;
 
     if(consulta.length>3)
       this.usuarioService
         .buscarDifusamentePorNombre(consulta)
         .subscribe((result: any)=>{
-          if(this.busquedaID==busquedaID)
+          if(this.busquedaID==busquedaID){
             this.usuariosEncontrados=result;
+            if(result.length==0){
+              this.puedeMostrarVacio=true;
+            }
+          }
         });
-    else this.usuariosEncontrados=[];
+    else{
+      this.usuariosEncontrados=[];
+    }
   }
 
   invitar(e:Event):void {
