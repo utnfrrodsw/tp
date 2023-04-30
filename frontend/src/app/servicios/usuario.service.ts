@@ -47,9 +47,15 @@ export class UsuarioService {
     });
   }
 
+  aceptarInvitacion(ID:number) {
+    return this.clienteHTTP.patch(this.URL+`invitacion/${ID}`,{},{
+      withCredentials: true
+    });
+  }
+
 }
 
-enum EstadosAmistades {
+export enum EstadosAmistades {
   Esperando = 'esperando',
   Amigos='amigos'
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Permiso } from '../servicios/permiso.service';
 import { UsuarioActualService } from '../servicios/usuario-actual.service';
 import {Router} from "@angular/router";
-import { Usuario, UsuarioService,Amistad } from '../servicios/usuario.service';
+import { Usuario, UsuarioService,Amistad,EstadosAmistades } from '../servicios/usuario.service';
 import { TokensService } from '../servicios/tokens.service';
 
 @Component({
@@ -156,12 +156,29 @@ export class PanelComponent implements OnInit {
       })
   }
 
-  rechazar(e:Event):void{
+  responder(e:Event):void{
     e.preventDefault();
 
     let usuarioID=(e.target as any)['usuarioID'].value;
+    let botonApretado=(e.target as any)['accion'];
 
-    this.usuarioService
+    if(+botonApretado.value)
+      this.usuarioService
+        .aceptarInvitacion(usuarioID)
+        .subscribe({
+          next:(amigo: any)=>{
+            // this.console.log(this.usuarioActual.amigos);
+            this.console.log(amigo);
+            // this.usuarioActual.amigos
+            ((this.usuarioActual.amigos||[]).find(ami=>ami.ID==usuarioID) as Usuario).amistades.estado=EstadosAmistades.Amigos/* 'amigos' */; //delet, Ig
+            return;
+
+          }
+          ,error:error=>{
+            this.console.log(error);
+          }
+        });
+    else this.usuarioService
       .eliminarInvitacion(usuarioID,false)
       .subscribe({
         next:(result: any)=>{
@@ -171,7 +188,7 @@ export class PanelComponent implements OnInit {
         ,error:error=>{
           this.console.log(error);
         }
-      })
+      });
   }
 
   eliminar(e:Event):void{
@@ -180,5 +197,9 @@ export class PanelComponent implements OnInit {
 
   generar(e:Event):void{
     
+  }
+
+  asignarNombreABoton(e:Event):void{
+    (e.target as HTMLInputElement).name='accion';
   }
 }

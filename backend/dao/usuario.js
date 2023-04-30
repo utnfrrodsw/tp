@@ -15,6 +15,7 @@ var usuarioDao = {
     ,findByUsername
     ,invitar
     ,eliminarInvitacion
+    ,aceptarInvitacion
 }
 
 var include=[
@@ -237,11 +238,22 @@ async function invitar(invitadorID,invitadoID){
 async function eliminarInvitacion(invitadorID,invitadoID){
     Promise.all([findById(invitadorID),findById(invitadoID)])
         .then(usuarios=>{
-            console.log(usuarios);
             usuarios[0].removeAmigosInvitados(
                 usuarios[1]
             );
             return usuarios[0].save();
+        })
+}
+
+async function aceptarInvitacion(invitadoID,invitadorID){
+    findById(invitadorID)
+        .then(invitador=>{
+            let amistad=invitador.amigosInvitados.find(usu=>usu.ID==invitadoID);
+            if(amistad){
+                amistad.amistades.estado='amigos';
+
+                return amistad.amistades.save();
+            } // TODO else fallar http
         })
 }
 

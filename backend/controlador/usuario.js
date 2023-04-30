@@ -12,6 +12,7 @@ var usuarioController = {
     ,ingresar
     ,invitar
     ,eliminarInvitacion
+    ,aceptarInvitacion
 }
 
 function addUsuario(req, res) {
@@ -154,6 +155,17 @@ function rechazarInvitacion(req,res){
     usuarioDao.eliminarInvitacion(req.params.id,req.session.usuarioID)
         .then(() => {
             res.send();
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send(error);
+        });
+}
+
+function aceptarInvitacion(req,res){
+    usuarioDao.aceptarInvitacion(req.session.usuarioID,req.params.id)
+        .then((usuario) => {
+            res.send(usuario);
         })
         .catch((error) => {
             console.log(error);

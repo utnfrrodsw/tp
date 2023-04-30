@@ -76,10 +76,11 @@
 		
 		<h3>Invitaciones Recibidas</h3>
 
-		<form *ngFor="let usuario of amigosEntrantes" (submit)="rechazar($event)" class="col-12 row">
+		<form *ngFor="let usuario of amigosEntrantes" (submit)="responder($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>
-			<button type="submit" class="button error fas fa-ban"></button>
+			<button type="submit" value="1" (click)="asignarNombreABoton($event)" class="fas fa-check col-2"></button>
+			<button type="submit" value="0" (click)="asignarNombreABoton($event)" class="button error fas fa-ban col-2"></button>
 			<!-- TODO Eliminar o aceptar -->
 		</form>
 		
@@ -88,7 +89,7 @@
 		<form *ngFor="let usuario of amigosSalientes" (submit)="cancelar($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>
-			<button type="submit" class="button error fas fa-xmark"></button>
+			<button type="submit" class="button error fas fa-xmark col-2"></button>
 		</form>
 		
 		<h3>Amigos</h3>
@@ -96,7 +97,7 @@
 		<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-12 row">
 			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 			<span class="col">{{usuario.nombreCompleto}}</span>
-			<button type="submit" class="button error fas fa-trash-can"></button>
+			<button type="submit" class="button error fas fa-trash-can col-2"></button>
 		</form>
 		
 	</div>
@@ -112,7 +113,7 @@
 			<form *ngFor="let usuario of usuariosEncontrados" (submit)="invitar($event)" class="col-12 row">
 				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 				<span class="col">{{usuario.nombreCompleto}}</span>
-				<button type="submit" class="fas fa-plus"></button>
+				<button type="submit" class="fas fa-plus col-2"></button>
 			</form>
 					
 		</fieldset>
