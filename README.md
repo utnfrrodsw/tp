@@ -1,5 +1,6 @@
 # TP DSW
 tags: #dsw #tp
+
 Status: Draft
 
 ## 1. Objetivo
@@ -43,6 +44,7 @@ El backend debe cumplir con las siguientes condiciones para regularidad y aproba
 * Implementar 1 test de integración.
 * Implementar un login con autenticación propia o de third-party y al menos 2 niveles de acceso diferentes.
 * Proteger las diferentes rutas en base al nivel de acceso requerido.
+* Definir ambientes, ya sea mediante enviroment del framework o .env
 
 #### 3.1.2 Frontend
 El frontend debe cumplir con las siguientes condiciones para regularidad y aprobación.
@@ -57,7 +59,6 @@ El frontend debe cumplir con las siguientes condiciones para regularidad y aprob
 	* Input property
 	* Output property
 * Implementar al menos un servicio
-* Definir ambientes, ya sea mediante enviroment del framework o .env
 * Incluir un readme con instrucciones para instalar y hacer funcionar el proyecto sin conocimientos de cómo está desarrollado.
 
 ##### Aprobación Directa o en Examen
@@ -65,6 +66,7 @@ El frontend debe cumplir con las siguientes condiciones para regularidad y aprob
 * Realizar al menos 1 test unitario de un componente.
 * Realizar al menos 1 test de end-to-end.
 * Implementar el login y proteger el acceso a las distintas partes del frontend en base a los niveles de usuarios del backend.
+* Definir ambientes, ya sea mediante enviroment del framework o .env
 
 ### 3.2 Requisitos funcionales
 La app debe cumplir con los siguientes requisitos.
@@ -89,6 +91,7 @@ Para conocer el detalle de la documentación referirse a [docs](docs.md).
 ## Gestión del proyecto
 
 ## Evaluación
+
 
 
 ![FAQ](FAQ.md)
