@@ -52,13 +52,19 @@ El frontend debe cumplir con las siguientes condiciones para regularidad y aprob
 ##### Regularidad
 * Desarrollarse utilizando un framework de Frontend.
 * Utilizar HTML5
-* Utilizar CSS según las directrices alguna biblioteca de componentes, guía de estilo o framework de CSS y la metodología propuesta por el framework de frontend elegido. Se sugiere el uso de biblioteca de componentes;  preprocesadores: sass, scss, less, stylus, etc o frameworks de css: Pico.css, Bulma, Material etc.
+* Utilizar CSS según las directrices de alguna biblioteca de componentes, guía de estilo o framework de CSS y la metodología propuesta por el framework de frontend elegido. Se sugiere el uso de biblioteca de componentes;  preprocesadores: sass, scss, less, stylus, etc o frameworks de css: Pico.css, Bulma, Material, Tailwind, Bootstrap, etc.
+* Aplicar la estrategia mobile-first para la escritura del código css de la aplicación
+* La app debe visualizarse correctamente en al menos 3 diferentes breakpoints: SM, MD, LG
 * Seguir buenas prácticas de UX/UI ( Que no requiera manual de usuario o explicaciones específicas para utilizar la interfaz )
 * Las app debe mostrar las siguientes características entre sus componentes:
-	* Reactividad ante un estado.
+	* Manejo de eventos del usuario: click, input, etc
+	* Ante una posibilidad de fallo, manejar el/los errores adecuadamente y de manera amigable al usuario
+	* Reactividad ante un estado
 	* Input property
 	* Output property
 * Implementar al menos un servicio
+* Para el manejo de la información, por ej una respuesta de un endpoint o los datos a enviar en una request, representar en el código los modelos de objetos con clases, interfaces y tipos de datos custom.
+* De ser posible, implementar algún patrón de diseño orientado a objetos.
 * Incluir un readme con instrucciones para instalar y hacer funcionar el proyecto sin conocimientos de cómo está desarrollado.
 
 ##### Aprobación Directa o en Examen
