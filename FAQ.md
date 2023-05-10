@@ -22,6 +22,5 @@
 	  El objetivo es realizar una o más acciones que utilicen la información brindada por casos de uso o CRUDs anteriores. Los casos de usos pueden estar relacionados entre si o no.
 	  Ante la eventualidad que un caso de uso o epic presente demasiados escenarios se podrá pactar cuales implementar con los docentes
 * **Grupos**.
-* Something
 * 
 

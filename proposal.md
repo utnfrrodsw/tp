@@ -16,5 +16,16 @@
 ### Modelo
 ![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes
+*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+
+## Alcance
+
+*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel.
+|Req|Detalle|
+|:-|:-|
+|CRUD simple|CRUD Tipo Habitacion<br>CRUD Servicio<br>CRUD Localidad|
+|CRUD dependiente|CRUD Habitación {depende de} CRUD Tipo Habitacion<br>CRUD Cliente {depende de} CRUD Localidad|
+|CRUD simple||
+
+
 
