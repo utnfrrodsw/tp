@@ -13,14 +13,16 @@ Durante dicho desarrollo se deberá aplicar todo lo aprendido en la materia Desa
 El grupo debe deberá proponer a los docentes un tema para el trabajo práctico de su preferencia utilizando la [plantilla de propuesta](proposal.md)
 
 ## 3. Requisitos
-La aplicación debe:
+El desarrollo de la aplicación debe:
 1. Desarrollarse en 2 partes: Frontend y Backend; agnósticas entre si, comunicadas mediante una API.
 2. Cumplir con los requisitos:  [técnicos](#3.1%20Requisitos%20técnicos) y [funcionales](#3.2%20Requisitos%20funcionales).
 3. Desarrollarse en grupo utilizando metodologías de gestión de proyecto y llevar evidencia de ello.
-4. Cumplir con las fechas de entrega estipuladas.
+4. Cumplir con las [entregas](#3.3%20Entregas) estipuladas.
 5. Utilizar github o gitlab para gestión del código fuente.
-6. Realizar una defensa oral del trabajo práctico.
-7. Presentar la [documentación](#3.3%20Documentación) durante la defensa.
+6. Realizar una defensa oral del trabajo práctico para regularidad.
+7. Realizar otra defensa oral del trabajo práctico para la aprobación.
+8. Enviar la 
+9. Presentar la [documentación](#3.4%20Documentación) durante la defensa.
 
 ### 3.1 Requisitos técnicos
 La app cuenta con 2 partes: Backend y Frontend agnósticas entre si que se comunican mediante una API.
@@ -76,14 +78,21 @@ La app debe cumplir con los siguientes requisitos.
 * 1 CRUD Dependiente cada 2 integrantes o fracción.
 * 1 Listado con filtro (al menos un atributo) cada 2 integrantes o fracción.
 * Para cada listado, al seleccionar un elemento, se debe mostrar un detalle.
-* Debe implementar un caso de uso de usuario o epic con valor para el negocio cada 2 integrantes. 
+* Debe implementar un caso de uso de usuario o epic con valor para el negocio cada 2 integrantes o . 
 
 #### Aprobación Directa o en Examen
 * CRUDs de todas las clases de negocio necesarias para el funcionamiento de la app.
 * Implementar 1 caso de uso usuario o epic con valor para el negocio por cada integrantes. 
   Se deben implementar un mínimo de 2 relacionadas entre si. Es decir que la data registrada por uno CU o epic sirva de input para otro.
 
-### 3.3 Documentación
+### 3.3 Entregas
+#### Regularidad
+En la entrega se debe 
+Incluir un readme con instrucciones para instalar y hacer funcionar el proyecto sin conocimientos de cómo está desarrollado.
+
+#### Aprobación Directa o en Examen
+
+### 3.4 Documentación
 La documentación debe presentarse para la instancia de defensa de aprobación.
 
 Para conocer el detalle de la documentación referirse a [docs](docs.md).
