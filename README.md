@@ -1,7 +1,7 @@
 # TP DSW
 tags: #dsw #tp
 
-Status: Draft
+Status: draft
 
 ## 1. Objetivo
 
@@ -39,6 +39,7 @@ El backend debe cumplir con las siguientes condiciones para regularidad y aproba
 * La persistencia a la base de datos debe realizarse mediante un mapper (ORM/ODM/OXM). En caso que la base de datos utilizada no tenga un mapper disponible para JavaScript se deberá implementar la persistencai utilizando un patron Repository.
 * Realizarse mediante capas.
 * Validar entrada de datos, manejar e informar apropiadamente los errores a través de la API.
+* Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
 
 ##### Aprobación Directa o en Examen
 * Cumplir con todas las condiciones de regularidad.
@@ -46,7 +47,7 @@ El backend debe cumplir con las siguientes condiciones para regularidad y aproba
 * Implementar 1 test de integración.
 * Implementar un login con autenticación propia o de third-party y al menos 2 niveles de acceso diferentes.
 * Proteger las diferentes rutas en base al nivel de acceso requerido.
-* Definir ambientes, ya sea mediante enviroment del framework o .env
+* Definir ambientes, ya sea mediante environment del framework o .env
 
 #### 3.1.2 Frontend
 El frontend debe cumplir con las siguientes condiciones para regularidad y aprobación.
@@ -60,15 +61,15 @@ El frontend debe cumplir con las siguientes condiciones para regularidad y aprob
 	* Reactividad ante un estado.
 	* Input property
 	* Output property
-* Implementar al menos un servicio
-* Incluir un readme con instrucciones para instalar y hacer funcionar el proyecto sin conocimientos de cómo está desarrollado.
+* Implementar al menos un servicio.
+* Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
 
 ##### Aprobación Directa o en Examen
 * Cumplir con las condiciones de regularidad.
 * Realizar al menos 1 test unitario de un componente.
 * Realizar al menos 1 test de end-to-end.
 * Implementar el login y proteger el acceso a las distintas partes del frontend en base a los niveles de usuarios del backend.
-* Definir ambientes, ya sea mediante enviroment del framework o .env
+* Definir ambientes, ya sea mediante environment del framework o .env
 
 ### 3.2 Requisitos funcionales
 La app debe cumplir con los siguientes requisitos.
@@ -78,29 +79,83 @@ La app debe cumplir con los siguientes requisitos.
 * 1 CRUD Dependiente cada 2 integrantes o fracción.
 * 1 Listado con filtro (al menos un atributo) cada 2 integrantes o fracción.
 * Para cada listado, al seleccionar un elemento, se debe mostrar un detalle.
-* Debe implementar un caso de uso de usuario o epic con valor para el negocio cada 2 integrantes o . 
+* Debe implementar un caso de uso de usuario o epic, con valor para el negocio, cada 2 integrantes o fracción.
 
 #### Aprobación Directa o en Examen
 * CRUDs de todas las clases de negocio necesarias para el funcionamiento de la app.
-* Implementar 1 caso de uso usuario o epic con valor para el negocio por cada integrantes. 
-  Se deben implementar un mínimo de 2 relacionadas entre si. Es decir que la data registrada por uno CU o epic sirva de input para otro.
+* Implementar 1 caso de uso usuario o epic, con valor para el negocio, por cada integrante.
+  Se deben implementar un mínimo de 2 relacionados entre si. Es decir que la data registrada por uno CU o epic sirva de input para otro.
+
+#### Alcance Adicional Voluntario
+De forma **opcional** y **voluntaria** los grupos podrán realizar CUU o epics, listados más complejos de los solicitados u otros requisitos como notificaciones, logs, etc; adicionales para completar la funcionalidad del sistema propuesto.
+
+Esto será considerado en la nota final en función de la complejidad y esfuerzo relativos a lo ya realizado.
+
 
 ### 3.3 Entregas
+#### Propuesta del enunciado
+En la entrega se debe entregar a los profesores la [plantilla de propuesta](./proposal.md) actualizada con las condiciones de Regularidad y de Aprobación. Los profesores analizarán la propuesta y de ser necesario sugerirán ajustes hasta que esté correcta y sea aceptada.
+
 #### Regularidad
 En la entrega se debe 
-Incluir un readme con instrucciones para instalar y hacer funcionar el proyecto sin conocimientos de cómo está desarrollado.
+* Incluir en el README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
+* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front.
+* Coordinar una defensa grupal con los profesores.
 
 #### Aprobación Directa o en Examen
+En la entrega se debe:
+* Video explicando el funcionamiento del sistema
+* Documentación de la API de backend (según la tecnología y standard utilizados).
+* Evidencia del resultado de la ejecución de los tests automáticos.
+* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front.
+* Incluir en el README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
+* Deploy: **A definir**
+* Coordinar una defensa grupal con los profesores.
+
+#### Fechas de entrega
+**TODO: A definir**
+**Propuesta**: 23/06/2023
+
+**Muestra de avance**: TBD
+
+**Entrega de Regularidad**: TBD
+
+**Entrega de Aprobación**: TBD
+* **Directa**:
+* **En examen**:
 
 ### 3.4 Documentación
-La documentación debe presentarse para la instancia de defensa de aprobación.
+La documentación debe presentarse para la instancia de defensa.
 
 Para conocer el detalle de la documentación referirse a [docs](docs.md).
 
-## Gestión del proyecto
+## 4. Gestión del proyecto
+**TODO: En revisión**
 
-## Evaluación
+El desarrollo de la app debe realizarse utilizando metodologías ágiles para la gestión del proyecto (Scrum, XP, etc).
+
+El grupo deberá llevar un registro de lo realizado, el mismo debe incluir como mínimo:
+* Tipo de metodología a utilizar para el seguimiento. ( Scrum, XP, etc.)
+* Minutas de avances o reuniones de coordinación del equipo.
+* Documentación de trackeo como desarrollo de features y bugfix, asignación de tareas, etc.
+
+Es de libre elección del alumno la herramienta a utilizar para el trackeo. Se recomienda el uso de github/gitlab proyects para integrar con el desarrollo de la misma pero en caso de utilizar otra en la documentación deberán incluirse los links a la tool para ello.
 
 
+## 5. Evaluación
+**TODO: En revisión.**
 
-![FAQ](FAQ.md)
+Durante la evaluación de cada entrega se considerarán:
+* Requisitos técnicos y funcionales de la etapa.
+* Adhesión a las directrices de UX/UI y buenas prácticas de programación.
+* Uso apropiado de la tecnología: librerías, frameworks, patrones, etc.
+* Documentación requerida.
+* Participación de los miembros del grupo.
+* Uso de git para el desarrollo.
+* Defensa oral del trabajo práctico.
+* Gestión y seguimiento del desarrollo de la app.
+* Innovación, investigación y desafíos asumidos.
+
+## 6. FAQ
+
+En la sección de [FAQ](FAQ.md) podrán encontrar respuestas a las consultas más frecuentes que se van realizando.
