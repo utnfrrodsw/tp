@@ -16,6 +16,7 @@ var usuarioDao = {
     ,invitar
     ,eliminarInvitacion
     ,aceptarInvitacion
+    ,eliminarAmigo
 }
 
 var include=[
@@ -254,7 +255,18 @@ async function aceptarInvitacion(invitadoID,invitadorID){
 
                 return amistad.amistades.save();
             } // TODO else fallar http
-        })
+        });
+}
+
+async function eliminarAmigo(usuarioID,amigoID){
+    findById(usuarioID)
+        .then(usuario=>{
+            let amistad=usuario.amigosAceptados.find(usu=>usu.ID==amigoID);
+            console.log(amistad, usuario, usuario.amigosAceptados, amistad.amistades);
+            if(amistad){
+                return amistad.amistades.destroy();
+            } // TODO else fallar http
+        });
 }
 
 module.exports = usuarioDao;

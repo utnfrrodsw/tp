@@ -192,7 +192,21 @@ export class PanelComponent implements OnInit {
   }
 
   eliminar(e:Event):void{
-    
+    e.preventDefault();
+
+    // TODO Avisar que es no se puede deshacer
+    let usuarioID=(e.target as any)['usuarioID'].value;
+    this.usuarioService
+      .eliminarAmigo(usuarioID)
+      .subscribe({
+        next:(result: any)=>{
+          let indice:number =(this.usuarioActual.amigos||[]).findIndex(usu=>usu.ID==usuarioID);
+          this.usuarioActual.amigos?.splice(indice, 1);
+        }
+        ,error:error=>{
+          this.console.log(error);
+        }
+      });
   }
 
   generar(e:Event):void{

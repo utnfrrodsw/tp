@@ -13,6 +13,7 @@ var usuarioController = {
     ,invitar
     ,eliminarInvitacion
     ,aceptarInvitacion
+    ,eliminarAmigo
 }
 
 function addUsuario(req, res) {
@@ -171,6 +172,31 @@ function aceptarInvitacion(req,res){
             console.log(error);
             res.status(500).send(error);
         });
+}
+
+function eliminarAmigo(req,res){
+    usuarioDao.eliminarAmigo(req.session.usuarioID,req.params.id)
+        .then((usuario) => {
+            // TODO mandar explicitamente un código??
+            res.send(/* usuario */);
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send(error);
+        });
+    /* // TODO DRY? (ala window[?'':''])
+    return req.body.soyInvitador?
+        cancelarInvitacion(req,res)
+        :rechazarInvitacion(req,res);
+    
+        usuarioDao.eliminarInvitacion(req.session.usuarioID,req.params.id)
+        .then(() => {
+            res.send();
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send(error);
+        }); */
 }
 
 module.exports = usuarioController;

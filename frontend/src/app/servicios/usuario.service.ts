@@ -19,8 +19,8 @@ export class UsuarioService {
     return this.clienteHTTP.get(this.URL+'?incluirHabilitado=true');
   }
   
-  cambiarHabilitado(id:number,valor:boolean){
-    return this.clienteHTTP.post(this.URL+`${id}/habilitado`,{
+  cambiarHabilitado(ID:number,valor:boolean){
+    return this.clienteHTTP.post(this.URL+`${ID}/habilitado`,{
       valor
     });
   }
@@ -49,6 +49,12 @@ export class UsuarioService {
 
   aceptarInvitacion(ID:number) {
     return this.clienteHTTP.patch(this.URL+`invitacion/${ID}`,{},{
+      withCredentials: true
+    });
+  }
+
+  eliminarAmigo(ID:number) {
+    return this.clienteHTTP.delete(this.URL+`amigo/${ID}`,{
       withCredentials: true
     });
   }

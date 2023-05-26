@@ -14,6 +14,8 @@ router.post('/invitacion/:id',usuarioController.invitar)
 
 router.delete('/invitacion/:id',usuarioController.eliminarInvitacion)
 
+router.delete('/amigo/:id',usuarioController.eliminarAmigo)
+
 router.patch('/invitacion/:id',usuarioController.aceptarInvitacion)
 
 router.delete('/:id',usuarioController.deleteById)
