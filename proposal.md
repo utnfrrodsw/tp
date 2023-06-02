@@ -2,16 +2,35 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+| Legajo | Apellido(s), Nombre(s)|
+|:-|:-|
+|45997|Biscaldi, Ivan|
+|47087|Sandoval, Julian|
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [backend app](https://github.com/Biscaldi-Iv/TP-DSW)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
 *2 a 6 líneas describiendo el negocio (menos es más)*
+
+Implementar un sistema de e-commerce que permita a los usuarios comprar y vender productos o servicios a través de internet. Este sistema debe incluir estas funcionalidades
+
+Catálogo de productos: una lista de los productos y servicios disponibles para comprar, con información detallada de cada uno de ellos, como nombre, descripción, precio, imágenes, entre otros.
+
+Carrito de compras: una funcionalidad que permite al usuario seleccionar los productos que desea comprar y guardarlos temporalmente en su carrito, para luego procesar el pago de todos ellos al mismo tiempo.
+
+Proceso de pago: una serie de pasos que el usuario debe seguir para pagar los productos que ha seleccionado. Este proceso suele incluir la selección de la forma de pago y la introducción de los datos de facturación y envío.
+
+Gestión de pedidos: una sección en la que el usuario puede ver el estado de sus pedidos, como el número de seguimiento del envío, y solicitar cambios o devoluciones.
+
+Gestión de inventario: una herramienta que permite al vendedor gestionar su inventario de productos, ver las ventas realizadas y actualizar la disponibilidad de los productos.
+
+Gestión de usuarios: una sección en la que el usuario puede crear y gestionar su cuenta, y el vendedor puede gestionar su información personal, como dirección de facturación y envío.
+
+Reseña de productos: permite a los usuarios puntuar y comentar la calidad del producto y del vendedor.
 
 ### Modelo
 ![imagen del modelo]()
@@ -27,17 +46,18 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Usuario <br>2. CRUD Vendedor|
+|CRUD dependiente|1. CRUD Producto {depende de} CRUD Categoria<br>2. CRUD Review {depende de} CRUD Producto <br>3. CRUD Carrito {depende de} CRUD Producto y Cliente <br>3. CRUD Carrito {depende de} CRUD Producto y Cliente|
+|Listado<br>+<br>detalle| 1. Listado de productos filtrado por categoria y ordenado por precio => detalle muestra datos del producto, promedio de reseñas<br> 2. Listado de Usuario filtrado por rol => CRUD usuarios <br>3. Estado de inventario: muestra lista de productos del usuario=> detalle CRUD productos |
+|CUU/Epic|1. Realizar una compra de producto<br>2. Publicar un producto|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Prducto<br>2. CRUD Categoria de producto<br>3. CRUD Usuario<br>4. CRUD Carrito de compra<br>5. CRUD Orden<br>6. CRUD Pagos|
+|Listado<br>+<br>detalle| 1. Listado de productos filtrado por categoria y ordenado por precio => detalle muestra datos del producto, promedio de reseñas<br> 2. Listado de Usuario filtrado por rol => CRUD usuarios <br>3. Estado de inventario: muestra lista de productos del usuario=> detalle CRUD productos <br>4. Listado de ventas: muestra productos y estado de los pedidos |
+|CUU/Epic|1. Realizar una compra de productos<br>2. Publicar un producto<br>3. Realizar reseña de producto|
 
 
 ### Alcance Adicional Voluntario
@@ -46,7 +66,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. <br>2. |
+|CUU/Epic|1. Devolucion de una compra |
+|Otros|1. Envío de recibo de compra por mail|
 
