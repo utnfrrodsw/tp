@@ -33,7 +33,7 @@ Gestión de usuarios: una sección en la que el usuario puede crear y gestionar 
 Reseña de productos: permite a los usuarios puntuar y comentar la calidad del producto y del vendedor.
 
 ### Modelo
-![imagen del modelo]()
+![DER.drawio.png]()
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
