@@ -1,17 +1,25 @@
 # Propuesta TP DSW
 
-## Grupo
+## Grupo 
 ### Integrantes
 * legajo - Apellido(s), Nombre(s)
 
-### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+    46950 - Retamal, Alejo
 
-## Tema
+    -
+
+    -
+
+    -
+
+### Repositorio
+
+* [frontend app and backend app](https://github.com/AlejoRetamal/Trabajo-Pr-ctico---DdS) 
+
+## Tema ¿Carrio de compras?
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+ - Una biblioteca busca ampliar su negocio, para ello, busca adquirir su propio sitío web, para que los clientes puedan buscar y adquirir ó reservar libros de una manera más fácil y versatil. (Editen y agregeuen lo que quieran)
 
 ### Modelo
 ![imagen del modelo]()
