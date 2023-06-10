@@ -1,17 +1,30 @@
 # Propuesta TP DSW
 
-## Grupo
+## Grupo 
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
 
-### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* 46950 - Retamal, Alejo
+* 47116 - Martel, Marco Antonio
 
-## Tema
+### Repositorio
+
+* [frontend app and backend app](https://github.com/AlejoRetamal/Trabajo-Pr-ctico---DdS) 
+
+## Carrito de compras para una librería
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Con una interfaz intuitiva y funcionalidades simples, nos permitirá explorar y adquirir libros de manera rápida y conveniente. Podrás encontrar tus títulos favoritos, filtrar por género o autor, reservar libros de una manera más fácil y versatil y más. 
+
+El sistema deberá contar con las sigientes funcionalidades:
+
+* Amplia selección de libros: perimitr acceder a una vasta colección de libros en diferentes géneros, temáticas y formatos, incluyendo libros físicos, electrónicos y audiolibros.
+* Búsqueda avanzada: permitir al usuario utilizar opciones de búsqueda avanzadas para encontrar fácilmente sus libros favoritos por género, autor, temática y palabras clave específicas.
+* Reseñas: permite escribir opiniones sobre los libros que ha leído y también leer las opiniones de otros usuarios.
+* Lista de deseos personalizada: crear una lista de deseos con los libros que le interesan al usuario y así comprarlos en otro momento.
+* Reservas de libro: realizar reservas de libros antes de su lanzamiento oficial.
+* Compatibilidad con diferentes formatos: el usuario podrá escoger entre el formato que quiere el libro. Por ejemplo, si es digital, podrá descargarlo.
+
+*[Pueden agregar más o eliminar si quieren]*
 
 ### Modelo
 ![imagen del modelo]()
