@@ -56,6 +56,7 @@ El frontend debe cumplir con las siguientes condiciones para regularidad y aprob
 * Desarrollarse utilizando un framework de Frontend.
 * Utilizar HTML5
 * Utilizar CSS según las directrices de alguna biblioteca de componentes, guía de estilo o framework de CSS y la metodología propuesta por el framework de frontend elegido. Se sugiere el uso de biblioteca de componentes;  preprocesadores: sass, scss, less, stylus, etc o frameworks de css: Pico.css, Bulma, Material, Tailwind, Bootstrap, etc.
+* Guía de estilos sugerida Airbnb Javascript https://github.com/airbnb/javascript
 * Aplicar la estrategia mobile-first para la escritura del código css de la aplicación
 * La app debe visualizarse correctamente en al menos 3 diferentes breakpoints: SM, MD, LG
 * Seguir buenas prácticas de UX/UI ( Que no requiera manual de usuario o explicaciones específicas para utilizar la interfaz )
