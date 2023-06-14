@@ -3,31 +3,14 @@
 ## Grupo 
 ### Integrantes
 
-<<<<<<< HEAD
-    46950 - Retamal, Alejo
-
-    -
-
-    -
-
-    -
-
-=======
 * 46950 - Retamal, Alejo
 * 47116 - Martel, Marco Antonio
 * 48042 - Milo, Marina Ana
 
->>>>>>> main
 ### Repositorio
 
 * [frontend app and backend app](https://github.com/AlejoRetamal/Trabajo-Pr-ctico---DdS) 
 
-<<<<<<< HEAD
-## Tema ¿Carrio de compras?
-### Descripción
-
- - Una biblioteca busca ampliar su negocio, para ello, busca adquirir su propio sitío web, para que los clientes puedan buscar y adquirir ó reservar libros de una manera más fácil y versatil. (Editen y agregeuen lo que quieran)
-=======
 ## Carrito de compras para una librería
 ### Descripción
 
@@ -45,7 +28,6 @@ El sistema deberá contar con las siguientes funcionalidades:
 * Compatibilidad con diferentes formatos: el usuario podrá escoger entre el formato que quiere el libro. Por ejemplo, si es digital, podrá descargarlo.
 
 *[Pueden agregar más o eliminar si quieren]*
->>>>>>> main
 
 ### Modelo
 ![imagen del modelo]()
@@ -61,25 +43,26 @@ El sistema deberá contar con las siguientes funcionalidades:
 
 |Req|Detalle|
 |:-|:-|
-|CRUD Simple|1. ...<br>2. ...<br>3. ...<br>4. ...|
-|CRUD Dependiente|1. ...<br>2. ...|
-|Listado<br>+<br>Detalle| 1. ...<br> 2. ...|
-|CUU/Epic|1. ...<br>2. ...|
+|CRUD Simple|1. CRUD Libro<br>2. CRUD Envio<br>3. (Se pueden agregar más)|
+|CRUD Dependiente|1. CRUD Categoría { depende de } CRUD Libro<br>2. CRUD Localidad { depende de } CRUD Envio<br>3. CRUD Reserva { depende de } CRUD Libro<br>4. CRUD Reseña { depende de } CRUD Libro (Abierto a edición) |
+|Listado<br>+<br>Detalle| 1. Listado de todos los libros filtrando por categoría, muestra código de libro, título de libro, precio de libro, estado de libro => detalle CRUD Libo<br> 2. Listado de Localidades (Localidades a las cuales se pueden hacer envios) filtrado por Localidad del cliente, muestra todas las  localidades, estado de localidad (Mostraría todas las localidades que hay y su estado sería si hacen envio a esa en específico)  |
+|CUU/Epic|1. Realizar compra de un libro<br>2. Realizar reserva virtual de un libro<br>3. Registrar reseña de un libro |
 
 
 - **Adicionales para Aprobación:**
 
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. ...<br>2. ...<br>3. ...<br>4. ...<br>5. ...<br>6. ...<br>7. ...|
-|CUU/Epic|1. ...<br>2. ...<br>3. ...<br>4. ...|
+|CRUD |1. CRUD Libro<br>2. CRUD Envio<br>3. CRUD Clientes<br>4. CRUD Socios<br>5. CRUD Autor<br>6. ...<br>7. ...| (Creo que habria que agregar más)
+|CUU/Epic|1. Realizar compra de un libro<br>2. Seguir envio de la compra<br>3. Realizar reserva virtual de un libro<br>4. Registrar reseña de un libro<br>5. Registrar cliente<br>6. Registrar nuevo socio<br>7. Seguir envio de la compra |
 
 
 ### Alcance Adicional Voluntario
 
 <!--- Es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo --->
 
-|Req|Detalle|
+(Abierto a edición)
+|Req|Detalle| 
 |:-|:-|
 |Listados|1. ...<br>2. ...|
 |CUU/Epic|1. ...<br>2. ...|
