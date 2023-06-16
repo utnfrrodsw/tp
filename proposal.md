@@ -45,18 +45,18 @@ El sistema deberá contar con las siguientes funcionalidades:
 
 |Req|Detalle|
 |:-|:-|
-|CRUD Simple|1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Autor|
-|CRUD Dependiente|1. CRUD Categoría { depende de } CRUD Libro<br>2. CRUD Localidad { depende de } CRUD Envio<br>3. CRUD Reserva { depende de } CRUD Libro<br>4. CRUD Reseña { depende de } CRUD Libro (Abierto a edición) |
-|Listado<br>+<br>Detalle| 1. Listado de todos los libros filtrando por categoría, muestra código de libro, título de libro, precio de libro, estado de libro => detalle CRUD Libo<br> 2. Listado de Localidades (Localidades a las cuales se pueden hacer envios) filtrado por Localidad del cliente, muestra todas las  localidades, estado de localidad (Mostraría todas las localidades que hay y su estado sería si hacen envio a esa en específico)  |
-|CUU/Epic|1. Realizar compra de un libro<br>2. Realizar reserva virtual de un libro<br>3. Registrar reseña de un libro |
+|CRUD Simple|1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Cliente|
+|CRUD Dependiente|1. CRUD Categoría { depende de } CRUD Libro<br>2. CRUD Localidad { depende de } CRUD Envío<br>3. CRUD Reserva { depende de } CRUD Libro<br>4. CRUD Reseña { depende de } CRUD Libro (Abierto a edición) |
+|Listado<br>+<br>Detalle| 1. Listado de todos los libros filtrando por categoría, muestra código de libro, título de libro, precio de libro, estado de libro => detalle CRUD Libro<br> 2. Listado de localidades disponibles, filtrado por localidad del cliente, muestra todas las  localidades y su estado (Mostraría todas las localidades que hay y su estado sería si hacen envio a esa en específico)  |
+|CUU/Epic|1. Comprar un libro<br>2. Reservar un libro<br>3. Calificar un libro |
 
 
 - **Adicionales para Aprobación:**
 
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Clientes<br>4. CRUD Socios<br>5. CRUD Autor<br>6. ...<br>7. ...| (Creo que habria que agregar más)
-|CUU/Epic|1. Comprar un libro<br>2. Seguir envío de la compra<br>3. Realizar reserva virtual de un libro<br>4. Registrar reseña de un libro<br>5. Registrar cliente<br>6. Registrar nuevo socio<br>7. Seguir envío de la compra |
+|CRUD |1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Cliente<br>4. CRUD Socio<br>5. CRUD Autor<br>6. ...<br>7. ...| (Creo que habria que agregar más)
+|CUU/Epic|1. Comprar un libro<br>2. Seguir envío de la compra<br>3. Reservar un libro<br>4. Calificar un libro<br>5. Registrar cliente<br>6. Registrar nuevo socio<br>7. Seguir envío de la compra |
 
 
 ### Alcance Adicional Voluntario
