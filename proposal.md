@@ -55,8 +55,8 @@ El sistema deberá contar con las siguientes funcionalidades:
 
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Cliente<br>4. CRUD Socio<br>5. CRUD Autor<br>6. ...<br>7. ...| (Creo que habria que agregar más)
-|CUU/Epic|1. Comprar un libro<br>2. Seguir envío de la compra<br>3. Reservar un libro<br>4. Calificar un libro<br>5. Registrar cliente<br>6. Registrar nuevo socio<br>7. Seguir envío de la compra |
+|CRUD |1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Cliente<br>4. CRUD Socio<br>5. CRUD Autor<br>6. CRUD Pedido<br>7. CRUD Editorial| (Creo que habria que agregar más)
+|CUU/Epic|1. Comprar un libro<br>2. Consultar estado de envío<br>3. Reservar un libro<br>4. Calificar un libro<br>5. Registrar cliente<br>6. Registrar nuevo socio<br>7. Buscar libro|
 
 
 ### Alcance Adicional Voluntario
@@ -66,6 +66,6 @@ El sistema deberá contar con las siguientes funcionalidades:
 (Abierto a edición)
 |Req|Detalle| 
 |:-|:-|
-|Listados|1. ...<br>2. ...|
-|CUU/Epic|1. ...<br>2. ...|
+|Listados|1. Listado de libros por autor<br>2. Listado de libros comprados<br>3. Listado de autores seguidos<br>4. Listado de libros agregados a la lista de deseos|
+|CUU/Epic|1. Consultar historial de compras<br>2. Agregar libro a lista de deseos<br>3. Seguir a autor|
 |Otros|1. ...|
