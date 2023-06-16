@@ -15,7 +15,7 @@
 ## Carrito de compras para una librería
 ### Descripción
 
-*Cuando un cliente visita la página web, puede explorar el catálogo de libros filtrándolos por formato, género, autor y otros criterios relevantes. Al hacer clic sobre uno, se muestra una descripción detallada y reseñas de usuarios. El cliente puede agregarlo a su lista de deseos, reservarlo antes de su lanzamiento oficial o añadirlo al carrito para consultar métodos de pago. Después de la compra, se envía un comprobante por email con los detalles del pago y la fecha estimada de entrega o retiro.*
+**Cuando un cliente visita la página web, puede explorar el catálogo de libros filtrándolos por formato, género, autor y otros criterios relevantes. Al hacer clic sobre uno, se muestra una descripción detallada y reseñas de usuarios. El cliente puede agregarlo a su lista de deseos, reservarlo antes de su lanzamiento oficial o añadirlo al carrito para consultar métodos de pago. Después de la compra, se envía un comprobante por email con los detalles del pago y la fecha estimada de entrega o retiro.**
 
 Con una interfaz intuitiva y funcionalidades simples, nos permitirá explorar y adquirir libros de manera rápida y conveniente. Podrás encontrar tus títulos favoritos, filtrar por género o autor, reservar libros de una manera más fácil y versatil y más. 
 
