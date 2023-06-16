@@ -23,6 +23,7 @@ El sistema deberá contar con las siguientes funcionalidades:
 
 * Amplia selección de libros: permitir acceder a una vasta colección de libros en diferentes géneros, temáticas y formatos, incluyendo libros físicos, electrónicos y audiolibros.
 * Búsqueda avanzada: permitir al usuario utilizar opciones de búsqueda avanzadas para encontrar fácilmente sus libros favoritos por género, autor, temática y palabras clave específicas.
+* Sistema de valoracion por estrellas: el usuario tendra la posibilidad de clasificar el libro adquirido en una escala del 1 al 5.
 * Reseñas: permite escribir opiniones sobre los libros que ha leído y también leer las opiniones de otros usuarios.
 * Lista de deseos personalizada: crear una lista de deseos con los libros que le interesan al usuario y así comprarlos en otro momento.
 * Reservas de libro: realizar reservas de libros antes de su lanzamiento oficial.
