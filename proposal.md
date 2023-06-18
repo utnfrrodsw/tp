@@ -32,7 +32,7 @@ El sistema deberá contar con las siguientes funcionalidades:
 *[Pueden agregar más o eliminar si quieren]*
 
 ### Modelo
-![imagen del modelo]()
+![imagen del modelo](Modelo_De_Dominio.v1.PNG)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
@@ -45,18 +45,18 @@ El sistema deberá contar con las siguientes funcionalidades:
 
 |Req|Detalle|
 |:-|:-|
-|CRUD Simple|1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Cliente|
-|CRUD Dependiente|1. CRUD Categoría { depende de } CRUD Libro<br>2. CRUD Localidad { depende de } CRUD Envío<br>3. CRUD Reserva { depende de } CRUD Libro<br>4. CRUD Reseña { depende de } CRUD Libro (Abierto a edición) |
+|CRUD Simple|1. CRUD Categoría<br>2. CRUD Provincia<br>3. CRUD Cliente<br>4. CRUD Autor|
+|CRUD Dependiente|1. CRUD Libro { depende de } CRUD Categoría<br>2. CRUD Envio { depende de } CRUD Provincia|
 |Listado<br>+<br>Detalle| 1. Listado de todos los libros filtrando por categoría, muestra código de libro, título de libro, precio de libro, estado de libro => detalle CRUD Libro<br> 2. Listado de localidades disponibles, filtrado por localidad del cliente, muestra todas las  localidades y su estado (Mostraría todas las localidades que hay y su estado sería si hacen envio a esa en específico)  |
-|CUU/Epic|1. Comprar un libro<br>2. Reservar un libro<br>3. Calificar un libro |
+|CUU/Epic|1. Comprar un libro<br>2. Reseñar un libro<br>3. Calificar un libro |
 
 
 - **Adicionales para Aprobación:**
 
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Cliente<br>4. CRUD Socio<br>5. CRUD Autor<br>6. CRUD Pedido<br>7. CRUD Editorial| (Creo que habria que agregar más)
-|CUU/Epic|1. Comprar un libro<br>2. Consultar estado de envío<br>3. Reservar un libro<br>4. Calificar un libro<br>5. Registrar cliente<br>6. Registrar nuevo socio<br>7. Buscar libro|
+|CRUD |1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Cliente<br>4. CRUD Autor<br>6. CRUD Pedido<br>7. CRUD Ofertas| (Creo que habria que agregar más)
+|CUU/Epic|1. Comprar un libro<br>2. Consultar estado de envío<br>3. Reseñar un libro<br>4. Calificar un libro<br>5. Registrar cliente|
 
 
 ### Alcance Adicional Voluntario
