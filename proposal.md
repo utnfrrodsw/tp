@@ -32,7 +32,7 @@ El sistema deberá contar con las siguientes funcionalidades:
 *[Pueden agregar más o eliminar si quieren]*
 
 ### Modelo
-![imagen del modelo](Modelo_De_Dominio.v1.PNG)
+![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
