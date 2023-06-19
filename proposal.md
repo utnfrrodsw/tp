@@ -51,6 +51,13 @@ classDiagram
         +id_categoria: int
         +nombre: string
     }
+    class Reseñas{
+        +id_reseña: int
+        +calificacion: int
+        +opinion: string
+        +cliente: Clientes
+        +libro: Libros
+    }
     class Clientes{
         +id_cliente: int
         +nombre: string
@@ -113,11 +120,13 @@ classDiagram
     Libros "*" -- "1..3" FormatoLibro
     Clientes "1" -- "*" Pedidos
     Clientes "1" -- "*" Libros
+    Clientes "1" -- "*" Reseñas
     Localidades "1" -- "*" Clientes
     Pedidos "*" -- "1" MetodoPago
     Pedidos "1..*" -- "1..*" Libros: cantidad
     Localidades "*" -- "1" Provincias
     Ofertas "*" -- "1..*" Libros
+    Reseñas "*" -- "1" Libros
 ```
 
 ![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
