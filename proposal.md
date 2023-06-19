@@ -15,7 +15,7 @@
 ## Carrito de compras para una librería
 ### Descripción
 
-Cuando un cliente visita la página web, puede explorar el catálogo de libros filtrándolos por formato, género, autor y otros criterios relevantes. Al hacer clic sobre uno, se muestra una descripción detallada y reseñas de usuarios. El cliente puede agregarlo a su lista de deseos, reservarlo antes de su lanzamiento oficial o añadirlo al carrito para consultar métodos de pago. Después de la compra, se envía un comprobante por email con los detalles del pago y la fecha estimada de entrega o retiro.
+Cuando un cliente visita la página web, puede explorar el catálogo de libros filtrándolos por formato, género, autor y otros criterios relevantes. Al hacer clic sobre uno, se muestra una descripción detallada y reseñas de usuarios. El cliente puede agregarlo a su lista de deseos o añadirlo al carrito para consultar métodos de pago y envío. Después de la compra, se envía un comprobante por email con los detalles del pago y la fecha estimada de entrega o retiro.
 
 <!-- Con una interfaz intuitiva y funcionalidades simples, nos permitirá explorar y adquirir libros de manera rápida y conveniente. Podrás encontrar tus títulos favoritos, filtrar por género o autor, reservar libros de una manera más fácil y versatil y más. 
 
@@ -51,7 +51,7 @@ classDiagram
         +id_categoria: int
         +nombre: string
     }
-    class Envios{
+    class Envio{
         +id_envio: int
         +estado: string
         +fecha_entrega_estimada: Date
@@ -99,10 +99,13 @@ classDiagram
     class Pedidos{
         +id_pedido: int
         +cliente: Clientes
-        +libro: Libros[]
         +fecha_hora: Date
         +metodo_pago: MetodoPago
-        +agregar_libro(libro: Libros): void
+        +agregar_libro(libro: Libros, cantidad: int): void
+    }
+    class DetallePedido{
+        +libro: Libros
+        +cantidad: int
     }
     class FormatoLibro{
         +id_formato_libro: int
@@ -129,11 +132,12 @@ classDiagram
     Clientes "1" -- "*" Reseñas
     Localidades "1" -- "*" Clientes
     Pedidos "*" -- "1" MetodoPago
-    Pedidos "1..*" -- "1..*" Libros: cantidad
     Localidades "*" -- "1" Provincias
     Ofertas "*" -- "1..*" Libros
     Reseñas "*" -- "1" Libros
-    Envios "0..1" -- "1" Pedidos
+    Envio "0..1" -- "1" Pedidos
+    DetallePedido "" -- "*" Pedidos
+    DetallePedido "" -- "1..*" Libros
 ```
 
 ![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
