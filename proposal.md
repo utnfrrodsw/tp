@@ -54,14 +54,21 @@ classDiagram
     }
     class Categoria{
         +id: int
-        +nombre: string
+        +descripcion: string
     }
     class Envio{
         +id: int
         +estado: string
         +fecha_entrega_estimada: Date
         +fecha_entrega_real: Date
+				+calcularPrecioEnvio(): decimal
     }
+		class HistorialPreciosEnvio{
+				+fecha_ini: Date
+				+fecha_fin: Date
+				+precio: decimal
+				+envio_gratis: decimal
+		}
     class Reseña{
         +id: int
         +calificacion: int
@@ -90,16 +97,16 @@ classDiagram
     }
     class Provincia{
         +id: int
-        +nombre: string
+        +descripcion: string
     }
     class Localidad{
         +cod_postal: int
-        +nombre: string
+        +descripcion: string
         +provincia: Provincia
     }
     class Editorial{
         +id: int
-        +nombre: string
+        +descripcion: string
         +direccion: string
         +getLibrosPublicados(): Libro[]
     }
@@ -107,10 +114,12 @@ classDiagram
         +id: int
         +cliente: Cliente
         +fecha_hora: Date
-        +metodo_pago: MetodoPago
+        +metodo_pago: string
         +agregarLibro(libro: Libro, cantidad: int): void
         +quitarLibro(libro: Libro, cantidad: int): void
         +consultarEstadoEnvio(): string
+				+calcularImporteTotal(): decimal
+				+calcularImporteCuotas(): decimal
     }
     class DetallePedido{
         +libro: Libro
@@ -118,16 +127,16 @@ classDiagram
     }
     class FormatoLibro{
         +id: int
-        +nombre: string
+        +descripcion: string
     }
-    class MetodoPago{
-        +id: int
-        +nombre: string
+    class Cuota{
+        +fecha_venc: Date
+				+fecha_pago: Date
     }
     class Oferta{
         +id: int
-        +fecha_inicio: Date
-        +fecha_vencimiento: Date
+        +fecha_ini: Date
+        +fecha_fin: Date
         +porcentaje_descuento: decimal
     }
     
@@ -140,7 +149,7 @@ classDiagram
     Cliente "1" -- "*" Libro: listaDeseos
     Cliente "1" -- "*" Reseña
     Localidad "1" -- "*" Cliente
-    Pedido "*" -- "1" MetodoPago
+    Pedido "1" -- "1..*" Cuota
     Localidad "*" -- "1" Provincia
     Oferta "*" -- "1..*" Libro
     Reseña "*" -- "1" Libro
@@ -150,9 +159,31 @@ classDiagram
     Cliente "*" -- "*" Autor: autoresSeguidos
 ```
 
-![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
+#### Anotaciones:
+- La clase “**FormatoLibro**” representa los diferentes formatos en los que un libro puede estar disponible, como físico, digital o audiolibro.
+- La clase “**Envio**” posee una relación "0..1 a 1" con la clase “**Pedido**”. Esta relación se establece cuando el cliente selecciona la opción de envío.
+    - De lo contrario, si se selecciona “**retiro**” la relación no se crea, pues el cliente lo retirará en la librería física.
+- La clase “**Cuota**” indica la cantidad de cuotas en las que se pagará un pedido.
+    - Si se relaciona con una única instancia de cuota, significa que el pedido se pagará en su totalidad con tarjeta de débito.
+    - Si se relaciona con más de una instancia de cuota, el pago se efectuará con tarjeta de crédito.
+        - El importe de cada cuota se puede calcular invocando el método “**calcularImporteCuotas()**”
+- La clase “**HistorialPreciosEnvio**” permite que el importe de los envíos pueda actualizarse sin perder los anteriores para poder consultar el historial de compras del cliente más adelante.
+    - Si el importe total del pedido (sin incluir el costo del envío) supera el valor establecido en el atributo "**envio_gratis**", el envío se considera gratuito.
+        - Esto proporciona una forma de determinar si el cliente califica para recibir envío gratuito en función del monto de su compra.
+- La clase “**Reseña**” posee un atributo “**calificación**” con tipo de dato *int* que admitirá valores de 1 a 5 para determinar la cantidad de estrellas con las que calificó el cliente al libro.
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+#### Consultas:
+- ¿Es conveniente tener una clase separada para el **idioma** de un libro o deberíamos incluir un atributo "**idioma**" en la clase "**Libro**" en su lugar?
+    - Esta pregunta surge debido a que el título, la editorial, la descripción y los formatos disponibles de un libro **pueden variar según el idioma en el que esté escrito**.
+        - Al incluir el atributo "**idioma**" en la clase "**Libro**", los libros escritos en diferentes idiomas serán tratados como distintos en el sistema.
+        - Además, las reseñas de los clientes pueden diferir según el idioma en el que esté escrito el libro.
+- ¿Es recomendable incluir el atributo "**método_pago**" en la clase "**Pedido**" y tener una clase separada llamada "**Cuota**" para permitir el pago con tarjeta de crédito?
+    - ¿Existe una forma más eficiente y sencilla de modelar esta situación?
+
+
+<!--![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
+
+*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes. -->
 
 ## Alcance Funcional 
 
