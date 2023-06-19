@@ -51,6 +51,12 @@ classDiagram
         +id_categoria: int
         +nombre: string
     }
+    class Envios{
+        +id_envio: int
+        +estado: string
+        +fecha_entrega_estimada: Date
+        +fecha_entrega_real: Date
+    }
     class Reseñas{
         +id_reseña: int
         +calificacion: int
@@ -127,6 +133,7 @@ classDiagram
     Localidades "*" -- "1" Provincias
     Ofertas "*" -- "1..*" Libros
     Reseñas "*" -- "1" Libros
+    Envios "0..1" -- "1" Pedidos
 ```
 
 ![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
