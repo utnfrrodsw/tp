@@ -39,13 +39,12 @@ classDiagram
         +id_libro: int
         +titulo: string
         +autor: Autores[]
-        +editorial: Editorial
+        +editorial: Editoriales
         +descripcion: string
         +precio: decimal
         +fecha_edicion: Date
         +categoria: Categorias[]
         +formato: FormatoLibro[]
-        +obtener_informacion(): string
     }
     class Categorias{
         +id_categoria: int
@@ -71,20 +70,22 @@ classDiagram
         +email: string
         +direccion: string
         +localidad: Localidades
-        +listaDeseos: Libros[]
-        +registrar_pedido(libro: Libros, formato: FormatoLibro, metodoPago: MetodoPago): void
-        +obtener_provincia(localidad: Localidades): Provincias
+        +registrarPedido(libro: Libros, formato: FormatoLibro, metodoPago: MetodoPago): void
+        +getProvincia(localidad: Localidades): Provincias
+        +registrarReseña(calificacion: int, opinion: string, libro: Libros): void
+        +getLibrosComprados(): Libros[]
+        +getListaDeseos(): Libros[]
+        +getAutoresSeguidos(): Autores[]
     }
     class Autores{
         +id_autor: int
         +nombre: string
         +apellidoi: string
-        +obtener_libros_publicados(): Libros[]
+        +getLibrosPublicados(): Libros[]
     }
     class Provincias{
         +id_provincia: int
         +nombre: string
-        +localidades: Localidades[]
     }
     class Localidades{
         +cod_postal: int
@@ -94,14 +95,16 @@ classDiagram
         +id_editorial: int
         +nombre: string
         +direccion: string
-        +obtener_libros_publicados(): Libros[]
+        +getLibrosPublicados(): Libros[]
     }
     class Pedidos{
         +id_pedido: int
         +cliente: Clientes
         +fecha_hora: Date
         +metodo_pago: MetodoPago
-        +agregar_libro(libro: Libros, cantidad: int): void
+        +agregarLibro(libro: Libros, cantidad: int): void
+        +quitarLibro(libro: Libros, cantidad: int): void
+        +consultarEstadoEnvio(): string
     }
     class DetallePedido{
         +libro: Libros
@@ -114,12 +117,11 @@ classDiagram
     class MetodoPago{
         +id_metodo_pago: int
         +nombre: string
-        +pedidos: Pedidos[]
     }
     class Ofertas{
+        +id_oferta: int
         +fecha_inicio: Date
         +fecha_vencimiento: Date
-        +libros: Libros[]
         +porcentaje_descuento: decimal
     }
     
@@ -128,7 +130,7 @@ classDiagram
     Libros "*" -- "1" Editoriales
     Libros "*" -- "1..3" FormatoLibro
     Clientes "1" -- "*" Pedidos
-    Clientes "1" -- "*" Libros
+    Clientes "1" -- "*" Libros: listaDeseos
     Clientes "1" -- "*" Reseñas
     Localidades "1" -- "*" Clientes
     Pedidos "*" -- "1" MetodoPago
@@ -138,6 +140,7 @@ classDiagram
     Envio "0..1" -- "1" Pedidos
     DetallePedido "" -- "*" Pedidos
     DetallePedido "" -- "1..*" Libros
+    Clientes "*" -- "*" Autores: autoresSeguidos
 ```
 
 ![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
