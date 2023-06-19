@@ -35,112 +35,119 @@ El sistema deberá contar con las siguientes funcionalidades:
 
 ```mermaid
 classDiagram
-    class Libros{
-        +id_libro: int
+    class Libro{
+        +id: int
+        +isbn: string
         +titulo: string
-        +autor: Autores[]
-        +editorial: Editoriales
+        +autores: Autor[]
+        +editorial: Editorial
+        +idiomas: Idioma[]
         +descripcion: string
         +precio: decimal
         +fecha_edicion: Date
-        +categoria: Categorias[]
-        +formato: FormatoLibro[]
+        +categorias: Categoria[]
+        +formatos: FormatoLibro[]
     }
-    class Categorias{
-        +id_categoria: int
+    class Idioma {
+		    +id: int
+		    +descripcion: string
+    }
+    class Categoria{
+        +id: int
         +nombre: string
     }
     class Envio{
-        +id_envio: int
+        +id: int
         +estado: string
         +fecha_entrega_estimada: Date
         +fecha_entrega_real: Date
     }
-    class Reseñas{
-        +id_reseña: int
+    class Reseña{
+        +id: int
         +calificacion: int
         +opinion: string
-        +cliente: Clientes
-        +libro: Libros
+        +cliente: Cliente
+        +libro: Libro
     }
-    class Clientes{
-        +id_cliente: int
+    class Cliente{
+        +id: int
         +nombre: string
         +apellido: string
         +email: string
         +direccion: string
-        +localidad: Localidades
-        +registrarPedido(libro: Libros, formato: FormatoLibro, metodoPago: MetodoPago): void
-        +getProvincia(localidad: Localidades): Provincias
-        +registrarReseña(calificacion: int, opinion: string, libro: Libros): void
-        +getLibrosComprados(): Libros[]
-        +getListaDeseos(): Libros[]
-        +getAutoresSeguidos(): Autores[]
+        +localidad: Localidad
+        +registrarPedido(libro: Libro, formato: FormatoLibro, metodoPago: MetodoPago): void
+        +registrarReseña(calificacion: int, opinion: string, libro: Libro): void
+        +getLibrosComprados(): Libro[]
+        +getListaDeseos(): Libro[]
+        +getAutoresSeguidos(): Autor[]
     }
-    class Autores{
-        +id_autor: int
+    class Autor{
+        +id: int
         +nombre: string
-        +apellidoi: string
-        +getLibrosPublicados(): Libros[]
+        +apellido: string
+        +getLibrosPublicados(): Libro[]
     }
-    class Provincias{
-        +id_provincia: int
+    class Provincia{
+        +id: int
         +nombre: string
     }
-    class Localidades{
+    class Localidad{
         +cod_postal: int
         +nombre: string
+        +provincia: Provincia
     }
-    class Editoriales{
-        +id_editorial: int
+    class Editorial{
+        +id: int
         +nombre: string
         +direccion: string
-        +getLibrosPublicados(): Libros[]
+        +getLibrosPublicados(): Libro[]
     }
-    class Pedidos{
-        +id_pedido: int
-        +cliente: Clientes
+    class Pedido{
+        +id: int
+        +cliente: Cliente
         +fecha_hora: Date
         +metodo_pago: MetodoPago
-        +agregarLibro(libro: Libros, cantidad: int): void
-        +quitarLibro(libro: Libros, cantidad: int): void
+        +agregarLibro(libro: Libro, cantidad: int): void
+        +quitarLibro(libro: Libro, cantidad: int): void
         +consultarEstadoEnvio(): string
     }
     class DetallePedido{
-        +libro: Libros
+        +libro: Libro
         +cantidad: int
     }
     class FormatoLibro{
-        +id_formato_libro: int
+        +id: int
         +nombre: string
     }
     class MetodoPago{
-        +id_metodo_pago: int
+        +id: int
         +nombre: string
     }
-    class Ofertas{
-        +id_oferta: int
+    class Oferta{
+        +id: int
         +fecha_inicio: Date
         +fecha_vencimiento: Date
         +porcentaje_descuento: decimal
     }
     
-    Libros "*" -- "1..*" Categorias
-    Libros "*" -- "1..*" Autores
-    Libros "*" -- "1" Editoriales
-    Libros "*" -- "1..3" FormatoLibro
-    Clientes "1" -- "*" Pedidos
-    Clientes "1" -- "*" Libros: listaDeseos
-    Clientes "1" -- "*" Reseñas
-    Localidades "1" -- "*" Clientes
-    Pedidos "*" -- "1" MetodoPago
-    Localidades "*" -- "1" Provincias
-    Ofertas "*" -- "1..*" Libros
-    Reseñas "*" -- "1" Libros
-    Envio "0..1" -- "1" Pedidos
-    DetallePedido "" -- "*" Pedidos
-    DetallePedido "" -- "1..*" Libros
-    Clientes "*" -- "*" Autores: autoresSeguidos
+    Libro "*" -- "1..*" Categoria
+    Libro "*" -- "1..*" Idioma
+    Libro "*" -- "1..*" Autor
+    Libro "*" -- "1" Editorial
+    Libro "*" -- "1..3" FormatoLibro
+    Cliente "1" -- "*" Pedido
+    Cliente "1" -- "*" Libro: listaDeseos
+    Cliente "1" -- "*" Reseña
+    Localidad "1" -- "*" Cliente
+    Pedido "*" -- "1" MetodoPago
+    Localidad "*" -- "1" Provincia
+    Oferta "*" -- "1..*" Libro
+    Reseña "*" -- "1" Libro
+    Envio "0..1" -- "1" Pedido
+    DetallePedido "" -- "*" Pedido
+    DetallePedido "" -- "1..*" Libro
+    Cliente "*" -- "*" Autor: autoresSeguidos
 ```
 
 ![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
