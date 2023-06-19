@@ -15,9 +15,9 @@
 ## Carrito de compras para una librería
 ### Descripción
 
-**Cuando un cliente visita la página web, puede explorar el catálogo de libros filtrándolos por formato, género, autor y otros criterios relevantes. Al hacer clic sobre uno, se muestra una descripción detallada y reseñas de usuarios. El cliente puede agregarlo a su lista de deseos, reservarlo antes de su lanzamiento oficial o añadirlo al carrito para consultar métodos de pago. Después de la compra, se envía un comprobante por email con los detalles del pago y la fecha estimada de entrega o retiro.**
+Cuando un cliente visita la página web, puede explorar el catálogo de libros filtrándolos por formato, género, autor y otros criterios relevantes. Al hacer clic sobre uno, se muestra una descripción detallada y reseñas de usuarios. El cliente puede agregarlo a su lista de deseos, reservarlo antes de su lanzamiento oficial o añadirlo al carrito para consultar métodos de pago. Después de la compra, se envía un comprobante por email con los detalles del pago y la fecha estimada de entrega o retiro.
 
-Con una interfaz intuitiva y funcionalidades simples, nos permitirá explorar y adquirir libros de manera rápida y conveniente. Podrás encontrar tus títulos favoritos, filtrar por género o autor, reservar libros de una manera más fácil y versatil y más. 
+<!-- Con una interfaz intuitiva y funcionalidades simples, nos permitirá explorar y adquirir libros de manera rápida y conveniente. Podrás encontrar tus títulos favoritos, filtrar por género o autor, reservar libros de una manera más fácil y versatil y más. 
 
 El sistema deberá contar con las siguientes funcionalidades:
 
@@ -29,9 +29,97 @@ El sistema deberá contar con las siguientes funcionalidades:
 * Reservas de libro: realizar reservas de libros antes de su lanzamiento oficial.
 * Compatibilidad con diferentes formatos: el usuario podrá escoger entre el formato que quiere el libro. Por ejemplo, si es digital, podrá descargarlo.
 
-*[Pueden agregar más o eliminar si quieren]*
+*[Pueden agregar más o eliminar si quieren]* -->
 
 ### Modelo
+
+```mermaid
+classDiagram
+    class Libros{
+        +id_libro: int
+        +titulo: string
+        +autor: Autores[]
+        +editorial: Editorial
+        +descripcion: string
+        +precio: decimal
+        +fecha_edicion: Date
+        +categoria: Categorias[]
+        +formato: FormatoLibro[]
+        +obtener_informacion(): string
+    }
+    class Categorias{
+        +id_categoria: int
+        +nombre: string
+    }
+    class Clientes{
+        +id_cliente: int
+        +nombre: string
+        +apellido: string
+        +email: string
+        +direccion: string
+        +localidad: Localidades
+        +listaDeseos: Libros[]
+        +registrar_pedido(libro: Libros, formato: FormatoLibro, metodoPago: MetodoPago): void
+        +obtener_provincia(localidad: Localidades): Provincias
+    }
+    class Autores{
+        +id_autor: int
+        +nombre: string
+        +apellidoi: string
+        +obtener_libros_publicados(): Libros[]
+    }
+    class Provincias{
+        +id_provincia: int
+        +nombre: string
+        +localidades: Localidades[]
+    }
+    class Localidades{
+        +cod_postal: int
+        +nombre: string
+    }
+    class Editoriales{
+        +id_editorial: int
+        +nombre: string
+        +direccion: string
+        +obtener_libros_publicados(): Libros[]
+    }
+    class Pedidos{
+        +id_pedido: int
+        +cliente: Clientes
+        +libro: Libros[]
+        +fecha_hora: Date
+        +metodo_pago: MetodoPago
+        +agregar_libro(libro: Libros): void
+    }
+    class FormatoLibro{
+        +id_formato_libro: int
+        +nombre: string
+    }
+    class MetodoPago{
+        +id_metodo_pago: int
+        +nombre: string
+        +pedidos: Pedidos[]
+    }
+    class Ofertas{
+        +fecha_inicio: Date
+        +fecha_vencimiento: Date
+        +libros: Libros[]
+        +porcentaje_descuento: decimal
+    }
+    
+    Libros "*" -- "1..*" Categorias
+    Libros "*" -- "1..*" Autores
+    Libros "*" -- "1" Editoriales
+    Libros "*" -- "1..3" FormatoLibro
+    Clientes "1" -- "*" Pedidos
+    Clientes "1" -- "*" Libros
+    Localidades "1" -- "*" Clientes
+    Pedidos "*" -- "1" MetodoPago
+    Pedidos "1..*" -- "1..*" Libros: cantidad
+    Localidades "*" -- "1" Provincias
+    Ofertas "*" -- "1..*" Libros
+```
+
 ![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
@@ -46,7 +134,7 @@ El sistema deberá contar con las siguientes funcionalidades:
 |Req|Detalle|
 |:-|:-|
 |CRUD Simple|1. CRUD Categoría<br>2. CRUD Provincia<br>3. CRUD Cliente<br>4. CRUD Autor|
-|CRUD Dependiente|1. CRUD Libro { depende de } CRUD Categoría<br>2. CRUD Envio { depende de } CRUD Provincia|
+|CRUD Dependiente|1. CRUD Libro { depende de } CRUD Categoría y CRUD Autor<br>2. CRUD Envio { depende de } CRUD Provincia|
 |Listado<br>+<br>Detalle| 1. Listado de todos los libros filtrando por categoría, muestra código de libro, título de libro, precio de libro, estado de libro => detalle CRUD Libro<br> 2. Listado de localidades disponibles, filtrado por localidad del cliente, muestra todas las  localidades y su estado (Mostraría todas las localidades que hay y su estado sería si hacen envio a esa en específico)  |
 |CUU/Epic|1. Comprar un libro<br>2. Reseñar un libro<br>3. Calificar un libro |
 
@@ -55,7 +143,7 @@ El sistema deberá contar con las siguientes funcionalidades:
 
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Cliente<br>4. CRUD Autor<br>6. CRUD Pedido<br>7. CRUD Ofertas| (Creo que habria que agregar más)
+|CRUD |1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Cliente<br>4. CRUD Autor<br>5. CRUD Pedido<br>6. CRUD Ofertas| (Creo que habria que agregar más)
 |CUU/Epic|1. Comprar un libro<br>2. Consultar estado de envío<br>3. Reseñar un libro<br>4. Calificar un libro<br>5. Registrar cliente|
 
 
