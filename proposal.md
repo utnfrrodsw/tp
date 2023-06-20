@@ -17,21 +17,22 @@
 *Aplicación Web para realizar pedidos de productos, de distintos tipos, comercializados por diversos locales. La misma cuenta con cuatro niveles de acceso (tipos de usuario): cliente (estándar o prémium), gestor de local, repartidor y admin. El cliente puede realizar pedidos de combinaciones de productos de un local, cada uno con una forma de pago. El gestor de local tiene la capacidad de registrar locales y crear productos dentro de los mismos, perteneciendo cada uno a una categoría de producto y contando con un histórico de precios. Por otro lado, el repartidor puede aceptar repartos de pedidos, de los cuales gana una comisión que luego puede retirar. Por último, el admin tiene permisos para realizar ABM's sobre las clases independientes (como categorías de productos o tipos de locales).*
 
 ### Modelo
-![imagen del modelo]()
+![image](https://github.com/federicoclementealvarez/TP-DSW/blob/main/images/Modelo%20de%20Dominio%20-%20TP-DSW.svg)
 
-*Link*: https://drive.google.com/file/d/1nUSzv9a-WtSwrQWbd6s3NHWHf1WG2hX_/view?usp=sharing
+*Link*: https://drive.google.com/file/d/1QzcMaZb3F5slPAYgTXQQ_t_KLpwfVDCP/view?usp=sharing
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
+|CRUD simple|1. CRUD ShopType<br>2. CRUD ProductCategory<br>3. CRUD PaymentType<br>4. CRUD UserType<br>5. CRUD Comission|
+|CRUD dependiente|1. CRUD Shop {depende de} CRUD ShopType<br>2. CRUD User {depende de} CRUD UserType<br>3. CRUD Withdrawal {depende de} CRUD User<br>4. CRUD Product {depende de} CRUD Shop, CRUD ProductType
+<br>5. CRUD Order {depende de} CRUD User, CRUD PaymentType<br>6. CRUD LineItem {depende de} CRUD Order, CRUD Product<br>7. CRUD Price {depende de} CRUD Product<br>8. CRUD Adress {depende de} CRUD Shop o CRUD User
+<br>9. CRUD Review {depende de} CRUD Shop, CRUD User|
 |Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
