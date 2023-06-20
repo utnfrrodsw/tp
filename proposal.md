@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 49186 - Clemente Alvarez, Federico
+* 48085 - Ferrari, Mauro
+* 48909 - Mendiaz, Francisco
+* 47979 - Ortenzi, Fabrizio
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,12 +14,12 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+*Aplicación Web para realizar pedidos de productos, de distintos tipos, comercializados por diversos locales. La misma cuenta con cuatro niveles de acceso (tipos de usuario): cliente (estándar o prémium), gestor de local, repartidor y admin. El cliente puede realizar pedidos de combinaciones de productos de un local, cada uno con una forma de pago. El gestor de local tiene la capacidad de registrar locales y crear productos dentro de los mismos, perteneciendo cada uno a una categoría de producto y contando con un histórico de precios. Por otro lado, el repartidor puede aceptar repartos de pedidos, de los cuales gana una comisión que luego puede retirar. Por último, el admin tiene permisos para realizar ABM's sobre las clases independientes (como categorías de productos o tipos de locales).*
 
 ### Modelo
 ![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+*Link*: https://drive.google.com/file/d/1nUSzv9a-WtSwrQWbd6s3NHWHf1WG2hX_/view?usp=sharing
 
 ## Alcance Funcional 
 
