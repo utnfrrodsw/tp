@@ -34,4 +34,6 @@ router.get('/buscar/:query',usuarioController.findUsuariosFuzzilyByName)
 
 router.post('/ingresar',usuarioController.ingresar)
 
+router.post('/salir',usuarioController.salir)
+
 module.exports = router

@@ -32,6 +32,10 @@ export class UsuarioService {
     },{withCredentials: true});
   }
 
+  salir(){
+    return this.clienteHTTP.post(this.URL+`salir`,{},{withCredentials: true});
+  }
+
   buscarDifusamentePorNombre(nombre:string) {
     return this.clienteHTTP.get(this.URL+`buscar/${nombre}`,{withCredentials: true});
   }

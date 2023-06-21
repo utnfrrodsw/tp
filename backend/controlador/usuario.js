@@ -14,6 +14,7 @@ var usuarioController = {
     ,eliminarInvitacion
     ,aceptarInvitacion
     ,eliminarAmigo
+    ,salir
 }
 
 function addUsuario(req, res) {
@@ -120,6 +121,11 @@ function ingresar(req, res) {
         .catch((error) => {
             res.status(500).send(error);
         });
+}
+
+function salir(req, res) {
+    req.session.destroy();
+    res.status(200).send();
 }
 
 function invitar(req,res){

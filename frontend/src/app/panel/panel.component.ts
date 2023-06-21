@@ -216,4 +216,14 @@ export class PanelComponent implements OnInit {
   asignarNombreABoton(e:Event):void{
     (e.target as HTMLInputElement).name='accion';
   }
+
+  salir(){
+    this.usuarioService
+      .salir()
+      .subscribe({
+        next:()=>{
+          this.router.navigate(['/'])
+        }
+      })
+  }
 }
