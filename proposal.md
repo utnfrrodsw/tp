@@ -8,8 +8,7 @@
 
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [fullstack app](http://hyperlinkToGihubOrGitlab)
 
 
 ## Tema
