@@ -3,6 +3,7 @@
 ## Grupo
 ### Integrantes
 * 47942 - Gutierrez, Luisina
+* 49670 - Griva, Corina
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
