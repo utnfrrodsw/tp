@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 47942 - Gutierrez, Luisina
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
