@@ -2,7 +2,14 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+| Legajo | Apellido(s), Nombre(s)  |
+|:-------|:------------------------|
+| 45787  | Andrada, Gastón         |
+| 48262  | Cinel, Santiago         |
+| 47983  | Fermanelli, Sebastián   |
+| 48033  | Fernandez, Martina      |
+| 48178  | Karlen Aguirre, Esteban |
+| 48146  | Miño, Sofía             |
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,12 +18,15 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Sistema de voto estudiantil electrónico que cuenta con autenticación segura de los votantes, protección de la privacidad y confidencialidad de los votos, así como generación precisa de resultados. Además, este sistema ofrece la gestión de listas de candidatos y la generación de informes y análisis detallados.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+<div align="center">
+
+[![](http://hyperlinkToModel)
+
+</div>
 
 ## Alcance Funcional 
 
