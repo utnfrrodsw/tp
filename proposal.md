@@ -39,16 +39,12 @@ classDiagram
         +titulo: string
         +autores: Autor[]
         +editorial: Editorial
-        +idiomas: Idioma[]
+        +idioma: string
         +descripcion: string
         +precio: decimal
         +fecha_edicion: Date
         +categorias: Categoria[]
         +formatos: FormatoLibro[]
-    }
-    class Idioma {
-		    +id: int
-		    +descripcion: string
     }
     class Categoria{
         +id: int
@@ -59,13 +55,12 @@ classDiagram
         +estado: string
         +fecha_entrega_estimada: Date
         +fecha_entrega_real: Date
-				+calcularPrecioEnvio(): decimal
     }
-		class HistorialPreciosEnvio{
-				+fecha_ini: Date
-				+fecha_fin: Date
-				+precio: decimal
-				+envio_gratis: decimal
+	class HistorialPreciosEnvio{
+		+fecha_ini: Date
+		+fecha_fin: Date
+		+precio: decimal
+		+envio_gratis: decimal
 		}
     class Reseña{
         +id: int
@@ -81,17 +76,11 @@ classDiagram
         +email: string
         +direccion: string
         +localidad: Localidad
-        +registrarPedido(libro: Libro, formato: FormatoLibro, metodoPago: MetodoPago): void
-        +registrarReseña(calificacion: int, opinion: string, libro: Libro): void
-        +getLibrosComprados(): Libro[]
-        +getListaDeseos(): Libro[]
-        +getAutoresSeguidos(): Autor[]
     }
     class Autor{
         +id: int
         +nombre: string
         +apellido: string
-        +getLibrosPublicados(): Libro[]
     }
     class Provincia{
         +id: int
@@ -106,22 +95,12 @@ classDiagram
         +id: int
         +descripcion: string
         +direccion: string
-        +getLibrosPublicados(): Libro[]
     }
     class Pedido{
         +id: int
         +cliente: Cliente
         +fecha_hora: Date
         +metodo_pago: string
-        +agregarLibro(libro: Libro, cantidad: int): void
-        +quitarLibro(libro: Libro, cantidad: int): void
-        +consultarEstadoEnvio(): string
-				+calcularImporteTotal(): decimal
-				+calcularImporteCuotas(): decimal
-    }
-    class DetallePedido{
-        +libro: Libro
-        +cantidad: int
     }
     class FormatoLibro{
         +id: int
@@ -129,7 +108,7 @@ classDiagram
     }
     class Cuota{
         +fecha_venc: Date
-				+fecha_pago: Date
+	+fecha_pago: Date
     }
     class Oferta{
         +id: int
@@ -139,7 +118,6 @@ classDiagram
     }
     
     Libro "*" -- "1..*" Categoria
-    Libro "*" -- "1..*" Idioma
     Libro "*" -- "1..*" Autor
     Libro "*" -- "1" Editorial
     Libro "*" -- "1..3" FormatoLibro
@@ -152,40 +130,19 @@ classDiagram
     Oferta "*" -- "1..*" Libro
     Reseña "*" -- "1" Libro
     Envio "0..1" -- "1" Pedido
-    DetallePedido "" -- "*" Pedido
-    DetallePedido "" -- "1..*" Libro
+    Pedido "*" -- "1..*" Libro : cantidad int
     Cliente "*" -- "*" Autor: autoresSeguidos
+
+note for FormatoLibro "Ejemplos: físico,
+digital, audiolibro..."
+
+note for HistorialPreciosEnvio "Si el importe total de un pedido
+supera el valor de 'envio_gratis'
+el envío será gratuito"
+
 ```
-<!-- 
-#### Anotaciones:
-- La clase “**FormatoLibro**” representa los diferentes formatos en los que un libro puede estar disponible, como físico, digital o audiolibro.
-- La clase “**Envio**” posee una relación "0..1 a 1" con la clase “**Pedido**”. Esta relación se establece cuando el cliente selecciona la opción de envío.
-    - De lo contrario, si se selecciona “**retiro**” la relación no se crea, pues el cliente lo retirará en la librería física.
-- La clase “**Cuota**” indica la cantidad de cuotas en las que se pagará un pedido.
-    - Si se relaciona con una única instancia de cuota, significa que el pedido se pagará en su totalidad con tarjeta de débito.
-    - Si se relaciona con más de una instancia de cuota, el pago se efectuará con tarjeta de crédito.
-        - El importe de cada cuota se puede calcular invocando el método “**calcularImporteCuotas()**”
-- La clase “**HistorialPreciosEnvio**” permite que el importe de los envíos pueda actualizarse sin perder los anteriores para poder consultar el historial de compras del cliente más adelante.
-    - Si el importe total del pedido (sin incluir el costo del envío) supera el valor establecido en el atributo "**envio_gratis**", el envío se considera gratuito.
-        - Esto proporciona una forma de determinar si el cliente califica para recibir envío gratuito en función del monto de su compra.
-- La clase “**Reseña**” posee un atributo “**calificación**” con tipo de dato *int* que admitirá valores de 1 a 5 para determinar la cantidad de estrellas con las que calificó el cliente al libro.
-
-#### Consultas:
-- ¿Es conveniente tener una clase separada para el **idioma** de un libro o deberíamos incluir un atributo "**idioma**" en la clase "**Libro**" en su lugar?
-    - Esta pregunta surge debido a que el título, la editorial, la descripción y los formatos disponibles de un libro **pueden variar según el idioma en el que esté escrito**.
-        - Al incluir el atributo "**idioma**" en la clase "**Libro**", los libros escritos en diferentes idiomas serán tratados como distintos en el sistema.
-        - Además, las reseñas de los clientes pueden diferir según el idioma en el que esté escrito el libro.
-- ¿Es recomendable incluir el atributo "**método_pago**" en la clase "**Pedido**" y tener una clase separada llamada "**Cuota**" para permitir el pago con tarjeta de crédito?
-    - ¿Existe una forma más eficiente y sencilla de modelar esta situación? -->
-
-
-<!--![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes. -->
 
 ## Alcance Funcional 
-
-<!-- Edité las tablas para que sean para un grupo de 4 integrantes -->
 
 ### Alcance Mínimo
 - **Regularidad:**
@@ -193,18 +150,27 @@ classDiagram
 |Req|Detalle|
 |:-|:-|
 |CRUD Simple|1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial|
-|CRUD Dependiente|1. CRUD Localidad {depende de} CRUD Provincia<br>2. CRUD Cliente {depende de} CRUD Localidad y CRUD Provincia|
-|Listado<br>+<br>Detalle| 1. Listado de libros filtrado por categoría, muestra ISBN, título, autores, editorial y precio => detalle CRUD Libro<br> 2. Listado de ofertas vigentes filtrado por fecha actual, muestra fecha de fin, porcentaje de descuento y libros => detalle CRUD Oferta|
-|CUU/Epic|1. Buscar libro<br>2. Comprar libro|
+|CRUD Dependiente|1. CRUD Localidad {depende de} CRUD Provincia.<br>2. CRUD Libro {depende de} CRUD Autor, CRUD Categoría y CRUD Editorial.|
+|Listado<br>+<br>Detalle| 1. Listado de libros filtrado por categoría, muestra ISBN, título, autores, editorial y precio => detalle CRUD Libro.<br> 2. Listado de libros filtrado por autor, muestra ISBN, título, editorial y precio => detalle CRUD Libro.|
+|CUU/Epic|1. Comprar libro<br>2. Consultar estado de envío|
 
+**[i]** El CRUD de Cliente se desarrollará en el alcance para la promoción. En el alcance para la regularidad, para garantizar la funcionalidad del sistema, se incluirá un par de clientes preexistentes.
 
+**[ii]** El CRUD de los Formatos de los Libros no se implementará, pues estarán previamente cargados e incluíran opciones como: físico, digital y audiolibro.
+
+---
 - **Adicionales para Aprobación:**
 
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial<br>5. CRUD Localidad<br>6. CRUD Cliente<br>7. CRUD Libro<br>8. CRUD Reseña<br>9. CRUD Oferta<br>10. CRUD Pedido<br>11. CRUD Envío<br>12. CRUD Cuota<br>13. CRUD DetallePedido<br>14. CRUD FormatoLibro<br>15. CRUD HistorialPreciosEnvío|
-|CUU/Epic|1. Buscar libro<br>2. Comprar libro<br>3. Consultar estado de envío<br>4. Reseñar libro<br>|
+|CRUD |1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial<br>5. CRUD Localidad<br>6. CRUD Cliente<br>7. CRUD Libro<br>8. CRUD Reseña<br>9. CRUD Oferta<br>10. CRUD Pedido **<sup>[1]</sup>**<br>11. CRUD Envío **<sup>[2]</sup>**|
+|CUU/Epic|1. Comprar libro<br>2. Consultar estado de envío<br>3. Cancelar pedido<br>4. Reseñar libro<br>|
 
+**[1]** Contará con un detalle de pedido y la cantidad de cuotas seleccionadas por el usuario como método de pago.
+
+**[2]** Contará con un historial de precios de envío que será igual para todos los envíos. Salvo que el importe total del pedido supere el umbral establecido en el sistema como "envio_gratis", en ese caso, el envío será gratuito.
+
+---
 
 ### Alcance Adicional Voluntario
 
@@ -212,6 +178,6 @@ classDiagram
 
 |Req|Detalle| 
 |:-|:-|
-|Listados|1. Listado de libros filtrado por autor, muestra ISBN, título, editorial y precio<br>2. Listado de pedidos filtrado por cliente, muestra fecha y hora, estado, importe total, método de pago y libros adquiridos con su cantidad<br>3. Listado de autores seguidos filtrado por cliente, muestra nombre y apellido<br>4. Listado de libros en la lista de deseos filtrado por cliente, muestra ISBN, título, autores, editorial y precio|
-|CUU/Epic|1. Consultar historial de compras<br>2. Agregar libro a lista de deseos<br>3. Seguir a autor<br>4. Cancelar pedido|
-|Otros|1. Envío de comprobante de compra con los detalles del pago y la fecha estimada de entrega o retiro por email|
+|Listados|1. Listado de ofertas vigentes filtrado por fecha actual, muestra fecha de fin, porcentaje de descuento y libros.<br>2. Listado de pedidos filtrado por cliente, muestra fecha y hora, estado, importe total, método de pago y libros adquiridos con su cantidad.<br>3. Listado de autores seguidos filtrado por cliente, muestra nombre y apellido.<br>4. Listado de libros en la lista de deseos filtrado por cliente, muestra ISBN, título, autores, editorial y precio.|
+|CUU/Epic|1. Consultar historial de compras<br>2. Agregar libro a lista de deseos<br>3. Seguir a autor|
+|Otros|1. Envío de comprobante de compra con los detalles del pago y la fecha estimada de entrega o retiro por email.|
