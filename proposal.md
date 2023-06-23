@@ -2,7 +2,11 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 48843 - Chiara, Agostina
+* 49459 - Aguaya, Julia
+* 49823 - Andriollo, Isabella
+* 49419 - Matteucci, Andrea
+* 49767 - Ambrosio, Facundo
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,12 +15,10 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Es un sistema de gestión de venta de libros que proporciona a los usuarios una plataforma conveniente y fácil de usar para buscar, explorar y comprar una amplia variedad de libros en formato físico. 
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![image](https://github.com/AgostinaChiara/tpDSW/assets/45924448/739070a1-68fc-4c2b-bf16-77c272789cfb)
 
 ## Alcance Funcional 
 
@@ -27,26 +29,8 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
-
-
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
-
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|CRUD simple|1. CRUD Libro<br>2. CRUD Cliente<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Editorial<br>6. CRUD Categoria<br>7. CRUD Pedido<br>8. CRUD Administrador|
+|CRUD dependiente|1. CRUD Cliente {depende de} CRUD Localidad<br>2. CRUD Libro {depende de} CRUD Categoria<br>3. CRUD Localidad {depende de} CRUD Provincia|
+|Listado<br>+<br>detalle| 1. Listado de libros filtrado por tipo de categoría, muestra titulo, nombre, autor => detalle CRUD Libro<br> 2. Listado de pedidos filtrado por rango de fechas, muestra fecha de pedido, monto total, direccion de envio y libro/s enviados => detalle muestra datos completos del pedido y libro|
+|CUU/Epic|1. Realizar un pedido de un libro<br>2. Cargar un libro|
 
