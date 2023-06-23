@@ -69,13 +69,15 @@ classDiagram
         +cliente: Cliente
         +libro: Libro
     }
-    class Cliente{
+    class Usuario{
         +id: int
         +nombre: string
         +apellido: string
         +email: string
         +direccion: string
         +localidad: Localidad
+        +avatar: string
+        +tipo: string
     }
     class Autor{
         +id: int
@@ -154,7 +156,7 @@ el envío será gratuito"
 |Listado<br>+<br>Detalle| 1. Listado de libros filtrado por categoría, muestra ISBN, título, autores, editorial y precio => detalle CRUD Libro.<br> 2. Listado de libros filtrado por autor, muestra ISBN, título, editorial y precio => detalle CRUD Libro.|
 |CUU/Epic|1. Comprar libro<br>2. Consultar estado de envío|
 
-**[i]** El CRUD de Cliente se desarrollará en el alcance para la promoción. En el alcance para la regularidad, para garantizar la funcionalidad del sistema, se incluirá un par de clientes preexistentes.
+**[i]** El CRUD de Usuario se desarrollará en el alcance para la promoción. En el alcance para la regularidad, para garantizar la funcionalidad del sistema, se incluirá un par de clientes preexistentes.
 
 **[ii]** El CRUD de los Formatos de los Libros no se implementará, pues estarán previamente cargados e incluíran opciones como: físico, digital y audiolibro.
 
