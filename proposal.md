@@ -61,12 +61,12 @@ classDiagram
 		+fecha_fin: Date
 		+precio: decimal
 		+envio_gratis: decimal
-		}
+	}
     class Reseña{
         +id: int
         +calificacion: int
         +opinion: string
-        +cliente: Cliente
+        +cliente: Usuario
         +libro: Libro
     }
     class Usuario{
@@ -100,7 +100,7 @@ classDiagram
     }
     class Pedido{
         +id: int
-        +cliente: Cliente
+        +cliente: Usuario
         +fecha_hora: Date
         +metodo_pago: string
     }
@@ -123,17 +123,17 @@ classDiagram
     Libro "*" -- "1..*" Autor
     Libro "*" -- "1" Editorial
     Libro "*" -- "1..3" FormatoLibro
-    Cliente "1" -- "*" Pedido
-    Cliente "1" -- "*" Libro: listaDeseos
-    Cliente "1" -- "*" Reseña
-    Localidad "1" -- "*" Cliente
+    Usuario "1" -- "*" Pedido
+    Usuario "1" -- "*" Libro: listaDeseos
+    Usuario "1" -- "*" Reseña
+    Localidad "1" -- "*" Usuario
     Pedido "1" -- "1..*" Cuota
     Localidad "*" -- "1" Provincia
     Oferta "*" -- "1..*" Libro
     Reseña "*" -- "1" Libro
     Envio "0..1" -- "1" Pedido
     Pedido "*" -- "1..*" Libro : cantidad int
-    Cliente "*" -- "*" Autor: autoresSeguidos
+    Usuario "*" -- "*" Autor: autoresSeguidos
 
 note for FormatoLibro "Ejemplos: físico,
 digital, audiolibro..."
