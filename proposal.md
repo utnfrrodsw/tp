@@ -15,7 +15,7 @@
 ## Carrito de compras para una librería
 ### Descripción
 
-Cuando un cliente visita la página web, puede explorar el catálogo de libros filtrándolos por formato, género, autor y otros criterios relevantes. Al hacer clic sobre uno, se muestra una descripción detallada y reseñas de usuarios. El cliente puede agregarlo a su lista de deseos o añadirlo al carrito para consultar métodos de pago y envío. Después de la compra, se envía un comprobante por email con los detalles del pago y la fecha estimada de entrega o retiro.
+Cuando un cliente visita la página web, puede explorar el catálogo de libros filtrándolos por formato, categoría, autor y otros criterios relevantes. Al hacer clic sobre uno, se muestra una descripción detallada y reseñas de usuarios. El cliente puede agregarlo a su lista de deseos o añadirlo al carrito para consultar métodos de pago y envío. Después de la compra, se envía un comprobante por email con los detalles del pago y la fecha estimada de entrega o retiro.
 
 <!-- Con una interfaz intuitiva y funcionalidades simples, nos permitirá explorar y adquirir libros de manera rápida y conveniente. Podrás encontrar tus títulos favoritos, filtrar por género o autor, reservar libros de una manera más fácil y versatil y más. 
 
@@ -165,7 +165,7 @@ el envío será gratuito"
 
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial<br>5. CRUD Localidad<br>6. CRUD Cliente<br>7. CRUD Libro<br>8. CRUD Reseña<br>9. CRUD Oferta<br>10. CRUD Pedido **<sup>[1]</sup>**<br>11. CRUD Envío **<sup>[2]</sup>**|
+|CRUD |1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial<br>5. CRUD Localidad<br>6. CRUD Usuario<br>7. CRUD Libro<br>8. CRUD Reseña<br>9. CRUD Oferta<br>10. CRUD Pedido **<sup>[1]</sup>**<br>11. CRUD Envío **<sup>[2]</sup>**|
 |CUU/Epic|1. Comprar libro<br>2. Consultar estado de envío<br>3. Cancelar pedido<br>4. Reseñar libro<br>|
 
 **[1]** Contará con un detalle de pedido y la cantidad de cuotas seleccionadas por el usuario como método de pago.
@@ -180,6 +180,6 @@ el envío será gratuito"
 
 |Req|Detalle| 
 |:-|:-|
-|Listados|1. Listado de ofertas vigentes filtrado por fecha actual, muestra fecha de fin, porcentaje de descuento y libros.<br>2. Listado de pedidos filtrado por cliente, muestra fecha y hora, estado, importe total, método de pago y libros adquiridos con su cantidad.<br>3. Listado de autores seguidos filtrado por cliente, muestra nombre y apellido.<br>4. Listado de libros en la lista de deseos filtrado por cliente, muestra ISBN, título, autores, editorial y precio.|
+|Listados|1. Listado de ofertas vigentes filtrado por fecha actual, muestra fecha de fin, porcentaje de descuento y libros.<br>2. Listado de pedidos filtrado por usuario, muestra fecha y hora, estado, importe total, método de pago y libros adquiridos con su cantidad.<br>3. Listado de autores seguidos filtrado por usuario, muestra nombre y apellido.<br>4. Listado de libros en la lista de deseos filtrado por usuario, muestra ISBN, título, autores, editorial y precio.|
 |CUU/Epic|1. Consultar historial de compras<br>2. Agregar libro a lista de deseos<br>3. Seguir a autor|
 |Otros|1. Envío de comprobante de compra con los detalles del pago y la fecha estimada de entrega o retiro por email.|
