@@ -45,5 +45,5 @@ Adicionales para Aprobación
 |:-|:-|
 |Listados |1. Listado de pedidos filtrado por rango de fecha, muestra nombre cliente, fecha de pedido, tipo de cliente, tipo de producto, cantidad de producto, precio total y ciudad<br>2. Listado de proveedores filtrado producto que provee, muestra nombre proveedor, contacto, fecha último pedido y cantidad pedida|
 |CUU/Epic|1. Actualizar el precio del producto <br>|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Otros|-|
 
