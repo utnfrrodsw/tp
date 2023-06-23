@@ -27,9 +27,7 @@ El sistema deberá contar con las siguientes funcionalidades:
 * Reseñas: permite escribir opiniones sobre los libros que ha leído y también leer las opiniones de otros usuarios.
 * Lista de deseos personalizada: crear una lista de deseos con los libros que le interesan al usuario y así comprarlos en otro momento.
 * Reservas de libro: realizar reservas de libros antes de su lanzamiento oficial.
-* Compatibilidad con diferentes formatos: el usuario podrá escoger entre el formato que quiere el libro. Por ejemplo, si es digital, podrá descargarlo.
-
-*[Pueden agregar más o eliminar si quieren]* -->
+* Compatibilidad con diferentes formatos: el usuario podrá escoger entre el formato que quiere el libro. Por ejemplo, si es digital, podrá descargarlo. -->
 
 ### Modelo
 
@@ -158,7 +156,7 @@ classDiagram
     DetallePedido "" -- "1..*" Libro
     Cliente "*" -- "*" Autor: autoresSeguidos
 ```
-
+<!-- 
 #### Anotaciones:
 - La clase “**FormatoLibro**” representa los diferentes formatos en los que un libro puede estar disponible, como físico, digital o audiolibro.
 - La clase “**Envio**” posee una relación "0..1 a 1" con la clase “**Pedido**”. Esta relación se establece cuando el cliente selecciona la opción de envío.
@@ -178,7 +176,7 @@ classDiagram
         - Al incluir el atributo "**idioma**" en la clase "**Libro**", los libros escritos en diferentes idiomas serán tratados como distintos en el sistema.
         - Además, las reseñas de los clientes pueden diferir según el idioma en el que esté escrito el libro.
 - ¿Es recomendable incluir el atributo "**método_pago**" en la clase "**Pedido**" y tener una clase separada llamada "**Cuota**" para permitir el pago con tarjeta de crédito?
-    - ¿Existe una forma más eficiente y sencilla de modelar esta situación?
+    - ¿Existe una forma más eficiente y sencilla de modelar esta situación? -->
 
 
 <!--![imagen del modelo](Modelo_De_Dominio.v1.PNG)  (Aún no está terminado, iré a consulta para ver qué cambiar)
@@ -194,27 +192,26 @@ classDiagram
 
 |Req|Detalle|
 |:-|:-|
-|CRUD Simple|1. CRUD Categoría<br>2. CRUD Provincia<br>3. CRUD Cliente<br>4. CRUD Autor|
-|CRUD Dependiente|1. CRUD Libro { depende de } CRUD Categoría y CRUD Autor<br>2. CRUD Envio { depende de } CRUD Provincia|
-|Listado<br>+<br>Detalle| 1. Listado de todos los libros filtrando por categoría, muestra código de libro, título de libro, precio de libro, estado de libro => detalle CRUD Libro<br> 2. Listado de localidades disponibles, filtrado por localidad del cliente, muestra todas las  localidades y su estado (Mostraría todas las localidades que hay y su estado sería si hacen envio a esa en específico)  |
-|CUU/Epic|1. Comprar un libro<br>2. Reseñar un libro<br>3. Calificar un libro |
+|CRUD Simple|1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial|
+|CRUD Dependiente|1. CRUD Localidad {depende de} CRUD Provincia<br>2. CRUD Cliente {depende de} CRUD Localidad y CRUD Provincia|
+|Listado<br>+<br>Detalle| 1. Listado de libros filtrado por categoría, muestra ISBN, título, autores, editorial y precio => detalle CRUD Libro<br> 2. Listado de ofertas vigentes filtrado por fecha actual, muestra fecha de fin, porcentaje de descuento y libros => detalle CRUD Oferta|
+|CUU/Epic|1. Buscar libro<br>2. Comprar libro|
 
 
 - **Adicionales para Aprobación:**
 
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Libro<br>2. CRUD Envío<br>3. CRUD Cliente<br>4. CRUD Autor<br>5. CRUD Pedido<br>6. CRUD Ofertas| (Creo que habria que agregar más)
-|CUU/Epic|1. Comprar un libro<br>2. Consultar estado de envío<br>3. Reseñar un libro<br>4. Calificar un libro<br>5. Registrar cliente|
+|CRUD |1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial<br>5. CRUD Localidad<br>6. CRUD Cliente<br>7. CRUD Libro<br>8. CRUD Reseña<br>9. CRUD Oferta<br>10. CRUD Pedido<br>11. CRUD Envío<br>12. CRUD Cuota<br>13. CRUD DetallePedido<br>14. CRUD FormatoLibro<br>15. CRUD HistorialPreciosEnvío|
+|CUU/Epic|1. Buscar libro<br>2. Comprar libro<br>3. Consultar estado de envío<br>4. Reseñar libro<br>|
 
 
 ### Alcance Adicional Voluntario
 
 <!--- Es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo --->
 
-(Abierto a edición)
 |Req|Detalle| 
 |:-|:-|
-|Listados|1. Listado de libros por autor<br>2. Listado de libros comprados<br>3. Listado de autores seguidos<br>4. Listado de libros agregados a la lista de deseos|
-|CUU/Epic|1. Consultar historial de compras<br>2. Agregar libro a lista de deseos<br>3. Seguir a autor|
-|Otros|1. ...|
+|Listados|1. Listado de libros filtrado por autor, muestra ISBN, título, editorial y precio<br>2. Listado de pedidos filtrado por cliente, muestra fecha y hora, estado, importe total, método de pago y libros adquiridos con su cantidad<br>3. Listado de autores seguidos filtrado por cliente, muestra nombre y apellido<br>4. Listado de libros en la lista de deseos filtrado por cliente, muestra ISBN, título, autores, editorial y precio|
+|CUU/Epic|1. Consultar historial de compras<br>2. Agregar libro a lista de deseos<br>3. Seguir a autor<br>4. Cancelar pedido|
+|Otros|1. Envío de comprobante de compra con los detalles del pago y la fecha estimada de entrega o retiro por email|
