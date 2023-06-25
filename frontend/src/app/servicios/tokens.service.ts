@@ -14,4 +14,8 @@ export class TokensService {
     return this.clienteHTTP.get(this.URL,{withCredentials: true});
   }
 
+  generar(cantidad:number){
+    return this.clienteHTTP.post(this.URL,{cantidad},{withCredentials: true});
+  }
+
 }

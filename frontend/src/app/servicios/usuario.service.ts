@@ -62,7 +62,6 @@ export class UsuarioService {
       withCredentials: true
     });
   }
-
 }
 
 export enum EstadosAmistades {

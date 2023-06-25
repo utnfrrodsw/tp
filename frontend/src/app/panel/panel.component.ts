@@ -54,7 +54,8 @@ export class PanelComponent implements OnInit {
     this.usuarioActualService.getUsuarioActual()
       .subscribe({
         next:(usuario:any) => {
-          this.usuarioActual= usuario;
+          this.usuarioActual= usuario as Usuario;
+          this.console.log(this.usuarioActual);
           this.console.log(this.usuarioActual.amigos);
 
           /* * Cada Usuario.amigos tiene un .amistad con los detalles de la invitación; estado y quien la mando */
@@ -209,8 +210,22 @@ export class PanelComponent implements OnInit {
       });
   }
 
-  generar(e:Event):void{
-    
+  generarTokens(e:Event):void{
+    e.preventDefault();
+
+    // TODO por que no anda as number
+    let cantidad=+((e.target as any)['form-generar-cantidad'].value);
+    this.tokensService
+      .generar(cantidad)
+      .subscribe({
+        next:()=>{
+          this.tokensCirculando+=cantidad;
+          this.usuarioActual.tokens+=cantidad;
+        }
+        ,error:error=>{
+          this.console.log(error);
+        }
+      });
   }
 
   asignarNombreABoton(e:Event):void{
