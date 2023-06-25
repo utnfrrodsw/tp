@@ -1,12 +1,12 @@
 # 📄 Documentación
-- [Instrucciones de Instalación](#instrucciones-de-instalación)
-- [Pull Requests (PR)](#pull-requests)
-- [Minutas de Reunión y Avances](#minutas-de-reunión-y-avances)
-- [Tracking de Features, Bugs e Issues](#tracking)
-- [Documentación de la API](#documentación-de-la-api)
-- [Evidencia de Ejecución de Test Automáticos](#evidencia-de-ejecución-de-test-automáticos)
-- [Demo de la Aplicación en Video](#demo-de-la-aplicación-en-video)
-- [Deploy](#deploy)
+- [Instrucciones de Instalación](#ℹ️-instrucciones-de-instalación)
+- [Pull Requests (PR)](#📤-pull-requests)
+- [Minutas de Reunión y Avances](#📅-minutas-de-reunión-y-avances)
+- [Tracking de Features, Bugs e Issues](#🗃️-tracking)
+- [Documentación de la API](#📄-documentación-de-la-api)
+- [Evidencia de Ejecución de Test Automáticos](#💻-evidencia-de-ejecución-de-test-automáticos)
+- [Demo de la Aplicación en Video](#▶️-demo-de-la-aplicación-en-video)
+- [Deploy](#🚀-deploy)
 
 ## ℹ️ Instrucciones de Instalación
 ...
