@@ -2,7 +2,7 @@
 - [Instrucciones de Instalación](#instrucciones-de-instalación)
 - [Pull Requests (PR)](#pull-requests)
 - [Minutas de Reunión y Avances](#minutas-de-reunión-y-avances)
-- [Tracking de Features, Bugs e Issues](#tracking-de-features--bugs-e-issues)
+- [Tracking de Features, Bugs e Issues](#tracking)
 - [Documentación de la API](#documentación-de-la-api)
 - [Evidencia de Ejecución de Test Automáticos](#evidencia-de-ejecución-de-test-automáticos)
 - [Demo de la Aplicación en Video](#demo-de-la-aplicación-en-video)
@@ -18,7 +18,7 @@
 **Se adjuntan las minutas de las reuniones realizadas para el proyecto:**
 1. [Minuta de Reunión - DD/MM/AA]
 
-## Tracking de Features, Bugs e Issues
+## Tracking
 El seguimiento de las características, errores (bugs) y problemas (issues) se realiza a través GitHub Projets y el presente repositorio.
 ...
 
