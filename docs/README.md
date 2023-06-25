@@ -1,17 +1,17 @@
 # 📄 Documentación
-- [Instrucciones de Instalación](#instrucciones-de-instalaci-n)
-- [Pull Requests (PR)](#pull-requests--pr-)
-- [Minutas de Reunión y Avances](#minutas-de-reuni-n-y-avances)
+- [Instrucciones de Instalación](#instrucciones-de-instalación)
+- [Pull Requests (PR)](#pull-requests)
+- [Minutas de Reunión y Avances](#minutas-de-reunión-y-avances)
 - [Tracking de Features, Bugs e Issues](#tracking-de-features--bugs-e-issues)
-- [Documentación de la API](#documentaci-n-de-la-api)
-- [Evidencia de Ejecución de Test Automáticos](#evidencia-de-ejecuci-n-de-test-autom-ticos)
-- [Demo de la Aplicación en Video](#demo-de-la-aplicaci-n-en-video)
+- [Documentación de la API](#documentación-de-la-api)
+- [Evidencia de Ejecución de Test Automáticos](#evidencia-de-ejecución-de-test-automáticos)
+- [Demo de la Aplicación en Video](#demo-de-la-aplicación-en-video)
 - [Deploy](#deploy)
 
 ## Instrucciones de Instalación
 ...
 
-## Pull Requests (PR)
+## Pull Requests
 ...
 
 ## Minutas de Reunión y Avances
