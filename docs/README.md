@@ -2,10 +2,10 @@
 - [Instrucciones de Instalación](#ℹ️-instrucciones-de-instalación)
 - [Pull Requests (PR)](#pull-requests)
 - [Minutas de Reunión y Avances](#minutas-de-reunión-y-avances)
-- [Tracking de Features, Bugs e Issues](#🗃tracking)
+- [Tracking de Features, Bugs e Issues](#tracking)
 - [Documentación de la API](#documentación-de-la-api)
 - [Evidencia de Ejecución de Test Automáticos](#evidencia-de-ejecución-de-test-automáticos)
-- [Demo de la Aplicación en Video](#▶demo-de-la-aplicación-en-video)
+- [Demo de la Aplicación en Video](#demo-de-la-aplicación-en-video)
 - [Deploy](#deploy)
 
 ## ℹ️ Instrucciones de Instalación
@@ -15,13 +15,14 @@
 ...
 
 ## Minutas de Reunión y Avances
-**Se adjuntan las minutas de las reuniones realizadas para el proyecto:**
-1. [Minuta de Reunión - DD/MM/AA]
+Para consultar las minutas de las reuniones que se llevaron a cabo durante el proyecto, visite el siguiente enlace:
+
+📅 [Minutas de Reuniones](https://github.com/AlejoRetamal/TP-DdeS/tree/a7b2358d75b48c6e8726307d0efe28a02cb5cb56/docs/minutas)
 
 ## Tracking
-El seguimiento de las características (features), errores (bugs) y problemas (issues) se realiza a través GitHub Projets y el presente repositorio.
+El seguimiento de las características (features), errores (bugs) y problemas (issues) se realiza a través GitHub Projects y en el directorio [TP-DdeS/docs/tracking](https://github.com/AlejoRetamal/TP-DdeS/tree/a7b2358d75b48c6e8726307d0efe28a02cb5cb56/docs/tracking) del presente repositorio. Puede consultarlas visitando el siguiente enlace:
 
-...
+🗃️ [Tracking de Features, Bugs e Issues](https://github.com/AlejoRetamal/TP-DdeS/tree/a7b2358d75b48c6e8726307d0efe28a02cb5cb56/docs/tracking)
 
 ## Documentación de la API
 ...
