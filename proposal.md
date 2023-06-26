@@ -1,52 +1,51 @@
-# Propuesta TP DSW
+# TP-DSW: Compra-Venta de Libros
 
-## Grupo
-### Integrantes
-* legajo - Apellido(s), Nombre(s)
+Repositorio para el trabajo práctico integrador de la materia Desarrollo de Software
 
-### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+## Integrantes
+
+| Alumno           | Legajo |
+| :--------------- | -----: |
+| Iturburu Ignacio |  46100 |
+| Ortigosa Brian   |  47350 |
+| Zapata Mayra     |  42969 |
+
+### Repositorio
+
+- [fullstack app](https://github.com/nachoitur/TP-DSW/tree/main)
 
 ## Tema
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Nuestra plataforma en línea es un mercado virtual de compra y venta de libros. Con interfaz y funciones de búsqueda para libros, los cuales se identificarán con un nombre y un género.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![modelo](https://i.ibb.co/cJh4V4N/DSW-Modelo.jpg)
 
-## Alcance Funcional 
+## Alcance Funcional
 
 ### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Rol<br>2. CRUD Género<br>3. CRUD Autor|
+|CRUD dependiente|1. CRUD Libro {depende de} CRUD Género, CRUD Autor & CRUD Editorial<br>2. CRUD Usuario {depende de} CRUD Rol|
+|Listado<br>+<br>detalle| 1. Listado de Libros filtrado por género y autor => detalle CRUD Libro<br> 2. Listar transacciones de un usuario|
+|CUU/Epic|1. Realizar una compra<br>2. Publicar un libro para la venta|
 
-
-Adicionales para Aprobación
+Adicionales para Aprobación:
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
+|CRUD |1. CRUD Rol<br>2. CRUD Género<br>3. CRUD Autor<br>4. CRUD Libro<br>5. CRUD Usuario<br>6. CRUD Editorial<br>7. CRUD Compra|
+|CUU/Epic|1. Reseñar un libro comprado|
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+| Req      | Detalle                                                                                                                     |
+| :------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| Listados | 1. Listado de compras y ventas de un usuario, muestra el nombre del libro y, si es una venta, muestra quién es el comprador |
+| CUU/Epic | 1. Ofertas de libros<br>2. Tipos de envío                                                                                   |
+| Otros    | 1. Notificación de una venta vía mail                                                                                       |
