@@ -12,7 +12,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Aplicación web que permite al usuario reservar una habitación de hotel por una estadía determinada, seleccionando que tipo de habitación cumple mejor con sus requisitos, previsualizando imágenes sobre ellas, costos y características; y si por alguna circunstancia debe cancelar, puede hacerlo sin ningún inconveniente
 
 ### Modelo
 ![](https://github.com/ManuelVelasco99/tp/blob/main/MD.jpg)
