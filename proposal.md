@@ -16,9 +16,9 @@ En resumen, el sistema tiene como objetivo informar a los usuarios la misión, d
 
 
 ### Modelo
-![imagen del modelo]()
+![https://github.com/lauratulian/TP-Desarrollo/blob/main/MD-TTADs.png]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+*Link*: https://app.diagrams.net/#G1L1kh_Qq_2p5QrWXv7gXhloqTjuVEFaZ3 .
 
 ## Alcance Funcional 
 
