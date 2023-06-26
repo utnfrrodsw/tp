@@ -16,7 +16,7 @@ En resumen, el sistema tiene como objetivo informar a los usuarios la misión, d
 
 
 ### Modelo
-![imagen del modelo]()
+![![MD-TTADs](https://github.com/lauratulian/TP-Desarrollo/assets/82680814/2589fe49-9d2e-47f5-b896-fda13f0097d4)]()
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
