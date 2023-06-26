@@ -10,6 +10,10 @@ Repositorio para el trabajo práctico integrador de la materia Desarrollo de Sof
 | Ortigosa Brian   |  47350 |
 | Zapata Mayra     |  42969 |
 
+### Repositorio
+
+- [fullstack app](https://github.com/nachoitur/TP-DSW/tree/main)
+
 ## Tema
 
 ### Descripción
