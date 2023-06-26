@@ -16,7 +16,7 @@ En resumen, el sistema tiene como objetivo informar a los usuarios la misión, d
 
 
 ### Modelo
-!(https://github.com/lauratulian/TP-Desarrollo/blob/main/MD-TTADs.png)
+![Modelo de Dominio](https://github.com/lauratulian/TP-Desarrollo/blob/main/MD-TTADs.png)
 
 *Link*: https://app.diagrams.net/#G1L1kh_Qq_2p5QrWXv7gXhloqTjuVEFaZ3 .
 
