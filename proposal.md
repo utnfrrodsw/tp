@@ -2,8 +2,8 @@
 
 ## Grupo
 ### Integrantes
-*48992 - Genoud, Franco
-*44726 - Manuel, Velasco
+* 48992 - Genoud, Franco
+* 44726 - Manuel, Velasco
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
