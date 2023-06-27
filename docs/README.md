@@ -1,6 +1,6 @@
 # 📄 Documentación
 
-  - [Instrucciones de Instalación](#ℹ️-instrucciones-de-instalación)
+  - [Instrucciones de Instalación](#instrucciones-de-instalación)
   - [Pull Requests](#pull-requests)
   - [Gestión del Proyecto](#gestión-del-proyecto)
     - Minutas de Reunión y Avances
