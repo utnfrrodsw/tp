@@ -1,5 +1,5 @@
 # TP DSW: Librería
-- 📄 [Proposal](https://github.com/AlejoRetamal/TP-DdeS/blob/3180071929bc79086a05cb31b1ed6284a7f1488a/proposal.md)
+- 📄 [Proposal](https://github.com/AlejoRetamal/TP-DdeS/blob/main/proposal.md)
 ## Grupo 
 ### Integrantes
 
@@ -16,4 +16,4 @@ Cuando un cliente visita la página web, puede explorar el catálogo de libros f
 ...
 
 ## 📄 Documentación
-Para obtener más información sobre el proyecto, visite la [documentación](https://github.com/AlejoRetamal/TP-DdeS/blob/ee1310e5dceac4fc345c116210115fc9cd98cd2c/docs/README.md#instrucciones-de-instalaci%C3%B3n).
+Para obtener más información sobre el proyecto, visite la [documentación](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/README.md).
