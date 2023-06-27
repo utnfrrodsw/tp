@@ -21,7 +21,7 @@
 ## Gestión del Proyecto
 
 Para la gestión del proyecto utilizamos una combinación de las herramientas de proceso **Scrum** y **Kanban**.
-- Para consultar más información acerca de cómo gestionamos el proyecto, incluyendo las **minutas de reunión** y el **seguimiento de características, errores y problemas**, visite el siguiente enlace: 💼 [Gestión del Proyecto](https://github.com/AlejoRetamal/TP-DdeS/blob/4e0e5dbad287789c5afaac4118fc844918a57445/docs/gesti%C3%B3n%20del%20proyecto/README.md)
+- Para consultar más información acerca de cómo gestionamos el proyecto, incluyendo las **minutas de reunión** y el **seguimiento de características, errores y problemas**, visite el siguiente enlace: 💼 [Gestión del Proyecto](https://github.com/AlejoRetamal/TP-DdeS/blob/c1fe3a8a704f98998025fcbbb4c42a405e4a3f03/docs/gesti%C3%B3n%20del%20proyecto/README.md)
 
 ## Documentación de la API
 
