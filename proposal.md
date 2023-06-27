@@ -27,26 +27,25 @@ Aplicación web que permite al usuario reservar una habitación de hotel por una
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipos_Habitacion<br>2. CRUD Caracteristicas<br>3. CRUD Huespedes|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Reservas {depende de} CRUD Huespedes|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Tipos_Habitacion<br>2. CRUD Caracteristicas|
+|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion|
+|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion|
+|CUU/Epic|1. Reservar una habitación para la estadía|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Reservas<br>2. CRUD Huéspedes|
+|CUU/Epic|1. Cancelar una reserva<br>2. Realizar check-in|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
+|CUU/Epic|1. Formulario de contacto con el hotel<br>2. Landing Page del hotel (información sobre el mismo, dirección y puntos de interés cercanos)|
+|Otros|1. Envío de recordatorio de reserva por email<br>2. Notifiación por promociones vía email<br>3. Login con redes sociales<br>3. Mostrar la dirección del hotel con una vinculación al componente de GoogleMaps|
 
