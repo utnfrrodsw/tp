@@ -1,8 +1,8 @@
 # 🗃️ Gestión del Proyecto
 
 - **Enlace al proyecto:** www.github.com/users/MVRU/projects/1
-- [Minutas de Reunión y Avances](https://github.com/AlejoRetamal/TP-DdeS/blob/66336071a9c7693da01b10dbd6f107c44bb76ea2/docs/gesti%C3%B3n%20del%20proyecto/minutas/README.md)
-- [Tracking de Features, Bugs e Issues](https://github.com/AlejoRetamal/TP-DdeS/blob/66336071a9c7693da01b10dbd6f107c44bb76ea2/docs/gesti%C3%B3n%20del%20proyecto/tracking/README.md)
+- [Minutas de Reunión y Avances](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/README.md)
+- [Tracking de Features, Bugs e Issues](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/tracking/README.md)
 
 ## 🔰 Metodologías Utilizadas
 
