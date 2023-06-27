@@ -65,15 +65,15 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
 <details>
  <summary><h3>SCRUM</h3></summary>
 
-- **Incremento:** Resultado final de un sprint que agrega valor al producto y es potencialmente entregable.
 - **Historias de usuario:** Descripciones breves de funcionalidades o requisitos desde la perspectiva del usuario o cliente.
+- **Incremento:** Resultado final de un sprint que agrega valor al producto y es potencialmente entregable.
 - **Product Backlog:** Lista priorizada de funcionalidades, requisitos y mejoras del producto, gestionada por el Product Owner.
 - **Scrum diario:** Reunión corta y diaria en la que el equipo de desarrollo sincroniza actividades, identifica obstáculos y planifica el trabajo para el próximo día.
+- **Spike:** Actividad de investigación y exploración que se realiza para obtener información adicional antes de abordar una tarea específica.
+- **Sprint o iteración:** Intervalo de tiempo fijo durante el cual se desarrolla un incremento del producto.
 - **Sprint Backlog:** Lista de elementos seleccionados del Product Backlog para trabajar durante el sprint actual.
 - **Sprint Planning:** Reunión en la que el equipo de desarrollo selecciona las tareas a realizar durante el próximo sprint y planifica cómo llevarlas a cabo.
 - **Sprint Review:** Reunión al finalizar el sprint, en la que el equipo de desarrollo muestra el trabajo completado y recibe retroalimentación de los stakeholders.
-- **Spike:** Actividad de investigación y exploración que se realiza para obtener información adicional antes de abordar una tarea específica.
-- **Sprint o iteración:** Intervalo de tiempo fijo durante el cual se desarrolla un incremento del producto.
 - **Task o tarea:** Unidad de trabajo específica y tangible que se debe realizar para completar un elemento del Sprint Backlog.</details>
 
 <details>
@@ -81,5 +81,5 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
 
 - **Columna:** Son las diferentes etapas o estados por los que pasa una tarjeta en el tablero Kanban. Por ejemplo, "Por hacer" (Sprint Backlog), "En progreso", "Revisar" y "Completado" son las columnas que utilizaremos.
 - **Límite de trabajo en progreso (WIP):** Es el número máximo de tarjetas que se permiten en una columna específica. El WIP ayuda a controlar el flujo de trabajo y evitar la acumulación excesiva de trabajo en una etapa determinada.
-- **Tarjeta:** Es una unidad de trabajo que se visualiza en el tablero Kanban. Cada tarjeta representa una tarea o un elemento de trabajo y contiene información relevante, como descripción, fecha límite y responsable.
-- **Tablero Kanban:** Es la representación visual del flujo de trabajo, generalmente dividido en columnas que representan las diferentes etapas o estados de las tareas.</details>
+- **Tablero Kanban:** Es la representación visual del flujo de trabajo, generalmente dividido en columnas que representan las diferentes etapas o estados de las tareas.
+- **Tarjeta:** Es una unidad de trabajo que se visualiza en el tablero Kanban. Cada tarjeta representa una tarea o un elemento de trabajo y contiene información relevante, como descripción, fecha límite y responsable.</details>
