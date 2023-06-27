@@ -1,12 +1,12 @@
 # 🗃️ Gestión del Proyecto
 
-- **Enlace al proyecto:** [Github Project](github.com/users/MVRU/projects/1)
+- **Enlace al proyecto:** [Github Project](www.github.com/users/MVRU/projects/1)
 
-- [Metodologías Utilizadas](#🔰-metodologías-utilizadas)
-- [Sprints del Proyecto](#🎯-sprints-del-proyecto)
-- [Glosario](#📖-glosario)
+- [Metodologías Utilizadas](#metodologías-utilizadas)
+- [Sprints del Proyecto](#sprints-del-proyecto)
+- [Glosario](#glosario)
 
-## 🔰 Metodologías Utilizadas
+## Metodologías Utilizadas
 
 Para la gestión del proyecto utilizamos una combinación de las herramientas de proceso **Scrum** y **Kanban**, ya que consideramos que la unión de ambas nos permite encontrar un equilibrio en nuestro seguimiento, evitando que sea demasiado restrictivo y difícil de implementar como XP, o demasiado adaptativo como Kanban. Así, nuestro flujo de trabajo utilizando GitHub Projects consiste en los siguiente:
 
@@ -40,7 +40,7 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
 
 > **[2]** No llevaremos a cabo Daily Scrums (reuniones diarias) ya que no lo consideramos necesario.
 
-## 🎯 Sprints del Proyecto
+## Sprints del Proyecto
 
 ### 💠 Sprint #1: Configuración Inicial y Diseño Básico _(~2 semanas)_
 
@@ -59,7 +59,7 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
   3. Desarrollo front-end del prototipo.
   4. Realizar pruebas básicas de funcionalidad y presentación.
 
-## 📖 Glosario
+## Glosario
 
 ### SCRUM
 
