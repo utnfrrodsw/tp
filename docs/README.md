@@ -1,6 +1,6 @@
 # 📄 Documentación
 
-  - [ℹ️ Instrucciones de Instalación](#ℹ️-instrucciones-de-instalación)
+  - [Instrucciones de Instalación](#ℹ️-instrucciones-de-instalación)
   - [Pull Requests](#pull-requests)
   - [Gestión del Proyecto](#gestión-del-proyecto)
     - Minutas de Reunión y Avances
@@ -10,7 +10,7 @@
   - [Demo de la Aplicación en Video](#demo-de-la-aplicación-en-video)
   - [Deploy](#deploy)
 
-## ℹ️ Instrucciones de Instalación
+## Instrucciones de Instalación
 
 ...
 
