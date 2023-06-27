@@ -1,14 +1,15 @@
 # 📄 Documentación
 
-- [Instrucciones de Instalación](#ℹ️-instrucciones-de-instalación)
-- [Pull Requests (PR)](#pull-requests)
-- [Gestión del Proyecto](#gestión-del-proyecto)
-  - [Minutas de Reunión y Avances](#minutas-de-reunión-y-avances)
-  - [Tracking de Features, Bugs e Issues](#tracking)
-- [Documentación de la API](#documentación-de-la-api)
-- [Evidencia de Ejecución de Test Automáticos](#evidencia-de-ejecución-de-test-automáticos)
-- [Demo de la Aplicación en Video](#demo-de-la-aplicación-en-video)
-- [Deploy](#deploy)
+- [📄 Documentación](#-documentación)
+  - [ℹ️ Instrucciones de Instalación](#ℹ️-instrucciones-de-instalación)
+  - [Pull Requests](#pull-requests)
+  - [Gestión del Proyecto](#gestión-del-proyecto)
+    - [Minutas de Reunión y Avances](#minutas-de-reunión-y-avances)
+    - [Tracking](#tracking)
+  - [Documentación de la API](#documentación-de-la-api)
+  - [Evidencia de Ejecución de Test Automáticos](#evidencia-de-ejecución-de-test-automáticos)
+  - [Demo de la Aplicación en Video](#demo-de-la-aplicación-en-video)
+  - [Deploy](#deploy)
 
 ## ℹ️ Instrucciones de Instalación
 
@@ -20,7 +21,7 @@
 
 ## Gestión del Proyecto
 
-Para la gestión del proyecto utilizamos una combinación de las herramientas de proceso Scrum y Kanban, ya que consideramos que la unión de ambas nos permite encontrar un equilibrio en nuestro seguimiento, evitando que sea demasiado restrictivo y difícil de implementar como XP, o demasiado adaptativo como Kanban. Para consultar más información acerca de cómo gestionamos el proyecto, visite el siguiente enlace:
+Para la gestión del proyecto utilizamos una combinación de las herramientas de proceso **Scrum** y **Kanban**, ya que consideramos que la unión de ambas nos permite encontrar un equilibrio en nuestro seguimiento, evitando que sea demasiado restrictivo y difícil de implementar como XP, o demasiado adaptativo como Kanban. Para consultar más información acerca de cómo gestionamos el proyecto, visite el siguiente enlace:
 
 💼 [Gestión del Proyecto](https://github.com/AlejoRetamal/TP-DdeS/blob/4e0e5dbad287789c5afaac4118fc844918a57445/docs/gesti%C3%B3n%20del%20proyecto/README.md)
 
