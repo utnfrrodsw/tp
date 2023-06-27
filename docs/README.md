@@ -32,7 +32,7 @@ Para consultar las minutas de las reuniones que se llevaron a cabo durante el pr
 
 ### Tracking
 
-El seguimiento de las características (features), errores (bugs) y problemas (issues) se realiza a través GitHub Projects y en el directorio [TP-DdeS/docs/tracking](https://github.com/AlejoRetamal/TP-DdeS/blob/6520d6b3b233332027c051c9f431a5f5f8bfc2e1/docs/gesti%C3%B3n%20del%20proyecto/tracking/README.md) del presente repositorio. Puede consultarlas visitando el siguiente enlace:
+El seguimiento de las características (features), errores (bugs) y problemas (issues) se realiza a través GitHub Projects y en el directorio [docs/gestión del proyecto/tracking](https://github.com/AlejoRetamal/TP-DdeS/blob/6520d6b3b233332027c051c9f431a5f5f8bfc2e1/docs/gesti%C3%B3n%20del%20proyecto/tracking/README.md) del presente repositorio. Puede consultarlas visitando el siguiente enlace:
 
 🗃️ [Tracking de Features, Bugs e Issues](https://github.com/AlejoRetamal/TP-DdeS/blob/6520d6b3b233332027c051c9f431a5f5f8bfc2e1/docs/gesti%C3%B3n%20del%20proyecto/tracking/README.md)
 
