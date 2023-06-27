@@ -1,6 +1,6 @@
 # 🗃️ Gestión del Proyecto
 
-- **Enlace al proyecto:** [Github Project](www.github.com/users/MVRU/projects/1)
+- **Enlace al proyecto:** www.github.com/users/MVRU/projects/1
 
 - [Metodologías Utilizadas](#metodologías-utilizadas)
 - [Sprints del Proyecto](#sprints-del-proyecto)
