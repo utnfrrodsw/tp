@@ -4,6 +4,7 @@
 ### Integrantes
 * Foresi, Alejandro
 * Pecoraro, Lucio
+* Berto, Leandro
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
