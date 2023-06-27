@@ -28,13 +28,13 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
 
 Para consultar las minutas de las reuniones que se llevaron a cabo durante el proyecto, visite el siguiente enlace:
 
-📅 [Minutas de Reuniones](https://github.com/AlejoRetamal/TP-DdeS/tree/a7b2358d75b48c6e8726307d0efe28a02cb5cb56/docs/minutas)
+📅 [Minutas de Reuniones](https://github.com/AlejoRetamal/TP-DdeS/blob/6520d6b3b233332027c051c9f431a5f5f8bfc2e1/docs/gesti%C3%B3n%20del%20proyecto/minutas/README.md)
 
 ### Tracking
 
-El seguimiento de las características (features), errores (bugs) y problemas (issues) se realiza a través GitHub Projects y en el directorio [TP-DdeS/docs/tracking](https://github.com/AlejoRetamal/TP-DdeS/tree/a7b2358d75b48c6e8726307d0efe28a02cb5cb56/docs/tracking) del presente repositorio. Puede consultarlas visitando el siguiente enlace:
+El seguimiento de las características (features), errores (bugs) y problemas (issues) se realiza a través GitHub Projects y en el directorio [TP-DdeS/docs/tracking](https://github.com/AlejoRetamal/TP-DdeS/blob/6520d6b3b233332027c051c9f431a5f5f8bfc2e1/docs/gesti%C3%B3n%20del%20proyecto/tracking/README.md) del presente repositorio. Puede consultarlas visitando el siguiente enlace:
 
-🗃️ [Tracking de Features, Bugs e Issues](https://github.com/AlejoRetamal/TP-DdeS/tree/a7b2358d75b48c6e8726307d0efe28a02cb5cb56/docs/tracking)
+🗃️ [Tracking de Features, Bugs e Issues](https://github.com/AlejoRetamal/TP-DdeS/blob/6520d6b3b233332027c051c9f431a5f5f8bfc2e1/docs/gesti%C3%B3n%20del%20proyecto/tracking/README.md)
 
 ## Documentación de la API
 
