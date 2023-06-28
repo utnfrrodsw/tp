@@ -72,9 +72,9 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
 <details>
  <summary><b>4. Fin del Sprint.</b></summary>
    
- - Mediante una reunión virtual, se revisarán todas las tareas/spikes en las que se trabajó para encontrar posibles aspectos a mejorar y errores a solucionar.
-      - Se determina si se puede dar fin al sprint actual o deben realizarse cambios/mejoras a alguno de los elementos del sprint backlog.
-   - Si se pone fin al sprint, se planifica el siguiente, repitiendo todo el proceso anterior desde el punto 1.
+ - Mediante una reunión virtual, se revisarán todas las tareas/spikes en la columna "Revisar" para encontrar posibles aspectos a mejorar y errores a solucionar.
+      - Se determina si se puede dar fin al sprint actual o deben realizarse cambios/mejoras a alguno de los elementos.
+   - Si se pone fin al sprint, los elementos se mueven a la columna "Terminado". Y se planifica el siguiente sprint, repitiendo todo el proceso anterior desde el punto 1.
    ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/db3812ad-aa25-4c5e-9821-bd6568ea0594)
    - Los aspectos más importantes de la reunión serán documentados en el repositorio de Github en el directorio [docs/gestión del proyecto/minutas](https://github.com/AlejoRetamal/TP-DdeS/tree/main/docs/gesti%C3%B3n%20del%20proyecto/minutas).</details>
 
