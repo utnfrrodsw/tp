@@ -40,6 +40,44 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
 >
 > **[2]** No llevaremos a cabo Daily Scrums (reuniones diarias) ya que no lo consideramos necesario.
 
+## 💼 Flujo de Trabajo
+
+<details>
+ <summary><b>1. Creación de Sprint.</b></summary>
+   
+ - Para crear iteraciones/sprints utilizamos los "milestones" de Github.
+      - Definimos el nombre, los objetivos y la duración tentativa del sprint.
+      ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/78c38758-5b8a-4a43-8f1b-cf6e2733ac61)</details>
+
+<details>
+ <summary><b>2. Definición del Sprint Actual.</b></summary>
+
+ - Se definen las tareas/spikes que serán abordadas en el sprint.
+   ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/1d43a7cc-948f-44a2-920d-9da7a6b0b868)
+   - Los elementos del sprint backlog (tareas/spikes) serán añadidos como "issues" de Github.
+   - Cada elemento tendrá su prioridad, tamaño y actividades para completarla.
+   ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/c10e827d-26e6-4df9-bb22-9a98a96c4c56)
+</details>
+
+<details>
+ <summary><b>3. Proceso del Sprint.</b></summary>
+   
+ - Cada tarea/spike posee un número previo a su nombre que indica el orden sugerido en el que debería realizarse.
+      - Así, es probable que comencemos a trabajar en el primer elemento o los dos primeros elementos del sprint backlog.
+         - El estado "En proceso" solo admite que se puedan trabajar como máximo en 2 tareas/spikes al mismo tiempo.
+      - Un elemento se considerará terminado cuando se completen los checkbox en la descripción del "issue". En ese caso, la tarjeta será movida al estado "Revisar".
+    ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/e853afca-f57e-4ad9-ad5b-f473548ffc45)
+    - El mismo proceso se repetirá hasta que todos los elementos se encuentren en la columna "Revisar".</details>
+
+<details>
+ <summary><b>4. Fin del Sprint.</b></summary>
+   
+ - Mediante una reunión virtual, se revisarán todas las tareas/spikes en las que se trabajó para encontrar posibles aspectos a mejorar y errores a solucionar.
+      - Se determina si se puede dar fin al sprint actual o deben realizarse cambios/mejoras a alguno de los elementos del sprint backlog.
+   - Si se pone fin al sprint, se planifica el siguiente, repitiendo todo el proceso anterior desde el punto 1.
+   ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/db3812ad-aa25-4c5e-9821-bd6568ea0594)
+   - Los aspectos más importantes de la reunión serán documentados en el repositorio de Github en el directorio [docs/gestión del proyecto/minutas](https://github.com/AlejoRetamal/TP-DdeS/tree/main/docs/gesti%C3%B3n%20del%20proyecto/minutas).</details>
+
 ## 🎯 Sprints del Proyecto
 
 <details>
