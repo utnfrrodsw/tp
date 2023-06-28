@@ -66,7 +66,7 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
       - Así, es probable que comencemos a trabajar en el primer elemento o los dos primeros elementos del sprint backlog.
          - El estado "En proceso" solo admite que se puedan trabajar como máximo en 2 tareas/spikes al mismo tiempo.
       - Un elemento se considerará terminado cuando se completen los checkbox en la descripción del "issue". En ese caso, la tarjeta será movida al estado "Revisar".
-    ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/e853afca-f57e-4ad9-ad5b-f473548ffc45)
+        ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/e853afca-f57e-4ad9-ad5b-f473548ffc45)
     - El mismo proceso se repetirá hasta que todos los elementos se encuentren en la columna "Revisar".</details>
 
 <details>
