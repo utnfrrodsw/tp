@@ -6,7 +6,7 @@
 
 ## 🔰 Metodologías Utilizadas
 
-Para la gestión del proyecto utilizamos una combinación de las herramientas de proceso **Scrum** y **Kanban**, ya que consideramos que la unión de ambas nos permite encontrar un equilibrio en nuestro seguimiento, evitando que sea demasiado restrictivo y difícil de implementar como XP, o demasiado adaptativo como Kanban. Así, nuestro flujo de trabajo utilizando GitHub Projects consiste en los siguiente:
+Para la gestión del proyecto utilizamos una combinación de las herramientas de proceso **Scrum** y **Kanban**, ya que consideramos que la unión de ambas nos permite encontrar un equilibrio en nuestro seguimiento, evitando que sea demasiado restrictivo y difícil de implementar como XP, o demasiado adaptativo como Kanban (**_para conocer cómo hemos implementado esto en el Github Project, lea nuestro flujo de trabajo más abajo_**). Así, las prácticas que hemos incorporado son las siguientes:
 
 <details>
  <summary><h3>Prácticas de Scrum implementadas</h3></summary>
@@ -77,6 +77,14 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
    - Si se pone fin al sprint, los elementos se mueven a la columna "Terminado". Y se planifica el siguiente sprint, repitiendo todo el proceso anterior desde el punto 1.
    ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/db3812ad-aa25-4c5e-9821-bd6568ea0594)
    - Los aspectos más importantes de la reunión serán documentados en el repositorio de Github en el directorio [docs/gestión del proyecto/minutas](https://github.com/AlejoRetamal/TP-DdeS/tree/main/docs/gesti%C3%B3n%20del%20proyecto/minutas).</details>
+
+<details>
+ <summary><b>5. Product Backlog.</b></summary>
+
+ - En cualquier momento, cuando se desee añadir una tarea/spike para abordar en futuras iteraciones/sprints, se pueden añadir elementos a la tabla "Product Backlog".
+    ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/7b84edc1-c49b-4446-b917-6ff839c3c9a6)
+    - Estos elementos no tienen un sprint asignado y es útil para registrar tareas/spikes que necesitamos completar más adelante y tememos olvidar.
+    - Además, puede facilitar la tarea de planificar próximos sprints ya que, durante las reuniones, debería analizarse si alguno de los elementos del product backlog podría incluirse al próximo sprint.</details>
 
 ## 🎯 Sprints del Proyecto
 
