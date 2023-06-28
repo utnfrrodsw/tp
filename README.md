@@ -1,167 +1,64 @@
-# TP DSW
-tags: #dsw #tp
+# tpalquilervehiculos
 
-Status: draft
+Trabajo practico DSW
 
-## 1. Objetivo
+# Propusta Alquiler de Vehiculos
 
-Desarrollar en grupo una aplicación web full stack en base a un alcance propuesto por los integrantes.
+## Grupo
 
-Durante dicho desarrollo se deberá aplicar todo lo aprendido en la materia Desarrollo de Software.
+### Integrantes
 
-## 2. Tema y Alcance
-El grupo debe deberá proponer a los docentes un tema para el trabajo práctico de su preferencia utilizando la [plantilla de propuesta](proposal.md)
+- Alvarez, Thiago
+- 46178 - Joffre Lucas
+- 44790 - Tell, Nino
+- 48964 - Tolaba Agustin
 
-## 3. Requisitos
-El desarrollo de la aplicación debe:
-1. Desarrollarse en 2 partes: Frontend y Backend; agnósticas entre si, comunicadas mediante una API.
-2. Cumplir con los requisitos:  [técnicos](#3.1%20Requisitos%20técnicos) y [funcionales](#3.2%20Requisitos%20funcionales).
-3. Desarrollarse en grupo utilizando metodologías de gestión de proyecto y llevar evidencia de ello.
-4. Cumplir con las [entregas](#3.3%20Entregas) estipuladas.
-5. Utilizar github o gitlab para gestión del código fuente.
-6. Realizar una defensa oral del trabajo práctico para regularidad.
-7. Realizar otra defensa oral del trabajo práctico para la aprobación.
-8. Enviar la 
-9. Presentar la [documentación](#3.4%20Documentación) durante la defensa.
+### Repositorios
 
-### 3.1 Requisitos técnicos
-La app cuenta con 2 partes: Backend y Frontend agnósticas entre si que se comunican mediante una API.
+- [frontend app](http://hyperlinkToGihubOrGitlab)
+- [backend app](http://hyperlinkToGihubOrGitlab)
 
-#### 3.1.1 Backend
-El backend debe cumplir con las siguientes condiciones para regularidad y aprobación.
+## Tema
 
-##### Regularidad
-* Desarrollarse en JavaScript.
-* Utilizar un framework web que permita integrarse a las demás.
-* herramientas a través de middlewares, pluggins o modulos.
-* Exponer una API web (rest, tRPC o gRPC) para interactuar con el frontend.
-* Utilizar una base de datos persistente que acceda a través de un servicio externo (es decir que no sea una base de datos embebida).
-* La persistencia a la base de datos debe realizarse mediante un mapper (ORM/ODM/OXM). En caso que la base de datos utilizada no tenga un mapper disponible para JavaScript se deberá implementar la persistencai utilizando un patron Repository.
-* Realizarse mediante capas.
-* Validar entrada de datos, manejar e informar apropiadamente los errores a través de la API.
-* Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
+### Descripción de la empresa
 
-##### Aprobación Directa o en Examen
-* Cumplir con todas las condiciones de regularidad.
-* Implementar 1 test automatizado por integrante.
-* Implementar 1 test de integración.
-* Implementar un login con autenticación propia o de third-party y al menos 2 niveles de acceso diferentes.
-* Proteger las diferentes rutas en base al nivel de acceso requerido.
-* Definir ambientes, ya sea mediante environment del framework o .env
+La empresa objeto de nuestro trabajo brinda el servicio de alquiler de vehículos particulares a clientes en diversas ciudades de Argentina a través de sus sucursales.
 
-#### 3.1.2 Frontend
-El frontend debe cumplir con las siguientes condiciones para regularidad y aprobación.
+### Modelo
 
-##### Regularidad
-* Desarrollarse utilizando un framework de Frontend.
-* Utilizar HTML5
-* Utilizar CSS según las directrices de alguna biblioteca de componentes, guía de estilo o framework de CSS y la metodología propuesta por el framework de frontend elegido. Se sugiere el uso de biblioteca de componentes;  preprocesadores: sass, scss, less, stylus, etc o frameworks de css: Pico.css, Bulma, Material, Tailwind, Bootstrap, etc.
-* Aplicar la estrategia mobile-first para la escritura del código css de la aplicación
-* La app debe visualizarse correctamente en al menos 3 diferentes breakpoints: SM, MD, LG
-* Seguir buenas prácticas de UX/UI ( Que no requiera manual de usuario o explicaciones específicas para utilizar la interfaz )
-* Las app debe mostrar las siguientes características entre sus componentes:
-	* Manejo de eventos del usuario: click, input, etc
-	* Ante una posibilidad de fallo, manejar el/los errores adecuadamente y de manera amigable al usuario
-	* Reactividad ante un estado
-	* Input property
-	* Output property
-* Implementar al menos un servicio.
-* Para el manejo de la información, por ej una respuesta de un endpoint o los datos a enviar en una request, representar en el código los modelos de objetos con clases, interfaces y tipos de datos custom.
-* De ser posible, implementar algún patrón de diseño orientado a objetos.
-* Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
+![imagen del modelo](https://github.com/agustintolaba/tpalquilervehiculos/blob/6b26e571f43473752812ab28ab2e38d898c4a5dd/images/modelo_modificado.png)
 
-##### Aprobación Directa o en Examen
-* Cumplir con las condiciones de regularidad.
-* Realizar al menos 1 test unitario de un componente.
-* Realizar al menos 1 test de end-to-end.
-* Implementar el login y proteger el acceso a las distintas partes del frontend en base a los niveles de usuarios del backend.
-* Definir ambientes, ya sea mediante environment del framework o .env
+_Nota_: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER.
 
-### 3.2 Requisitos funcionales
-La app debe cumplir con los siguientes requisitos.
+Reglas de Negocio:
 
-#### Regularidad
-* 1 CRUD Simple por integrante
-* 1 CRUD Dependiente cada 2 integrantes o fracción.
-* 1 Listado con filtro (al menos un atributo) cada 2 integrantes o fracción.
-* Para cada listado, al seleccionar un elemento, se debe mostrar un detalle.
-* Debe implementar un caso de uso de usuario o epic, con valor para el negocio, cada 2 integrantes o fracción.
+1. Los vehículos se identifican por su patente, también se conoce: tipo de transmisión, tipo de vehículo(2), capacidad máxima en pasajeros, su estado(8) y sucursal a la que pertenecen. <br>
+2. Los vehículos pueden ser de los siguientes tipos: 1- automóvil. 2- camioneta 4x4 3- utilitario . Los tipos de vehículo se identifican con un código único. <br>
+3. Las sucursales están codificadas. Se conoce su dirección y localidad a la que pertenecen. <br>
+4. Una sucursal tiene un único gerente. <br>
+5. Las localidades se encuentran codificadas y pertenecen a una provincia.<br>
+6. Las provincias tienen un código único.<br>
+7. Las tarifas que se cobran por el depósito dependen solo del tipo de vehículo. Es un monto fijo para cada tipo.<br>
+8. La tarifa que se cobra por el alquiler depende de la cantidad de días y del tipo de vehículo. <br>
+9. Las tarifas varían según la temporada de realización del alquiler. En caso de un alquiler que abarque dos tarifas diferentes, solo se cobra los precios correspondientes al día de inicio del alquiler. <br>
+10. Un vehículo en una fecha determinada está disponible cuando no está reservado ni alquilado. <br>
+11. La cancelación de la reserva de un vehículo implica que el vehículo vuelve a estar disponible. <br>
+12. Los datos del cliente son: cuit, razón social, apellido, nombre, teléfono, provincia, localidad.<br>
+13. Una reserva está identificada con un número único generado por el sistema. El periodo de la reserva se extiende desde la fecha de inicio del alquiler hasta la fecha de finalización del alquiler (no importa el horario). <br>
+14. Para la confirmación de la reserva es necesario el pago de un depósito, que depende solo del tipo de vehículo.<br>
+15. La cancelación se puede realizar hasta con 7 días de anticipación, para la devolución del 70% del depósito realizado por la misma. <br>
+16. Si la cancelación se realiza hasta con un día de anticipación, la devolución es del 20% del depósito. <br>
+17. Si no se realiza cancelación y no se efectúa el alquiler del vehículo, no se realiza devolución del depósito. <br>
+18. El alquiler de un vehículo está identificado por un número generado por el sistema, y es llevado a cabo por un único empleado. Se conoce la hora de entrega y devolución del vehículo, el precio pagado por el alquiler y el estado.<br>
+19. Un alquiler tiene los estados: en proceso y finalizada. <br>
+20. Un vehículo tiene uno de los siguientes estados: disponible, reservado, alquilado.<br>
+21. Una reserva tiene los estados: pendiente, activa, en proceso, finalizada, cancelada.<br>
 
-#### Aprobación Directa o en Examen
-* CRUDs de todas las clases de negocio necesarias para el funcionamiento de la app.
-* Implementar 1 caso de uso usuario o epic, con valor para el negocio, por cada integrante.
-  Se deben implementar un mínimo de 2 relacionados entre si. Es decir que la data registrada por uno CU o epic sirva de input para otro.
+## Alcance Funcional
 
-#### Alcance Adicional Voluntario
-De forma **opcional** y **voluntaria** los grupos podrán realizar CUU o epics, listados más complejos de los solicitados u otros requisitos como notificaciones, logs, etc; adicionales para completar la funcionalidad del sistema propuesto.
-
-Esto será considerado en la nota final en función de la complejidad y esfuerzo relativos a lo ya realizado.
-
-
-### 3.3 Entregas
-#### Propuesta del enunciado
-En la entrega se debe entregar a los profesores la [plantilla de propuesta](./proposal.md) actualizada con las condiciones de Regularidad y de Aprobación. Los profesores analizarán la propuesta y de ser necesario sugerirán ajustes hasta que esté correcta y sea aceptada.
-
-#### Regularidad
-En la entrega se debe 
-* Incluir en el README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
-* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front.
-* Coordinar una defensa grupal con los profesores.
-
-#### Aprobación Directa o en Examen
-En la entrega se debe:
-* Video explicando el funcionamiento del sistema
-* Documentación de la API de backend (según la tecnología y standard utilizados).
-* Evidencia del resultado de la ejecución de los tests automáticos.
-* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front.
-* Incluir en el README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
-* Deploy: **A definir**
-* Coordinar una defensa grupal con los profesores.
-
-#### Fechas de entrega
-**TODO: A definir**
-**Propuesta**: 23/06/2023
-
-**Muestra de avance**: TBD
-
-**Entrega de Regularidad**: TBD
-
-**Entrega de Aprobación**: TBD
-* **Directa**:
-* **En examen**:
-
-### 3.4 Documentación
-La documentación debe presentarse para la instancia de defensa.
-
-Para conocer el detalle de la documentación referirse a [docs](docs.md).
-
-## 4. Gestión del proyecto
-**TODO: En revisión**
-
-El desarrollo de la app debe realizarse utilizando metodologías ágiles para la gestión del proyecto (Scrum, XP, etc).
-
-El grupo deberá llevar un registro de lo realizado, el mismo debe incluir como mínimo:
-* Tipo de metodología a utilizar para el seguimiento. ( Scrum, XP, etc.)
-* Minutas de avances o reuniones de coordinación del equipo.
-* Documentación de trackeo como desarrollo de features y bugfix, asignación de tareas, etc.
-
-Es de libre elección del alumno la herramienta a utilizar para el trackeo. Se recomienda el uso de github/gitlab proyects para integrar con el desarrollo de la misma pero en caso de utilizar otra en la documentación deberán incluirse los links a la tool para ello.
-
-
-## 5. Evaluación
-**TODO: En revisión.**
-
-Durante la evaluación de cada entrega se considerarán:
-* Requisitos técnicos y funcionales de la etapa.
-* Adhesión a las directrices de UX/UI y buenas prácticas de programación.
-* Uso apropiado de la tecnología: librerías, frameworks, patrones, etc.
-* Documentación requerida.
-* Participación de los miembros del grupo.
-* Uso de git para el desarrollo.
-* Defensa oral del trabajo práctico.
-* Gestión y seguimiento del desarrollo de la app.
-* Innovación, investigación y desafíos asumidos.
-
-## 6. FAQ
-
-En la sección de [FAQ](FAQ.md) podrán encontrar respuestas a las consultas más frecuentes que se van realizando.
+| Req                     | Detalle                                                                                                                                                                                                                                                          |
+| :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CRUD simple             | 1. CRUD Tipo Vehiculo<br>2. CRUD Tipo Usuario<br>3. CRUD Localidad/Provincia                                                                                                                                                                                     |
+| CRUD dependiente        | 1. CRUD Vehiculo {depende de} CRUD Tipo Vehiculo<br>2. CRUD Usuario {depende de} CRUD Tipo Usuario <br>3. CRUD Sucursal {depende de} CRUD Localidad <br>4. CRUD Reserva {depende de} CRUD Usuario y CRUD Vehiculo <br>5. CRUD Alquiler {depende de} CRUD Reserva |
+| Listado<br>+<br>detalle | 1. Listado de vehículos disponibles para alquilar de una sucursal en particular, mostrando la patente y capacidad del mismo. <br> 2. Listado de reservas segun un estado y rango de fecha, mostrando datos del vehículo y del cliente.                           |
+| CUU/Epic                | 1. Realizar reserva de un vehículo. <br> 2. Realizar el alquiler de un vehículo. <br>3. Realizar devolución de un vehículo. <br> 4. Realizar cancelación de la reserva. <br> 5.Realizar el alta/baja de un nuevo vehículo.                                       |
