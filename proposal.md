@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 48115 - Gino Gallina
+* 49105 - Tomas Bianchini
+* 47253 - Angel Folguera
+* - German Pacheco 
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,12 +14,14 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Sitio web con soporte multitienda para realizar la venta de productos, de los cuales el Vendedor será encargado de los envios. El sitio va a contar con distintos niveles de usuario, los cuales serán Cliente, Administrador y Vendedor. El cliente podrá seleccionar porductos de distintos vendedores y agregarlos a su carrito para luego elegir un método de pago y realizar la compra.
+Además, el sitio contará con la posibilidad de agregar descuentos a los productos
+
 
 ### Modelo
 ![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+*Link*: 
 
 ## Alcance Funcional 
 
