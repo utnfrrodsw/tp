@@ -3,6 +3,7 @@
 ## Grupo
 ### Integrantes
 * legajo - Apellido(s), Nombre(s)
+Luna, Lucas
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
