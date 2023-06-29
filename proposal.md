@@ -1,52 +1,56 @@
 # Propuesta TP DSW
 
 ## Grupo
+
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+- 47218 - Mendiburu, Francisco
+- 43092 - Simon
+- - Gina
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+
+- [frontend app](http://hyperlinktogihuborgitlab/)
+- [backend app](https://github.com/MendiburuFrancisco/BolsaDeTrabajoAPI)
 
 ## Tema
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+La aplicación de bolsa de trabajo busca solucionar los problemas de diseño desactualizado, falta de funcionalidades y dificultad de navegación en la bolsa de trabajo actual de la facultad. La idea es rediseñar el frontend con enfoque en dispositivos móviles y accesibilidad, y ampliar las funciones existentes. Los usuarios podrán postularse a trabajos, subir sus propias ofertas, gestionar el estado de sus postulaciones y tener un historial detallado. Las empresas podrán publicar ofertas, ver candidatos y sus CVs, y los administradores tendrán control sobre los trabajos publicados.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org/) en lugar de imágenes.
 
-## Alcance Funcional 
+## Alcance Funcional
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
+*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El
 
 Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
+| Req | Detalle |
+| --- | --- |
+| CRUD simple | 1. CRUD Usuario <br> 2. CRUD <br>3. CRUD TipoEstadoPostulacion<br>4. CRUD TipoTrabajo |
+| CRUD dependiente | 1. CRUD Postulación  {depende de} CRUD Trabajo y CRUD Usuario <br>2. CRUD Guardado {depende de} CRUD Trabajo y CRUD Usuario <br> 3. CRUD CV {depende de} CRUD Usuario <br>4. CRUD EstadoPosutlacion {depende de}  CRUD TipoEstadoPostulacion y CRUD Postulación <br> 5. CRUD TipoUsuario {depende de} CRUD Usuario  |
+| Listado+detalle | 1. Listado de las postulaciones del usuario ⇒ detalle CRUD Postulacion  <br> 2. Listado de postulantes a un trabajo ⇒ detalle CRUD Postulacion <br>3. Listado de ofertas de trabajo filtrado por especialidad, titulo, estado y tipo ⇒ detalle CRUD Trabajo<br>4. Listado de ofertas de trabajo guardadas filtrado por especialidad, titulo, estado y tipo ⇒ detalle CRUD Trabajo <br> 5. Listado de empresas interesadas en postular trabajos ⇒ detalle CRUD Usuarios |
+| CUU/Epic | 1. Postularse a una oferta de trabajo <br>2. Guardar una oferta de trabajo <br>3. Subir una oferta de trabajo<br>4. Cambiar el estado de postulación<br>5. Subir CV’s |
 
 Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
 
+| Req | Detalle |
+| --- | --- |
+| CRUD | 1. CRUD Usuario <br>2. CRUD Trabajo <br>3. CRUD EstadoTrabajo<br>4. CRUD TipoTrabajo<br>5. CRUD Comentario<br>6. CRUD Estado_Trabajo |
+| CUU/Epic | 1. Postularse a una oferta de trabajo <br> 2. Guardar una oferta de trabajo <br>3. Subir una oferta de trabajo<br>4. Cambiar el estado de postulación<br>5. Subir CV’s<br>6. Cancelar postulación<br>7. Agregar comentarios a una postulación |
 
 ### Alcance Adicional Voluntario
 
 *Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
 
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+| Req | Detalle |
+| --- | --- |
+| Listados |  |
+| CUU/Epic |  |
+| Otros | 1. Envio por mail de ofertas de trabajo de interés al usuario, por especialidad.<br>2. Envio por mail automatics al postularse |
