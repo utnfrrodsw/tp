@@ -2,14 +2,14 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Octavio Pereyra
+* 46793 - Octavio Pereyra
 * 47502 - Nicolás Di Dio
-* legajo - Tomás Bottoni
-* legajo - Franco Duarte
+* 45757 - Tomás Bottoni
+* 47308 - Franco Duarte
 
 ### Repositorios
-* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/francoax/dsw-app))
-* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/francoax/dsw-server))
+* [frontend app](https://github.com/francoax/dsw-app)
+* [backend app](https://github.com/francoax/dsw-server)
 
 ## Tema
 ### Descripción
