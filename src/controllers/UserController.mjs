@@ -1,10 +1,10 @@
-import userModel from '../models/UserModel.js'
+import userModel from '../models/UserModel.mjs'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 
 
-const createUser = async (req, res) => {
+export const createUser = async (req, res) => {
     const {
         email,
         password,
@@ -40,7 +40,7 @@ const createUser = async (req, res) => {
     }
 };
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
     const {
         email,
         password
@@ -85,7 +85,7 @@ const login = async (req, res) => {
     }
 };
 
-const getAll = async (req, res) => {
+export const getAll = async (req, res) => {
     try {
 
         const filters = {};
@@ -108,7 +108,7 @@ const getAll = async (req, res) => {
     }
 };
 
-const UpdateUser = async (req, res) => {
+export const UpdateUser = async (req, res) => {
     try {
         const userId = req.userID;
         const {
@@ -144,7 +144,7 @@ const UpdateUser = async (req, res) => {
         });
     }
 }
-const UpdateUserPassword = async (req, res) => {
+export const UpdateUserPassword = async (req, res) => {
     try {
         const userId = req.userID;
 
@@ -177,10 +177,40 @@ const UpdateUserPassword = async (req, res) => {
         });
     }
 }
-export default {
+
+
+export const UpdateVendedor = async (req, res, next) => {
+    try {
+        const userId = req.userID;
+        const role ='seller';
+        console.log(userId)
+        // Verificar si el usuario existe
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({
+                message: 'El usuario no existe'
+            });
+        }
+        // Actualizar usuario
+        await userModel.findByIdAndUpdate(userId, {
+            role
+        }, {
+            new: true
+        });
+        next();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: 'Error al actualizar rol del usuario'
+        });
+    }
+}
+/* export default {
     createUser,
     login,
     getAll,
     UpdateUser,
-    UpdateUserPassword
+    UpdateUserPassword,
+    UpdateVendedor
 }
+ */

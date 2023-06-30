@@ -1,7 +1,7 @@
-import categoryModel from '../models/ProductCatModel.js'
+import categoryModel from '../models/ProductCatModel.mjs'
 
 
-const createCategory = async (req, res) => {
+export const createCategory = async (req, res) => {
     const {
         descripcion
     } = req.body;
@@ -24,7 +24,7 @@ const createCategory = async (req, res) => {
         });
     }
 };
-const getByID = async (req, res) => {
+export const getByID = async (req, res) => {
     const categoriaId = req.params.id; // Obtener el id del departamento
     try {
         // Busca departamento por Id
@@ -48,7 +48,7 @@ const getByID = async (req, res) => {
     }
 };
 
-const getAll = async (req, res) => {
+export const getAll = async (req, res) => {
     try {
 
         let categorias = await categoryModel.find()
@@ -67,7 +67,7 @@ const getAll = async (req, res) => {
     }
 };
 
-const UpdateCategory = async (req, res) => {
+export const UpdateCategory = async (req, res) => {
     try {
         const categoriaId = req.params.id;
         const updateData = req.body;
@@ -96,7 +96,7 @@ const UpdateCategory = async (req, res) => {
     }
 }
 
-const deleteById = async (req, res) => {
+export const deleteById = async (req, res) => {
     const id = req.params.id; // Obtener el id del registro a eliminar
     try {
         const result = await categoryModel.deleteOne({
@@ -113,10 +113,10 @@ const deleteById = async (req, res) => {
     }
 };
 
-export default {
+/* export default {
     createCategory,
     getByID,
     getAll,
     UpdateCategory,
     deleteById
-}
+} */

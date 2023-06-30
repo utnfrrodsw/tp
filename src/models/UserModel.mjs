@@ -19,14 +19,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  historialOrdenes: [{
+  tienda: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Order'
-  }],
+    ref: 'Store',
+    required: false
+  },
   role: {
     type: String,
     required: true,
-    enum: ['admin', 'user'],
+    enum: ['admin', 'user', 'seller'],
     default: 'user'
   },
 

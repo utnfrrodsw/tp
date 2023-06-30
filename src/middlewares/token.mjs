@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-const verifyTokenAdmin = (req, res, next) => {
+export const verifyTokenAdmin = (req, res, next) => {
     const authHeader = req.headers.authorization;
     try {
         const token = authHeader.split(' ')[1];
@@ -29,7 +29,7 @@ const verifyTokenAdmin = (req, res, next) => {
     }
 }
 
-const verifyTokenUser = (req, res, next) => {
+export const verifyTokenUser = (req, res, next) => {
     const authHeader = req.headers.authorization;
     try {
         const token = authHeader.split(' ')[1];
@@ -39,7 +39,7 @@ const verifyTokenUser = (req, res, next) => {
                     message: 'Token inválido'
                 });
             } else {
-                if (decoded.role === 'admin' || decoded.role === 'user') {
+                if (decoded.role === 'admin' || decoded.role === 'user' || decoded.role === 'seller') {
                     // El usuario tiene el rol correcto, se permite el acceso a la ruta
                     req.userID = decoded._id; //guarda ID para ser utilizado para validar update
                     next();
@@ -57,7 +57,7 @@ const verifyTokenUser = (req, res, next) => {
         });
     }
 }
-export default {
+/* export default {
     verifyTokenAdmin,
     verifyTokenUser
-};
+}; */
