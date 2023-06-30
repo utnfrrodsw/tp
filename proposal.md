@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 123123 - Lucas Luna
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
