@@ -5,8 +5,8 @@
 ### Integrantes
 
 - 47218 - Mendiburu, Francisco
-- 43092 - Simon
-- - Gina
+- 43092 - Cardach, Simon 
+- 00000 - Ramaccioti, Gina
 
 ### Repositorios
 
