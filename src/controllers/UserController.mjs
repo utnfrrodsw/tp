@@ -182,7 +182,7 @@ export const UpdateUserPassword = async (req, res) => {
 export const UpdateVendedor = async (req, res, next) => {
     try {
         const userId = req.userID;
-        const role ='seller';
+        const role = 'seller';
         console.log(userId)
         // Verificar si el usuario existe
         const user = await userModel.findById(userId);
@@ -197,6 +197,16 @@ export const UpdateVendedor = async (req, res, next) => {
         }, {
             new: true
         });
+        //actualice al token
+        const token = jwt.sign({
+            _id: user._id,
+            role: user.role
+        }, process.env.JWT_SECRET);
+
+        res.status(201).json({
+            message: 'Usuario creado',
+            token
+        });
         next();
     } catch (error) {
         console.error(error);
@@ -205,6 +215,8 @@ export const UpdateVendedor = async (req, res, next) => {
         });
     }
 }
+
+
 /* export default {
     createUser,
     login,

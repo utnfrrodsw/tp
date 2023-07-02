@@ -1,32 +1,60 @@
 import shopModel from '../models/ShopModel.mjs'
+import userModel from '../models/UserModel.mjs'
+import jwt from 'jsonwebtoken'
 
 
 export const createShop = async (req, res) => {
-    const propietario = req.userID;
-    const {
+  const propietario = req.userID;
+  const {
+    name,
+    about,
+    shopAdress,
+    email
+  } = req.body;
+  try {
+    // Actualiza rol de usuario
+
+    const userId = req.userID;
+    const role = 'seller';
+    console.log(userId)
+    // Verificar si el usuario existe
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        message: 'El usuario no existe'
+      });
+    }
+    // Actualizar usuario
+    await userModel.findByIdAndUpdate(userId, {
+      role
+    }, {
+      new: true
+    });
+    //actualiza el token
+    const token = jwt.sign({
+      _id: user._id,
+      role: user.role
+    }, process.env.JWT_SECRET);
+
+    // Creacion de tienda
+    const shop = new shopModel({
       name,
       about,
       shopAdress,
-    } = req.body;
-    try {
-        // Creacion de tienda
-        const shop = new shopModel({
-          name,
-          about,
-          shopAdress,
-          propietario
-        });
-        await shop.save();
-
-        res.status(201).json({
-            message: 'Tienda creada',
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            error: 'Error al crear Tienda'
-        });
-    }
+      propietario,
+      email
+    });
+    await shop.save();
+    res.status(201).json({
+      message: 'Tienda creada',
+      token
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: 'Error al crear Tienda'
+    });
+  }
 };
 
 export const updateShop = async (req, res) => {
@@ -35,6 +63,7 @@ export const updateShop = async (req, res) => {
     name,
     about,
     shopAdress,
+    email
   } = req.body;
 
   try {
@@ -51,6 +80,7 @@ export const updateShop = async (req, res) => {
     shop.name = name;
     shop.about = about;
     shop.shopAdress = shopAdress;
+    shop.email = email;
 
     await shop.save();
 

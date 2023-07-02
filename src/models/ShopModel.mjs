@@ -6,7 +6,12 @@ const ShopSchema = new mongoose.Schema({
     email: { type: String, required: true },
     shopAdress: { type: String, required: true },
     producto: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: false },
-    propietario: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+    propietario: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        unique: true
+    }
 });
 
 const Shop = mongoose.model('Shop', ShopSchema);
