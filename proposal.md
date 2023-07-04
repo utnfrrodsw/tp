@@ -18,7 +18,7 @@ Una vez registrados, para reservar seleccionan la fecha y hora deseadas y cantid
 La administración interna permite gestionar las reservaciones existentes y modificarlas según sea necesario, además de poder registrar la llegada del cliente para evaluar cuantas reservas son incumplidas.
 
 ### Modelo
-![modelo-restaurante](https://github.com/chipcasla/tp/assets/103225088/e38ebe95-ef40-4fc4-94d5-01ca0467034e)
+![restaurante-model](https://github.com/chipcasla/tp/assets/103225088/1c4beaa9-14e0-40e0-9a4a-3420bc7a5e6f)
 
 ## Alcance Funcional 
 
@@ -29,8 +29,7 @@ Regularidad:
 |:-|:-|
 |CRUD simple|1. CRUD Categoría<br>2. CRUD Cliente<br>3. CRUD Restaurante|
 |CRUD dependiente|1. CRUD Plato {depende de} CRUD Categoría y Restaurante<br>2. CRUD Mesa {depende de} CRUD Restaurante|
-|Listado<br>+<br>detalle| 1. Lista de reservas filtrado por dia/rango horario, muestra datos de reserva=> detalles completos de cliente.
-<br> 2. Listado de mesas filtrado por día/hora y estado, muestra nombre de cliente(si está reservada), capacidad y ubicacion => detalle adicionales como cantidad de personas, hora|
+|Listado<br>+<br>detalle| 1. Lista de reservas filtrado por dia/rango horario, muestra datos de reserva=> detalles completos de cliente.<br> 2. Listado de mesas filtrado por día/hora y estado, muestra nombre de cliente(si está reservada), capacidad y ubicacion => detalle adicionales como cantidad de personas, hora|
 |CUU/Epic|1. Reservar una mesa en el restaurante(cliente)<br>2. Realizar el registro de cumplimiento de una reserva(restaurante)|
 
 Adicionales para Aprobación
@@ -46,9 +45,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Promociones |
-|Listados | 1. Listado con promociones o descuentos disponibles en un momento dado del restaurantes.<br>
-2. Listado de menú del restaurante filtrado por categoría, muestra todos los platos con su descripción breve => detalle adicional de ingredientes, método, imagen.
-<br>3. Reservas filtradas por cliente muestra datos del cliente y de cada reserva fechas, estado, cantidad de personas|
+|Listados | 1. Listado con promociones o descuentos disponibles en un momento dado del restaurantes.<br>2. Listado de menú del restaurante filtrado por categoría, muestra todos los platos con su descripción breve => detalle adicional de ingredientes, método, imagen.<br>3. Reservas filtradas por cliente muestra datos del cliente y de cada reserva fechas, estado, cantidad de personas|
 |CUU/Epic|1. Realizar reserva de evento especial (aniversario,cumpleaños,etc)(cliente)|
 |Otros|1. Envío de confirmacion/recordatorio de reserva por email|
 
