@@ -30,7 +30,7 @@ Regularidad:
 |CRUD simple|1. CRUD Categoría<br>2. CRUD Cliente<br>3. CRUD Restaurante|
 |CRUD dependiente|1. CRUD Plato {depende de} CRUD Categoría y Restaurante<br>2. CRUD Mesa {depende de} CRUD Restaurante|
 |Listado<br>+<br>detalle| 1. Lista de reservas filtrado por dia/rango horario, muestra datos de reserva=> detalles completos de cliente.
-<br> 2. Listado de mesas filtrado por día/hora y estado, muestra nombre de cliente(si está reservada), capacidad y ubicacion => detalle adicionales como cantidad de personas, hora
+<br> 2. Listado de mesas filtrado por día/hora y estado, muestra nombre de cliente(si está reservada), capacidad y ubicacion => detalle adicionales como cantidad de personas, hora|
 |CUU/Epic|1. Reservar una mesa en el restaurante(cliente)<br>2. Realizar el registro de cumplimiento de una reserva(restaurante)|
 
 Adicionales para Aprobación
