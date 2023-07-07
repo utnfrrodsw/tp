@@ -32,7 +32,7 @@ Regularidad:
 |:-|:-|
 |CRUD simple|1. CRUD Material<br>2. CRUD Maquina<br>3. CRUD Empleado|
 |CRUD dependiente|1. CRUD Obra {depende de} CRUD Maquina, CRUD Material, CRUD Cliente, CRUD Empleado<br>2. CRUD Precio {depende de} CRUD Material|
-|Listado<br>+<br>detalle| 1. Listado de obras filtrado por localidad => detalle muestra los datos completos de la obra seleccionadabr> 2. Listado de empleados filtrado por puesto => muestra los datos completos del empleado seleccionado|
+|Listado<br>+<br>detalle| 1. Listado de obras filtrado por localidad => detalle muestra los datos completos de la obra seleccionadabr<br>2. Listado de empleados filtrado por puesto => muestra los datos completos del empleado seleccionado|
 |CUU/Epic|1. Registrar una obra para un cliente<br>2. Asignar materiales a una obra|
 
 
