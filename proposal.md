@@ -12,11 +12,10 @@
 
 ## Tema
 ### Descripción
-#### Sistema de gestion de obras:
+#### Sistema de gestion de obras para una constructora:
 * Registro de obra para un cliente.
 * Asignacion de materiales, maquinarias y empleados para una obra.
 * Generacion de informe para una obra.
-* 
 ### Modelo
 #### Diagrama de clases
 ![DC](https://drive.google.com/uc?export=view&id=11HKYP7vIulUoVWp59jXSfL3pkRYAOon2)
@@ -33,11 +32,11 @@ Regularidad:
 |:-|:-|
 |CRUD simple|1. CRUD Material<br>2. CRUD Maquina<br>3. CRUD Empleado|
 |CRUD dependiente|1. CRUD Obra {depende de} CRUD Maquina, CRUD Material, CRUD Cliente, CRUD Empleado<br>2. CRUD Precio {depende de} CRUD Material|
-|Listado<br>+<br>detalle| 1. Listado de Obras filtrado por localidad => detalle CRUD Obra<br> 2. Listado de empleados filtrado por puesto => muestra los datos completos del empleado|
+|Listado<br>+<br>detalle| 1. Listado de obras filtrado por localidad => detalle muestra los datos completos de la obra seleccionadabr> 2. Listado de empleados filtrado por puesto => muestra los datos completos del empleado seleccionado|
 |CUU/Epic|1. Registrar una obra para un cliente<br>2. Asignar materiales a una obra|
 
 
-Adicionales para Aprobación
+Adicionales para Aprobación:
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Cliente<br>2. CRUD Empleado<br>3. CRUD Material<br>4. CRUD Maquina<br>5. CRUD Obra<br>|
