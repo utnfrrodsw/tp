@@ -15,7 +15,7 @@ La empresa SPM tecnologias en instalacion, esta en busca de un software que le p
 
 ### Modelo
 <html>
-<img src="adicionales/modelo_peliminar.jpeg">
+<img src="https://github.com/gaaston14/TP_CertificacionDeTareas/blob/main/adicionales/modelo_preliminar.jpeg">
 </html>
 
 ## Alcance Funcional 
