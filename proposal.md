@@ -14,7 +14,8 @@
 
 ## Tema
 ### Descripción
-La empresa SPM tecnologias en instalacion, esta en busca de un software que le permita llevar adelante la gestion de sus empleados y flota de vehiculos, actualemnte se vienen manejando con un archivo de excel, necesitan poder controlar a los tecnicos, las tareas cumplidas por cada tecnico y el gasto de combustible hecho por cada movil de cada tecnico, cada movil esta compuesto de 1 io mas tecnicos, y las tareas a la hora de pagar los sueldos, se parte de un basico por categoria y varia segun el horario de cumplimiento, ya que se paga un extra por produccion. Se desea tener una liquidacion mensual y ademas, en ciertos casos individual por cada tecnico
+La empresa SPM tecnologias en instalacion, esta en busca de un software que le permita llevar adelante la gestion de sus empleados y flota de vehiculos, actualemnte se vienen manejando con un archivo de excel, necesitan poder controlar los tecnicos, las tareas cumplidas por cada tecnico y por cada movil d cada movil esta compuesto de 2 o mas tecnicos.
+A la hora de pagar los sueldos,  se parte de un basico por categoria y varia segun el horario de cumplimiento de tareas adicionales, ya que se paga un extra por produccion. Se desea tener una liquidacion mensual  por cada tecnico
 
 ### Modelo
 <html>
