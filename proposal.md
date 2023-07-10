@@ -2,7 +2,8 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 48069, Taborra Facundo
+* 48271, Buschittari Nahuel
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,10 +12,9 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
-
+Es una aplicación móvil para ayudar a los clientes a encontrar servicios específicos, como plomeros, electricistas, servicios de internet, y más. Con esta aplicación, los usuarios podrán buscar y comparar presupuestos, conocer los tiempos de trabajo estimados y coordinar una fecha y hora para llevar a cabo sus proyectos. Esto proporcionará una gran facilidad a los clientes al permitirles encontrar el mejor servicio para sus necesidades, al tiempo que fomenta una competencia directa entre diferentes empresas. Además, los clientes podrán dejar reseñas sobre los servicios recibidos, lo que ayudará a mejorar la calidad del trabajo de las empresas involucradas.
 ### Modelo
-![imagen del modelo]()
+![imagen del modelo]()es una herramienta móvil para ayudar a los clientes a encontrar servicios específicos, como plomeros, electricistas, servicios de internet, y más. Con esta aplicación, los usuarios podrán buscar y comparar presupuestos, conocer los tiempos de trabajo estimados y coordinar una fecha y hora para llevar a cabo sus proyectos. Esto proporcionará una gran facilidad a los clientes al permitirles encontrar el mejor servicio para sus necesidades, al tiempo que fomenta una competencia directa entre diferentes empresas. Además, los clientes podrán dejar reseñas sobre los servicios recibidos, lo que ayudará a mejorar la calidad del trabajo de las empresas involucradas.
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
