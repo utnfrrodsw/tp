@@ -32,17 +32,17 @@ La empresa SPM tecnologias en instalacion, esta en busca de un software que le p
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Tecnicos<br>2. CRUD Tareas<br>3. CRUD Grupos|
+|CRUD dependiente|1. CRUD preciotareas {depende de} CRUD tareas<br>2. CRUD grupos_tecnicos {depende de} CRUD tecnicos|
+|Listado<br>+<br>detalle| 1. Listado de grupos y tecnicos corepondiendo a que grupo pertenece cada tecnico en un momento dado => detalle CRUD grupos_tecnicos<br> 2. Listado de tareas realizado por un tecnico, en un momento especifico dando el precio de dicha tareas en ese momento dado, junto con que grupo pertenecia en ese moemnto => detalle muestra datos completos de cada tareas realizada por un tecnico en un periodo de tiempo
+|CUU/Epic|1. Registrar nueva tarea realizada<br>2. Registrar un nuevo tecnico|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD tareas<br>2. CRUD grupos_tareas<br>3. CRUD grupos<br>4. CRUD preciostareas<br>5. CRUD tecnicos<br>6. CRUD grupostecnicos<br>7. CRUD usuarios|
+|CUU/Epic|1. Registrar nueva tarea realizada<br>2. Registrar un nuevo tecnico<br>3. Asignar un tecnico a un grupo|
 
 
 ### Alcance Adicional Voluntario
@@ -51,7 +51,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Listar grupos<br>2. Listar tecnicos<br>3. Listar tareas<br>4. Listar porecio de tareas |
+|CUU/Epic|1. registrar nueva tarea<br>2. modificar precio de una tarea<br>3. modificar composicion de un grupo<br>4. Alta de nuevo grupo|
+|Otros|1. Mostrar estadisticas en la partalla inicial de mayor porcentaje de tareas realizadas y grupo y/o tecnico con mas tareas realizadas en el ultimo mas|
 
