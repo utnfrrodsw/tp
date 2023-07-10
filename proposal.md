@@ -5,18 +5,18 @@
 * legajo - Apellido(s), Nombre(s)
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/gaaston14/TP_CertificacionDeTareas/tree/main/frontend)
+* [backend app](https://github.com/gaaston14/TP_CertificacionDeTareas/tree/main/backend)
+
 
 ## Tema
 ### Descripción
 La empresa SPM tecnologias en instalacion, esta en busca de un software que le permita llevar adelante la gestion de sus empleados y flota de vehiculos, actualemnte se vienen manejando con un archivo de excel, necesitan poder controlar a los tecnicos, las tareas cumplidas por cada tecnico y el gasto de combustible hecho por cada movil de cada tecnico, cada movil esta compuesto de 1 io mas tecnicos, y las tareas a la hora de pagar los sueldos, se parte de un basico por categoria y varia segun el horario de cumplimiento, ya que se paga un extra por produccion. Se desea tener una liquidacion mensual y ademas, en ciertos casos individual por cada tecnico
 
 ### Modelo
-
-img src="adicionales/modelo_peliminar.jpeg"
-
+<html>
+<img src="adicionales/modelo_peliminar.jpeg">
+</html>
 
 ## Alcance Funcional 
 
