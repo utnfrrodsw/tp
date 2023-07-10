@@ -5,7 +5,7 @@
 * 42897 - Gaston Gimenez
 * 46749 - Matias Chiodo
 * 46247 - Andres Guerrero
-
+* 46310 - Martin Albertengo
 
 ### Repositorios
 * [frontend app](https://github.com/gaaston14/TP_CertificacionDeTareas/tree/main/frontend)
