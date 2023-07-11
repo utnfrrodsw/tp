@@ -7,8 +7,7 @@
 * 48028 - Bertone, Valentin
 
 ### Repositorios
-* [Frontend app](github.com/tonchiserra/services-dsw)
-* [Backend app](github.com/tonchiserra/api-services-dsw)
+* [Fullstack app](https://github.com/tonchiserra/services-tp-dsw)
 
 ## Tema
 ### Descripción
