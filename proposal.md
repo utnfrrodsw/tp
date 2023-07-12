@@ -23,6 +23,8 @@ Es una aplicación móvil para ayudar a los clientes a encontrar servicios espec
 
 ## Alcance Funcional 
 
+Desde el registro de cliente y/o prestador de servicios hasta el pedido y pago de dicho servicio de la reseña del lado del cliente. Del lado del presetador tendremos la posibilidad de armar presupuestos, enviarlos y recibir los pagos.
+
 ### Alcance Mínimo
 
 *Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
@@ -30,10 +32,10 @@ Es una aplicación móvil para ayudar a los clientes a encontrar servicios espec
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Localidad <br>2. CRUD Servicio Requerido (por el cliente)<br>3. CRUD Materiales|
+|CRUD dependiente|1. CRUD Presupuesto {depende de} CRUD Materiales<br>2. CRUD Cliente y Prestador {depende de} CRUD Localidad|
+|Listado<br>+<br>detalle| 1. Listado de Servicios Requeridos filtrado por localidad y especialidad => detalle CRUD Servicio<br> 2. Listado de presupuestos filtrado por precio de menor a mayor y por la cantidad de estrellas del prestador (evaluado por reseñas de trabajo), o podemos filtras por horas de trabajo estimadas => detalle muestra los datos del presupuesto con el precio de la mano de obra, materiales requeridos con su precio y un monto total de todo el trabajo|
+|CUU/Epic|1. Realizar un presupuesto<br>2. Realizar una reseña a un prestador|
 
 
 Adicionales para Aprobación
