@@ -2,8 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
-tomi
+* 47651 - Gigli, Tomas Malcolm
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
