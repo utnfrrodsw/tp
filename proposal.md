@@ -19,7 +19,7 @@
 ### Modelo
 ![imagen](https://github.com/tomiingm/tp/assets/139399407/62c33f27-fae1-4f89-807c-31d9af86937d)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+Link al modelo: https://app.diagrams.net/#G1Oikc-1wsutwLlwoFW8XfHttswwOmgbkW
 
 ## Alcance Funcional 
 
