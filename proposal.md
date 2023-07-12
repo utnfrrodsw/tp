@@ -17,7 +17,7 @@
 * Se desarrollará la aplicación "" para el alquiler de vehículos. Ésta será capaz de registrar usuarios, dichos usuarios podrán realizar reservas para un vehículo. El usuario podrá también ver sus reservas o cancelarlas. El administrador podrá registrar nuevos vehículos, indicando el tipo de vehículo (Mini, Economy, Standard, etc) y su proveedor. Cada vehículo posee un costo por día y se mantiene un histórico de los mismos. Cada reserva podrá tener un descuento aplicado que dependerá de la cantidad de días de la misma. Los coches vienen de un proveedor, los proveedores están registrados y el administrador podrá acceder a sus datos.
 
 ### Modelo
-![imagen del modelo]()
+![imagen](https://github.com/tomiingm/tp/assets/139399407/62c33f27-fae1-4f89-807c-31d9af86937d)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
