@@ -27,8 +27,6 @@ Desde el registro de cliente y/o prestador de servicios hasta el pedido y pago d
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
@@ -41,17 +39,15 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Cliente<br>2. CRUD Servicio requerido<br>3. CRUD Localidad<br>4. CRUD Materiales<br>5. CRUD Reseña<br>6. CRUD Presupuesto<br>7. CRUD Prestador|
+|CUU/Epic|1. Hacer pedido de servicio por el cliente <br>2. Realizar presupuesto (prestador) para el cliente <br>3. Confirmación del presupuesto eligiendo fecha y hora y cobrando el monto requerido|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
+|Listados |1. Servicios requeridos anteriormente filtrados por precios y por la reseña dada a dicho prestador, esto le serviria al cliente para evaluar prestadores ya contratados<br>2. Servicios dados por el prestador filtrado por precio, fecha|
+|CUU/Epic|1. Confirmar presupuesto<br>2. Cancelación un servicio pedido para una fecha futura|
 |Otros|1. Envío de recordatorio de reserva por email|
 
