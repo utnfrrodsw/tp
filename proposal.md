@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* 48069, Taborra Facundo
+* 48059, Taborra Facundo
 * 48271, Buschittari Nahuel
 * 47793, Obiedo Agustín
 * 48026, Ignacio Di Martino
