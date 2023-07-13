@@ -7,13 +7,11 @@
 * 50734 - Oldani, Marcos Alberto
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](...)
+* [backend app](...)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
 * Se desarrollará la aplicación "" para el alquiler de vehículos. Ésta será capaz de registrar usuarios, dichos usuarios podrán realizar reservas para un vehículo. El usuario podrá también ver sus reservas o cancelarlas. El administrador podrá registrar nuevos vehículos, indicando el tipo de vehículo (Mini, Economy, Standard, etc) y su proveedor. Cada vehículo posee un costo por día y se mantiene un histórico de los mismos. Cada reserva podrá tener un descuento aplicado que dependerá de la cantidad de días de la misma. Los coches vienen de un proveedor, los proveedores están registrados y el administrador podrá acceder a sus datos.
 
 ### Modelo
@@ -25,7 +23,6 @@ Link al modelo: https://app.diagrams.net/#G1Oikc-1wsutwLlwoFW8XfHttswwOmgbkW
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
@@ -45,7 +42,6 @@ Adicionales para Aprobación
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo. (VER esto)
 
 |Req|Detalle|
 |:-|:-|
