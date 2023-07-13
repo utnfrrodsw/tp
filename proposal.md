@@ -39,7 +39,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
+|CRUD |1. CRUD ...<br>2. CRUD ...<br>3. CRUD ...<br>4. CRUD ...<br>5. CRUD ...<br>6. CRUD ...<br>7. CRUD ...|
 |CUU/Epic|1. Reservar un vehiculo<br>2. Ver datos de una reserva|<br>3. Cancelar una reserva|
 
 
