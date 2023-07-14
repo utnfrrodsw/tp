@@ -54,12 +54,6 @@ Historial: date fecha_reproduccion
 ```  
 
 ## Alcance Funcional 
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Usuario<br>2. CRUD Playlist<br>3. CRUD Suscripcion<br>4. CRUD Cancion<br>5. CRUD Artista<br>6. CRUD Album<br>|
-|CUU|1. Crear una nueva playlist<br>2. Realizar la busqueda de una canción para escuchar<br>3. Agregar una canción a playlist existente<br>4. Suscribirse al servicio<br>5. Realizar la mejora de suscripción<br>6. Crear una cuenta de usuario<br>7. Realizar busqueda de canciones por género<br>8. Descargar una lista de reproducción para escuchar sin conexión|
-
---
 
 ### Regularidad:
 |Req|Detalle|
