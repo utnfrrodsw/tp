@@ -5,9 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "node src/index.mjs",
-     "dev": "nodemon src/index.mjs"
+    "start": "node src/index.mjs",
+    "dev": "nodemon src/index.mjs",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-jest": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,16 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
     "multer": "^1.4.5-lts.1"
-  }
+  },
+  "devDependencies": {
+    "jest": "^29.6.1",
+    "supertest": "^6.3.3"
+  },
+  "jest": {
+  "testMatch": [
+    "**/tests/**/*.test.js"
+  ],
+  "transform" : {}
+}
+  
 }
