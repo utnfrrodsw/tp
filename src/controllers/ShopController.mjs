@@ -24,9 +24,22 @@ export const createShop = async (req, res) => {
         message: 'El usuario no existe'
       });
     }
+    // Creacion de tienda
+    const shop = new shopModel({
+      name,
+      about,
+      shopAdress,
+      propietario,
+      email
+    });
+    const savedShop = await shop.save();
+    const shopId = savedShop._id;
+
     // Actualizar usuario
     await userModel.findByIdAndUpdate(userId, {
-      role
+      
+      tienda:shopId,
+      role: role
     }, {
       new: true
     });
@@ -36,15 +49,6 @@ export const createShop = async (req, res) => {
       role: user.role
     }, process.env.JWT_SECRET);
 
-    // Creacion de tienda
-    const shop = new shopModel({
-      name,
-      about,
-      shopAdress,
-      propietario,
-      email
-    });
-    await shop.save();
     res.status(201).json({
       message: 'Tienda creada',
       token

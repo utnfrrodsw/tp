@@ -8,6 +8,7 @@ import routerUser from './routes/UserRouter.mjs'
 import routerCategory from './routes/ProductCatRouter.mjs'
 import routerShop from './routes/ShopRouter.mjs'
 import routerProduct from './routes/ProductRouter.mjs'
+import routerReview from './routes/ReviewRouter.mjs'
 
 //Configuracion
 const app = express();
@@ -21,6 +22,7 @@ app.use('/api', routerUser);
 app.use('/api', routerCategory);
 app.use('/api', routerShop);
 app.use('/api', routerProduct);
+app.use('/api', routerReview);
 
 
 const port = process.env.PORT || 3000;

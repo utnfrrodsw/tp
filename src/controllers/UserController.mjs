@@ -216,6 +216,19 @@ export const UpdateVendedor = async (req, res, next) => {
     }
 }
 
+export const getUserByToken = async (req, res) => {
+  try {
+    const userId = req.userID; // Obtener el id del usuario
+    const user = await userModel.findById(userId); // Busca usuario por Id
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    res.status(200).json({ data:user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al obtener usuario' });
+  }
+};
 
 /* export default {
     createUser,
