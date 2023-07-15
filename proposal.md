@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* Martin Lambrecht <martinoscarlambrecht@gmail.com> 47860
+* Franco Giangiordano <frangiangiordano@gmail.com> 46802
+* Gonzalo Turconi <gonzaturconi@gmail.com> 46730
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
