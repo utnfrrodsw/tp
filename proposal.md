@@ -27,18 +27,17 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Batea<br>2. CRUD Acoplado<br>3. CRUD Chofer<br>4. CRUD Usuario|
-|CRUD dependiente|1. CRUD Viaje (Depende de CRUD Equipo)<br>2. CRUD Equipo (Depende de CRUD Batea, Acoplado y Chofer)|
-|Listado<br>+<br>detalle| 1. Listado de Equipos a la fecha<br> 2. Listado de Choferes a la fecha<br> 3. Viajes con filtro por equipo, chofer y tiempo|
-|CUU/Epic|1. Cargar gastos de un viaje<br>2. Generar planilla con viajes por chofer en el mes|
+|CRUD simple|1. CRUD Batea<br>2. CRUD Acoplado<br>3. CRUD Chofer|
+|CRUD dependiente|1. CRUD Equipo (Depende de CRUD Batea, Acoplado y Chofer)<br>2. CRUD de gastos de viaje depende de Viaje|
+|Listado<br>+<br>detalle| 1. Listado de Equipos a la fecha<br> 2. Listado de Choferes a la fecha<br> 3. Viajes con filtro por equipo, chofer y tiempo<br> 4 Generar planilla con viajes por chofer en el mes|
+|CUU/Epic|1. Viaje (registrar/definir lo relativo al viaje)<br>2. Reparaciones/Mantenimiento|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Reparaciones|
-|CRUD dependiente|1\. CRUD Reparaciones (Depende de CRUD Equipo).|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Usuario|
+|CUU/Epic|Aplicar geolocalización y mapas al sistema|
 
 
 ### Alcance Adicional Voluntario
