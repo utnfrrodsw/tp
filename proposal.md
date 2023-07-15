@@ -16,7 +16,7 @@
 *GFM Logistics es una empresa líder en el sector de la logística y el transporte de mercancías por carretera. Al ser su principal activo los camiones, una flota moderna y diversa que cumple con los más altos estándares de calidad y seguridad, resulta de gran utilidad un sistema de gestión para su flota, que permita automatizar la carga de datos sobre sus vehículos, choferes y viajes, su presentación sin dejar de lado la seguridad de sus datos y accesos.*
 
 ### Modelo
-![Imagen del Modelo](https://postimg.cc/dhCPjNb5)
+![Imagen del Modelo]([https://postimg.cc/dhCPjNb5](https://i.postimg.cc/DwjvFtB3/MD.png)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
