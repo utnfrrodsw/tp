@@ -17,6 +17,7 @@
 
 ### Modelo
 ![imagen del modelo]()
+![](Aspose.Words.505997ea-e615-4f41-90a4-e8fe94ef404e.002.jpeg)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
