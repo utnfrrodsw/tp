@@ -24,21 +24,20 @@
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Batea<br>2. CRUD Acoplado<br>3. CRUD Chofer<br>4. CRUD Usuario|
+|CRUD dependiente|1. CRUD Viaje (Depende de CRUD Equipo)<br>2. CRUD Equipo (Depende de CRUD Batea, Acoplado y Chofer)|
+|Listado<br>+<br>detalle| 1. Listado de Equipos a la fecha<br> 2. Listado de Choferes a la fecha<br> 3. Viajes con filtro por equipo, chofer y tiempo|
+|CUU/Epic|1. Cargar gastos de un viaje<br>2. Generar planilla con viajes por chofer en el mes|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
+|CRUD |1. CRUD Reparaciones|
+|CRUD dependiente|1\. CRUD Reparaciones (Depende de CRUD Equipo).|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
 
 
