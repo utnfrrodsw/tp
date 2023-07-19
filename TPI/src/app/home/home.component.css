@@ -1,0 +1,14 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  p {
+    font-size: 18px;
+    color: #666;
+  }
