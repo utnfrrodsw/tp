@@ -6,7 +6,7 @@ header {
   
   nav {
     display: flex;
-    justify-content: space-between;
+    
     align-items: center;
   }
   
@@ -45,4 +45,8 @@ header {
     text-decoration: none;
     font-weight: bold;
   }
-  
+
+  .menu {
+    justify-content: center;
+    background-color: blue;
+  }
