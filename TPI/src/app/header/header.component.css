@@ -1,0 +1,48 @@
+header {
+    background-color:whitesmoke;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center; /* Para alinear verticalmente la imagen y el texto */
+  }
+  
+  .logo img {
+    width: 80px; /* Ancho deseado de la imagen */
+    height: auto; /* Altura se ajustará automáticamente */
+    margin-right: 10px;
+    padding-left: 10px; /* Espacio entre la imagen y el texto */
+  }
+  
+  .logo span {
+    font-size: 24px; /* Tamaño de fuente deseado */
+    font-weight: bold;
+    font-family: 'Lunasima',sans-serif;
+    color: #046381;
+  }
+  
+  
+  
+  ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  li {
+    margin-left: 20px;
+  }
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
