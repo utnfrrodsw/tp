@@ -7,9 +7,7 @@
 | 45787  | Andrada, Gastón         |
 | 48262  | Cinel, Santiago         |
 | 47983  | Fermanelli, Sebastián   |
-| 48033  | Fernandez, Martina      |
 | 48178  | Karlen Aguirre, Esteban |
-| 48146  | Miño, Sofía             |
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
