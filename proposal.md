@@ -21,19 +21,30 @@ Realización de una página web de reseña de videojuegos hechas por usuarios, d
 ## Alcance Funcional 
 
 Casos de uso:
+
 •	CUU 1.1: Reseñar juego. 
+
 •	CUU 2.1: Modificar nivel usuario.
+
 
 CRUD:
 
 •	CRUD Juego
+
 •	CRUD Usuario
+
 •	CRUD Empresa
+
 •	CRUD Reseña
+
 •	CRUD Administrador
+
 •	CRUD Nivelación
+
 •	CRUD Interacción
+
 •	CRUD Categoría
+
 
 
 
@@ -41,6 +52,8 @@ CRUD:
 
 Listado:
 •	Listado de usuarios filtrados por nivel. Muestra ID_Usuario, Nombre y Puntuación. Detalle muestra listado de reseñas.
+
 •	Listado de reseñas muestra Nombre(Juego) ID_Reseña, Puntuación, Fecha_Redaccion y Estado. Detalle muestra Cuerpo e Interacciones.
+
 
 
