@@ -16,7 +16,7 @@
 Realización de una página web de reseña de videojuegos hechas por usuarios, donde se ofrece información de cada videojuego reseñado y recomendaciones para los usuarios que facilite la elección de su próximo juego.
 
 ### Modelo
-ModeloDominio.png
+[ModeloDominio.png](https://github.com/angelofaraci/tp/blob/db26bb9a40f49eabd76474fadd07283ecde9d922/ModeloDominio.png)
 
 ## Alcance Funcional 
 
