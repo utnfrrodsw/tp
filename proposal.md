@@ -2,21 +2,25 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+* 47867 - Martínez Gaspar Andrés
+* 51330 - Bidart Salomon Franco Hector Pablo
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [Repositorio FRONTEND](https://github.com/francobidart/dsw-tp-frontend)
+* [Repositorio BACKEND](https://github.com/francobidart/dsw-tp-backend)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Desarrollaremos una plataforma de e-commerce acotada, que permitirá realizar la venta de artículos de informática. 
+Contemplará el flujo de compra completo, así como la registración de artículos y pedidos. Contará con una gestión de usuarios, que
+tendrán diferentes tipos de acceso de acuerdo al nivel asociado a ellos.
 
 ### Modelo
-![imagen del modelo]()
+![image](./res/modelo_dominio.png)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+Link: [Modelo](https://drive.google.com/file/d/1pel8NPW2CEdsYUWWS26cUfVe_WRnkMDX/view?usp=sharing)
 
 ## Alcance Funcional 
 
