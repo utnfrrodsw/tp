@@ -51,6 +51,7 @@ CRUD:
 ### Alcance Adicional Voluntario
 
 Listado:
+
 •	Listado de usuarios filtrados por nivel. Muestra ID_Usuario, Nombre y Puntuación. Detalle muestra listado de reseñas.
 
 •	Listado de reseñas muestra Nombre(Juego) ID_Reseña, Puntuación, Fecha_Redaccion y Estado. Detalle muestra Cuerpo e Interacciones.
