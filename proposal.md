@@ -7,7 +7,7 @@
 
 
 ### Repositorios
-* [frontend app]https://github.com/angelofaraci/tp-dsw-backend
+* [frontend app]https://github.com/angelofaraci/tp-dsw-frontend
 * [backend app] https://github.com/angelofaraci/tp-dsw-backend
 
 
