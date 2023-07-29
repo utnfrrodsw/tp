@@ -11,9 +11,10 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { Observable, of } from 'rxjs';
+import { UpdateUserEmailDto } from './dto/update-user.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { User } from './entities/user.entity';
+import { DeleteResult, UpdateResult } from 'typeorm';
 
 @Controller('users')
 //@UseGuards(AuthGuard) //permite usar guard en todos los endpoints
@@ -27,23 +28,31 @@ export class UsersController {
   }
 
   @Get()
-  @SetMetadata('roles', ['user', 'admin'])
-  findAll(): Observable<string> {
-    return of(this.usersService.findAll());
+  //@SetMetadata('roles', ['user', 'admin'])
+  async findAll(): Promise<User[]> {
+    return this.usersService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  async findOne(@Param('id') id: number): Promise<User> {
+    return await this.usersService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+  @Get('GetByEmail/:Email')
+  async findOneByEmail(@Param('Email') Email: string): Promise<User> {
+    return await this.usersService.findUserByEmail(Email);
+  }
+
+  @Patch(':email')
+  update(
+    @Param('email') email: string,
+    @Body() updateUserDto: UpdateUserEmailDto,
+  ): Promise<UpdateResult> {
+    return this.usersService.updateEmail(email, updateUserDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  async remove(@Param('id') id: number): Promise<DeleteResult> {
+    return await this.usersService.remove(id);
   }
 }
