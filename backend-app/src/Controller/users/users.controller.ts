@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   SetMetadata,
+  HttpException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -34,12 +35,14 @@ export class UsersController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<User> {
+  async findOne(@Param('id') id: number): Promise<User | HttpException> {
     return await this.usersService.findOne(id);
   }
 
   @Get('GetByEmail/:Email')
-  async findOneByEmail(@Param('Email') Email: string): Promise<User> {
+  async findOneByEmail(
+    @Param('Email') Email: string,
+  ): Promise<User | HttpException> {
     return await this.usersService.findUserByEmail(Email);
   }
 
@@ -47,12 +50,12 @@ export class UsersController {
   update(
     @Param('email') email: string,
     @Body() updateUserDto: UpdateUserEmailDto,
-  ): Promise<UpdateResult> {
+  ): Promise<UpdateResult | HttpException> {
     return this.usersService.updateEmail(email, updateUserDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: number): Promise<DeleteResult> {
+  async remove(@Param('id') id: number): Promise<DeleteResult | HttpException> {
     return await this.usersService.remove(id);
   }
 }

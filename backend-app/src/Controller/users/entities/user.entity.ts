@@ -1,7 +1,10 @@
+import { Address } from './address.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -33,4 +36,8 @@ export class User {
 
   @CreateDateColumn()
   CreatedAt: Date;
+
+  @OneToOne(() => Address, (address) => address.user, { cascade: true })
+  @JoinColumn()
+  Address: Address;
 }
