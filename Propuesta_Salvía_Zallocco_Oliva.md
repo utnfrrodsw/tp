@@ -10,7 +10,8 @@
 |Zallocco, Emilio|50194|             
 
 ## Repositorios
-* [Fullstack](https://github.com/camila-salvia/pagina-universitaria-dsw)
+* [FRONT END](https://github.com/camila-salvia/pagina-universitaria-dsw)
+* [BACK END](https://github.com/laucha54321/tp-mysql-be)
 
 ## Propuesta
 ### Descripción
