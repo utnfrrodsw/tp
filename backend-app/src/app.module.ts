@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './controller/users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { BankModule } from './controller/bank/bank.module';
+import { AnotherInvestmentModule } from './controller/another-investment/another-investment.module';
 
 @Module({
   imports: [
@@ -21,6 +22,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
     UsersModule,
     ConfigModule.forRoot({ isGlobal: true }),
+    BankModule,
+    AnotherInvestmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
