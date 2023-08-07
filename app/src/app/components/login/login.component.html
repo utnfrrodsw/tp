@@ -1,9 +1,9 @@
 <div class="login-container">
     <h2>Iniciar sesión</h2>
-    <form (ngsubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="username">Usuario</label>
-        <input type="text" id="username" name="username" [(ngModel)]="username" required>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" [(ngModel)]="email" required>
       </div>
       <div class="form-group">
         <label for="password">Contraseña</label>
