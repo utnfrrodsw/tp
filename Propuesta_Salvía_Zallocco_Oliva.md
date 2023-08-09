@@ -19,16 +19,35 @@
 ### Modelo
 
 ```mermaid
-classDiagram
-  Curso --* Persona
-  class Curso{
-      Pagina Estatica
-      Tabla De Notas
-  }
-  class Persona{
-      Usuario
-      Contrasena
-  }
+erDiagram
+    Curso ||--o{ Curso_Persona : Contiene
+    Persona ||--o{ Curso_Persona: Participa
+    Curso_Persona ||--o{ Curso_Persona_Nota: Tiene
+    Persona{
+        Integer ID PK
+        String Nombre
+        String Apellido
+        String Contrasena
+        String Email
+        Date Fecha_Nacimiento
+        Date Fecha_Creacion
+    }
+    Curso{
+        Integer ID PK
+        String Nombre_Curso
+        String Descripcion
+    }
+    Curso_Persona{
+        Integer ID_Persona FK
+        Integer ID_Curso FK
+        Integer Categoria
+    }
+    Curso_Persona_Nota{
+        Integer ID_Persona FK
+        Integer ID_Curso Fk
+        String Descripcion
+        Real Nota    
+    }
 ```
 ### Funciones Principales
 
