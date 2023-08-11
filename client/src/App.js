@@ -5,13 +5,14 @@ function App() {
   const [backendData, setBackendData] = useState([{}]);
 
   useEffect(() => {
-    fetch("../api/tasks")
+    fetch("http://localhost:5000/api/tasks")
       .then(
-        res => res.json()
+        response => response.json()
       )
       .then(
-        data => setBackendData(data)
-      )
+        data => {
+          setBackendData(data)
+        })
       .catch(
         error => {
         console.error('Error al obtener los datos:', error);
@@ -20,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      {(typeof backendData.users !== 'undefined') ? (
+      {(typeof backendData.users === 'undefined') ? (
         <p>Loading...</p>
       ):(
         backendData.users.map((user, i) => (
