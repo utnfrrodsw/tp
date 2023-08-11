@@ -2,27 +2,33 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 50020 - Cravero, Pablo César
+* 49485 - Roba Martinez, Manuel
+* 50180 - Pérez Fontela, Simón
+* 48835 - Soletti, Sol Agustina
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/Neirus2/TP_DSW_FrontEnd)
+* [backend app](https://github.com/Neirus2/TP_DSW_BackEnd)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+_La empresa objeto de estudio es un mayorista de componentes tecnológicos de
+computación que funciona como distribuidora nacional. Su director ejecutivo nos encargó
+desarrollar un sistema que permita mejorar la organización de stock y venta de sus
+productos. También le interesa que el sistema lleve un registro de sus proveedores y
+clientes, otorgándoles a estos últimos determinados beneficios dependiendo de su
+longevidad en la empresa._
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+[[imagen del modelo](https://drive.google.com/file/d/1rE7JBDxMoVrunm7Eg7wIwMXfd-HO5HSi/view?usp=drive_link)]
 
 ## Alcance Funcional 
 
+El alcance de nuestro negocio abarca procesos de compra, venta y registro de stock de una distribuidora de componentes de computación.
+
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
@@ -40,13 +46,4 @@ Adicionales para Aprobación
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
 
 
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
 
