@@ -1,0 +1,162 @@
+@media(min-width: 760px){
+    .container{
+        flex-direction: column;
+        background-color: #333;
+    }
+}
+
+
+/*------Conteiners------*/
+
+.container {
+    background-color: #333;
+    display: flex;
+    flex-direction: row;
+}
+
+.container-right{
+    border-left-width: 2px;
+    border-right-width: 2px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.contact-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
+
+}
+
+.container-mid{
+    display: flex;
+    flex-direction: row;
+    background-color: #333;
+    justify-content: center;
+}
+
+.container-texto{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
+
+.container-datos-derecha{
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    background-color: #333;
+    padding: 45px;
+    justify-content: center;
+    border-left-width: 25px;
+}
+
+.container-datos-izquierda{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(75, 75, 75);
+    padding: 50px;
+    justify-content: center;
+}
+
+.container-floor{
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    justify-content: center;
+}
+
+/*------cosas------*/
+
+.links-ayuda{
+    color: white;
+    padding: 20px;
+    margin-top: 35px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 35px;
+}
+
+.contact-nombre{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+}
+
+.contact-apellido{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+}
+
+.contact-problema{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+
+}
+
+.text-intro-contact{
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
+    color: #f2f2f2;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    padding: 20px;
+}
+
+.busquedaText{
+    display: block;
+    margin: 0.5rem 0;
+    text-align: center;
+    padding: 5px 20px;
+
+}
+
+.menu-item {
+    display: block;
+    background-color: rgb(39, 39, 39);
+    border: 1px;
+    text-decoration: none;
+    text-align: center;
+    color: rgb(67, 196, 136);
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color:rgb(39, 39, 39);
+    overflow: hidden;
+    height: auto;
+  }
+  
+  /* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 13px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    height: auto;
+}
+  
+  /* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+  
+  /* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #aa0494;
+    color: white;
+}
