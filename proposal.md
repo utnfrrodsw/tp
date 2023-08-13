@@ -27,8 +27,7 @@ longevidad en la empresa._
 
 ### Modelo
 
-Imágen del modelo
-![image](https://drive.google.com/file/d/1RbCBWJDIhxsP6OdKpzudn3yOLC9Otv8f/view)
+[[Imágen del modelo]![image](https://drive.google.com/file/d/1RbCBWJDIhxsP6OdKpzudn3yOLC9Otv8f/view)]
 
 ## Alcance Funcional
 
