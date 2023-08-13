@@ -27,7 +27,8 @@ longevidad en la empresa._
 
 ### Modelo
 
-[[[Imágen del modelo](https://drive.google.com/file/d/1RbCBWJDIhxsP6OdKpzudn3yOLC9Otv8f/view)]](https://github.com/LucaGini/TP-DSW-Bertea-Gini-Zampa/assets/64549503/8e15be0c-9ddc-48e8-8364-62427556453c)
+![imagen del modelo](https://drive.google.com/file/d/1RbCBWJDIhxsP6OdKpzudn3yOLC9Otv8f/view)
+![image]
 
 ## Alcance Funcional
 
