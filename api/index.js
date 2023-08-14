@@ -17,7 +17,7 @@ const PORT = config.app.port || 4000
 // app.use('/api/tareas', require('./routes/tareas'))
 // app.use('/api/tareas', require('./routes/tareas'))
 // app.use('/api/grupos', require('./routes/grupos'))
-app.use('/api/usuarios', require('./routes/usuarios'))
+app.use('/api/users', require('./routes/users'))
 app.use('/api/auth', require('./routes/auth'))
 
 app.listen(PORT, () => {

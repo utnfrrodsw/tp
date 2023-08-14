@@ -1,12 +1,12 @@
 const { DataTypes } = require('sequelize')
 const { sequelize } = require('../configs/db')
 
-const Usuario = sequelize.define('usuarios', {
-  nombre: {
+const User = sequelize.define('users', {
+  name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  apellido: {
+  last_name: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -18,7 +18,7 @@ const Usuario = sequelize.define('usuarios', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  activo: {
+  active: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: true
@@ -27,4 +27,4 @@ const Usuario = sequelize.define('usuarios', {
   timestamps: false
 })
 
-module.exports = Usuario
+module.exports = User
