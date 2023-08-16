@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import Header from './components/Header/Header.js';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       {(typeof backendData.users === 'undefined') ? (
         <p>Loading...</p>
       ):(
