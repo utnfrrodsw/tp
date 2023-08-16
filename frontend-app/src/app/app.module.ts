@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InvestmentMainComponent } from './investment-main/investment-main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    InvestmentMainComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,19 @@
-<form action="" method="post" [formGroup]="formLogin">
-
+<form action="" method="post" [formGroup]="formLogin" (ngSubmit)="handlerLogin()">
+    <label for="userName">Nombre:</label>
+    <input type="text" 
+    formControlName="userName" 
+    name="userName" id="userName"
+    placeholder="ingrese nombre"
+    id="userName"
+    >
+    <label for="userName" 
+    *ngIf="formLogin.get('userName')?.invalid"
+    class="error-message"
+    >El nombre debe ser entre 3 y 12 letras, sin simbolos especiales</label>
+    <label for="password">Contraseña:</label>
+    <input type="password" 
+    formControlName="password" 
+    name="password" 
+    id="password">
+    <button type="submit">Log In</button>
 </form>

@@ -6,6 +6,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BankModule } from './controller/bank/bank.module';
 import { AnotherInvestmentModule } from './controller/another-investment/another-investment.module';
+import { AuthModule } from './auth/auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,6 +26,7 @@ import { AnotherInvestmentModule } from './controller/another-investment/another
     ConfigModule.forRoot({ isGlobal: true }),
     BankModule,
     AnotherInvestmentModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
