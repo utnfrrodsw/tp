@@ -1,6 +1,9 @@
 import React from "react";
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css'
+import userlogo from './user.png'
+import notifylogo from './notify.png'
+
 
 function Header() {
     return (
@@ -10,8 +13,8 @@ function Header() {
             </div>
             <div class="header-links">
                 <div className="links">
-                    <Link to = "/perfil">perfil</Link>
-                    <Link to = "/notificaciones">notificaciones</Link>
+                    <Link to = "/notify"><img src={notifylogo} alt="" className="notifylogo"/></Link>
+                    <Link to = "/user"><img src={userlogo} alt="" className="userlogo"/></Link>
                 </div>
             </div>
         </header>
