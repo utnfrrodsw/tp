@@ -1,0 +1,20 @@
+* {
+  background-color: white;
+}
+
+.navbar .navbar-brand
+{
+  color: darkcyan;
+  font-weight: bold;
+}
+
+.navbar .nav-link 
+{
+  color: rgb(17, 95, 95);
+}
+
+.navbar-cart 
+{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}

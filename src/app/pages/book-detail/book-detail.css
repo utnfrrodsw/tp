@@ -1,0 +1,12 @@
+.container
+{
+  padding-top: 130px;
+}
+
+.shadow-effect
+{
+  border: none;
+  box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, 0.3);
+}
+
+
