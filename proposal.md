@@ -8,7 +8,7 @@
 |47087|Sandoval, Julian|
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app](https://github.com/Biscaldi-Iv/DSWFrontEnd)
 * [backend app](https://github.com/Biscaldi-Iv/TP-DSW)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
