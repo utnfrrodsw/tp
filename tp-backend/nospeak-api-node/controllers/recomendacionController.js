@@ -1,5 +1,9 @@
 const Recomendacion = require('../models/Recomendacion');
 
+exports.getRecomendaciones = async (req, res) => {
+    
+};
+
 exports.createRecomendacion = async (req, res) => {
 
 };

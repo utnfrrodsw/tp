@@ -1,5 +1,10 @@
 const Usuario = require('../models/Usuario');
 
+
+exports.getUsuarios = async (req, res) => {
+    
+};
+
 exports.getUsuarioById = async (req, res) => {
     try {
       const usuario = await Usuario.findById(req.params.id);

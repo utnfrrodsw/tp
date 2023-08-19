@@ -1,5 +1,9 @@
 const Playlist = require('../models/Playlist');
 
+exports.getPlaylists = async (req, res) => {
+    
+};
+
 exports.createPlaylist = async (req, res) => {
 
 };

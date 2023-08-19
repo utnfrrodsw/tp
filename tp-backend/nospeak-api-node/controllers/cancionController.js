@@ -1,5 +1,9 @@
 const Cancion = require('../models/Cancion');
 
+exports.getCanciones = async (req, res) => {
+    
+};
+
 exports.createCancion = async (req, res) => {
 
 };

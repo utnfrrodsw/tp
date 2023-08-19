@@ -1,5 +1,9 @@
 const Album = require('../models/Album');
 
+exports.getAlbums = async (req, res) => {
+    
+};
+
 exports.createAlbum = async (req, res) => {
 
 };

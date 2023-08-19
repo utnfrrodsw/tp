@@ -1,5 +1,9 @@
 const Artista = require('../models/Artista');
 
+exports.getArtistas = async (req, res) => {
+    
+};
+
 exports.createArtista = async (req, res) => {
 
 };

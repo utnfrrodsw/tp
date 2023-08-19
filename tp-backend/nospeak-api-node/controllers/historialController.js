@@ -1,5 +1,9 @@
 const Historial = require('../models/Historial');
 
+exports.getHistoriales = async (req, res) => {
+    
+};
+
 exports.createHistorial = async (req, res) => {
 
 };
