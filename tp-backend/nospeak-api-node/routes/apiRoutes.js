@@ -23,10 +23,10 @@ router.put('/artistas/:id', artistaController.updateArtista);
 router.delete('/artistas/:id', artistaController.deleteArtista);
 
 
-router.post('/albumes', albumController.createAlbum);
-router.get('/albumes/:id', albumController.getAlbumById);
-router.put('/albumes/:id', albumController.updateAlbum);
-router.delete('/albumes/:id', albumController.deleteAlbum);
+router.post('/albums', albumController.createAlbum);
+router.get('/albums/:id', albumController.getAlbumById);
+router.put('/albums/:id', albumController.updateAlbum);
+router.delete('/albums/:id', albumController.deleteAlbum);
 
 
 router.post('/canciones', cancionController.createCancion);
