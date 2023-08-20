@@ -24,6 +24,7 @@ export class UsersController {
 
   @Post()
   //@SetMetadata('roles', ['admin'])
+  @UseGuards(AuthGuard)
   async create(@Body() createUserDto: CreateUserDto) {
     return await this.usersService.create(createUserDto);
   }

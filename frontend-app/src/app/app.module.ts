@@ -6,7 +6,12 @@ import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InvestmentMainComponent } from './investment-main/investment-main.component';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { HttpClientModule } from '@angular/common/http';
 
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,9 +21,17 @@ import { InvestmentMainComponent } from './investment-main/investment-main.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["http://localhost:4200/"],
+        disallowedRoutes: ["http://example.com/examplebadroute/"],
+      },
+    })
   ],
-  providers: [],
+  providers: [JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

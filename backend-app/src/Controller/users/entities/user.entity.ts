@@ -1,5 +1,8 @@
+import { hash } from 'bcrypt';
 import { Address } from './address.entity';
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
@@ -27,6 +30,9 @@ export class User {
   @Column({ unique: true })
   Email: string;
 
+  @Column()
+  Password: string;
+
   @Column({
     type: 'enum',
     enum: Roles,
@@ -40,4 +46,11 @@ export class User {
   @OneToOne(() => Address, (address) => address.user, { cascade: true })
   @JoinColumn()
   Address: Address;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hasPassword() {
+    if (!this.Password) return;
+    this.Password = await hash(this.Password, 10);
+  }
 }
