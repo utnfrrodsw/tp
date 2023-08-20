@@ -14,22 +14,23 @@ export class AuthService {
   ) {}
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post<any>('http://localhost:3001/login', { username, password })
+    return this.http.post<any>('http://localhost:3001/auth/login', { username, password }, { withCredentials: true })
       .pipe(
         map(response => {
-          const token = response[jwtConstants.tokenKey];
-          localStorage.setItem(jwtConstants.tokenKey, token);
+          const token = response.access_token
+          console.log(token);
+          localStorage.setItem(jwtConstants.access_token, token);
           return response;
         })
       );
   }
 
   logout(): void {
-    localStorage.removeItem(jwtConstants.tokenKey);
+    localStorage.removeItem(jwtConstants.access_token);
   }
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem(jwtConstants.tokenKey);
+    const token = localStorage.getItem(jwtConstants.access_token);
     return !this.jwtHelper.isTokenExpired(token);
   }
 }

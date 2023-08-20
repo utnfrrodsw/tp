@@ -3,13 +3,13 @@
     <input type="text" 
     formControlName="userName" 
     name="userName" id="userName"
-    placeholder="ingrese nombre"
+    placeholder="ingrese el email"
     id="userName"
     >
     <label for="userName" 
     *ngIf="formLogin.get('userName')?.invalid"
     class="error-message"
-    >El nombre debe ser entre 3 y 12 letras, sin simbolos especiales</label>
+    >El nombre debe ser entre 3 y 25 letras, sin simbolos especiales</label>
     <label for="password">Contraseña:</label>
     <input type="password" 
     formControlName="password" 
