@@ -1,13 +1,40 @@
-import React, {useEffect, useState} from 'react';
-import Header from './components/Header/Header.js';
-import InicioCliente from './Cliente/Inicio/InicioCliente.js';
+import React /*, {useEffect, useState}*/ from 'react';
+
+import Home from './components/home/Home.jsx';
+import InicioCliente from './components/cliente/Inicio/InicioCliente.jsx';
+import Error from './components/error/Error.jsx';
+import Solicitudes from './components/cliente/solicitudes/Solicitudes.jsx';
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home/>,
+    errorElement: <Error/>
+  },
+  {
+    path: '/client/home',
+    element: <InicioCliente />,
+    children: [ 
+      {
+      path: 'requests/:id',
+      element: <Solicitudes estado = "pendiente"/>
+      },
+      {
+        path: 'finished/:id',
+        element: <Solicitudes estado = "termiado"/>
+        },
+    ]
+  },
+]);
+
 function App() {
 
-  const [backendData, setBackendData] = useState([{}]);
-
+  /*const [backendData, setBackendData] = useState([{}]);
+  
   useEffect(() => {
     fetch("http://localhost:5000/api/tasks")
       .then(
@@ -21,21 +48,11 @@ function App() {
         error => {
         console.error('Error al obtener los datos:', error);
       });
-  }, []);
+  }, []);*/
 
   return (
     <div className="App">
-      <Header />
-      <InicioCliente />
-
-
-      {(typeof backendData.users === 'undefined') ? (
-        <p>Loading...</p>
-      ):(
-        backendData.users.map((user, i) => (
-          <p key={i}>{user}</p>
-        ))
-      )}
+      <RouterProvider router={router}/>
     </div>
   );
 }

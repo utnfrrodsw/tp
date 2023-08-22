@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
 import { Button } from 'react-bootstrap';
 import './InicioCliente.css';
+import Header from '../../header/Header.jsx';
+import { Link, Outlet } from 'react-router-dom';
 
 
 function InicioCliente() {
@@ -12,13 +14,25 @@ function InicioCliente() {
 
     return (
         <div className='inicio-cliente-container'>
-            <h1>Inicio Cliente</h1>
+            <Header />
+            <div>
+            <nav className="navigation">
+                <div className="links">
+                    <Link to="/client/home/requests/:id" className="link">Solicitudes</Link>
+                    <Link to="/client/home/finished/:id" className="link">Terminados</Link>
+                </div>
+            </nav>
+                <Outlet/>
+            </div>
+
             <Button className="floating-button" onMouseEnter={toggleMenu} onMouseLeave={toggleMenu}>+</Button>
             {isMenuOpen && (
                 <div className="menu">
                     <div className="menu-option">Nueva Solicitud</div>
                 </div>
             )}
+
+
         </div>
     );
 }
