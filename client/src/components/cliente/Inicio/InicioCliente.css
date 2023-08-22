@@ -17,6 +17,31 @@
     cursor: pointer;
 }
 
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #213555;
+  }
+  
+  .links {
+    display: flex;
+  }
+  
+  .link {
+    margin-right: 20px; /* Agrega un margen a la derecha para la separación */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .link:hover {
+    color: #4F709C; /* Cambia el color al pasar el cursor */
+  }
+  
+
 .menu {
     position: fixed;
     margin: 10px;
@@ -39,4 +64,29 @@
 .menu-option:hover {
     background-color: #213555; /* Color de fondo al pasar el cursor */
 }
+
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
   
+  .pagination button {
+    background-color: #4F709C;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .pagination button:hover {
+    background-color: #213555;
+  }
+  
+  .pagination span {
+    font-size: 14px;
+    margin: 0 10px;
+  }
