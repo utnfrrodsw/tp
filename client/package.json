@@ -1,17 +1,23 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@testing-library/jest-dom": "6.0.0",
+    "@testing-library/react": "14.0.0",
+    "@testing-library/user-event": "14.4.3",
+    "react": "18.2.0",
+    "react-bootstrap": "^2.8.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.15.0",
     "react-scripts": "5.0.1",
+<<<<<<< HEAD
     "react-scroll": "^1.8.9",
     "web-vitals": "^2.1.4"
+=======
+    "web-vitals": "3.4.0"
+>>>>>>> pre-main
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-icon": "^1.0.0"
   }
 }
