@@ -46,4 +46,22 @@ body{
   to {
     transform: rotate(360deg);
   }
-}
+        /* Definición de clases de CSS */
+  }  .login-container {
+          text-align: center;
+          margin-top: 100px;
+        }
+    
+        .login-input {
+          margin: 5px;
+          padding: 5px;
+        }
+    
+        .login-button {
+          padding: 5px 10px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          cursor: pointer;
+        }
+
