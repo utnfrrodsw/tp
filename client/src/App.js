@@ -28,7 +28,8 @@ const router = createBrowserRouter([
         element: <Solicitudes estado = "termiado"/>
         },
     ]
-  },
+  }
+
 ]);
 
 function App() {
@@ -55,7 +56,6 @@ function App() {
       <RouterProvider router={router}/>
 
       <Link to="/client/home">ver home clientes</Link>
-      <p>esto luego se cambia por una vista de inicio</p>
 
     </div>
   );
