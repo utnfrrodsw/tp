@@ -5,7 +5,7 @@ import InicioCliente from './components/cliente/Inicio/InicioCliente.jsx';
 import Error from './components/error/Error.jsx';
 import Solicitudes from './components/cliente/solicitudes/Solicitudes.jsx';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
 import './App.css';
 
 
@@ -53,6 +53,10 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router}/>
+
+      <Link to="/client/home">ver home clientes</Link>
+      <p>esto luego se cambia por una vista de inicio</p>
+
     </div>
   );
 }
