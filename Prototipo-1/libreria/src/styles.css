@@ -155,8 +155,17 @@ h1,
 
 .header {
   background-color: #714f3c;
-  padding: 20px 0;
+  padding: 0.2rem 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 5rem;
+}
+
+.user-image,
+.cart-shopping-image {
+  width: 3rem;
 }
 
 h2,
@@ -2051,8 +2060,10 @@ progress {
 
 .form-control {
   display: block;
-  width: 100%;
-  padding: 0.375rem 7rem;
+  width: 50%;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  padding-left: 1rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -2079,10 +2090,10 @@ progress {
 }
 .form-control:focus {
   color: #212529;
-  background-color: #fff;
-  border-color: #fab19d;
+  background-color: #d9d9d9;
+  border-color: #976950;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(244, 98, 58, 0.25);
+  box-shadow: 0 0 0 0.25rem #976950;
 }
 .form-control::-webkit-date-and-time-value {
   height: 1.5em;
@@ -2127,7 +2138,7 @@ progress {
 .form-control-plaintext {
   display: block;
   width: 100%;
-  padding: 0.375rem 0;
+
   margin-bottom: 0;
   line-height: 1.5;
   color: #212529;
