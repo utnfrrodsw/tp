@@ -2138,8 +2138,8 @@ progress {
 .form-control-plaintext {
   display: block;
   width: 100%;
-
-  margin-bottom: 0;
+  height: 100%;
+  margin: 0 auto;
   line-height: 1.5;
   color: #212529;
   background-color: transparent;
@@ -6077,6 +6077,7 @@ fieldset:disabled .btn {
   position: relative;
   width: 100%;
   overflow: hidden;
+  max-height: 16rem;
 }
 .carousel-inner::after {
   display: block;
