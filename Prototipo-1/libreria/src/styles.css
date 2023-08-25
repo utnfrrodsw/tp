@@ -615,6 +615,15 @@ progress {
   list-style: none;
 }
 
+.list-unstyled li a {
+  text-decoration: none;
+  color: #7c7c7c;
+  transition: color 0.3s ease;
+}
+.list-unstyled li a:hover {
+  color: #0c8ce9;
+}
+
 .list-inline {
   padding-left: 0;
   list-style: none;
