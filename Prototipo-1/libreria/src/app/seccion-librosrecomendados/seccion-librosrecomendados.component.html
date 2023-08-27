@@ -13,7 +13,18 @@
           "
           class="elemento-lista"
         >
-          {{ libro }}
+          <div class="libro">
+            <div><img src="{{ libro.imagen }}" alt="Portada del libro" /></div>
+            <p class="precio">{{ libro.precio }}</p>
+            <p class="descripcion">
+              {{
+                libro.descripcion.length > descripcionMaxLength
+                  ? (libro.descripcion | slice : 0 : descripcionMaxLength) +
+                    "..."
+                  : libro.descripcion
+              }}
+            </p>
+          </div>
         </li>
       </ul>
     </div>
