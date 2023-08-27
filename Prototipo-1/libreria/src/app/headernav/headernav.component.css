@@ -1,0 +1,19 @@
+.header {
+  /* Estilos para el header */
+  transition: background-color 1s ease;
+}
+
+.navbar {
+  /* Estilos para el navbar */
+  transition: background-color 1s ease;
+}
+
+.header.scrolled {
+  background-color: rgba(255, 255, 255, 0.9);
+  /* Otros estilos para el header cuando se hace scroll */
+}
+
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.9);
+  /* Otros estilos para el navbar cuando se hace scroll */
+}
