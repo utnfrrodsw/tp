@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HeadernavComponent } from './headernav/headernav.component';
 import { SeccionOfertasComponent } from './seccion-ofertas/seccion-ofertas.component';
 import { FooterComponent } from './footer/footer.component';
+import { SeccionLibrosrecomendadosComponent } from './seccion-librosrecomendados/seccion-librosrecomendados.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
     HeadernavComponent,
     SeccionOfertasComponent,
     FooterComponent,
+    SeccionLibrosrecomendadosComponent,
   ],
   imports: [BrowserModule],
   providers: [],

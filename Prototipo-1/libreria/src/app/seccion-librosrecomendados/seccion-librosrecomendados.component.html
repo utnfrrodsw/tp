@@ -1,0 +1,22 @@
+<div class="libros-recomendados">
+  <h3>Libros recomendados</h3>
+  <div class="lista-libros">
+    <button class="boton-izquierda" (click)="moverIzquierda()">&#8592;</button>
+    <div class="lista-contenedor">
+      <ul class="elementos-lista">
+        <li
+          *ngFor="
+            let libro of libros.slice(
+              elementoActual,
+              elementoActual + elementosPorPaso
+            )
+          "
+          class="elemento-lista"
+        >
+          {{ libro }}
+        </li>
+      </ul>
+    </div>
+    <button class="boton-derecha" (click)="moverDerecha()">&#8594;</button>
+  </div>
+</div>

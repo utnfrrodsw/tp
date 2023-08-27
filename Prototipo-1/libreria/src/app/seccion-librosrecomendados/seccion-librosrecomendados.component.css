@@ -1,0 +1,64 @@
+.libros-recomendados {
+  text-align: center;
+  margin: 20px;
+}
+
+.lista-libros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boton-izquierda,
+.boton-derecha {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.lista-contenedor {
+  overflow: hidden;
+  margin: 0 20px;
+}
+
+.elementos-lista {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  width: max-content;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  white-space: nowrap; /* Evita que los elementos se dividan en múltiples líneas */
+}
+
+.elemento-lista {
+  flex: 0 0 calc(20% - 10px); /* Ajusta el tamaño de los elementos */
+  height: 300px;
+  width: 200px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+@media (max-width: 1000px) {
+  .elemento-lista {
+    flex-basis: calc(25% - 10px); /* 4 elementos por fila */
+  }
+}
+
+@media (max-width: 767px) {
+  .elemento-lista {
+    flex-basis: calc(33.33% - 10px); /* 3 elementos por fila */
+  }
+}
+
+@media (max-width: 619px) {
+  .elemento-lista {
+    flex-basis: calc(50% - 10px); /* 2 elementos por fila */
+  }
+}
