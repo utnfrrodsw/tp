@@ -81,6 +81,9 @@
   --bs-link-hover-color: #c34e2e;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
+  
+  /*NAVBAR*/
+  
 }
 
 *,
@@ -11402,3 +11405,4 @@ header.masthead .h1 {
 #portfolio .container-xxl .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
 }
+

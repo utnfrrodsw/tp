@@ -19,32 +19,32 @@ export class SeccionLibrosrecomendadosComponent {
       descripcion:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: '$3.500',
-      imagen: '../../../../assets/Libros/Clean Code.webp',
+      imagen: '../../../../assets/img/Libros/Clean Code.webp',
     },
     {
       titulo: 'Libro 2',
       descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: '$1.999',
       imagen:
-        '../../../../assets/Libros/Introducción a la Programación Estructurada en C.jpg',
+        '../../../../assets/img/Libros/Introducción a la Programación Estructurada en C.jpg',
     },
     {
       titulo: 'Libro 3',
       descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: '$8.599',
-      imagen: '../../../../assets/Libros/Learning Python.png',
+      imagen: '../../../../assets/img/Libros/Learning Python.png',
     },
     {
       titulo: 'Libro 4',
       descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: '$19.899',
-      imagen: '../../../../assets/Libros/Sistemas Operativos Modernos.webp',
+      imagen: '../../../../assets/img/Libros/Sistemas Operativos Modernos.webp',
     },
     {
       titulo: 'Libro 5',
       descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: '$5.099',
-      imagen: '../../../../assets/Libros/Design Patterns.jpg',
+      imagen: '../../../../assets/img/Libros/Design Patterns.jpg',
     },
   ];
   elementoActual = 0;

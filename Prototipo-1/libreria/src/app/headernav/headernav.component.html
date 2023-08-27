@@ -5,7 +5,7 @@
         <div>
           <a href="/">
             <img
-              src="../../assets/Logo.png"
+              src="../../assets/img/Logo.png"
               alt="Logo de la página web"
               class="logo"
           /></a>
@@ -20,13 +20,13 @@
         <div class="d-flex align-items-center">
           <a href="#">
             <img
-              src="../../assets/usuario.png"
+              src="../../assets/img/usuario.png"
               alt="Usuario"
               class="user-image"
           /></a>
           <a href="#"
             ><img
-              src="../../assets/carrito-de-compras.png"
+              src="../../assets/img/carrito-de-compras.png"
               alt="Carrito de compras"
               class="cart-shopping-image"
           /></a>
@@ -35,8 +35,8 @@
       </div>
     </div>
   </div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-light">
+    <div class="container-fluid">
       <ul class="navbar-nav-localidad">
         <li class="nav-item">
           <a class="nav-link" href="#">📫 Localidad</a>
@@ -45,15 +45,27 @@
       <button
         class="navbar-toggler"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#navbarOffcanvasLg"
+        aria-controls="navbarOffcanvasLg"
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div
+        class="offcanvas offcanvas-end bg-light"
+        tabindex="-1"
+        id="navbarOffcanvasLg"
+        aria-labelledby="navbarOffcanvasLgLabel"
+      >
+        <div class="offcanvas-header">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
         <ul class="navbar-nav ml-auto mx-auto">
           <li class="nav-item dropdown">
             <a
@@ -67,10 +79,42 @@
             >
               Categorías
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Categoría 1</a>
-              <a class="dropdown-item" href="#">Categoría 2</a>
-              <a class="dropdown-item" href="#">Categoría 3</a>
+            <div
+              class="dropdown-menu bg-light"
+              aria-labelledby="navbarDropdown"
+            >
+              <a class="dropdown-item" href="#">Ficción</a>
+              <a class="dropdown-item" href="#">No ficción</a>
+              <a class="dropdown-item" href="#"
+                >Literatura infantil y juvenil</a
+              >
+              <a class="dropdown-item" href="#">Educación y referencia</a>
+              <a class="dropdown-item" href="#">Ciencia y naturaleza</a>
+              <a class="dropdown-item" href="#">Religión y espiritualidad</a>
+              <a class="dropdown-item" href="#">Política y sociedad</a>
+              <a class="dropdown-item" href="#">Salud y bienestar</a>
+              <a class="dropdown-item" href="#">Negocios y finanzas</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Formatos
+            </a>
+            <div
+              class="dropdown-menu bg-light"
+              aria-labelledby="navbarDropdown"
+            >
+              <a class="dropdown-item" href="#">Físicos</a>
+              <a class="dropdown-item" href="#">Ebooks</a>
+              <a class="dropdown-item" href="#">Audiolibros</a>
             </div>
           </li>
           <li class="nav-item">
