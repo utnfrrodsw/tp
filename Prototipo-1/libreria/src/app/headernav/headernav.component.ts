@@ -7,9 +7,18 @@ import { Component, HostListener } from '@angular/core';
 })
 export class HeadernavComponent {
   headerScrolled = false;
+  isPopupOpen: boolean = false;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.headerScrolled = window.scrollY > 0;
+  }
+
+  openPopup() {
+    this.isPopupOpen = true;
+  }
+
+  closePopup() {
+    this.isPopupOpen = false;
   }
 }

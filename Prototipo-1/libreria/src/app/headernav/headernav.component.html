@@ -39,7 +39,7 @@
     <div class="container-fluid">
       <ul class="navbar-nav-localidad">
         <li class="nav-item">
-          <a class="nav-link" href="#">📫 Localidad</a>
+          <a class="nav-link" href="#" (click)="openPopup()">📫 Localidad</a>
         </li>
       </ul>
       <button
@@ -128,6 +128,46 @@
             <a class="nav-link" href="#">Ayuda</a>
           </li>
         </ul>
+      </div>
+    </div>
+    <div class="overlay" [ngClass]="{ active: isPopupOpen }"></div>
+    <!-- Popup Modal -->
+    <div
+      class="modal"
+      tabindex="-1"
+      role="dialog"
+      [ngClass]="{ 'd-block': isPopupOpen }"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header mx-5">
+            <h4 class="modal-title">Elegí dónde recibir tus compras</h4>
+            <button
+              type="button"
+              class="btn-close"
+              (click)="closePopup()"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body mx-5">
+            <p class="font-weight-bold">En una de tus direcciones</p>
+            <p>...</p>
+            <p class="font-weight-bold">En otra ubicación</p>
+            <p>...</p>
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+            <button type="button" class="btn btn-primary mx-5">
+              Guardar cambios
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary mx-5"
+              (click)="closePopup()"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
