@@ -1,10 +1,16 @@
 <div class="libros-recomendados">
   <h3>Libros recomendados</h3>
   <div class="lista-libros">
-    <button class="boton-izquierda" (click)="moverIzquierda()">&#8592;</button>
+    <button
+      class="boton-izquierda"
+      (click)="moverIzquierda()"
+      [class.disabled]="elementosAlInicio"
+    >
+      &#8592;
+    </button>
     <div class="lista-contenedor">
-      <ul class="elementos-lista">
-        <li
+      <div class="elementos-lista">
+        <div
           *ngFor="
             let libro of libros.slice(
               elementoActual,
@@ -13,21 +19,33 @@
           "
           class="elemento-lista"
         >
-          <div class="libro">
-            <div><img src="{{ libro.imagen }}" alt="Portada del libro" /></div>
-            <p class="precio">{{ libro.precio }}</p>
-            <p class="descripcion">
-              {{
-                libro.descripcion.length > descripcionMaxLength
-                  ? (libro.descripcion | slice : 0 : descripcionMaxLength) +
-                    "..."
-                  : libro.descripcion
-              }}
-            </p>
+          <div class="libro card">
+            <img
+              src="{{ libro.imagen }}"
+              alt="Portada del libro"
+              class="card-img-top tarjeta-imagen"
+            />
+            <div class="card-body">
+              <p class="card-text precio">{{ libro.precio }}</p>
+              <p class="card-text descripcion">
+                {{
+                  libro.descripcion.length > descripcionMaxLength
+                    ? (libro.descripcion | slice : 0 : descripcionMaxLength) +
+                      "..."
+                    : libro.descripcion
+                }}
+              </p>
+            </div>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
-    <button class="boton-derecha" (click)="moverDerecha()">&#8594;</button>
+    <button
+      class="boton-derecha"
+      (click)="moverDerecha()"
+      [class.disabled]="elementosAlFinal"
+    >
+      &#8594;
+    </button>
   </div>
 </div>

@@ -81,9 +81,8 @@
   --bs-link-hover-color: #c34e2e;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
-  
+
   /*NAVBAR*/
-  
 }
 
 *,
@@ -616,10 +615,10 @@ progress {
 .list-unstyled li a {
   text-decoration: none;
   color: #7c7c7c;
-  transition: color 0.3s ease;
+  transition: font-weight 0.3s ease;
 }
 .list-unstyled li a:hover {
-  color: #0c8ce9;
+  font-weight: 700;
 }
 
 .list-inline {
@@ -11405,4 +11404,3 @@ header.masthead .h1 {
 #portfolio .container-xxl .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
 }
-

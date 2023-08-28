@@ -35,8 +35,6 @@
 
 .elemento-lista {
   flex: 0 0 calc(20% - 10px); /* Ajusta el tamaño de los elementos */
-  height: 300px;
-  width: 200px;
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;
@@ -69,15 +67,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
   background-color: #f0f0f0;
   border-radius: 5px;
-}
-
-.libro img {
-  max-width: 60%;
-  height: auto;
-  margin-bottom: 10px;
 }
 
 .descripcion {
@@ -90,4 +81,9 @@
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 0;
+}
+
+.disabled {
+  color: #c0c0c0; /* Cambia el color a gris claro */
+  cursor: not-allowed; /* Cambia el cursor a 'no permitido' */
 }

@@ -13,6 +13,8 @@ interface Libro {
   styleUrls: ['./seccion-librosrecomendados.component.css'],
 })
 export class SeccionLibrosrecomendadosComponent {
+  elementosAlInicio: boolean = false;
+  elementosAlFinal: boolean = false;
   libros: Libro[] = [
     {
       titulo: 'Libro 1',
@@ -55,12 +57,17 @@ export class SeccionLibrosrecomendadosComponent {
     if (this.elementoActual > 0) {
       this.elementoActual -= this.elementosPorPaso;
     }
+    this.elementosAlFinal = false;
+    this.elementosAlInicio = this.elementoActual === 0;
   }
 
   moverDerecha() {
     if (this.elementoActual < this.libros.length - this.elementosPorPaso) {
       this.elementoActual += this.elementosPorPaso;
     }
+    this.elementosAlInicio = false;
+    this.elementosAlFinal =
+      this.elementoActual + this.elementosPorPaso >= this.libros.length;
   }
 
   @HostListener('window:resize', ['$event'])
