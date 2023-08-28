@@ -15,27 +15,30 @@
             let libro of libros.slice(
               elementoActual,
               elementoActual + elementosPorPaso
-            )
+            );
+            let i = index
           "
-          class="elemento-lista"
+          class="elemento-lista elemento-animado animacion-tarjeta"
         >
           <div class="libro card">
-            <img
-              src="{{ libro.imagen }}"
-              alt="Portada del libro"
-              class="card-img-top tarjeta-imagen"
-            />
-            <div class="card-body">
-              <p class="card-text precio">{{ libro.precio }}</p>
-              <p class="card-text descripcion">
-                {{
-                  libro.descripcion.length > descripcionMaxLength
-                    ? (libro.descripcion | slice : 0 : descripcionMaxLength) +
-                      "..."
-                    : libro.descripcion
-                }}
-              </p>
-            </div>
+            <a href="#" class="text-decoration-none">
+              <img
+                src="{{ libro.imagen }}"
+                alt="Portada del libro"
+                class="card-img-top tarjeta-imagen"
+              />
+              <div class="card-body">
+                <p class="card-text precio">{{ libro.precio }}</p>
+                <p class="card-text descripcion">
+                  {{
+                    libro.descripcion.length > descripcionMaxLength
+                      ? (libro.descripcion | slice : 0 : descripcionMaxLength) +
+                        "..."
+                      : libro.descripcion
+                  }}
+                </p>
+              </div></a
+            >
           </div>
         </div>
       </div>

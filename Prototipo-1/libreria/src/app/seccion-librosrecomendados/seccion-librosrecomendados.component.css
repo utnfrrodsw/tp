@@ -87,3 +87,25 @@
   color: #c0c0c0; /* Cambia el color a gris claro */
   cursor: not-allowed; /* Cambia el cursor a 'no permitido' */
 }
+
+/* Estilo para los enlaces dentro de las tarjetas */
+.libro a {
+  color: inherit; /* Hereda el color del texto circundante */
+}
+
+/* Clase para la animación */
+.animacion-tarjeta {
+  animation: scaleIn 0.5s forwards;
+  transform-origin: center center; /* Establecer el punto de transformación en el centro */
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0); /* Comienza con un tamaño de escala de cero */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1); /* Termina con el tamaño de escala normal (1) */
+  }
+}
