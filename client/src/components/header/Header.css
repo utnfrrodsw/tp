@@ -1,5 +1,6 @@
 /* Estilos para el encabezado */
 .header-content {
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,7 +11,7 @@
   
   /* Estilos para el logo */
 .logo-content {
-    font-size: 24px;
+    font-size: 15px;
 }
 
 .logo-content a {
@@ -19,11 +20,11 @@
 }
 
 .userlogo {
-    width: 50px;
+    width: 30px;
 } 
 
 .notifylogo {
-    width: 40px;
+    width: 30px;
 }
 
 /* Estilos para el título */
@@ -66,6 +67,32 @@ font-weight: bold;
     margin: 10px 0;
     padding: 10px;
 }
+}
+
+nav {
+    text-align: center; /* Centrar el contenido horizontalmente */
+  }
+  
+  nav ul {
+    list-style: none; /* Quitar los puntos de la lista */
+    padding: 0; /* Eliminar el relleno por defecto */
+  }
+  
+  nav li {
+    display: block; /* Hacer que los elementos sean bloques para que estén uno debajo del otro */
+    margin-bottom: 10px; /* Agregar espacio entre los elementos */
+  }
+  
+nav a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+nav a.is-active {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    pointer-events: none;
 }
   
   

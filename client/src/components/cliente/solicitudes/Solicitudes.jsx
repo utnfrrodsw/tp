@@ -33,14 +33,16 @@ function Solicitudes(props) {
 
     return (
         <div className="solicitudes-container">
-            {SolicitudesPagina.map((especialidad, index) => (
-            <Solicitud 
-                key={index} 
-                nombre={especialidad.nombre}
-                estado={especialidad.estado}
-                precio={especialidad.precio}
-            />
-            ))}
+            <div>
+                {SolicitudesPagina.map((especialidad, index) => (
+                <Solicitud 
+                    key={index} 
+                    nombre={especialidad.nombre}
+                    estado={especialidad.estado}
+                    precio={especialidad.precio}
+                />
+                ))}
+            </div>
             <div className="pagination">
                 <button onClick={irAtras} disabled={paginaActual === 1}>Atrás</button>
                 <span>{paginaActual} / {totalPaginas}</span>

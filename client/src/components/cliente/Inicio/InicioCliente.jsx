@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
 import { Button } from 'react-bootstrap';
 import './InicioCliente.css';
-import Header from '../../header/Header.jsx';
 import { Link, Outlet } from 'react-router-dom';
 
 
@@ -14,14 +13,13 @@ function InicioCliente() {
 
     return (
         <div className='inicio-cliente-container'>
-            <Header />
             <div>
-            <nav className="navigation">
-                <div className="links">
-                    <Link to="/client/home/requests/:id" className="link">Solicitudes</Link>
-                    <Link to="/client/home/finished/:id" className="link">Terminados</Link>
-                </div>
-            </nav>
+                <nav className="navigation">
+                    <div className="links">
+                        <Link to="requests" className="link">Solicitudes</Link>
+                        <Link to="finished" className="link">Terminados</Link>
+                    </div>
+                </nav>
                 <Outlet/>
             </div>
 
@@ -31,8 +29,6 @@ function InicioCliente() {
                     <div className="menu-option">Nueva Solicitud</div>
                 </div>
             )}
-
-
         </div>
     );
 }

@@ -1,35 +1,17 @@
 import React /*, {useEffect, useState}*/ from 'react';
 
 import Home from './components/home/Home.jsx';
+import Header from './components/header/Header.jsx';
 import InicioCliente from './components/cliente/Inicio/InicioCliente.jsx';
 import Error from './components/error/Error.jsx';
 import Solicitudes from './components/cliente/solicitudes/Solicitudes.jsx';
+import Evaluaciones from './components/evaluaciones/Evaluaciones.js';
+import Footer from './components/footer/Footer.jsx';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home/>,
-    errorElement: <Error/>
-  },
-  {
-    path: '/client/home',
-    element: <InicioCliente />,
-    children: [ 
-      {
-      path: 'requests/:id',
-      element: <Solicitudes estado = "pendiente"/>
-      },
-      {
-        path: 'finished/:id',
-        element: <Solicitudes estado = "termiado"/>
-        },
-    ]
-  },
-]);
 
 function App() {
 
@@ -52,7 +34,19 @@ function App() {
 
   return (
     <div className="App">
-      <RouterProvider router={router}/>
+      <div className='content'>
+        <Header/>
+        <Routes>
+          <Route path='/'  element={ <Home/>} />
+          <Route path='/client/home'  element={ <InicioCliente/>}>
+            <Route path='requests'  element={ <Solicitudes estado = "pendiente"/>} />
+            <Route path='finished'  element={ <Solicitudes estado = "terminado"/>} />
+          </Route>
+          <Route path='/evaluations'  element={ <Evaluaciones/>} />
+          <Route path='*'  element={ <Error/>} />
+        </Routes>
+      </div>
+      <Footer/>
     </div>
   );
 }

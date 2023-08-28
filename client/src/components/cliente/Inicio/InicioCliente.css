@@ -1,59 +1,61 @@
 .inicio-cliente-container {
-    position: relative;
-    /* Estilos para el contenido de tu aplicación */
+  position: relative;
+  height: 60vh;
 }
-
+ 
 .floating-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 24px;
-    background-color: #4F709C; /* Color de fondo */
-    color: white; /* Color del texto */
-    border: none;
-    cursor: pointer;
+  position: fixed;
+  bottom: 110px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  background-color: #376126; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none;
+  cursor: pointer;
+  border: 2px solid #ffffff; /* Borde del botón */
 }
 
 .navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #213555;
-  }
-  
-  .links {
-    display: flex;
-  }
-  
-  .link {
-    margin-right: 20px; /* Agrega un margen a la derecha para la separación */
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .link:hover {
-    color: #4F709C; /* Cambia el color al pasar el cursor */
-  }
-  
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #213555;
+}
+
+.links {
+  display: flex;
+}
+
+.link {
+  margin-right: 20px; /* Agrega un margen a la derecha para la separación */
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease-in-out;
+}
+
+.link:hover {
+  color: #4F709C; /* Cambia el color al pasar el cursor */
+}
+
 
 .menu {
-    position: fixed;
-    margin: 10px;
-    bottom: 70px; /* Ajusta la posición vertical del menú */
-    right: 10px;
-    background-color: #4F709C; /* Color de fondo del menú */
-    color: white; /* Color del texto del menú */
-    border-radius: 5px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    transition: bottom 0.3s ease-in-out; /* Agrega una transición suave */
+  position: fixed;
+  margin: 10px;
+  bottom: 160px;
+  right: 15px;
+  background-color: #376126; /* Color de fondo */
+  color: white; /* Color del texto del menú */
+  border-radius: 5px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  transition: bottom 0.3s ease-in-out; /* Agrega una transición suave */
 }
 
 .menu-option {
@@ -62,31 +64,31 @@
 }
 
 .menu-option:hover {
-    background-color: #213555; /* Color de fondo al pasar el cursor */
+  background-color: #383838; /* Color de fondo */
 }
 
 
 .pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
   
-  .pagination button {
-    background-color: #4F709C;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin: 0 5px;
-    cursor: pointer;
-  }
-  
-  .pagination button:hover {
-    background-color: #213555;
-  }
-  
-  .pagination span {
-    font-size: 14px;
-    margin: 0 10px;
-  }
+.pagination button {
+  background-color: #4F709C;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #757474; /* Color de fondo */
+}
+
+.pagination span {
+  font-size: 14px;
+  margin: 0 10px;
+}
