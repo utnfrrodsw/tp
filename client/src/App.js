@@ -5,7 +5,7 @@ import Header from './components/header/Header.jsx';
 import InicioCliente from './components/cliente/Inicio/InicioCliente.jsx';
 import Error from './components/error/Error.jsx';
 import Solicitudes from './components/cliente/solicitudes/Solicitudes.jsx';
-import Evaluaciones from './components/evaluaciones/Evaluaciones.js';
+import Evaluaciones from './components/evaluaciones/Evaluaciones.jsx';
 import Footer from './components/footer/Footer.jsx';
 
 

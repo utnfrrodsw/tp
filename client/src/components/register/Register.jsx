@@ -8,6 +8,7 @@ const Register = () => {
   const [contrasena, setContrasena] = useState('');
 
   const handleRegistro = () => {
+    
     const nuevoUsuario = {
       nombre,
       email,
