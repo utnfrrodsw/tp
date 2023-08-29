@@ -1,3 +1,5 @@
+![MasterHead](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Project%20Management.jpg)
+
 # 🗃️ Gestión del Proyecto
 
 - **Enlace al proyecto:** www.github.com/users/MVRU/projects/1
@@ -11,30 +13,30 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
 <details>
  <summary><h3>Prácticas de Scrum implementadas</h3></summary>
 
-  1. El flujo de trabajo se dividirá en diferentes iteraciones ("sprints" en terminología Scrum) que serán reflejadas en GitHub como "Milestones" o hitos. **<sup>[1]</sup>**
+1. El flujo de trabajo se dividirá en diferentes iteraciones ("sprints" en terminología Scrum) que serán reflejadas en GitHub como "Milestones" o hitos. **<sup>[1]</sup>**
 
-  2. Al final de cada sprint, se llevará a cabo una reunión virtual por Discord para revisar el trabajo realizado, si se está conforme con el mismo, se planea el siguiente sprint (una mezcla de **Sprint Review** y **Sprint Planning**). **<sup>[2]</sup>**
+2. Al final de cada sprint, se llevará a cabo una reunión virtual por Discord para revisar el trabajo realizado, si se está conforme con el mismo, se planea el siguiente sprint (una mezcla de **Sprint Review** y **Sprint Planning**). **<sup>[2]</sup>**
 
-  3. Cuando se finaliza un sprint, se limpia el tablero y se iniciará un nuevo sprint.
+3. Cuando se finaliza un sprint, se limpia el tablero y se iniciará un nuevo sprint.
 
-  4. No se pueden añadir nuevas tareas/spikes en el Sprint Backlog en medio de una iteración.
+4. No se pueden añadir nuevas tareas/spikes en el Sprint Backlog en medio de una iteración.
 
-  5. Se incorporó una tabla específica para pilas de producto (o Product Backlog) que se trata de una lista de elementos que se desea completar en futuros sprints. Es decir, no se trabajará en estos en la iteración actual.
+5. Se incorporó una tabla específica para pilas de producto (o Product Backlog) que se trata de una lista de elementos que se desea completar en futuros sprints. Es decir, no se trabajará en estos en la iteración actual.
 
-  6. Si se desea incorporar un elemento del Product Backlog al sprint actual, se agregará en la columna Sprint Backlog, donde se recopilarían la lista de tareas/spikes pendientes a abordar durante el sprint actual.
+6. Si se desea incorporar un elemento del Product Backlog al sprint actual, se agregará en la columna Sprint Backlog, donde se recopilarían la lista de tareas/spikes pendientes a abordar durante el sprint actual.
 
-  7. Cada elemento del Sprint Backlog tendrá una prioridad y un tamaño. Además, estará conformado por microtareas para obtener mayor claridad, distribuir la carga de trabajo de manera más equitativa y evitar la sensación de abrumación.</details>
+7. Cada elemento del Sprint Backlog tendrá una prioridad y un tamaño. Además, estará conformado por microtareas para obtener mayor claridad, distribuir la carga de trabajo de manera más equitativa y evitar la sensación de abrumación.</details>
 
 <details>
  <summary><h3>Prácticas de Kanban implementadas</h3></summary>
 
-  1. En el estado de **"En proceso"**, no podrán haber más de 2 tareas/spikes al mismo tiempo (_límite del WIP directa por estado_).
+1. En el estado de **"En proceso"**, no podrán haber más de 2 tareas/spikes al mismo tiempo (_límite del WIP directa por estado_).
 
-  2. No habrán roles prescritos (una práctica de Scrum).
+2. No habrán roles prescritos (una práctica de Scrum).
 
-  3. Los elementos del Sprint Backlog no tendrán un nombre o estructura predefinida, como en el caso de Scrum que suelen usarse Historias de Usuario (User Stories).
+3. Los elementos del Sprint Backlog no tendrán un nombre o estructura predefinida, como en el caso de Scrum que suelen usarse Historias de Usuario (User Stories).
 
-  4. Cada elemento del Sprint Backlog (task/spike) será incorporado en el Tablero Kanban como una tarjeta.</details>
+4. Cada elemento del Sprint Backlog (task/spike) será incorporado en el Tablero Kanban como una tarjeta.</details>
 
 > **[1]** No habrá tiempo fijo en las iteraciones, **solo fechas tentativas**. Idealmente, no durarán más de 4 semanas.
 >
@@ -52,12 +54,12 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
 <details>
  <summary><b>2. Definición del Sprint Actual.</b></summary>
 
- - Se definen las tareas/spikes que serán abordadas en el sprint.
-   ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/1d43a7cc-948f-44a2-920d-9da7a6b0b868)
-   - Los elementos del sprint backlog (tareas/spikes) serán añadidos como "issues" de Github.
-   - Cada elemento tendrá su prioridad, tamaño y actividades para completarla.
-   ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/c10e827d-26e6-4df9-bb22-9a98a96c4c56)
-</details>
+- Se definen las tareas/spikes que serán abordadas en el sprint.
+  ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/1d43a7cc-948f-44a2-920d-9da7a6b0b868)
+  - Los elementos del sprint backlog (tareas/spikes) serán añadidos como "issues" de Github.
+  - Cada elemento tendrá su prioridad, tamaño y actividades para completarla.
+  ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/c10e827d-26e6-4df9-bb22-9a98a96c4c56)
+  </details>
 
 <details>
  <summary><b>3. Proceso del Sprint.</b></summary>
@@ -81,10 +83,10 @@ Para la gestión del proyecto utilizamos una combinación de las herramientas de
 <details>
  <summary><b>5. Product Backlog.</b></summary>
 
- - En cualquier momento, cuando se desee añadir una tarea/spike para abordar en futuras iteraciones/sprints, se pueden añadir elementos a la tabla "Product Backlog".
-    ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/7b84edc1-c49b-4446-b917-6ff839c3c9a6)
-    - Estos elementos no tienen un sprint asignado y es útil para registrar tareas/spikes que necesitamos completar más adelante y tememos olvidar.
-    - Además, puede facilitar la tarea de planificar próximos sprints ya que, durante las reuniones, debería analizarse si alguno de los elementos del product backlog podría incluirse al próximo sprint.</details>
+- En cualquier momento, cuando se desee añadir una tarea/spike para abordar en futuras iteraciones/sprints, se pueden añadir elementos a la tabla "Product Backlog".
+  ![image](https://github.com/AlejoRetamal/TP-DdeS/assets/92191306/7b84edc1-c49b-4446-b917-6ff839c3c9a6)
+  - Estos elementos no tienen un sprint asignado y es útil para registrar tareas/spikes que necesitamos completar más adelante y tememos olvidar.
+  - Además, puede facilitar la tarea de planificar próximos sprints ya que, durante las reuniones, debería analizarse si alguno de los elementos del product backlog podría incluirse al próximo sprint.</details>
 
 ## 🎯 Sprints del Proyecto
 

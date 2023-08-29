@@ -1,15 +1,15 @@
-![MasterHead](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Meeting.jpg)
+![MasterHead](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Meeting.jpg)
 
 # 📅 Minuta de Reunión y Avances #1
 
 - **Fecha:** 13/08/2023
 - **Tareas terminadas:**
-  1. https://github.com/MVRU/MVRU/issues/2
+  1. [Elaborar prototipos](https://github.com/MVRU/MVRU/issues/2)
 - **Asistentes:**
   - `Retamal, Alejo`
   - `Martel, Marco Antonio`
+  - `Fernández, Santiago Jesús`
   - `Milo, Marina Ana`
-  - `Fernandez, Santiago Jesus`
 
 <details>
  <summary><h2>📝 Agenda</h2></summary>
@@ -58,32 +58,32 @@ Se discutieron las tareas pendientes a realizar en el proyecto para terminar el 
 <details>
  <summary><h2>📎 Adjuntos</h2></summary>
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0001.jpg" width="450px" alt="Imagen 1 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0001.jpg" width="450px" alt="Imagen 1 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0002.jpg" width="450px" alt="Imagen 2 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0002.jpg" width="450px" alt="Imagen 2 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0003.jpg" width="450px" alt="Imagen 3 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0003.jpg" width="450px" alt="Imagen 3 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0004.jpg" width="450px" alt="Imagen 4 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0004.jpg" width="450px" alt="Imagen 4 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0005.jpg" width="450px" alt="Imagen 5 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0005.jpg" width="450px" alt="Imagen 5 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0006.jpg" width="450px" alt="Imagen 6 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0006.jpg" width="450px" alt="Imagen 6 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0007.jpg" width="450px" alt="Imagen 7 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0007.jpg" width="450px" alt="Imagen 7 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0008.jpg" width="450px" alt="Imagen 8 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0008.jpg" width="450px" alt="Imagen 8 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0009.jpg" width="450px" alt="Imagen 9 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0009.jpg" width="450px" alt="Imagen 9 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0010.jpg" width="450px" alt="Imagen 10 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0010.jpg" width="450px" alt="Imagen 10 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0011.jpg" width="450px" alt="Imagen 11 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0011.jpg" width="450px" alt="Imagen 11 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0012.jpg" width="450px" alt="Imagen 12 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0012.jpg" width="450px" alt="Imagen 12 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0013.jpg" width="450px" alt="Imagen 13 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0013.jpg" width="450px" alt="Imagen 13 del Prototipo">
 
-<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0014.jpg" width="450px" alt="Imagen 14 del Prototipo">
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Prototipo%201/Prototipo%20%231_page-0014.jpg" width="450px" alt="Imagen 14 del Prototipo">
 
 </details>

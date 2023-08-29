@@ -1,3 +1,5 @@
+![MasterHead](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Features.jpg)
+
 # 🗃️ Tracking de Features, Bugs e Issues
 
 En este espacio, encontrarás enlaces con el seguimiento de las [features](#features), [bugs](#bugs) e [issues](#issues) relacionados con el proyecto de software.

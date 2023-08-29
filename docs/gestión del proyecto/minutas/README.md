@@ -1,3 +1,5 @@
+![MasterHead](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/adjuntos/img/Meeting.jpg)
+
 # 📅 Minutas de Reunión y Avances
 
 En este espacio, encontrará enlaces a las minutas de reunión y avances realizados en el desarrollo del proyecto.
