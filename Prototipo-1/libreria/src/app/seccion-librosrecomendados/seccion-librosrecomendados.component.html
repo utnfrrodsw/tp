@@ -1,15 +1,15 @@
 <div class="libros-recomendados">
-  <h3>Libros recomendados</h3>
+  <h3 class="mt-5 mb-4">Libros recomendados</h3>
   <div class="lista-libros">
     <button
-      class="boton-izquierda"
+      class="boton-izquierda boton-moderno"
       (click)="moverIzquierda()"
       [class.disabled]="elementosAlInicio"
     >
-      &#8592;
+      &lt;
     </button>
     <div class="lista-contenedor">
-      <div class="elementos-lista">
+      <div class="elementos-lista p-4">
         <div
           *ngFor="
             let libro of libros.slice(
@@ -18,7 +18,7 @@
             );
             let i = index
           "
-          class="elemento-lista elemento-animado animacion-tarjeta"
+          class="elemento-lista elemento-animado animacion-tarjeta hover-grow"
         >
           <div class="libro card">
             <a href="#" class="text-decoration-none">
@@ -44,11 +44,11 @@
       </div>
     </div>
     <button
-      class="boton-derecha"
+      class="boton-derecha boton-moderno"
       (click)="moverDerecha()"
       [class.disabled]="elementosAlFinal"
     >
-      &#8594;
+      &gt;
     </button>
   </div>
 </div>

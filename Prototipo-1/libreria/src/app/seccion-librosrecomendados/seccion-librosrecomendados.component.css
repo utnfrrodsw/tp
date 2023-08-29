@@ -11,10 +11,10 @@
 
 .boton-izquierda,
 .boton-derecha {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
+  background: none !important;
+  border: none !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
 }
 
 .lista-contenedor {
@@ -83,11 +83,6 @@
   margin-bottom: 0;
 }
 
-.disabled {
-  color: #c0c0c0; /* Cambia el color a gris claro */
-  cursor: not-allowed; /* Cambia el cursor a 'no permitido' */
-}
-
 /* Estilo para los enlaces dentro de las tarjetas */
 .libro a {
   color: inherit; /* Hereda el color del texto circundante */
@@ -108,4 +103,33 @@
     opacity: 1;
     transform: scale(1); /* Termina con el tamaño de escala normal (1) */
   }
+}
+
+.hover-grow {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; /* Duración más larga y función de temporización ajustada */
+}
+
+.hover-grow:hover {
+  transform: scale(
+    1.1
+  ) !important; /* Cambiamos el valor de escala para un efecto de agrandamiento más sutil */
+}
+
+/* Estilos para los botones modernos */
+.boton-moderno {
+  color: black !important;
+  border: none !important;
+  font-size: 30px !important;
+
+  cursor: pointer !important;
+  transition: 0.3s !important;
+}
+
+.boton-moderno:hover {
+  transform: scale(1.3) !important; /* Aumento de tamaño al hacer hover */
+}
+
+.disabled {
+  color: #c0c0c0 !important; /* Cambia el color a gris claro */
+  cursor: not-allowed !important; /* Cambia el cursor a 'no permitido' */
 }

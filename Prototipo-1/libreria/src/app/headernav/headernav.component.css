@@ -17,6 +17,25 @@
   /* Estilo para el navbar cuando se hace scroll */
   background-color: rgba(255, 255, 255, 0.9);
 }
+.header {
+  /* Transición para el header */
+  transition: background-color 1s ease;
+}
+
+.navbar {
+  /* Transición para el navbar */
+  transition: background-color 1s ease;
+}
+
+.header.scrolled {
+  /* Estilo para el header cuando se hace scroll */
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.navbar.scrolled {
+  /* Estilo para el navbar cuando se hace scroll */
+  background-color: rgba(255, 255, 255, 0.9);
+}
 /* Estilos para el fondo oscurecido */
 .overlay {
   position: fixed;
