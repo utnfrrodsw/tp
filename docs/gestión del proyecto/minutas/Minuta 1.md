@@ -3,21 +3,31 @@
 - **Fecha:** 13/08/2023
 - **Tareas terminadas:**
   1. https://github.com/MVRU/MVRU/issues/2
+- **Asistentes:**
+  - `Retamal, Alejo`
+  - `Martel, Marco Antonio`
+  - `Milo, Marina Ana`
+  - `Fernandez, Santiago Jesus`
 
-## 📝 Agenda
+<details>
+ <summary><h2>📝 Agenda</h2></summary>
 
-1. Repaso de los objetivos del proyecto.
-2. Revisión a las referencias de diseño.
-3. Avances en los prototipos.
-4. [Selección de prototipo](https://www.figma.com/file/KHMyiGnpBRpuNDgAoIPm3C/Prototipo-%231?type=design&mode=design&t=EzXiavVENpFcSfUg-1).
-5. Contemplar posibles mejoras en el prototipo seleccionado.
-6. Planificación de próximas tareas.
+1. **Apertura de la Reunión.**
+   - Se realiza un breve repaso de los objetivos de la reunión.
+   - Revisión a las referencias de diseño adjuntadas.
+2. **[Selección del prototipo](https://www.figma.com/file/KHMyiGnpBRpuNDgAoIPm3C/Prototipo-%231?type=design&mode=design&t=EzXiavVENpFcSfUg-1)**.
+   - Presentación de avances en los prototipos.
+   - Selección del prototipo a implementar.
+   - Contemplar posibles mejoras en el prototipo escogido.
+3. **Planificación de próximas tareas**.
+   - Se discuten las siguientes tareas pendientes para completar el [Sprint #1](https://github.com/MVRU/MVRU/milestone/1).</details>
 
-## Resumen
+## 📄 Resumen
 
-En la reunión llevada a cabo el 13 de agosto de 2023, se abordaron diversos aspectos relacionados con el prototipo y el diseño básico del sitio web (Sprint #1). A continuación, se presentan los avances y decisiones clave discutidas durante la reunión:
+En la reunión llevada a cabo el 13 de agosto de 2023, se abordaron diversos aspectos relacionados con el **Prototipo y el Diseño Básico del Sitio Web** **([Sprint #1](https://github.com/MVRU/MVRU/milestone/1))**. A continuación, se presentan los avances y decisiones clave discutidas durante la misma:
 
-## Avances en el Desarrollo de la Página Web
+<details>
+ <summary><h2>🌐 Avances en el Desarrollo de la Página Web</h2></summary>
 
 ### 1. Repaso de los Objetivos del Proyecto
 
@@ -41,4 +51,10 @@ Se discutieron posibles mejoras que podrían implementarse en el prototipo selec
 
 ### 6. Planificación de Próximas Tareas
 
-Se planificaron las próximas tareas a realizar en el proyecto. Esto incluye el diseño de la estructura de navegación y el desarrollo front-end del prototipo.
+Se discutieron las tareas pendientes a realizar en el proyecto para terminar el Sprint Actual. Esto incluye el diseño de la estructura de navegación y el desarrollo front-end del prototipo.</details>
+
+## 📎 Adjuntos
+
+![Imagen 1 del Prototipo](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0001.jpg)
+
+![Imagen 2 del Prototipo](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0002.jpg)
