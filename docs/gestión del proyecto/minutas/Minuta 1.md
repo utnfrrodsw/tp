@@ -53,8 +53,11 @@ Se discutieron posibles mejoras que podrían implementarse en el prototipo selec
 
 Se discutieron las tareas pendientes a realizar en el proyecto para terminar el Sprint Actual. Esto incluye el diseño de la estructura de navegación y el desarrollo front-end del prototipo.</details>
 
-## 📎 Adjuntos
+<details>
+ <summary><h2>📎 Adjuntos</h2></summary>
 
-![Imagen 1 del Prototipo](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0001.jpg)
+<img src="https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0001.jpg" width="500px">
 
 ![Imagen 2 del Prototipo](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/adjuntos/Prototipo%201/Prototipo%20%231_page-0002.jpg)
+
+</details>
