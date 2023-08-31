@@ -1,12 +1,12 @@
 import React /*, {useEffect, useState}*/ from 'react';
 
-import Home from './components/home/Home.jsx';
-import Header from './components/header/Header.jsx';
 import InicioCliente from './components/cliente/Inicio/InicioCliente.jsx';
-import Error from './components/error/Error.jsx';
 import Solicitudes from './components/cliente/solicitudes/Solicitudes.jsx';
+import Error from './components/error/Error.jsx';
 import Evaluaciones from './components/evaluaciones/Evaluaciones.jsx';
 import Footer from './components/footer/Footer.jsx';
+import Header from './components/header/Header.jsx';
+import Home from './components/home/Home.jsx';
 
 
 import { Route, Routes } from 'react-router-dom';
