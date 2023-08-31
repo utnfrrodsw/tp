@@ -1,16 +1,36 @@
 import React /*, {useEffect, useState}*/ from 'react';
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
 
-import Login from './components/auth/Login.jsx'; // Asegúrate de importar correctamente
-import Register from './components/auth/Register.jsx'; // Asegúrate de importar correctamente
+import InicioCliente from './components/cliente/Inicio/InicioCliente.jsx';
+import Solicitudes from './components/cliente/solicitudes/Solicitudes.jsx';
 import Error from './components/error/Error.jsx';
+import Evaluaciones from './components/evaluaciones/Evaluaciones.jsx';
 import Footer from './components/footer/Footer.jsx';
 import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
 
+
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+
+
 function App() {
-  /* ... */
+
+  /*const [backendData, setBackendData] = useState([{}]);
+  
+  useEffect(() => {
+    fetch("http://localhost:5000/api/tasks")
+      .then(
+        response => response.json()
+      )
+      .then(
+        data => {
+          setBackendData(data)
+        })
+      .catch(
+        error => {
+        console.error('Error al obtener los datos:', error);
+      });
+  }, []);*/
 
   return (
     <div className="App">
@@ -18,9 +38,11 @@ function App() {
         <Header/>
         <Routes>
           <Route path='/'  element={ <Home/>} />
-          {/* ...otras rutas existentes ... */}
-          <Route path='/login' element={<Login />} /> {/* Ruta para iniciar sesión */}
-          <Route path='/register' element={<Register />} /> {/* Ruta para registrarse */}
+          <Route path='/client/home'  element={ <InicioCliente/>}>
+            <Route path='requests'  element={ <Solicitudes estado = "pendiente"/>} />
+            <Route path='finished'  element={ <Solicitudes estado = "terminado"/>} />
+          </Route>
+          <Route path='/evaluations'  element={ <Evaluaciones/>} />
           <Route path='*'  element={ <Error/>} />
         </Routes>
       </div>
@@ -30,4 +52,3 @@ function App() {
 }
 
 export default App;
-
