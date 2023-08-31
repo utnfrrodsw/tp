@@ -1,0 +1,26 @@
+.separator-container {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  flex-direction: column;
+}
+
+.separator {
+  width: 90%;
+  height: 1px;
+  background-color: #b9b9b9;
+  margin-bottom: 2.5rem;
+}
+
+.footer-text {
+  color: #292929;
+  text-align: center;
+}
+
+.footer-snd-text {
+  color: #7c7c7c;
+}
+
+h5 {
+  margin-bottom: 1.5rem;
+}
