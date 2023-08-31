@@ -5,6 +5,7 @@
 - **Enlace al proyecto:** www.github.com/users/MVRU/projects/1
 - [Minutas de Reunión y Avances](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/minutas/README.md)
 - [Tracking de Features, Bugs e Issues](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/tracking/README.md)
+- [Reglas de trabajo](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/reglas/README.md)
 
 ## 🔰 Metodologías Utilizadas
 
