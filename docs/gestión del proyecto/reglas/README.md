@@ -35,8 +35,8 @@ Este documento establece las reglas y convenciones de codificación que deben se
 -   Cada cambio de código debe estar vinculado a un issue o tarea en el sistema de seguimiento.
 -   Usar ramas separadas para nuevas características o correcciones de errores. 
 -   Realizar un code review sobre los cambios realizados en el código entre los miembros del equipo para mantener la calidad del mismo.
--  Cada commit realizado deberá ser del tipo **#<id\> - <título> - <descripción>**. Para bugs o issues, el ID será según el bug tracker o se decide por el equipo. Si se trata de mantenimiento, usar **#00000 - <título> - <descripción>**.
--  Ponerse de acuerdo con el equipo para realizar usar Merge de Git con el fin de causar estragos en el código.
+-  Cada commit realizado deberá ser del tipo **#<id\> - <título> - <descripción>**. Para bugs o issues, el ID será según el bug tracker o se decide con el equipo. Si se trata de mantenimiento, usar **#00000 - <título> - <descripción>**.
+-  Ponerse de acuerdo con el equipo para usar Merge de Git con el fin de no causar estragos en el código.
 
 ## 6. Pruebas Unitarias y Automatización
 
