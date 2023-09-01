@@ -1,63 +1,66 @@
+/* Evaluaciones.css */
+
+@import url('../Variables.css');
+
 .evaluaciones-container {
-    padding: 20px;
-  }
-  
-  .evaluaciones-title {
-    color: #213555;
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-  
-  .evaluacion-card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    background-color: #F5EFE7;
-    padding: 20px;
-  }
-  
-  .evaluacion-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .evaluacion-titulo {
-    font-size: 20px;
-    color: #4F709C;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .evaluacion-descripcion {
-    font-size: 16px;
-    color: #213555;
-    margin-bottom: 15px;
-  }
-  
-  .evaluacion-button {
-    background-color: #4F709C;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    padding: 8px 20px;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .evaluacion-button:hover {
-    background-color: #213555;
-    color: #F5EFE7;
-  }
-  
-  /* ... otros estilos ... */
+  padding: var(--espaciado);
+}
+
+.evaluaciones-title {
+  color: var(--color-texto-encabezado);
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: var(--espaciado*2);
+}
+
+.evaluacion-card {
+  border: none;
+  border-radius: var(--borde-redondeado);
+  box-shadow: var(--sombra-caja);
+  transition: transform var(--velocidad-transicion);
+  background-color: var(--color-secundario);
+  padding: var(--espaciado);
+}
+
+.evaluacion-card:hover {
+  transform: scale(1.05);
+}
+
+.evaluacion-titulo {
+  font-size: 20px;
+  color: var(--color-destacado);
+  font-weight: var(--peso-fuente-negrita);
+  margin-bottom: var(--espaciado*0.5);
+}
+
+.evaluacion-descripcion {
+  font-size: var(--tamano-fuente-normal);
+  color: var(--color-texto);
+  margin-bottom: var(--espaciado);
+}
+
+.evaluacion-button {
+  background-color: var(--color-destacado);
+  border: none;
+  border-radius: var(--borde-redondeado);
+  font-size: var(--tamano-fuente-normal);
+  padding: var(--espaciado*0.5) var(--espaciado);
+  transition: background-color var(--velocidad-transicion);
+}
+
+.evaluacion-button:hover {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* ... otros estilos ... */
 
 .estrella {
-    font-size: 20px;
-    color: #D8C4B6;
-    margin-right: 2px;
-  }
-  
-  .estrella.activa {
-    color: #4F709C;
-  }
-  
+  font-size: 20px;
+  color: var(--color-secundario);
+  margin-right: var(--espaciado*0.25);
+}
+
+.estrella.activa {
+  color: var(--color-destacado);
+}
