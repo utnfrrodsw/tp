@@ -5,6 +5,19 @@
 - [Ver prototipo en Figma](https://www.figma.com/file/KHMyiGnpBRpuNDgAoIPm3C/Prototipo-%231?type=design&mode=design&t=EzXiavVENpFcSfUg-1)
 
 <details>
+ <summary><h2>🤔 ¿Por qué Prosefy?</h2></summary>
+
+El nombre **_Prosefy_** fue elegido al fusionar dos palabras clave:
+
+- **Prose:** es utilizada para describir la escritura en su forma más convencional y ordinaria, en contraste con la poesía. Representa la narrativa y la escritura de ficción y no ficción en su expresión más común.
+
+- **Modify:** sugiere la idea de adaptación y personalización, implicando una cuidadosa selección de libros a medida de los gustos individuales de los usuarios.
+
+Este nombre fue seleccionado con la intención de que **_Prosefy_** evocara la imagen de una plataforma de venta de libros que ofrece una experiencia en línea moderna y altamente personalizada, y su nombre refleja ese compromiso.
+
+ </details>
+
+ <details>
  <summary><h2>💼 Reglas de Trabajo (Resumen)</h2></summary>
 
 [Visitar las reglas completas](https://github.com/AlejoRetamal/TP-DdeS/blob/main/docs/gesti%C3%B3n%20del%20proyecto/reglas/README.md)
@@ -34,19 +47,6 @@
 5. **Pruebas Unitarias y Automatización**
    - Escribir pruebas unitarias para cada función.
      - Deben ejecutarse automáticamente antes de la integración del código para mantener la calidad del software.</details>
-
-<details>
- <summary><h2>🤔 ¿Por qué Prosefy?</h2></summary>
-
-El nombre **_Prosefy_** fue elegido al fusionar dos palabras clave:
-
-- **Prose:** es utilizada para describir la escritura en su forma más convencional y ordinaria, en contraste con la poesía. Representa la narrativa y la escritura de ficción y no ficción en su expresión más común.
-
-- **Modify:** sugiere la idea de adaptación y personalización, implicando una cuidadosa selección de libros a medida de los gustos individuales de los usuarios.
-
-Este nombre fue seleccionado con la intención de que **_Prosefy_** evocara la imagen de una plataforma de venta de libros que ofrece una experiencia en línea moderna y altamente personalizada, y su nombre refleja ese compromiso.
-
- </details>
 
 <!-- # Libreria
 
