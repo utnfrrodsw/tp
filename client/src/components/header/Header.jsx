@@ -4,7 +4,7 @@ import './Header.css'
 import userlogo from './user.png'
 import notifylogo from './notify.png'
 import { NavLink } from '../navlink/Navlink.jsx';
-
+import logo from "./logoPosta.png"
 
 
 
@@ -12,7 +12,7 @@ function Header() {
     return (
         <header className="header-content">
             <div className="logo-content">
-                <Link to = "/"><h1 className="title">FastServices</h1></Link>
+                <Link to = "/"><img src={logo} alt="No disp" className="logo"/></Link>
             </div>
             <nav>
                 <ul>
