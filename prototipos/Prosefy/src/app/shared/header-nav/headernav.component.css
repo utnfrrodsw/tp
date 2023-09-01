@@ -83,3 +83,7 @@
   border-top: none;
   margin-bottom: 2rem;
 }
+
+.nav-link {
+  cursor: pointer;
+}

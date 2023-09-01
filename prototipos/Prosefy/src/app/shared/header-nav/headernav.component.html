@@ -4,7 +4,7 @@
     <div class="container">
       <div class="d-flex align-items-center justify-content-between">
         <div>
-          <a href="/">
+          <a routerLink="/inicio">
             <!-- Al hacer clic sobre el logo va a la página de inicio -->
             <img
               src="../../assets/img/Logo.png"
@@ -41,7 +41,7 @@
       <ul class="navbar-nav-localidad">
         <li class="nav-item">
           <!-- Abre el popup al hacer clic sobre "Localidad" -->
-          <a class="nav-link" href="#" (click)="openPopup()">📫 Localidad</a>
+          <a class="nav-link" (click)="openPopup()">📫 Localidad</a>
         </li>
       </ul>
       <!-- Convierte los enlaces del nav en un toggler para móviles y tablets -->
@@ -123,16 +123,16 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Autores</a>
+            <a class="nav-link" routerLink="/autores">Autores</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Editoriales</a>
+            <a class="nav-link" routerLink="/editoriales">Editoriales</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Ofertas</a>
+            <a class="nav-link" routerLink="/ofertas">Ofertas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Ayuda</a>
+            <a class="nav-link" routerLink="/ayuda">Ayuda</a>
           </li>
         </ul>
       </div>

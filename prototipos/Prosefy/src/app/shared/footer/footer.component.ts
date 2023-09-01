@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { nombre_sitio } from '../constants';
+import { nombreSitio } from '../constants';
 
 @Component({
   selector: 'app-footer',
@@ -7,5 +7,5 @@ import { nombre_sitio } from '../constants';
   styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent {
-  nombre_sitio = nombre_sitio;
+  nombreSitio = nombreSitio;
 }

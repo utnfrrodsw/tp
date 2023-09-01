@@ -5,10 +5,10 @@
     <div class="col-md-2 col-sm-4 col-6">
       <h5>Mi cuenta</h5>
       <ul class="list-unstyled">
-        <li><a href="#">Mis pedidos</a></li>
-        <li><a href="#">Mis favoritos</a></li>
-        <li><a href="#">Mis reseñas</a></li>
-        <li><a href="#">Configuración</a></li>
+        <li><a routerLink="/mis-pedidos">Mis pedidos</a></li>
+        <li><a routerLink="/mis-favoritos">Mis favoritos</a></li>
+        <li><a routerLink="/mis-reseñas">Mis reseñas</a></li>
+        <li><a routerLink="/configuracion">Configuración</a></li>
       </ul>
     </div>
     <div class="col-md-2 col-sm-4 col-6">
@@ -36,29 +36,29 @@
     <div class="col-md-2 col-sm-4 col-6">
       <h5>Otros</h5>
       <ul class="list-unstyled">
-        <li><a href="#">Ofertas</a></li>
-        <li><a href="#">Editoriales</a></li>
-        <li><a href="#">Autores</a></li>
+        <li><a routerLink="/ofertas">Ofertas</a></li>
+        <li><a routerLink="/editoriales">Editoriales</a></li>
+        <li><a routerLink="/autores">Autores</a></li>
       </ul>
     </div>
     <div class="col-md-2 col-sm-4 col-6">
       <h5>Ayuda</h5>
       <ul class="list-unstyled">
         <li>
-          <a href="#">Acerca de {{ nombre_sitio }}</a>
+          <a routerLink="/acerca-de">Acerca de {{ nombreSitio }}</a>
         </li>
-        <li><a href="#">Centro de ayuda</a></li>
-        <li><a href="#">Contáctanos</a></li>
-        <li><a href="#">Sucursales</a></li>
-        <li><a href="#">Compras</a></li>
-        <li><a href="#">Envíos</a></li>
+        <li><a routerLink="/centro-de-ayuda">Centro de ayuda</a></li>
+        <li><a routerLink="/contacto">Contáctanos</a></li>
+        <li><a routerLink="/sucursales">Sucursales</a></li>
+        <li><a routerLink="/ayuda/compras">Compras</a></li>
+        <li><a routerLink="/ayuda/envios">Envíos</a></li>
       </ul>
     </div>
   </div>
   <div class="separator-container">
     <div class="separator"></div>
     <p class="footer-text">
-      © 2023 {{ nombre_sitio }}. Todos los derechos reservados.<br />
+      © 2023 {{ nombreSitio }}. Todos los derechos reservados.<br />
       <span class="footer-snd-text"
         >Trabajo práctico de desarrollo de software.</span
       >
