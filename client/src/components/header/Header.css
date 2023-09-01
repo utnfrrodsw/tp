@@ -8,7 +8,10 @@
     padding: 10px 20px;
     color: white;
 }
-  
+.logo{
+    width: 180px;
+    margin-top: 5px
+}  
   /* Estilos para el logo */
 .logo-content {
     font-size: 15px;
