@@ -1,15 +1,22 @@
 <div class="libros-recomendados">
+  <!-- mt-5 -> margin-top 5 & mb-4 -> margin-bottom: 4 -->
   <h3 class="mt-5 mb-4">Libros recomendados</h3>
   <div class="lista-libros">
+    <!-- Botón para que se mueva a la izquierda la lista -->
     <button
       class="boton-izquierda boton-moderno"
       (click)="moverIzquierda()"
       [class.disabled]="elementosAlInicio"
     >
+      <!-- "class.disabled" detecta si se llegó al final y deshabilita el botón -->
       &lt;
+      <!-- &lt Representa el símbolo "<" para el botón -->
     </button>
     <div class="lista-contenedor">
+      <!-- p-4 -> padding: 4 -->
       <div class="elementos-lista p-4">
+        <!-- Directiva *ngFor para iterar sobre la colección de libros
+        Consultar en: seccion-librosrecomendados.component.ts -->
         <div
           *ngFor="
             let libro of libros.slice(
@@ -22,6 +29,7 @@
         >
           <div class="libro card">
             <a href="#" class="text-decoration-none">
+              <!-- Elementos a mostrar de cada libro -->
               <img
                 src="{{ libro.imagen }}"
                 alt="Portada del libro"
@@ -29,6 +37,7 @@
               />
               <div class="card-body">
                 <p class="card-text precio">{{ libro.precio }}</p>
+                <!-- Corta la descripción si es muy larga y coloca "..." -->
                 <p class="card-text descripcion">
                   {{
                     libro.descripcion.length > descripcionMaxLength
@@ -43,12 +52,15 @@
         </div>
       </div>
     </div>
+    <!-- Botón para que se mueva a la derecha la lista -->
     <button
       class="boton-derecha boton-moderno"
       (click)="moverDerecha()"
       [class.disabled]="elementosAlFinal"
     >
+      <!-- "class.disabled" detecta si se llegó al final y deshabilita el botón -->
       &gt;
+      <!-- &gt Representa el símbolo ">" para el botón -->
     </button>
   </div>
 </div>

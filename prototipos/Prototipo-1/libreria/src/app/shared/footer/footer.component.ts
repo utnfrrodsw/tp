@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { nombre_sitio } from '../shared/constants';
+import { nombre_sitio } from '../constants';
 
 @Component({
   selector: 'app-footer',

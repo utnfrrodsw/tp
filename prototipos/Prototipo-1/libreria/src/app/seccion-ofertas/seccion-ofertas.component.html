@@ -1,6 +1,7 @@
 <div id="carouselOferta" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
+      <!-- Imagen de primera oferta -->
       <img
         src="../../assets/img/oferta1.jpg"
         class="d-block w-100"
@@ -8,6 +9,7 @@
       />
     </div>
     <div class="carousel-item">
+      <!-- Imagen de segunda oferta -->
       <img
         src="../../assets/img/oferta2.jpg"
         class="d-block w-100"
@@ -15,6 +17,7 @@
       />
     </div>
     <div class="carousel-item">
+      <!-- Imagen de tercera oferta -->
       <img
         src="../../assets/img/oferta3.jpg"
         class="d-block w-100"
@@ -23,22 +26,26 @@
     </div>
     <!-- Agregar más ofertas (carousel-item) según se necesite -->
   </div>
+  <!-- Botón para retroceder en el carousel -->
   <a
     class="carousel-control-prev"
     href="#carouselOferta"
     role="button"
-    data-slide="prev"
+    data-bs-slide="prev"
   >
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Anterior</span>
+    <!-- Para que no se muestre texto "Anterior" -->
+    <span class="visually-hidden">Anterior</span>
   </a>
+  <!-- Botón para avanzar en el carousel -->
   <a
     class="carousel-control-next"
     href="#carouselOferta"
     role="button"
-    data-slide="next"
+    data-bs-slide="next"
   >
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Siguiente</span>
+    <!-- Para que no se muestre texto "Siguiente" -->
+    <span class="visually-hidden">Siguiente</span>
   </a>
 </div>

@@ -1,9 +1,11 @@
+<!-- Sticky-top mantiene el header y el nav arriba aunque el usuario se desplace -->
 <div class="sticky-top">
   <div class="header">
     <div class="container">
       <div class="d-flex align-items-center justify-content-between">
         <div>
           <a href="/">
+            <!-- Al hacer clic sobre el logo va a la página de inicio -->
             <img
               src="../../assets/img/Logo.png"
               alt="Logo de la página web"
@@ -30,7 +32,6 @@
               alt="Carrito de compras"
               class="cart-shopping-image"
           /></a>
-          <i class="bi bi-cart3 cart-icon"></i>
         </div>
       </div>
     </div>
@@ -39,9 +40,11 @@
     <div class="container-fluid">
       <ul class="navbar-nav-localidad">
         <li class="nav-item">
+          <!-- Abre el popup al hacer clic sobre "Localidad" -->
           <a class="nav-link" href="#" (click)="openPopup()">📫 Localidad</a>
         </li>
       </ul>
+      <!-- Convierte los enlaces del nav en un toggler para móviles y tablets -->
       <button
         class="navbar-toggler"
         type="button"
@@ -67,6 +70,7 @@
           ></button>
         </div>
         <ul class="navbar-nav ml-auto mx-auto">
+          <!-- Permite que se "desplieguen" los enlaces de la sección "Categorías" -->
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -83,6 +87,7 @@
               class="dropdown-menu bg-light"
               aria-labelledby="navbarDropdown"
             >
+              <!-- Diferentes enlaces de la sección "Categoría" en el nav -->
               <a class="dropdown-item" href="#">Ficción</a>
               <a class="dropdown-item" href="#">No ficción</a>
               <a class="dropdown-item" href="#">Literatura infantil</a>
@@ -94,6 +99,7 @@
               <a class="dropdown-item" href="#">Negocios y finanzas</a>
             </div>
           </li>
+          <!-- Permite que se "desplieguen" los enlaces de la sección "Formatos" -->
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -110,6 +116,7 @@
               class="dropdown-menu bg-light"
               aria-labelledby="navbarDropdown"
             >
+              <!-- Diferentes enlaces de la sección "Formatos" en el nav -->
               <a class="dropdown-item" href="#">Físicos</a>
               <a class="dropdown-item" href="#">Ebooks</a>
               <a class="dropdown-item" href="#">Audiolibros</a>
@@ -130,8 +137,9 @@
         </ul>
       </div>
     </div>
+    <!-- Oscurece el contenido de la página al abrir el popup "Localidades" -->
     <div class="overlay" [ngClass]="{ active: isPopupOpen }"></div>
-    <!-- Popup Modal -->
+    <!-- TODO: Popup Modal, falta agregarle las direcciones y ubicaciones del usuario -->
     <div
       class="modal"
       tabindex="-1"
@@ -142,6 +150,7 @@
         <div class="modal-content">
           <div class="modal-header mx-5">
             <h4 class="modal-title">Elegí dónde recibir tus compras</h4>
+            <!-- Botón "X" para cerrar el popup -->
             <button
               type="button"
               class="btn-close"
@@ -156,9 +165,11 @@
             <p>...</p>
           </div>
           <div class="modal-footer d-flex justify-content-between">
+            <!-- TODO: Botón "Guardar Cambios", no hace nada aún -->
             <button type="button" class="btn btn-primary mx-5">
               Guardar cambios
             </button>
+            <!-- Botón "Cancelar" para cerrar el popup -->
             <button
               type="button"
               class="btn btn-secondary mx-5"
