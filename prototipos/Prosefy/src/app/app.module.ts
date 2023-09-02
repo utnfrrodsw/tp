@@ -15,6 +15,8 @@ import { AutoresComponent } from './pages/autores/autores.component';
 import { OfertasComponent } from './pages/ofertas/ofertas.component';
 import { AyudaComponent } from './pages/ayuda/ayuda.component';
 import { AutoresPopularesComponent } from './sections/autores-populares/autores-populares.component';
+import { NuevosLanzamientosComponent } from './sections/nuevos-lanzamientos/nuevos-lanzamientos.component';
+import { LibrosMasVendidosComponent } from './sections/libros-mas-vendidos/libros-mas-vendidos.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { AutoresPopularesComponent } from './sections/autores-populares/autores-
     OfertasComponent,
     AyudaComponent,
     AutoresPopularesComponent,
+    NuevosLanzamientosComponent,
+    LibrosMasVendidosComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
