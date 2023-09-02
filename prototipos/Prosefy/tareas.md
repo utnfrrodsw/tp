@@ -1,6 +1,6 @@
 ## Secciones Principales
 
-### Inicio
+### Inicio (Marco)
 
  - [x] Diseño
  - [ ] Frontend (casi terminado)
@@ -18,7 +18,7 @@
  - [ ] Frontend
  - [ ] Backend
 
-### Autores
+### Autores (Marco)
 
 - [x] Diseño
 - [ ] Frontend
@@ -68,13 +68,13 @@
  - [ ] Frontend
  - [ ] Backend
 
-### Login
+### Login (Marco)
 
  - [x] Diseño
  - [ ] Frontend
  - [ ] Backend
 
-### Registro
+### Registro (Marco)
 
  - [x] Diseño
  - [ ] Frontend
@@ -86,7 +86,7 @@
  - [ ] Frontend
  - [ ] Backend
 
-### Autor seleccionado
+### Autor seleccionado (Marco)
 
  - [x] Diseño
  - [ ] Frontend
