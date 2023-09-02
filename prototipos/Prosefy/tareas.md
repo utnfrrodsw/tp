@@ -44,19 +44,19 @@
 
 ## Otras Secciones
 
-### Búsqueda
+### Búsqueda (Marina)
 
  - [x] Diseño
  - [ ] Frontend
  - [ ] Backend
 
-### Libro seleccionado
+### Libro seleccionado (Marina)
 
  - [x] Diseño
  - [ ] Frontend
  - [ ] Backend
 
-### Carrito de compras
+### Carrito de compras (Marina)
 
  - [x] Diseño
  - [ ] Frontend
