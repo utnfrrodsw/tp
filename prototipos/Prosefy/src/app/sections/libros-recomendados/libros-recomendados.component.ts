@@ -9,11 +9,11 @@ interface Libro {
 }
 
 @Component({
-  selector: 'app-seccion-librosrecomendados',
-  templateUrl: './seccion-librosrecomendados.component.html',
-  styleUrls: ['./seccion-librosrecomendados.component.css'],
+  selector: 'app-libros-recomendados',
+  templateUrl: './libros-recomendados.component.html',
+  styleUrls: ['./libros-recomendados.component.css'],
 })
-export class SeccionLibrosrecomendadosComponent {
+export class LibrosRecomendadosComponent {
   elementosAlInicio: boolean = false;
   elementosAlFinal: boolean = false;
   // Lista de libros con información
