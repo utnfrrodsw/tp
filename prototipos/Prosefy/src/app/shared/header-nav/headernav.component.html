@@ -1,16 +1,17 @@
 <!-- Sticky-top mantiene el header y el nav arriba aunque el usuario se desplace -->
 <div class="sticky-top">
   <div class="header">
-    <div class="container">
+    <div class="container p-2">
       <div class="d-flex align-items-center justify-content-between">
         <div>
-          <a routerLink="/inicio">
+          <a routerLink="/inicio" class="d-flex align-items-center">
             <!-- Al hacer clic sobre el logo va a la página de inicio -->
             <img
               src="../../assets/img/Logo.png"
               alt="Logo de la página web"
-              class="logo"
-          /></a>
+              class="logo img-fluid logo-sm"
+            />
+          </a>
         </div>
         <div class="form-control">
           <input
@@ -91,15 +92,31 @@
               aria-labelledby="navbarDropdown"
             >
               <!-- Diferentes enlaces de la sección "Categoría" en el nav -->
-              <a class="dropdown-item" href="#">Ficción</a>
-              <a class="dropdown-item" href="#">No ficción</a>
-              <a class="dropdown-item" href="#">Literatura infantil</a>
-              <a class="dropdown-item" href="#">Educación y referencia</a>
-              <a class="dropdown-item" href="#">Ciencia y naturaleza</a>
-              <a class="dropdown-item" href="#">Religión y espiritualidad</a>
-              <a class="dropdown-item" href="#">Política y sociedad</a>
-              <a class="dropdown-item" href="#">Salud y bienestar</a>
-              <a class="dropdown-item" href="#">Negocios y finanzas</a>
+              <a class="dropdown-item custom-dropdown-item" href="#">Ficción</a>
+              <a class="dropdown-item custom-dropdown-item" href="#"
+                >No ficción</a
+              >
+              <a class="dropdown-item custom-dropdown-item" href="#"
+                >Literatura infantil</a
+              >
+              <a class="dropdown-item custom-dropdown-item" href="#"
+                >Educación y referencia</a
+              >
+              <a class="dropdown-item custom-dropdown-item" href="#"
+                >Ciencia y naturaleza</a
+              >
+              <a class="dropdown-item custom-dropdown-item" href="#"
+                >Religión y espiritualidad</a
+              >
+              <a class="dropdown-item custom-dropdown-item" href="#"
+                >Política y sociedad</a
+              >
+              <a class="dropdown-item custom-dropdown-item" href="#"
+                >Salud y bienestar</a
+              >
+              <a class="dropdown-item custom-dropdown-item" href="#"
+                >Negocios y finanzas</a
+              >
             </div>
           </li>
 
@@ -121,9 +138,11 @@
               aria-labelledby="navbarDropdown"
             >
               <!-- Diferentes enlaces de la sección "Formatos" en el nav -->
-              <a class="dropdown-item" href="#">Físicos</a>
-              <a class="dropdown-item" href="#">Ebooks</a>
-              <a class="dropdown-item" href="#">Audiolibros</a>
+              <a class="dropdown-item custom-dropdown-item" href="#">Físicos</a>
+              <a class="dropdown-item custom-dropdown-item" href="#">Ebooks</a>
+              <a class="dropdown-item custom-dropdown-item" href="#"
+                >Audiolibros</a
+              >
             </div>
           </li>
           <li class="nav-item">
@@ -170,7 +189,10 @@
           </div>
           <div class="modal-footer d-flex justify-content-between">
             <!-- TODO: Botón "Guardar Cambios", no hace nada aún -->
-            <button type="button" class="btn btn-primary mx-5">
+            <button
+              type="button"
+              class="btn btn-primary mx-5 custom-btn-primary"
+            >
               Guardar cambios
             </button>
             <!-- Botón "Cancelar" para cerrar el popup -->

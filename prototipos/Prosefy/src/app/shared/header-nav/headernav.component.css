@@ -87,3 +87,24 @@
 .nav-link {
   cursor: pointer;
 }
+
+.custom-dropdown-item:hover {
+  background-color: #bd8464; /* Cambia el color de fondo al hacer hover */
+  color: white; /* Cambia el color del texto al hacer hover */
+}
+
+.custom-btn-primary {
+  background-color: #bd8464;
+  border-color: #bd8464;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-primary:active {
+  background-color: #976950;
+  border-color: #976950;
+}
+
+.logo-sm {
+  width: 48px; /* Ajusta el ancho según tus necesidades */
+  height: auto; /* Mantiene la proporción original de la imagen */
+}
