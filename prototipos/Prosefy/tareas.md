@@ -1,10 +1,48 @@
-## Secciones
+## Secciones Principales
 
 ### Inicio
 
  - [x] Diseño
  - [ ] Frontend (casi terminado)
  - [ ] Backend
+
+### Categorías
+
+ - [x] Diseño
+ - [ ] Frontend
+ - [ ] Backend
+
+### Formatos
+
+ - [x] Diseño
+ - [ ] Frontend
+ - [ ] Backend
+
+### Autores
+
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
+
+### Editoriales
+
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
+
+### Ofertas 
+
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
+
+### Ayuda
+
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
+
+## Otras Secciones
 
 ### Búsqueda
 
@@ -30,12 +68,6 @@
  - [ ] Frontend
  - [ ] Backend
 
-### Editoriales
-
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
-
 ### Login
 
  - [x] Diseño
@@ -43,24 +75,6 @@
  - [ ] Backend
 
 ### Registro
-
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
-
-### Ofertas 
-
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
-
-### Ayuda
-
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
-
-### Autores
 
  - [x] Diseño
  - [ ] Frontend
