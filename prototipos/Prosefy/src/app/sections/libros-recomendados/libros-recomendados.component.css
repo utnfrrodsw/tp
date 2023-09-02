@@ -88,12 +88,6 @@
   color: inherit; /* Hereda el color del texto circundante */
 }
 
-/* Clase para la animación */
-.animacion-tarjeta {
-  animation: scaleIn 0.5s forwards;
-  transform-origin: center center; /* Establecer el punto de transformación en el centro */
-}
-
 @keyframes scaleIn {
   from {
     opacity: 0;

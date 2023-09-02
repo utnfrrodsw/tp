@@ -56,6 +56,30 @@ export class AutoresPopularesComponent {
       nombreCompleto: 'Autor 10',
       perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
     },
+    {
+      nombreCompleto: 'Autor 11',
+      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
+    },
+    {
+      nombreCompleto: 'Autor 12',
+      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
+    },
+    {
+      nombreCompleto: 'Autor 13',
+      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
+    },
+    {
+      nombreCompleto: 'Autor 14',
+      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
+    },
+    {
+      nombreCompleto: 'Autor 15',
+      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
+    },
+    {
+      nombreCompleto: 'Autor 16',
+      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
+    },
   ];
   // Índice del elemento actual en la lista de autores
   elementoActual = 0;
