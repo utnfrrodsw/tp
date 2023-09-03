@@ -15,6 +15,8 @@ router.post('/usuarios', usuarioController.createUsuario);
 router.get('/usuarios/:id', usuarioController.getUsuarioById);
 router.put('/usuarios/:id', usuarioController.updateUsuario);
 router.delete('/usuarios/:id', usuarioController.deleteUsuario);
+router.post('/usuarios-login/', usuarioController.loginUsuario);
+
 
 router.get('/artistas', artistaController.getArtistas);
 router.post('/artistas', artistaController.createArtista);
