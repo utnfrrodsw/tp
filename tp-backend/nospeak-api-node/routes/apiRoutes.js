@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const verificarToken = require('../middlewares/verificarTokenMiddleware'); 
 
 const usuarioController = require('../controllers/usuarioController');
 const artistaController = require('../controllers/artistaController');
@@ -30,7 +31,7 @@ router.get('/albums/:id', albumController.getAlbumById);
 router.put('/albums/:id', albumController.updateAlbum);
 router.delete('/albums/:id', albumController.deleteAlbum);
 
-router.get('/canciones', cancionController.getCanciones);
+router.get('/canciones', verificarToken, cancionController.getCanciones);
 router.post('/canciones', cancionController.createCancion);
 router.get('/canciones/:id', cancionController.getCancionById);
 router.put('/canciones/:id', cancionController.updateCancion);
