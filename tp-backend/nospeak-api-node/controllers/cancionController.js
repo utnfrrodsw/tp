@@ -118,3 +118,20 @@ exports.deleteCancion = async (req, res) => {
     return res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 };
+
+
+exports.getCancionesPorArtista = async (req, res) => {
+  try {
+    const { artista_id } = req.params;
+
+    const canciones = await Cancion.find({ artista: artista_id })
+      .populate('artista') 
+      .populate('album');   
+
+    res.json(canciones);
+  } catch (error) {
+    console.error('Error al obtener canciones por artista:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+

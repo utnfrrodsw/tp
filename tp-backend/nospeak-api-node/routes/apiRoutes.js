@@ -33,6 +33,8 @@ router.post('/canciones', cancionController.createCancion);
 router.get('/canciones/:id', cancionController.getCancionById);
 router.put('/canciones/:id', cancionController.updateCancion);
 router.delete('/canciones/:id', cancionController.deleteCancion);
+router.get('/canciones-artista/:artista_id', cancionController.getCancionesPorArtista);
+
 
 router.get('/playlists', playlistController.getPlaylists);
 router.post('/playlists', playlistController.createPlaylist);
