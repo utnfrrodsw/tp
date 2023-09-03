@@ -34,6 +34,7 @@ router.get('/canciones/:id', cancionController.getCancionById);
 router.put('/canciones/:id', cancionController.updateCancion);
 router.delete('/canciones/:id', cancionController.deleteCancion);
 router.get('/canciones-artista/:artista_id', cancionController.getCancionesPorArtista);
+router.get('/canciones-album/:album_id', cancionController.getCancionesPorAlbum);
 
 
 router.get('/playlists', playlistController.getPlaylists);

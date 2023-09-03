@@ -135,3 +135,17 @@ exports.getCancionesPorArtista = async (req, res) => {
   }
 };
 
+exports.getCancionesPorAlbum = async (req, res) => {
+  try {
+    const { album_id } = req.params;
+
+    const canciones = await Cancion.find({ album: album_id })
+      .populate('artista') 
+      .populate('album');   
+
+    res.json(canciones);
+  } catch (error) {
+    console.error('Error al obtener canciones por álbum:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
