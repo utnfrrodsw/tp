@@ -45,6 +45,8 @@ router.post('/playlists', playlistController.createPlaylist);
 router.get('/playlists/:id', playlistController.getPlaylistById);
 router.put('/playlists/:id', playlistController.updatePlaylist);
 router.delete('/playlists/:id', playlistController.deletePlaylist);
+router.get('/playlists-usuario/:usuario_id', playlistController.getPlaylistsByUsuario);
+
 
 router.get('/recomendaciones', recomendacionController.getRecomendaciones);
 router.post('/recomendaciones', recomendacionController.createRecomendacion);
