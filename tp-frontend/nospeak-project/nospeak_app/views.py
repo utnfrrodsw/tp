@@ -99,7 +99,7 @@
 
 from rest_framework import generics
 from .models import Artista, Album, Cancion, Playlist, Recomendacion, Historial
-from .serializers import ArtistaSerializer, AlbumSerializer, CancionSerializer, UsuarioSerializer, PlaylistSerializer, RecomendacionSerializer, HistorialSerializer
+from .serializers import ArtistaSerializer, AlbumSerializer, CancionSerializer, UsuarioSerializer, PlaylistSerializer, RecomendacionSerializer, HistorialSerializer, CancionWithArtistaAlbumSerializer, PlaylistWithUsuarioSerializer, CancionesPorArtistaSerializer, CancionesPorAlbumSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -126,7 +126,7 @@ class AlbumDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
 
-class CancionList(generics.ListCreateAPIView):
+class CancionCreate(generics.ListCreateAPIView):
     queryset = Cancion.objects.all()
     serializer_class = CancionSerializer
     # permission_classes = [IsAuthenticated]
@@ -134,6 +134,28 @@ class CancionList(generics.ListCreateAPIView):
 class CancionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cancion.objects.all()
     serializer_class = CancionSerializer
+
+class CancionInfo(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Cancion.objects.all()
+    serializer_class = CancionWithArtistaAlbumSerializer
+
+class CancionList(generics.ListCreateAPIView):
+    queryset = Cancion.objects.all()
+    serializer_class = CancionWithArtistaAlbumSerializer
+
+class CancionesPorArtistaView(generics.ListAPIView):
+    serializer_class = CancionesPorArtistaSerializer
+
+    def get_queryset(self):
+        artista_id = self.kwargs['artista_id']
+        return Cancion.objects.filter(artista=artista_id)
+    
+class CancionesPorAlbumView(generics.ListAPIView):
+    serializer_class = CancionesPorAlbumSerializer
+
+    def get_queryset(self):
+        album_id = self.kwargs['album_id']
+        return Cancion.objects.filter(album=album_id)
 
 class UsuarioList(generics.ListCreateAPIView):
     queryset = User.objects.all()
@@ -143,13 +165,25 @@ class UsuarioDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UsuarioSerializer
 
-class PlaylistList(generics.ListCreateAPIView):
+class PlaylistCreate(generics.ListCreateAPIView):
     queryset = Playlist.objects.all()
     serializer_class = PlaylistSerializer
 
 class PlaylistDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Playlist.objects.all()
     serializer_class = PlaylistSerializer
+
+class PlaylistList(generics.ListCreateAPIView):
+    serializer_class = PlaylistWithUsuarioSerializer
+
+    def get_queryset(self):
+        usuario_id = self.kwargs['usuario_id']
+        return Playlist.objects.filter(usuario=usuario_id)
+
+class PlaylistInfo(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Playlist.objects.all()
+    serializer_class = PlaylistWithUsuarioSerializer
+
 
 class RecomendacionList(generics.ListCreateAPIView):
     queryset = Recomendacion.objects.all()

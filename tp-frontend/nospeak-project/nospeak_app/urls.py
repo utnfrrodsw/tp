@@ -34,8 +34,8 @@
 # # ]
 
 from django.urls import path, include
-from .views import ArtistaList, ArtistaDetail, AlbumList, AlbumDetail, CancionList, CancionDetail, UsuarioList, UsuarioDetail, PlaylistList, PlaylistDetail, RecomendacionList, RecomendacionDetail, HistorialList, HistorialDetail
-from .views import LogoutView, RegistroUsuario, CustomAuthToken
+from .views import ArtistaList, ArtistaDetail, AlbumList, AlbumDetail, CancionInfo, CancionList, CancionDetail, PlaylistCreate, PlaylistInfo, UsuarioList, UsuarioDetail, PlaylistList, PlaylistDetail, RecomendacionList, RecomendacionDetail, HistorialList, HistorialDetail, CancionCreate
+from .views import LogoutView, RegistroUsuario, CustomAuthToken, CancionesPorArtistaView, CancionesPorAlbumView
 
 urlpatterns = [
     path('register/', RegistroUsuario.as_view(), name='registro-usuario'),
@@ -48,13 +48,19 @@ urlpatterns = [
     path('albums/', AlbumList.as_view(), name='album-list'),
     path('albums/<int:pk>/', AlbumDetail.as_view(), name='album-detail'),
 
-    path('canciones/', CancionList.as_view(), name='cancion-list'),
+    path('canciones-info/', CancionList.as_view(), name='cancion-list'),
+    path('canciones-info/<int:pk>/', CancionInfo.as_view(), name='cancion-list'),
+    path('canciones/', CancionCreate.as_view(), name='cancion-list'),
     path('canciones/<int:pk>/', CancionDetail.as_view(), name='cancion-detail'),
+    path('canciones-artista/<int:artista_id>/', CancionesPorArtistaView.as_view(), name='canciones-por-artista'),
+    path('canciones-album/<int:album_id>/', CancionesPorAlbumView.as_view(), name='canciones-por-album'),
 
     path('usuarios/', UsuarioList.as_view(), name='usuario-list'),
     path('usuarios/<int:pk>/', UsuarioDetail.as_view(), name='usuario-detail'),
 
-    path('playlists/', PlaylistList.as_view(), name='playlist-list'),
+    path('playlists-usuario-info/<int:usuario_id>/', PlaylistList.as_view(), name='playlist-list'),
+    path('playlists-info/<int:pk>/', PlaylistInfo.as_view(), name='playlist-list'),
+    path('playlists/', PlaylistCreate.as_view(), name='playlist-create'),
     path('playlists/<int:pk>/', PlaylistDetail.as_view(), name='playlist-detail'),
 
     path('recomendaciones/', RecomendacionList.as_view(), name='recomendacion-list'),

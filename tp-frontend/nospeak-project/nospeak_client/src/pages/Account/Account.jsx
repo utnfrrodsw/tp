@@ -3,12 +3,13 @@ import Sidebar from '../../styled-components/Sidebar/Sidebar'
 import { BodyContainer } from '../../styled-components/Body/styles';
 import { SpotifyBody } from '../Home/styles.js'
 import {AccountContainer, AccountContainerLeft, AccountContainerRight, StyledH1} from './styles'
-import { AccountInput, AccountButton} from './styles';
+import { AccountInput, AccountButton, FormContainer} from './styles';
 import { Avatar } from '@mui/material';
 import {Navigate} from "react-router-dom";
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import { logout } from '../../redux/slices/userSlice';
+import {StyledButton, StyledButtonSecondary} from '../../styled-components/styles';
 
 export default function Account({client}){
 
@@ -69,25 +70,27 @@ export default function Account({client}){
                 <BodyContainer>
                     <AccountContainer>
                         <AccountContainerLeft>
+                          <FormContainer>
                             <StyledH1>Account details</StyledH1>
                             <h3>Email</h3>
                             <AccountInput type="email" placeholder="Email address"/>
                             <h3>Username</h3>
-                            <AccountInput type="text" placeholder="Username" value={user.username}/>
+                            <AccountInput type="text" placeholder="Username" value={user.nombre}/>
                             <h3>Password</h3>
                             <AccountInput type="password" placeholder="Password" />
                             <br/>
                             <br/>
-                            <AccountButton>Save</AccountButton>
+                            <StyledButton>Save</StyledButton>
+                          </FormContainer>
                         </AccountContainerLeft>
                         <AccountContainerRight>
                             <Avatar style={{width: '250px', height: '250px', margin: '20px'}} />
-                            <h1>{user.username}</h1>
+                            <h1>{user.nombre}</h1>
                             <h3 style={{paddingTop: '20px'}}>Do you want to log out?</h3>
-                            <AccountButton style={{backgroundColor: 'grey'}} onClick={(e) => handleLogout(e)}>Log out</AccountButton>
+                            <StyledButtonSecondary style={{width: '60%'}}  onClick={(e) => handleLogout(e)}>Log out</StyledButtonSecondary>
 
                             <h3 style={{paddingTop: '20px'}}>Do you want to delete your account?</h3>
-                            <AccountButton style={{backgroundColor: 'grey'}} onClick={handleDeleteAccount}>Delete account</AccountButton>
+                            <StyledButtonSecondary style={{width: '60%'}} onClick={handleDeleteAccount}>Delete account</StyledButtonSecondary>
                         </AccountContainerRight>
                     </AccountContainer>
                 </BodyContainer>

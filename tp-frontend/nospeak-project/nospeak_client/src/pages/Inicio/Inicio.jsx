@@ -1,6 +1,7 @@
 import React from "react";
-import { InicioContainer, InicioButton } from "./styles.js";
+import { InicioContainer, InicioButton, ButtonContainer } from "./styles.js";
 import { Navigate } from "react-router-dom";
+import { StyledButton } from "../../styled-components/styles.js";
 
 
 
@@ -14,9 +15,11 @@ export function Inicio() {
     return (
         <InicioContainer>
             <img src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg" alt="Logo de nospeak" />
-            <InicioButton onClick={() => {setGoToLogin(true);}}>
-                    Login with NoSpeak
-            </InicioButton>
+            <ButtonContainer>
+                <StyledButton onClick={() => {setGoToLogin(true);}}>
+                        Login with NoSpeak
+                </StyledButton>
+            </ButtonContainer>
         </InicioContainer>
     );
 }

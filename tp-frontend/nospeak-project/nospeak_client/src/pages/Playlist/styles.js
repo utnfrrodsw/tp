@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import BigCard from '../../styled-components/Body/BigCard.jsx'
 
 const PlaylistContainer = styled.div`
 display: flex;
@@ -22,6 +21,8 @@ background-color: transparent;
 
 const TableContainerStyled = styled.div`
 display: flex;
+flex-direction: column;
+gap: 50px;
 height: 70%;
 width: 100%;
 background-color: rgba(0, 0, 0, .3);
@@ -39,9 +40,11 @@ justify-content: center;
 const CardRightContainer = styled.div`
 display: flex;
 flex-direction: column;
+justify-content: end;
 background-color: transparent;
 width: 78%;
 color: #fff;
+padding-bottom: 15px;
 `
 
 const ImagePlaylist = styled.img`
@@ -71,6 +74,19 @@ const TableSongs = styled.ol`
     margin: 0 auto;
     color: #fff;
 `
+const UsuarioContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px; // Espacio entre los elementos
+
+    .user, .date {
+        margin: 0; // Elimina el margen predeterminado de los párrafos
+    }
+
+    .user{
+        font-weight: bold;
+    }
+`
 
 export {PlaylistContainer, CardContainer, TableContainerStyled, CardLeftContainer, 
-CardRightContainer, ImagePlaylist, StyledH1, TableSongs}
+CardRightContainer, ImagePlaylist, StyledH1, TableSongs, UsuarioContainer}

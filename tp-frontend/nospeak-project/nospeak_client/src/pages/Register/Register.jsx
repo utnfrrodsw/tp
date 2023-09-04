@@ -40,12 +40,18 @@ export default function Register({client}) {
         isAuthenticated: true,
         user: { id: user_id, username },
       }));
-      
+
+      const historyResponse = await client.post('/nospeak-app/api/historiales/', {
+        usuario: user_id, 
+        canciones: [],
+      });
+
       setGoToHome(true);
     }
     catch (error) {
         console.error('Error al iniciar sesión:', error);
     }
+    
   };
 
   return (

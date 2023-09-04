@@ -25,7 +25,7 @@ width: 60%;
 align-items: center;
 justify-content: top;
 color: white;
-padding: 0px 0px 0px 30px;
+padding: 0px 0px 0px 0px;
 margin-right: 10px;
 `
 
@@ -37,7 +37,7 @@ background-color: #101010;
 border-radius: 10px;
 height: 100%;
 color: white;
-padding: 0px 0px 0px 30px;
+padding: 0px 0px 0px 0px;
 width: 40%;
 margin: 0 auto;
 `
@@ -51,7 +51,7 @@ margin: 0px;
 const AccountInput = styled(LoginInput)`
 display: block;
 margin-block: 0px;
-width: 60%;
+width: 100%;
 `
 
 const AccountDateInput = styled(DateInput)`
@@ -66,6 +66,13 @@ const AccountButton = styled(LoginButton)`
 margin: 0px;
 width: 65%;
 `
+
+const FormContainer = styled.div`
+display: flex;
+flex-direction: column;
+width: 65%;
+align-items: center;
+`;
+
 export {AccountContainer, StyledH1, AccountInput, AccountDateInput,AccountStyledSelect, AccountButton,
-AccountContainerLeft, AccountContainerRight
-};
+AccountContainerLeft, AccountContainerRight, FormContainer};
