@@ -12,13 +12,14 @@ exports.getPlaylists = async (req, res) => {
 
 exports.createPlaylist = async (req, res) => {
   try {
-    const { titulo, descripcion, canciones, usuario } = req.body;
+    const { titulo, descripcion, canciones, usuario, portada } = req.body;
 
     const nuevaPlaylist = new Playlist({
       titulo,
       descripcion,
       canciones,
       usuario,
+      portada,
     });
 
     await nuevaPlaylist.save();
@@ -53,7 +54,7 @@ exports.updatePlaylist = async (req, res) => {
 
     const playlistActualizada = await Playlist.findByIdAndUpdate(
       playlistId,
-      { titulo, descripcion, canciones, usuario },
+      { titulo, descripcion, canciones, usuario, portada },
       { new: true }
     ).populate('canciones usuario');
 

@@ -44,7 +44,7 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
     const handleDelete = (songId, index) => {
         const songToDelete = songs[index];
         setDeleteAlertData({
-          songId: songToDelete.id,
+          songId: songToDelete._id,
           songTitle: songToDelete.titulo,
           indexToRemove: index,
         });
@@ -61,8 +61,8 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
                     
                     const songsToUpdate = updatedSongs.map(song => ({
                         ...song,
-                        artista: song.artista.id, // Cambiar al ID del artista
-                        album: song.album.id,     // Cambiar al ID del album
+                        artista: song.artista.id, 
+                        album: song.album.id,     
                     }));
                     client.patch(`/nospeak-app/api/playlists/${selectedPlaylist.id}/`, { canciones: songsToUpdate })
                         .then(response => {
@@ -78,15 +78,6 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
         }
     }, [selectedPlaylist, selectedSongId]);
   
-    const handleAddToPlaylist = (songId) => {
-        setSelectedSongId(songId); // Almacena el ID de la canción en el estado
-        setShowPlaylistDropdown(!showPlaylistDropdown); // Cambia el estado de showPlaylistDropdown al hacer clic
-    };
-
-    const handlePlaylistSelect = (playlist) => {
-        setSelectedPlaylist(playlist);
-        setShowPlaylistDropdown(false);
-    };
 
     return (
         <>

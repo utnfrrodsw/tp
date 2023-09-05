@@ -27,17 +27,14 @@ export default function Body({ client }) {
     const handleDeleteConfirm = async (alertData) => {
         try {
         
-            
-
-          // Realiza la llamada DELETE a la API para eliminar la canción
-          await client.delete(`/nospeak-app/api/canciones/${alertData.songId}/`);
+            console.log(alertData.songId)
+        
+          await client.delete(`/api/canciones/${alertData.songId}/`);
     
-          // Actualiza el arreglo de canciones local eliminando la canción correspondiente
           const updatedSongs = [...songs];
           updatedSongs.splice(alertData.indexToRemove, 1);
           setSongs(updatedSongs);
-    
-          // Cierra la alerta
+
           setDeleteAlertData(null);
         } catch (error) {
           console.error('Error al eliminar la canción:', error);
@@ -45,7 +42,6 @@ export default function Body({ client }) {
       };
     
       const handleDeleteCancel = () => {
-        // Cierra la alerta
         setDeleteAlertData(null);
       };
 
@@ -60,11 +56,6 @@ export default function Body({ client }) {
             console.error('Error al obtener las canciones:', error);
         });
 
-        if (user) {
-            client.get(`/api/playlists-usuario/${user.id}`)
-                .then(response => setUserPlaylists(response.data))
-                .catch(error => console.error('Error fetching user playlists:', error));
-        }
     }, [user]);
 
     return (

@@ -75,7 +75,7 @@ const AlbumPage = ({client}) => {
 
     useEffect(() => {
 
-        client.get(`/nospeak-app/api/albums/${albumId}/`)
+        client.get(`/api/albums/${albumId}/`)
           .then(response => {
             setAlbum(response.data)
             setEditedAlbum(response.data)
@@ -83,7 +83,7 @@ const AlbumPage = ({client}) => {
           .catch(error => console.error('Error fetching album:', error));
         
 
-        client.get(`/nospeak-app/api/canciones-album/${albumId}/`)
+        client.get(`/api/canciones-album/${albumId}/`)
           .then(response => setSongs(response.data))
           .catch(error => console.error('Error fetching album songs:', error));
       }, [albumId]);
@@ -91,18 +91,18 @@ const AlbumPage = ({client}) => {
       const handleDeleteSong = (songId, index) => {
         const songToDelete = songs[index];
         setDeleteAlertData({
-          songId: songToDelete.id,
+          songId: songToDelete._id,
           songTitle: songToDelete.titulo,
           indexToRemove: index,
         });
         }
 
     const handleDeleteConfirm = async () => {
-        const updatedSongs = songs.filter(song => song.id !== deleteAlertData.songId);
+        const updatedSongs = songs.filter(song => song._id !== deleteAlertData.songId);
         setSongs(updatedSongs);
 
         try {
-            await client.delete(`/nospeak-app/api/canciones/${deleteAlertData.songId}/`);
+            await client.delete(`/api/canciones/${deleteAlertData.songId}/`);
             setDeleteAlertData(null);
         } catch (error) {
             console.error('Error updating songs of album:', error);
@@ -120,7 +120,7 @@ const AlbumPage = ({client}) => {
 
     const handleDeleteAlbumConfirm = async () => {
         try {
-            await client.delete(`/nospeak-app/api/albums/${albumId}/`);
+            await client.delete(`/api/albums/${albumId}/`);
             setDeleteAlertData(null);
             setGoToLibrary(true);
 
@@ -149,7 +149,7 @@ const AlbumPage = ({client}) => {
 
       const handleSaveButtonClick = async () => {
         try {
-            await client.patch(`/nospeak-app/api/albums/${albumId}/`, editedAlbum);
+            await client.patch(`/api/albums/${albumId}/`, editedAlbum);
             setAlbum(editedAlbum);
             setIsEditAlertOpen(false);
         } catch (error) {

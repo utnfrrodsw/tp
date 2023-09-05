@@ -76,16 +76,15 @@ const ArtistPage = ({client}) => {
 
 
     useEffect(() => {
-        // Llamada a la API para obtener el artista
-        client.get(`/nospeak-app/api/artistas/${artistId}/`)
+
+        client.get(`/api/artistas/${artistId}/`)
           .then(response => {
             setArtista(response.data)
             setEditedArtista(response.data)
           })
           .catch(error => console.error('Error fetching artist:', error));
         
-        // Llamada a la API para obtener las canciones del artista
-        client.get(`/nospeak-app/api/canciones-artista/${artistId}/`)
+        client.get(`/api/canciones-artista/${artistId}/`)
           .then(response => setSongs(response.data))
           .catch(error => console.error('Error fetching artist songs:', error));
       }, [artistId]);
@@ -93,18 +92,18 @@ const ArtistPage = ({client}) => {
       const handleDeleteSong = (songId, index) => {
         const songToDelete = songs[index];
         setDeleteAlertData({
-          songId: songToDelete.id,
+          songId: songToDelete._id,
           songTitle: songToDelete.titulo,
           indexToRemove: index,
         });
         }
 
     const handleDeleteConfirm = async () => {
-        const updatedSongs = songs.filter(song => song.id !== deleteAlertData.songId);
+        const updatedSongs = songs.filter(song => song._id !== deleteAlertData.songId);
         setSongs(updatedSongs);
 
         try {
-            await client.delete(`/nospeak-app/api/canciones/${deleteAlertData.songId}/`);
+            await client.delete(`/api/canciones/${deleteAlertData.songId}/`);
             setDeleteAlertData(null);
         } catch (error) {
             console.error('Error updating songs of artist:', error);
@@ -122,7 +121,7 @@ const ArtistPage = ({client}) => {
 
     const handleDeleteArtistConfirm = async () => {
         try {
-            await client.delete(`/nospeak-app/api/artistas/${artistId}/`);
+            await client.delete(`/api/artistas/${artistId}/`);
             setDeleteAlertData(null);
             setGoToLibrary(true);
 
@@ -156,7 +155,7 @@ const ArtistPage = ({client}) => {
 
       const handleSaveButtonClick = async () => {
         try {
-            await client.patch(`/nospeak-app/api/artistas/${artistId}/`, editedArtista);
+            await client.patch(`/api/artistas/${artistId}/`, editedArtista);
             setArtista(editedArtista);
             setIsEditAlertOpen(false);
         } catch (error) {

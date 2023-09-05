@@ -19,37 +19,32 @@ export default function Register({client}) {
 
   const handleRegister = async () => {
     try {
-      const response_register = await client.post('/nospeak-app/api/register/', {
-        username: name,
+      const response_register = await client.post('/api/usuarios/', {
+        nombre: name,
+        email: email,
         password,
       });
     }
     catch (error) {
       console.error('Error al registrarse:', error);
     }
-    try{
-      const response_login = await client.post('/nospeak-app/api/login/', {
-        username: name,
+    try {
+      const response = await client.post('/api/usuarios-login/', {
+        nombre: name,
         password,
       });
       
-      const { token, user_id, username } = response_login.data;
+      const { token, userId, nombre } = response.data;
       localStorage.setItem('token', token);
       
       dispatch(loginSuccess({ 
         isAuthenticated: true,
-        user: { id: user_id, username },
+        user: { id: userId, nombre },
       }));
-
-      const historyResponse = await client.post('/nospeak-app/api/historiales/', {
-        usuario: user_id, 
-        canciones: [],
-      });
-
+      
       setGoToHome(true);
-    }
-    catch (error) {
-        console.error('Error al iniciar sesión:', error);
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
     }
     
   };

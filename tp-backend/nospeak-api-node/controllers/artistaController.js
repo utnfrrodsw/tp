@@ -12,12 +12,13 @@ exports.getArtistas = async (req, res) => {
 
 exports.createArtista = async (req, res) => {
   try {
-    const { nombre, nacionalidad, nro_seguidores } = req.body;
+    const { nombre, nacionalidad, nro_seguidores, portada } = req.body;
 
     const nuevoArtista = new Artista({
       nombre,
       nacionalidad,
       nro_seguidores,
+      portada,
     });
 
     await nuevoArtista.save();
@@ -49,7 +50,7 @@ exports.getArtistaById = async (req, res) => {
 exports.updateArtista = async (req, res) => {
   try {
     const artistaId = req.params.id;
-    const { nombre, nacionalidad, nro_seguidores } = req.body;
+    const { nombre, nacionalidad, nro_seguidores, portada } = req.body;
 
     const artistaActualizado = await Artista.findByIdAndUpdate(
       artistaId,
@@ -57,6 +58,7 @@ exports.updateArtista = async (req, res) => {
         nombre,
         nacionalidad,
         nro_seguidores,
+        portada,
       },
       { new: true }
     );
