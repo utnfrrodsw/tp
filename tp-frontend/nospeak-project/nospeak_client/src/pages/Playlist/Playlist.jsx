@@ -76,9 +76,9 @@ const Playlist = ({client}) => {
 
     const handleAddSongsClick = () => {
         try{
-            client.get('/nospeak-app/api/canciones-info/')
+            client.get('/api/canciones/')
             .then(response => {
-                const songsNotInPlaylist = response.data.filter(song => !playlistSongs.some(playlistSong => playlistSong.id === song.id));
+                const songsNotInPlaylist = response.data.filter(song => !playlistSongs.some(playlistSong => playlistSong._id === song._id));
                 setAllSongs(songsNotInPlaylist);
                 setShowAddSongsAlert(true);
             })
@@ -92,15 +92,15 @@ const Playlist = ({client}) => {
 
     const fetchPlaylistAndSongs = async (playlistId) => {
         try {
-          const response = await client.get(`/nospeak-app/api/playlists-info/${playlistId}/`);
+          const response = await client.get(`/api/playlists/${playlistId}/`);
           setPlaylist(response.data);    
           setPlaylistSongs(response.data.canciones);
-          response.data.usuario = response.data.usuario.id
+          response.data.usuario = response.data.usuario._id
 
           response.data.canciones = response.data.canciones.map(song => ({
             ...song,
-            artista: song.artista.id,
-            album: song.album.id,
+            artista: song.artista._id,
+            album: song.album._id,
         }));
 
           setEditedPlaylist(response.data)
@@ -119,24 +119,24 @@ const Playlist = ({client}) => {
     const handleDeleteSong = (songId, index) => {
         const songToDelete = playlistSongs[index];
         setDeleteAlertData({
-          songId: songToDelete.id,
+          songId: songToDelete._id,
           songTitle: songToDelete.titulo,
           indexToRemove: index,
         });
         }
 
         const handleDeleteConfirm = async () => {
-            const updatedSongs = playlistSongs.filter(song => song.id !== deleteAlertData.songId);
+            const updatedSongs = playlistSongs.filter(song => song._id !== deleteAlertData.songId);
             setPlaylistSongs(updatedSongs);
         
             const songsToUpdate = updatedSongs.map(song => ({
                 ...song,
-                artista: song.artista.id,
-                album: song.album.id,
+                artista: song.artista._id,
+                album: song.album._id,
             }));
         
             try {
-                await client.patch(`/nospeak-app/api/playlists/${playlistId}/`, { canciones: songsToUpdate });
+                await client.patch(`/api/playlists/${playlistId}/`, { canciones: songsToUpdate });
                 setDeleteAlertData(null);
             } catch (error) {
                 console.error('Error updating playlist:', error);
@@ -147,23 +147,21 @@ const Playlist = ({client}) => {
       };
 
     const handleAddSongToPlaylist = async (songId) => {
-        const updatedSongs = [...playlistSongs, allSongs.find(song => song.id === songId)];
+        const updatedSongs = [...playlistSongs, allSongs.find(song => song._id === songId)];
         
         setPlaylistSongs(updatedSongs);
-        setAllSongs(allSongs.filter(song => song.id !== songId))
+        setAllSongs(allSongs.filter(song => song._id !== songId))
       
         const songsToUpdate = updatedSongs.map(song => ({
           ...song,
-          artista: song.artista.id,
-          album: song.album.id,
+          artista: song.artista._id,
+          album: song.album._id,
         }));
       
         try {
-          await client.patch(`/nospeak-app/api/playlists/${playlistId}/`, { canciones: songsToUpdate });
+          await client.patch(`/api/playlists/${playlistId}/`, { canciones: songsToUpdate });
           setSelectedSongs([]);
-        //   if(!allSongs) {
-        //     setShowAddSongsAlert(false);
-        //   }
+
         } catch (error) {
           console.error('Error updating playlist:', error);
         }
@@ -179,7 +177,7 @@ const Playlist = ({client}) => {
 
       const handleSaveButtonClick = async () => {
         try {
-            await client.patch(`/nospeak-app/api/playlists/${playlistId}/`, editedPlaylist);
+            await client.patch(`/api/playlists/${playlistId}/`, editedPlaylist);
             setPlaylist(editedPlaylist);
             setIsEditAlertOpen(false);
         } catch (error) {
@@ -313,7 +311,7 @@ const Playlist = ({client}) => {
                                     <TableBody>
                                     {allSongs
                                         .map((song, rowIndex) => (
-                                            <TableRow hover role="checkbox" tabIndex={-1} key={song.id}>
+                                            <TableRow hover role="checkbox" tabIndex={-1} key={song._id}>
                                             {columnsAlert.map((column, columnIndex) => (
                                                 <TableCell
                                                 key={column.id}
@@ -322,10 +320,10 @@ const Playlist = ({client}) => {
                                                 >
                                                 {column.id === 'option' && columnIndex === 0 ? (
                                                     <PlaylistAdd
-                                                    onClick={() => handleAddSongToPlaylist(song.id)}
+                                                    onClick={() => handleAddSongToPlaylist(song._id)}
                                                     style={{
                                                       cursor: 'pointer',
-                                                      color: selectedSongs.includes(song.id) ? 'green' : 'inherit',
+                                                      color: selectedSongs.includes(song._id) ? 'green' : 'inherit',
                                                     }}
                                                   />
                                                 ) : null}

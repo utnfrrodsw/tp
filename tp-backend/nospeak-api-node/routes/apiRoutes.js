@@ -22,13 +22,13 @@ router.post('/usuarios-login/', usuarioController.loginUsuario);
 router.get('/artistas', verificarToken, artistaController.getArtistas);
 router.post('/artistas', verificarToken, artistaController.createArtista);
 router.get('/artistas/:id', verificarToken, artistaController.getArtistaById);
-router.put('/artistas/:id', verificarToken, artistaController.updateArtista);
+router.patch('/artistas/:id', verificarToken, artistaController.updateArtista);
 router.delete('/artistas/:id', verificarToken, artistaController.deleteArtista);
 
 router.get('/albums', verificarToken, albumController.getAlbums);
 router.post('/albums', verificarToken, albumController.createAlbum);
 router.get('/albums/:id', verificarToken, albumController.getAlbumById);
-router.put('/albums/:id', verificarToken, albumController.updateAlbum);
+router.patch('/albums/:id', verificarToken, albumController.updateAlbum);
 router.delete('/albums/:id', verificarToken, albumController.deleteAlbum);
 
 router.get('/canciones', verificarToken, cancionController.getCanciones);
@@ -43,7 +43,7 @@ router.get('/canciones-album/:album_id', verificarToken ,cancionController.getCa
 router.get('/playlists', verificarToken, playlistController.getPlaylists);
 router.post('/playlists', verificarToken, playlistController.createPlaylist);
 router.get('/playlists/:id', verificarToken, playlistController.getPlaylistById);
-router.put('/playlists/:id', verificarToken, playlistController.updatePlaylist);
+router.patch('/playlists/:id', verificarToken, playlistController.updatePlaylist);
 router.delete('/playlists/:id', verificarToken, playlistController.deletePlaylist);
 router.get('/playlists-usuario/:usuario_id', verificarToken, playlistController.getPlaylistsByUsuario);
 

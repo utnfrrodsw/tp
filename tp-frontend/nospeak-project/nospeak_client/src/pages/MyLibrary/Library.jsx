@@ -222,7 +222,7 @@ const Library = ({client}) => {
                     <PlaylistGrid>
                         {activeCategory === 'Playlists' && (
                             playlistData.map((playlist, index) => (
-                            <Link key={index} to={`/playlist/${playlist.id}`}>
+                            <Link key={index} to={`/playlist/${playlist._id}`}>
                                 <PlaylistBox key={index}>
                                     <PlaylistImage src={playlist.portada}></PlaylistImage>
                                     <PlaylistName>{playlist.titulo}</PlaylistName>

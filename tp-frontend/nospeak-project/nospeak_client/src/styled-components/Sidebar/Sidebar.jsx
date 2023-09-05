@@ -56,7 +56,7 @@ export default function Sidebar() {
       <Playlists>PLAYLISTS</Playlists>
       <hr />
       {playlists.map((playlist, index) => (
-        <Link key={index} to={`/playlist/${playlist.id}`} style={{textDecoration: 'none'}}>
+        <Link key={index} to={`/playlist/${playlist._id}`} style={{textDecoration: 'none'}}>
             <SidebarChoice key={playlist.id} title={playlist.titulo} />
         </Link>
         

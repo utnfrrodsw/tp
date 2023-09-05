@@ -70,6 +70,7 @@ const ArtistPage = ({client}) => {
         nombre: '',
         nacionalidad: '',
         nro_seguidores: '',
+        portada: '',
     });
 
     const [goToLibrary, setGoToLibrary] = React.useState(false);

@@ -50,7 +50,7 @@ exports.getPlaylistById = async (req, res) => {
 exports.updatePlaylist = async (req, res) => {
   try {
     const playlistId = req.params.id;
-    const { titulo, descripcion, canciones, usuario } = req.body;
+    const { titulo, descripcion, canciones, usuario, portada } = req.body;
 
     const playlistActualizada = await Playlist.findByIdAndUpdate(
       playlistId,
