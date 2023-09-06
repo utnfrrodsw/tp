@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import Solicitud from "../solicitud/Solicitud.jsx";
 import "./solicitudes.css";
+import { NuevaSolicitud } from "../nuevaSolicitud/NuevaSolicitud.jsx";
+import { NavLink } from "../../navlink/Navlink.jsx";
 
 function Solicitudes(props) {
 
@@ -33,6 +35,21 @@ function Solicitudes(props) {
 
     return (
         <div className="solicitudes-container">
+
+            <nav className="navigation">
+                <ul>
+                    <li>
+                        <NavLink to="/client/home/requests" className="link">Solicitudes</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/client/home/progress" className="link">En Progreso</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/client/home/finished" className="link">Terminados</NavLink>
+                    </li>    
+                </ul>
+            </nav>
+
             <div>
                 {SolicitudesPagina.map((especialidad, index) => (
                 <Solicitud 
@@ -48,7 +65,7 @@ function Solicitudes(props) {
                 <span>{paginaActual} / {totalPaginas}</span>
                 <button onClick={irAdelante} disabled={paginaActual === totalPaginas}>Adelante</button>
             </div>
-
+            <NuevaSolicitud/>
         </div>
         
     )

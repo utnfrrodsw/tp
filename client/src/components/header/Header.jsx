@@ -8,7 +8,7 @@ import logo from "./logoPosta.png"
 
 
 
-function Header() {
+function Header(){
     return (
         <header className="header-content">
             <div className="logo-content">
@@ -20,7 +20,7 @@ function Header() {
                         <NavLink to = "/client/home">Cliente</NavLink>
                     </li>
                     <li>
-                        <NavLink to = "/">Prestador</NavLink>
+                        <NavLink to = "/provider/home">Prestador</NavLink>
                     </li>
                         {/*esto luego se cambia*/}
                 </ul>
