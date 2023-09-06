@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css'; // Estilo para la página Home
+import './home.css'; 
 
 function Home() {
   return (
