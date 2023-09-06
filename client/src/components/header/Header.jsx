@@ -20,7 +20,7 @@ function Header() {
                         <NavLink to = "/client/home">Cliente</NavLink>
                     </li>
                     <li>
-                        <NavLink to = "/">Prestador</NavLink>
+                        <NavLink to = "/client/InicioPrestador">Prestador</NavLink>
                     </li>
                         {/*esto luego se cambia*/}
                 </ul>

@@ -7,7 +7,8 @@ import Evaluaciones from './components/evaluaciones/Evaluaciones.jsx';
 import Footer from './components/footer/Footer.jsx';
 import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
-
+import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
+import Anuncio from './components/prestador/inicio/Anuncio.jsx';
 
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -38,6 +39,7 @@ function App() {
         <Header/>
         <Routes>
           <Route path='/'  element={ <Home/>} />
+          <Route path='/client/inicioPrestador'  element={ <InicioPrestador/>}/>
           <Route path='/client/home'  element={ <InicioCliente/>}>
             <Route path='requests'  element={ <Solicitudes estado = "pendiente"/>} />
             <Route path='finished'  element={ <Solicitudes estado = "terminado"/>} />
