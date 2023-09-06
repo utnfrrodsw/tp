@@ -111,7 +111,6 @@ const ArtistPage = ({client}) => {
         }
     };
     const handleDeleteCancel = () => {
-        // Cierra la alerta
         setDeleteAlertData(null);
         setDeleteArtistAlertData(null);
       };

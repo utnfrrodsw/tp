@@ -35,6 +35,7 @@ import{
     EditAlertContent,
     EditAlertText, 
 } from '../Artist/styles';
+import { Navigate } from 'react-router-dom';
 
 
 const columns = [
@@ -66,12 +67,17 @@ const Playlist = ({client}) => {
 
     const [isEditAlertOpen, setIsEditAlertOpen] = useState(false);
 
+    const [deletePlaylistAlertData, setDeletePlaylistAlertData] = React.useState(null);
+
     const [editedPlaylist, setEditedPlaylist] = useState({
         titulo: '',
         descripcion: '',
         portada: '',
         usuario: '',
     });
+
+    const [goToLibrary, setGoToLibrary] = React.useState(false);
+
     
 
     const handleAddSongsClick = () => {
@@ -144,7 +150,27 @@ const Playlist = ({client}) => {
         };
     const handleDeleteCancel = () => {
         setDeleteAlertData(null);
+        setDeletePlaylistAlertData(null);
       };
+
+    const handleDeletePlaylist = () => {
+        setDeletePlaylistAlertData(true);
+    }
+
+    const handleDeletePlaylistConfirm = async () => {
+        try {
+            await client.delete(`/api/playlists/${playlistId}/`);
+            setDeletePlaylistAlertData(null);
+            setGoToLibrary(true);
+
+        } catch (error) {
+            console.error('Error deleting playlist:', error);
+        }
+    };
+
+    if (goToLibrary) {
+        return <Navigate to="/library" />;
+    }
 
     const handleAddSongToPlaylist = async (songId) => {
         const updatedSongs = [...playlistSongs, allSongs.find(song => song._id === songId)];
@@ -214,7 +240,7 @@ const Playlist = ({client}) => {
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginRight:'20px' }}>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <StyledEditIcon style={{ color: 'white', margin: '5px', fontSize: '36px' }} onClick={handleEditButtonClick}/>
-                                    <StyledDeleteIcon style={{ color: 'white', margin: '5px', fontSize: '36px' }} />
+                                    <StyledDeleteIcon style={{ color: 'white', margin: '5px', fontSize: '36px' }} onClick={() => handleDeletePlaylist()} />
                                 </div>
                             </div>
                         </CardContainer>
@@ -383,7 +409,22 @@ const Playlist = ({client}) => {
                 // </Overlay>
                 
             )}
-            
+            {deletePlaylistAlertData && (
+                <Overlay>
+                    <AlertContainer>
+                    <AlertTitle>Eliminar playlist</AlertTitle>
+                    <AlertText>
+                        ¿Estás seguro de que deseas eliminar la playlist "{playlist?.titulo}"?
+                    </AlertText>
+                    <ButtonContainer>
+                        <StyledButtonSecondary style={{width: '50%', marginRight: '5px'}} onClick={handleDeleteCancel}>Cancelar</StyledButtonSecondary>
+                        <StyledButton style={{backgroundColor: '#FF5630', width: '50%', marginLeft: '5px'}} onClick={() => handleDeletePlaylistConfirm()}>
+                        Eliminar
+                        </StyledButton>
+                    </ButtonContainer>
+                    </AlertContainer>
+                </Overlay>
+            )}
         </>  
         );
 }
