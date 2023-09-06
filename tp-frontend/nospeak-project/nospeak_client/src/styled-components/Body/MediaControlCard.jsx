@@ -93,25 +93,25 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
     //   }, [userHistorial, songToAdd]);
 
     const handleFavoriteToggle = (songId) => {
-        // Cambia el estado isFavorite para esta canción al contrario de su valor actual
+
         setFavoriteState((prevState) => ({
           ...prevState,
           [songId]: !prevState[songId],
         }));
       
-        // Obtén el historial del usuario desde el estado
+
         const userHistorialCopy = { ...userHistorial };
       
-        // Verifica si la canción ya está en el historial
+
         const songIndex = userHistorialCopy.canciones.findIndex(
           (cancion) => cancion === songId
         );
       
         if (songIndex !== -1) {
-          // Si la canción está en el historial, elimínala
+
           userHistorialCopy.canciones.splice(songIndex, 1);
       
-          // Realiza una solicitud PATCH para actualizar el historial
+
           client
             .patch(`/api/historiales/${userHistorialCopy._id}`, userHistorialCopy)
             .then((response) => {
@@ -121,10 +121,9 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
               console.error('Error al eliminar la canción del historial:', error);
             });
         } else {
-          // Si la canción no está en el historial, agrégala
+
           userHistorialCopy.canciones.push(songId);
       
-          // Realiza una solicitud PATCH para actualizar el historial
           client
             .patch(`/api/historiales/${userHistorialCopy._id}`, userHistorialCopy)
             .then((response) => {
@@ -180,7 +179,7 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
                                         />
                                         </IconButton>
                                     <IconButton aria-label="edit">
-                                        <Link to={{ pathname: `/song/${song.id}` }}>
+                                        <Link to={{ pathname: `/song/${song._id}` }}>
                                             <StyledEditIcon sx={{ color: 'white' }} />
                                         </Link>
                                     </IconButton>

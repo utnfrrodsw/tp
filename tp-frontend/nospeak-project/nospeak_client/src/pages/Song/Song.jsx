@@ -71,7 +71,7 @@ export default function Song({client}) {
 
     React.useEffect(() => {
         if (songId !== '0') {
-            client.get(`/nospeak-app/api/canciones-info/${songId}/`)
+            client.get(`/api/canciones/${songId}/`)
               .then(response => {
                 setSong(response.data);
       
@@ -81,15 +81,15 @@ export default function Song({client}) {
                 setDuracion(response.data.duracion);
                 setAudio(response.data.audio);
                 setSpotifyId(response.data.spotify_id);
-                setArtista(response.data.artista.id);
-                setAlbum(response.data.album.id);
+                setArtista(response.data.artista._id);
+                setAlbum(response.data.album._id);
               })
               .catch(error => {
                 console.error('Error al obtener la canción:', error);
               });
         }
 
-        client.get('/nospeak-app/api/artistas/')
+        client.get('/api/artistas/')
         .then(response => {
             setArtists(response.data);
         })
@@ -97,7 +97,7 @@ export default function Song({client}) {
             console.error('Error al obtener la lista de artistas:', error);
         });
 
-        client.get('/nospeak-app/api/albums/')
+        client.get('/api/albums/')
         .then(response => {
             setAlbums(response.data);
         })
@@ -124,8 +124,8 @@ export default function Song({client}) {
         };
     
         if (songId === '0') {
-          // Realiza la llamada POST a la API para crear una nueva canción
-          client.post('/nospeak-app/api/canciones/', newSong)
+
+          client.post('/api/canciones/', newSong)
             .then(response => {
               console.log('Nueva canción creada:', response.data);
               setShowSuccessAlert(true);
@@ -134,8 +134,7 @@ export default function Song({client}) {
               console.error('Error al crear la nueva canción:', error);
             });
         } else {
-          // Realiza la llamada PUT a la API para actualizar la canción existente
-          client.put(`/nospeak-app/api/canciones/${songId}/`, newSong)
+          client.patch(`/api/canciones/${songId}/`, newSong)
             .then(response => {
               console.log('Canción actualizada:', response.data);
               setShowSuccessAlert(true);
@@ -223,7 +222,7 @@ export default function Song({client}) {
                                         <ComboBox value={artista} onChange={(e) => handleArtistaChange(e.target.value)}>
                                             <option value="">Seleccionar artista...</option>
                                             {artists.map(artist => (
-                                                <option key={artist.id} value={artist.id}>
+                                                <option key={artist._id} value={artist._id}>
                                                     {artist.nombre}
                                                 </option>
                                             ))}
@@ -233,7 +232,7 @@ export default function Song({client}) {
                                         <ComboBox value={album} onChange={(e) => handleAlbumChange(e.target.value)}>
                                             <option value="">Seleccionar álbum...</option>
                                             {albums.map(album => (
-                                                <option key={album.id} value={album.id}>
+                                                <option key={album._id} value={album._id}>
                                                     {album.titulo}
                                                 </option>
                                             ))}

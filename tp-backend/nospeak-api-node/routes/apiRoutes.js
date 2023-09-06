@@ -34,7 +34,7 @@ router.delete('/albums/:id', verificarToken, albumController.deleteAlbum);
 router.get('/canciones', verificarToken, cancionController.getCanciones);
 router.post('/canciones', verificarToken, cancionController.createCancion);
 router.get('/canciones/:id', verificarToken, cancionController.getCancionById);
-router.put('/canciones/:id', verificarToken, cancionController.updateCancion);
+router.patch('/canciones/:id', verificarToken, cancionController.updateCancion);
 router.delete('/canciones/:id', verificarToken, cancionController.deleteCancion);
 router.get('/canciones-artista/:artista_id', verificarToken, cancionController.getCancionesPorArtista);
 router.get('/canciones-album/:album_id', verificarToken ,cancionController.getCancionesPorAlbum);
