@@ -39,7 +39,7 @@ function App() {
         <Header/>
         <Routes>
           <Route path='/'  element={ <Home/>} />
-          <Route path='/client/providerHome'  element={ <InicioPrestador/>}/>
+          <Route path='/provider/home'  element={ <InicioPrestador/>}/>
           <Route path='/client/home'  element={ <InicioCliente/>}>
             <Route path='requests'  element={ <Solicitudes estado = "pendiente"/>} />
             <Route path='finished'  element={ <Solicitudes estado = "terminado"/>} />
