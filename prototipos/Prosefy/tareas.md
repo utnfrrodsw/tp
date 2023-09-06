@@ -24,7 +24,7 @@
 - [ ] Frontend
 - [ ] Backend
 
-### Editoriales
+### Editoriales (Alejo)
 
 - [x] Diseño
 - [ ] Frontend
@@ -36,7 +36,7 @@
 - [ ] Frontend
 - [ ] Backend
 
-### Ayuda
+### Ayuda (Alejo)
 
 - [x] Diseño
 - [ ] Frontend
@@ -62,7 +62,7 @@
  - [ ] Frontend
  - [ ] Backend
 
-### Finalizar compra 
+### Finalizar compra (Alejo)
 
  - [x] Diseño
  - [ ] Frontend
@@ -80,7 +80,7 @@
  - [ ] Frontend
  - [ ] Backend
 
-### Perfil
+### Perfil (Alejo)
 
  - [x] Diseño
  - [ ] Frontend
