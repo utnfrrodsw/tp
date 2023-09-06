@@ -24,29 +24,37 @@ export default function Register({client}) {
         email: email,
         password,
       });
-    }
-    catch (error) {
+
+
+        if (response_register.status === 201) {
+          // Inicia sesión con el nuevo usuario
+          const response_login = await client.post('/api/usuarios-login/', {
+            nombre: name,
+            password,
+          });
+
+          
+
+          const { token, userId, nombre } = response_login.data;
+          localStorage.setItem('token', token);
+
+          const response_createHistorial = await client.post('/api/historiales/', {
+            usuario: response_login.data.userId, 
+            canciones: [],
+          });
+
+          dispatch(loginSuccess({
+            isAuthenticated: true,
+            user: { id: userId, nombre },
+          }));
+
+          setGoToHome(true);
+      } else {
+        console.error('Error al registrar el usuario:', response_register.data.message);
+      }
+    } catch (error) {
       console.error('Error al registrarse:', error);
     }
-    try {
-      const response = await client.post('/api/usuarios-login/', {
-        nombre: name,
-        password,
-      });
-      
-      const { token, userId, nombre } = response.data;
-      localStorage.setItem('token', token);
-      
-      dispatch(loginSuccess({ 
-        isAuthenticated: true,
-        user: { id: userId, nombre },
-      }));
-      
-      setGoToHome(true);
-    } catch (error) {
-      console.error('Error al iniciar sesión:', error);
-    }
-    
   };
 
   return (

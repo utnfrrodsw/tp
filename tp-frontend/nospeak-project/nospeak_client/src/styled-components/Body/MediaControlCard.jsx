@@ -8,7 +8,7 @@ import AddCircle from '@mui/icons-material/AddCircle';
 import PlaylistAdd from '@mui/icons-material/PlaylistAdd';
 import Typography from '@mui/material/Typography';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { 
     cardStyle, 
@@ -40,6 +40,12 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
     const [selectedSongId, setSelectedSongId] = useState(null);
     const user = useSelector((state) => state.user.user);
 
+    const [userHistorial, setUserHistorial] = useState(null);
+    const [songToAdd, setSongToAdd] = useState(null);
+    const [favoriteState, setFavoriteState] = useState({});
+
+
+
 
     const handleDelete = (songId, index) => {
         const songToDelete = songs[index];
@@ -50,33 +56,88 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
         });
       };
 
+    const fetchUserHistorial = () => {
+        if (user && user.id) {
+            client.get(`/api/historiales-usuario/${user.id}`)
+            .then(response => {
+                setUserHistorial(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching user historial:', error);
+            });
+        }
+    };
+      
+
   
     useEffect(() => {
-        if (selectedPlaylist && selectedSongId) {
-            client.get(`/nospeak-app/api/canciones/${selectedSongId}/`)
-                .then(response => {
-                    const newSong = response.data;
 
-                    const updatedSongs = [...selectedPlaylist.canciones, newSong];
-                    
-                    const songsToUpdate = updatedSongs.map(song => ({
-                        ...song,
-                        artista: song.artista.id, 
-                        album: song.album.id,     
-                    }));
-                    client.patch(`/nospeak-app/api/playlists/${selectedPlaylist.id}/`, { canciones: songsToUpdate })
-                        .then(response => {
-                            // Actualizar el estado de las playlists en el componente Body si es necesario
-                        })
-                        .catch(error => {
-                            console.error('Error updating playlist:', error);
-                        });
-                })
-                .catch(error => {
-                    console.error('Error fetching new song:', error);
-                });
+        fetchUserHistorial();
+    }, [user]);
+
+    // useEffect(() => {
+    //     if (userHistorial && songToAdd) {
+
+    //       client.patch(`/api/historiales/${userHistorial._id}`, {
+    //         canciones: [...userHistorial.canciones, songToAdd],
+    //       })
+    //         .then(response => {
+
+    //           console.log('Canción agregada al historial:', response.data);
+      
+    //         })
+    //         .catch(error => {
+    //           console.error('Error al agregar la canción al historial:', error);
+    //         });
+    //     }
+    //   }, [userHistorial, songToAdd]);
+
+    const handleFavoriteToggle = (songId) => {
+        // Cambia el estado isFavorite para esta canción al contrario de su valor actual
+        setFavoriteState((prevState) => ({
+          ...prevState,
+          [songId]: !prevState[songId],
+        }));
+      
+        // Obtén el historial del usuario desde el estado
+        const userHistorialCopy = { ...userHistorial };
+      
+        // Verifica si la canción ya está en el historial
+        const songIndex = userHistorialCopy.canciones.findIndex(
+          (cancion) => cancion === songId
+        );
+      
+        if (songIndex !== -1) {
+          // Si la canción está en el historial, elimínala
+          userHistorialCopy.canciones.splice(songIndex, 1);
+      
+          // Realiza una solicitud PATCH para actualizar el historial
+          client
+            .patch(`/api/historiales/${userHistorialCopy._id}`, userHistorialCopy)
+            .then((response) => {
+              console.log('Canción eliminada del historial:', response.data);
+            })
+            .catch((error) => {
+              console.error('Error al eliminar la canción del historial:', error);
+            });
+        } else {
+          // Si la canción no está en el historial, agrégala
+          userHistorialCopy.canciones.push(songId);
+      
+          // Realiza una solicitud PATCH para actualizar el historial
+          client
+            .patch(`/api/historiales/${userHistorialCopy._id}`, userHistorialCopy)
+            .then((response) => {
+              console.log('Canción agregada al historial:', response.data);
+            })
+            .catch((error) => {
+              console.error('Error al agregar la canción al historial:', error);
+            });
         }
-    }, [selectedPlaylist, selectedSongId]);
+      };
+      
+      
+      
   
 
     return (
@@ -106,9 +167,18 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
                                     <IconButton aria-label="delete" onClick={() => handleDelete(song.id, index)}>
                                         <StyledDeleteIcon sx={{ color: 'white' }} />
                                     </IconButton>
-                                    <IconButton aria-label="play/pause">
-                                        <PlayArrowIcon sx={{ height: 38, width: 38, color: 'white' }} />
-                                    </IconButton>
+                                    <IconButton
+                                        aria-label="play/pause"
+                                        onClick={() => handleFavoriteToggle(song.id)}
+                                        >
+                                        <FavoriteIcon
+                                            sx={{
+                                            height: 35,
+                                            width: 35,
+                                            color: favoriteState[song.id] ? '#FFA130' : 'white',
+                                            }}
+                                        />
+                                        </IconButton>
                                     <IconButton aria-label="edit">
                                         <Link to={{ pathname: `/song/${song.id}` }}>
                                             <StyledEditIcon sx={{ color: 'white' }} />

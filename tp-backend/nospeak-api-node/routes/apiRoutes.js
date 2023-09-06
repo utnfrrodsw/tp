@@ -57,7 +57,8 @@ router.delete('/recomendaciones/:id', verificarToken, recomendacionController.de
 router.get('/historiales', verificarToken, historialController.getHistoriales);
 router.post('/historiales', verificarToken, historialController.createHistorial);
 router.get('/historiales/:id', verificarToken, historialController.getHistorialById);
-router.put('/historiales/:id', verificarToken, historialController.updateHistorial);
+router.patch('/historiales/:id', verificarToken, historialController.updateHistorial);
 router.delete('/historiales/:id', verificarToken, historialController.deleteHistorial);
+router.get('/historiales-usuario/:usuario_id', verificarToken, historialController.getHistorialByUsuario);
 
 module.exports = router;
