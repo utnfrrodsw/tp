@@ -1,0 +1,40 @@
+.anuncio-card {
+  display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 30% 60% 10%;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    ". titulo"
+    "Foto descripcion"
+    ". nombre";
+  height: 15em;
+  padding: 5px;
+    background-color: #AEC3AE;
+    border-radius: 12px;
+    margin: 5px;
+    transition: all 0.2s;
+    /* Transición al pasar el cursor */
+    cursor: pointer;
+    border: 1px solid #040D12;
+}
+.anuncio-card:hover {
+  background-color: #E4E4D0;
+  border-radius: 10px;
+}
+
+.photo {
+  grid-area: Foto;
+}
+
+.titulo {
+  grid-area: titulo;
+}
+
+.descripcion {
+  grid-area: descripcion;
+}
+
+.nombre {
+  grid-area: nombre;
+}
