@@ -1,130 +1,129 @@
 .libros-mas-vendidos {
-    text-align: center;
-    margin: 20px;
+  text-align: center;
+  margin: 20px;
 }
-  
+
 .lista-libros {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-  
+
 .boton-izquierda,
 .boton-derecha {
-    background: none !important;
-    border: none !important;
-    font-size: 24px !important;
-    cursor: pointer !important;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 }
-  
+
 .lista-contenedor {
-    overflow: hidden;
-    margin: 0 20px;
+  overflow: hidden;
+  margin: 0 20px;
 }
-  
+
 .elementos-lista {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
-    width: max-content;
-    transition: transform 0.3s ease-in-out;
-    width: 100%;
-    white-space: nowrap; /* Evita que los elementos se dividan en múltiples líneas */
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  width: max-content;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  white-space: nowrap; /* Evita que los elementos se dividan en múltiples líneas */
 }
-  
+
 .elemento-lista {
-    flex: 0 0 calc(20% - 10px); /* Ajusta el tamaño de los elementos */
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
+  flex: 0 0 calc(20% - 10px); /* Ajusta el tamaño de los elementos */
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
 }
-  
+
 @media (max-width: 1000px) {
-    .elemento-lista {
-      flex-basis: calc(25% - 10px); /* 4 elementos por fila */
-    }
+  .elemento-lista {
+    flex-basis: calc(25% - 10px); /* 4 elementos por fila */
+  }
 }
-  
+
 @media (max-width: 767px) {
-    .elemento-lista {
-      flex-basis: calc(33.33% - 10px); /* 3 elementos por fila */
-    }
+  .elemento-lista {
+    flex-basis: calc(33.33% - 10px); /* 3 elementos por fila */
+  }
 }
 
 @media (max-width: 619px) {
-    .elemento-lista {
-      flex-basis: calc(50% - 10px); /* 2 elementos por fila */
-    }
+  .elemento-lista {
+    flex-basis: calc(50% - 10px); /* 2 elementos por fila */
+  }
 }
-  
+
 .libro {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f0f0f0;
-    border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 5px;
 }
-  
+
 .descripcion {
-    font-size: 0.9rem;
-    white-space: pre-line; /* Permite los saltos de línea */
-    word-wrap: break-word; /* Rompe las palabras largas */
+  font-size: 0.9rem;
+  white-space: pre-line; /* Permite los saltos de línea */
+  word-wrap: break-word; /* Rompe las palabras largas */
 }
-  
+
 .precio {
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 0;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 0;
 }
-  
+
 /* Estilo para los enlaces dentro de las tarjetas */
 .libro a {
-    color: inherit; /* Hereda el color del texto circundante */
+  color: inherit; /* Hereda el color del texto circundante */
 }
-  
+
 @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0); /* Comienza con un tamaño de escala de cero */
-    }
-    to {
-      opacity: 1;
-      transform: scale(1); /* Termina con el tamaño de escala normal (1) */
-    }
+  from {
+    opacity: 0;
+    transform: scale(0); /* Comienza con un tamaño de escala de cero */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1); /* Termina con el tamaño de escala normal (1) */
+  }
 }
-  
+
 .hover-grow {
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; /* Duración más larga y función de temporización ajustada */
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Duración más larga y función de temporización ajustada */
 }
-  
+
 .hover-grow:hover {
-    transform: scale(
-      1.1
-    ) !important; /* Cambiamos el valor de escala para un efecto de agrandamiento más sutil */
+  transform: scale(
+    1.1
+  ); /* Cambiamos el valor de escala para un efecto de agrandamiento más sutil */
 }
-  
+
 /* Estilos para los botones modernos */
 .boton-moderno {
-    color: black !important;
-    border: none !important;
-    font-size: 30px !important;
-  
-    cursor: pointer !important;
-    transition: 0.3s !important;
+  color: black;
+  border: none;
+  font-size: 30px;
+
+  cursor: pointer;
+  transition: 0.3s;
 }
-  
+
 .boton-moderno:hover {
-    transform: scale(1.3) !important; /* Aumento de tamaño al hacer hover */
+  transform: scale(1.3); /* Aumento de tamaño al hacer hover */
 }
-  
+
 .disabled {
-    color: #c0c0c0 !important; /* Cambia el color a gris claro */
-    cursor: not-allowed !important; /* Cambia el cursor a 'no permitido' */
+  color: #c0c0c0; /* Cambia el color a gris claro */
+  cursor: not-allowed; /* Cambia el cursor a 'no permitido' */
 }
-  
