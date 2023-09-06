@@ -1,0 +1,110 @@
+.header {
+  /* Transición para el header */
+  transition: background-color 1s ease;
+}
+
+.navbar {
+  /* Transición para el navbar */
+  transition: background-color 1s ease;
+}
+
+.header.scrolled {
+  /* Estilo para el header cuando se hace scroll */
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.navbar.scrolled {
+  /* Estilo para el navbar cuando se hace scroll */
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.header {
+  /* Transición para el header */
+  transition: background-color 1s ease;
+}
+
+.navbar {
+  /* Transición para el navbar */
+  transition: background-color 1s ease;
+}
+
+.header.scrolled {
+  /* Estilo para el header cuando se hace scroll */
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.navbar.scrolled {
+  /* Estilo para el navbar cuando se hace scroll */
+  background-color: rgba(255, 255, 255, 0.9);
+}
+/* Estilos para el fondo oscurecido */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+  z-index: 1000; /* Asegurar que esté por detrás del popup */
+  opacity: 0; /* Comenzar con opacidad 0 */
+  pointer-events: none; /* Evitar interacción con el fondo */
+  transition: opacity 0.3s ease; /* Animación de transparencia */
+}
+
+.overlay.active {
+  opacity: 1; /* Mostrar el fondo oscurecido al abrir el popup */
+  pointer-events: auto; /* Permitir interacción con el fondo oscurecido */
+}
+
+/* Estilos para el popup */
+.modal-dialog {
+  z-index: 2000; /* Asegurar que el popup esté por encima del fondo oscurecido */
+}
+
+.modal-title {
+  font-size: 30px;
+}
+
+@media (max-width: 1000px) {
+  .modal-title {
+    font-size: 25px;
+  }
+}
+
+/* Eliminar las líneas separadoras en el encabezado del popup */
+.modal-header {
+  border-bottom: none; /* Quitar la línea inferior */
+}
+
+.modal-title {
+  margin-bottom: 0; /* Quitar el margen inferior del título */
+}
+
+.modal-footer {
+  border-top: none;
+  margin-bottom: 2rem;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.custom-dropdown-item:hover {
+  background-color: #bd8464; /* Cambia el color de fondo al hacer hover */
+  color: white; /* Cambia el color del texto al hacer hover */
+}
+
+.custom-btn-primary {
+  background-color: #bd8464;
+  border-color: #bd8464;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-primary:active {
+  background-color: #976950;
+  border-color: #976950;
+}
+
+.logo-sm {
+  width: 48px; /* Ajusta el ancho según tus necesidades */
+  height: auto; /* Mantiene la proporción original de la imagen */
+}

@@ -43,6 +43,10 @@
         <li class="nav-item">
           <!-- Abre el popup al hacer clic sobre "Localidad" -->
           <a class="nav-link" (click)="openPopup()">📫 Localidad</a>
+          <app-popup-localidad
+            [isPopupOpen]="isPopupOpen"
+            (closed)="closePopup()"
+          ></app-popup-localidad>
         </li>
       </ul>
       <!-- Convierte los enlaces del nav en un toggler para móviles y tablets -->
@@ -158,53 +162,6 @@
             <a class="nav-link" routerLink="/ayuda">Ayuda</a>
           </li>
         </ul>
-      </div>
-    </div>
-    <!-- Oscurece el contenido de la página al abrir el popup "Localidades" -->
-    <div class="overlay" [ngClass]="{ active: isPopupOpen }"></div>
-    <!-- TODO: Popup Modal, falta agregarle las direcciones y ubicaciones del usuario -->
-    <div
-      class="modal"
-      tabindex="-1"
-      role="dialog"
-      [ngClass]="{ 'd-block': isPopupOpen }"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header mx-5">
-            <h4 class="modal-title">Elegí dónde recibir tus compras</h4>
-            <!-- Botón "X" para cerrar el popup -->
-            <button
-              type="button"
-              class="btn-close"
-              (click)="closePopup()"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body mx-5">
-            <p class="font-weight-bold">En una de tus direcciones</p>
-            <p>...</p>
-            <p class="font-weight-bold">En otra ubicación</p>
-            <p>...</p>
-          </div>
-          <div class="modal-footer d-flex justify-content-between">
-            <!-- TODO: Botón "Guardar Cambios", no hace nada aún -->
-            <button
-              type="button"
-              class="btn btn-primary mx-5 custom-btn-primary"
-            >
-              Guardar cambios
-            </button>
-            <!-- Botón "Cancelar" para cerrar el popup -->
-            <button
-              type="button"
-              class="btn btn-secondary mx-5"
-              (click)="closePopup()"
-            >
-              Cancelar
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   </nav>
