@@ -1,24 +1,24 @@
 ## Secciones Principales
 
-### Inicio (Marco)
+### Inicio (Marina)
 
- - [x] Diseño
- - [ ] Frontend (casi terminado)
- - [ ] Backend
+- [x] Diseño
+- [x] Frontend
+- [ ] Backend
 
 ### Categorías
 
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
 
 ### Formatos
 
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
 
-### Autores (Marco)
+### Autores (Marina)
 
 - [x] Diseño
 - [ ] Frontend
@@ -30,7 +30,7 @@
 - [ ] Frontend
 - [ ] Backend
 
-### Ofertas 
+### Ofertas
 
 - [x] Diseño
 - [ ] Frontend
@@ -46,48 +46,48 @@
 
 ### Búsqueda (Marina)
 
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
 
 ### Libro seleccionado (Marina)
 
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
 
 ### Carrito de compras (Marina)
 
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
 
 ### Finalizar compra (Alejo)
 
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
 
-### Login (Marco)
+### Login (Marina)
 
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
 
-### Registro (Marco)
+### Registro (Marina)
 
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
 
 ### Perfil (Alejo)
 
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
 
-### Autor seleccionado (Marco)
+### Autor seleccionado (Marina)
 
- - [x] Diseño
- - [ ] Frontend
- - [ ] Backend
+- [x] Diseño
+- [ ] Frontend
+- [ ] Backend
