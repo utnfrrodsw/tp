@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeadernavComponent } from './shared/header-nav/headernav.component';
@@ -37,7 +38,7 @@ import { PopupLocalidadComponent } from './shared/popup-localidad/popup-localida
     LibrosMasVendidosComponent,
     PopupLocalidadComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

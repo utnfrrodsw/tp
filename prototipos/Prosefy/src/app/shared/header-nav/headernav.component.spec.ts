@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HeadernavComponent } from './headernav.component';
+import { NgModule } from '@angular/core';
+
+@NgModule({
+  declarations: [HeadernavComponent],
+})
+class TestModule {}
 
 describe('HeadernavComponent', () => {
   let component: HeadernavComponent;
@@ -8,7 +13,7 @@ describe('HeadernavComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HeadernavComponent]
+      imports: [TestModule], // Importa el módulo de prueba que incluye las declaraciones
     });
     fixture = TestBed.createComponent(HeadernavComponent);
     component = fixture.componentInstance;
