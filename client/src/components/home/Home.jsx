@@ -11,7 +11,7 @@ function Home() {
         <p>Tu plataforma para solicitar servicios de manera rápida y sencilla.</p>
         <section className="cta-section">
           <Link to="/login" className="cta-button">Ingresá</Link>
-           <Link to="/register" className="cta-button">Creá tu cuenta</Link>
+          <Link to="/register" className="cta-button">Creá tu cuenta</Link>
         </section>
       </header>
 

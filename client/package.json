@@ -4,6 +4,9 @@
   "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.7",
     "@testing-library/jest-dom": "6.0.0",
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.4.3",
@@ -13,6 +16,7 @@
     "react-router-dom": "6.15.0",
     "react-scripts": "5.0.1",
     "react-scroll": "1.8.9",
+    "styled-components": "^6.0.7",
     "web-vitals": "3.4.0"
   },
   "scripts": {
