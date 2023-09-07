@@ -12,7 +12,11 @@ import {
   styleUrls: ['./popup-localidad.component.css'],
 })
 export class PopupLocalidadComponent {
-  direcciones: string[] = ['Dirección 1', 'Dirección 2', 'Dirección 3'];
+  direcciones: string[] = [
+    'Buenos Aires 1345 dpto 2',
+    'Wagner 2300 dpto 1',
+    'Av. Beethoven 1211',
+  ];
 
   @Input() isPopupOpen: boolean = false; // Inicialización en el constructor
   selectedDireccion: string = ''; // Propiedad para realizar el seguimiento de la dirección seleccionada

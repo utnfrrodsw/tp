@@ -10,7 +10,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header mx-5">
-        <h4 class="modal-title">Elegí dónde recibir tus compras</h4>
+        <h4 class="modal-title text-center">Elegí dónde recibir tus compras</h4>
         <!-- Botón "X" para cerrar el popup -->
         <button
           type="button"
@@ -19,11 +19,11 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body mx-5">
+      <div class="modal-body mx-5 mt-2">
         <strong>En una de tus direcciones</strong>
         <!-- Botones tipo radio generados dinámicamente desde el componente -->
         <div class="mt-3">
-          <div *ngFor="let direccion of direcciones" class="form-check">
+          <div *ngFor="let direccion of direcciones" class="form-check mb-3">
             <input
               class="form-check-input"
               type="radio"
@@ -46,14 +46,16 @@
                 selectedDireccion = 'En otra ubicación'; toggleEnOtraUbicacion()
               "
             />
-            <label class="form-check-label" for="otraUbicacion">
+            <label
+              class="form-check-label font-weight-bold"
+              for="otraUbicacion"
+            >
               En otra ubicación
             </label>
           </div>
         </div>
         <div class="modal-footer d-flex justify-content-between mt-5">
-          <!-- Botón que cambia según la selección -->
-          <!-- TODO: Botón "Guardar Cambios", no hace nada aún -->
+          <!-- TODO: Botón "Guardar Cambios" y "Continuar" no hacen nada aún -->
           <button
             type="button"
             class="btn btn-primary mx-5 custom-btn-primary"
