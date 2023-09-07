@@ -21,7 +21,7 @@
 ### Autores (Marina)
 
 - [x] Diseño
-- [ ] Frontend
+- [x] Frontend
 - [ ] Backend
 
 ### Editoriales (Alejo)
