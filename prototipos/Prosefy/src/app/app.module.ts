@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeadernavComponent } from './shared/header-nav/headernav.component';
@@ -19,6 +18,7 @@ import { AutoresPopularesComponent } from './sections/autores-populares/autores-
 import { NuevosLanzamientosComponent } from './sections/nuevos-lanzamientos/nuevos-lanzamientos.component';
 import { LibrosMasVendidosComponent } from './sections/libros-mas-vendidos/libros-mas-vendidos.component';
 import { PopupLocalidadComponent } from './shared/popup-localidad/popup-localidad.component';
+import { AutoresNuevosComponent } from './sections/autores-nuevos/autores-nuevos.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +37,9 @@ import { PopupLocalidadComponent } from './shared/popup-localidad/popup-localida
     NuevosLanzamientosComponent,
     LibrosMasVendidosComponent,
     PopupLocalidadComponent,
+    AutoresNuevosComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
