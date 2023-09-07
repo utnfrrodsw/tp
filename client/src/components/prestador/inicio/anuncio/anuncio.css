@@ -1,13 +1,13 @@
 .anuncio-card {
   display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 20% 60% 20%;
     grid-template-rows: 30% 60% 10%;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-    ". titulo"
-    "Foto descripcion"
-    ". nombre";
+    "Foto titulo titulo"
+    "Foto descripcion descripcion"
+    "Foto nombre boton";
   height: 15em;
   padding: 5px;
     background-color: #AEC3AE;
@@ -26,6 +26,10 @@
 .photo {
   grid-area: Foto;
 }
+.img{
+    width: 215px;
+    height: 215px;
+}
 
 .titulo {
   grid-area: titulo;
@@ -37,4 +41,8 @@
 
 .nombre {
   grid-area: nombre;
+}
+
+.boton{
+  grid-area: boton;
 }

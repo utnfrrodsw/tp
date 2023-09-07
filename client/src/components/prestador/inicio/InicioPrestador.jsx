@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Anuncios from './Anuncios';
+import Anuncios from './anuncios/Anuncios';
 function InicioPrestador(){
   return(
     <Anuncios/>
