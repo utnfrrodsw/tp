@@ -24,7 +24,7 @@ function App() {
           <Route path='/provider/home'  element={ <InicioPrestador/>}/>
           <Route path='/client/home'  element={ <InicioCliente/>}/>
           <Route path='/client/home/requests'  element={ <Solicitudes estado = "pendiente"/>}>
-            <Route path=':id'  element={ <details estado = "pendiente"/>}/>
+            {/*<Route path=':id'  element={ <details/>}/>*/}
           </Route> 
           <Route path='/client/home/progress'  element={ <Solicitudes estado = "enProgreso"/>}>
 

@@ -22,7 +22,7 @@
     background-color: #213555;
 }
   
-ul {
+nav ul {
     display: flex;
     flex-direction: row;
 }

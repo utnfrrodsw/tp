@@ -6,6 +6,10 @@ import logo from "./logo.png"
 
 function InicioCliente() {
 
+    const user = {
+        name: "Facundo",
+    }
+
     return (
         <div className="page">
             <div className='header-home-client'>
@@ -13,12 +17,15 @@ function InicioCliente() {
                     <div className="logo-content2">
                         <Link to = "/client/home"><img src={logo} alt="No disp" className="logo2"/></Link>
                     </div>
-                    <h1>Bienvenidos a FastServices</h1>
+                    <section>
+                        <h1>Bienvenido a FastServices { user.name }</h1>
+                        <p>
+                        Tu lugar para solicitar servicios para tu hogar de manera rápida y eficiente. <br/>
+                        Encuentra expertos en electricidad, plomería, reparaciones y más. <br/>
+                        Obtén presupuestos personalizados y elige el mejor servicio para tus necesidades.</p>
+                    </section>
                 </div>
-                <p>
-                Tu lugar para solicitar servicios para tu hogar de manera rápida y eficiente. 
-                Encuentra expertos en electricidad, plomería, reparaciones y más. 
-                Obtén presupuestos personalizados y elige el mejor servicio para tus necesidades.</p>
+                
             </div>
             
             <div className='blocks'>
