@@ -1,0 +1,10 @@
+.custom-btn-primary {
+  background-color: #bd8464;
+  border-color: #bd8464;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-primary:active {
+  background-color: #976950;
+  border-color: #976950;
+}

@@ -1,0 +1,35 @@
+.custom-btn-primary {
+  background-color: #bd8464;
+  border-color: #bd8464;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-primary:active {
+  background-color: #976950;
+  border-color: #976950;
+}
+
+.custom-btn-secondary {
+  background-color: #fff;
+  border-color: #cecece;
+  color: #646464;
+}
+
+.custom-btn-secondary:hover,
+.custom-btn-secondary:active {
+  background-color: #eeeeee;
+  border-color: #afafaf;
+}
+
+.custom-a {
+  color: #4eafda;
+  margin: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.custom-a:hover,
+.custom-a:active {
+  color: #4291b3;
+}

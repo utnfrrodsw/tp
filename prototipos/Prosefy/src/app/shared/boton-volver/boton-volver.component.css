@@ -1,0 +1,12 @@
+.custom-a {
+  color: #4eafda;
+  margin: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.custom-a:hover,
+.custom-a:active {
+  color: #4291b3;
+}

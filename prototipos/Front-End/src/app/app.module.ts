@@ -9,14 +9,12 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { Libro1Component } from './libro1/libro1.component';
 
-const appRoutes: Routes=[
-
-  {path:'', component: HomeComponent},
-  {path:'Contacto', component: ContactComponent},
-  {path:'Login', component: LoginComponent},
-  {path:'Registro', component: RegistroComponent},
-  {path:'libro-ejemplar', component: Libro1Component},
-
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'Contacto', component: ContactComponent },
+  { path: 'Login', component: LoginComponent },
+  { path: 'Registro', component: RegistroComponent },
+  { path: 'libro-ejemplar', component: Libro1Component },
 ];
 
 @NgModule({
@@ -28,11 +26,8 @@ const appRoutes: Routes=[
     RegistroComponent,
     Libro1Component,
   ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes)
-  ],
+  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
