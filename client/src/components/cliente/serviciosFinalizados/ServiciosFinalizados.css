@@ -1,0 +1,55 @@
+/* HistorialServiciosCliente.css */
+.fondoHistorialServicio{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #213555; 
+    margin-bottom: -1rem;
+}
+
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .servicios-lista {
+    margin: 30rem;
+    display: inline;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  
+  .servicio-item {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: left;
+    background-color: #415d81;
+    margin-bottom: 1rem;
+      transition: transform 0.2s;
+  }
+
+    .servicio-item:hover {
+   
+        transform: scale(1.05);
+    }
+  
+  h3 {
+    color: #ccc;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Agrega estilos adicionales según tus preferencias */
+  
