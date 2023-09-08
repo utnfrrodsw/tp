@@ -1,0 +1,129 @@
+/* Login.css */
+
+
+.fondoLogin {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #213555;
+  margin-bottom: -1rem;
+}
+
+.wrapper {
+  width: 85%; /* Redujimos el ancho para hacerlo un poco más estrecho */
+  max-width: 400px; /* Establecemos un ancho máximo */
+  border: 2px solid rgba(255, 255, 255, 0.945);
+  background-color: #4F709C;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 1.5rem; /* Ajustamos el espaciado interno */
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.wrapper h1 {
+  font-size: 2rem; /* Utilizamos unidades relativas para el tamaño de fuente */
+  margin-bottom: 1.5rem; /* Agregamos margen inferior para separar el título de los campos de entrada */
+  color: #fff;
+}
+
+.wrapper .input-box {
+  position: relative;
+  width: 100%;
+  margin-bottom: 0.5rem; /* Utilizamos unidades relativas para el margen inferior */
+}
+
+.input-box input {
+  width: 100%;
+  height: 2.5rem; /* Utilizamos unidades relativas para el alto */
+  border: 2px solid rgba(255, 255, 255, 0.945);
+  background-color: #4F709C;
+  border-radius: 2rem; /* Utilizamos unidades relativas para el borde redondeado */
+  font-size: 1rem; /* Utilizamos unidades relativas para el tamaño de fuente */
+  padding: 0.5rem; /* Utilizamos unidades relativas para el espaciado */
+  margin-left: -0.5rem;
+}
+
+.input-box input::placeholder {
+  color: #fff;
+}
+
+.input-box i {
+  position: absolute;
+  right: 1rem; /* Utilizamos unidades relativas para el desplazamiento derecho */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem; /* Utilizamos unidades relativas para el tamaño de fuente */
+}
+
+.wrapper .remember-forget {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem; /* Utilizamos unidades relativas para el tamaño de fuente */
+  margin: 1rem 0; /* Utilizamos unidades relativas para el espaciado */
+}
+
+.remember-forget label input {
+  accent-color: #fff;
+  margin-right: 0.2rem; /* Utilizamos unidades relativas para el margen derecho */
+}
+
+.remember-forget a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.remember-forget a:hover {
+  text-decoration: underline;
+}
+
+.wrapper .btn {
+  width: 100%;
+  height: 2.5rem; /* Utilizamos unidades relativas para el alto */
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 2.5rem; /* Utilizamos unidades relativas para el borde redondeado */
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 1); /* Utilizamos unidades relativas para la sombra */
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.wrapper .btn:hover {
+  background-color: #D8C4B6; /* Color secundario */
+}
+
+
+.wrapper .register-link {
+  font-size: 0.9rem; /* Utilizamos unidades relativas para el tamaño de fuente */
+  text-align: center;
+  margin-top: 1rem; /* Utilizamos unidades relativas para el margen superior */
+}
+
+.register-link p a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link p a:hover {
+  text-decoration: underline;
+}
+
+
+.logo{
+  width: 180px;
+  margin-top: 5px
+}  
+/* Estilos para el logo */
+.logo-content {
+  font-size: 15px;
+}

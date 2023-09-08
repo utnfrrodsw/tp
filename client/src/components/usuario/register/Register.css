@@ -1,0 +1,173 @@
+
+
+.fondoRegister {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #213555;
+  margin-bottom: -1rem;
+}
+
+.register-container {
+  width: 85%;
+  max-width: 400px;  
+  border: 2px solid rgba(255, 255, 255, 0.945);
+  background-color: #4F709C;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+
+.register-container h2 {
+  font-size: 1.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.name-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.69rem;
+}
+
+.name-inputs .input-box {
+  flex: 1;
+}
+
+.input-box input {
+  margin-bottom: 0.5rem;
+  width: 100%;
+  height: 1.5rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2rem;
+  font-size: 1rem;
+  color: #fff;
+  padding: 0.5rem;
+  margin-left: -0.5rem;
+}
+
+.input-box input::placeholder {
+  color: #fff;
+}
+
+.input-box i {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+}
+
+.switch-label {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.switch-label input {
+  display: none;
+}
+
+.switch {
+  width: 3rem;
+  height: 1.5rem;
+  background-color: #ccc;
+  border-radius: 1.5rem;
+  position: relative;
+  margin-right: 0.5rem;
+}
+
+.switch::before {
+  content: '';
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  transition: 0.3s;
+}
+
+.switch-label input:checked + .switch::before {
+  left: 1.5rem;
+  background-color: #213555;
+}
+
+/* Estilo para los mensajes de error */
+.error-message {
+  position: absolute;
+  background: #ff0000;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  top: 100%; /* Mueve el mensaje de error justo debajo del contenedor */
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  transform: translateY(5px); /* Desplaza hacia abajo ligeramente */
+  z-index: 1; /* Coloca el mensaje de error sobre el contenedor */
+  display: block; /* Asegura que el mensaje de error sea visible */
+  margin-right: 3rem;
+}
+
+.success-message {
+  position: absolute;
+  display: block;
+  background: #50fc00;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  top: 100%;
+  left: 0;
+  width: 96%;
+  transform: translateY(5px);
+  z-index: 1;
+}
+
+.register-container .btn {
+  width: 100%;
+  height: 2.8125rem;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 2.8125rem;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 1);
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.register-container .btn:hover {
+  background-color: #D8C4B6;
+}
+
+.register-container p {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.register-container p a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-container p a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,77 @@
+
+.fondoEvaluation{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color:#213555 ;
+  margin-bottom: -1rem;
+  
+}
+
+ .row{
+  margin-top: 1rem;
+ }
+
+.evaluacion-card {
+  padding-left: 8rem;
+  padding-right: 8rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  text-align: left;
+  background-color: #415d81;
+  margin-bottom: 1rem;
+  transition: transform 0.2s;
+}
+
+
+.evaluacion-card:hover {
+  transform: scale(1.05);
+}
+
+.evaluacion-titulo {
+  text-align: center;
+  padding-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.evaluacion-descripcion {
+  text-align: center;
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.evaluacion-puntaje {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: #ffc107; 
+}
+
+.estrella {
+  font-size: 1.25rem;
+  color: #ffffff;  
+}
+
+.estrella.activa {
+  color: #f0ad4e; 
+}
+
+.evaluacion-button {
+  background-color: #4F709C;
+  border: none;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.evaluacion-button:hover {
+  background-color: #364e6d;  
+}
