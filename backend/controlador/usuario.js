@@ -5,8 +5,7 @@ var usuarioController = {
     findUsuarios: findUsuarios,
     findUsuarioById: findUsuarioById,
     updateUsuario: updateUsuario,
-    deleteById: deleteById,
-    enviarTokens: enviarTokens
+    deleteById: deleteById
     ,findUsuariosFuzzilyByName
     ,cambiarHabilitado
     ,ingresar
@@ -70,16 +69,6 @@ function updateUsuario(req, res) {
 function findUsuarios(req, res) {
     usuarioDao.findAll({incluirHabilitado:req.query.incluirHabilitado!=undefined}).
         then((data) => {
-            res.send(data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-}
-
-function enviarTokens(req, res) {
-    usuarioDao.enviarTokens(req.params.id,req.body.receptorID,req.body.tokens)
-        .then((data) => {
             res.send(data);
         })
         .catch((error) => {

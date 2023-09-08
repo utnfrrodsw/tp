@@ -247,4 +247,18 @@ export class PanelComponent implements OnInit {
   actualizarAmigoSeleccionadoID(e:Event){
     this.amigoSeleccionadoID=+(e.target as HTMLInputElement).value;
   }
+  enviarTokens(e:Event){
+    e.preventDefault();
+    
+    let cantidad=+((e.target as any)['form-enviar-cantidad'].value)
+      ,amigoID=+((e.target as any)['form-enviar-usuario'].value);
+    this.tokensService.enviar(cantidad,amigoID).subscribe({
+      next:()=>{
+        this.usuarioActual.tokens-=cantidad;
+      }
+      ,error:error=>{
+        this.console.log(error);
+      }
+    })
+  }
 }

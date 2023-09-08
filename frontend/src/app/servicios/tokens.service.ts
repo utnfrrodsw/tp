@@ -18,4 +18,8 @@ export class TokensService {
     return this.clienteHTTP.post(this.URL,{cantidad},{withCredentials: true});
   }
 
+  enviar(cantidad:number,amigoID:number){
+    return this.clienteHTTP.patch(this.URL,{cantidad,amigoID},{withCredentials: true});
+  }
+
 }

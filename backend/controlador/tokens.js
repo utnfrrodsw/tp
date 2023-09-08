@@ -3,6 +3,7 @@ const usuarioDao = require('../dao/usuario');
 var tokensController = {
     obtenerCantidadCirculando
 		,generar
+		,enviar
 }
 
 function obtenerCantidadCirculando(req, res) {
@@ -38,6 +39,21 @@ function generar(req,res){
 					});
 			}else res.status(403).send();
 		});
+}
+
+function enviar(req, res) {
+	console.log(req.session.usuarioID,req.body.amigoID);
+	Promise.all([usuarioDao.findById(req.session.usuarioID),usuarioDao.findById(req.body.amigoID)])
+        .then(usuarios=>{
+            let [emisor,receptor]=usuarios;
+						return tokensDao.enviar(emisor,receptor,req.body.cantidad);
+				})
+				.then((data) => {
+						res.send(data);
+				})
+				.catch((error) => {
+						console.log(error);
+				});
 }
 
 module.exports = tokensController;

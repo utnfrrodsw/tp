@@ -9,7 +9,6 @@ var usuarioDao = {
     findById: findById,
     deleteById: deleteById,
     updateUsuario: updateUsuario
-    ,enviarTokens
     ,findFuzzilyByName
     ,cambiarHabilitado
     ,findByUsername
@@ -173,16 +172,6 @@ async function quitarTokens(usuario,cantidad){
     for(let i=0;i<cantidad;i++)
         tokensAsociadas[i].destroy();
     // await usuario.removeTokensAsociadas(tokensAsociadas.splice(0,cantidad));
-}
-
-async function enviarTokens(emisorID,receptorID,cantidad){
-    let emisor=await findById(emisorID);
-    let receptor=await findById(receptorID);
-    
-    let tokensEnJuego=await emisor.getTokensAsociadas();
-    receptor.addTokensAsociadas(tokensEnJuego.slice(0,cantidad));
-    
-    return receptor.save();
 }
 
 async function findFuzzilyByName(consulta,usuarioID){
