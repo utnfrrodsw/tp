@@ -43,6 +43,8 @@ export class PanelComponent implements OnInit {
     return this.puedeMostrarVacio && this.usuariosEncontrados.length==0;
   }
 
+  amigoSeleccionadoID=0;
+
   constructor(
     private usuarioActualService:UsuarioActualService,
     private usuarioService: UsuarioService,
@@ -240,5 +242,9 @@ export class PanelComponent implements OnInit {
           this.router.navigate(['/'])
         }
       })
+  }
+
+  actualizarAmigoSeleccionadoID(e:Event){
+    this.amigoSeleccionadoID=+(e.target as HTMLInputElement).value;
   }
 }

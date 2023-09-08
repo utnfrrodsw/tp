@@ -25,6 +25,7 @@
 					id="form-enviar-usuario"
 					required
 					class="col-8"
+					(input)="actualizarAmigoSeleccionadoID($event)"
 				>
 					<option value="0" >Elegir destinatario</option>
 					
@@ -36,7 +37,7 @@
 					type=submit
 					value="Enviar tokens"
 					id=form-enviar-submit
-					disabled
+					[disabled]="!amigoSeleccionadoID"
 					title="Debe elegir un usuario para enviarle tokens."
 				>
 			</fieldset>
