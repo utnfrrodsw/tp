@@ -46,8 +46,7 @@
 
 	<ng-template [ngIf]="puedeGenerarTokens">
 		<details class="col-12">
-			<summary><h3>Generar tokens</h3></summary> 
-			<!-- <form id="form-generar" (submit)="generar"> -->
+			<summary><h3>Generar tokens</h3></summary>
 			<form id="form-generar" (submit)="generarTokens($event)">
 				<fieldset class="row">
 					<legend>Generar tokens</legend>
@@ -73,33 +72,47 @@
 
 <fieldset class="row">
 	<legend><h2>Administración de Amigos</h2></legend>
+
 	<div id="amigos" class="col">
 		
-		<h3>Invitaciones Recibidas</h3>
-
-		<form *ngFor="let usuario of amigosEntrantes" (submit)="responder($event)" class="col-12 row">
-			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-			<span class="col">{{usuario.nombreCompleto}}</span>
-			<button type="submit" value="1" (click)="asignarNombreABoton($event)" class="fas fa-check col-2"></button>
-			<button type="submit" value="0" (click)="asignarNombreABoton($event)" class="button error fas fa-ban col-2"></button>
-			<!-- TODO Eliminar o aceptar -->
-		</form>
+		<details>
+			<summary>
+				<h3>Invitaciones Recibidas</h3>
+			</summary>
+	
+<!-- TODO Mensaje para cuando no hay nada. <em> o <i> -->
+			<form *ngFor="let usuario of amigosEntrantes" (submit)="responder($event)" class="col-12 row">
+				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+				<span class="col">{{usuario.nombreCompleto}}</span>
+				<button type="submit" value="1" (click)="asignarNombreABoton($event)" class="fas fa-check col-2"></button>
+				<button type="submit" value="0" (click)="asignarNombreABoton($event)" class="button error fas fa-ban col-2"></button>
+			</form>
+		</details>
 		
-		<h3>Invitaciones Enviadas</h3>
+		<details>
+			<summary>
+				<h3>Invitaciones Enviadas</h3>
+			</summary>
 
-		<form *ngFor="let usuario of amigosSalientes" (submit)="cancelar($event)" class="col-12 row">
-			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-			<span class="col">{{usuario.nombreCompleto}}</span>
-			<button type="submit" class="button error fas fa-xmark col-2"></button>
-		</form>
+<!-- TODO Mensaje para cuando no hay nada. <em> o <i> -->
+			<form *ngFor="let usuario of amigosSalientes" (submit)="cancelar($event)" class="col-12 row">
+				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+				<span class="col">{{usuario.nombreCompleto}}</span>
+				<button type="submit" class="button error fas fa-xmark col-2"></button>
+			</form>
+		</details>
 		
-		<h3>Amigos</h3>
+		<details>
+			<summary>
+				<h3>Amigos</h3>
+			</summary>
 		<!-- TODO para cada uno de estos, esconder si uno es el invitador o no... -->
-		<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-12 row">
-			<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-			<span class="col">{{usuario.nombreCompleto}}</span>
-			<button type="submit" class="button error fas fa-trash-can col-2"></button>
-		</form>
+			<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-12 row">
+				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+				<span class="col">{{usuario.nombreCompleto}}</span>
+				<button type="submit" class="button error fas fa-trash-can col-2"></button>
+			</form>
+		</details>
 		
 	</div>
 
@@ -119,6 +132,7 @@
 					
 		</fieldset>
 	</div>
+
 </fieldset>
 
 <fieldset>
