@@ -92,7 +92,7 @@ exports.getHistorialByUsuario = async (req, res) => {
   try {
     const usuarioId = req.params.usuario_id;
 
-    const historial = await Historial.findOne({ usuario: usuarioId });
+    const historial = await Historial.findOne({ usuario: usuarioId }).populate('canciones');
 
     if (!historial) {
       return res.status(404).json({ message: 'Historial no encontrado' });

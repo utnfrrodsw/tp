@@ -139,5 +139,14 @@ export const ComboBoxOption = styled.div`
 `;
 
 
-
+export const TableContainerStyled = styled.div`
+display: flex;
+flex-direction: column;
+gap: 5px;
+height: 70%;
+width: 98%;
+background-color: rgba(0, 0, 0, .3);
+padding: 10px;
+border-radius: 10px;
+`
 
