@@ -14,7 +14,7 @@ interface Libro {
   styleUrls: ['./libros-recomendados.component.css'],
 })
 export class LibrosRecomendadosComponent {
-  elementosAlInicio: boolean = false;
+  elementosAlInicio: boolean = true;
   elementosAlFinal: boolean = false;
   // Lista de libros con información
   libros: Libro[] = [

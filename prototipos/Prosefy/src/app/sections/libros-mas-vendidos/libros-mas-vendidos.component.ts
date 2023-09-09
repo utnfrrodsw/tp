@@ -11,10 +11,10 @@ interface Libro {
 @Component({
   selector: 'app-libros-mas-vendidos',
   templateUrl: './libros-mas-vendidos.component.html',
-  styleUrls: ['./libros-mas-vendidos.component.css']
+  styleUrls: ['./libros-mas-vendidos.component.css'],
 })
 export class LibrosMasVendidosComponent {
-  elementosAlInicio: boolean = false;
+  elementosAlInicio: boolean = true;
   elementosAlFinal: boolean = false;
   // Lista de libros con información
   libros: Libro[] = [
@@ -29,8 +29,7 @@ export class LibrosMasVendidosComponent {
       titulo: 'Libro 2',
       descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: '$7.400',
-      imagen:
-        '../../../../assets/img/Libros/extreme programming applied.jpg',
+      imagen: '../../../../assets/img/Libros/extreme programming applied.jpg',
     },
     {
       titulo: 'Libro 3',

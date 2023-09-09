@@ -11,10 +11,10 @@ interface Libro {
 @Component({
   selector: 'app-nuevos-lanzamientos',
   templateUrl: './nuevos-lanzamientos.component.html',
-  styleUrls: ['./nuevos-lanzamientos.component.css']
+  styleUrls: ['./nuevos-lanzamientos.component.css'],
 })
 export class NuevosLanzamientosComponent {
-  elementosAlInicio: boolean = false;
+  elementosAlInicio: boolean = true;
   elementosAlFinal: boolean = false;
   // Lista de libros con información
   libros: Libro[] = [
@@ -29,8 +29,7 @@ export class NuevosLanzamientosComponent {
       titulo: 'Libro 2',
       descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: '$5.099',
-      imagen:
-        '../../../../assets/img/Libros/Design Patterns.jpg',
+      imagen: '../../../../assets/img/Libros/Design Patterns.jpg',
     },
     {
       titulo: 'Libro 3',

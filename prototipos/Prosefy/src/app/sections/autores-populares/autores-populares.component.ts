@@ -12,7 +12,7 @@ interface Autor {
   styleUrls: ['./autores-populares.component.css'],
 })
 export class AutoresPopularesComponent {
-  elementosAlInicio: boolean = false;
+  elementosAlInicio: boolean = true;
   elementosAlFinal: boolean = false;
   // Lista de autores con información
   autores: Autor[] = [

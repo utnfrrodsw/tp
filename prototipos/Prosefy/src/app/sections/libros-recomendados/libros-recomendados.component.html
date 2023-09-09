@@ -3,15 +3,17 @@
   <h3 class="mt-5 mb-4">Libros recomendados</h3>
   <div class="lista-libros">
     <!-- Botón para que se mueva a la izquierda la lista -->
-    <button
-      class="boton-izquierda boton-moderno"
-      (click)="moverIzquierda()"
-      [class.disabled]="elementosAlInicio"
+    <div
+      class="rounded-button shadow d-flex justify-content-center align-items-center px-3"
     >
-      <!-- "class.disabled" detecta si se llegó al final y deshabilita el botón -->
-      &lt;
-      <!-- &lt Representa el símbolo "<" para el botón -->
-    </button>
+      <button
+        class="btn boton-izquierda boton-moderno"
+        (click)="moverIzquierda()"
+        [class.disabled]="elementosAlInicio"
+      >
+        &lt;
+      </button>
+    </div>
     <div class="lista-contenedor">
       <!-- p-4 -> padding: 4 -->
       <div class="elementos-lista p-4">
@@ -53,14 +55,16 @@
       </div>
     </div>
     <!-- Botón para que se mueva a la derecha la lista -->
-    <button
-      class="boton-derecha boton-moderno"
-      (click)="moverDerecha()"
-      [class.disabled]="elementosAlFinal"
+    <div
+      class="rounded-button shadow d-flex justify-content-center align-items-center px-3"
     >
-      <!-- "class.disabled" detecta si se llegó al final y deshabilita el botón -->
-      &gt;
-      <!-- &gt Representa el símbolo ">" para el botón -->
-    </button>
+      <button
+        class="btn boton-derecha boton-moderno"
+        (click)="moverDerecha()"
+        [class.disabled]="elementosAlFinal"
+      >
+        &gt;
+      </button>
+    </div>
   </div>
 </div>

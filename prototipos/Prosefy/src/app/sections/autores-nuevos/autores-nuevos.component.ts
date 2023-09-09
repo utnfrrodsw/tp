@@ -12,7 +12,7 @@ interface Autor {
   styleUrls: ['./autores-nuevos.component.css'],
 })
 export class AutoresNuevosComponent {
-  elementosAlInicio: boolean = false;
+  elementosAlInicio: boolean = true;
   elementosAlFinal: boolean = false;
   // Lista de autores con información
   autores: Autor[] = [
