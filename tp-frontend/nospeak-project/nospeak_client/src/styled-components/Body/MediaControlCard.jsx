@@ -33,18 +33,8 @@ import { useSelector } from 'react-redux';
 
 
 export default function MediaControlCard({client, songs, setSongs, setDeleteAlertData}) {
-    const theme = useTheme();
-    const [selectedPlaylist, setSelectedPlaylist] = useState(null);
-    const [showPlaylistDropdown, setShowPlaylistDropdown] = useState(false);
-    const [availablePlaylists, setAvailablePlaylists] = useState([]);
-    const [selectedSongId, setSelectedSongId] = useState(null);
     const user = useSelector((state) => state.user.user);
-
     const [userHistorial, setUserHistorial] = useState(null);
-    const [songToAdd, setSongToAdd] = useState(null);
-    const [favoriteState, setFavoriteState] = useState({});
-
-
 
 
     const handleDelete = (songId, index) => {
@@ -75,70 +65,38 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
         fetchUserHistorial();
     }, [user]);
 
-    // useEffect(() => {
-    //     if (userHistorial && songToAdd) {
 
-    //       client.patch(`/api/historiales/${userHistorial._id}`, {
-    //         canciones: [...userHistorial.canciones, songToAdd],
-    //       })
-    //         .then(response => {
-
-    //           console.log('Canción agregada al historial:', response.data);
-      
-    //         })
-    //         .catch(error => {
-    //           console.error('Error al agregar la canción al historial:', error);
-    //         });
-    //     }
-    //   }, [userHistorial, songToAdd]);
-
-    const handleFavoriteToggle = (songId) => {
-
-        setFavoriteState((prevState) => ({
-          ...prevState,
-          [songId]: !prevState[songId],
-        }));
-      
-
-        const userHistorialCopy = { ...userHistorial };
-      
-
-        const songIndex = userHistorialCopy.canciones.findIndex(
-          (cancion) => cancion === songId
-        );
-      
-        if (songIndex !== -1) {
-
-          userHistorialCopy.canciones.splice(songIndex, 1);
-      
-
-          client
-            .patch(`/api/historiales/${userHistorialCopy._id}`, userHistorialCopy)
-            .then((response) => {
-              console.log('Canción eliminada del historial:', response.data);
-            })
-            .catch((error) => {
-              console.error('Error al eliminar la canción del historial:', error);
-            });
-        } else {
-
-          userHistorialCopy.canciones.push(songId);
-      
-          client
-            .patch(`/api/historiales/${userHistorialCopy._id}`, userHistorialCopy)
-            .then((response) => {
-              console.log('Canción agregada al historial:', response.data);
-            })
-            .catch((error) => {
-              console.error('Error al agregar la canción al historial:', error);
-            });
+    const isSongInHistorial = (songId) => {
+        if (userHistorial && userHistorial.canciones) {
+            return userHistorial.canciones.some((cancion) => cancion._id === songId);
         }
-      };
-      
-      
-      
-  
+        return false;
+    };
 
+    const handleFavoriteClick = async (songId) => {
+        const isSongInHistorial = userHistorial && userHistorial.canciones.some((cancion) => cancion._id === songId);
+    
+        if (isSongInHistorial) {
+            const updatedCanciones = userHistorial.canciones.filter((cancion) => cancion._id !== songId);
+            userHistorial.canciones = updatedCanciones;
+        } else {
+            if (!userHistorial.canciones) {
+                userHistorial.canciones = {};
+            }
+            const songToAdd = songs.find((cancion) => cancion._id === songId);
+            userHistorial.canciones.push(songToAdd);
+        }
+    
+        try {
+            console.log(userHistorial);
+
+            await client.patch(`/api/historiales/${userHistorial._id}/`, userHistorial);
+            setUserHistorial({ ...userHistorial });
+        } catch (error) {
+            console.error('Error al actualizar el historial:', error);
+        }
+    };
+    
     return (
         <>
             <TitleContainer>
@@ -163,21 +121,21 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
                                 </Typography>
                             </CardContent>
                             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pl: 1, pb: 1}}>
-                                    <IconButton aria-label="delete" onClick={() => handleDelete(song.id, index)}>
+                                    <IconButton aria-label="delete" onClick={() => handleDelete(song._id, index)}>
                                         <StyledDeleteIcon sx={{ color: 'white' }} />
                                     </IconButton>
                                     <IconButton
                                         aria-label="play/pause"
-                                        onClick={() => handleFavoriteToggle(song.id)}
-                                        >
+                                        onClick={() => handleFavoriteClick(song._id)}
+                                    >
                                         <FavoriteIcon
                                             sx={{
-                                            height: 35,
-                                            width: 35,
-                                            color: favoriteState[song.id] ? '#FFA130' : 'white',
+                                                height: 35,
+                                                width: 35,
+                                                color: isSongInHistorial(song._id) ? '#FFA130' : 'white',
                                             }}
                                         />
-                                        </IconButton>
+                                    </IconButton>
                                     <IconButton aria-label="edit">
                                         <Link to={{ pathname: `/song/${song._id}` }}>
                                             <StyledEditIcon sx={{ color: 'white' }} />
