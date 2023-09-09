@@ -8,28 +8,47 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegistrarseComponent {
   registroForm: FormGroup;
+  showErrorMessages: boolean = false; // Variable para controlar la visualización de mensajes de error
+
+  //TODO: Las validaciones no funcionan del todo bien todavía
 
   constructor(private formBuilder: FormBuilder) {
     this.registroForm = this.formBuilder.group(
       {
-        nombre: [''],
-        apellido: [''],
-        username: [''],
+        nombre: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(/^[a-zA-Z]+$/), // Aceptar solo letras de a-z o A-Z
+          ],
+        ],
+        apellido: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(/^[a-zA-Z]+$/), // Aceptar solo letras de a-z o A-Z
+          ],
+        ],
+        username: [
+          '',
+          [Validators.required, Validators.pattern(/^[a-zA-Z0-9_]+$/)], // Aceptar solo letras de a-z o A-Z, números de 0-9 y guión bajo
+        ],
         email: ['', [Validators.required, Validators.email]],
         password: [
           '',
           [
             Validators.required,
             Validators.minLength(8),
-            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])/), // Al menos una mayúscula y una minúscula
+            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])/),
           ],
         ],
         repeatPassword: [''],
       },
-      { validator: this.passwordMatchValidator() }
+      { validator: this.passwordMatchValidator }
     );
   }
 
+  // Función para validar que las contraseñas coincidan
   passwordMatchValidator() {
     return (formGroup: FormGroup) => {
       const passwordControl = formGroup.get('password');
@@ -48,14 +67,13 @@ export class RegistrarseComponent {
     };
   }
 
+  // Función para registrar al usuario
   registrarUsuario() {
+    this.showErrorMessages = true; // Mostrar mensajes de error al hacer clic en "Continuar"
+
     if (this.registroForm.valid) {
-      // Verifica si el formulario es válido antes de registrar al usuario
-      const user = this.registroForm.value; // Obtiene los datos del formulario
-      console.log('Usuario registrado exitosamente', user);
-    } else {
-      // El formulario no es válido, muestra un mensaje de error o toma otras acciones necesarias
-      console.error('El formulario no es válido');
+      // Realizar la acción de registro aquí
+      // Por ejemplo, enviar datos al servidor
     }
   }
 }

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+
+/* ------------------------------------------------------------------- */
 
 import { AppComponent } from './app.component';
 import { HeadernavComponent } from './shared/header-nav/headernav.component';
@@ -88,7 +91,12 @@ import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.componen
     ResultadosComponent,
     CrearCuentaComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

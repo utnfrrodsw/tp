@@ -6,6 +6,7 @@
     </div>
   </div>
   <div class="login-container mb-5 pb-5 text-center">
+    <!-- TODO: Los mensajes de error del formulario hay que cambiarlos para que no se vean mal, algunos mensajes no se muestran, como el de las contraseñas no coinciden -->
     <form [formGroup]="registroForm">
       <div class="form-group my-4 custom-input">
         <label for="username">Nombre de usuario</label>
@@ -26,6 +27,24 @@
           formControlName="email"
           placeholder="Ingrese su correo electrónico"
         />
+        <div
+          *ngIf="
+            registroForm.get('email')?.hasError('required') &&
+            registroForm.get('email')?.touched
+          "
+          class="text-danger"
+        >
+          El correo electrónico es obligatorio.
+        </div>
+        <div
+          *ngIf="
+            registroForm.get('email')?.hasError('email') &&
+            registroForm.get('email')?.touched
+          "
+          class="text-danger"
+        >
+          El correo electrónico no es válido.
+        </div>
       </div>
       <div class="form-group my-4 custom-input">
         <label for="nombre">Nombre</label>
