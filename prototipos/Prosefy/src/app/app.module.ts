@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeadernavComponent } from './shared/header-nav/headernav.component';
@@ -42,6 +43,7 @@ import { InfoUsuarioComponent } from './sections/info-usuario/info-usuario.compo
 import { SeccionesAyudaComponent } from './sections/secciones-ayuda/secciones-ayuda.component';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { ResultadosComponent } from './sections/resultados/resultados.component';
+import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
 
 @NgModule({
   declarations: [
@@ -84,8 +86,9 @@ import { ResultadosComponent } from './sections/resultados/resultados.component'
     SeccionesAyudaComponent,
     BusquedaComponent,
     ResultadosComponent,
+    CrearCuentaComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

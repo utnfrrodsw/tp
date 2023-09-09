@@ -1,4 +1,127 @@
-<h2 class="text-center mt-5 custom-title">Registrarse</h2>
-<button type="button" class="btn btn-primary custom-btn-primary">
-  Continuar
-</button>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Registrarse</h2>
+  <div class="row justify-content-center mb-5">
+    <div class="col-12 col-md-6">
+      <div class="separator"></div>
+    </div>
+  </div>
+  <div class="login-container mb-5 pb-5 text-center">
+    <form [formGroup]="registroForm">
+      <div class="form-group my-4 custom-input">
+        <label for="username">Nombre de usuario</label>
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          formControlName="username"
+          placeholder="Ingrese su nombre de usuario"
+        />
+      </div>
+      <div class="form-group my-4 custom-input">
+        <label for="email">Correo electrónico</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Ingrese su correo electrónico"
+        />
+      </div>
+      <div class="form-group my-4 custom-input">
+        <label for="nombre">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          class="form-control"
+          formControlName="nombre"
+          placeholder="Ingrese su nombre"
+        />
+      </div>
+      <div class="form-group my-4 custom-input">
+        <label for="apellido">Apellido</label>
+        <input
+          type="text"
+          id="apellido"
+          class="form-control"
+          formControlName="apellido"
+          placeholder="Ingrese su apellido"
+        />
+      </div>
+      <div class="form-group my-4 custom-input">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Ingrese su contraseña"
+        />
+        <div
+          *ngIf="
+            registroForm.get('password')?.hasError('required') &&
+            registroForm.get('password')?.touched
+          "
+          class="text-danger"
+        >
+          La contraseña es obligatoria.
+        </div>
+        <div
+          *ngIf="
+            registroForm.get('password')?.hasError('minlength') &&
+            registroForm.get('password')?.touched
+          "
+          class="text-danger"
+        >
+          La contraseña debe tener al menos 8 caracteres.
+        </div>
+        <div
+          *ngIf="
+            registroForm.get('password')?.hasError('pattern') &&
+            registroForm.get('password')?.touched
+          "
+          class="text-danger"
+        >
+          La contraseña debe contener al menos una mayúscula y una minúscula.
+        </div>
+      </div>
+
+      <div class="form-group my-4 custom-input mb-4">
+        <label for="repeat-password">Repetir contraseña</label>
+        <input
+          type="password"
+          id="repeatPassword"
+          class="form-control"
+          formControlName="repeatPassword"
+          placeholder="Repetir su contraseña"
+        />
+        <div
+          *ngIf="
+            registroForm.get('repeatPassword')?.hasError('passwordMismatch') &&
+            registroForm.get('repeatPassword')?.touched
+          "
+          class="text-danger"
+        >
+          Las contraseñas no coinciden.
+        </div>
+      </div>
+      <a routerLink="" class="custom-a"> ¿Olvidaste tu contraseña? </a>
+      <div class="button-group">
+        <button
+          type="button"
+          class="btn btn-primary custom-btn-primary"
+          (click)="registrarUsuario()"
+        >
+          Continuar
+        </button>
+
+        <button
+          routerLink="/identificarse"
+          type="button"
+          class="btn btn-secondary custom-btn-secondary"
+        >
+          Ya tengo una cuenta
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,9 +1,47 @@
-<h2 class="text-center mt-5 custom-title">Iniciar sesión</h2>
-<button type="button" class="btn btn-primary custom-btn-primary">
-  Acceder
-</button>
-<button type="button" class="btn btn-secondary custom-btn-secondary">
-  Crear cuenta
-</button>
-<!-- TODO: Crear página para olvidaste tu contraseña -->
-<a routerLink="" class="custom-a"> ¿Olvidaste tu contraseña? </a>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Iniciar sesión</h2>
+  <div class="row justify-content-center mb-5">
+    <div class="col-12 col-md-6">
+      <div class="separator"></div>
+    </div>
+  </div>
+  <div class="login-container mb-5 pb-5">
+    <!-- Cuadro movido aquí -->
+    <form>
+      <div class="form-group my-4">
+        <label for="username">Nombre de usuario</label>
+        <input
+          type="text"
+          id="username"
+          class="form-control mx-auto mt-2"
+          style="width: 80%"
+          placeholder="Ingrese su nombre de usuario"
+        />
+      </div>
+      <div class="form-group my-4">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control mx-auto mt-2"
+          style="width: 80%"
+          placeholder="Ingrese su contraseña"
+        />
+      </div>
+      <a routerLink="" class="custom-a"> ¿Olvidaste tu contraseña? </a>
+      <div class="button-group">
+        <button type="button" class="btn btn-primary custom-btn-primary">
+          Acceder
+        </button>
+        <button
+          routerLink="/crear-cuenta"
+          type="button"
+          class="btn btn-secondary custom-btn-secondary"
+        >
+          Crear cuenta
+        </button>
+      </div>
+      <!-- TODO: Crear página para olvidaste tu contraseña -->
+    </form>
+  </div>
+</div>

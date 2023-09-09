@@ -13,6 +13,7 @@ import { FinalizarCompraComponent } from './pages/finalizar-compra/finalizar-com
 import { IdentificarseComponent } from './pages/identificarse/identificarse.component';
 import { AutorSeleccionadoComponent } from './pages/autor-seleccionado/autor-seleccionado.component';
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
+import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
 
 const routes: Routes = [
   // Define las rutas aquí
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'identificarse', component: IdentificarseComponent }, // Ruta al InicioComponent
   { path: 'autor-seleccionado', component: AutorSeleccionadoComponent }, // Ruta al InicioComponent
   { path: 'perfil', component: PerfilUsuarioComponent }, // Ruta al InicioComponent
+  { path: 'crear-cuenta', component: CrearCuentaComponent }, // Ruta al InicioComponent
 ];
 
 @NgModule({

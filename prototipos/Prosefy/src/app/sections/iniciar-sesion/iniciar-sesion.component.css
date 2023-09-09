@@ -33,3 +33,50 @@
 .custom-a:active {
   color: #4291b3;
 }
+
+.login-container {
+  max-width: 600px; /* Ancho del cuadro aumentado */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  text-align: center; /* Centrar contenido en el cuadro */
+}
+
+.separator-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+}
+.form-group {
+  text-align: center; /* Centrar los campos de entrada */
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column; /* Apilar botones verticalmente */
+  align-items: center; /* Centrar botones horizontalmente */
+  margin-top: 20px;
+}
+
+.custom-btn-primary,
+.custom-btn-secondary {
+  width: 50%;
+  margin-bottom: 1rem; /* Espacio entre los botones */
+}
+
+.form-control {
+  background-color: #fff !important;
+}
