@@ -135,6 +135,53 @@
 
 </fieldset>
 
+<ng-template [ngIf]="puedeGenerarUsuarios">
+	<fieldset class="row">
+		<legend>
+			<h2>Administración de usuarios</h2>
+		</legend>
+		
+		<details class="col-12">
+			<summary><h3>Crear usuario</h3></summary>
+
+			<form id=form-crear (submit)="crearUsuario($event)">
+				<label class="row">
+					<span class="col-2 is-center">Nombre completo</span>
+					<input type="text" name="nombreCompleto" placeholder="Nombre completo" required class="col">
+				</label>
+				<label class="row">
+					<span class="col-2 is-center">DNI</span>
+					<input type="number" name="DNI" placeholder="DNI" required class="col" min="0">
+				</label>
+				<label class="row">
+					<span class="col-2 is-center">Nombre de usuario</span>
+					<input type="text" name="nombreUsuario" placeholder="Nombre de usuario" required class="col">
+				</label>
+				<label class="row">
+					<span class="col-2 is-center">Contraseña temporal</span>
+					<input type="text" name="contrasenia" placeholder="Contraseña" required class="col">
+				</label>
+				<label class="row">
+					<span class="col-2 is-center">Correo electrónico</span>
+					<input type="email" name="correo" placeholder="Correo electrónico" required class="col">
+				</label>
+				<!-- ! No hay condicional, porque si esto se ve, el usuario tiene minimo permiso de crear usuarios -->
+				<fieldset class="row">
+					<legend>Permisos</legend>
+					<label *ngFor="let permiso of usuarioActual.permisos" class="col-4 row">
+						<input type="checkbox" name="permisoID" value="{{permiso.ID}}">
+						<span class="col">{{permiso.descripcion}}</span>
+					</label>
+				</fieldset>
+				<div class="row">
+					<input type="submit" value="Crear usuario" class="col-3">
+				</div>
+			</form>
+		</details>
+
+	</fieldset>
+</ng-template>
+
 <fieldset>
 	<legend>
 		<h2>Administración de Perfil</h2>

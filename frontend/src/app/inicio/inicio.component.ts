@@ -57,7 +57,7 @@ export class InicioComponent implements OnInit {
         (document.getElementById('usuario') as HTMLInputElement).value = u.nombreUsuario;
         (document.getElementById('contrasenia') as HTMLInputElement).value = u.contrasenia||'';
         (document.getElementById('ingresar') as HTMLFormElement).submit();
-      })
+      });
   }
 
 }

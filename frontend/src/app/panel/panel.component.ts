@@ -32,6 +32,7 @@ export class PanelComponent implements OnInit {
   }
 
   puedeGenerarTokens:boolean = false;
+  puedeGenerarUsuarios:boolean = false;
   tokensCirculando:number = 0;
   
   console=console;
@@ -57,8 +58,8 @@ export class PanelComponent implements OnInit {
       .subscribe({
         next:(usuario:any) => {
           this.usuarioActual= usuario as Usuario;
-          this.console.log(this.usuarioActual);
-          this.console.log(this.usuarioActual.amigos);
+          /* this.console.log(this.usuarioActual);
+          this.console.log(this.usuarioActual.amigos); */
 
           /* * Cada Usuario.amigos tiene un .amistad con los detalles de la invitación; estado y quien la mando */
 
@@ -71,6 +72,8 @@ export class PanelComponent implements OnInit {
               .subscribe((result: any)=>{
                 this.tokensCirculando=result;
               });
+
+          this.puedeGenerarUsuarios=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==2) || false;
         }
         ,error:error=>{
           this.console.log(error);
@@ -260,5 +263,25 @@ export class PanelComponent implements OnInit {
         this.console.log(error);
       }
     })
+  }
+
+  crearUsuario(e:Event){
+    e.preventDefault();
+    
+    let fD:FormData = new FormData(e.target as HTMLFormElement);
+
+    let u: Usuario=(((Object.fromEntries((fD)))) as unknown) as Usuario;
+    u.permisos=fD.getAll('permisoID').map(permisoID => ({ID:permisoID}) as unknown as Permiso)
+
+    // this.console.log(u); return false;
+
+    // TODO que funcione bien
+    this.usuarioService
+      .create(u)
+      .subscribe((result:any)=>{
+        // TODO Avisar con un cartelito Toast.
+        // TODO Avisar todo con un cartelito lindo.
+        alert('Se ha creado el usuario');
+      });
   }
 }
