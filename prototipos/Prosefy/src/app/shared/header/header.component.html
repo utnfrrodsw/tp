@@ -1,0 +1,60 @@
+<div class="header">
+  <div class="container p-2">
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <a routerLink="/inicio" class="d-flex align-items-center">
+          <!-- Al hacer clic sobre el logo va a la página de inicio -->
+          <img
+            src="../../assets/img/Logo.png"
+            alt="Logo de la página web"
+            class="logo img-fluid logo-sm"
+          />
+        </a>
+      </div>
+      <div class="form-control">
+        <input
+          type="text"
+          class="form-control-plaintext"
+          [placeholder]="placeholderText"
+          class="typewriter"
+        />
+      </div>
+      <div class="d-flex align-items-center">
+        <a (click)="showUserOptions = !showUserOptions">
+          <img
+            src="../../assets/img/usuario.png"
+            alt="Usuario"
+            class="user-image"
+          />
+        </a>
+        <!-- Mostrar las opciones del usuario si showUserOptions es verdadero -->
+        <div
+          *ngIf="showUserOptions"
+          class="bg-light user-options custom-dropdown"
+          aria-labelledby="navbarDropdown"
+        >
+          <!-- Diferentes opciones al hacer clic sobre el perfil de usuario -->
+          <a
+            *ngIf="!loggedIn"
+            class="dropdown-item custom-dropdown-item"
+            routerLink="/identificarse"
+            >Iniciar sesión</a
+          >
+          <!-- TODO: Implementar función de Cerrar Sesión -->
+          <a
+            *ngIf="loggedIn"
+            class="dropdown-item custom-dropdown-item"
+            href="#"
+            >Cerrar sesión</a
+          >
+        </div>
+        <a routerLink="/carrito-compras"
+          ><img
+            src="../../assets/img/carrito-de-compras.png"
+            alt="Carrito de compras"
+            class="cart-shopping-image"
+        /></a>
+      </div>
+    </div>
+  </div>
+</div>

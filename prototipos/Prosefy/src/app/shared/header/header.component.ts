@@ -1,34 +1,26 @@
 import { Component, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { CurrencyService } from '../../services/currency.service';
 
 @Component({
-  selector: 'app-headernav',
-  templateUrl: './headernav.component.html',
-  styleUrls: ['./headernav.component.css'],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
 })
-export class HeadernavComponent {
+export class HeaderComponent {
   // Propiedad para controlar si el encabezado se ha desplazado
   headerScrolled = false;
-  // Propiedad para controlar si está abierta una ventana emergente (popup)
-  isPopupOpen = false;
-  // Propiedad searchPlaceholder para cambiar el título de la barra de búsqueda
   placeholderText = 'Buscar...'; // Valor predeterminado
+  // Variable de estado para controlar la visibilidad de las opciones de usuario
+  showUserOptions: boolean = false;
+  // Esta variable indica si el usuario ha iniciado sesión
+  loggedIn: boolean = false;
 
-  constructor(private router: Router, public currencyService: CurrencyService) {
+  constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updatePlaceholder(event.url);
       }
     });
-  }
-
-  openPopup() {
-    this.isPopupOpen = true;
-  }
-
-  closePopup() {
-    this.isPopupOpen = false;
   }
 
   private updatePlaceholder(url: string) {
@@ -45,7 +37,8 @@ export class HeadernavComponent {
     }
   }
 
-  setCurrency(currency: string): void {
-    this.currencyService.setCurrency(currency);
+  toggleUserOptions() {
+    this.showUserOptions = !this.showUserOptions;
+    console.log('showUserOptions:', this.showUserOptions);
   }
 }

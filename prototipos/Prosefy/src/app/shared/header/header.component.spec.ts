@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HeadernavComponent } from './headernav.component';
+import { HeaderComponent } from './header.component';
 import { NgModule } from '@angular/core';
 
 @NgModule({
-  declarations: [HeadernavComponent],
+  declarations: [HeaderComponent],
 })
 class TestModule {}
 
-describe('HeadernavComponent', () => {
-  let component: HeadernavComponent;
-  let fixture: ComponentFixture<HeadernavComponent>;
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestModule], // Importa el módulo de prueba que incluye las declaraciones
     });
-    fixture = TestBed.createComponent(HeadernavComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

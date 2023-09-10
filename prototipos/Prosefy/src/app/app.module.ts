@@ -7,7 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 /* ------------------------------------------------------------------- */
 
 import { AppComponent } from './app.component';
-import { HeadernavComponent } from './shared/header-nav/headernav.component';
+import { HeaderComponent } from './shared/header/header.component';
 import { OfertasDestacadasComponent } from './sections/ofertas-destacadas/ofertas-destacadas.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LibrosRecomendadosComponent } from './sections/libros-recomendados/libros-recomendados.component';
@@ -49,11 +49,12 @@ import { ResultadosComponent } from './sections/resultados/resultados.component'
 import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
 import { CurrencyService } from './services/currency.service';
 import { ListaLibrosComponent } from './shared/lista-libros/lista-libros.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeadernavComponent,
+    HeaderComponent,
     OfertasDestacadasComponent,
     FooterComponent,
     LibrosRecomendadosComponent,
@@ -93,6 +94,7 @@ import { ListaLibrosComponent } from './shared/lista-libros/lista-libros.compone
     ResultadosComponent,
     CrearCuentaComponent,
     ListaLibrosComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

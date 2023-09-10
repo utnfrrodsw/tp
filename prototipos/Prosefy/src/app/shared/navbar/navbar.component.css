@@ -1,6 +1,11 @@
-.header {
-  /* Transición para el header */
+.navbar {
+  /* Transición para el navbar */
   transition: background-color 1s ease;
+}
+
+.navbar.scrolled {
+  /* Estilo para el navbar cuando se hace scroll */
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .navbar {
@@ -8,34 +13,11 @@
   transition: background-color 1s ease;
 }
 
-.header.scrolled {
-  /* Estilo para el header cuando se hace scroll */
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
 .navbar.scrolled {
   /* Estilo para el navbar cuando se hace scroll */
   background-color: rgba(255, 255, 255, 0.9);
 }
-.header {
-  /* Transición para el header */
-  transition: background-color 1s ease;
-}
 
-.navbar {
-  /* Transición para el navbar */
-  transition: background-color 1s ease;
-}
-
-.header.scrolled {
-  /* Estilo para el header cuando se hace scroll */
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
-.navbar.scrolled {
-  /* Estilo para el navbar cuando se hace scroll */
-  background-color: rgba(255, 255, 255, 0.9);
-}
 /* Estilos para el fondo oscurecido */
 .overlay {
   position: fixed;
@@ -103,70 +85,6 @@
 .custom-btn-primary:active {
   background-color: #976950;
   border-color: #976950;
-}
-
-.logo-sm {
-  width: 48px; /* Ajusta el ancho según tus necesidades */
-  height: auto; /* Mantiene la proporción original de la imagen */
-}
-
-/* ANIMACIÓN DE ESCRITURA EN LA BARRA DE BÚSQUEDA */
-
-.typewriter {
-  overflow: hidden;
-  border-right: 2px solid black;
-  background-color: transparent;
-  /* Anima la aparición de cada letra de forma más suave y durante más tiempo */
-  animation: typing 6s steps(60, end), blink-caret 0.75s step-end infinite;
-}
-
-@keyframes typing {
-  0% {
-    width: 0;
-  }
-  2% {
-    width: 5%;
-  }
-  4% {
-    width: 10%;
-  }
-  6% {
-    width: 15%;
-  }
-  8% {
-    width: 20%;
-  }
-  10% {
-    width: 25%;
-  }
-  12% {
-    width: 30%;
-  }
-  14% {
-    width: 35%;
-  }
-  16% {
-    width: 40%;
-  }
-  18% {
-    width: 45%;
-  }
-  20% {
-    width: 50%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: transparent;
-  }
 }
 
 .btn-unidad-monetaria,

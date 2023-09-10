@@ -1,0 +1,113 @@
+.header {
+  position: relative;
+  /* Transición para el header */
+  transition: background-color 1s ease;
+}
+
+.header.scrolled {
+  /* Estilo para el header cuando se hace scroll */
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.header {
+  /* Transición para el header */
+  transition: background-color 1s ease;
+}
+
+.header.scrolled {
+  /* Estilo para el header cuando se hace scroll */
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.logo-sm {
+  width: 48px; /* Ajusta el ancho según tus necesidades */
+  height: auto; /* Mantiene la proporción original de la imagen */
+}
+
+/* ANIMACIÓN DE ESCRITURA EN LA BARRA DE BÚSQUEDA */
+
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid black;
+  background-color: transparent;
+  /* Anima la aparición de cada letra de forma más suave y durante más tiempo */
+  animation: typing 6s steps(60, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  2% {
+    width: 5%;
+  }
+  4% {
+    width: 10%;
+  }
+  6% {
+    width: 15%;
+  }
+  8% {
+    width: 20%;
+  }
+  10% {
+    width: 25%;
+  }
+  12% {
+    width: 30%;
+  }
+  14% {
+    width: 35%;
+  }
+  16% {
+    width: 40%;
+  }
+  18% {
+    width: 45%;
+  }
+  20% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: transparent;
+  }
+}
+
+.user-options {
+  position: absolute;
+  right: 0; /* Alineación a la derecha */
+  margin-right: 3rem;
+  background-color: white; /* Fondo blanco */
+  border: 1px solid #ccc; /* Borde ligero */
+  padding: 10px; /* Espaciado interior */
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+.user-image {
+  cursor: pointer;
+}
+
+.custom-dropdown {
+  position: absolute;
+  top: 100%; /* Coloca el menú debajo del elemento padre */
+  margin-right: 9.4%;
+  z-index: 1000; /* Ajusta el z-index para superponerse a otros elementos */
+  min-width: var(--bs-dropdown-min-width);
+  color: var(--bs-dropdown-color);
+  border-radius: 1rem;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  color: var(--bs-nav-link-hover-color);
+}
