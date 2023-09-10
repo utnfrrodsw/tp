@@ -88,7 +88,8 @@
   cursor: pointer;
 }
 
-.custom-dropdown-item:hover {
+.custom-dropdown-item:hover,
+.custom-dropdown-item:active {
   background-color: #bd8464; /* Cambia el color de fondo al hacer hover */
   color: white; /* Cambia el color del texto al hacer hover */
 }
@@ -166,4 +167,34 @@
   50% {
     border-color: transparent;
   }
+}
+
+.btn-unidad-monetaria,
+.btn-unidad-monetaria:hover,
+.btn-unidad-monetaria:active {
+  background-color: transparent;
+  color: var(--bs-nav-link-color);
+  border-color: transparent;
+}
+
+.btn-unidad-monetaria:hover,
+.btn-unidad-monetaria:active {
+  color: var(--bs-nav-link-hover-color);
+}
+
+.dropdown-item {
+  cursor: pointer;
+  color: var(--bs-nav-link-hover-color);
+}
+
+.alinear-derecha {
+  position: absolute;
+  right: 0;
+  margin-right: 5.3rem;
+}
+
+.alinear-izquierda {
+  position: absolute;
+  left: 0;
+  margin-left: 1rem;
 }

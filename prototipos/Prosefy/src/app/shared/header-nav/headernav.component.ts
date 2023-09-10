@@ -1,26 +1,11 @@
 import { Component, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-// Para animar la barra de búsqueda cuando cambia de texto
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
+import { CurrencyService } from '../../services/currency.service';
 
 @Component({
   selector: 'app-headernav',
   templateUrl: './headernav.component.html',
   styleUrls: ['./headernav.component.css'],
-  animations: [
-    trigger('placeholderAnimation', [
-      state('default', style({ color: 'black' })),
-      state('inicio', style({ color: 'blue' })),
-      state('autores', style({ color: 'green' })),
-      transition('* => *', animate('300ms')),
-    ]),
-  ],
 })
 export class HeadernavComponent {
   // Propiedad para controlar si el encabezado se ha desplazado
@@ -30,20 +15,20 @@ export class HeadernavComponent {
   // Propiedad searchPlaceholder para cambiar el título de la barra de búsqueda
   placeholderText = 'Buscar...'; // Valor predeterminado
 
+  constructor(private router: Router, public currencyService: CurrencyService) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.updatePlaceholder(event.url);
+      }
+    });
+  }
+
   openPopup() {
     this.isPopupOpen = true;
   }
 
   closePopup() {
     this.isPopupOpen = false;
-  }
-
-  constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.updatePlaceholder(event.url);
-      }
-    });
   }
 
   private updatePlaceholder(url: string) {
@@ -58,5 +43,9 @@ export class HeadernavComponent {
     } else {
       this.placeholderText = 'Buscar...';
     }
+  }
+
+  setCurrency(currency: string): void {
+    this.currencyService.setCurrency(currency);
   }
 }

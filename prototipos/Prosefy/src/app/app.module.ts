@@ -47,6 +47,7 @@ import { SeccionesAyudaComponent } from './sections/secciones-ayuda/secciones-ay
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { ResultadosComponent } from './sections/resultados/resultados.component';
 import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
+import { CurrencyService } from './services/currency.service';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,7 @@ import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.componen
     ReactiveFormsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [CurrencyService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -7157,9 +7157,9 @@ fieldset:disabled .btn {
 }
 
 .sticky-top {
-  position: sticky;
-  top: 0;
-  z-index: 1020;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1020 !important;
 }
 
 .sticky-bottom {

@@ -39,7 +39,14 @@
               />
               <div class="card-body">
                 <p class="card-text precio">
-                  {{ libro.precio }} <small class="text-muted"> ARS</small>
+                  ${{
+                    calculatePriceInSelectedCurrency(
+                      libro.precio
+                    ).toLocaleString()
+                  }}
+                  <small class="text-muted">
+                    {{ currencyService.getCurrency() }}
+                  </small>
                 </p>
                 <!-- Corta la descripción si es muy larga y coloca "..." -->
                 <p class="card-text descripcion">
