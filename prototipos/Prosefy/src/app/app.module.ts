@@ -48,6 +48,7 @@ import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { ResultadosComponent } from './sections/resultados/resultados.component';
 import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
 import { CurrencyService } from './services/currency.service';
+import { ListaLibrosComponent } from './shared/lista-libros/lista-libros.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { CurrencyService } from './services/currency.service';
     BusquedaComponent,
     ResultadosComponent,
     CrearCuentaComponent,
+    ListaLibrosComponent,
   ],
   imports: [
     BrowserModule,
