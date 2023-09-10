@@ -71,13 +71,13 @@
 ### Login (Marina)
 
 - [x] Diseño
-- [ ] Frontend
+- [x] Frontend
 - [ ] Backend
 
 ### Registro (Marina)
 
 - [x] Diseño
-- [ ] Frontend
+- [x] Frontend
 - [ ] Backend
 
 ### Perfil (Alejo)

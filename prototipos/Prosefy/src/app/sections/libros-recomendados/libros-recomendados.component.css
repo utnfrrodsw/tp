@@ -145,3 +145,15 @@
   padding-left: 2 !important;
   padding-right: 2 !important;
 }
+
+/* Estilo para el texto "ARS" y "USD" */
+.text-muted {
+  font-size: 70%;
+  vertical-align: middle;
+  color: #714f3c;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
