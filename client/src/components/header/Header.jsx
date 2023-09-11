@@ -8,7 +8,7 @@ import logo from "./logoPosta.png"
 
 
 
-function Header() {
+function Header(){
     return (
         <header className="header-content">
             <div className="logo-content">
