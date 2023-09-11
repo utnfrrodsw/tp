@@ -9,7 +9,6 @@ import Home from './components/home/Home.jsx';
 import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
 import Login from './components/usuario/login/Login.jsx';
 import Register from './components/usuario/register/Register.jsx';
-import DetalleServicio from './components/prestador/detalleServicio/DetalleServicio.jsx'
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
@@ -35,10 +34,6 @@ function App() {
           <Route path='/client/home/finished'  element={ <Solicitudes estado = "terminado"/>}>
 
           
-            <Route path='/provider/adDetails' element={<DetalleServicio/>}></Route>
-          <Route path='/client/home'  element={ <InicioCliente/>}>
-            <Route path='requests'  element={ <Solicitudes estado = "pendiente"/>} />
-            <Route path='finished'  element={ <Solicitudes estado = "terminado"/>} />
           </Route>
           {/*<Route path='/evaluations'  element={ <Evaluaciones/>} />*/}
           <Route path='*'  element={ <Error/>} />

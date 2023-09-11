@@ -1,13 +1,13 @@
 .anuncio-card {
   display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 20% 30% 30% 20%;
     grid-template-rows: 30% 60% 10%;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-    "Foto titulo titulo"
-    "Foto descripcion descripcion"
-    "Foto nombre boton";
+    "Foto titulo titulo nombre"
+    "Foto descripcion descripcion descripcion"
+    "Foto boton . presu";
   height: 15em;
   padding: 5px;
     background-color: #AEC3AE;
@@ -21,6 +21,26 @@
 .anuncio-card:hover {
   background-color: #E4E4D0;
   border-radius: 10px;
+}
+.anuncio-fullcontent {
+  display: grid;
+  grid-template-columns: 20% 30% 30% 20%;
+  grid-template-rows: 30% 60% 10%;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Foto nombre titulo nombre"
+    "Foto descripcion descripcion descripcion"
+    "Foto boton . presu";
+  height: 15em;
+  padding: 5px;
+  background-color: #AEC3AE;
+  border-radius: 12px;
+  margin: 5px;
+  transition: all 0.2s;
+  /* Transición al pasar el cursor */
+  cursor: pointer;
+  border: 1px solid #040D12;
 }
 
 .photo {
@@ -39,10 +59,14 @@
   grid-area: descripcion;
 }
 
-.nombre {
-  grid-area: nombre;
+.presu {
+  grid-area: presu;
 }
 
 .boton{
   grid-area: boton;
+}
+
+.nombre{
+  grid-area: nombre;
 }
