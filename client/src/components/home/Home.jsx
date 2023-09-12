@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './home.css'; // Asegúrate de que el archivo CSS esté correctamente importado
+import './Home.css'; // Asegúrate de que el archivo CSS esté correctamente importado
 
 function Home() {
   return (

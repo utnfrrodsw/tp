@@ -1,5 +1,6 @@
 /* DatosPersonales.css */
-.fondoDatosPersonales{
+
+.fondoDatosPersonales {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,7 +9,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color:#213555 ;
+  background-color: #213555;
   margin-bottom: -1rem;
 }
 
@@ -30,18 +31,16 @@ h2 {
   display: flex;
   align-items: center;
   flex-direction: column;
-  
 }
 
-.profile-picture { 
-  width: 150px; /* Ajusta el tamaño de la imagen según tus preferencias */
-  height: 150px; /* Ajusta el tamaño de la imagen según tus preferencias */
-  border-radius: 50%; /* Para hacer la imagen redonda */
-  overflow: hidden; /* Para recortar cualquier parte que exceda el círculo */
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
   margin-bottom: 1rem;
   cursor: pointer;
 }
-
 
 .user-profile h3 {
   font-size: 1.5rem;
@@ -62,7 +61,7 @@ h2 {
 
 .user-details input {
   margin-bottom: 0.5rem;
-  width: 100%;
+  width: 95%;
   padding: 0.5rem;
   margin-top: 0.5rem;
   border: 1px solid #ccc;
@@ -82,8 +81,18 @@ h2 {
   cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
   background-color: #3b5477;
 }
 
-/* Puedes personalizar aún más los estilos según tus preferencias */
+/* Consulta de medios para pantallas pequeñas (por ejemplo, dispositivos móviles) */
+@media (max-width: 768px) {
+  .datos-personales-container {
+    padding: 1rem;
+  }
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+  }
+}
