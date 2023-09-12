@@ -1,7 +1,7 @@
 import './anuncio.css'
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-
+import ControlledCarousel from './carousel';
 function Anuncio(props){
   const titulo=props.titulo;
   const descripcion=props.descripcion;
@@ -20,6 +20,7 @@ function Anuncio(props){
     {show ? (<h1></h1>
     ):(
         <button className='presu'>Presupuestar</button>
+        //<ControlledCarousel/>
     )}
   </div>
 );
