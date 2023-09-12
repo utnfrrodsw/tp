@@ -35,31 +35,33 @@ Sistema de voto estudiantil electrónico que cuenta con autenticación segura, p
 
 #### **CRUD Simple**
 
-+ CRUD Admins
-+ CRUD Elections
-+ CRUD Students
-+ CRUD Candidates
++ CRUD admin
++ CRUD election
++ CRUD user
++ CRUD candidate
++ CRUD role
 
 #### **CRUD Dependiente**
 
-+ CRUD Vote {depende de} CRUD ElectoralTable, {depende de} CRUD Lists
-+ CRUD Delegation {depende de} CRUD Elections
-+ CRUD ElectoralTables {depende de} CRUD Elections
-+ CRUD Lists {depende de} CRUD Elections, {depende de} CRUD Students
++ CRUD list { depende de } CRUD election
++ CRUD delegation { depende de } CRUD election
++ CRUD list_role { depende de } CRUD list, { depende de } CRUD role
++ CRUD delegation_role { depende de } CRUD delegation, { depende de } CRUD role
++ CRUD election_user { depende de } CRUD election, { depende de } CRUD user
 
 #### **Listado + detalle**
 
-1. Listado de alumnos filtrado por mesa electoral => detalle CRUD Students
-2. Listado de listas filtrado por id de lista => detalle CRUD Lists
-3. Listado de recuento generales de votos, de cada lista más los votos en blanco => detalle CRUD Vote
+1. Listado de alumnos filtrado por curso => detalle CRUD user
+2. Listado de listas filtrado por eleccion => detalle CRUD list y CRUD election
+3. Listado de recuento generales de votos, de cada lista más los votos en blanco => detalle CRUD election, CRUD list y CRUD election_user
 
 #### **CUU/Epic**
 
 1. Registrar el padrón electoral.
-2. Registrar la eleccion con sus listas y mesas electorales.
+2. Registrar la eleccion con sus listas y candidatos.
 3. Emitir un voto, contando con integridad y seguridad del mismo.
 4. Registrar resultados finales de la votación.
-5. Actualizar el comité con los nuevos miembros que lo conforman.
+5. Actualizar la delegacion con los nuevos miembros que lo conforman.
 
 ### Reglas de Negocio
 
