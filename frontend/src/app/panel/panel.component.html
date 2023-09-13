@@ -169,7 +169,7 @@
 				<fieldset class="row">
 					<legend>Permisos</legend>
 					<label *ngFor="let permiso of usuarioActual.permisos" class="col-4 row">
-						<input type="checkbox" name="permisoID" value="{{permiso.ID}}">
+						<input type="checkbox" name="permisoID" value="{{permiso.ID}}" [checked]="permiso.predeterminado">
 						<span class="col">{{permiso.descripcion}}</span>
 					</label>
 				</fieldset>

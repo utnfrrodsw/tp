@@ -12,6 +12,11 @@ const Permiso = db.define('permiso', {
     descripcion: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    predeterminado:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue:true
     }
 });
 
@@ -30,9 +35,15 @@ Permiso.sync()
                     Permiso.bulkCreate([
                         {
                             descripcion:'Enviar Tokens'
+                            ,predeterminado:false
                         }
                         ,{
                             descripcion:'Crear Usuarios'
+                            ,predeterminado:false
+                        }
+                        ,{
+                            descripcion:'Enviar Tokens'
+                            ,predeterminado:true
                         }
                     ])
                 }

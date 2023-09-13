@@ -19,4 +19,5 @@ export class PermisoService {
 export interface Permiso{
   ID: number;
   descripcion: string;
+  predeterminado:boolean;
 }
