@@ -54,6 +54,7 @@ class Recomendacion(models.Model):
     canciones = models.ManyToManyField(Cancion)
 
 class Historial(models.Model):
+    fecha_reproduccion = models.DateTimeField(auto_now_add=True, null=True)
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     canciones = models.ManyToManyField(Cancion)
 

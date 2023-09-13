@@ -109,6 +109,11 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
+from django.http import JsonResponse
+from nospeak_app.recommendations.multi_recommendations import *
+from django.views.decorators.csrf import csrf_exempt
+import json
+
 
 class ArtistaList(generics.ListCreateAPIView):
     queryset = Artista.objects.all()
@@ -201,6 +206,16 @@ class HistorialDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Historial.objects.all()
     serializer_class = HistorialSerializer
 
+class HistorialPorUsuarioView(generics.RetrieveAPIView):
+    serializer_class = HistorialSerializer
+
+    def get_object(self):
+        usuario_id = self.kwargs['usuario_id']
+        try:
+            return Historial.objects.filter(usuario=usuario_id).first()
+        except Historial.DoesNotExist:
+            return None
+
 
 class RegistroUsuario(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -210,8 +225,6 @@ class RegistroUsuario(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         user = User.objects.get(username=response.data['username'])
-        # Aquí podrías generar el token y enviarlo en la respuesta
-        # return Response({'token': token.key, 'message': 'Usuario registrado correctamente.'})
         return response
 
 
@@ -239,3 +252,22 @@ class LogoutView(APIView):
         except:
             raise
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+@csrf_exempt
+def get_recommendations(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            song_names = data.get('song_names', [])
+            print(song_names)
+
+            recommended_songs = multi_recommendations(song_names)
+
+            return JsonResponse({'recommended_songs': recommended_songs})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+    return JsonResponse({'error': 'Invalid request method'}, status=405)

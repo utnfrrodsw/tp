@@ -320,9 +320,8 @@ class RecomendacionSerializer(serializers.ModelSerializer):
         model = Recomendacion
         fields = '__all__'
 
-
 class HistorialSerializer(serializers.ModelSerializer):
-    canciones = CancionSerializer(many=True)  # Relación ManyToMany con Cancion
+    canciones = CancionSerializer(many=True)
 
     class Meta:
         model = Historial
@@ -333,13 +332,8 @@ class HistorialSerializer(serializers.ModelSerializer):
         historial = Historial.objects.create(**validated_data)
 
         for cancion_data in canciones_data:
-            artista_data = cancion_data.pop('artista')
-            album_data = cancion_data.pop('album')
 
-            # Buscar una Cancion existente en la base de datos
             cancion, created = Cancion.objects.get_or_create(
-                artista=artista_data,
-                album=album_data,
                 **cancion_data
             )
 
@@ -348,19 +342,13 @@ class HistorialSerializer(serializers.ModelSerializer):
         return historial
     
     def update(self, instance, validated_data):
-        canciones_data = validated_data.pop('canciones', [])  # Get canciones_data or empty list
-
+        canciones_data = validated_data.pop('canciones', [])
         instance.usuario = validated_data.get('usuario', instance.usuario)
 
-        instance.canciones.clear()  # Clear existing songs from the playlist
+        instance.canciones.clear()
 
         for cancion_data in canciones_data:
-            artista_data = cancion_data.pop('artista')
-            album_data = cancion_data.pop('album')
-
             cancion, created = Cancion.objects.get_or_create(
-                artista=artista_data,
-                album=album_data,
                 **cancion_data
             )
 
@@ -368,3 +356,8 @@ class HistorialSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
+
+
+
+
+

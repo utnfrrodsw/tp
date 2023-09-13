@@ -1,41 +1,7 @@
-# from django.urls import path, include
-# from nospeak_app.views import *
-# from rest_framework.routers import DefaultRouter, SimpleRouter
-
-# router = DefaultRouter()
-# router.register('artista', ArtistaViewSet)
-
-# urlpatterns = [
-# 	path('register', UserRegister.as_view(), name='register'),
-# 	path('login', UserLogin.as_view(), name='login'),
-# 	path('logout', UserLogout.as_view(), name='logout'),
-# 	path('user', UserView.as_view(), name='user'),
-#     path('', include(router.urls)),
-#     # path('list/', index, name='polls_list'),
-#     # path('<int:id>/details/', details, name="poll_details"),
-#     # path('<int:id>/', vote_poll, name="poll_vote")
-# ]
-
-
-# # path('poll/', PollAPIView.as_view()),
-# # path('poll/<int:id>/', PollDetailView.as_view()),
-# # path('generics/poll/', poll_list_view),
-# # path('generics/poll/<int:id>/', PollListView.as_view()),
-# # path('poll/search/', QuestionSearchViewSet.as_view({'get': 'list'})),
-
-# # from rest_framework import routers
-# # from .views import *
-
-# # router = routers.DefaultRouter()
-# # router.register(f'usuarios', UsuarioView, 'usuarios')
-
-# # urlpatterns = [
-# #     path('api/v1', include(router.urls)),
-# # ]
-
 from django.urls import path, include
-from .views import ArtistaList, ArtistaDetail, AlbumList, AlbumDetail, CancionInfo, CancionList, CancionDetail, PlaylistCreate, PlaylistInfo, UsuarioList, UsuarioDetail, PlaylistList, PlaylistDetail, RecomendacionList, RecomendacionDetail, HistorialList, HistorialDetail, CancionCreate
+from .views import ArtistaList, ArtistaDetail, AlbumList, AlbumDetail, CancionInfo, CancionList, CancionDetail, HistorialPorUsuarioView, PlaylistCreate, PlaylistInfo, UsuarioList, UsuarioDetail, PlaylistList, PlaylistDetail, RecomendacionList, RecomendacionDetail, HistorialList, HistorialDetail, CancionCreate
 from .views import LogoutView, RegistroUsuario, CustomAuthToken, CancionesPorArtistaView, CancionesPorAlbumView
+from . import views
 
 urlpatterns = [
     path('register/', RegistroUsuario.as_view(), name='registro-usuario'),
@@ -63,9 +29,10 @@ urlpatterns = [
     path('playlists/', PlaylistCreate.as_view(), name='playlist-create'),
     path('playlists/<int:pk>/', PlaylistDetail.as_view(), name='playlist-detail'),
 
-    path('recomendaciones/', RecomendacionList.as_view(), name='recomendacion-list'),
     path('recomendaciones/<int:pk>/', RecomendacionDetail.as_view(), name='recomendacion-detail'),
+    path('recomendaciones/', views.get_recommendations, name='get_recommendations'),
 
     path('historiales/', HistorialList.as_view(), name='historial-list'),
+    path('historiales-usuario/<int:usuario_id>/', HistorialPorUsuarioView.as_view(), name='historial-por-usuario'),
     path('historiales/<int:pk>/', HistorialDetail.as_view(), name='historial-detail'),
 ]

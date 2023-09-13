@@ -48,11 +48,7 @@ router.delete('/playlists/:id', verificarToken, playlistController.deletePlaylis
 router.get('/playlists-usuario/:usuario_id', verificarToken, playlistController.getPlaylistsByUsuario);
 
 
-router.get('/recomendaciones', verificarToken, recomendacionController.getRecomendaciones);
 router.post('/recomendaciones', verificarToken, recomendacionController.createRecomendacion);
-router.get('/recomendaciones/:id', verificarToken, recomendacionController.getRecomendacionById);
-router.put('/recomendaciones/:id', verificarToken, recomendacionController.updateRecomendacion);
-router.delete('/recomendaciones/:id', verificarToken, recomendacionController.deleteRecomendacion);
 
 router.get('/historiales', verificarToken, historialController.getHistoriales);
 router.post('/historiales', verificarToken, historialController.createHistorial);
