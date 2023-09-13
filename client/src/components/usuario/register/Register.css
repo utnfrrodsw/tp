@@ -113,12 +113,12 @@
   border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
-  top: 100%; /* Mueve el mensaje de error justo debajo del contenedor */
+  top: 100%; 
   left: 0;
-  width: 100%; /* Ocupa todo el ancho del contenedor */
-  transform: translateY(5px); /* Desplaza hacia abajo ligeramente */
-  z-index: 1; /* Coloca el mensaje de error sobre el contenedor */
-  display: block; /* Asegura que el mensaje de error sea visible */
+  width: 100%;  
+  transform: translateY(5px);  
+  z-index: 1;  
+  display: block; 
   margin-right: 3rem;
 }
 
@@ -153,7 +153,8 @@
 }
 
 .register-container .btn:hover {
-  background-color: #D8C4B6;
+  background-color: #213555;  
+  color: #fff;
 }
 
 .register-container p {

@@ -1,5 +1,3 @@
-/* Login.css */
-
 
 .fondoLogin {
   margin: 0;
@@ -15,37 +13,37 @@
 }
 
 .wrapper {
-  width: 85%; /* Redujimos el ancho para hacerlo un poco más estrecho */
-  max-width: 400px; /* Establecemos un ancho máximo */
+  width: 85%;  
+  max-width: 400px;  
   border: 2px solid rgba(255, 255, 255, 0.945);
   background-color: #4F709C;
   border: 2px solid #ccc;
   border-radius: 10px;
-  padding: 1.5rem; /* Ajustamos el espaciado interno */
+  padding: 1.5rem;  
   text-align: center;
   margin-bottom: 2rem;
 }
 
 .wrapper h1 {
-  font-size: 2rem; /* Utilizamos unidades relativas para el tamaño de fuente */
-  margin-bottom: 1.5rem; /* Agregamos margen inferior para separar el título de los campos de entrada */
+  font-size: 2rem;  
+  margin-bottom: 1.5rem; 
   color: #fff;
 }
 
 .wrapper .input-box {
   position: relative;
   width: 100%;
-  margin-bottom: 0.5rem; /* Utilizamos unidades relativas para el margen inferior */
+  margin-bottom: 0.5rem;  
 }
 
 .input-box input {
   width: 100%;
-  height: 2.5rem; /* Utilizamos unidades relativas para el alto */
+  height: 2.5rem;  
   border: 2px solid rgba(255, 255, 255, 0.945);
   background-color: #4F709C;
-  border-radius: 2rem; /* Utilizamos unidades relativas para el borde redondeado */
-  font-size: 1rem; /* Utilizamos unidades relativas para el tamaño de fuente */
-  padding: 0.5rem; /* Utilizamos unidades relativas para el espaciado */
+  border-radius: 2rem;  
+  font-size: 1rem;  
+  padding: 0.5rem;  
   margin-left: -0.5rem;
 }
 
@@ -55,22 +53,22 @@
 
 .input-box i {
   position: absolute;
-  right: 1rem; /* Utilizamos unidades relativas para el desplazamiento derecho */
+  right: 1rem; 
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.25rem; /* Utilizamos unidades relativas para el tamaño de fuente */
+  font-size: 1.25rem;  
 }
 
 .wrapper .remember-forget {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem; /* Utilizamos unidades relativas para el tamaño de fuente */
-  margin: 1rem 0; /* Utilizamos unidades relativas para el espaciado */
+  font-size: 0.9rem;  
+  margin: 1rem 0;  
 }
 
 .remember-forget label input {
   accent-color: #fff;
-  margin-right: 0.2rem; /* Utilizamos unidades relativas para el margen derecho */
+  margin-right: 0.2rem;  
 }
 
 .remember-forget a {
@@ -83,29 +81,31 @@
 }
 
 .wrapper .btn {
-  width: 100%;
-  height: 2.5rem; /* Utilizamos unidades relativas para el alto */
+  width: 35%;
+  height: 2.5rem;  
   background: #fff;
   border: none;
   outline: none;
-  border-radius: 2.5rem; /* Utilizamos unidades relativas para el borde redondeado */
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 1); /* Utilizamos unidades relativas para la sombra */
+  border-radius: 2.5rem; 
+  
   cursor: pointer;
   font-size: 1rem;
   color: #333;
   font-weight: 600;
   margin-top: 1rem;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .wrapper .btn:hover {
-  background-color: #D8C4B6; /* Color secundario */
+  background-color: #213555;  
+  color: #fff;
 }
 
 
 .wrapper .register-link {
-  font-size: 0.9rem; /* Utilizamos unidades relativas para el tamaño de fuente */
+  font-size: 0.9rem;  
   text-align: center;
-  margin-top: 1rem; /* Utilizamos unidades relativas para el margen superior */
+  margin-top: 1rem; 
 }
 
 .register-link p a {
