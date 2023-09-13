@@ -131,6 +131,9 @@ async function create(usuario) {
     if(permisos){
         let permisosReales=await permisosIDsAPermisos(permisos);
         await nuevoUsuario.setPermisos(permisosReales);
+    }else{
+        let permisosPredeterminados=await Permiso.findAll({where:{predeterminao:true}});
+        await nuevoUsuario.setPermisos(permisosPredeterminados);
     }
 
     await nuevoUsuario.save();

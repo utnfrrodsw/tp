@@ -273,9 +273,7 @@ export class PanelComponent implements OnInit {
     let u: Usuario=(((Object.fromEntries((fD)))) as unknown) as Usuario;
     u.permisos=fD.getAll('permisoID').map(permisoID => ({ID:permisoID}) as unknown as Permiso)
 
-    // this.console.log(u); return false;
-
-    // TODO que funcione bien
+    // TODO que funcione bien  ??? anda bien qué decís
     this.usuarioService
       .create(u)
       .subscribe((result:any)=>{
