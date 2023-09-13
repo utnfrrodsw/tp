@@ -10,11 +10,11 @@ export const PlaylistBox = styled.div`
   display: inline-block;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    &:hover {
-        transform: translateY(-5px); 
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const PlaylistName = styled.h3`
@@ -83,13 +83,16 @@ export const ArtistGrid = styled(PlaylistGrid)`
 `;
 
 export const ArtistBox = styled.div`
-  display: inline-block;
+  display: flex; /* Usamos flexbox para centrar verticalmente la imagen */
+  flex-direction: column; /* Alinear elementos verticalmente */
+  align-items: center; /* Centrar horizontalmente la imagen */
   text-align: center;
+  height: 250px; /* Establece la altura fija que desees */
 `;
 
 export const ArtistImage = styled.img`
-  width: 100px;
-  height: 100px;
+  max-width: 100%;
+  max-height: 120px; /* Establece la altura máxima que desees */
   border-radius: 50%;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -138,15 +141,13 @@ export const ComboBoxOption = styled.div`
   }
 `;
 
-
 export const TableContainerStyled = styled.div`
-display: flex;
-flex-direction: column;
-gap: 5px;
-height: 70%;
-width: 98%;
-background-color: rgba(0, 0, 0, .3);
-padding: 10px;
-border-radius: 10px;
-`
-
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 70%;
+  width: 98%;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 10px;
+`;
