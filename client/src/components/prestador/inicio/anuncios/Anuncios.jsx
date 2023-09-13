@@ -1,13 +1,14 @@
 import React, {useState} from "react";
-import Anuncio from "./Anuncio";
+import Anuncio from '../anuncio/Anuncio';
 import './anuncios.css'
 function Anuncios(props) {
 const text= 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt ipsum numquam consequuntur temporibus nobis adipisci voluptate delectus, velit, saepe, omnis est incidunt ullam iusto facilis totam minima atque dolorem sunt?'
-    const anuncios = [
-        { titulo: 'Se busca plomero', descripcion: text, nombre: 'Pablo Perez' },
-        { titulo: 'Se busca todo', descripcion: text, nombre: 'Claudio Perez' },
-        { titulo: 'Se busca electricista', descripcion: text, nombre: 'Enzo Perez' },
-        { titulo: 'Se busca gasista', descripcion: text, nombre: 'Javier Perez' },
+const linkcito= 'https://unavatar.io/kikobeats?ttl=1h'    
+const anuncios = [
+        { titulo: 'Se busca plomero', descripcion: text, nombre: 'Pablo Perez' ,foto: linkcito},
+        { titulo: 'Se busca todo', descripcion: text, nombre: 'Claudio Perez' ,foto: linkcito},
+        { titulo: 'Se busca electricista', descripcion: text, nombre: 'Enzo Perez' ,foto: linkcito},
+        { titulo: 'Se busca gasista', descripcion: text, nombre: 'Javier Perez' ,foto: linkcito},
         // Esto lo saco de la base de datos
       ];
     
@@ -39,6 +40,7 @@ const text= 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt 
                     titulo={anuncio.titulo}
                     descripcion={anuncio.descripcion}
                     nombre={anuncio.nombre}
+                    linkcito={anuncio.linkcito}
                 />
                 ))}
             </div>

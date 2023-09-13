@@ -1,0 +1,73 @@
+.anuncio-card {
+  display: grid;
+    grid-template-columns: 20% 30% 30% 20%;
+    grid-template-rows: 30% 60% 10%;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "Foto titulo titulo ."
+    "Foto descripcion descripcion descripcion"
+    "Foto boton ubicacion fecha";
+  height: 12em;
+  padding: 5px;
+    background-color: #AEC3AE;
+    border-radius: 12px;
+    margin: 5px;
+    transition: all 0.2s;
+    /* Transición al pasar el cursor */
+    cursor: pointer;
+    border: 1px solid #040D12;
+    transition: all 0.2s;
+}
+.anuncio-card:hover {
+  background-color: #E4E4D0;
+  border-radius: 10px;
+}
+.anuncio-fullcontent {
+  height: 30rem;
+  display: grid;
+  grid-template-columns: 20% 30% 30% 20%;
+  grid-template-rows: 30% 60% 10%;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Foto titulo ubicacion fecha"
+    "Foto . descripcion descripcion"
+    ". . boton presu";
+  padding: 5px;
+  background-color: #AEC3AE;
+  border-radius: 12px;
+  margin: 5px;
+  transition: all 0.2s;
+  /* Transición al pasar el cursor */
+  cursor: pointer;
+  border: 1px solid #040D12;
+}
+
+.photo {
+  grid-area: Foto;
+}
+.img{
+    width: 170px;
+    height: 170px;
+}
+
+.titulo {
+  grid-area: titulo;
+}
+
+.descripcion {
+  grid-area: descripcion;
+}
+
+.presu {
+  grid-area: presu;
+}
+
+.boton{
+  grid-area: boton;
+}
+
+.nombre{
+  grid-area: nombre;
+}
