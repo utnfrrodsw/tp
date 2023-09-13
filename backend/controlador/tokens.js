@@ -42,17 +42,22 @@ function generar(req,res){
 }
 
 function enviar(req, res) {
-	console.log(req.session.usuarioID,req.body.amigoID);
 	Promise.all([usuarioDao.findById(req.session.usuarioID),usuarioDao.findById(req.body.amigoID)])
         .then(usuarios=>{
             let [emisor,receptor]=usuarios;
-						return tokensDao.enviar(emisor,receptor,req.body.cantidad);
+						if(emisor.permisos.some(per=>per.ID==3)) // ¿ Ver cómo tr
+							return tokensDao.enviar(emisor,receptor,req.body.cantidad);
+						else{
+							let error=new Error("No tiene los permisos necesarios.");
+							error.name=403
+							throw error;
+						}
 				})
 				.then((data) => {
 						res.send(data);
 				})
 				.catch((error) => {
-						console.log(error);
+						res.status(error.name).send(error.message);
 				});
 }
 

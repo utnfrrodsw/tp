@@ -257,6 +257,7 @@ export class PanelComponent implements OnInit {
       ,amigoID=+((e.target as any)['form-enviar-usuario'].value);
     this.tokensService.enviar(cantidad,amigoID).subscribe({
       next:()=>{
+        // TODO Toast + reiniciar formulario
         this.usuarioActual.tokens-=cantidad;
       }
       ,error:error=>{
