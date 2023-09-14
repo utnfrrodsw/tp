@@ -7,19 +7,23 @@ function Anuncio(props){
   const titulo=props.titulo;
   const descripcion=props.descripcion;
   const nombre=props.nombre;
+  const fecha='19/11/06';
+  const ubicacion= 'Rosario, Santa Fe'
   //const foto=props.foto;
   const [show,setShow]=useState(true);
   return(
   <div className={`anuncio-card ${show ? "anuncio-card" : "anuncio-fullcontent"}`}>
-    <div className='titulo'><h1>{titulo}</h1></div>
-    <div className='descripcion'>{descripcion}</div>
+    <div className='titulo'>{titulo}</div>
     <div className='nombre'>{nombre}</div>
+    <div className='fecha'>{fecha}</div>
+    <div className='ubicacion'>{ubicacion}</div>
     <button className='boton' onClick={()=> {setShow(!show);}}>Ver {show ? 'más':'menos'}</button>
     {show ? (<h1></h1>
     ):(
         <>
+          <div className='descripcion'>{descripcion}</div>
           <button className='presu'>Presupuestar</button>
-          <div className='photo'><ControlledCarousel /></div>
+          <div className='photo'><img src="https://unavatar.io/kikobeats?ttl=1h" text="First slide" /></div>
         </>
     )}
   </div>
