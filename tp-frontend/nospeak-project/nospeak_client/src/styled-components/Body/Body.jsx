@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Header from './Header.jsx';
 import MediaControlCard from './MediaControlCard.jsx';
-import BigCard from './BigCard.jsx';
 import { BodyContainer } from './styles.js';
 import {
     Overlay,

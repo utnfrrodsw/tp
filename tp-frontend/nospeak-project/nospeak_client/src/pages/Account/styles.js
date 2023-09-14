@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { LoginInput, LoginButton } from '../Login/styles';
+import { LoginInput} from '../Login/styles';
 import { DateInput, StyledSelect } from '../Register/styles';
 
 const AccountContainer = styled.div`
@@ -54,14 +54,6 @@ const AccountStyledSelect = styled(StyledSelect)`
     }
 `;
 
-const AccountButton = styled(LoginButton)`
-    margin: 0px;
-    width: 65%;
-
-    @media (max-width: 991px) {
-        width: 100%;
-    }
-`;
 
 const FormContainer = styled.div`
     display: flex;
@@ -117,7 +109,6 @@ export {
     AccountInput,
     AccountDateInput,
     AccountStyledSelect,
-    AccountButton,
     AccountContainerLeft,
     AccountContainerRight,
     FormContainer

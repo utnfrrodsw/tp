@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
-import AddCircle from '@mui/icons-material/AddCircle';
-import PlaylistAdd from '@mui/icons-material/PlaylistAdd';
 import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { 
     cardStyle, 
     TitleContainer, 
@@ -18,15 +13,9 @@ import {
     StyledEditIcon, 
     StyledDeleteIcon,
     StyledCard,
-    ComboBoxContainer,
-    ComboBoxButton,
-    ArrowIcon,
-    ComboBoxList,
-    ComboBoxItem
+
 } from './styles';
-import {Navigate} from "react-router-dom";
 import { Link } from 'react-router-dom';
-import Icon from '@mui/material/Icon';
 import { useSelector } from 'react-redux';
 
 

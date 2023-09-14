@@ -1,5 +1,5 @@
 import React from "react";
-import { InicioContainer, InicioButton, ButtonContainer } from "./styles.js";
+import { InicioContainer, ButtonContainer } from "./styles.js";
 import { Navigate } from "react-router-dom";
 import { StyledButton } from "../../styled-components/styles.js";
 

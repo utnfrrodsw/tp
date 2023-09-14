@@ -3,7 +3,7 @@ import Sidebar from '../../styled-components/Sidebar/Sidebar'
 import { BodyContainer } from '../../styled-components/Body/styles';
 import { SpotifyBody } from '../Home/styles.js'
 import {AccountContainer, AccountContainerLeft, AccountContainerRight, StyledH1} from './styles'
-import { AccountInput, AccountButton, FormContainer} from './styles';
+import { AccountInput, FormContainer} from './styles';
 import { Avatar } from '@mui/material';
 import {Navigate} from "react-router-dom";
 import {useSelector} from 'react-redux';
@@ -19,8 +19,6 @@ import {
 import { 
   StyledButton, 
   StyledButtonSecondary,
-  Input,
-  Label
 } from '../../styled-components/styles';
 
 export default function Account({client}){

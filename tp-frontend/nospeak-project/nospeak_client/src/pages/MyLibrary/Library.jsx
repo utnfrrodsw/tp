@@ -5,7 +5,7 @@ import { SpotifyBody } from '../Home/styles';
 import Footer from '../../styled-components/Footer/Footer';
 import Header from '../../styled-components/Body/Header';
 import { NavContainer, NavItem, PlaylistBox, PlaylistDescription, PlaylistGrid, PlaylistImage, PlaylistName } from './styles';
-import { ArtistBox, ArtistImage, ArtistName, ArtistGrid, TableContainerStyled,
+import { ArtistBox, ArtistImage, ArtistName, TableContainerStyled,
 ComboBoxContainer, ComboBoxOption, ComboBoxOptions } from './styles';
 import { Navigate, useLocation } from 'react-router-dom';
 import { StyledAddCircle, IconContainer } from '../../styled-components/Body/styles';

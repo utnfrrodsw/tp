@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormLoginContainer, FormLogin, NavLogin, LoginButton, LoginInput, StyledH1, RegisterContainer } from './styles.js';
+import { FormLoginContainer, FormLogin, NavLogin, LoginInput, StyledH1, RegisterContainer } from './styles.js';
 import { StyledLink, StyledSpan, ButtonContainer } from './styles.js';
 import { Navigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';

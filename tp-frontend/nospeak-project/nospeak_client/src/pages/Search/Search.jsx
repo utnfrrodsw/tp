@@ -4,7 +4,7 @@ import { BodyContainer} from '../../styled-components/Body/styles';
 import { SpotifyBody } from '../Home/styles';
 import Footer from '../../styled-components/Footer/Footer';
 import Header from '../../styled-components/Body/Header';
-import { CategoryContainer, CategoryBox, CategoryImage, CategoryName } from './styles.js';
+import { CategoryContainer, CategoryBox, CategoryName } from './styles.js';
 
 
 const Search = () => {

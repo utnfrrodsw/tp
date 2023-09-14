@@ -3,18 +3,15 @@ import Sidebar from '../../styled-components/Sidebar/Sidebar'
 import { BodyContainer } from '../../styled-components/Body/styles';
 import { SpotifyBody } from '../../pages/Home/styles.js'
 import Footer from '../../styled-components/Footer/Footer'
-import { PlaylistContainer, CardContainer, TableContainerStyled, CardRightContainer, TableSongs} from './styles';
+import { PlaylistContainer, CardContainer, TableContainerStyled, CardRightContainer} from './styles';
 import { CardLeftContainer, ImagePlaylist } from '../Song/styles';
-import BigCard from '../../styled-components/Body/BigCard.jsx'
 import {StyledH1, UsuarioContainer} from './styles';
 import { useParams } from 'react-router-dom';
-import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { StyledDeleteIcon } from '../../styled-components/Body/styles';
 import PlaylistAdd from '@mui/icons-material/PlaylistAdd';

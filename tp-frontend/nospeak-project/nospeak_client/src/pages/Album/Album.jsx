@@ -18,7 +18,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { StyledDeleteIcon, StyledEditIcon } from '../../styled-components/Body/styles';
 import {
     Overlay,
