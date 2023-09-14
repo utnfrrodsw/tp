@@ -9,6 +9,6 @@ export class Employee {
     public salary: number,
 
 
-    public idEmp = crypto.randomUUID()
+    public id = crypto.randomUUID()
   ) {}
 }
