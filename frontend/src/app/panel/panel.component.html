@@ -2,7 +2,7 @@
 
 <p>Tus tokens: <b id="tokens">{{usuarioActual?.tokens}}</b></p>
 
-<fieldset class="row">
+<fieldset class="row card">
 	<legend><h2>Administración de Tokens</h2></legend>
 
 	<details class="col-12" open>
@@ -70,7 +70,7 @@
 
 </fieldset>
 
-<fieldset class="row">
+<fieldset class="row card">
 	<legend><h2>Administración de Amigos</h2></legend>
 
 	<div id="amigos" class="col">
@@ -136,7 +136,7 @@
 </fieldset>
 
 <ng-template [ngIf]="puedeGenerarUsuarios">
-	<fieldset class="row">
+	<fieldset class="row card">
 		<legend>
 			<h2>Administración de usuarios</h2>
 		</legend>
@@ -182,7 +182,7 @@
 	</fieldset>
 </ng-template>
 
-<fieldset>
+<fieldset class="card">
 	<legend>
 		<h2>Administración de Perfil</h2>
 	</legend>
