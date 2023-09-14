@@ -1,7 +1,9 @@
+ 
 import React from 'react';
-import './InicioCliente.css';
 import { Link } from 'react-router-dom';
-import logo from "./logo.png"
+import NuevaSolicitud from '../nuevaSolicitud/NuevaSolicitud'; // Importa el componente de nueva solicitud sin la extensión .jsx
+import './InicioCliente.css';
+import logo from "./logo.png";
 
 
 function InicioCliente() {
@@ -24,8 +26,10 @@ function InicioCliente() {
                         Encuentra expertos en electricidad, plomería, reparaciones y más. <br/>
                         Obtén presupuestos personalizados y elige el mejor servicio para tus necesidades.</p>
                     </section>
+                    
                 </div>
-                
+                    {/* Agrega el componente NuevaSolicitud aquí */}
+                    <NuevaSolicitud />
             </div>
             
             <div className='blocks'>

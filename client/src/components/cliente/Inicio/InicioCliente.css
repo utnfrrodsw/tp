@@ -1,136 +1,134 @@
-/* homeCliente */
-
-.page{
+/* Estilos generales */
+.page {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background-color: #f5f5f5;
+  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
+  overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
 }
 
-.header-home-client{
+/* Encabezado */
+.header-home-client {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  padding: 10px 20px;
-  color: white; /* Color del texto */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+  align-items: center; /* Centra el contenido en todos los dispositivos */
+  padding: 10px;
+  color: white;
+  text-align: center; /* Centra el texto en todos los dispositivos */
+   
 }
 
-.header-home-client h1{
+.header-home-client h1 {
   font-size: 30px;
-  color: #383838;
   margin: 0;
 }
 
-.header-home-client p{
-  color: #383838;
+.header-home-client p {
+  font-size: 18px; /* Ajusta el tamaño de fuente para mejorar la legibilidad */
 }
 
-.header-home-client div{
+.header-home-client div {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center; /* Centra los elementos horizontalmente */
 }
 
-
-.logo2{
-  width: 400px;
-}  
-/* Estilos para el logo */
-.logo-content2 {
-  font-size: 15px;
+/* Logo */
+.logo2 {
+  width: 100%; /* Haz que el logo sea 100% del ancho del contenedor */
+  max-width: 400px; /* Establece un ancho máximo para el logo */
 }
 
-.logo-content a {
-  text-decoration: none;
-}
-
-
+/* Bloques */
 .blocks {
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap; /* Permite que los bloques fluyan en varias líneas en pantallas pequeñas */
+  justify-content: center;
   align-items: center;
-  height: 100%;
-  background-color: #ffffff; /* Color de fondo */
+  padding: 0 1rem 1rem 1rem;
+  margin-bottom: 4rem;
 }
 
 .block {
   text-align: center;
   padding: 4%;
-  background-color: #598392; /* Color del bloque */
-  border-radius: 4px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.747); /* Sombra */
-  transition: transform 0.2s ease-in-out;
+  background-color: #213555;
+  border-radius: 1rem;
+  border: solid 1px #ffffff;
+   
+  transition: transform 0.3s ease-in-out;
+  margin: 10px; /* Agrega un margen entre los bloques */
+  flex: 1; /* Hace que los bloques ocupen el mismo espacio en el contenedor */
+  max-width: 300px; /* Limita el ancho máximo de los bloques */
 }
 
 .block:hover {
-  transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.747); /* Sombra */
-
+  transform: scale(1.05);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.747);
 }
 
 .block h2 {
-  color: #124559; /* Color del título */
+  color: #ffffff;
   font-size: 24px;
 }
 
+/* Enlaces */
 a {
-  color: #01161e; /* Color del enlace */
+  color: #dee0f1d8;
   text-decoration: none;
   font-weight: bold;
 }
 
-
-
-
-
+/* Botón flotante */
 .floating-button {
   position: fixed;
-  bottom: 110px;
-  right: 15px;
-  width: 50px;
-  height: 50px;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 1.5rem;
   background-color: #007bff; /* Color de fondo */
   color: white; /* Color del texto */
   border: none;
   cursor: pointer;
   border: 2px solid #ffffff; /* Borde del botón */
+  transition: background-color 0.3s, border-color 0.3s; /* Transición suave */
 }
 
+/* Menú */
 .menu {
   position: fixed;
   margin: 10px;
-  bottom: 160px;
-  right: 15px;
-  background-color: #007bff; /* Color de fondo */
-  color: white; /* Color del texto del menú */
+  bottom: 90px; /* Ajusta la posición */
+  right: 20px; /* Ajusta la posición */
+  background-color: #007bff;
+  color: white;
   border-radius: 5px;
   padding: 15px;
-  display: flex;
-  flex-direction: column;
-  transition: bottom 0.3s ease-in-out; /* Agrega una transición suave */
+  display: none; /* Oculta el menú por defecto en pantallas grandes */
+  transition: bottom 0.3s ease-in-out;
 }
 
 .menu-option {
-    padding: 5px;
-    cursor: pointer;
+  padding: 5px;
+  cursor: pointer;
 }
 
 .menu-option:hover {
-  background-color: #383838; /* Color de fondo */
+  background-color: #383838;
 }
 
-
+/* Paginación */
 .pagination {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
 }
-  
+
 .pagination button {
   background-color: #4F709C;
   color: white;
@@ -141,15 +139,13 @@ a {
 }
 
 .pagination button:hover {
-  background-color: #757474; /* Color de fondo */
+  background-color: #757474;
 }
 
 .pagination span {
   font-size: 14px;
   margin: 0 10px;
 }
-
-
 
 /* Estilo del modal */
 .modal {
@@ -159,56 +155,47 @@ a {
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0px 0px px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   padding: 20px;
   max-width: 600px;
   width: 90%;
   z-index: 1000;
 }
 
-/* Estilo del fondo oscurecido (backdrop) */
+/* Fondo oscurecido */
 .Backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: blur(15px) rgba(0, 0, 0, 0.377) ;
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo oscurecido */
   z-index: 999;
 }
 
-/* Estilo del título del modal */
+/* Título del modal */
 #transition-modal-title {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-/* Estilo de los formularios y elementos dentro del modal */
-.form-group{
+/* Formularios y elementos dentro del modal */
+.form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin: 1rem 2rem 1rem 1rem;
 }
-
-
-
 input[type="text"],
-input[type="file"]{
-  width: 90%;
+input[type="file"],
+.select-especialidad {
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
 }
 
-.select-especialidad{
-  width: 94%;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-/* Estilo de los botones */
+/* Botones del modal */
 Button.buttonModal {
   background-color: #007bff;
   color: white;
@@ -223,7 +210,7 @@ Button:hover {
   background-color: #0056b3;
 }
 
-/* Estilo del botón de Cancelar */
+/* Botón de Cancelar del modal */
 .Button.cancel {
   background-color: #ccc;
   color: black;
@@ -233,12 +220,12 @@ Button:hover {
   background-color: #999;
 }
 
-/* Estilo de los elementos dentro del modal */
+/* Elementos dentro del modal */
 .modal-content {
   padding: 20px;
 }
 
-/* Estilo para centrar elementos en el modal */
+/* Centrar elementos en el modal */
 .center {
   display: flex;
   justify-content: center;
@@ -246,6 +233,23 @@ Button:hover {
   height: 100%;
 }
 
+/* Estilos para pantallas de hasta 768px de ancho (tamaño de tabletas y móviles) */
+@media (max-width: 768px) {
+  .header-home-client {
+    padding: 10px;
+  }
 
+  .block{
+    display: block;
+  }
 
+  .floating-button {
+    font-size: 20px;
+    bottom: 20px;
+    right: 20px;
+  }
 
+  .menu {
+    bottom: 80px;
+  }
+}

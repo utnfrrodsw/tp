@@ -1,11 +1,11 @@
-import React, {useState}  from "react";
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
-import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import Modal from '@mui/material/Modal';
+import Select from '@mui/material/Select';
+import Typography from '@mui/material/Typography';
+import React, { useState } from "react";
 import { Button } from 'react-bootstrap';
 import '../Inicio/InicioCliente.css';
 
@@ -164,3 +164,5 @@ export function NuevaSolicitud(){
         </div>
     );
 };
+
+export default NuevaSolicitud;
