@@ -25,6 +25,7 @@ export default function Login({ client }) {
     try {
       if (!name || !password) {
         setError('Please enter your username and password.');
+        setSuccessMessage('');
         return;
       }
 
@@ -42,6 +43,7 @@ export default function Login({ client }) {
       }));
 
       setSuccessMessage('Successful login. Redirecting...');
+      setError('');
       setTimeout(() => {
         setGoToHome(true);
       }, 5000);
@@ -54,26 +56,32 @@ export default function Login({ client }) {
         } else {
           setError('Request error. Please try again later.');
         }
+        setSuccessMessage(''); // Limpiar el mensaje de éxito
       } else if (error.request) {
         setError('Request error. Please try again later.');
+        setSuccessMessage(''); // Limpiar el mensaje de éxito
       } else {
         setError('Unexpected error. Please try again later.');
+        setSuccessMessage(''); // Limpiar el mensaje de éxito
       }
     }
   };
 
-  const closeAlert = () => {
+  const closeErrorAlert = () => {
     setError(null);
+  };
+
+  const closeSuccessAlert = () => {
     setSuccessMessage(null);
   };
 
   return (
     <>
       {error && !isLoading && (
-        <Alert message={error} type="error" onClose={closeAlert} />
+        <Alert message={error} type="error" onClose={closeErrorAlert} />
       )}
       {successMessage && !isLoading && (
-        <Alert message={successMessage} type="success" onClose={closeAlert} />
+        <Alert message={successMessage} type="success" onClose={closeSuccessAlert} />
       )}
       <FormLoginContainer>
         <NavLogin>
