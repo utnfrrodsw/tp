@@ -1,9 +1,18 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-light">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <ul class="navbar-nav-localidad alinear-izquierda">
       <li class="nav-item">
         <!-- Abre el popup al hacer clic sobre "Localidad" -->
-        <a class="nav-link" (click)="openPopup()">📫 Localidad</a>
+        <a class="nav-link" (click)="openPopup()">
+          <span>
+            <img
+              src="../../../assets/img/Emojis/Closed Mailbox with Raised Flag.png"
+              alt="Buzón de correo con bandera levantada"
+              class="img-localidad"
+            />
+            Localidad
+          </span></a
+        >
         <app-popup-localidad
           [isPopupOpen]="isPopupOpen"
           (closed)="closePopup()"

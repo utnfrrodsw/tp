@@ -14,23 +14,25 @@ import { IdentificarseComponent } from './pages/identificarse/identificarse.comp
 import { AutorSeleccionadoComponent } from './pages/autor-seleccionado/autor-seleccionado.component';
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
 import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
+import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 
 const routes: Routes = [
-  // Define las rutas aquí
-  { path: '', redirectTo: '/inicio', pathMatch: 'full' }, // Ruta de inicio
-  { path: 'inicio', component: InicioComponent }, // Ruta al InicioComponent
-  { path: 'acerca-de', component: AcercaDeComponent }, // Ruta al AcercaDeComponent
-  { path: 'editoriales', component: EditorialesComponent }, // Ruta al EditorialesComponent
-  { path: 'autores', component: AutoresComponent }, // Ruta al AutoresComponent
-  { path: 'ofertas', component: OfertasComponent }, // Ruta al OfertasComponent
-  { path: 'ayuda', component: AyudaComponent }, // Ruta al AyudaComponent
+  // RUTAS DE LA PÁGINA
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+  { path: 'inicio', component: InicioComponent },
+  { path: 'acerca-de', component: AcercaDeComponent },
+  { path: 'editoriales', component: EditorialesComponent },
+  { path: 'autores', component: AutoresComponent },
+  { path: 'ofertas', component: OfertasComponent },
+  { path: 'ayuda', component: AyudaComponent },
   { path: 'libro-seleccionado', component: LibroSeleccionadoComponent }, // Ruta al LibroSeleccionadoComponent. TODO: El nombre del enlace debe cambiar dependiendo del libro seleccionado
-  { path: 'carrito-compras', component: CarritoComprasComponent }, // Ruta al CarritoComprasComponent
-  { path: 'finalizar-compra', component: FinalizarCompraComponent }, // Ruta al FinalizarCompraComponent
-  { path: 'identificarse', component: IdentificarseComponent }, // Ruta al InicioComponent
-  { path: 'autor-seleccionado', component: AutorSeleccionadoComponent }, // Ruta al InicioComponent
-  { path: 'perfil', component: PerfilUsuarioComponent }, // Ruta al InicioComponent
-  { path: 'crear-cuenta', component: CrearCuentaComponent }, // Ruta al InicioComponent
+  { path: 'carrito-compras', component: CarritoComprasComponent },
+  { path: 'finalizar-compra', component: FinalizarCompraComponent },
+  { path: 'identificarse', component: IdentificarseComponent },
+  { path: 'autor-seleccionado', component: AutorSeleccionadoComponent },
+  { path: 'perfil', component: PerfilUsuarioComponent },
+  { path: 'crear-cuenta', component: CrearCuentaComponent },
+  { path: 'busqueda', component: BusquedaComponent },
 ];
 
 @NgModule({
