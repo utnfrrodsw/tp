@@ -2,19 +2,26 @@ import styled from 'styled-components';
 
 export const AlertContainer = styled.div`
   position: fixed;
-  top: 11px;
-  right: 20px;
-  z-index: 1000;
-  max-width: 300px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background-color: ${(props) =>
-    props.type === 'success' ? '#43A047' : '#D32F2F'};
+    props.type === 'success' ? '#1DB954' : '#D32F2F'};
   color: white;
-  border-radius: 8px; /* Redondea los bordes */
-  padding: 10px 16px;
+  padding: 12px 16px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  font-size: 14px;
+
+  @media (min-width: 768px) {
+    bottom: 11px;
+    left: 20px;
+    width: auto;
+    font-size: 16px;
+  }
 `;
 
 export const CloseButton = styled.div`
@@ -25,6 +32,6 @@ export const CloseButton = styled.div`
   transition: transform 0.2s ease-in-out;
 
   &:hover {
-    transform: scale(1.2); /* Agranda la cruz al pasar el ratón */
+    transform: scale(1.2);
   }
 `;

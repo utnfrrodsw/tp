@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AlertContainer, CloseButton } from './styles'; // Importa los estilos de styled-components
+import { AlertContainer, CloseButton } from './styles'; 
 
 const Alert = ({ message, type, onClose }) => {
   const [visible, setVisible] = useState(true);
@@ -18,7 +18,7 @@ const Alert = ({ message, type, onClose }) => {
   return visible ? (
     <AlertContainer type={type}>
       <span>{message}</span>
-      <CloseButton onClick={onClose}>×</CloseButton> {/* Utiliza la cruz mejorada */}
+      <CloseButton onClick={onClose}>×</CloseButton> 
     </AlertContainer>
   ) : null;
 };
