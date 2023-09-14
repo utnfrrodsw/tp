@@ -135,12 +135,12 @@ export default function Account({client}){
                         </AccountContainerLeft>
                         <AccountContainerRight>
                             <Avatar style={{width: '250px', height: '250px', margin: '20px'}} />
-                            <h1>{user.nombre}</h1>
-                            <h3 style={{paddingTop: '20px'}}>Do you want to log out?</h3>
-                            <StyledButtonSecondary style={{width: '60%'}}  onClick={(e) => handleLogout(e)}>Log out</StyledButtonSecondary>
+                              <h1>{user.nombre}</h1>
+                              <h3 style={{paddingTop: '5px', textAlign:'center'}}>Do you want to log out?</h3>
+                              <StyledButtonSecondary style={{width: '60%'}}  onClick={(e) => handleLogout(e)}>Log out</StyledButtonSecondary>
 
-                            <h3 style={{paddingTop: '20px'}}>Do you want to delete your account?</h3>
-                            <StyledButtonSecondary style={{width: '60%'}} onClick={handleDeleteAccount}>Delete account</StyledButtonSecondary>
+                              <h3 style={{paddingTop: '20px', textAlign:'center'}}>Do you want to delete your account?</h3>
+                              <StyledButtonSecondary style={{width: '60%'}} onClick={handleDeleteAccount}>Delete account</StyledButtonSecondary>
                         </AccountContainerRight>
                     </AccountContainer>
                 </BodyContainer>

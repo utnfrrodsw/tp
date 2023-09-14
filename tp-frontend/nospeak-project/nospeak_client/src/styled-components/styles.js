@@ -34,6 +34,7 @@ const StyledButton = styled.button`
   border: none; /* Elimina el borde del botón */
   box-shadow: none; /* Elimina la sombra */
   transition: background-color 0.2s ease; /* Agrega transición al color de fondo */
+  margin-bottom: 30px;
   
   &:hover {
     background-color: #FFD560;
@@ -58,6 +59,11 @@ const StyledButton = styled.button`
   &:active::after {
     opacity: 1;
   }
+
+  @media (max-width: 991px) {
+    /* Ajustamos el ancho en pantallas pequeñas (hasta 991px) */
+    width: 60%;
+  }
 `;
 
 const StyledButtonSecondary = styled.button`
@@ -73,7 +79,7 @@ width: 100%;
 border: none; /* Elimina el borde del botón */
 box-shadow: none; /* Elimina la sombra */
 transition: background-color 0.2s ease; /* Agrega transición al color de fondo */
-
+margin-bottom: 30px;
 &:hover {
   background-color: #FFD560;
   transform: scale(1.05);
