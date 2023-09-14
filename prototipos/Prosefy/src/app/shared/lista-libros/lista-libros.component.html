@@ -1,75 +1,79 @@
-<div class="lista-libros">
-  <!-- Botón para que se mueva a la izquierda la lista -->
-  <div
-    class="rounded-button shadow d-flex justify-content-center align-items-center px-3"
-  >
-    <button
-      class="btn boton-izquierda boton-moderno"
-      (click)="moverIzquierda()"
-      [class.disabled]="elementosAlInicio"
+<div
+  class="container-fluid d-flex justify-content-center align-items-center flex-column py-2"
+>
+  <div class="lista-libros">
+    <!-- Botón para que se mueva a la izquierda la lista -->
+    <div
+      class="rounded-button shadow d-flex justify-content-center align-items-center"
     >
-      &lt;
-    </button>
-  </div>
-  <div class="lista-contenedor">
-    <!-- p-4 -> padding: 4 -->
-    <div class="elementos-lista p-4">
-      <!-- Directiva *ngFor para iterar sobre la colección de libros
-        Consultar en: libros-recomendados.component.ts -->
-      <div
-        *ngFor="
-          let libro of libros.slice(
-            elementoActual,
-            elementoActual + elementosPorPaso
-          );
-          let i = index
-        "
-        class="elemento-lista elemento-animado animacion-tarjeta hover-grow"
+      <button
+        class="btn boton-izquierda boton-moderno"
+        (click)="moverIzquierda()"
+        [class.disabled]="elementosAlInicio"
       >
-        <div class="libro card">
-          <a routerLink="/libro-seleccionado" class="text-decoration-none">
-            <!-- Elementos a mostrar de cada libro -->
-            <img
-              src="{{ libro.imagen }}"
-              alt="Portada del libro"
-              class="card-img-top tarjeta-imagen"
-            />
-            <div class="card-body">
-              <p class="card-text precio">
-                ${{
-                  calculatePriceInSelectedCurrency(
-                    libro.precio
-                  ).toLocaleString()
-                }}
-                <small class="text-muted">
-                  {{ currencyService.getCurrency() }}
-                </small>
-              </p>
-              <!-- Corta la descripción si es muy larga y coloca "..." -->
-              <p class="card-text descripcion">
-                {{
-                  libro.descripcion.length > descripcionMaxLength
-                    ? (libro.descripcion | slice : 0 : descripcionMaxLength) +
-                      "..."
-                    : libro.descripcion
-                }}
-              </p>
-            </div></a
-          >
+        &lt;
+      </button>
+    </div>
+    <div class="lista-contenedor container-fluid">
+      <!-- p-4 -> padding: 4 -->
+      <div class="elementos-lista py-4 container-fluid">
+        <!-- Directiva *ngFor para iterar sobre la colección de libros
+        Consultar en: libros-recomendados.component.ts -->
+        <div
+          *ngFor="
+            let libro of libros.slice(
+              elementoActual,
+              elementoActual + elementosPorPaso
+            );
+            let i = index
+          "
+          class="elemento-lista elemento-animado animacion-tarjeta hover-grow"
+        >
+          <div class="libro card">
+            <a routerLink="/libro-seleccionado" class="text-decoration-none">
+              <!-- Elementos a mostrar de cada libro -->
+              <img
+                src="{{ libro.imagen }}"
+                alt="Portada del libro"
+                class="card-img-top tarjeta-imagen"
+              />
+              <div class="card-body">
+                <p class="card-text precio">
+                  ${{
+                    calculatePriceInSelectedCurrency(
+                      libro.precio
+                    ).toLocaleString()
+                  }}
+                  <small class="text-muted">
+                    {{ currencyService.getCurrency() }}
+                  </small>
+                </p>
+                <!-- Corta la descripción si es muy larga y coloca "..." -->
+                <p class="card-text descripcion">
+                  {{
+                    libro.descripcion.length > descripcionMaxLength
+                      ? (libro.descripcion | slice : 0 : descripcionMaxLength) +
+                        "..."
+                      : libro.descripcion
+                  }}
+                </p>
+              </div></a
+            >
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Botón para que se mueva a la derecha la lista -->
-  <div
-    class="rounded-button shadow d-flex justify-content-center align-items-center px-3"
-  >
-    <button
-      class="btn boton-derecha boton-moderno"
-      (click)="moverDerecha()"
-      [class.disabled]="elementosAlFinal"
+    <!-- Botón para que se mueva a la derecha la lista -->
+    <div
+      class="rounded-button shadow d-flex justify-content-center align-items-center"
     >
-      &gt;
-    </button>
+      <button
+        class="btn boton-derecha boton-moderno"
+        (click)="moverDerecha()"
+        [class.disabled]="elementosAlFinal"
+      >
+        &gt;
+      </button>
+    </div>
   </div>
 </div>

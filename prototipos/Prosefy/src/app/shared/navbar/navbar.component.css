@@ -105,14 +105,16 @@
   color: var(--bs-nav-link-hover-color);
 }
 
-.alinear-derecha {
-  position: absolute;
-  right: 0;
-  margin-right: 5.3rem;
-}
+@media (min-width: 1080px) {
+  .alinear-derecha {
+    position: absolute;
+    right: 0;
+    margin-right: 5.3rem;
+  }
 
-.alinear-izquierda {
-  position: absolute;
-  left: 0;
-  margin-left: 1rem;
+  .alinear-izquierda {
+    position: absolute;
+    left: 0;
+    margin-left: 1rem;
+  }
 }

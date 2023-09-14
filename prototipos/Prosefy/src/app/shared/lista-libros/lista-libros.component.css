@@ -13,13 +13,13 @@
 .boton-derecha {
   background: none;
   border: none;
-  font-size: 24px;
   cursor: pointer;
 }
 
 .lista-contenedor {
   overflow: hidden;
-  margin: 0 20px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .elementos-lista {
@@ -44,24 +44,24 @@
 
 @media (max-width: 1000px) {
   .elemento-lista {
-    flex-basis: calc(25% - 10px); /* 4 elementos por fila */
+    flex-basis: calc(25% - 10px) !important; /* 4 elementos por fila */
   }
 }
 
 @media (max-width: 767px) {
   .elemento-lista {
-    flex-basis: calc(33.33% - 10px); /* 3 elementos por fila */
+    flex-basis: calc(33.33% - 10px) !important; /* 3 elementos por fila */
   }
 }
 
 @media (max-width: 619px) {
   .elemento-lista {
-    flex-basis: calc(50% - 10px); /* 2 elementos por fila */
+    flex-basis: calc(50% - 10px) !important; /* 2 elementos por fila */
   }
 }
 
 .libro {
-  width: 100%;
+  max-width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -72,13 +72,13 @@
 }
 
 .descripcion {
-  font-size: 0.9rem;
+  font-size: 1em; /* Tamaño de fuente relativo */
   white-space: pre-line; /* Permite los saltos de línea */
   word-wrap: break-word; /* Rompe las palabras largas */
 }
 
 .precio {
-  font-size: 30px;
+  font-size: 1.6em; /* Tamaño de fuente relativo */
   font-weight: bold;
   margin-bottom: 0;
 }
@@ -86,6 +86,8 @@
 /* Estilo para los enlaces dentro de las tarjetas */
 .libro a {
   color: inherit; /* Hereda el color del texto circundante */
+  width: 100%; /* Tarjeta ocupa el 100% del ancho del contenedor padre */
+  margin-right: 2%; /* Margen derecho para espaciar las tarjetas en pantallas grandes */
 }
 
 @keyframes scaleIn {
@@ -113,9 +115,11 @@
 .boton-moderno {
   color: black;
   border: none;
-  font-size: 30px;
   cursor: pointer;
+  font-size: 1.6rem;
   transition: 0.3s;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .boton-moderno:hover {
@@ -132,7 +136,6 @@
   display: inline-block;
   border-radius: 15px;
   overflow: hidden;
-  margin: 0 10px;
   border: 1px solid #757575;
   transition: 0.3s;
 }
@@ -156,4 +159,10 @@
 .vertical-center {
   display: flex;
   align-items: center;
+}
+
+.tarjeta-imagen {
+  width: 100%;
+  max-width: 100%; /* Evita que la imagen sea más grande que su contenedor */
+  height: auto; /* Mantén la proporción de aspecto original */
 }

@@ -84,10 +84,7 @@ export class ListaLibrosComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     // Cambia el número de elementos por paso según el ancho de la pantalla
-    if (window.innerWidth < 450) {
-      // Para pantallas demasiado pequeñas muestra y avanza de a 1 elemento (esto es para que no se "corte" el segundo libro)
-      this.elementosPorPaso = 1;
-    } else if (window.innerWidth < 619) {
+    if (window.innerWidth < 619) {
       // Para pantallas pequeñas muestra y avanza de a 2 elementos
       this.elementosPorPaso = 2;
     } else if (window.innerWidth < 767) {
