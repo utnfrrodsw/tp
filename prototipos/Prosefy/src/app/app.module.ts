@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 /* ------------------------------------------------------------------- */
 
@@ -101,6 +102,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     AppRoutingModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    FormsModule,
   ],
   providers: [CurrencyService],
   bootstrap: [AppComponent],

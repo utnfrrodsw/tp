@@ -1,1 +1,64 @@
-<p>filtrar-resultados works!</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <select
+          class="form-control custom-select"
+          [(ngModel)]="selectedIdiomas"
+        >
+          <option disabled selected value>
+            Seleccionar idioma &blacktriangledown;
+          </option>
+          <option *ngFor="let idioma of idiomas" [value]="idioma">
+            {{ idioma }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <select
+          class="form-control custom-select"
+          [(ngModel)]="selectedFormatos"
+        >
+          <option disabled selected value>
+            Seleccionar formato &blacktriangledown;
+          </option>
+          <option *ngFor="let formato of formatos" [value]="formato">
+            {{ formato }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <select
+          class="form-control custom-select"
+          [(ngModel)]="selectedCategorias"
+        >
+          <option disabled selected value>
+            Seleccionar categoría &blacktriangledown;
+          </option>
+          <option *ngFor="let categoria of categorias" [value]="categoria">
+            {{ categoria }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <select
+          class="form-control custom-select"
+          [(ngModel)]="selectedOrdenarPor"
+        >
+          <option disabled selected value="">
+            Ordenar por &blacktriangledown;
+          </option>
+          <option *ngFor="let opcion of ordenarPor" [value]="opcion">
+            {{ opcion }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

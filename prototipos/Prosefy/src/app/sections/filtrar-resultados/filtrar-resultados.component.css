@@ -1,0 +1,4 @@
+/* Estilo personalizado para los selectores */
+.custom-select {
+  width: auto !important; /* Puedes ajustar este valor según tus preferencias */
+}
