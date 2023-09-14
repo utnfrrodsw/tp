@@ -28,10 +28,17 @@
 
 .typewriter {
   overflow: hidden;
-  border-right: 2px solid black;
+  border-right: 2px solid transparent;
   background-color: transparent;
   /* Anima la aparición de cada letra de forma más suave y durante más tiempo */
   animation: typing 6s steps(60, end), blink-caret 0.75s step-end infinite;
+}
+
+/* Eliminar el borde negro al hacer clic en el input */
+.header input:focus,
+.header input:hover,
+.header input {
+  outline: none;
 }
 
 @keyframes typing {
