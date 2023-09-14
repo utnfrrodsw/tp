@@ -1,52 +1,77 @@
 # Propuesta TP DSW
 
 ## Grupo
+
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+| Legajo | Apellido(s), Nombre(s)  |
+|:-------|:------------------------|
+| 45787  | Andrada, Gastón         |
+| 48262  | Cinel, Santiago         |
+| 47983  | Fermanelli, Sebastián   |
+| 48178  | Karlen Aguirre, Esteban |
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+
++ [frontend app](https://github.com/sebafermanelli/vote-app-frontend)
++ [backend app](https://github.com/sebafermanelli/vote-app-backend)
 
 ## Tema
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Sistema de voto estudiantil electrónico que cuenta con autenticación segura, protección de la privacidad y confidencialidad de los votos, así como generación precisa de resultados. Además, este sistema ofrece la gestión de listas de candidatos y la generación de informes y análisis detallados.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+<div align="center">
 
-## Alcance Funcional 
+![diagrama-entidad-relacion](https://github.com/sebafermanelli/tp-dsw-utn/blob/main/vote-app-der.png)
 
-### Alcance Mínimo
+</div>
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
-Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+### Alcance Funcional
 
 
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+#### **CRUD Simple**
 
++ CRUD admin
++ CRUD election
++ CRUD user
++ CRUD candidate
++ CRUD role
 
-### Alcance Adicional Voluntario
+#### **CRUD Dependiente**
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
++ CRUD list { depende de } CRUD election
++ CRUD delegation { depende de } CRUD election
++ CRUD list_role { depende de } CRUD list, { depende de } CRUD role
++ CRUD delegation_role { depende de } CRUD delegation, { depende de } CRUD role
++ CRUD election_user { depende de } CRUD election, { depende de } CRUD user
 
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+#### **Listado + detalle**
 
+1. Listado de alumnos filtrado por curso => detalle CRUD user
+2. Listado de listas filtrado por eleccion => detalle CRUD list y CRUD election
+3. Listado de recuento generales de votos, de cada lista más los votos en blanco => detalle CRUD election, CRUD list y CRUD election_user
+
+#### **CUU/Epic**
+
+1. Registrar el padrón electoral.
+2. Registrar la eleccion con sus listas y candidatos.
+3. Emitir un voto, contando con integridad y seguridad del mismo.
+4. Registrar resultados finales de la votación.
+5. Actualizar la delegacion con los nuevos miembros que lo conforman.
+
+### Reglas de Negocio
+
+1. Un alumno puede votar solamente una vez por elección.
+2. El alumno puede votar por una única lista o puede votar en blanco si así lo desea.
+3. Un comité estará conformado por el presidente, el secretario general y los delegados (8), los cuales son designados por el sistema mediante el método D'Hondt.
+4. Un alumno puede pertenecer a una única lista y postularse para un único rol por elección. Roles: Presidente, secretario general o delegado.
+5. Cada mesa corresponde a un único curso.
+6. Las elecciones se llevan a cabo todos los años, por lo que es necesario actualizar el padrón y realizar una nueva votación con nuevas listas cada año.
+7. Un alumno se registra con su número de DNI y también proporciona sus datos personales.
+8. Las listas están compuestas por alumnos de cualquier año.
+9. El recuento de votos se realiza una vez finalizada la jornada electoral, es automático y el administrador puede obtenerlo cuando lo desee.
+10. Cada voto posee un número de voto único.
