@@ -1,0 +1,43 @@
+### obtener todos los clientes
+GET http://localhost:3000/api/clients
+
+
+### obtener un cliente
+GET http://localhost:3000/api/clients/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+
+### crear un nuevo cliente
+POST http://localhost:3000/api/clients
+Content-Type: application/json
+
+{
+  "name": "Ricardo Tabacman 2",
+  "email": "testcrud@example2.com",
+  "phoneNum": "+54 341 11111111",
+  "address": "ejemplo 1234",
+  // "drivingLicense": url?
+}
+
+### modificar un cliente PUT
+PUT http://localhost:3000/api/clients/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+Content-Type: application/json
+
+{
+  "name": "Armando Esteban Quito",
+  "email": "testcrud@example.com",
+  "phoneNum": "+54 341 11111111",
+  "address": "ejemplo 123",
+  // "drivingLicense": url?
+}
+
+### modificar un cliente PATCH
+PATCH http://localhost:3000/api/clients/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+Content-Type: application/json
+
+{
+  "name": "Armando Esteban Quito PATCH",
+  "email": "testcrud@example.com",
+  "phoneNum": "+54 341 11111111"
+}
+
+### borrar un cliente
+DELETE http://localhost:3000/api/clients/a02b91bc-3769-4221-beb1-d7a3aeba7dad
