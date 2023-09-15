@@ -1,3 +1,54 @@
 .custom-h3 {
   margin-left: 2rem !important;
 }
+
+.vertical-list {
+  width: 100%;
+}
+
+.book {
+  margin-bottom: 20px; /* Espacio entre libros */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.book-content {
+  text-align: center;
+}
+
+.book-cover {
+  max-width: 50%;
+  height: auto;
+}
+
+.book-title {
+  font-size: 1.8rem;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.rating {
+  font-size: 24px;
+}
+
+.star {
+  color: #d9d9d9;
+}
+
+.star.filled {
+  color: #ff9800;
+}
+
+.book-text {
+  font-size: 1rem;
+  margin: 5px 0;
+  font-style: italic;
+}
+
+.precio {
+  font-size: 1.6em; /* Tamaño de fuente relativo */
+  font-weight: bold;
+  margin-bottom: 0;
+}

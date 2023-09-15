@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 
 /* ------------------------------------------------------------------- */
 
@@ -52,6 +54,7 @@ import { CurrencyService } from './services/currency.service';
 import { ListaLibrosComponent } from './shared/lista-libros/lista-libros.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
+registerLocaleData(localeEs, 'es');
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +107,11 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     ToastrModule.forRoot(),
     FormsModule,
   ],
-  providers: [CurrencyService],
+  providers: [
+    CurrencyService,
+    DatePipe,
+    { provide: LOCALE_ID, useValue: 'es' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,35 +1,51 @@
 <div class="resultados">
-  <!-- mt-5 -> margin-top 5 & mb-4 -> margin-bottom: 4 -->
+  <!-- mt-4 -> margin-top 4 & mb-4 -> margin-bottom 4 -->
   <h3 class="mt-4 mb-4 custom-h3">Resultados</h3>
 </div>
 
 <div class="container">
   <div class="row">
-    <!--<div class="col-md-4" *ngFor="let libro of libros">
-      <div class="card">
-        <img
-          class="card-img-top"
-          [src]="libro.portada"
-          alt="Portada del libro"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ libro.titulo }}</h5>
-          <div class="rating">
-            <span class="star" *ngFor="let star of libro.valoracion"
-              >&#9733;</span
-            >
+    <div class="col-12">
+      <div class="vertical-list">
+        <div class="book" *ngFor="let libro of libros">
+          <div class="row align-items-center">
+            <div class="col-md-4 col-6">
+              <!-- Añade col-6 para controlar el ancho -->
+              <img
+                class="book-cover"
+                [src]="libro.imagen"
+                alt="Portada del libro"
+              />
+            </div>
+            <div class="col-md-8 col-6">
+              <!-- Añade col-6 para controlar el ancho -->
+              <h5 class="book-title">{{ libro.titulo }}</h5>
+              <div class="rating">
+                <span
+                  class="star"
+                  *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+                  [class.filled]="i < libro.calificacion"
+                  >&#9733;</span
+                >
+              </div>
+              <p class="book-text">
+                {{ libro.autor }} | {{ libro.editorial }} |
+                {{ formatearFecha(libro.fechaEdicion) }}
+              </p>
+              <p class="card-text precio">
+                ${{
+                  calculatePriceInSelectedCurrency(
+                    libro.precio
+                  ).toLocaleString()
+                }}
+                <small class="text-muted">
+                  {{ currencyService.getCurrency() }}
+                </small>
+              </p>
+            </div>
           </div>
-          <p class="card-text">Autor: {{ libro.autor }}</p>
-          <p class="card-text">Editorial: {{ libro.editorial }}</p>
-          <p class="card-text">
-            Fecha de publicación: {{ libro.fechaPublicacion }}
-          </p>
-          <p class="card-text">Precio: ${{ libro.precio }}</p>
         </div>
       </div>
     </div>
-  </div>
-</div>
--->
   </div>
 </div>
