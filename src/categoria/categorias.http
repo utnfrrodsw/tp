@@ -1,0 +1,36 @@
+### obtener todas las categorias
+GET http://localhost:3000/api/categoria
+
+### Obtener una categoría por ID
+GET http://localhost:3000/api/categoria/1
+
+
+### Crear una categoría
+POST http://localhost:3000/api/categoria
+Content-Type: application/json
+
+{
+  "IdCategoria": 2,
+  "NombreCategoria": "telefono"
+}
+
+### Actualizar una categoría (Tiene que ser idempotente, osea que sin importar los datos tiene que general el mismo resultado)
+PUT http://localhost:3000/api/categoria/1
+Content-Type: application/json
+
+{
+  "IdCategoria": 1,
+  "NombreCategoria": "Ventilador"
+}
+
+### Actualizar una categoría parcialmente
+PATCH  http://localhost:3000/api/categoria/1
+Content-Type: application/json
+
+{
+  "IdCategoria": 1,
+  "NombreCategoria": "Electrodomestico"
+}
+
+### Eliminar una categoría
+DELETE http://localhost:3000/api/categoria/2

@@ -1,0 +1,35 @@
+### obtener todas las localidades
+GET http://localhost:3000/api/localidad
+
+### Obtener una localidad por ID
+GET http://localhost:3000/api/localidad/9583059f-98b3-48b3-b8e1-99d8790d5889
+
+
+### Crear una localidad
+POST http://localhost:3000/api/localidad
+Content-Type: application/json
+
+{
+  "NombreLocalidad": "Santa Fe"
+}
+
+### Actualizar una localidad (Tiene que ser idempotente, osea que sin importar los datos tiene que general el mismo resultado)
+PUT http://localhost:3000/api/localidad/8dd11ba0-1276-457f-922c-32a707059022
+Content-Type: application/json
+
+{
+  
+  "NombreLocalidad": "Chaco"
+}
+
+### Actualizar una localidad parcialmente
+PATCH  http://localhost:3000/api/localidad/8dd11ba0-1276-457f-922c-32a707059022
+Content-Type: application/json
+
+{
+  
+  "NombreLocalidad": "Santa Cruz"
+}
+
+### Eliminar una localidad
+DELETE http://localhost:3000/api/localidad/140ecb61-0dfe-4f17-a30e-9eeda59720d0
