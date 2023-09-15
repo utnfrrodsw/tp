@@ -7,6 +7,7 @@ export class Provider {
     public phoneNum: string,
     public address: string,
 
-    public cuit: string
+    public cuit: string,
+    public id = crypto.randomUUID()
   ) {}
 }
