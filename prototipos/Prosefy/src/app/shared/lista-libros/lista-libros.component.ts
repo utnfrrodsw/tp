@@ -1,57 +1,17 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CurrencyService } from '../../services/currency.service';
-
-// Definir una interfaz para representar la estructura de un libro
-interface Libro {
-  titulo: string;
-  descripcion: string;
-  precio: number; // Cambia el tipo a number para poder hacer operaciones con el precio
-  imagen: string;
-}
+import { Libro, LibrosService } from '../../services/libros.service'; // Obtiene los libros del servicio
 
 @Component({
   selector: 'app-lista-libros',
   templateUrl: './lista-libros.component.html',
   styleUrls: ['./lista-libros.component.css'],
 })
-export class ListaLibrosComponent {
+export class ListaLibrosComponent implements OnInit {
+  libros: Libro[] = [];
   elementosAlInicio: boolean = true;
   elementosAlFinal: boolean = false;
-  // Lista de libros con información
-  libros: Libro[] = [
-    {
-      titulo: 'Libro 1',
-      descripcion:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      precio: 3500,
-      imagen: '../../../../assets/img/Libros/Clean Code.webp',
-    },
-    {
-      titulo: 'Libro 2',
-      descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      precio: 1999,
-      imagen:
-        '../../../../assets/img/Libros/Introducción a la Programación Estructurada en C.jpg',
-    },
-    {
-      titulo: 'Libro 3',
-      descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      precio: 8599,
-      imagen: '../../../../assets/img/Libros/Learning Python.png',
-    },
-    {
-      titulo: 'Libro 4',
-      descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      precio: 19899,
-      imagen: '../../../../assets/img/Libros/Sistemas Operativos Modernos.webp',
-    },
-    {
-      titulo: 'Libro 5',
-      descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      precio: 5099,
-      imagen: '../../../../assets/img/Libros/Design Patterns.jpg',
-    },
-  ];
+
   // Índice del elemento actual en la lista de libros
   elementoActual = 0;
   // Número de elementos a mostrar por paso
@@ -59,7 +19,14 @@ export class ListaLibrosComponent {
   // Longitud máxima de la descripción de un libro
   descripcionMaxLength: number = 60;
 
-  constructor(public currencyService: CurrencyService) {}
+  constructor(
+    public currencyService: CurrencyService,
+    private librosService: LibrosService
+  ) {}
+
+  ngOnInit(): void {
+    this.libros = this.librosService.getLibros();
+  }
 
   // Método para mover la lista de libros hacia la izquierda
   moverIzquierda() {
