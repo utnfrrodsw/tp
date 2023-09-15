@@ -1,0 +1,1 @@
+{"version":3,"file":"localidad.entity.js","sourceRoot":"","sources":["../../src/localidad/localidad.entity.ts"],"names":[],"mappings":"AAAA,OAAO,MAAM,MAAM,aAAa,CAAA;AAGhC,MAAM,OAAO,SAAS;IACpB,YACS,eAAuB,EACvB,cAAc,MAAM,CAAC,UAAU,EAAE;QADjC,oBAAe,GAAf,eAAe,CAAQ;QACvB,gBAAW,GAAX,WAAW,CAAsB;IACvC,CAAC;CACL"}
