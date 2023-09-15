@@ -8,7 +8,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #213555;
+  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
   margin-bottom: -1rem;
 }
 

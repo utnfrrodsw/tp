@@ -39,7 +39,7 @@ const Login = () => {
           </div>
           <div className="remember-forget">
             <label><input type="checkbox" /> Recuérdame</label>
-            <Link to="/forgot-password">Recuperar Contraseña</Link> {/* Usar Link para rutas de React Router */}
+            <Link to="/recuperarClave">Recuperar Contraseña</Link> {/* Usar Link para rutas de React Router */}
           </div>
           <button type="submit" className="btn">Login</button>
           <div className="register-link">

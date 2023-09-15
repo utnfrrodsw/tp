@@ -1,36 +1,38 @@
 
 .fondoEvaluation{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color:#213555 ;
-  margin-bottom: -1rem;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
+  overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
   
 }
 
- .row{
-  margin-top: 1rem;
- }
+ 
 
 .evaluacion-card {
-  padding-left: 8rem;
-  padding-right: 8rem;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  text-align: left;
-  background-color: #415d81;
+  width: 60%;
+  display: flex; /* Usamos flexbox para centrar contenido */
+  flex-direction: column; /* Alinea el contenido verticalmente */
+  align-items: center; /* Centra horizontalmente el contenido */
+  background-color: #213555;
+  border-radius: 1rem;
+  border: 1px solid #ffffff;
+  padding-bottom: 1rem;
+  margin: 0 auto; /* Centra horizontalmente en la pantalla */
+  margin-top: 1rem; /* Centra verticalmente en la mitad de la pantalla */
   margin-bottom: 1rem;
-  transition: transform 0.2s;
+  transition: all 0.2s;
+  cursor: pointer;
 }
+
+/* Resto de tus estilos CSS aquí */
+
 
 
 .evaluacion-card:hover {
-  transform: scale(1.05);
+  background-color:#506f99;
 }
 
 .evaluacion-titulo {
@@ -44,7 +46,7 @@
 .evaluacion-descripcion {
   text-align: center;
   font-size: 1rem;
-  color: #ffffff;
+  color: #dee0f1d8;
   margin-bottom: 1rem;
 }
 
@@ -65,13 +67,15 @@
 }
 
 .evaluacion-button {
+  font-size: 0.65rem;
+  padding: 0.25rem;
   background-color: #4F709C;
   border: none;
   border-radius: 1rem;
-  margin-bottom: 1rem;
   cursor: pointer;
 }
 
 .evaluacion-button:hover {
   background-color: #364e6d;  
 }
+
