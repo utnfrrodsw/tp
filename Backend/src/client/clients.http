@@ -13,7 +13,7 @@ Content-Type: application/json
   "name": "Ricardo Tabacman 2",
   "email": "testcrud@example2.com",
   "phoneNum": "+54 341 11111111",
-  "address": "ejemplo 1234",
+  "address": "ejemplo 1234"
   // "drivingLicense": url?
 }
 
@@ -25,7 +25,7 @@ Content-Type: application/json
   "name": "Armando Esteban Quito",
   "email": "testcrud@example.com",
   "phoneNum": "+54 341 11111111",
-  "address": "ejemplo 123",
+  "address": "ejemplo 123"
   // "drivingLicense": url?
 }
 
