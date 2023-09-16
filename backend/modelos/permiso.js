@@ -38,7 +38,7 @@ Permiso.sync()
                             ,predeterminado:false
                         }
                         ,{
-                            descripcion:'Crear Usuarios'
+                            descripcion:'Administrar Usuarios'
                             ,predeterminado:false
                         }
                         ,{
