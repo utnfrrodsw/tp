@@ -31,7 +31,6 @@ CREATE TABLE `editoriales` (
   `id` int(11) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
   `direccion` varchar(50) NOT NULL
-  PRIMARY KEY (`id`) -- Definimos `id` como clave primaria en la tabla `editoriales`
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -56,8 +55,6 @@ CREATE TABLE `libros` (
   `descripcion` text NOT NULL,
   `precio` float NOT NULL,
   `fecha` date NOT NULL
-  PRIMARY KEY (`id`), -- Definimos `id` como clave primaria en la tabla `libros`
-  FOREIGN KEY (`id_editorial`) REFERENCES `editoriales` (`id`) -- Definimos `id_editorial` como clave foránea que referencia `id` en la tabla `editoriales`
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -82,8 +79,6 @@ CREATE TABLE `localidades` (
   `cod_postal` int(11) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
   `id_provincia` int(11) NOT NULL,
-  PRIMARY KEY (`id_localidad`),
-  FOREIGN KEY (`id_provincia`) REFERENCES `provincias` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
