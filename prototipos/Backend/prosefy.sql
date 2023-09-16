@@ -81,7 +81,9 @@ INSERT INTO `libros` (`id`, `isbn`, `titulo`, `id_editorial`, `idioma`, `descrip
 CREATE TABLE `localidades` (
   `cod_postal` int(11) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
-  `id_provincia` int(11) NOT NULL
+  `id_provincia` int(11) NOT NULL,
+  PRIMARY KEY (`id_localidad`),
+  FOREIGN KEY (`id_provincia`) REFERENCES `provincias` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
