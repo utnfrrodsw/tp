@@ -14,6 +14,8 @@ const AccountContainer = styled.div`
 
     @media (max-width: 991px) {
         flex-direction: column;
+        width: 80%;
+        align-self: center;
     }
 `;
 

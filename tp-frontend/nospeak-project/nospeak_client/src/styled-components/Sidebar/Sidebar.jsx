@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SidebarContainer, Playlists } from './styles.js';
+import { SidebarContainer, Playlists, NavContainer, NavBrand,ChoicesContainer } from './styles.js';
 import SidebarChoice from './SidebarChoice.jsx';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
@@ -13,11 +13,30 @@ export default function Sidebar() {
   const [playlists, setPlaylists] = useState([]);
   const user = useSelector(state => state.user.user);
   const location = useLocation();
-
   const [goToPlaylist, setGoToPlaylist] = React.useState(false);
   const [goToSearch, setGoToSearch] = React.useState(false);
   const [goToHome, setGoToHome] = React.useState(false);
   const [goToLibrary, setGoToLibrary] = React.useState(false);
+  const [showNavbar, setShowNavbar] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  useEffect(() => {
+    if (windowWidth <= 798) {
+      setShowNavbar(true);
+    } else {
+      setShowNavbar(false);
+    }
+  }, [windowWidth]);
+
 
   useEffect(() => {
     if (user) {
@@ -31,6 +50,7 @@ export default function Sidebar() {
         });
     }
   }, [user]);
+
 
   if (goToPlaylist && location.pathname !== "/playlist") {
     return <Navigate to="/playlist" />;
@@ -46,21 +66,33 @@ export default function Sidebar() {
   }
 
   return (
-    <SidebarContainer>
-      <img src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg" alt="Logo de Spotify" />
-      <SidebarChoice title="Home" Icon={HomeIcon} onClick={() => setGoToHome(true)} />
-      <SidebarChoice title="Search" Icon={SearchIcon} onClick={() => setGoToSearch(true)} />
-      <SidebarChoice title="Library" onClick={() => setGoToLibrary(true)} Icon={LibraryMusicIcon} />
-      <br />
-      <br />
-      <Playlists>PLAYLISTS</Playlists>
-      <hr />
-      {playlists.map((playlist, index) => (
-        <Link key={index} to={`/playlist/${playlist._id}`} style={{textDecoration: 'none'}}>
-            <SidebarChoice key={playlist.id} title={playlist.titulo} />
-        </Link>
-        
-      ))}
-    </SidebarContainer>
-  )
-}
+    <>
+      {showNavbar ? (
+        <NavContainer>
+          <NavBrand><img src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg" alt="Logo de Spotify" /></NavBrand>
+          <ChoicesContainer>
+            <SidebarChoice  Icon={HomeIcon} onClick={() => setGoToHome(true)} />
+            <SidebarChoice  Icon={SearchIcon} onClick={() => setGoToSearch(true)} />
+            <SidebarChoice  onClick={() => setGoToLibrary(true)} Icon={LibraryMusicIcon} />
+          </ChoicesContainer>
+        </NavContainer>
+      ) : (
+        <SidebarContainer>
+          <img src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg" alt="Logo de Spotify" />
+          <SidebarChoice title="Home" Icon={HomeIcon} onClick={() => setGoToHome(true)} />
+          <SidebarChoice title="Search" Icon={SearchIcon} onClick={() => setGoToSearch(true)} />
+          <SidebarChoice title="Library" onClick={() => setGoToLibrary(true)} Icon={LibraryMusicIcon} />
+          <br />
+          <br />
+          <Playlists>PLAYLISTS</Playlists>
+          <hr />
+          {playlists.map((playlist, index) => (
+            <Link key={index} to={`/playlist/${playlist._id}`} style={{ textDecoration: 'none' }}>
+              <SidebarChoice key={playlist.id} title={playlist.titulo} />
+            </Link>
+          ))}
+        </SidebarContainer>
+      )}
+    </>
+  );
+}  

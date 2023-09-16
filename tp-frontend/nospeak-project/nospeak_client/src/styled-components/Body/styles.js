@@ -10,11 +10,15 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
 const BodyContainer = styled.div`
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     width: 80%;
     background-color: #232323;
     padding: 10px;
+    @media (max-width: 798px) {
+        width: 100%;
+    }
     `
 const HeaderContainer = styled.div`
     display: flex;
