@@ -1,0 +1,55 @@
+.anuncio-Content{
+  width: 90%;
+  height: 15rem;
+display: grid;
+  grid-template-columns: 50% 50%;
+  /* Divide la tarjeta en dos columnas */
+  grid-template-rows: auto auto 1fr;
+  /* Ajusta automáticamente la altura de las filas */
+  /* Espaciado entre elementos */
+  grid-auto-flow: row;
+  grid-template-areas:
+    " datos ."
+    " datos  ."
+    " datos  descripcion";
+  padding: 2px;
+  /* Aumenta el espacio interno para pantallas de PC */
+  background-color: #213555;
+  border-radius: 12px;
+  margin: 0 auto;
+  /* Centra horizontalmente en la pantalla */
+  margin-top: 5vh;
+  /* Centra verticalmente en la mitad de la pantalla */
+}
+
+.datos{
+grid-area:datos;
+margin-left: 2%;  
+text-align: left;
+}
+.descripcion{
+  margin-top: 40px;
+}
+
+.presupuesto-Content{
+  width: 90%; 
+  display: grid;
+    grid-template-columns: 50% 50%;
+    /* Divide la tarjeta en dos columnas */
+    grid-template-rows: auto auto 1fr;
+    /* Ajusta automáticamente la altura de las filas */
+    /* Espaciado entre elementos */
+    grid-auto-flow: row;
+    grid-template-areas:
+      " datos ."
+      " datos  ."
+      " datos  descripcion";
+    padding: 2px;
+    /* Aumenta el espacio interno para pantallas de PC */
+    background-color: #213555;
+    border-radius: 12px;
+    margin: 0 auto;
+    /* Centra horizontalmente en la pantalla */
+    margin-top: 1vh;
+    /* Centra verticalmente en la mitad de la pantalla */
+}
