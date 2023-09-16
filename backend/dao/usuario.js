@@ -16,6 +16,8 @@ var usuarioDao = {
     ,eliminarInvitacion
     ,aceptarInvitacion
     ,eliminarAmigo
+    
+    ,cantidadPorPagina:10
 }
 
 var include=[
@@ -44,6 +46,8 @@ function valoresEspecialesUsuario(usuario,incluirTokensAsociadas=false,incluirAm
     usuario.setDataValue('amigos',[...usuario.amigosInvitados,...usuario.amigosAceptados]);
     return usuario;
 }
+
+const CANTIDAD_POR_PAGINA=usuarioDao.cantidadPorPagina;
 
 async function permisosIDsAPermisos(permisosIDs){
     let permisosReales=[];
@@ -177,7 +181,7 @@ async function quitarTokens(usuario,cantidad){
     // await usuario.removeTokensAsociadas(tokensAsociadas.splice(0,cantidad));
 }
 
-async function findFuzzilyByName(consulta,usuarioID){
+async function findFuzzilyByName(consulta,usuarioID,pagina=0){
     return (await findAll({
         // incluirAmigos:true,
         where:{
@@ -194,6 +198,11 @@ async function findFuzzilyByName(consulta,usuarioID){
                 }
             ]
         }
+        ,order:[
+            ['nombreCompleto','ASC']
+        ]
+        ,limit:pagina?CANTIDAD_POR_PAGINA:null // TODO comprobar que esto funciona, si se tiene que poner undefined, o cómo hacerlo bien.
+        ,offset:pagina*CANTIDAD_POR_PAGINA
     })).filter(usu=>{
         // TODO hacer que .amigos ande
         return !(usu.amigos?

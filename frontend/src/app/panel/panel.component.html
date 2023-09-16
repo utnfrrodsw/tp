@@ -1,4 +1,5 @@
 <h1>Inicio</h1>
+<!-- TODO llenar de íconos -->
 
 <p>Tus tokens: <b id="tokens">{{usuarioActual?.tokens}}</b></p>
 
@@ -135,7 +136,7 @@
 
 </fieldset>
 
-<ng-template [ngIf]="puedeGenerarUsuarios">
+<ng-template [ngIf]="puedeAdministrarUsuarios">
 	<fieldset class="row card">
 		<legend>
 			<h2>Administración de usuarios</h2>
@@ -174,9 +175,54 @@
 					</label>
 				</fieldset>
 				<div class="row">
-					<input type="submit" value="Crear usuario" class="col-3">
+					<div class="col-9"></div>
+					<input type="submit" value="Crear usuario" class="col">
 				</div>
 			</form>
+		</details>
+		<details id="administrar-permisos" class="col-12">
+			<summary><h3>Administrar permisos</h3></summary>
+
+			<div class="row"><input (input)="actualizarFiltroTablaAdministracion($event)" type="text" placeholder="Filtrar Usuarios"></div>
+			<table class="striped">
+				<thead>
+					<tr>
+						<th rowspan="2">Usuario</th>
+						<!-- TODO cantidad de permisos -->
+						<th colSpan="{{usuarioActual.permisos?.length}}"> Permisos</th>
+						<th rowspan="2">Actualizar</th>
+					</tr>
+					<tr>
+						<th *ngFor="let permiso of usuarioActual.permisos">{{permiso.descripcion}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let usu of usuariosPaginaActual">
+						<td>{{usu.nombreCompleto}}</td>
+						<td *ngFor="let per of usuarioActual.permisos">
+							<input type="checkbox" value="{{per.ID}}" name="permiso" [checked]="usu?.permisos?.includes(per) || false" [attr.form]="'editar-'+usu.ID">
+						</td>
+						<td>
+							<!-- TODO Now: onsumbit, en la table?  ojo que cacharia el form del tfoot, quizá en el tbody-->
+							<form id="editar-{{usu.ID}}">
+								<input type="hidden" [value]="usu.ID">
+								<input type="submit" value="Actualizar">
+							</form>
+						</td>
+					</tr>
+					<!-- TODO mensaje si no hay -->
+				</tbody>
+				<tfoot>
+					<th colSpan="{{(usuarioActual.permisos?.length||0)+2}}">
+						<form (onclick)="navegar($event)">
+							<button class="secondary" [disabled]="paginaActual===1" value="-1" name="navegacion">Anterior</button>
+							<span>{{paginaActual}} / {{cantidadPaginas}}</span>
+							<button class="secondary" [disabled]="paginaActual>=cantidadPaginas" value="1" name="navegacion">Siguiente</button>
+						</form>
+					</th>
+					<!-- TODO Now controles -->
+				</tfoot>
+			</table>
 		</details>
 
 	</fieldset>

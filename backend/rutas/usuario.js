@@ -28,7 +28,9 @@ router.get('/',usuarioController.findUsuarios)
 
 router.get('/:id',usuarioController.findUsuarioById)
 
-router.get('/buscar/:query',usuarioController.findUsuariosFuzzilyByName)
+router.get('/buscar/:query?',usuarioController.findUsuariosFuzzilyByName)
+
+router.get('/cantidad/:query?',usuarioController.cantidadDeUsuarios);
 
 router.post('/ingresar',usuarioController.ingresar)
 

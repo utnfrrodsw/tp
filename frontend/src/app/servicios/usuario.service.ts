@@ -62,6 +62,14 @@ export class UsuarioService {
       withCredentials: true
     });
   }
+
+  getCantidadDePaginas(filtro:string){
+    return this.clienteHTTP.get(this.URL+'cantidad/'+filtro,{withCredentials: true});
+  }
+
+  getUsuariosPagina(filtro:string,n:number){
+    return this.clienteHTTP.get(this.URL+`buscar/${filtro}`+'?pagina='+n,{withCredentials: true});
+  }
 }
 
 export enum EstadosAmistades {
@@ -70,6 +78,7 @@ export enum EstadosAmistades {
 }
 
 export interface Amistad{
+  // TODO Ver qué onda esto, contrastado con "el modelo" (la base de datos)
   estado:EstadosAmistades
   // ,amigo:Usuario
   ,amigoID:number

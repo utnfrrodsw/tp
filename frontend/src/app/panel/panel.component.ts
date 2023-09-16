@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Permiso } from '../servicios/permiso.service';
 import { UsuarioActualService } from '../servicios/usuario-actual.service';
 import {Router} from "@angular/router";
-import { Usuario, UsuarioService,Amistad,EstadosAmistades } from '../servicios/usuario.service';
+import { Usuario, UsuarioService as UsuariosService,Amistad,EstadosAmistades } from '../servicios/usuario.service';
 import { TokensService } from '../servicios/tokens.service';
 
 @Component({
@@ -32,7 +32,7 @@ export class PanelComponent implements OnInit {
   }
 
   puedeGenerarTokens:boolean = false;
-  puedeGenerarUsuarios:boolean = false;
+  puedeAdministrarUsuarios:boolean = false;
   tokensCirculando:number = 0;
   
   console=console;
@@ -46,9 +46,14 @@ export class PanelComponent implements OnInit {
 
   amigoSeleccionadoID=0;
 
+  usuariosPaginaActual:Usuario[] = [];
+  cantidadPaginas:number=0;
+  paginaActual:number=1;
+  filtroDePaginacion:string='';
+
   constructor(
     private usuarioActualService:UsuarioActualService,
-    private usuarioService: UsuarioService,
+    private usuariosService: UsuariosService,
     private tokensService: TokensService,
     private router: Router
   ) { }
@@ -73,7 +78,19 @@ export class PanelComponent implements OnInit {
                 this.tokensCirculando=result;
               });
 
-          this.puedeGenerarUsuarios=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==2) || false;
+          this.puedeAdministrarUsuarios=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==2) || false;
+          if(this.puedeAdministrarUsuarios){
+            this.usuariosService.getCantidadDePaginas('')
+              .subscribe((cantidadDePaginas: any)=>{
+                  this.cantidadPaginas=cantidadDePaginas;
+                })
+
+            // TODO ver si puedo hacer algo mejor que esto ''
+            this.usuariosService.getUsuariosPagina('',1)
+              .subscribe((result: any)=>{
+                this.usuariosPaginaActual=result;
+              });
+          }
         }
         ,error:error=>{
           this.console.log(error);
@@ -102,7 +119,7 @@ export class PanelComponent implements OnInit {
       this.puedeMostrarVacio=false;
 
     if(consulta.length>3)
-      this.usuarioService
+      this.usuariosService
         .buscarDifusamentePorNombre(consulta)
         .subscribe((result: any)=>{
           if(this.busquedaID==busquedaID){
@@ -123,7 +140,7 @@ export class PanelComponent implements OnInit {
     let usuarioID=(e.target as any)['usuarioID'].value;
 
     (document.getElementById('resultados') as HTMLFieldSetElement).disabled=true;
-    this.usuarioService
+    this.usuariosService
       .invitar(usuarioID)
       .subscribe({
         next:(result: any)=>{
@@ -149,7 +166,7 @@ export class PanelComponent implements OnInit {
 
     let usuarioID=(e.target as any)['usuarioID'].value;
 
-    this.usuarioService
+    this.usuariosService
       .eliminarInvitacion(usuarioID,true)
       .subscribe({
         next:(result: any)=>{
@@ -169,7 +186,7 @@ export class PanelComponent implements OnInit {
     let botonApretado=(e.target as any)['accion'];
 
     if(+botonApretado.value)
-      this.usuarioService
+      this.usuariosService
         .aceptarInvitacion(usuarioID)
         .subscribe({
           next:(amigo: any)=>{
@@ -184,7 +201,7 @@ export class PanelComponent implements OnInit {
             this.console.log(error);
           }
         });
-    else this.usuarioService
+    else this.usuariosService
       .eliminarInvitacion(usuarioID,false)
       .subscribe({
         next:(result: any)=>{
@@ -202,7 +219,7 @@ export class PanelComponent implements OnInit {
 
     // TODO Avisar que es no se puede deshacer
     let usuarioID=(e.target as any)['usuarioID'].value;
-    this.usuarioService
+    this.usuariosService
       .eliminarAmigo(usuarioID)
       .subscribe({
         next:(result: any)=>{
@@ -238,7 +255,7 @@ export class PanelComponent implements OnInit {
   }
 
   salir(){
-    this.usuarioService
+    this.usuariosService
       .salir()
       .subscribe({
         next:()=>{
@@ -275,12 +292,45 @@ export class PanelComponent implements OnInit {
     u.permisos=fD.getAll('permisoID').map(permisoID => ({ID:permisoID}) as unknown as Permiso)
 
     // TODO que funcione bien  ??? anda bien qué decís
-    this.usuarioService
+    this.usuariosService
       .create(u)
       .subscribe((result:any)=>{
         // TODO Avisar con un cartelito Toast.
         // TODO Avisar todo con un cartelito lindo.
         alert('Se ha creado el usuario');
+      });
+  }
+
+  // TODO ver si esta tabla de actualizar permisos puede ser un componente hijo, como dijo Butti
+
+  actualizarPermisos(e:Event) {
+  }
+
+  actualizarFiltroTablaAdministracion(e:Event) {
+    this.filtroDePaginacion=(e.target as HTMLInputElement).value.trim();
+    // TODO hacer alguna reacción o DRY con el primero.
+    this.usuariosService.getCantidadDePaginas(this.filtroDePaginacion)
+      .subscribe((cantidadDePaginas: any)=>{
+          this.cantidadPaginas=cantidadDePaginas;
+        });
+    this.actualizarTablaAdministracion();
+  }
+
+  navegar(e:Event){
+    e.preventDefault();
+
+    // TODO Now: ver si tenemos el array de permisos, la id de la persona (hidden); mandarla y EDITARLA; also, disable stuff.
+    this.paginaActual+= +(e.target as HTMLInputElement).value;
+    this.actualizarTablaAdministracion();
+
+    return false;
+  }
+
+  actualizarTablaAdministracion(){
+    // TODO deshabilitar formulario de navegacion y mostrar que se está actualizando
+    this.usuariosService.getUsuariosPagina(this.filtroDePaginacion,this.paginaActual)
+      .subscribe((data:any) =>{
+        this.usuariosPaginaActual=data;
       });
   }
 }

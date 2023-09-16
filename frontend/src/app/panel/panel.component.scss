@@ -10,3 +10,17 @@ summary h3{
 #form-crear > fieldset{
 	margin-bottom: 10px;
 }
+
+#administrar-permisos{
+	th{
+		text-align: center;
+	}
+	tbody{
+		td{
+			text-align: center;
+		}
+	}
+	tfoot span{
+		margin: 0 1rem;
+	}
+}

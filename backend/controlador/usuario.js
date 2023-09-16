@@ -7,6 +7,7 @@ var usuarioController = {
     updateUsuario: updateUsuario,
     deleteById: deleteById
     ,findUsuariosFuzzilyByName
+    ,cantidadDeUsuarios
     ,cambiarHabilitado
     ,ingresar
     ,invitar
@@ -67,6 +68,7 @@ function updateUsuario(req, res) {
 }
 
 function findUsuarios(req, res) {
+    // ! incluirHabilitado es si incluir que habilitado=true; so true here will bring you solo habilitados, false es todos.
     usuarioDao.findAll({incluirHabilitado:req.query.incluirHabilitado!=undefined}).
         then((data) => {
             res.send(data);
@@ -77,9 +79,20 @@ function findUsuarios(req, res) {
 }
 
 function findUsuariosFuzzilyByName(req, res) {
-    usuarioDao.findFuzzilyByName(req.params.query,req.session.usuarioID)
+    usuarioDao.findFuzzilyByName(req.params.query,req.session.usuarioID,req.query.pagina)
         .then((data) => {
             res.send(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+function cantidadDeUsuarios(req, res) {
+    // ! El segundo parámetro es la persona a OMITIR; o sea, el usuario actual.
+    usuarioDao.findFuzzilyByName(req.params.query,req.session.usuarioID)
+        .then((data) => {
+            res.send(Math.ceil(data.length/usuarioDao.cantidadPorPagina).toString());
         })
         .catch((error) => {
             console.log(error);
