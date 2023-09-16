@@ -2,18 +2,8 @@
 const lm = require("../models/libro");
 // Para validar datos de entrada
 const { validationResult } = require("express-validator");
-
-//función de manejo de errores para evitar duplicar código y facilitar la mantenibilidad
-function handleError(res, errorMessage) {
-	res.status(500).json({ success: false, msg: errorMessage });
-}
-
-// Función de utilidad 'response' para simplificar la creación de objetos de respuesta JSON
-const response = (success, data = null, msg = "") => ({
-	success,
-	data,
-	msg,
-});
+// Importar función de manejo de errores y de utilidad 'response'
+const { handleError, response } = require("../utils/helpers");
 
 module.exports = {
 	async getLibros(req, res) {
