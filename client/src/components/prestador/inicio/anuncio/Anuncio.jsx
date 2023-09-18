@@ -1,7 +1,8 @@
 import './anuncio.css'
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import ControlledCarousel from './carousel'
+import Carousel from './carousel';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function Anuncio(props){
   const titulo=props.titulo;
@@ -22,8 +23,8 @@ function Anuncio(props){
     ):(
         <>
           <div className='descripcion'>{descripcion}</div>
-          <Link to ="/provider/budget" className='presu'>Presupuestar</Link>
-          <div className='photo'><img src="https://unavatar.io/kikobeats?ttl=1h" text="First slide" /></div>
+            <Link to ="/provider/budget" className='presu'>Presupuestar</Link>
+            <div className='photo'><Carousel/></div>
         </>
     )}
   </div>
