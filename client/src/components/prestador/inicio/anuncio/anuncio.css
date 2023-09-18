@@ -1,15 +1,17 @@
 .anuncio-card {
+  width: 40rem;
   display: grid;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: 20% 60% 10%;
-    gap: 00px;
+    grid-template-columns: 30% 70%;
+      /* Divide la tarjeta en dos columnas */
+      grid-template-rows: auto auto 1fr;
+      /* Ajusta automáticamente la altura de las filas */
+      gap: 10px;
+      /* Espaciado entre elementos */
     grid-auto-flow: row;
     grid-template-areas:
     " titulo fecha"
       "nombre  ubicacion"
       ".   boton";
-  height: 10rem;
-  width: 90%;
     padding: 15px;
       /* Aumenta el espacio interno para pantallas de PC */
       background-color: #213555;
@@ -29,7 +31,7 @@
 .anuncio-fullcontent {
   height: 40rem;
   display: grid;
-  width: 100%;
+  width: 70rem;
   grid-template-columns: 20% 30% 30% 20%;
   grid-template-rows: 5% 5% 60% 15% 15%;
   gap: 10px 0px;
@@ -37,9 +39,9 @@
   grid-template-areas:
     " titulo titulo ubicacion ubicacion"
     " fecha fecha nombre nombre"
-      "foto foto descripcion descripcion"
-      "foto foto  descripcion descripcion"
-      "boton boton presu presu";
+    " foto foto descripcion descripcion"
+    " foto foto  descripcion descripcion"
+    " . boton . presu";
     padding: 15px;
       /* Aumenta el espacio interno para pantallas de PC */
       background-color: #213555;
@@ -53,7 +55,7 @@
       border: 1px solid #ffffff;
 }
 img{
-    width: 100%;
+    width: 300px;
     height: 100%;
 }
 
@@ -71,8 +73,6 @@ img{
 }
 .photo {
   grid-area: foto;
-
-
 }
 
 .titulo {
@@ -98,7 +98,8 @@ img{
   font-size: 1rem;
   text-align: center;
 }
-.presu {
+.presu{
+  width: 130px;
   grid-area: presu;
   display: inline-block;
     color: #ffffff;
@@ -110,6 +111,7 @@ img{
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 .boton {
+  width: 130px;
   grid-area: boton;
   display: inline-block;
     color: #ffffff;
@@ -121,22 +123,30 @@ img{
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-/* Media query para pantallas pequeñas 
+/* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
   .anuncio-card {
-
+    width: 300px;
     grid-template-columns: 1fr;
-    /* Cambia a una sola columna en pantallas pequeñas 
+    /* Cambia a una sola columna en pantallas pequeñas */
     grid-template-areas:
-      "Foto"
+      "ubicacion"
+      "fecha"
       "titulo"
-      "descripcion"
       "nombre";
-
   }
-
-  .photo {
-    width: 100%;
-    height: auto;
-  }
-}*/
+.anuncio-fullcontent {
+    display: grid;
+      width: 100%;
+      grid-template-columns: 20% 30% 30% 20%;
+      grid-template-rows: 5% 5% 60% 20% 10%;
+      gap: 0px 0px;
+      grid-auto-flow: row;
+      grid-template-areas:
+        " titulo titulo ubicacion ubicacion"
+        " fecha fecha nombre nombre"
+        "foto foto foto foto"
+        "descripcion descripcion descripcion descripcion"
+        "boton boton presu presu";
+}
+}

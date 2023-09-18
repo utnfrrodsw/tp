@@ -22,7 +22,7 @@ function Anuncio(props){
     ):(
         <>
           <div className='descripcion'>{descripcion}</div>
-          <button className='presu'>Presupuestar</button>
+          <Link to ="/provider/budget" className='presu'>Presupuestar</Link>
           <div className='photo'><img src="https://unavatar.io/kikobeats?ttl=1h" text="First slide" /></div>
         </>
     )}

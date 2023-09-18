@@ -9,7 +9,9 @@ import Home from './components/home/Home.jsx';
 import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
 import Login from './components/usuario/login/Login.jsx';
 import Register from './components/usuario/register/Register.jsx';
+import Presupuesto from './components/prestador/presupuesto/Presupuesto.jsx'
 import { Route, Routes } from 'react-router-dom';
+
 import './App.css';
 
 
@@ -24,6 +26,7 @@ function App() {
           <Route path='/register'  element={ <Register/>}/>
           <Route path='/'  element={ <Home/>} />
           <Route path='/provider/home'  element={ <InicioPrestador/>}/>
+          <Route path='/provider/budget' element={<Presupuesto/>}/>
           <Route path='/client/home'  element={ <InicioCliente/>}/>
           <Route path='/client/home/requests'  element={ <Solicitudes estado = "pendiente"/>}>
             {/*<Route path=':id'  element={ <details/>}/>*/}
