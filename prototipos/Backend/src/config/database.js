@@ -1,23 +1,21 @@
 const mariadb = require("mariadb");
-const pool = mariadb.createPool({
-    connectionLimit : 10,
-    host     : '127.0.0.1',
-    user     : 'root',
-    password : '',
-    database : 'prosefy',
-    debug    :  false
-});
+const config = require("./config");
 
-module.exports = {
-    getConnection() {
-        return new Promise(function (res, rej) {
-            pool.getConnection()
-            .then(function (conn) {
-                res(conn);
-            })
-            .catch(function (error) {
-                rej(error);
-            });
-        });
+class Database {
+
+    constructor() {
+        this.pool = mariadb.createPool(config);
     }
-};
+
+    async getConnection() {
+        try {
+            const connection = await this.pool.getConnection();
+            return connection;
+        } catch(error) {
+            throw error;
+        }
+    } 
+
+}
+
+module.exports = Database;

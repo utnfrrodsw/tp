@@ -1,17 +1,32 @@
-// FUNCIONES CREADAS PARA SIMPLIFICAR EL CODIGO Y PODER IMPORTARLO EN DIFERENTES CONTROLADORES
+const xss = require('xss');
+var v = require('validator');
 
-// Función de manejo de errores
-function handleError(res, errorMessage) {
+const handleError = (res, errorMessage) => {
 	res.status(500).json({ success: false, msg: errorMessage });
-}
+};
 
-// Función de utilidad 'response'
-function response(success, data = null, msg = "") {
+const response = (success, data = null, msg = "") => {
 	return {
 		success,
 		data,
 		msg,
 	};
-}
+};
 
-module.exports = { handleError, response };
+const sanitizeInputParams = (inputParams) => {
+    let sanitizedParams = {};
+
+    for (const key in inputParams) {
+        const paramValue = inputParams[key];
+        const sanitizedValue = v.escape(xss(paramValue));
+        sanitizedParams[key] = sanitizedValue;
+    }
+
+    return sanitizedParams;
+};
+
+module.exports = {
+    handleError,
+    response,
+    sanitizeInputParams
+};

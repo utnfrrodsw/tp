@@ -19,7 +19,8 @@
     "express-validator": "^7.0.1",
     "mariadb": "^3.2.0",
     "mysql": "^2.18.1",
-    "passport": "^0.6.0"
+    "passport": "^0.6.0",
+    "xss": "^1.0.14"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
