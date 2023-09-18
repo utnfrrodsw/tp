@@ -1,5 +1,5 @@
 .solicitud-card {
-    width: 60%;
+    width: 30%;
     height: 15vh;
     padding: 5px;
     background-color: #213555;
@@ -12,7 +12,7 @@
     transition: all 0.2s; /* Transición al pasar el cursor */
     cursor: pointer;
     border:1px solid #ffffff;
-    padding: 2rem;
+    padding: 3rem;
   }
   
   
@@ -33,7 +33,7 @@
   }
   
   .solicitud-card:hover {
-    width: 62%;
+   
     background-color: #4F709C;
     border-radius: 10px;
    
