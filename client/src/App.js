@@ -26,7 +26,7 @@ function App() {
           <Route path='/register'  element={ <Register/>}/>
           <Route path='/'  element={ <Home/>} />
           <Route path='/provider/home'  element={ <InicioPrestador/>}/>
-          <Route path='/provider/budget' element={<Presupuesto/>}/>
+          <Route path='/provider/budget/:id' element={<Presupuesto/>}/>
           <Route path='/client/home'  element={ <InicioCliente/>}/>
           <Route path='/client/home/requests'  element={ <Solicitudes estado = "pendiente"/>}>
             {/*<Route path=':id'  element={ <details/>}/>*/}
