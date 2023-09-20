@@ -4,7 +4,7 @@ const lc = require("../controllers/libro");
 const { check } = require("express-validator");
 
 const validators = [
-    check("titulo").notEmpty().withMessage("El título es obligatorio"),
+	check("titulo").notEmpty().withMessage("El título es obligatorio"),
 	//check("autor").notEmpty().withMessage("El autor es obligatorio"),
 	check("precio").isNumeric().withMessage("El precio debe ser numérico"),
 ];

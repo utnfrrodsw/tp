@@ -1,84 +1,147 @@
 const pool = require("../config/database");
-const bcrypt = require("bcrypt"); // Importar bcrypt para hashear la contraseña
+const User = require("../schemas/usuario");
+const bcrypt = require("bcrypt"); // Para hashear la contraseña
 
-module.exports = {
+class UsuarioModel {
+	constructor() {
+		this.db = new Database();
+	}
+
 	async getUsuarios() {
-		conn = await pool.getConnection();
-		sql = "SELECT * FROM usuarios";
-		const rows = await conn.query(sql);
-		conn.end();
-		return rows;
-	},
+		const sql = "SELECT * FROM usuarios";
+		let conn = null;
+		try {
+			conn = await this.db.getConnection();
+			const rows = await conn.query(sql);
+			return rows.map((row) => new User(row));
+		} catch (error) {
+			throw new Error("Error al obtener los usuarios");
+		} finally {
+			if (conn) conn.release();
+		}
+	}
 
 	async getUsuarioById(id) {
-		conn = await pool.getConnection();
-		sql = "SELECT * FROM usuarios WHERE id = ?";
-		const rows = await conn.query(sql, id);
-		conn.end();
-		return rows[0];
-	},
-
-	async createUsuario(data) {
-		conn = await pool.getConnection();
-		const hashedPassword = await bcrypt.hash(data.contrasena, 10); // Hash de la contraseña
-		sql = `
-      INSERT INTO usuarios(nombre, apellido, email, contrasena, direccion, id_localidad, avatar, tipo)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-		const result = await conn.query(sql, [
-			data.nombre,
-			data.apellido,
-			data.email,
-			hashedPassword, // Guardar la contraseña hasheada en la base de datos
-			data.direccion,
-			data.id_localidad,
-			data.avatar,
-			data.tipo,
-		]);
-		conn.end();
-		return result.insertId;
-	},
-
-	async updateUsuario(id, data) {
-		conn = await pool.getConnection();
-		if (data.contrasena) {
-			// Si se proporciona una nueva contraseña, hashearla antes de actualizar
-			data.contrasena = await bcrypt.hash(data.contrasena, 10);
+		const sql = "SELECT * FROM usuarios WHERE id = ?";
+		let conn = null;
+		try {
+			conn = await this.db.getConnection();
+			const [row] = await conn.query(sql, id);
+			return new User(row);
+		} catch (error) {
+			throw new Error("Error al obtener el usuario");
+		} finally {
+			if (conn) conn.release();
 		}
-		sql = `
-      UPDATE usuarios
-      SET nombre = ?, apellido = ?, email = ?, contrasena = ?, direccion = ?, id_localidad = ?, avatar = ?, tipo = ?
-      WHERE id = ?
+	}
+
+	async create(data) {
+		const sqlParts = [];
+		const sqlPlaceholders = [];
+		const sqlParams = [];
+
+		for (const key in data) {
+			const sqlParam = data[key];
+			if (sqlParam) {
+				sqlParts.push(key);
+				sqlPlaceholders.push("?");
+				sqlParams.push(data[key]);
+			} else {
+				sqlParams.push(null);
+			}
+		}
+
+		const contrasenaHasheada = await bcrypt.hash(data.contrasena, 10);
+
+		sqlParts.push("contrasena");
+		sqlPlaceholders.push("?");
+		sqlParams.push(contrasenaHasheada);
+
+		const sql = `
+    INSERT INTO usuarios(${sqlParts.join(", ")})
+    VALUES(${sqlPlaceholders.join(", ")})
     `;
-		const result = await conn.query(sql, [
-			data.nombre,
-			data.apellido,
-			data.email,
-			data.contrasena,
-			data.direccion,
-			data.id_localidad,
-			data.avatar,
-			data.tipo,
-			id,
-		]);
-		conn.end();
-		return result.affectedRows;
-	},
 
-	async deleteUsuarios(id) {
-		conn = await pool.getConnection();
-		sql = "DELETE FROM usuarios WHERE id = ?";
-		const result = await conn.query(sql, id);
-		conn.end();
-		return result.affectedRows;
-	},
+		let conn = null;
 
-	async getUsuarioPorCorreo(correo) {
-		// Sirve para validar que el email no se repita al crear un nuevo usuario
-		conn = await pool.getConnection();
-		sql = "SELECT * FROM usuarios WHERE email = ?";
-		const rows = await conn.query(sql, correo);
-		conn.end();
-		return rows[0]; // Devuelve el primer usuario encontrado con el correo especificado
-	},
-};
+		try {
+			conn = await this.db.getConnection();
+			const result = await conn.query(sql, sqlParams);
+			return result.insertId;
+		} catch (error) {
+			throw new Error("Error al crear el usuario");
+		} finally {
+			if (conn) conn.release();
+		}
+	}
+
+	async update(id, data) {
+		const sqlParts = [];
+		const sqlParams = [];
+
+		for (const key in data) {
+			const sqlParam = data[key];
+			if (sqlParam) {
+				sqlParts.push(`${key} = ?`);
+				sqlParams.push(data[key]);
+			}
+		}
+
+		if (sqlParams.length === 0) {
+			return null;
+		}
+
+		const sql = `
+      UPDATE usuarios
+      SET ${sqlParts.join(", ")}
+      WHERE id = ?
+  `;
+
+		sqlParams.push(id);
+
+		let conn = null;
+
+		try {
+			conn = await this.db.getConnection();
+			const result = await conn.query(sql, sqlParams);
+			return result.affectedRows;
+		} catch (error) {
+			throw new Error("Error al actualizar el usuario");
+		} finally {
+			if (conn) conn.release();
+		}
+	}
+
+	async deleteUser(id) {
+		const sql = "DELETE FROM usuarios WHERE id = ?";
+
+		let conn = null;
+
+		try {
+			conn = await this.db.getConnection();
+			result = await conn.query(sql, id);
+			return result.affectedRows;
+		} catch (error) {
+			throw new Error("Error al borrar el usuario");
+		} finally {
+			if (conn) conn.release();
+		}
+	}
+
+	// Para validar que no se repita el correo al registrar un nuevo usuario
+	async getUsuarioByEmail(email) {
+		const sql = "SELECT * FROM usuarios WHERE email = ?";
+		let conn = null;
+		try {
+			conn = await this.db.getConnection();
+			const [row] = await conn.query(sql, email);
+			return row;
+		} catch (error) {
+			return null;
+		} finally {
+			if (conn) conn.release();
+		}
+	}
+}
+
+module.exports = new UsuarioModel();

@@ -1,25 +1,27 @@
 const express = require("express");
 const usuarioRouter = express.Router();
 const uc = require("../controllers/usuario");
-const { check } = require("express-validator"); // Importar validación de datos
+const { check } = require("express-validator");
 
 usuarioRouter.get("/", uc.getUsuarios);
 usuarioRouter.get("/id/:id", uc.getUsuario);
 
-// Ruta para crear un usuario con validación de datos de entrada
-usuarioRouter.post(
-	"/add",
-	[
-		// Validación de campos
-		check("nombre").notEmpty().withMessage("El nombre es obligatorio"),
-		check("correo").isEmail().withMessage("El correo debe ser válido"),
-		check("contrasena")
-			.isLength({ min: 8 })
-			.withMessage("La contraseña debe tener al menos 8 caracteres"),
-	],
-	uc.createUsuario
-);
+const validators = [
+	check("nombre").notEmpty().withMessage("El nombre es obligatorio"),
+	check("apellido").notEmpty().withMessage("El apellido es obligatorio"),
+	check("email").isEmail().withMessage("El email debe ser válido"),
+	check("contrasena")
+		.isLength({ min: 8 })
+		.withMessage("La contraseña debe tener al menos 8 caracteres"),
+	check("direccion").notEmpty().withMessage("La dirección es obligatoria"),
+	check("localidad").notEmpty().withMessage("La localidad es obligatoria"),
+	check("avatar").notEmpty().withMessage("El avatar es obligatorio"),
+	check("tipo").notEmpty().withMessage("El tipo es obligatorio"),
+];
 
+usuarioRouter.get("/", uc.getUsuarios);
+usuarioRouter.get("/id/:id", uc.getUsuario);
+usuarioRouter.post("/add", validators, uc.createUsuario);
 usuarioRouter.put("/edit/:id", uc.updateUsuario);
 usuarioRouter.delete("/delete/:id", uc.deleteUsuario);
 
