@@ -1,16 +1,20 @@
 import React /*, {useEffect, useState}*/ from 'react';
 
+import { Route, Routes } from 'react-router-dom';
 import InicioCliente from './components/cliente/Inicio/InicioCliente.jsx';
 import Solicitudes from './components/cliente/solicitudes/Solicitudes.jsx';
 import Error from './components/error/Error.jsx';
 import Footer from './components/footer/Footer.jsx';
 import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
+import DetallesEvaluacion from './components/prestador/evaluaciones/DetallesEvaluacion';
+import Evaluaciones from './components/prestador/evaluaciones/Evaluaciones';
 import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
+import Presupuesto from './components/prestador/presupuesto/Presupuesto.jsx';
+import DatosPersonales from './components/usuario/datosPersonales/DatosPersonales.jsx';
 import Login from './components/usuario/login/Login.jsx';
+import RecuperarClave from './components/usuario/login/RecuperarClave';
 import Register from './components/usuario/register/Register.jsx';
-import Presupuesto from './components/prestador/presupuesto/Presupuesto.jsx'
-import { Route, Routes } from 'react-router-dom';
 
 import './App.css';
 
@@ -25,6 +29,10 @@ function App() {
           <Route path='/login'  element={ <Login/>}/>
           <Route path='/register'  element={ <Register/>}/>
           <Route path='/'  element={ <Home/>} />
+          <Route path='/recuperarClave' element={<RecuperarClave/>} />
+          <Route path='/evaluations' element={<Evaluaciones />} />
+          <Route path='/evaluations/:id' element={<DetallesEvaluacion />} />  
+          <Route path='/user' element={<DatosPersonales />} />
           <Route path='/provider/home'  element={ <InicioPrestador/>}/>
           <Route path='/provider/budget' element={<Presupuesto/>}/>
           <Route path='/client/home'  element={ <InicioCliente/>}/>

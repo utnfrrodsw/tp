@@ -1,3 +1,13 @@
+.fondoEvaluation{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
+  overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
+  
+}
+
 .detalle-evaluacion {
     padding: 20px;
     border: 1px solid #ccc;
