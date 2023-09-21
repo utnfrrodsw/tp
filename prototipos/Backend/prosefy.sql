@@ -1,3 +1,7 @@
+/* TODO:
+1. Ver a qué atributos de las tablas se les puede quitar el 'Not Null'
+2. Agregar atributo 'nombre_usuario' a la tabla 'usuarios' */
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
