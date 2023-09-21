@@ -49,7 +49,7 @@ const DetallesEvaluacion = () => {
   }
 
   return (
-    <section>
+    <section className='fondoEvaluation'>
     <div className="detalle-evaluacion">
       <h2>{evaluacion.titulo}</h2>
       <p>{evaluacion.descripcion}</p>
