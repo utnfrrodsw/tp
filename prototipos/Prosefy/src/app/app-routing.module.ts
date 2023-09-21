@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'autor-seleccionado', component: AutorSeleccionadoComponent },
   { path: 'perfil', component: PerfilUsuarioComponent },
   { path: 'crear-cuenta', component: CrearCuentaComponent },
-  { path: 'busqueda', component: BusquedaComponent },
+  { path: 'busqueda/:term', component: BusquedaComponent },
 ];
 
 @NgModule({

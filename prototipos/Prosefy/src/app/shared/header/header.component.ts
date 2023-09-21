@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,16 +10,23 @@ export class HeaderComponent {
   // Propiedad para controlar si el encabezado se ha desplazado
   headerScrolled = false;
   placeholderText = 'Buscar...'; // Valor predeterminado
+  searchTerm: string = '';
   // Variable de estado para controlar la visibilidad de las opciones de usuario
   showUserOptions: boolean = false;
   // Esta variable indica si el usuario ha iniciado sesión
   loggedIn: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updatePlaceholder(event.url);
       }
+    });
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.searchTerm = params['term'] || ''; // Si 'term' no está presente, establece el valor como una cadena vacía
     });
   }
 
@@ -40,5 +47,11 @@ export class HeaderComponent {
   toggleUserOptions() {
     this.showUserOptions = !this.showUserOptions;
     console.log('showUserOptions:', this.showUserOptions);
+  }
+
+  search() {
+    if (this.searchTerm.trim() !== '') {
+      this.router.navigate(['/busqueda', this.searchTerm]);
+    }
   }
 }

@@ -28,9 +28,9 @@
 
 .typewriter {
   overflow: hidden;
-  border-right: 2px solid transparent;
-  background-color: transparent;
-  /* Anima la aparición de cada letra de forma más suave y durante más tiempo */
+  border-right: 2px solid transparent !important;
+  background-color: transparent !important;
+  width: 100%;
   animation: typing 6s steps(60, end), blink-caret 0.75s step-end infinite;
 }
 
