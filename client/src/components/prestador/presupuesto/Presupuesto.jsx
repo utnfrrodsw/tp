@@ -1,13 +1,9 @@
-import { Link } from 'react-router-dom';
 import './Presupuesto.css'
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-  function Presupuesto({anuncios}){
 
-    const { id } = useParams();
-    const anuncio= anuncios.find((anuncio)=>anuncio.id === parseInt(id));
+  function Presupuesto(){
 
-    
+  
   const [datetimeValue, setDatetimeValue] = useState('');
   const [selectedDates, setSelectedDates] = useState([]);
   const currentDate = new Date().toISOString().slice(0, 16); // Obtiene la fecha y hora actual en formato "yyyy-MM-ddTHH:mm"
@@ -38,11 +34,11 @@ import { useParams } from 'react-router-dom';
     <div className="anuncio-Content">
       <div className='datos'>
           <p><h2>Detalles:</h2></p>
-          <p>Número de anuncio: {anuncio.id}</p>
-          <p>Título: {anuncio.titulo}</p>
-          <p>Fecha de publicacion: {anuncio.fecha}</p>
-          <p>Ubicacion: {anuncio.ubicacion}</p>
-          <p>Propietario de anuncio: {anuncio.nombre}</p>
+          <p>Número de anuncio: {}</p>
+          <p>Título: {}</p>
+          <p>Fecha de publicacion: {}</p>
+          <p>Ubicacion: {}</p>
+          <p>Propietario de anuncio:{}</p>
       </div>
       <div className='descripcion'><h3><p>Descripcion:</p></h3> {}Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nostrum sit animi nesciunt ratione quas autem aspernatur unde voluptatum. Eos odio impedit similique aspernatur aperiam ex tempora enim quod vel.</div>
     </div>

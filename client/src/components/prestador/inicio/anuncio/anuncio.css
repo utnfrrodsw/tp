@@ -1,7 +1,7 @@
 .anuncio-card {
   width: 40rem;
   display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 30% 20% 50%;
       /* Divide la tarjeta en dos columnas */
       grid-template-rows: auto auto 1fr;
       /* Ajusta automáticamente la altura de las filas */
@@ -9,10 +9,10 @@
       /* Espaciado entre elementos */
     grid-auto-flow: row;
     grid-template-areas:
-    " titulo fecha"
-      "nombre  ubicacion"
-      ".   boton";
-    padding: 15px;
+    " titulo . fecha"
+      "nombre .  ubicacion"
+      ".   boton .";
+    padding: 0px;
       /* Aumenta el espacio interno para pantallas de PC */
       background-color: #213555;
       border-radius: 12px;
@@ -29,12 +29,12 @@
   border-radius: 10px;
 }
 .anuncio-fullcontent {
-  height: 40rem;
+  height: 35rem;
   display: grid;
   width: 70rem;
   grid-template-columns: 20% 30% 30% 20%;
   grid-template-rows: 5% 5% 60% 15% 15%;
-  gap: 10px 0px;
+  gap: 5px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     " titulo titulo ubicacion ubicacion"
@@ -99,29 +99,41 @@ img{
   text-align: center;
 }
 .presu{
+
   width: 130px;
   grid-area: presu;
-  display: inline-block;
-    color: #ffffff;
-    font-size: 1rem;
-    border: 2px solid #ffffff;
-    border-radius: 12px;
-    text-decoration: none;
-    background-color: transparent;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  height: 28px;
+  margin-bottom: 0.8rem;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 1rem;
+  border: solid 1px #000000;
+  background-color: #dee0f1d8;
+  text-decoration: none;
+  background-color: transparent;
+}
+.presu:hover{
+  border-radius: 1rem;
+  border: solid 1px #000000;
+  background-color: #213555;
 }
 .boton {
   width: 130px;
   grid-area: boton;
-  display: inline-block;
-    color: #ffffff;
-    font-size: 1rem;
-    border: 2px solid #ffffff;
-    border-radius: 12px;
-    text-decoration: none;
-    background-color: transparent;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-}
+  height: 28px;
+  margin-bottom: 0.8rem;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 1rem;
+  border: solid 1px #000000;
+  background-color: #dee0f1d8;
+    }
+  
+.boton:hover {
+  border-radius: 1rem;
+  border: solid 1px #000000;
+  background-color: #213555;
+    }
 
 /* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
