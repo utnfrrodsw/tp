@@ -16,12 +16,17 @@ export class ResultadosComponent {
     private datePipe: DatePipe
   ) {}
 
+  deseos: { [libroId: string]: boolean } = {}; // Objeto para mantener el estado de deseos para cada libro
+  pulsateStates: { [libroId: string]: boolean } = {}; // Objeto para mantener el estado de animación para cada libro
+
   ngOnInit(): void {
     this.libros = this.librosService.getLibros();
   }
+
   calculatePriceInSelectedCurrency(precio: number): number {
     return this.currencyService.calculatePriceInSelectedCurrency(precio);
   }
+
   formatearFecha(fecha: Date): string {
     const fechaFormateada = this.datePipe.transform(fecha, 'dd MMMM', 'es');
     if (fechaFormateada) {
@@ -30,5 +35,20 @@ export class ResultadosComponent {
     } else {
       return '';
     }
+  }
+
+  toggleDeseo(libro: any): void {
+    const libroId = libro.id ? libro.id.toString() : '';
+    this.deseos[libroId] = !this.deseos[libroId];
+    this.pulsateStates[libroId] = true; // Activar la animación al hacer clic
+
+    setTimeout(() => {
+      this.pulsateStates[libroId] = false;
+    }, 500);
+  }
+
+  isInDeseos(libro: any): boolean {
+    const libroId = libro.id.toString();
+    return this.deseos[libroId] || false;
   }
 }

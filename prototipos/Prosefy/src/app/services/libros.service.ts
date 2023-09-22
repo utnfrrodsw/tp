@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 export interface Libro {
+  id: number;
   titulo: string;
   descripcion: string;
   precio: number;
@@ -18,6 +19,7 @@ export interface Libro {
 export class LibrosService {
   private libros: Libro[] = [
     {
+      id: 1,
       titulo: 'Clean Code',
       descripcion:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. ...',
@@ -29,6 +31,7 @@ export class LibrosService {
       calificacion: 5,
     },
     {
+      id: 2,
       titulo: 'Introducción a la Programación Estructurada en C',
       descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: 1999,
@@ -40,6 +43,7 @@ export class LibrosService {
       calificacion: 4,
     },
     {
+      id: 3,
       titulo: 'Learning Python',
       descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: 8599,
@@ -50,6 +54,7 @@ export class LibrosService {
       calificacion: 4,
     },
     {
+      id: 4,
       titulo: 'Sistemas Operativos Modernos',
       descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: 19899,
@@ -60,6 +65,7 @@ export class LibrosService {
       calificacion: 3,
     },
     {
+      id: 5,
       titulo: 'Design Patterns',
       descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       precio: 5099,
