@@ -25,7 +25,7 @@ function Home() {
           <div className="feature">
             <div className="feature-box">
               <h2>PEDIDOS FÁCILES</h2>
-              <p>Realiza pedidos de servicios en pocos pasos, sin complicaciones.</p>
+              <p>Realiza múltiples pedidos de servicios en pocos pasos, sin complicaciones.</p>
             </div>
           </div>
           <div className="feature">
@@ -35,7 +35,7 @@ function Home() {
             </div>
           </div>
         </section>
-        </div>
+      </div>
     </section>
   );
 }

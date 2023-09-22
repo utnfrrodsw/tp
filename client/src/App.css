@@ -3,6 +3,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
 }
 
 .App {
@@ -13,6 +14,7 @@ html, body {
 }
 
 .content {
+  overflow: hidden; /* Evita el scroll en el body */
   flex: 1;
 }
 

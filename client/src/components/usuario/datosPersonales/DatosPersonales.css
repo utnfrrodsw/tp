@@ -1,24 +1,20 @@
 /* DatosPersonales.css */
 
 .fondoDatosPersonales {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #213555;
-  margin-bottom: -1rem;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
 }
 
 .datos-personales-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido en todos los dispositivos */
+  padding: 10px;
+  color: white;
+  text-align: center; /* Centra el texto en todos los dispositivos */
 }
 
 h2 {

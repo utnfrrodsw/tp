@@ -1,17 +1,10 @@
  
 .fondoHome {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  overflow: hidden; /* Evita el scroll en el body */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
-  background-size: cover;
-  background-position: center;
-  margin-bottom: -1rem;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+   
 }
 
 .home-container {
@@ -61,7 +54,7 @@
   display: flex;
   flex-wrap: wrap; 
   justify-content: space-around;
-  margin-top: 2rem;
+  margin: 2rem 0 3rem 0s;
 }
 
 .feature {
