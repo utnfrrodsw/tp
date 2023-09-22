@@ -25,9 +25,9 @@ export const createProduct = async (req, res) => {
             // Verificar si el usuario existe
             const user = await userModel.findById(userId);
             if (!user) {
-            return res.status(404).json({
-                message: 'El usuario no existe'
-            });
+                return res.status(404).json({
+                    message: 'El usuario no existe'
+                });
             }
             //Creacion de producto
             const {
@@ -118,7 +118,7 @@ export const getAllByShop = async (req, res) => {
         const products = await ProductModel.find({ tienda: tiendaId }, req.query.fields).exec();
 
         res.status(200).json({
-            data:products
+            data: products
         });
     } catch (error) {
         console.error(error);
@@ -127,3 +127,63 @@ export const getAllByShop = async (req, res) => {
         });
     }
 };
+
+export const paginated = async (req, res, next) => {
+    try {
+        let { orden, categoria } = req.query;
+
+        const page = parseInt(req.query.page);
+        const limit = parseInt(req.query.limit);
+        const startIndex = (page - 1) * size;
+        const endIndex = page * limit;
+
+        let filters = {
+            habilitado: true
+        };
+
+        // Agregar filtro por categoría si se proporciona
+        if (categoria) {
+            filters.categoria = categoria;
+        }
+
+        //si no se especifica tamano el max es 20
+        if (limit) {
+            limit = 20;
+        }
+        // If the page is not applied in query.
+        if (!page) {
+            // Make the Default value one.
+            page = 1;
+        }
+        // Ordenar productos según la dirección especificada (ascendente o descendente)
+        if (orden === 'asc') {
+            precio = 1;
+        } else if (orden === 'desc') {
+            precio = -1;
+        }
+
+        const products = {};
+
+        if (endIndex < (await ProductModel.countDocuments().exec())) {
+            products.next = {
+                page: page + 1,
+                limit: limit,
+            };
+        }
+        if (startIndex > 0) {
+            products.previous = {
+                page: page - 1,
+                limit: limit,
+            };
+        }
+
+        products.results = await ProductModel.find(filters, req.query.fields).limit(limit).skip(startIndex);
+        res.paginated = products;
+        next();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Error al obtener Productos'
+        });
+    }
+}

@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-    createProduct, getAll, getAllByShop
+    createProduct, getAll, getAllByShop, paginated
 } from '../controllers/ProductController.mjs'
 import {
     verifyTokenSeller, verifyTokenUser
@@ -8,7 +8,8 @@ import {
 const router = express.Router();
 
 router.post('/create-product', verifyTokenSeller, createProduct);
-router.get('/products', verifyTokenSeller, getAll);
+router.get('/products', verifyTokenUser, getAll);
 router.get('/productsbyshop/:tiendaId', verifyTokenSeller, getAllByShop);
+router.get('/productos', verifyTokenUser, paginated);
 
 export default router;
