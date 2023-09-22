@@ -1,168 +1,115 @@
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Fade from '@mui/material/Fade';
-import MenuItem from '@mui/material/MenuItem';
-import Modal from '@mui/material/Modal';
-import Select from '@mui/material/Select';
-import Typography from '@mui/material/Typography';
-import React, { useState } from "react";
-import { Button } from 'react-bootstrap';
-import '../Inicio/InicioCliente.css';
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import './NuevaSolicitud.css';
 
+export function NuevaSolicitud() {
+  const [showModal, setShowModal] = useState(false);
+  const [titulo, setTitulo] = useState('');
+  const [descripcion, setDescripcion] = useState('');
+  const [especialidad, setEspecialidad] = useState('');
+  const [ubicacion, setUbicacion] = useState('');
+  const [fotos, setFotos] = useState([]);
+  const [errorTitulo, setErrorTitulo] = useState(false);
+  const [errorDescripcion, setErrorDescripcion] = useState(false);
+  const [errorEspecialidad, setErrorEspecialidad] = useState(false);
 
+  const handleClose = () => {
+    setShowModal(false);
+    setErrorTitulo(false);
+    setErrorDescripcion(false);
+    setErrorEspecialidad(false);
+    // Limpiar los campos del formulario
+    setTitulo('');
+    setDescripcion('');
+    setEspecialidad('');
+    setUbicacion('');
+    setFotos([]);
+  };
 
-export function NuevaSolicitud(){
+  const handleShow = () => setShowModal(true);
 
-    const especialidades = [
-        {value: '1', label: 'Carpintería'},
-        {value: '2', label: 'Electricidad'},
-        {value: '3', label: 'Plomería'},
-        {value: '4', label: 'Pintura'},
-        {value: '5', label: 'Albañilería'},
-        {value: '6', label: 'Otros'},
-    ];
+  const handleSubmit = () => {
+    if (!titulo || !descripcion || !especialidad || !ubicacion || fotos.length === 0) {
+      if (!titulo) setErrorTitulo(true);
+      if (!descripcion) setErrorDescripcion(true);
+      if (!especialidad) setErrorEspecialidad(true);
+      return;
+    }
 
-    const handleChange = (event) => {
-        setEspecialidad(event.target.value);
-    };
+    console.log('Título:', titulo);
+    console.log('Descripción:', descripcion);
+    console.log('Especialidad:', especialidad);
+    console.log('Ubicación:', ubicacion);
+    console.log('Fotos:', fotos);
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    alert('Solicitud guardada con éxito.');
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    handleClose();
+  };
 
-    const [open, setOpen] = React.useState(false);
+  const handleFileChange = (e) => {
+    const selectedFiles = Array.from(e.target.files);
+    setFotos(selectedFiles);
+  };
 
-    const [esp, setEspecialidad] = useState('0');
+  return (
+    <div>
+      <Button variant="primary" onClick={handleShow} className="floating-button">
+        +
+      </Button>
 
-
-    const handleClose = () => {
-        
-        setOpen(false)
-    };
-    
-    const handleOpen = () =>{
-        setFormData({
-            titulo: '',
-            desc: '',
-            ubicacion: '',
-            fotos: '',
-        }); // Limpia los datos del formulario
-        setEspecialidad('0'); // Limpia el select
-        setOpen(true)
-    };
-
-    //formdata
-
-    const [formData, setFormData] = useState({
-        titulo: '',
-        desc: '',
-        especialidad: '',
-        ubicacion: '',
-        fotos: '',
-    });
-
-    const handleInputChange = (event) => {
-        const { name, value, type, files } = event.target;
-
-        // Maneja campos de entrada de texto y select
-        if (type === 'text' || type === 'select-one'){
-            setFormData({
-            ...formData,
-            [name]: value,
-            });
-        }
-      // Maneja campos de archivos (input[type="file"])
-        else if (type === 'file') {
-        setFormData({
-            ...formData,
-            [name]: files, // Almacena los archivos seleccionados
-        });
-        }
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        
-        // Aquí puedes acceder a los datos del formulario en formData
-        console.log(formData);
-        
-        // Realiza cualquier acción adicional, como enviar los datos al servidor
-        // ...
-    };
-    
-    return (
-        <div>
-            <Button className="floating-button" onMouseEnter={toggleMenu} onMouseLeave={toggleMenu} onClick={handleOpen}>+</Button>    
-            {isMenuOpen && (
-                <div className="menu">
-                    <div className="menu-option">Nueva Solicitud</div>
-                </div>
-            )}
-
-            <Modal
-                className='Backdrop'
-                aria-labelledby="transition-modal-title" 
-                aria-describedby="transition-modal-description"
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                slots={{ backdrop: Backdrop }}
-                slotProps={{
-                backdrop: {
-                    timeout: 700,
-                },
-                }}>
-                <Fade in={open}>
-                <Box className='modal'>
-                    <Typography id="transition-modal-title" variant="h6" component="h2">
-                    Nueva Solicitud
-                    </Typography>
-                    <form action="/upload" method="post" enctype="multipart/form-data" onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label>Titulo</label>
-                            <input type="text" id="titulo" name="titulo" value={formData.titulo} onChange={handleInputChange} />
-                        </div>
-                        <div className="form-group">
-                            <label>Descripción</label>
-                            <input type="text" id="desc" name="desc" value={formData.desc} onChange={handleInputChange} />
-                        </div>
-                        <div className="form-group">
-                            <label >Especialidad</label>
-                            <Select
-                            className='select-especialidad'
-                            id="select-especialidad"
-                            name='select-especialidad'
-                            value={esp}
-                            onChange={handleChange}
-                            label="Age">
-                                <MenuItem value='0'>
-                                    <em>Elija una opcion</em>
-                                </MenuItem>
-                                {especialidades.map((especialidad) => {
-                                    return <MenuItem value={especialidad.value}> {especialidad.label} </MenuItem>
-                                })}
-                            </Select>
-                        </div>
-                        <div className="form-group" >
-                            <label>Ubicación</label>
-                            <input type="text" id="ubicacion" name="ubicacion" value={formData.ubicacion} onChange={handleInputChange} />
-                        </div>
-                        <div className="form-group">
-                            <label>fotos</label>
-                            <input type="file" id="fotos" name="fotos" value={formData.fotos} onChange={handleInputChange} multiple/>
-                        </div>
-                        <div>
-                            <Button type="submit" className='buttonModal' onClick={handleClose}>Cancelar</Button>
-                            <Button type="reset" className='buttonModal' onClick={handleClose}>Solicitar</Button> { /* Falta la funcionalidad */}
-                        </div>
-                    </form>
-                </Box>
-                </Fade>
-            </Modal>
+      {showModal && (
+        <div className="modal-alert">
+          Nueva Solicitud
         </div>
-    );
-};
+      )}
+
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Nueva Solicitud</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="form-group">
+            <label>Título</label>
+            <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
+            {errorTitulo && <span className="error-message">Por favor, ingrese un título.</span>}
+          </div>
+          <div className="form-group">
+            <label>Descripción</label>
+            <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+            {errorDescripcion && <span className="error-message">Por favor, ingrese una descripción.</span>}
+          </div>
+          <div className="form-group">
+            <label>Especialidad</label>
+            <select value={especialidad} onChange={(e) => setEspecialidad(e.target.value)}>
+              <option value="">Elija una especialidad</option>
+              <option value="Carpintería">Carpintería</option>
+              <option value="Electricidad">Electricidad</option>
+              <option value="Plomería">Plomería</option>
+              {/* Agrega más opciones según tus necesidades */}
+            </select>
+            {errorEspecialidad && <span className="error-message">Por favor, seleccione una especialidad.</span>}
+          </div>
+          <div className="form-group">
+            <label>Ubicación</label>
+            <input type="text" value={ubicacion} onChange={(e) => setUbicacion(e.target.value)} />
+          </div>
+          <div className="form-group">
+            <label>Fotos</label>
+            <input type="file" multiple onChange={handleFileChange} />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" className='btn-cls' onClick={handleClose}>
+            Cerrar
+          </Button>
+          <Button variant="primary" className='btn-cls' onClick={handleSubmit}>
+            Enviar solicitud
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+}
 
 export default NuevaSolicitud;

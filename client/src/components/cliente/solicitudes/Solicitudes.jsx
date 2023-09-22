@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { NavLink } from "../../navlink/Navlink.jsx";
+import { NuevaSolicitud } from "../nuevaSolicitud/NuevaSolicitud.jsx";
 import Solicitud from "../solicitud/Solicitud.jsx";
 import "./solicitudes.css";
-import { NuevaSolicitud } from "../nuevaSolicitud/NuevaSolicitud.jsx";
-import { NavLink } from "../../navlink/Navlink.jsx";
 
 function Solicitudes(props) {
 
