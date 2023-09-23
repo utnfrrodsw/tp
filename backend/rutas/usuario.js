@@ -26,11 +26,11 @@ router.post('/:id/habilitado',usuarioController.cambiarHabilitado)
 
 router.get('/',usuarioController.findUsuarios)
 
+router.get('/buscar/:consulta?',usuarioController.findUsuariosFuzzilyByName)
+
+router.get('/cantidad/:consulta?',usuarioController.cantidadDeUsuarios);
+
 router.get('/:id',usuarioController.findUsuarioById)
-
-router.get('/buscar/:query?',usuarioController.findUsuariosFuzzilyByName)
-
-router.get('/cantidad/:query?',usuarioController.cantidadDeUsuarios);
 
 router.post('/ingresar',usuarioController.ingresar)
 

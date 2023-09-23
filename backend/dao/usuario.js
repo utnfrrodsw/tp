@@ -9,13 +9,14 @@ var usuarioDao = {
     findById: findById,
     deleteById: deleteById,
     updateUsuario: updateUsuario
-    ,findFuzzilyByName
+    ,buscarNoAmigosPorNombre: buscarNoAmigosPorNombre
     ,cambiarHabilitado
     ,findByUsername
     ,invitar
     ,eliminarInvitacion
     ,aceptarInvitacion
     ,eliminarAmigo
+    ,buscarPorNombre
     
     ,cantidadPorPagina:10
 }
@@ -181,33 +182,34 @@ async function quitarTokens(usuario,cantidad){
     // await usuario.removeTokensAsociadas(tokensAsociadas.splice(0,cantidad));
 }
 
-async function findFuzzilyByName(consulta,usuarioID,pagina=0){
-    return (await findAll({
-        // incluirAmigos:true,
-        where:{
-            [Sequelize.Op.and]:[
-                {
-                    nombreCompleto:{
-                        [Sequelize.Op.like]:`%${consulta}%`
-                    }
-                }
-                ,{
-                    ID:{
-                        [Sequelize.Op.not]:usuarioID
-                    }
-                }
-            ]
+async function buscarNoAmigosPorNombre(consulta,usuarioID,pagina=0){
+    return (await buscarPorNombre(consulta,usuarioID,pagina)).filter(usu=>{
+        // TODO hacer que .amigos ande
+        return !(usu.amigos?
+            usu.amigos
+            :[...usu.amigosInvitados,...usu.amigosAceptados]).some(ami=>ami.ID==usuarioID);
+    });
+}
+
+async function buscarPorNombre(consulta,usuarioID,pagina=0){
+    let where={
+        ID:{
+            [Sequelize.Op.not]:usuarioID
         }
+        ,habilitado:1
+    };
+    if(consulta?.trim())
+        where.nombreCompleto={
+            [Sequelize.Op.like]:`%${consulta}%`
+        };
+    return findAll({
+        // incluirAmigos:true,
+        where
         ,order:[
             ['nombreCompleto','ASC']
         ]
         ,limit:pagina?CANTIDAD_POR_PAGINA:null // TODO comprobar que esto funciona, si se tiene que poner undefined, o cómo hacerlo bien.
         ,offset:pagina*CANTIDAD_POR_PAGINA
-    })).filter(usu=>{
-        // TODO hacer que .amigos ande
-        return !(usu.amigos?
-            usu.amigos
-            :[...usu.amigosInvitados,...usu.amigosAceptados]).some(ami=>ami.ID==usuarioID);
     });
 }
 

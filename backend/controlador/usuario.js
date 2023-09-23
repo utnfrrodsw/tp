@@ -14,6 +14,7 @@ var usuarioController = {
     ,eliminarInvitacion
     ,aceptarInvitacion
     ,eliminarAmigo
+
     ,salir
 }
 
@@ -79,7 +80,7 @@ function findUsuarios(req, res) {
 }
 
 function findUsuariosFuzzilyByName(req, res) {
-    usuarioDao.findFuzzilyByName(req.params.query,req.session.usuarioID,req.query.pagina)
+    usuarioDao[req.query.incluirAmigos?'buscarPorNombre':'buscarNoAmigosPorNombre'](req.params.consulta,req.session.usuarioID,req.query.pagina)
         .then((data) => {
             res.send(data);
         })
@@ -90,7 +91,7 @@ function findUsuariosFuzzilyByName(req, res) {
 
 function cantidadDeUsuarios(req, res) {
     // ! El segundo parámetro es la persona a OMITIR; o sea, el usuario actual.
-    usuarioDao.findFuzzilyByName(req.params.query,req.session.usuarioID)
+    usuarioDao.buscarPorNombre(req.params.consulta,req.session.usuarioID)
         .then((data) => {
             res.send(Math.ceil(data.length/usuarioDao.cantidadPorPagina).toString());
         })

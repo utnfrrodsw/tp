@@ -68,7 +68,7 @@ export class UsuarioService {
   }
 
   getUsuariosPagina(filtro:string,n:number){
-    return this.clienteHTTP.get(this.URL+`buscar/${filtro}`+'?pagina='+n,{withCredentials: true});
+    return this.clienteHTTP.get(this.URL+`buscar/${filtro}`+'?pagina='+n+'&incluirAmigos=1',{withCredentials: true});
   }
 }
 
