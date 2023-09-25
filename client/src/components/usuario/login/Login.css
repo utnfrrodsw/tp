@@ -1,15 +1,10 @@
 
 .fondoLogin {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  overflow: hidden; /* Evita el scroll en el body */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
-  margin-bottom: -1rem;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  
 }
 
 .wrapper {
@@ -21,7 +16,7 @@
   border-radius: 10px;
   padding: 1.5rem;  
   text-align: center;
-  margin-bottom: 2rem;
+  margin-top: 4rem;
 }
 
 .wrapper h1 {
@@ -87,13 +82,13 @@
   border: none;
   outline: none;
   border-radius: 2.5rem; 
-  
   cursor: pointer;
   font-size: 1rem;
   color: #333;
   font-weight: 600;
   margin-top: 1rem;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+   
 }
 
 .wrapper .btn:hover {

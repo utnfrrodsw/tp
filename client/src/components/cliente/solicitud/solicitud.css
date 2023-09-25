@@ -1,58 +1,58 @@
 .solicitud-card {
-    width: 30%;
-    height: 15vh;
-    padding: 5px;
-    background-color: #213555;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 5px;
-    transition: all 0.2s; /* Transición al pasar el cursor */
-    cursor: pointer;
-    border:1px solid #ffffff;
-    padding: 3rem;
-  }
-  
-  
+  width: 60%;
+  height: 15vh;
+  padding: 5px;
+  background-color: #213555;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  transition: all 0.2s; /* Transición al pasar el cursor */
+  cursor: pointer;
+  border:1px solid #ffffff;
+  padding: 3.7rem;
+}
 
-  .ver-mas{
-    margin-bottom: 1.8rem;
-    color: #000000;
-   cursor: pointer;
-    border-radius: 1rem;
-    border: solid 1px #000000;
-    background-color: #dee0f1d8;
-  }
 
-  .ver-mas:hover{
-    border-radius: 1rem;
-    border: solid 1px #000000;
-    background-color:#213555 ;
-  }
-  
-  .solicitud-card:hover {
-   
-    background-color: #4F709C;
-    border-radius: 10px;
-   
-  }
-  
-  .solicitud-card .nombre {
-    font-size: 3vh;
-    margin-bottom: 5px;
-    color: #ffffff;
-  }
-  
-  .estado {
-    font-size: 2vh;
-    color: #dee0f1d8;
-    margin-bottom: 5px;
-  }
-  
-  .precio {
-    font-size: 2vh;
-    color: #dee0f1d8;
-  }
-  
+
+.ver-mas{
+  color: #000000;
+  cursor: pointer;
+  border-radius: 1rem;
+  border: solid 1px #000000;
+  background-color: #dee0f1d8;
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+.ver-mas:hover{
+  border-radius: 1rem;
+  border: solid 1px #000000;
+  background-color:#213555 ;
+}
+
+.solicitud-card:hover {
+  width: 62%;
+  background-color: #4F709C;
+  border-radius: 10px;
+ 
+}
+
+.solicitud-card .nombre {
+  font-size: 3vh;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+.estado {
+  font-size: 2vh;
+  color: #dee0f1d8;
+  margin-bottom: 5px;
+}
+
+.precio {
+  font-size: 2vh;
+  color: #dee0f1d8;
+}
