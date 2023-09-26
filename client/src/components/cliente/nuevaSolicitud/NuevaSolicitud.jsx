@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import './NuevaSolicitud.css';
+import '../Inicio/InicioCliente.css';
 
 export function NuevaSolicitud() {
   const [showModal, setShowModal] = useState(false);
@@ -54,10 +54,11 @@ export function NuevaSolicitud() {
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow} className="floating-button">
+      <div >
+      <Button  variant='primary' className="floating-button"  onClick={handleShow}>
         +
       </Button>
-
+    </div>
       {showModal && (
         <div className="modal-alert">
           Nueva Solicitud
@@ -100,10 +101,12 @@ export function NuevaSolicitud() {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" className='btn-cls' onClick={handleClose}>
+          <div className='btn-cls'>
+          <Button variant="secondary"  onClick={handleClose}>
             Cerrar
           </Button>
-          <Button variant="primary" className='btn-cls' onClick={handleSubmit}>
+          </div>
+          <Button variant="primary"  onClick={handleSubmit}>
             Enviar solicitud
           </Button>
         </Modal.Footer>
