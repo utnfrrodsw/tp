@@ -8,8 +8,8 @@
 * 50174 - Mercé, Alexis
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app: Angular ]([(https://github.com/FelipeRoca/TP_DSW_FrontEnd))]
+* [backend app: Nodejs ](http://hyperlinkToGihubOrGitlab)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
