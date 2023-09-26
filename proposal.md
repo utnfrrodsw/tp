@@ -6,7 +6,6 @@
 * 49609 - Sebben, Mateo
 * 49850 - Roca, Ramiro Felipe
 * 50174 - Mercé, Alexis
-* 49621 - Renzi, Álvaro 
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -14,10 +13,11 @@
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
-App de Salud y Fitness 
+App de Reseñas Turísticas
 ### Descripción
 *2 a 6 líneas describiendo el negocio (menos es más)*
-Aplicacion que permite, en base a datos ingresados por el usuario, establecer estado actual y proporcionar una dieta y rutina de entrenamiento acorde a los objetivos del usuario. Registrando los datos del cliente y planes generados. Mostrar progreso del usuario a partir de su registro.
+
+Crearemos una red social en línea donde los usuarios podrán compartir sus experiencias de viaje, subir fotos, calificar la experiencia y comentar acerca de sus vacaciones. Existira un sistema de autenticación para que los usuarios puedan crear cuentas y acceder a su perfil.
 
 ### Modelo
 ![imagen del modelo]()
