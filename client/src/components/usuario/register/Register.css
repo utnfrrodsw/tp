@@ -100,35 +100,36 @@
 }
 
 /* Estilo para los mensajes de error */
+/* Estilo para los mensajes de error */
 .error-message {
-  position: absolute;
   background: #ff0000;
   color: #fff;
   border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
-  top: 100%; 
-  left: 0;
-  width: 100%;  
-  transform: translateY(5px);  
-  z-index: 1;  
-  display: block; 
-  margin-right: 3rem;
+  display: block;
+  margin-top: 0.25rem; /* Ajusta el espacio entre el campo y el mensaje de error */
 }
 
-.success-message {
+
+/* Estilos para el contenedor del mensaje de éxito */
+.success-message-container {
   position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  transform: translateY(5px);
+  z-index: 1;
+}
+
+/* Estilos para el mensaje de éxito dentro del contenedor */
+.success-message {
   display: block;
   background: #50fc00;
   color: #fff;
   border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
-  top: 100%;
-  left: 0;
-  width: 96%;
-  transform: translateY(5px);
-  z-index: 1;
 }
 
 .register-container .btn {
