@@ -1,4 +1,4 @@
- //ESTE ES EL ARCHIVO QUE ARRANCA TODO, HACE ESCUCHAR AL SERVIDOR EN EL PUERTO PORT
+ //ARCHIVO PRINCIPAL QUE INICIA EL SERVIDOR EXPRESS en un determinado PORT
 
 import app from './app.js';
 import { PORT } from './config.js';

@@ -1,8 +1,8 @@
-//APP TIENE TODAS LAS CONFIGURACIONES DE EXPRESS, LLAMA A LAS RUTAS
+//CONFIGURACIONES DE EXPRESS: llama a las rutas,  configuras la instancia de Express y aplicas middleware
 
 import express from 'express';
+import usuariosRoutes from '../src/routes/usuarios/usuariosRoutes.js';
 import './config.js';
-import usuariosRoutes from './routes/usuariosRouter.js';
 
 const app = express()
 
