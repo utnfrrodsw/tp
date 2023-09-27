@@ -17,7 +17,7 @@ App de Reseñas Turísticas
 ### Descripción
 *2 a 6 líneas describiendo el negocio (menos es más)*
 
-Crearemos una red social en línea donde los usuarios podrán compartir sus experiencias de viaje, subir fotos, calificar la experiencia y comentar acerca de sus vacaciones. Existira un sistema de autenticación para que los usuarios puedan crear cuentas y acceder a su perfil.
+Crearemos una red social en línea donde los usuarios podrán compartir sus experiencias de viaje, subir fotos, calificar la experiencia y comentar acerca de sus vacaciones. Existira un sistema de autenticación para que los usuarios puedan crear cuentas y acceder a su perfil. Estos usuarios pueden registrarse, editarse y eliminarse. Una vez que acceden con su email y contraseña, pueden redactar, editar y eliminar sus reseñas.
 
 ### Modelo
 ![imagen del modelo]()
