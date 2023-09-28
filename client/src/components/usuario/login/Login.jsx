@@ -23,7 +23,7 @@ const Login = () => {
       if (response.status === 200) {
         const data = await response.json();
         const userType = data.userType;
-        
+
         if (userType === 'cliente') {
           navigate('/client/home');
         } else if (userType === 'prestador') {
@@ -35,9 +35,11 @@ const Login = () => {
         const data = await response.json();
         setError(data.message);
       } else {
+        // Cambiar el mensaje de error en caso de un error interno del servidor
         setError('Error en el inicio de sesión. Inténtalo de nuevo más tarde.');
       }
     } catch (error) {
+      // Cambiar el mensaje de error en caso de un error interno del servidor
       setError('Error en el inicio de sesión. Inténtalo de nuevo más tarde.');
       console.error('Error en el inicio de sesión:', error);
     }
@@ -51,7 +53,7 @@ const Login = () => {
           {error && <div className="error-message">{error}</div>} {/* Renderiza el mensaje de error si existe */}
           <div className="input-box">
             <input
-              type="text"
+              type="email" // Cambiado de "text" a "email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -66,6 +68,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              minLength="6" // Agregar una longitud mínima para la contraseña
             />
             <i className='bx bxs-lock-alt'></i>
           </div>
