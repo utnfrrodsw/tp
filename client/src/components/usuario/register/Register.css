@@ -1,10 +1,13 @@
 
 
-.fondoRegister {
-  overflow: hidden; /* Evita el scroll en el body */
+.fondoRegister {  
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
+  overflow: auto; /* Agrega una barra de desplazamiento cuando sea necesario */
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
 }
 
 .register-container {
@@ -15,14 +18,14 @@
   border-radius: 1rem;
   padding: 1rem;
   text-align: center;
-  margin-top: 2.5rem;
+  margin: 1rem 0 1rem 0;
   position: relative;
 }
 
 
 .register-container h2 {
-  font-size: 1.875rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .name-inputs {
@@ -108,7 +111,7 @@
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
   display: block;
-  margin-top: 0.25rem; /* Ajusta el espacio entre el campo y el mensaje de error */
+  margin: 0.2rem; /* Ajusta el espacio entre el campo y el mensaje de error */
 }
 
 
@@ -134,7 +137,7 @@
 
 .register-container .btn {
   width: 100%;
-  height: 2.8125rem;
+  height: 2.5rem;
   background: #fff;
   border: none;
   outline: none;
@@ -144,7 +147,7 @@
   font-size: 1rem;
   color: #333;
   font-weight: 600;
-  margin-top: 1rem;
+  margin: 0;
 }
 
 .register-container .btn:hover {
@@ -155,7 +158,7 @@
 .register-container p {
   font-size: 0.9rem;
   text-align: center;
-  margin-top: 1rem;
+  margin: 1rem 0 0 0;
 }
 
 .register-container p a {

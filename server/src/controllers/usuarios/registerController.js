@@ -15,6 +15,9 @@ export const registrarUsuario = async (req, res) => {
   } = req.body;
 
   try {
+     // El middleware de validación de campos se encargará de validar los campos
+    // Sin necesidad de realizar esas validaciones aquí.
+
     // Verificar si el usuario ya existe en la base de datos (según el email)
     const [existingUser] = await pool.execute('SELECT * FROM USUARIO WHERE email = ?', [email]);
 
