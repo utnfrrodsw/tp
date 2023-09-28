@@ -38,4 +38,3 @@ export const registrarUsuario = async (req, res) => {
     res.status(500).json({ message: 'Error en el registro' }); // Respuesta de error
   }
 };
-
