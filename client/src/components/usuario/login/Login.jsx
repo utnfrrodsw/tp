@@ -1,15 +1,48 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState(''); 
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null); // Estado para mensajes de error
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para manejar el inicio de sesión
-    console.log('Iniciar sesión con:', email, password);
+
+    try {
+      const response = await fetch('/api/usuarios/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.status === 200) {
+        const data = await response.json();
+        const userType = data.userType;
+
+        if (userType === 'cliente') {
+          navigate('/client/home');
+        } else if (userType === 'prestador') {
+          navigate('/provider/home');
+        } else {
+          alert('Tipo de usuario desconocido');
+        }
+      } else if (response.status === 401) {
+        const data = await response.json();
+        setError(data.message);
+      } else {
+        // Cambiar el mensaje de error en caso de un error interno del servidor
+        setError('Error en el inicio de sesión. Inténtalo de nuevo más tarde.');
+      }
+    } catch (error) {
+      // Cambiar el mensaje de error en caso de un error interno del servidor
+      setError('Error en el inicio de sesión. Inténtalo de nuevo más tarde.');
+      console.error('Error en el inicio de sesión:', error);
+    }
   };
 
   return (
@@ -17,10 +50,11 @@ const Login = () => {
       <div className="wrapper">
         <form onSubmit={handleLogin}>
           <h1>Login</h1>
+          {error && <div className="error-message">{error}</div>} {/* Renderiza el mensaje de error si existe */}
           <div className="input-box">
             <input
-              type="text"
-              placeholder="Username"
+              type="email" // Cambiado de "text" a "email"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -34,16 +68,17 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              minLength="6" // Agregar una longitud mínima para la contraseña
             />
             <i className='bx bxs-lock-alt'></i>
           </div>
           <div className="remember-forget">
             <label><input type="checkbox" /> Recuérdame</label>
-            <Link to="/recuperarClave">Recuperar Contraseña</Link> {/* Usar Link para rutas de React Router */}
+            <Link to="/recuperarClave">Recuperar Contraseña</Link>
           </div>
           <button type="submit" className="btn">Login</button>
           <div className="register-link">
-            <p>No tienes cuenta? <Link to="/register">Regístrate</Link></p> {/* Usar Link para rutas de React Router */}
+            <p>No tienes cuenta? <Link to="/register">Regístrate</Link></p>
           </div>
         </form>
       </div>
