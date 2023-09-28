@@ -1,6 +1,7 @@
-import bcrypt from 'bcrypt'; // Importa la biblioteca bcrypt para comparar contraseñas
-import jwt from 'jsonwebtoken'; // Importa la biblioteca jsonwebtoken para crear tokens de autenticación
-import { pool } from '../../db.js'; // Importa la instancia de la base de datos (pool)
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { TOKEN } from '../../config.js';
+import { pool } from '../../db.js';
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -23,8 +24,8 @@ export const login = async (req, res) => {
     }
 
     // Si el usuario y la contraseña son correctos, puedes generar un token de autenticación.
-    const token = jwt.sign({ userId: user.id, email: user.email }, 'tu_secreto_secreto', {
-      expiresIn: '1h', // Puedes ajustar la duración del token según tus necesidades
+    const token = jwt.sign({ userId: user.id, email: user.email }, TOKEN, {
+      expiresIn: '1h',
     });
 
     res.status(200).json({ message: 'Inicio de sesión exitoso', token: token, userType: user.tipo });

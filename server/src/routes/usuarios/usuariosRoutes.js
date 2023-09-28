@@ -4,6 +4,9 @@ import { Router } from "express";
 import { login } from "../../controllers/usuarios/loginController.js";
 import { registrarUsuario } from "../../controllers/usuarios/registerController.js";
 import { getUsuario, getUsuarios } from "../../controllers/usuarios/usuariosControllers.js";
+import { authenticateUser } from "../../middlewares/usuarios/authenticateUser.js";
+import { errorHandler } from "../../middlewares/usuarios/errorHandler.js";
+import { validateLoginData } from "../../middlewares/usuarios/validateLoginData.js";
 
 const router = Router ()
  
@@ -16,7 +19,7 @@ router.get('/usuarios/listaUsuarios/:email', getUsuario)
 router.post('/usuarios/registro', registrarUsuario);
 
 //RUTA LOGIN USUARIOS
-router.post('/usuarios/login', login)
+router.post('/usuarios/login', validateLoginData, login, authenticateUser,  errorHandler)
 
 //GET obtener usuarios
 //POST crear usuarios

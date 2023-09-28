@@ -3,6 +3,7 @@
 import express from 'express';
 import usuariosRoutes from '../src/routes/usuarios/usuariosRoutes.js';
 import './config.js';
+ 
 
 const app = express()
 
@@ -15,5 +16,7 @@ app.use((req,res,next) =>{
         message: 'endpoint not fount'
     })
 })
+
+ 
 
 export default app
