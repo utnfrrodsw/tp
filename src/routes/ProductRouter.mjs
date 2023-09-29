@@ -8,7 +8,7 @@ import {
 const router = express.Router();
 
 router.post('/create-product', verifyTokenSeller, createProduct);
-router.get('/products', verifyTokenUser, getAll);
+router.get('/products',  getAll);
 router.get('/productsbyshop/:tiendaId', verifyTokenSeller, getAllByShop);
 router.get('/productos', verifyTokenUser, paginated);
 
