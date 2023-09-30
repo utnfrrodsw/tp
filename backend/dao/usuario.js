@@ -66,6 +66,11 @@ async function findAll({
     ,incluirTokensAsociadas=false
     // ,incluirAmigos=false
     ,where=null
+
+    // TODO Esto es horrible, encontrar una solución genérica para las propiedades extra necesarias.
+    ,order=null
+    ,limit=null
+    ,offset=null
 }={}) {
     let attributes =[
         'ID'
@@ -88,6 +93,10 @@ async function findAll({
     if(where){
         findOptions.where=where;
     }
+    if(order)
+        findOptions.order=order;
+    if(limit)
+        findOptions.limit=limit;
 
     // ? findOptions está de más?
     findOptions.attributes = attributes;
@@ -202,6 +211,8 @@ async function buscarPorNombre(consulta,usuarioID,pagina=0){
         where.nombreCompleto={
             [Sequelize.Op.like]:`%${consulta}%`
         };
+
+    // ! Es un método de esta clase, no el auténtico findAll.
     return findAll({
         // incluirAmigos:true,
         where
@@ -209,7 +220,7 @@ async function buscarPorNombre(consulta,usuarioID,pagina=0){
             ['nombreCompleto','ASC']
         ]
         ,limit:pagina?CANTIDAD_POR_PAGINA:null // TODO comprobar que esto funciona, si se tiene que poner undefined, o cómo hacerlo bien.
-        ,offset:pagina*CANTIDAD_POR_PAGINA
+        ,offset:pagina?((pagina-1)*CANTIDAD_POR_PAGINA):null
     });
 }
 

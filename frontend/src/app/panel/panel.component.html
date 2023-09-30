@@ -196,6 +196,7 @@
 						<th *ngFor="let permiso of usuarioActual.permisos">{{permiso.descripcion}}</th>
 					</tr>
 				</thead>
+				
 				<tbody>
 					<tr *ngFor="let usu of usuariosPaginaActual">
 						<td>{{usu.nombreCompleto}}</td>
@@ -212,6 +213,7 @@
 					</tr>
 					<!-- TODO mensaje si no hay -->
 				</tbody>
+
 				<tfoot>
 					<th colSpan="{{(usuarioActual.permisos?.length||0)+2}}">
 						<form (onclick)="navegar($event)">

@@ -50,6 +50,7 @@ export class PanelComponent implements OnInit {
   cantidadPaginas:number=0;
   paginaActual:number=1;
   filtroDePaginacion:string='';
+  IDPeticion:number=0;
 
   constructor(
     private usuarioActualService:UsuarioActualService,
@@ -306,14 +307,21 @@ export class PanelComponent implements OnInit {
   actualizarPermisos(e:Event) {
   }
 
+  nuevaIDPeticion():Number{
+    return ++this.IDPeticion;
+  }
+
   actualizarFiltroTablaAdministracion(e:Event) {
     this.filtroDePaginacion=(e.target as HTMLInputElement).value.trim();
+    let nuevaID:Number=this.nuevaIDPeticion();
     // TODO hacer alguna reacción o DRY con el primero.
     this.usuariosService.getCantidadDePaginas(this.filtroDePaginacion)
       .subscribe((cantidadDePaginas: any)=>{
-          this.cantidadPaginas=cantidadDePaginas;
+          if(this.IDPeticion==nuevaID) {
+            this.cantidadPaginas=cantidadDePaginas;
+          }
         });
-    this.actualizarTablaAdministracion();
+    this.actualizarTablaAdministracion(nuevaID);
   }
 
   navegar(e:Event){
@@ -326,11 +334,16 @@ export class PanelComponent implements OnInit {
     return false;
   }
 
-  actualizarTablaAdministracion(){
+  actualizarTablaAdministracion(nuevaID:Number|null=null){
+    if(!nuevaID){
+      nuevaID=this.nuevaIDPeticion();
+    }
     // TODO deshabilitar formulario de navegacion y mostrar que se está actualizando
     this.usuariosService.getUsuariosPagina(this.filtroDePaginacion,this.paginaActual)
       .subscribe((data:any) =>{
-        this.usuariosPaginaActual=data;
+        if(this.IDPeticion==nuevaID) {
+          this.usuariosPaginaActual=data;
+        }
       });
   }
 }
