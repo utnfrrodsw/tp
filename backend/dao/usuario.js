@@ -68,6 +68,7 @@ async function findAll({
     ,where=null
 
     // TODO Esto es horrible, encontrar una solución genérica para las propiedades extra necesarias.
+    // * Veces que necesité darle atención a esta parte: II
     ,order=null
     ,limit=null
     ,offset=null
@@ -97,6 +98,8 @@ async function findAll({
         findOptions.order=order;
     if(limit)
         findOptions.limit=limit;
+    if(offset)
+        findOptions.offset=offset;
 
     // ? findOptions está de más?
     findOptions.attributes = attributes;

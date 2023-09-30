@@ -216,11 +216,11 @@
 
 				<tfoot>
 					<th colSpan="{{(usuarioActual.permisos?.length||0)+2}}">
-						<form (onclick)="navegar($event)">
+						<div (click)="navegar($event)">
 							<button class="secondary" [disabled]="paginaActual===1" value="-1" name="navegacion">Anterior</button>
 							<span>{{paginaActual}} / {{cantidadPaginas}}</span>
 							<button class="secondary" [disabled]="paginaActual>=cantidadPaginas" value="1" name="navegacion">Siguiente</button>
-						</form>
+						</div>
 					</th>
 					<!-- TODO Now controles -->
 				</tfoot>

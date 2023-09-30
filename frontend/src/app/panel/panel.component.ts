@@ -330,8 +330,6 @@ export class PanelComponent implements OnInit {
     // TODO Now: ver si tenemos el array de permisos, la id de la persona (hidden); mandarla y EDITARLA; also, disable stuff.
     this.paginaActual+= +(e.target as HTMLInputElement).value;
     this.actualizarTablaAdministracion();
-
-    return false;
   }
 
   actualizarTablaAdministracion(nuevaID:Number|null=null){
