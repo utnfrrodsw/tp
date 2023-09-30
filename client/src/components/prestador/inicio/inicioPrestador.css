@@ -1,0 +1,7 @@
+.incioPrestador {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
+}

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p className="copyright">© 2023 Tu Empresa. Todos los derechos reservados.</p>
+        <p className="copyright">© 2023 FastServices. Todos los derechos reservados.</p>
         <div className="social-icons">
           {/* Agrega aquí tus iconos de redes sociales */}
         </div>
