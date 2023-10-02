@@ -7,11 +7,10 @@ import Error from './components/error/Error.jsx';
 import Footer from './components/footer/Footer.jsx';
 import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
-import DetallesEvaluacion from './components/prestador/evaluaciones/DetallesEvaluacion';
 import Evaluaciones from './components/prestador/evaluaciones/Evaluaciones';
 import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
 import Presupuesto from './components/prestador/presupuesto/Presupuesto.jsx';
-import DatosPersonales from './components/usuario/datosPersonales/DatosPersonales.jsx';
+import DatosUser from './components/usuario/datosPersonales/datosUser.jsx';
 import Login from './components/usuario/login/Login.jsx';
 import RecuperarClave from './components/usuario/login/RecuperarClave';
 import Register from './components/usuario/register/Register.jsx';
@@ -31,8 +30,7 @@ function App() {
           <Route path='/'  element={ <Home/>} />
           <Route path='/recuperarClave' element={<RecuperarClave/>} />
           <Route path='/evaluations' element={<Evaluaciones />} />
-          <Route path='/evaluations/:id' element={<DetallesEvaluacion />} />  
-          <Route path='/user' element={<DatosPersonales />} />
+          <Route path='/user' element={<DatosUser />} />
           <Route path='/provider/home'  element={ <InicioPrestador/>}/>
           <Route path='/provider/budget/:id' element={<Presupuesto/>}/>
           <Route path='/client/home'  element={ <InicioCliente/>}/>

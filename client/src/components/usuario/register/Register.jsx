@@ -18,7 +18,7 @@ const Register = () => {
   const [isProvider, setIsProvider] = useState(false);
   const [formErrors, setFormErrors] = useState({});
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  const [emailExists, setEmailExists] = useState(false); // Nuevo estado para controlar si el correo ya existe
+  const [emailExists, setEmailExists] = useState(false);
 
   const validateForm = () => {
     const errors = {};
@@ -27,10 +27,13 @@ const Register = () => {
       errors.password = 'La contraseña es obligatoria';
     } else if (password.length < 6) {
       errors.password = 'La contraseña debe tener al menos 6 caracteres';
+    } else if (password !== confirmPassword) {
+      errors.confirmPassword = 'Las contraseñas no coinciden';
     }
 
-    if (password !== confirmPassword) {
-      errors.confirmPassword = 'Las contraseñas no coinciden';
+    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    if (!emailRegex.test(email)) {
+      errors.email = 'El correo electrónico proporcionado no es válido';
     }
 
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
@@ -44,7 +47,6 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    // Restablece los estados de errores
     setFormErrors({});
     setEmailExists(false);
 
@@ -54,7 +56,7 @@ const Register = () => {
       try {
         const formattedBirthdate = new Date(birthdate).toISOString().slice(0, 10);
 
-        const postResponse = await axios.post('/api/usuarios/registro', {
+        const response = await axios.post('/api/usuarios/registro', {
           name,
           lastName,
           email,
@@ -66,17 +68,21 @@ const Register = () => {
           tipo: isProvider ? 'prestador' : 'cliente',
         });
 
-        if (postResponse.status === 201) {
+        if (response.status === 201) {
           setRegistrationSuccess(true);
           setTimeout(() => {
             navigate('/login');
           }, 5000);
         }
       } catch (error) {
-        if (error.response.status === 400 && error.response.data.message === 'El usuario ya existe') {
-          setEmailExists(true); // Establece el estado para mostrar el mensaje
+        if (error.response) {
+          if (error.response.status === 400 && error.response.data.message === 'El usuario ya existe') {
+            setEmailExists(true);
+          } else {
+            console.error('Error en el registro:', error.response.data.message);
+          }
         } else {
-          console.error('Error en el registro:', error);
+          console.error('Error en el registro:', error.message);
         }
       }
     } else {
@@ -84,6 +90,7 @@ const Register = () => {
       setRegistrationSuccess(false);
     }
   };
+
 
   return (
     <section className='fondoRegister'>
@@ -119,9 +126,12 @@ const Register = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            {formErrors.email && (
+              <span className="error-message">{formErrors.email}</span>
+            )}
             {emailExists && (
-          <span className="error-message">El correo electrónico ya está en uso</span>
-        )}
+              <span className="error-message">El correo electrónico ya está en uso</span>
+            )}
              
           </div>
           <div className="input-box">
@@ -129,6 +139,7 @@ const Register = () => {
               type="password"
               placeholder="Contraseña"
               required
+              minLength="6" // Agregar una longitud mínima para la contraseña
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -153,6 +164,7 @@ const Register = () => {
               type="text"
               placeholder="Número de Teléfono"
               required
+              minLength="9" // Agregar una longitud mínima para el nro de telefono
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />

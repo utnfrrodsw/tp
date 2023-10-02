@@ -8,8 +8,26 @@ const Login = () => {
   const [error, setError] = useState(null); // Estado para mensajes de error
   const navigate = useNavigate();
 
+  const validateForm = () => {
+    const errors = {};
+
+    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    if (!emailRegex.test(email)) {
+      errors.email = 'El correo electrónico proporcionado no es válido';
+    }
+
+    return errors;
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    const errors = validateForm();
+
+    if (Object.keys(errors).length > 0) {
+      setError(errors.email);
+      return; // No envíes la solicitud si hay errores de validación
+    }
 
     try {
       const response = await fetch('/api/usuarios/login', {
