@@ -5,7 +5,7 @@ import Solicitud from "../solicitud/Solicitud.jsx";
 import "./solicitudes.css";
 
 function Solicitudes(props) {
-const text= 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt ipsum numquam consequuntur temporibus nobis adipisci voluptate delectus, velit, saepe, omnis est incidunt ullam iusto facilis totam minima atque dolorem sunt?'
+
     const solicitudes = [
         { nombre: 'Electricista', estado: 'pendiente',descripcion:'Atencion de lunes a viernes de 9hs a 18hs', precio: '$ 1900' },
         { nombre: 'Plomero', estado: 'presupuestado', descripcion:'Atencion de martes a sabado de 08hs a 21hs', precio: '$200' },
@@ -36,15 +36,15 @@ const text= 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt 
     return (
         <div className="solicitudes-container">
 
-            <nav className="navigation">
-                <ul>
-                    <li>
+            <nav className="navigation" >
+                <ul className="ul-navegation-cli">
+                    <li className="li-navegation-cli">
                         <NavLink to="/client/home/requests" className="link">Solicitudes</NavLink>
                     </li>
-                    <li>
+                    <li className="li-navegation-cli" >
                         <NavLink to="/client/home/progress" className="link">En Progreso</NavLink>
                     </li>
-                    <li>
+                    <li className="li-navegation-cli">
                         <NavLink to="/client/home/finished" className="link">Terminados</NavLink>
                     </li>    
                 </ul>

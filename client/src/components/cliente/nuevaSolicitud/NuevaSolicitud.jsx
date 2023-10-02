@@ -61,7 +61,7 @@ export function NuevaSolicitud() {
   return (
     <div>
       <div >
-      <Button  variant='primary' className="floating-button"  onClick={handleShow} onMouseEnter={toggleMenu} onMouseLeave={toggleMenu}>
+      <Button  variant='primary' className="floating-button"  onClick={handleShow} onMouseEnter={toggleMenu} >
         +
       </Button>
     </div>
