@@ -1,4 +1,12 @@
-.solicitudes-container .pagination {
+.solicitudes-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
+  }
+  
+  .solicitudes-container .pagination {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -28,5 +36,5 @@ nav ul {
 }
 
 ul li {
-    margin: 10px;
+   margin: 10px;
 }

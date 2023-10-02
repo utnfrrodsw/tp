@@ -1,6 +1,6 @@
 /* Estilos para el encabezado */
 .header-content {
-    height: 50px;
+    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -8,26 +8,16 @@
     padding: 10px 20px;
     color: white;
 }
-.logo{
-    width: 180px;
-    margin-top: 5px
-}  
-  /* Estilos para el logo */
+
+/* Estilos para el logo */
 .logo-content {
     font-size: 15px;
+    margin-bottom: 0.5rem;
 }
 
 .logo-content a {
     text-decoration: none;
     color: white;
-}
-
-.userlogo {
-    width: 30px;
-} 
-
-.notifylogo {
-    width: 30px;
 }
 
 /* Estilos para el título */
@@ -39,39 +29,62 @@
 
 /* Estilos para los enlaces en el encabezado */
 .header-links {
-display: flex;
-align-items: center;
-}
-
-.links a {
-text-decoration: none;
-color: white;
-margin-right: 20px;
-font-weight: bold;
-}
-
-@media (max-width: 768px) {
-
-.header-content {
-    flex-direction: column;
-    text-align: center;
-}
-
-.header-links {
-    margin-top: 20px;
-}
-
-.links {
-    flex-direction: column;
+    display: flex;
     align-items: center;
 }
 
 .links a {
-    margin: 10px 0;
-    padding: 10px;
-}
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+    font-weight: bold;
 }
 
+/* Estilos para los íconos de notificaciones y usuario */
+.notifylogo, .userlogo {
+    width: 30px;
+}
 
-  
-  
+@media (max-width: 768px) {
+    .header-content {
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #2a4063; /* Azul claro */
+        padding: 10px 20px;
+        color: white;
+    }
+    
+    /* Estilos para el logo */
+    .logo-content {
+        font-size: 15px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .logo-content a {
+        text-decoration: none;
+        color: white;
+    }
+    
+    /* Estilos para el título */
+    .title {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    /* Estilos para los enlaces en el encabezado */
+    .header-links {
+        display: flex;
+         
+
+    }
+    
+    .links a {
+        text-decoration: none;
+        color: white;
+        margin-right: 20px;
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,81 @@
+/* datosUser.css */
+.datosPersonales {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
+  }
+  
+  .user-details,
+  .security-details {
+    margin: 1rem;
+    background-color: #4F709C;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardDatosPer {
+    background-color: #2135554d;
+    border-radius: 8px;
+    margin: 1rem;
+  }
+  
+  .cardSegurity {
+    background-color: #2135554d;
+    border-radius: 8px;
+    margin: 1rem;
+  }
+  
+  .user-details h2,
+  .security-details h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: white; /* Cambia el color del texto según tus preferencias */
+  }
+  
+  .user-details label,
+  .security-details label {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: white; /* Cambia el color del texto según tus preferencias */
+  }
+  
+  .user-details input,
+  .security-details input {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: #333;
+    padding: 10px;
+    margin: 5px 0;
+  }
+  
+  .user-details input[disabled],
+  .security-details input[disabled] {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    color: #777; /* Cambia el color del texto según tus preferencias */
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    margin: 1rem;
+    background-color: #325080;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .h2 {
+    color: white;
+  }
+  

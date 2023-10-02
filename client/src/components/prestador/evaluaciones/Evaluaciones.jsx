@@ -1,6 +1,5 @@
-import React from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Card, Col, Modal, Row } from 'react-bootstrap';
 import './Evaluaciones.css';
 
 const Evaluaciones = () => {
@@ -50,22 +49,51 @@ const Evaluaciones = () => {
     return estrellas;
   };
 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedEvaluacion, setSelectedEvaluacion] = useState(null);
+
+  const openModal = (evaluacion) => {
+    setSelectedEvaluacion(evaluacion);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <section className='fondoEvaluation'>
       <Row>
         {evaluacionesData.map(evaluacion => (
           <Col key={evaluacion.id} md={4}>
-            <Card className="evaluacion-card">
+             <div className="evaluacion-card">
               <Card.Body>
-                <Card.Title className="evaluacion-titulo">{evaluacion.titulo}</Card.Title>
-                 
+                <Card.Title > <div className="evaluacion-titulo">{evaluacion.titulo}</div></Card.Title>
                 <div className="evaluacion-puntaje">{generarEstrellas(evaluacion.puntaje)}</div>
-                <Link to={`/evaluations/${evaluacion.id}`} className="evaluacion-button">Ver Detalles</Link>
-              </Card.Body>
-            </Card>
+                <button onClick={() => openModal(evaluacion)} className="evaluacion-button">Ver Detalles</button>
+              </Card.Body> 
+              </div>
+            
+           
           </Col>
         ))}
       </Row>
+
+      {/* Ventana modal */}
+      <Modal show={showModal} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Detalles de la Evaluación</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedEvaluacion && (
+            <div>
+              <h4 className='title'>{selectedEvaluacion.titulo}</h4>
+              <p className='desc'>{selectedEvaluacion.descripcion}</p>
+              <p className='puntaje'>Puntaje: {selectedEvaluacion.puntaje}</p>
+            </div>
+          )}
+        </Modal.Body>
+      </Modal>
     </section>
   );
 };
