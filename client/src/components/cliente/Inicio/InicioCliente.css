@@ -141,7 +141,7 @@ a {
 
 .floating-button {
   position: fixed;
-  bottom: 20px;
+  bottom: 110px;
   right: 20px;
   background-color: #007bff;
   color: #fff;
@@ -168,7 +168,7 @@ a {
 /* Estilos para el botón "Nueva Solicitud" */
 .modal-alert {
   position: absolute;
-  bottom: 70px; /* Ajusta la posición vertical según sea necesario */
+  bottom: 170px; /* Ajusta la posición vertical según sea necesario */
   right: 0;
   background-color: #007bff;
   color: white;

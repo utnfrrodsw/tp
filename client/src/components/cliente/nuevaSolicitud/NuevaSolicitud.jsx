@@ -52,14 +52,20 @@ export function NuevaSolicitud() {
     setFotos(selectedFiles);
   };
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+      setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div>
       <div >
-      <Button  variant='primary' className="floating-button"  onClick={handleShow}>
+      <Button  variant='primary' className="floating-button"  onClick={handleShow} onMouseEnter={toggleMenu} onMouseLeave={toggleMenu}>
         +
       </Button>
     </div>
-      {showModal && (
+      {isMenuOpen && (
         <div className="modal-alert">
           Nueva Solicitud
         </div>
