@@ -30,11 +30,11 @@
     background-color: #213555;
 }
   
-nav ul {
+.ul-navegation-cli {
     display: flex;
     flex-direction: row;
 }
 
-ul li {
-   margin: 10px;
+.li-navegation-cli{
+   margin: 10px;
 }

@@ -8,11 +8,16 @@ function Solicprincipal(props){
   const precio = props.precio;
   const fecha = '21/09/2023';
   const ubicacion = 'Rosario, Santa Fe';
-  // const foto=props.foto;
+  // const foto=props.foto;}
+
   const [show, setShow] = useState(true);
+
+  const CerrarSolicitud = () => {
+    setShow(true);
+  }
   
   return (
-    <div className={`solicprincipal-card ${show ? "solicprincipal-card" : "solicprincipal-fullcontent"}`}>
+    <div className={`solicprincipal-card ${show ? "solicprincipal-card" : "solicprincipal-fullcontent"}`} onMouseLeave={CerrarSolicitud}>
    
       <div className='nombre'>{nombre}</div>
       <div className='fecha'>{fecha}</div>
@@ -21,7 +26,7 @@ function Solicprincipal(props){
       <button className='boton' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
       
       {show ? (
-        <h1></h1>
+        <h1> </h1>
       ) : (
         <>
           <h1 className="h1-heading">Estado:</h1>

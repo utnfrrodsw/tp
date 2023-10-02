@@ -1,5 +1,6 @@
 .anuncio-card {
-  width: 40rem;
+  width: 60rem;
+  height: 10rem;
   display: grid;
     grid-template-columns: 30% 70%;
       /* Divide la tarjeta en dos columnas */
@@ -20,7 +21,7 @@
       /* Centra horizontalmente en la pantalla */
       margin-top: 15vh;
       /* Centra verticalmente en la mitad de la pantalla */
-      transition: all 0.2s;
+      transition: all 0.5s;
       cursor: pointer;
       border: 1px solid #ffffff;
 }
@@ -28,6 +29,7 @@
   background-color: #506f99;
   border-radius: 10px;
 }
+
 .anuncio-fullcontent {
   height: 40rem;
   display: grid;
@@ -50,7 +52,7 @@
       /* Centra horizontalmente en la pantalla */
       margin-top: 15vh;
       /* Centra verticalmente en la mitad de la pantalla */
-      transition: all 0.2s;
+      transition: all 0.5s;
       cursor: pointer;
       border: 1px solid #ffffff;
 }
