@@ -1,81 +1,111 @@
-
-.fondoEvaluation{
+/* Evaluaciones.css */
+.fondoEvaluation {
   display: flex;
+  align-items: center; /* Centra verticalmente */
+  overflow: auto; /* Agrega una barra de desplazamiento cuando sea necesario */
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
   overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
-  
 }
 
  
-
-.evaluacion-card {
-  width: 60%;
-  display: flex; /* Usamos flexbox para centrar contenido */
-  flex-direction: column; /* Alinea el contenido verticalmente */
-  align-items: center; /* Centra horizontalmente el contenido */
+.evaluacion-card{
+margin-top: 1.7rem;
+padding: 2rem;
+ border-radius: 0.5rem;
+ border: 1px solid #fff;
   background-color: #213555;
-  border-radius: 1rem;
-  border: 1px solid #ffffff;
-  padding-bottom: 1rem;
-  margin: 0 auto; /* Centra horizontalmente en la pantalla */
-  margin-top: 1rem; /* Centra verticalmente en la mitad de la pantalla */
-  margin-bottom: 1rem;
-  transition: all 0.2s;
-  cursor: pointer;
-}
-
-/* Resto de tus estilos CSS aquí */
-
-
-
-.evaluacion-card:hover {
-  background-color:#506f99;
 }
 
 .evaluacion-titulo {
-  text-align: center;
-  padding-top: 1rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #fff;
-}
-
-.evaluacion-descripcion {
-  text-align: center;
   font-size: 1rem;
-  color: #dee0f1d8;
-  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #eceff1;
 }
 
-.evaluacion-puntaje {
-  text-align: center;
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  color: #ffc107; 
+.evaluar-puntaje {
+  margin: 10px 0;
 }
 
 .estrella {
-  font-size: 1.25rem;
-  color: #ffffff;  
+  color: rgb(255, 255, 255);
 }
 
 .estrella.activa {
-  color: #f0ad4e; 
+  color: gold;
 }
 
 .evaluacion-button {
-  font-size: 0.65rem;
-  padding: 0.25rem;
-  background-color: #4F709C;
-  border: none;
+ 
   border-radius: 1rem;
+  border: solid 1px #fff;
+  margin-top: 1rem;
+  padding: 1rem;
+  justify-items: center;
   cursor: pointer;
+  color: #fff;
+  background-color: #2135550e;
 }
 
 .evaluacion-button:hover {
-  background-color: #364e6d;  
+  background-color: #114a86;
 }
 
+/* Modal CSS */
+.modal-content {
+  padding: 0;
+  border-radius: 0;
+  padding: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Agregado para centrar verticalmente */
+}
+.modal-header {
+  background-color: #213555;
+  color: white;
+  border: none;
+  width: 100%;
+  
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.modal-body {
+  background-color: #4F709C;
+  color: white;
+  border: none;
+  width: 100%;
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4em;
+  
+}
+
+.modal-footer {
+  border: none;
+  color: white;
+}
+
+.desc{
+  color: white;
+}
+
+.puntaje{
+ color: white; 
+}
+
+@media (max-width: 768px) {
+
+  .evaluacion-card{
+    margin:2rem 2rem 0rem 2rem;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid #fff;
+    background-color: #213555;
+  }
+    
+}

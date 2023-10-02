@@ -1,16 +1,16 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { NavLink } from "../../navlink/Navlink.jsx";
+import { NuevaSolicitud } from "../nuevaSolicitud/NuevaSolicitud.jsx";
 import Solicitud from "../solicitud/Solicitud.jsx";
 import "./solicitudes.css";
-import { NuevaSolicitud } from "../nuevaSolicitud/NuevaSolicitud.jsx";
-import { NavLink } from "../../navlink/Navlink.jsx";
 
 function Solicitudes(props) {
 
     const solicitudes = [
-        { nombre: 'Electricista', estado: 'pendiente', precio: 0 },
-        { nombre: 'Plomero', estado: 'presupuestado', precio: 50 },
-        { nombre: 'Carpintero', estado: 'pendiente', precio: 0 },
-        { nombre: 'Pintor', estado: 'presupuestado', precio: 40 },
+        { nombre: 'Electricista', estado: 'pendiente',descripcion:'Atencion de lunes a viernes de 9hs a 18hs', precio: '$ 1900' },
+        { nombre: 'Plomero', estado: 'presupuestado', descripcion:'Atencion de martes a sabado de 08hs a 21hs', precio: '$200' },
+        { nombre: 'Carpintero', estado: 'pendiente',descripcion:'Atencion de lunes a sabado de 10hs a 18hs' , precio: '$1350' },
+        { nombre: 'Pintor', estado: 'presupuestado',descripcion:'Atencion de lunes a sabado de 11hs a 17hs', precio: '$790' },
         // Esto lo saco de la base de datos
       ];
     
@@ -36,23 +36,23 @@ function Solicitudes(props) {
     return (
         <div className="solicitudes-container">
 
-            <nav className="navigation">
-                <ul>
-                    <li>
+            <nav className="navigation" >
+                <ul className="ul-navegation-cli">
+                    <li className="li-navegation-cli">
                         <NavLink to="/client/home/requests" className="link">Solicitudes</NavLink>
                     </li>
-                    <li>
+                    <li className="li-navegation-cli" >
                         <NavLink to="/client/home/progress" className="link">En Progreso</NavLink>
                     </li>
-                    <li>
+                    <li className="li-navegation-cli">
                         <NavLink to="/client/home/finished" className="link">Terminados</NavLink>
                     </li>    
                 </ul>
             </nav>
 
-            <div>
+            <div className="solicitudes">
                 {SolicitudesPagina.map((especialidad, index) => (
-                <Solicitud 
+                <Solicitud
                     key={index} 
                     nombre={especialidad.nombre}
                     estado={especialidad.estado}
@@ -72,4 +72,4 @@ function Solicitudes(props) {
 
 }
 
-export default Solicitudes;
+export default Solicitudes;

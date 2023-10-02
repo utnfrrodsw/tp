@@ -1,58 +1,162 @@
-.solicitud-card {
-    width: 30%;
-    height: 15vh;
-    padding: 5px;
-    background-color: #213555;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 5px;
-    transition: all 0.2s; /* Transición al pasar el cursor */
-    cursor: pointer;
-    border:1px solid #ffffff;
-    padding: 3rem;
-  }
+.solicprincipal-card {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 20% 60% 10%;
+  gap: 00px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    " titulo fecha"
+    "nombre  ubicacion"
+    ".   boton";
+  height: 10rem;
+  width: 55%;
+  padding: 15px;
+  /* Aumenta el espacio interno para pantallas de PC */
+  background-color: #213555;
+  border-radius: 12px;
+  margin: 0 auto;
+  /* Centra horizontalmente en la pantalla */
+  margin-top: 15vh;
+  /* Centra verticalmente en la mitad de la pantalla */
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid #ffffff;
   
-  
+}
 
-  .ver-mas{
-    margin-bottom: 1.8rem;
-    color: #000000;
-   cursor: pointer;
-    border-radius: 1rem;
-    border: solid 1px #000000;
-    background-color: #dee0f1d8;
+.solicprincipal-card:hover {
+  background-color: #506f99;
+  border-radius: 10px;
+}
+
+.solicprincipal-fullcontent {
+  height: 30rem;
+  display: grid;
+  width: 60%;
+  grid-template-columns: 20% 30% 30% 20%;
+  grid-template-rows: 5% 5% 60% 15% 15%;
+  gap: 10px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    " titulo titulo ubicacion ubicacion"
+    " fecha fecha nombre nombre"
+    "foto foto descripcion descripcion"
+    "foto foto  descripcion descripcion";
+    
+  padding: 15px;
+  /* Aumenta el espacio interno para pantallas de PC */
+  background-color: #213555;
+  border-radius: 12px;
+  margin: 0 auto;
+  /* Centra horizontalmente en la pantalla */
+  margin-top: 15vh;
+  /* Centra verticalmente en la mitad de la pantalla */
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.fecha {
+  grid-area: fecha;
+  color: #ffffff;
+  font-size: 0.6rem;
+  text-align: center;
+}
+
+.ubicacion {
+  color: #ffffff;
+  font-size: 0.6rem;
+  text-align: center;
+  grid-area: ubicacion;
+}
+
+.photo {
+  grid-area: foto;
+
+
+}
+
+.nombre {
+  grid-area: titulo;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: left;
+  /* Alinea el texto del título a la izquierda */
+  margin-left: 10px;
+  /* Agrega un margen a la izquierda del título */
+}
+
+.descripcion {
+  color: #dee0f1d8;
+  grid-area: descripcion;
+  font-size: 1rem;
+  text-align: center;
+}
+
+
+
+
+
+.boton {
+  grid-area: boton;
+  display: inline-block;
+  color: #bec3d173;
+  font-size: 1rem;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  text-decoration: none;
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+ 
+}
+
+/* Estilo para el encabezado h1 */
+.h1-heading {
+  color: white;
+  /* Cambia el color según tus preferencias */
+  font-size: 16px;
+  /* Cambia el tamaño de fuente según tus preferencias */
+  /* Otros estilos */
+}
+
+/* Estilo para el encabezado h2 */
+.h2-heading {
+  color: white;
+  /* Cambia el color según tus preferencias */
+  font-size: 16px;
+  /* Cambia el tamaño de fuente según tus preferencias */
+  /* Otros estilos */
+}
+
+/* Estilo para el encabezado h3 */
+.h3-heading {
+  color: white;
+  /* Cambia el color según tus preferencias */
+  font-size: 16px;
+  /* Cambia el tamaño de fuente según tus preferencias */
+  /* Otros estilos */
+}
+/* Media query para pantallas pequeñas 
+@media (max-width: 768px) {
+  .anuncio-card {
+
+    grid-template-columns: 1fr;
+    /* Cambia a una sola columna en pantallas pequeñas 
+    grid-template-areas:
+      "Foto"
+      "titulo"
+      "descripcion"
+      "nombre";
+
   }
 
-  .ver-mas:hover{
-    border-radius: 1rem;
-    border: solid 1px #000000;
-    background-color:#213555 ;
-  }
-  
-  .solicitud-card:hover {
-   
-    background-color: #4F709C;
-    border-radius: 10px;
-   
-  }
-  
-  .solicitud-card .nombre {
-    font-size: 3vh;
-    margin-bottom: 5px;
-    color: #ffffff;
-  }
-  
-  .estado {
-    font-size: 2vh;
-    color: #dee0f1d8;
-    margin-bottom: 5px;
-  }
-  
-  .precio {
-    font-size: 2vh;
-    color: #dee0f1d8;
-  }
-  
+  .photo {
+    width: 100%;
+    height: auto;
+  }
+}*/

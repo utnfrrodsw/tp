@@ -81,22 +81,6 @@ a {
   font-weight: bold;
 }
 
-/* Botón flotante */
-.floating-button {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  background-color: #007bff; /* Color de fondo */
-  color: white; /* Color del texto */
-  border: none;
-  cursor: pointer;
-  border: 2px solid #ffffff; /* Borde del botón */
-  transition: background-color 0.3s, border-color 0.3s; /* Transición suave */
-}
 
 /* Menú */
 .menu {
@@ -147,19 +131,63 @@ a {
   margin: 0 10px;
 }
 
-/* Estilo del modal */
-.modal {
+/*estiloNuevaSolicitud*/
+/* NuevaSolicitud.css */
+/* Estilo para el botón "+" */
+.floating-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+.floating-button {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  max-width: 600px;
-  width: 90%;
-  z-index: 1000;
+  bottom: 110px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: background-color 0.3s, transform 0.3s; /* Efecto de transición suave */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none; /* Evita la selección de texto en el botón */
+}
+ 
+
+/* Estilo de hover para el botón "+" */
+.floating-button:hover {
+  transform: scale(1.1); /* Escala ligeramente el botón al pasar el cursor */
+}
+
+/* Estilos para el botón "Nueva Solicitud" */
+.modal-alert {
+  position: absolute;
+  bottom: 170px; /* Ajusta la posición vertical según sea necesario */
+  right: 0;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+  z-index: 1; /* Asegura que esté sobre el botón "+" */
+}
+
+/* Estilo de hover para el botón "Nueva Solicitud" */
+.modal-alert:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el modal */
+.modal {
+  margin: none;
 }
 
 /* Fondo oscurecido */
@@ -180,7 +208,7 @@ a {
   color: black;
 }
 
-.form-group label{
+.form-group label {
   color: #000000;
 }
 
@@ -191,6 +219,7 @@ a {
   flex-direction: column;
   margin: 1rem 2rem 1rem 1rem;
 }
+
 input[type="text"],
 input[type="file"],
 .select-especialidad {
@@ -229,6 +258,8 @@ Button:hover {
 /* Elementos dentro del modal */
 .modal-content {
   padding: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Centrar elementos en el modal */
@@ -237,6 +268,10 @@ Button:hover {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.btn-cls{
+  margin: 1rem;
 }
 
 /* Estilos para pantallas de hasta 768px de ancho (tamaño de tabletas y móviles) */

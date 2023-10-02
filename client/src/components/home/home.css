@@ -1,17 +1,11 @@
- 
 .fondoHome {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
-  background-size: cover;
-  background-position: center;
-  margin-bottom: -1rem;
+  align-items: center; /* Centra verticalmente */
+  overflow: auto; /* Agrega una barra de desplazamiento cuando sea necesario */
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
 }
 
 .home-container {
@@ -19,10 +13,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 85vh;
-  padding: 2rem;
-  overflow: hidden;
+  padding: 1rem;
   text-align: center;
+  margin: 1rem 0 0 0;
 }
 
 .header {
@@ -35,7 +28,7 @@
 
 .cta-section {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
 }
@@ -50,6 +43,7 @@
   text-decoration: none;
   background-color: transparent;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  margin: 0.5rem;
 }
 
 .cta-button:hover {
@@ -59,15 +53,15 @@
 
 .features {
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-around;
-  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
 }
 
 .feature {
   text-align: center;
   max-width: 300px;
-  margin: 1rem;  
+  margin: 1rem;
   padding: 2rem;
   background: #4F709C;
   border-radius: 1rem;
@@ -82,7 +76,7 @@
 
 .header h1 {
   font-size: 3rem;
- margin: 0;
+  margin: 0;
   color: #ffffff;
   font-weight: bold;
   line-height: 1.6;
@@ -110,29 +104,21 @@ p {
   color: #ffffff;
 }
 
- 
-@media (max-width: 1200px) {
+/* Media queries para dispositivos más pequeños */
+@media screen and (max-width: 768px) {
+  .fondoHome {
+    overflow: auto; /* Puede ser necesario en dispositivos más pequeños */
+  }
+
   .home-container {
-    height: auto;
     padding: 1rem;
   }
 
-  .cta-section {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .cta-button {
-    margin-top: 1rem;
-  }
-
-  .features {
-    flex-direction: column;
-    align-items: center;
+  .header h1 {
+    font-size: 2rem;
   }
 
   .feature {
     max-width: 100%;
-    margin: 1rem 0;
   }
 }

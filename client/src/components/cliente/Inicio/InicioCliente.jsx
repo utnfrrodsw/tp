@@ -1,7 +1,6 @@
  
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NuevaSolicitud from '../nuevaSolicitud/NuevaSolicitud'; // Importa el componente de nueva solicitud sin la extensión .jsx
 import './InicioCliente.css';
 import logo from "./logo.png";
 
@@ -28,8 +27,7 @@ function InicioCliente() {
                     </section>
                     
                 </div>
-                    {/* Agrega el componente NuevaSolicitud aquí */}
-                    <NuevaSolicitud />
+ 
             </div>
             
             <div className='blocks'>

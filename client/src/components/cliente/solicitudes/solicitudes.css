@@ -1,9 +1,12 @@
-.content{
-    background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
+.solicitudes-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
     overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
-}
-
-.solicitudes-container .pagination {
+  }
+  
+  .solicitudes-container .pagination {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -27,11 +30,11 @@
     background-color: #213555;
 }
   
-nav ul {
+.ul-navegation-cli {
     display: flex;
     flex-direction: row;
 }
 
-ul li {
-    margin: 10px;
+.li-navegation-cli{
+   margin: 10px;
 }

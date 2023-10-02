@@ -1,22 +1,16 @@
 /* RecuperarClave.css */
 .container {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
+  overflow: hidden; /* Evita el scroll en el body */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
      
   }
   
   .password-reset-page {
-    margin-top: 4rem;
+    margin-top: 6rem;
     text-align: center;
     max-width: 400px;
-    margin: 0 auto;
     justify-items: center;
     border: 2px solid rgba(255, 255, 255, 0.945);
     background-color: #4F709C;
