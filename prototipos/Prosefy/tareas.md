@@ -47,7 +47,7 @@
 ### Búsqueda (Marina)
 
 - [x] Diseño
-- [ ] Frontend
+- [x] Frontend
 - [ ] Backend
 
 ### Libro seleccionado (Marina)

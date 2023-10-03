@@ -51,7 +51,7 @@
           class="form-control custom-select custom-ordenar-por"
           [(ngModel)]="selectedOrdenarPor"
         >
-          <option disabled selected value="">
+          <option disabled selected value="" class="custom-ordenar-por">
             Ordenar por &blacktriangledown;
           </option>
           <option *ngFor="let opcion of ordenarPor" [value]="opcion">
