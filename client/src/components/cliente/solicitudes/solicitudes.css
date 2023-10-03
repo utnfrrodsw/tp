@@ -4,13 +4,12 @@
     height: 100%;
     width: 100%;
     overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
-  }
+}
   
-  .solicitudes-container .pagination {
+.solicitudes-container .pagination {
     display: flex;
     flex-direction: row;
     align-items: center;
-
 }
 
 .solicitudes-container div{
