@@ -88,3 +88,20 @@
     transform: scale(1);
   }
 }
+
+.custom-form-control {
+  width: 10% !important;
+}
+
+.custom-pagination {
+  gap: 0.6rem;
+}
+
+.custom-page-link {
+  cursor: pointer;
+}
+
+.custom-pages {
+  font-weight: bold;
+  color: #292929;
+}

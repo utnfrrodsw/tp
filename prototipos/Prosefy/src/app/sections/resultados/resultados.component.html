@@ -6,7 +6,15 @@
   <div class="row">
     <div class="col-12">
       <div class="vertical-list">
-        <div class="book" *ngFor="let libro of libros">
+        <div
+          class="book"
+          *ngFor="
+            let libro of libros
+              | slice
+                : (currentPage - 1) * itemsPerPage
+                : currentPage * itemsPerPage
+          "
+        >
           <div class="row align-items-center">
             <div class="col-md-4 col-6">
               <img
@@ -62,6 +70,35 @@
           </div>
         </div>
       </div>
+    </div>
+    <div
+      class="col-12 d-flex justify-content-center align-items-center mt-4 custom-pagination"
+    >
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a
+            class="page-link custom-page-link"
+            (click)="currentPage = currentPage - 1"
+            aria-label="Previous"
+          >
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <span class="page-link custom-pages"
+            >{{ currentPage }} de {{ totalPages }}</span
+          >
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a
+            class="page-link custom-page-link"
+            (click)="currentPage = currentPage + 1"
+            aria-label="Next"
+          >
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

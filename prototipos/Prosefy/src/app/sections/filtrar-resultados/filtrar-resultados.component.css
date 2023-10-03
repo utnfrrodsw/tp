@@ -1,4 +1,10 @@
 /* Estilo personalizado para los selectores */
 .custom-select {
-  width: auto !important; /* Puedes ajustar este valor según tus preferencias */
+  width: auto !important;
+  background-color: #fff !important;
+}
+
+.custom-ordenar-por {
+  background-color: #d9d9d9 !important;
+  font-weight: bold !important;
 }

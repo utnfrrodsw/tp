@@ -1,3 +1,4 @@
+/* ANGULAR */
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -7,8 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 
+/* BOOTSTRAP */
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 /* ------------------------------------------------------------------- */
 
+/* COMPONENTES */
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { OfertasDestacadasComponent } from './sections/ofertas-destacadas/ofertas-destacadas.component';
@@ -106,6 +111,7 @@ registerLocaleData(localeEs, 'es');
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     FormsModule,
+    PaginationModule.forRoot(),
   ],
   providers: [
     CurrencyService,

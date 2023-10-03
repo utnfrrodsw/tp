@@ -10,6 +10,8 @@ import { DatePipe } from '@angular/common';
 })
 export class ResultadosComponent {
   libros: Libro[] = [];
+  currentPage = 1;
+  itemsPerPage = 5;
   constructor(
     private librosService: LibrosService,
     public currencyService: CurrencyService,
@@ -50,5 +52,11 @@ export class ResultadosComponent {
   isInDeseos(libro: any): boolean {
     const libroId = libro.id.toString();
     return this.deseos[libroId] || false;
+  }
+  pageChanged(event: any): void {
+    this.currentPage = event.page;
+  }
+  get totalPages(): number {
+    return Math.ceil(this.libros.length / this.itemsPerPage);
   }
 }
