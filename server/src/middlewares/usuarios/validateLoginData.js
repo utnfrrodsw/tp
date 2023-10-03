@@ -1,6 +1,6 @@
  
 
-export const validateLoginData = (req, res, next) => {
+const validateLoginData = (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email) {
@@ -21,5 +21,6 @@ export const validateLoginData = (req, res, next) => {
   // Si las validaciones pasan, llama a next() para pasar al siguiente middleware o controlador.
   next();
   
-  };
+};
   
+module.exports = validateLoginData;

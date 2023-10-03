@@ -1,9 +1,12 @@
 //LOGICA PARA CONSULTAS A LA BD
 
-import { pool } from '../../db.js';
+const { pool } = require('../../db.js');
+const registrarUsuario = require('./registerController.js');
+const login = require('./loginController.js');
+
 
 //obtengo todos los usuarios
-export const getUsuarios = async (req,res)=>{ 
+const getUsuarios = async (req,res)=>{ 
     try {
         const [result] = await pool.query('SELECT * FROM usuario')
     res.json(result)
@@ -15,7 +18,7 @@ export const getUsuarios = async (req,res)=>{
 }
 
 //obtengo el usuario que mando por parametro
-export const getUsuario = async (req,res)=>{ 
+const getUsuario = async (req,res)=>{ 
     const [rows] = await pool.query('SELECT * FROM usuario WHERE email=?', [req.params.email])
     if(rows.length <= 0){
         return res.status(404).json({
@@ -25,4 +28,12 @@ export const getUsuario = async (req,res)=>{
     res.json(rows[0])
 }
 
- 
+const userController = {
+    getUsuarios,
+    getUsuario,
+    registrarUsuario,
+    login
+}
+
+
+module.exports = userController; 

@@ -1,15 +1,25 @@
 //CONFIGURA LAS VARIABLES DE ENTORNO
 
-import { config } from 'dotenv';
+const { config } = require('dotenv');
 
- config();
+config();
 
-export const PORT = process.env.PORT  
-console.log( process.env.PORT  )
+const PORT = process.env.PORT;
+console.log(process.env.PORT);
 
-export const DB_HOST = process.env.DB_HOST
-export const DB_PORT = process.env.DB_PORT  
-export const DB_USER = process.env.DB_USER  
-export const DB_PASSWORD = process.env.DB_PASSWORD  
-export const DB_DATABASE = process.env.DB_DATABASE  
-export const TOKEN = process.env.TOKEN
+const DB_HOST = process.env.DB_HOST;
+const DB_PORT = process.env.DB_PORT;
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_DATABASE = process.env.DB_DATABASE;
+const TOKEN = process.env.TOKEN;
+
+module.exports = {
+  PORT,
+  DB_HOST,
+  DB_PORT,
+  DB_USER,
+  DB_PASSWORD,
+  DB_DATABASE,
+  TOKEN,
+};
