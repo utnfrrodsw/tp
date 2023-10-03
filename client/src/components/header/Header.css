@@ -1,0 +1,90 @@
+/* Estilos para el encabezado */
+.header-content {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2a4063; /* Azul claro */
+    padding: 10px 20px;
+    color: white;
+}
+
+/* Estilos para el logo */
+.logo-content {
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+}
+
+.logo-content a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Estilos para el título */
+.title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilos para los enlaces en el encabezado */
+.header-links {
+    display: flex;
+    align-items: center;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+/* Estilos para los íconos de notificaciones y usuario */
+.notifylogo, .userlogo {
+    width: 30px;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #2a4063; /* Azul claro */
+        padding: 10px 20px;
+        color: white;
+    }
+    
+    /* Estilos para el logo */
+    .logo-content {
+        font-size: 15px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .logo-content a {
+        text-decoration: none;
+        color: white;
+    }
+    
+    /* Estilos para el título */
+    .title {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    /* Estilos para los enlaces en el encabezado */
+    .header-links {
+        display: flex;
+         
+
+    }
+    
+    .links a {
+        text-decoration: none;
+        color: white;
+        margin-right: 20px;
+        font-weight: bold;
+    }
+}

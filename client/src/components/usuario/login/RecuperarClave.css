@@ -1,0 +1,71 @@
+/* RecuperarClave.css */
+.container {
+  overflow: hidden; /* Evita el scroll en el body */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+     
+  }
+  
+  .password-reset-page {
+    margin-top: 6rem;
+    text-align: center;
+    max-width: 400px;
+    justify-items: center;
+    border: 2px solid rgba(255, 255, 255, 0.945);
+    background-color: #4F709C;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 1.5rem;
+    /* Añade estos estilos para centrar verticalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .password-reset-page h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #796060;
+    border-radius: 5px;
+  }
+  
+  button[type="submit"] {
+    background-color: #fff;
+    color: #000000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #213555;
+  }
+  
+  .success-message {
+    color: #009900;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  

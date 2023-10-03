@@ -1,0 +1,39 @@
+.solicitudes-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
+}
+  
+.solicitudes-container .pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.solicitudes-container div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.navigation {
+    height: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #213555;
+}
+  
+.ul-navegation-cli {
+    display: flex;
+    flex-direction: row;
+}
+
+.li-navegation-cli{
+   margin: 10px;
+}

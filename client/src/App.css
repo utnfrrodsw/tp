@@ -1,0 +1,21 @@
+
+/* Estilos para asegurar que el footer se mantenga abajo */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  text-align: center;
+}
+
+.content {
+  overflow: hidden; /* Evita el scroll en el body */
+  flex: 1;
+}
+
+
