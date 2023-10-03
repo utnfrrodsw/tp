@@ -9,7 +9,7 @@
 
 ### Repositorios
 * [frontend app: Angular ]([(https://github.com/FelipeRoca/TP_DSW_FrontEnd))]
-* [backend app: Nodejs ](http://hyperlinkToGihubOrGitlab)
+* [backend app: Nodejs ]([http://hyperlinkToGihubOrGitlab](https://github.com/FelipeRoca/PRUEBA_BD_PROYECTO))
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
