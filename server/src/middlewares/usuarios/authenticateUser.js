@@ -1,7 +1,7 @@
-import jwt from 'jsonwebtoken';
-import { TOKEN } from '../../config.js';
+const jwt = require('jsonwebtoken');
+const { TOKEN } = require('../../config.js');
 
-export const authenticateUser = (req, res, next) => {
+const authenticateUser = (req, res, next) => {
   const token = req.header('Authorization');
 
   if (!token) {
@@ -16,3 +16,5 @@ export const authenticateUser = (req, res, next) => {
     res.status(401).json({ message: 'Token inválido' });
   }
 };
+
+module.exports = authenticateUser;

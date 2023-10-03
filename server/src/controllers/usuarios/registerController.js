@@ -1,7 +1,8 @@
-import bcrypt from 'bcrypt'; // Importa la biblioteca bcrypt para hacer el hash de contraseñas
-import { pool } from '../../db.js'; // Importa la instancia de la base de datos (pool)
+const bcrypt = require( 'bcrypt'); // consta la biblioteca bcrypt para hacer el hash de contraseñas
+const { pool } = require( '../../db.js'); // consta la instancia de la base de datos (pool)
 
-export const registrarUsuario = async (req, res) => {
+
+const registrarUsuario = async (req, res) => {
   const {
     name,
     lastName,
@@ -41,3 +42,5 @@ export const registrarUsuario = async (req, res) => {
     res.status(500).json({ message: 'Error en el registro' }); // Respuesta de error
   }
 };
+
+module.exports = registrarUsuario;

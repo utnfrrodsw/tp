@@ -1,9 +1,9 @@
 //REALIZO LA CONEXION A LA BASE DE DATOS
 
-import { createPool } from 'mysql2/promise'
-import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from './config.js'
+const { createPool } = require ('mysql2/promise');
+const { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } = require ('./config.js')
 
-export const pool = createPool ({  //equivalente al createConection
+const pool = createPool ({  //equivalente al createConection
     host: DB_HOST,
     user: DB_USER,
     password: DB_PASSWORD,
@@ -11,4 +11,4 @@ export const pool = createPool ({  //equivalente al createConection
     database: DB_DATABASE
 })
 
- 
+module.exports = { pool }

@@ -12,6 +12,8 @@ export function NuevaSolicitud() {
   const [errorTitulo, setErrorTitulo] = useState(false);
   const [errorDescripcion, setErrorDescripcion] = useState(false);
   const [errorEspecialidad, setErrorEspecialidad] = useState(false);
+  const [errorUbicacion, setErrorUbicacion] = useState(false);
+  const [errorFotos, setErrorFotos] = useState([]);
 
   const handleClose = () => {
     setShowModal(false);
@@ -33,6 +35,8 @@ export function NuevaSolicitud() {
       if (!titulo) setErrorTitulo(true);
       if (!descripcion) setErrorDescripcion(true);
       if (!especialidad) setErrorEspecialidad(true);
+      if (!ubicacion) setErrorUbicacion(true);
+      if (fotos.length === 0) setErrorFotos(true);
       return;
     }
 
@@ -79,12 +83,12 @@ export function NuevaSolicitud() {
           <div className="form-group">
             <label>Título</label>
             <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
-            {errorTitulo && <span className="error-message">Por favor, ingrese un título.</span>}
+            {errorTitulo && <span className="error-message">Ingrese un título</span>}
           </div>
           <div className="form-group">
             <label>Descripción</label>
             <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
-            {errorDescripcion && <span className="error-message">Por favor, ingrese una descripción.</span>}
+            {errorDescripcion && <span className="error-message">Ingrese una descripción</span>}
           </div>
           <div className="form-group">
             <label>Especialidad</label>
@@ -95,15 +99,18 @@ export function NuevaSolicitud() {
               <option value="Plomería">Plomería</option>
               {/* Agrega más opciones según tus necesidades */}
             </select>
-            {errorEspecialidad && <span className="error-message">Por favor, seleccione una especialidad.</span>}
+            {errorEspecialidad && <span className="error-message">Seleccione una especialidad</span>}
           </div>
           <div className="form-group">
             <label>Ubicación</label>
             <input type="text" value={ubicacion} onChange={(e) => setUbicacion(e.target.value)} />
+            {errorUbicacion && <span className="error-message">Ingrese una ubicacion valida</span>}
           </div>
           <div className="form-group">
             <label>Fotos</label>
             <input type="file" multiple onChange={handleFileChange} />
+            {errorFotos && <span className="error-message">Ingrese al menos una foto</span>}
+
           </div>
         </Modal.Body>
         <Modal.Footer>

@@ -1,9 +1,9 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { TOKEN } from '../../config.js';
-import { pool } from '../../db.js';
+const bcrypt = require( 'bcrypt');
+const jwt = require( 'jsonwebtoken');
+const { TOKEN } = require( '../../config.js');
+const { pool } = require( '../../db.js');
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -34,3 +34,5 @@ export const login = async (req, res) => {
     res.status(500).json({ message: 'Error en el inicio de sesión' });
   }
 };
+
+module.exports = login;
