@@ -2,16 +2,16 @@
 
 # TP DSW: Librería
 
-- 📄 [Proposal](https://github.com/AlejoRetamal/TP-DdeS/blob/main/proposal.md)
+-   📄 [Proposal](https://github.com/AlejoRetamal/TP-DdeS/blob/main/proposal.md)
 
 ## Grupo
 
 ### Integrantes
 
-- `46950` - Retamal, Alejo
-- `47116` - Martel, Marco Antonio
-- `48042` - Milo, Marina Ana
-- `47141` - Fernandez, Santiago Jesus
+-   `46950` - Retamal, Alejo
+-   `48042` - Milo, Marina Ana
+-   ~~`47116` - Martel, Marco Antonio~~
+-   ~~`47141` - Fernandez, Santiago Jesús~~
 
 ## 💼 Descripción del Proyecto
 

@@ -2,27 +2,27 @@
 
 # 📅 Minuta de Reunión y Avances #1
 
-- **Fecha:** 13/08/2023
-- **Tareas terminadas:**
-  1. [Elaborar prototipos](https://github.com/MVRU/MVRU/issues/2)
-- **Asistentes:**
-  - `Retamal, Alejo`
-  - `Martel, Marco Antonio`
-  - `Fernández, Santiago Jesús`
-  - `Milo, Marina Ana`
+-   **Fecha:** 13/08/2023
+-   **Tareas terminadas:**
+    1. [Elaborar prototipos](https://github.com/MVRU/MVRU/issues/2)
+-   **Presentes:**
+    -   `Retamal, Alejo`
+    -   `Martel, Marco Antonio`
+    -   `Fernández, Santiago Jesús`
+    -   `Milo, Marina Ana`
 
 <details>
  <summary><h2>📝 Agenda</h2></summary>
 
 1. **Apertura de la Reunión.**
-   - Se realiza un breve repaso de los objetivos de la reunión.
-   - Revisión a las referencias de diseño adjuntadas.
+    - Se realiza un breve repaso de los objetivos de la reunión.
+    - Revisión a las referencias de diseño adjuntadas.
 2. **[Selección del prototipo](https://www.figma.com/file/KHMyiGnpBRpuNDgAoIPm3C/Prototipo-%231?type=design&mode=design&t=EzXiavVENpFcSfUg-1)**.
-   - Presentación de avances en los prototipos.
-   - Selección del prototipo a implementar.
-   - Contemplar posibles mejoras en el prototipo escogido.
+    - Presentación de avances en los prototipos.
+    - Selección del prototipo a implementar.
+    - Contemplar posibles mejoras en el prototipo escogido.
 3. **Planificación de próximas tareas**.
-   - Se discuten las siguientes tareas pendientes para completar el [Sprint #1](https://github.com/MVRU/MVRU/milestone/1).</details>
+    - Se discuten las siguientes tareas pendientes para completar el [Sprint #1](https://github.com/MVRU/MVRU/milestone/1).</details>
 
 ## 📄 Resumen
 
