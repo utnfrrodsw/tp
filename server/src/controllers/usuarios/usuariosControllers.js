@@ -1,39 +1,91 @@
 //LOGICA PARA CONSULTAS A LA BD
 
-const { pool } = require('../../db.js');
-const registrarUsuario = require('./registerController.js');
-const login = require('./loginController.js');
+const User = require('../../models/usuarioModel.js');  
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const { TOKEN } = require('../../config');  
 
-
-//obtengo todos los usuarios
-const getUsuarios = async (req,res)=>{ 
+const usuarioController = {
+  getUsuarios: async (req, res) => {
     try {
-        const [result] = await pool.query('SELECT * FROM usuario')
-    res.json(result)
+      const usuarios = await User.findAll();
+      res.json(usuarios);
     } catch (error) {
-        return res.status(500).json({     //uso el try catch para el manejo de errores
-            message: 'Algo salio mal'
-        })
+      console.error('Error al obtener usuarios', error);
+      res.status(500).json({ message: 'Error en el servidor' });
     }
-}
+  },
 
-//obtengo el usuario que mando por parametro
-const getUsuario = async (req,res)=>{ 
-    const [rows] = await pool.query('SELECT * FROM usuario WHERE email=?', [req.params.email])
-    if(rows.length <= 0){
-        return res.status(404).json({
-            message: 'Usuario not fount'
-        })
+  getUsuario: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const usuario = await User.findByPk(id);
+      if (!usuario) {
+        return res.status(404).json({ message: 'Usuario no encontrado' });
+      }
+      res.json(usuario);
+    } catch (error) {
+      console.error('Error al obtener usuario por ID', error);
+      res.status(500).json({ message: 'Error en el servidor' });
     }
-    res.json(rows[0])
-}
+  },
 
-const userController = {
-    getUsuarios,
-    getUsuario,
-    registrarUsuario,
-    login
-}
+   registrarUsuario: async (req, res) => {
+    const { name, surname, email, password, birthDate, phoneNumber, isPrestador } = req.body;
+    try {
+      // Verificar si el usuario ya existe en la base de datos (según el email)
+      const existingUser = await User.findOne({ where: { email } });
+      if (existingUser) {
+        return res.status(400).json({ message: 'El usuario ya existe' });
+      }
+  
+      // Hacer el hash de la contraseña antes de almacenarla en la base de datos
+      const hashedPassword = await bcrypt.hash(password, 10); // 10 rounds de sal
+  
+      // Crear el nuevo usuario en la base de datos
+      const usuario = await User.create({
+        name,
+        surname,
+        email,
+        password: hashedPassword,
+        birthDate,
+        phoneNumber,
+        isPrestador,
+      });
+  
+      res.status(201).json({ message: 'Registro exitoso', usuario });
+    } catch (error) {
+      console.error('Error en el registro:', error);
+      res.status(500).json({ message: 'Error en el servidor' });
+    }
+  },
 
+  login: async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      // Buscar al usuario en la base de datos por su correo electrónico
+      const usuario = await User.findOne({ where: { email } });
+      if (!usuario) {
+        return res.status(401).json({ message: 'Usuario no encontrado' });
+      }
 
-module.exports = userController; 
+      // Comparar la contraseña proporcionada con la contraseña almacenada en la base de datos
+      const passwordMatch = await bcrypt.compare(password, usuario.password);
+      if (!passwordMatch) {
+        return res.status(401).json({ message: 'Contraseña incorrecta' });
+      }
+
+      // Generar un token de autenticación
+      const token = jwt.sign({ userId: usuario.idUsuario, email: usuario.email }, TOKEN, {
+        expiresIn: '1h', // Token válido por 1 hora
+      });
+
+      res.status(200).json({ message: 'Inicio de sesión exitoso', token, userType: usuario.tipo });
+    } catch (error) {
+      console.error('Error en el inicio de sesión:', error);
+      res.status(500).json({ message: 'Error en el servidor' });
+    }
+  },
+};
+
+module.exports = usuarioController;
