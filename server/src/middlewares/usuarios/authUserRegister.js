@@ -1,3 +1,4 @@
+
 const authUserRegister = (req, res, next) => {
     // Aquí puedes verificar si el usuario está autenticado, por ejemplo, mediante un token.
   

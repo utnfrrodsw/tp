@@ -30,4 +30,4 @@ router.post('/usuarios/login', /*validateLoginData, authenticateUser, */usuarioC
 //.PUT para actualizacion completa
 //.PATCH para actualizacion parcial (ver ejemplos en el video)
 
-module.exports = router;
+module.exports=router;
