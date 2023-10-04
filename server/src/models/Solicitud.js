@@ -1,8 +1,7 @@
-
 module.exports = (sequelize, DataTypes) => {
-  const alias = "Anuncio";
+  const alias = "Solicitud";
   const cols = {
-    id_anuncio: {
+    idSolicitud: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -24,32 +23,32 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BLOB,
       allowNull: false,
     },
-    id_direccion: {
+    idDireccion: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    id_usuario: {
+    idCliente: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
   }
   const config = {
-    tableName: "anuncio",
+    tableName: "Solicitud",
     timestamps: false,
   }
 
-  const Anuncio = sequelize.define(alias, cols, config);
+  const Solicitud = sequelize.define(alias, cols, config);
 
-  Anuncio.associate = function(models){
-    Anuncio.belongsTo(models.Direccion, {
-      as: "usuario",
-      foreignKey: "id_usuario"
+  Solicitud.associate = function(models){
+    Solicitud.belongsTo(models.Direccion, {
+      as: "cliente",
+      foreignKey: "idCliente"
     })
-    Anuncio.belongsTo(models.Direccion, {
+    Solicitud.belongsTo(models.Direccion, {
       as: "direccion",
-      foreignKey: "id_direccion"
+      foreignKey: "idDireccion"
     })
   }
 
-  return Anuncio;
+  return Solicitud;
 }
