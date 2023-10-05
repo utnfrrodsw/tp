@@ -73,6 +73,7 @@
 
 <fieldset class="row card">
 	<legend><h2>Administración de Amigos</h2></legend>
+	<!-- TODO Se ven feos descentrados los nombres de las invitaciones -->
 
 	<div id="amigos" class="col">
 		
@@ -198,7 +199,7 @@
 				</thead>
 				
 				<tbody>
-					<tr *ngFor="let usu of usuariosPaginaActual">
+					<tr *ngFor="let usu of usuariosPaginaActual" #tr (change)="tr.dataset['sucio']='1'">
 						<td>{{usu.nombreCompleto}}</td>
 						<td *ngFor="let per of usuarioActual.permisos">
 							<input type="checkbox" value="{{per.ID}}" name="permiso" [checked]="usuarioTienePermiso(usu,per.ID)" [attr.form]="'editar-'+usu.ID">
@@ -207,7 +208,7 @@
 							<!-- TODO Now: onsumbit, en la table?  ojo que cacharia el form del tfoot, quizá en el tbody-->
 							<form id="editar-{{usu.ID}}">
 								<input type="hidden" [value]="usu.ID">
-								<input type="submit" value="Actualizar">
+								<input type="submit" value="Actualizar" [disabled]="(tr.dataset['sucio']!='1')">
 							</form>
 						</td>
 					</tr>
