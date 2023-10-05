@@ -344,4 +344,8 @@ export class PanelComponent implements OnInit {
         }
       });
   }
+
+  usuarioTienePermiso(usu:Usuario,perID:number){
+    return usu.permisos?.some(p=>p.ID==perID) || false;
+  }
 }

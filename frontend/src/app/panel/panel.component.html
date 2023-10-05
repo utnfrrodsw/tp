@@ -201,7 +201,7 @@
 					<tr *ngFor="let usu of usuariosPaginaActual">
 						<td>{{usu.nombreCompleto}}</td>
 						<td *ngFor="let per of usuarioActual.permisos">
-							<input type="checkbox" value="{{per.ID}}" name="permiso" [checked]="usu?.permisos?.includes(per) || false" [attr.form]="'editar-'+usu.ID">
+							<input type="checkbox" value="{{per.ID}}" name="permiso" [checked]="usuarioTienePermiso(usu,per.ID)" [attr.form]="'editar-'+usu.ID">
 						</td>
 						<td>
 							<!-- TODO Now: onsumbit, en la table?  ojo que cacharia el form del tfoot, quizá en el tbody-->
