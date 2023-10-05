@@ -20,7 +20,7 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
         },
         dpto: {
-            type: dataTypes.STRING(45),
+            type: dataTypes.STRING(10),
             allowNull: false,
         },
         idUsuario: {
@@ -40,14 +40,17 @@ module.exports = (sequelize, dataTypes) => {
 
     const Direccion = sequelize.define(alias, cols, config);
 
-    Direccion.associate = function(models){
-        Direccion.belongsTo(models.User, {
-            as: "fk_direccion_cliente",
-            foreignKey: "idUsuario"
-        })
-        Direccion.belongsTo(models.Localidad, {
-            as: "fk_direccion_localidad",
-            foreignKey: "codPostal"
-        })
-    }
+    Direccion.associate = function (models) {
+        Direccion.hasMany(models.Solicitud, {
+            as: 'solicitudes',
+            foreignKey: 'idDireccion', // Clave foránea en Solicitud
+        });
+            // Una dirección tiene un usuario
+        Direccion.belongsTo(models.Usuario, {
+            as: 'usuario',
+            foreignKey: 'idUsuario', // Clave foránea en Direccion
+        });
+    };
+
+    return Direccion;
 };

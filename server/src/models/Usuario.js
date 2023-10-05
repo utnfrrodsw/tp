@@ -43,11 +43,13 @@ module.exports = (sequelize, dataTypes) => {
     timestamps: false,
   };
   const Usuario = sequelize.define(alias, cols, config);
-  Usuario.associate = function(models){
+  Usuario.associate = function (models) {
+    // Un usuario puede tener varias direcciones
     Usuario.hasMany(models.Direccion, {
-      as: "fk_direccion_cliente",
-      foreignKey: "idUsuario"
-    })
+      as: 'direcciones',
+      foreignKey: 'idUsuario', // Clave foránea en Direccion
+    });
   };
+  return Usuario;
 };
 

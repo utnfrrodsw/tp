@@ -1,22 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
+    "username": "userRemote",
+    "password": "remote321",
+    "database": "fastservices",
+    "host": "100.93.197.20",
+    "port": "33061",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "database_test",
+    "password": "facu2323",
+    "database": "fastservices",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": null,
-    "database": "database_production",
+    "password": "facu2323",
+    "database": "fastservices",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

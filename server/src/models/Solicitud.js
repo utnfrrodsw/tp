@@ -22,32 +22,25 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.BLOB,
       allowNull: false,
     },
-    idCliente: {
-      type: dataTypes.INTEGER,
-      allowNull: false,
-    },
     idDireccion: {
       type: dataTypes.INTEGER,
       allowNull: false,
     },
   }
+  
   const config = {
-    tableName: "Solicitud",
+    tableName: "solicitud",
     timestamps: false,
   }
 
   const Solicitud = sequelize.define(alias, cols, config);
 
-  Solicitud.associate = function(models){
+  Solicitud.associate = function (models) {
     Solicitud.belongsTo(models.Direccion, {
-      as: "fk_solicitud_cliente",
-      foreignKey: "idCliente"
-    })
-    Solicitud.belongsTo(models.Direccion, {
-      as: "fk_solicitud_direccion",
-      foreignKey: "idDireccion"
-    })
-  }
+      as: 'direccion',
+      foreignKey: 'idDireccion', // Clave foránea en Solicitud
+    });
+  };
 
   return Solicitud;
 }

@@ -29,6 +29,5 @@ module.exports = (sequelize, dataTypes) => {
       foreignKey: "codPostal"
     })
   }
-
   return Localidad;
 }
