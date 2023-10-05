@@ -1,1 +1,14 @@
-<p>info-libro-seleccionado works!</p>
+<img src="{{ libro?.imagen }}" alt="Portada del libro seleccionado" />
+<h3>{{ libro?.titulo }}</h3>
+<p class="precio">
+  {{
+    libro?.precio !== undefined
+      ? "$" + calculatePriceInSelectedCurrency(libro!.precio).toLocaleString()
+      : ""
+  }}
+  <small class="text-muted">
+    {{ currencyService.getCurrency() }}
+  </small>
+</p>
+<p>Envío gratis a Rosario por <span class="precio">$1.499</span></p>
+<p>O retiralo <strong>GRATIS</strong> en nuestra tienda</p>

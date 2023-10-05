@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'autores', component: AutoresComponent },
   { path: 'ofertas', component: OfertasComponent },
   { path: 'ayuda', component: AyudaComponent },
-  { path: 'libro-seleccionado', component: LibroSeleccionadoComponent }, // Ruta al LibroSeleccionadoComponent. TODO: El nombre del enlace debe cambiar dependiendo del libro seleccionado
+  { path: 'libro-seleccionado/:id', component: LibroSeleccionadoComponent }, // Ruta al LibroSeleccionadoComponent. TODO: El nombre del enlace debe cambiar dependiendo del libro seleccionado
   { path: 'carrito-compras', component: CarritoComprasComponent },
   { path: 'finalizar-compra', component: FinalizarCompraComponent },
   { path: 'identificarse', component: IdentificarseComponent },

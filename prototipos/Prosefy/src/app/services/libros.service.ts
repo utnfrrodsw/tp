@@ -82,4 +82,8 @@ export class LibrosService {
   getLibros(): Libro[] {
     return this.libros;
   }
+  getLibroById(id: number): Libro | undefined {
+    // Buscar el libro por su ID en la lista de libros
+    return this.libros.find((libro) => libro.id === id);
+  }
 }

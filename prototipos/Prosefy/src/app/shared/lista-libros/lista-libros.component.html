@@ -30,7 +30,10 @@
           class="elemento-lista elemento-animado animacion-tarjeta hover-grow"
         >
           <div class="libro card">
-            <a routerLink="/libro-seleccionado" class="text-decoration-none">
+            <a
+              [routerLink]="['/libro-seleccionado', libro.id]"
+              class="text-decoration-none"
+            >
               <!-- Elementos a mostrar de cada libro -->
               <img
                 src="{{ libro.imagen }}"
