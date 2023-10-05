@@ -1,0 +1,29 @@
+.img-usuario{
+    display: flex;
+    justify-content: center;
+}
+
+.imagen-usuario-azul {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    object-fit: cover;
+}
+
+.container-navbar{
+    width: auto;
+    height: 30px;
+    display:flex;
+    flex-direction: row;
+    margin-left: 300px;
+    margin-top: 50px;
+    margin-right: 300px;
+    border-right: black 1px solid;
+}
+
+.item-menu{
+    height: 30px;
+    width: 128px;
+    border-bottom: black 1px solid;
+    border-left: black 1px solid;;
+}

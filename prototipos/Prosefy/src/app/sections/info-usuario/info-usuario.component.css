@@ -1,0 +1,94 @@
+.container-perfil-usuario{
+    display: flex;
+    flex-direction: column;
+    margin-left: 300px;
+    margin-top: 30px;
+    margin-right: 300px;
+    margin-bottom: 100px; 
+}
+
+.container-bloques{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.container-perfil{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.container-buttom-guardar-cambios{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.buttom-cambios{
+    background-color: rgb(131, 73, 46);
+    color: white;
+    width: 60;
+    height: 35px;
+    text-decoration: none;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.encabezado{
+    display: flex;
+    flex-direction: row;
+    border-bottom: black 1px solid;
+    justify-content: space-between;
+}
+
+.datos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 145px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+.boton-direcciones{
+    text-decoration: none;
+    background-color: rgb(131, 73, 46);
+    width: 15px;
+    padding: 3px;
+    color: white;
+    margin-right: 7px;
+}
+
+
+.datos-personales{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    width: 350px;
+    padding-top: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.img-lápiz{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.espacio{
+    width: 65px;
+}
+
+.bloque{
+    width: 400px;
+}
+
+.img-plus{
+    padding-top: 55px;
+    padding-right: 20px ;
+}
