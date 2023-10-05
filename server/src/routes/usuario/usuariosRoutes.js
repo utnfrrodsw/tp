@@ -13,16 +13,16 @@ const usuarioController = require( "../../controllers/usuarios/usuariosControlle
 //const { validateRegistro } = require( "../../middlewares/usuarios/validateRegistro.js");
 
  
-router.get('/usuarios/listaUsuarios',usuarioController.getUsuarios) 
-router.get('/usuarios/listaUsuarios/:id', usuarioController.getUsuario)
+router.get('/listaUsuarios',usuarioController.getUsuarios) 
+router.get('/listaUsuarios/:id', usuarioController.getUsuario)
 
  
 
 // RUTA REGISTRO DE USUARIOS
-router.post('/usuarios/registro',/* validateRegistro,  authUserRegister, */usuarioController.registrarUsuario /*, errorHandler*/);
+router.post('/registro',/* validateRegistro,  authUserRegister, */usuarioController.registrarUsuario /*, errorHandler*/);
 
 //RUTA LOGIN USUARIOS
-router.post('/usuarios/login', /*validateLoginData, authenticateUser, */usuarioController.login /*,errorHandler*/);
+router.post('/login', /*validateLoginData, authenticateUser, */usuarioController.login /*,errorHandler*/);
 
 //GET obtener usuarios
 //POST crear usuarios

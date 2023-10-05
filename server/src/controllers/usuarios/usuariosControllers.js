@@ -1,14 +1,16 @@
 //LOGICA PARA CONSULTAS A LA BD
 
-const User = require('../../models/usuarioModel.js');  
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { TOKEN } = require('../../config');  
 
+const db = require('../../models');  
+
+
 const usuarioController = {
   getUsuarios: async (req, res) => {
     try {
-      const usuarios = await User.findAll();
+      const usuarios = await db.Usuario.findAll();
       res.json(usuarios);
     } catch (error) {
       console.error('Error al obtener usuarios', error);
@@ -19,7 +21,7 @@ const usuarioController = {
   getUsuario: async (req, res) => {
     const { id } = req.params;
     try {
-      const usuario = await User.findByPk(id);
+      const usuario = await db.Usuario.findByPk(id);
       if (!usuario) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
       }
@@ -34,7 +36,7 @@ const usuarioController = {
     const { name, surname, email, password, birthDate, phoneNumber, isPrestador } = req.body;
     try {
       // Verificar si el usuario ya existe en la base de datos (según el email)
-      const existingUser = await User.findOne({ where: { email } });
+      const existingUser = await db.Usuario.findOne({ where: { email } });
       if (existingUser) {
         return res.status(400).json({ message: 'El usuario ya existe' });
       }
@@ -43,7 +45,7 @@ const usuarioController = {
       const hashedPassword = await bcrypt.hash(password, 10); // 10 rounds de sal
   
       // Crear el nuevo usuario en la base de datos
-      const usuario = await User.create({
+      const usuario = await db.Usuario.create({
         name,
         surname,
         email,
@@ -64,7 +66,7 @@ const usuarioController = {
     const { email, password } = req.body;
     try {
       // Buscar al usuario en la base de datos por su correo electrónico
-      const usuario = await User.findOne({ where: { email } });
+      const usuario = await db.Usuario.findOne({ where: { email } });
       if (!usuario) {
         return res.status(401).json({ message: 'Usuario no encontrado' });
       }

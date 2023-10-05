@@ -1,54 +1,46 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, dataTypes) => {
   const alias = "Solicitud";
   const cols = {
     idSolicitud: {
-      type: DataTypes.INTEGER,
+      type: dataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
     fechaHora: {
-      type: DataTypes.DATE,
+      type: dataTypes.DATE,
       allowNull: false,
     },
     titulo: {
-      type: DataTypes.STRING(45),
+      type: dataTypes.STRING(45),
       allowNull: false,
     },
     descripcion: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
+      type: dataTypes.STRING(255),
     },
     fotos: {
-      type: DataTypes.BLOB,
+      type: dataTypes.BLOB,
       allowNull: false,
     },
     idDireccion: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    idCliente: {
-      type: DataTypes.INTEGER,
+      type: dataTypes.INTEGER,
       allowNull: false,
     },
   }
+  
   const config = {
-    tableName: "Solicitud",
+    tableName: "solicitud",
     timestamps: false,
   }
 
   const Solicitud = sequelize.define(alias, cols, config);
 
-  Solicitud.associate = function(models){
+  Solicitud.associate = function (models) {
     Solicitud.belongsTo(models.Direccion, {
-      as: "cliente",
-      foreignKey: "idCliente"
-    })
-    Solicitud.belongsTo(models.Direccion, {
-      as: "direccion",
-      foreignKey: "idDireccion"
-    })
-  }
+      as: 'direccion',
+      foreignKey: 'idDireccion', // Clave foránea en Solicitud
+    });
+  };
 
   return Solicitud;
 }
