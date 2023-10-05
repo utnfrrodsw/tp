@@ -19,7 +19,11 @@
 .editoriales{
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease;
+}
 
+.editoriales:hover{
+    transform: scale(1.1);
 }
 
 .texto-editorial{

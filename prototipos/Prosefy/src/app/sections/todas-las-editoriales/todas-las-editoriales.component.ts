@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./todas-las-editoriales.component.css']
 })
 export class TodasLasEditorialesComponent {
+  
+  isHovered = false;
+
+  onMouseEnter() {
+    this.isHovered = true;
+  }
+
+  onMouseLeave() {
+    this.isHovered = false;
+  }
 
 }
