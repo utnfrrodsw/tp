@@ -1,34 +1,33 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, dataTypes) => {
   const alias = "Solicitud";
   const cols = {
     idSolicitud: {
-      type: DataTypes.INTEGER,
+      type: dataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
     fechaHora: {
-      type: DataTypes.DATE,
+      type: dataTypes.DATE,
       allowNull: false,
     },
     titulo: {
-      type: DataTypes.STRING(45),
+      type: dataTypes.STRING(45),
       allowNull: false,
     },
     descripcion: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
+      type: dataTypes.STRING(255),
     },
     fotos: {
-      type: DataTypes.BLOB,
-      allowNull: false,
-    },
-    idDireccion: {
-      type: DataTypes.INTEGER,
+      type: dataTypes.BLOB,
       allowNull: false,
     },
     idCliente: {
-      type: DataTypes.INTEGER,
+      type: dataTypes.INTEGER,
+      allowNull: false,
+    },
+    idDireccion: {
+      type: dataTypes.INTEGER,
       allowNull: false,
     },
   }
@@ -41,11 +40,11 @@ module.exports = (sequelize, DataTypes) => {
 
   Solicitud.associate = function(models){
     Solicitud.belongsTo(models.Direccion, {
-      as: "cliente",
+      as: "fk_solicitud_cliente",
       foreignKey: "idCliente"
     })
     Solicitud.belongsTo(models.Direccion, {
-      as: "direccion",
+      as: "fk_solicitud_direccion",
       foreignKey: "idDireccion"
     })
   }

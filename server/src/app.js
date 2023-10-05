@@ -2,18 +2,23 @@
 
 const express = require('express');
 const path = require("path");
+const sequelize = require("sequelize");
 const app = express();
 
-const usuariosRoutes = require( './routes/usuario/usuariosRoutes.js');
 const { PORT } = require('./config');
-
 app.set("port", PORT || 5000); //seteamos el puerto que nos da el servidor o el 5000
+
+
+const usuariosRoutes = require( './routes/usuario/usuariosRoutes.js');
+const solicitudRoutes = require('./routes/solicitud/solicitudRoutes.js');
+
 
 app.listen(app.get("port"), () => {
     console.log(`Server corriendo en el puerto ${app.get("port") || 5000}`);
 });
 
-app.use('/api',usuariosRoutes)
+app.use('/usuario',usuariosRoutes)
+app.use('/solicitud', solicitudRoutes);
 
 app.use((req,res,next) =>{
     res.status(404).json({
