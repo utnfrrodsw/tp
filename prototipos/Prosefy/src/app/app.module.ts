@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
-import { DatePipe, registerLocaleData } from '@angular/common';
+import { DatePipe, registerLocaleData, CommonModule } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 
 /* BOOTSTRAP */
@@ -112,6 +112,7 @@ registerLocaleData(localeEs, 'es');
     ToastrModule.forRoot(),
     FormsModule,
     PaginationModule.forRoot(),
+    CommonModule,
   ],
   providers: [
     CurrencyService,

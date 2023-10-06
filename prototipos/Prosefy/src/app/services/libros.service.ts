@@ -8,10 +8,12 @@ export interface Libro {
   descripcion: string;
   precio: number;
   imagen: string;
-  autor: string;
+  autores: string[];
   editorial: string;
   fechaEdicion: Date;
   calificacion: number;
+  categorias: string[];
+  formatos: string[];
 }
 
 @Injectable({
@@ -27,10 +29,12 @@ export class LibrosService {
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. ...',
       precio: 3500,
       imagen: 'assets/img/Libros/Clean Code.webp',
-      autor: 'Robert C. Martin',
+      autores: ['Robert C. Martin'],
       editorial: 'Prentice Hall',
       fechaEdicion: new Date(2008, 7, 11),
       calificacion: 4.4,
+      categorias: ['Programación', 'Desarrollo de Software'],
+      formatos: ['Físico', 'Digital'],
     },
     {
       id: 2,
@@ -41,10 +45,12 @@ export class LibrosService {
       precio: 15999,
       imagen:
         'assets/img/Libros/Introducción a la Programación Estructurada en C.jpg',
-      autor: 'Luis Joyanes Aguilar',
+      autores: ['Luis Joyanes Aguilar'],
       editorial: 'McGraw Hill',
       fechaEdicion: new Date(2000, 0, 1),
       calificacion: 4,
+      categorias: ['Programación', 'Desarrollo de Software'],
+      formatos: ['Físico', 'Digital'],
     },
     {
       id: 3,
@@ -54,10 +60,12 @@ export class LibrosService {
         'Este libro es una guía completa para aprender Python, desde los conceptos básicos hasta temas avanzados. Ideal para principiantes y programadores experimentados que deseen dominar Python.',
       precio: 19999,
       imagen: 'assets/img/Libros/Learning Python.png',
-      autor: 'Mark Lutz',
+      autores: ['Mark Lutz'],
       editorial: 'O’Reilly Media',
       fechaEdicion: new Date(2013, 6, 6),
       calificacion: 4,
+      categorias: ['Programación', 'Desarrollo de Software'],
+      formatos: ['Físico', 'Digital'],
     },
     {
       id: 4,
@@ -67,10 +75,12 @@ export class LibrosService {
         'Este libro explora los principios y conceptos fundamentales de los sistemas operativos modernos. Ofrece una comprensión profunda de cómo funcionan los sistemas operativos en la práctica.',
       precio: 19899,
       imagen: 'assets/img/Libros/Sistemas Operativos Modernos.webp',
-      autor: 'Andrew S. Tanenbaum',
+      autores: ['Andrew S. Tanenbaum'],
       editorial: 'Pearson',
       fechaEdicion: new Date(2015, 1, 15),
       calificacion: 3,
+      categorias: ['Programación', 'Desarrollo de Software'],
+      formatos: ['Físico', 'Digital'],
     },
     {
       id: 5,
@@ -80,10 +90,12 @@ export class LibrosService {
         'Este clásico libro introduce patrones de diseño en la programación de software. Explora soluciones probadas para problemas comunes de diseño de software.',
       precio: 5099,
       imagen: 'assets/img/Libros/Design Patterns.jpg',
-      autor: 'Erich Gamma',
+      autores: ['Erich Gamma'],
       editorial: 'Addison-Wesley Professional',
       fechaEdicion: new Date(1994, 10, 10),
       calificacion: 5,
+      categorias: ['Programación', 'Desarrollo de Software'],
+      formatos: ['Físico', 'Digital'],
     },
     {
       id: 6,
@@ -94,10 +106,12 @@ export class LibrosService {
       precio: 39990,
       imagen:
         'assets/img/Libros/Ingeniería de Software. Un Enfoque Práctico.webp',
-      autor: 'Roger S. Pressman',
+      autores: ['Roger S. Pressman'],
       editorial: 'McGraw-Hill Interamericana',
       fechaEdicion: new Date(2006, 6, 30),
       calificacion: 4.5,
+      categorias: ['Programación', 'Desarrollo de Software'],
+      formatos: ['Físico', 'Digital'],
     },
     {
       id: 7,
@@ -107,10 +121,12 @@ export class LibrosService {
         'Un libro introductorio que enseña programación en Python desde cero. Contiene ejemplos y ejercicios para ayudar a los lectores a comprender los conceptos básicos de la programación.',
       precio: 23990,
       imagen: 'assets/img/Libros/Python para todos.jpg',
-      autor: 'Raúl González Duque',
+      autores: ['Raúl González Duque'],
       editorial: 'Publicado Independientemente',
       fechaEdicion: new Date(2013, 6, 1),
       calificacion: 4.5,
+      categorias: ['Programación', 'Desarrollo de Software'],
+      formatos: ['Físico', 'Digital'],
     },
     {
       id: 8,
@@ -120,10 +136,12 @@ export class LibrosService {
         'Este libro ofrece una introducción clara y accesible a la inteligencia artificial, cubriendo conceptos clave y técnicas utilizadas en el campo.',
       precio: 27990,
       imagen: 'assets/img/Libros/Introducción a la Inteligencia Artificial.jpg',
-      autor: 'Wolfgang Ertel',
+      autores: ['Wolfgang Ertel'],
       editorial: 'Thomson Learning',
       fechaEdicion: new Date(2008, 15, 3),
       calificacion: 4.2,
+      categorias: ['Programación', 'Desarrollo de Software'],
+      formatos: ['Físico', 'Digital'],
     },
   ];
 
