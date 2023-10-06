@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const { TOKEN } = require('../../config');  
 
 const db = require('../../models');  
+const multer = require('multer'); // Para manejar la carga de imágenes
 
 
 const usuarioController = {
@@ -88,6 +89,151 @@ const usuarioController = {
       res.status(500).json({ message: 'Error en el servidor' });
     }
   },
+  
+  obtenerDatosUsuario: async (req, res) => {
+    const { id } = req.params;
+  
+      try {
+        // Buscar el usuario por su ID y seleccionar solo los campos necesarios
+        const usuario = await db.Usuario.findByPk(id, {
+          attributes: ['nombre', 'apellido', 'email', 'fechaNacimiento'],
+        });
+  
+        if (!usuario) {
+          return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+  
+        res.json(usuario);
+      } catch (error) {
+        console.error('Error al obtener datos del usuario', error);
+        res.status(500).json({ message: 'Error en el servidor' });
+      }
+    },
+
+
+  modificarDatosPersonales: async (req, res) => {
+    const { id } = req.params;
+    const { nombre, apellido, email, fechaNacimiento } = req.body;
+
+    try {
+      const usuario = await db.Usuario.findByPk(id);
+      if (!usuario) {
+        return res.status(404).json({ message: 'Usuario no encontrado' });
+      }
+
+      // Actualizar los datos personales del usuario
+      usuario.nombre = nombre;
+      usuario.apellido = apellido;
+      usuario.email = email;
+      usuario.fechaNacimiento = fechaNacimiento;
+
+      await usuario.save();
+
+      res.status(200).json({ message: 'Datos personales actualizados exitosamente' });
+    } catch (error) {
+      console.error('Error al modificar los datos personales del usuario', error);
+      res.status(500).json({ message: 'Error en el servidor' });
+    }
+  },
+
+
+  verificarClave: async (req, res) => {
+    const { id } = req.params;
+    const { claveActual } = req.body;
+  
+    try {
+      const usuario = await db.Usuario.findByPk(id);
+      if (!usuario) {
+        return res.status(404).json({ message: 'Usuario no encontrado' });
+      }
+  
+      // Comparar la contraseña proporcionada con la contraseña almacenada en la base de datos
+      const passwordMatch = await bcrypt.compare(claveActual, usuario.password);
+      if (!passwordMatch) {
+        return res.status(401).json({ message: 'Contraseña actual incorrecta' });
+      }
+  
+      res.status(200).json({ message: 'Contraseña actual verificada correctamente' });
+    } catch (error) {
+      console.error('Error al verificar la contraseña actual del usuario', error);
+      res.status(500).json({ message: 'Error en el servidor' });
+    }
+  },
+
+
+
+  cambiarClave: async (req, res) => {
+  const { id } = req.params;
+  const { nuevaClave } = req.body;
+
+  try {
+    const usuario = await db.Usuario.findByPk(id);
+    if (!usuario) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    // Hacer el hash de la nueva contraseña antes de actualizarla en la base de datos
+    const hashedPassword = await bcrypt.hash(nuevaClave, 10); // 10 rounds de sal
+
+    // Actualizar la contraseña del usuario
+    usuario.password = hashedPassword;
+
+    await usuario.save();
+
+    res.status(200).json({ message: 'Contraseña actualizada exitosamente' });
+  } catch (error) {
+    console.error('Error al actualizar la contraseña del usuario', error);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
+},
+
+
+
+  getDireccion: async(req,res)=>{
+      const { id } = req.params;
+  
+      try {
+        // Buscar la dirección por su ID
+        const direccion = await db.Direccion.findByPk(id);
+  
+        if (!direccion) {
+          return res.status(404).json({ message: 'Dirección no encontrada' });
+        }
+  
+        res.json(direccion);
+      } catch (error) {
+        console.error('Error al obtener dirección por ID', error);
+        res.status(500).json({ message: 'Error en el servidor' });
+      }
+  },
+
+
+  getLocalidad: async(req,res)=>{
+    const { codPostal } = req.params;
+
+    try {
+      // Buscar la localidad por su código postal
+      const localidad = await db.Localidad.findByPk(codPostal, {
+        include: [
+          {
+            model: db.Direccion,
+            as: 'fk_direccion_localidad',
+          },
+        ],
+      });
+
+      if (!localidad) {
+        return res.status(404).json({ message: 'Localidad no encontrada' });
+      }
+
+      res.json(localidad);
+    } catch (error) {
+      console.error('Error al obtener localidad por código postal', error);
+      res.status(500).json({ message: 'Error en el servidor' });
+    }
+    
+  }
+
 };
 
 module.exports = usuarioController;
