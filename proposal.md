@@ -3,15 +3,21 @@
 ## Grupo
 ### Integrantes
 * legajo - Apellido(s), Nombre(s)
+* 49609 - Sebben, Mateo
+* 49850 - Roca, Ramiro Felipe
+* 50174 - Mercé, Alexis
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app: Angular ]([(https://github.com/FelipeRoca/TP_DSW_FrontEnd))]
+* [backend app: Nodejs ]([http://hyperlinkToGihubOrGitlab](https://github.com/FelipeRoca/PRUEBA_BD_PROYECTO))
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
+App de Reseñas Turísticas
 ### Descripción
 *2 a 6 líneas describiendo el negocio (menos es más)*
+
+Crearemos una red social en línea donde los usuarios podrán compartir sus experiencias de viaje, subir fotos, calificar la experiencia y comentar acerca de sus vacaciones. Existira un sistema de autenticación para que los usuarios puedan crear cuentas y acceder a su perfil. Estos usuarios pueden registrarse, editarse y eliminarse. Una vez que acceden con su email y contraseña, pueden redactar, editar y eliminar sus reseñas.
 
 ### Modelo
 ![imagen del modelo]()
