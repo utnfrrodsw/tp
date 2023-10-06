@@ -22,6 +22,10 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.BLOB,
       allowNull: false,
     },
+    estado: {
+      type: dataTypes.STRING(20),
+      allowNull: false,
+    },
     idDireccion: {
       type: dataTypes.INTEGER,
       allowNull: false,

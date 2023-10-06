@@ -22,8 +22,28 @@ const solicitudController = {
             console.error('Error al obtener solicitud', error);
             res.status(500).json({ message: 'Error en el servidor' });
         }
-    }
+    },
 
+    getSolicitudesActivasCliente: function (req, res){
+        let idCliente = req.params.id;
+        console.log(idCliente);
+        try{
+            db.Solicitud.findAll({
+                where: {idCliente: idCliente},
+                include: [{association: 'direccion'}]
+            })
+            .then(function(solicitudes){
+                if(!solicitudes) {
+                    res.status(404).json({ message: 'Solicitudes no encontradas' });
+                }
+                console.log(solicitudes);
+                res.json(solicitudes);
+            })
+        }catch(error){
+            console.error('Error al obtener solicitudes', error);
+            res.status(500).json({ message: 'Error en el servidor' });
+        }
+    }
 };
 
 module.exports = solicitudController;
