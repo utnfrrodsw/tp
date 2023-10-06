@@ -1,4 +1,75 @@
 .precio {
   font-weight: bold;
   color: #4eafda;
+  font-size: 2rem;
+}
+
+.custom-rounded-shadow {
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+}
+
+h3 {
+  text-align: center;
+}
+
+.envio {
+  font-weight: bold;
+  color: #4eafda;
+}
+
+.text-normal {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  color: #747474;
+  font-weight: 300;
+}
+
+.cuota {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  color: #4eafda;
+  font-weight: 300;
+}
+
+.custom-btn-primary {
+  background-color: #bd8464;
+  border-color: #bd8464;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-primary:active {
+  background-color: #976950;
+  border-color: #976950;
+}
+
+.custom-btn-secondary {
+  background-color: #fff;
+  border-color: #cecece;
+  color: #646464;
+}
+
+.custom-btn-secondary:hover,
+.custom-btn-secondary:active {
+  background-color: #eeeeee;
+  border-color: #afafaf;
+}
+
+.rating {
+  font-size: 35px;
+}
+
+.star {
+  color: #d9d9d9;
+}
+
+.star.filled {
+  color: #ff9800;
+}
+
+.max-width-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
