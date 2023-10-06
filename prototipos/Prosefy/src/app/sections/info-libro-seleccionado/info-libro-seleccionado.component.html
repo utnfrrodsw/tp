@@ -58,15 +58,17 @@
       </p>
       <hr class="my-4" />
       <p>
-        Envío a Rosario por
+        Envío a Rosario
         <span class="envio">{{
-          "$" +
-            calculatePriceInSelectedCurrency(1499).toLocaleString(undefined, {
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0
-            })
+          libro?.precio !== undefined && libro!.precio > 8000
+            ? "GRATIS"
+            : "$" +
+              calculatePriceInSelectedCurrency(1499).toLocaleString(undefined, {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+              })
         }}</span>
-        <small>
+        <small *ngIf="libro?.precio !== undefined && libro!.precio <= 8000">
           {{ currencyService.getCurrency() }}
         </small>
       </p>
