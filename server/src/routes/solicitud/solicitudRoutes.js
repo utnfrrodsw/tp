@@ -5,4 +5,6 @@ const solicitudController = require( "../../controllers/solicitud/solicitudContr
 
 router.get('/:id',solicitudController.getSolicitud);
 
+router.get('/client/:id/solicitudesActivas', solicitudController.getSolicitudesActivasCliente);
+
 module.exports=router;
