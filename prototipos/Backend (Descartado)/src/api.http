@@ -1,0 +1,33 @@
+### obtener todos los libros
+GET http://localhost:3000/api/libros
+
+
+### obtener un libro
+GET http://localhost:3000/api/libros/
+
+### crear un nuevo libro
+POST http://localhost:3000/api/libros/
+Content-Type: application/json
+
+{
+
+}
+
+### modificar un libro (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+
+}
+
+### modificar un libro (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+    
+}
+
+### borrar un libro
+DELETE http://localhost:3000/api/libros
