@@ -15,6 +15,8 @@ import Login from './components/usuario/login/Login.jsx';
 import RecuperarClave from './components/usuario/login/RecuperarClave';
 import Register from './components/usuario/register/Register.jsx';
 
+import ProtectedRoute from './components/Routes/ProtectedRoute.jsx';
+
 import './App.css';
 
 
@@ -25,26 +27,29 @@ function App() {
       <Header/>
       <div className='content'>
         <Routes>
+          <Route path='/'  element={ <Home/>} />
           <Route path='/login'  element={ <Login/>}/>
           <Route path='/register'  element={ <Register/>}/>
-          <Route path='/'  element={ <Home/>} />
           <Route path='/recuperarClave' element={<RecuperarClave/>} />
+
+          {/*rutas protegidas user*/}
+          <Route path='/' element={<ProtectedRoute page="login"/>}>
+            <Route path='/user' element={<DatosUser />} />
+          </Route>
+
+          {/*prestador*/}
           <Route path='/evaluations' element={<Evaluaciones />} />
-          <Route path='/user' element={<DatosUser />} />
           <Route path='/provider/home'  element={ <InicioPrestador/>}/>
           <Route path='/provider/budget/:id' element={<Presupuesto/>}/>
+
+          {/*cliente*/}
+
           <Route path='/client/home'  element={ <InicioCliente/>}/>
-          <Route path='/client/home/requests'  element={ <Solicitudes estado = "pendiente"/>}>
-            {/*<Route path=':id'  element={ <details/>}/>*/}
-          </Route> 
-          <Route path='/client/home/progress'  element={ <Solicitudes estado = "enProgreso"/>}>
+          <Route path='/client/home/requests'  element={ <Solicitudes estado = "pendiente"/>}/>
 
-          </Route>
-          <Route path='/client/home/finished'  element={ <Solicitudes estado = "terminado"/>}>
-
+          <Route path='/client/home/progress'  element={ <Solicitudes estado = "enProgreso"/>}/> 
+          <Route path='/client/home/finished'  element={ <Solicitudes estado = "terminado"/>}/>
           
-          </Route>
-          {/*<Route path='/evaluations'  element={ <Evaluaciones/>} />*/}
           <Route path='*'  element={ <Error/>} />
         </Routes>
       </div>

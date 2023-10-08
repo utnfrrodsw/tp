@@ -268,10 +268,11 @@ DROP TABLE IF EXISTS `solicitud_profesiones`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `solicitud_profesiones` (
   `idSolicitud` int NOT NULL,
-  `idprofesiones` int NOT NULL,
-  PRIMARY KEY (`idSolicitud`,`idprofesiones`),
-  UNIQUE KEY `idprofesiones_UNIQUE` (`idprofesiones`),
-  CONSTRAINT `profesion_anun` FOREIGN KEY (`idprofesiones`) REFERENCES `profesion` (`idProfesion`)
+  `idProfesion` int NOT NULL,
+  PRIMARY KEY (`idSolicitud`,`idProfesion`),
+  KEY `profesion_anun` (`idProfesion`),
+  CONSTRAINT `profesion_anun` FOREIGN KEY (`idProfesion`) REFERENCES `profesion` (`idProfesion`),
+  CONSTRAINT `solicitud_anun` FOREIGN KEY (`idSolicitud`) REFERENCES `solicitud` (`idSolicitud`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -296,12 +297,12 @@ CREATE TABLE `usuario` (
   `nombre` varchar(40) NOT NULL,
   `apellido` varchar(40) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `contrasena` varchar(32) NOT NULL,
+  `contrasena` varchar(250) NOT NULL,
   `fechaNacimiento` date DEFAULT NULL,
   `telefono` int DEFAULT NULL,
   `esPrestador` tinyint DEFAULT '0',
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,7 +311,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (2,'Facundo','Taborra','taborrafacundo@gmail.com','facuuuu','2001-09-27',0,0);
+INSERT INTO `usuario` VALUES (2,'Facundo','Taborra','taborrafacundo@gmail.com','facuuuu','2001-09-27',0,0),(3,'Seggio','Romero','SRomero@gmial.com','$2b$10$VSrulsN1XFteyRXxjRL95e2MAs.OnBwceXf8S.y4OkGQaCMBlU4we',NULL,777777778,0),(4,'rodolgo','asdas','ashdbjj@gmail.com','$2b$10$6wkVWlFhr2Evf8i6gOpCBurRAAgiUDYaamGI1OtmCr48XIYOQxtii','2023-10-26',845754896,0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -323,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-06 10:36:24
+-- Dump completed on 2023-10-07 22:16:41
