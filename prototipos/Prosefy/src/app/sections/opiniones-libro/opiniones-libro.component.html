@@ -1,1 +1,22 @@
-<p>opiniones-libro works!</p>
+<div class="container mt-4 custom-rounded-shadow p-3 mb-4">
+  <h3 class="text-center">Opiniones del libro</h3>
+  <div class="row">
+    <div class="col-md-5 col-12 text-center mb-3 mb-md-0">
+      <p class="calificacion">
+        {{ libro ? libro.calificacion : "No disponible" }}
+      </p>
+    </div>
+    <div class="col-md-6 col-12 d-flex align-items-center">
+      <div class="rating text-center">
+        <span
+          class="star"
+          *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+          [class.filled]="libro && i < libro.calificacion"
+          >&#9733;</span
+        >
+      </div>
+    </div>
+  </div>
+  <p class="text-center">...</p>
+  <p class="text-center"><strong>Mostrar todas las opiniones</strong></p>
+</div>

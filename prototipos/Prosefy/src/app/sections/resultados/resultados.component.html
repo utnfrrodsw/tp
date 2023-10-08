@@ -1,7 +1,6 @@
 <div class="resultados">
   <h3 class="mt-4 mb-4 custom-h3">Resultados</h3>
 </div>
-
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -17,15 +16,25 @@
         >
           <div class="row align-items-center">
             <div class="col-md-4 col-6">
-              <img
-                class="book-cover"
-                [src]="libro.imagen"
-                alt="Portada del libro"
-              />
+              <a
+                [routerLink]="['/libro-seleccionado', libro.id]"
+                class="text-decoration-none"
+              >
+                <img
+                  class="book-cover"
+                  [src]="libro.imagen"
+                  alt="Portada del libro"
+                />
+              </a>
             </div>
             <div class="col-md-8 col-6">
               <div class="d-flex align-items-center justify-content-between">
-                <h5 class="book-title">{{ libro.titulo }}</h5>
+                <a
+                  [routerLink]="['/libro-seleccionado', libro.id]"
+                  class="text-decoration-none"
+                >
+                  <h5 class="book-title">{{ libro.titulo }}</h5>
+                </a>
                 <!-- Icono de corazón para agregar a la lista de deseos -->
                 <svg
                   class="heart-icon"

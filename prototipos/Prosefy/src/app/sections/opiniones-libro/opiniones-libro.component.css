@@ -1,0 +1,47 @@
+.custom-rounded-shadow {
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+  text-align: center;
+  font-weight: 700;
+}
+
+.container {
+  width: 82%;
+  height: auto;
+  background-color: #f5f5f5;
+}
+
+.rating {
+  font-size: 2.4rem;
+}
+
+.star {
+  color: #d9d9d9;
+}
+
+.star.filled {
+  color: #ffbf00;
+}
+
+.calificacion {
+  color: #ffbf00;
+  text-align: right;
+  font-size: 500%;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .calificacion {
+    text-align: center;
+    font-size: 300%;
+  }
+  .rating {
+    font-size: 2rem;
+  }
+  .col-md-6 {
+    justify-content: center;
+  }
+}

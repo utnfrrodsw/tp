@@ -2,7 +2,6 @@
   class="container-fluid d-flex justify-content-center align-items-center flex-column py-2"
 >
   <div class="lista-libros">
-    <!-- Botón para que se mueva a la izquierda la lista -->
     <div
       class="rounded-button shadow d-flex justify-content-center align-items-center"
     >
@@ -15,10 +14,7 @@
       </button>
     </div>
     <div class="lista-contenedor container-fluid">
-      <!-- p-4 -> padding: 4 -->
       <div class="elementos-lista py-4 container-fluid">
-        <!-- Directiva *ngFor para iterar sobre la colección de libros
-        Consultar en: libros-recomendados.component.ts -->
         <div
           *ngFor="
             let libro of libros.slice(
@@ -34,7 +30,6 @@
               [routerLink]="['/libro-seleccionado', libro.id]"
               class="text-decoration-none"
             >
-              <!-- Elementos a mostrar de cada libro -->
               <img
                 src="{{ libro.imagen }}"
                 alt="Portada del libro"
@@ -51,7 +46,6 @@
                     {{ currencyService.getCurrency() }}
                   </small>
                 </p>
-                <!-- Corta la descripción si es muy larga y coloca "..." -->
                 <p class="card-text descripcion">
                   {{
                     libro.descripcion.length > descripcionMaxLength
@@ -66,7 +60,6 @@
         </div>
       </div>
     </div>
-    <!-- Botón para que se mueva a la derecha la lista -->
     <div
       class="rounded-button shadow d-flex justify-content-center align-items-center"
     >
