@@ -58,6 +58,7 @@ import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.componen
 import { CurrencyService } from './services/currency.service';
 import { ListaLibrosComponent } from './shared/lista-libros/lista-libros.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { AutoresService } from './services/autores.service';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -118,6 +119,7 @@ registerLocaleData(localeEs, 'es');
     CurrencyService,
     DatePipe,
     { provide: LOCALE_ID, useValue: 'es' },
+    AutoresService,
   ],
   bootstrap: [AppComponent],
 })

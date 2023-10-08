@@ -1,10 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-
-// Definir una interfaz para representar la estructura de un autor
-interface Autor {
-  nombreCompleto: string;
-  perfil: string;
-}
+import { AutoresService, Autor } from '../../services/autores.service';
 
 @Component({
   selector: 'app-autores-nuevos',
@@ -14,73 +9,14 @@ interface Autor {
 export class AutoresNuevosComponent {
   elementosAlInicio: boolean = true;
   elementosAlFinal: boolean = false;
-  // Lista de autores con información
-  autores: Autor[] = [
-    {
-      nombreCompleto: 'Robert C. Martin',
-      perfil: '../../../../assets/img/Autores/Robert C. Martin.jpg',
-    },
-    {
-      nombreCompleto: 'James Clear',
-      perfil: '../../../../assets/img/Autores/James Clear.png',
-    },
-    {
-      nombreCompleto: 'Autor 3',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 4',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 5',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 6',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 7',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 8',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 9',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 10',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 11',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 12',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 13',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 14',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 15',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-    {
-      nombreCompleto: 'Autor 16',
-      perfil: '../../../../assets/img/Autores/perfil-autor-default.jpg',
-    },
-  ];
+  autores: Autor[] = [];
+
+  constructor(private autoresService: AutoresService) {}
+
+  ngOnInit() {
+    this.autores = this.autoresService.getAutores();
+  }
+
   // Índice del elemento actual en la lista de autores
   elementoActual = 0;
   // Número de elementos a mostrar por paso
