@@ -1,0 +1,53 @@
+<template>
+  <v-container fluid>
+    <v-row>
+      <v-col v-for="(group, index) in groups" :key="index" cols="3">
+        <v-card outlined>
+          <v-card-title>
+            Grupo: {{ group.id }}
+          </v-card-title>
+          <v-card-subtitle>
+            Descripcion: {{ group.technicians.length > 0 ? group.technicians[0].name : 'Libre' }}
+          </v-card-subtitle>
+          <v-card-text>
+            <v-row>
+              <v-col v-if="group.technicians.length > 0" cols="12">Técnicos:</v-col>
+            </v-row>
+            <v-row v-for="(technician, index) in group.technicians" :key="index">
+              <v-col cols="6">{{ technician.name }}</v-col>
+              <v-col cols="3">ID: {{ technician.id }}</v-col>
+            </v-row>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="primary" @click="groupEdit(group.id, group.technicians.map(technician => technician.id))">Modificar grupo</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+  export default {
+    name: 'ListGroups',
+    data() {
+      return {
+        groups: [],
+      };
+    },
+    async mounted() {
+      try {
+        const response = await fetch('http://localhost:4000/api/groups')
+        const data = await response.json()
+        this.groups = data
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    methods: {
+      groupEdit(groupNum, techniciansIds) {
+        this.$router.push({ name: 'EditarGrupos', params: { id, techniciansIds } })
+      }
+    }
+  }
+</script>

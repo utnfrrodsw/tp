@@ -1,37 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/linux,node,angular
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,node,angular
-
-### Angular ###
-## Angular ##
-# compiled output
-dist/
-tmp/
-app/**/*.js
-app/**/*.js.map
-
-# dependencies
-node_modules/
-
-# IDEs and editors
-.idea/
-
-# misc
-.sass-cache/
-connect.lock/
-coverage/
-libpeerconnection.log/
-npm-debug.log
-testem.log
-typings/
-.angular/
-package-lock.json
-
-# e2e
-e2e/*.js
-e2e/*.map
-
-# System Files
-.DS_Store/
+# Created by https://www.toptal.com/developers/gitignore/api/windows,linux,node,vue,vuejs
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,node,vue,vuejs
 
 ### Linux ###
 *~
@@ -74,6 +42,15 @@ lib-cov
 coverage
 *.lcov
 
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Bower dependency directory (https://bower.io/)
+bower_components
+
 # node-waf configuration
 .lock-wscript
 
@@ -81,6 +58,7 @@ coverage
 build/Release
 
 # Dependency directories
+node_modules/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
@@ -95,6 +73,18 @@ web_modules/
 # Optional eslint cache
 .eslintcache
 
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
 # Output of 'npm pack'
 *.tgz
 
@@ -107,6 +97,45 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+# Comment in the public line in if your project uses Gatsby and not Next.js
+# https://nextjs.org/blog/next-9-1#public-directory-support
+# public
+
+# vuepress build output
+.vuepress/dist
+
+# vuepress v2.x temp and cache directory
+.temp
+
+# Docusaurus cache and generated files
+.docusaurus
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
@@ -122,4 +151,53 @@ web_modules/
 # Serverless Webpack directories
 .webpack/
 
-# End of https://www.toptal.com/developers/gitignore/api/linux,node,angular
+# Optional stylelint cache
+
+# SvelteKit build / generate output
+.svelte-kit
+
+### Vue ###
+# gitignore template for Vue.js projects
+#
+# Recommended template: Node.gitignore
+
+# TODO: where does this rule come from?
+docs/_book
+
+# TODO: where does this rule come from?
+test/
+
+### Vuejs ###
+# Recommended template: Node.gitignore
+
+dist/
+npm-debug.log
+yarn-error.log
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.toptal.com/developers/gitignore/api/windows,linux,node,vue,vuejs
