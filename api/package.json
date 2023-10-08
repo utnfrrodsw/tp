@@ -1,12 +1,11 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
+  "name": "api",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
     "dev": "nodemon ./index.js",
-    "lint": "standard"
+    "lint": "standard --fix"
   },
   "author": "",
   "license": "ISC",

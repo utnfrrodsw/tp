@@ -1,8 +1,8 @@
-const Users = require('../models/users')
+const { User } = require('../sequelize')
 
 const getUsers = async (req, res) => {
   try {
-    const user = await Users.findAll()
+    const user = await User.findAll()
     res.status(200).json(user)
   } catch (error) {
     console.log(error)
@@ -11,12 +11,14 @@ const getUsers = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
-  if (!req.params.id) {
+  const { id } = req.params
+
+  if (!id) {
     return res.status(400).send('Ups! Error')
   }
 
   try {
-    const user = await Users.findByPk(req.params.id)
+    const user = await User.findByPk(id)
     res.status(200).json(user)
   } catch (error) {
     console.log(error)
@@ -26,26 +28,26 @@ const getUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { name, lastName, email, password, active } = req.body
+  const { id } = req.params
 
-  if (!req.params.id) {
+  if (!id) {
     return res.status(400).send('Ups! Error')
   }
 
   try {
-    const user = await Users.update({
+    const user = await User.update({
       name,
       last_name: lastName,
       email,
       password,
       active
     }, {
-      where: {
-        id: req.params.id
-      }
+      where: { id }
     })
     res.json(user)
   } catch (error) {
     console.log(error)
+    res.status(400).send('Ups! Error')
   }
 }
 

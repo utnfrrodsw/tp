@@ -6,6 +6,6 @@ const auth = require('../middlewares/auth')
 // api/usuarios
 router.get('/', auth, usersController.getUsers)
 router.get('/:id', auth, usersController.getUser)
-router.put('/:id', usersController.updateUser)
+router.put('/:id', auth, usersController.updateUser)
 
 module.exports = router

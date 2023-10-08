@@ -1,4 +1,4 @@
-const Users = require('../models/users')
+const { User } = require('../sequelize')
 const config = require('../configs/config')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -11,7 +11,7 @@ const register = async (req, res) => {
   }
 
   try {
-    const userExists = await Users.findOne({ where: { email } })
+    const userExists = await User.findOne({ where: { email } })
 
     if (userExists) {
       return res.status(400).json({ msg: 'User already exists' })
@@ -20,7 +20,7 @@ const register = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const passwordHash = await bcrypt.hash(password, salt)
 
-    const user = await Users.create({
+    const user = await User.create({
       name,
       last_name: lastName,
       email,
@@ -53,7 +53,7 @@ const login = async (req, res) => {
   }
 
   try {
-    const user = await Users.findOne({ where: { email } })
+    const user = await User.findOne({ where: { email } })
 
     if (!user) {
       return res.status(400).json({ msg: 'The user does not exist' })
