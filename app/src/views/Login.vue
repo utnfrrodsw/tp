@@ -4,10 +4,10 @@
       <v-card>
         <v-card-title class="headline">Iniciar Sesión</v-card-title>
         <v-card-text>
-          <v-form @submit="login">
+          <v-form @submit.prevent="login">
             <v-text-field
-              v-model="username"
-              label="Nombre de usuario"
+              v-model="email"
+              label="Email"
               outlined
             ></v-text-field>
             <v-text-field
@@ -25,25 +25,30 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      username: '',
-      password: '',
-    };
-  },
-  methods: {
-    login() {
-      // Aquí puedes agregar la lógica para autenticar al usuario
-      // Por ejemplo, puedes hacer una solicitud a tu API de autenticación
-      // y redirigir al usuario si las credenciales son válidas.
-      // En este ejemplo, simplemente mostraremos un mensaje en la consola.
-      console.log('Iniciando sesión con:', this.username, this.password);
-    },
-  },
-};
-</script>
+  import axios from 'axios'
 
-<style scoped>
-/* Estilos opcionales */
-</style>
+  export default {
+    data() {
+      return {
+        email: '',
+        password: '',
+      }
+    },
+    methods: {
+      async login() {
+        try {
+          const body = {
+            email: this.email,
+            password: this.password
+          }
+          const response = await axios.post('http://localhost:4000/api/auth/login', body)
+          const data = await response.data
+          localStorage.setItem('token', data.token)
+          this.$router.push('/')
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    }
+  }
+</script>
