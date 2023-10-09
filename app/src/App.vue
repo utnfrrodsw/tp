@@ -54,6 +54,23 @@
               icon: 'mdi-list-box'
             }
           ]
+        },
+        {
+          name: 'Tecnicos',
+          icon: 'mdi-account-group',
+          menu: false,
+          subitems: [
+            {
+              name: 'Crear Tecnico',
+              route: '/add-technician',
+              icon: 'mdi-account-multiple-plus'
+            },
+            {
+              name: 'Listar Tecnicos',
+              route: '/list-technicians',
+              icon: 'mdi-list-box'
+            }
+          ]
         }
       ]
     }),
