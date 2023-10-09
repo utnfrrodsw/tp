@@ -29,6 +29,16 @@ export const createProduct = async (req, res) => {
                     message: 'El usuario no existe'
                 });
             }
+
+            //verificar si la tienda existe
+            let t = await shopModel.findOne({ propietario: user._id });
+            if (!t) {
+                return res.status(404).json({
+                    message: 'No se ha encontrado la tienda del usuario'
+                });
+            }
+            const tienda = t._id;
+
             //Creacion de producto
             const {
                 categoria,
@@ -39,10 +49,10 @@ export const createProduct = async (req, res) => {
             } = req.body;
             let fotos = [] //para crear departamentos sin imagenes
             if (req.files) {
-                fotos = req.files.map(file => file.path.replace(/\\/g, '/')); // Obtén las rutas de las imágenes
+                fotos = req.files.map(file => file.path.replace(/\\/g, '/').replace('/src', '')); // Obtén las rutas de las imágenes
             }
             const product = new ProductModel({
-                tienda: user.tienda,
+                tienda,
                 categoria,
                 nombre,
                 descripcion,
@@ -58,7 +68,7 @@ export const createProduct = async (req, res) => {
         } catch (error) {
             console.error(error);
             res.status(500).json({
-                error: 'Error al crear departamento'
+                error: 'Error al registrar el producto'
             });
         }
     })
@@ -132,9 +142,9 @@ export const paginated = async (req, res, next) => {
     try {
         let { orden, categoria } = req.query;
 
-        const page = parseInt(req.query.page);
-        const limit = parseInt(req.query.limit);
-        const startIndex = (page - 1) * size;
+        let page = parseInt(req.query.page);
+        let limit = parseInt(req.query.limit);
+        const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
 
         let filters = {
@@ -155,12 +165,6 @@ export const paginated = async (req, res, next) => {
             // Make the Default value one.
             page = 1;
         }
-        // Ordenar productos según la dirección especificada (ascendente o descendente)
-        if (orden === 'asc') {
-            precio = 1;
-        } else if (orden === 'desc') {
-            precio = -1;
-        }
 
         const products = {};
 
@@ -177,7 +181,7 @@ export const paginated = async (req, res, next) => {
             };
         }
 
-        products.results = await ProductModel.find(filters, req.query.fields).limit(limit).skip(startIndex);
+        products.results = await ProductModel.find(filters).limit(limit).skip(startIndex);
         res.paginated = products;
         next();
     } catch (error) {
