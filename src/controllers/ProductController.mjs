@@ -16,6 +16,7 @@ export const createProduct = async (req, res) => {
             return res.status(500).json({ error: 'ERRROr' });
         }
         else if (err) {
+            console.log(err);
             return res.status(500).json({ error: 'Error al cargar imágenes' });
         }
         try {
@@ -49,7 +50,7 @@ export const createProduct = async (req, res) => {
             } = req.body;
             let fotos = [] //para crear departamentos sin imagenes
             if (req.files) {
-                fotos = req.files.map(file => file.path.replace(/\\/g, '/').replace('/src', '')); // Obtén las rutas de las imágenes
+                fotos = req.files.map(file => file.path.replace(/\\/g, '/').replace(/^src\//, '')); // Obtén las rutas de las imágenes
             }
             const product = new ProductModel({
                 tienda,

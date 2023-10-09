@@ -23,14 +23,14 @@ export const createUser = async (req, res) => {
         });
         await user.save();
         // Genera un token de sesión para el usuario
-        const token = jwt.sign({
+        const accessToken = jwt.sign({
             _id: user._id,
             role: user.role
         }, process.env.JWT_SECRET);
 
         res.status(201).json({
             message: 'Usuario creado',
-            token
+            accessToken
         });
     } catch (error) {
         console.error(error);
@@ -159,10 +159,10 @@ export const UpdateUserPassword = async (req, res) => {
         // Hash password
         const saltRounds = 10;
         const hashPassword = await bcrypt.hash(req.body.password, saltRounds);
-        const updateData = hashPassword;
+        const password = hashPassword;
 
         // Actualizar usuario
-        const updatedUser = await userModel.findByIdAndUpdate(userId, updateData, {
+        const updatedUser = await userModel.findByIdAndUpdate(userId, {password}, {
             new: true
         });
 
@@ -198,14 +198,14 @@ export const UpdateVendedor = async (req, res, next) => {
             new: true
         });
         //actualice al token
-        const token = jwt.sign({
+        const accessToken = jwt.sign({
             _id: user._id,
             role: user.role
         }, process.env.JWT_SECRET);
 
         res.status(201).json({
             message: 'Usuario creado',
-            token
+            accessToken
         });
         next();
     } catch (error) {
@@ -230,6 +230,19 @@ export const getUserByToken = async (req, res) => {
   }
 };
 
+export const getUserRole = async (req, res) => {
+  try {
+    const userId = req.userID; // Obtener el id del usuario
+    const user = await userModel.findById(userId); // Busca usuario por Id
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    res.status(200).json({ data:user.role });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al obtener usuario' });
+  }
+};
 /* export default {
     createUser,
     login,
