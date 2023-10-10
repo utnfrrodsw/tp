@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar v-if="!$route.meta.hideNavbar" app color="primary" dark>
       <div class="d-flex align-center">
         <router-link to="/">
         <v-img alt="SPM Logo" class="shrink mr-2" contain src="@/assets/SPM.png" transition="scale-transition" width="40" cursor-pointer />
@@ -10,7 +10,7 @@
         </router-link>
       </div>
       <v-spacer></v-spacer>
-      <v-menu v-for="(item, index) in routes" :key="index" :close-on-content-click="false" transition="scale-transition" offset-y v-model="item.menu">
+      <v-menu v-for="(item, index) in routes" :key="index" :close-on-content-click="false" transition="scale-transition" offset-y v-model="item.menu" >
         <template v-slot:activator="{ on }">
           <v-btn text v-on="on">
             <v-icon v-if="item.icon">{{ item.icon }}</v-icon>

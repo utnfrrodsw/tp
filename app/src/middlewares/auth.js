@@ -1,7 +1,11 @@
-export default function auth({ next, router }) {
-  if (!localStorage.getItem('token')) {
-    return router.push({ name: 'login' })
-  }
+export default function auth(to, from, next) {
+  const authToken = localStorage.getItem('token');
 
-  return next()
+  if (!authToken) {
+    // Si no hay un token de autenticación, redirige al usuario a la página de inicio de sesión
+    next({ name: 'login', query: { redirect: to.fullPath } });
+  } else {
+    // Si el usuario está autenticado, permite el acceso a la ruta solicitada
+    next();
+  }
 }
