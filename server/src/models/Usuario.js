@@ -1,3 +1,8 @@
+const db = require('../models');
+const Token = require('../models/token.js');
+const { getUserInfo } = require('../lib/getUserInfo');
+
+
 module.exports = (sequelize, dataTypes) => {
   const alias = 'Usuario';
   const cols = {
@@ -43,6 +48,7 @@ module.exports = (sequelize, dataTypes) => {
     timestamps: false,
   };
   const Usuario = sequelize.define(alias, cols, config);
+
   Usuario.associate = function (models) {
     // Un usuario puede tener varias direcciones
     Usuario.hasMany(models.Direccion, {
@@ -50,6 +56,8 @@ module.exports = (sequelize, dataTypes) => {
       foreignKey: 'idUsuario', // Clave foránea en Direccion
     });
   };
+  
   return Usuario;
 };
+
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import './Login.css';
 import { useAuth } from '../../../auth/authProvider';
+const { API_URL } = require('../../../auth/constants');
 
 function Login () {
   const [email, setEmail] = useState('');
@@ -12,7 +13,8 @@ function Login () {
   async function handleLogin(e) {
     e.preventDefault();
     try{
-      const response = await fetch('http://localhost:5000/api/login',{
+      console.log(API_URL+'/api/usuario/login');
+      const response = await fetch(`${API_URL}/usuario/login`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -25,11 +27,22 @@ function Login () {
       if(response.ok){
         console.log('Usuario logueado');
         setErrorResponse("");
-        goTo('/');
+        const json = (await response.json());
+
+        console.log(json.body);
+        console.log(json.body.token);
+        console.log(json.body.refreshToken);
+
+        if(json.body.token && json.body.refreshToken){
+          auth.saveUser(json);
+        
+          console.log(json.body);
+          goTo('/');
+        }
       }else{
         console.log('Error al loguear usuario');
         const json = await response.json();
-        console.log(json);
+        console.log(json.body);
         setErrorResponse(json.body);
         return;
       }
@@ -48,7 +61,6 @@ function Login () {
       <div className="wrapper">
         <form onSubmit={handleLogin}>
           <h1>Login</h1>
-          {errorResponse && <div className="error-message">{errorResponse}</div>} {/* Renderiza el mensaje de error si existe */}
           <div className="input-box">
             <input
               type="email" // Cambiado de "text" a "email"
@@ -70,14 +82,15 @@ function Login () {
             />
             <i className='bx bxs-lock-alt'></i>
           </div>
+          {!!errorResponse && (
+            <div className="error-message">{errorResponse.message}</div>
+          )}
           <div className="remember-forget">
             <label><input type="checkbox" /> Recuérdame</label>
             <Link to="/recuperarClave">Recuperar Contraseña</Link>
           </div>
           <button type="submit" className="btn">Login</button>
-          {!!errorResponse && (
-            <div className="error-message">{errorResponse}</div>
-          )}
+          
           <div className="register-link">
             <p>No tienes cuenta? <Link to="/register">Regístrate</Link></p>
           </div>

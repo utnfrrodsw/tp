@@ -1,9 +1,9 @@
 //CONFIGURACIONES DE EXPRESS: llama a las rutas,  configuras la instancia de Express y aplicas middleware
-
 const express = require('express');
 const app = express();
 const { PORT } = require('./config');
 app.set("port", PORT || 5000); //seteamos el puerto que nos da el servidor o el 5000
+
 
 const cors = require('cors');
 

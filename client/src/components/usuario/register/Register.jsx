@@ -51,14 +51,14 @@ const Register = () => {
       }else{
         console.log('Error al registrar usuario');
         const json = await response.json();
-        console.log(json);
+        console.log(json.body);
         setErrorResponse(json.body);
         setRegistrationSuccess(false);
         return;
       }
     }catch(error){
       console.log(error);
-      setErrorResponse(error.message);
+      setErrorResponse(error);
       setRegistrationSuccess(false);
     }
   }
@@ -186,7 +186,7 @@ const Register = () => {
           <button type="submit" className='btn'>Registrarse</button>
         </form>
         {!!errorResponse && (
-          <div className="error-message">{errorResponse}</div>
+          <div className="error-message">{errorResponse.message}</div>
         )}
         {registrationSuccess && (
           <div className="success-message">Registro exitoso</div>
