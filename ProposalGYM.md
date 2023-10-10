@@ -44,3 +44,6 @@ El usuario contrata uno de los planes disponibles, el cual contiene una o más a
 Cuando el usuario contrata un plan, se crea una inscripción con una fecha de alta y una de baja, la cual se vencerá cuando no se paguen más las cuotas, las cuotas son cada 30 dias. Cada inscripción se realiza en una sede específica, la cual está ubicada en una localidad y está a su vez pertenece a una provincia. Las actividades son iguales para todas las sedes, dependiendo de la sede y la actividad seleccionada, se tendrá entrenadores específicos, a su vez los horarios y el salón en el que se realizarán depende también de la sede y la actividad. 
 Cada cliente tendrá registrado un check in o registro de ingreso al gimnasio, en donde se validará que el socio exista y tenga una inscripción vigente.
 El gimnasio cuenta también con muchos artículos disponibles, los cuales pueden ser comida, bebida o suplementos. Estos artículos son vendidos únicamente de manera física pero interesa mostrar a los clientes cuáles son mediante una página de internet.
+
+## Link DER
+https://drive.google.com/file/d/1P5hTo7BgIAT2n542mkwsYI71uelFhnp0/view?usp=sharing
