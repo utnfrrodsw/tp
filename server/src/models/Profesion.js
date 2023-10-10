@@ -14,6 +14,20 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     });
   
+    Profesion.associate = function (models) {
+      // Relación hasMany con la tabla PrestadorProfesiones
+      Profesion.hasMany(models.PrestadorProfesiones, {
+        foreignKey: 'idProfesion',
+        as: 'prestadorProfesiones', 
+      });
+  
+      // Relación hasMany con la tabla SolicitudProfesiones
+      Profesion.hasMany(models.SolicitudProfesiones, {
+        foreignKey: 'idProfesion',
+        as: 'solicitudProfesiones',  
+      });
+    };
+  
     return Profesion;
   };
   

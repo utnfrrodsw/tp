@@ -22,24 +22,36 @@ module.exports = (sequelize, DataTypes) => {
     });
   
     Presupuesto.associate = function (models) {
-      // relación con la tabla Solicitud
+      // Relación con la tabla Solicitud
       Presupuesto.belongsTo(models.Solicitud, {
         foreignKey: {
           name: 'idAnuncio',
           allowNull: false,
         },
         targetKey: 'idSolicitud',
-        as: 'anuncio', 
+        as: 'anuncio',
       });
   
-      //  relación con la tabla Usuario
+      // Relación con la tabla Usuario
       Presupuesto.belongsTo(models.Usuario, {
         foreignKey: {
           name: 'idPrestador',
           allowNull: false,
         },
         targetKey: 'idUsuario',
-        as: 'usuario',  
+        as: 'usuario',
+      });
+  
+      // Relación hasMany con la tabla HorariosPresupuesto
+      Presupuesto.hasMany(models.HorariosPresupuesto, {
+        foreignKey: 'idPresupuesto',
+        as: 'horariosPresupuesto',  
+      });
+  
+      // Relación hasMany con la tabla Servicio
+      Presupuesto.hasMany(models.Servicio, {
+        foreignKey: 'idPresupuesto', 
+        as: 'servicios', 
       });
     };
   

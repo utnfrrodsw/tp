@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      idprofesiones: {
+      idProfesion: { // Cambiado de idprofesiones a idProfesion
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -14,10 +14,16 @@ module.exports = (sequelize, DataTypes) => {
     });
   
     SolicitudProfesiones.associate = function (models) {
-      //  relación con la tabla Profesion
+      // Relación "belongsTo" con la tabla Profesion
       SolicitudProfesiones.belongsTo(models.Profesion, {
-        foreignKey: 'idprofesiones',
-        as: 'profesion',  
+        foreignKey: 'idProfesion',  
+        as: 'profesion',
+      });
+  
+      // Agrega la relación "belongsTo" con la tabla Solicitud
+      SolicitudProfesiones.belongsTo(models.Solicitud, {
+        foreignKey: 'idSolicitud',
+        as: 'solicitud',
       });
     };
   
