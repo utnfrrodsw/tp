@@ -6,12 +6,14 @@ const AuthContext = createContext({
     getAccessToken: () => {},
     saveUser: () => {},
     getRefreshToken: () => {},
+    getUser: () => ({}),
 });
 
 export function AuthProvider({children}) {
     const [isAuthenticated, setIsAuthenticated] = useState(false); 
     const [accessToken, setAccessToken] = useState("");
     const [user, setUser] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         checkAuth();
@@ -70,26 +72,7 @@ export function AuthProvider({children}) {
         }
     };
 
-    async function checkAuth(){
-        if(accessToken){
-            //el usuario esta autenticado
-        }else{
-            //el usuario no esta autenticado
-            const token = getRefreshToken();
-            if(token){
-                const newAccessToken = await requestNewAccessToken(token);
-                console.log("newAccessToken: " + newAccessToken)
-                if(newAccessToken){
-                    const userInfo = await getUserInfo(newAccessToken);
-                    if(userInfo){
-                        saveSessionInfo(userInfo, newAccessToken, token);
-                    }
-                    setIsAuthenticated(true);
-                    setUser(userInfo);
-                }
-            }
-        }
-    };
+    
 
     function saveSessionInfo(userInfo, accessToken, refreshToken){
         setAccessToken(accessToken);
@@ -115,9 +98,41 @@ export function AuthProvider({children}) {
         saveSessionInfo(userData.body.user, userData.body.token, userData.body.refreshToken);
     }
 
+    function getUser(){
+        return user;
+    }
+
+    async function checkAuth(){
+        if(accessToken){
+            //el usuario esta autenticado
+            const userInfo = await getUserInfo(accessToken);
+            if(userInfo){
+                saveSessionInfo(userInfo, accessToken, getRefreshToken());
+                setIsLoading(false);
+                return;
+            }
+        }else{
+            //el usuario no esta autenticado
+            const token = getRefreshToken();
+            if(token){
+                const newAccessToken = await requestNewAccessToken(token);
+                console.log("newAccessToken: " + newAccessToken)
+                if(newAccessToken){
+                    const userInfo = await getUserInfo(newAccessToken);
+                    if(userInfo){
+                        saveSessionInfo(userInfo, newAccessToken, token);
+                        setIsLoading(false);
+                        return;
+                    }
+                }
+            }
+        }
+        setIsLoading(false);
+    };
+
     return(
-    <AuthContext.Provider value={{isAuthenticated, getAccessToken, saveUser, getRefreshToken}}>
-        {children}
+    <AuthContext.Provider value={{isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser}}>
+        {isLoading ? <div>Cargando...</div> : children}
     </AuthContext.Provider>
     );
 }
