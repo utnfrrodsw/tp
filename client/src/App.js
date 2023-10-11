@@ -33,7 +33,7 @@ function App() {
           <Route path='/recuperarClave' element={<RecuperarClave/>} />
 
           {/*rutas protegidas user*/}
-          <Route path='/' element={<ProtectedRoute page="login"/>}>
+          <Route path='/' element={<ProtectedRoute page="/login"/>}>
             <Route path='/user' element={<DatosUser />} />
           </Route>
 

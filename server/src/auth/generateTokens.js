@@ -11,7 +11,6 @@ function sign(payload, isAccessToken){
     )
 }
 
-
 function generateAccessTokes(user){
     return sign({user}, true);
 }

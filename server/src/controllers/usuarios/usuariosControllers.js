@@ -92,7 +92,6 @@ const usuarioController = {
     const { email, constrasena } = req.body;
     try {
       // Buscar al usuario en la base de datos por su correo electrónico
-      console.log("email " + email);
       const usuario = await db.Usuario.findOne({
         where: { email },
       })
@@ -101,19 +100,18 @@ const usuarioController = {
       });
 
       if (usuario != null) {
-        console.log("usuario encontrado");
         const comprare = await bcrypt.compare(constrasena, usuario.contrasena);
-        console.log("compare " + comprare);
         if (comprare === true) {
+          console.log("usuario logueado, generando token");
           const user = getUserInfo(usuario);
           const token = await generateAccessTokes(user);
           const refreshToken = await generateRefreshToken(user);
           try{
+            console.log("guardando token")
             await new db.Token({ token: refreshToken }).save();
           }catch(error){
             console.log(error);
           }
-           
           res.status(200).json(jsonResponse(200, {message: 'Inicio de sesión exitoso', user: getUserInfo(user), token, refreshToken}));
         }else{
           res.status(401).json(jsonResponse(401, {
@@ -135,13 +133,14 @@ const usuarioController = {
   },
 
   refreshToken: async (req, res) => {
-    const refreshToken = getTokenFromHeader(req.headers);
+    const refreshToken = await getTokenFromHeader(req.headers);
     if(refreshToken){
       try{
         const found = await db.Token.findOne({ where: { token: refreshToken } });
+        console.log("found: " + found.token);
         if(!found){
           res.status(401).json(jsonResponse(401, {
-            error: 'No Autorizado' 
+            error: 'No Autorizado 1' 
           }));
         }
         const payload = verifyRefreshToken(found.token);
@@ -150,17 +149,17 @@ const usuarioController = {
           return res.status(200).json(jsonResponse(200, {accessToken}));
         }else{
           return res.status(401).json(jsonResponse(401, {
-            error: 'No Autorizado'
+            error: 'No Autorizado 2'
           })); 
         }
       }catch(error){
         return res.status(401).json(jsonResponse(401, {
-          error: 'No Autorizado'
+          error: 'No Autorizado 3'
         })); 
       }
     }else{
       return res.status(401).json(jsonResponse(401, {
-        error: 'No Autorizado'
+        error: 'No Autorizado 4'
       })); 
     }
 

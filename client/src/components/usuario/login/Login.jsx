@@ -13,7 +13,6 @@ function Login () {
   async function handleLogin(e) {
     e.preventDefault();
     try{
-      console.log(API_URL+'/api/usuario/login');
       const response = await fetch(`${API_URL}/usuario/login`,{
         method: 'POST',
         headers: {
@@ -29,14 +28,16 @@ function Login () {
         setErrorResponse("");
         const json = (await response.json());
 
-        console.log(json.body);
-        console.log(json.body.token);
-        console.log(json.body.refreshToken);
+        console.log("body: " + json.body.user);
 
         if(json.body.token && json.body.refreshToken){
           auth.saveUser(json);
         
-          console.log(json.body);
+          if(response.body.user.esPrestador){
+            goTo('/provider/home');
+          }else if(!response.body.user.esPrestador){
+            goTo('/client/home');
+          }
           goTo('/');
         }
       }else{

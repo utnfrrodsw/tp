@@ -1,5 +1,6 @@
 const { jsonResponse } = require("../lib/jsonResponse");
 const { verifyAccessToken } = require("./verifyTokens");
+const getTokenFromHeader = require("./getTokenFromHeader");
 
 function authenticate(req, res, next){
     const token = getTokenFromHeader(req.headers);
