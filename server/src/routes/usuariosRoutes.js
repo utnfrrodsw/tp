@@ -11,23 +11,27 @@ const usuarioController = require( "../controllers/usuarios/usuariosControllers.
 //const { errorHandler } = require( "../../middlewares/usuarios/errorHandler.js");
 //const { validateLoginData } = require( "../../middlewares/usuarios/validateLoginData.js");
 //const { validateRegistro } = require( "../../middlewares/usuarios/validateRegistro.js");
+const {validacionModDatosPer} = require ('../middlewares/usuarios/validacionModDatosPer.js')
+const {validacionModClave} = require ('../middlewares/usuarios/validacionModClave.js')
+const {verificarClave} = require ('../middlewares/usuarios/verificarClave.js')
 
- 
+//OBTENER USUARIOS
 router.get('/listaUsuarios',usuarioController.getUsuarios) 
 router.get('/listaUsuarios/:id', usuarioController.getUsuario)
 
  
 
-// RUTA REGISTRO DE USUARIOS
+//REGITRO
 router.post('/registro',/* validateRegistro,  authUserRegister, */usuarioController.registrarUsuario /*, errorHandler*/);
-
-//RUTA LOGIN USUARIOS
+//LOGIN
 router.post('/login', /*validateLoginData, authenticateUser, */usuarioController.login /*,errorHandler*/);
 
-//GET obtener usuarios
-//POST crear usuarios
-//.DELETE para eliminar 
-//.PUT para actualizacion completa
-//.PATCH para actualizacion parcial (ver ejemplos en el video)
+
+//DATOS PERSONALES
+router.get('/obtenerDatosPersonales', usuarioController.obtenerDatosUsuario ) //traigo los datos del usuario
+router.patch ('/modificarDatosPersonales', validacionModDatosPer, usuarioController.modificarDatosPersonales); //modificoDatos
+router.get('/verificarClave',verificarClave, usuarioController.verificarClave)  //compruebo Clave
+router.patch ('/modificarClave', validacionModClave, usuarioController.cambiarClave); //actualizo clave
+
 
 module.exports=router;
