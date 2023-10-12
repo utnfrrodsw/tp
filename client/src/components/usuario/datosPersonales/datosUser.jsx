@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
+import { useAuth } from '../../../auth/authProvider';
 import './datosUser.css';
 
 
 const DatosPersonales = () => {
   // Define un estado para los datos personales
   const [userData, setUserData] = useState({
-    firstName: 'Juan',
-    lastName: 'Gonzales',
-    email: 'usuario@ejemplo.com',
-    birthdate: '1990-01-01',
+    nombre: '',
+    apellido: '',
+    email: '',
+    fechaNacimiento: '',
   });
 
-  // Estado para la contraseña actual
-  const [currentPassword, setCurrentPassword] = useState('');
+  const auth = useAuth();
 
-  // Estado para la nueva contraseña
-  const [newPassword, setNewPassword] = useState('');
+  useEffect(() => {
+    setUserData(auth.getUser());
+  }, [auth]);
+  
 
-  // Estado para la confirmación de la nueva contraseña
-  const [confirmNewPassword, setConfirmNewPassword] = useState('');
-
-  // Estado para la foto de perfil
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [contrasenaActual, setContrasenaActual] = useState('');
+  const [nuevaContrasena, setNuevaContrasena] = useState('');
+  const [confirmNuevaContrasena, setConfirmNuevaContrasena] = useState('');
+  const [fotoPerfil, setFotoPerfil] = useState(null);
 
   // Función para manejar cambios en los datos personales
   const handleUpdateData = () => {
@@ -41,7 +42,7 @@ const DatosPersonales = () => {
   // Función para manejar la carga de la foto de perfil
   const handleProfilePictureChange = (e) => {
     const file = e.target.files[0];
-    setProfilePicture(URL.createObjectURL(file));
+    setFotoPerfil(URL.createObjectURL(file));
   };
 
   return (
@@ -52,8 +53,8 @@ const DatosPersonales = () => {
             <h2 className='h2'>Datos Personales</h2>
             <div className="user-details">
               <div className="profile-picture">
-                {profilePicture ? (
-                  <img src={profilePicture} alt="Foto de perfil" />
+                {fotoPerfil ? (
+                  <img src={fotoPerfil} alt="Foto de perfil" />
                 ) : (
                   <img src='./128-1280406_view-user-icon-png-user-circle-icon-png.png' alt="Foto de perfil por defecto" />
                 )}
@@ -68,33 +69,33 @@ const DatosPersonales = () => {
                 type="text"
                 id="firstName"
                 name="firstName"
-                value={userData.firstName}
-                onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+                value={userData.nombre}
+                onChange={(e) => setUserData({ ...userData, nombre: e.target.value })}
               />
               <label htmlFor="lastName">Apellido:</label>
-<input
-  type="text"
-  id="lastName"
-  name="lastName"
-  value={userData.lastName}
-  onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
-/>
-<label htmlFor="email">Correo Electrónico:</label>
-<input
-  type="email"
-  id="email"
-  name="email"
-  value={userData.email}
-  onChange={(e) => setUserData({ ...userData, email: e.target.value })}
-/>
-<label htmlFor="birthdate">Fecha de Nacimiento:</label>
-<input
-  type="date"
-  id="birthdate"
-  name="birthdate"
-  value={userData.birthdate}
-  onChange={(e) => setUserData({ ...userData, birthdate: e.target.value })}
-/>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                value={userData.apellido}
+                onChange={(e) => setUserData({ ...userData, apellido: e.target.value })}
+              />
+              <label htmlFor="email">Correo Electrónico:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={userData.email}
+                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+              />
+              <label htmlFor="birthdate">Fecha de Nacimiento:</label>
+              <input
+                type="date"
+                id="birthdate"
+                name="birthdate"
+                value={userData.fechaNacimiento}
+                onChange={(e) => setUserData({ ...userData, fechaNacimiento: e.target.value })}
+              />
 
               <Button variant="primary" className='button' onClick={handleUpdateData}>
                 Actualizar Datos
@@ -114,29 +115,29 @@ const DatosPersonales = () => {
                 type="password"
                 id="currentPassword"
                 name="currentPassword"
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
+                value={contrasenaActual}
+                onChange={(e) => setContrasenaActual(e.target.value)}
               />
               <Button variant="primary" className='button' onClick={verifyCurrentPassword}>
                 Verificar Contraseña
               </Button>
-              {currentPassword && (
+              {contrasenaActual && (
                 <>
                   <label htmlFor="newPassword">Nueva Contraseña:</label>
                   <input
                     type="password"
                     id="newPassword"
                     name="newPassword"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
+                    value={nuevaContrasena}
+                    onChange={(e) => setNuevaContrasena(e.target.value)}
                   />
                   <label htmlFor="confirmNewPassword">Confirmar Nueva Contraseña:</label>
                   <input
                     type="password"
                     id="confirmNewPassword"
                     name="confirmNewPassword"
-                    value={confirmNewPassword}
-                    onChange={(e) => setConfirmNewPassword(e.target.value)}
+                    value={confirmNuevaContrasena}
+                    onChange={(e) => setConfirmNuevaContrasena(e.target.value)}
                   />
                   <Button variant="primary"  className='button'>Cambiar Contraseña</Button>
                 </>
