@@ -44,10 +44,20 @@ import React, { useState } from 'react';
     </div>
     <form className='presupuesto-Content'>
       <div className='campos'>
-        <p>Lista Materiales: </p><textarea name="materiales" id="1" cols="60" rows="10" required></textarea>
-        <p>Costo total en materiales aproximado<input type="number" name="costo-materiales" min={1} required/></p>
-        <p>Tiempo(En horas) aprox <input name='tiempo' type="number" min={1} required/></p>
-        <p>Costo por hora <input type="number" name='costoxHora' min={1} required/></p>
+        <div className='listaMat'>
+          <p>Lista Materiales:</p> 
+          <textarea name="materiales" id="1" cols="60" rows="10" required></textarea>
+        </div>
+        <div className='textoCampos'>
+          <p>Costo total en materiales aproximado</p>
+          <p>Tiempo(En horas) aproximado</p> 
+          <p>Costo por hora </p>
+        </div>
+        <div className='entradasCampos'>
+            <input type="number" name="costo-materiales" min={1} required/>
+            <input name='tiempo' type="number" min={1} required/>
+            <input type="number" name='costoxHora' min={1} required/>
+        </div>
       </div>
       <div className='horarios'>
         <p htmlFor="datetimePicker">Selecciona una fecha y hora:</p>
