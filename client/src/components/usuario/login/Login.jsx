@@ -1,74 +1,65 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import './Login.css';
+import { useAuth } from '../../../auth/authProvider';
+const { API_URL } = require('../../../auth/constants');
 
-const Login = () => {
+function Login () {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null); // Estado para mensajes de error
-  const navigate = useNavigate();
+  const [constrasena, setConstrasena] = useState('');
+  const [errorResponse, setErrorResponse] = useState(null); // Estado para mensajes de error
+  const goTo = useNavigate();
 
-  const validateForm = () => {
-    const errors = {};
-
-    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-    if (!emailRegex.test(email)) {
-      errors.email = 'El correo electrónico proporcionado no es válido';
-    }
-
-    return errors;
-  };
-
-  const handleLogin = async (e) => {
+  async function handleLogin(e) {
     e.preventDefault();
-
-    const errors = validateForm();
-
-    if (Object.keys(errors).length > 0) {
-      setError(errors.email);
-      return; // No envíes la solicitud si hay errores de validación
-    }
-
-    try {
-      const response = await fetch('/api/usuarios/login', {
+    try{
+      const response = await fetch(`${API_URL}/usuario/login`,{
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password }),
-      });
+        body: JSON.stringify({
+          email,
+          constrasena,
+        }),
+      })
+      if(response.ok){
+        setErrorResponse("");
+        const json = (await response.json());
 
-      if (response.status === 200) {
-        const data = await response.json();
-        const userType = data.userType;
+        console.log('Usuario logueado');
 
-        if (userType === 'cliente') {
-          navigate('/client/home');
-        } else if (userType === 'prestador') {
-          navigate('/provider/home');
-        } else {
-          alert('Tipo de usuario desconocido');
+        if(json.body.token && json.body.refreshToken){
+          auth.saveUser(json);
+          if(json.body.user.esPrestador){
+            goTo('/provider/home');
+          }else if(!json.body.user.esPrestador){
+            goTo('/client/home');
+          }
+          //goTo('/');
         }
-      } else if (response.status === 401) {
-        const data = await response.json();
-        setError(data.message);
-      } else {
-        // Cambiar el mensaje de error en caso de un error interno del servidor
-        setError('Error en el inicio de sesión. Inténtalo de nuevo más tarde.');
+      }else{
+        console.log('Error al loguear usuario');
+        const json = await response.json();
+        console.log(json.body);
+        setErrorResponse(json.body);
+        return;
       }
-    } catch (error) {
-      // Cambiar el mensaje de error en caso de un error interno del servidor
-      setError('Error en el inicio de sesión. Inténtalo de nuevo más tarde.');
-      console.error('Error en el inicio de sesión:', error);
+    }catch(error){
+      console.log(error);
     }
   };
+
+  const auth = useAuth();
+  if(auth.isAuthenticated){
+    return <Navigate to="/client/home" />;
+  }
 
   return (
     <section className='fondoLogin'>
       <div className="wrapper">
         <form onSubmit={handleLogin}>
           <h1>Login</h1>
-          {error && <div className="error-message">{error}</div>} {/* Renderiza el mensaje de error si existe */}
           <div className="input-box">
             <input
               type="email" // Cambiado de "text" a "email"
@@ -83,18 +74,22 @@ const Login = () => {
             <input
               type="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={constrasena}
+              onChange={(e) => setConstrasena(e.target.value)}
               required
               minLength="6" // Agregar una longitud mínima para la contraseña
             />
             <i className='bx bxs-lock-alt'></i>
           </div>
+          {!!errorResponse && (
+            <div className="error-message">{errorResponse.message}</div>
+          )}
           <div className="remember-forget">
             <label><input type="checkbox" /> Recuérdame</label>
             <Link to="/recuperarClave">Recuperar Contraseña</Link>
           </div>
           <button type="submit" className="btn">Login</button>
+          
           <div className="register-link">
             <p>No tienes cuenta? <Link to="/register">Regístrate</Link></p>
           </div>
