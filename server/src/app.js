@@ -4,8 +4,8 @@ const app = express();
 const { PORT } = require('./config');
 app.set("port", PORT || 5000); //seteamos el puerto que nos da el servidor o el 5000
 
-
 const cors = require('cors');
+app.use(cors());
 
 //path
 const path = require("path");
@@ -17,7 +17,6 @@ const usuariosRoutes = require( './routes/usuariosRoutes.js');
 const solicitudRoutes = require('./routes/solicitudRoutes.js');
 
 //use app
-app.use(cors());
 app.use(express.json());
 
 app.listen(app.get("port"), () => {

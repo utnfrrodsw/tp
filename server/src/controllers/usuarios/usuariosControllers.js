@@ -8,7 +8,7 @@ const Usuario = require('../../models/Usuario');
 const { generateAccessTokes, generateRefreshToken } = require('../../auth/generateTokens.js');
 const getTokenFromHeader = require('../../auth/getTokenFromHeader');
 const { verifyRefreshToken } = require('../../auth/verifyTokens');
-
+const validateToken = require('../../auth/validateToken');
 
 const usuarioController = {
 
@@ -112,6 +112,7 @@ const usuarioController = {
           }catch(error){
             console.log(error);
           }
+          console.log("inicio sesion correctamente");
           res.status(200).json(jsonResponse(200, {message: 'Inicio de sesión exitoso', user: getUserInfo(user), token, refreshToken}));
         }else{
           res.status(401).json(jsonResponse(401, {
@@ -137,7 +138,6 @@ const usuarioController = {
     if(refreshToken){
       try{
         const found = await db.Token.findOne({ where: { token: refreshToken } });
-        console.log("found: " + found.token);
         if(!found){
           res.status(401).json(jsonResponse(401, {
             error: 'No Autorizado 1' 
@@ -146,7 +146,7 @@ const usuarioController = {
         const payload = verifyRefreshToken(found.token);
         if(payload){
           const accessToken = await generateAccessTokes(payload.user);
-          return res.status(200).json(jsonResponse(200, {accessToken}));
+          return res.status(200).json(jsonResponse(200, {accessToken})); 
         }else{
           return res.status(401).json(jsonResponse(401, {
             error: 'No Autorizado 2'
@@ -166,7 +166,16 @@ const usuarioController = {
   },
 
   logout: async (req, res) => {
-    
+    try {
+      const refreshToken = validateToken(req.headers);
+      await db.Token.destroy({where: {token: refreshToken }});
+      res.status(200).json(jsonResponse(200, {
+        success: "Token eliminado exitosamente",
+      }));
+      console.log("cerro sesion correctamente");
+    } catch (ex) {
+      console.log(ex);
+    }
   },
 };
 

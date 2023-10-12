@@ -51,7 +51,7 @@ const DatosPersonales = () => {
   async function handlelogout(e){
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URL}/logout`, {
+      const response = await fetch(`${API_URL}/usuario/logout`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

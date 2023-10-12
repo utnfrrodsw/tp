@@ -28,7 +28,7 @@ router.get('/auth', authenticate,  (req, res) => {
 //login, register
 router.post('/registrar',usuarioController.registrarUsuario);
 router.post('/login',usuarioController.login);
-router.post('/logout',usuarioController.logout);
+router.delete('/logout',usuarioController.logout);
 
 //consultas
 router.get('/listaUsuarios',usuarioController.getUsuarios) 

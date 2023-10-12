@@ -11,9 +11,10 @@ const AuthContext = createContext({
 });
 
 export function AuthProvider({children}) {
+    const [user, setUser] = useState({});
     const [isAuthenticated, setIsAuthenticated] = useState(false); 
     const [accessToken, setAccessToken] = useState("");
-    const [user, setUser] = useState({});
+    const [refreshToken, setRefreshToken] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
