@@ -8,14 +8,7 @@ function Solicitudes(props) {
 
     const [solicitudes, setSolicitudes] = useState([]);
 
-    useEffect(() => {
-        fetch("http://localhost:5000/solicitud/client/${idCliente}/solicitudesActivas")
-        .then((res) => res.json())
-        .then((res) => {
-            setSolicitudes(res);
-        })
-        .catch((err) => console.log(err));
-    }, [props.idCliente]);
+
 
     const solicitudesPorPagina = 3;
     const [paginaActual, setPaginaActual] = useState(1);
