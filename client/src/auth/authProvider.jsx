@@ -7,6 +7,7 @@ const AuthContext = createContext({
     saveUser: () => {},
     getRefreshToken: () => {},
     getUser: () => ({}),
+    logout: () => {},
 });
 
 export function AuthProvider({children}) {
@@ -102,6 +103,14 @@ export function AuthProvider({children}) {
         return user;
     }
 
+    function logout(){
+        localStorage.removeItem("token");
+        setAccessToken("");
+        setRefreshToken("");
+        setUser(undefined);
+        setIsAuthenticated(false);
+    }
+
     async function checkAuth(){
         if(accessToken){
             //el usuario esta autenticado
@@ -131,7 +140,7 @@ export function AuthProvider({children}) {
     };
 
     return(
-    <AuthContext.Provider value={{isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser}}>
+    <AuthContext.Provider value={{isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser, logout}}>
         {isLoading ? <div>Cargando...</div> : children}
     </AuthContext.Provider>
     );

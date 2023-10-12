@@ -163,10 +163,11 @@ const usuarioController = {
       })); 
     }
 
-  }
+  },
 
-
-
+  logout: async (req, res) => {
+    
+  },
 };
 
 module.exports = usuarioController;

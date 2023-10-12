@@ -48,10 +48,10 @@ const DatosPersonales = () => {
   };
 
   // Función para cerrar sesión
-  async function handlesignout(e){
+  async function handlelogout(e){
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URL}/signout`, {
+      const response = await fetch(`${API_URL}/logout`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const DatosPersonales = () => {
         },
       });
       if (response.ok) {
-        auth.signout();
+        auth.logout();
       }
     } catch (error) {
       console.log(error);
@@ -169,7 +169,7 @@ const DatosPersonales = () => {
           </Card>
         </Col>
       </Row>
-      <Link className='ButtonCerrarSesion' onClick={handlesignout}>Cerrar Sesión</Link>
+      <Link className='ButtonCerrarSesion' onClick={handlelogout}>Cerrar Sesión</Link>
     </div>
   );
 };
