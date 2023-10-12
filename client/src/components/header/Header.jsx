@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { NavLink } from '../navlink/Navlink.jsx';
 import './Header.css';
 import logo from "./logoPosta.png";
 import notifylogo from './notify.png';
@@ -12,16 +11,6 @@ function Header() {
             <div className="logo-content">
                 <Link to="/"><img src={logo} alt="No disp" className="logo" /></Link>
             </div>
-            <nav>
-                <ul>
-                    <li>
-                        <NavLink to="/client/home">Cliente</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/provider/home">Prestador</NavLink>
-                    </li>
-                </ul>
-            </nav>
 
             <div className="header-links">
                 <div className="links">

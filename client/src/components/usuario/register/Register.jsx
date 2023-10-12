@@ -15,7 +15,7 @@ const Register = () => {
   const [direccion, setdireccion] = useState('');
   const [codPostal, setCodPostal] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
-  const [esProvedor, setesProvedor] = useState(false);
+  const [esPrestador, setesPrestador] = useState(false);
   //const [formErrors, setFormErrors] = useState({});
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   //const [emailExists, setEmailExists] = useState(false);
@@ -40,7 +40,7 @@ const Register = () => {
           direccion,
           codPostal,
           fechaNacimiento,
-          tipo: esProvedor ? 1 : 0,
+          esPrestador: esPrestador ? 1 : 0,
         }),
       })
       if(response.ok){
@@ -167,8 +167,8 @@ const Register = () => {
             <label className="switch-label">
               <input
                 type="checkbox"
-                checked={esProvedor}
-                onChange={(e) => setesProvedor(e.target.checked)}
+                checked={esPrestador}
+                onChange={(e) => setesPrestador(e.target.checked)}
               />
               <div className="switch"></div>
               Soy prestador

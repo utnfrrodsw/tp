@@ -24,21 +24,19 @@ function Login () {
         }),
       })
       if(response.ok){
-        console.log('Usuario logueado');
         setErrorResponse("");
         const json = (await response.json());
 
-        console.log("body: " + json.body.user);
+        console.log('Usuario logueado');
 
         if(json.body.token && json.body.refreshToken){
           auth.saveUser(json);
-        
-          if(response.body.user.esPrestador){
+          if(json.body.user.esPrestador){
             goTo('/provider/home');
-          }else if(!response.body.user.esPrestador){
+          }else if(!json.body.user.esPrestador){
             goTo('/client/home');
           }
-          goTo('/');
+          //goTo('/');
         }
       }else{
         console.log('Error al loguear usuario');

@@ -23,19 +23,19 @@ module.exports = (sequelize, dataTypes) => {
     email: {
       type: dataTypes.STRING(255),
       allowNull: false,
-      unique: true,
+      unique: false,
     },
     contrasena: {
-      type: dataTypes.STRING(32),
+      type: dataTypes.STRING(250),
       allowNull: false,
     },
     fechaNacimiento: {
       type: dataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
     },
     telefono: {
       type: dataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
     esPrestador: {
       type: dataTypes.TINYINT,// 0 CLIENTE, 1 PRESTADOR

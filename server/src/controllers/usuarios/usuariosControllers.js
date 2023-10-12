@@ -49,6 +49,7 @@ const usuarioController = {
   registrarUsuario: async (req, res) => {
     //console.log(req.body);
     const { nombre, apellido, email, contrasena, fechaNacimiento, telefono, esPrestador } = req.body;
+    console.log(req.body)
     try {
       const result = await db.Usuario.findOne({
         where: { email },
@@ -56,6 +57,7 @@ const usuarioController = {
       .then(result => {
         return result;
       });
+      console.log(result);
       // Verificar si el usuario ya existe en la base de datos
       if (result != null) {
         console.log("usuario ya existe");
@@ -63,6 +65,8 @@ const usuarioController = {
           message: 'El usuario ya existe' 
         }));
       }
+
+      console.log(nombre, apellido, email, contrasena, fechaNacimiento, telefono, esPrestador)
      
       const hashedPassword = await bcrypt.hash(contrasena, 10); // 10 rounds de sal
 
@@ -76,12 +80,12 @@ const usuarioController = {
         esPrestador,
       });
 
-      //console.log(usuario);
+      console.log(usuario);
 
       res.status(200).json(jsonResponse(200, { message: 'Registro exitoso', usuario }));
 
     } catch (error) {
-      // console.error(error);
+      console.error(error);
       res.status(500).json(jsonResponse(500, {
         message: 'Error al registrarse' 
       }));
