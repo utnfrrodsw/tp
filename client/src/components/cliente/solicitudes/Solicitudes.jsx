@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "../../navlink/Navlink.jsx";
 import { NuevaSolicitud } from "../nuevaSolicitud/NuevaSolicitud.jsx";
 import Solicitud from "../solicitud/Solicitud.jsx";
@@ -6,14 +6,10 @@ import "./solicitudes.css";
 
 function Solicitudes(props) {
 
-    const solicitudes = [
-        { nombre: 'Electricista', estado: 'pendiente',descripcion:'Atencion de lunes a viernes de 9hs a 18hs', precio: '$ 1900' },
-        { nombre: 'Plomero', estado: 'presupuestado', descripcion:'Atencion de martes a sabado de 08hs a 21hs', precio: '$200' },
-        { nombre: 'Carpintero', estado: 'pendiente',descripcion:'Atencion de lunes a sabado de 10hs a 18hs' , precio: '$1350' },
-        { nombre: 'Pintor', estado: 'presupuestado',descripcion:'Atencion de lunes a sabado de 11hs a 17hs', precio: '$790' },
-        // Esto lo saco de la base de datos
-      ];
-    
+    const [solicitudes, setSolicitudes] = useState([]);
+
+
+
     const solicitudesPorPagina = 3;
     const [paginaActual, setPaginaActual] = useState(1);
     const totalPaginas = Math.ceil(solicitudes.length / solicitudesPorPagina);
@@ -51,12 +47,12 @@ function Solicitudes(props) {
             </nav>
 
             <div className="solicitudes">
-                {SolicitudesPagina.map((especialidad, index) => (
+                {SolicitudesPagina.map((solicitud, index) => (
                 <Solicitud
-                    key={index} 
-                    nombre={especialidad.nombre}
-                    estado={especialidad.estado}
-                    precio={especialidad.precio}
+                    key={solicitud.id}
+                    nombre={solicitud.nombre}
+                    estado={solicitud.estado}
+                    precio={solicitud.precio}
                 />
                 ))}
             </div>
@@ -72,4 +68,4 @@ function Solicitudes(props) {
 
 }
 
-export default Solicitudes;
+export default Solicitudes;

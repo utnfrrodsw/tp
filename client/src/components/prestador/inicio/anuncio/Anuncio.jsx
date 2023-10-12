@@ -22,6 +22,7 @@ function Anuncio(props){
 
   return(
   <div className={`anuncio-card ${show ? "anuncio-card" : "anuncio-fullcontent"}`} onMouseLeave={CerrarAnuncio}>
+    <div className='id-anuncio'>{id}</div>
     <div className='titulo'>{titulo}</div>
     <div className='nombre'>{nombre}</div>
     <div className='fecha'>{fecha}</div>

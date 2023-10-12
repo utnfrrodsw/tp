@@ -78,4 +78,15 @@
   .h2 {
     color: white;
   }
+
+  .ButtonCerrarSesion{
+    text-decoration: none;
+    margin: 1rem;
+    background-color: #325080;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
   
