@@ -2,13 +2,17 @@
 Trabajo Practico de Desarrollo de Software UTN FRRO
 
 ## Integrantes:
-- Fani, Nicolás
-- Fina, Gino
-- Sanchez, Franco
-- Mongelos, Manuel
-- Zubiri, Joaquin
+- Fani, Nicolás  |  Legajo: 49449
+- Fina, Gino  |  Legajo: 49721
+- Sanchez, Franco Nahuel  |  Legajo: 49738
+- Mongelos, Manuel  |  Legajo: 48959
+- Zubiri, Joaquin  |  Legajo: 50206
 
-## Descripción breve del negocio
+## Repositorios
+- [**FrontEnd**](https://github.com/fraancosan/gymScriptFE)
+- [**BackEnd**](https://github.com/JoaquinZubiri/ServidorDSW)
+
+## Descripción de Negocio
 El gimnasio **“gymScript”** es un establecimiento dedicado a acompañar a sus miembros a conseguir una buena salud física y mental, mediante una gran variedad de servicios y actividades. El gimnasio ofrece diferentes planes de membresías que se adaptan a las necesidades y preferencias de los clientes.
 
 ## CRUD 
