@@ -78,7 +78,7 @@ export const createProduct = async (req, res) => {
 
 export const getAll = async (req, res) => {
     try {
-        const { categoria, orden } = req.query;
+        const { categoria, orden, nombre } = req.query;
 
         let filters = {
             habilitado: true
@@ -87,6 +87,11 @@ export const getAll = async (req, res) => {
         // Agregar filtro por categoría si se proporciona
         if (categoria) {
             filters.categoria = categoria;
+        }
+
+        // Agregar filtro por nombre si se proporciona
+        if (nombre) {
+            filters.nombre = { $regex: nombre, $options: "i" };
         }
 
         // Buscar productos y aplicar filtros y ordenamiento
