@@ -31,8 +31,8 @@ Desde el registro de cliente y/o prestador de servicios hasta el pedido y pago d
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Localidad <br>2. CRUD Profesion (por el cliente)<br>3. CRUD Anuncio|
-|CRUD dependiente|1. CRUD Presupuesto {depende de} CRUD Anuncio<br>2. CRUD Cliente y Prestador {depende de} CRUD Localidad<br>3. CRUD Prestador {depende de} CRUD Profesion|
+|CRUD simple|1. CRUD Localidad <br>2. CRUD Profesion (por el cliente)<br>3. CRUD Solicitud|
+|CRUD dependiente|1. CRUD Presupuesto {depende de} CRUD Solicitud<br>2. CRUD Cliente y Prestador {depende de} CRUD Localidad<br>3. CRUD Prestador {depende de} CRUD Profesion|
 |Listado<br>+<br>detalle| 1. Listado de Servicios Requeridos filtrado por localidad y especialidad => detalle CRUD Servicio<br> 2. Listado de presupuestos filtrado por precio de menor a mayor y por la cantidad de estrellas del prestador (evaluado por reseñas de trabajo), o podemos filtras por horas de trabajo estimadas => detalle muestra los datos del presupuesto con el precio de la mano de obra, materiales requeridos con su precio y un monto total de todo el trabajo|
 |CUU/Epic|1. Realizar un presupuesto<br>2. Realizar una reseña a un prestador|
 
