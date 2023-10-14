@@ -19,7 +19,7 @@
         </template>
         <v-list>
           <v-list-item v-for="(subItem, subIndex) in item.subitems" :key="subIndex" @click="insertRoute(subItem.route, item); closeMenu(subItem)">
-            <v-list-item-title>
+            <v-list-item-title v-bind:style="activeRoute(subItem.route) ? 'font-weight: bold;' : '' ">
               <v-icon v-if="subItem.icon">{{ subItem.icon }}</v-icon>
               {{ subItem.name }}
             </v-list-item-title>
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-
   export default {
     name: 'App',
     data: () => ({
@@ -72,16 +71,40 @@
               icon: 'mdi-list-box'
             }
           ]
+        },
+        {
+          name: 'Mi cuenta',
+          icon: 'mdi-account',
+          menu: false,
+          subitems: [
+            {
+              name: 'Editar cuenta',
+              route: '/edit-account',
+              icon: 'mdi-account-edit'
+            },
+            {
+              name: 'Cerrar sesión',
+              route: '/logout',
+              icon: 'mdi-logout'
+            }
+          ]
         }
       ]
     }),
     methods: {
       insertRoute(route, item) {
-        this.$router.push(route)
+        this.$router.push(route).catch(error => {
+          if (error.name != 'NavigationDuplicated') {
+            throw error
+          }
+        })
         this.closeMenu(item)
       },
       closeMenu(item){
         item.menu = false
+      },
+      activeRoute(route) {
+        return this.$route.path === route
       }
     }
   }

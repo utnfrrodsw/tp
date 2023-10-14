@@ -1,15 +1,16 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
-import AddGroup from '../views/AddGroup.vue';
-import ListGroups from '../views/ListGroups.vue';
-import ListTechnicians from '../views/ListTechnicians.vue';
-import EditTechnician from '../views/EditTechnician.vue';
-import AddTechnician from '../views/AddTechnician.vue';
-import login from '../views/Login.vue';
-import auth from '../middlewares/auth';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+import AddGroup from '../views/AddGroup.vue'
+import ListGroups from '../views/ListGroups.vue'
+import ListTechnicians from '../views/ListTechnicians.vue'
+import EditTechnician from '../views/EditTechnician.vue'
+import AddTechnician from '../views/AddTechnician.vue'
+import EditUser from '../views/EditUser.vue'
+import login from '../views/Login.vue'
+import auth from '../middlewares/auth'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
@@ -49,19 +50,25 @@ const routes = [
     beforeEnter: auth
   },
   {
+    path: '/edit-account',
+    name: 'EditUser',
+    component: EditUser,
+    beforeEnter: auth
+  },
+  {
     path: '/login',
     name: 'login',
     component: login,
     meta: {
       hideNavbar: true
+    }
   }
-}
-];
+]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router

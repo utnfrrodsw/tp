@@ -15,7 +15,7 @@
             </v-row>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" @click="editarTecnico(item.id)">Modificar</v-btn>
+            <v-btn color="primary" @click="editTechnician(item.id)">Modificar</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -24,26 +24,26 @@
 </template>
 
 <script>
-export default {
-  name: "ListTechnicians",
-  data() {
-    return {
-      items: [],
-    };
-  },
-  mounted() {
-    this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      const url = "http://localhost:4000/api/technicians";
-      const response = await fetch(url);
-      const data = await response.json();
-      this.items = data;
+  export default {
+    name: 'ListTechnicians',
+    data() {
+      return {
+        items: []
+      }
     },
-    editarTecnico(id) {
-      this.$router.push({ name: "EditTechnician", params: { id } });
+    mounted() {
+      this.fetchData()
     },
-  },
-};
+    methods: {
+      async fetchData() {
+        const url = 'http://localhost:4000/api/technicians'
+        const response = await fetch(url)
+        const data = await response.json()
+        this.items = data
+      },
+      editTechnician(id) {
+        this.$router.push({ name: 'EditTechnician', params: { id } })
+      }
+    }
+  }
 </script>

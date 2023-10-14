@@ -16,7 +16,7 @@
 
     <v-row v-if="alert.show">
       <v-col>
-        <alerts :type="alert.type" :mensaje="alert.message" @salir="alert.show = false"></alerts>
+        <alerts :type="alert.type" :message="alert.message" @quit="alert.show = false"></alerts>
       </v-col>
     </v-row>
   </v-container>
@@ -33,41 +33,38 @@
     data() {
       return {
         group: {
-          id: '0',
-          description: '',
+          description: ''
         },
         loading: false,
         alert: {
           show: false,
           message: '',
-          type: '',
+          type: ''
         },
-        menu: false,
-      };
+        menu: false
+      }
     },
     methods: {
       async submitForm() {
-        this.loading = true;
+        this.loading = true
 
         try {
+          const token = localStorage.getItem('token')
           const response = await fetch('http://localhost:4000/api/groups', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'x-access-token': token
             },
             body: JSON.stringify(this.group)
           })
-
-          const data = await response.json()
-          this.alert.show = true
-          this.alert.message = data.body
+          this.alert.message = 'Grupo creado correctamente'
           this.alert.type = 'success'
-
-          this.group.description = ''
-        } catch (error) {
           this.alert.show = true
+        } catch (error) {
           this.alert.message = 'Error al agregar técnico'
           this.alert.type = 'error'
+          this.alert.show = true
         }
 
         this.loading = false
@@ -75,9 +72,3 @@
     }
   }
 </script>
-
-<style scoped>
-  .v-menu__content {
-    z-index: 9999;
-  }
-</style>

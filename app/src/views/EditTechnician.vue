@@ -30,106 +30,106 @@
         </v-col>
       </v-row>
     </v-form>
-    <alerts v-if="alert.show" :title="alert.title" :message="alert.message" @salir="redirectList"></alerts>
+    <alerts v-if="alert.show" :title="alert.title" :message="alert.message" @quit="redirectList"></alerts>
   </v-container>
 </template>
 
 <script>
-import axios from 'axios';
-import Alerts from '@/components/Alerts.vue';
+  import axios from 'axios'
+  import Alerts from '@/components/Alerts.vue'
 
-export default {
-  name: 'EditTechnician',
-  components: {
-    Alerts,
-  },
-  data() {
-    return {
-      tecnico: {
-        id: this.$route.params.id,
-        name: "",
-        date_born: null,
-      },
-      validationRules: {
-        name: [
-          v => !!v || 'Nombre is required',
-          v => (v && v.length <= 10) || 'Nombre must be less than 10 characters',
-        ],
-        date_born: [
-          v => !!v || 'Fecha de nacimiento is required',
-        ],
-      },
-      menu: false,
-      alert: {
-        show: false,
-        title: "",
-        message: "",
-        type: "",
-      },
-      loading: false,
-    };
-  },
-  mounted() {
-    this.fetchData();
-  },
-  computed: {
-    formattedDate() {
-      if (this.tecnico.date_born) {
-        const date = new Date(this.tecnico.date_born);
-        return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
-      }
-      return '';
+  export default {
+    name: 'EditTechnician',
+    components: {
+      Alerts
     },
-  },
-  methods: {
-    async fetchData() {
-      this.loading = true;
-      try {
-        const response = await axios.get(`http://localhost:4000/api/technicians/${this.tecnico.id}`);
-        const technician = response.data;
-        this.tecnico.name = technician.name;
-        this.tecnico.date_born = technician.date_born.substring(0, 10);
-      } catch (error) {
-        console.error(error);
+    data() {
+      return {
+        tecnico: {
+          id: this.$route.params.id,
+          name: '',
+          date_born: null
+        },
+        validationRules: {
+          name: [
+            v => !!v || 'Nombre is required',
+            v => (v && v.length <= 10) || 'Nombre must be less than 10 characters'
+          ],
+          date_born: [
+            v => !!v || 'Fecha de nacimiento is required'
+          ]
+        },
+        menu: false,
+        alert: {
+          show: false,
+          title: '',
+          message: '',
+          type: ''
+        },
+        loading: false,
       }
-      this.loading = false
     },
-    async submitForm() {
-      if (this.$refs.form.validate()) {
-        this.loading = true;
-  
-        try {
-          const body = {
-            name: this.tecnico.name,
-            date_born: this.tecnico.date_born,
-          };
-          const response = await axios.put(`http://localhost:4000/api/technicians/${this.tecnico.id}`, body);
-          const data = await response.data;
-          this.alert.show = true;
-          this.alert.title = "Guardado exitoso";
-          this.alert.message = "El cambio se realizó exitosamente";
-          this.alert.type = "success";
-  
-          this.reset()
-          this.resetValidation()
-        } catch (error) {
-          this.alerta.show = true;
-          this.alerta.title = "Error";
-          this.alerta.mensaje = "Error al agregar técnico";
-          this.alerta.type = "error";
+    mounted() {
+      this.fetchData()
+    },
+    computed: {
+      formattedDate() {
+        if (this.tecnico.date_born) {
+          const date = new Date(this.tecnico.date_born)
+          return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
         }
-        this.loading = false;
+        return ''
       }
     },
-    redirectList() {
-      this.$router.push({ path: '/list-technicians' }).catch(() => {});
-    },
-    reset () {
-      this.$refs.form.reset()
-    },
-    resetValidation () {
-      this.$refs.form.resetValidation()
+    methods: {
+      async fetchData() {
+        this.loading = true
+        try {
+          const response = await axios.get(`http://localhost:4000/api/technicians/${this.tecnico.id}`)
+          const technician = response.data
+          this.tecnico.name = technician.name
+          this.tecnico.date_born = technician.date_born.substring(0, 10)
+        } catch (error) {
+          console.error(error)
+        }
+        this.loading = false
+      },
+      async submitForm() {
+        if (this.$refs.form.validate()) {
+          this.loading = true
+    
+          try {
+            const body = {
+              name: this.tecnico.name,
+              date_born: this.tecnico.date_born
+            }
+            const response = await axios.put(`http://localhost:4000/api/technicians/${this.tecnico.id}`, body)
+            const data = await response.data
+            this.alert.show = true
+            this.alert.title = 'Guardado exitoso'
+            this.alert.message = 'El cambio se realizó exitosamente'
+            this.alert.type = 'success'
+    
+            this.reset()
+            this.resetValidation()
+          } catch (error) {
+            this.alerta.show = true
+            this.alerta.title = 'Error'
+            this.alerta.mensaje = 'Error al agregar técnico'
+            this.alerta.type = 'error'
+          }
+          this.loading = false
+        }
+      },
+      redirectList() {
+        this.$router.push({ path: '/list-technicians' }).catch(() => {})
+      },
+      reset () {
+        this.$refs.form.reset()
+      },
+      resetValidation () {
+        this.$refs.form.resetValidation()
+      }
     }
-  },
-};
+  }
 </script>

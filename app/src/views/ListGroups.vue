@@ -7,7 +7,7 @@
             Grupo: {{ group.id }}
           </v-card-title>
           <v-card-subtitle>
-            Descripcion: {{ group.technicians.length > 0 ? group.technicians[0].name : 'Libre' }}
+            Descripcion: {{ group.description ? group.description : '' }}
           </v-card-subtitle>
           <v-card-text>
             <v-row>
@@ -19,7 +19,7 @@
             </v-row>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" @click="groupEdit(group.id, group.technicians.map(technician => technician.id))">Modificar grupo</v-btn>
+            <v-btn color="primary" @click="editGrup(group.id)">Modificar</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -45,8 +45,8 @@
       }
     },
     methods: {
-      groupEdit(groupNum, techniciansIds) {
-        this.$router.push({ name: 'EditarGrupos', params: { id, techniciansIds } })
+      editGrup(id) {
+        this.$router.push({ name: 'EditGroup', params: { id } })
       }
     }
   }

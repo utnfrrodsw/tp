@@ -47,84 +47,90 @@
 
     <v-row v-if="alert.show">
       <v-col>
-        <alerts :type="alert.type" :message="alert.message" @salir="alert.show = false"></alerts>
+        <alerts :type="alert.type" :message="alert.message" @quit="alert.show = false"></alerts>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import Alerts from "@/components/Alerts.vue";
-import axios from 'axios';
+  import Alerts from '@/components/Alerts.vue'
 
-export default {
-  name: "AddTechnician",
-  components: {
-    Alerts,
-  },
-  data() {
-    return {
-      tecnico: {
-        name: "",
-        date_born: "",
-      },
-      validationRules: {
-        name: [
-          v => !!v || 'Nombre is required',
-          v => (v && v.length <= 10) || 'Nombre must be less than 10 characters',
-        ],
-        date_born: [
-          v => !!v || 'Fecha de nacimiento is required',
-        ],
-      },
-      loading: false,
-      alert: {
-        show: false,
-        message: "",
-        type: "",
-      },
-      menu: false,
-    };
-  },
-  methods: {
-    async submitForm() {
-      if (this.$refs.form.validate()) {
-        this.loading = true;
-        try {
-          const body = {
-            name: this.tecnico.name,
-            date_born: this.tecnico.date_born,
-          };
-          const response = await axios.post(`http://localhost:4000/api/technicians`, body)
-          const data = await response.data;
-  
-          this.alert.show = true;
-          this.alert.message = "Tecnico creado correctamente";
-          this.alert.type = "success";
-  
-          this.reset()
-          this.resetValidation()
-          this
-        } catch (e) {
-          this.alert.show = true;
-          this.alert.message = "Error al agregar técnico";
-          this.alert.type = "error";
-        }
-        this.loading = false;
+  export default {
+    name: 'AddTechnician',
+    components: {
+      Alerts,
+    },
+    data() {
+      return {
+        tecnico: {
+          name: '',
+          date_born: '',
+        },
+        validationRules: {
+          name: [
+            v => !!v || 'Nombre is required',
+            v => (v && v.length <= 10) || 'Nombre must be less than 10 characters',
+          ],
+          date_born: [
+            v => !!v || 'Fecha de nacimiento is required',
+          ],
+        },
+        loading: false,
+        alert: {
+          show: false,
+          message: '',
+          type: ''
+        },
+        menu: false
       }
     },
-    reset () {
-      this.$refs.form.reset()
-    },
-    resetValidation () {
-      this.$refs.form.resetValidation()
+    methods: {
+      async submitForm() {
+        if (this.$refs.form.validate()) {
+          this.loading = true
+          try {
+            const token = localStorage.getItem('token')
+            const response = await fetch('http://localhost:4000/api/technicians', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': token
+              },
+              body: {
+                name: this.tecnico.name,
+                date_born: this.tecnico.date_born,
+              }
+            })
+            const data = await response.data
+    
+            this.alert.show = true
+            this.alert.message = 'Tecnico creado correctamente'
+            this.alert.type = 'success'
+
+            this.reset()
+            this.resetValidation()
+            this
+          } catch (e) {
+            this.alert.show = true
+            this.alert.message = 'Error al agregar técnico'
+            this.alert.type = 'error'
+          }
+          this.loading = false
+        }
+      },
+      reset () {
+        this.$refs.form.reset()
+      },
+      resetValidation () {
+        this.$refs.form.resetValidation()
+      }
     }
-  },
-};
+  }
 </script>
 
 <style scoped>
-.v-menu__content {
-  z-index: 9999;
-}
+  .v-menu__content {
+    z-index: 9999;
+  }
 </style>

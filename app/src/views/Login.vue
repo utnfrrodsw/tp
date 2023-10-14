@@ -35,7 +35,7 @@
     data() {
       return {
         email: '',
-        password: '',
+        password: ''
       }
     },
     methods: {
@@ -57,8 +57,9 @@
     }
   }
 </script>
+
 <style scoped>
-.elevation-12 {
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.14), 0 1px 18px rgba(0, 0, 0, 0.12), 0 3px 5px rgba(0, 0, 0, 0.2);
-}
+  .elevation-12 {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.14), 0 1px 18px rgba(0, 0, 0, 0.12), 0 3px 5px rgba(0, 0, 0, 0.2);
+  }
 </style>

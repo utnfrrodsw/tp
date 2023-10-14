@@ -36,7 +36,7 @@ const getGroup = async (req, res) => {
 
 const updateGroup = async (req, res) => {
   const { id } = req.params
-  const { name } = req.body
+  const { description } = req.body
 
   if (!id) {
     return res.status(400).send('Ups! Error')
@@ -44,7 +44,7 @@ const updateGroup = async (req, res) => {
 
   try {
     const group = await Group.update({
-      name
+      description
     }, {
       where: { id }
     })
@@ -56,11 +56,11 @@ const updateGroup = async (req, res) => {
 }
 
 const createGroup = async (req, res) => {
-  const { name } = req.body
+  const { description } = req.body
 
   try {
     const group = await Group.create({
-      name
+      description
     })
     res.json(group)
   } catch (error) {
