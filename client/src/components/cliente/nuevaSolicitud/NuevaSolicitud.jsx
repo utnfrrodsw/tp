@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import '../Inicio/InicioCliente.css';
+import { API_URL } from '../../../auth/constants';
+import { useAuth } from '../../../auth/authProvider.jsx';
 
 export function NuevaSolicitud() {
   const [showModal, setShowModal] = useState(false);
@@ -8,12 +10,14 @@ export function NuevaSolicitud() {
   const [descripcion, setDescripcion] = useState('');
   const [especialidad, setEspecialidad] = useState('');
   const [ubicacion, setUbicacion] = useState('');
-  const [fotos, setFotos] = useState([]);
+  const [fotos, setFotos] = useState(null);
   const [errorTitulo, setErrorTitulo] = useState(false);
   const [errorDescripcion, setErrorDescripcion] = useState(false);
   const [errorEspecialidad, setErrorEspecialidad] = useState(false);
   const [errorUbicacion, setErrorUbicacion] = useState(false);
   const [errorFotos, setErrorFotos] = useState([]);
+  const auth = useAuth();
+  const user = auth.getUser();
 
   const handleClose = () => {
     setShowModal(false);
@@ -30,7 +34,10 @@ export function NuevaSolicitud() {
 
   const handleShow = () => setShowModal(true);
 
-  const handleSubmit = () => {
+
+  const handleSubmit = async () => {
+
+    //Validar los campos del formulario
     if (!titulo || !descripcion || !especialidad || !ubicacion || fotos.length === 0) {
       if (!titulo) setErrorTitulo(true);
       if (!descripcion) setErrorDescripcion(true);
@@ -40,13 +47,39 @@ export function NuevaSolicitud() {
       return;
     }
 
-    console.log('Título:', titulo);
-    console.log('Descripción:', descripcion);
-    console.log('Especialidad:', especialidad);
-    console.log('Ubicación:', ubicacion);
-    console.log('Fotos:', fotos);
+    console.log(fotos)
+    const formdata = new FormData();
+    formdata.append('titulo', titulo);
+    formdata.append('descripcion', descripcion);
+    formdata.append('especialidad', especialidad);
+    formdata.append('ubicacion', ubicacion);
+    fotos.forEach((foto) => {
+      formdata.append('fotos', foto);
+    });
+    
 
-    alert('Solicitud guardada con éxito.');
+    try{
+      const response = await fetch(`${API_URL}/solicitud/cliente/${user.id}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${auth.getRefreshToken()}`
+        },
+        body: formdata
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+      console.log(response);
+
+    }catch(error){
+      console.log(error);
+    }
+
 
     handleClose();
   };
@@ -65,7 +98,7 @@ export function NuevaSolicitud() {
   return (
     <div>
       <div >
-      <Button  variant='primary' className="floating-button"  onClick={handleShow} onMouseEnter={toggleMenu} >
+      <Button  variant='primary' className="floating-button"  onClick={handleShow} onMouseLeave={toggleMenu} onMouseEnter={toggleMenu} >
         +
       </Button>
     </div>
