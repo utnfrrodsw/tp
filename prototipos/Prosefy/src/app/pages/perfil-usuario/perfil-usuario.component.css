@@ -19,11 +19,17 @@
     margin-top: 50px;
     margin-right: 300px;
     border-right: black 1px solid;
+
 }
 
+
 .item-menu{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    text-align: center;
     height: 30px;
     width: 128px;
     border-bottom: black 1px solid;
-    border-left: black 1px solid;;
+    border-left: black 1px solid;
+    text-decoration: none;
 }
