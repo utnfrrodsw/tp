@@ -106,7 +106,9 @@
         const token = localStorage.getItem('token')
         const decoded = JSON.parse(atob(token.split('.')[1]))
         const id = decoded.user.id
-        const response = await fetch(`http://localhost:4000/api/users/${id}`, {
+        const apiUrl = process.env.VUE_APP_API_URL;
+        const url = `${apiUrl}api/users/${id}`
+        const response = await fetch(url, {
           headers: {
             'x-access-token': token
           }
@@ -125,7 +127,9 @@
         this.loading = true
 
         try {
-          const response = await fetch(`http://localhost:4000/api/user/${this.user.id}`, {
+          const apiUrl = process.env.VUE_APP_API_URL;
+          const url = `${apiUrl}api/user/${this.user.id}`
+          const response = await fetch(url, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'

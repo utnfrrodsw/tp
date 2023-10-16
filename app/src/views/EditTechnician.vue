@@ -85,7 +85,8 @@
       async fetchData() {
         this.loading = true
         try {
-          const response = await axios.get(`http://localhost:4000/api/technicians/${this.tecnico.id}`)
+          
+          const response = await axios.get(url)
           const technician = response.data
           this.tecnico.name = technician.name
           this.tecnico.date_born = technician.date_born.substring(0, 10)
@@ -103,7 +104,9 @@
               name: this.tecnico.name,
               date_born: this.tecnico.date_born
             }
-            const response = await axios.put(`http://localhost:4000/api/technicians/${this.tecnico.id}`, body)
+            const apiUrl = process.env.VUE_APP_API_URL;
+            const url = `${apiUrl}api/technicians/${this.tecnico.id}`
+            const response = await axios.put(url, body)
             const data = await response.data
             this.alert.show = true
             this.alert.title = 'Guardado exitoso'

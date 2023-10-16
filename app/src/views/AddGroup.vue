@@ -49,8 +49,10 @@
         this.loading = true
 
         try {
+          const apiUrl = process.env.VUE_APP_API_URL;
+          const url = `${apiUrl}api/groups`
           const token = localStorage.getItem('token')
-          const response = await fetch('http://localhost:4000/api/groups', {
+          const response = await fetch(url, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

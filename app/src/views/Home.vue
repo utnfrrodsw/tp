@@ -44,7 +44,9 @@
     methods: {
       fetchData() {
         axios
-          .get('http://localhost:4000/api/tasks/sum-tasks')
+          const apiUrl = process.env.VUE_APP_API_URL;
+          const url = `${apiUrl}api/tasks/sum-tasks`
+          .get(url)
           .then(response => {
             const data = response.data[0]
             this.chartOptions.series = [{

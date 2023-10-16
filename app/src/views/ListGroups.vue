@@ -37,7 +37,9 @@
     },
     async mounted() {
       try {
-        const response = await fetch('http://localhost:4000/api/groups')
+        const apiUrl = process.env.VUE_APP_API_URL;
+        const url = `${apiUrl}api/groups`
+        const response = await fetch(url)
         const data = await response.json()
         this.groups = data
       } catch (error) {

@@ -7,6 +7,8 @@
   "dependencies": {
     "axios": "^1.4.0",
     "chart.js": "^4.3.0",
+    "dotenv": "^16.3.1",
+    "dotenv-webpack": "^8.0.1",
     "highcharts": "^9.3.1",
     "highcharts-vue": "^1.4.0",
     "vue": "^2.6.14",

@@ -93,8 +93,10 @@ export default {
     },
     async fetchTecnicosDisponibles() {
       try {
+        const apiUrl = process.env.VUE_APP_API_URL;
+        const url = `${apiUrl}api/group_technicians/`
         const response = await axios.get(
-          "http://localhost:4000/api/group_technicians/"
+          url
         );
         this.tecnicosDisponibles = response.data.body;
       } catch (error) {
