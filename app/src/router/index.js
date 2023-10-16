@@ -8,6 +8,7 @@ import EditTechnician from '../views/EditTechnician.vue'
 import AddTechnician from '../views/AddTechnician.vue'
 import EditUser from '../views/EditUser.vue'
 import login from '../views/Login.vue'
+import EditGroup from '../views/EditGroup.vue'
 import auth from '../middlewares/auth'
 
 Vue.use(VueRouter)
@@ -53,6 +54,12 @@ const routes = [
     path: '/edit-account',
     name: 'EditUser',
     component: EditUser,
+    beforeEnter: auth
+  },
+  {
+    path: '/edit-group',
+    name: 'EditGroup',
+    component: EditGroup,
     beforeEnter: auth
   },
   {
