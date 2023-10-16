@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import '../Inicio/InicioCliente.css';
 import { API_URL } from '../../../auth/constants';
@@ -9,12 +9,12 @@ export function NuevaSolicitud() {
   const [titulo, setTitulo] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [especialidad, setEspecialidad] = useState('');
-  const [ubicacion, setUbicacion] = useState('');
+  const [idDireccion, setidDireccion] = useState('');
   const [fotos, setFotos] = useState(null);
   const [errorTitulo, setErrorTitulo] = useState(false);
   const [errorDescripcion, setErrorDescripcion] = useState(false);
   const [errorEspecialidad, setErrorEspecialidad] = useState(false);
-  const [errorUbicacion, setErrorUbicacion] = useState(false);
+  const [erroridDireccion, setErroridDireccion] = useState(false);
   const [errorFotos, setErrorFotos] = useState([]);
   const auth = useAuth();
   const user = auth.getUser();
@@ -28,21 +28,20 @@ export function NuevaSolicitud() {
     setTitulo('');
     setDescripcion('');
     setEspecialidad('');
-    setUbicacion('');
+    setidDireccion('');
     setFotos([]);
   };
 
   const handleShow = () => setShowModal(true);
 
-
   const handleSubmit = async () => {
 
     //Validar los campos del formulario
-    if (!titulo || !descripcion || !especialidad || !ubicacion || fotos.length === 0) {
+    if (!titulo || !descripcion || !especialidad || !idDireccion || fotos.length === 0) {
       if (!titulo) setErrorTitulo(true);
       if (!descripcion) setErrorDescripcion(true);
       if (!especialidad) setErrorEspecialidad(true);
-      if (!ubicacion) setErrorUbicacion(true);
+      if (!idDireccion) setErroridDireccion(true);
       if (fotos.length === 0) setErrorFotos(true);
       return;
     }
@@ -52,7 +51,7 @@ export function NuevaSolicitud() {
     formdata.append('titulo', titulo);
     formdata.append('descripcion', descripcion);
     formdata.append('especialidad', especialidad);
-    formdata.append('ubicacion', ubicacion);
+    formdata.append('idDireccion', idDireccion);
     fotos.forEach((foto) => {
       formdata.append('fotos', foto);
     });
@@ -135,9 +134,9 @@ export function NuevaSolicitud() {
             {errorEspecialidad && <span className="error-message">Seleccione una especialidad</span>}
           </div>
           <div className="form-group">
-            <label>Ubicación</label>
-            <input type="text" value={ubicacion} onChange={(e) => setUbicacion(e.target.value)} />
-            {errorUbicacion && <span className="error-message">Ingrese una ubicacion valida</span>}
+            <label>Direccion</label>
+            <input type="text" value={idDireccion} onChange={(e) => setidDireccion(e.target.value)} />
+            {erroridDireccion && <span className="error-message">Ingrese una idDireccion valida</span>}
           </div>
           <div className="form-group">
             <label>Fotos</label>
