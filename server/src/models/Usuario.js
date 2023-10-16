@@ -55,6 +55,18 @@ module.exports = (sequelize, dataTypes) => {
       as: 'direcciones',
       foreignKey: 'idUsuario', // Clave foránea en Direccion
     });
+    Usuario.hasMany(models.PrestadorProfesiones, {
+      as: 'profesiones',
+      foreignKey: 'idprestador', // Clave foránea en PrestadorProfesiones
+    });
+    Usuario.hasMany(models.HistoricoResenia, {
+      as: 'resenias',
+      foreignKey: 'idUsuario', // Clave foránea en HistoricoResenia
+    });
+    Usuario.hasMany(models.Presupuesto, {
+      as: 'presupuestos',
+      foreignKey: 'idUsuario', // Clave foránea en Presupuesto
+    });
   };
   
   return Usuario;

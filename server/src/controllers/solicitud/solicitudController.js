@@ -2,6 +2,7 @@ const db  = require('../../models');
 const fs = require('fs');
 const path = require('path');
 const { jsonResponse } = require("../../lib/jsonResponse");
+const {getSolicitudInfo} = require("../../lib/getSolicitudInfo");
 
 const solicitudController = {
     getSolicitud: function (req, res){
@@ -24,21 +25,59 @@ const solicitudController = {
         }
     },
 
-    getSolicitudesActivasCliente: function (req, res){
-        let idCliente = req.params.id;
-        console.log(idCliente);
+    getSolicitudesClienteEstado: function (req, res){
         try{
+            const id = req.params.id; 
+            const estado = req.params.estado; 
             db.Solicitud.findAll({
-                where: {idCliente: idCliente},
-                include: [{association: 'direccion'}]
+            where: {
+                estado: estado
+            },
+            include: [{
+                association: 'direccion',
+                where: {
+                    idUsuario: id
+                },
+                },
+                {
+                    association: 'fotosSolicitud' // Si necesitas acceder a las fotos de las solicitudes
+                }]
+            }).then( (solicitudesResponse) => {
+
+                const solicitudes = []
+
+                solicitudesResponse.map((solicitud) => {
+                
+                    const imgs = solicitud.fotosSolicitud.map((foto) => {
+                
+                        // Guarda la imagen como archivo individual
+                        const filePath = path.join(__dirname, '../../../public/images/imagesdb/' + foto.idfoto + '-fastServices.png');
+                        fs.writeFileSync(filePath, foto.foto);
+                
+                        return {
+                            id: foto.idfoto,
+                            foto: (foto.idfoto + '-fastServices.png'),// Proporciona la ruta al archivo
+                        };
+                    });
+                    solicitudes.push(getSolicitudInfo(solicitud, imgs));
+                });
+                
+
+                
+                res.status(200).json(jsonResponse(200, {
+                    message: "Solicitudes encontradas",
+                    //images: images,
+                    solicitudes: solicitudes
+                }))
             })
-            .then(function(solicitudes){
-                if(!solicitudes) {
-                    res.status(404).json({ message: 'Solicitudes no encontradas' });
-                }
-                console.log(solicitudes);
-                res.json(solicitudes);
-            })
+            .catch((error) => {
+            // Maneja cualquier error
+                res.status(500).json(jsonResponse(500, {
+                    message: "Error en el servidor",
+                    solicitudes: [],
+                }));
+                
+            });
         }catch(error){
             console.error('Error al obtener solicitudes', error);
             res.status(500).json({ message: 'Error en el servidor' });
@@ -62,12 +101,11 @@ const solicitudController = {
                     fechaHora: Date.now()},
                     {transaction: t}
                 );
-
               
                 // Paso 2: Crea múltiples registros de FotoSolicitud relacionados con la solicitud
                 const fotosPromises = fotosArray.map(async (fotoData) => {
                     return db.FotoSolicitud.create({ 
-                        foto: fs.readFileSync(path.join(__dirname + '../../../images/' + fotoData.filename)),
+                        foto: fs.readFileSync(path.join(__dirname + '../../../../public/images/solicitud/' + fotoData.filename)),
                         nombre: fotoData.originalname,
                         tipo: fotoData.mimetype,
                         idSolicitud: solicitud._previousDataValues.idSolicitud },

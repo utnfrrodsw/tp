@@ -4,7 +4,7 @@ import '../Inicio/InicioCliente.css';
 import { API_URL } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider.jsx';
 
-export function NuevaSolicitud() {
+export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [showModal, setShowModal] = useState(false);
   const [titulo, setTitulo] = useState('');
   const [descripcion, setDescripcion] = useState('');
@@ -78,8 +78,6 @@ export function NuevaSolicitud() {
     }catch(error){
       console.log(error);
     }
-
-
     handleClose();
   };
 
@@ -107,7 +105,7 @@ export function NuevaSolicitud() {
         </div>
       )}
 
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal show={showModal} onHide={() => {handleClose(); hendleSolicitudesUpdate();}}>
         <Modal.Header closeButton>
           <Modal.Title>Nueva Solicitud</Modal.Title>
         </Modal.Header>

@@ -2,7 +2,7 @@ const multer = require('multer');
 const path = require('path');
 
 const diskstorage = multer.diskStorage({
-    destination: path.join(__dirname, '../../images'),
+    destination: path.join(__dirname, '../../../public/images/solicitud'),
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
         cb(null, file.fieldname + '-fastservices-' + uniqueSuffix + path.extname(file.originalname))
