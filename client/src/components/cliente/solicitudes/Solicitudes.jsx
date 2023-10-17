@@ -87,6 +87,7 @@ function Solicitudes(props) {
                     
                     <Solicitud
                         hendleSolicitudesUpdate={hendleSolicitudesUpdate}
+                        key={solicitud.id}
                         id={solicitud.id}
                         titulo={solicitud.titulo}
                         fecha={solicitud.fechaHora}
