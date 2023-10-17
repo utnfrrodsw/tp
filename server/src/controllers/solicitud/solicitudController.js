@@ -118,6 +118,30 @@ const solicitudController = {
             console.error('Error al crear solicitud', error);
             res.status(500).json(jsonResponse(500,{ message: 'Error en el servidor al subir solicitud' }));
         }
+    },
+    
+    CancelarSolicitud: async function (req, res){
+        try {
+            const idSolicitud = req.params.id;
+            console.log(idSolicitud);
+            await db.sequelize.transaction(async (t) => {
+              // Paso 1: Buscar la solicitud
+              const solicitud = await db.Solicitud.findByPk(idSolicitud);
+              if (!solicitud) {
+                res.status(404).json(jsonResponse(404, { message: 'Solicitud no encontrada' }));
+                return; // Debes regresar para evitar ejecutar el código restante en caso de que no se encuentre la solicitud.
+              }
+          
+              // Paso 2: Eliminar la solicitud
+              await db.Solicitud.destroy({ where: { idSolicitud: idSolicitud } }, { transaction: t });
+            });
+          
+            res.status(200).json(jsonResponse(200, { message: 'Solicitud cancelada' }));
+          } catch (error) {
+            console.error('Error al cancelar solicitud', error);
+            res.status(500).json(jsonResponse(500, { message: 'Error en el servidor al cancelar solicitud' }));
+          }
+          
     }
 };
 

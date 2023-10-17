@@ -22,7 +22,6 @@ function Solicitudes(props) {
         fetch(`${API_URL}/solicitud/${estado}/cliente/${user.id}`)
           .then((res) => res.json())
           .then((data) => {
-            console.log(data.body);
             setSolicitudes(data.body.solicitudes);
             setSolicitudesUpdate(false); // Mover esta línea aquí
             setLoad(false);
@@ -35,8 +34,6 @@ function Solicitudes(props) {
           });
     }, [solicitudesUpdate, estado, user.id]);
       
-
-
     // pagination
     const [paginaActual, setPaginaActual] = useState(1);
     const solicitudesPorPagina = 3;
@@ -85,9 +82,12 @@ function Solicitudes(props) {
             <div className="solicitudes">
                 {load === false ? (
                 SolicitudesPagina.length > 0 ? (
+                
                 SolicitudesPagina.map((solicitud) => (
+                    
                     <Solicitud
-                        key={solicitud.id}
+                        hendleSolicitudesUpdate={hendleSolicitudesUpdate}
+                        id={solicitud.id}
                         titulo={solicitud.titulo}
                         fecha={solicitud.fechaHora}
                         direccion={solicitud.direccion}
@@ -111,10 +111,8 @@ function Solicitudes(props) {
                 <button onClick={irAdelante} disabled={paginaActual === totalPaginas}>Adelante</button>
             </div>
             <NuevaSolicitud hendleSolicitudesUpdate={hendleSolicitudesUpdate}/>
-        </div>
-        
+        </div>   
     )
-
 }
 
 export default Solicitudes;

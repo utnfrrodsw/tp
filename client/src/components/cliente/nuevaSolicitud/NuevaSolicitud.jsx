@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import '../Inicio/InicioCliente.css';
 import { API_URL } from '../../../auth/constants';
@@ -21,6 +21,8 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [enviando, setEnviando] = useState(false);
   const auth = useAuth();
   const user = auth.getUser();
+
+
 
   const handleClose = () => {
     setError(false);
@@ -63,7 +65,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
     
 
     try{
-      const response = await fetch(`${API_URL}/solicitud/cliente/${user.id}`, {
+      await fetch(`${API_URL}/solicitud/cliente/${user.id}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${auth.getRefreshToken()}`
@@ -143,6 +145,9 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           </div>
           <div className="form-group">
             <label>Direccion</label>
+            <select>
+
+            </select>
             <input type="text" value={idDireccion} onChange={(e) => setidDireccion(e.target.value)} />
             {erroridDireccion && <span className="error-message">Ingrese una idDireccion valida</span>}
           </div>
@@ -163,6 +168,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
             {enviando ? <><LoandingDots /></> : 'Enviar'}
         </Button>
         </Modal.Footer>
+        {error && <span className="error-message">Error al enviar la solicitud</span>}
       </Modal>
     </div>
   );
