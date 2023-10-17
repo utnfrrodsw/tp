@@ -73,7 +73,7 @@ const solicitudController = {
             .catch((error) => {
             // Maneja cualquier error
                 res.status(500).json(jsonResponse(500, {
-                    message: "Error en el servidor",
+                    message: "Error al buscar las solicitudes",
                     solicitudes: [],
                 }));
                 

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import '../Inicio/InicioCliente.css';
 import { API_URL } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider.jsx';
+import LoandingDots from '../../load/loandingDots/LoandingDots.jsx';
 
 export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [showModal, setShowModal] = useState(false);
@@ -16,10 +17,14 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [errorEspecialidad, setErrorEspecialidad] = useState(false);
   const [erroridDireccion, setErroridDireccion] = useState(false);
   const [errorFotos, setErrorFotos] = useState([]);
+  const [error, setError] = useState(false);
+  const [enviando, setEnviando] = useState(false);
   const auth = useAuth();
   const user = auth.getUser();
 
   const handleClose = () => {
+    setError(false);
+    setEnviando(false);
     setShowModal(false);
     setErrorTitulo(false);
     setErrorDescripcion(false);
@@ -35,7 +40,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const handleShow = () => setShowModal(true);
 
   const handleSubmit = async () => {
-
+    setEnviando(true);
     //Validar los campos del formulario
     if (!titulo || !descripcion || !especialidad || !idDireccion || fotos.length === 0) {
       if (!titulo) setErrorTitulo(true);
@@ -67,18 +72,23 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
       })
       .then((res) => res.json())
       .then((data) => {
+        setEnviando(false);
+        handleClose();
         console.log(data);
       })
       .catch((error) => {
+        setEnviando(false);
+        setError(true);
         console.log(error);
       });
 
-      console.log(response);
-
+      setEnviando(false);
     }catch(error){
+      setEnviando(false);
+      setError(true);
       console.log(error);
     }
-    handleClose();
+    
   };
 
   const handleFileChange = (e) => {
@@ -149,9 +159,9 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
             Cerrar
           </Button>
           </div>
-          <Button variant="primary"  onClick={handleSubmit}>
-            Enviar solicitud
-          </Button>
+          <Button  onClick={handleSubmit}>
+            {enviando ? <><LoandingDots /></> : 'Enviar'}
+        </Button>
         </Modal.Footer>
       </Modal>
     </div>

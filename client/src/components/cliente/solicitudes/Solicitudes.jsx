@@ -5,6 +5,7 @@ import Solicitud from "../solicitud/Solicitud.jsx";
 import "./solicitudes.css";
 import { API_URL } from "../../../auth/constants.js";
 import { useAuth } from "../../../auth/authProvider.jsx";
+import LoaderFijo from "../../load/loaderFijo/LoaderFijo.jsx";
 
 
 function Solicitudes(props) {
@@ -12,21 +13,27 @@ function Solicitudes(props) {
     const [solicitudes, setSolicitudes] = useState([]);
     const [solicitudesUpdate, setSolicitudesUpdate] = useState(false);
     const [estado, setEstado] = useState(props.estado);
+    const [load, setLoad] = useState(false);
     const auth = useAuth();
     const user = auth.getUser();
 
     useEffect(() => {
+        setLoad(true);
         fetch(`${API_URL}/solicitud/${estado}/cliente/${user.id}`)
           .then((res) => res.json())
           .then((data) => {
+            console.log(data.body);
             setSolicitudes(data.body.solicitudes);
             setSolicitudesUpdate(false); // Mover esta línea aquí
-            console.log(data.body.solicitudes)
+            setLoad(false);
+            console.log("solicitudes con estado "+ estado + ": " + data.body.solicitudes)
           })
           .catch((error) => {
+            setLoad(false);
+            console.log(error)
             console.error('Error al cargar solicitudes:', error);
           });
-      }, [estado, solicitudesUpdate, user.id]);
+    }, [solicitudesUpdate, estado, user.id]);
       
 
 
@@ -76,7 +83,8 @@ function Solicitudes(props) {
             </nav>
 
             <div className="solicitudes">
-                {SolicitudesPagina.length > 0 ? (
+                {load === false ? (
+                SolicitudesPagina.length > 0 ? (
                 SolicitudesPagina.map((solicitud) => (
                     <Solicitud
                         key={solicitud.id}
@@ -90,6 +98,10 @@ function Solicitudes(props) {
                 ))) : (
                     <div>
                         <h1>No hay solicitudes {props.estado}</h1>
+                    </div>
+                )) : (
+                    <div>
+                        <LoaderFijo />
                     </div>
                 )}
             </div>

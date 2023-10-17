@@ -9,7 +9,6 @@ function Solicitud(props){
   const descripcion=props.descripcion
   const estado=props.estado
   const fotos=props.fotos
-  console.log(fotos)
 
   const [show, setShow] = useState(true);
 

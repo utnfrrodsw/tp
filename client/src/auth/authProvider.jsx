@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect} from 'react';
 import { API_URL } from './constants';
+import Loader from '../components/load/lodearCentro/Loader';
 
 const AuthContext = createContext({
     isAuthenticated: false,
@@ -142,7 +143,7 @@ export function AuthProvider({children}) {
 
     return(
     <AuthContext.Provider value={{isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser, logout}}>
-        {isLoading ? <div>Cargando...</div> : children}
+        {isLoading ? <Loader />: children}
     </AuthContext.Provider>
     );
 }
