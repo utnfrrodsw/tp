@@ -115,7 +115,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
         </div>
       )}
 
-      <Modal show={showModal} onHide={() => {handleClose(); hendleSolicitudesUpdate();}}>
+      <Modal show={showModal}>
         <Modal.Header closeButton>
           <Modal.Title>Nueva Solicitud</Modal.Title>
         </Modal.Header>
@@ -159,7 +159,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
             Cerrar
           </Button>
           </div>
-          <Button  onClick={handleSubmit}>
+          <Button  onClick={async() => {await handleSubmit(); handleClose(); hendleSolicitudesUpdate();}}>
             {enviando ? <><LoandingDots /></> : 'Enviar'}
         </Button>
         </Modal.Footer>

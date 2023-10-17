@@ -113,8 +113,7 @@ const solicitudController = {
                 });
                 await Promise.all(fotosPromises);
             });
-
-
+            res.status(200).json(jsonResponse(200,{ message: 'Solicitud creada' }));
         }catch(error){
             console.error('Error al crear solicitud', error);
             res.status(500).json(jsonResponse(500,{ message: 'Error en el servidor al subir solicitud' }));
