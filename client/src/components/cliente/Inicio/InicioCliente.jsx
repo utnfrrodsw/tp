@@ -33,7 +33,7 @@ function InicioCliente() {
             <div className='blocks'>
                 <div className="block">
                     <h2>Mis Solicitudes</h2>
-                    <Link to="requests">Ver más</Link>
+                    <Link to="active">Ver más</Link>
                 </div>
                 <div className="block">
                     <h2>Servicios en Progreso</h2>

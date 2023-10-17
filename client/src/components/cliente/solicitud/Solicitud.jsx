@@ -1,27 +1,46 @@
 import React, { useState } from 'react';
 import './solicitud.css';
+import { API_URL } from '../../../auth/constants';
+import { useAuth } from '../../../auth/authProvider';
 
-function Solicprincipal(props){
-  const nombre = props.nombre;
-  const descripcion = props.descripcion;
-  const estado = props.estado;
-  const precio = props.precio;
-  const fecha = '21/09/2023';
-  const ubicacion = 'Rosario, Santa Fe';
-  // const foto=props.foto;}
+function Solicitud(props){
 
   const [show, setShow] = useState(true);
+  const [error, setError] = useState(false);
+  const auth = useAuth();
 
   const CerrarSolicitud = () => {
     setShow(true);
   }
   
+  const hendleCancelar = async () => {
+    try{
+      console.log('cancelar solicitud para id ' + props.id)
+      const response = await fetch(`${API_URL}/solicitud/cancelar/`+props.id, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${auth.getRefreshToken()}`,
+        },
+      }); 
+      if(response.ok){
+        setError(false);
+      }else{
+        console.log('Error al cancelar solicitud');
+        setError(true);
+      }
+    }catch(err){
+      console.log(err);
+      setError(true);
+    }
+  }
+  
   return (
     <div className={`solicprincipal-card ${show ? "solicprincipal-card" : "solicprincipal-fullcontent"}`} onMouseLeave={CerrarSolicitud}>
    
-      <div className='nombre'>{nombre}</div>
-      <div className='fecha'>{fecha}</div>
-      <div className='ubicacion'>{ubicacion}</div>
+      <h1 className='titulo'>{props.titulo}</h1>
+      <p className='fecha'>{props.fecha}</p>
+      <p className='direccion'>{props.direccion.calle} {props.direccion.numero}</p>
     
       <button className='boton' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
       
@@ -29,18 +48,17 @@ function Solicprincipal(props){
         <h1> </h1>
       ) : (
         <>
-          <h1 className="h1-heading">Estado:</h1>
-          <div className='estado'>{estado}</div>
-
-          <h2 className="h2-heading">Descripción:</h2>
-          <div className='descripcion'>{descripcion}</div>
-
-          <h3 className="h3-heading">Precio:</h3>
-          <div className='precio'>{precio}</div>
+          <p className='estado'>{props.estado}</p>
+          <p className='descripcion'>{props.descripcion}</p>
+          {props.fotos.map((foto) => (
+            <img key={foto.id} src={'http://localhost:5000/images/imagesdb/'+ foto.foto} alt="foto" className="foto" />
+          ))}
+          <button onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>Cancelar Solicitud</button>
+          {error && <p className='error'>Error al cancelar solicitud</p>}
         </>
       )}
     </div>
   );
 }
 
-export default Solicprincipal;
+export default Solicitud;

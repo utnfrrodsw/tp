@@ -1,21 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import '../Inicio/InicioCliente.css';
+import { API_URL } from '../../../auth/constants';
+import { useAuth } from '../../../auth/authProvider.jsx';
+import LoandingDots from '../../load/loandingDots/LoandingDots.jsx';
 
-export function NuevaSolicitud() {
+export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [showModal, setShowModal] = useState(false);
   const [titulo, setTitulo] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [especialidad, setEspecialidad] = useState('');
-  const [ubicacion, setUbicacion] = useState('');
-  const [fotos, setFotos] = useState([]);
+  const [direccion, setDireccion] = useState('');
+  const [direcciones, setDirecciones] = useState([]);
+  const [fotos, setFotos] = useState(null);
   const [errorTitulo, setErrorTitulo] = useState(false);
   const [errorDescripcion, setErrorDescripcion] = useState(false);
   const [errorEspecialidad, setErrorEspecialidad] = useState(false);
-  const [errorUbicacion, setErrorUbicacion] = useState(false);
-  const [errorFotos, setErrorFotos] = useState([]);
+  const [errorDirecciones, setErrorDirecciones] = useState(false);
+  const [errorFotos, setErrorFotos] = useState(false);
+  const [error, setError] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const auth = useAuth();
+  const user = auth.getUser();
+
+  // eslint-disable-next-line
+  useEffect(() => {
+    try{
+      const response = fetch(`${API_URL}/direccion/cliente/${user.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.body.direcciones);
+        setDirecciones(data.body.direcciones);
+      })
+      if(response.ok){
+        setErrorDirecciones(false);
+      }else{
+        setErrorDirecciones(true);
+      }
+    }catch(error){
+      error ? console.log(error): console.log('Error al cargar direcciones');
+      setErrorDirecciones(true);
+    }
+  }, [user.id]);
 
   const handleClose = () => {
+    setError(false);
+    setEnviando(false);
     setShowModal(false);
     setErrorTitulo(false);
     setErrorDescripcion(false);
@@ -24,31 +54,63 @@ export function NuevaSolicitud() {
     setTitulo('');
     setDescripcion('');
     setEspecialidad('');
-    setUbicacion('');
+    setDireccion('');
     setFotos([]);
   };
 
   const handleShow = () => setShowModal(true);
 
-  const handleSubmit = () => {
-    if (!titulo || !descripcion || !especialidad || !ubicacion || fotos.length === 0) {
+  const handleSubmit = async () => {
+    setEnviando(true);
+    //Validar los campos del formulario
+    if (!titulo || !descripcion || !especialidad || !direccion || fotos.length === 0) {
       if (!titulo) setErrorTitulo(true);
       if (!descripcion) setErrorDescripcion(true);
       if (!especialidad) setErrorEspecialidad(true);
-      if (!ubicacion) setErrorUbicacion(true);
+      if (!direccion) setErrorDirecciones(true);
       if (fotos.length === 0) setErrorFotos(true);
       return;
     }
 
-    console.log('Título:', titulo);
-    console.log('Descripción:', descripcion);
-    console.log('Especialidad:', especialidad);
-    console.log('Ubicación:', ubicacion);
-    console.log('Fotos:', fotos);
+    console.log("footoss" + fotos)
+    const formdata = new FormData();
+    formdata.append('titulo', titulo);
+    formdata.append('descripcion', descripcion);
+    formdata.append('especialidad', especialidad);
+    formdata.append('idDireccion', direccion);
+    fotos.forEach((foto) => {
+      formdata.append('fotos', foto);
+    });
+    
 
-    alert('Solicitud guardada con éxito.');
-
-    handleClose();
+    try{
+      console.log('enviando solicitud 2')
+      await fetch(`${API_URL}/solicitud/cliente/${user.id}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${auth.getRefreshToken()}`
+        },
+        body: formdata
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        setEnviando(false);
+        hendleSolicitudesUpdate();
+        handleClose();
+        console.log(data);
+      })
+      .catch((error) => {
+        setEnviando(false);
+        setError(true);
+        console.log(error);
+      });
+      setEnviando(false);
+    }catch(error){
+      setEnviando(false);
+      setError(true);
+      console.log(error);
+    }
+    
   };
 
   const handleFileChange = (e) => {
@@ -62,10 +124,14 @@ export function NuevaSolicitud() {
       setIsMenuOpen(!isMenuOpen);
   };
 
+  const hendleDireccion = (e) => {
+    setDireccion(e.target.value);
+  }
+
   return (
     <div>
       <div >
-      <Button  variant='primary' className="floating-button"  onClick={handleShow} onMouseEnter={toggleMenu} >
+      <Button  variant='primary' className="floating-button"  onClick={handleShow} onMouseLeave={toggleMenu} onMouseEnter={toggleMenu} >
         +
       </Button>
     </div>
@@ -75,7 +141,7 @@ export function NuevaSolicitud() {
         </div>
       )}
 
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal show={showModal}>
         <Modal.Header closeButton>
           <Modal.Title>Nueva Solicitud</Modal.Title>
         </Modal.Header>
@@ -102,15 +168,20 @@ export function NuevaSolicitud() {
             {errorEspecialidad && <span className="error-message">Seleccione una especialidad</span>}
           </div>
           <div className="form-group">
-            <label>Ubicación</label>
-            <input type="text" value={ubicacion} onChange={(e) => setUbicacion(e.target.value)} />
-            {errorUbicacion && <span className="error-message">Ingrese una ubicacion valida</span>}
+            <label>Direccion</label>
+            <select value={direccion} onChange={hendleDireccion}>
+              {direcciones && direcciones.map((direccion, index) => (
+                <option key={index} value={direccion.idDireccion}> {direccion.calle} {direccion.numero} 
+                {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null} 
+                /{direccion.localidad.nombre}/{direccion.localidad.provincia}</option>
+              ))}
+            </select>
+            {errorDirecciones && <span className="error-message">Ingrese una direccion valida</span>}
           </div>
           <div className="form-group">
             <label>Fotos</label>
             <input type="file" multiple onChange={handleFileChange} />
             {errorFotos && <span className="error-message">Ingrese al menos una foto</span>}
-
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -119,10 +190,11 @@ export function NuevaSolicitud() {
             Cerrar
           </Button>
           </div>
-          <Button variant="primary"  onClick={handleSubmit}>
-            Enviar solicitud
-          </Button>
+          <Button  onClick={async() => {await handleSubmit();}}>
+            {enviando ? <><LoandingDots /></> : 'Enviar'}
+        </Button>
         </Modal.Footer>
+        {error && <span className="error-message">Error al enviar la solicitud</span>}
       </Modal>
     </div>
   );

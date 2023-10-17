@@ -18,10 +18,6 @@ module.exports = (sequelize, dataTypes) => {
     descripcion: {
       type: dataTypes.STRING(255),
     },
-    fotos: {
-      type: dataTypes.BLOB,
-      allowNull: false,
-    },
     estado: {
       type: dataTypes.STRING(20),
       allowNull: false,
@@ -44,7 +40,10 @@ module.exports = (sequelize, dataTypes) => {
       as: 'direccion',
       foreignKey: 'idDireccion', // Clave foránea en Solicitud
     });
+    Solicitud.hasMany(models.FotoSolicitud, {
+      as: 'fotosSolicitud',
+      foreignKey: 'idSolicitud', // Clave foránea en FotoSolicitud
+    });
   };
-
   return Solicitud;
 }
