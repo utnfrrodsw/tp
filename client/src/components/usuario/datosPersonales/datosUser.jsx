@@ -4,6 +4,7 @@ import { Button, Card, Col, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
 import { API_URL } from '../../../auth/constants.js';
 import './datosUser.css';
+import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 
 
 const DatosPersonales = () => {
@@ -15,17 +16,50 @@ const DatosPersonales = () => {
     fechaNacimiento: '',
   });
 
+  const [direcciones, setDirecciones] = useState([]);
+  const [error, setError] = useState(false);
+  const [realoadDirecciones, setRealoadDirecciones] = useState(false);
+
+
   const auth = useAuth();
+  const user = auth.getUser();
+
 
   useEffect(() => {
-    setUserData(auth.getUser());
-  }, [auth]);
+    try{
+      const response = fetch(`${API_URL}/direccion/cliente/${user.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.body.direcciones);
+        setDirecciones(data.body.direcciones);
+      })
+      if(response.ok){
+        setError(false);
+      }else{
+        setError(true);
+      }
+    }catch(error){
+      error ? console.log(error): console.log('Error al cargar direcciones');
+      setError(true);
+    }
+  }, [realoadDirecciones, user.id]);
   
 
   const [contrasenaActual, setContrasenaActual] = useState('');
   const [nuevaContrasena, setNuevaContrasena] = useState('');
   const [confirmNuevaContrasena, setConfirmNuevaContrasena] = useState('');
   const [fotoPerfil, setFotoPerfil] = useState(null);
+  const [nuevaDireccion, setNuevaDireccion] = useState(false);
+
+  const cerrarMenu = () => {
+    setNuevaDireccion(false);
+  };
+
+  const agregarDireccion = () => {
+    //aca deberia hacer el reload de las direcciones
+    setRealoadDirecciones(true);
+    setNuevaDireccion(false);
+  };
 
   // Función para manejar cambios en los datos personales
   const handleUpdateData = () => {
@@ -65,6 +99,7 @@ const DatosPersonales = () => {
       console.log(error);
     }
   }
+
 
   return (
     <div>
@@ -128,6 +163,51 @@ const DatosPersonales = () => {
         </Col>
         
         <Col>
+          <Card className='cardDatosPer'>
+            {userData.esPrestador ? (
+            <Card.Body>
+              <h2 className='h2'>Especialidades</h2>
+              <div className="user-details">
+                <label htmlFor="specialty">Especialidad:</label>
+                <input
+                  type="text"
+                  id="specialty"
+                  name="specialty"
+                  value={userData.especialidad}
+                  onChange={(e) => setUserData({ ...userData, especialidad: e.target.value })}
+                />
+                <label htmlFor="description">Descripción:</label>
+                <input
+                  type="text"
+                  id="description"
+                  name="description"
+                  value={userData.descripcion}
+                  onChange={(e) => setUserData({ ...userData, descripcion: e.target.value })}
+                />
+                <Button variant="primary" className='button' onClick={handleUpdateData}>
+                  Actualizar Datos
+                </Button>
+              </div>
+            </Card.Body>) : (
+            <Card.Body>
+              <h2 className='h2' >Direcciónes</h2>
+              <div className="user-details">
+                <select>
+                  <option>Mis Direcciones</option>
+                  {direcciones && direcciones.map((direccion, index) => (
+                  <option key={index} value={direccion.idDireccion}> {direccion.calle} {direccion.numero} 
+                  {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null} 
+                  /{direccion.localidad.nombre}/{direccion.localidad.provincia}</option>
+                  ))}
+                  </select>
+                <Button variant="primary" className='button' onClick={() => {setNuevaDireccion(true); console.log(nuevaDireccion)}}>Agregar Direccion</Button>
+                {nuevaDireccion && (
+                    <NuevaDireccion nuevaDireccion={nuevaDireccion} hendleDireccionesUpdate={agregarDireccion} cerrarMenu={cerrarMenu} />
+                )}
+
+              </div>
+            </Card.Body>)}
+          </Card>
           <Card className='cardSegurity'>
             <Card.Body>
               <h2 className='h2'>Cambiar Contraseña</h2>
