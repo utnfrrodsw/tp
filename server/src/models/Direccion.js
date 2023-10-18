@@ -50,6 +50,10 @@ module.exports = (sequelize, dataTypes) => {
             as: 'usuario',
             foreignKey: 'idUsuario', // Clave foránea en Direccion
         });
+        Direccion.belongsTo(models.Localidad, {
+            as: 'localidad',
+            foreignKey: 'codPostal', // Clave foránea en Direccion
+        });
     };
 
     return Direccion;

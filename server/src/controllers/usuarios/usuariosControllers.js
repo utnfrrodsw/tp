@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 const db = require('../../models');  
 const { jsonResponse } = require('../../lib/jsonResponse');
 const { getUserInfo } = require('../../lib/getUserInfo');
-const Usuario = require('../../models/Usuario');
 const { generateAccessTokes, generateRefreshToken } = require('../../auth/generateTokens.js');
 const getTokenFromHeader = require('../../auth/getTokenFromHeader');
 const { verifyRefreshToken } = require('../../auth/verifyTokens');
@@ -139,11 +138,14 @@ const usuarioController = {
     }
   },
 
+
   refreshToken: async (req, res) => {
     const refreshToken = await getTokenFromHeader(req.headers);
     if(refreshToken){
       try{
-        const found = await db.Token.findOne({ where: { token: refreshToken } });
+        const found = await db.Token.findOne({ 
+          where: { token: refreshToken } 
+        });
         if(!found){
           res.status(401).json(jsonResponse(401, {
             error: 'No Autorizado 1' 

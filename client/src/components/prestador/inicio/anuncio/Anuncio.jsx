@@ -5,7 +5,7 @@ import Carousel from './carousel';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function Anuncio(props){
-  const id=props.key;
+  const id=props.id;
   const titulo=props.titulo;
   const descripcion=props.descripcion;
   const nombre=props.nombre;
@@ -32,7 +32,7 @@ function Anuncio(props){
     ):(
         <>
           <div className='descripcion'>{descripcion}</div>
-            <Link to ={'/provider/budget/${id}'} className='presu'>Presupuestar</Link>
+            <Link to ={`/provider/budget/${id}`} className='presu'>Presupuestar</Link>
             <div className='photo'><Carousel/></div>
         </>
     )}

@@ -11,13 +11,13 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING(45),
       allowNull: false,
     },
-    provincio: {
+    provincia: {
       type: dataTypes.STRING(45),
       allowNull: false,
     },
   }
   const config = {
-    tableName: "Localidad",
+    tableName: "localidad",
     timestamps: false,
   }
 
@@ -25,7 +25,7 @@ module.exports = (sequelize, dataTypes) => {
 
   Localidad.associate = function(models){
     Localidad.hasMany(models.Direccion, {
-      as: "fk_direccion_localidad",
+      as: "direcciones",
       foreignKey: "codPostal"
     })
   }
