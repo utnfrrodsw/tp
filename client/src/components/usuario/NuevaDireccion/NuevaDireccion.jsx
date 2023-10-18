@@ -48,15 +48,13 @@ export function NuevaDireccion(props) {
     props.cerrarMenu();
   };
 
-  
-
   useEffect(() => {
     setShowModal(props.nuevaDireccion)
     console.log("nueva direccion: " + props.nuevaDireccion)
   }, [props.nuevaDireccion]);
 
-
   const handleSubmit = async () => {
+    setEnviando(true);
     try{
       await fetch(`${API_URL}/direccion/agregarDireccion/cliente/${user.id}`, {
         method: 'POST',
@@ -78,15 +76,15 @@ export function NuevaDireccion(props) {
       .then((data) => {
         setEnviando(false);
         props.hendleDireccionesUpdate();
-        console.log("direccion agregada: " + data.body.direccion)
         handleClose();
       })
       .catch((error) => {
-        setEnviando(false);
         setError(true);
+        setEnviando(false);
       });
       setEnviando(false);
     }catch(error){
+      console.log(error.body.message)
       setEnviando(false);
       setError(true);
     }
@@ -96,7 +94,7 @@ export function NuevaDireccion(props) {
   return (
     <div>
       <Modal show={showModal}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Nueva Direccion</Modal.Title>
         </Modal.Header>
         <Modal.Body>

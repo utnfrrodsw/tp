@@ -142,7 +142,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
       )}
 
       <Modal show={showModal}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Nueva Solicitud</Modal.Title>
         </Modal.Header>
         <Modal.Body>

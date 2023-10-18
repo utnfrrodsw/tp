@@ -36,14 +36,29 @@ const direccionesController = {
                         provincia: provincia,
                     }, { transaction: t });
                 }
-                await db.Direccion.create({
-                    calle: calle,
-                    numero: numero,
-                    piso: piso,
-                    dpto: departamento,
-                    idUsuario: idUsuario,
-                    codPostal: codigoPostal
-                }, { transaction: t });
+
+                const direccion = await db.Direccion.findOne({
+                    where: { calle: calle, numero: numero, piso: piso, dpto: departamento, idUsuario: idUsuario },
+                }, { transaction: t})
+
+                console.log(direccion);
+
+                if (!direccion) {
+                    await db.Direccion.create(
+                        {
+                            calle: calle,
+                            numero: numero,
+                            piso: piso,
+                            dpto: departamento,
+                            idUsuario: idUsuario,
+                            codPostal: codigoPostal,
+                        },
+                        { transaction: t }
+                    );
+                } else {
+                    throw new Error('Direccion ya existente');
+                }
+
             });
             console.log('Direccion agregada con éxito')
             res.status(200).json(jsonResponse(200, {
