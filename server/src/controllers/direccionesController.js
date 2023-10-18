@@ -19,7 +19,42 @@ const direccionesController = {
                 direcciones: []
             }));
         }
-    }
+    },
+
+    agregarDireccion: async (req, res) => {
+        try{
+            const idUsuario = req.params.id;
+            const { calle, numero, piso, departamento, codigoPostal, ciudad, provincia } = req.body;
+            await db.sequelize.transaction( async (t) => {
+                const localidad = await db.Localidad.findOne({
+                    where: { codPostal: codigoPostal }
+                }, { transaction: t })
+                if(!localidad){
+                    await db.Localidad.create({
+                        codPostal: codigoPostal,
+                        nombre: ciudad,
+                        provincia: provincia,
+                    }, { transaction: t });
+                }
+                await db.Direccion.create({
+                    calle: calle,
+                    numero: numero,
+                    piso: piso,
+                    dpto: departamento,
+                    idUsuario: idUsuario,
+                    codPostal: codigoPostal
+                }, { transaction: t });
+            });
+            console.log('Direccion agregada con éxito')
+            res.status(200).json(jsonResponse(200, {
+                message: 'Direccion agregada con éxito'
+            }));
+        }catch (error) {
+            res.status(500).json(jsonResponse(500, {
+                message: 'Direccion no agregada',
+            }));
+        }
+    },
 };
 
 module.exports = direccionesController;

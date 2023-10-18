@@ -57,8 +57,8 @@ function App() {
             <Route path='/client/home/finished'  element={ <Solicitudes estado = "terminado"/>}/>
           </Route>
           
-          <Route path='*'  element={ <Error/>} />
-        </Routes>
+          <Route path="*" errorElement={<Error/>}/>;
+        </Routes >
       </div>
       <Footer/>
     </div>
