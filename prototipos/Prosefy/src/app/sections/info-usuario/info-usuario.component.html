@@ -1,4 +1,4 @@
-<div class="container-perfil-usuario">
+<div class="container-perfil-usuario" *ngFor="let usuario of usuarios">
   <!-- Primer encabezado-->
   <div class="encabezado">
     <h3 class="mt-5 mb-4">Perfil</h3>
@@ -15,7 +15,7 @@
           </span>
         </div>
         <div>
-          <label> Jhon</label>
+          <label>{{usuario.nombre}}</label>
           <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
       </div>
@@ -27,7 +27,7 @@
           </span>
         </div>
         <div>
-          <label>Jhon.Doe@gmail.com</label>
+          <label>{{usuario.email}}</label>
           <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
       </div>        
@@ -42,14 +42,14 @@
           </span>
         </div>
         <div>
-          <label>Doe</label>
+          <label>{{usuario.apellido}}</label>
           <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
       </div>
       <div class="datos-personales">
         <div>
           <span>
-            <label>Fecha de nacimiento</label>
+            <label>Fecha de nacimiento</label> 
           </span>
         </div>
         <div>
@@ -75,7 +75,7 @@
           <div>
             <span>
               <a class="boton-direcciones rounded-pill">Principal</a>
-              <label>Buenos Aires 1345</label>
+              <label>{{usuario.direccion}}</label>
             </span>
           </div>
           <div>
@@ -162,7 +162,7 @@
           </span>
         </div>
         <div>
-          <label>Rosario</label>
+          <label>{{usuario.localidad}}</label>
           <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
       </div>
