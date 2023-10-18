@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EditorialesService, Editorial } from '../../services/editoriales.service';
 
 @Component({
   selector: 'app-todas-las-editoriales',
@@ -8,6 +9,13 @@ import { Component } from '@angular/core';
 export class TodasLasEditorialesComponent {
   
   isHovered = false;
+  editoriales: Editorial[] = [];
+
+  constructor(private editorialesService: EditorialesService) {}
+
+  ngOnInit() {
+    this.editoriales = this.editorialesService.getEditoriales();
+  }
 
   onMouseEnter() {
     this.isHovered = true;
