@@ -196,7 +196,7 @@ const DatosPersonales = () => {
                 <select>
                   <option>Mis Direcciones</option>
                   {direcciones && direcciones.map((direccion, index) => (
-                  <option key={index} value={direccion.idDireccion}> {direccion.calle} {direccion.numero} 
+                  <option key={direccion.idDireccion} value={direccion.idDireccion}> {direccion.calle} {direccion.numero} 
                   {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null} 
                   /{direccion.localidad.nombre}/{direccion.localidad.provincia}</option>
                   ))}
