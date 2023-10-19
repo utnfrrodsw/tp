@@ -17,7 +17,7 @@ export function AuthProvider({children}) {
     const [accessToken, setAccessToken] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
-    // eslint-disable-next-line
+    //eslint-disable-next-line
     useEffect(() => {
         checkAuth();
     },[]);

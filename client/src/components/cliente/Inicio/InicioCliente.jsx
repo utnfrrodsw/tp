@@ -11,6 +11,7 @@ function InicioCliente() {
         name: "Facundo",
     }
 
+
     return (
         <div className="page">
             <div className='header-home-client'>
