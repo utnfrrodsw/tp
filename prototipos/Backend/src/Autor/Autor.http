@@ -1,0 +1,24 @@
+
+
+### Get de editorial
+GET http://Localhost:3000/api/autores
+
+
+
+### Get de editorial por nombre
+GET http://Localhost:3000/api/autores/65316d51f2ce1014fce80eba
+
+
+### Post de editorial
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombre": "Edgar",
+    "apellido": "Poe",
+}
+
+
+
+### Delete de editorial
+DELETE http://localhost:3000/api/autores/Steven

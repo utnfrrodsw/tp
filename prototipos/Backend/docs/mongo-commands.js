@@ -65,6 +65,19 @@ db.editoriales.insertOne({
   })
 
 
+//-----Autores-----
+
+db.autores.insertOne({
+  nombre: 'Steven',
+  apellido: 'Universe',
+})
+
+db.autores.insertOne({
+  nombre: 'Alexander',
+  apellido: 'Burns',
+})
+
+
   //query
   // Comandos para hacer distintas consultas a la base de datos
   
