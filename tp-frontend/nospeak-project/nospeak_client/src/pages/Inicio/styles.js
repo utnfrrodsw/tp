@@ -10,13 +10,12 @@ background-color:#000;
 }
 `
 
-const InicioButton = styled.button`
-padding:20px;
-background-color:#FFA130;
-border-radius:90px;
-color:#000;
-font-weight:bold;
-text-decoration:none;
-text-transform:uppercase;
-`
-export{InicioContainer, InicioButton};
+const ButtonContainer = styled.div`
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+    gap: 35px;
+    width: 15%;
+`;
+
+export{InicioContainer, ButtonContainer};

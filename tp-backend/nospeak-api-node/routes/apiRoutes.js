@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const verificarToken = require('../middlewares/verificarTokenMiddleware'); 
 
 const usuarioController = require('../controllers/usuarioController');
 const artistaController = require('../controllers/artistaController');
@@ -10,46 +11,50 @@ const playlistController = require('../controllers/playlistController');
 const recomendacionController = require('../controllers/recomendacionController');
 const historialController = require('../controllers/historialController');
 
-router.get('/usuarios', usuarioController.getUsuarios);
+router.get('/usuarios', verificarToken,usuarioController.getUsuarios);
 router.post('/usuarios', usuarioController.createUsuario);
-router.get('/usuarios/:id', usuarioController.getUsuarioById);
-router.put('/usuarios/:id', usuarioController.updateUsuario);
-router.delete('/usuarios/:id', usuarioController.deleteUsuario);
+router.get('/usuarios/:id', verificarToken, usuarioController.getUsuarioById);
+router.put('/usuarios/:id', verificarToken, usuarioController.updateUsuario);
+router.delete('/usuarios/:id', verificarToken, usuarioController.deleteUsuario);
+router.post('/usuarios-login/', usuarioController.loginUsuario);
 
-router.get('/artistas', artistaController.getArtistas);
-router.post('/artistas', artistaController.createArtista);
-router.get('/artistas/:id', artistaController.getArtistaById);
-router.put('/artistas/:id', artistaController.updateArtista);
-router.delete('/artistas/:id', artistaController.deleteArtista);
 
-router.get('/albums', albumController.getAlbums);
-router.post('/albums', albumController.createAlbum);
-router.get('/albums/:id', albumController.getAlbumById);
-router.put('/albums/:id', albumController.updateAlbum);
-router.delete('/albums/:id', albumController.deleteAlbum);
+router.get('/artistas', verificarToken, artistaController.getArtistas);
+router.post('/artistas', verificarToken, artistaController.createArtista);
+router.get('/artistas/:id', verificarToken, artistaController.getArtistaById);
+router.patch('/artistas/:id', verificarToken, artistaController.updateArtista);
+router.delete('/artistas/:id', verificarToken, artistaController.deleteArtista);
 
-router.get('/canciones', cancionController.getCanciones);
-router.post('/canciones', cancionController.createCancion);
-router.get('/canciones/:id', cancionController.getCancionById);
-router.put('/canciones/:id', cancionController.updateCancion);
-router.delete('/canciones/:id', cancionController.deleteCancion);
+router.get('/albums', verificarToken, albumController.getAlbums);
+router.post('/albums', verificarToken, albumController.createAlbum);
+router.get('/albums/:id', verificarToken, albumController.getAlbumById);
+router.patch('/albums/:id', verificarToken, albumController.updateAlbum);
+router.delete('/albums/:id', verificarToken, albumController.deleteAlbum);
 
-router.get('/playlists', playlistController.getPlaylists);
-router.post('/playlists', playlistController.createPlaylist);
-router.get('/playlists/:id', playlistController.getPlaylistById);
-router.put('/playlists/:id', playlistController.updatePlaylist);
-router.delete('/playlists/:id', playlistController.deletePlaylist);
+router.get('/canciones', verificarToken, cancionController.getCanciones);
+router.post('/canciones', verificarToken, cancionController.createCancion);
+router.get('/canciones/:id', verificarToken, cancionController.getCancionById);
+router.patch('/canciones/:id', verificarToken, cancionController.updateCancion);
+router.delete('/canciones/:id', verificarToken, cancionController.deleteCancion);
+router.get('/canciones-artista/:artista_id', verificarToken, cancionController.getCancionesPorArtista);
+router.get('/canciones-album/:album_id', verificarToken ,cancionController.getCancionesPorAlbum);
 
-router.get('/recomendaciones', recomendacionController.getRecomendaciones);
-router.post('/recomendaciones', recomendacionController.createRecomendacion);
-router.get('/recomendaciones/:id', recomendacionController.getRecomendacionById);
-router.put('/recomendaciones/:id', recomendacionController.updateRecomendacion);
-router.delete('/recomendaciones/:id', recomendacionController.deleteRecomendacion);
 
-router.get('/historiales', historialController.getHistoriales);
-router.post('/historiales', historialController.createHistorial);
-router.get('/historiales/:id', historialController.getHistorialById);
-router.put('/historiales/:id', historialController.updateHistorial);
-router.delete('/historiales/:id', historialController.deleteHistorial);
+router.get('/playlists', verificarToken, playlistController.getPlaylists);
+router.post('/playlists', verificarToken, playlistController.createPlaylist);
+router.get('/playlists/:id', verificarToken, playlistController.getPlaylistById);
+router.patch('/playlists/:id', verificarToken, playlistController.updatePlaylist);
+router.delete('/playlists/:id', verificarToken, playlistController.deletePlaylist);
+router.get('/playlists-usuario/:usuario_id', verificarToken, playlistController.getPlaylistsByUsuario);
+
+
+router.post('/recomendaciones', verificarToken, recomendacionController.createRecomendacion);
+
+router.get('/historiales', verificarToken, historialController.getHistoriales);
+router.post('/historiales', verificarToken, historialController.createHistorial);
+router.get('/historiales/:id', verificarToken, historialController.getHistorialById);
+router.patch('/historiales/:id', verificarToken, historialController.updateHistorial);
+router.delete('/historiales/:id', verificarToken, historialController.deleteHistorial);
+router.get('/historiales-usuario/:usuario_id', verificarToken, historialController.getHistorialByUsuario);
 
 module.exports = router;

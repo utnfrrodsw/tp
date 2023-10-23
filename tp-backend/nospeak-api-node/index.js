@@ -1,14 +1,20 @@
 const express = require('express');
+const mongoose = require('mongoose'); 
 const app = express();
-
-
 const apiRoutes = require('./routes/apiRoutes');
 
+mongoose.connect('', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+mongoose.connection.on('connected', () => {
+  console.log('Conexión a MongoDB Atlas establecida');
+});
+
+app.use(express.json());
 
 app.use('/api', apiRoutes); 
-
-
-
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => {
   console.log(`Servidor en funcionamiento en el puerto ${PORT}`);

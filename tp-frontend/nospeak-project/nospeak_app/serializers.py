@@ -162,17 +162,43 @@ class AlbumSerializer(serializers.ModelSerializer):
         model = Album
         fields = '__all__'
 
-class CancionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Cancion
-        fields = '__all__'
-        depth=1
-
 class ArtistaSerializer(serializers.ModelSerializer):
     albums = AlbumSerializer(many=True, read_only=True)  # Relación inversa desde Artista a Album
 
     class Meta:
         model = Artista
+        fields = '__all__'
+
+class CancionSerializer(serializers.ModelSerializer):
+    artista = serializers.PrimaryKeyRelatedField(
+        queryset=Artista.objects.all(),
+    )
+    
+    album = serializers.PrimaryKeyRelatedField(
+        queryset=Album.objects.all(),
+    )
+
+    class Meta:
+        model = Cancion
+        fields = '__all__'
+
+    def create(self, validated_data):
+        artista = validated_data.pop('artista')
+        album = validated_data.pop('album')
+        
+        cancion = Cancion.objects.create(
+            artista=artista,
+            album=album,
+            **validated_data
+        )
+        return cancion
+
+                
+class CancionWithArtistaAlbumSerializer(serializers.ModelSerializer):
+    artista = ArtistaSerializer()
+    album = AlbumSerializer()
+    class Meta:
+        model = Cancion
         fields = '__all__'
 
 class UsuarioSerializer(serializers.ModelSerializer):
@@ -195,6 +221,98 @@ class PlaylistSerializer(serializers.ModelSerializer):
         model = Playlist
         fields = '__all__'
 
+    def create(self, validated_data):
+        canciones_data = validated_data.pop('canciones')
+        playlist = Playlist.objects.create(**validated_data)
+
+        for cancion_data in canciones_data:
+            artista_data = cancion_data.pop('artista')
+            album_data = cancion_data.pop('album')
+
+            # Buscar una Cancion existente en la base de datos
+            cancion, created = Cancion.objects.get_or_create(
+                artista=artista_data,
+                album=album_data,
+                **cancion_data
+            )
+
+            playlist.canciones.add(cancion)
+
+        return playlist
+    
+    def update(self, instance, validated_data):
+        canciones_data = validated_data.pop('canciones', [])  # Get canciones_data or empty list
+
+        instance.titulo = validated_data.get('titulo', instance.titulo)
+        instance.descripcion = validated_data.get('descripcion', instance.descripcion)
+        instance.fecha_creacion = validated_data.get('fecha_creacion', instance.fecha_creacion)
+        instance.usuario = validated_data.get('usuario', instance.usuario)
+        instance.portada = validated_data.get('portada', instance.portada)
+
+        instance.canciones.clear()  # Clear existing songs from the playlist
+
+        for cancion_data in canciones_data:
+            artista_data = cancion_data.pop('artista')
+            album_data = cancion_data.pop('album')
+
+            cancion, created = Cancion.objects.get_or_create(
+                artista=artista_data,
+                album=album_data,
+                **cancion_data
+            )
+
+            instance.canciones.add(cancion)
+
+        instance.save()
+        return instance
+
+class PlaylistWithUsuarioSerializer(serializers.ModelSerializer):
+    usuario = UsuarioSerializer()
+    canciones = CancionSerializer(many=True)
+
+    class Meta:
+        model = Playlist
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+
+        # Update the representation of each song to include artist and album details
+        songs_representation = []
+        for song_data in representation['canciones']:
+            artist_id = song_data['artista']
+            album_id = song_data['album']
+
+            # Get artist and album instances
+            artist_instance = Artista.objects.get(pk=artist_id)
+            album_instance = Album.objects.get(pk=album_id)
+
+            # Include artist and album details in the song representation
+            song_representation = song_data.copy()
+            song_representation['artista'] = ArtistaSerializer(artist_instance).data
+            song_representation['album'] = AlbumSerializer(album_instance).data
+
+            songs_representation.append(song_representation)
+
+        representation['canciones'] = songs_representation
+        return representation
+
+
+class CancionesPorArtistaSerializer(serializers.ModelSerializer):
+    album = AlbumSerializer()
+
+    class Meta:
+        model = Cancion
+        fields = '__all__'
+
+class CancionesPorAlbumSerializer(serializers.ModelSerializer):
+    artista = ArtistaSerializer()
+
+    class Meta:
+        model = Cancion
+        fields = '__all__'
+
+
 class RecomendacionSerializer(serializers.ModelSerializer):
     canciones = CancionSerializer(many=True)
 
@@ -208,3 +326,38 @@ class HistorialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Historial
         fields = '__all__'
+
+    def create(self, validated_data):
+        canciones_data = validated_data.pop('canciones')
+        historial = Historial.objects.create(**validated_data)
+
+        for cancion_data in canciones_data:
+
+            cancion, created = Cancion.objects.get_or_create(
+                **cancion_data
+            )
+
+            historial.canciones.add(cancion)
+
+        return historial
+    
+    def update(self, instance, validated_data):
+        canciones_data = validated_data.pop('canciones', [])
+        instance.usuario = validated_data.get('usuario', instance.usuario)
+
+        instance.canciones.clear()
+
+        for cancion_data in canciones_data:
+            cancion, created = Cancion.objects.get_or_create(
+                **cancion_data
+            )
+
+            instance.canciones.add(cancion)
+
+        instance.save()
+        return instance
+
+
+
+
+

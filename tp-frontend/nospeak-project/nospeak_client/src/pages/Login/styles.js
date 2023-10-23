@@ -131,5 +131,14 @@ font-weight: normal;
 color: #707070;
 `
 
+const ButtonContainer = styled.div`
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+    gap: 35px;
+    width: 40%;
+`;
+
+
 export {FormLoginContainer, FormLogin, NavLogin, LoginButton, LoginInput, StyledLink, StyledH1, StyledSpan,
-RegisterContainer};
+RegisterContainer, ButtonContainer};

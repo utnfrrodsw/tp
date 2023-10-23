@@ -6,14 +6,16 @@ import Register from './pages/Register/Register';
 import Account from './pages/Account/Account';
 import Playlist from './pages/Playlist/Playlist';
 import Search from './pages/Search/Search';
+import Song from './pages/Song/Song';
 import PrivateRoute from './components/PrivateRoute';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Library from './pages/MyLibrary/Library';
+import Artist from './pages/Artist/Artist';
+import Album from './pages/Album/Album';
 import { useSelector } from 'react-redux';
-
+import axios from './interceptors/axiosConfig';
 
 
 export const theme = createTheme({
@@ -24,9 +26,6 @@ export const theme = createTheme({
   },
 });
 
-const client = axios.create({
-  baseURL: 'http://localhost:8000',
-});
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
@@ -35,8 +34,7 @@ function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
-
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   return (
     <ThemeProvider theme={theme}>
@@ -44,27 +42,17 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Inicio />} />
-            <Route
-              path="/login"
-              element={
-                <Login
-                  client={client}
-                />
-              }
-            />
-            <Route path="/home" element={<Home client={client}/>} />
-            <Route
-              path="/register"
-              element={
-                <Register
-                  client={client}
-                />
-              }
-            />
-            <Route path="/account" element={<Account client={client}/>} />
-            <Route path="/playlist" element={<Playlist />} />
+            <Route path="/login" element={<Login client={axios} />} />
+            <Route path="/home" element={<Home client={axios} />} />
+            <Route path="/register" element={<Register client={axios} />} />
+            <Route path="/account" element={<Account client={axios} />} />
+            <Route path="/playlist/:playlistId" element={<Playlist client={axios}/>} />
             <Route path="/search" element={<Search />} />
-            <Route path="/library" element={<Library />} />
+            <Route path="/library" element={<Library client={axios} />} />
+            <Route path="/artist/:artistId" element={<Artist  client={axios} />} />
+            <Route path="/song/:songId" element={<Song client={axios}/>} />
+            <Route path="/album/:albumId" element={<Album  client={axios} />} />
+
           </Routes>
         </Router>
       </div>

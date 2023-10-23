@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import Sidebar from '../../styled-components/Sidebar/Sidebar'
 import { BodyContainer } from '../../styled-components/Body/styles';
 import { SpotifyBody } from '../Home/styles.js'
 import {AccountContainer, AccountContainerLeft, AccountContainerRight, StyledH1} from './styles'
-import { AccountInput, AccountButton} from './styles';
+import { AccountInput, FormContainer} from './styles';
 import { Avatar } from '@mui/material';
 import {Navigate} from "react-router-dom";
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import { logout } from '../../redux/slices/userSlice';
+import {
+  Overlay,
+  AlertContainer,
+  AlertTitle,
+  AlertText,
+  ButtonContainer,
+} from '../../styled-components/Body/styles';
+import { 
+  StyledButton, 
+  StyledButtonSecondary,
+} from '../../styled-components/styles';
 
 export default function Account({client}){
 
@@ -20,22 +31,45 @@ export default function Account({client}){
 
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
 
-    if (!isAuthenticated) {
+    const [userData, setUserData] = React.useState(null);
+
+    const [deleteAlertData, setDeleteAlertData] = React.useState(null);
+    
+
+    useEffect(() => {
+      if (!isAuthenticated) {
         return <Navigate to="/login" />;
+      }
+  
+      if (goToInicio) {
+        return <Navigate to="/" />;
+      }
+
+      const fetchUserData = async () => {
+        try {
+          if(user){
+            const response = await client.get(`/api/usuarios/${user.id}`);
+            if (response) {
+              setUserData(response.data);
+            }
+
+          }
+          
+        } catch (error) {
+          console.error('Error al obtener los datos del usuario:', error);
+        }
+      };
+  
+      fetchUserData();
+    }, [isAuthenticated, goToInicio, user.id]);
+
+    if (!user) {
+      return <Navigate to="/login" />;
     }
 
-    if (goToInicio) {
-        return <Navigate to="/" />;
-    }
 
     const handleLogout = async () => {
-        try {
-          const token = localStorage.getItem('token');
-          
-          if (token) {
-            client.defaults.headers.common['Authorization'] = `Token ${token}`;
-            await client.post('/nospeak-app/api/logout/');
-        }
+      try{
         
         dispatch(logout());
         setGoToInicio(true);
@@ -48,19 +82,34 @@ export default function Account({client}){
         
       const handleDeleteAccount = async () => {
         try {
-          const token = localStorage.getItem('token');
-      
-          if (token) {
-            client.defaults.headers.common['Authorization'] = `Token ${token}`;
-            await client.delete(`/nospeak-app/api/usuarios/${user.id}/`);
-          }
-      
+          setDeleteAlertData(true)
+
+        } catch (error) {
+          console.error('Error al eliminar la cuenta:', error);
+        }
+      };
+      const handleDeleteConfirm = async () => {
+        try {
+
+          
+          await client.delete(`/api/usuarios/${user.id}`);
+
           dispatch(logout());
+          
           setGoToInicio(true);
         } catch (error) {
           console.error('Error al eliminar la cuenta:', error);
         }
       };
+
+      const handleDeleteCancel = () => {
+
+        setDeleteAlertData(null);
+      };
+
+      if (!userData) {
+        return <div>Cargando datos del usuario...</div>;
+      }
 
     return (
         <>
@@ -69,29 +118,47 @@ export default function Account({client}){
                 <BodyContainer>
                     <AccountContainer>
                         <AccountContainerLeft>
+                          <FormContainer>
                             <StyledH1>Account details</StyledH1>
                             <h3>Email</h3>
-                            <AccountInput type="email" placeholder="Email address"/>
+                            <AccountInput type="email" placeholder="Email address" value={userData.email}/>
                             <h3>Username</h3>
-                            <AccountInput type="text" placeholder="Username" value={user.username}/>
+                            <AccountInput type="text" placeholder="Username" value={userData.nombre}/>
                             <h3>Password</h3>
-                            <AccountInput type="password" placeholder="Password" />
+                            <AccountInput type="password" placeholder="Password"/>
                             <br/>
                             <br/>
-                            <AccountButton>Save</AccountButton>
+                            <StyledButton>Save</StyledButton>
+                          </FormContainer>
                         </AccountContainerLeft>
                         <AccountContainerRight>
                             <Avatar style={{width: '250px', height: '250px', margin: '20px'}} />
-                            <h1>{user.username}</h1>
-                            <h3 style={{paddingTop: '20px'}}>Do you want to log out?</h3>
-                            <AccountButton style={{backgroundColor: 'grey'}} onClick={(e) => handleLogout(e)}>Log out</AccountButton>
+                              <h1>{user.nombre}</h1>
+                              <h3 style={{paddingTop: '5px', textAlign:'center'}}>Do you want to log out?</h3>
+                              <StyledButtonSecondary style={{width: '60%'}}  onClick={(e) => handleLogout(e)}>Log out</StyledButtonSecondary>
 
-                            <h3 style={{paddingTop: '20px'}}>Do you want to delete your account?</h3>
-                            <AccountButton style={{backgroundColor: 'grey'}} onClick={handleDeleteAccount}>Delete account</AccountButton>
+                              <h3 style={{paddingTop: '20px', textAlign:'center'}}>Do you want to delete your account?</h3>
+                              <StyledButtonSecondary style={{width: '60%'}} onClick={handleDeleteAccount}>Delete account</StyledButtonSecondary>
                         </AccountContainerRight>
                     </AccountContainer>
                 </BodyContainer>
             </SpotifyBody>
+            {deleteAlertData && (
+                <Overlay>
+                    <AlertContainer>
+                    <AlertTitle>Eliminar cuenta</AlertTitle>
+                    <AlertText>
+                        ¿Estás seguro de que desea eliminar su cuenta?
+                    </AlertText>
+                    <ButtonContainer>
+                        <StyledButtonSecondary style={{width: '50%', marginRight: '5px'}} onClick={handleDeleteCancel}>Cancelar</StyledButtonSecondary>
+                        <StyledButton style={{backgroundColor: '#FF5630', width: '50%', marginLeft: '5px'}} onClick={() => handleDeleteConfirm()}>
+                        Eliminar
+                        </StyledButton>
+                    </ButtonContainer>
+                    </AlertContainer>
+                </Overlay>
+            )}
 
         </>  )
 }
