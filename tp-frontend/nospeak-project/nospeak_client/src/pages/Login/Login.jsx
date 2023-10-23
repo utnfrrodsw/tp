@@ -7,7 +7,7 @@ import { loginSuccess } from '../../redux/slices/userSlice.js';
 import { StyledButton } from '../../styled-components/styles.js';
 import Alert from '../../styled-components/Alert/Alert.jsx';
 
-export default function Login({ client }) {
+export default function Login({ client, testing }) {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +17,7 @@ export default function Login({ client }) {
 
   const [goToHome, setGoToHome] = useState(false);
 
-  if (goToHome) {
+  if (goToHome && !testing) {
     return <Navigate to="/home" />;
   }
 
