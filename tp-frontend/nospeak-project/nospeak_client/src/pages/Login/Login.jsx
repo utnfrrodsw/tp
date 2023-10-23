@@ -29,17 +29,17 @@ export default function Login({ client }) {
         return;
       }
 
-      const response = await client.post('/nospeak-app/api/login/', {
-        username: name,
+      const response = await client.post('/api/usuarios-login/', {
+        nombre: name,
         password,
       });
-
-      const { token, user_id, username } = response.data;
+      
+      const { token, userId, nombre } = response.data;
       localStorage.setItem('token', token);
-
-      dispatch(loginSuccess({
+      
+      dispatch(loginSuccess({ 
         isAuthenticated: true,
-        user: { id: user_id, username },
+        user: { id: userId, nombre },
       }));
 
       setSuccessMessage('Successful login. Redirecting...');
@@ -56,13 +56,13 @@ export default function Login({ client }) {
         } else {
           setError('Request error. Please try again later.');
         }
-        setSuccessMessage(''); // Limpiar el mensaje de éxito
+        setSuccessMessage(''); 
       } else if (error.request) {
         setError('Request error. Please try again later.');
-        setSuccessMessage(''); // Limpiar el mensaje de éxito
+        setSuccessMessage(''); 
       } else {
         setError('Unexpected error. Please try again later.');
-        setSuccessMessage(''); // Limpiar el mensaje de éxito
+        setSuccessMessage(''); 
       }
     }
   };
@@ -85,7 +85,7 @@ export default function Login({ client }) {
       )}
       <FormLoginContainer>
         <NavLogin>
-          <img src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg" alt="Spotify logo" />
+          <img src={process.env.PUBLIC_URL + '/logo_nospeak.png'} alt="logo" style={{ width: '130px', height: '60%' }}/>
         </NavLogin>
         <FormLogin>
           <StyledH1>Log in to NoSpeak</StyledH1>

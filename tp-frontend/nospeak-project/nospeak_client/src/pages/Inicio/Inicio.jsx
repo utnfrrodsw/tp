@@ -14,7 +14,7 @@ export function Inicio() {
 
     return (
         <InicioContainer>
-            <img src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg" alt="Logo de nospeak" />
+            <img src={process.env.PUBLIC_URL + '/logo_nospeak.png'} alt="logo" style={{ width: '50%', height: '60%' }}/>
             <ButtonContainer>
                 <StyledButton onClick={() => {setGoToLogin(true);}}>
                         Login with NoSpeak

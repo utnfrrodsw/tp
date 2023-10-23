@@ -92,7 +92,7 @@ export default function Register({client}) {
 
           setRegistrationSuccess(true);
                       
-          // Inicia sesión con el nuevo usuario
+
           const response_login = await client.post('/api/usuarios-login/', {
             nombre: name,
             password,
@@ -147,7 +147,7 @@ export default function Register({client}) {
   return (
     <FormLoginContainer>
       <NavLogin>
-        <img src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg" alt="Logo de spotify" />
+        <img src={process.env.PUBLIC_URL + '/logo_nospeak.png'} alt="logo" style={{ width: '130px', height: '60%' }}/>
       </NavLogin>
       <FormLogin>
         <StyledH1>Sign up for NoSpeak</StyledH1>

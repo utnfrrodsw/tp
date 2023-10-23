@@ -64,6 +64,7 @@ const Library = ({client}) => {
         nombre: '',
         nacionalidad: '',
         nro_seguidores: '',
+        portada: '',
     });
 
     const [newAlbum, setNewAlbum] = useState({
@@ -87,7 +88,7 @@ const Library = ({client}) => {
 
     useEffect(() => {
 
-        client.get(`/nospeak-app/api/playlists-usuario-info/${user.id}`)
+        client.get(`/api/playlists-usuario/${user.id}`)
             .then(response => {
                 setPlaylistData(response.data);
             })
@@ -96,7 +97,7 @@ const Library = ({client}) => {
             });
     
 
-        client.get('/nospeak-app/api/albums/')
+        client.get('/api/albums/')
             .then(response => {
                 setAlbumData(response.data);
             })
@@ -105,7 +106,7 @@ const Library = ({client}) => {
             });
     
 
-        client.get('/nospeak-app/api/artistas/')
+        client.get('/api/artistas/')
             .then(response => {
                 setArtists(response.data);
             })
@@ -117,7 +118,7 @@ const Library = ({client}) => {
     const fetchUserHistorial = () => {
         if (user && user.id) {
           client
-            .get(`/nospeak-app/api/historiales-usuario/${user.id}`)
+            .get(`/api/historiales-usuario/${user.id}`)
             .then((response) => {
               setUserHistorial(response.data);
   
@@ -126,8 +127,8 @@ const Library = ({client}) => {
                 .map((cancion) => cancion.titulo);
   
               client
-                .post('/nospeak-app/api/recomendaciones/', {
-                  song_names: lastFiveSongs,
+                .post('http://127.0.0.1:8000/nospeak-app/api/recomendaciones/', {
+                    song_names: lastFiveSongs,
                 })
                 .then((response) => {
                     console.log(response.data.recommended_songs)
@@ -193,11 +194,12 @@ const Library = ({client}) => {
 
       const handleSaveArtistaButtonClick = async () => {
         try {
-            await client.post(`/nospeak-app/api/artistas/`, newArtista);
+            await client.post(`/api/artistas/`, newArtista);
             setNewArtista({
                 nombre: '',
                 nacionalidad: '',
                 nro_seguidores: '',
+                portada: '',
             });
             setIsCreateArtistAlertOpen(false);
         } catch (error) {
@@ -207,7 +209,7 @@ const Library = ({client}) => {
 
     const handleSaveAlbumButtonClick = async () => {
         try {
-            await client.post(`/nospeak-app/api/albums/`, newAlbum);
+            await client.post(`/api/albums/`, newAlbum);
             setNewAlbum({
                 titulo: '',
                 portada: ''
@@ -220,7 +222,7 @@ const Library = ({client}) => {
 
     const handleSavePlaylistButtonClick = async () => {
         try {
-            await client.post(`/nospeak-app/api/playlists/`, newPlaylist);
+            await client.post(`/api/playlists/`, newPlaylist);
             setNewPlaylist({
                 canciones: [],
                 titulo: '',
@@ -274,7 +276,7 @@ const Library = ({client}) => {
                     <PlaylistGrid>
                         {activeCategory === 'Playlists' && (
                             playlistData.map((playlist, index) => (
-                            <Link key={index} to={`/playlist/${playlist.id}`}>
+                            <Link key={index} to={`/playlist/${playlist._id}`}>
                                 <PlaylistBox key={index}>
                                     <PlaylistImage src={playlist.portada}></PlaylistImage>
                                     <PlaylistName>{playlist.titulo}</PlaylistName>
@@ -286,7 +288,7 @@ const Library = ({client}) => {
                         
                         {activeCategory === 'Artists' && (
                             artists.map((artist, index) => (
-                                <Link key={index} to={`/artist/${artist.id}`}>
+                                <Link key={index} to={`/artist/${artist._id}`}>
                                     <ArtistBox key={index}>
                                         <ArtistImage src={artist.portada} alt={artist.nombre} onClick={() => {setGoToArtist(true);}} />
                                         <ArtistName>{artist.nombre}</ArtistName>
@@ -299,7 +301,7 @@ const Library = ({client}) => {
                         )}
                         {activeCategory === 'Albums' && (
                             albumData.map((album, index) => (
-                                <Link key={index} to={`/album/${album.id}`}>
+                                <Link key={index} to={`/album/${album._id}`}>
                                     <PlaylistBox key={index}>
                                         <PlaylistImage src={album.portada}></PlaylistImage>
                                         <PlaylistName>{album.titulo}</PlaylistName>
