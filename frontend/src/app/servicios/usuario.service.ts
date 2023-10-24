@@ -70,6 +70,10 @@ export class UsuarioService {
   getUsuariosPagina(filtro:string,n:number){
     return this.clienteHTTP.get(this.URL+`buscar/${filtro}`+'?pagina='+n+'&incluirAmigos=1',{withCredentials: true});
   }
+
+  actualizarPermisos(usuarioID:number, permisos:Permiso[]){
+    return this.clienteHTTP.post(this.URL+`${usuarioID}/permisos`,{permisos},{withCredentials:true});
+  }
 }
 
 export enum EstadosAmistades {

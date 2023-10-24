@@ -14,6 +14,7 @@ var usuarioController = {
     ,eliminarInvitacion
     ,aceptarInvitacion
     ,eliminarAmigo
+    ,actualizarPermisos
 
     ,salir
 }
@@ -206,6 +207,16 @@ function eliminarAmigo(req,res){
             console.log(error);
             res.status(500).send(error);
         }); */
+}
+
+function actualizarPermisos(req,res){
+    usuarioDao.actualizarPermisos(req.params.id,req.body.permisos)
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 }
 
 module.exports = usuarioController;

@@ -305,6 +305,25 @@ export class PanelComponent implements OnInit {
   // TODO ver si esta tabla de actualizar permisos puede ser un componente hijo, como dijo Butti
 
   actualizarPermisos(e:Event) {
+    e.preventDefault();
+    
+    let fd=new FormData(e.target as HTMLFormElement);
+    let nuevoVectorPermisos:Permiso[]=fd.getAll('permiso').map((e:FormDataEntryValue)=>(({ID:((e as any) as number)}) as Permiso));
+    let usuarioID:number = fd.get('usuario-id') as any as number;
+    // TODO as any as BASTA
+
+    this.usuariosService
+      .actualizarPermisos(usuarioID,nuevoVectorPermisos)
+      .subscribe({
+        next:(result: any)=>{
+          ((e.target as HTMLElement).closest('TR') as HTMLElement).dataset['sucio']='0';
+        }
+        ,error:error=>{
+          this.console.log(error);
+        }
+      })
+
+    return false;
   }
 
   nuevaIDPeticion():Number{

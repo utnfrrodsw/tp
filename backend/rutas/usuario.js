@@ -24,6 +24,8 @@ router.put('/:id',usuarioController.updateUsuario)
 
 router.post('/:id/habilitado',usuarioController.cambiarHabilitado)
 
+router.post('/:id/permisos',usuarioController.actualizarPermisos)
+
 router.get('/',usuarioController.findUsuarios)
 
 router.get('/buscar/:consulta?',usuarioController.findUsuariosFuzzilyByName)

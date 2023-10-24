@@ -17,6 +17,7 @@ var usuarioDao = {
     ,aceptarInvitacion
     ,eliminarAmigo
     ,buscarPorNombre
+    ,actualizarPermisos
     
     ,cantidadPorPagina:10
 }
@@ -279,10 +280,21 @@ async function eliminarAmigo(usuarioID,amigoID){
     findById(usuarioID)
         .then(usuario=>{
             let amistad=usuario.amigosAceptados.find(usu=>usu.ID==amigoID);
-            console.log(amistad, usuario, usuario.amigosAceptados, amistad.amistades);
+            // console.log(amistad, usuario, usuario.amigosAceptados, amistad.amistades);
             if(amistad){
                 return amistad.amistades.destroy();
             } // TODO else fallar http
+        });
+}
+
+async function actualizarPermisos(id,permisos){
+
+    let usuario=await findById(id,{incluirHabilitado:true});
+    // TODO Encontrar la forma de hacer esto implícito.
+    return Promise.all(permisos.map(p=>(permisoDao.findById(p.ID))))
+        .then(permisos=>{
+            usuario.setPermisos(permisos);
+            return usuario.save();
         });
 }
 

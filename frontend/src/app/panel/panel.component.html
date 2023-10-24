@@ -198,16 +198,16 @@
 					</tr>
 				</thead>
 				
-				<tbody>
+				<tbody (submit)="actualizarPermisos($event)">
 					<tr *ngFor="let usu of usuariosPaginaActual" #tr (change)="tr.dataset['sucio']='1'">
 						<td>{{usu.nombreCompleto}}</td>
 						<td *ngFor="let per of usuarioActual.permisos">
 							<input type="checkbox" value="{{per.ID}}" name="permiso" [checked]="usuarioTienePermiso(usu,per.ID)" [attr.form]="'editar-'+usu.ID">
 						</td>
 						<td>
-							<!-- TODO Now: onsumbit, en la table?  ojo que cacharia el form del tfoot, quizá en el tbody-->
+							<!-- ! Los controles fuera de este formulario usan la propiedad form, con el ID del usuario a editar. -->
 							<form id="editar-{{usu.ID}}">
-								<input type="hidden" [value]="usu.ID">
+								<input type="hidden" name="usuario-id" [value]="usu.ID">
 								<input type="submit" value="Actualizar" [disabled]="(tr.dataset['sucio']!='1')">
 							</form>
 						</td>
