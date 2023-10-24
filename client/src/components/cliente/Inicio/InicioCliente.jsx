@@ -11,6 +11,7 @@ function InicioCliente() {
         name: "Facundo",
     }
 
+
     return (
         <div className="page">
             <div className='header-home-client'>
@@ -33,15 +34,15 @@ function InicioCliente() {
             <div className='blocks'>
                 <div className="block">
                     <h2>Mis Solicitudes</h2>
-                    <Link to="active">Ver más</Link>
+                    <Link to="/client/home/active">Ver más</Link>
                 </div>
                 <div className="block">
                     <h2>Servicios en Progreso</h2>
-                    <Link to="progress">Ver más</Link>
+                    <Link to="/client/home/progress">Ver más</Link>
                 </div>
                 <div className="block">
                     <h2>Servicios Terminados</h2>
-                    <Link to="finished">Ver más</Link>
+                    <Link to="/client/home/active">Ver más</Link>
                 </div>
             </div>
         </div>

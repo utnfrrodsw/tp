@@ -15,8 +15,6 @@
 .solicitudes-container div{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     margin-top: 10px;
 }
 
@@ -32,6 +30,7 @@
 .ul-navegation-cli {
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
 }
 
 .li-navegation-cli{

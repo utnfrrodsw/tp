@@ -126,37 +126,38 @@ const DatosPersonales = () => {
                   type="text"
                   id="firstName"
                   name="firstName"
-                  value={userData.nombre}
-                  onChange={(e) => setUserData({ ...userData, nombre: e.target.value })}
+                  value={user.nombre}
+                  onChange={(e) => setUserData({ ...user, nombre: e.target.value })}
                 />
                 <label htmlFor="lastName">Apellido:</label>
                 <input
                   type="text"
                   id="lastName"
                   name="lastName"
-                  value={userData.apellido}
-                  onChange={(e) => setUserData({ ...userData, apellido: e.target.value })}
+                  value={user.apellido}
+                  onChange={(e) => setUserData({ ...user, apellido: e.target.value })}
                 />
                 <label htmlFor="email">Correo Electrónico:</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  value={userData.email}
-                  onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+                  value={user.email}
+                  onChange={(e) => setUserData({ ...user, email: e.target.value })}
                 />
                 <label htmlFor="birthdate">Fecha de Nacimiento:</label>
                 <input
                   type="date"
                   id="birthdate"
                   name="birthdate"
-                  value={userData.fechaNacimiento}
-                  onChange={(e) => setUserData({ ...userData, fechaNacimiento: e.target.value })}
+                  value={user.fechaNacimiento}
+                  onChange={(e) => setUserData({ ...user, fechaNacimiento: e.target.value })}
                 />
 
                 <Button variant="primary" className='button' onClick={handleUpdateData}>
                   Actualizar Datos
                 </Button>
+                {error && <p>Hubo un error al cargar las direcciones</p>}
               </div>
             </Card.Body>
           </Card>
@@ -195,7 +196,7 @@ const DatosPersonales = () => {
                 <select>
                   <option>Mis Direcciones</option>
                   {direcciones && direcciones.map((direccion, index) => (
-                  <option key={index} value={direccion.idDireccion}> {direccion.calle} {direccion.numero} 
+                  <option key={direccion.idDireccion} value={direccion.idDireccion}> {direccion.calle} {direccion.numero} 
                   {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null} 
                   /{direccion.localidad.nombre}/{direccion.localidad.provincia}</option>
                   ))}

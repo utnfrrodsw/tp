@@ -12,14 +12,14 @@ function Solicitudes(props) {
 
     const [solicitudes, setSolicitudes] = useState([]);
     const [solicitudesUpdate, setSolicitudesUpdate] = useState(false);
-    const [estado, setEstado] = useState(props.estado);
+    const [estado, setEstado] = useState("");
     const [load, setLoad] = useState(false);
     const auth = useAuth();
     const user = auth.getUser();
 
     useEffect(() => {
         setLoad(true);
-        fetch(`${API_URL}/solicitud/${estado}/cliente/${user.id}`)
+        fetch(`${API_URL}/solicitud/${props.estado}/cliente/${user.id}`)
           .then((res) => res.json())
           .then((data) => {
             setSolicitudes(data.body.solicitudes);

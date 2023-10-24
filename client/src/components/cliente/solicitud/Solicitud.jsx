@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import './solicitud.css';
 import { API_URL } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider';
+
 
 function Solicitud(props){
 
   const [show, setShow] = useState(true);
   const [error, setError] = useState(false);
   const auth = useAuth();
+  const dateTime = new Date(props.fecha);
 
-  const CerrarSolicitud = () => {
-    setShow(true);
-  }
+
   
   const hendleCancelar = async () => {
     try{
@@ -36,29 +36,41 @@ function Solicitud(props){
   }
   
   return (
-    <div className={`solicprincipal-card ${show ? "solicprincipal-card" : "solicprincipal-fullcontent"}`} onMouseLeave={CerrarSolicitud}>
-   
-      <h1 className='titulo'>{props.titulo}</h1>
-      <p className='fecha'>{props.fecha}</p>
-      <p className='direccion'>{props.direccion.calle} {props.direccion.numero}</p>
-    
-      <button className='boton' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
-      
-      {show ? (
-        <h1> </h1>
-      ) : (
-        <>
-          <p className='estado'>{props.estado}</p>
-          <p className='descripcion'>{props.descripcion}</p>
-          {props.fotos.map((foto) => (
-            <img key={foto.id} src={'http://localhost:5000/images/imagesdb/'+ foto.foto} alt="foto" className="foto" />
-          ))}
-          <button onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>Cancelar Solicitud</button>
-          {error && <p className='error'>Error al cancelar solicitud</p>}
-        </>
-      )}
+    <div className={`solicprincipal-card ${show ? "solicprincipal-card" : "solicprincipal-fullcontent"}`} >
+        <div>
+          <div className={`estado-solicitud estado-${props.estado}`}>
+            {props.estado === "activa" && <>Activa</>}
+            {props.estado === "enProceso" && <>En Proceso</>}
+            {props.estado === "finalizado" && <>Finalizado</>}
+          </div>
+          <h1 className='titulo-solicitud'>{props.titulo}</h1>
+          <p className='fecha-solicitud'>{dateTime.getDay()}/{dateTime.getMonth()}/{dateTime.getFullYear()}  {dateTime.getHours()}:{dateTime.getMinutes()}hs</p>
+          <p className='ubicacion-solicitud'>{props.direccion.calle} {props.direccion.numero}</p>
+        </div>
+        {show ? (
+          <> </>
+        ) : (
+          <div>
+              <p className='descripcion-solicitud'>{props.descripcion}</p>
+              <section className='botones'>
+                <button className='fotos' >ver fotos</button>
+                <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>Cancelar Solicitud</button>
+                {error && <p className='error'>Error al cancelar solicitud</p>}
+              </section>
+          </div>
+        )}
+
+        
+
+        {show ? (
+          <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+          ): ( 
+          <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+          )}
     </div>
   );
 }
 
 export default Solicitud;
+
+
