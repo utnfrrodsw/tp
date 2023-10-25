@@ -30,7 +30,7 @@
 }
 
 .solicprincipal-fullcontent {
-  height: 18rem;
+  height: 19rem;
   display: grid;
   width: 60%;
   padding: 15px;
@@ -101,16 +101,22 @@
 }
 
 .botones .fotos{
-  background-color: #369336;
+  background-color: #6ac26a;
   border: 1px solid #ffffff;
 }
 
-.botones .cancelar{
+.cancelar{
+  width: 10%;
+  font-size: 0.8rem;
   background-color: #993737;
   border: 1px solid #ffffff;
+  align-self: self-end;
 }
 
-
+.botones .ver-presupuestos-button{
+  background-color: #2d745c;
+  border: 1px solid #ffffff;
+}
 
 
 /* Estilos para los botones "Ver más" y "Cancelar Solicitud" */
@@ -265,9 +271,3 @@ img {
   overflow: hidden;
 }
 
-div.active {
-  background: #ccc;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-}

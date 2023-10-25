@@ -2,12 +2,14 @@ import React, { useState} from 'react';
 import './solicitud.css';
 import { API_URL } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider';
-
+import { Modal, Carousel, Container, Image} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Solicitud(props){
 
   const [show, setShow] = useState(true);
   const [error, setError] = useState(false);
+  const [verfotos, setVerfotos] = useState(false);
   const auth = useAuth();
   const dateTime = new Date(props.fecha);
 
@@ -53,10 +55,27 @@ function Solicitud(props){
           <div>
               <p className='descripcion-solicitud'>{props.descripcion}</p>
               <section className='botones'>
-                <button className='fotos' >ver fotos</button>
-                <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>Cancelar Solicitud</button>
-                {error && <p className='error'>Error al cancelar solicitud</p>}
+                <button className='fotos' onClick={() => setVerfotos(true)}>ver fotos</button>
+                  <Modal show={verfotos} onHide={() => setVerfotos(false)} fullscreen={true}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Fotos</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <Carousel style={{ width: '100%', height: '100%' }}>
+                      {props.fotos.map((img, index) => (
+                          <Carousel.Item style={{margin_top: '10px'}}>
+                            <Container>
+                              <Image key={index} src={'http://localhost:5000/images/imagesdb/'+ img.foto} alt="foto" className="foto" style={{ width: '40%', height: '40%' }}  />
+                            </Container>
+                          </Carousel.Item>
+                        
+                      ))}
+                    </Carousel>
+                    </Modal.Body>
+                  </Modal>
+                <button className='ver-presupuestos-button' >ver presupuestos</button>
               </section>
+
           </div>
         )}
 
@@ -64,8 +83,12 @@ function Solicitud(props){
 
         {show ? (
           <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
-          ): ( 
-          <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+          ): (
+          <div>
+            <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>Cancelar Solicitud</button>
+            {error && <p className='error'>Error al cancelar solicitud</p>}
+            <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+          </div>
           )}
     </div>
   );
