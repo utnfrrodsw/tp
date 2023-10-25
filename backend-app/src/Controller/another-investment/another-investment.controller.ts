@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { AnotherInvestmentService } from './another-investment.service';
 import { CreateAnotherInvestmentDto } from './dto/create-another-investment.dto';
 import { AnotherInvestment } from './entities/another-investment.entity';
@@ -22,7 +22,10 @@ export class AnotherInvestmentController {
   }
 
   @Get('GetProfitForOneYearById/:id')
-  profitForOneYearById(@Param('id') id: number) {
-    return this.anotherInvestmentService.investmentForAYear(id, 1000);
+  profitForOneYearById(
+    @Param('id') id: number,
+    @Query() money: { money: string },
+  ): number {
+    return this.anotherInvestmentService.investmentForAYear(id, money);
   }
 }

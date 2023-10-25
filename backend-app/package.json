@@ -29,6 +29,7 @@
     "@nestjs/passport": "^10.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^10.0.0",
+    "@reactivex/rxjs": "^6.6.7",
     "@types/bcrypt": "^5.0.0",
     "@types/passport-local": "^1.0.35",
     "axios": "^1.4.0",
@@ -38,7 +39,8 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0",
+    "replicate": "^0.16.1",
+    "rxjs": "^7.8.1",
     "typeorm": "^0.3.17"
   },
   "devDependencies": {

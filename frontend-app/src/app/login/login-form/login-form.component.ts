@@ -8,10 +8,11 @@ import { AuthService } from 'src/app/auth.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.sass']
 })
-export class LoginFormComponent implements OnInit{
-    formLogin = this.formBuilder.group({
-    userName : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
-    password : ['', [Validators.required, Validators.minLength(6)]] 
+export class LoginFormComponent {
+  hide = true;
+  formLogin = this.formBuilder.group({
+  userName : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+  password : ['', [Validators.required, Validators.minLength(6)]] 
   })
   constructor(
     private formBuilder : FormBuilder,
@@ -19,15 +20,12 @@ export class LoginFormComponent implements OnInit{
     private router: Router){
 
   }
-
-  ngOnInit(): void {
-      
-  }
+  
   handlerLogin(){
     if(this.formLogin.valid){
       this.authService.login(this.formLogin.controls['userName'].value ?? '', this.formLogin.controls['password'].value ?? '')
-        .subscribe(response => {
-          this.router.navigate(['investment']);
+        .subscribe((response) => {
+          this.router.navigate(['money']);
         })
     }
   }

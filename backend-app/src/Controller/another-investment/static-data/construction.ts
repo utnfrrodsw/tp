@@ -9,9 +9,11 @@ export class ConstructionData {
     ]);
 
     getProm(id: number): number {
-        const prom = this.StaticData.get(+id);
-        let sum = 0;
-        prom.forEach(rate => sum+= rate)
-        return (sum/12)
+        const rates = this.StaticData.get(+id);
+        if (!rates || rates.length !== 12) {
+          throw new Error('Los datos de tasas no son válidos para el ID proporcionado.');
+        }
+        const sum = rates.reduce((acc, rate) => acc + rate, 0);
+        return sum / 12;
     }
 }

@@ -5,14 +5,15 @@ import { AuthController } from './auth.controller';
 import { UsersModule } from 'src/controller/users/users.module';
 import { AuthService } from './auth.service';
 import { LocalStrategy } from './auth.strategy';
+import { JwtConstants } from './jwtConstants';
 
 @Module({
   imports: [
     UsersModule,
     PassportModule,
     JwtModule.register({
-      secret: 'your-secret-key', // Cambia por tu clave secreta
-      signOptions: { expiresIn: '1h' }, // Opcional: expira en 1 hora
+      secret: JwtConstants.secret, // Cambia por tu clave secreta
+      signOptions: { expiresIn: JwtConstants.expireTime }, // expira en 2 min
     }),
   ],
   providers: [AuthService, LocalStrategy],
