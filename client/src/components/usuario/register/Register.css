@@ -1,5 +1,4 @@
 
-
 .fondoRegister {  
   display: flex;
   align-items: center; /* Centra verticalmente */
@@ -185,3 +184,20 @@
   text-decoration: underline;
 }
 
+.eliminarEspecialidad {
+  background-color: #213555;
+  margin: 0.15rem 0.25rem;
+}	
+
+.eliminarEspecialidad:hover {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.botonEspecialidad {
+  font-size: 14px; /* Tamaño de fuente más pequeño */
+  padding: 8px 16px; /* Ajusta el relleno */
+  margin: 0.5rem 0 0.8rem 0;
+  background-color: #213555;
+  border: white;
+}
