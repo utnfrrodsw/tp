@@ -14,8 +14,6 @@ function Register() {
   const [contrasena, setContrasena] = useState('');
   const [confirmContrasena, setConfirmContrasena] = useState('');
   const [telefono, setTelefono] = useState('');
-  const [direccion, setDireccion] = useState('');
-  const [codPostal, setCodPostal] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [esPrestador, setEsPrestador] = useState(false);
   const [especialidades, setEspecialidades] = useState([]);
@@ -68,8 +66,6 @@ function Register() {
           contrasena,
           confirmContrasena,
           telefono,
-          direccion,
-          codPostal,
           fechaNacimiento,
           esPrestador,
           especialidades, // Incluye las especialidades en el cuerpo de la solicitud
@@ -157,24 +153,7 @@ function Register() {
               onChange={(e) => setTelefono(e.target.value)}
             />
           </div>
-          <div className='name-inputs'>
-            <div className="input-box">
-              <input
-                type="text"
-                placeholder="Código Postal"
-                value={codPostal}
-                onChange={(e) => setCodPostal(e.target.value)}
-              />
-            </div>
-            <div className="input-box">
-              <input
-                type="text"
-                placeholder="Dirección"
-                value={direccion}
-                onChange={(e) => setDireccion(e.target.value)}
-              />
-            </div>
-          </div>
+
           <div className="input-box">
             <input
               type="date"
