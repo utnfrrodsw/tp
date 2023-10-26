@@ -17,6 +17,7 @@ app.use(express.static(publicPath));
 const usuariosRoutes = require( './routes/usuariosRoutes.js');
 const solicitudRoutes = require('./routes/solicitudRoutes.js');
 const direccionesRoutes = require('./routes/direccionesRoutes.js');
+const profesionesRouter = require('./routes/profesionesRouter');
 
 //use app
 app.use(express.json());
@@ -29,6 +30,7 @@ app.listen(app.get("port"), () => {
 app.use("/api/usuario", usuariosRoutes);
 app.use('/api/solicitud', solicitudRoutes);
 app.use('/api/direccion', direccionesRoutes);
+app.use('/api/profesion', profesionesRouter);
 
 app.use((req, res, next) =>{
     res.status(404).json({

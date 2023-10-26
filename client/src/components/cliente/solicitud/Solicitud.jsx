@@ -10,6 +10,7 @@ function Solicitud(props){
   const [show, setShow] = useState(true);
   const [error, setError] = useState(false);
   const [verfotos, setVerfotos] = useState(false);
+  const [verPresupuestos, setVerPresupuestos] = useState(false);
   const auth = useAuth();
   const dateTime = new Date(props.fecha);
 
@@ -46,6 +47,7 @@ function Solicitud(props){
             {props.estado === "finalizado" && <>Finalizado</>}
           </div>
           <h1 className='titulo-solicitud'>{props.titulo}</h1>
+          <p className='fecha-solicitud'>{props.profesion.nombreProfesion}</p>
           <p className='fecha-solicitud'>{dateTime.getDay()}/{dateTime.getMonth()}/{dateTime.getFullYear()}  {dateTime.getHours()}:{dateTime.getMinutes()}hs</p>
           <p className='ubicacion-solicitud'>{props.direccion.calle} {props.direccion.numero}</p>
         </div>
@@ -65,15 +67,22 @@ function Solicitud(props){
                       {props.fotos.map((img, index) => (
                           <Carousel.Item style={{margin_top: '10px'}}>
                             <Container>
-                              <Image key={index} src={'http://localhost:5000/images/imagesdb/'+ img.foto} alt="foto" className="foto" style={{ width: '40%', height: '40%' }}  />
+                              <Image key={index} src={'http://localhost:5000/images/imagesdb/'+ img.foto} alt="foto" className="foto" style={{ width: '60%', height: '60%' }}  />
                             </Container>
                           </Carousel.Item>
-                        
                       ))}
                     </Carousel>
                     </Modal.Body>
                   </Modal>
                 <button className='ver-presupuestos-button' >ver presupuestos</button>
+                <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Presupuestos</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      
+                    </Modal.Body>
+                  </Modal>
               </section>
 
           </div>

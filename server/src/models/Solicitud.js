@@ -26,6 +26,10 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.INTEGER,
       allowNull: false,
     },
+    idProfesion: {
+      type: dataTypes.INTEGER,
+      allowNull: false,
+    },
   }
   
   const config = {
@@ -43,6 +47,10 @@ module.exports = (sequelize, dataTypes) => {
     Solicitud.hasMany(models.FotoSolicitud, {
       as: 'fotosSolicitud',
       foreignKey: 'idSolicitud', // Clave foránea en FotoSolicitud
+    });
+    Solicitud.belongsTo(models.Profesion, {
+      as: 'profesiones',
+      foreignKey: 'idProfesion', // Clave foránea en Solicitud
     });
   };
   return Solicitud;

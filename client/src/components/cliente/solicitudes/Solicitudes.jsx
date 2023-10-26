@@ -23,6 +23,7 @@ function Solicitudes(props) {
           .then((res) => res.json())
           .then((data) => {
             setSolicitudes(data.body.solicitudes);
+            console.log(data.body.solicitudes)
             setSolicitudesUpdate(false); // Mover esta línea aquí
             setLoad(false);
             console.log("solicitudes con estado "+ estado + ": " + data.body.solicitudes)
@@ -90,6 +91,7 @@ function Solicitudes(props) {
                         key={solicitud.id}
                         id={solicitud.id}
                         titulo={solicitud.titulo}
+                        profesion={solicitud.profesion}
                         fecha={solicitud.fechaHora}
                         direccion={solicitud.direccion}
                         descripcion={solicitud.descripcion}

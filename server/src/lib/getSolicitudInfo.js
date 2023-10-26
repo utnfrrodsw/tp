@@ -5,7 +5,7 @@ exports.getSolicitudInfo = function(solicitud, fotosSolicitud){
         descripcion: solicitud.descripcion,
         estado: solicitud.estado,
         fechaHora: solicitud.fechaHora,
-        especialidad: solicitud.especialidad,
+        profesion: solicitud.profesiones,
         direccion: solicitud.direccion,
         fotos: fotosSolicitud
     }
