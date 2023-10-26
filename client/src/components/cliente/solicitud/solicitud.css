@@ -186,11 +186,11 @@
   background-color: #369336; /* Verde para estado "activa" */
 }
 
-.estado-enProceso {
+.estado-progreso {
   background-color: #cea500; /* Amarillo para estado "en proceso" */
 }
 
-.estado-finalizado {
+.estado-terminado {
   background-color: #ff0000; /* Rojo para estado "finalizado" */
 }
 
