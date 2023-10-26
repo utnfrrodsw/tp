@@ -4,7 +4,6 @@ import { NuevaSolicitud } from "../nuevaSolicitud/NuevaSolicitud.jsx";
 import Solicitud from "../solicitud/Solicitud.jsx";
 import "./solicitudes.css";
 import { API_URL } from "../../../auth/constants.js";
-import { useAuth } from "../../../auth/authProvider.jsx";
 import LoaderFijo from "../../load/loaderFijo/LoaderFijo.jsx";
 
 
@@ -12,11 +11,10 @@ function Solicitudes(props) {
 
     const [solicitudes, setSolicitudes] = useState([]);
     const [solicitudesUpdate, setSolicitudesUpdate] = useState(false);
-    const [estado, setEstado] = useState("");
     const [load, setLoad] = useState(false);
-    const auth = useAuth();
-    const user = auth.getUser();
-
+    const user = JSON.parse(localStorage.getItem('user'));
+    
+    // eslint-disable-next-line
     useEffect(() => {
         setLoad(true);
         fetch(`${API_URL}/solicitud/${props.estado}/cliente/${user.id}`)
@@ -26,14 +24,14 @@ function Solicitudes(props) {
             console.log(data.body.solicitudes)
             setSolicitudesUpdate(false); // Mover esta línea aquí
             setLoad(false);
-            console.log("solicitudes con estado "+ estado + ": " + data.body.solicitudes)
+            console.log("solicitudes con estado "+ props.estado + ": " + data.body.solicitudes)
           })
           .catch((error) => {
             setLoad(false);
             console.log(error)
             console.error('Error al cargar solicitudes:', error);
           });
-    }, [solicitudesUpdate, estado, user.id]);
+    }, [solicitudesUpdate, props.estado ,user.id]);
       
     // pagination
     const [paginaActual, setPaginaActual] = useState(1);
@@ -59,9 +57,6 @@ function Solicitudes(props) {
         setSolicitudesUpdate(true);
     };
 
-    const handleEstadoClick = (nuevoEstado) => {
-        setEstado(nuevoEstado);
-    };
 
     return (
         <div className="solicitudes-container">
@@ -69,13 +64,13 @@ function Solicitudes(props) {
             <nav className="navigation" >
                 <ul className="ul-navegation-cli">
                     <li className="li-navegation-cli">
-                        <NavLink to="/client/home/active" onClick={() => handleEstadoClick("activa")} className="link">Activas</NavLink>
+                        <NavLink to="/client/home/active"  className="link">Activas</NavLink>
                     </li>
                     <li className="li-navegation-cli" >
-                        <NavLink to="/client/home/progress" onClick={() => handleEstadoClick("progreso")} className="link">En Progreso</NavLink>
+                        <NavLink to="/client/home/progress"  className="link">En Progreso</NavLink>
                     </li>
                     <li className="li-navegation-cli">
-                        <NavLink to="/client/home/finished" onClick={() => handleEstadoClick("finalizado")} className="link">Terminados</NavLink>
+                        <NavLink to="/client/home/finished"  className="link">Terminados</NavLink>
                     </li>    
                 </ul>
             </nav>

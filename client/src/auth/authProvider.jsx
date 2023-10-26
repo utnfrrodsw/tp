@@ -59,7 +59,6 @@ export function AuthProvider({children}) {
             console.log(response);
             if(response.ok){
                 const json = await response.json();
-
                 if(json.error){
                     throw new Error(json.error);
                 }
@@ -96,6 +95,7 @@ export function AuthProvider({children}) {
     }
 
     function saveUser(userData){
+        localStorage.setItem("user", JSON.stringify(userData.body.user));
         saveSessionInfo(userData.body.user, userData.body.token, userData.body.refreshToken);
     }
 
@@ -105,6 +105,7 @@ export function AuthProvider({children}) {
 
     function logout(){
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         setAccessToken("");
         setUser(undefined);
         setIsAuthenticated(false);
