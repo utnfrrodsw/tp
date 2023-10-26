@@ -41,7 +41,11 @@ const solicitudController = {
                 },
                 {
                     association: 'fotosSolicitud' // Si necesitas acceder a las fotos de las solicitudes
-                }]
+                },
+                {
+                    association: 'profesiones' // Si necesitas acceder a las profesiones de las solicitudes
+                }
+            ]
             }).then( (solicitudesResponse) => {
 
                 const solicitudes = []
@@ -62,7 +66,6 @@ const solicitudController = {
                     solicitudes.push(getSolicitudInfo(solicitud, imgs));
                 });
                 
-
                 
                 res.status(200).json(jsonResponse(200, {
                     message: "Solicitudes encontradas",
@@ -86,7 +89,7 @@ const solicitudController = {
 
     createSolicitud: async function (req, res){
         try{
-            const { titulo, descripcion , especialidad, idDireccion} = req.body;
+            const { titulo, descripcion, idProfesion, idDireccion} = req.body;
             console.log(req.body);
             console.log(req.files);
             const fotosArray = req.files
@@ -94,9 +97,9 @@ const solicitudController = {
                 // Paso 1: Crea una solicitud
                 const solicitud = await db.Solicitud.create(
                     {titulo: titulo,
-                    especialidad: especialidad,
                     descripcion: descripcion,
                     idDireccion: idDireccion,
+                    idProfesion: idProfesion,
                     estado: 'activa',
                     fechaHora: Date.now()},
                     {transaction: t}

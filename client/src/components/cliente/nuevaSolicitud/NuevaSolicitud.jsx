@@ -9,13 +9,15 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [showModal, setShowModal] = useState(false);
   const [titulo, setTitulo] = useState('');
   const [descripcion, setDescripcion] = useState('');
-  const [especialidad, setEspecialidad] = useState('');
+  const [profesion, setProfesion] = useState('');
+  const [profesiones, setProfesiones] = useState([]);
   const [direccion, setDireccion] = useState('');
   const [direcciones, setDirecciones] = useState([]);
   const [fotos, setFotos] = useState(null);
+  const [errorProfesiones, setErrorProfesiones] = useState(false);
   const [errorTitulo, setErrorTitulo] = useState(false);
   const [errorDescripcion, setErrorDescripcion] = useState(false);
-  const [errorEspecialidad, setErrorEspecialidad] = useState(false);
+  const [errorProfesion, setErrorProfesion] = useState(false);
   const [errorDirecciones, setErrorDirecciones] = useState(false);
   const [errorFotos, setErrorFotos] = useState(false);
   const [error, setError] = useState(false);
@@ -23,13 +25,15 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const auth = useAuth();
   const user = auth.getUser();
 
+
+  //direcciones
   // eslint-disable-next-line
   useEffect(() => {
     try{
       const response = fetch(`${API_URL}/direccion/cliente/${user.id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.body.direcciones);
+        setErrorDirecciones(false);
         setDirecciones(data.body.direcciones);
       })
       if(response.ok){
@@ -43,17 +47,38 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
     }
   }, [user.id]);
 
+  //profesiones
+  // eslint-disable-next-line
+  useEffect(() => {
+    try{
+      const response = fetch(`${API_URL}/profesion/getProfesionesExistentes`)
+      .then((res) => res.json())
+      .then((data) => {
+        setErrorProfesiones(false);
+        setProfesiones(data.body.profesiones);
+      })
+      if(response.ok){
+        setErrorProfesiones(false);
+      }else{
+        setErrorProfesiones(true);
+      }
+    }catch(error){
+      error ? console.log(error): console.log('Error al cargar profesiones');
+      setErrorProfesiones(true);
+    }
+  }, [user.id]);
+
   const handleClose = () => {
     setError(false);
     setEnviando(false);
     setShowModal(false);
     setErrorTitulo(false);
     setErrorDescripcion(false);
-    setErrorEspecialidad(false);
+    setErrorProfesion(false);
     // Limpiar los campos del formulario
     setTitulo('');
     setDescripcion('');
-    setEspecialidad('');
+    setProfesion('');
     setDireccion('');
     setFotos([]);
   };
@@ -63,10 +88,10 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const handleSubmit = async () => {
     setEnviando(true);
     //Validar los campos del formulario
-    if (!titulo || !descripcion || !especialidad || !direccion || fotos.length === 0) {
+    if (!titulo || !descripcion || !profesion || !direccion || fotos.length === 0) {
       if (!titulo) setErrorTitulo(true);
       if (!descripcion) setErrorDescripcion(true);
-      if (!especialidad) setErrorEspecialidad(true);
+      if (!profesion) setErrorProfesion(true);
       if (!direccion) setErrorDirecciones(true);
       if (fotos.length === 0) setErrorFotos(true);
       return;
@@ -76,7 +101,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
     const formdata = new FormData();
     formdata.append('titulo', titulo);
     formdata.append('descripcion', descripcion);
-    formdata.append('especialidad', especialidad);
+    formdata.append('idProfesion', profesion);
     formdata.append('idDireccion', direccion);
     fotos.forEach((foto) => {
       formdata.append('fotos', foto);
@@ -157,19 +182,21 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
             {errorDescripcion && <span className="error-message">Ingrese una descripción</span>}
           </div>
           <div className="form-group">
-            <label>Especialidad</label>
-            <select value={especialidad} onChange={(e) => setEspecialidad(e.target.value)}>
-              <option value="">Elija una especialidad</option>
-              <option value="Carpintería">Carpintería</option>
-              <option value="Electricidad">Electricidad</option>
-              <option value="Plomería">Plomería</option>
+            <label>Profesion</label>
+            <select value={profesion} onChange={(e) => setProfesion(e.target.value)} >
+              <option key={0} value={0}>{"seleccione una profesion"}</option>
+              {profesiones.map((profesion, index) => (
+                <option key={index} value={profesion.idProfesion}>{profesion.nombreProfesion}</option>
+              ))}
               {/* Agrega más opciones según tus necesidades */}
             </select>
-            {errorEspecialidad && <span className="error-message">Seleccione una especialidad</span>}
+            {errorProfesion && <span className="error-message">Seleccione una profesion</span>}
+            {errorProfesiones && <span className="error-message">Error al traer profesiones</span>}
           </div>
           <div className="form-group">
             <label>Direccion</label>
             <select value={direccion} onChange={hendleDireccion}>
+                <option key={0} value={0}>{"seleccione una direccion"}</option>
               {direcciones && direcciones.map((direccion, index) => (
                 <option key={index} value={direccion.idDireccion}> {direccion.calle} {direccion.numero} 
                 {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null} 

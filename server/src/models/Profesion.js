@@ -22,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       });
   
       // Relación hasMany con la tabla SolicitudProfesiones
-      Profesion.hasMany(models.SolicitudProfesiones, {
+      Profesion.belongsTo(models.Solicitud, {
         foreignKey: 'idProfesion',
-        as: 'solicitudProfesiones',  
+        as: 'solicitud_profesiones',  
       });
     };
   
