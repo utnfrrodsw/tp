@@ -9,12 +9,13 @@ import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
 import Evaluaciones from './components/prestador/evaluaciones/Evaluaciones';
 import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
+import Anuncios from './components/prestador/inicio/anuncios/Anuncios.jsx'
 import Presupuesto from './components/prestador/presupuesto/Presupuesto.jsx';
+import Presupuestadas from './components/prestador/detalleServicioPresupuestado/Presupuestadas.jsx';
 import DatosUser from './components/usuario/datosPersonales/datosUser.jsx';
 import Login from './components/usuario/login/Login.jsx';
 import RecuperarClave from './components/usuario/login/RecuperarClave';
 import Register from './components/usuario/register/Register.jsx';
-
 import ProtectedRoute from './components/Routes/ProtectedRoute.jsx';
 import ProtectedRouteProvider from './components/Routes/ProtectedRouteProvider.jsx';
 import ProtectedRouteClient from './components/Routes/ProtectedRouteClient.jsx';
@@ -44,9 +45,14 @@ function App() {
 
           {/*prestador*/}
           <Route path='/' element={<ProtectedRouteProvider/>}>
+            <Route path='/provider/home/'  element={ <InicioPrestador />}/>
             <Route path='/evaluations' element={<Evaluaciones />} />
-            <Route path='/provider/home'  element={ <InicioPrestador/>}/>
-            <Route path='/provider/budget/:id' element={<Presupuesto/>}/>
+            <Route path='/provider/home/add'  element={ <Anuncios/> }/> 
+            <Route path='/provider/home/budgeted' element={<Anuncios/>}/>
+            <Route path='/provider/home/accepted' element={<Anuncios estado="progreso"/>}/>
+            <Route path='/provider/home/finished' element={<Anuncios estado="terminado"/>}/>
+            <Route path='/provider/home/budgeted/more' element={<Presupuestadas id="1"/>}/>
+            <Route path='/provider/home/add/budget/' element={<Presupuesto id="1"/>}/>
           </Route>
 
           {/*cliente*/}

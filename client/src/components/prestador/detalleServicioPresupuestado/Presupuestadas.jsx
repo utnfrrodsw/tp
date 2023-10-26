@@ -1,4 +1,4 @@
-import './Presupuesto.css'
+
 import React, { useState } from 'react';
 
 function DetalleServicio() {

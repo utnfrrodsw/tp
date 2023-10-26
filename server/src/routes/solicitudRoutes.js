@@ -13,4 +13,8 @@ router.post('/cliente/:id', upload ,solicitudController.createSolicitud);
 
 router.delete('/cancelar/:id', solicitudController.CancelarSolicitud);
 
+router.get('/:estado/prestador/:id', solicitudController.getSolicitudesProfesion);
+
+router.get('/:estado/prestador')
+
 module.exports=router;
