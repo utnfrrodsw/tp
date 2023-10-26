@@ -8,6 +8,10 @@ const { generateAccessTokes, generateRefreshToken } = require('../../auth/genera
 const getTokenFromHeader = require('../../auth/getTokenFromHeader');
 const { verifyRefreshToken } = require('../../auth/verifyTokens');
 const validateToken = require('../../auth/validateToken');
+ 
+
+// Resto del código del controlador
+
 //const multer = require('multer'); // Para manejar la carga de imágenes
 
 
@@ -47,31 +51,25 @@ const usuarioController = {
     }
   },
  
-  registrarUsuario: async (req, res) => {
-    //console.log(req.body);
-    const { nombre, apellido, email, contrasena, fechaNacimiento, telefono, esPrestador } = req.body;
-    console.log(req.body)
+  register: async (req, res) => {
+    const { nombre, apellido, email, contrasena, fechaNacimiento, telefono, esPrestador, especialidades } = req.body;
+
     try {
-      const result = await db.Usuario.findOne({
-        where: { email },
-      })
-      .then(result => {
-        return result;
-      });
-      console.log(result);
       // Verificar si el usuario ya existe en la base de datos
-      if (result != null) {
-        console.log("usuario ya existe");
-        return res.status(500).json(jsonResponse(500, {
-          message: 'El usuario ya existe' 
-        }));
+      const existingUser = await db.Usuario.findOne({
+        where: { email },
+      });
+    
+      if (existingUser) {
+        return res.status(400).json(jsonResponse(400, { message: 'El usuario ya existe' }));
       }
-
-      console.log(nombre, apellido, email, contrasena, fechaNacimiento, telefono, esPrestador)
-     
-      const hashedPassword = await bcrypt.hash(contrasena, 10); // 10 rounds de sal
-
-      const usuario = await db.Usuario.create({
+    
+      // Hashear la contraseña antes de guardarla
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
+    
+      // Crear el nuevo usuario en la base de datos
+      const newUser = await db.Usuario.create({
         nombre,
         apellido,
         email,
@@ -79,17 +77,41 @@ const usuarioController = {
         fechaNacimiento,
         telefono,
         esPrestador,
+        // Otras propiedades específicas del usuario si las tienes
       });
-
-      console.log(usuario);
-
-      res.status(200).json(jsonResponse(200, { message: 'Registro exitoso', usuario }));
-
-    } catch (error) {
-      console.error(error);
-      res.status(500).json(jsonResponse(500, {
-        message: 'Error al registrarse' 
+    
+      if (esPrestador && especialidades && especialidades.length > 0) {
+        // Si el usuario es un prestador y ha seleccionado especialidades, guárdalas en la base de datos
+        const profesionesIds = await db.Profesion.findAll({
+          where: {
+            nombreProfesion: especialidades,
+          },
+          attributes: ['idProfesion'],
+        });
+    
+        // Obtener los ID de las profesiones seleccionadas
+        const profesionIds = profesionesIds.map((profesion) => profesion.idProfesion);
+    
+        // Actualizar las relaciones en la tabla PrestadorProfesiones
+        await newUser.setProfesiones(profesionIds);
+      }
+    
+      // Generar tokens de acceso y de actualización
+      const user = getUserInfo(newUser);
+      const token = await generateAccessTokes(user);
+      const refreshToken = await generateRefreshToken(user);
+    
+      // Guardar el token de actualización en la base de datos (ajusta esto según tu implementación específica)
+    
+      res.status(201).json(jsonResponse(201, {
+        message: 'Registro exitoso',
+        user: getUserInfo(newUser),
+        token,
+        refreshToken,
       }));
+    } catch (error) {
+      console.error('Error en el registro:', error);
+      res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
     }
   },
 

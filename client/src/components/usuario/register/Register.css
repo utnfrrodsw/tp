@@ -33,7 +33,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1.69rem;
+  gap: 0.5rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.labelCheckbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px; /* Espacio entre cada especialidad */
 }
 
 .name-inputs .input-box {
@@ -171,3 +184,4 @@
 .register-container p a:hover {
   text-decoration: underline;
 }
+
