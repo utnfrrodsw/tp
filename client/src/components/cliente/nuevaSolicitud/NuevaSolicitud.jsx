@@ -184,9 +184,10 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           <div className="form-group">
             <label>Profesion</label>
             <select value={profesion} onChange={(e) => setProfesion(e.target.value)} >
-              <option key={0} value={0}>{"seleccione una profesion"}</option>
-              {profesiones.map((profesion, index) => (
-                <option key={index} value={profesion.idProfesion}>{profesion.nombreProfesion}</option>
+              <option value="1">seleccione una profesion</option>
+              {profesiones.length > 0 &&
+              profesiones.map((profesion, index) => (
+                <option key={index + 1} value={profesion.idProfesion}>{profesion.nombreProfesion}</option>
               ))}
               {/* Agrega más opciones según tus necesidades */}
             </select>
@@ -196,12 +197,17 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           <div className="form-group">
             <label>Direccion</label>
             <select value={direccion} onChange={hendleDireccion}>
-                <option key={0} value={0}>{"seleccione una direccion"}</option>
-              {direcciones && direcciones.map((direccion, index) => (
-                <option key={index} value={direccion.idDireccion}> {direccion.calle} {direccion.numero} 
-                {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null} 
-                /{direccion.localidad.nombre}/{direccion.localidad.provincia}</option>
-              ))}
+              <option value="1">seleccione una dirección</option>
+              {direcciones.length > 0 &&
+                direcciones.map((direccion, index) => (
+                  <option key={index + 1} value={direccion.idDireccion}>
+                    {direccion.calle} {direccion.numero}
+                    {direccion.piso || direccion.dpto ? (
+                      <>({direccion.piso}{direccion.dpto})</>
+                    ) : null} 
+                    /{direccion.localidad.nombre}/{direccion.localidad.provincia}
+                  </option>
+                ))}
             </select>
             {errorDirecciones && <span className="error-message">Ingrese una direccion valida</span>}
           </div>

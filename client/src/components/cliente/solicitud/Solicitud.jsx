@@ -43,12 +43,17 @@ function Solicitud(props){
         <div>
           <div className={`estado-solicitud estado-${props.estado}`}>
             {props.estado === "activa" && <>Activa</>}
-            {props.estado === "enProceso" && <>En Proceso</>}
-            {props.estado === "finalizado" && <>Finalizado</>}
+            {props.estado === "progreso" && <>En Proceso</>}
+            {props.estado === "terminado" && <>Finalizado</>}
           </div>
           <h1 className='titulo-solicitud'>{props.titulo}</h1>
-          <p className='fecha-solicitud'>{props.profesion.nombreProfesion}</p>
-          <p className='fecha-solicitud'>{dateTime.getDay()}/{dateTime.getMonth()}/{dateTime.getFullYear()}  {dateTime.getHours()}:{dateTime.getMinutes()}hs</p>
+          <p className='fecha-solicitud'>{props.profesion.nombreProfesion}
+          {props.estado === "progreso" || props.estado === "terminado" ? <>: nombre prestador</> : <></>}</p>
+          <p className='fecha-solicitud'>
+          {props.estado === "activa"? <>{dateTime.getDay()}/{dateTime.getMonth()}/{dateTime.getFullYear()}  {dateTime.getHours()}:{dateTime.getMinutes()} </> :<></>}
+          {props.estado === "progreso" || props.estado === "terminado" ? <>hora y fecha del trabajo </>:<></>}
+           hs
+          </p>
           <p className='ubicacion-solicitud'>{props.direccion.calle} {props.direccion.numero}</p>
         </div>
         {show ? (
@@ -67,22 +72,40 @@ function Solicitud(props){
                       {props.fotos.map((img, index) => (
                           <Carousel.Item style={{margin_top: '10px'}}>
                             <Container>
-                              <Image key={index} src={'http://localhost:5000/images/imagesdb/'+ img.foto} alt="foto" className="foto" style={{ width: '60%', height: '60%' }}  />
+                              <Image key={index} src={'http://localhost:5000/images/imagesdb/'+ img.foto} alt="foto" className="foto" style={{ width: '45%', height: '45%' }}  />
                             </Container>
                           </Carousel.Item>
                       ))}
                     </Carousel>
                     </Modal.Body>
                   </Modal>
-                <button className='ver-presupuestos-button' >ver presupuestos</button>
-                <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Presupuestos</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      
-                    </Modal.Body>
-                  </Modal>
+                
+                {props.estado === "activa" ? (
+                <>
+                  <button className='ver-presupuestos-button' >ver presupuestos</button>
+                  <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Presupuestos</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        
+                      </Modal.Body>
+                    </Modal>
+                </>
+                ): <></>}
+                {props.estado === "terminado" ? (
+                <>
+                  <button className='ver-presupuestos-button'>Hacer Reseña</button>
+                  <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Presupuestos</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        
+                      </Modal.Body>
+                    </Modal>
+                </>
+                ): <></>}
               </section>
 
           </div>
@@ -94,7 +117,9 @@ function Solicitud(props){
           <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
           ): (
           <div>
+            {props.estado === "activa" ?
             <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>Cancelar Solicitud</button>
+            : <></>}
             {error && <p className='error'>Error al cancelar solicitud</p>}
             <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
           </div>

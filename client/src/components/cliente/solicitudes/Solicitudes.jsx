@@ -21,10 +21,8 @@ function Solicitudes(props) {
           .then((res) => res.json())
           .then((data) => {
             setSolicitudes(data.body.solicitudes);
-            console.log(data.body.solicitudes)
             setSolicitudesUpdate(false); // Mover esta línea aquí
             setLoad(false);
-            console.log("solicitudes con estado "+ props.estado + ": " + data.body.solicitudes)
           })
           .catch((error) => {
             setLoad(false);
