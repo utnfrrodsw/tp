@@ -1,8 +1,9 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import './solicitud.css';
 import { API_URL } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider';
 import { Modal, Carousel, Container, Image} from 'react-bootstrap';
+import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Solicitud(props){
@@ -11,6 +12,7 @@ function Solicitud(props){
   const [error, setError] = useState(false);
   const [verfotos, setVerfotos] = useState(false);
   const [verPresupuestos, setVerPresupuestos] = useState(false);
+  const [presupuestosSolicitud, setPresupuestosSolicitud] = useState([]);
   const auth = useAuth();
   const dateTime = new Date(props.fecha);
 
@@ -37,6 +39,22 @@ function Solicitud(props){
       setError(true);
     }
   }
+
+  useEffect(() => {
+    /*if(verPresupuestos){
+      const response = fetch(`${API_URL}/presupuesto/solicitud/${props.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPresupuestosSolicitud(data.body.presupuestos);
+      })
+      if(response.ok){
+        setError(false)
+      }else{
+        console.log('Error al cargar presupuestos');
+        setError(true);
+      };
+    }*/
+  });
   
   return (
     <div className={`solicprincipal-card ${show ? "solicprincipal-card" : "solicprincipal-fullcontent"}`} >
@@ -82,13 +100,17 @@ function Solicitud(props){
                 
                 {props.estado === "activa" ? (
                 <>
-                  <button className='ver-presupuestos-button' >ver presupuestos</button>
+                  <button className='ver-presupuestos-button' onClick={() => setVerPresupuestos(true)} >ver presupuestos</button>
                   <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true}>
                       <Modal.Header closeButton>
                         <Modal.Title>Presupuestos</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
-                        
+                      {presupuestosSolicitud.length > 0 ? (
+                        presupuestosSolicitud.map((presupuesto) => {
+                          <PresupuestoSolicitud presupuesto={presupuesto}/>
+                        }
+                      )): <PresupuestoSolicitud/>}
                       </Modal.Body>
                     </Modal>
                 </>
@@ -101,7 +123,8 @@ function Solicitud(props){
                         <Modal.Title>Presupuestos</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
-                        
+                      
+
                       </Modal.Body>
                     </Modal>
                 </>
@@ -120,8 +143,8 @@ function Solicitud(props){
             {props.estado === "activa" ?
             <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>Cancelar Solicitud</button>
             : <></>}
-            {error && <p className='error'>Error al cancelar solicitud</p>}
             <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+            {error && <p className='error' style={{color: "red", backgroundColor: "white", width: "20%", alignSelf: "self-end"}}>Error al cancelar solicitud</p>}
           </div>
           )}
     </div>
