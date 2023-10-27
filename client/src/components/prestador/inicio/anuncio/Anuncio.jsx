@@ -12,11 +12,6 @@ function Anuncio(props) {
   return (
     <div className={`anuncioprincipal-card ${show ? 'anuncioprincipal-card' : 'anuncioprincipal-fullcontent'}`}>
       <div>
-        <div className={`estado-anuncio estado-${props.estado}`}>
-          {props.estado === 'activa' && <>Activa</>}
-          {props.estado === 'enProceso' && <>En Proceso</>}
-          {props.estado === 'finalizado' && <>Finalizado</>}
-        </div>
         <h1 className='titulo-anuncio'>{props.titulo}</h1>
         <p className='fecha-anuncio'>{props.profesion.nombreProfesion}</p>
         <p className='fecha-anuncio'>
