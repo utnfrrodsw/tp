@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Button} from 'react-bootstrap';
-
+import './presupuestosSolicitud.css'
 
 
 function PresupuestoSolicitud(props) {
@@ -33,23 +33,26 @@ function PresupuestoSolicitud(props) {
     }
 
     return (
-        <Card style={{backgroundColor:"#213555"}}>
+        <Card className='card-presupuesto'>
+            <Card.Header>
+                <Card.Title style={{color:'white', fontSize:'24px'}}>Presupuesto {presupuesto.id}</Card.Title>
+            </Card.Header>
             <Card.Body style={{display:"flex", flexDirection:"row", width:'100%'}}>
+                
                 <div>
-                <Card.Title style={{color:'white'}}>Presupuesto {presupuesto.id}</Card.Title>
-                <Card.Text>
-                    <p>Prestador: {presupuesto.prestador.nombre}</p>
-                    <p>Costo Materiales: {presupuesto.costoMateriales}</p>
-                    <p>Costo por Hora: {presupuesto.costoXHora}</p>
-                    <p>Costo Total: {(presupuesto.costoXHora*presupuesto.horasTotales) + presupuesto.costoMateriales}</p>
-                    <Card.Subtitle>Fechas Disponibles</Card.Subtitle>
-                    <select>
-                        {presupuesto.fechasDisponibles.map((fecha) =>(
-                            //const dateTime = new Date(fecha)
-                            <option>{fecha}</option>)
-                        )}
-                    </select>
-                </Card.Text>
+                    <Card.Text className='card-text'>
+                        <p>Prestador: {presupuesto.prestador.nombre}</p>
+                        <p>Costo Materiales: {presupuesto.costoMateriales}</p>
+                        <p>Costo por Hora: {presupuesto.costoXHora}</p>
+                        <p>Costo Total: {(presupuesto.costoXHora*presupuesto.horasTotales) + presupuesto.costoMateriales}</p>
+                        <Card.Subtitle>Fechas Disponibles</Card.Subtitle>
+                        <select>
+                            {presupuesto.fechasDisponibles.map((fecha) =>(
+                                //const dateTime = new Date(fecha)
+                                <option>{fecha}</option>)
+                            )}
+                        </select>
+                    </Card.Text>
                 </div>
                 <Button variant="primary" style={{alignSelf:"flex-end"}}>Aceptar Presupuesto</Button>
             </Card.Body>

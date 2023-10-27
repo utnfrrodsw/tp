@@ -1,6 +1,6 @@
  import React from 'react';
 import { Link } from 'react-router-dom';
-import './InicioPrestador.css';
+import './inicioPrestador.css';
 import logo from "./logo.png";
 
 

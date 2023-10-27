@@ -11,6 +11,7 @@ const { Op } = Sequelize;
 
 
 const solicitudController = {
+    
     getSolicitud: function (req, res){
         let idSolicitud = req.params.id;
         console.log(idSolicitud);
@@ -135,6 +136,8 @@ const solicitudController = {
             console.log(idSolicitud);
             await db.sequelize.transaction(async (t) => {
               // Paso 1: Buscar la solicitud
+              await db.FotoSolicitud.destroy({ where: { idSolicitud: idSolicitud } }, { transaction: t });
+
               const solicitud = await db.Solicitud.findByPk(idSolicitud);
               if (!solicitud) {
                 res.status(404).json(jsonResponse(404, { message: 'Solicitud no encontrada' }));
@@ -146,10 +149,10 @@ const solicitudController = {
             });
           
             res.status(200).json(jsonResponse(200, { message: 'Solicitud cancelada' }));
-          } catch (error) {
-            console.error('Error al cancelar solicitud', error);
-            res.status(500).json(jsonResponse(500, { message: 'Error en el servidor al cancelar solicitud' }));
-          }
+        } catch (error) {
+        console.error('Error al cancelar solicitud', error);
+        res.status(500).json(jsonResponse(500, { message: 'Error en el servidor al cancelar solicitud' }));
+        }
           
     },
 
