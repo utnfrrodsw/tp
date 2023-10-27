@@ -49,10 +49,10 @@ function App() {
           <Route path='/' element={<ProtectedRouteProvider/>}>
             <Route path='/provider/home/'  element={ <InicioPrestador />}/>
             <Route path='/evaluations' element={<Evaluaciones />} />
-            <Route path='/provider/home/add'  element={ <Anuncios/> }/> 
-            <Route path='/provider/home/budgeted' element={<Anuncios/>}/>
-            <Route path='/provider/home/accepted' element={<Anuncios estado="progreso"/>}/>
-            <Route path='/provider/home/finished' element={<Anuncios estado="terminado"/>}/>
+            <Route path='/provider/home/add'  element={ <Anuncios estado="nuevas"/> }/> 
+            <Route path='/provider/home/budgeted' element={<Anuncios estado="presupuestadas"/>}/>
+            <Route path='/provider/home/accepted' element={<Anuncios estado="aceptadas"/>}/>
+            <Route path='/provider/home/finished' element={<Anuncios estado="terminadas"/>}/>
             <Route path='/provider/home/budgeted/more' element={<Presupuestadas id="1"/>}/>
             <Route path='/provider/home/add/budget/' element={<Presupuesto id="1"/>}/>
           </Route>

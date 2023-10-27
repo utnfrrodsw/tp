@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "../../navlink/Navlink.jsx";
-import { NuevaAnuncio } from "../nuevaAnuncio/NuevaAnuncio.jsx";
+import { NavLink } from "../../../navlink/Navlink.jsx";
 import Anuncio from "../anuncio/Anuncio.jsx";
 import "./anuncios.css";
-import { API_URL } from "../../../auth/constants.js";
-import { useAuth } from "../../../auth/authProvider.jsx";
-import LoaderFijo from "../../load/loaderFijo/LoaderFijo.jsx";
+import { API_URL } from "../../../../auth/constants.js";
+import { useAuth } from "../../../../auth/authProvider.jsx";
+import LoaderFijo from "../../../load/loaderFijo/LoaderFijo.jsx";
 
 function Anuncios(props) {
   const [anuncios, setAnuncios] = useState([]);
@@ -17,7 +16,7 @@ function Anuncios(props) {
   const userData=JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     setLoad(true);
-    fetch(`${API_URL}/anuncio/${props.estado}/prestador/${user.id}`)
+    fetch(`${API_URL}/${props.estado}/prestador/${user.id}`)
       .then((res) => res.json())
       .then((data) => {
         setAnuncios(data.body.anuncios);
@@ -64,13 +63,16 @@ function Anuncios(props) {
       <nav className="navigation">
         <ul className="ul-navegation-cli">
           <li className="li-navegation-cli">
-            <NavLink to="/client/home/active" onClick={() => handleEstadoClick("activa")} className="link">Activas</NavLink>
+            <NavLink to="/provider/home/add" onClick={() => handleEstadoClick("nuevas")} className="link">Anuncios</NavLink>
           </li>
           <li className="li-navegation-cli">
-            <NavLink to="/client/home/progress" onClick={() => handleEstadoClick("progreso")} className="link">En Progreso</NavLink>
+            <NavLink to="/provider/home/budgeted" onClick={() => handleEstadoClick("presupuestadas")} className="link">Presupuestadas</NavLink>
           </li>
           <li className="li-navegation-cli">
-            <NavLink to="/client/home/finished" onClick={() => handleEstadoClick("finalizado")} className="link">Terminados</NavLink>
+            <NavLink to="/provider/home/accepted" onClick={() => handleEstadoClick("aceptadas")} className="link">Aceptadas</NavLink>
+          </li>
+          <li className="li-navegation-cli">
+            <NavLink to="/provider/home/finished" onClick={() => handleEstadoClick("terminadas")} className="link">Terminadas</NavLink>
           </li>
         </ul>
       </nav>
@@ -108,7 +110,6 @@ function Anuncios(props) {
         <span>{paginaActual} / {totalPaginas}</span>
         <button onClick={irAdelante} disabled={paginaActual === totalPaginas}>Adelante</button>
       </div>
-      <NuevaAnuncio handleAnunciosUpdate={handleAnunciosUpdate} />
     </div>
   );
 }
