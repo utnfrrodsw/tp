@@ -3,6 +3,12 @@ const fs = require('fs');
 const path = require('path');
 const { jsonResponse } = require("../../lib/jsonResponse");
 const {getSolicitudInfo} = require("../../lib/getSolicitudInfo");
+const PrestadorProfesiones = require('../../models/PrestadorProfesiones');
+const Profesion = require('../../models/Profesion');
+const Presupuesto = require('../../models/Presupuesto');
+const Sequelize = require('sequelize');
+const { Op } = Sequelize;
+
 
 const solicitudController = {
     getSolicitud: function (req, res){
@@ -145,7 +151,170 @@ const solicitudController = {
             res.status(500).json(jsonResponse(500, { message: 'Error en el servidor al cancelar solicitud' }));
           }
           
-    }
-};
+    },
+
+    getSolicitudesProfesion: async function (req, res){
+        try {
+        const idPrestador = req.params.id; 
+
+        // profesiones asociadas al prestador
+        const prestadorProfesiones = await db.PrestadorProfesiones.findAll({
+        attributes: ['idPrestador', 'idProfesion'],
+            where: {
+                idPrestador: idPrestador,
+            },
+        });
+
+        //Agarro solo ids 
+        const profesionIds = prestadorProfesiones.map(profesion => profesion.idProfesion);
+
+        const solicitudesPresupuestadas=await db.Presupuesto.findAll({
+        attributes: ['idSolicitud','idPrestador'],
+            where: {
+                idPrestador: idPrestador,
+            },
+        });
+        const presupuestoIds = solicitudesPresupuestadas.map(presu => presu.idSolicitud);
+        console.log(presupuestoIds);
+        console.log(profesionIds);
+        // Ahora, busca las solicitudes que tienen profesiones en la lista de IDs
+        await db.Solicitud.findAll({
+        attributes: ['idSolicitud','fechaHora','titulo','descripcion','estado','idDireccion','idProfesion'],
+            where: {
+                estado: 'activa',
+                idProfesion:profesionIds,
+                idSolicitud: {
+                                [Op.notIn]: presupuestoIds
+                        }
+            },
+            include: [
+                
+                {
+                    association: 'fotosSolicitud' 
+                },
+            ]
+            }).then( (solicitudesResponse) => {
+                console.log(solicitudesResponse);
+                const solicitudes = []
+
+                solicitudesResponse.map((solicitud) => {
+                
+                    const imgs = solicitud.fotosSolicitud.map((foto) => {
+                
+                        // Guarda la imagen como archivo individual
+                        const filePath = path.join(__dirname, '../../../public/images/imagesdb/' + foto.idfoto + '-fastServices.png');
+                        fs.writeFileSync(filePath, foto.foto);
+                
+                        return {
+                            id: foto.idfoto,
+                            foto: (foto.idfoto + '-fastServices.png'),// Proporciona la ruta al archivo
+                        };
+                    });
+                    solicitudes.push(getSolicitudInfo(solicitud, imgs));
+                });
+                
+                
+                res.status(200).json(jsonResponse(200, {
+                    message: "Solicitudes encontradas",
+                    //images: images,
+                    solicitudes: solicitudes
+                }))
+            })
+            .catch((error) => {
+            // Maneja cualquier error
+                res.status(500).json(jsonResponse(500, {
+                    message: "Error al buscar las solicitudes",
+                    solicitudes: [],
+                }));
+                
+            });
+        }catch(error){
+            console.error('Error al obtener solicitudes', error);
+            res.status(500).json({ message: 'Error en el servidor' });
+        };
+    },
+
+    getSolicitudesPresupuestadas: async function (req, res){
+        try {
+        const idPrestador = req.params.id; 
+
+        // profesiones asociadas al prestador
+        const prestadorProfesiones = await db.PrestadorProfesiones.findAll({
+        attributes: ['idPrestador', 'idProfesion'],
+            where: {
+                idPrestador: idPrestador,
+            },
+        });
+
+        //Agarro solo ids 
+        const profesionIds = prestadorProfesiones.map(profesion => profesion.idProfesion);
+
+        const solicitudesPresupuestadas=await db.Presupuesto.findAll({
+        attributes: ['idSolicitud','idPrestador'],
+            where: {
+                idPrestador: idPrestador,
+            },
+        });
+        const presupuestoIds = solicitudesPresupuestadas.map(presu => presu.idSolicitud);
+        console.log(presupuestoIds);
+        console.log(profesionIds);
+        // Ahora, busca las solicitudes que tienen profesiones en la lista de IDs
+        await db.Solicitud.findAll({
+        attributes: ['idSolicitud','fechaHora','titulo','descripcion','estado','idDireccion','idProfesion'],
+            where: {
+                estado: 'activa',
+                idProfesion:profesionIds,
+                idSolicitud: {
+                                [Op.in]: presupuestoIds
+                        }
+            },
+            include: [
+                
+                {
+                    association: 'fotosSolicitud' 
+                },
+            ]
+            }).then( (solicitudesResponse) => {
+                console.log(solicitudesResponse);
+                const solicitudes = []
+
+                solicitudesResponse.map((solicitud) => {
+                
+                    const imgs = solicitud.fotosSolicitud.map((foto) => {
+                
+                        // Guarda la imagen como archivo individual
+                        const filePath = path.join(__dirname, '../../../public/images/imagesdb/' + foto.idfoto + '-fastServices.png');
+                        fs.writeFileSync(filePath, foto.foto);
+                
+                        return {
+                            id: foto.idfoto,
+                            foto: (foto.idfoto + '-fastServices.png'),// Proporciona la ruta al archivo
+                        };
+                    });
+                    solicitudes.push(getSolicitudInfo(solicitud, imgs));
+                });
+                
+                
+                res.status(200).json(jsonResponse(200, {
+                    message: "Solicitudes encontradas",
+                    //images: images,
+                    solicitudes: solicitudes
+                }))
+            })
+            .catch((error) => {
+            // Maneja cualquier error
+                res.status(500).json(jsonResponse(500, {
+                    message: "Error al buscar las solicitudes",
+                    solicitudes: [],
+                }));
+                
+            });
+        }catch(error){
+            console.error('Error al obtener solicitudes', error);
+            res.status(500).json({ message: 'Error en el servidor' });
+        };
+    },
+    
+}
 
 module.exports = solicitudController;

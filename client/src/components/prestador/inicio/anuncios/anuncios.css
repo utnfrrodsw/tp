@@ -1,14 +1,39 @@
+.anuncios-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  /* Evita desbordamiento horizontal en pantallas pequeñas */
+}
+
 .anuncios-container .pagination {
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
 
 .anuncios-container div {
-  display: grid;
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   margin-top: 10px;
+}
+
+.navigation {
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #213555;
+}
+
+.ul-navegation-cli {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.li-navegation-cli {
+  margin: 10px;
 }
