@@ -34,7 +34,7 @@ module.exports = (sequelize, dataTypes) => {
       allowNull: false,
     },
     telefono: {
-      type: dataTypes.INTEGER,
+      type: dataTypes.STRING(20),
       allowNull: false,
     },
     esPrestador: {
@@ -71,5 +71,6 @@ module.exports = (sequelize, dataTypes) => {
   
   return Usuario;
 };
+
 
 
