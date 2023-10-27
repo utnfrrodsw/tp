@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const { jsonResponse } = require("../../lib/jsonResponse");
 const {getSolicitudInfo} = require("../../lib/getSolicitudInfo");
+const PrestadorProfesiones = require('../../models/PrestadorProfesiones');
+const Profesion = require('../../models/Profesion');
 
 const solicitudController = {
     getSolicitud: function (req, res){
@@ -148,6 +150,79 @@ const solicitudController = {
     },
 
     getSolicitudesProfesion: async function (req, res){
+        try {
+        const idPrestador = req.params.id; 
+        const estado = req.params.estado;
+
+        // profesiones asociadas al prestador
+        const prestadorProfesiones = await db.PrestadorProfesiones.findAll({
+        attributes: ['idprestador', 'idProfesion'],
+            where: {
+                idprestador: idPrestador,
+            },
+        });
+
+        //Agarro solo ids 
+        const profesionIds = prestadorProfesiones.map(profesion => profesion.idProfesion);
+
+        // Ahora, busca las solicitudes que tienen profesiones en la lista de IDs
+        await db.Solicitud.findAll({
+            where: {
+                estado: estado,
+            },
+            include: [
+                {
+                    association: 'profesiones',
+                    where: {
+                        idProfesion: profesionIds, // Usar la lista de IDs de profesiones del prestador
+                    },
+                },
+                {
+                    association: 'fotosSolicitud' 
+                },
+            ]
+            }).then( (solicitudesResponse) => {
+
+                const solicitudes = []
+
+                solicitudesResponse.map((solicitud) => {
+                
+                    const imgs = solicitud.fotosSolicitud.map((foto) => {
+                
+                        // Guarda la imagen como archivo individual
+                        const filePath = path.join(__dirname, '../../../public/images/imagesdb/' + foto.idfoto + '-fastServices.png');
+                        fs.writeFileSync(filePath, foto.foto);
+                
+                        return {
+                            id: foto.idfoto,
+                            foto: (foto.idfoto + '-fastServices.png'),// Proporciona la ruta al archivo
+                        };
+                    });
+                    solicitudes.push(getSolicitudInfo(solicitud, imgs));
+                });
+                
+                
+                res.status(200).json(jsonResponse(200, {
+                    message: "Solicitudes encontradas",
+                    //images: images,
+                    solicitudes: solicitudes
+                }))
+            })
+            .catch((error) => {
+            // Maneja cualquier error
+                res.status(500).json(jsonResponse(500, {
+                    message: "Error al buscar las solicitudes",
+                    solicitudes: [],
+                }));
+                
+            });
+        }catch(error){
+            console.error('Error al obtener solicitudes', error);
+            res.status(500).json({ message: 'Error en el servidor' });
+        };
+    },
+
+    getSolicitudesPresupuestadas: async function (req, res){
         try{ 
             const id = req.params.id; 
             const estado = req.params.estado; 
@@ -156,16 +231,10 @@ const solicitudController = {
             where: {
                 estado: estado
             },
-            include: [{
-                association: 'profesiones',
-                where: {
-                    idProfesion: 11
-                },
-                },
-                {
-                    association: 'fotosSolicitud' // Si necesitas acceder a las fotos de las solicitudes
-                },
-            ]
+            
+            
+                association: 'fotosSolicitud' // Si necesitas acceder a las fotos de las solicitudes
+                        
             }).then( (solicitudesResponse) => {
 
                 const solicitudes = []
