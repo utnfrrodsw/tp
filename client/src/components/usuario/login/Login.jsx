@@ -9,6 +9,8 @@ function Login () {
   const [constrasena, setConstrasena] = useState('');
   const [errorResponse, setErrorResponse] = useState(null); // Estado para mensajes de error
   const goTo = useNavigate();
+  const auth = useAuth();
+
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -50,7 +52,6 @@ function Login () {
     }
   };
 
-  const auth = useAuth();
   if(auth.isAuthenticated){
     return <Navigate to="/client/home" />;
   }

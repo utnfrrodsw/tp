@@ -140,7 +140,7 @@ const usuarioController = {
             console.log(error);
           }
           console.log("inicio sesion correctamente");
-          res.status(200).json(jsonResponse(200, {message: 'Inicio de sesión exitoso', user: getUserInfo(user), token, refreshToken}));
+          res.status(200).json(jsonResponse(200, {message: 'Inicio de sesión exitoso', user, token, refreshToken}));
         }else{
           res.status(401).json(jsonResponse(401, {
             message: 'Usuario o contraseña incorrectos' 

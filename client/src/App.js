@@ -21,10 +21,12 @@ import ProtectedRouteProvider from './components/Routes/ProtectedRouteProvider.j
 import ProtectedRouteClient from './components/Routes/ProtectedRouteClient.jsx';
 import ProtectedRouteUser from './components/Routes/ProtectedRouteUser.jsx';
 
+
 import './App.css';
 
 
 function App() {
+
 
   return (
     <div className="App">
@@ -58,9 +60,9 @@ function App() {
           {/*cliente*/}
           <Route path='/' element={<ProtectedRouteClient/>}>
             <Route path='/client/home'  element={ <InicioCliente/>}/>
-            <Route path='/client/home/active'  element={ <Solicitudes estado = "activa"/>}/>
-            <Route path='/client/home/progress'  element={ <Solicitudes estado = "progreso"/>}/> 
-            <Route path='/client/home/finished'  element={ <Solicitudes estado = "terminado"/>}/>
+            <Route path='/client/home/active'  element={ <Solicitudes estado = "activa" />}/>
+            <Route path='/client/home/progress'  element={ <Solicitudes estado = "progreso" />}/> 
+            <Route path='/client/home/finished'  element={ <Solicitudes estado = "terminado" />}/>
           </Route>
           
           <Route path="*" errorElement={<Error/>}/>;
