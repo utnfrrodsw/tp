@@ -32,6 +32,7 @@ app.use('/api/solicitud', solicitudRoutes);
 app.use('/api/direccion', direccionesRoutes);
 app.use('/api/profesion', profesionesRouter);
 
+
 app.use((req, res, next) =>{
     res.status(404).json({
         message: 'no se encontro la ruta'

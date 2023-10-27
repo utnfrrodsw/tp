@@ -14,10 +14,10 @@ function Anuncios(props) {
   const [load, setLoad] = useState(false);
   const auth = useAuth();
   const user = auth.getUser();
-
+  const userData=JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     setLoad(true);
-    fetch(`${API_URL}/anuncio/${props.estado}/cliente/${user.id}`)
+    fetch(`${API_URL}/anuncio/${props.estado}/prestador/${user.id}`)
       .then((res) => res.json())
       .then((data) => {
         setAnuncios(data.body.anuncios);

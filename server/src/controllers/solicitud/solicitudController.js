@@ -5,6 +5,10 @@ const { jsonResponse } = require("../../lib/jsonResponse");
 const {getSolicitudInfo} = require("../../lib/getSolicitudInfo");
 const PrestadorProfesiones = require('../../models/PrestadorProfesiones');
 const Profesion = require('../../models/Profesion');
+const Presupuesto = require('../../models/Presupuesto');
+const Sequelize = require('sequelize');
+const { Op } = Sequelize;
+
 
 const solicitudController = {
     getSolicitud: function (req, res){
@@ -152,37 +156,45 @@ const solicitudController = {
     getSolicitudesProfesion: async function (req, res){
         try {
         const idPrestador = req.params.id; 
-        const estado = req.params.estado;
 
         // profesiones asociadas al prestador
         const prestadorProfesiones = await db.PrestadorProfesiones.findAll({
-        attributes: ['idprestador', 'idProfesion'],
+        attributes: ['idPrestador', 'idProfesion'],
             where: {
-                idprestador: idPrestador,
+                idPrestador: idPrestador,
             },
         });
 
         //Agarro solo ids 
         const profesionIds = prestadorProfesiones.map(profesion => profesion.idProfesion);
 
+        const solicitudesPresupuestadas=await db.Presupuesto.findAll({
+        attributes: ['idSolicitud','idPrestador'],
+            where: {
+                idPrestador: idPrestador,
+            },
+        });
+        const presupuestoIds = solicitudesPresupuestadas.map(presu => presu.idSolicitud);
+        console.log(presupuestoIds);
+        console.log(profesionIds);
         // Ahora, busca las solicitudes que tienen profesiones en la lista de IDs
         await db.Solicitud.findAll({
+        attributes: ['idSolicitud','fechaHora','titulo','descripcion','estado','idDireccion','idProfesion'],
             where: {
-                estado: estado,
+                estado: 'activa',
+                idProfesion:profesionIds,
+                idSolicitud: {
+                                [Op.notIn]: presupuestoIds
+                        }
             },
             include: [
-                {
-                    association: 'profesiones',
-                    where: {
-                        idProfesion: profesionIds, // Usar la lista de IDs de profesiones del prestador
-                    },
-                },
+                
                 {
                     association: 'fotosSolicitud' 
                 },
             ]
             }).then( (solicitudesResponse) => {
-
+                console.log(solicitudesResponse);
                 const solicitudes = []
 
                 solicitudesResponse.map((solicitud) => {
@@ -223,20 +235,47 @@ const solicitudController = {
     },
 
     getSolicitudesPresupuestadas: async function (req, res){
-        try{ 
-            const id = req.params.id; 
-            const estado = req.params.estado; 
-            
-            await db.Solicitud.findAll({
-            where: {
-                estado: estado
-            },
-            
-            
-                association: 'fotosSolicitud' // Si necesitas acceder a las fotos de las solicitudes
-                        
-            }).then( (solicitudesResponse) => {
+        try {
+        const idPrestador = req.params.id; 
 
+        // profesiones asociadas al prestador
+        const prestadorProfesiones = await db.PrestadorProfesiones.findAll({
+        attributes: ['idPrestador', 'idProfesion'],
+            where: {
+                idPrestador: idPrestador,
+            },
+        });
+
+        //Agarro solo ids 
+        const profesionIds = prestadorProfesiones.map(profesion => profesion.idProfesion);
+
+        const solicitudesPresupuestadas=await db.Presupuesto.findAll({
+        attributes: ['idSolicitud','idPrestador'],
+            where: {
+                idPrestador: idPrestador,
+            },
+        });
+        const presupuestoIds = solicitudesPresupuestadas.map(presu => presu.idSolicitud);
+        console.log(presupuestoIds);
+        console.log(profesionIds);
+        // Ahora, busca las solicitudes que tienen profesiones en la lista de IDs
+        await db.Solicitud.findAll({
+        attributes: ['idSolicitud','fechaHora','titulo','descripcion','estado','idDireccion','idProfesion'],
+            where: {
+                estado: 'activa',
+                idProfesion:profesionIds,
+                idSolicitud: {
+                                [Op.in]: presupuestoIds
+                        }
+            },
+            include: [
+                
+                {
+                    association: 'fotosSolicitud' 
+                },
+            ]
+            }).then( (solicitudesResponse) => {
+                console.log(solicitudesResponse);
                 const solicitudes = []
 
                 solicitudesResponse.map((solicitud) => {
@@ -274,7 +313,8 @@ const solicitudController = {
             console.error('Error al obtener solicitudes', error);
             res.status(500).json({ message: 'Error en el servidor' });
         };
-}
+    },
+    
 }
 
 module.exports = solicitudController;
