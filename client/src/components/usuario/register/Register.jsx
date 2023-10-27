@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap'; // Importa los componentes del modal
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../auth/authProvider';
 import './Register.css';
@@ -6,31 +7,48 @@ const { API_URL } = require('../../../auth/constants');
 
 function Register() {
   const goTo = useNavigate();
-
+  const [showModal, setShowModal] = useState(false); // Controla la visualización del modal
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [confirmContrasena, setConfirmContrasena] = useState('');
   const [telefono, setTelefono] = useState('');
-  const [direccion, setDireccion] = useState('');
-  const [codPostal, setCodPostal] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [esPrestador, setEsPrestador] = useState(false);
   const [especialidades, setEspecialidades] = useState([]);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [errorResponse, setErrorResponse] = useState(null);
   const auth = useAuth();
+  
+  const [nuevaEspecialidad, setNuevaEspecialidad] = useState('');
+  
 
-  const especialidadesList = ['Electricista', 'Plomero', 'Gasista', 'Carpintero'];
+  // Función para abrir el modal de agregar especialidad
+  const handleModalOpen = () => {
+    setShowModal(true);
+  };
 
-  const handleEspecialidadChange = (e) => {
-    const especialidad = e.target.value;
-    if (especialidades.includes(especialidad)) {
-      setEspecialidades(especialidades.filter((item) => item !== especialidad));
-    } else {
-      setEspecialidades([...especialidades, especialidad]);
+  // Función para cerrar el modal de agregar especialidad
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
+
+  const handleAgregarEspecialidad = () => {
+    if (nuevaEspecialidad) {
+      const especialidadEnMinuscula = nuevaEspecialidad.toLowerCase();
+      setEspecialidades([...especialidades, especialidadEnMinuscula]);
+      setNuevaEspecialidad('');
+      setShowModal(false);
     }
+  };
+  
+  
+  const handleEliminarEspecialidad = (index) => {
+    const nuevasEspecialidades = [...especialidades];
+    nuevasEspecialidades.splice(index, 1);
+    setEspecialidades(nuevasEspecialidades);
   };
 
   async function handleRegister(e) {
@@ -48,14 +66,12 @@ function Register() {
           contrasena,
           confirmContrasena,
           telefono,
-          direccion,
-          codPostal,
           fechaNacimiento,
           esPrestador,
-          especialidades,
+          especialidades, // Incluye las especialidades en el cuerpo de la solicitud
         }),
       });
-
+  
       if (response.ok) {
         console.log('Usuario registrado');
         setErrorResponse("");
@@ -76,6 +92,7 @@ function Register() {
   if (auth.isAuthenticated) {
     return <Navigate to="/" />;
   }
+
 
   return (
     <section className="fondoRegister">
@@ -136,24 +153,7 @@ function Register() {
               onChange={(e) => setTelefono(e.target.value)}
             />
           </div>
-          <div className='name-inputs'>
-            <div className="input-box">
-              <input
-                type="text"
-                placeholder="Código Postal"
-                value={codPostal}
-                onChange={(e) => setCodPostal(e.target.value)}
-              />
-            </div>
-            <div className="input-box">
-              <input
-                type="text"
-                placeholder="Dirección"
-                value={direccion}
-                onChange={(e) => setDireccion(e.target.value)}
-              />
-            </div>
-          </div>
+
           <div className="input-box">
             <input
               type="date"
@@ -174,25 +174,57 @@ function Register() {
             </label>
           </div>
           {esPrestador && (
-            <div className="checkbox-container">
-              {especialidadesList.map((esp, index) => (
-                <div className='labelCheckbox' key={index}>
-                  <label>{esp}</label>
-                  <input
-                    type="checkbox"
-                    value={esp}
-                    checked={especialidades.includes(esp)}
-                    onChange={handleEspecialidadChange}
-                  />
-                </div>
-              ))}
+            <div className="especialidades-section">
+              <div className="especialidades-list">
+                {especialidades.map((esp, index) => (
+                  <div key={index} className="especialidad-item">
+                    {esp}
+                    <button
+                      className="eliminarEspecialidad"
+                      onClick={() => handleEliminarEspecialidad(index)}
+                    >
+                      &#10005; {/* Código de la cruz (X) */}
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <button className="botonEspecialidad btn-small" type="button" onClick={handleModalOpen} >
+                
+                Agregar Especialidad
+              </button>
             </div>
           )}
-
+          
           <button type="submit" className="btn">
             Registrarse
           </button>
         </form>
+        
+        <Modal show={showModal} onHide={handleModalClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Agregar Especialidad</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="form-group">
+              <label>Nueva Especialidad</label>
+              <input
+                type="text"
+                placeholder="Ej: Gasista"
+                value={nuevaEspecialidad}
+                onChange={(e) => setNuevaEspecialidad(e.target.value)}
+              />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleModalClose}>
+              Cerrar
+            </Button>
+            <Button variant="primary" onClick={handleAgregarEspecialidad}>
+              Agregar
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
         {!!errorResponse && (
           <div className="error-message">{errorResponse.message}</div>
         )}
