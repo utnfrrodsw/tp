@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Servicio = sequelize.define('Servicio', {
-      idAnuncio: {
+      idSolicitud: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -24,11 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     Servicio.associate = function (models) {
       //  relación con la tabla Presupuesto
       Servicio.belongsTo(models.Presupuesto, {
-        foreignKey: {
-          name: 'idAnuncio',
-          allowNull: false,
-        },
-        targetKey: 'idAnuncio',
+        foreignKey:'idSolicitud',
         as: 'presupuesto',
       });
   

@@ -52,6 +52,10 @@ module.exports = (sequelize, dataTypes) => {
       as: 'profesiones',
       foreignKey: 'idProfesion', // Clave foránea en Solicitud
     });
+    Solicitud.hasMany(models.Presupuesto,{
+      as: 'Presupuestos',
+      foreignKey: 'idSolicitud',
+    });
   };
   return Solicitud;
 }

@@ -1,60 +1,116 @@
-import React, {useState} from "react";
-import Anuncio from '../anuncio/Anuncio';
-import './anuncios.css'
+import React, { useEffect, useState } from "react";
+import { NavLink } from "../../navlink/Navlink.jsx";
+import { NuevaAnuncio } from "../nuevaAnuncio/NuevaAnuncio.jsx";
+import Anuncio from "../anuncio/Anuncio.jsx";
+import "./anuncios.css";
+import { API_URL } from "../../../auth/constants.js";
+import { useAuth } from "../../../auth/authProvider.jsx";
+import LoaderFijo from "../../load/loaderFijo/LoaderFijo.jsx";
 
 function Anuncios(props) {
-const text= 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt ipsum numquam consequuntur temporibus nobis adipisci voluptate delectus, velit, saepe, omnis est incidunt ullam iusto facilis totam minima atque dolorem sunt?'
-const linkcito= 'https://unavatar.io/kikobeats?ttl=1h'    
-const anuncios = [
-        { id: 1, titulo: 'Se busca plomero', descripcion: text, nombre: 'Pablo Perez' ,foto: linkcito},
-        { titulo: 'Se busca todo', descripcion: text, nombre: 'Claudio Perez' ,foto: linkcito},
-        { titulo: 'Se busca electricista', descripcion: text, nombre: 'Enzo Perez' ,foto: linkcito},
-        { titulo: 'Se busca gasista', descripcion: text, nombre: 'Javier Perez' ,foto: linkcito},
-        // Esto lo saco de la base de datos
-    ];
-    
-    const anunciosPorPagina = 3;
-    const [paginaActual, setPaginaActual] = useState(1);
-    const totalPaginas = Math.ceil(anuncios.length / anunciosPorPagina);
+  const [anuncios, setAnuncios] = useState([]);
+  const [anunciosUpdate, setAnunciosUpdate] = useState(false);
+  const [estado, setEstado] = useState("");
+  const [load, setLoad] = useState(false);
+  const auth = useAuth();
+  const user = auth.getUser();
+  const userData=JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    setLoad(true);
+    fetch(`${API_URL}/anuncio/${props.estado}/prestador/${user.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setAnuncios(data.body.anuncios);
+        console.log(data.body.anuncios);
+        setAnunciosUpdate(false);
+        setLoad(false);
+        console.log("anuncios con estado " + estado + ": " + data.body.anuncios);
+      })
+      .catch((error) => {
+        setLoad(false);
+        console.log(error);
+        console.error('Error al cargar anuncios:', error);
+      });
+  }, [anunciosUpdate, estado, user.id]);
 
-    const indiceInicio = (paginaActual - 1) * anunciosPorPagina;
-    const AnunciosPagina = anuncios.slice(indiceInicio, indiceInicio + anunciosPorPagina);
+  const [paginaActual, setPaginaActual] = useState(1);
+  const anunciosPorPagina = 3;
+  const totalPaginas = Math.ceil(anuncios.length / anunciosPorPagina);
+  const indiceInicio = (paginaActual - 1) * anunciosPorPagina;
+  const AnunciosPagina = anuncios.slice(indiceInicio, indiceInicio + anunciosPorPagina);
 
-    const irAtras = () => {
-        if (paginaActual > 1) {
-        setPaginaActual(paginaActual - 1);
-        }
-    };
+  const irAtras = () => {
+    if (paginaActual > 1) {
+      setPaginaActual(paginaActual - 1);
+    }
+  };
 
-    const irAdelante = () => {
-        if (paginaActual < totalPaginas) {
-        setPaginaActual(paginaActual + 1);
-        }
-    };
+  const irAdelante = () => {
+    if (paginaActual < totalPaginas) {
+      setPaginaActual(paginaActual + 1);
+    }
+  };
 
-    return (
-        <div className="anuncios-container">
+  const handleAnunciosUpdate = () => {
+    setAnunciosUpdate(true);
+  };
+
+  const handleEstadoClick = (nuevoEstado) => {
+    setEstado(nuevoEstado);
+  };
+
+  return (
+    <div className="anuncios-container">
+      <nav className="navigation">
+        <ul className="ul-navegation-cli">
+          <li className="li-navegation-cli">
+            <NavLink to="/client/home/active" onClick={() => handleEstadoClick("activa")} className="link">Activas</NavLink>
+          </li>
+          <li className="li-navegation-cli">
+            <NavLink to="/client/home/progress" onClick={() => handleEstadoClick("progreso")} className="link">En Progreso</NavLink>
+          </li>
+          <li className="li-navegation-cli">
+            <NavLink to="/client/home/finished" onClick={() => handleEstadoClick("finalizado")} className="link">Terminados</NavLink>
+          </li>
+        </ul>
+      </nav>
+
+      <div className="anuncios">
+        {load === false ? (
+          AnunciosPagina.length > 0 ? (
+            AnunciosPagina.map((anuncio) => (
+              <Anuncio
+                handleAnunciosUpdate={handleAnunciosUpdate}
+                key={anuncio.id}
+                id={anuncio.id}
+                titulo={anuncio.titulo}
+                profesion={anuncio.profesion}
+                fecha={anuncio.fechaHora}
+                direccion={anuncio.direccion}
+                descripcion={anuncio.descripcion}
+                estado={anuncio.estado}
+                fotos={anuncio.fotos}
+              />
+            ))
+          ) : (
             <div>
-                {AnunciosPagina.map((anuncio, index) => (
-                <Anuncio 
-                    key={index}
-                    id={anuncio.id} 
-                    titulo={anuncio.titulo}
-                    descripcion={anuncio.descripcion}
-                    nombre={anuncio.nombre}
-                    linkcito={anuncio.linkcito}
-                    fecha={anuncio.fecha}
-                    ubicacion={anuncio.ubicacion}
-                />
-                ))}
+              <h1>No hay anuncios {props.estado}</h1>
             </div>
-            <div className="pagination">
-                <button onClick={irAtras} disabled={paginaActual === 1}>Atrás</button>
-                <span>{paginaActual} / {totalPaginas}</span>
-                <button onClick={irAdelante} disabled={paginaActual === totalPaginas}>Adelante</button>
-            </div>
-        </div>   
-    )
+          )
+        ) : (
+          <div>
+            <LoaderFijo />
+          </div>
+        )}
+      </div>
+      <div className="pagination">
+        <button onClick={irAtras} disabled={paginaActual === 1}>Atrás</button>
+        <span>{paginaActual} / {totalPaginas}</span>
+        <button onClick={irAdelante} disabled={paginaActual === totalPaginas}>Adelante</button>
+      </div>
+      <NuevaAnuncio handleAnunciosUpdate={handleAnunciosUpdate} />
+    </div>
+  );
 }
 
 export default Anuncios;
