@@ -16,14 +16,13 @@ function Anuncios(props) {
   const userData=JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     setLoad(true);
-    fetch(`${API_URL}/${props.estado}/prestador/${user.id}`)
+    fetch(`${API_URL}/solicitud/${props.estado}/prestador/${user.id}`)
       .then((res) => res.json())
       .then((data) => {
-        setAnuncios(data.body.anuncios);
-        console.log(data.body.anuncios);
+        setAnuncios(data.body.solicitudes);
+        console.log(data.body.solicitudes);
         setAnunciosUpdate(false);
         setLoad(false);
-        console.log("anuncios con estado " + estado + ": " + data.body.anuncios);
       })
       .catch((error) => {
         setLoad(false);
@@ -57,7 +56,6 @@ function Anuncios(props) {
   const handleEstadoClick = (nuevoEstado) => {
     setEstado(nuevoEstado);
   };
-
   return (
     <div className="anuncios-container">
       <nav className="navigation">
@@ -86,11 +84,9 @@ function Anuncios(props) {
                 key={anuncio.id}
                 id={anuncio.id}
                 titulo={anuncio.titulo}
-                profesion={anuncio.profesion}
                 fecha={anuncio.fechaHora}
                 direccion={anuncio.direccion}
                 descripcion={anuncio.descripcion}
-                estado={anuncio.estado}
                 fotos={anuncio.fotos}
               />
             ))

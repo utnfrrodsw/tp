@@ -13,7 +13,6 @@ function Anuncio(props) {
     <div className={`anuncioprincipal-card ${show ? 'anuncioprincipal-card' : 'anuncioprincipal-fullcontent'}`}>
       <div>
         <h1 className='titulo-anuncio'>{props.titulo}</h1>
-        <p className='fecha-anuncio'>{props.profesion.nombreProfesion}</p>
         <p className='fecha-anuncio'>
           {dateTime.getDay()}/{dateTime.getMonth()}/{dateTime.getFullYear()} {dateTime.getHours()}:{dateTime.getMinutes()}hs
         </p>
@@ -56,14 +55,14 @@ function Anuncio(props) {
         </div>
       )}
       {show ? (
-        <button className='boton-anuncio' onClick={() => setShow(!show)}>
-          Ver {show ? 'más' : 'menos'}
-        </button>
-      ) : (
-        <button className='boton-anuncio' onClick={() => setShow(!show)}>
-          Ver {show ? 'más' : 'menos'}
-        </button>
-      )}
+          <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+          ): (
+          <div>
+            : <></>
+            <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+            <button className='boton-anuncio' >Presupuestar</button>
+          </div>
+          )}
     </div>
   );
 }

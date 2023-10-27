@@ -7,6 +7,7 @@ const PrestadorProfesiones = require('../../models/PrestadorProfesiones');
 const Profesion = require('../../models/Profesion');
 const Presupuesto = require('../../models/Presupuesto');
 const Sequelize = require('sequelize');
+const { getSolicitudInfoPres } = require('../../lib/getSolicitudInfoPres');
 const { Op } = Sequelize;
 
 
@@ -166,23 +167,33 @@ const solicitudController = {
             where: {
                 idPrestador: idPrestador,
             },
-        });
+        }); 
+        const profesionIds = prestadorProfesiones.map(profesion => profesion.idProfesion); //Agarro solo ids
 
-        //Agarro solo ids 
-        const profesionIds = prestadorProfesiones.map(profesion => profesion.idProfesion);
-
+        //Solicitudes ya presupuestadas
         const solicitudesPresupuestadas=await db.Presupuesto.findAll({
         attributes: ['idSolicitud','idPrestador'],
             where: {
                 idPrestador: idPrestador,
             },
         });
-        const presupuestoIds = solicitudesPresupuestadas.map(presu => presu.idSolicitud);
+        const presupuestoIds = solicitudesPresupuestadas.map(presu => presu.idSolicitud); //Agarro solo ids
+
+        //Misma localidad para el prestador y la solicitud
+        const prestadorCiudad = await db.Direccion.findAll({
+        attributes: ['idUsuario', 'codPostal'],
+            where: {
+                idUsuario: idPrestador,
+            },
+        });
+        const codPostalPres = prestadorCiudad.map(dir => dir.codPostal);
+
+
         console.log(presupuestoIds);
         console.log(profesionIds);
+        console.log(codPostalPres);
         // Ahora, busca las solicitudes que tienen profesiones en la lista de IDs
         await db.Solicitud.findAll({
-        attributes: ['idSolicitud','fechaHora','titulo','descripcion','estado','idDireccion','idProfesion'],
             where: {
                 estado: 'activa',
                 idProfesion:profesionIds,
@@ -191,7 +202,12 @@ const solicitudController = {
                         }
             },
             include: [
-                
+                {
+                    association: 'direccion',
+                    where:{
+                        codPostal:codPostalPres,
+                    }
+                },
                 {
                     association: 'fotosSolicitud' 
                 },
@@ -213,7 +229,8 @@ const solicitudController = {
                             foto: (foto.idfoto + '-fastServices.png'),// Proporciona la ruta al archivo
                         };
                     });
-                    solicitudes.push(getSolicitudInfo(solicitud, imgs));
+                    console.log('Hola');
+                    solicitudes.push(getSolicitudInfoPres(solicitud, imgs));
                 });
                 
                 
@@ -272,7 +289,9 @@ const solicitudController = {
                         }
             },
             include: [
-                
+                {
+                    association: 'direccion'
+                },
                 {
                     association: 'fotosSolicitud' 
                 },
@@ -294,7 +313,7 @@ const solicitudController = {
                             foto: (foto.idfoto + '-fastServices.png'),// Proporciona la ruta al archivo
                         };
                     });
-                    solicitudes.push(getSolicitudInfo(solicitud, imgs));
+                    solicitudes.push(getSolicitudInfoPres(solicitud, imgs));
                 });
                 
                 
