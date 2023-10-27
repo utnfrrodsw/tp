@@ -7,6 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { DatePipe, registerLocaleData, CommonModule } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import {HttpClientModule} from '@angular/common/http';
 
 /* BOOTSTRAP */
 import { PaginationModule } from 'ngx-bootstrap/pagination';

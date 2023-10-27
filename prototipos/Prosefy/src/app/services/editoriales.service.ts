@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 
 export interface Editorial {
   id: number;
@@ -12,7 +14,7 @@ export interface Editorial {
   providedIn: 'root',
 })
 export class EditorialesService {
-  private editoriales: Editorial[] = [
+  /*private editoriales: Editorial[] = [
     {
       id: 1,
       nombre: 'Editorial BOOKRACK',
@@ -52,5 +54,16 @@ export class EditorialesService {
 
   getEditoriales(): Editorial[] {
     return this.editoriales;
+  }*/
+
+
+  private apiUrl = 'https://localhost:3000/api/editoriales';
+
+  constructor(private http: HttpClient) {}
+
+  getEditoriales() {
+    return this.http.get(this.apiUrl);
+  
   }
+
 }
