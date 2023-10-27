@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      idPrestador: {
+      idUsuario: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -30,10 +30,10 @@ module.exports = (sequelize, DataTypes) => {
   
       Servicio.belongsTo(models.Presupuesto, {
         foreignKey: {
-          name: 'idPrestador',
+          name: 'idUsuario',
           allowNull: false,
         },
-        targetKey: 'idPrestador',
+        targetKey: 'idUsuario',
         as: 'presupuestoPrestador',
       });
     };
