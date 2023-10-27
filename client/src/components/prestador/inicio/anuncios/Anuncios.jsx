@@ -73,6 +73,7 @@ function Anuncios(props) {
             <NavLink to="/provider/home/finished" onClick={() => handleEstadoClick("terminadas")} className="link">Terminadas</NavLink>
           </li>
         </ul>
+
       </nav>
 
       <div className="anuncios">

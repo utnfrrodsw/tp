@@ -17,6 +17,7 @@ router.get('/nuevas/prestador/:id', solicitudController.getSolicitudesProfesion)
 
 router.get('/presupuestadas/prestador/:id',solicitudController.getSolicitudesPresupuestadas); 
 
-router.get('/aceptadas/prestador/:id',solicitudController.getSolicitudesPresupuestadas); 
+router.get('/aceptadas/prestador/:id',solicitudController.getSolicitudesAceptadas);
+
 
 module.exports=router;

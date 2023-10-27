@@ -172,9 +172,9 @@ const solicitudController = {
 
         //Solicitudes ya presupuestadas
         const solicitudesPresupuestadas=await db.Presupuesto.findAll({
-        attributes: ['idSolicitud','idPrestador'],
+        attributes: ['idSolicitud','idUsuario'],
             where: {
-                idPrestador: idPrestador,
+                idUsuario: idPrestador,
             },
         });
         const presupuestoIds = solicitudesPresupuestadas.map(presu => presu.idSolicitud); //Agarro solo ids
@@ -229,7 +229,6 @@ const solicitudController = {
                             foto: (foto.idfoto + '-fastServices.png'),// Proporciona la ruta al archivo
                         };
                     });
-                    console.log('Hola');
                     solicitudes.push(getSolicitudInfoPres(solicitud, imgs));
                 });
                 
@@ -258,34 +257,31 @@ const solicitudController = {
         try {
         const idPrestador = req.params.id; 
 
-        // profesiones asociadas al prestador
-        const prestadorProfesiones = await db.PrestadorProfesiones.findAll({
-        attributes: ['idPrestador', 'idProfesion'],
+        //Busco el id de las solicitudes que presupueste
+        const solicitudesPresupuestadas=await db.Presupuesto.findAll({
+        attributes: ['idSolicitud','idUsuario'],
             where: {
-                idPrestador: idPrestador,
+                idUsuario: idPrestador,
             },
         });
-
-        //Agarro solo ids 
-        const profesionIds = prestadorProfesiones.map(profesion => profesion.idProfesion);
-
-        const solicitudesPresupuestadas=await db.Presupuesto.findAll({
+        const presupuestoIds = solicitudesPresupuestadas.map(presu => presu.idSolicitud);
+        
+        //Busco el id de los presupuestos que me aceptaron
+        const servicios=await db.Servicio.findAll({
         attributes: ['idSolicitud','idPrestador'],
             where: {
                 idPrestador: idPrestador,
             },
         });
-        const presupuestoIds = solicitudesPresupuestadas.map(presu => presu.idSolicitud);
-        console.log(presupuestoIds);
-        console.log(profesionIds);
-        // Ahora, busca las solicitudes que tienen profesiones en la lista de IDs
+        const serviciosIds = servicios.map(ser => ser.idSolicitud);
+
+        // Ahora, busca las solicitudes presupuestadas por mi que no me aceptaron
         await db.Solicitud.findAll({
         attributes: ['idSolicitud','fechaHora','titulo','descripcion','estado','idDireccion','idProfesion'],
             where: {
-                estado: 'activa',
-                idProfesion:profesionIds,
                 idSolicitud: {
-                                [Op.in]: presupuestoIds
+                                [Op.in]: presupuestoIds,
+                                [Op.notIn]: serviciosIds
                         }
             },
             include: [
@@ -297,7 +293,75 @@ const solicitudController = {
                 },
             ]
             }).then( (solicitudesResponse) => {
-                console.log(solicitudesResponse);
+                const solicitudes = []
+
+                solicitudesResponse.map((solicitud) => {
+                
+                    const imgs = solicitud.fotosSolicitud.map((foto) => {
+                
+                        // Guarda la imagen como archivo individual
+                        const filePath = path.join(__dirname, '../../../public/images/imagesdb/' + foto.idfoto + '-fastServices.png');
+                        fs.writeFileSync(filePath, foto.foto);
+                
+                        return {
+                            id: foto.idfoto,
+                            foto: (foto.idfoto + '-fastServices.png'),// Proporciona la ruta al archivo
+                        };
+                    });
+                    solicitudes.push(getSolicitudInfoPres(solicitud, imgs));
+                });
+                
+                
+                res.status(200).json(jsonResponse(200, {
+                    message: "Solicitudes encontradas",
+                    //images: images,
+                    solicitudes: solicitudes
+                }))
+            })
+            .catch((error) => {
+            // Maneja cualquier error
+                res.status(500).json(jsonResponse(500, {
+                    message: "Error al buscar las solicitudes",
+                    solicitudes: [],
+                }));
+                
+            });
+        }catch(error){
+            console.error('Error al obtener solicitudes', error);
+            res.status(500).json({ message: 'Error en el servidor' });
+        };
+    },
+
+    getSolicitudesAceptadas: async function (req, res){
+        try {
+        const idPrestador = req.params.id; 
+
+        //Busco el id de los presupuestos que me aceptaron
+        const servicios=await db.Servicio.findAll({
+        attributes: ['idSolicitud','idPrestador'],
+            where: {
+                idPrestador: idPrestador,
+            },
+        });
+        const serviciosIds = servicios.map(ser => ser.idSolicitud);
+
+        // Ahora, busca las solicitudes que me aceptaron
+        await db.Solicitud.findAll({
+        attributes: ['idSolicitud','fechaHora','titulo','descripcion','estado','idDireccion','idProfesion'],
+            where: {
+                idSolicitud: {
+                                [Op.in]: serviciosIds
+                        }
+            },
+            include: [
+                {
+                    association: 'direccion'
+                },
+                {
+                    association: 'fotosSolicitud' 
+                },
+            ]
+            }).then( (solicitudesResponse) => {
                 const solicitudes = []
 
                 solicitudesResponse.map((solicitud) => {
