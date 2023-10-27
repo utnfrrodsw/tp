@@ -4,7 +4,6 @@ import { API_URL } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider';
 import { Modal, Carousel, Container, Image} from 'react-bootstrap';
 import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Solicitud(props){
 
@@ -81,7 +80,7 @@ function Solicitud(props){
               <p className='descripcion-solicitud'>{props.descripcion}</p>
               <section className='botones'>
                 <button className='fotos' onClick={() => setVerfotos(true)}>ver fotos</button>
-                  <Modal show={verfotos} onHide={() => setVerfotos(false)} fullscreen={true}>
+                  <Modal show={verfotos} onHide={() => setVerfotos(false)} fullscreen={true} className='modales-solicitud'>
                     <Modal.Header closeButton>
                       <Modal.Title>Fotos</Modal.Title>
                     </Modal.Header>
@@ -101,11 +100,11 @@ function Solicitud(props){
                 {props.estado === "activa" ? (
                 <>
                   <button className='ver-presupuestos-button' onClick={() => setVerPresupuestos(true)} >ver presupuestos</button>
-                  <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true}>
+                  <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true} className='modales-solicitud'>
                       <Modal.Header closeButton>
                         <Modal.Title>Presupuestos</Modal.Title>
                       </Modal.Header>
-                      <Modal.Body>
+                      <Modal.Body style={{display: 'flex', justifyContent:'center'}}>
                       {presupuestosSolicitud.length > 0 ? (
                         presupuestosSolicitud.map((presupuesto) => {
                           <PresupuestoSolicitud presupuesto={presupuesto}/>
@@ -118,7 +117,7 @@ function Solicitud(props){
                 {props.estado === "terminado" ? (
                 <>
                   <button className='ver-presupuestos-button'>Hacer Reseña</button>
-                  <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true}>
+                  <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true} style={{padding: '0px'}}>
                       <Modal.Header closeButton>
                         <Modal.Title>Presupuestos</Modal.Title>
                       </Modal.Header>

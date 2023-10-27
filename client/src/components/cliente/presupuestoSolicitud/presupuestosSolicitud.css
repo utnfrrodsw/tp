@@ -1,8 +1,16 @@
-.card-presupuesto{
-    background-color: #213555;
+
+.card-presu{
     font-family: 'Times New Roman', Times, serif;
+    width: 60%;
 }
 
 .card-text p{
     font-size: 15px;
+    margin: 5px
+}
+
+.fecha-boton-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

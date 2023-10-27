@@ -33,28 +33,32 @@ function PresupuestoSolicitud(props) {
     }
 
     return (
-        <Card className='card-presupuesto'>
+        <Card className='card-presu' style={{backgroundColor: '#213555', height: '35%'}}>
             <Card.Header>
                 <Card.Title style={{color:'white', fontSize:'24px'}}>Presupuesto {presupuesto.id}</Card.Title>
             </Card.Header>
-            <Card.Body style={{display:"flex", flexDirection:"row", width:'100%'}}>
-                
+            <Card.Body style={{display:"flex", flexDirection:"row", width:'100%', justifyContent: 'space-between', padding: '5px'}}>
                 <div>
                     <Card.Text className='card-text'>
                         <p>Prestador: {presupuesto.prestador.nombre}</p>
                         <p>Costo Materiales: {presupuesto.costoMateriales}</p>
                         <p>Costo por Hora: {presupuesto.costoXHora}</p>
                         <p>Costo Total: {(presupuesto.costoXHora*presupuesto.horasTotales) + presupuesto.costoMateriales}</p>
-                        <Card.Subtitle>Fechas Disponibles</Card.Subtitle>
+                    </Card.Text>
+                </div>
+                <div className='fecha-boton-content'>
+                    <div>
+                        <Card.Subtitle style={{color: 'white'}}>Fechas Disponibles</Card.Subtitle>
                         <select>
                             {presupuesto.fechasDisponibles.map((fecha) =>(
                                 //const dateTime = new Date(fecha)
                                 <option>{fecha}</option>)
                             )}
                         </select>
-                    </Card.Text>
+                    </div>
+                    <Button variant="primary" style={{alignSelf:"flex-end"}}>Aceptar Presupuesto</Button>
+                    
                 </div>
-                <Button variant="primary" style={{alignSelf:"flex-end"}}>Aceptar Presupuesto</Button>
             </Card.Body>
         </Card>
     )
