@@ -45,22 +45,31 @@ const usuarioController = {
   },
  
   register: async (req, res) => {
-    const { nombre, apellido, email, contrasena, fechaNacimiento, telefono, esPrestador, especialidades } = req.body;
-
+    const {
+      nombre,
+      apellido,
+      email,
+      contrasena,
+      fechaNacimiento,
+      telefono,
+      esPrestador,
+      especialidades,
+    } = req.body;
+  
     try {
       // Verificar si el usuario ya existe en la base de datos
       const existingUser = await db.Usuario.findOne({
         where: { email },
       });
-    
+  
       if (existingUser) {
         return res.status(400).json(jsonResponse(400, { message: 'El usuario ya existe' }));
       }
-    
+  
       // Hashear la contraseña antes de guardarla
       const saltRounds = 10;
       const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
-    
+  
       // Crear el nuevo usuario en la base de datos
       const newUser = await db.Usuario.create({
         nombre,
@@ -72,42 +81,66 @@ const usuarioController = {
         esPrestador,
         // Otras propiedades específicas del usuario si las tienes
       });
-    
+  
       if (esPrestador && especialidades && especialidades.length > 0) {
-        // Si el usuario es un prestador y ha seleccionado especialidades, guárdalas en la base de datos
+        // Obtener las especialidades que no existen en la tabla de profesiones
+        const newEspecialidades = [];
+        await Promise.all(
+          especialidades.map(async (especialidad) => {
+            const existingEspecialidad = await db.Profesion.findOne({
+              where: { nombreProfesion: especialidad },
+            });
+            if (!existingEspecialidad) {
+              newEspecialidades.push(especialidad);
+            }
+          })
+        );
+  
+        // Crear las nuevas especialidades en la tabla de profesiones
+        if (newEspecialidades.length > 0) {
+          await db.Profesion.bulkCreate(
+            newEspecialidades.map((especialidad) => ({ nombreProfesion: especialidad.toLowerCase() }))
+          );
+        }
+  
+        // Obtener los ID de las especialidades (profesiones) a partir de los nombres
         const profesionesIds = await db.Profesion.findAll({
           where: {
             nombreProfesion: especialidades,
           },
           attributes: ['idProfesion'],
         });
-    
+  
+        // Verificar que se hayan encontrado todas las especialidades
+        if (profesionesIds.length !== especialidades.length) {
+          return res.status(400).json(jsonResponse(400, { message: 'No se encontraron todas las especialidades' }));
+        }
+  
         // Obtener los ID de las profesiones seleccionadas
         const profesionIds = profesionesIds.map((profesion) => profesion.idProfesion);
-    
-        // Actualizar las relaciones en la tabla PrestadorProfesiones
-        await newUser.setProfesiones(profesionIds);
+  
+        // Crear entradas en la tabla prestador_profesiones para cada especialidad
+        await Promise.all(
+          profesionIds.map(async (profesionId) => {
+            await db.PrestadorProfesiones.create({
+              idprestador: newUser.idUsuario, // ID del usuario recién creado
+              idProfesion: profesionId,
+            });
+          })
+        );
       }
-    
-      // Generar tokens de acceso y de actualización
-      const user = getUserInfo(newUser);
-      const token = await generateAccessTokes(user);
-      const refreshToken = await generateRefreshToken(user);
-    
-      // Guardar el token de actualización en la base de datos (ajusta esto según tu implementación específica)
-    
-      res.status(201).json(jsonResponse(201, {
-        message: 'Registro exitoso',
-        user: getUserInfo(newUser),
-        token,
-        refreshToken,
-      }));
+  
+      // Responder con un mensaje de registro exitoso
+      res.status(201).json({
+        message: 'Registro exitoso', // Agrega un mensaje de registro exitoso
+      });
     } catch (error) {
       console.error('Error en el registro:', error);
       res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
     }
   },
 
+  
   login: async (req, res) => {
     const { email, constrasena } = req.body;
     try {
