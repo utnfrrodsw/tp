@@ -5,6 +5,7 @@ const { jsonResponse } = require("../../lib/jsonResponse");
 const {getSolicitudInfo} = require("../../lib/getSolicitudInfo");
 
 const solicitudController = {
+    
     getSolicitud: function (req, res){
         let idSolicitud = req.params.id;
         console.log(idSolicitud);

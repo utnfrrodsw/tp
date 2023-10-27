@@ -1,5 +1,4 @@
 //LOGICA PARA CONSULTAS A LA BD
-
 const bcrypt = require('bcrypt');
 const db = require('../../models');  
 const { jsonResponse } = require('../../lib/jsonResponse');
@@ -8,12 +7,6 @@ const { generateAccessTokes, generateRefreshToken } = require('../../auth/genera
 const getTokenFromHeader = require('../../auth/getTokenFromHeader');
 const { verifyRefreshToken } = require('../../auth/verifyTokens');
 const validateToken = require('../../auth/validateToken');
- 
-
-// Resto del código del controlador
-
-//const multer = require('multer'); // Para manejar la carga de imágenes
-
 
 const usuarioController = {
 
@@ -160,7 +153,6 @@ const usuarioController = {
     }
   },
 
-
   refreshToken: async (req, res) => {
     const refreshToken = await getTokenFromHeader(req.headers);
     if(refreshToken){
@@ -226,8 +218,7 @@ const usuarioController = {
         console.error('Error al obtener datos del usuario', error);
         res.status(500).json({ message: 'Error en el servidor' });
       }
-    },
-
+  },
 
   modificarDatosPersonales: async (req, res) => {
     const { id } = req.params;
@@ -254,7 +245,6 @@ const usuarioController = {
     }
   },
 
-
   verificarClave: async (req, res) => {
     const { id } = req.params;
     const { claveActual } = req.body;
@@ -277,8 +267,6 @@ const usuarioController = {
       res.status(500).json({ message: 'Error en el servidor' });
     }
   },
-
-
 
   cambiarClave: async (req, res) => {
   const { id } = req.params;
@@ -303,9 +291,7 @@ const usuarioController = {
     console.error('Error al actualizar la contraseña del usuario', error);
     res.status(500).json({ message: 'Error en el servidor' });
   }
-},
-
-
+  },
 
   getDireccion: async(req,res)=>{
       const { id } = req.params;
@@ -324,7 +310,6 @@ const usuarioController = {
         res.status(500).json({ message: 'Error en el servidor' });
       }
   },
-
 
   getLocalidad: async(req,res)=>{
     const { codPostal } = req.params;
