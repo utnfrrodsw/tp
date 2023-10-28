@@ -90,62 +90,50 @@ const usuarioController = {
       });
   
       if (esPrestador && especialidades && especialidades.length > 0) {
-        // Obtener las especialidades que no existen en la tabla de profesiones
-        const newEspecialidades = [];
+        const profesionesIds = [];
+      
+        // Obtener las especialidades existentes y crear las nuevas
         await Promise.all(
           especialidades.map(async (especialidad) => {
             const existingEspecialidad = await db.Profesion.findOne({
               where: { nombreProfesion: especialidad },
             });
-            if (!existingEspecialidad) {
-              newEspecialidades.push(especialidad);
+      
+            if (existingEspecialidad) {
+              // Si la especialidad ya existe, agrega su ID a la lista
+              profesionesIds.push(existingEspecialidad.idProfesion);
+            } else {
+              // Si es una nueva especialidad, créala y agrega su ID
+              const newProfesion = await db.Profesion.create({
+                nombreProfesion: especialidad,
+              });
+              profesionesIds.push(newProfesion.idProfesion);
             }
           })
         );
-  
-        // Crear las nuevas especialidades en la tabla de profesiones
-        if (newEspecialidades.length > 0) {
-          await db.Profesion.bulkCreate(
-            newEspecialidades.map((especialidad) => ({ nombreProfesion: especialidad.toLowerCase() }))
-          );
-        }
-  
-        // Obtener los ID de las especialidades (profesiones) a partir de los nombres
-        const profesionesIds = await db.Profesion.findAll({
-          where: {
-            nombreProfesion: especialidades,
-          },
-          attributes: ['idProfesion'],
-        });
-  
-        // Verificar que se hayan encontrado todas las especialidades
-        if (profesionesIds.length !== especialidades.length) {
-          return res.status(400).json(jsonResponse(400, { message: 'No se encontraron todas las especialidades' }));
-        }
-  
-        // Obtener los ID de las profesiones seleccionadas
-        const profesionIds = profesionesIds.map((profesion) => profesion.idProfesion);
-  
-        // Crear entradas en la tabla prestador_profesiones para cada especialidad
+      
+        // Relacionar al usuario prestador con las especialidades
         await Promise.all(
-          profesionIds.map(async (profesionId) => {
-            await db.PrestadorProfesiones.create({
-              idprestador: newUser.idUsuario, // ID del usuario recién creado
-              idProfesion: profesionId,
-            });
+          profesionesIds.map(async (profesionId) => {
+              await db.PrestadorProfesiones.create({
+                  idprestador: newUser.idUsuario, // ID del usuario recién creado
+                  idProfesion: profesionId,
+              });
           })
-        );
-      }
+      );
+  }
   
       // Responder con un mensaje de registro exitoso
       res.status(201).json({
-        message: 'Registro exitoso', // Agrega un mensaje de registro exitoso
+        message: 'Registro exitoso',
       });
     } catch (error) {
       console.error('Error en el registro:', error);
       res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
     }
   },
+  
+  
 
   
   login: async (req, res) => {
@@ -289,54 +277,57 @@ const usuarioController = {
 
 
   verificarClave: async (req, res) => {
-    const { id } = req.params;
-    const { claveActual } = req.body;
+    const { idUsuario, contrasenaIngresada } = req.body; // Suponemos que el ID de usuario y la contraseña ingresada se pasan en el cuerpo de la solicitud
   
     try {
-      const usuario = await db.Usuario.findByPk(id);
+      // Obtener el usuario de la base de datos
+      const usuario = await db.Usuario.findByPk(idUsuario);
+  
       if (!usuario) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
       }
   
-      // Comparar la contraseña proporcionada con la contraseña almacenada en la base de datos
-      const passwordMatch = await bcrypt.compare(claveActual, usuario.password);
-      if (!passwordMatch) {
-        return res.status(401).json({ message: 'Contraseña actual incorrecta' });
-      }
+      // Hashear la contraseña ingresada con el salt almacenado en la contraseña del usuario
+      //const hashedPassword = await bcrypt.hash(contrasenaIngresada, usuario.contrasena);
   
-      res.status(200).json({ message: 'Contraseña actual verificada correctamente' });
+      // Comparar el resultado con la contraseña almacenada en la base de datos
+      if (contrasenaIngresada === usuario.contrasena) {
+        res.status(200).json({ message: 'Contraseña verificada exitosamente' });
+      } else {
+        res.status(401).json({ message: 'Contraseña incorrecta' });
+      }
     } catch (error) {
-      console.error('Error al verificar la contraseña actual del usuario', error);
+      console.error('Error al verificar la contraseña', error);
       res.status(500).json({ message: 'Error en el servidor' });
     }
   },
-
-
-
-  cambiarClave: async (req, res) => {
-  const { id } = req.params;
-  const { nuevaClave } = req.body;
-
-  try {
-    const usuario = await db.Usuario.findByPk(id);
-    if (!usuario) {
-      return res.status(404).json({ message: 'Usuario no encontrado' });
+  
+  
+  // Ruta para cambiar la contraseña
+  cambiarClave :async (req, res) => {
+    const { idUsuario, nuevaClave } = req.body;
+  
+    try {
+      const usuario = await db.Usuario.findByPk(idUsuario);
+      if (!usuario) {
+        return res.status(404).json({ message: 'Usuario no encontrado' });
+      }
+  
+      // Hacer el hash de la nueva contraseña antes de actualizarla en la base de datos
+      const hashedPassword = await bcrypt.hash(nuevaClave, 10); // 10 rounds de sal
+  
+      // Actualizar la contraseña del usuario
+      usuario.contrasena = hashedPassword;
+  
+      await usuario.save();
+  
+      res.status(200).json({ message: 'Contraseña actualizada exitosamente' });
+    } catch (error) {
+      console.error('Error al actualizar la contraseña del usuario', error);
+      res.status(500).json({ message: 'Error en el servidor' });
     }
-
-    // Hacer el hash de la nueva contraseña antes de actualizarla en la base de datos
-    const hashedPassword = await bcrypt.hash(nuevaClave, 10); // 10 rounds de sal
-
-    // Actualizar la contraseña del usuario
-    usuario.password = hashedPassword;
-
-    await usuario.save();
-
-    res.status(200).json({ message: 'Contraseña actualizada exitosamente' });
-  } catch (error) {
-    console.error('Error al actualizar la contraseña del usuario', error);
-    res.status(500).json({ message: 'Error en el servidor' });
-  }
-},
+  },
+  
 
 
 
