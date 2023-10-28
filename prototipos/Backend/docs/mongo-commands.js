@@ -65,6 +65,16 @@ db.editoriales.insertOne({
   })
 
 
+//----Categorias----
+
+db.categorias.insertOne({
+  descripcion:'pre-escolar',
+  }) 
+
+db.categorias.insertOne({
+    descripcion:'Drama',
+  }) 
+  
 //-----Autores-----
 
 db.autores.insertOne({

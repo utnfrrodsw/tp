@@ -1,0 +1,31 @@
+
+
+### Get de categoria
+GET http://Localhost:3000/api/categorias
+
+
+
+### Get de categoria por id
+GET http://Localhost:3000/api/categorias/653d39332bde1afce8d45339
+
+
+### Post de usuario
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "desceipcion": "Terror",
+}
+
+
+### Put de categoria
+PUT http://localhost:3000/api/categorias/653d39332bde1afce8d45339
+Content-Type: application/json
+
+{
+    "descripcion": "Terror"
+}
+
+
+### Delete de categoria
+DELETE http://localhost:3000/api/categorias/653d39332bde1afce8d45339
