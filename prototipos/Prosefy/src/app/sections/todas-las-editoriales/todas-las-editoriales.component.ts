@@ -10,13 +10,12 @@ export class TodasLasEditorialesComponent {
   
   isHovered = false;
   
-  public editoriales = [];
+  public editoriales: Editorial[] = [];
 
   constructor(private editorialesService: EditorialesService) {}
 
-  ngOnInit() {
-    this.editorialesService.getEditoriales()
-      .subscribe((data: any) => { this.editoriales = data});
+  async ngOnInit() {
+    this.editoriales = this.editorialesService.getEditoriales();
   }
 
   onMouseEnter() {

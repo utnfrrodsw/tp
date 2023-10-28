@@ -14,7 +14,7 @@ export interface Editorial {
   providedIn: 'root',
 })
 export class EditorialesService {
-  /*private editoriales: Editorial[] = [
+  private editoriales: Editorial[] = [
     {
       id: 1,
       nombre: 'Editorial BOOKRACK',
@@ -54,16 +54,16 @@ export class EditorialesService {
 
   getEditoriales(): Editorial[] {
     return this.editoriales;
-  }*/
+  }
 
 
-  private apiUrl = 'https://localhost:3000/api/editoriales';
+  /*private apiUrl = 'https://localhost:3000/api/editoriales';
 
   constructor(private http: HttpClient) {}
 
-  getEditoriales() {
+  async getEditoriales() {
     return this.http.get(this.apiUrl);
   
-  }
+  }*/
 
 }
