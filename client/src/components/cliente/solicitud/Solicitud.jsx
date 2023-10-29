@@ -74,7 +74,6 @@ function Solicitud(props){
           <h1 className='titulo-solicitud'>{props.titulo}</h1>
           <p className='fecha-solicitud'>{props.profesion.nombreProfesion} </p>
           <p className='fecha-solicitud' >{props.estado === "progreso" || props.estado === "terminado" ? <>{props.nombrePrestador}</> : <></>}</p>
-          <p className='ubicacion-solicitud'>{props.telefonoPrestador}</p>
           <p className='fecha-solicitud'>
           {props.estado === "activa"? <>{dateTime.getDay()}/{dateTime.getMonth()}/{dateTime.getFullYear()}  {dateTime.getHours()}:{dateTime.getMinutes()} </> :<></>}
           {props.estado === "progreso" || props.estado === "terminado" ? <>{props.fechaHora} </>:<></>}
