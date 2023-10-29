@@ -4,6 +4,7 @@ import { API_URL } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider';
 import { Modal, Carousel, Container, Image} from 'react-bootstrap';
 import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
+import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 
 function Solicitud(props){
 
@@ -12,10 +13,9 @@ function Solicitud(props){
   const [verfotos, setVerfotos] = useState(false);
   const [verPresupuestos, setVerPresupuestos] = useState(false);
   const [presupuestosSolicitud, setPresupuestosSolicitud] = useState([]);
+  const [loading, setLoading] = useState(false);
   const auth = useAuth();
   const dateTime = new Date(props.fecha);
-
-
   
   const hendleCancelar = async () => {
     try{
@@ -26,7 +26,7 @@ function Solicitud(props){
           'Content-Type': 'application/json',
           Authorization: `Bearer ${auth.getRefreshToken()}`,
         },
-      }); 
+      });
       if(response.ok){
         setError(false);
       }else{
@@ -40,20 +40,28 @@ function Solicitud(props){
   }
 
   useEffect(() => {
-    /*if(verPresupuestos){
-      const response = fetch(`${API_URL}/presupuesto/solicitud/${props.id}`)
+    if(verPresupuestos){
+      console.log(verPresupuestos)
+      setLoading(true);
+      fetch(`${API_URL}/presupuesto/solicitud/${props.id}`)
       .then((res) => res.json())
       .then((data) => {
         setPresupuestosSolicitud(data.body.presupuestos);
+        setLoading(false);
       })
-      if(response.ok){
-        setError(false)
-      }else{
-        console.log('Error al cargar presupuestos');
+      .catch((error) => {
+        console.log(error)
+        console.error('Error al cargar presupuestos:', error);
         setError(true);
-      };
-    }*/
-  });
+        setLoading(false);
+      });
+    }
+  }, [verPresupuestos]);
+
+  const hendlePresupuestoPagado = () => {
+    setVerPresupuestos(false);
+    props.hendleSolicitudesUpdate();
+  };
   
   return (
     <div className={`solicprincipal-card ${show ? "solicprincipal-card" : "solicprincipal-fullcontent"}`} >
@@ -64,12 +72,12 @@ function Solicitud(props){
             {props.estado === "terminado" && <>Finalizado</>}
           </div>
           <h1 className='titulo-solicitud'>{props.titulo}</h1>
-          <p className='fecha-solicitud'>{props.profesion.nombreProfesion}
-          {props.estado === "progreso" || props.estado === "terminado" ? <>: nombre prestador</> : <></>}</p>
+          <p className='fecha-solicitud'>{props.profesion.nombreProfesion} </p>
+          <p className='fecha-solicitud' >{props.estado === "progreso" || props.estado === "terminado" ? <>{props.nombrePrestador}</> : <></>}</p>
+          <p className='ubicacion-solicitud'>{props.telefonoPrestador}</p>
           <p className='fecha-solicitud'>
           {props.estado === "activa"? <>{dateTime.getDay()}/{dateTime.getMonth()}/{dateTime.getFullYear()}  {dateTime.getHours()}:{dateTime.getMinutes()} </> :<></>}
-          {props.estado === "progreso" || props.estado === "terminado" ? <>hora y fecha del trabajo </>:<></>}
-           hs
+          {props.estado === "progreso" || props.estado === "terminado" ? <>{props.fechaHora} </>:<></>}
           </p>
           <p className='ubicacion-solicitud'>{props.direccion.calle} {props.direccion.numero}</p>
         </div>
@@ -101,19 +109,43 @@ function Solicitud(props){
                 <>
                   <button className='ver-presupuestos-button' onClick={() => setVerPresupuestos(true)} >ver presupuestos</button>
                   <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true} className='modales-solicitud'>
-                      <Modal.Header closeButton>
-                        <Modal.Title>Presupuestos</Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body style={{display: 'flex', justifyContent:'center'}}>
-                      {presupuestosSolicitud.length > 0 ? (
-                        presupuestosSolicitud.map((presupuesto) => {
-                          <PresupuestoSolicitud presupuesto={presupuesto}/>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Presupuestos</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{display: 'flex', justifyContent:'center'}}>
+                      <div className='contenedor-presupuestos'>
+                        {loading === false ? 
+                          (<>
+                            {presupuestosSolicitud.length > 0 ? (
+                              presupuestosSolicitud.map((presupuesto, index) => {
+                                console.log(presupuesto)
+                                return (
+                                  <PresupuestoSolicitud 
+                                    key={index}
+                                    idPrestador={presupuesto.idPrestador}
+                                    idSolicitud={presupuesto.idSolicitud}
+                                    nombrePrestador={presupuesto.nombrePrestador}
+                                    costoMateriales={presupuesto.costoMateriales}
+                                    costoXHora={presupuesto.costoXHora}
+                                    costoTotal={presupuesto.costoTotal}
+                                    fechasDisponibles={presupuesto.fechasDisponibles}
+                                    hendlePresupuestoPagado={hendlePresupuestoPagado}
+                                  />
+                                );
+                              })
+                            ) : (
+                              <h2 style={{alignSelf:'center'}}>No Hay Presupuestos Enviados</h2>
+                            )}
+                          </>) : (
+                            <LoaderFijo/>
+                          )
                         }
-                      )): <PresupuestoSolicitud/>}
-                      </Modal.Body>
-                    </Modal>
+                      </div>
+                    </Modal.Body>
+                    <Modal.Footer></Modal.Footer>
+                  </Modal>
                 </>
-                ): <></>}
+                ): <></>} 
                 {props.estado === "terminado" ? (
                 <>
                   <button className='ver-presupuestos-button'>Hacer Reseña</button>
@@ -132,8 +164,6 @@ function Solicitud(props){
 
           </div>
         )}
-
-        
 
         {show ? (
           <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>

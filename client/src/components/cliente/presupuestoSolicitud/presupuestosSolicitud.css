@@ -2,6 +2,7 @@
 .card-presu{
     font-family: 'Times New Roman', Times, serif;
     width: 60%;
+    align-self: center;
 }
 
 .card-text p{
@@ -14,3 +15,11 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.contenedor-button{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+  

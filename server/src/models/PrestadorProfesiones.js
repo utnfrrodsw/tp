@@ -3,10 +3,12 @@ module.exports = (sequelize, DataTypes) => {
       idprestador: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
       idProfesion: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
     }, {
       tableName: 'prestador_profesiones',

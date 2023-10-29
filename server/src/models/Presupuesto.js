@@ -41,7 +41,9 @@ module.exports = (sequelize, DataTypes) => {
   
       // Relación hasMany con la tabla HorariosPresupuesto
       Presupuesto.hasMany(models.HorariosPresupuesto, {
-        foreignKey: 'idPresupuesto',
+        foreignKey: 'idSolicitud',
+        otherKey: 'idUsuario',
+        otherKey: 'horario',
         as: 'horariosPresupuesto',  
       });
   

@@ -3,17 +3,19 @@ module.exports = (sequelize, DataTypes) => {
       idSolicitud: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
       idUsuario: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
       fechaHora: {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      costoTotal: {
-        type: DataTypes.DOUBLE,
+      estado: {
+        type: DataTypes.STRING(45),
         allowNull: false,
       },
     }, {
