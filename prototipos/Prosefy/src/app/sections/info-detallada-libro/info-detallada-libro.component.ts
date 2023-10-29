@@ -16,7 +16,7 @@ export class InfoDetalladaLibroComponent implements OnInit {
     private datePipe: DatePipe,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Obtener el valor del parámetro ":id" desde la URL
@@ -39,6 +39,13 @@ export class InfoDetalladaLibroComponent implements OnInit {
     if (fechaFormateada) {
       const año = fecha.getFullYear().toString();
       return `${fechaFormateada} del ${año}`;
+    } else {
+      return '';
+    }
+  }
+  formatearSinopsisConSaltosDeLinea(sinopsis: string | undefined): string {
+    if (sinopsis) {
+      return sinopsis.replace(/\n/g, '<br><br>');
     } else {
       return '';
     }

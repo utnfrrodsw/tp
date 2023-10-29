@@ -1,0 +1,48 @@
+.comentario-usuario {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.info-usuario {
+    display: flex;
+    align-items: center;
+}
+
+.imagen-perfil {
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.calificacion {
+    color: #888;
+}
+
+.opinion {
+    color: #555;
+}
+
+.fecha-publicacion {
+    text-align: end;
+    font-style: italic;
+}
+
+.rating {
+    font-size: 1.8rem;
+}
+
+.star {
+    color: #d9d9d9;
+}
+
+.star-filled {
+    color: #ffbf00;
+    text-align: right;
+    font-weight: bold;
+}

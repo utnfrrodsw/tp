@@ -1,4 +1,4 @@
-## Secciones Principales
+****## Secciones Principales
 
 ### Inicio (Marina)
 
@@ -53,7 +53,7 @@
 ### Libro seleccionado (Marina)
 
 - [x] Diseño
-- [ ] Frontend
+- [x] Frontend
 - [ ] Backend
 
 ### Carrito de compras (Marina)

@@ -1,4 +1,44 @@
-<div class="container mt-4 custom-rounded-shadow p-3 text-center">
-  <h4>Libros del mismo autor</h4>
-  <p>Información relevante sobre el autor...</p>
+<div class="container mt-4 custom-rounded-shadow p-3">
+  <h4 class="text-center">Libros del mismo autor</h4>
+  <p class="text-center">Información relevante sobre el autor. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  </p>
+  <div class="col-12">
+    <div class="vertical-list">
+      <div class="book" *ngFor="
+          let libro of libros
+            | slice
+              : (currentPage - 1) * itemsPerPage
+              : currentPage * itemsPerPage
+        ">
+        <div class="row align-items-center">
+          <div class="col-md-4 col-6">
+            <a [routerLink]="['/libro-seleccionado', libro.id]" class="text-decoration-none">
+              <img class="book-cover" [src]="libro.imagen" alt="Portada del libro" />
+            </a>
+          </div>
+          <div class="col-md-8 col-6">
+            <div class="d-flex align-items-center justify-content-between">
+              <a [routerLink]="['/libro-seleccionado', libro.id]" class="text-decoration-none">
+                <h6 class="book-title">{{ libro.titulo }}</h6>
+              </a>
+            </div>
+            <p class="book-text text-gray">
+              {{ libro.editorial }}
+            </p>
+            <p class="card-text precio">
+              ${{
+              calculatePriceInSelectedCurrency(
+              libro.precio
+              ).toLocaleString()
+              }}
+              <small class="text-muted">
+                {{ currencyService.getCurrency() }}
+              </small>
+            </p>
+            <button class="btn custom-btn-secondary">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -36,6 +36,7 @@ h3 {
 .custom-btn-primary {
   background-color: #bd8464;
   border-color: #bd8464;
+  transition: all .5s;
 }
 
 .custom-btn-primary:hover,
@@ -48,6 +49,7 @@ h3 {
   background-color: #fff;
   border-color: #cecece;
   color: #646464;
+  transition: all .5s;
 }
 
 .custom-btn-secondary:hover,
@@ -72,4 +74,9 @@ h3 {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
+}
+
+.img-envio {
+  width: 40px;
+  height: auto;
 }

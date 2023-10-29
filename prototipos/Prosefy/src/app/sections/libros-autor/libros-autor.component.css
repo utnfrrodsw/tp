@@ -6,3 +6,83 @@
 h4 {
   text-align: center;
 }
+
+.custom-h3 {
+  margin-left: 2rem !important;
+}
+
+.vertical-list {
+  width: 100%;
+}
+
+.book {
+  padding: 10px;
+}
+
+.book-content {
+  text-align: center;
+}
+
+.book-cover {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 767.98px) {
+  .book-cover {
+    max-width: 80%;
+    height: auto;
+  }
+}
+
+.book-title {
+  color: #714F3C;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.book-text {
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.precio {
+  font-weight: bold;
+}
+
+.custom-form-control {
+  width: 10% !important;
+}
+
+.custom-pagination {
+  gap: 0.6rem;
+}
+
+.custom-page-link {
+  cursor: pointer;
+}
+
+.custom-pages {
+  font-weight: bold;
+  color: #292929;
+}
+
+.text-decoration-none {
+  color: #1e1e1e;
+}
+
+.custom-btn-secondary {
+  background-color: #D9D9D9;
+  border-color: #cecece;
+  color: #272727;
+  transition: all .5s;
+}
+
+.custom-btn-secondary:hover,
+.custom-btn-secondary:active {
+  background-color: #afafaf;
+  border-color: #afafaf;
+  color: #fff;
+}

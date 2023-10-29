@@ -8,23 +8,23 @@
         <table class="custom-table">
           <tbody>
             <tr>
-              <td class="table-header gris-oscuro">Autores</td>
+              <td class="table-header gris-oscuro text-center">Autores</td>
               <td class="table-value gris-claro">
                 {{ libro.autores.join(", ") }}
               </td>
             </tr>
             <tr>
-              <td class="table-header gris-claro">Editorial</td>
+              <td class="table-header gris-claro text-center">Editorial</td>
               <td>{{ libro.editorial }}</td>
             </tr>
             <tr>
-              <td class="table-header gris-oscuro">Edición</td>
+              <td class="table-header gris-oscuro text-center">Edición</td>
               <td class="table-value gris-claro">
                 {{ formatearFecha(libro.fechaEdicion) }}
               </td>
             </tr>
             <tr>
-              <td class="table-header gris-claro">Categorías</td>
+              <td class="table-header gris-claro text-center">Categorías</td>
               <td>{{ libro.categorias.join(", ") }}</td>
             </tr>
           </tbody>
@@ -32,13 +32,9 @@
       </div>
       <div class="container mt-4 custom-rounded-shadow p-3">
         <h2>Sinopsis</h2>
-        <p class="mx-4 mt-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio id
-          fugit necessitatibus iure voluptatibus recusandae repudiandae aut
-          molestias expedita in quidem dolorem corporis sapiente facilis
-          consectetur nulla, quasi laboriosam hic.
-        </p>
+        <p class="mx-5 mt-3" [innerHTML]="formatearSinopsisConSaltosDeLinea(libro?.sinopsis)"></p>
       </div>
+
     </div>
 
     <div class="col-md-4">

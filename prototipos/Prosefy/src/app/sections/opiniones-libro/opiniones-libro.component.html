@@ -6,17 +6,15 @@
         {{ libro ? libro.calificacion : "No disponible" }}
       </p>
     </div>
-    <div class="col-md-6 col-12 d-flex align-items-center">
-      <div class="rating text-center">
-        <span
-          class="star"
-          *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
-          [class.filled]="libro && i < libro.calificacion"
-          >&#9733;</span
-        >
+    <div class="col-md-5 col-12 mb-3 mb-md-0 align-items-start">
+      <div class="rating mt-3">
+        <span class="star" *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+          [class.filled]="libro && i < libro.calificacion">&#9733;</span>
       </div>
+      <p class="text-gray">X calificaciones</p>
     </div>
   </div>
-  <p class="text-center">...</p>
-  <p class="text-center"><strong>Mostrar todas las opiniones</strong></p>
+  <app-comentario-usuario></app-comentario-usuario>
+  <app-comentario-usuario></app-comentario-usuario>
+  <p class="text-center mas-opiniones"><strong>Mostrar todas las opiniones</strong></p>
 </div>

@@ -7,7 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { DatePipe, registerLocaleData, CommonModule } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 /* BOOTSTRAP */
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -60,6 +60,7 @@ import { CurrencyService } from './services/currency.service';
 import { ListaLibrosComponent } from './shared/lista-libros/lista-libros.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AutoresService } from './services/autores.service';
+import { ComentarioUsuarioComponent } from './shared/comentario-usuario/comentario-usuario.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -106,6 +107,7 @@ registerLocaleData(localeEs, 'es');
     CrearCuentaComponent,
     ListaLibrosComponent,
     NavbarComponent,
+    ComentarioUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,4 +126,4 @@ registerLocaleData(localeEs, 'es');
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

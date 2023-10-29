@@ -38,10 +38,22 @@ h3 {
     text-align: center;
     font-size: 300%;
   }
+
   .rating {
     font-size: 2rem;
   }
+
   .col-md-6 {
     justify-content: center;
   }
+}
+
+@media (min-width: 768px) {
+  .mas-opiniones {
+    font-size: 120%;
+  }
+}
+
+.mas-opiniones {
+  cursor: pointer;
 }

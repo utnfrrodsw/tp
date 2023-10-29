@@ -1,3 +1,22 @@
+body {
+  font-family: Inter, 'Courier New', Courier, monospace !important;
+}
+
+h6,
+.h6,
+h5,
+.h5,
+h4,
+.h4,
+h3,
+.h3,
+h2,
+.h2,
+h1,
+.h1 {
+  font-family: Inter, 'Courier New', Courier, monospace !important;
+}
+
 .custom-rounded-shadow {
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
