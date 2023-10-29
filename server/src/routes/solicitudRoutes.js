@@ -19,5 +19,5 @@ router.get('/presupuestadas/prestador/:id',solicitudController.getSolicitudesPre
 
 router.get('/aceptadas/prestador/:id',solicitudController.getSolicitudesAceptadas);
 
-
+router.get('/nuevas/prestador/presupuestar/:id',solicitudController.getSolicitud);
 module.exports=router;

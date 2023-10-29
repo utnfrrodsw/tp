@@ -268,9 +268,9 @@ const solicitudController = {
         
         //Busco el id de los presupuestos que me aceptaron
         const servicios=await db.Servicio.findAll({
-        attributes: ['idSolicitud','idPrestador'],
+        attributes: ['idSolicitud','idUsuario'],
             where: {
-                idPrestador: idPrestador,
+                idUsuario: idPrestador,
             },
         });
         const serviciosIds = servicios.map(ser => ser.idSolicitud);
@@ -338,9 +338,9 @@ const solicitudController = {
 
         //Busco el id de los presupuestos que me aceptaron
         const servicios=await db.Servicio.findAll({
-        attributes: ['idSolicitud','idPrestador'],
+        attributes: ['idSolicitud','idUsuario'],
             where: {
-                idPrestador: idPrestador,
+                idUsuario: idPrestador,
             },
         });
         const serviciosIds = servicios.map(ser => ser.idSolicitud);

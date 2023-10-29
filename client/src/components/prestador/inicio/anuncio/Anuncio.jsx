@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import './anuncio.css';
 import { Carousel, Container, Image, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { Link } from 'react-router-dom';
 function Anuncio(props) {
   const [show, setShow] = useState(true);
   const [verfotos, setVerfotos] = useState(false);
-
   const dateTime = new Date(props.fecha);
-
   return (
     <div className={`anuncioprincipal-card ${show ? 'anuncioprincipal-card' : 'anuncioprincipal-fullcontent'}`}>
       <div>
@@ -60,7 +58,7 @@ function Anuncio(props) {
           <div>
             : <></>
             <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
-            <button className='boton-anuncio' >Presupuestar</button>
+            <Link to={`/provider/home/add/budget/${props.id}`}>Presupuestar</Link>
           </div>
           )}
     </div>

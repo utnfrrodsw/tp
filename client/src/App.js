@@ -54,7 +54,7 @@ function App() {
             <Route path='/provider/home/accepted' element={<Anuncios estado="aceptadas"/>}/>
             <Route path='/provider/home/finished' element={<Anuncios estado="terminadas"/>}/>
             <Route path='/provider/home/budgeted/more' element={<Presupuestadas id="1"/>}/>
-            <Route path='/provider/home/add/budget/' element={<Presupuesto id="1"/>}/>
+            <Route path='/provider/home/add/budget/:id' element={<Presupuesto/>}/>
           </Route>
 
           {/*cliente*/}
