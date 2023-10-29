@@ -3,13 +3,16 @@ module.exports = (sequelize, DataTypes) => {
       idSolicitud: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
-      idPrestador: {
+      idUsuario: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false,
       },
       horario: {
         type: DataTypes.DATE,
+        primaryKey: true,
         allowNull: false,
       },
     }, {
@@ -25,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
       });
   
       HorariosPresupuesto.belongsTo(models.Presupuesto, {
-        foreignKey: 'idPrestador',
+        foreignKey: 'idUsuario',
+        otherKey: 'idSolicitud',
         as: 'presupuestoPrestador',
       });
     };

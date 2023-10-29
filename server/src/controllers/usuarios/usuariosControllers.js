@@ -113,20 +113,18 @@ const usuarioController = {
                   idProfesion: profesionId,
               });
           })
-      );
-  }
-  
+        );
       // Responder con un mensaje de registro exitoso
       res.status(201).json({
         message: 'Registro exitoso',
       });
+      }
     } catch (error) {
       console.error('Error en el registro:', error);
       res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
     }
   },
 
-  
   login: async (req, res) => {
     const { email, constrasena } = req.body;
     try {

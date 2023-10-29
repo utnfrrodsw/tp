@@ -278,7 +278,7 @@ Button:hover {
 
 /* Elementos dentro del modal */
 .modal-content {
-    padding: 20px;
+    padding: 1px;
     justify-content: center;
     align-items: center;
 }
