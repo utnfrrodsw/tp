@@ -83,61 +83,47 @@ const usuarioController = {
       });
   
       if (esPrestador && especialidades && especialidades.length > 0) {
-        // Obtener las especialidades que no existen en la tabla de profesiones
-        const newEspecialidades = [];
+        const profesionesIds = [];
+      
+        // Obtener las especialidades existentes y crear las nuevas
         await Promise.all(
           especialidades.map(async (especialidad) => {
             const existingEspecialidad = await db.Profesion.findOne({
               where: { nombreProfesion: especialidad },
             });
-            if (!existingEspecialidad) {
-              newEspecialidades.push(especialidad);
+      
+            if (existingEspecialidad) {
+              // Si la especialidad ya existe, agrega su ID a la lista
+              profesionesIds.push(existingEspecialidad.idProfesion);
+            } else {
+              // Si es una nueva especialidad, créala y agrega su ID
+              const newProfesion = await db.Profesion.create({
+                nombreProfesion: especialidad,
+              });
+              profesionesIds.push(newProfesion.idProfesion);
             }
           })
         );
-  
-        // Crear las nuevas especialidades en la tabla de profesiones
-        if (newEspecialidades.length > 0) {
-          await db.Profesion.bulkCreate(
-            newEspecialidades.map((especialidad) => ({ nombreProfesion: especialidad.toLowerCase() }))
-          );
-        }
-  
-        // Obtener los ID de las especialidades (profesiones) a partir de los nombres
-        const profesionesIds = await db.Profesion.findAll({
-          where: {
-            nombreProfesion: especialidades,
-          },
-          attributes: ['idProfesion'],
-        });
-  
-        // Verificar que se hayan encontrado todas las especialidades
-        if (profesionesIds.length !== especialidades.length) {
-          return res.status(400).json(jsonResponse(400, { message: 'No se encontraron todas las especialidades' }));
-        }
-  
-        // Obtener los ID de las profesiones seleccionadas
-        const profesionIds = profesionesIds.map((profesion) => profesion.idProfesion);
-  
-        // Crear entradas en la tabla prestador_profesiones para cada especialidad
+      
+        // Relacionar al usuario prestador con las especialidades
         await Promise.all(
-          profesionIds.map(async (profesionId) => {
-            await db.PrestadorProfesiones.create({
-              idprestador: newUser.idUsuario, // ID del usuario recién creado
-              idProfesion: profesionId,
-            });
+          profesionesIds.map(async (profesionId) => {
+              await db.PrestadorProfesiones.create({
+                  idprestador: newUser.idUsuario, // ID del usuario recién creado
+                  idProfesion: profesionId,
+              });
           })
         );
       // Responder con un mensaje de registro exitoso
       res.status(201).json({
-        message: 'Registro exitoso', // Agrega un mensaje de registro exitoso
+        message: 'Registro exitoso',
       });
       }
     } catch (error) {
       console.error('Error en el registro:', error);
-      res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
-    }
-  },
+      res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
+    }
+  },
 
   login: async (req, res) => {
     const { email, constrasena } = req.body;
