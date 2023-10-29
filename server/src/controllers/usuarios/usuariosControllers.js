@@ -1,5 +1,4 @@
 //LOGICA PARA CONSULTAS A LA BD
-
 const bcrypt = require('bcrypt');
 const db = require('../../models');  
 const { jsonResponse } = require('../../lib/jsonResponse');
@@ -8,12 +7,6 @@ const { generateAccessTokes, generateRefreshToken } = require('../../auth/genera
 const getTokenFromHeader = require('../../auth/getTokenFromHeader');
 const { verifyRefreshToken } = require('../../auth/verifyTokens');
 const validateToken = require('../../auth/validateToken');
- 
-
-// Resto del código del controlador
-
-//const multer = require('multer'); // Para manejar la carga de imágenes
-
 
 const usuarioController = {
 
@@ -129,11 +122,9 @@ const usuarioController = {
       });
     } catch (error) {
       console.error('Error en el registro:', error);
-      res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
-    }
-  },
-  
-  
+      res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
+    }
+  },
 
   
   login: async (req, res) => {
@@ -180,7 +171,6 @@ const usuarioController = {
       }));
     }
   },
-
 
   refreshToken: async (req, res) => {
     const refreshToken = await getTokenFromHeader(req.headers);
@@ -247,8 +237,7 @@ const usuarioController = {
         console.error('Error al obtener datos del usuario', error);
         res.status(500).json({ message: 'Error en el servidor' });
       }
-    },
-
+  },
 
   modificarDatosPersonales: async (req, res) => {
     const { id } = req.params;
@@ -275,61 +264,53 @@ const usuarioController = {
     }
   },
 
-
   verificarClave: async (req, res) => {
-    const { idUsuario, contrasenaIngresada } = req.body; // Suponemos que el ID de usuario y la contraseña ingresada se pasan en el cuerpo de la solicitud
+    const { id } = req.params;
+    const { claveActual } = req.body;
   
     try {
-      // Obtener el usuario de la base de datos
-      const usuario = await db.Usuario.findByPk(idUsuario);
-  
+      const usuario = await db.Usuario.findByPk(id);
       if (!usuario) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
       }
   
-      // Hashear la contraseña ingresada con el salt almacenado en la contraseña del usuario
-      //const hashedPassword = await bcrypt.hash(contrasenaIngresada, usuario.contrasena);
-  
-      // Comparar el resultado con la contraseña almacenada en la base de datos
-      if (contrasenaIngresada === usuario.contrasena) {
-        res.status(200).json({ message: 'Contraseña verificada exitosamente' });
-      } else {
-        res.status(401).json({ message: 'Contraseña incorrecta' });
+      // Comparar la contraseña proporcionada con la contraseña almacenada en la base de datos
+      const passwordMatch = await bcrypt.compare(claveActual, usuario.password);
+      if (!passwordMatch) {
+        return res.status(401).json({ message: 'Contraseña actual incorrecta' });
       }
+  
+      res.status(200).json({ message: 'Contraseña actual verificada correctamente' });
     } catch (error) {
-      console.error('Error al verificar la contraseña', error);
+      console.error('Error al verificar la contraseña actual del usuario', error);
       res.status(500).json({ message: 'Error en el servidor' });
     }
   },
-  
-  
-  // Ruta para cambiar la contraseña
-  cambiarClave :async (req, res) => {
-    const { idUsuario, nuevaClave } = req.body;
-  
-    try {
-      const usuario = await db.Usuario.findByPk(idUsuario);
-      if (!usuario) {
-        return res.status(404).json({ message: 'Usuario no encontrado' });
-      }
-  
-      // Hacer el hash de la nueva contraseña antes de actualizarla en la base de datos
-      const hashedPassword = await bcrypt.hash(nuevaClave, 10); // 10 rounds de sal
-  
-      // Actualizar la contraseña del usuario
-      usuario.contrasena = hashedPassword;
-  
-      await usuario.save();
-  
-      res.status(200).json({ message: 'Contraseña actualizada exitosamente' });
-    } catch (error) {
-      console.error('Error al actualizar la contraseña del usuario', error);
-      res.status(500).json({ message: 'Error en el servidor' });
+
+  cambiarClave: async (req, res) => {
+  const { id } = req.params;
+  const { nuevaClave } = req.body;
+
+  try {
+    const usuario = await db.Usuario.findByPk(id);
+    if (!usuario) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
     }
+
+    // Hacer el hash de la nueva contraseña antes de actualizarla en la base de datos
+    const hashedPassword = await bcrypt.hash(nuevaClave, 10); // 10 rounds de sal
+
+    // Actualizar la contraseña del usuario
+    usuario.password = hashedPassword;
+
+    await usuario.save();
+
+    res.status(200).json({ message: 'Contraseña actualizada exitosamente' });
+  } catch (error) {
+    console.error('Error al actualizar la contraseña del usuario', error);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
   },
-  
-
-
 
   getDireccion: async(req,res)=>{
       const { id } = req.params;
@@ -348,7 +329,6 @@ const usuarioController = {
         res.status(500).json({ message: 'Error en el servidor' });
       }
   },
-
 
   getLocalidad: async(req,res)=>{
     const { codPostal } = req.params;
