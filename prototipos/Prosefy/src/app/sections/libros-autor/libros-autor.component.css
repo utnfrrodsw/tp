@@ -86,3 +86,8 @@ h4 {
   border-color: #afafaf;
   color: #fff;
 }
+
+.show-more-link {
+  cursor: pointer;
+  color: #303030;
+}

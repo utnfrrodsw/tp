@@ -1,6 +1,11 @@
 <div class="container mt-4 custom-rounded-shadow p-3">
-  <h4 class="text-center">Libros del mismo autor</h4>
-  <p class="text-center">Información relevante sobre el autor. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  <h4 class="text-center">{{ autorData ? autorData.nombreCompleto : 'Información del autor' }}</h4>
+  <p class="text-center" [ngClass]="{ 'show-more': showMore }" (click)="showMore = !showMore">
+    {{ getShortenedInfo(autorData) }}
+    <span *ngIf="shouldShowMoreLink(autorData)" class="show-more-link">
+      <br>
+      <strong>{{ showMore ? 'Ver menos' : 'Ver más' }}</strong>
+    </span>
   </p>
   <div class="col-12">
     <div class="vertical-list">

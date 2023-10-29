@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class CurrencyService {
   private selectedCurrency: string = 'ARS'; // Moneda predeterminada
 
-  constructor() {}
+  constructor() { }
 
   getCurrency(): string {
     return this.selectedCurrency;
@@ -20,7 +20,7 @@ export class CurrencyService {
   calculatePriceInSelectedCurrency(precio: number): number {
     if (this.selectedCurrency === 'USD') {
       // Divide el precio en dólares por 800 y redondea el resultado
-      return Math.round(precio / 800);
+      return Math.round(precio / 1000);
     }
     return precio; // Devuelve el precio original si la moneda es ARS
   }
