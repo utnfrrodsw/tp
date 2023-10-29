@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',

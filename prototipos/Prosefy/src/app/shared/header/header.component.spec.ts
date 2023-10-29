@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 @NgModule({
   declarations: [HeaderComponent],
 })
-class TestModule {}
+class TestModule { }
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { nombreSitio } from '../app/shared/constants';
 import { SmoothScrollService } from './smooth-scroll.service';
+import { nombreSitio } from '../app/shared/constants';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +8,11 @@ import { SmoothScrollService } from './smooth-scroll.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  nombreSitio = nombreSitio;
-  constructor(private smoothScrollService: SmoothScrollService) {}
+  nombreSitio: string;
+
+  constructor(private smoothScrollService: SmoothScrollService) {
+    this.nombreSitio = nombreSitio;
+  }
 
   ngOnInit() {
     this.smoothScrollService.initializeSmoothScrollbar();

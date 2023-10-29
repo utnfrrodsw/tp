@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Libro, LibrosService } from '../../services/libros.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class OpinionesLibroComponent implements OnInit {
     private librosService: LibrosService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Obtener el valor del parámetro ":id" desde la URL

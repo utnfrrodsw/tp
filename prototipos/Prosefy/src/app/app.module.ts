@@ -1,10 +1,9 @@
 /* ANGULAR */
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { FormsModule } from '@angular/forms';
 import { DatePipe, registerLocaleData, CommonModule } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { HttpClientModule } from '@angular/common/http';
@@ -117,6 +116,7 @@ registerLocaleData(localeEs, 'es');
     FormsModule,
     PaginationModule.forRoot(),
     CommonModule,
+    RouterModule
   ],
   providers: [
     CurrencyService,

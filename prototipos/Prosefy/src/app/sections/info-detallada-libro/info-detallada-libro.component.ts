@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Libro, LibrosService } from '../../services/libros.service';
 import { DatePipe } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Autor, AutoresService } from '../../services/autores.service';
 
 @Component({

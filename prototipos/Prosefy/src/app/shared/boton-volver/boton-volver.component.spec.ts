@@ -15,7 +15,13 @@ describe('BotonVolverComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should go back in history when goBack is called', () => {
+    const spy = spyOn(window.history, 'back');
+    component.goBack();
+    expect(spy).toHaveBeenCalled();
   });
 });

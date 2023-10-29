@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-registrarse',
@@ -49,20 +49,18 @@ export class RegistrarseComponent {
   }
 
   // Función para validar que las contraseñas coincidan
-  passwordMatchValidator() {
-    return (formGroup: FormGroup) => {
-      const passwordControl = formGroup.get('password');
-      const repeatPasswordControl = formGroup.get('repeatPassword');
+  passwordMatchValidator(formGroup: FormGroup) {
+    const passwordControl = formGroup.get('password');
+    const repeatPasswordControl = formGroup.get('repeatPassword');
 
-      if (passwordControl && repeatPasswordControl) {
-        const password = passwordControl.value;
-        const repeatPassword = repeatPasswordControl.value;
+    if (passwordControl && repeatPasswordControl) {
+      const password = passwordControl.value;
+      const repeatPassword = repeatPasswordControl.value;
 
-        if (password !== repeatPassword) {
-          repeatPasswordControl.setErrors({ passwordMismatch: true });
-        } else {
-          repeatPasswordControl.setErrors(null);
-        }
+      if (password !== repeatPassword) {
+        repeatPasswordControl.setErrors({ passwordMismatch: true });
+      } else {
+        repeatPasswordControl.setErrors(null);
       }
     };
   }

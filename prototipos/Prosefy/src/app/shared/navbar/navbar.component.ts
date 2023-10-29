@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { CurrencyService } from '../../services/currency.service';
+import { PopupLocalidadComponent } from '../popup-localidad/popup-localidad.component';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent {
   // Variable de estado para controlar la visibilidad de las opciones de usuario (si inició sesión)
   showUserOptions = false;
 
-  constructor(public currencyService: CurrencyService) {}
+  constructor(public currencyService: CurrencyService) { }
 
   openPopup() {
     this.isPopupOpen = true;
