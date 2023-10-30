@@ -5,6 +5,7 @@ import { useAuth } from '../../../auth/authProvider';
 import { Modal, Carousel, Container, Image} from 'react-bootstrap';
 import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
+import Review from '../../reseña/Review';
 
 function Solicitud(props){
 
@@ -13,10 +14,32 @@ function Solicitud(props){
   const [verfotos, setVerfotos] = useState(false);
   const [verPresupuestos, setVerPresupuestos] = useState(false);
   const [presupuestosSolicitud, setPresupuestosSolicitud] = useState([]);
+  const [reseniaError, setReseniaError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [hacerReseña, setHacerReseña] = useState(false);
   const auth = useAuth();
   const dateTime = new Date(props.fecha);
-  
+
+  // eslint-disable-next-line
+  useEffect(() => {
+    if(verPresupuestos){
+      console.log(verPresupuestos)
+      setLoading(true);
+      fetch(`${API_URL}/presupuesto/solicitud/${props.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPresupuestosSolicitud(data.body.presupuestos);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error)
+        console.error('Error al cargar presupuestos:', error);
+        setError(true);
+        setLoading(false);
+      });
+    }
+  }, [verPresupuestos]);
+
   const hendleCancelar = async () => {
     try{
       console.log('cancelar solicitud para id ' + props.id)
@@ -39,29 +62,41 @@ function Solicitud(props){
     }
   }
 
-  useEffect(() => {
-    if(verPresupuestos){
-      console.log(verPresupuestos)
-      setLoading(true);
-      fetch(`${API_URL}/presupuesto/solicitud/${props.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPresupuestosSolicitud(data.body.presupuestos);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error)
-        console.error('Error al cargar presupuestos:', error);
-        setError(true);
-        setLoading(false);
-      });
-    }
-  }, [verPresupuestos]);
-
   const hendlePresupuestoPagado = () => {
     setVerPresupuestos(false);
     props.hendleSolicitudesUpdate();
   };
+
+  const handleHacerReseña = async () => {
+    try{
+      setReseniaError(false);
+      const response = await fetch(`${API_URL}/servicio/isreviewed/${props.id}/${props.idPrestador}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if(data.body.isReviewed === false){
+          setHacerReseña(true);
+        }else{
+          setHacerReseña(false);
+          alert('Ya has realizado una reseña para este servicio');
+        }
+      }).catch((error) => {
+        console.error('Error al cargar reseña:', error);
+        setReseniaError(true);
+        setTimeout(() => {
+          setReseniaError(false);
+        }, 10000);
+      });
+      
+    }catch(err){
+      console.log(err);
+    }
+  };
+
+  const hendleCalificarUpdate = () => {
+    setHacerReseña(false);
+  }
+
   
   return (
     <div className={`solicprincipal-card ${show ? "solicprincipal-card" : "solicprincipal-fullcontent"}`} >
@@ -147,14 +182,14 @@ function Solicitud(props){
                 ): <></>} 
                 {props.estado === "terminado" ? (
                 <>
-                  <button className='ver-presupuestos-button'>Hacer Reseña</button>
-                  <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true} style={{padding: '0px'}}>
+                  <button className='ver-presupuestos-button' onClick={handleHacerReseña}>Hacer Reseña</button>
+                  {reseniaError && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>Error al cargar reseña</p>}
+                  <Modal show={hacerReseña} onHide={() => setHacerReseña(false)} style={{padding: '0px'}}>
                       <Modal.Header closeButton>
-                        <Modal.Title>Presupuestos</Modal.Title>
+                        <Modal.Title>Reseña del Servicio</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
-                      
-
+                        <Review idSolicitud={props.id} idPrestador={props.idPrestador} hendleCalificarUpdate={hendleCalificarUpdate}/>
                       </Modal.Body>
                     </Modal>
                 </>
