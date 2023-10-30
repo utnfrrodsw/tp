@@ -126,3 +126,6 @@ Logica para la recuperacion de juegos desde el Home.
 
 29/10
 Fixeo del Metodo ChangeLevel. Eliminacion del patron Repository en User. Interaccion del boton de borrado de Review.
+
+30/10
+Log in de Admin terminado. Usamos otro tipo de token para darle permisos al leveling.
