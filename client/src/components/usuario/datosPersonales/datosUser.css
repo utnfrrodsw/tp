@@ -44,7 +44,8 @@
   }
   
   .user-details input,
-  .security-details input {
+  .security-details input,
+  .user-details select {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 6px;

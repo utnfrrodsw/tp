@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true,
       },
       nombreProfesion: {
         type: DataTypes.STRING(255),
@@ -22,9 +23,9 @@ module.exports = (sequelize, DataTypes) => {
       });
   
       // Relación hasMany con la tabla SolicitudProfesiones
-      Profesion.hasMany(models.SolicitudProfesiones, {
+      Profesion.belongsTo(models.Solicitud, {
         foreignKey: 'idProfesion',
-        as: 'solicitudProfesiones',  
+        as: 'solicitud_profesiones',  
       });
     };
   

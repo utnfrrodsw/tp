@@ -9,21 +9,24 @@ import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
 import Evaluaciones from './components/prestador/evaluaciones/Evaluaciones';
 import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
+import Anuncios from './components/prestador/inicio/anuncios/Anuncios.jsx'
 import Presupuesto from './components/prestador/presupuesto/Presupuesto.jsx';
+import Presupuestadas from './components/prestador/detalleServicioPresupuestado/Presupuestadas.jsx';
 import DatosUser from './components/usuario/datosPersonales/datosUser.jsx';
 import Login from './components/usuario/login/Login.jsx';
 import RecuperarClave from './components/usuario/login/RecuperarClave';
 import Register from './components/usuario/register/Register.jsx';
-
 import ProtectedRoute from './components/Routes/ProtectedRoute.jsx';
 import ProtectedRouteProvider from './components/Routes/ProtectedRouteProvider.jsx';
 import ProtectedRouteClient from './components/Routes/ProtectedRouteClient.jsx';
 import ProtectedRouteUser from './components/Routes/ProtectedRouteUser.jsx';
 
+
 import './App.css';
 
 
 function App() {
+
 
   return (
     <div className="App">
@@ -44,21 +47,26 @@ function App() {
 
           {/*prestador*/}
           <Route path='/' element={<ProtectedRouteProvider/>}>
+            <Route path='/provider/home/'  element={ <InicioPrestador />}/>
             <Route path='/evaluations' element={<Evaluaciones />} />
-            <Route path='/provider/home'  element={ <InicioPrestador/>}/>
-            <Route path='/provider/budget/:id' element={<Presupuesto/>}/>
+            <Route path='/provider/home/add'  element={ <Anuncios estado="nuevas"/> }/> 
+            <Route path='/provider/home/budgeted' element={<Anuncios estado="presupuestadas"/>}/>
+            <Route path='/provider/home/accepted' element={<Anuncios estado="aceptadas"/>}/>
+            <Route path='/provider/home/finished' element={<Anuncios estado="terminadas"/>}/>
+            <Route path='/provider/home/budgeted/more' element={<Presupuestadas id="1"/>}/>
+            <Route path='/provider/home/add/budget/' element={<Presupuesto id="1"/>}/>
           </Route>
 
           {/*cliente*/}
           <Route path='/' element={<ProtectedRouteClient/>}>
             <Route path='/client/home'  element={ <InicioCliente/>}/>
-            <Route path='/client/home/requests'  element={ <Solicitudes estado = "pendiente"/>}/>
-            <Route path='/client/home/progress'  element={ <Solicitudes estado = "enProgreso"/>}/> 
-            <Route path='/client/home/finished'  element={ <Solicitudes estado = "terminado"/>}/>
+            <Route path='/client/home/active'  element={ <Solicitudes estado = "activa" />}/>
+            <Route path='/client/home/progress'  element={ <Solicitudes estado = "progreso" />}/> 
+            <Route path='/client/home/finished'  element={ <Solicitudes estado = "terminado" />}/>
           </Route>
           
-          <Route path='*'  element={ <Error/>} />
-        </Routes>
+          <Route path="*" errorElement={<Error/>}/>;
+        </Routes >
       </div>
       <Footer/>
     </div>

@@ -1,12 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
     const Presupuesto = sequelize.define('Presupuesto', {
-      idAnuncio: {
+      idSolicitud: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
-      idPrestador: {
+      idUsuario: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
       costoMateriales: {
         type: DataTypes.STRING(45),
@@ -16,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(45),
         allowNull: true,
       },
+      tiempoAprox: {
+        type: DataTypes.INTEGER,
+      },
     }, {
       tableName: 'presupuesto',
       timestamps: false,
@@ -24,27 +29,21 @@ module.exports = (sequelize, DataTypes) => {
     Presupuesto.associate = function (models) {
       // Relación con la tabla Solicitud
       Presupuesto.belongsTo(models.Solicitud, {
-        foreignKey: {
-          name: 'idAnuncio',
-          allowNull: false,
-        },
-        targetKey: 'idSolicitud',
+        foreignKey:  'idSolicitud',
         as: 'anuncio',
       });
   
       // Relación con la tabla Usuario
       Presupuesto.belongsTo(models.Usuario, {
-        foreignKey: {
-          name: 'idPrestador',
-          allowNull: false,
-        },
-        targetKey: 'idUsuario',
+        foreignKey: 'idUsuario',
         as: 'usuario',
       });
   
       // Relación hasMany con la tabla HorariosPresupuesto
       Presupuesto.hasMany(models.HorariosPresupuesto, {
-        foreignKey: 'idPresupuesto',
+        foreignKey: 'idSolicitud',
+        otherKey: 'idUsuario',
+        otherKey: 'horario',
         as: 'horariosPresupuesto',  
       });
   

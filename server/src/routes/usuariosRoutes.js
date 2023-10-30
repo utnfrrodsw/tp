@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-console.log("usuariosRoutes");
-
+//controllers
 
 const usuarioController = require( "../controllers/usuarios/usuariosControllers.js");
+
 const {authenticate} = require("../auth/authenticate.js");
 const { jsonResponse } = require("../lib/jsonResponse.js");
 // const { authUserRegister } = require( "../../middlewares/usuarios/authUserRegister.js");
@@ -29,9 +29,12 @@ router.get('/auth', authenticate,  (req, res) => {
 });
 
 //login, register
-router.post('/registrar',usuarioController.registrarUsuario);
-router.post('/login',usuarioController.login);
+ 
+router.post('/login' ,usuarioController.login);
 router.delete('/logout',usuarioController.logout);
+
+//REGITRO
+router.post('/register', usuarioController.register);
 
 //consultas
 //OBTENER USUARIOS
@@ -45,8 +48,8 @@ router.get('/listaUsuario/:id', usuarioController.getUsuario)
 //.PUT para actualizacion completa
 //.PATCH para actualizacion parcial (ver ejemplos en el video)
 
-//REGITRO
-router.post('/registro',/* validateRegistro,  authUserRegister, */usuarioController.registrarUsuario /*, errorHandler*/);
+
+
 //LOGIN
 router.post('/login', /*validateLoginData, authenticateUser, */usuarioController.login /*,errorHandler*/);
 

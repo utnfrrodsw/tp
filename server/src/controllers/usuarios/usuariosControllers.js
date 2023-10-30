@@ -1,16 +1,12 @@
 //LOGICA PARA CONSULTAS A LA BD
-
 const bcrypt = require('bcrypt');
 const db = require('../../models');  
 const { jsonResponse } = require('../../lib/jsonResponse');
 const { getUserInfo } = require('../../lib/getUserInfo');
-const Usuario = require('../../models/Usuario');
 const { generateAccessTokes, generateRefreshToken } = require('../../auth/generateTokens.js');
 const getTokenFromHeader = require('../../auth/getTokenFromHeader');
 const { verifyRefreshToken } = require('../../auth/verifyTokens');
 const validateToken = require('../../auth/validateToken');
-//const multer = require('multer'); // Para manejar la carga de imágenes
-
 
 const usuarioController = {
 
@@ -48,31 +44,34 @@ const usuarioController = {
     }
   },
  
-  registrarUsuario: async (req, res) => {
-    //console.log(req.body);
-    const { nombre, apellido, email, contrasena, fechaNacimiento, telefono, esPrestador } = req.body;
-    console.log(req.body)
+  register: async (req, res) => {
+    const {
+      nombre,
+      apellido,
+      email,
+      contrasena,
+      fechaNacimiento,
+      telefono,
+      esPrestador,
+      especialidades,
+    } = req.body;
+  
     try {
-      const result = await db.Usuario.findOne({
-        where: { email },
-      })
-      .then(result => {
-        return result;
-      });
-      console.log(result);
       // Verificar si el usuario ya existe en la base de datos
-      if (result != null) {
-        console.log("usuario ya existe");
-        return res.status(500).json(jsonResponse(500, {
-          message: 'El usuario ya existe' 
-        }));
+      const existingUser = await db.Usuario.findOne({
+        where: { email },
+      });
+  
+      if (existingUser) {
+        return res.status(400).json(jsonResponse(400, { message: 'El usuario ya existe' }));
       }
-
-      console.log(nombre, apellido, email, contrasena, fechaNacimiento, telefono, esPrestador)
-     
-      const hashedPassword = await bcrypt.hash(contrasena, 10); // 10 rounds de sal
-
-      const usuario = await db.Usuario.create({
+  
+      // Hashear la contraseña antes de guardarla
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
+  
+      // Crear el nuevo usuario en la base de datos
+      const newUser = await db.Usuario.create({
         nombre,
         apellido,
         email,
@@ -80,19 +79,51 @@ const usuarioController = {
         fechaNacimiento,
         telefono,
         esPrestador,
+        // Otras propiedades específicas del usuario si las tienes
       });
-
-      console.log(usuario);
-
-      res.status(200).json(jsonResponse(200, { message: 'Registro exitoso', usuario }));
-
+  
+      if (esPrestador && especialidades && especialidades.length > 0) {
+        const profesionesIds = [];
+      
+        // Obtener las especialidades existentes y crear las nuevas
+        await Promise.all(
+          especialidades.map(async (especialidad) => {
+            const existingEspecialidad = await db.Profesion.findOne({
+              where: { nombreProfesion: especialidad },
+            });
+      
+            if (existingEspecialidad) {
+              // Si la especialidad ya existe, agrega su ID a la lista
+              profesionesIds.push(existingEspecialidad.idProfesion);
+            } else {
+              // Si es una nueva especialidad, créala y agrega su ID
+              const newProfesion = await db.Profesion.create({
+                nombreProfesion: especialidad,
+              });
+              profesionesIds.push(newProfesion.idProfesion);
+            }
+          })
+        );
+      
+        // Relacionar al usuario prestador con las especialidades
+        await Promise.all(
+          profesionesIds.map(async (profesionId) => {
+              await db.PrestadorProfesiones.create({
+                  idprestador: newUser.idUsuario, // ID del usuario recién creado
+                  idProfesion: profesionId,
+              });
+          })
+        );
+      // Responder con un mensaje de registro exitoso
+      res.status(201).json({
+        message: 'Registro exitoso',
+      });
+      }
     } catch (error) {
-      console.error(error);
-      res.status(500).json(jsonResponse(500, {
-        message: 'Error al registrarse' 
-      }));
-    }
-  },
+      console.error('Error en el registro:', error);
+      res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
+    }
+  },
 
   login: async (req, res) => {
     const { email, constrasena } = req.body;
@@ -119,7 +150,7 @@ const usuarioController = {
             console.log(error);
           }
           console.log("inicio sesion correctamente");
-          res.status(200).json(jsonResponse(200, {message: 'Inicio de sesión exitoso', user: getUserInfo(user), token, refreshToken}));
+          res.status(200).json(jsonResponse(200, {message: 'Inicio de sesión exitoso', user, token, refreshToken}));
         }else{
           res.status(401).json(jsonResponse(401, {
             message: 'Usuario o contraseña incorrectos' 
@@ -143,7 +174,9 @@ const usuarioController = {
     const refreshToken = await getTokenFromHeader(req.headers);
     if(refreshToken){
       try{
-        const found = await db.Token.findOne({ where: { token: refreshToken } });
+        const found = await db.Token.findOne({ 
+          where: { token: refreshToken } 
+        });
         if(!found){
           res.status(401).json(jsonResponse(401, {
             error: 'No Autorizado 1' 
@@ -202,8 +235,7 @@ const usuarioController = {
         console.error('Error al obtener datos del usuario', error);
         res.status(500).json({ message: 'Error en el servidor' });
       }
-    },
-
+  },
 
   modificarDatosPersonales: async (req, res) => {
     const { id } = req.params;
@@ -230,7 +262,6 @@ const usuarioController = {
     }
   },
 
-
   verificarClave: async (req, res) => {
     const { id } = req.params;
     const { claveActual } = req.body;
@@ -253,8 +284,6 @@ const usuarioController = {
       res.status(500).json({ message: 'Error en el servidor' });
     }
   },
-
-
 
   cambiarClave: async (req, res) => {
   const { id } = req.params;
@@ -279,9 +308,7 @@ const usuarioController = {
     console.error('Error al actualizar la contraseña del usuario', error);
     res.status(500).json({ message: 'Error en el servidor' });
   }
-},
-
-
+  },
 
   getDireccion: async(req,res)=>{
       const { id } = req.params;
@@ -300,7 +327,6 @@ const usuarioController = {
         res.status(500).json({ message: 'Error en el servidor' });
       }
   },
-
 
   getLocalidad: async(req,res)=>{
     const { codPostal } = req.params;

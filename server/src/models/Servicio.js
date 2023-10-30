@@ -1,19 +1,21 @@
 module.exports = (sequelize, DataTypes) => {
     const Servicio = sequelize.define('Servicio', {
-      idAnuncio: {
+      idSolicitud: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
-      idPrestador: {
+      idUsuario: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
       fechaHora: {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      costoTotal: {
-        type: DataTypes.DOUBLE,
+      estado: {
+        type: DataTypes.STRING(45),
         allowNull: false,
       },
     }, {
@@ -24,20 +26,16 @@ module.exports = (sequelize, DataTypes) => {
     Servicio.associate = function (models) {
       //  relación con la tabla Presupuesto
       Servicio.belongsTo(models.Presupuesto, {
-        foreignKey: {
-          name: 'idAnuncio',
-          allowNull: false,
-        },
-        targetKey: 'idAnuncio',
+        foreignKey:'idSolicitud',
         as: 'presupuesto',
       });
   
       Servicio.belongsTo(models.Presupuesto, {
         foreignKey: {
-          name: 'idPrestador',
+          name: 'idUsuario',
           allowNull: false,
         },
-        targetKey: 'idPrestador',
+        targetKey: 'idUsuario',
         as: 'presupuestoPrestador',
       });
     };

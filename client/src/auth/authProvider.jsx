@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect} from 'react';
 import { API_URL } from './constants';
+import Loader from '../components/load/lodearCentro/Loader';
 
 const AuthContext = createContext({
     isAuthenticated: false,
@@ -14,9 +15,9 @@ export function AuthProvider({children}) {
     const [user, setUser] = useState({});
     const [isAuthenticated, setIsAuthenticated] = useState(false); 
     const [accessToken, setAccessToken] = useState("");
-    const [refreshToken, setRefreshToken] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
+    //eslint-disable-next-line
     useEffect(() => {
         checkAuth();
     },[]);
@@ -58,7 +59,6 @@ export function AuthProvider({children}) {
             console.log(response);
             if(response.ok){
                 const json = await response.json();
-
                 if(json.error){
                     throw new Error(json.error);
                 }
@@ -73,8 +73,6 @@ export function AuthProvider({children}) {
             return null;
         }
     };
-
-    
 
     function saveSessionInfo(userInfo, accessToken, refreshToken){
         setAccessToken(accessToken);
@@ -97,6 +95,7 @@ export function AuthProvider({children}) {
     }
 
     function saveUser(userData){
+        localStorage.setItem("user", JSON.stringify(userData.body.user));
         saveSessionInfo(userData.body.user, userData.body.token, userData.body.refreshToken);
     }
 
@@ -106,8 +105,8 @@ export function AuthProvider({children}) {
 
     function logout(){
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         setAccessToken("");
-        setRefreshToken("");
         setUser(undefined);
         setIsAuthenticated(false);
     }
@@ -142,7 +141,7 @@ export function AuthProvider({children}) {
 
     return(
     <AuthContext.Provider value={{isAuthenticated, getAccessToken, saveUser, getRefreshToken, getUser, logout}}>
-        {isLoading ? <div>Cargando...</div> : children}
+        {isLoading ? <Loader />: children}
     </AuthContext.Provider>
     );
 }

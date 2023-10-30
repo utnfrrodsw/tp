@@ -18,15 +18,15 @@ module.exports = (sequelize, dataTypes) => {
     descripcion: {
       type: dataTypes.STRING(255),
     },
-    fotos: {
-      type: dataTypes.BLOB,
-      allowNull: false,
-    },
     estado: {
       type: dataTypes.STRING(20),
       allowNull: false,
     },
     idDireccion: {
+      type: dataTypes.INTEGER,
+      allowNull: false,
+    },
+    idProfesion: {
       type: dataTypes.INTEGER,
       allowNull: false,
     },
@@ -44,7 +44,18 @@ module.exports = (sequelize, dataTypes) => {
       as: 'direccion',
       foreignKey: 'idDireccion', // Clave foránea en Solicitud
     });
+    Solicitud.hasMany(models.FotoSolicitud, {
+      as: 'fotosSolicitud',
+      foreignKey: 'idSolicitud', // Clave foránea en FotoSolicitud
+    });
+    Solicitud.belongsTo(models.Profesion, {
+      as: 'profesiones',
+      foreignKey: 'idProfesion', // Clave foránea en Solicitud
+    });
+    Solicitud.hasMany(models.Presupuesto,{
+      as: 'Presupuestos',
+      foreignKey: 'idSolicitud',
+    });
   };
-
   return Solicitud;
 }

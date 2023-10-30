@@ -34,7 +34,7 @@ module.exports = (sequelize, dataTypes) => {
       allowNull: false,
     },
     telefono: {
-      type: dataTypes.INTEGER,
+      type: dataTypes.STRING(20),
       allowNull: false,
     },
     esPrestador: {
@@ -55,9 +55,22 @@ module.exports = (sequelize, dataTypes) => {
       as: 'direcciones',
       foreignKey: 'idUsuario', // Clave foránea en Direccion
     });
+    Usuario.hasMany(models.PrestadorProfesiones, {
+      as: 'profesiones',
+      foreignKey: 'idprestador', // Clave foránea en PrestadorProfesiones
+    });
+    Usuario.hasMany(models.HistoricoResenia, {
+      as: 'resenias',
+      foreignKey: 'idUsuario', // Clave foránea en HistoricoResenia
+    });
+    Usuario.hasMany(models.Presupuesto, {
+      as: 'presupuestos',
+      foreignKey: 'idUsuario', // Clave foránea en Presupuesto
+    });
   };
   
   return Usuario;
 };
+
 
 
