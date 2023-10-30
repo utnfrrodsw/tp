@@ -71,7 +71,7 @@ const solicitudController = {
                     });
 
                     // Guardo datos del presupuesto si esta en progreso o finalizada
-                    if(solicitud.estado == 'progreso' || solicitud.estado == 'finalizada'){
+                    if(solicitud.estado == 'progreso' || solicitud.estado == 'terminado'){
                         const promise = db.Presupuesto.findOne({
                             where: {
                                 idSolicitud: solicitud.idSolicitud

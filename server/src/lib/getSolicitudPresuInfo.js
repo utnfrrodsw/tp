@@ -3,6 +3,7 @@ exports.getSolicitudPresuInfo = function(solicitud, fotosSolicitud, presupuesto)
     const fecha = fechaHora.getDate() + '/' + (fechaHora.getMonth()+1) + '/' + fechaHora.getFullYear() + ' ' + fechaHora.getHours() + ':' + fechaHora.getMinutes() + 'hs';
     return {
         id: solicitud.idSolicitud,
+        idPrestador: presupuesto.usuario.idUsuario,
         titulo: solicitud.titulo,
         descripcion: solicitud.descripcion,
         estado: solicitud.estado,
