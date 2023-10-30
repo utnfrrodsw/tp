@@ -243,6 +243,27 @@ export const getUserRole = async (req, res) => {
     res.status(500).json({ error: 'Error al obtener usuario' });
   }
 };
+
+export const deleteUser = async (req, res) => {
+  try {
+    const userId = req.userID; 
+
+    // Verificar si el usuario existe
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'El usuario no existe' });
+    }
+
+    // Eliminar el usuario
+    await userModel.findByIdAndRemove(userId);
+
+    res.status(200).json({ message: 'Usuario eliminado con éxito' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al eliminar el usuario' });
+  }
+};
+
 /* export default {
     createUser,
     login,
