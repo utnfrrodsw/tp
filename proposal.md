@@ -43,7 +43,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Client<br>2. CRUD Pedido<br>3. CRUD Producto<br>4. CRUD Proveedor|
-|CRUD dependiente|1. CRUD Category{depends on} CRUD Product<br>2.CRUD Discount {depends on } CRUD Client|
+|CRUD dependiente|1. CRUD Category {depends on} CRUD Product<br>2.CRUD Discount {depends on } CRUD Client|
 |Listado<br>+<br>detalle| 1. List of clients order by Antiquity<br> 2. List of products order by category|
 |CUU/Epic|1. Load a client on system<br>2. Update Stock and generate bill
 
