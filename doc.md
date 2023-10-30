@@ -64,21 +64,65 @@ y en la del front usamos
 30/08
 Inicialización del front.
 
+31/08
+Cambio de tarjetas por Carrousel. Creacion de utilidades.
+
+03/09
+Diseño del LogIn
+
+05/09
+Prototipo del SignUp
+
+15/09
+Tarjetas en el front
+
 16/09
-Inicialización de lógica de usuario en back.
+Inicialización de lógica de User en back. Creacion del AuthService
 
 17/09
-Añadida la lógica de login tanto en back como en front.
+Añadida la lógica de login tanto en back como en front. Creacion y armado del SignUp. Intento de conexión con el backend.
+
+18/09
+ABM de Review fue adaptado a mongoDB.
 
 21/09
-Mejoramos el backend creando los ABMs de game utilizando la base de datos y definimos correctamente el método GetUserData. Aplicamos este último método en el front end para correctamente recibir los datos del usuario y mostrarlos como placeholder de lo que será la página del perfil.
+Mejoramos el backend creando los ABMs de game utilizando la base de datos y definimos correctamente el método GetUserData. Aplicamos este último método en el front end para correctamente recibir los datos del User y mostrarlos como placeholder de lo que será la página del perfil. Creacion del GamePage.
 
 23/09
 Actualizamos Review pues decidimos agregar typegoose para utilizar tipos de manera más cómoda.
 
 27/09
-Comentamos el backend y empezamos a investigar para realizar el front de perfil de usuario.
+Comentamos el backend y empezamos a investigar para realizar el front de perfil de usuario. 
+
+28/09
+ABM de Company inicializado.
 
 29/09
-Cambios en atributos de review y usuario para poder hacer join (populate).
+Cambios en atributos de Review y User para poder hacer join (populate). Cambios en el perfil de User e inicio de diseño del GamePage.
 
+08/10
+Cambios en atributos de Review y Game para poder hacer join(populate).
+
+12/10
+Cambios en Reviews. Inicio de la logica para creacion de Review desde frontend.
+
+13/10
+Avances en el post de una Review, se eliminaron funcionalidades innecesarias. Logica del front para cargar una Review con Servicios.
+
+14/10
+Creamos los abms de Admin, Leveling e Interaction.
+
+15/10
+Logica para encontrar Reviews de un Game. Verificacion entre Review, User y Game. Logica para encontrar todas las Reviews de un Game y verificar que el User tenga o no una.
+
+22/10
+Calculo de score sobre un Game.
+
+23/10
+Creacion del metodo para cambiar level del User (ChangeLevel). Creacion de los componentes para el Admin en frontend.
+
+24/10
+Logica para la recuperacion de juegos desde el Home.
+
+29/10
+Fixeo del Metodo ChangeLevel. Eliminacion del patron Repository en User. Interaccion del boton de borrado de Review.
