@@ -18,7 +18,6 @@ function Solicitud(props){
   const [loading, setLoading] = useState(false);
   const [hacerReseña, setHacerReseña] = useState(false);
   const auth = useAuth();
-  const dateTime = new Date(props.fecha);
 
   // eslint-disable-next-line
   useEffect(() => {
@@ -108,11 +107,9 @@ function Solicitud(props){
           </div>
           <h1 className='titulo-solicitud'>{props.titulo}</h1>
           <p className='fecha-solicitud'>{props.profesion.nombreProfesion} </p>
-          <p className='fecha-solicitud' >{props.estado === "progreso" || props.estado === "terminado" ? <>{props.nombrePrestador}</> : <></>}</p>
-          <p className='fecha-solicitud'>
-          {props.estado === "activa"? <>{dateTime.getDay()}/{dateTime.getMonth()}/{dateTime.getFullYear()}  {dateTime.getHours()}:{dateTime.getMinutes()} </> :<></>}
-          {props.estado === "progreso" || props.estado === "terminado" ? <>{props.fechaHora} </>:<></>}
-          </p>
+          {props.estado === "progreso" || props.estado === "terminado" ? <p className='fecha-solicitud'>{props.nombrePrestador}</p> : <></>}
+          {props.estado === "activa"? (<p className='fecha-solicitud'>Fecha Solicitud: {props.fecha}</p>) :<></>}
+          {props.estado === "progreso" || props.estado === "terminado" ? <p className='fecha-solicitud'>Fecha Servicio: {props.fecha} </p>:<></>}
           <p className='ubicacion-solicitud'>{props.direccion.calle} {props.direccion.numero}</p>
         </div>
         {show ? (
