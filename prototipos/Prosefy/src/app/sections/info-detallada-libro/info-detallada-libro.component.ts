@@ -23,31 +23,29 @@ export class InfoDetalladaLibroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Obtener el valor del parámetro ":id" desde la URL
-    this.route.paramMap.subscribe((params) => {
-      const idParam = params.get('id');
+    if (this.route && this.route.paramMap) {
+      this.route.paramMap.subscribe((params) => {
+        const idParam = params.get('id');
 
-      if (idParam !== null) {
-        const libroId = parseInt(idParam, 10);
+        if (idParam !== null) {
+          const libroId = parseInt(idParam, 10);
+          this.libro = this.librosService.getLibroById(libroId);
 
-        // Obtener el libro por ID utilizando el servicio de libros
-        this.libro = this.librosService.getLibroById(libroId);
-
-        // Obtener la información de los autores
-        if (this.libro && this.libro.autores) {
-          this.libro.autores.forEach((nombreAutor) => {
-            const autor = this.autoresService.getAutorByNombre(nombreAutor);
-            if (autor) {
-              this.autores.push(autor);
-            }
-          });
+          if (this.libro && this.libro.autores) {
+            this.libro.autores.forEach((nombreAutor) => {
+              const autor = this.autoresService.getAutorByNombre(nombreAutor);
+              if (autor) {
+                this.autores.push(autor);
+              }
+            });
+          }
+        } else {
+          this.router.navigate(['/inicio']);
         }
-      } else {
-        // Redirigir a la página de inicio
-        this.router.navigate(['/inicio']);
-      }
-    });
+      });
+    }
   }
+
   formatearFecha(fecha: Date): string {
     const fechaFormateada = this.datePipe.transform(fecha, 'dd MMMM', 'es');
     if (fechaFormateada) {

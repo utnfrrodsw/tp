@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { RegistrarseComponent } from './registrarse.component';
 
@@ -8,7 +9,8 @@ describe('RegistrarseComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RegistrarseComponent]
+      declarations: [RegistrarseComponent],
+      imports: [ReactiveFormsModule]
     });
     fixture = TestBed.createComponent(RegistrarseComponent);
     component = fixture.componentInstance;

@@ -25,9 +25,11 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.searchTerm = params['term'] || ''; // Si 'term' no está presente, establece el valor como una cadena vacía
-    });
+    if (this.route && this.route.params) {
+      this.route.params.subscribe((params) => {
+        this.searchTerm = params['term'] || '';
+      });
+    }
   }
 
   private updatePlaceholder(url: string) {

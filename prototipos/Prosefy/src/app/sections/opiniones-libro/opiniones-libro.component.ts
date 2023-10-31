@@ -17,19 +17,20 @@ export class OpinionesLibroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Obtener el valor del parámetro ":id" desde la URL
-    this.route.paramMap.subscribe((params) => {
-      const idParam = params.get('id');
+    if (this.route && this.route.paramMap) {
+      this.route.paramMap.subscribe((params) => {
+        const idParam = params.get('id');
 
-      if (idParam !== null) {
-        const libroId = parseInt(idParam, 10);
-
-        // Obtener el libro por ID utilizando el servicio de libros
-        this.libro = this.librosService.getLibroById(libroId);
-      } else {
-        // Redirigir a la página de inicio
-        this.router.navigate(['/inicio']);
-      }
-    });
+        if (idParam !== null) {
+          const libroId = parseInt(idParam, 10);
+          this.libro = this.librosService.getLibroById(libroId);
+        } else {
+          this.router.navigate(['/inicio']);
+        }
+      });
+    } else {
+      // Manejo del caso en el que this.route o this.route.paramMap son undefined
+      console.error('this.route o this.route.paramMap es undefined');
+    }
   }
-}
+}  
