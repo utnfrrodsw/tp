@@ -107,7 +107,7 @@ function Solicitud(props){
           </div>
           <h1 className='titulo-solicitud'>{props.titulo}</h1>
           <p className='fecha-solicitud'>{props.profesion.nombreProfesion} </p>
-          <p className='fecha-solicitud' >{props.estado === "progreso" || props.estado === "terminado" ? <>{props.nombrePrestador}</> : <></>}</p>
+          {props.estado === "progreso" || props.estado === "terminado" ? <p className='fecha-solicitud'>{props.nombrePrestador}</p> : <></>}
           {props.estado === "activa"? (<p className='fecha-solicitud'>Fecha Solicitud: {props.fecha}</p>) :<></>}
           {props.estado === "progreso" || props.estado === "terminado" ? <p className='fecha-solicitud'>Fecha Servicio: {props.fecha} </p>:<></>}
           <p className='ubicacion-solicitud'>{props.direccion.calle} {props.direccion.numero}</p>
