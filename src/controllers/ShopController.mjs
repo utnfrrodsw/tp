@@ -36,7 +36,7 @@ export const createShop = async (req, res) => {
     const shopId = savedShop._id;
 
     // Actualizar usuario
-    await userModel.findByIdAndUpdate(userId, {
+    const nuevoUser= await userModel.findByIdAndUpdate(userId, {
       
       tienda:shopId,
       role: role
@@ -45,8 +45,8 @@ export const createShop = async (req, res) => {
     });
     //actualiza el token
     const token = jwt.sign({
-      _id: user._id,
-      role: user.role
+      _id: nuevoUser._id,
+      role: nuevoUser.role
     }, process.env.JWT_SECRET);
 
     res.status(201).json({
@@ -101,7 +101,41 @@ export const updateShop = async (req, res) => {
 };
 
 
-/* export default {
-    createShop, 
-    updateShop
-} */
+export const deleteShop = async (req, res) => {
+  const propietario = req.userID; 
+
+  try {
+    // verificar si la tienda existe
+    console.log(propietario)
+    const shop = await shopModel.findOne({ propietario: propietario });
+    console.log(shop)
+    if (!shop) {
+      return res.status(404).json({
+        message: 'La tienda no existe',
+      });
+    }
+
+    // eliminar la tienda
+    await shopModel.findOneAndRemove({ propietario: propietario });
+    const role='user'
+    const user = await userModel.findByIdAndUpdate(propietario, {
+      role: role
+    }, {
+      new: true
+    });
+    //actualiza el token
+    const token = jwt.sign({
+      _id: user._id,
+      role: user.role
+    }, process.env.JWT_SECRET);
+    res.status(200).json({
+      message: 'Tienda eliminada con éxito',
+      token
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: 'Error al eliminar la tienda',
+    });
+  }
+};
