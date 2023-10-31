@@ -81,26 +81,6 @@ const DatosPersonales = () => {
     setFotoPerfil(URL.createObjectURL(file));
   };
 
-  // Función para cerrar sesión
-  async function handlelogout(e){
-    e.preventDefault();
-    try {
-      const response = await fetch(`${API_URL}/usuario/logout`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.getRefreshToken()}`,
-        },
-      });
-      if (response.ok) {
-        auth.logout();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-
   return (
     <div>
       <Row>
@@ -250,7 +230,6 @@ const DatosPersonales = () => {
           </Card>
         </Col>
       </Row>
-      <Link className='ButtonCerrarSesion' onClick={handlelogout}>Cerrar Sesión</Link>
     </div>
   );
 };
