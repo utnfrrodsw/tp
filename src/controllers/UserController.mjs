@@ -54,7 +54,7 @@ export const login = async (req, res) => {
         // Si no se encuentra el usuario, devuelve un error
         if (!user) {
             return res.status(401).json({
-                error: 'Credenciales inválidas'
+                message: 'Credenciales inválidas'
             });
         }
 
@@ -64,7 +64,7 @@ export const login = async (req, res) => {
         // Si las contraseñas no coinciden, devuelve un error
         if (!passwordMatch) {
             return res.status(401).json({
-                error: 'Credenciales inválidas'
+                message: 'Credenciales inválidas'
             });
         }
         // Genera un token de sesión para el usuario
@@ -162,7 +162,7 @@ export const UpdateUserPassword = async (req, res) => {
         const password = hashPassword;
 
         // Actualizar usuario
-        const updatedUser = await userModel.findByIdAndUpdate(userId, {password}, {
+        const updatedUser = await userModel.findByIdAndUpdate(userId, { password }, {
             new: true
         });
 
@@ -217,31 +217,37 @@ export const UpdateVendedor = async (req, res, next) => {
 }
 
 export const getUserByToken = async (req, res) => {
-  try {
-    const userId = req.userID; // Obtener el id del usuario
-    const user = await userModel.findById(userId); // Busca usuario por Id
-    if (!user) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
+    if (req.headers && req.headers.authorization) {
+        let authorization = req.headers.authorization.split(' ')[1],
+            decoded;
+        try {
+            decoded = jwt.verify(authorization, process.env.JWT_SECRET);
+        } catch (e) {
+            return res.status(401).json({ error: 'No autorizado!' });
+        }
+        let userId = decoded._id; // Obtener el id del usuario
+        const user = await userModel.findById(userId); // Busca usuario por Id
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        res.status(200).json({ data: user });
+    } else {
+        return res.status(401).json({ error: 'No autorizado!' });
     }
-    res.status(200).json({ data:user });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al obtener usuario' });
-  }
 };
 
 export const getUserRole = async (req, res) => {
-  try {
-    const userId = req.userID; // Obtener el id del usuario
-    const user = await userModel.findById(userId); // Busca usuario por Id
-    if (!user) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
+    try {
+        const userId = req.userID; // Obtener el id del usuario
+        const user = await userModel.findById(userId); // Busca usuario por Id
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        res.status(200).json({ data: user.role });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al obtener usuario' });
     }
-    res.status(200).json({ data:user.role });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al obtener usuario' });
-  }
 };
 /* export default {
     createUser,
