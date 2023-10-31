@@ -194,7 +194,7 @@ const solicitudController = {
     getSolicitudesProfesion: async function (req, res){
         try {
         const idPrestador = req.params.id; 
-
+        const estado=req.params.estado;
         // profesiones asociadas al prestador
         const prestadorProfesiones = await db.PrestadorProfesiones.findAll({
         attributes: ['idPrestador', 'idProfesion'],
@@ -229,7 +229,7 @@ const solicitudController = {
         // Ahora, busca las solicitudes que tienen profesiones en la lista de IDs
         await db.Solicitud.findAll({
             where: {
-                estado: 'activa',
+                estado: estado,
                 idProfesion:profesionIds,
                 idSolicitud: {
                                 [Op.notIn]: presupuestoIds
@@ -290,7 +290,7 @@ const solicitudController = {
     getSolicitudesPresupuestadas: async function (req, res){
         try {
         const idPrestador = req.params.id; 
-
+        const estado=req.params.estado;
         //Busco el id de las solicitudes que presupueste
         const solicitudesPresupuestadas=await db.Presupuesto.findAll({
         attributes: ['idSolicitud','idUsuario'],
@@ -313,6 +313,7 @@ const solicitudController = {
         await db.Solicitud.findAll({
         attributes: ['idSolicitud','fechaHora','titulo','descripcion','estado','idDireccion','idProfesion'],
             where: {
+                estado: estado,
                 idSolicitud: {
                                 [Op.in]: presupuestoIds,
                                 [Op.notIn]: serviciosIds
@@ -369,7 +370,7 @@ const solicitudController = {
     getSolicitudesAceptadas: async function (req, res){
         try {
         const idPrestador = req.params.id; 
-
+        const estado=req.params.estado;
         //Busco el id de los presupuestos que me aceptaron
         const servicios=await db.Servicio.findAll({
         attributes: ['idSolicitud','idUsuario'],
@@ -383,6 +384,7 @@ const solicitudController = {
         await db.Solicitud.findAll({
         attributes: ['idSolicitud','fechaHora','titulo','descripcion','estado','idDireccion','idProfesion'],
             where: {
+                estado:estado,
                 idSolicitud: {
                                 [Op.in]: serviciosIds
                         }

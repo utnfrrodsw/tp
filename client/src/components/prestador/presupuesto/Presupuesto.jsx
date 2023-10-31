@@ -1,14 +1,22 @@
 import './Presupuesto.css'
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from "../../../auth/constants.js";
+import { useAuth } from "../../../auth/authProvider.jsx";
 
 function Presupuesto(props) {
-  const [anuncio, setAnuncio] = useState(null);
+   const [anuncio, setAnuncio] = useState(null);
   const [datetimeValue, setDatetimeValue] = useState('');
   const [selectedDates, setSelectedDates] = useState([]);
-  const currentDate = new Date().toISOString().slice(0, 16); // Obtiene la fecha y hora actual en formato "yyyy-MM-ddTHH:mm"
-  const {id}= useParams();
+  const [materiales, setMateriales] = useState('');
+  const [costoMateriales, setCostoMateriales] = useState(0);
+  const [tiempo, setTiempo] = useState(0);
+  const [costoxHora, setCostoxHora] = useState(0);
+  const currentDate = new Date().toISOString().slice(0, 16);
+  const { id } = useParams();
+  const history = useNavigate();
+  const auth = useAuth();
+  const user = auth.getUser();
 
   useEffect(() => {
     // Realiza la consulta a la base de datos para obtener los detalles del anuncio usando el ID
@@ -42,8 +50,39 @@ function Presupuesto(props) {
     newDates.splice(index, 1);
     setSelectedDates(newDates);
   };
-  const fechaFormateada = new Date(anuncio.fechaHora).toLocaleString();
 
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    // Crea un objeto con los datos del presupuesto
+    const presupuestoData = {
+      idSolicitud: anuncio.idSolicitud,
+      idUsuario: user.id,
+      materiales: materiales,
+      costoMateriales: costoMateriales,
+      tiempo: tiempo,
+      costoxHora: costoxHora,
+      fechasSeleccionadas: selectedDates,
+    };
+
+    // Realiza una solicitud POST para enviar el presupuesto a la base de datos
+    fetch(`${API_URL}/solicitud/nuevas/prestador/presupuestar`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(presupuestoData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Si la solicitud es exitosa, puedes redirigir al usuario a otra página, por ejemplo, la página de inicio
+        history.push('/inicio');
+      })
+      .catch((error) => {
+        console.error('Error al enviar el presupuesto:', error);
+      });
+  };
   return (
     <>
       <div className="anuncio-Content">
@@ -53,7 +92,7 @@ function Presupuesto(props) {
               <p><h2>Detalles:</h2></p>
               <p>Número de anuncio: {anuncio.idSolicitud}</p>
               <p>Título: {anuncio.titulo}</p>
-              <p>Fecha de publicacion: {fechaFormateada}</p>
+              <p>Fecha de publicacion: {new Date(anuncio.fechaHora).toLocaleString()}</p>
               <p>Ubicacion: {anuncio.direccion.codPostal} (Ver de modificar por ciudad y prov)</p> 
             </div>
             <div className='descripcion'><h3><p>Descripcion:</p></h3> {anuncio.descripcion}</div>
@@ -62,7 +101,7 @@ function Presupuesto(props) {
           <p>Cargando detalles del anuncio...</p>
         )}
       </div>
-    <form className='presupuesto-Content'>
+    <form className='presupuesto-Content'  onSubmit={handleFormSubmit}>
       <div className='campos'>
         <div className='listaMat'>
           <p>Lista Materiales:</p> 
@@ -102,7 +141,7 @@ function Presupuesto(props) {
         </div>
       </div>
       <button type='button'>Atrás</button>
-      <input type="submit"/>
+      <button type="submit">Enviar presupuesto</button>
     </form>
   </>
   )

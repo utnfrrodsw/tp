@@ -13,11 +13,11 @@ router.post('/cliente/:id', upload ,solicitudController.createSolicitud);
 
 router.delete('/cancelar/:id', solicitudController.CancelarSolicitud);
 
-router.get('/nuevas/prestador/:id', solicitudController.getSolicitudesProfesion);
+router.get('/nuevas/prestador/:id/:estado', solicitudController.getSolicitudesProfesion);
 
-router.get('/presupuestadas/prestador/:id',solicitudController.getSolicitudesPresupuestadas); 
+router.get('/presupuestadas/prestador/:id/:estado',solicitudController.getSolicitudesPresupuestadas); 
 
-router.get('/aceptadas/prestador/:id',solicitudController.getSolicitudesAceptadas);
+router.get('/aceptadas/prestador/:id/:estado',solicitudController.getSolicitudesAceptadas);
 
-router.get('/nuevas/prestador/presupuestar/:id',solicitudController.getSolicitud);
+router.get('/nuevas/prestador/presupuestar/:id/',solicitudController.getSolicitud);
 module.exports=router;
