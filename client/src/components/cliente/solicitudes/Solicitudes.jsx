@@ -77,12 +77,16 @@ function Solicitudes(props) {
                 {load === false ? (
                 SolicitudesPagina.length > 0 ? (
                 
-                SolicitudesPagina.map((solicitud) => (
+                SolicitudesPagina.map((solicitud, index) => (
                     
                     <Solicitud
                         hendleSolicitudesUpdate={hendleSolicitudesUpdate}
-                        key={solicitud.id}
+                        key={index}
                         id={solicitud.id}
+                        idPrestador={solicitud.idPrestador}
+                        telefonoPrestador={solicitud.telefonoPrestador}
+                        nombrePrestador={solicitud.nombrePrestador}
+                        fechaHoraServicio={solicitud.fechaHoraServicio}
                         titulo={solicitud.titulo}
                         profesion={solicitud.profesion}
                         fecha={solicitud.fechaHora}

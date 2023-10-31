@@ -7,9 +7,7 @@ import logo from "./logo.png";
 
 function InicioCliente() {
 
-    const user = {
-        name: "Facundo",
-    }
+    const user = JSON.parse(localStorage.getItem('user'));
 
 
     return (
@@ -20,7 +18,7 @@ function InicioCliente() {
                         <Link to = "/client/home"><img src={logo} alt="No disp" className="logo2"/></Link>
                     </div>
                     <section>
-                        <h1>Bienvenido a FastServices { user.name }</h1>
+                        <h1>Bienvenido a FastServices { user.nombre }</h1>
                         <p>
                         Tu lugar para solicitar servicios para tu hogar de manera rápida y eficiente. <br/>
                         Encuentra expertos en electricidad, plomería, reparaciones y más. <br/>

@@ -3,9 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { jsonResponse } = require("../../lib/jsonResponse");
 const {getSolicitudInfo} = require("../../lib/getSolicitudInfo");
-const PrestadorProfesiones = require('../../models/PrestadorProfesiones');
-const Profesion = require('../../models/Profesion');
-const Presupuesto = require('../../models/Presupuesto');
+const {getSolicitudPresuInfo} = require("../../lib/getSolicitudPresuInfo");
 const Sequelize = require('sequelize');
 const { getSolicitudInfoPres } = require('../../lib/getSolicitudInfoPres');
 const { Op } = Sequelize;
@@ -33,11 +31,11 @@ const solicitudController = {
         }
     },
 
-    getSolicitudesClienteEstado: function (req, res){
+    getSolicitudesClienteEstado: async function (req, res){
         try{
             const id = req.params.id; 
             const estado = req.params.estado; 
-            db.Solicitud.findAll({
+            await db.Solicitud.findAll({
             where: {
                 estado: estado
             },
@@ -56,7 +54,8 @@ const solicitudController = {
             ]
             }).then( (solicitudesResponse) => {
 
-                const solicitudes = []
+                const solicitudes = [];
+                const promises = []; // Array para almacenar las promesas
 
                 solicitudesResponse.map((solicitud) => {
                 
@@ -71,15 +70,50 @@ const solicitudController = {
                             foto: (foto.idfoto + '-fastServices.png'),// Proporciona la ruta al archivo
                         };
                     });
-                    solicitudes.push(getSolicitudInfo(solicitud, imgs));
+
+                    // Guardo datos del presupuesto si esta en progreso o finalizada
+                    if(solicitud.estado == 'progreso' || solicitud.estado == 'terminado'){
+                        const promise = db.Presupuesto.findOne({
+                            where: {
+                                idSolicitud: solicitud.idSolicitud
+                            },
+                            include: [{
+                                association: 'usuario'
+                            }]
+                        }).then((presupuesto) => {
+                            const presu = getSolicitudPresuInfo(solicitud, imgs, presupuesto);
+                            solicitudes.push(presu);
+                        });
+                        promises.push(promise);
+                    }else{
+                        solicitudes.push(getSolicitudInfo(solicitud, imgs));
+                    }
+                });
+
+                if(promises.length == 0){
+                    res.status(200).json(jsonResponse(200, {
+                        message: 'Solicitudes encontradas',
+                        solicitudes: solicitudes
+                    }));
+                    return;
+                }
+
+                Promise.all(promises)
+                .then(() => {
+                    // Todas las promesas se han completado, puedes enviar la respuesta
+                    res.status(200).json(jsonResponse(200, {
+                        message: 'Solicitudes encontradas',
+                        solicitudes: solicitudes
+                    }));
+                })
+                .catch((error) => {
+                    // Maneja cualquier error que pueda ocurrir
+                    console.error(error);
+                    res.status(500).json(jsonResponse(500, {
+                        error: 'Error interno del servidor'
+                    }));
                 });
                 
-                
-                res.status(200).json(jsonResponse(200, {
-                    message: "Solicitudes encontradas",
-                    //images: images,
-                    solicitudes: solicitudes
-                }))
             })
             .catch((error) => {
             // Maneja cualquier error

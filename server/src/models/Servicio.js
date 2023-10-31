@@ -3,18 +3,23 @@ module.exports = (sequelize, DataTypes) => {
       idSolicitud: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
-      idPrestador: {
+      idUsuario: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
       fechaHora: {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      costoTotal: {
-        type: DataTypes.DOUBLE,
+      estado: {
+        type: DataTypes.STRING(45),
         allowNull: false,
+      },
+      resenia: {
+        type: DataTypes.INTEGER,
       },
     }, {
       tableName: 'servicio',
@@ -25,16 +30,8 @@ module.exports = (sequelize, DataTypes) => {
       //  relación con la tabla Presupuesto
       Servicio.belongsTo(models.Presupuesto, {
         foreignKey:'idSolicitud',
+        otherKey:'idUsuario',
         as: 'presupuesto',
-      });
-  
-      Servicio.belongsTo(models.Presupuesto, {
-        foreignKey: {
-          name: 'idPrestador',
-          allowNull: false,
-        },
-        targetKey: 'idPrestador',
-        as: 'presupuestoPrestador',
       });
     };
   

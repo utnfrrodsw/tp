@@ -10,7 +10,7 @@
     " titulo fecha"
     "nombre  ubicacion"
     ".   boton";
-  height: 12rem;
+  height: 14rem;
   width: 55%;
   padding: 15px;
   /* Aumenta el espacio interno para pantallas de PC */
@@ -271,3 +271,9 @@ img {
   overflow: hidden;
 }
 
+.contenedor-presupuestos{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
