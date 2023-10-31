@@ -6,11 +6,15 @@ import { Component, Renderer2 } from '@angular/core';
   styleUrls: ['./boton-volver.component.css'],
 })
 export class BotonVolverComponent {
-  constructor(private renderer: Renderer2) {}
-  goBack() {
+  constructor(private renderer: Renderer2) { }
+
+  ngOnInit() {
     this.renderer.listen('window', 'popstate', () => {
-      window.history.back();
+      console.log('Se produjo el evento Popstate.');
     });
+  }
+
+  goBack() {
     window.history.back();
   }
 }
