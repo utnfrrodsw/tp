@@ -5,7 +5,7 @@ import {
     verifyTokenUser,
     verifyTokenAdmin,
     verifyTokenSeller
-} from '../middlewares/token.mjs'
+} from '../middlewares/token.mjs';
 const router = express.Router();
 
 router.post('/create-tienda', verifyTokenUser/* , UpdateVendedor */, createShop);

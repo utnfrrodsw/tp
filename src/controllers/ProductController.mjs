@@ -117,6 +117,27 @@ export const getAll = async (req, res) => {
     }
 };
 
+export const getOne = async (req, res) => {
+    try {
+        const { id } = req.params;
+        let prod = await ProductModel.findById(id);
+        if (!prod) {
+            return res.status(404).json({
+                error: 'Categoria no encontrada'
+            });
+        }
+
+        res.status(200).json({
+            producto: prod
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Error al obtener el producto'
+        });
+    }
+};
+
 export const getAllByShop = async (req, res) => {
     try {
         const { tiendaId } = req.params;

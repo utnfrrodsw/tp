@@ -9,6 +9,7 @@ import routerCategory from './routes/ProductCatRouter.mjs'
 import routerShop from './routes/ShopRouter.mjs'
 import routerProduct from './routes/ProductRouter.mjs'
 import routerReview from './routes/ReviewRouter.mjs'
+import routerCart from "./routes/ShoppingCartRouter.mjs";
 
 //Configuracion
 const app = express();
@@ -23,10 +24,11 @@ app.use('/api', routerCategory);
 app.use('/api', routerShop);
 app.use('/api', routerProduct);
 app.use('/api', routerReview);
+app.use('/api', routerCart);
 
 
 const port = process.env.PORT || 3000;
-const server= app.listen(port, () => console.log(`Listening on port ${port}`));
+const server = app.listen(port, () => console.log(`Listening on port ${port}`));
 dbConnect();
 
 
