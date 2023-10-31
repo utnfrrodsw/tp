@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Link, Navigate } from 'react-router-dom';
 import './Header.css';
 import logo from "./logoPosta.png";
@@ -12,7 +12,9 @@ import { API_URL } from '../../auth/constants';
 function Header(props) {
     const [show, setShow] = useState(false);
     const auth = useAuth();
-    const user = JSON.parse(localStorage.getItem('user'));
+
+    const userJSON = localStorage.getItem('user');
+    const user = userJSON ? JSON.parse(userJSON) : {nombre:""};
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -46,7 +48,7 @@ function Header(props) {
             <div className="header-links">
                 <div className="links">
                     <Link to="/notify"><img src={notifylogo} alt="" className="notifylogo" /></Link>
-                    {user ?
+                    {user.nombre !== "" ?
                         (<Link onClick={handleShow} ><img src={userlogo} className="userlogo" /></Link>) : 
                         <Link to="/login"><img src={userlogo} className="userlogo" /></Link>}
                     <Offcanvas  show={show} onHide={handleClose} placement="end" {...props} style={{backgraouncolor: '#2a4063'}}>
@@ -59,7 +61,7 @@ function Header(props) {
                                 {user.esPrestador ? 
                                 (<>
                                     <li><Link to="/provider/home/add" onClick={()=> setShow(false)}>Nuevos Anuncios</Link></li>
-                                    <li><Link to="//provider/home/budgeted" onClick={()=> setShow(false)}>Mis Presupuestos</Link></li>
+                                    <li><Link to="/provider/home/budgeted" onClick={()=> setShow(false)}>Mis Presupuestos</Link></li>
                                     <li><Link to="/provider/home/accepted" onClick={()=> setShow(false)}>Mis Servicios</Link></li>
                                     <li><Link to="/provider/home/finished" onClick={()=> setShow(false)}>Servicios Completados</Link></li>
                                 </>):
