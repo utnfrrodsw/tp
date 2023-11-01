@@ -49,7 +49,7 @@ const presupuestosController = {
     pagarPresupuesto: async (req, res) => {
         const idSolicitud = req.params.idSolicitud;
         const idPrestador = req.params.idPrestador;
-        const fechaHora = date(req.body.fecha);
+        const fechaHora = req.body.fecha;
         
         try{
             await db.sequelize.transaction( async (t) => {
