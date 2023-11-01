@@ -7,6 +7,8 @@ const solicitudController = require( "../controllers/solicitud/solicitudControll
 
 router.get('/:id', solicitudController.getSolicitud);
 
+router.get('/nuevas/prestador/:id/presupuestar',solicitudController.getSolicitud);
+
 router.get('/:estado/cliente/:id', solicitudController.getSolicitudesClienteEstado);
 
 router.post('/cliente/:id', upload ,solicitudController.createSolicitud);
@@ -19,5 +21,4 @@ router.get('/presupuestadas/prestador/:id/:estado',solicitudController.getSolici
 
 router.get('/aceptadas/prestador/:id/:estado',solicitudController.getSolicitudesAceptadas);
 
-router.get('/nuevas/prestador/presupuestar/:id/',solicitudController.getSolicitud);
 module.exports=router;

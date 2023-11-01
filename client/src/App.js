@@ -54,8 +54,9 @@ function App() {
             <Route path='/provider/home/expired' element={<Anuncios filtrado="presupuestadas" estado="progreso"/>}/>
             <Route path='/provider/home/accepted' element={<Anuncios filtrado="aceptadas" estado="progreso"/>}/>
             <Route path='/provider/home/finished' element={<Anuncios filtrado="aceptadas" estado="terminado"/>}/>
-            <Route path='/provider/home/budgeted/more' element={<Presupuestadas id="1"/>}/>
             <Route path='/provider/home/add/budget/:id' element={<Presupuesto/>}/>
+            <Route path='/provider/home/budgeted/more/:id' element={<Presupuestadas/>}/>
+            <Route path='/provider/home/accepted/more/:id' element={<Presupuestadas/>}/>
           </Route>
 
           {/*cliente*/}

@@ -3,7 +3,9 @@ import './anuncio.css';
 import { Carousel, Container, Image, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+
 function Anuncio(props) {
+  console.log(props.filtrado);
   const [show, setShow] = useState(true);
   const [verfotos, setVerfotos] = useState(false);
   const dateTime = new Date(props.fecha);
@@ -56,9 +58,17 @@ function Anuncio(props) {
           <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
           ): (
           <div>
-            : <></>
-            <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+            {props.filtrado === "nuevas" ?
             <Link to={`/provider/home/add/budget/${props.id}`}>Presupuestar</Link>
+            : <></>}
+            {props.filtrado === "presupuestadas" ?
+            <button className='boton-anuncio'><Link to={`/provider/home/add/budgeted/more/${props.id}`}>Ver informacion Presupuesto</Link></button>
+            : <></>}
+            {props.filtrado === "aceptadas" ?
+            <button className='boton-anuncio'><Link to={`/provider/home/add/accepted/more/${props.id}`}>Ver informacion Servicio</Link></button>
+            : <></>}
+            <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+            
           </div>
           )}
     </div>

@@ -122,6 +122,7 @@ function Anuncios(props) {
           AnunciosPagina.length > 0 ? (
             AnunciosPagina.map((anuncio) => (
               <Anuncio
+                filtrado={props.filtrado}
                 handleAnunciosUpdate={handleAnunciosUpdate}
                 key={anuncio.id}
                 id={anuncio.id}

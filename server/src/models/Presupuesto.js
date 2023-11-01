@@ -10,12 +10,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
       },
+      materiales:{
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
       costoMateriales: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.DOUBLE,
         allowNull: true,
       },
       costoXHora: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.DOUBLE,
         allowNull: true,
       },
       tiempoAprox: {
