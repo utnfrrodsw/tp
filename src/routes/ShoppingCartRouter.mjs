@@ -4,6 +4,6 @@ import { saveCart } from '../controllers/ShoppingCartController.mjs';
 
 const router = express.Router();
 
-router.post('/comprar', saveCart);
+router.post('/comprar', verifyTokenUser, saveCart);
 
 export default router;

@@ -19,11 +19,11 @@ export const saveCart = async (req, res) => {
     };
     try {
         const { comprador, productos } = req.body;
-        //console.log({ comprador, productos });
+        console.log({ comprador, productos });
+        session.startTransaction(transactionOptions);
         if (!comprador || !productos) {
             throw new ReqError('Solicitud incorrecta, no es posible registrar compra', 400);
         }
-        session.startTransaction(transactionOptions);
         for (const linea of productos) {
             if (!linea.producto) {
                 throw new ReqError('Solicitud incorrecta, no es posible registrar compra', 400);
