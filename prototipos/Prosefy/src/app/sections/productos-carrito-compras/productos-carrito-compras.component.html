@@ -1,4 +1,42 @@
 <div class="container mt-4 custom-rounded-shadow p-3">
   <h2>Productos en el carrito de compras</h2>
-  <p class="text-center">...</p>
+  <div class="row mb-3" *ngFor="let libro of libros">
+    <div class="card col-12 mb-3 mr-2">
+      <div class="row no-gutters">
+        <div class="col-8">
+          <div class="card-body">
+            <h5 class="card-title">{{libro.titulo}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{libro.autores}}</h6>
+            <div class="row">
+              <div class="col">
+                <input type="number" class="form-control" [(ngModel)]="cantidades[libro.id]"
+                  (ngModelChange)="calculateTotal()" (input)="validarCantidad($event, libro.id)" min="1" max="10"
+                  step="1" value="1" required />
+              </div>
+              <div class="col">
+                <a href="#" class="text-primary">Agregar a favoritos</a>
+              </div>
+              <div class="col">
+                <a href="#" class="text-danger">Eliminar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col text-right">
+                <p class="card-price">${{subTotal(libro) | number:'1.2-2'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"><strong>Total: {{total | number:'1.2-2'}}</strong></div>
+  </div>
 </div>

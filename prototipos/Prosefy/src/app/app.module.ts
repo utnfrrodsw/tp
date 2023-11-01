@@ -60,6 +60,7 @@ import { ListaLibrosComponent } from './shared/lista-libros/lista-libros.compone
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AutoresService } from './services/autores.service';
 import { ComentarioUsuarioComponent } from './shared/comentario-usuario/comentario-usuario.component';
+import { CarritoComprasService } from './services/carrito-compras.service';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -123,6 +124,7 @@ registerLocaleData(localeEs, 'es');
     DatePipe,
     { provide: LOCALE_ID, useValue: 'es' },
     AutoresService,
+    CarritoComprasService
   ],
   bootstrap: [AppComponent],
 })

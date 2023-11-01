@@ -12,3 +12,14 @@ p,
 h2 {
   font-family: Inter, sans-serif;
 }
+
+.card-price {
+  color: #7C7C7C;
+  font-size: 2rem;
+  text-align: end;
+}
+
+.text-primary,
+.text-danger {
+  text-decoration: none;
+}
