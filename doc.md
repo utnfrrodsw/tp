@@ -129,3 +129,6 @@ Fixeo del Metodo ChangeLevel. Eliminacion del patron Repository en User. Interac
 
 30/10
 Log in de Admin terminado. Usamos otro tipo de token para darle permisos al leveling.
+
+31/10
+Realizada la funcionalidad para cambiar el nombre de un User.
