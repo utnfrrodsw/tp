@@ -42,7 +42,7 @@ function PresupuestoSolicitud(props){
     return (
         <Card className='card-presu' style={{backgroundColor: '#213555', height: '40%', margin:'10px'}}>
             <Card.Header>
-                <Card.Title style={{color:'white', fontSize:'24px'}}>Presupuesto #{props.idSolicitud}</Card.Title>
+                <Card.Title style={{color:'white', fontSize:'24px'}}>Presupuesto #{props.idPrestador}</Card.Title>
             </Card.Header>
             <Card.Body style={{display:"flex", flexDirection:"row", width:'100%', justifyContent: 'space-between', padding: '5px'}}>
                 <div>
@@ -60,7 +60,7 @@ function PresupuestoSolicitud(props){
                             <option value={undefined}>Seleccione una fecha</option>
                             {props.fechasDisponibles.map((fecha, index) =>(
                                 //const dateTime = new Date(fecha)
-                                <option key={index} value={fecha}> {fecha}</option>)
+                                <option key={index} value={fecha}> {new Date(fecha).toLocaleString()}</option>)
                             )}
                         </select>
                     </div>
