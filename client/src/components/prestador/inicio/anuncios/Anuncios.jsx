@@ -81,10 +81,10 @@ function Anuncios(props) {
             <NavLink to="/provider/home/add" onClick={() => handleDoubleClick("activa", "nuevas") && handleTabClick('Nuevos')}  className="link">Anuncios</NavLink>
           </li>
           <li className="li-navegation-cli">
-            <span className="link-header" onClick={() => handleTabClick('Presupuestados') && handleFiltradoClick("presupuestadas")}>Presupuestados</span>
+            <NavLink  to="/provider/home/budgeted" onClick={() => handleTabClick('Presupuestados') && handleFiltradoClick("presupuestadas")}>Presupuestados</NavLink>
           </li>
           <li className="li-navegation-cli">
-            <span className="link-header" onClick={() => handleTabClick('Aceptados')}>Aceptados</span>
+            <NavLink to="/provider/home/accepted" onClick={() => handleTabClick('Aceptados')}>Aceptados</NavLink>
           </li>
         </ul>
       </nav>
@@ -92,6 +92,7 @@ function Anuncios(props) {
         <>
         {selectedTab === 'Nuevos' && (
           <li className="li-navegation-cli">
+            <></>
           </li>
         )}
         {selectedTab === 'Presupuestados' && (

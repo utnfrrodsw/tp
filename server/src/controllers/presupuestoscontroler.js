@@ -38,6 +38,7 @@ const presupuestosController = {
         }
     },
 
+
     pagarPresupuesto: async (req, res) => {
         const idSolicitud = req.params.idSolicitud;
         const idPrestador = req.params.idPrestador;
@@ -71,6 +72,7 @@ const presupuestosController = {
         }
     },
 
+
     createPresupuesto: async function (req, res) {
     try {
         const { idSolicitud, idUsuario, materiales, costoMateriales, tiempo, costoxHora, fechasSeleccionadas } = req.body;
@@ -78,13 +80,15 @@ const presupuestosController = {
 
         await db.sequelize.transaction(async (t) => {
             // Paso 1: Verificar que la solicitud con el idSolicitud existe
+            console.log("Paso 1");
             const solicitud = await db.Solicitud.findByPk(idSolicitud, { transaction: t });
             if (!solicitud) {
                 return res.status(400).json(jsonResponse(400, { message: 'Solicitud no encontrada' }));
             }
 
             // Paso 2: Crear el registro del presupuesto
-            const presupuesto = await db.presupuesto.create(
+            console.log("Paso 2");
+            await db.Presupuesto.create(
                 {
                     idSolicitud: idSolicitud,
                     idUsuario: idUsuario,
@@ -95,12 +99,13 @@ const presupuestosController = {
                 },
                 { transaction: t }
             );
-
-            // Paso 3: Asociar las fechas seleccionadas al presupuesto (si es necesario)
+            // Paso 3: Asociar las fechas seleccionadas al presupuesto
+            console.log("Paso 3");
             if (fechasSeleccionadas.length > 0) {
                 const fechasPromises = fechasSeleccionadas.map(async (fecha) => {
-                    return db.HorariosPrespuesto.create(
-                        { horario: fecha, idSolicitud: presupuesto.idPresupuesto,idUsuario:presupuesto.idUsuario},
+                    console.log("fechitass: "+fecha + "idSolicitud " + idSolicitud+ "idUsuario" + idUsuario);
+                    return db.HorariosPresupuesto.create(
+                        { idSolicitud: idSolicitud, idUsuario:idUsuario, horario: fecha},
                         { transaction: t }
                     );
                 });
