@@ -28,6 +28,8 @@ function Solicitud(props){
       .then((res) => res.json())
       .then((data) => {
         setPresupuestosSolicitud(data.body.presupuestos);
+
+        console.log(data.body.presupuestos);
         setLoading(false);
       })
       .catch((error) => {
@@ -148,11 +150,10 @@ function Solicitud(props){
                         {loading === false ? 
                           (<>
                             {presupuestosSolicitud.length > 0 ? (
-                              presupuestosSolicitud.map((presupuesto, index) => {
-                                console.log(presupuesto)
+                              presupuestosSolicitud.map((presupuesto) => {
                                 return (
                                   <PresupuestoSolicitud 
-                                    key={index}
+                                    key={presupuesto.idPrestador}
                                     idPrestador={presupuesto.idPrestador}
                                     idSolicitud={presupuesto.idSolicitud}
                                     nombrePrestador={presupuesto.nombrePrestador}
