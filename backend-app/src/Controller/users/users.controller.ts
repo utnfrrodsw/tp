@@ -16,6 +16,7 @@ import { UpdateUserEmailDto } from './dto/update-user.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { User } from './entities/user.entity';
 import { DeleteResult, UpdateResult } from 'typeorm';
+import { DeleteUserDto } from './dto/delete-user.dto';
 
 @Controller('users')
 //@UseGuards(AuthGuard) //permite usar guard en todos los endpoints
@@ -58,5 +59,12 @@ export class UsersController {
   @Delete(':id')
   async remove(@Param('id') id: number): Promise<DeleteResult | HttpException> {
     return await this.usersService.remove(id);
+  }
+
+  @Post('delete')
+  async logicDelete(
+    @Body() deleteUserDto: DeleteUserDto,
+  ): Promise<any | HttpException> {
+    return this.usersService.delete(deleteUserDto);
   }
 }

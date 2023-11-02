@@ -10,6 +10,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Status } from './status';
 
 export enum Roles {
   User = 'user',
@@ -17,7 +18,7 @@ export enum Roles {
 }
 
 @Entity()
-export class User {
+export class User extends Status {
   @PrimaryGeneratedColumn()
   UserId: number;
 
