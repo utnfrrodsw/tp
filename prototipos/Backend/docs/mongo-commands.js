@@ -54,15 +54,29 @@ db.usuarios.insertOne({
 // ---Editoriales---
 
 db.editoriales.insertOne({
-  nombre: 'Gato-loco',
+  nombre: 'Gato-malo',
   categoria:'pre-escolar',
+  imagen:'../../../../assets/img/Editoriales/editorial-gato-malo.webp'
   })  
 
 
 db.editoriales.insertOne({
-  nombre:'Planeta',
-  categoria:'ciencia', 
+  nombre:'BOOKRACK',
+  categoria:'Ciencia',
+  id: '2', 
   })
+
+db.editoriales.insertOne({
+  nombre:'DJaen',
+  categoria:'Terror',
+  imagen:'../../../../assets/img/Editoriales/editorial-djaen.webp'
+})
+
+db.editoriales.insertOne({
+  nombre:'Tierra de Mu',
+  categoria:'Ciencia',
+  imagen:'../../../../assets/img/Editoriales/editorial-tierra-de-mu.webp'
+})
 
 
 //----Categorias----

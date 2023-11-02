@@ -22,4 +22,4 @@ Content-Type: application/json
 
 
 ### Delete de editorial
-DELETE http://localhost:3000/api/editoriales/Gato-Loco
+DELETE http://localhost:3000/api/editoriales/6522a452176057b2ea4ed843
