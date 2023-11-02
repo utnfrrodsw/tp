@@ -11,7 +11,7 @@ export class AutoresNuevosComponent {
   elementosAlFinal: boolean = false;
   autores: Autor[] = [];
 
-  constructor(private autoresService: AutoresService) {}
+  constructor(private autoresService: AutoresService) { }
 
   ngOnInit() {
     this.autores = this.autoresService.getAutores();

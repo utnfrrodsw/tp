@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { ProductosCarritoComprasComponent } from './productos-carrito-compras.component';
 
@@ -8,7 +10,9 @@ describe('ProductosCarritoComprasComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductosCarritoComprasComponent]
+      declarations: [ProductosCarritoComprasComponent],
+      providers: [DatePipe],
+      imports: [FormsModule]
     });
     fixture = TestBed.createComponent(ProductosCarritoComprasComponent);
     component = fixture.componentInstance;
