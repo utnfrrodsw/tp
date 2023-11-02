@@ -48,6 +48,7 @@ function PresupuestoSolicitud(props){
                 <div>
                     <Card.Text className='card-text'>
                         <p>Prestador: {props.nombrePrestador}</p>
+                        <p>Materiales: {props.materiales}</p>
                         <p>Costo Materiales: {props.costoMateriales}</p>
                         <p>Costo por Hora: {props.costoXHora}</p>
                         <p>Costo Total: {props.costoTotal}</p>

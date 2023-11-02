@@ -120,6 +120,7 @@ function Solicitud(props){
         ) : (
           <div>
               <p className='descripcion-solicitud'>{props.descripcion}</p>
+              {props.estado === "terminado" ? <p className='descripcion-solicitud'> {props.cartelResenia} </p>:<></>}
               <section className='botones'>
                 <button className='fotos' onClick={() => setVerfotos(true)}>ver fotos</button>
                   <Modal show={verfotos} onHide={() => setVerfotos(false)} fullscreen={true} className='modales-solicitud'>
@@ -158,6 +159,7 @@ function Solicitud(props){
                                     idPrestador={presupuesto.idPrestador}
                                     idSolicitud={presupuesto.idSolicitud}
                                     nombrePrestador={presupuesto.nombrePrestador}
+                                    materiales={presupuesto.materiales}
                                     costoMateriales={presupuesto.costoMateriales}
                                     costoXHora={presupuesto.costoXHora}
                                     costoTotal={presupuesto.costoTotal}

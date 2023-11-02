@@ -79,6 +79,7 @@ const solicitudController = {
                             }
                         })
                         .then((servicio) => {
+                            const resenia = servicio.resenia;
                             const promise = db.Presupuesto.findOne({
                                 where: {
                                     idSolicitud: solicitud.idSolicitud,
@@ -88,7 +89,8 @@ const solicitudController = {
                                     association: 'usuario'
                                 }]
                             }).then((presupuesto) => {
-                                const presu = getSolicitudPresuInfo(solicitud, imgs, presupuesto);
+                                console.log(resenia);
+                                const presu = getSolicitudPresuInfo(solicitud, imgs, presupuesto, resenia);
                                 solicitudes.push(presu);
                             });
                             return promise;
