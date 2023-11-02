@@ -11,7 +11,6 @@ import Evaluaciones from './components/prestador/evaluaciones/Evaluaciones';
 import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
 import Anuncios from './components/prestador/inicio/anuncios/Anuncios.jsx'
 import Presupuesto from './components/prestador/presupuesto/Presupuesto.jsx';
-import Presupuestadas from './components/prestador/detalleServicioPresupuestado/Presupuestadas.jsx';
 import DatosUser from './components/usuario/datosPersonales/datosUser.jsx';
 import Login from './components/usuario/login/Login.jsx';
 import RecuperarClave from './components/usuario/login/RecuperarClave';
@@ -20,9 +19,10 @@ import ProtectedRoute from './components/Routes/ProtectedRoute.jsx';
 import ProtectedRouteProvider from './components/Routes/ProtectedRouteProvider.jsx';
 import ProtectedRouteClient from './components/Routes/ProtectedRouteClient.jsx';
 import ProtectedRouteUser from './components/Routes/ProtectedRouteUser.jsx';
-
+import Detalle from './components/prestador/detalleServicioPresupuestado/Detalle.jsx';
 
 import './App.css';
+
 
 
 function App() {
@@ -55,8 +55,8 @@ function App() {
             <Route path='/provider/home/accepted' element={<Anuncios filtrado="aceptadas" estado="progreso"/>}/>
             <Route path='/provider/home/finished' element={<Anuncios filtrado="aceptadas" estado="terminado"/>}/>
             <Route path='/provider/home/add/budget/:id' element={<Presupuesto/>}/>
-            <Route path='/provider/home/budgeted/more/:id' element={<Presupuestadas/>}/>
-            <Route path='/provider/home/accepted/more/:id' element={<Presupuestadas/>}/>
+            <Route path='/provider/home/budgeted/more/:id' element={<Detalle/>}/>
+            <Route path='/provider/home/accepted/more/:id' element={<Detalle/>}/>
           </Route>
 
           {/*cliente*/}

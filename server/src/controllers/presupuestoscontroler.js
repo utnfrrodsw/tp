@@ -120,6 +120,44 @@ const presupuestosController = {
         res.status(500).json(jsonResponse(500, { message: 'Error en el servidor al crear presupuesto' }));
     }
 },
+    getPresupuestoByPK: async (req, res) => {
+        const idSolictud = req.params.idSolictud;
+        const idUsuario =req.params.id;
+        try{
+            await db.Presupuesto.findOne({
+                where: {
+                    idSolicitud: idSolictud,
+                    idUsuario: idUsuario
+                },
+                include:[{
+                    association:'anuncio',
+                    association: 'direccion',
+                    association: 'localidad' 
+                },
+                {
+                    association: 'presupuesto',
+                },
+                {
+                    association: 'horariosPresupuesto',
+                }
+                ]
+            })
+            .then((presupuesto) => {
+                const presupuestoInfo = [];
+                console.log(presupuesto);
+                presupuestoInfo.push(getPresuServInfo(presupuesto));
+
+                res.status(200).json(jsonResponse(200, {
+                    presupuesto: presupuestosInfo
+                }));
+            });
+        }catch(error){
+            console.log(error);
+            res.status(500).json(jsonResponse(500,{
+                message: 'Error al obtener los presupuestos'
+            }))
+        }
+    },
 
 };
 
