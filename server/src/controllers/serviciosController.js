@@ -14,7 +14,7 @@ const serviciosController = {
                 }
             })
             console.log(servicio)
-            if(servicio.resenia === null){
+            if(servicio.resenia === 6){
                 res.status(200).json(jsonResponse(200, {isReviewed: false}))
             }else{
                 res.status(200).json(jsonResponse(200, {isReviewed: true}))
@@ -38,7 +38,7 @@ const serviciosController = {
                         idUsuario: idUsuario,
                     }
                 }, {transaction: t})
-                if(servicio.resenia === null){
+                if(servicio.resenia === 6){
                     await db.Servicio.update({resenia}, {
                         where: {
                             idSolicitud: idSolicitud,

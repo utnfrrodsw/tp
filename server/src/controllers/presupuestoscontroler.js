@@ -32,7 +32,8 @@ const presupuestosController = {
             
                 await Promise.all(promises);
             });
-            console.log(presupuestosInfo);
+            //ordenar presupuestos por costo total, menor a mayor
+            presupuestosInfo.sort((a, b) => a.costoTotal - b.costoTotal);
             
             res.status(200).json(jsonResponse(200, {
             presupuestos: presupuestosInfo
