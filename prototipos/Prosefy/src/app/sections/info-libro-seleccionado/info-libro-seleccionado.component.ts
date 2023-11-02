@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Libro, LibrosService } from '../../services/libros.service';
 import { CurrencyService } from '../../services/currency.service';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 
 @Component({
   selector: 'app-info-libro-seleccionado',
@@ -19,21 +22,29 @@ export class InfoLibroSeleccionadoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.route && this.route.snapshot.paramMap) {
-      const idParam = this.route.snapshot.paramMap.get('id');
-      if (idParam) {
-        const libroId = parseInt(idParam, 10);
-        const foundLibro = this.librosService.getLibroById(libroId);
-        if (foundLibro) {
-          this.libro = foundLibro;
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        const idParam = params.get('id');
+        if (idParam) {
+          const libroId = parseInt(idParam, 10);
+          const foundLibro = this.librosService.getLibroById(libroId);
+          if (foundLibro) {
+            return of(foundLibro);
+          } else {
+            console.error(`No se encontró el libro con ID ${libroId}`);
+            this.router.navigate(['/inicio']);
+            return of(undefined);
+          }
         } else {
-          console.error(`No se encontró el libro con ID ${libroId}`);
           this.router.navigate(['/inicio']);
+          return of(undefined);
         }
-      } else {
-        this.router.navigate(['/inicio']);
+      })
+    ).subscribe((foundLibro: Libro | undefined) => {
+      if (foundLibro) {
+        this.libro = foundLibro;
       }
-    }
+    });
   }
 
   getPrice(): number | undefined {
