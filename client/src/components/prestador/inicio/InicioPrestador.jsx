@@ -43,10 +43,6 @@ function InicioPrestador() {
                     <h2>Aceptadas</h2>
                     <Link to="/provider/home/accepted">Ver más</Link>
                 </div>
-                <div className="block">
-                    <h2>Finalizados</h2>
-                    <Link to="/provider/home/finished">Ver más</Link>
-                </div>
             </div>
         </div>
     );
