@@ -95,6 +95,7 @@ function Solicitudes(props) {
                         descripcion={solicitud.descripcion}
                         estado={solicitud.estado}
                         fotos={solicitud.fotos}
+                        cartelResenia={solicitud.cartelResenia}
                     />
                 ))) : (
                     <div>
