@@ -1,0 +1,304 @@
+@media only screen and (max-width: 768px){
+    .container-pagar{
+        display: flex;
+        flex-direction: column !important;
+        width: 100%;
+    }
+
+    .container-resumen{
+        width: 100% !important;
+    }
+
+    .container-pagos{
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+    }
+    
+    .label-text{
+        font-size: 10px;
+    }
+
+    .boton-abajo{
+        border-top: solid rgb(126, 125, 125);
+        padding-top: 45px;
+        height: 150px;
+        width: auto;
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        background-color: rgb(185, 183, 183);
+    }
+    
+    .boton-comprar{
+        text-align: center;
+        background-color: rgb(131, 73, 46);
+        text-decoration: none;
+        color: white;
+        height: 50px;
+        padding-top: 10px;   
+        width: 30%;
+    
+    }
+
+    .font-style{
+        
+        font-size: 15px !important;
+    }
+
+    .container-tarjeta{
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        height: 60px;
+    }
+
+    .tarjeta{
+        border: solid rgb(221, 221, 221) 1px;
+        width: 100% !important;
+        height: 60px;
+        padding-top: 12px;
+    
+    }
+
+    .boton{
+        margin-top: 10px;
+        margin-left: 0px !important;
+        width: 10px !important;
+        height: 10px !important;
+    }
+
+    .carrito{
+        margin-left: 45% !important;
+        margin-top: 10%;
+    }
+    
+    .img-carrito{
+        width: 20%;
+        height: 10%;
+    }
+
+    .libros{
+        margin-right: 20px;
+        justify-content: center !important;
+        width: auto !important;
+    }
+    
+    .precios{
+        margin-left: 20px;
+        justify-content: center !important;
+        width: auto !important;
+    }
+    
+    .productos{
+        display: flex;
+        flex-direction: row;
+        margin-top: 30px;
+        width: auto;
+        margin-left: 30px !important;
+        margin-right: 30px !important;
+    
+    }
+
+    .total{
+        margin-top: 20px;
+        border-top: 1px solid gray;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .text-3{
+        margin-top: 30px;
+        margin-left: 9% !important;
+    }
+
+    .marg{
+        margin-top: 0px !important;
+    }
+}
+
+.container-pagar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-bottom: 1px solid rgb(211, 211, 211) ;
+}
+
+.container-resumen{
+    width: 35%;
+}
+
+.container-pago{
+    border: solid rgb(221, 221, 221) 1px;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.container-pagos{
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+
+.container-tarjeta{
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: 60px;
+}
+
+.container-contador{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin-left: 50%;
+}
+
+.text-1{
+    margin-top: 30px;
+    justify-content: center;
+    text-align: center;
+}
+
+.text-2{
+    margin-left: 15px;
+    margin-top: 65px;
+    justify-content: left;
+    text-align: left;
+}
+
+.text-3{
+    margin-left: 20%;
+    margin-top: 30px;
+}
+
+.cuotas{
+    margin-left: 86%;
+    color: rgb(177, 177, 177);
+}
+
+.boton{
+    border: solid rgb(221, 221, 221) 1px;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.imagen-tarjeta{
+    width: 10px;
+    height: 10px;
+}
+
+.tarjeta{
+    display: flex;
+    flex-direction: row;
+    border: solid rgb(221, 221, 221) 1px;
+    margin-left: 20px;
+    width: 100%;
+    height: 60px;
+    padding-top: 12px;
+    margin-right: 10px;
+    padding-left: 1%;
+
+}
+
+.label-text{
+    margin-left: 20px;
+}
+
+.boton-abajo{
+    margin-top: 100px;
+    border-top: solid rgb(126, 125, 125) 1px;
+    padding-top: 45px;
+    height: 150px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(233, 233, 233);
+}
+
+.boton-comprar{
+    text-align: center;
+    background-color: rgb(131, 73, 46);
+    text-decoration: none;
+    color: white;
+    height: 50px;
+    padding-top: 10px;   
+    width: 30%;
+
+}
+
+.marg{
+    margin-top: 50px;
+}
+
+.font-style{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.font-style-1{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.img-carrito{
+    width: 23%;
+    height: 13%;
+}
+
+.carrito{
+    margin-left: 45% !important;
+    margin-top: 10%;
+}
+
+.container-detalle{
+    margin-left: 30px;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: solid 1px gray;
+}
+
+.detalle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+}
+
+.productos{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    width: auto;
+    margin-left: 70px;
+    margin-right: 70px;
+
+}
+
+.libros{
+    text-align: center;
+    width: 50%;
+}
+
+.precios{
+    text-align: center;
+    width: 50%;
+}
+
+.total{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-top: 1px solid gray;
+}
