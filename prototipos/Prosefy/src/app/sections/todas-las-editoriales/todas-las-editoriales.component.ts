@@ -14,12 +14,18 @@ export class TodasLasEditorialesComponent {
 
   constructor(private editorialesService: EditorialesService) {}
 
-  async ngOnInit() {
-    this.editoriales = this.editorialesService.getEditoriales();
+  ngOnInit() {
+    (this.editorialesService.getEditoriales()).subscribe((editoriales: any) => {
+      this.editoriales = editoriales;
+    });
   }
 
+  /* async ngOnInit() {
+    this.editoriales = this.editorialesService.getEditoriales();
+  } */
+
   onMouseEnter() {
-    this.isHovered = true;
+    this.isHovered = true; 
   }
 
   onMouseLeave() {

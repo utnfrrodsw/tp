@@ -62,7 +62,8 @@
               "browserTarget": "libreria:build:production"
             },
             "development": {
-              "browserTarget": "libreria:build:development"
+              "browserTarget": "libreria:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

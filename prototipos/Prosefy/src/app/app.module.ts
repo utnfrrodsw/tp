@@ -117,7 +117,8 @@ registerLocaleData(localeEs, 'es');
     FormsModule,
     PaginationModule.forRoot(),
     CommonModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   providers: [
     CurrencyService,
