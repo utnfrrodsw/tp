@@ -71,7 +71,8 @@ function Solicitud(props){
   const handleHacerReseña = async () => {
     try{
       setReseniaError(false);
-      const response = await fetch(`${API_URL}/servicio/isreviewed/${props.id}/${props.idPrestador}`)
+      console.log('hacer reseña para id ' + props.id + ' y idPrestador ' + props.idPrestador)
+      await fetch(`${API_URL}/servicio/isreviewed/${props.id}/${props.idPrestador}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
