@@ -165,6 +165,23 @@ export const getAllByShop = async (req, res) => {
     }
 };
 
+export const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await ProductModel.findById(id);
+
+    if (!product) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+
+    await ProductModel.findByIdAndRemove(id);
+    res.status(200).json({ message: 'Producto eliminado correctamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al eliminar el producto' });
+  }
+};
+
 export const paginated = async (req, res, next) => {
     try {
         let { orden, categoria } = req.query;
