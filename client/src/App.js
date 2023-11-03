@@ -1,6 +1,7 @@
 import React /*, {useEffect, useState}*/ from 'react';
 
 import { Route, Routes } from 'react-router-dom';
+import './App.css';
 import ProtectedRoute from './components/Routes/ProtectedRoute.jsx';
 import ProtectedRouteClient from './components/Routes/ProtectedRouteClient.jsx';
 import ProtectedRouteProvider from './components/Routes/ProtectedRouteProvider.jsx';
@@ -11,19 +12,16 @@ import Error from './components/error/Error.jsx';
 import Footer from './components/footer/Footer.jsx';
 import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
-import Presupuestadas from './components/prestador/detalleServicioPresupuestado/Presupuestadas.jsx';
+import DetalleServicio from './components/prestador/detalleServicioPresupuestado/Presupuestadas.jsx';
 import Evaluaciones from './components/prestador/evaluaciones/Evaluaciones';
 import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
 import Anuncios from './components/prestador/inicio/anuncios/Anuncios.jsx';
-import Presupuesto from './components/prestador/presupuesto/Presupuesto.jsx';
+import { default as DetallePresupuesto, default as Presupuesto } from './components/prestador/presupuesto/Presupuesto.jsx';
 import DatosUser from './components/usuario/datosPersonales/datosUser.jsx';
 import Login from './components/usuario/login/Login.jsx';
 import RecuperarClave from './components/usuario/login/RecuperarClave';
 import ResetPasswordPage from './components/usuario/login/ResetPassword.jsx';
 import Register from './components/usuario/register/Register.jsx';
-
-
-import './App.css';
 
 
 function App() {
@@ -57,8 +55,8 @@ function App() {
             <Route path='/provider/home/accepted' element={<Anuncios filtrado="aceptadas" estado="progreso"/>}/>
             <Route path='/provider/home/finished' element={<Anuncios filtrado="aceptadas" estado="terminado"/>}/>
             <Route path='/provider/home/add/budget/:id' element={<Presupuesto/>}/>
-            <Route path='/provider/home/budgeted/more/:id' element={<Presupuestadas/>}/>
-            <Route path='/provider/home/accepted/more/:id' element={<Presupuestadas/>}/>
+            <Route path='/provider/home/budgeted/more/:idSolicitud' element={<DetallePresupuesto/>}/>
+            <Route path='/provider/home/accepted/more/:idSolicitud' element={<DetalleServicio/>}/>
           </Route>
 
           {/*cliente*/}
