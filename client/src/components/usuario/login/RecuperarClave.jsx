@@ -1,46 +1,73 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './RecuperarClave.css';
+const { API_URL } = require('../../../auth/constants');
 
 const PasswordResetPage = () => {
-  // Estado para almacenar el correo electrónico ingresado por el usuario
+  // Inicializamos la función de navegación.
+  const goTo = useNavigate();
+
+  // Variables de estado para almacenar el email, el mensaje y el estado de envío.
   const [email, setEmail] = useState('');
-  // Estado para mostrar un mensaje de éxito o error
   const [message, setMessage] = useState('');
-  // Estado para controlar si se envió el formulario
   const [submitted, setSubmitted] = useState(false);
 
-  // Manejar cambios en el campo de correo electrónico
+  // Agregamos una variable de estado para almacenar el estado de respuesta.
+  const [responseStatus, setResponseStatus] = useState(null);
+
+  // Función para actualizar el estado 'email' cuando el usuario escribe en el campo de entrada.
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  // Manejar el envío del formulario
+  // Función para manejar la solicitud de restablecimiento de contraseña.
+  const handlePasswordReset = async () => {
+    try {
+      // Enviamos una solicitud POST al punto final de la API de restablecimiento de contraseña.
+      const response = await fetch(`${API_URL}/usuario/reset-password/request`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      // Actualizamos el estado de respuesta.
+      setResponseStatus(response.status);
+
+      if (response.status === 200) {
+        setMessage('Se ha enviado un código a tu correo electrónico, por favor revisa tu bandeja de entrada');
+        setSubmitted(true);
+        const loginURL = `/reset-password?email=${email}`;
+        // Redirigir a la URL de inicio de sesión después de un retraso (5 segundos).
+        setTimeout(() => {
+          goTo(loginURL);
+        }, 5000);
+      } else if (response.status === 404) {
+        setMessage('El correo electrónico proporcionado no corresponde a ningún usuario registrado');
+      } else if (response.status === 500) {
+        setMessage('Error al solicitar el restablecimiento de contraseña');
+      }
+    } catch (error) {
+      console.error('Error al solicitar el restablecimiento de contraseña:', error);
+      setMessage('Error al solicitar el restablecimiento de contraseña');
+    }
+  };
+
+  // Función para manejar el envío del formulario.
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar lógica para enviar una solicitud de restablecimiento de contraseña al servidor.
-    // Esto podría involucrar una llamada a una API.
-    // Después de enviar la solicitud, puedes mostrar un mensaje de éxito o error.
-    // Por simplicidad, aquí simplemente mostramos un mensaje de éxito simulado después de 2 segundos.
-
-    // Simulación de solicitud de restablecimiento de contraseña
-    setTimeout(() => {
-      setMessage('Se ha enviado un correo electrónico con las instrucciones para restablecer la contraseña.');
-      setSubmitted(true);
-    }, 2000);
+    handlePasswordReset();
   };
 
   return (
-    <section className='container'>
-    <div className="password-reset-page">
+    <div className="conteinerRecClave">
       <h2>Recuperación de Contraseña</h2>
-      {submitted ? (
-        // Mostrar mensaje de éxito
-        <div className="success-message">{message}</div>
-      ) : (
-        // Mostrar formulario de recuperación de contraseña
+      {message && <div className={`message ${responseStatus === 200 ? 'success' : 'error'}`}>{message}</div>}
+      {!submitted && (
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Correo Electrónico</label>
+          <div className="Formulario">
+            <label htmlFor="email">Proporciona tu email de registro</label>
             <input
               type="email"
               id="email"
@@ -50,13 +77,12 @@ const PasswordResetPage = () => {
               required
             />
           </div>
-          <div className="form-group">
-            <button type="submit">Enviar Solicitud</button>
+          <div className="formularioGrupo">
+            <button className='enviarSolicitud' type="submit">Enviar Solicitud</button>
           </div>
         </form>
       )}
     </div>
-    </section>
   );
 };
 
