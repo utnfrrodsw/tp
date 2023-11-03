@@ -5,6 +5,7 @@ import { useAuth } from '../../../auth/authProvider';
 import { Modal, Carousel, Container, Image} from 'react-bootstrap';
 import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
+import Review from '../../reseña/Review';
 
 function Solicitud(props){
 
@@ -13,10 +14,33 @@ function Solicitud(props){
   const [verfotos, setVerfotos] = useState(false);
   const [verPresupuestos, setVerPresupuestos] = useState(false);
   const [presupuestosSolicitud, setPresupuestosSolicitud] = useState([]);
+  const [reseniaError, setReseniaError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [hacerReseña, setHacerReseña] = useState(false);
   const auth = useAuth();
-  const dateTime = new Date(props.fecha);
-  
+
+  // eslint-disable-next-line
+  useEffect(() => {
+    if(verPresupuestos){
+      console.log(verPresupuestos)
+      setLoading(true);
+      fetch(`${API_URL}/presupuesto/solicitud/${props.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPresupuestosSolicitud(data.body.presupuestos);
+
+        console.log(data.body.presupuestos);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error)
+        console.error('Error al cargar presupuestos:', error);
+        setError(true);
+        setLoading(false);
+      });
+    }
+  }, [verPresupuestos]);
+
   const hendleCancelar = async () => {
     try{
       console.log('cancelar solicitud para id ' + props.id)
@@ -39,29 +63,42 @@ function Solicitud(props){
     }
   }
 
-  useEffect(() => {
-    if(verPresupuestos){
-      console.log(verPresupuestos)
-      setLoading(true);
-      fetch(`${API_URL}/presupuesto/solicitud/${props.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPresupuestosSolicitud(data.body.presupuestos);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error)
-        console.error('Error al cargar presupuestos:', error);
-        setError(true);
-        setLoading(false);
-      });
-    }
-  }, [verPresupuestos]);
-
   const hendlePresupuestoPagado = () => {
     setVerPresupuestos(false);
     props.hendleSolicitudesUpdate();
   };
+
+  const handleHacerReseña = async () => {
+    try{
+      setReseniaError(false);
+      console.log('hacer reseña para id ' + props.id + ' y idPrestador ' + props.idPrestador)
+      await fetch(`${API_URL}/servicio/isreviewed/${props.id}/${props.idPrestador}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if(data.body.isReviewed === false){
+          setHacerReseña(true);
+        }else{
+          setHacerReseña(false);
+          alert('Ya has realizado una reseña para este servicio');
+        }
+      }).catch((error) => {
+        console.error('Error al cargar reseña:', error);
+        setReseniaError(true);
+        setTimeout(() => {
+          setReseniaError(false);
+        }, 10000);
+      });
+      
+    }catch(err){
+      console.log(err);
+    }
+  };
+
+  const hendleCalificarUpdate = () => {
+    setHacerReseña(false);
+  }
+
   
   return (
     <div className={`solicprincipal-card ${show ? "solicprincipal-card" : "solicprincipal-fullcontent"}`} >
@@ -73,11 +110,9 @@ function Solicitud(props){
           </div>
           <h1 className='titulo-solicitud'>{props.titulo}</h1>
           <p className='fecha-solicitud'>{props.profesion.nombreProfesion} </p>
-          <p className='fecha-solicitud' >{props.estado === "progreso" || props.estado === "terminado" ? <>{props.nombrePrestador}</> : <></>}</p>
-          <p className='fecha-solicitud'>
-          {props.estado === "activa"? <>{dateTime.getDay()}/{dateTime.getMonth()}/{dateTime.getFullYear()}  {dateTime.getHours()}:{dateTime.getMinutes()} </> :<></>}
-          {props.estado === "progreso" || props.estado === "terminado" ? <>{props.fechaHora} </>:<></>}
-          </p>
+          {props.estado === "progreso" || props.estado === "terminado" ? <p className='fecha-solicitud'>{props.nombrePrestador}</p> : <></>}
+          {props.estado === "activa"? (<p className='fecha-solicitud'>Fecha Solicitud: {props.fecha}</p>) :<></>}
+          {props.estado === "progreso" || props.estado === "terminado" ? <p className='fecha-solicitud'>Fecha Servicio: {props.fecha} </p>:<></>}
           <p className='ubicacion-solicitud'>{props.direccion.calle} {props.direccion.numero}</p>
         </div>
         {show ? (
@@ -85,6 +120,7 @@ function Solicitud(props){
         ) : (
           <div>
               <p className='descripcion-solicitud'>{props.descripcion}</p>
+              {props.estado === "terminado" ? <p className='descripcion-solicitud'> {props.cartelResenia} </p>:<></>}
               <section className='botones'>
                 <button className='fotos' onClick={() => setVerfotos(true)}>ver fotos</button>
                   <Modal show={verfotos} onHide={() => setVerfotos(false)} fullscreen={true} className='modales-solicitud'>
@@ -116,14 +152,14 @@ function Solicitud(props){
                         {loading === false ? 
                           (<>
                             {presupuestosSolicitud.length > 0 ? (
-                              presupuestosSolicitud.map((presupuesto, index) => {
-                                console.log(presupuesto)
+                              presupuestosSolicitud.map((presupuesto) => {
                                 return (
                                   <PresupuestoSolicitud 
-                                    key={index}
+                                    key={presupuesto.idPrestador}
                                     idPrestador={presupuesto.idPrestador}
                                     idSolicitud={presupuesto.idSolicitud}
                                     nombrePrestador={presupuesto.nombrePrestador}
+                                    materiales={presupuesto.materiales}
                                     costoMateriales={presupuesto.costoMateriales}
                                     costoXHora={presupuesto.costoXHora}
                                     costoTotal={presupuesto.costoTotal}
@@ -147,14 +183,14 @@ function Solicitud(props){
                 ): <></>} 
                 {props.estado === "terminado" ? (
                 <>
-                  <button className='ver-presupuestos-button'>Hacer Reseña</button>
-                  <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true} style={{padding: '0px'}}>
+                  <button className='ver-presupuestos-button' onClick={handleHacerReseña}>Hacer Reseña</button>
+                  {reseniaError && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>Error al cargar reseña</p>}
+                  <Modal show={hacerReseña} onHide={() => setHacerReseña(false)} style={{padding: '0px'}}>
                       <Modal.Header closeButton>
-                        <Modal.Title>Presupuestos</Modal.Title>
+                        <Modal.Title>Reseña del Servicio</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
-                      
-
+                        <Review idSolicitud={props.id} idPrestador={props.idPrestador} hendleCalificarUpdate={hendleCalificarUpdate}/>
                       </Modal.Body>
                     </Modal>
                 </>

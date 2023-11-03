@@ -10,7 +10,7 @@
     " titulo fecha"
     "nombre  ubicacion"
     ".   boton";
-  height: 12rem;
+  height: 14rem;
   width: 55%;
   padding: 15px;
   /* Aumenta el espacio interno para pantallas de PC */
@@ -30,7 +30,7 @@
 }
 
 .solicprincipal-fullcontent {
-  height: 21rem;
+  height: 23rem;
   display: grid;
   width: 60%;
   padding: 15px;
