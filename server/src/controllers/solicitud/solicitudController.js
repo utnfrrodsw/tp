@@ -34,7 +34,7 @@ const solicitudController = {
     getSolicitudesClienteEstado: async function (req, res){
         try{
             const id = req.params.id; 
-            const estado = req.params.estado; 
+            const estado = req.params.estado;
             await db.Solicitud.findAll({
             where: {
                 estado: estado
@@ -73,16 +73,27 @@ const solicitudController = {
 
                     // Guardo datos del presupuesto si esta en progreso o finalizada
                     if(solicitud.estado == 'progreso' || solicitud.estado == 'terminado'){
-                        const promise = db.Presupuesto.findOne({
+                        const promise = db.Servicio.findOne({
                             where: {
-                                idSolicitud: solicitud.idSolicitud
-                            },
-                            include: [{
-                                association: 'usuario'
-                            }]
-                        }).then((presupuesto) => {
-                            const presu = getSolicitudPresuInfo(solicitud, imgs, presupuesto);
-                            solicitudes.push(presu);
+                                idSolicitud: solicitud.idSolicitud,
+                            }
+                        })
+                        .then((servicio) => {
+                            const resenia = servicio.resenia;
+                            const promise = db.Presupuesto.findOne({
+                                where: {
+                                    idSolicitud: solicitud.idSolicitud,
+                                    idUsuario: servicio.idUsuario
+                                },
+                                include: [{
+                                    association: 'usuario'
+                                }]
+                            }).then((presupuesto) => {
+                                console.log(resenia);
+                                const presu = getSolicitudPresuInfo(solicitud, imgs, presupuesto, resenia);
+                                solicitudes.push(presu);
+                            });
+                            return promise;
                         });
                         promises.push(promise);
                     }else{
@@ -100,6 +111,7 @@ const solicitudController = {
 
                 Promise.all(promises)
                 .then(() => {
+                    console.log(solicitudes)
                     // Todas las promesas se han completado, puedes enviar la respuesta
                     res.status(200).json(jsonResponse(200, {
                         message: 'Solicitudes encontradas',

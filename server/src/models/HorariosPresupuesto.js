@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       HorariosPresupuesto.belongsTo(models.Presupuesto, {
         foreignKey: 'idUsuario',
         otherKey: 'idSolicitud',
+        otherKey: 'horario',
         as: 'presupuestoPrestador',
       });
     };

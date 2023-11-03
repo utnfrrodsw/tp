@@ -7,30 +7,39 @@ const {getPresuServInfo}= require('../lib/getPresuServInfo');
 const presupuestosController = {
     getPresupuestosSolicitud: async (req, res) => {
         const idSolictud = req.params.idSolictud;
+        const presupuestosInfo = [];
         try{
-            await db.Presupuesto.findAll({
-                where: {
+            await db.sequelize.transaction(async (t) => {
+                const presupuestos = await db.Presupuesto.findAll({
+                  where: {
                     idSolicitud: idSolictud
-                },
-                include:[{
+                  },
+                  include: [{
                     association: 'usuario',
-                },
-                {
-                    association: 'horariosPresupuesto',
-                }
-                ]
-            })
-            .then((presupuestos) => {
-                const presupuestosInfo = [];
-                console.log(presupuestos);
-                presupuestos.map((presupuesto) => {
-                    presupuestosInfo.push(getPresupuestoInfo(presupuesto));
+                  }]
+                }, { transaction: t });
+            
+                const promises = presupuestos.map(async (presupuesto) => {
+                  const horarios = await db.HorariosPresupuesto.findAll({
+                    where: {
+                      idSolicitud: presupuesto.idSolicitud,
+                      idUsuario: presupuesto.idUsuario
+                    }
+                  }, { transaction: t });
+            
+                  console.log(horarios);
+                  presupuestosInfo.push(getPresupuestoInfo(presupuesto, horarios));
                 });
-
-                res.status(200).json(jsonResponse(200, {
-                    presupuestos: presupuestosInfo
-                }));
+            
+                await Promise.all(promises);
             });
+            //ordenar presupuestos por costo total, menor a mayor
+            presupuestosInfo.sort((a, b) => a.costoTotal - b.costoTotal);
+            
+            res.status(200).json(jsonResponse(200, {
+            presupuestos: presupuestosInfo
+            }));
+
         }catch(error){
             console.log(error);
             res.status(500).json(jsonResponse(500,{
@@ -39,11 +48,11 @@ const presupuestosController = {
         }
     },
 
-
     pagarPresupuesto: async (req, res) => {
         const idSolicitud = req.params.idSolicitud;
         const idPrestador = req.params.idPrestador;
         const fechaHora = req.body.fecha;
+        
         try{
             await db.sequelize.transaction( async (t) => {
                 await db.Solicitud.update({
@@ -52,19 +61,19 @@ const presupuestosController = {
                     where: {
                         idSolicitud: idSolicitud,
                     }
-                }, {transaction: t})
+                }, { transaction: t })
                 console.log('paso 1');
                 await db.Servicio.create({
                     idSolicitud: idSolicitud,
                     idUsuario: idPrestador,
                     fechaHora: fechaHora,
                     estado: 'progreso'
-                }, {transaction: t})
+                }, { transaction: t })
                 console.log('paso 2');
-                res.status(200).json(jsonResponse(200, {
-                    message: 'Pago realizado con éxito'
-                }));
             })
+            res.status(200).json(jsonResponse(200, {
+                message: 'Pago realizado con éxito'
+            }));
         }catch(error){
             console.log(error);
             res.status(500).json(jsonResponse(500,{
@@ -72,7 +81,6 @@ const presupuestosController = {
             }))
         }
     },
-
 
     createPresupuesto: async function (req, res) {
     try {

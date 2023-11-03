@@ -28,6 +28,8 @@ function Solicitud(props){
       .then((res) => res.json())
       .then((data) => {
         setPresupuestosSolicitud(data.body.presupuestos);
+
+        console.log(data.body.presupuestos);
         setLoading(false);
       })
       .catch((error) => {
@@ -69,7 +71,8 @@ function Solicitud(props){
   const handleHacerReseña = async () => {
     try{
       setReseniaError(false);
-      const response = await fetch(`${API_URL}/servicio/isreviewed/${props.id}/${props.idPrestador}`)
+      console.log('hacer reseña para id ' + props.id + ' y idPrestador ' + props.idPrestador)
+      await fetch(`${API_URL}/servicio/isreviewed/${props.id}/${props.idPrestador}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -117,6 +120,7 @@ function Solicitud(props){
         ) : (
           <div>
               <p className='descripcion-solicitud'>{props.descripcion}</p>
+              {props.estado === "terminado" ? <p className='descripcion-solicitud'> {props.cartelResenia} </p>:<></>}
               <section className='botones'>
                 <button className='fotos' onClick={() => setVerfotos(true)}>ver fotos</button>
                   <Modal show={verfotos} onHide={() => setVerfotos(false)} fullscreen={true} className='modales-solicitud'>
@@ -148,14 +152,14 @@ function Solicitud(props){
                         {loading === false ? 
                           (<>
                             {presupuestosSolicitud.length > 0 ? (
-                              presupuestosSolicitud.map((presupuesto, index) => {
-                                console.log(presupuesto)
+                              presupuestosSolicitud.map((presupuesto) => {
                                 return (
                                   <PresupuestoSolicitud 
-                                    key={index}
+                                    key={presupuesto.idPrestador}
                                     idPrestador={presupuesto.idPrestador}
                                     idSolicitud={presupuesto.idSolicitud}
                                     nombrePrestador={presupuesto.nombrePrestador}
+                                    materiales={presupuesto.materiales}
                                     costoMateriales={presupuesto.costoMateriales}
                                     costoXHora={presupuesto.costoXHora}
                                     costoTotal={presupuesto.costoTotal}
