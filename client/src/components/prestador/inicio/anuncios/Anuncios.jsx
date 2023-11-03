@@ -78,13 +78,13 @@ function Anuncios(props) {
       <nav className="navigation">
         <ul className="ul-navegation-cli">
           <li className="li-navegation-cli">
-            <NavLink to="/provider/home/add" onClick={() => handleDoubleClick("activa", "nuevas") && handleTabClick('Nuevos')}  className="link">Anuncios</NavLink>
+            <NavLink to="/provider/home/add" onClick={() => handleTabClick('Nuevos') && handleDoubleClick("activa", "nuevas")}  className="link">Anuncios</NavLink>
           </li>
           <li className="li-navegation-cli">
-            <NavLink  to="/provider/home/budgeted" onClick={() => handleTabClick('Presupuestados') && handleFiltradoClick("presupuestadas")}>Presupuestados</NavLink>
+            <NavLink  to="/provider/home/budgeted" onClick={() => handleTabClick('Presupuestados') && handleDoubleClick("activa", "presupuestadas")}>Presupuestados</NavLink>
           </li>
           <li className="li-navegation-cli">
-            <NavLink to="/provider/home/accepted" onClick={() => handleTabClick('Aceptados')}>Aceptados</NavLink>
+            <NavLink to="/provider/home/accepted" onClick={() => handleTabClick('Aceptados') && handleDoubleClick("progreso", "aceptadas")}>Aceptados</NavLink>
           </li>
         </ul>
       </nav>
@@ -98,10 +98,10 @@ function Anuncios(props) {
         {selectedTab === 'Presupuestados' && (
           <>
               <li className="li-navegation-cli">
-                <NavLink to="/provider/home/budgeted" onClick={() => handleEstadoClick("activa")} className="link">Pendientes</NavLink>
+                <NavLink to="/provider/home/budgeted" onClick={() => handleDoubleClick("activa", "presupuestadas")} className="link">Pendientes</NavLink>
               </li>
               <li className="li-navegation-cli">
-                <NavLink to="/provider/home/expired" onClick={() => handleEstadoClick("progreso")} className="link">Caducados</NavLink>
+                <NavLink to="/provider/home/expired" onClick={() => handleDoubleClick("progreso", "presupuestadas")} className="link">Caducados</NavLink>
               </li>
             </>
           )}
