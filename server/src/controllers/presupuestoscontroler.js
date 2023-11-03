@@ -1,6 +1,7 @@
 const { jsonResponse } = require('../lib/jsonResponse');
 const db = require('../models');
 const {getPresupuestoInfo} = require('../lib/getPresupuestoInfo');
+const {getPresuServInfo}= require('../lib/getPresuServInfo');
 
 
 const presupuestosController = {
@@ -120,45 +121,74 @@ const presupuestosController = {
         res.status(500).json(jsonResponse(500, { message: 'Error en el servidor al crear presupuesto' }));
     }
 },
-    getPresupuestoByPK: async (req, res) => {
-        const idSolictud = req.params.idSolictud;
-        const idUsuario =req.params.id;
-        try{
-            await db.Presupuesto.findOne({
+    getPresupuestoByPK : async (req, res) => {
+    const idSolicitud = req.params.idSolicitud;
+    const idUsuario = req.params.id;
+    console.log("Solicitud: " + idSolicitud);
+    console.log("Usuario " + idUsuario);
+
+    try {
+        await db.sequelize.transaction(async (t) => {
+            const direccion = await db.Direccion.findOne({
+                include: [
+                {
+                    association:'usuario',
+                    required: true
+                },
+                {
+                    association:'localidad',
+                    required: true
+                },
+                {
+                    association: 'solicitudes',
+                    required: true,
+                    where: {
+                    idSolicitud: idSolicitud
+                    },                   
+                }
+            ]
+            });
+
+            if (!direccion) {
+                return res.status(404).json(jsonResponse(404, {
+                    message: 'direccion no encontrada'
+                }));
+            }
+
+            const presupuesto = await db.Presupuesto.findOne({
                 where: {
-                    idSolicitud: idSolictud,
+                    idSolicitud: idSolicitud,
                     idUsuario: idUsuario
                 },
-                include:[{
-                    association:'anuncio',
-                    association: 'direccion',
-                    association: 'localidad' 
-                },
-                {
-                    association: 'presupuesto',
-                },
-                {
+                include: [{
                     association: 'horariosPresupuesto',
+                    required: true
+                },
+                {
+                    association: 'presupuesto'
                 }
                 ]
-            })
-            .then((presupuesto) => {
-                const presupuestoInfo = [];
-                console.log(presupuesto);
-                presupuestoInfo.push(getPresuServInfo(presupuesto));
-
-                res.status(200).json(jsonResponse(200, {
-                    presupuesto: presupuestosInfo
-                }));
             });
-        }catch(error){
-            console.log(error);
-            res.status(500).json(jsonResponse(500,{
-                message: 'Error al obtener los presupuestos'
-            }))
-        }
-    },
 
+            if (!presupuesto) {
+                return res.status(404).json(jsonResponse(404, {
+                    message: 'Presupuesto no encontrado'
+                }));
+            }
+
+            const presupuestoInfo = getPresuServInfo(presupuesto, direccion);
+
+            res.status(200).json(jsonResponse(200, {
+                presupuesto: presupuestoInfo
+            }));
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(jsonResponse(500, {
+            message: 'Error al obtener los presupuestos'
+        }));
+    }
+    }
 };
 
 module.exports = presupuestosController;

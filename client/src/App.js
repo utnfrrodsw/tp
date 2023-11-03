@@ -19,7 +19,8 @@ import ProtectedRoute from './components/Routes/ProtectedRoute.jsx';
 import ProtectedRouteProvider from './components/Routes/ProtectedRouteProvider.jsx';
 import ProtectedRouteClient from './components/Routes/ProtectedRouteClient.jsx';
 import ProtectedRouteUser from './components/Routes/ProtectedRouteUser.jsx';
-import Detalle from './components/prestador/detalleServicioPresupuestado/Detalle.jsx';
+import DetallePresupuesto from './components/prestador/detalleServicioPresupuestado/DetallePresupuesto.jsx';
+import DetalleServicio from './components/prestador/detalleServicioPresupuestado/DetalleServicio.jsx';
 
 import './App.css';
 
@@ -55,8 +56,8 @@ function App() {
             <Route path='/provider/home/accepted' element={<Anuncios filtrado="aceptadas" estado="progreso"/>}/>
             <Route path='/provider/home/finished' element={<Anuncios filtrado="aceptadas" estado="terminado"/>}/>
             <Route path='/provider/home/add/budget/:id' element={<Presupuesto/>}/>
-            <Route path='/provider/home/budgeted/more/:id' element={<Detalle/>}/>
-            <Route path='/provider/home/accepted/more/:id' element={<Detalle/>}/>
+            <Route path='/provider/home/budgeted/more/:idSolicitud' element={<DetallePresupuesto/>}/>
+            <Route path='/provider/home/accepted/more/:idSolicitud' element={<DetalleServicio/>}/>
           </Route>
 
           {/*cliente*/}

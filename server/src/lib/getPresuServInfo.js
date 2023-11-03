@@ -1,4 +1,4 @@
-exports.getPresuServInfo = function(presupuesto){
+exports.getPresuServInfo = function(presupuesto,direccion){
     const fechasDisponibles = [];
     presupuesto.horariosPresupuesto.map((horario) => {
         console.log(horario.horario);
@@ -7,13 +7,14 @@ exports.getPresuServInfo = function(presupuesto){
         const formattedDate = date.toLocaleString('es-AR', options); // Ajusta 'es-ES' según la zona horaria deseada
         fechasDisponibles.push(formattedDate);
     });
-    const dir=presupuesto.direccion.calle +" "+ presupuesto.direccion.numero +", "+ presupuesto.direccion.piso +" "+ 
-    presupuesto.direccion.depto +". "+presupuesto.localidad.nombre +", "+presupuesto.localidad.provincia;
+    const dir=direccion.calle +" "+ direccion.numero +", "+ direccion.piso +" "+ 
+    direccion.dpto +". "+direccion.localidad.nombre +", "+direccion.localidad.provincia;
     return {
         idSolicitud: presupuesto.idSolicitud,
-        titulo: presupuesto.anuncio.titulo,
-        fechaPublicacion: presupuesto.anuncio.fechaHora,
-        descripcion: presupuesto.anuncio.descripcion,
+        cliente: direccion.usuario.nombre+" "+direccion.usuario.apellido,
+        titulo: direccion.solicitudes.titulo,
+        fechaPublicacion: direccion.solicitudes.fechaHora,
+        descripcion: direccion.solicitudes.descripcion,
         direccion: dir,
         costoMateriales: presupuesto.costoMateriales,
         costoXHora: presupuesto.costoXHora,
