@@ -14,7 +14,7 @@
 Red social de contratación de servicios.
 
 ### Modelo
-![Modelo-DSW.jpg](https://i.postimg.cc/W1m7pkTS/Modelo-DSW.jpg)
+![Modelo-DSW.jpg](https://github.com/GuidoBitti/Propuesta-TP-DSW/assets/103657441/9afd9351-3b42-44d4-8024-a28cd30c8952)
 
 ## Alcance Funcional 
 
