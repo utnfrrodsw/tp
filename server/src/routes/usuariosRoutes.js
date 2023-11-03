@@ -29,9 +29,16 @@ router.delete('/logout', usuarioController.logout);
 router.post('/register', usuarioController.register);
 
 // Restablecimiento de contraseña
-
 router.post('/reset-password/request', usuarioController.passwordReset);
 router.post('/reset-password', usuarioController.resetPassword);
+
+
+// Ruta para verificar la contraseña actual
+router.post('/verify-password', usuarioController.verifyPassword);
+// Ruta para cambiar la contraseña
+router.post('/change-password', usuarioController.changePassword);
+
+
 
 // Consultas
 
@@ -42,7 +49,6 @@ router.get('/listaUsuario/:id', usuarioController.getUsuario);
 
 router.get('/obtenerDatosPersonales', usuarioController.obtenerDatosUsuario);
 router.patch('/modificarDatosPersonales', validacionModDatosPer, usuarioController.modificarDatosPersonales);
-router.get('/verificarClave', verificarClave, usuarioController.verificarClave);
-router.patch('/modificarClave', validacionModClave, usuarioController.cambiarClave);
+ 
 
 module.exports = router;
