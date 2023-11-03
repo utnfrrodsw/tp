@@ -4,6 +4,7 @@ import { Libro, LibrosService } from '../../services/libros.service';
 import { CurrencyService } from '../../services/currency.service';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { CarritoComprasService } from '../../services/carrito-compras.service';
 
 
 @Component({
@@ -13,12 +14,14 @@ import { of } from 'rxjs';
 })
 export class InfoLibroSeleccionadoComponent implements OnInit {
   libro: Libro | undefined;
+  libroAgregado: boolean = false;
 
   constructor(
     public currencyService: CurrencyService,
     private librosService: LibrosService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private carritoService: CarritoComprasService
   ) { }
 
   ngOnInit() {
@@ -59,4 +62,23 @@ export class InfoLibroSeleccionadoComponent implements OnInit {
   calculatePriceInSelectedCurrency(precio: number): number {
     return this.currencyService.calculatePriceInSelectedCurrency(precio);
   }
+
+  agregarAlCarrito() {
+    if (this.libro && this.libro.id) {
+      let libroId = this.libro.id;
+      this.carritoService.agregarAlCarrito(libroId); // Utilizar el servicio para agregar el libro al carrito
+      this.libroAgregado = true;
+      this.mostrarMensaje();
+    } else {
+      console.error('ID del libro no definido.');
+    }
+  }
+
+  mostrarMensaje() {
+    this.libroAgregado = true;
+    setTimeout(() => {
+      this.libroAgregado = false;
+    }, 3000);
+  }
+
 }

@@ -4,17 +4,45 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CarritoComprasService {
-  librosEnCarrito: number[] = [];
+  private librosEnCarrito: number[] = [];
 
-  agregarAlCarrito(libroId: number) {
-    this.librosEnCarrito.push(libroId);
+  constructor() {
+    this.obtenerCarritoAlmacenamientoLocal();
   }
 
-  obtenerLibrosEnCarrito(): number[] {
+  agregarAlCarrito(libroId: number) {
+    if (!this.librosEnCarrito.includes(libroId)) {
+      this.librosEnCarrito.push(libroId);
+      this.actualizarAlmacenamientoLocal();
+    }
+  }
+
+  eliminarDelCarrito(libroId: number) {
+    const index = this.librosEnCarrito.indexOf(libroId);
+    if (index !== -1) {
+      this.librosEnCarrito.splice(index, 1);
+      this.actualizarAlmacenamientoLocal();
+    }
+  }
+
+  actualizarAlmacenamientoLocal() {
+    localStorage.setItem('librosEnCarrito', JSON.stringify(this.librosEnCarrito));
+  }
+
+
+  getLibrosEnCarrito(): number[] {
     return this.librosEnCarrito;
   }
 
   limpiarCarrito() {
     this.librosEnCarrito = [];
+    this.actualizarAlmacenamientoLocal();
+  }
+
+  obtenerCarritoAlmacenamientoLocal() {
+    const carrito = localStorage.getItem('librosEnCarrito');
+    if (carrito) {
+      this.librosEnCarrito = JSON.parse(carrito);
+    }
   }
 }

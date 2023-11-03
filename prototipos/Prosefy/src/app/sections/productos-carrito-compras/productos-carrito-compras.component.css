@@ -23,3 +23,86 @@ h2 {
 .text-danger {
   text-decoration: none;
 }
+
+.text-danger {
+  cursor: pointer;
+}
+
+.card-img {
+  max-width: 100px;
+  max-height: auto;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.text-right {
+  text-align: end;
+}
+
+.precio-total,
+.text-primary {
+  color: #4EAFDA !important;
+}
+
+.custom-shadow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+.text-secondary {
+  font-weight: bold;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.flex-item {
+  flex-basis: 33.33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.total {
+  font-size: 1.5rem;
+}
+
+.text-secondary {
+  color: grey;
+  font-size: 1rem;
+}
+
+.btn-continuar {
+  margin-top: 1.5rem;
+}
+
+.custom-btn-primary {
+  background-color: #bd8464;
+  border-color: #bd8464;
+  transition: all .5s;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-primary:active {
+  background-color: #976950;
+  border-color: #976950;
+}
+
+.custom-btn-secondary {
+  background-color: #fff;
+  border-color: #cecece;
+  color: #646464;
+  transition: all .5s;
+}
+
+.custom-btn-secondary:hover,
+.custom-btn-secondary:active {
+  background-color: #eeeeee;
+  border-color: #afafaf;
+}

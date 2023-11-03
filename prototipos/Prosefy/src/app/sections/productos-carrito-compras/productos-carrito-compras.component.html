@@ -1,42 +1,50 @@
-<div class="container mt-4 custom-rounded-shadow p-3">
+<div class="container mt-4 p-3">
   <h2>Productos en el carrito de compras</h2>
-  <div class="row mb-3" *ngFor="let libro of libros">
-    <div class="card col-12 mb-3 mr-2">
+  <div class="row mb-3">
+    <div class="card col-12 mb-3 mr-2 custom-shadow" *ngFor="let libro of libros">
       <div class="row no-gutters">
-        <div class="col-8">
+        <div class="col-md-2">
+          <img [src]="libro.imagen" class="card-img" alt="Portada del libro" />
+        </div>
+        <div class="col-md-7">
           <div class="card-body">
-            <h5 class="card-title">{{libro.titulo}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{libro.autores}}</h6>
-            <div class="row">
+            <h5 class="card-title" style="margin-bottom: 5px;">{{libro.titulo}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted" style="margin-bottom: 10px;">{{libro.autores}}</h6>
+            <div class="row align-items-center" style="margin-bottom: 5px;">
               <div class="col">
                 <input type="number" class="form-control" [(ngModel)]="cantidades[libro.id]"
                   (ngModelChange)="calculateTotal()" (input)="validarCantidad($event, libro.id)" min="1" max="10"
                   step="1" value="1" required />
               </div>
               <div class="col">
-                <a href="#" class="text-primary">Agregar a favoritos</a>
+                <a href="#" class="text-primary" style="margin-left: 10px;">Agregar a favoritos</a>
               </div>
               <div class="col">
-                <a href="#" class="text-danger">Eliminar</a>
+                <a class="text-danger" (click)="eliminarDelCarrito(libro.id)" style="margin-left: 10px;">Eliminar</a>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-md-3 align-self-center text-md-right">
           <div class="card-body">
-            <div class="row">
-              <div class="col text-right">
-                <p class="card-price">${{subTotal(libro) | number:'1.2-2'}}</p>
-              </div>
-            </div>
+            <p class="card-price">${{subTotal(libro) | number:'1.2-2'}}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row mt-3">
-    <div class="col"></div>
-    <div class="col"></div>
-    <div class="col"><strong>Total: {{total | number:'1.2-2'}}</strong></div>
+</div>
+<div class="flex-container">
+  <div class="flex-item"></div>
+  <div class="flex-item">
+    <div>
+      <strong><span class="total fs-2 text-center">Total: </span><span class="precio-total fs-2">{{total |
+          number:'1.2-2'}}</span></strong>
+      <p class="text-secondary text-center" *ngIf="total <= 8000">+ Envío: $1.499</p>
+      <p class="text-secondary text-center" *ngIf="total > 8000">Envío GRATIS</p>
+    </div>
+  </div>
+  <div class="flex-item">
+    <button type="button" class="btn btn-primary custom-btn-primary btn-continuar">Continuar compra</button>
   </div>
 </div>
