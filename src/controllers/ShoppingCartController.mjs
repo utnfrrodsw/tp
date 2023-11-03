@@ -18,7 +18,8 @@ export const saveCart = async (req, res) => {
         writeConcern: { w: 'majority' }
     };
     try {
-        const { comprador, productos } = req.body;
+        const comprador = req.userID;
+        const { productos } = req.body;
         console.log({ comprador, productos });
         session.startTransaction(transactionOptions);
         if (!comprador || !productos) {
