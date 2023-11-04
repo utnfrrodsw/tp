@@ -75,7 +75,11 @@ function DetalleServicio() {
           </div>
           <div>
             <button type='button' onClick={() => history(-1)}>ir Atras</button>
-            <button type='button' onClick={updateServicio}>Solicitar finalización</button>
+            {presupuesto.estado === "progreso" && (
+              <button type="button" onClick={updateServicio}>
+              Solicitar finalización
+              </button>
+            )}
           </div>
         </>
       ) : (

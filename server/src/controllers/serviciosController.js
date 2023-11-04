@@ -58,7 +58,7 @@ const serviciosController = {
     },
 
     setAConfirmar: async (req, res) => {
-        const { idSolicitud, idUsuario } = req.params;
+        const { idSolicitud, id } = req.params;
         try {
             await db.sequelize.transaction(async (t) => {
             await db.Servicio.update(

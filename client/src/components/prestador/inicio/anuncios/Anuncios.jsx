@@ -76,24 +76,46 @@ function Anuncios(props) {
   return (
     <div className="anuncios-container">
       <nav className="navigation">
-        <ul className="ul-navegation-cli">
-          <li className="li-navegation-cli">
-            <NavLink to="/provider/home/add" onClick={() => handleTabClick('Nuevos') && handleDoubleClick("activa", "nuevas")}  className="link">Anuncios</NavLink>
-          </li>
-          <li className="li-navegation-cli">
-            <NavLink  to="/provider/home/budgeted" onClick={() => handleTabClick('Presupuestados') && handleDoubleClick("activa", "presupuestadas")}>Presupuestados</NavLink>
-          </li>
-          <li className="li-navegation-cli">
-            <NavLink to="/provider/home/accepted" onClick={() => handleTabClick('Aceptados') && handleDoubleClick("progreso", "aceptadas")}>Aceptados</NavLink>
-          </li>
-        </ul>
-      </nav>
+  <ul className="ul-navegation-cli">
+    <li className="li-navegation-cli">
+      <NavLink
+        to="/provider/home/add"
+        onClick={() => handleTabClick('Nuevos') && handleDoubleClick("activa", "nuevas")}
+        style={selectedTab === 'Nuevos' ? { color: '#fff' } : {}}
+        className="link"
+      >
+        Anuncios
+      </NavLink>
+    </li>
+    <li className="li-navegation-cli">
+      <NavLink
+        to="/provider/home/budgeted"
+        onClick={() => handleTabClick('Presupuestados') && handleDoubleClick("activa", "presupuestadas")}
+        style={selectedTab === 'Presupuestados' ? { color: '#fff' } : {}}
+        className="link"
+      >
+        Presupuestados
+      </NavLink>
+    </li>
+    <li className="li-navegation-cli">
+      <NavLink
+        to="/provider/home/accepted"
+        onClick={() => handleTabClick('Aceptados') && handleDoubleClick("progreso", "aceptadas")}
+        style={selectedTab === 'Aceptados' ? { color: '#fff' } : {}}
+        className="link"
+      >
+        Aceptados
+      </NavLink>
+    </li>
+  </ul>
+</nav>
+
       <nav className="navigation">
         <>
         {selectedTab === 'Nuevos' && (
           <li className="li-navegation-cli">
             <></>
-          </li>
+          </li> 
         )}
         {selectedTab === 'Presupuestados' && (
           <>
