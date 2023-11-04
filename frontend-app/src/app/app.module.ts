@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InvestmentMainComponent } from './investment-main/investment-main.component';
+import { CreateUsersComponent } from './post/create-users/create-users.component';
+import { ViewUsersComponent } from './get/view-users/view-users.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 
 export function tokenGetter() {
-  return localStorage.getItem("access_token");
+  return localStorage.getItem('access_token');
 }
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
-    InvestmentMainComponent
+    InvestmentMainComponent,
+    CreateUsersComponent,
+    ViewUsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,12 +30,12 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["http://localhost:4200/"],
-        disallowedRoutes: ["http://example.com/examplebadroute/"],
+        allowedDomains: ['http://localhost:4200/'],
+        disallowedRoutes: ['http://example.com/examplebadroute/'],
       },
-    })
+    }),
   ],
   providers: [JwtHelperService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

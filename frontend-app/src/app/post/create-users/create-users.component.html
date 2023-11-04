@@ -1,0 +1,85 @@
+<form
+  action=""
+  method="post"
+  [formGroup]="createUsers"
+  (ngSubmit)="handlerCreate()"
+>
+  <label for="userName">Ingrese nombre:</label>
+  <input
+    type="text"
+    formControlName="userName"
+    name="userName"
+    id="userName"
+    placeholder=" "
+    id="userName"
+  />
+  <label for="userLastName">Ingrese apellido:</label>
+  <input
+    type="text"
+    formControlName="userLastName"
+    name="userLastName"
+    id="userLastName"
+    placeholder=" "
+    id="userLastName"
+  />
+  <label for="userEmail">Ingrese email:</label>
+  <input
+    type="email"
+    formControlName="userEmail"
+    name="userEmail"
+    id="userEmail"
+    placeholder=" "
+    id="userEmail"
+  />
+  <label
+    for="userEmail"
+    *ngIf="createUsers.get('userEmail')?.invalid"
+    class="error-message"
+    >Ingrese formato de mail</label
+  >
+  <label for="userPassword">Ingrese contraseña:</label>
+  <input
+    type="password"
+    formControlName="userPassword"
+    name="userPassword"
+    id="userPassword"
+    placeholder=" "
+    id="userPassword"
+  />
+  <label
+    for="userPassword"
+    *ngIf="createUsers.get('userPassword')?.invalid"
+    class="error-message"
+    >La contraseña debe tener como mínimo 4 caracteres</label
+  >
+  <label for="userAddress_Street">Ingrese calle:</label>
+  <input
+    type="text"
+    formControlName="userAddress_Street"
+    name="userAddress_Street"
+    id="userAddress_Street"
+    placeholder=" "
+    id="userAddress_Street"
+  />
+  <label for="userAddress_Number">Ingrese altura:</label>
+  <input
+    type="number"
+    formControlName="userAddress_Number"
+    name="userAddress_Number"
+    id="userAddress_Number"
+    placeholder=" "
+    id="userAddress_Number"
+  />
+  <label for="userAddress_City">Ingrese ciudad:</label>
+  <input
+    type="text"
+    formControlName="userAddress_City"
+    name="userAddress_City"
+    id="userAddress_City"
+    placeholder=" "
+    id="userAddress_City"
+  />
+  <button type="submit">Crear Usuario</button>
+  <hr />
+</form>
+  <app-view-users><app-view-users>

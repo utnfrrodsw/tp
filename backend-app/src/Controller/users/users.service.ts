@@ -18,9 +18,9 @@ export class UsersService {
       where: { Email: createUserDto.Email },
     });
     if (user) {
+      console.log(user);
       return new HttpException('Email en uso', HttpStatus.CONFLICT);
     }
-
     const newAddress = await this.AddressRepository.save(createUserDto.Address);
     createUserDto.Address = newAddress;
     const newUser = this.userRepository.create(createUserDto);

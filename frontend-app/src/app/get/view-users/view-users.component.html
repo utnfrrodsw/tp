@@ -1,0 +1,8 @@
+<button (click)="viewUsers()">Ver Usuarios</button>
+<ul>
+    <li *ngFor="let user of users">{{ user.FirstName }} {{ user.LastName }}
+        <button>Borrar Usuario</button>
+    </li>
+</ul>
+<hr>
+
