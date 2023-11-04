@@ -5,60 +5,50 @@ const router = express.Router();
 
 const usuarioController = require( "../controllers/usuarios/usuariosControllers.js");
 
-const {authenticate} = require("../auth/authenticate.js");
+const { authenticate } = require("../auth/authenticate.js");
 const { jsonResponse } = require("../lib/jsonResponse.js");
-// const { authUserRegister } = require( "../../middlewares/usuarios/authUserRegister.js");
-//const { authenticateUser } = require( "../../middlewares/usuarios/authenticateUser.js");
-//const { errorHandler } = require( "../../middlewares/usuarios/errorHandler.js");
-//const { validateLoginData } = require( "../../middlewares/usuarios/validateLoginData.js");
-//const { validateRegistro } = require( "../../middlewares/usuarios/validateRegistro.js");
-const {validacionModDatosPer} = require ('../middlewares/usuarios/validacionModDatosPer.js')
-const {validacionModClave} = require ('../middlewares/usuarios/validacionModClave.js')
-const {verificarClave} = require ('../middlewares/usuarios/verificarClave.js')
-
+const { validacionModDatosPer } = require('../middlewares/usuarios/validacionModDatosPer.js');
+const { validacionModClave } = require('../middlewares/usuarios/validacionModClave.js');
+const { verificarClave } = require('../middlewares/usuarios/verificarClave.js');
 
 router.get('/', (req, res) => {
-    res.send('usuarios');
+  res.send('usuarios');
 });
 
-//tokens
+// Tokens
 
 router.post('/refreshToken', usuarioController.refreshToken);
 router.get('/auth', authenticate,  (req, res) => {
-    res.status(200).json(jsonResponse(200, req.user));
+  res.status(200).json(jsonResponse(200, req.user));
 });
 
-//login, register
- 
-router.post('/login' ,usuarioController.login);
-router.delete('/logout',usuarioController.logout);
+// Login, register
 
-//REGITRO
+router.post('/login', usuarioController.login);
+router.delete('/logout', usuarioController.logout);
 router.post('/register', usuarioController.register);
 
-//consultas
-//OBTENER USUARIOS
-router.get('/listaUsuarios',usuarioController.getUsuarios) 
-router.get('/listaUsuario/:id', usuarioController.getUsuario)
+// Restablecimiento de contraseña
+router.post('/reset-password/request', usuarioController.passwordReset);
+router.post('/reset-password', usuarioController.resetPassword);
 
+
+// Ruta para verificar la contraseña actual
+router.post('/verify-password', usuarioController.verifyPassword);
+// Ruta para cambiar la contraseña
+router.post('/change-password', usuarioController.changePassword);
+
+
+
+// Consultas
+
+router.get('/listaUsuarios', usuarioController.getUsuarios);
+router.get('/listaUsuario/:id', usuarioController.getUsuario);
+
+// Datos personales
+
+router.get('/obtenerDatosPersonales', usuarioController.obtenerDatosUsuario);
+router.patch('/modificarDatosPersonales', validacionModDatosPer, usuarioController.modificarDatosPersonales);
  
-//GET obtener usuarios
-//POST crear usuarios
-//.DELETE para eliminar 
-//.PUT para actualizacion completa
-//.PATCH para actualizacion parcial (ver ejemplos en el video)
 
-
-
-//LOGIN
-router.post('/login', /*validateLoginData, authenticateUser, */usuarioController.login /*,errorHandler*/);
-
-
-//DATOS PERSONALES
-router.get('/obtenerDatosPersonales', usuarioController.obtenerDatosUsuario ) //traigo los datos del usuario
-router.patch ('/modificarDatosPersonales', validacionModDatosPer, usuarioController.modificarDatosPersonales); //modificoDatos
-router.get('/verificarClave',verificarClave, usuarioController.verificarClave)  //compruebo Clave
-router.patch ('/modificarClave', validacionModClave, usuarioController.cambiarClave); //actualizo clave
-
-
-module.exports=router;
+module.exports = router;
