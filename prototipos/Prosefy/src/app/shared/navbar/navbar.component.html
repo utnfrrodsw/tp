@@ -5,44 +5,22 @@
         <!-- Abre el popup al hacer clic sobre "Localidad" -->
         <a class="nav-link" (click)="openPopup()">
           <span>
-            <img
-              src="../../../assets/img/Emojis/Closed Mailbox with Raised Flag.png"
-              alt="Buzón de correo con bandera levantada"
-              class="img-localidad"
-            />
-            Localidad
-          </span></a
-        >
-        <app-popup-localidad
-          [isPopupOpen]="isPopupOpen"
-          (closed)="closePopup()"
-        ></app-popup-localidad>
+            <img src="../../../assets/img/Emojis/Closed Mailbox with Raised Flag.png"
+              alt="Buzón de correo con bandera levantada" class="img-localidad" />
+            Rosario
+          </span></a>
+        <app-popup-localidad [isPopupOpen]="isPopupOpen" (closed)="closePopup()"></app-popup-localidad>
       </li>
     </ul>
     <!-- Convierte los enlaces del nav en un toggler para móviles y tablets -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#navbarOffcanvasLg"
-      aria-controls="navbarOffcanvasLg"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg"
+      aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div
-      class="offcanvas offcanvas-end bg-light"
-      tabindex="-1"
-      id="navbarOffcanvasLg"
-      aria-labelledby="navbarOffcanvasLgLabel"
-    >
+    <div class="offcanvas offcanvas-end bg-light" tabindex="-1" id="navbarOffcanvasLg"
+      aria-labelledby="navbarOffcanvasLgLabel">
       <div class="offcanvas-header">
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <ul class="navbar-nav ml-auto mx-auto">
         <li class="nav-item">
@@ -50,67 +28,35 @@
         </li>
         <li class="nav-item dropdown">
           <!-- Permite que se "desplieguen" los enlaces de la sección "Categorías" -->
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Categorías
           </a>
           <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
             <!-- Diferentes enlaces de la sección "Categoría" en el nav -->
             <a class="dropdown-item custom-dropdown-item" href="#">Ficción</a>
-            <a class="dropdown-item custom-dropdown-item" href="#"
-              >No ficción</a
-            >
-            <a class="dropdown-item custom-dropdown-item" href="#"
-              >Literatura infantil</a
-            >
-            <a class="dropdown-item custom-dropdown-item" href="#"
-              >Educación y referencia</a
-            >
-            <a class="dropdown-item custom-dropdown-item" href="#"
-              >Ciencia y naturaleza</a
-            >
-            <a class="dropdown-item custom-dropdown-item" href="#"
-              >Religión y espiritualidad</a
-            >
-            <a class="dropdown-item custom-dropdown-item" href="#"
-              >Política y sociedad</a
-            >
-            <a class="dropdown-item custom-dropdown-item" href="#"
-              >Salud y bienestar</a
-            >
-            <a class="dropdown-item custom-dropdown-item" href="#"
-              >Negocios y finanzas</a
-            >
+            <a class="dropdown-item custom-dropdown-item" href="#">No ficción</a>
+            <a class="dropdown-item custom-dropdown-item" href="#">Literatura infantil</a>
+            <a class="dropdown-item custom-dropdown-item" href="#">Educación y referencia</a>
+            <a class="dropdown-item custom-dropdown-item" href="#">Ciencia y naturaleza</a>
+            <a class="dropdown-item custom-dropdown-item" href="#">Religión y espiritualidad</a>
+            <a class="dropdown-item custom-dropdown-item" href="#">Política y sociedad</a>
+            <a class="dropdown-item custom-dropdown-item" href="#">Salud y bienestar</a>
+            <a class="dropdown-item custom-dropdown-item" href="#">Negocios y finanzas</a>
           </div>
         </li>
 
         <li class="nav-item dropdown">
           <!-- Permite que se "desplieguen" los enlaces de la sección "Formatos" -->
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Formatos
           </a>
           <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
             <!-- Diferentes enlaces de la sección "Formatos" en el nav -->
             <a class="dropdown-item custom-dropdown-item" href="#">Físicos</a>
             <a class="dropdown-item custom-dropdown-item" href="#">Ebooks</a>
-            <a class="dropdown-item custom-dropdown-item" href="#"
-              >Audiolibros</a
-            >
+            <a class="dropdown-item custom-dropdown-item" href="#">Audiolibros</a>
           </div>
         </li>
         <li class="nav-item">
@@ -127,30 +73,15 @@
         </li>
         <li class="nav-item alinear-derecha">
           <div class="dropdown">
-            <button
-              type="button"
-              id="dropdownMenuButton"
-              class="btn btn-secondary dropdown-toggle btn-unidad-monetaria"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
+            <button type="button" id="dropdownMenuButton" class="btn btn-secondary dropdown-toggle btn-unidad-monetaria"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ currencyService.getCurrency() }}
             </button>
-            <div
-              class="dropdown-menu custom-dropdown-item-currency"
-              aria-labelledby="dropdownMenuButton"
-            >
-              <a
-                class="dropdown-item custom-dropdown-item custom-dropdown-item-currency"
-                (click)="setCurrency('ARS')"
-                >ARS</a
-              >
-              <a
-                class="dropdown-item custom-dropdown-item custom-dropdown-item-currency"
-                (click)="setCurrency('USD')"
-                >USD</a
-              >
+            <div class="dropdown-menu custom-dropdown-item-currency" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item custom-dropdown-item custom-dropdown-item-currency"
+                (click)="setCurrency('ARS')">ARS</a>
+              <a class="dropdown-item custom-dropdown-item custom-dropdown-item-currency"
+                (click)="setCurrency('USD')">USD</a>
             </div>
           </div>
         </li>

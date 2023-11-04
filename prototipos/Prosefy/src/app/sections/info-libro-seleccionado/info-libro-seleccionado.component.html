@@ -67,14 +67,14 @@
       </p>
       <p>O retiralo <strong>GRATIS</strong> en nuestra tienda</p>
       <div class="d-flex justify-content-center mt-4">
-        <button class="btn btn-primary custom-btn-primary mx-4">
+        <button routerLink="/carrito-compras" *ngIf="libro?.id !== undefined"
+          class="btn btn-primary custom-btn-primary mx-4" (click)="agregarAlCarrito()">
           Comprar ahora
         </button>
         <button *ngIf="libro?.id !== undefined" class="btn btn-primary custom-btn-secondary mx-4"
           (click)="agregarAlCarrito(); mostrarMensaje()">
           Agregar al carrito
         </button>
-
       </div>
       <div *ngIf="libroAgregado" class="alert alert-success mt-3" role="alert">
         El libro se ha agregado al carrito de compras correctamente.

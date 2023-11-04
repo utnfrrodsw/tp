@@ -27,7 +27,11 @@
         </div>
         <div class="col-md-3 align-self-center text-md-right">
           <div class="card-body">
-            <p class="card-price">${{subTotal(libro) | number:'1.2-2'}}</p>
+            <p class="card-price">${{calculatePriceInSelectedCurrency(subTotal(libro)) | number:'1.2-2'}}<small
+                class="custom-text-muted">
+                {{ currencyService.getCurrency() }}
+              </small>
+            </p>
           </div>
         </div>
       </div>
@@ -38,13 +42,21 @@
   <div class="flex-item"></div>
   <div class="flex-item">
     <div>
-      <strong><span class="total fs-2 text-center">Total: </span><span class="precio-total fs-2">{{total |
-          number:'1.2-2'}}</span></strong>
-      <p class="text-secondary text-center" *ngIf="total <= 8000">+ Envío: $1.499</p>
+      <strong><span class="total fs-2 text-center">Total: </span><span
+          class="precio-total fs-2">{{calculatePriceInSelectedCurrency(total) |
+          number:'1.2-2'}}<small class="custom-text-muted">
+            {{ currencyService.getCurrency() }}
+          </small>
+        </span></strong>
+      <p class="text-secondary text-center" *ngIf="total === 0">¡El carrito de compras está vacío!</p>
+      <p class="text-secondary text-center" *ngIf="total > 0 && total <= 8000">+ Envío: $1.499</p>
       <p class="text-secondary text-center" *ngIf="total > 8000">Envío GRATIS</p>
     </div>
   </div>
   <div class="flex-item">
-    <button type="button" class="btn btn-primary custom-btn-primary btn-continuar">Continuar compra</button>
+    <button type="button" class="btn btn-primary custom-btn-primary btn-continuar"
+      [ngClass]="{ 'btn-disabled': total === 0 }" [disabled]="total === 0" routerLink="/finalizar-compra">
+      Continuar compra
+    </button>
   </div>
 </div>

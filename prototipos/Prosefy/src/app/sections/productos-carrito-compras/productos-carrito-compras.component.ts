@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Libro, LibrosService } from '../../services/libros.service';
 import { CarritoComprasService } from '../../services/carrito-compras.service';
+import { CurrencyService } from '../../services/currency.service';
 
 @Component({
   selector: 'app-productos-carrito-compras',
@@ -13,6 +14,7 @@ export class ProductosCarritoComprasComponent implements OnInit {
   cantidades: { [id: number]: number } = {};
 
   constructor(
+    public currencyService: CurrencyService,
     private librosService: LibrosService,
     private carritoService: CarritoComprasService
   ) { }
@@ -71,4 +73,9 @@ export class ProductosCarritoComprasComponent implements OnInit {
   subTotal(libro: Libro) {
     return libro.precio * this.cantidades[libro.id];
   }
+
+  calculatePriceInSelectedCurrency(precio: number): number {
+    return this.currencyService.calculatePriceInSelectedCurrency(precio);
+  }
+
 }

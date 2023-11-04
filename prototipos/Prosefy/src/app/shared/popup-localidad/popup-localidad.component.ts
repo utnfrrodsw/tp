@@ -18,9 +18,9 @@ export class PopupLocalidadComponent {
     'Av. Beethoven 1211',
   ];
 
-  @Input() isPopupOpen: boolean = false; // Inicialización en el constructor
-  selectedDireccion: string = ''; // Propiedad para realizar el seguimiento de la dirección seleccionada
-  enOtraUbicacion: boolean = false; // Propiedad para controlar el botón
+  @Input() isPopupOpen: boolean = false;
+  selectedDireccion: string = '';
+  enOtraUbicacion: boolean = false;
   @Output() closed = new EventEmitter<void>();
   closePopup() {
     this.closed.emit();

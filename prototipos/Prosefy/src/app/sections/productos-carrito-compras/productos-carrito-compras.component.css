@@ -106,3 +106,10 @@ h2 {
   background-color: #eeeeee;
   border-color: #afafaf;
 }
+
+/* Estilo para el texto "ARS" y "USD" */
+.custom-text-muted {
+  font-size: 40%;
+  vertical-align: middle;
+  color: #696969;
+}
