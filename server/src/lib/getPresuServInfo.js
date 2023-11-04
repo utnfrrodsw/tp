@@ -1,4 +1,7 @@
 exports.getPresuServInfo = function(presupuesto,direccion){
+
+    const solicitud=JSON.parse(JSON.stringify(direccion.solicitudes))[0];
+    const servicio=JSON.parse(JSON.stringify(presupuesto.presupuesto))[0];
     const fechasDisponibles = [];
     presupuesto.horariosPresupuesto.map((horario) => {
         console.log(horario.horario);
@@ -12,17 +15,18 @@ exports.getPresuServInfo = function(presupuesto,direccion){
     return {
         idSolicitud: presupuesto.idSolicitud,
         cliente: direccion.usuario.nombre+" "+direccion.usuario.apellido,
-        titulo: direccion.solicitudes.titulo,
-        fechaPublicacion: direccion.solicitudes.fechaHora,
-        descripcion: direccion.solicitudes.descripcion,
+        titulo: solicitud.titulo,
+        fechaPublicacion: solicitud.fechaHora,
+        descripcion: solicitud.descripcion,
         direccion: dir,
+        materiales: presupuesto.materiales,
         costoMateriales: presupuesto.costoMateriales,
         costoXHora: presupuesto.costoXHora,
         tiempoAprox: presupuesto.tiempoAprox,
-        costoTotal: (presupuesto.costoXHora * presupuesto.tiempoAprox) + presupuesto.costoMateriales,
-        estado: presupuesto.presupuesto.estado,
         fechasDisponibles: fechasDisponibles,
-        fechaFinal: presupuesto.presupuesto.fechaHora,
-        resenia:presupuesto.presupuesto.resenia
+        costoTotal: servicio? (presupuesto.costoXHora * presupuesto.tiempoAprox) + presupuesto.costoMateriales: undefined,
+        estado: servicio? servicio.estado: undefined,
+        fechaFinal: servicio? servicio.fechaHora: undefined,
+        resenia: servicio? servicio.resenia: undefined
     }
 }

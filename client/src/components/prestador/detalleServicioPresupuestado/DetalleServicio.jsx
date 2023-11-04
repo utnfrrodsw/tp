@@ -15,7 +15,7 @@ function DetalleServicio(){
     fetch(`${API_URL}/presupuesto/solicitud/${idSolicitud}/prestador/${user.id}`)
       .then((res) => res.json())
       .then((data) => {
-        setPresupuesto(data); // Almacena los detalles del presupuesto en el estado
+        setPresupuesto(data.body.presupuesto); // Almacena los detalles del presupuesto en el estado
       })
       .catch((error) => {
         console.error('Error al cargar los detalles del presupuesto:', error);
@@ -43,10 +43,10 @@ return(
         <div className='campos'>                              
             <div className='listaMat'>
               <h2>Detalles del Servicio:</h2>
-              <p>Estado del servicio: {presupuesto.costoXHora}</p>
+              <p>Estado del servicio: {presupuesto.estado}</p>
               <p>Costo final: {presupuesto.costoTotal}</p>
             </div>
-            <p>Fecha final:{new Date(presupuesto.fechaFinal).toLocaleDateString()}</p>
+            <p>Fecha final:{new Date(presupuesto.fechaFinal).toLocaleString()}</p>
         </div> 
       </div>
       <div>
