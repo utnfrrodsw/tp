@@ -21,4 +21,6 @@ router.get('/presupuestadas/prestador/:id/:estado',solicitudController.getSolici
 
 router.get('/aceptadas/prestador/:id/:estado',solicitudController.getSolicitudesAceptadas);
 
+router.patch('/updateEstado/:id', solicitudController.updateEstado);
+
 module.exports=router;

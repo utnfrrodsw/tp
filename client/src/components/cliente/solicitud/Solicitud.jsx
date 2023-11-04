@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import './solicitud.css';
 import { API_URL } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider';
-import { Modal, Carousel, Container, Image} from 'react-bootstrap';
+import { Modal, Carousel, Container, Image, Button} from 'react-bootstrap';
 import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 import Review from '../../reseña/Review';
@@ -16,6 +16,7 @@ function Solicitud(props){
   const [presupuestosSolicitud, setPresupuestosSolicitud] = useState([]);
   const [reseniaError, setReseniaError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loadAceptarRechazar, setLoadAceptarRechazar] = useState(false);
   const [hacerReseña, setHacerReseña] = useState(false);
   const auth = useAuth();
 
@@ -97,15 +98,42 @@ function Solicitud(props){
 
   const hendleCalificarUpdate = () => {
     setHacerReseña(false);
+    props.hendleSolicitudesUpdate();
   }
 
+  const handleConfirmarRechazar = async (estado) => {
+    try{
+      setLoadAceptarRechazar(true);
+      const response = await fetch(`${API_URL}/solicitud/updateEstado/${props.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${auth.getRefreshToken()}`,
+        },
+        body: JSON.stringify({
+          estado: estado,
+        }),
+      })
+      if(response.ok){
+        setLoadAceptarRechazar(false);
+        props.hendleSolicitudesUpdate();
+      }else{
+        setLoadAceptarRechazar(false);
+        console.log('Error al aceptar/rechazar solicitud');
+      }
+    }catch(err){
+      setLoadAceptarRechazar(true);
+      console.log(err);
+    }
+  }
   
   return (
     <div className={`solicprincipal-card ${show ? "solicprincipal-card" : "solicprincipal-fullcontent"}`} >
         <div>
-          <div className={`estado-solicitud estado-${props.estado}`}>
+          <div className={`estado-solicitud estado-${props.estado} estado-${props.estadoServicio}`}>
             {props.estado === "activa" && <>Activa</>}
-            {props.estado === "progreso" && <>En Proceso</>}
+            {props.estado === "progreso" && props.estadoServicio === "progreso" && <>En Progreso</>}
+            {props.estado === "progreso" && props.estadoServicio === "aConfirmar" && <>Esperando Confirmacion</>}
             {props.estado === "terminado" && <>Finalizado</>}
           </div>
           <h1 className='titulo-solicitud'>{props.titulo}</h1>
@@ -122,7 +150,7 @@ function Solicitud(props){
               <p className='descripcion-solicitud'>{props.descripcion}</p>
               {props.estado === "terminado" ? <p className='descripcion-solicitud'> {props.cartelResenia} </p>:<></>}
               <section className='botones'>
-                <button className='fotos' onClick={() => setVerfotos(true)}>ver fotos</button>
+                <Button className='fotos' onClick={() => setVerfotos(true)}>ver fotos</Button>
                   <Modal show={verfotos} onHide={() => setVerfotos(false)} fullscreen={true} className='modales-solicitud'>
                     <Modal.Header closeButton>
                       <Modal.Title>Fotos</Modal.Title>
@@ -139,10 +167,10 @@ function Solicitud(props){
                     </Carousel>
                     </Modal.Body>
                   </Modal>
-                
+
                 {props.estado === "activa" ? (
                 <>
-                  <button className='ver-presupuestos-button' onClick={() => setVerPresupuestos(true)} >ver presupuestos</button>
+                  <Button className='ver-presupuestos-button' onClick={() => setVerPresupuestos(true)} >ver presupuestos</Button>
                   <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true} className='modales-solicitud'>
                     <Modal.Header closeButton>
                       <Modal.Title>Presupuestos</Modal.Title>
@@ -180,10 +208,21 @@ function Solicitud(props){
                     <Modal.Footer></Modal.Footer>
                   </Modal>
                 </>
-                ): <></>} 
+                ): <></>}
+
+
+                {props.estado === "progreso" && props.estadoServicio === "aConfirmar" ? (
+                  <section className='botones-confirmacion-container'>
+                    {loadAceptarRechazar ? <LoaderFijo/>: <>
+                      <Button className='button-confirmar' onClick={() => handleConfirmarRechazar("terminado")}>Confirmar</Button>
+                      <Button className='button-rechazar' onClick={() => handleConfirmarRechazar("progreso")}>Rechazar</Button>
+                    </>}
+                  </section>
+                ): <></>}
+
                 {props.estado === "terminado" ? (
                 <>
-                  <button className='ver-presupuestos-button' onClick={handleHacerReseña}>Hacer Reseña</button>
+                  <Button className='ver-presupuestos-button' onClick={handleHacerReseña}>Hacer Reseña</Button>
                   {reseniaError && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>Error al cargar reseña</p>}
                   <Modal show={hacerReseña} onHide={() => setHacerReseña(false)} style={{padding: '0px'}}>
                       <Modal.Header closeButton>
