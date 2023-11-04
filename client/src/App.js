@@ -1,11 +1,6 @@
 import React /*, {useEffect, useState}*/ from 'react';
 
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import ProtectedRoute from './components/Routes/ProtectedRoute.jsx';
-import ProtectedRouteClient from './components/Routes/ProtectedRouteClient.jsx';
-import ProtectedRouteProvider from './components/Routes/ProtectedRouteProvider.jsx';
-import ProtectedRouteUser from './components/Routes/ProtectedRouteUser.jsx';
 import InicioCliente from './components/cliente/Inicio/InicioCliente.jsx';
 import Solicitudes from './components/cliente/solicitudes/Solicitudes.jsx';
 import Error from './components/error/Error.jsx';
@@ -22,6 +17,13 @@ import Login from './components/usuario/login/Login.jsx';
 import RecuperarClave from './components/usuario/login/RecuperarClave';
 import ResetPasswordPage from './components/usuario/login/ResetPassword.jsx';
 import Register from './components/usuario/register/Register.jsx';
+import ProtectedRoute from './components/Routes/ProtectedRoute.jsx';
+import ProtectedRouteProvider from './components/Routes/ProtectedRouteProvider.jsx';
+import ProtectedRouteClient from './components/Routes/ProtectedRouteClient.jsx';
+import ProtectedRouteUser from './components/Routes/ProtectedRouteUser.jsx';
+
+
+import './App.css';
 
 
 function App() {
