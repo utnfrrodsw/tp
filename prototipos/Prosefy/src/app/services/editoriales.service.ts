@@ -61,9 +61,9 @@ export class EditorialesService {
 
   constructor(private http: HttpClient) {}
 
-  getEditoriales() {
+   getEditoriales() {
+    console.log("data");
     return this.http.get(this.apiUrl);
-  
   }
 
   /*constructor() {}
