@@ -94,6 +94,7 @@ function Solicitudes(props) {
                         direccion={solicitud.direccion}
                         descripcion={solicitud.descripcion}
                         estado={solicitud.estado}
+                        estadoServicio={solicitud.estadoServicio}
                         fotos={solicitud.fotos}
                         cartelResenia={solicitud.cartelResenia}
                     />

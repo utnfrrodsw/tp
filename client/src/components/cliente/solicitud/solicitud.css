@@ -30,7 +30,7 @@
 }
 
 .solicprincipal-fullcontent {
-  height: 23rem;
+  height: 24rem;
   display: grid;
   width: 60%;
   padding: 15px;
@@ -193,6 +193,34 @@
 .estado-terminado {
   background-color: #ff0000; /* Rojo para estado "finalizado" */
 }
+
+.estado-aConfirmar {
+  background-color: #ff8800; /* naranja para estado del servicio "aConfirmar" */
+}
+
+section.botones-confirmacion-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%
+}
+
+.botones-confirmacion-container button{
+  width: 10%;
+  align-self: center;
+}
+
+section.botones-confirmacion-container button.button-confirmar{
+  background-color: #2d745c;
+  border: 1px solid #ffffff;
+}
+
+section.botones-confirmacion-container button.button-rechazar{
+  background-color: #742d2d;
+  border: 1px solid #ffffff;
+}
+
+
 
 /* imagenes */
 

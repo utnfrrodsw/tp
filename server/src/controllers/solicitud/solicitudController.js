@@ -80,6 +80,7 @@ const solicitudController = {
                         })
                         .then((servicio) => {
                             const resenia = servicio.resenia;
+                            const estado = servicio.estado;
                             const promise = db.Presupuesto.findOne({
                                 where: {
                                     idSolicitud: solicitud.idSolicitud,
@@ -90,7 +91,7 @@ const solicitudController = {
                                 }]
                             }).then((presupuesto) => {
                                 console.log(resenia);
-                                const presu = getSolicitudPresuInfo(solicitud, imgs, presupuesto, resenia);
+                                const presu = getSolicitudPresuInfo(solicitud, imgs, presupuesto, resenia, estado);
                                 solicitudes.push(presu);
                             });
                             return promise;
@@ -448,6 +449,31 @@ const solicitudController = {
             res.status(500).json({ message: 'Error en el servidor' });
         };
     },
+
+    updateEstado: async function (req, res){
+        const estado = req.body.estado;
+        const idSolicitud = req.params.id;
+        try {
+            await db.sequelize.transaction(async (t) => {
+                db.Solicitud.update({estado: estado},{
+                    where: {
+                        idSolicitud: idSolicitud,
+                    },
+                })
+                db.Servicio.update({estado: estado},{
+                    where: {
+                        idSolicitud: idSolicitud,
+                    },
+                })
+            });
+            
+            res.status(200).json(jsonResponse(200, { message: 'Estado actualizado' }));
+
+        }catch(error){
+            console.error('Error al obtener solicitudes', error);
+            res.status(500).json({ message: 'Error en el servidor, estado no actualizado' });
+        }
+    }
     
 }
 
