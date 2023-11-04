@@ -7,21 +7,20 @@ import Error from './components/error/Error.jsx';
 import Footer from './components/footer/Footer.jsx';
 import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
-import DetalleServicio from './components/prestador/detalleServicioPresupuestado/Presupuestadas.jsx';
 import Evaluaciones from './components/prestador/evaluaciones/Evaluaciones';
 import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
-import Anuncios from './components/prestador/inicio/anuncios/Anuncios.jsx';
-import { default as DetallePresupuesto, default as Presupuesto } from './components/prestador/presupuesto/Presupuesto.jsx';
+import Anuncios from './components/prestador/inicio/anuncios/Anuncios.jsx'
+import Presupuesto from './components/prestador/presupuesto/Presupuesto.jsx';
 import DatosUser from './components/usuario/datosPersonales/datosUser.jsx';
 import Login from './components/usuario/login/Login.jsx';
 import RecuperarClave from './components/usuario/login/RecuperarClave';
-import ResetPasswordPage from './components/usuario/login/ResetPassword.jsx';
 import Register from './components/usuario/register/Register.jsx';
 import ProtectedRoute from './components/Routes/ProtectedRoute.jsx';
 import ProtectedRouteProvider from './components/Routes/ProtectedRouteProvider.jsx';
 import ProtectedRouteClient from './components/Routes/ProtectedRouteClient.jsx';
 import ProtectedRouteUser from './components/Routes/ProtectedRouteUser.jsx';
-
+import DetallePresupuesto from './components/prestador/detalleServicioPresupuestado/DetallePresupuesto.jsx';
+import DetalleServicio from './components/prestador/detalleServicioPresupuestado/DetalleServicio.jsx';
 
 import './App.css';
 
