@@ -7,38 +7,57 @@ const editoriales = db.collection<Editorial>('editoriales')
 
 export class EditorialRepository implements Repository<Editorial>{
 
-    public async findAll(): Promise <Editorial[] | undefined> {
-        return await editoriales.find().toArray()
-    }
-
-    public async findOne(item: { id: string; }): Promise <Editorial | undefined> {
-        
-        const _id = new ObjectId(item.id)
-        return (await editoriales.findOne({ _id })) || undefined
-        
-        //return await editorialesArray.find((editorial)=> editorial.id === item.id)
-    }
-
-    public async add(item: Editorial): Promise <Editorial | undefined> {
-        
-        item._id= (await editoriales.insertOne(item)).insertedId
-        return item
-
-        //return await item
-    }
-
-    public async update(id:string,item: Editorial): Promise <Editorial | undefined> {
-        const _id = new ObjectId(id)
-        return (await editoriales.findOneAndUpdate({ _id }, { $set: item },
-            { returnDocument: 'after' })) || undefined
-
-    }
-
-    public async delete(item: { id: string; }): Promise< Editorial | undefined> {
-        const _id = new ObjectId(item.id)
-        return (await editoriales.findOneAndDelete({ _id })) || undefined          
+    public async findAll(): Promise<Editorial[] | undefined> {
+        try {
+            return await editoriales.find().toArray()
+        } catch (error) {
+            console.error("Error en findAll:", error);
+            return undefined;
         }
-    
     }
-    
 
+    public async findOne(item: { id: string; }): Promise<Editorial | undefined> {
+        const _id = new ObjectId(item.id);
+        try {
+            const result = await editoriales.findOne({ _id });
+            return result || undefined;
+        } catch (error) {
+            console.error("Error en findOne:", error);
+            return undefined;
+        }
+    }
+
+    public async add(item: Editorial): Promise<Editorial | undefined> {
+        try {
+            const result = await editoriales.insertOne(item);
+            item._id = result.insertedId;
+            return item;
+        } catch (error) {
+            console.error("Error en add:", error);
+            return undefined;
+        }
+    }
+
+    public async update(id: string, item: Editorial): Promise<Editorial | undefined> {
+        const _id = new ObjectId(id);
+        try {
+            const result = await editoriales.findOneAndUpdate({ _id }, { $set: item },
+                { returnDocument: 'after' });
+            return result || undefined;
+        } catch (error) {
+            console.error("Error en update:", error);
+            return undefined;
+        }
+    }
+
+    public async delete(item: { id: string; }): Promise<Editorial | undefined> {
+        const _id = new ObjectId(item.id);
+        try {
+            const result = await editoriales.findOneAndDelete({ _id });
+            return result || undefined;
+        } catch (error) {
+            console.error("Error en delete:", error);
+            return undefined;
+        }
+    }
+}

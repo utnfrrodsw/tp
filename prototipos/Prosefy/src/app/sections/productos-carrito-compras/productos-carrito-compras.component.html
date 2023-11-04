@@ -49,7 +49,10 @@
           </small>
         </span></strong>
       <p class="text-secondary text-center" *ngIf="total === 0">¡El carrito de compras está vacío!</p>
-      <p class="text-secondary text-center" *ngIf="total > 0 && total <= 8000">+ Envío: $1.499</p>
+      <p class="text-secondary text-center" *ngIf="total > 0 && total <= 8000">+ Envío:
+        ${{calculatePriceInSelectedCurrency(1499) | number:'1.2-2'}}<small class="custom-text-muted">
+          {{ currencyService.getCurrency() }}
+        </small></p>
       <p class="text-secondary text-center" *ngIf="total > 8000">Envío GRATIS</p>
     </div>
   </div>
