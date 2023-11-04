@@ -3,8 +3,12 @@ import { editorialRouter } from "./Editorial/Editorial.routes.js";
 import { usuarioRouter } from "./Usuario/Usuario.routes.js";
 import { autorRouter } from "./Autor/Autor.routes.js";
 import { categoriaRouter } from "./Categoria/Categoria.routes.js";
-
+import cors from "cors";
 const app = express();
+//const cors = require('cors');
+
+
+//app.use(cors);
 app.use(express.json());
 
 app.use("/api/usuarios", usuarioRouter);
