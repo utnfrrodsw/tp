@@ -6,7 +6,7 @@ GET http://Localhost:3000/api/editoriales
 
 
 ### Get de editorial por nombre
-GET http://Localhost:3000/api/editoriales/6522a452176057b2ea4ed843
+GET http://Localhost:3000/api/editoriales/6542adeadaa549f540274b3a
 
 
 ### Post de editorial
