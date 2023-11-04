@@ -1,4 +1,7 @@
 export interface Bank{
-    name: string;
-    interestRate: string;
+    BankId: number;
+    Name: string;
+    Currency: string
+    InterestRate: number;
+    content?: string;
 }

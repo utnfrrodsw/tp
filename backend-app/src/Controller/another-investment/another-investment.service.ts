@@ -19,9 +19,10 @@ export class AnotherInvestmentService {
     return this.investmentRepository.save(newInvestment);
   }
 
-  investmentForAYear(id: number, money: number) {
+  investmentForAYear(id: number, money: { money: string }) {
     const prom = this.constructionData.getProm(id);
-    return (1 + prom / 100) ** 12 * money;
+    const floatMoney = parseFloat(money.money);
+    return (1 + prom / 100) ** 12 * floatMoney;
   }
 
   async findOneByLabel(label: string): Promise<AnotherInvestment> {

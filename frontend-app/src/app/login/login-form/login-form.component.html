@@ -1,33 +1,57 @@
-<form
-  action=""
-  method="post"
-  [formGroup]="formLogin"
-  (ngSubmit)="handlerLogin()"
->
-  <label for="userName">Nombre:</label>
-  <input
-    type="text"
-    formControlName="userName"
-    name="userName"
-    id="userName"
-    placeholder="ingrese el email"
-    id="userName"
-  />
-  <label
-    for="userName"
-    *ngIf="formLogin.get('userName')?.invalid"
-    class="error-message"
-    >El nombre debe ser entre 3 y 25 letras, sin simbolos especiales</label
-  >
-  <label for="password">Contraseña:</label>
-  <input
-    type="password"
-    formControlName="password"
-    name="password"
-    id="password"
-  />
-  <button type="submit">Log In</button>
-</form>
-<hr/>
-<app-create-users><app-create-users>
+<mat-card class="card-container">
+    <form action="" method="post" [formGroup]="formLogin" (ngSubmit)="handlerLogin()">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field class="field-flex">
+                <mat-label for="userName">Nombre:</mat-label>
+                <input matInput 
+                type="text" 
+                formControlName="userName" 
+                name="userName" 
+                id="userName"
+                placeholder="ingrese el email"
+                id="userName">
+                <mat-error *ngIf="formLogin.get('userName')?.invalid">El nombre debe ser entre 3 y 25 letras, sin simbolos especiales</mat-error>
+            </mat-form-field>
+        
+            <div>
+                <mat-form-field class="field-flex">
+                    <mat-label for="password">Contraseña:</mat-label>
+                    <input  
+                    matInput 
+                    [type]="hide ? 'password' : 'text'"
+                    formControlName="password" 
+                    name="password" 
+                    id="password">
+                    <button 
+                    mat-icon-button 
+                    matSuffix 
+                    (click)="hide = !hide" 
+                    [attr.aria-label]="'Hide password'" 
+                    [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <div>
+            <button 
+            class="field-flex button-flex" 
+            mat-raised-button 
+            type="submit">Log In
+            </button>
+            </div>
+        </mat-card-actions>
+    </form>
+</mat-card>
+    <mat-divider></mat-divider>
+    
+    <button>Crear Usuario</button>
+    <Button>Ver Usuarios</Button>
+
 

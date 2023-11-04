@@ -5,6 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { Address } from './entities/address.entity';
+import { DeleteUserDto } from './dto/delete-user.dto';
+import { State } from './entities/status';
 
 @Injectable()
 export class UsersService {
@@ -23,12 +25,13 @@ export class UsersService {
     }
     const newAddress = await this.AddressRepository.save(createUserDto.Address);
     createUserDto.Address = newAddress;
+    createUserDto.State = State.ACTIVED;
     const newUser = this.userRepository.create(createUserDto);
     return this.userRepository.save(newUser);
   }
 
   findAll(): Promise<User[]> {
-    return this.userRepository.find();
+    return this.userRepository.find({ where: { State: State.ACTIVED } });
   }
 
   async findOne(id: number) {
@@ -65,5 +68,22 @@ export class UsersService {
     }
 
     return deleteResult;
+  }
+
+  async delete(deleteUserDto: DeleteUserDto) {
+    const email = deleteUserDto.Email;
+    const user = await this.userRepository.findOne({ where: { Email: email } });
+    if (!user) {
+      return new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
+    }
+
+    user.State = State.DELETED;
+    await this.userRepository.update(user.UserId, {
+      State: user.State,
+    });
+
+    return await this.userRepository.findOneOrFail({
+      where: { UserId: user.UserId },
+    });
   }
 }

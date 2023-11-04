@@ -48,6 +48,12 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(jwtConstants.access_token);
+  logout(): boolean {
+    if(localStorage.getItem(jwtConstants.access_token)){
+      localStorage.removeItem(jwtConstants.access_token);
+      return true;
+    }
+    else return false;
   }
 
   isAuthenticated(): boolean {
