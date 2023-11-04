@@ -21,7 +21,7 @@ import ProtectedRouteClient from './components/Routes/ProtectedRouteClient.jsx';
 import ProtectedRouteUser from './components/Routes/ProtectedRouteUser.jsx';
 import DetallePresupuesto from './components/prestador/detalleServicioPresupuestado/DetallePresupuesto.jsx';
 import DetalleServicio from './components/prestador/detalleServicioPresupuestado/DetalleServicio.jsx';
-
+import ResetPasswordPage from './components/usuario/login/ResetPassword.jsx';
 import './App.css';
 
 
