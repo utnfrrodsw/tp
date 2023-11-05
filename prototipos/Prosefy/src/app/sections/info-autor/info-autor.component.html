@@ -1,1 +1,16 @@
-<p>info-autor works!</p>
+<div class="container mt-5">
+    <div *ngIf="autor">
+        <h2 class="text-center">{{ autor.nombreCompleto }}</h2>
+        <h5 class="mt-4">Sobre el autor</h5>
+        <hr class="">
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <img [src]="autor.perfil" alt="Perfil del autor" class="img-fluid rounded-circle"
+                    style="max-width: 150px;" />
+            </div>
+            <div class="col-md-9">
+                <p class="ml-2 mt-4">{{autor.info}}</p>
+            </div>
+        </div>
+    </div>
+</div>

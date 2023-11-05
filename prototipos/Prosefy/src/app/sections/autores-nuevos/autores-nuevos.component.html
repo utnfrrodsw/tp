@@ -3,14 +3,8 @@
   <h3 class="m-4 mt-5">Autores nuevos</h3>
   <div class="lista-autores">
     <!-- Botón para que se mueva a la izquierda la lista -->
-    <div
-      class="rounded-button shadow px-2 d-flex justify-content-center align-items-center"
-    >
-      <button
-        class="btn boton-izquierda boton-moderno"
-        (click)="moverIzquierda()"
-        [class.disabled]="elementosAlInicio"
-      >
+    <div class="rounded-button shadow px-2 d-flex justify-content-center align-items-center">
+      <button class="btn boton-izquierda boton-moderno" (click)="moverIzquierda()" [class.disabled]="elementosAlInicio">
         &lt;
       </button>
     </div>
@@ -19,47 +13,35 @@
       <div class="elementos-lista p-4">
         <!-- Directiva *ngFor para iterar sobre la colección de autores
         Consultar en: autores-populares.component.ts -->
-        <div
-          *ngFor="
+        <div *ngFor="
             let autor of autores.slice(
               elementoActual,
               elementoActual + elementosPorPaso
             );
             let i = index
-          "
-          class="elemento-lista elemento-animado animacion-tarjeta hover-grow"
-        >
+          " class="elemento-lista elemento-animado animacion-tarjeta hover-grow">
           <div class="autor card">
-            <a href="#" class="text-decoration-none">
+            <a [routerLink]="['/autor-seleccionado', autor.id]" class="text-decoration-none">
               <!-- Elementos a mostrar de cada autor -->
-              <img
-                src="{{ autor.perfil }}"
-                alt="Perfil del autor"
-                class="card-img-top tarjeta-imagen d-flex align-items-center justify-content-center"
-              />
+              <img src="{{ autor.perfil }}" alt="Perfil del autor"
+                class="card-img-top tarjeta-imagen d-flex align-items-center justify-content-center" />
               <div class="card-body">
                 <p class="card-text nombre-completo">
                   <!-- Divide el nombre en dos líneas, uno para el nombre y otro para el apellido -->
                   {{ autor.nombreCompleto.split(" ").slice(0, -1).join(" ")
                   }}<br />{{
-                    autor.nombreCompleto.split(" ").slice(-1).join(" ")
+                  autor.nombreCompleto.split(" ").slice(-1).join(" ")
                   }}
                 </p>
-              </div></a
-            >
+              </div>
+            </a>
           </div>
         </div>
       </div>
     </div>
     <!-- Botón para que se mueva a la derecha la lista -->
-    <div
-      class="rounded-button shadow px-2 d-flex justify-content-center align-items-center"
-    >
-      <button
-        class="btn boton-derecha boton-moderno"
-        (click)="moverDerecha()"
-        [class.disabled]="elementosAlFinal"
-      >
+    <div class="rounded-button shadow px-2 d-flex justify-content-center align-items-center">
+      <button class="btn boton-derecha boton-moderno" (click)="moverDerecha()" [class.disabled]="elementosAlFinal">
         &gt;
       </button>
     </div>

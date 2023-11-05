@@ -82,4 +82,8 @@ export class AutoresService {
   getAutorByNombre(nombre: string): Autor | undefined {
     return this.autores.find((autor) => autor.nombreCompleto === nombre);
   }
+
+  getAutor(id: number): Autor | undefined {
+    return this.autores.find(autor => autor.id === id);
+  }
 }
