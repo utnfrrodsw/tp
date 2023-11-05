@@ -38,7 +38,7 @@ Abre Visual Studio Code y selecciona "Abrir carpeta" en la sección de Archivo.
 
 Abre la carpeta donde descomprimiste el archivo.
 
-Una vez que la carpeta esté cargada, abre dos nuevas terminal.
+Una vez que la carpeta esté cargada, abre dos nuevas terminales.
 
 Ejecuta en la primera los siguientes comandos:
 
