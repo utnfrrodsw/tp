@@ -1,0 +1,3 @@
+### Get de Provincia
+GET http://Localhost:3000/api/provincia
+

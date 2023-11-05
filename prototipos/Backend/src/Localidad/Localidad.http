@@ -1,0 +1,17 @@
+
+
+### Get de localidad
+GET http://Localhost:3000/api/localidad
+
+
+
+### Get de localidad por id
+GET http://Localhost:3000/api/localidad/65478b956995ffbaff023003
+
+
+
+
+
+
+### Delete de localidad
+DELETE http://localhost:3000/api/localidad/65478b956995ffbaff023003

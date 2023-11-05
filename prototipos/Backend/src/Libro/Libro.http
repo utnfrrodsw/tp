@@ -1,16 +1,12 @@
 
 
 ### Get de editorial
-GET http://Localhost:3000/api/editoriales/6542adeadaa549f540274b3a/libros
+GET http://Localhost:3000/api/editoriales/2/libros
 
-
-
-### Get de editorial por nombre
-GET http://Localhost:3000/api/editoriales/6542adeadaa549f540274b3a
 
 
 ### Post de editorial
-POST http://localhost:3000/api/editoriales/6542adeadaa549f540274b3a/libros
+POST http://localhost:3000/api/editoriales/2/libros
 Content-Type: application/json
 
 {
@@ -29,5 +25,3 @@ Content-Type: application/json
 
 
 
-### Delete de editorial
-DELETE http://localhost:3000/api/editoriales/6522a452176057b2ea4ed843
