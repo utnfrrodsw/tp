@@ -68,17 +68,17 @@
           <label class="font-style">Productos</label>
         </div>
         <div>
-          <label class="font-style">$10.000</label>
+          <label class="font-style">{{subtotal}}</label>
         </div>
       </div>
-      <div class="productos">
+      <div class="productos" *ngFor="let libro of libros">
         <div class="libros">
           <ul>
-            <li class="fw-bold lead">Libro 1</li>
+            <li class="fw-bold lead">{{libro.titulo}}</li>
           </ul>
         </div>
         <div class="precios">
-          <label class="fw-bold lead ml-1">$10.000</label>
+          <label class="fw-bold lead ml-1">{{libro.precio}}</label>
         </div>
       </div>
       <div class="detalle">
@@ -92,7 +92,7 @@
     </div>
     <div class="total">
       <label class="font-style-1 text-3">Total:</label>
-      <label class="font-style-1 text-3 text-primary">$10.500</label>
+      <label class="font-style-1 text-3 text-primary">{{total}}</label>
     </div>
     <div>
       <p class="text-1 font-style">¡Si compras hoy, tu pedido llegará mañana!</p>

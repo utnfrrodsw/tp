@@ -17,6 +17,8 @@ export class TodasLasEditorialesComponent {
   ngOnInit() {
     (this.editorialesService.getEditoriales()).subscribe((editoriales: any) => {
       this.editoriales = editoriales;
+      console.log(editoriales);
+      
     });
   }
 
