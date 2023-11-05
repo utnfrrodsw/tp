@@ -1,4 +1,4 @@
-#_Instrucciones para la instalación de la aplicación_
+#**Instrucciones para la instalación de la aplicación**
 
 **Front-end:**
 
