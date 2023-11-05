@@ -5,17 +5,21 @@ import { Editorial } from "./Editorial.js"
 const repository = new EditorialRepository()
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
-    req.body.sanitizedInput = {
-        name: req.body.name,
-        categoria: req.body.categoria,
-        id: req.body.id,
-    };
-    Object.keys(req.body.sanitizedInput).forEach(key => {
-        if (req.body.sanitizedInput[key] === undefined) {
-            delete req.body.sanitizedInput[key];
-        }
-    });
-    next();
+    try {
+        req.body.sanitizedInput = {
+            id: req.body.id,
+            descripcion: req.body.descripcion,
+            direccion: req.body.direccion
+        };
+        Object.keys(req.body.sanitizedInput).forEach((key) => {
+            if (req.body.sanitizedInput[key] === undefined) {
+                delete req.body.sanitizedInput[key];
+            }
+        });
+        next();
+    } catch (error) {
+        res.status(500).send({ message: 'Error interno del servidor.' });
+    }
 }
 
 async function findAll(req: Request, res: Response) {
@@ -45,7 +49,7 @@ async function findOne(req: Request, res: Response) {
 async function add(req: Request, res: Response) {
     try {
         const input = req.body.sanitizedInput;
-        const editorialInput = new Editorial(input.name, input.categoria, input.id);
+        const editorialInput = new Editorial(input.id, input.descripcion, input.direccion);
         const editorial = await repository.add(editorialInput);
         res.status(201).send({ message: 'Editorial agregada exitosamente', data: editorial });
     } catch (error) {

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express"
 import { UsuarioRepository } from "./Usuario.repository.js"
 import { Usuario } from "./Usuario.js"
+import { ObjectId } from "mongodb";
 
 const repository = new UsuarioRepository()
 
@@ -51,7 +52,6 @@ async function findOne(req: Request, res: Response) {
     }
 }
 
-
 async function add(req: Request, res: Response) {
     try {
         const input = req.body.sanitizedInput
@@ -61,7 +61,7 @@ async function add(req: Request, res: Response) {
             input.apellido,
             input.email,
             input.direccion,
-            input.localidad,
+            new ObjectId(input.localidad),
             input.avatar,
             input.tipo,
         )

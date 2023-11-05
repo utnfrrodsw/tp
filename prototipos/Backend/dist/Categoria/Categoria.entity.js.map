@@ -1,1 +1,10 @@
-{"version":3,"file":"Categoria.entity.js","sourceRoot":"","sources":["../../src/Categoria/Categoria.entity.ts"],"names":[],"mappings":"AAGA,MAAM,OAAO,SAAS;IAClB,YACW,EAAU,EACV,WAAmB,EACnB,GAAe;QAFf,OAAE,GAAF,EAAE,CAAQ;QACV,gBAAW,GAAX,WAAW,CAAQ;QACnB,QAAG,GAAH,GAAG,CAAY;IACpB,CAAC;CACV"}
+{
+    "version": 3,
+    "file": "Categoria.entity.js",
+    "sourceRoot": "",
+    "sources": [
+        "../../src/Categoria/Categoria.entity.ts"
+    ],
+    "names": [],
+    "mappings": "AAGA,MAAM,OAAO,SAAS;IAClB,YACW,EAAU,EACV,WAAmB,EACnB,GAAe;QAFf,OAAE,GAAF,EAAE,CAAQ;QACV,gBAAW,GAAX,WAAW,CAAQ;QACnB,QAAG,GAAH,GAAG,CAAY;IACpB,CAAC;CACV"
+}

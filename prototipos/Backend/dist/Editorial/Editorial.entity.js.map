@@ -1,1 +1,10 @@
-{"version":3,"file":"Editorial.entity.js","sourceRoot":"","sources":["../../src/Editorial/Editorial.entity.ts"],"names":[],"mappings":"AAEA,MAAM,OAAO,SAAS;IAClB,YACY,IAAW,EACZ,SAAiB,EACjB,GAAc;QAFb,SAAI,GAAJ,IAAI,CAAO;QACZ,cAAS,GAAT,SAAS,CAAQ;QACjB,QAAG,GAAH,GAAG,CAAW;IACnB,CAAC;CACV"}
+{
+    "version": 3,
+    "file": "Editorial.entity.js",
+    "sourceRoot": "",
+    "sources": [
+        "../../src/Editorial/Editorial.entity.ts"
+    ],
+    "names": [],
+    "mappings": "AAEA,MAAM,OAAO,SAAS;IAClB,YACY,IAAW,EACZ,SAAiB,EACjB,GAAc;QAFb,SAAI,GAAJ,IAAI,CAAO;QACZ,cAAS,GAAT,SAAS,CAAQ;QACjB,QAAG,GAAH,GAAG,CAAW;IACnB,CAAC;CACV"
+}

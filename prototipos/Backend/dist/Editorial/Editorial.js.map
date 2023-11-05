@@ -1,1 +1,10 @@
-{"version":3,"file":"Editorial.js","sourceRoot":"","sources":["../../src/Editorial/Editorial.ts"],"names":[],"mappings":"AAGA,MAAM,OAAO,SAAS;IAClB,YACW,IAAW,EACX,SAAiB,EACjB,EAAU,EACV,GAAc;QAHd,SAAI,GAAJ,IAAI,CAAO;QACX,cAAS,GAAT,SAAS,CAAQ;QACjB,OAAE,GAAF,EAAE,CAAQ;QACV,QAAG,GAAH,GAAG,CAAW;IACnB,CAAC;CACV"}
+{
+    "version": 3,
+    "file": "Editorial.js",
+    "sourceRoot": "",
+    "sources": [
+        "../../src/Editorial/Editorial.ts"
+    ],
+    "names": [],
+    "mappings": "AAGA,MAAM,OAAO,SAAS;IAClB,YACW,IAAW,EACX,SAAiB,EACjB,EAAU,EACV,GAAc;QAHd,SAAI,GAAJ,IAAI,CAAO;QACX,cAAS,GAAT,SAAS,CAAQ;QACjB,OAAE,GAAF,EAAE,CAAQ;QACV,QAAG,GAAH,GAAG,CAAW;IACnB,CAAC;CACV"
+}

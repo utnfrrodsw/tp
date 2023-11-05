@@ -1,9 +1,9 @@
 import { ObjectId } from 'mongodb';
 
-export class Autor {
+export class Provincia {
     constructor(
-        public nombre: string,
-        public apellido: string,
+        public id: string,
+        public descripcion: string,
         public _id?: ObjectId,
     ) { }
 }
