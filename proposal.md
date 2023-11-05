@@ -13,6 +13,8 @@
 
 - [frontend app](https://github.com/Neirus2/TP_DSW_FrontEnd)
 - [backend app](https://github.com/Neirus2/TP_DSW_BackEnd)
+### Seguimiento
+- [meister task](https://www.meistertask.com/app/project/3c6Fqihq/dsw-tp)
 
 ## Tema
 
