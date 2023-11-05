@@ -102,6 +102,21 @@ db.autores.insertOne({
 })
 
 
+//----Localidades----
+
+db.localidades.insertOne({
+  cod_postal: '2000',
+  descripcion: 'Rosario',
+  provincia: ObjectId('65478b586995ffbaff023002'),
+})
+
+//----Provincias----
+
+db.provincias.insertOne({
+  id: '1',
+  descripcion: 'Santa Fe',
+})
+
   //query
   // Comandos para hacer distintas consultas a la base de datos
   
