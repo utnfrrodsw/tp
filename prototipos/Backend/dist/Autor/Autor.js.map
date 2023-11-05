@@ -1,10 +1,1 @@
-{
-    "version": 3,
-    "file": "Autor.js",
-    "sourceRoot": "",
-    "sources": [
-        "../../src/Autor/Autor.ts"
-    ],
-    "names": [],
-    "mappings": "AAEA,MAAM,OAAO,KAAK;IACd,YACW,MAAa,EACb,QAAgB,EAChB,GAAc;QAFd,WAAM,GAAN,MAAM,CAAO;QACb,aAAQ,GAAR,QAAQ,CAAQ;QAChB,QAAG,GAAH,GAAG,CAAW;IACnB,CAAC;CACV"
-}
+{"version":3,"file":"Autor.js","sourceRoot":"","sources":["../../src/Autor/Autor.ts"],"names":[],"mappings":"AAEA,MAAM,OAAO,KAAK;IACd,YACW,MAAc,EACd,QAAgB,EAChB,GAAc;QAFd,WAAM,GAAN,MAAM,CAAQ;QACd,aAAQ,GAAR,QAAQ,CAAQ;QAChB,QAAG,GAAH,GAAG,CAAW;IACrB,CAAC;CACR"}

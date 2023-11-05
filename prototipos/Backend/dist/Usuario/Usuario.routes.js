@@ -1,8 +1,6 @@
 import { Router } from 'express';
 import { findAll, findOne, sanitizeInput, add, remove, update } from './Usuario.controller.js';
-
 export const usuarioRouter = Router();
-
 usuarioRouter.get('/', findAll);
 usuarioRouter.get('/:id', findOne);
 usuarioRouter.post('/', sanitizeInput, add);

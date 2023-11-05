@@ -1,91 +1,86 @@
 import { EditorialRepository } from "./Editorial.repository.js";
 import { Editorial } from "./Editorial.js";
-
 const repository = new EditorialRepository();
-
 async function sanitizeInput(req, res, next) {
     try {
         req.body.sanitizedInput = {
-            name: req.body.name,
-            categoria: req.body.categoria,
             id: req.body.id,
+            descripcion: req.body.descripcion,
+            direccion: req.body.direccion
         };
-
-        // Eliminar claves no definidas
-        Object.keys(req.body.sanitizedInput).forEach(key => {
+        Object.keys(req.body.sanitizedInput).forEach((key) => {
             if (req.body.sanitizedInput[key] === undefined) {
                 delete req.body.sanitizedInput[key];
             }
         });
-
         next();
-    } catch (error) {
-        res.status(500).send({ message: "Error interno del servidor." });
+    }
+    catch (error) {
+        res.status(500).send({ message: 'Error interno del servidor.' });
     }
 }
-
-// Obtener todas las editoriales
 async function findAll(req, res) {
     try {
-        const data = await repository.findAll();
-        res.json({ data });
-    } catch (error) {
-        res.status(500).send({ message: "Error interno del servidor." });
+        const editorials = await repository.findAll();
+        res.json({ data: editorials });
+    }
+    catch (error) {
+        console.error("Error en findAll:", error);
+        res.status(500).send({ message: "Error interno del servidor" });
     }
 }
-
-// Obtener una editorial por su id
 async function findOne(req, res) {
     try {
         const id = req.params.id;
         const editorial = await repository.findOne({ id });
         if (!editorial) {
-            return res.status(404).send({ message: "Editorial no encontrada." });
+            return res.status(404).send({ message: "No se encontró la editorial" });
         }
-        return res.json({ data: editorial });
-    } catch (error) {
-        res.status(500).send({ message: "Error interno del servidor." });
+        res.json({ data: editorial });
+    }
+    catch (error) {
+        console.error("Error en findOne:", error);
+        res.status(500).send({ message: "Error interno del servidor" });
     }
 }
-
-// Añadir una nueva editorial
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
-        const editorialInput = new Editorial(input.name, input.categoria, input.id);
+        const editorialInput = new Editorial(input.id, input.descripcion, input.direccion);
         const editorial = await repository.add(editorialInput);
-        res.status(201).send({ message: 'Editorial agregada con éxito.', data: editorial });
-    } catch (error) {
-        res.status(500).send({ message: "Error interno del servidor." });
+        res.status(201).send({ message: 'Editorial agregada exitosamente', data: editorial });
+    }
+    catch (error) {
+        console.error("Error en add:", error);
+        res.status(500).send({ message: "Error interno del servidor" });
     }
 }
-
-// Actualizar una editorial existente
 async function update(req, res) {
     try {
         const editorial = await repository.update(req.params.id, req.body.sanitizedInput);
         if (!editorial) {
-            return res.status(404).send({ message: "Editorial no encontrada." });
+            return res.status(404).send({ message: "No se encontró la editorial" });
         }
-        return res.status(200).send({ message: 'Editorial actualizada con éxito.', data: editorial });
-    } catch (error) {
-        res.status(500).send({ message: "Error interno del servidor." });
+        res.status(200).send({ message: 'Editorial actualizada exitosamente', data: editorial });
+    }
+    catch (error) {
+        console.error("Error en update:", error);
+        res.status(500).send({ message: "Error interno del servidor" });
     }
 }
-
-// Eliminar una editorial
 async function remove(req, res) {
     try {
         const id = req.params.id;
         const editorial = await repository.delete({ id });
         if (!editorial) {
-            return res.status(404).send({ message: "Editorial no encontrada." });
+            return res.status(404).send({ message: "No se encontró la editorial" });
         }
-        return res.status(204).send({ message: 'Editorial eliminada con éxito.' });
-    } catch (error) {
-        res.status(500).send({ message: "Error interno del servidor." });
+        res.status(204).send({ message: 'Editorial eliminada exitosamente' });
+    }
+    catch (error) {
+        console.error("Error en remove:", error);
+        res.status(500).send({ message: "Error interno del servidor" });
     }
 }
-
 export { sanitizeInput, findAll, findOne, add, update, remove };
-//# sourceMappingURL=Editorial.controler.js.map
+//# sourceMappingURL=Editorial.controller.js.map
