@@ -10,7 +10,7 @@ async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
             id: req.body.id,
             descripcion: req.body.descripcion,
         };
-
+        
         // Eliminar claves no definidas
         Object.keys(req.body.sanitizedInput).forEach(key => {
             if (req.body.sanitizedInput[key] === undefined) {

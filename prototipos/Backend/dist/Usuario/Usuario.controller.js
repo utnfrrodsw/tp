@@ -75,7 +75,7 @@ async function remove(req, res) {
         const id = req.params.id;
         const usuario = await repository.delete({ id });
         if (!usuario) {
-            res.status(404).send({ message: "Usuario no encontrado." });
+            return res.status(404).send({ message: "Usuario no encontrado." });
         }
         res.status(204).send({ message: 'Usuario eliminado con éxito.' });
     }

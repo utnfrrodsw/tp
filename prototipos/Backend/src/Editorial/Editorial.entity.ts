@@ -2,9 +2,9 @@ import { ObjectId } from 'mongodb';
 
 export class Editorial {
     constructor(
+        public nombre: string,
+        public categoria: string, // nombre de la editorial
         public id: string,
-        public descripcion: string, // nombre de la editorial
-        public direccion: string,
         public _id?: ObjectId,
     ) { }
 }

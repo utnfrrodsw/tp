@@ -6,6 +6,6 @@ export const editorialRouter = Router();
 editorialRouter.get('/', findAll)
 editorialRouter.get('/:id', findOne)
 editorialRouter.post('/', sanitizeInput, add)
-editorialRouter.put('/:descripcion', sanitizeInput, update)
-editorialRouter.patch('/:descripcion', sanitizeInput, update)
+editorialRouter.put('/:id', sanitizeInput, update)
+editorialRouter.patch('/:id', sanitizeInput, update)
 editorialRouter.delete('/:id', remove)

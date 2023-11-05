@@ -4,7 +4,7 @@ export const usuarioRouter = Router();
 usuarioRouter.get('/', findAll);
 usuarioRouter.get('/:id', findOne);
 usuarioRouter.post('/', sanitizeInput, add);
-usuarioRouter.put('/:name', sanitizeInput, update);
-usuarioRouter.patch('/:name', sanitizeInput, update);
+usuarioRouter.put('/:id', sanitizeInput, update);
+usuarioRouter.patch('/:id', sanitizeInput, update);
 usuarioRouter.delete('/:id', remove);
 //# sourceMappingURL=Usuario.routes.js.map

@@ -4,7 +4,7 @@ export const categoriaRouter = Router();
 categoriaRouter.get('/', findAll);
 categoriaRouter.get('/:id', findOne);
 categoriaRouter.post('/', sanitizeInput, add);
-categoriaRouter.put('/:name', sanitizeInput, update);
-categoriaRouter.patch('/:name', sanitizeInput, update);
+categoriaRouter.put('/:id', sanitizeInput, update);
+categoriaRouter.patch('/:id', sanitizeInput, update);
 categoriaRouter.delete('/:id', remove);
 //# sourceMappingURL=Categoria.routes.js.map

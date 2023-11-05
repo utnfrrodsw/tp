@@ -1,3 +1,16 @@
 ### Get de Provincia
 GET http://Localhost:3000/api/provincia
 
+### Get de Provincia por ID
+
+GET http://Localhost:3000/api/provincia/65478b586995ffbaff023002
+
+### Post de Provincia
+
+POST http://Localhost:3000/api/provincia
+
+
+{
+    "id": "2",
+    "descripcion": "Córdoba"
+}

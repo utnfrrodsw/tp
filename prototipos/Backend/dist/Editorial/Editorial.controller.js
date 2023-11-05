@@ -4,9 +4,9 @@ const repository = new EditorialRepository();
 async function sanitizeInput(req, res, next) {
     try {
         req.body.sanitizedInput = {
-            id: req.body.id,
-            descripcion: req.body.descripcion,
-            direccion: req.body.direccion
+            nombre: req.body.nombre,
+            categoria: req.body.categoria,
+            id: req.body.id
         };
         Object.keys(req.body.sanitizedInput).forEach((key) => {
             if (req.body.sanitizedInput[key] === undefined) {
@@ -46,7 +46,7 @@ async function findOne(req, res) {
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
-        const editorialInput = new Editorial(input.id, input.descripcion, input.direccion);
+        const editorialInput = new Editorial(input.nombre, input.categoria, input.id);
         const editorial = await repository.add(editorialInput);
         res.status(201).send({ message: 'Editorial agregada exitosamente', data: editorial });
     }

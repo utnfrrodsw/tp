@@ -8,8 +8,14 @@ GET http://Localhost:3000/api/localidad
 ### Get de localidad por id
 GET http://Localhost:3000/api/localidad/65478b956995ffbaff023003
 
+### Post de localidad
+POST http://Localhost:3000/api/localidad
 
-
+{
+    "cod_postal": "2000",
+    "descipcion": "Una descripción",
+    "provincia": "65478b586995ffbaff023002",
+}
 
 
 

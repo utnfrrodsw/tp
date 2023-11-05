@@ -25,14 +25,15 @@ Content-Type: application/json
 
 
 ### Put de usuario
-PUT http://localhost:3000/api/usuarios/6521d2382c7369d343ab91b9
+PUT http://localhost:3000/api/usuarios/6521d2ab2c7369d343ab91ba
 Content-Type: application/json
 
 {
-    "nombe": "Pump",
+    "nombre": "Pump",
     "apellido": "Turner"
 }
 
 
 ### Delete de usuario
-DELETE http://localhost:3000/api/usuarios/6522e52f4ff5a5806ac55487
+DELETE http://localhost:3000/api/usuarios/6521d2ab2c7369d343ab91ba
+

@@ -1,24 +1,31 @@
 
 
-### Get de editorial
+### Get de autor
 GET http://Localhost:3000/api/autores
 
 
 
-### Get de editorial por nombre
+### Get de autor por id
 GET http://Localhost:3000/api/autores/65316d51f2ce1014fce80eba
 
 
-### Post de editorial
+### Post de autor
 POST http://localhost:3000/api/autores
 Content-Type: application/json
 
 {
     "nombre": "Edgar",
-    "apellido": "Poe",
+    "apellido": "Poe"
 }
 
+### Put de autorS
+PATCH http://localhost:3000/api/autores/6547e80b1bf578f26ce3b6d6
+Content-Type: application/json
 
+{
+    "nombre": "Poe",
+    "apellido": "Edgard"
+}
 
-### Delete de editorial
-DELETE http://localhost:3000/api/autores/Steven
+### Delete de autor
+DELETE http://localhost:3000/api/autores/6547e80b1bf578f26ce3b6d6

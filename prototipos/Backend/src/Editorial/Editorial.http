@@ -5,7 +5,7 @@ GET http://Localhost:3000/api/editoriales
 
 
 
-### Get de editorial por nombre
+### Get de editorial por id
 GET http://Localhost:3000/api/editoriales/6542adeadaa549f540274b3a
 
 
@@ -14,12 +14,12 @@ POST http://localhost:3000/api/editoriales
 Content-Type: application/json
 
 {
-    "name": "CrazyBooks",
+    "nombre": "CrazyBooks",
     "categoria": "Pre-escolar",
-    "id": "2"
+    "id": "3"
 }
 
 
 
 ### Delete de editorial
-DELETE http://localhost:3000/api/editoriales/6522a452176057b2ea4ed843
+DELETE http://localhost:3000/api/editoriales/6547f84810ef0cca51024b29

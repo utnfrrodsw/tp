@@ -1,9 +1,9 @@
 export class Editorial {
-    constructor(id, descripcion, // nombre de la editorial
-    direccion, _id) {
+    constructor(nombre, categoria, // nombre de la editorial
+    id, _id) {
+        this.nombre = nombre;
+        this.categoria = categoria;
         this.id = id;
-        this.descripcion = descripcion;
-        this.direccion = direccion;
         this._id = _id;
     }
 }
