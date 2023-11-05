@@ -59,7 +59,7 @@
 ### Carrito de compras (Marina)
 
 - [x] Diseño
-- [ ] Frontend
+- [x] Frontend
 - [ ] Backend
 
 ### Finalizar compra (Alejo)
@@ -89,5 +89,5 @@
 ### Autor seleccionado (Marina)
 
 - [x] Diseño
-- [ ] Frontend
+- [x] Frontend
 - [ ] Backend
