@@ -44,7 +44,7 @@
   
     `npm install`
     
-    `npm start`
+    `npm run dev`
   
   9.Ejecuta en la segunda el siguiente comando:
   
