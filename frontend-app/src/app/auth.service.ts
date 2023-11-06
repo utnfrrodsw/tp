@@ -52,6 +52,13 @@ export class AuthService {
   // updateUsers(): Observable<any>{
   //   return this.http.patch<any>('http://localhost:3001/users');
   // }
+  updateEmailUser(userId: number, newEmail: string){
+    const url = `http://localhost:3001/users/${userId}`;
+    const updateData = { UserId: userId, NewEmail: newEmail };
+
+    return this.http.patch(url, updateData);
+  }
+
 
   logout(): boolean {
     if (localStorage.getItem(jwtConstants.access_token)) {

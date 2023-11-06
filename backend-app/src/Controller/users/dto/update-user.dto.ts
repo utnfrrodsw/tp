@@ -1,3 +1,4 @@
 export class UpdateUserEmailDto {
-  Email: string;
+  UserId: number;
+  NewEmail: string;
 }

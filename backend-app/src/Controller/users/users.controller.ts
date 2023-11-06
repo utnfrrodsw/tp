@@ -48,12 +48,12 @@ export class UsersController {
     return await this.usersService.findUserByEmail(Email);
   }
 
-  @Patch(':email')
+  @Patch(':id')
   update(
-    @Param('email') email: string,
+    @Param('id') id: number,
     @Body() updateUserDto: UpdateUserEmailDto,
-  ): Promise<UpdateResult | HttpException> {
-    return this.usersService.updateEmail(email, updateUserDto);
+  ): Promise<User | HttpException> {
+    return this.usersService.updateEmail(id, updateUserDto);
   }
 
   @Delete(':id')

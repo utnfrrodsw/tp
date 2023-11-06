@@ -52,13 +52,16 @@ export class UsersService {
     return user;
   }
 
-  async updateEmail(email: string, updateUserEmailDto: UpdateUserEmailDto) {
-    const user = await this.userRepository.findOne({ where: { Email: email } });
+  async updateEmail(userId: number, updateUserEmailDto: UpdateUserEmailDto) {
+    const user = await this.userRepository.findOne({
+      where: { UserId: userId },
+    });
     if (!user) {
       return new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
     }
 
-    return this.userRepository.update({ Email: email }, updateUserEmailDto);
+    user.Email = updateUserEmailDto.NewEmail;
+    return this.userRepository.save(user);
   }
 
   async remove(id: number) {
@@ -84,7 +87,7 @@ export class UsersService {
       State: user.State,
     });
 
-    var test = await this.userRepository.findOneOrFail({
+    const test = await this.userRepository.findOneOrFail({
       where: { UserId: user.UserId },
     });
     return test;
