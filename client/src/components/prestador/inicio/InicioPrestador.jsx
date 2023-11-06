@@ -3,14 +3,9 @@ import { Link } from 'react-router-dom';
 import './inicioPrestador.css';
 import logo from "./logo.png";
 
-
 function InicioPrestador() {
 
-    const user = {
-        name: "Facundo",
-    }
-
-
+const user = JSON.parse(localStorage.getItem('user'));
     return (
         <div className="page">
             <div className='header-home-prestador'>
@@ -19,7 +14,7 @@ function InicioPrestador() {
                         <Link to = "/client/home"><img src={logo} alt="No disp" className="logo2"/></Link>
                     </div>
                     <section>
-                        <h1>Bienvenido a FastServices { user.name }</h1>
+                        <h1>Bienvenido a FastServices, { user.nombre }</h1>
                         <p>
                         Tu lugar para encontrar trabajos de manera rápida y eficiente. <br/>
                         Encuentra presonas buscando expertos en electricidad, plomería, reparaciones y más. <br/>

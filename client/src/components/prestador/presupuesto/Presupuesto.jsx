@@ -130,7 +130,7 @@ function Presupuesto(props) {
         </div>
         <div className='entradasCampos'>
             <input type="number" name="costo-materiales" min={1} required value={costoMateriales} onChange={(e) => setCostoMateriales(e.target.value)}/>
-            <input name='tiempo' type="number" min={1} required value={tiempo} onChange={(e) => setTiempo(e.target.value)}/>
+            <p><input name='tiempo' type="number" min={1} required value={tiempo} onChange={(e) => setTiempo(e.target.value)}/></p>
             <input type="number" name='costoxHora' min={1} required value={costoxHora} onChange={(e) => setCostoxHora(e.target.value)}/>
         </div>
       </div>
@@ -145,6 +145,7 @@ function Presupuesto(props) {
         />
         <button type='button' onClick={handleAddDate}>+</button>
         <div>
+          <p></p>
           <h2>Fechas y Horas Seleccionadas:</h2>
           <ul>
           {selectedDates.map((date , index) => (

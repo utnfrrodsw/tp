@@ -57,15 +57,15 @@ function Anuncio(props) {
       {show ? (
           <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
           ): (
-          <div>
+          <div className='boton'>
             {props.filtrado === "nuevas" ?
-            <Link to={`/provider/home/add/budget/${props.id}`}>Presupuestar</Link>
+            <Link to={`/provider/home/add/budget/${props.id}`} className='button-link'>Presupuestar</Link>
             : <></>}
             {props.filtrado === "presupuestadas" ?
-            <button className='boton-anuncio'><Link to={`/provider/home/budgeted/more/${props.id}`}>Ver informacion Presupuesto</Link></button>
+            <Link to={`/provider/home/budgeted/more/${props.id}`} className='button-link'>Ver informacion Presupuesto</Link>
             : <></>}
             {props.filtrado === "aceptadas" ?
-            <button className='boton-anuncio'><Link to={`/provider/home/accepted/more/${props.id}`}>Ver informacion Servicio</Link></button>
+            <Link to={`/provider/home/accepted/more/${props.id}`} className='button-link'>Ver informacion Servicio</Link>
             : <></>}
             <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
             

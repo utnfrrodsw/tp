@@ -6,7 +6,10 @@
   overflow-x: hidden;
   /* Evita desbordamiento horizontal en pantallas pequeñas */
 }
-
+.selected-link {
+  color: #fff;
+  /* Color blanco para el texto del enlace seleccionado */
+}
 .anuncios-container .pagination {
   display: flex;
   flex-direction: row;

@@ -10,8 +10,8 @@ if (!props) {
           <>
             <div className='datos'>
               <p><h2>Detalles del Anuncio:</h2></p>
-              <p>Usuario: {props.nombre}</p>
-              <p>Número de Anuncio: {props.idSolicitud}</p>
+                            <p>Número de Anuncio: {props.idSolicitud}</p>
+              <p>Usuario: {props.cliente}</p>
               <p>Fecha de publicación: {new Date(props.fechaHora).toLocaleString()}</p>
               <p>Ubicación: {props.direccion}</p> 
             </div>
