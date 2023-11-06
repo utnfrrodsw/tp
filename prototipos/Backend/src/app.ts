@@ -11,8 +11,21 @@ const app = express();
 //const cors = require('cors');
 
 
-//app.use(cors);
+
+app.use((cors, res, next) => {
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	next();
+});
+
+app.use(cors({
+	origin: ['*']
+}));
+  
+
 app.use(express.json());
+
+
 
 app.use("/api/editoriales/:id/libros", libroRouter);
 app.use("/api/usuarios", usuarioRouter);

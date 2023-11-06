@@ -57,7 +57,7 @@ export class EditorialesService {
   }*/
 
 
-  private apiUrl = 'http://localhost:3000/api/editoriales';
+  private apiUrl = 'http://Localhost:3000/api/editoriales';
 
   constructor(private http: HttpClient) {}
 
