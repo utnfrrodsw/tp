@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InvestmentMainComponent } from './investment-main/investment-main.component';
 import { CreateUsersComponent } from './post/create-users/create-users.component';
 import { ViewUsersComponent } from './get/view-users/view-users.component';
@@ -16,15 +16,17 @@ import { RecomendationBoxComponent } from './main/recomendation-box/recomendatio
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import {MatButtonModule} from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider'
-import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { CurrencyPipe } from '@angular/common';
-import {MatCheckboxModule} from '@angular/material/checkbox'
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -40,7 +42,7 @@ export function tokenGetter() {
     MoneyMainComponent,
     RecomendationBoxComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ export function tokenGetter() {
     MatIconModule,
     MatCardModule,
     MatCheckboxModule,
+    FormsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -61,11 +64,16 @@ export function tokenGetter() {
         disallowedRoutes: ['http://example.com/examplebadroute/'],
       },
     }),
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
-  providers: [JwtHelperService, 
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
-  CurrencyPipe],
-  bootstrap: [AppComponent]
+  providers: [
+    JwtHelperService,
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
+    },
+    CurrencyPipe,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

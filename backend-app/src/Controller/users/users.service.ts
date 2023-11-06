@@ -71,8 +71,10 @@ export class UsersService {
   }
 
   async delete(deleteUserDto: DeleteUserDto) {
-    const email = deleteUserDto.Email;
-    const user = await this.userRepository.findOne({ where: { Email: email } });
+    const userId = deleteUserDto.UserId;
+    const user = await this.userRepository.findOne({
+      where: { UserId: userId },
+    });
     if (!user) {
       return new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
     }
@@ -82,8 +84,9 @@ export class UsersService {
       State: user.State,
     });
 
-    return await this.userRepository.findOneOrFail({
+    var test = await this.userRepository.findOneOrFail({
       where: { UserId: user.UserId },
     });
+    return test;
   }
 }

@@ -6,6 +6,9 @@ export class User {
   Email: string;
   Password: string;
   Address: Address;
+  UserId?: number;
+  Editing?: boolean;
+  UpdatedEmail?: string;
   constructor(
     FirstName: string,
     LastName: string,

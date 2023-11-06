@@ -12,23 +12,30 @@ import { AuthService } from 'src/app/auth.service';
 export class LoginFormComponent {
   hide = true;
   formLogin = this.formBuilder.group({
-  userName : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
-  password : ['', [Validators.required, Validators.minLength(6)]] 
-  })
+    userName: [
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(25)],
+    ],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {}
 
-  }
-  
-  handlerLogin(){
-    if(this.formLogin.valid){
-      this.authService.login(this.formLogin.controls['userName'].value ?? '', this.formLogin.controls['password'].value ?? '')
+  handlerLogin() {
+    if (this.formLogin.valid) {
+      this.authService
+        .login(
+          this.formLogin.controls['userName'].value ?? '',
+          this.formLogin.controls['password'].value ?? ''
+        )
         .subscribe((response) => {
           this.router.navigate(['money']);
-        })
+        });
     }
   }
 }
+
+

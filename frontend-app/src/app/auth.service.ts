@@ -42,18 +42,22 @@ export class AuthService {
     return this.http.get<any>('http://localhost:3001/users');
   }
 
-  deleteUser(userId: number): Observable<any> {
-    return this.http.delete<any>('http://localhost:3001/users');
+  deleteUser(UserId: number): Observable<any> {
+    console.log(UserId);
+    return this.http.post<any>('http://localhost:3001/users/delete', {
+      UserId: UserId,
+    });
   }
 
-  logout(): void {
-    localStorage.removeItem(jwtConstants.access_token);
+  // updateUsers(): Observable<any>{
+  //   return this.http.patch<any>('http://localhost:3001/users');
+  // }
+
   logout(): boolean {
-    if(localStorage.getItem(jwtConstants.access_token)){
+    if (localStorage.getItem(jwtConstants.access_token)) {
       localStorage.removeItem(jwtConstants.access_token);
       return true;
-    }
-    else return false;
+    } else return false;
   }
 
   isAuthenticated(): boolean {

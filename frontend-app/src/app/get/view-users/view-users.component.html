@@ -1,8 +1,33 @@
 <button (click)="viewUsers()">Ver Usuarios</button>
 <ul>
-    <li *ngFor="let user of users">{{ user.FirstName }} {{ user.LastName }}
-        <button>Borrar Usuario</button>
-    </li>
+  <li *ngFor="let user of users">
+    {{ user.FirstName }} {{ user.LastName }}
+    <button (click)="deleteUser(user)">Borrar Usuario</button>
+    <button (click)="updateUser(user)">Actualizar</button>
+    <form
+      *ngIf="user.Editing"
+      action=""
+      method="post"
+      [formGroup]="viewDataUsers"
+      (ngSubmit)="handlerUpdate()"
+    >
+      <input
+        *ngIf="user.Editing"
+        type="email"
+        [(ngModel)]="user.UpdatedEmail"
+        formControlName="userUpdatedEmail"
+        name="userUpdatedEmail"
+        id="userUpdatedEmail"
+        placeholder="Nuevo Email"
+      />
+      <label
+        for="userUpdatedEmail"
+        *ngIf="viewDataUsers.get('userUpdatedEmail')?.invalid"
+        class="error-message"
+        >Ingrese formato de mail</label
+      >
+      <button type="submit">Actualizar Email</button>
+    </form>
+  </li>
 </ul>
-<hr>
-
+<hr />

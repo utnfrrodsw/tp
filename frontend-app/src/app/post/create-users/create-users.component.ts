@@ -39,17 +39,16 @@ export class CreateUsersComponent implements OnInit {
         createUsers.controls['userAddress_Number'].value ?? '',
         createUsers.controls['userAddress_City'].value ?? ''
       )
-    )
-    {}
+    );
+    {
+    }
   }
 
   ngOnInit(): void {}
   handlerCreate() {
     if (this.createUsers.valid) {
       this.createUser(this.createUsers);
-      this.authService.users(this.user!).subscribe(() => {
-        //this.router.navigate(['investment']);
-      });
+      this.authService.users(this.user!).subscribe(() => {});
     }
   }
 }
