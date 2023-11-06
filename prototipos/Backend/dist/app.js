@@ -11,11 +11,11 @@ const app = express();
 //const cors = require('cors');
 app.use((cors, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'http://Localhost:3000/api/editoriales');
     next();
 });
 app.use(cors({
-    origin: ['*']
+    origin: ['http://Localhost:3000/api/editoriales']
 }));
 app.use(express.json());
 app.use("/api/editoriales/:id/libros", libroRouter);
