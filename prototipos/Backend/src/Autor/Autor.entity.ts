@@ -1,9 +1,10 @@
 import { ObjectId } from 'mongodb';
 
-export class Autor{
+export class Autor {
     constructor(
-        public nombre: string, 
-        public apellido: string,
-        public _id?: ObjectId,
-        ){}
+        public nombreCompleto: string,
+        public perfil: string,
+        public info: string,
+        public _id?: ObjectId
+    ) {}
 }

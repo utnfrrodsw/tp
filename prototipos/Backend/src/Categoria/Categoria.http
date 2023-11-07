@@ -27,8 +27,94 @@ Content-Type: application/json
 
 
 ### Delete de categoria
-GET http://localhost:3000/api/categorias/descripciones
+DELETE http://localhost:3000/api/categorias/654a86ac34149a6f152448c5
 
 
 ### Obtener descripciones
 GET http://localhost:3000/api/categorias/descripciones
+
+
+// -----------------------------------------------
+
+// CREAR TODAS LAS CATEGORÍAS
+
+### Categoría 1
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "descripcion": "Ficción",
+    "id": "1"
+}
+
+### Categoría 2
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "descripcion": "No ficción",
+    "id": "2"
+}
+
+### Categoría 3
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "descripcion": "Literatura infantil",
+    "id": "3"
+}
+
+### Categoría 4
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "descripcion": "Educación y referencia",
+    "id": "4"
+}
+
+### Categoría 5
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "descripcion": "Ciencia y naturaleza",
+    "id": "5"
+}
+
+### Categoría 6
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "descripcion": "Religión y espiritualidad",
+    "id": "6"
+}
+
+### Categoría 7
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "descripcion": "Política y sociedad",
+    "id": "7"
+}
+
+### Categoría 8
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "descripcion": "Salud y bienestar",
+    "id": "8"
+}
+
+### Categoría 9
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "descripcion": "Negocios y finanzas",
+    "id": "9"
+}

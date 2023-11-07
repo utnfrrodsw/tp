@@ -7,9 +7,9 @@ const repository = new AutorRepository()
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     try {
         req.body.sanitizedInput = {
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            id: req.body.id,
+            nombreCompleto: req.body.nombreCompleto,
+            perfil: req.body.perfil,
+            info: req.body.info,
         };
 
         // Eliminar claves no definidas
@@ -50,7 +50,7 @@ async function findOne(req: Request, res: Response) {
 async function add(req: Request, res: Response) {
     try {
         const input = req.body.sanitizedInput;
-        const autorInput = new Autor(input.nombre, input.apellido, input.id);
+        const autorInput = new Autor(input.nombreCompleto, input.perfil, input.info);
         const autor = await repository.add(autorInput);
         res.status(201).send({ message: 'Autor agregado con éxito.', data: autor });
     } catch (error) {

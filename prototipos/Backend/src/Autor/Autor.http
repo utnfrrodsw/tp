@@ -1,12 +1,9 @@
-
-
 ### Get de autor
 GET http://Localhost:3000/api/autores
 
 
-
 ### Get de autor por id
-GET http://Localhost:3000/api/autores/65316d51f2ce1014fce80eba
+GET http://Localhost:3000/api/autores/654a8a23e9bd128c04108bbb
 
 
 ### Post de autor
@@ -14,18 +11,68 @@ POST http://localhost:3000/api/autores
 Content-Type: application/json
 
 {
-    "nombre": "Edgar",
-    "apellido": "Poe"
+    "nombreCompleto": "Robert C. Martin",
+    "perfil": "../uploads/img/Autores/Robert C. Martin.jpg",
+    "info": "Conocido como Uncle Bob, es un influyente ingeniero de software y autor de libros destacado en el desarrollo ágil y la programación limpia. Su enfoque práctico y sus libros, como Clean Code, han impulsado estándares de excelencia en la industria del software."
 }
 
-### Put de autorS
-PATCH http://localhost:3000/api/autores/6547e80b1bf578f26ce3b6d6
+### Put de autor
+PATCH http://localhost:3000/api/autores/654a8a23e9bd128c04108bbb
 Content-Type: application/json
 
 {
-    "nombre": "Poe",
-    "apellido": "Edgard"
+    "nombreCompleto": "Robert C. Martin",
+    "perfil": "../uploads/img/Autores/Robert C. Martin.jpg",
+    "info": "Conocido como Uncle Bob, es un influyente ingeniero de software y autor de libros destacado en el desarrollo ágil y la programación limpia. Su enfoque práctico y sus libros, como Clean Code, han impulsado estándares de excelencia en la industria del software."
 }
 
 ### Delete de autor
-DELETE http://localhost:3000/api/autores/6547e80b1bf578f26ce3b6d6
+DELETE http://localhost:3000/api/autores/654a888334149a6f152448cf
+
+
+// ------------------------------------------------------
+
+// CREAR TODOS LOS AUTORES
+
+### Autor 1
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Robert C. Martin",
+    "perfil": "../uploads/img/Autores/Robert C. Martin.jpg",
+    "info": "Conocido como Uncle Bob, es un influyente ingeniero de software y autor de libros destacado en el desarrollo ágil y la programación limpia. Su enfoque práctico y sus libros, como Clean Code, han impulsado estándares de excelencia en la industria del software."
+}
+
+### Autor 2
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "James Clear",
+    "perfil": "...",
+    "info": "Es un escritor y conferencista reconocido por su trabajo en el campo del desarrollo personal y la mejora del rendimiento. Su libro Atomic Habits ha ganado popularidad al ofrecer consejos prácticos para construir hábitos duraderos y alcanzar el éxito personal y profesional."
+}
+
+### Autor 3
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Mark Lutz",
+    "perfil": "...",
+    "info": "Es un reconocido autor y programador de software, ampliamente conocido por su trabajo en el campo de Python. Sus libros, incluido Learning Python, han sido recursos fundamentales para estudiantes y profesionales que buscan dominar el lenguaje de programación Python."
+}
+
+### Autor 4
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Luis Joyanes Aguilar",
+    "perfil": "...",
+    "info": "Es un destacado ingeniero informático y autor de renombre en el ámbito de la programación. Sus libros, como Programación en C y Fundamentos de Programación, han sido ampliamente utilizados en la enseñanza de la programación y la informática a nivel universitario y profesional."
+}
+
+### Autor 5
+...

@@ -1,7 +1,8 @@
 export class Autor {
-    constructor(nombre, apellido, _id) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+    constructor(nombreCompleto, perfil, info, _id) {
+        this.nombreCompleto = nombreCompleto;
+        this.perfil = perfil;
+        this.info = info;
         this._id = _id;
     }
 }

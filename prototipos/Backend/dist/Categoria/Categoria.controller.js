@@ -81,6 +81,7 @@ async function remove(req, res) {
         res.status(500).send({ message: "Error interno del servidor" });
     }
 }
+// OTROS MÉTODOS
 async function obtenerDescripcionesCategoria(req, res) {
     try {
         const categoria = await repository.findAll();

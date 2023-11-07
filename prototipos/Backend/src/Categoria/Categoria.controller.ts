@@ -84,6 +84,9 @@ async function remove(req: Request, res: Response) {
     }
 }
 
+
+// OTROS MÉTODOS
+
 async function obtenerDescripcionesCategoria(req: Request, res: Response) {
     try {
         const categoria = await repository.findAll();
