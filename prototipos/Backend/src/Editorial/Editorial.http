@@ -4,7 +4,6 @@
 GET http://Localhost:3000/api/editoriales
 
 
-
 ### Get de editorial por id
 GET http://Localhost:3000/api/editoriales/6542adeadaa549f540274b3a
 
@@ -18,7 +17,6 @@ Content-Type: application/json
     "categoria": "Pre-escolar",
     "id": "3"
 }
-
 
 
 ### Delete de editorial

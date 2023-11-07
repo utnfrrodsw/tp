@@ -84,4 +84,19 @@ async function remove(req: Request, res: Response) {
     }
 }
 
-export { sanitizeInput, findAll, findOne, add, update, remove }
+async function obtenerDescripcionesCategoria(req: Request, res: Response) {
+    try {
+        const categoria = await repository.findAll();
+        if (categoria) {
+            const descripciones = categoria.map((categoria: Categoria) => categoria.descripcion);
+            res.json(descripciones);
+        } else {
+            res.status(404).send({ message: "No se encontraron categorías" });
+        }
+    } catch (error) {
+        console.error("Error en obtener las descripciones de las categorías:", error);
+        res.status(500).send({ message: "Error interno del servidor" });
+    }
+}
+
+export { sanitizeInput, findAll, findOne, add, update, remove, obtenerDescripcionesCategoria }

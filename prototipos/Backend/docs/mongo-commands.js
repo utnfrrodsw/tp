@@ -1,7 +1,7 @@
 //Para utilzar Mongo tenemos que tener instalado MongoDB, 
 //la extensión llamada MongoDb for VS Code y MongoDB Shell.
 //Todo esto se encuenta en el repositorio de la clase y los vídeos. 
-//Fuera de eso, para asegurrarnos que todo funcionen
+//Fuera de eso, para asegurarnos que todo funcione
 //correctamente las consultas están los documentos .http,
 //para usar estos documentos se necesita de la extensión
 //REST Client de VS Code.
@@ -14,81 +14,81 @@
 // ---Usuarios---
 
 db.usuarios.insertOne({
-    nombre: 'Mad',
-    apellido: 'Max',
-    email: 'madmax@gmail.com',
-    direccion: 'calle falsa 231',
-    localidad: 'Rosario',
-    tipo: 'user',
-  })
-  
-db.usuarios.insertOne({
-    nombre: 'Obi-Wan',
-    apellido: 'Kenoby',
-    email: 'Starmail@hotmail.com',
-    direccion: '9mongolia 111',
-    localidad: 'cuadrante 4',
-    tipo: 'administrador',
-  })
-
-  db.usuarios.insertOne({
-    nombre: 'Daniel',
-    apellido: 'Daniels',
-    email: 'DDaniel@outlook.com',
-    direccion: 'avenida Daniels 344',
-    localidad: 'Daniels',
-    tipo: 'usuario',
-  })  
-
+  nombre: 'Mad',
+  apellido: 'Max',
+  email: 'madmax@gmail.com',
+  direccion: 'calle falsa 231',
+  localidad: 'Rosario',
+  tipo: 'user',
+})
 
 db.usuarios.insertOne({
-    nombre: 'AC',
-    apellido: 'DC',
-    email: 'ACDC@hotmail.com',
-    direccion: 'address 123',
-    localidad: 'Earth',
-    tipo: 'usuario',
-  })
+  nombre: 'Obi-Wan',
+  apellido: 'Kenoby',
+  email: 'Starmail@hotmail.com',
+  direccion: '9mongolia 111',
+  localidad: 'cuadrante 4',
+  tipo: 'administrador',
+})
+
+db.usuarios.insertOne({
+  nombre: 'Daniel',
+  apellido: 'Daniels',
+  email: 'DDaniel@outlook.com',
+  direccion: 'avenida Daniels 344',
+  localidad: 'Daniels',
+  tipo: 'usuario',
+})
+
+
+db.usuarios.insertOne({
+  nombre: 'AC',
+  apellido: 'DC',
+  email: 'ACDC@hotmail.com',
+  direccion: 'address 123',
+  localidad: 'Earth',
+  tipo: 'usuario',
+})
 
 //Insert data  
 // ---Editoriales---
 
 db.editoriales.insertOne({
   nombre: 'Gato-malo',
-  categoria:'pre-escolar',
-  imagen:'../../../../assets/img/Editoriales/editorial-gato-malo.webp'
-  })  
+  categoria: 'pre-escolar',
+  imagen: '../../../../assets/img/Editoriales/editorial-gato-malo.webp'
+})
 
 
 db.editoriales.insertOne({
-  nombre:'BOOKRACK',
-  categoria:'Ciencia',
-  id: '2', 
-  })
-
-db.editoriales.insertOne({
-  nombre:'DJaen',
-  categoria:'Terror',
-  imagen:'../../../../assets/img/Editoriales/editorial-djaen.webp'
+  nombre: 'BOOKRACK',
+  categoria: 'Ciencia',
+  id: '2',
 })
 
 db.editoriales.insertOne({
-  nombre:'Tierra de Mu',
-  categoria:'Ciencia',
-  imagen:'../../../../assets/img/Editoriales/editorial-tierra-de-mu.webp'
+  nombre: 'DJaen',
+  categoria: 'Terror',
+  imagen: '../../../../assets/img/Editoriales/editorial-djaen.webp'
+})
+
+db.editoriales.insertOne({
+  nombre: 'Tierra de Mu',
+  categoria: 'Ciencia',
+  imagen: '../../../../assets/img/Editoriales/editorial-tierra-de-mu.webp'
 })
 
 
 //----Categorias----
 
 db.categorias.insertOne({
-  descripcion:'pre-escolar',
-  }) 
+  descripcion: 'pre-escolar',
+})
 
 db.categorias.insertOne({
-    descripcion:'Drama',
-  }) 
-  
+  descripcion: 'Drama',
+})
+
 //-----Autores-----
 
 db.autores.insertOne({
@@ -117,17 +117,17 @@ db.provincias.insertOne({
   descripcion: 'Santa Fe',
 })
 
-  //query
-  // Comandos para hacer distintas consultas a la base de datos
-  
-  db.usuarios.find()
-  db.usuarios.find({ nombre: 'Obi-Wan' })
-  db.usuarios.find({ id: ObjectId('6521d2ab2c7369d343ab91ba') })
+//query
+// Comandos para hacer distintas consultas a la base de datos
 
-  //update
+db.usuarios.find()
+db.usuarios.find({ nombre: 'Obi-Wan' })
+db.usuarios.find({ id: ObjectId('6521d2ab2c7369d343ab91ba') })
 
-  db.usuarios.updateOne({ nombre: 'Mad' }, { $set: { nombre: 'Anakin', email: 'Fallen Jedi' } })
-  
-  //delete
+//update
 
-  db.usuarios.deleteOne({ nombre: 'Daniels' })
+db.usuarios.updateOne({ nombre: 'Mad' }, { $set: { nombre: 'Anakin', email: 'Fallen Jedi' } })
+
+//delete
+
+db.usuarios.deleteOne({ nombre: 'Daniels' })

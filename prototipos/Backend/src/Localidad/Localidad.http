@@ -1,23 +1,21 @@
 
-
 ### Get de localidad
 GET http://Localhost:3000/api/localidad
 
 
-
 ### Get de localidad por id
 GET http://Localhost:3000/api/localidad/65478b956995ffbaff023003
+
 
 ### Post de localidad
 POST http://Localhost:3000/api/localidad
 
 {
     "cod_postal": "2000",
-    "descipcion": "Una descripción",
-    "provincia": "65478b586995ffbaff023002",
+    "descipcion": "Rosario",
+    "provincia": "654a3355ec059958d479c37d",
 }
 
 
-
 ### Delete de localidad
-DELETE http://localhost:3000/api/localidad/65478b956995ffbaff023003
+DELETE http://localhost:3000/api/localidad/654a3360ec059958d479c37e
