@@ -1,12 +1,13 @@
 import { EditorialRepository } from "./Editorial.repository.js";
 import { Editorial } from "./Editorial.js";
+import { ObjectId } from "mongodb";
 const repository = new EditorialRepository();
 async function sanitizeInput(req, res, next) {
     try {
         req.body.sanitizedInput = {
-            nombre: req.body.nombre,
-            categoria: req.body.categoria,
-            id: req.body.id
+            descripcion: req.body.descripcion,
+            direccion: req.body.direccion,
+            id: req.body.id instanceof ObjectId ? req.body.id.toString() : req.body.id
         };
         Object.keys(req.body.sanitizedInput).forEach((key) => {
             if (req.body.sanitizedInput[key] === undefined) {
@@ -46,7 +47,7 @@ async function findOne(req, res) {
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
-        const editorialInput = new Editorial(input.nombre, input.categoria, input.id);
+        const editorialInput = new Editorial(input.descripcion, input.direccion);
         const editorial = await repository.add(editorialInput);
         res.status(201).send({ message: 'Editorial agregada exitosamente', data: editorial });
     }

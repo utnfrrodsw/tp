@@ -13,11 +13,10 @@ POST http://localhost:3000/api/editoriales
 Content-Type: application/json
 
 {
-    "nombre": "CrazyBooks",
-    "categoria": "Pre-escolar",
-    "id": "3"
+    "descripcion": "Pearson",
+    "direccion": "Londres, Reino Unido"
 }
 
 
 ### Delete de editorial
-DELETE http://localhost:3000/api/editoriales/6547f84810ef0cca51024b29
+DELETE http://localhost:3000/api/editoriales/654bedd269dbf6698f3f8236
