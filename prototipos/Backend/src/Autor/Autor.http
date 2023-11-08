@@ -124,3 +124,23 @@ Content-Type: application/json
     "perfil": "http://localhost:4200/assets/img/Autores/Titus Winters.jpg",
     "info": "Titus Winters es un destacado ingeniero de software y autor conocido por su papel fundamental en el desarrollo y la promoción de prácticas de ingeniería de software efectivas. Reconocido por su experiencia en sistemas de software a gran escala, ha desempeñado un papel crucial en la evolución de la infraestructura de código abierto en Google."
 }
+
+### Autor 9
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Neal Ford",
+    "perfil": "http://localhost:4200/assets/img/Autores/Neal Ford.jpg",
+    "info": "Sus libros y presentaciones han inspirado a una amplia audiencia de profesionales de la informática y han contribuido significativamente a la evolución del panorama tecnológico actual. Además de sus logros como autor, Neal Ford ha desempeñado un papel importante en el asesoramiento y la consultoría para diversas empresas líderes en tecnología, consolidando su reputación como un experto influyente en la comunidad tecnológica."
+}
+
+### Autor 10
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Daniel Zingaro",
+    "perfil": "http://localhost:4200/assets/img/Autores/Daniel Zingaro.jpg",
+    "info": "Daniel Zingaro es profesor asociado en la Universidad de Toronto Mississauga. Sus principales áreas de investigación son la evaluación de la educación en informática y el aprendizaje en línea."
+}

@@ -8,17 +8,18 @@
   </div>
   <div class="lista-contenedor">
     <div class="elementos-lista p-4">
-      <div *ngFor="let id of autoresIds; let i = index"
+      <div *ngFor="let id of autoresIds.slice(elementoActual, elementoActual + elementosPorPaso); let i = index"
         class="elemento-lista elemento-animado animacion-tarjeta hover-grow">
         <div class="autor card">
           <a [routerLink]="['/autor-seleccionado', id]" class="text-decoration-none">
-            <img [src]="autoresData[id]?.perfil" alt="Perfil del autor"
-              class="card-img-top tarjeta-imagen d-flex align-items-center justify-content-center" />
-            <div class="card-body">
-              <p class="card-text nombre-completo">
-                {{ autoresData[id]?.nombreCompleto }}
-              </p>
-            </div>
+            <ng-container *ngIf="autoresData[id]">
+              <img [src]="autoresData[id].perfil" alt="Perfil del autor"
+                class="card-img-top tarjeta-imagen d-flex align-items-center justify-content-center" />
+              <div class="card-body">
+                <p class="card-text nombre-completo" [innerHTML]="formatNombreCompleto(autoresData[id].nombreCompleto)">
+                </p>
+              </div>
+            </ng-container>
           </a>
         </div>
       </div>

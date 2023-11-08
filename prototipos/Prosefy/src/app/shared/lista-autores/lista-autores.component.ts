@@ -1,5 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { AutoresService, Autor } from '../../services/autores.service';
+import { forkJoin, map, switchMap } from 'rxjs';
+import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-lista-autores',
@@ -12,6 +14,7 @@ export class ListaAutoresComponent implements OnInit {
   elementosAlFinal: boolean = false;
   autoresIds: string[] = [];
   autoresData: { [key: string]: { nombreCompleto: string | undefined, perfil: string | undefined } } = {};
+  autoresAMostrar: any = [];
 
   // Índice del elemento actual en la lista de autores
   elementoActual = 0;
@@ -22,57 +25,84 @@ export class ListaAutoresComponent implements OnInit {
 
   ngOnInit() {
     this.autoresService.getAutoresIds().subscribe((autoresIds: string[]) => {
+      console.log("Autores Ids: ", autoresIds); // Verifica que los Ids se estén cargando correctamente
       this.autoresIds = autoresIds;
-      this.autoresIds.forEach((id) => {
-        this.autoresService.getNombreCompleto(id).subscribe((nombreCompleto) => {
-          this.autoresData[id] = { nombreCompleto: nombreCompleto, perfil: '' };
+
+      const requests = autoresIds.map(id =>
+        forkJoin({
+          nombreCompleto: this.autoresService.getNombreCompleto(id),
+          perfil: this.autoresService.getPerfil(id)
+        }).pipe(map(({ nombreCompleto, perfil }) => ({ id, nombreCompleto, perfil })))
+      );
+
+      forkJoin(requests).subscribe((autores) => {
+        console.log("Autores Data: ", autores); // Verifica que los datos de los autores se estén cargando correctamente
+        autores.forEach(autor => {
+          this.autoresData[autor.id] = { nombreCompleto: autor.nombreCompleto, perfil: autor.perfil };
         });
-        this.autoresService.getPerfil(id).subscribe((perfil) => {
-          this.autoresData[id].perfil = perfil;
-        });
+
+        this.actualizarAutoresAMostrar();
       });
     });
   }
 
-  // Método para mover la lista de autores hacia la izquierda
+
   moverIzquierda() {
     if (this.elementoActual > 0) {
       this.elementoActual -= this.elementosPorPaso;
+      this.actualizarAutoresAMostrar();
     }
     this.elementosAlFinal = false;
     this.elementosAlInicio = this.elementoActual === 0;
   }
 
-  // Método para mover la lista de autores hacia la derecha
   moverDerecha() {
     if (this.elementoActual < this.autoresIds.length - this.elementosPorPaso) {
       this.elementoActual += this.elementosPorPaso;
+      this.actualizarAutoresAMostrar();
     }
     this.elementosAlInicio = false;
-    this.elementosAlFinal =
-      this.elementoActual + this.elementosPorPaso >= this.autoresIds.length;
+    this.elementosAlFinal = this.elementoActual + this.elementosPorPaso >= this.autoresIds.length;
   }
 
-  // Escuchar el evento de redimensionamiento de la ventana
+  actualizarAutoresAMostrar() {
+    const fin = Math.min(this.elementoActual + this.elementosPorPaso, this.autoresIds.length);
+    this.autoresAMostrar = this.autoresIds.slice(this.elementoActual, fin)
+      .map(id => this.autoresData[id]);
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    // Cambia el número de elementos por paso según el ancho de la pantalla
     if (window.innerWidth < 550) {
-      // Para pantallas demasiado pequeñas muestra y avanza de a 2 elementos
       this.elementosPorPaso = 2;
     } else if (window.innerWidth < 768) {
-      // Para pantallas pequeñas muestra y avanza de a 4 elementos
       this.elementosPorPaso = 4;
     } else if (window.innerWidth < 1000) {
-      // Para pantallas más grandes muestra y avanza de a 6 o 8 elementos
       this.elementosPorPaso = 6;
     } else {
       this.elementosPorPaso = 8;
     }
 
-    // Asegurarse de que el elemento actual no sea mayor al total de elementos
     if (this.elementoActual + this.elementosPorPaso > this.autoresIds.length) {
       this.elementoActual = this.autoresIds.length - this.elementosPorPaso;
     }
+    this.actualizarAutoresAMostrar();
   }
+
+  formatNombreCompleto(nombreCompleto: string | undefined) {
+    if (!nombreCompleto) {
+      return '';
+    }
+
+    const firstSpaceIndex = nombreCompleto.indexOf(' ');
+    if (firstSpaceIndex > 0) {
+      const firstPart = nombreCompleto.substr(0, firstSpaceIndex);
+      const secondPart = nombreCompleto.substr(firstSpaceIndex + 1);
+      return `${firstPart}<br>${secondPart}`;
+    } else {
+      return nombreCompleto;
+    }
+  }
+
+
 }
