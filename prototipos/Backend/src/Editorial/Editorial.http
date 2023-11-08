@@ -5,7 +5,7 @@ GET http://Localhost:3000/api/editoriales
 
 
 ### Get de editorial por id
-GET http://Localhost:3000/api/editoriales/6542adeadaa549f540274b3a
+GET http://Localhost:3000/api/editoriales/654bee46df333bf9237a1407
 
 
 ### Post de editorial
@@ -20,3 +20,53 @@ Content-Type: application/json
 
 ### Delete de editorial
 DELETE http://localhost:3000/api/editoriales/654bedd269dbf6698f3f8236
+
+
+// -----------------------------------------
+
+// CREAR EDITORIALES
+
+### Editorial 1
+POST http://localhost:3000/api/editoriales
+Content-Type: application/json
+
+{
+    "descripcion": "Pearson",
+    "direccion": "Londres, Reino Unido"
+}
+
+### Editorial 2
+POST http://localhost:3000/api/editoriales
+Content-Type: application/json
+
+{
+    "descripcion": "O'Reilly Media",
+    "direccion": "Sebastopol, California, Estados Unidos"
+}
+
+### Editorial 3
+POST http://localhost:3000/api/editoriales
+Content-Type: application/json
+
+{
+    "descripcion": "Addison-Wesley Professional",
+    "direccion": "Reading, Massachusetts, Estados Unidos"
+}
+
+### Editorial 4
+POST http://localhost:3000/api/editoriales
+Content-Type: application/json
+
+{
+    "descripcion": "McGraw Hill",
+    "direccion": "Nueva York, Estados Unidos"
+}
+
+### Editorial 5
+POST http://localhost:3000/api/editoriales
+Content-Type: application/json
+
+{
+    "descripcion": "Springer",
+    "direccion": "Berlín, Alemania"
+}

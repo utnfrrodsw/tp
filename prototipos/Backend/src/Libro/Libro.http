@@ -10,7 +10,6 @@ POST http://localhost:3000/api/editoriales/2/libros
 Content-Type: application/json
 
 {
-    "id": "1",
     "isbn": "Nose",
     "titulo": "Esto no va a funcionar ni a palo",
     "idioma": "Español",

@@ -78,7 +78,6 @@ async function add(req: Request, res: Response) {
         }
 
         const libroInput = new Libro(
-            input.id,
             input.isbn,
             input.titulo,
             input.idioma,

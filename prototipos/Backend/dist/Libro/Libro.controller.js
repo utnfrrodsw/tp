@@ -65,7 +65,7 @@ async function add(req, res) {
         if (!editorialExiste) {
             return res.status(400).send({ message: 'La editorial no existe.' });
         }
-        const libroInput = new Libro(input.id, input.isbn, input.titulo, input.idioma, input.descripcion, input.precio, input.fecha_edicion, input.autores.map((autorId) => new ObjectId(autorId)), new ObjectId(input.editorial), input.categorias, input.formatos);
+        const libroInput = new Libro(input.isbn, input.titulo, input.idioma, input.descripcion, input.precio, input.fecha_edicion, input.autores.map((autorId) => new ObjectId(autorId)), new ObjectId(input.editorial), input.categorias, input.formatos);
         const libro = await repository.add(libroInput);
         res.status(201).send({ message: 'Libro agregado con éxito.', data: libro });
     }

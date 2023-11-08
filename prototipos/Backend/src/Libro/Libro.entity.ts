@@ -2,7 +2,6 @@ import { ObjectId } from 'mongodb';
 
 export class Libro {
     constructor(
-        public id: number,
         public isbn: string,
         public titulo: string,
         public idioma: string,
