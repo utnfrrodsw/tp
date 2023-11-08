@@ -19,7 +19,7 @@ Content-Type: application/json
 
 
 ### Delete de editorial
-DELETE http://localhost:3000/api/editoriales/654bedd269dbf6698f3f8236
+DELETE http://localhost:3000/api/editoriales/654c03fc0251f41e6d75b636
 
 
 // -----------------------------------------
@@ -31,8 +31,9 @@ POST http://localhost:3000/api/editoriales
 Content-Type: application/json
 
 {
-    "descripcion": "Pearson",
-    "direccion": "Londres, Reino Unido"
+    "descripcion": "BOOKRACK",
+    "direccion": "Londres, Reino Unido",
+    "imagen": "../../../../assets/img/Editoriales/editorial-bookrack.webp"
 }
 
 ### Editorial 2
@@ -40,8 +41,9 @@ POST http://localhost:3000/api/editoriales
 Content-Type: application/json
 
 {
-    "descripcion": "O'Reilly Media",
-    "direccion": "Sebastopol, California, Estados Unidos"
+    "descripcion": "DJaen",
+    "direccion": "Sebastopol, California, Estados Unidos",
+    "imagen": "../../../../assets/img/Editoriales/editorial-djaen.webp"
 }
 
 ### Editorial 3
@@ -49,8 +51,9 @@ POST http://localhost:3000/api/editoriales
 Content-Type: application/json
 
 {
-    "descripcion": "Addison-Wesley Professional",
-    "direccion": "Reading, Massachusetts, Estados Unidos"
+    "descripcion": "Gato Malo",
+    "direccion": "Reading, Massachusetts, Estados Unidos",
+    "imagen": "../../../../assets/img/Editoriales/editorial-gato-malo.webp"
 }
 
 ### Editorial 4
@@ -58,8 +61,9 @@ POST http://localhost:3000/api/editoriales
 Content-Type: application/json
 
 {
-    "descripcion": "McGraw Hill",
-    "direccion": "Nueva York, Estados Unidos"
+    "descripcion": "Tierra de Mu",
+    "direccion": "Nueva York, Estados Unidos",
+    "imagen": "../../../../assets/img/Editoriales/editorial-tierra-de-mu.webp"
 }
 
 ### Editorial 5
@@ -67,6 +71,7 @@ POST http://localhost:3000/api/editoriales
 Content-Type: application/json
 
 {
-    "descripcion": "Springer",
-    "direccion": "Berlín, Alemania"
+    "descripcion": "Vealia",
+    "direccion": "Berlín, Alemania",
+    "imagen": "../../../../assets/img/Editoriales/editorial-vealia.webp"
 }

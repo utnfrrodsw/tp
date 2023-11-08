@@ -7,6 +7,7 @@ async function sanitizeInput(req, res, next) {
         req.body.sanitizedInput = {
             descripcion: req.body.descripcion,
             direccion: req.body.direccion,
+            imagen: req.body.imagen,
             id: req.body.id instanceof ObjectId ? req.body.id.toString() : req.body.id
         };
         Object.keys(req.body.sanitizedInput).forEach((key) => {
@@ -47,7 +48,7 @@ async function findOne(req, res) {
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
-        const editorialInput = new Editorial(input.descripcion, input.direccion);
+        const editorialInput = new Editorial(input.descripcion, input.direccion, input.imagen);
         const editorial = await repository.add(editorialInput);
         res.status(201).send({ message: 'Editorial agregada exitosamente', data: editorial });
     }
@@ -83,5 +84,41 @@ async function remove(req, res) {
         res.status(500).send({ message: "Error interno del servidor" });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove };
+async function getEditoriales(req, res) {
+    try {
+        const editoriales = await repository.findAll();
+        const editorialIds = editoriales?.map((editorial) => editorial._id);
+        res.json({ data: editorialIds });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getNombreCompleto(req, res) {
+    try {
+        const id = req.params.id;
+        const editorial = await repository.findOne({ id });
+        if (!editorial) {
+            return res.status(404).send({ message: "Editorial no encontrada." });
+        }
+        res.json({ data: editorial.descripcion });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getImagen(req, res) {
+    try {
+        const id = req.params.id;
+        const editorial = await repository.findOne({ id });
+        if (!editorial) {
+            return res.status(404).send({ message: "Editorial no encontrada." });
+        }
+        res.json({ data: editorial.imagen });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+export { sanitizeInput, findAll, findOne, add, update, remove, getEditoriales, getNombreCompleto, getImagen };
 //# sourceMappingURL=Editorial.controller.js.map

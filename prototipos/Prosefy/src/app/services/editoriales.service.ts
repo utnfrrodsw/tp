@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Observable, map } from 'rxjs';
 
 export interface Editorial {
-  id: number;
-  nombre: string;
+  descripcion: string;
   direccion: string;
   imagen: string;
 
@@ -61,21 +60,30 @@ export class EditorialesService {
 
   constructor(private http: HttpClient) {}
 
-   getEditoriales() {
-    return this.http.get(this.apiUrl);
+  getEditorialesIds(): Observable<string[]> {
+    return this.http.get<any>(`${this.apiUrl}/editoriales`).pipe(
+      map((response: any) => response.data)
+    );
   }
 
-  /*constructor() {}
+  getNombreCompleto(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/nombre-completo/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
 
-  async getEditoriales() {
-    try {
-      const response = await fetch('http://localhost:3000/api/editoriales');
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.log('Error:', error);
-    }
-  }*/
+  getImagen(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/imagen/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
+  getEditorialr(id: string): Observable<Editorial | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
 }
   
   

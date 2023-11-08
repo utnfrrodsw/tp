@@ -1,25 +1,25 @@
 <div class="container-editoriales">
   <div class="editoriales-col">
-    <div class="editoriales" *ngFor="let editorial of editoriales">
-      <img class="img-editorial" src="{{editorial.imagen}}" alt=" loco">
+    <div class="editoriales" *ngFor="let id of editorialesIds; let i = index">
+      <img class="img-editorial" [src]="editorialesData[id]?.imagen" alt="loco">
       <div class="texto-editorial">
-        <label>{{editorial.nombre}}</label>
+        <label>{{editorialesData[id]?.nombreCompleto}}</label>
       </div>
     </div>
   </div>
   <div class="editoriales-col">
-    <div class="editoriales" *ngFor="let editorial of editoriales">
-      <img class="img-editorial" src="{{editorial.imagen}}" alt=" loco">
+    <div class="editoriales" *ngFor="let id of editorialesIds; let i = index">
+      <img class="img-editorial" [src]="editorialesData[id]?.imagen" alt=" loco">
       <div class="texto-editorial">
-        <label>{{editorial.nombre}}</label>
+        <label>{{editorialesData[id]?.nombreCompleto}}</label>
       </div>
     </div>
   </div>
   <div class="editoriales-col">
-    <div class="editoriales" *ngFor="let editorial of editoriales">
-      <img class="img-editorial" src="{{editorial.imagen}}" alt=" loco">
+    <div class="editoriales" *ngFor="let id of editorialesIds; let i = index">
+      <img class="img-editorial" [src]="editorialesData[id]?.imagen" alt=" loco">
       <div class="texto-editorial">
-        <label>{{editorial.nombre}}</label>
+        <label>{{editorialesData[id]?.nombreCompleto}}</label>
       </div>
     </div>
   </div>
