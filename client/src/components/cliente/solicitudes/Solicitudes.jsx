@@ -20,6 +20,7 @@ function Solicitudes(props) {
         fetch(`${API_URL}/solicitud/${props.estado}/cliente/${user.id}`)
           .then((res) => res.json())
           .then((data) => {
+            console.log(data.body.solicitudes);
             setSolicitudes(data.body.solicitudes);
             setSolicitudesUpdate(false); // Mover esta línea aquí
             setLoad(false);
@@ -83,6 +84,7 @@ function Solicitudes(props) {
                         hendleSolicitudesUpdate={hendleSolicitudesUpdate}
                         key={index}
                         id={solicitud.id}
+                        idPrestador={solicitud.idPrestador}
                         telefonoPrestador={solicitud.telefonoPrestador}
                         nombrePrestador={solicitud.nombrePrestador}
                         fechaHoraServicio={solicitud.fechaHoraServicio}
@@ -92,7 +94,9 @@ function Solicitudes(props) {
                         direccion={solicitud.direccion}
                         descripcion={solicitud.descripcion}
                         estado={solicitud.estado}
+                        estadoServicio={solicitud.estadoServicio}
                         fotos={solicitud.fotos}
+                        cartelResenia={solicitud.cartelResenia}
                     />
                 ))) : (
                     <div>

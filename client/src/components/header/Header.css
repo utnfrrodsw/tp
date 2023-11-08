@@ -45,13 +45,51 @@
     width: 30px;
 }
 
+div.offcanvas-header{
+    background-color: #314a74;
+}
+
+div.offcanvas-title{
+    color: white;
+}
+
+div.offcanvas-body{
+    background-color: #3e5e97;
+    display: flex;
+}
+
+.ul-offcavas{
+    display: flex;
+    flex-direction: column;
+}
+
+.ul-offcavas li{
+    margin: 5px;
+    font-weight: bold;
+}
+
+.ul-offcavas li a{
+    text-decoration: none;
+    color: white;
+    margin: 1%;
+    font-weight: bold;
+}
+
+button.button-cerrarSesion{
+    background-color: #1a5557;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    align-self: end;
+}
+
 @media (max-width: 768px) {
     .header-content {
         height: 4rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background-color: #2a4063; /* Azul claro */
+        background-color: #3638ac; /* Azul claro */
         padding: 10px 20px;
         color: white;
     }

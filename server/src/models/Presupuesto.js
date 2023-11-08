@@ -10,12 +10,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
       },
+      materiales:{
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
       costoMateriales: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.DOUBLE,
         allowNull: true,
       },
       costoXHora: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.DOUBLE,
         allowNull: true,
       },
       tiempoAprox: {
@@ -49,8 +53,9 @@ module.exports = (sequelize, DataTypes) => {
   
       // Relación hasMany con la tabla Servicio
       Presupuesto.hasMany(models.Servicio, {
-        foreignKey: 'idPresupuesto', 
-        as: 'servicios', 
+        foreignKey:'idSolicitud',
+        otherKey:'idUsuario',
+        as: 'presupuesto',
       });
     };
   

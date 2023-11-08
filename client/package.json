@@ -15,7 +15,7 @@
     "react-bootstrap": "^2.8.0",
     "react-dom": "18.2.0",
     "react-feather": "^2.0.10",
-    "react-router-dom": "6.15.0",
+    "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
     "react-scroll": "1.8.9",
     "reactstrap": "^9.2.0",

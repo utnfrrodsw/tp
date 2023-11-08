@@ -19,6 +19,7 @@ const solicitudRoutes = require('./routes/solicitudRoutes.js');
 const direccionesRoutes = require('./routes/direccionesRoutes.js');
 const profesionesRouter = require('./routes/profesionesRouter');
 const presupuestosRoutes = require('./routes/presupuestosRoutes.js');
+const serviciosRoutes = require('./routes/servicioRoutes.js');
 
 //use app
 app.use(express.json());
@@ -33,6 +34,7 @@ app.use('/api/solicitud', solicitudRoutes);
 app.use('/api/direccion', direccionesRoutes);
 app.use('/api/profesion', profesionesRouter);
 app.use('/api/presupuesto', presupuestosRoutes);
+app.use('/api/servicio', serviciosRoutes);
 
 
 app.use((req, res, next) =>{

@@ -59,10 +59,6 @@ module.exports = (sequelize, dataTypes) => {
       as: 'profesiones',
       foreignKey: 'idprestador', // Clave foránea en PrestadorProfesiones
     });
-    Usuario.hasMany(models.HistoricoResenia, {
-      as: 'resenias',
-      foreignKey: 'idUsuario', // Clave foránea en HistoricoResenia
-    });
     Usuario.hasMany(models.Presupuesto, {
       as: 'presupuestos',
       foreignKey: 'idUsuario', // Clave foránea en Presupuesto

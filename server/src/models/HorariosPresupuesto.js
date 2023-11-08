@@ -23,13 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     HorariosPresupuesto.associate = function (models) {
       // relación con la tabla Presupuesto
       HorariosPresupuesto.belongsTo(models.Presupuesto, {
-        foreignKey:  'idSolicitud',
-        as: 'presupuesto',
-      });
-  
-      HorariosPresupuesto.belongsTo(models.Presupuesto, {
         foreignKey: 'idUsuario',
         otherKey: 'idSolicitud',
+        otherKey: 'horario',
         as: 'presupuestoPrestador',
       });
     };

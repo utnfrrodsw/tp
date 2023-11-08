@@ -15,6 +15,7 @@ display: grid;
   padding: 2px;
   /* Aumenta el espacio interno para pantallas de PC */
   background-color: #213555;
+  color:white;
   border-radius: 12px;
   margin: 0 auto;
   /* Centra horizontalmente en la pantalla */
@@ -74,7 +75,7 @@ text-align: left;
 .listaMat{
   grid-area: listaMat;
 }
-entradasCampos{
+.entradasCampos{
   grid-area: entradasCampos;
 }
 .horarios{

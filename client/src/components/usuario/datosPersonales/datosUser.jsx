@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
 import { API_URL } from '../../../auth/constants.js';
-import './datosUser.css';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
-
+import './datosUser.css';
 
 const DatosPersonales = () => {
   // Define un estado para los datos personales
@@ -20,30 +18,32 @@ const DatosPersonales = () => {
   const [error, setError] = useState(false);
   const [realoadDirecciones, setRealoadDirecciones] = useState(false);
 
-
   const auth = useAuth();
   const user = auth.getUser();
 
+  // Estados para mensajes de error y éxito
+  const [errorCurrentPassword, setErrorCurrentPassword] = useState('');
+  const [errorNewPassword, setErrorNewPassword] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
-    try{
+    try {
       const response = fetch(`${API_URL}/direccion/cliente/${user.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.body.direcciones);
-        setDirecciones(data.body.direcciones);
-      })
-      if(response.ok){
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data.body.direcciones);
+          setDirecciones(data.body.direcciones);
+        });
+      if (response.ok) {
         setError(false);
-      }else{
+      } else {
         setError(true);
       }
-    }catch(error){
-      error ? console.log(error): console.log('Error al cargar direcciones');
+    } catch (error) {
+      error ? console.log(error) : console.log('Error al cargar direcciones');
       setError(true);
     }
   }, [realoadDirecciones, user.id]);
-  
 
   const [contrasenaActual, setContrasenaActual] = useState('');
   const [nuevaContrasena, setNuevaContrasena] = useState('');
@@ -56,7 +56,7 @@ const DatosPersonales = () => {
   };
 
   const agregarDireccion = () => {
-    //aca deberia hacer el reload de las direcciones
+    // Deberías realizar aquí el reload de las direcciones
     setRealoadDirecciones(true);
     setNuevaDireccion(false);
   };
@@ -68,11 +68,80 @@ const DatosPersonales = () => {
     alert('Datos actualizados');
   };
 
-  // Función para verificar la contraseña actual
-  const verifyCurrentPassword = () => {
-    // Aquí puedes agregar la lógica para verificar la contraseña actual
-    // Si la contraseña es correcta, puedes habilitar la edición de la nueva contraseña
-    alert('Contraseña actual verificada. Ahora puedes cambiar la contraseña.');
+  const [isPasswordVerified, setIsPasswordVerified] = useState(false);
+
+  const verifyCurrentPassword = async () => {
+    try {
+      if (contrasenaActual === '') {
+        setErrorCurrentPassword('Por favor, ingresa la contraseña actual.');
+        return;
+      }
+  
+      // Lógica para verificar la contraseña actual en la API
+      const response = await fetch(`${API_URL}/usuario/verify-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          idUsuario: user.id,
+          currentPassword: contrasenaActual,
+        }),
+      });
+  
+      if (response.status === 200) {
+        setErrorCurrentPassword('');
+        setSuccessMessage('Contraseña actual verificada. Ahora puedes cambiar la contraseña.');
+        setIsPasswordVerified(true); // Marcar que la contraseña actual ha sido verificada con éxito
+      } else {
+        setErrorCurrentPassword('Contraseña actual incorrecta. Intenta nuevamente.');
+        setIsPasswordVerified(false); // Marcar que la contraseña actual no es correcta
+      }
+    } catch (error) {
+      console.error('Error al verificar la contraseña actual:', error);
+      // Manejo de errores
+    }
+  };
+  
+  const handleChangePassword = async () => {
+    try {
+      if (nuevaContrasena === '' || confirmNuevaContrasena === '') {
+        setErrorNewPassword('Por favor, ingresa la nueva contraseña y confírmala.');
+        return;
+      }
+  
+      if (nuevaContrasena !== confirmNuevaContrasena) {
+        setErrorNewPassword('La nueva contraseña y la confirmación no coinciden.');
+        return;
+      }
+  
+      // Lógica para cambiar la contraseña en la API
+      const response = await fetch(`${API_URL}/usuario/change-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          idUsuario: user.id,
+          newPassword: nuevaContrasena,
+        }),
+      });
+  
+      if (response.status === 200) {
+        setErrorNewPassword('');
+        setSuccessMessage('Contraseña cambiada con éxito');
+        // Limpiar los campos de contraseña
+        setContrasenaActual('');
+        setNuevaContrasena('');
+        setConfirmNuevaContrasena('');
+        setIsPasswordVerified(false); // Restablecer isPasswordVerified a false
+      } else {
+        setErrorNewPassword('Error al cambiar la contraseña. Intenta nuevamente.');
+      }
+    } catch (error) {
+      console.error('Error al cambiar la contraseña:', error);
+      // Manejo de errores
+    }
   };
 
   // Función para manejar la carga de la foto de perfil
@@ -80,26 +149,6 @@ const DatosPersonales = () => {
     const file = e.target.files[0];
     setFotoPerfil(URL.createObjectURL(file));
   };
-
-  // Función para cerrar sesión
-  async function handlelogout(e){
-    e.preventDefault();
-    try {
-      const response = await fetch(`${API_URL}/usuario/logout`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.getRefreshToken()}`,
-        },
-      });
-      if (response.ok) {
-        auth.logout();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
 
   return (
     <div>
@@ -153,7 +202,7 @@ const DatosPersonales = () => {
                   value={user.fechaNacimiento}
                   onChange={(e) => setUserData({ ...user, fechaNacimiento: e.target.value })}
                 />
-
+  
                 <Button variant="primary" className='button' onClick={handleUpdateData}>
                   Actualizar Datos
                 </Button>
@@ -162,52 +211,53 @@ const DatosPersonales = () => {
             </Card.Body>
           </Card>
         </Col>
-        
+  
         <Col>
           <Card className='cardDatosPer'>
             {userData.esPrestador ? (
-            <Card.Body>
-              <h2 className='h2'>Especialidades</h2>
-              <div className="user-details">
-                <label htmlFor="specialty">Especialidad:</label>
-                <input
-                  type="text"
-                  id="specialty"
-                  name="specialty"
-                  value={userData.especialidad}
-                  onChange={(e) => setUserData({ ...userData, especialidad: e.target.value })}
-                />
-                <label htmlFor="description">Descripción:</label>
-                <input
-                  type="text"
-                  id="description"
-                  name="description"
-                  value={userData.descripcion}
-                  onChange={(e) => setUserData({ ...userData, descripcion: e.target.value })}
-                />
-                <Button variant="primary" className='button' onClick={handleUpdateData}>
-                  Actualizar Datos
-                </Button>
-              </div>
-            </Card.Body>) : (
-            <Card.Body>
-              <h2 className='h2' >Direcciónes</h2>
-              <div className="user-details">
-                <select>
-                  <option>Mis Direcciones</option>
-                  {direcciones && direcciones.map((direccion, index) => (
-                  <option key={direccion.idDireccion} value={direccion.idDireccion}> {direccion.calle} {direccion.numero} 
-                  {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null} 
-                  /{direccion.localidad.nombre}/{direccion.localidad.provincia}</option>
-                  ))}
+              <Card.Body>
+                <h2 className='h2'>Especialidades</h2>
+                <div className="user-details">
+                  <label htmlFor="specialty">Especialidad:</label>
+                  <input
+                    type="text"
+                    id="specialty"
+                    name="specialty"
+                    value={userData.especialidad}
+                    onChange={(e) => setUserData({ ...userData, especialidad: e.target.value })}
+                  />
+                  <label htmlFor="description">Descripción:</label>
+                  <input
+                    type="text"
+                    id="description"
+                    name="description"
+                    value={userData.descripcion}
+                    onChange={(e) => setUserData({ ...userData, descripcion: e.target.value })}
+                  />
+                  <Button variant="primary" className='button' onClick={handleUpdateData}>
+                    Actualizar Datos
+                  </Button>
+                </div>
+              </Card.Body>
+            ) : (
+              <Card.Body>
+                <h2 className='h2'>Direcciones</h2>
+                <div className="user-details">
+                  <select>
+                    <option>Mis Direcciones</option>
+                    {direcciones && direcciones.map((direccion, index) => (
+                      <option key={direccion.idDireccion} value={direccion.idDireccion}> {direccion.calle} {direccion.numero}
+                        {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null}
+                        /{direccion.localidad.nombre}/{direccion.localidad.provincia}</option>
+                    ))}
                   </select>
-                <Button variant="primary" className='button' onClick={() => {setNuevaDireccion(true); console.log(nuevaDireccion)}}>Agregar Direccion</Button>
-                {nuevaDireccion && (
+                  <Button variant="primary" className='button' onClick={() => { setNuevaDireccion(true); console.log(nuevaDireccion) }}>Agregar Dirección</Button>
+                  {nuevaDireccion && (
                     <NuevaDireccion nuevaDireccion={nuevaDireccion} hendleDireccionesUpdate={agregarDireccion} cerrarMenu={cerrarMenu} />
-                )}
-
-              </div>
-            </Card.Body>)}
+                  )}
+                </div>
+              </Card.Body>
+            )}
           </Card>
           <Card className='cardSegurity'>
             <Card.Body>
@@ -220,11 +270,15 @@ const DatosPersonales = () => {
                   name="currentPassword"
                   value={contrasenaActual}
                   onChange={(e) => setContrasenaActual(e.target.value)}
+                  className="form-control"
                 />
+                {errorCurrentPassword && <div className="error-message">{errorCurrentPassword}</div>}
+                {successMessage && <div className="success-message">{successMessage}</div>}
                 <Button variant="primary" className='button' onClick={verifyCurrentPassword}>
                   Verificar Contraseña
                 </Button>
-                {contrasenaActual && (
+                
+                {isPasswordVerified && (
                   <>
                     <label htmlFor="newPassword">Nueva Contraseña:</label>
                     <input
@@ -233,6 +287,7 @@ const DatosPersonales = () => {
                       name="newPassword"
                       value={nuevaContrasena}
                       onChange={(e) => setNuevaContrasena(e.target.value)}
+                      className="form-control"
                     />
                     <label htmlFor="confirmNewPassword">Confirmar Nueva Contraseña:</label>
                     <input
@@ -241,8 +296,10 @@ const DatosPersonales = () => {
                       name="confirmNewPassword"
                       value={confirmNuevaContrasena}
                       onChange={(e) => setConfirmNuevaContrasena(e.target.value)}
+                      className="form-control"
                     />
-                    <Button variant="primary"  className='button'>Cambiar Contraseña</Button>
+                    {errorNewPassword && <div className="error-message">{errorNewPassword}</div>}
+                    <Button variant="primary" className='button' onClick={handleChangePassword}>Cambiar Contraseña</Button>
                   </>
                 )}
               </div>
@@ -250,9 +307,9 @@ const DatosPersonales = () => {
           </Card>
         </Col>
       </Row>
-      <Link className='ButtonCerrarSesion' onClick={handlelogout}>Cerrar Sesión</Link>
     </div>
   );
+  
 };
 
 export default function App() {
