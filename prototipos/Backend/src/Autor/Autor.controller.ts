@@ -83,4 +83,43 @@ async function remove(req: Request, res: Response) {
     }
 }
 
-export { sanitizeInput, findAll, findOne, add, update, remove }
+// OTROS MÉTODOS
+
+
+async function getAutores(req: Request, res: Response) {
+    try {
+        const autores = await repository.findAll();
+        const autorIds = autores?.map((autor) => autor._id);
+        res.json({ data: autorIds });
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function getNombreCompleto(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const autor = await repository.findOne({ id });
+        if (!autor) {
+            return res.status(404).send({ message: "Autor no encontrado." });
+        }
+        res.json({ data: autor.nombreCompleto });
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function getPerfil(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const autor = await repository.findOne({ id });
+        if (!autor) {
+            return res.status(404).send({ message: "Autor no encontrado." });
+        }
+        res.json({ data: autor.perfil });
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+export { sanitizeInput, findAll, findOne, add, update, remove, getAutores, getNombreCompleto, getPerfil }

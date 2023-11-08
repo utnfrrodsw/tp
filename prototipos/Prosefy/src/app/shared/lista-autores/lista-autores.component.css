@@ -1,0 +1,173 @@
+.lista-autores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.boton-izquierda,
+.boton-derecha {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.lista-contenedor {
+    overflow: hidden;
+    margin: 0 20px;
+}
+
+.elementos-lista {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    width: max-content;
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    white-space: nowrap;
+    /* Evita que los elementos se dividan en múltiples líneas */
+}
+
+.elemento-lista {
+    flex: 0 0 calc(12.5% - 10px);
+    /* Ajusta el tamaño de los elementos */
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+@media (max-width: 1000px) {
+    .elemento-lista {
+        flex: 0 0 calc(16.666% - 10px);
+        /* 6 elementos por fila */
+    }
+}
+
+@media (max-width: 768px) {
+    .elemento-lista {
+        flex: 0 0 calc(25% - 10px);
+        /* 4 elementos por fila */
+    }
+}
+
+@media (max-width: 550px) {
+    .elemento-lista {
+        flex: 0 0 calc(50% - 10px);
+        /* 2 elementos por fila */
+    }
+}
+
+.autor {
+    border-radius: 50%;
+    max-width: 200%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.nombre-completo {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.card-text {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Estilo para los enlaces dentro de las tarjetas */
+.autor a {
+    color: inherit;
+    /* Hereda el color del texto circundante */
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0);
+        /* Comienza con un tamaño de escala de cero */
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        /* Termina con el tamaño de escala normal (1) */
+    }
+}
+
+.hover-grow {
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Duración más larga y función de temporización ajustada */
+}
+
+.hover-grow:hover {
+    transform: scale(1.1);
+    /* Cambiamos el valor de escala para un efecto de agrandamiento más sutil */
+}
+
+/* Estilos para los botones modernos */
+.boton-moderno {
+    color: black;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.boton-moderno:hover {
+    transform: scale(1.1);
+    /* Aumento de tamaño al hacer hover */
+}
+
+.disabled {
+    color: #c0c0c0;
+    /* Cambia el color a gris claro */
+    cursor: not-allowed;
+    /* Cambia el cursor a 'no permitido' */
+}
+
+.tarjeta-imagen {
+    border-radius: 50%;
+    max-width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.card-body {
+    background-color: #fff;
+    border: none;
+}
+
+.card {
+    background-color: #fff;
+    border: none;
+}
+
+/* Estilo para los cuadrados con esquinas redondeadas */
+.rounded-button {
+    display: inline-block;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 0 10px;
+    border: 1px solid #757575;
+    transition: 0.3s;
+}
+
+.rounded-button:hover {
+    transform: scale(1.1);
+    /* Aumento de tamaño al hacer hover */
+}

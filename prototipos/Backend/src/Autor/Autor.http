@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
     "nombreCompleto": "Robert C. Martin",
-    "perfil": "../uploads/img/Autores/Robert C. Martin.jpg",
+    "perfil": "http://localhost:4200/assets/img/Autores/RobertCMartin.jpg",
     "info": "Conocido como Uncle Bob, es un influyente ingeniero de software y autor de libros destacado en el desarrollo ágil y la programación limpia. Su enfoque práctico y sus libros, como Clean Code, han impulsado estándares de excelencia en la industria del software."
 }
 
@@ -22,13 +22,24 @@ Content-Type: application/json
 
 {
     "nombreCompleto": "Robert C. Martin",
-    "perfil": "../uploads/img/Autores/Robert C. Martin.jpg",
+    "perfil": "http://localhost:4200/assets/img/Autores/RobertCMartin.jpg",
     "info": "Conocido como Uncle Bob, es un influyente ingeniero de software y autor de libros destacado en el desarrollo ágil y la programación limpia. Su enfoque práctico y sus libros, como Clean Code, han impulsado estándares de excelencia en la industria del software."
 }
 
 ### Delete de autor
 DELETE http://localhost:3000/api/autores/654a888334149a6f152448cf
 
+
+// OTROS MÉTODOS
+
+### Arreglo de Id de autores
+GET http://localhost:3000/api/autores/autores
+
+### Devolver nombreCompleto de Autor por Id
+GET http://localhost:3000/api/autores/nombre-completo/654a8a23e9bd128c04108bbb
+
+### Devolver perfil de Autor por Id
+GET http://localhost:3000/api/autores/perfil/654a8a23e9bd128c04108bbb
 
 // ------------------------------------------------------
 
@@ -40,7 +51,7 @@ Content-Type: application/json
 
 {
     "nombreCompleto": "Robert C. Martin",
-    "perfil": "../uploads/img/Autores/Robert C. Martin.jpg",
+    "perfil": "http://localhost:4200/assets/img/Autores/RobertCMartin.jpg",
     "info": "Conocido como Uncle Bob, es un influyente ingeniero de software y autor de libros destacado en el desarrollo ágil y la programación limpia. Su enfoque práctico y sus libros, como Clean Code, han impulsado estándares de excelencia en la industria del software."
 }
 
@@ -50,7 +61,7 @@ Content-Type: application/json
 
 {
     "nombreCompleto": "James Clear",
-    "perfil": "...",
+    "perfil": "http://localhost:4200/assets/img/Autores/James Clear.png",
     "info": "Es un escritor y conferencista reconocido por su trabajo en el campo del desarrollo personal y la mejora del rendimiento. Su libro Atomic Habits ha ganado popularidad al ofrecer consejos prácticos para construir hábitos duraderos y alcanzar el éxito personal y profesional."
 }
 
@@ -60,7 +71,7 @@ Content-Type: application/json
 
 {
     "nombreCompleto": "Mark Lutz",
-    "perfil": "...",
+    "perfil": "http://localhost:4200/assets/img/Autores/Mark Lutz.jpg",
     "info": "Es un reconocido autor y programador de software, ampliamente conocido por su trabajo en el campo de Python. Sus libros, incluido Learning Python, han sido recursos fundamentales para estudiantes y profesionales que buscan dominar el lenguaje de programación Python."
 }
 
@@ -70,9 +81,46 @@ Content-Type: application/json
 
 {
     "nombreCompleto": "Luis Joyanes Aguilar",
-    "perfil": "...",
+    "perfil": "http://localhost:4200/assets/img/Autores/Luis Joyanes Aguilar.jpg",
     "info": "Es un destacado ingeniero informático y autor de renombre en el ámbito de la programación. Sus libros, como Programación en C y Fundamentos de Programación, han sido ampliamente utilizados en la enseñanza de la programación y la informática a nivel universitario y profesional."
 }
 
 ### Autor 5
-...
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Eric Matthes",
+    "perfil": "http://localhost:4200/assets/img/Autores/Eric Matthes.jpg",
+    "info": "Eric Matthes es profesor de ciencias, matemáticas y programación en un instituto en Alaska. Lleva escribiendo programas desde que tenía cinco años y es el autor de 'Python Flash Cards'."
+}
+
+### Autor 6
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Charles Petzold",
+    "perfil": "http://localhost:4200/assets/img/Autores/Charles Petzold.jpg",
+    "info": "Lleva 35 años escribiendo sobre programación, informática y ordenadores. Sus libros incluyen más de una docena de tutoriales de programación y 'The Annotated Turing: A Guided Tour through Alan Turing's Historic Paper on Computability and the Turing Machine'. Vive en la ciudad de Nueva York con su mujer, la historiadora y novelista Deirdre Sinnott, y dos gatos llamados Honey y Heidi."
+}
+
+### Autor 7
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "John Ousterhout",
+    "perfil": "http://localhost:4200/assets/img/Autores/John Ousterhout.jpg",
+    "info": "John Kenneth Ousterhout es el presidente de Electric Cloud, Inc. y profesor de ciencias computacionales en la Universidad de Stanford. Fundó Electric Cloud con John Graham-Cumming."
+}
+
+### Autor 8
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Titus Winters",
+    "perfil": "http://localhost:4200/assets/img/Autores/Titus Winters.jpg",
+    "info": "Titus Winters es un destacado ingeniero de software y autor conocido por su papel fundamental en el desarrollo y la promoción de prácticas de ingeniería de software efectivas. Reconocido por su experiencia en sistemas de software a gran escala, ha desempeñado un papel crucial en la evolución de la infraestructura de código abierto en Google."
+}

@@ -1,5 +1,6 @@
 export class Autor {
-    constructor(nombreCompleto, perfil, info, _id) {
+    constructor(nombreCompleto, perfil, // imagen de perfil
+    info, _id) {
         this.nombreCompleto = nombreCompleto;
         this.perfil = perfil;
         this.info = info;

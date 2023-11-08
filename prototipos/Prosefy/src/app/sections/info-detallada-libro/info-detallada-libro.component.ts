@@ -3,16 +3,17 @@ import { Libro, LibrosService } from '../../services/libros.service';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Autor, AutoresService } from '../../services/autores.service';
+import { Observable, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-info-detallada-libro',
   templateUrl: './info-detallada-libro.component.html',
   styleUrls: ['./info-detallada-libro.component.css'],
 })
-export class InfoDetalladaLibroComponent implements OnInit {
+export class InfoDetalladaLibroComponent /*implements OnInit*/ {
   libro: Libro | undefined;
   autores: Autor[] = []; // Array para almacenar la información de los autores
-
 
   constructor(
     private librosService: LibrosService,
@@ -22,6 +23,7 @@ export class InfoDetalladaLibroComponent implements OnInit {
     private router: Router
   ) { }
 
+  /*
   ngOnInit() {
     if (this.route && this.route.paramMap) {
       this.route.paramMap.subscribe((params) => {
@@ -32,11 +34,9 @@ export class InfoDetalladaLibroComponent implements OnInit {
           this.libro = this.librosService.getLibroById(libroId);
 
           if (this.libro && this.libro.autores) {
-            this.libro.autores.forEach((nombreAutor) => {
-              const autor = this.autoresService.getAutorByNombre(nombreAutor);
-              if (autor) {
-                this.autores.push(autor);
-              }
+            const observables: Observable<Autor | undefined>[] = this.libro.autores.map((idAutor) => this.getAutor(idAutor));
+            forkJoin(observables).subscribe((autores) => {
+              this.autores = autores.filter((autor) => !!autor) as Autor[];
             });
           }
         } else {
@@ -44,7 +44,7 @@ export class InfoDetalladaLibroComponent implements OnInit {
         }
       });
     }
-  }
+  }*/
 
   formatearFecha(fecha: Date): string {
     const fechaFormateada = this.datePipe.transform(fecha, 'dd MMMM', 'es');
@@ -61,5 +61,9 @@ export class InfoDetalladaLibroComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  getAutor(id: string): Observable<Autor | undefined> {
+    return this.autoresService.getAutor(id);
   }
 }

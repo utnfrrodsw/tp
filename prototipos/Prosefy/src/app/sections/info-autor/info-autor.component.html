@@ -1,15 +1,15 @@
 <div class="container mt-5">
-    <div *ngIf="autor">
-        <h2 class="text-center">{{ autor.nombreCompleto }}</h2>
+    <div *ngIf="autor | async as autorData">
+        <h2 class="text-center">{{ autorData.nombreCompleto }}</h2>
         <h5 class="mt-4">Sobre el autor</h5>
         <hr class="">
         <div class="row mt-4">
             <div class="col-md-3">
-                <img [src]="autor.perfil" alt="Perfil del autor" class="img-fluid rounded-circle"
+                <img [src]="autorData.perfil" alt="Perfil del autor" class="img-fluid rounded-circle"
                     style="max-width: 150px;" />
             </div>
             <div class="col-md-9">
-                <p class="ml-2 mt-4">{{autor.info}}</p>
+                <p class="ml-2 mt-4">{{autorData.info}}</p>
             </div>
         </div>
     </div>

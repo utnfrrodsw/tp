@@ -53,7 +53,7 @@
         <img src="../../../assets/img/envio.png" class="ml-5 img-envio">
         Envío a Rosario
         <span class="envio">{{
-          libro?.precio !== undefined && libro!.precio > 8000
+          libro?.precio !== undefined && libro!.precio > 10000
           ? "GRATIS"
           : "$" +
           calculatePriceInSelectedCurrency(1499).toLocaleString(undefined, {
@@ -61,7 +61,7 @@
           maximumFractionDigits: 0
           })
           }}</span>
-        <small *ngIf="libro?.precio !== undefined && libro!.precio <= 8000">
+        <small *ngIf="libro?.precio !== undefined && libro!.precio <= 10000">
           {{ currencyService.getCurrency() }}
         </small>
       </p>

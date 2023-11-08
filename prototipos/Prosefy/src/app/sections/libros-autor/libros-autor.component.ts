@@ -4,19 +4,16 @@ import { CurrencyService } from '../../services/currency.service';
 import { DatePipe } from '@angular/common';
 import { AutoresService, Autor } from '../../services/autores.service';
 
+// TODO: Mostrar libros de autor y actualizar cuando se elige otro libro
+
 @Component({
   selector: 'app-libros-autor',
   templateUrl: './libros-autor.component.html',
   styleUrls: ['./libros-autor.component.css']
 })
-export class LibrosAutorComponent implements OnInit, OnChanges {
-  @Input() autores: string[] | undefined;
-  autorData: Autor = {
-    id: 0,
-    nombreCompleto: '',
-    perfil: '',
-    info: '',
-  };
+export class LibrosAutorComponent /* implements OnInit */ {
+  /* 
+  @Input() autores: Autor[] | undefined;
   showMore = false;
   libros: Libro[] = [];
   currentPage = 1;
@@ -31,27 +28,10 @@ export class LibrosAutorComponent implements OnInit, OnChanges {
     private autoresService: AutoresService
   ) { }
 
-  ngOnInit(): void {
-    this.libros = this.librosService.getLibros();
-    this.updateAutorData();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['autores'] && !changes['autores'].firstChange) {
-      this.updateAutorData();
-    }
-  }
-
-  updateAutorData(): void {
-    if (this.autores && this.autores.length > 0) {
-      const nombreAutor = this.autores[0];
-      const autorEncontrado = this.autoresService.getAutorByNombre(nombreAutor);
-      if (autorEncontrado) {
-        this.autorData = autorEncontrado;
-        console.log(this.autorData.info);
-        console.log(this.autorData.nombreCompleto);
-      }
-    }
+  ngOnInit() {
+    this.autoresService.getAutores().subscribe((autores) => {
+      this.autores = autores;
+    });
   }
 
   calculatePriceInSelectedCurrency(precio: number): number {
@@ -101,5 +81,5 @@ export class LibrosAutorComponent implements OnInit, OnChanges {
       return this.showMore ? autorData.info : autorData.info.slice(0, 60) + "...";
     }
     return '';
-  }
+  }*/
 }
