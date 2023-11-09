@@ -58,25 +58,23 @@ const serviciosController = {
     },
 
     setAConfirmar: async (req, res) => {
+        console.log('entro')
         const { idSolicitud, id } = req.params;
         try {
             await db.sequelize.transaction(async (t) => {
-            await db.Servicio.update(
-                { estado: "aConfirmar" },
-                {
-                    where: {
-                        idSolicitud: idSolicitud,
-                        idUsuario: idUsuario,
-                    },
-                transaction: t, // La opción de transacción debe ir aquí
-                });
-            res.status(200).json(jsonResponse(200, { message: 'Estado del servicio actualizado con éxito' }));
+                await db.Servicio.update(
+                    { estado: "aConfirmar" },
+                    {
+                        where: {
+                            idSolicitud: idSolicitud,
+                            idUsuario: id,
+                        }, // La opción de transacción debe ir aquí
+                }, {transaction: t});
             });
+            res.status(200).json(jsonResponse(200, { message: 'Estado del servicio actualizado con éxito' }));
         } catch (error) {
          res.status(500).json(jsonResponse(500, { message: 'Error interno en el servidor' }));
         }
     }
-
 };
-    
 module.exports =  serviciosController;
