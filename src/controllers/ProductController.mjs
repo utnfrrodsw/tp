@@ -48,7 +48,7 @@ export const createProduct = async (req, res) => {
                 precio,
                 stock,
             } = req.body;
-            let fotos = [] //para crear departamentos sin imagenes
+            let fotos = [] 
             if (req.files) {
                 fotos = req.files.map(file => file.path.replace(/\\/g, '/').replace(/^src\//, '')); // Obtén las rutas de las imágenes
             }
@@ -72,6 +72,64 @@ export const createProduct = async (req, res) => {
                 error: 'Error al registrar el producto'
             });
         }
+    })
+};
+
+export const updateProduct = async (req, res) => {
+    upload(req, res, async function (err) {
+        if (err instanceof multer.MulterError) {
+            return res.status(500).json({ error: 'ERRROr' });
+        }
+        else if (err) {
+            console.log(err);
+            return res.status(500).json({ error: 'Error al cargar imágenes' });
+        }
+        try {
+        const { productId } = req.params;
+        // Verifica si el producto existe
+        console.log(productId)
+        const product = await ProductModel.findById(productId);
+        if (!product) {
+            return res.status(404).json({
+                message: 'El producto no existe'
+            });
+        }
+
+        // Actualiza los campos del producto según la solicitud
+        const {
+            categoria,
+            nombre,
+            descripcion,
+            precio,
+            stock,
+        } = req.body;
+
+        // Actualiza los campos del producto
+        product.categoria = categoria;
+        product.nombre = nombre;
+        product.descripcion = descripcion;
+        product.precio = precio;
+        product.stock = stock;
+
+        // Si hay imágenes nuevas en la solicitud, actualiza las imágenes
+        if (req.files) {
+            const nuevasFotos = req.files.map(file => file.path.replace(/\\/g, '/').replace(/^src\//, ''));
+            product.fotos = nuevasFotos;
+        }
+
+        // Guarda el producto actualizado
+        await product.save();
+
+        res.status(200).json({
+            message: 'Producto actualizado',
+            product
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Error al actualizar el producto'
+        });
+    }
     })
 };
 
