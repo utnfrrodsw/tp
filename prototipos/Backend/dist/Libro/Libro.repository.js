@@ -1,8 +1,6 @@
 import { db } from "../Shared/db/conn.mongo.js";
 import { ObjectId } from 'mongodb';
 const libros = db.collection('libros');
-const autores = db.collection('autores');
-const editoriales = db.collection('editoriales');
 export class LibroRepository {
     async findAll() {
         try {
@@ -53,13 +51,15 @@ export class LibroRepository {
             throw error;
         }
     }
-    async autorExiste(autorId) {
-        const autor = await autores.findOne({ _id: new ObjectId(autorId) });
-        return autor !== null;
-    }
-    async editorialExiste(editorialId) {
-        const editorial = await editoriales.findOne({ _id: new ObjectId(editorialId) });
-        return editorial !== null;
+    async findByEditorial(editorialId) {
+        try {
+            const librosEncontrados = await libros.find({ editorial: new ObjectId(editorialId) }).toArray();
+            return librosEncontrados;
+        }
+        catch (error) {
+            console.error("Error en findByEditorial:", error);
+            throw error;
+        }
     }
 }
 //# sourceMappingURL=Libro.repository.js.map

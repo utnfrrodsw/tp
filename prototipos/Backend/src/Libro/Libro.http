@@ -1,26 +1,102 @@
 
 
-### Get de editorial
-GET http://Localhost:3000/api/editoriales/2/libros
+### Get de libro
+GET http://Localhost:3000/api/libros
 
-
-
-### Post de editorial
-POST http://localhost:3000/api/editoriales/2/libros
+### Post de libro
+POST http://localhost:3000/api/libros
 Content-Type: application/json
 
 {
-    "isbn": "Nose",
-    "titulo": "Esto no va a funcionar ni a palo",
-    "idioma": "Español",
-    "descripcion": "Ni chanse",
-    "precio": 10.000,
-    "fecha_edicion": "2019-10-10",
-    "autores": ["pepita", "pepito"],
-    "editorial": "Dios sabe",
-    "categorias": ["Terror", "Suspenso"],
-    "formatos": ["Digital", "Fisico"]
+    "isbn": "978-0132350884",
+    "titulo": "Clean Code: A Handbook of Agile Software Craftsmanship",
+    "idioma": "Inglés",
+    "descripcion": "Clean Code: A Handbook of Agile Software Craftsmanship es un libro escrito por Robert C. Martin, conocido como Uncle Bob, que se ha convertido en una referencia fundamental para los desarrolladores de software en la búsqueda de la excelencia en la escritura de código. Publicado en 2008, Clean Code se ha convertido en una lectura obligada para quienes buscan comprender los principios fundamentales de la programación limpia y efectiva.\nEn este libro, Robert C. Martin presenta un enfoque práctico y accesible para mejorar la calidad del código y fomentar una mentalidad centrada en la artesanía del software. A través de numerosos ejemplos y casos de estudio, Martin expone una serie de principios y prácticas que permiten a los desarrolladores crear software flexible, mantenible y de alta calidad. Desde la importancia de elegir nombres significativos para las variables hasta la estructuración adecuada de funciones y clases, Clean Code aborda una variedad de temas esenciales para el desarrollo de software sostenible en el tiempo.\nAl explorar conceptos como la simplicidad, la claridad, la modularidad y la refactorización, el autor destaca la importancia de adoptar una mentalidad proactiva hacia la limpieza del código y la reducción de la deuda técnica. Mediante la aplicación de principios ágiles y el fomento de una cultura de colaboración y responsabilidad, Clean Code proporciona un marco de trabajo práctico y valioso para los desarrolladores de todos los niveles de experiencia en su búsqueda de la excelencia en la artesanía del software.\nEn resumen, Clean Code es una guía esencial para aquellos que desean mejorar su habilidad para escribir y mantener código limpio, legible y fácilmente comprensible. Con su enfoque pragmático y sus numerosos ejemplos, el libro brinda a los desarrolladores las herramientas y estrategias necesarias para elevar la calidad de sus proyectos de software y fomentar una cultura de excelencia en la programación.",
+    "precio": 3500,
+    "fecha_edicion": "2008-7-11",
+    "autores": ["654a8a23e9bd128c04108bbb"],
+    "editorial": "654bee46df333bf9237a1407",
+    "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
+    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"]
 }
 
+### Put de libro
+put http://localhost:3000/api/libros/654d33bbbab2bb43b461ad78
+Content-Type: application/json
+
+{
+    "isbn": "978-0132350884",
+    "titulo": "Clean Code: A Handbook of Agile Software Craftsmanship",
+    "idioma": "Inglés",
+    "descripcion": "Clean Code: A Handbook of Agile Software Craftsmanship es un libro escrito por Robert C. Martin, conocido como Uncle Bob, que se ha convertido en una referencia fundamental para los desarrolladores de software en la búsqueda de la excelencia en la escritura de código. Publicado en 2008, Clean Code se ha convertido en una lectura obligada para quienes buscan comprender los principios fundamentales de la programación limpia y efectiva.\nEn este libro, Robert C. Martin presenta un enfoque práctico y accesible para mejorar la calidad del código y fomentar una mentalidad centrada en la artesanía del software. A través de numerosos ejemplos y casos de estudio, Martin expone una serie de principios y prácticas que permiten a los desarrolladores crear software flexible, mantenible y de alta calidad. Desde la importancia de elegir nombres significativos para las variables hasta la estructuración adecuada de funciones y clases, Clean Code aborda una variedad de temas esenciales para el desarrollo de software sostenible en el tiempo.\nAl explorar conceptos como la simplicidad, la claridad, la modularidad y la refactorización, el autor destaca la importancia de adoptar una mentalidad proactiva hacia la limpieza del código y la reducción de la deuda técnica. Mediante la aplicación de principios ágiles y el fomento de una cultura de colaboración y responsabilidad, Clean Code proporciona un marco de trabajo práctico y valioso para los desarrolladores de todos los niveles de experiencia en su búsqueda de la excelencia en la artesanía del software.\nEn resumen, Clean Code es una guía esencial para aquellos que desean mejorar su habilidad para escribir y mantener código limpio, legible y fácilmente comprensible. Con su enfoque pragmático y sus numerosos ejemplos, el libro brinda a los desarrolladores las herramientas y estrategias necesarias para elevar la calidad de sus proyectos de software y fomentar una cultura de excelencia en la programación.",
+    "precio": 3500,
+    "fecha_edicion": "2008-7-11",
+    "autores": ["654a8a23e9bd128c04108bbb"],
+    "editorial": "654bee46df333bf9237a1407",
+    "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
+    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"]
+}
+
+### Delete de libro
+DELETE http://localhost:3000/api/libros/654d354858bbd30caba73d21
+Content-Type: application/json
+
+### Get de Libro por Editorial
+GET http://localhost:3000/api/libros/editoriales/654bee46df333bf9237a1407
 
 
+// ------------------------
+
+// AGREGAR LIBROS
+// SI ES NECESARIO CAMBIAR IDS PARA QUE COINCIDAN AUTORES, EDITORIAL Y FORMATOS
+
+### Libro 1
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+    "isbn": "978-0132350884",
+    "titulo": "Clean Code: A Handbook of Agile Software Craftsmanship",
+    "idioma": "Inglés",
+    "descripcion": "Clean Code: A Handbook of Agile Software Craftsmanship es un libro escrito por Robert C. Martin, conocido como Uncle Bob, que se ha convertido en una referencia fundamental para los desarrolladores de software en la búsqueda de la excelencia en la escritura de código. Publicado en 2008, Clean Code se ha convertido en una lectura obligada para quienes buscan comprender los principios fundamentales de la programación limpia y efectiva.\nEn este libro, Robert C. Martin presenta un enfoque práctico y accesible para mejorar la calidad del código y fomentar una mentalidad centrada en la artesanía del software. A través de numerosos ejemplos y casos de estudio, Martin expone una serie de principios y prácticas que permiten a los desarrolladores crear software flexible, mantenible y de alta calidad. Desde la importancia de elegir nombres significativos para las variables hasta la estructuración adecuada de funciones y clases, Clean Code aborda una variedad de temas esenciales para el desarrollo de software sostenible en el tiempo.\nAl explorar conceptos como la simplicidad, la claridad, la modularidad y la refactorización, el autor destaca la importancia de adoptar una mentalidad proactiva hacia la limpieza del código y la reducción de la deuda técnica. Mediante la aplicación de principios ágiles y el fomento de una cultura de colaboración y responsabilidad, Clean Code proporciona un marco de trabajo práctico y valioso para los desarrolladores de todos los niveles de experiencia en su búsqueda de la excelencia en la artesanía del software.\nEn resumen, Clean Code es una guía esencial para aquellos que desean mejorar su habilidad para escribir y mantener código limpio, legible y fácilmente comprensible. Con su enfoque pragmático y sus numerosos ejemplos, el libro brinda a los desarrolladores las herramientas y estrategias necesarias para elevar la calidad de sus proyectos de software y fomentar una cultura de excelencia en la programación.",
+    "precio": 3500,
+    "fecha_edicion": "2008-7-11",
+    "autores": ["654a8a23e9bd128c04108bbb"],
+    "editorial": "654bee46df333bf9237a1407",
+    "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
+    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"]
+}
+
+### Libro 2
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+    "isbn": "978-8448129833",
+    "titulo": "Introducción a la Programación Estructurada en C",
+    "idioma": "Español",
+    "descripcion": "Introducción a la Programación Estructurada en C es un libro escrito por Luis Joyanes Aguilar, que se ha convertido en una referencia fundamental para aquellos que buscan comprender los fundamentos de la programación estructurada utilizando el lenguaje de programación C. Publicado originalmente en 1989 y actualizado en ediciones posteriores, el libro proporciona una sólida introducción a los conceptos esenciales de la programación y la lógica de programación.\nA lo largo de sus páginas, Joyanes Aguilar ofrece una explicación detallada y accesible de los elementos clave de la programación estructurada, utilizando el lenguaje C como base para ilustrar estos conceptos. El libro comienza con una introducción a los fundamentos de la programación, cubriendo temas como la estructura básica de un programa, tipos de datos, operadores y expresiones. A medida que avanza, el autor presenta conceptos más avanzados, como el uso de estructuras de control, funciones, punteros y arrays, proporcionando ejemplos prácticos y ejercicios que refuerzan el aprendizaje.\nAdemás de explicar los conceptos teóricos, el autor enfatiza la importancia de la resolución de problemas y el diseño de algoritmos eficientes, lo que permite a los lectores adquirir una comprensión profunda de la lógica subyacente en el desarrollo de programas en C. El enfoque paso a paso y la claridad en la presentación de la información hacen que este libro sea una herramienta valiosa tanto para principiantes como para aquellos que deseen afianzar sus conocimientos en programación estructurada.\nEn resumen, Introducción a la Programación Estructurada en C es una guía práctica y completa que proporciona a los lectores una base sólida en los principios de la programación estructurada, con un enfoque específico en el lenguaje C. Al abordar conceptos desde lo básico hasta temas más avanzados, el libro se convierte en un recurso fundamental para estudiantes y profesionales que buscan comprender los fundamentos de la programación y fortalecer sus habilidades en el desarrollo de software.",
+    "precio": 15999,
+    "fecha_edicion": "2000-1-1",
+    "autores": ["654a8b40e9bd128c04108bbe"],
+    "editorial": "654bfa69df333bf9237a140a",
+    "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
+    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"]
+}
+
+### Libro 3
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+    "isbn": "978-1449355739",
+    "titulo": "Learning Python, 5th Edition",
+    "idioma": "Inglés",
+    "descripcion": "Learning Python, 5th Edition es un libro de programación escrito por Mark Lutz, un reconocido autor en el campo de la programación y la informática. Esta quinta edición del libro sigue siendo una guía integral y detallada para aprender el lenguaje de programación Python, desde sus conceptos básicos hasta técnicas más avanzadas.\nEl libro está diseñado para ser accesible tanto para principiantes como para programadores experimentados que deseen mejorar sus habilidades en Python. Con un enfoque práctico y orientado a proyectos, el autor guía a los lectores a través de los fundamentos de Python, incluyendo sintaxis, tipos de datos, operadores, estructuras de control, funciones y módulos. Además, aborda temas más avanzados como la programación orientada a objetos, el manejo de excepciones, el manejo de archivos y la integración de bases de datos.\nLa quinta edición se actualiza para reflejar las últimas mejoras en Python, incluyendo características clave de Python 3.x, así como consejos y trucos para aprovechar al máximo las capacidades del lenguaje. También cubre aspectos relevantes de programación web, ciencia de datos, inteligencia artificial y otras aplicaciones prácticas de Python en el mundo real.\nCon ejemplos de código claros y explicaciones detalladas, Learning Python, 5th Edition es una guía imprescindible para cualquiera que desee adquirir una comprensión sólida y práctica de Python y sus aplicaciones en diversos campos de la informática y la tecnología.",
+    "precio": 19999,
+    "fecha_edicion": "2013-6-6",
+    "autores": ["654a8b3ee9bd128c04108bbd"],
+    "editorial": "654bf9abdf333bf9237a1408",
+    "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
+    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"]
+}

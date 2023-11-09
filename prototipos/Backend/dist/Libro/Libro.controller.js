@@ -5,7 +5,6 @@ const repository = new LibroRepository();
 async function sanitizeInput(req, res, next) {
     try {
         req.body.sanitizedInput = {
-            id: req.body.id,
             isbn: req.body.isbn,
             titulo: req.body.titulo,
             idioma: req.body.idioma,
@@ -26,6 +25,7 @@ async function sanitizeInput(req, res, next) {
         next();
     }
     catch (error) {
+        console.error("Error en sanitizeInput:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
@@ -36,7 +36,7 @@ async function findAll(req, res) {
     }
     catch (error) {
         console.error("Error en findAll:", error);
-        res.status(500).send({ message: "Error interno del servidor" });
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 async function findOne(req, res) {
@@ -44,32 +44,24 @@ async function findOne(req, res) {
         const id = req.params.id;
         const libro = await repository.findOne({ id });
         if (!libro) {
-            return res.status(404).send({ message: "Libro no encontrado" });
+            return res.status(404).send({ message: "Libro no encontrado." });
         }
         return res.json({ data: libro });
     }
     catch (error) {
+        console.error("Error en findOne:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
-        // Verificar la existencia de los autores en la base de datos
-        const autoresExisten = await Promise.all(input.autores.map((autorId) => repository.autorExiste(autorId)));
-        if (autoresExisten.includes(false)) {
-            return res.status(400).send({ message: 'Al menos uno de los autores no existe.' });
-        }
-        // Verificar la existencia de la editorial en la base de datos
-        const editorialExiste = await repository.editorialExiste(input.editorial);
-        if (!editorialExiste) {
-            return res.status(400).send({ message: 'La editorial no existe.' });
-        }
         const libroInput = new Libro(input.isbn, input.titulo, input.idioma, input.descripcion, input.precio, input.fecha_edicion, input.autores.map((autorId) => new ObjectId(autorId)), new ObjectId(input.editorial), input.categorias, input.formatos);
         const libro = await repository.add(libroInput);
         res.status(201).send({ message: 'Libro agregado con éxito.', data: libro });
     }
     catch (error) {
+        console.error("Error en add:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
@@ -82,16 +74,6 @@ async function update(req, res) {
         if (!libroExiste) {
             return res.status(404).send({ message: "Libro no encontrado." });
         }
-        // Validar que los autores existan
-        const autoresExisten = await Promise.all(updatedData.autores.map((autorId) => repository.autorExiste(autorId)));
-        if (autoresExisten.includes(false)) {
-            return res.status(400).send({ message: 'Al menos uno de los autores no existe.' });
-        }
-        // Validar que la editorial exista
-        const editorialExiste = await repository.editorialExiste(updatedData.editorial);
-        if (!editorialExiste) {
-            return res.status(400).send({ message: 'La editorial no existe.' });
-        }
         // Actualizar el libro
         const updatedLibro = await repository.update(libroId, updatedData);
         if (!updatedLibro) {
@@ -100,6 +82,7 @@ async function update(req, res) {
         return res.status(200).send({ message: 'Libro actualizado con éxito.', data: updatedLibro });
     }
     catch (error) {
+        console.error("Error en update:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
@@ -113,8 +96,23 @@ async function remove(req, res) {
         res.status(204).send({ message: 'Libro eliminado con éxito.' });
     }
     catch (error) {
+        console.error("Error en remove:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove };
+async function findByEditorial(req, res) {
+    try {
+        const editorialId = req.params.editorialId;
+        const libros = await repository.findByEditorial(editorialId);
+        if (!libros || libros.length === 0) {
+            return res.status(404).send({ message: "No se encontraron libros para la editorial proporcionada." });
+        }
+        res.status(200).send({ message: 'Libros encontrados con éxito.', data: libros });
+    }
+    catch (error) {
+        console.error("Error en findByEditorial:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+export { sanitizeInput, findAll, findOne, add, update, remove, findByEditorial };
 //# sourceMappingURL=Libro.controller.js.map

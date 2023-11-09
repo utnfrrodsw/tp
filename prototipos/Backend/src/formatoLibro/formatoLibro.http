@@ -20,8 +20,7 @@ PUT http://localhost:3000/api/formato/654a3766d2295b02b09bbc90
 Content-Type: application/json
 
 {
-    "descripcion": "Ficción",
-    "id": "1"
+    "descripcion": "Físico"
 }
 
 

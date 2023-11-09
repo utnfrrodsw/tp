@@ -13,4 +13,5 @@ export class Libro {
         this._id = _id;
     }
 }
+// TODO: Agregar portada de libro y calificación 
 //# sourceMappingURL=Libro.js.map

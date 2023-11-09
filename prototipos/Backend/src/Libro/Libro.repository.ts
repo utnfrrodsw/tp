@@ -1,13 +1,9 @@
 import { Repository } from "../Shared/repository.js";
 import { Libro } from "./Libro.js";
-import { Autor } from "../Autor/Autor.js";
-import { Editorial } from "../Editorial/Editorial.js";
 import { db } from "../Shared/db/conn.mongo.js";
 import { ObjectId } from 'mongodb'
 
 const libros = db.collection<Libro>('libros')
-const autores = db.collection<Autor>('autores')
-const editoriales = db.collection<Editorial>('editoriales')
 
 export class LibroRepository implements Repository<Libro>{
 
@@ -61,14 +57,13 @@ export class LibroRepository implements Repository<Libro>{
         }
     }
 
-    public async autorExiste(autorId: string): Promise<boolean> {
-        const autor = await autores.findOne({ _id: new ObjectId(autorId) });
-        return autor !== null;
+    public async findByEditorial(editorialId: string): Promise<Libro[] | undefined> {
+        try {
+            const librosEncontrados = await libros.find({ editorial: new ObjectId(editorialId) }).toArray();
+            return librosEncontrados;
+        } catch (error) {
+            console.error("Error en findByEditorial:", error);
+            throw error;
+        }
     }
-
-    public async editorialExiste(editorialId: string): Promise<boolean> {
-        const editorial = await editoriales.findOne({ _id: new ObjectId(editorialId) });
-        return editorial !== null;
-    }
-
 }

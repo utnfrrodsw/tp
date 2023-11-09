@@ -16,7 +16,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use("/api/editoriales/:id/libros", libroRouter);
+app.use("/api/libros", libroRouter);
 app.use("/api/usuarios", usuarioRouter);
 app.use("/api/editoriales", editorialRouter);
 app.use("/api/autores", autorRouter);
