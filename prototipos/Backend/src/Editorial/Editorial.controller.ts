@@ -10,6 +10,7 @@ async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
         req.body.sanitizedInput = {
             descripcion: req.body.descripcion,
             direccion: req.body.direccion,
+            imagen: req.body.imagen,
             id: req.body.id instanceof ObjectId ? req.body.id.toString() : req.body.id
         };
         Object.keys(req.body.sanitizedInput).forEach((key) => {
@@ -50,7 +51,7 @@ async function findOne(req: Request, res: Response) {
 async function add(req: Request, res: Response) {
     try {
         const input = req.body.sanitizedInput;
-        const editorialInput = new Editorial(input.descripcion, input.direccion);
+        const editorialInput = new Editorial(input.descripcion, input.direccion, input.imagen);
         const editorial = await repository.add(editorialInput);
         res.status(201).send({ message: 'Editorial agregada exitosamente', data: editorial });
     } catch (error) {
@@ -86,4 +87,40 @@ async function remove(req: Request, res: Response) {
     }
 }
 
-export { sanitizeInput, findAll, findOne, add, update, remove }
+async function getEditoriales(req: Request, res: Response) {
+    try {
+        const editoriales = await repository.findAll();
+        const editorialIds = editoriales?.map((editorial) => editorial._id);
+        res.json({ data: editorialIds });
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function getNombreCompleto(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const editorial = await repository.findOne({ id });
+        if (!editorial) {
+            return res.status(404).send({ message: "Editorial no encontrada." });
+        }
+        res.json({ data: editorial.descripcion});
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function getImagen(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const editorial = await repository.findOne({ id });
+        if (!editorial) {
+            return res.status(404).send({ message: "Editorial no encontrada." });
+        }
+        res.json({ data: editorial.imagen });
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+export { sanitizeInput, findAll, findOne, add, update, remove, getEditoriales, getNombreCompleto, getImagen }

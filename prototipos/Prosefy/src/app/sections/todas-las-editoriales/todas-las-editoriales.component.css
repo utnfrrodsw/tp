@@ -1,5 +1,3 @@
-
-
 @media only screen and (max-width: 768px){
     
     .container-editoriales{
@@ -43,7 +41,10 @@
 .container-editoriales{
     display: flex;
     flex-direction: column;
-    margin: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    margin-bottom: 10%;
 }
 
 .editoriales-col{
@@ -58,6 +59,8 @@
     height: 175px;
 }
 
+
+
 .editoriales{
     display: flex;
     flex-direction: column;
@@ -71,6 +74,7 @@
 .texto-editorial{
     display: flex;
     flex-direction: column;
+    text-align: center;
     justify-content: center;
     margin-top: 10px;
     margin-left: 10px;

@@ -8,6 +8,9 @@ import { EditorialesService, Editorial } from '../../services/editoriales.servic
 })
 export class TodasLasEditorialesComponent {
   
+  editorialesIds: string[] = [];
+  editorialesData: { [key: string]: { nombreCompleto: string | undefined, imagen: string | undefined } } = {};
+
   isHovered = false;
   
   public editoriales: Editorial[] = [];
@@ -15,10 +18,16 @@ export class TodasLasEditorialesComponent {
   constructor(private editorialesService: EditorialesService) {}
 
   ngOnInit() {
-    (this.editorialesService.getEditoriales()).subscribe((editoriales: any) => {
-      this.editoriales = editoriales;
-      console.log(editoriales);
-      
+    this.editorialesService.getEditorialesIds().subscribe((editorialesIds: string[]) => {
+      this.editorialesIds = editorialesIds;
+      this.editorialesIds.forEach((id) => {
+        this.editorialesService.getNombreCompleto(id).subscribe((nombreCompleto) => {
+          this.editorialesData[id] = { nombreCompleto: nombreCompleto, imagen: '' };
+        });
+        this.editorialesService.getImagen(id).subscribe((imagen) => {
+          this.editorialesData[id].imagen = imagen;
+        });
+      });
     });
   }
 
