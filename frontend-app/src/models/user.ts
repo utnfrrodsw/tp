@@ -14,7 +14,7 @@ export class User {
     LastName: string,
     Email: string,
     Password: string,
-    Address: Address
+    Address: Address,
   ) {
     this.FirstName = FirstName;
     this.LastName = LastName;

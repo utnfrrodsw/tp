@@ -13,10 +13,11 @@ export class ViewUsersComponent implements OnInit {
   viewDataUsers = this.formBuilder.group({
     userUpdatedEmail: ['', [Validators.required, Validators.email]],
   });
+  deletionMessage: string = ''; // Variable para almacenar el mensaje de eliminación
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {}
   ngOnInit(): void {}
 
@@ -28,26 +29,37 @@ export class ViewUsersComponent implements OnInit {
       data.forEach(
         (user: { Editing: boolean; UpdatedEmail: any; Email: any }) => {
           user.Editing = false; // Agrega una bandera de edición a cada usuario
-          // user.UpdatedEmail = user.Email; // Crea una propiedad para almacenar el email actualizado
         }
       );
     });
   }
 
-  updateUser(user: any) {
-    // this.authService.updateUsers(users.Email).subscribe(())
+  updateUser(user: User) {
     user.Editing = !user.Editing;
-    console.log(user);
   }
 
-  handlerUpdate() {
-    
+  handlerUpdate(viewDataUsers: FormGroup, user: any) {
+    if (this.viewDataUsers.valid) {
+      user.UpdatedEmail = viewDataUsers.controls['userUpdatedEmail'].value;
+      console.log(user);
+      this.authService
+        .updateEmailUser(user.UserId, user.UpdatedEmail)
+        .subscribe(() => {});
+    }
   }
 
   deleteUser(users: any) {
-    this.authService.deleteUser(users.UserId).subscribe((user: User) => {
-      // Elimina el usuario del arreglo 'users' local
-      this.users = this.users?.filter((u) => u.UserId !== user.UserId);
-    });
+    this.authService.deleteUser(users.UserId).subscribe(
+      (user: User) => {
+        // Elimina el usuario del arreglo 'users' local
+        this.users = this.users?.filter((u) => u.UserId !== user.UserId);
+        this.deletionMessage = `Usuario ${user.FirstName} ${user.LastName} ha sido borrado`;
+      },
+      (error) => {
+        // Manejar errores si la eliminación falla
+        this.deletionMessage = 'Error al borrar el usuario';
+        console.error(error);
+      }
+    );
   }
 }

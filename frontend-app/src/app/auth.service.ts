@@ -43,7 +43,6 @@ export class AuthService {
   }
 
   deleteUser(UserId: number): Observable<any> {
-    console.log(UserId);
     return this.http.post<any>('http://localhost:3001/users/delete', {
       UserId: UserId,
     });
@@ -55,7 +54,7 @@ export class AuthService {
   updateEmailUser(userId: number, newEmail: string){
     const url = `http://localhost:3001/users/${userId}`;
     const updateData = { UserId: userId, NewEmail: newEmail };
-
+    console.log(updateData);
     return this.http.patch(url, updateData);
   }
 

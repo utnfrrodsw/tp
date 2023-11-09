@@ -4,12 +4,15 @@
     {{ user.FirstName }} {{ user.LastName }}
     <button (click)="deleteUser(user)">Borrar Usuario</button>
     <button (click)="updateUser(user)">Actualizar</button>
+    <ul>
+      <li *ngIf="user.Editing">{{ user.Email }}</li>
+    </ul>
     <form
       *ngIf="user.Editing"
       action=""
       method="post"
       [formGroup]="viewDataUsers"
-      (ngSubmit)="handlerUpdate()"
+      (ngSubmit)="handlerUpdate(viewDataUsers, user)"
     >
       <input
         *ngIf="user.Editing"
@@ -28,6 +31,8 @@
       >
       <button type="submit">Actualizar Email</button>
     </form>
+    <hr />
   </li>
 </ul>
+<div *ngIf="deletionMessage">{{ deletionMessage }}</div>
 <hr />
