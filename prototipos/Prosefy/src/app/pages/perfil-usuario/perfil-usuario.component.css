@@ -1,3 +1,40 @@
+@media only screen and (max-width: 768px){
+    
+    .container-navbar{
+        width: auto;
+        height: 30px;
+        display:flex;
+        flex-direction: column !important;
+        margin-left: 20%;
+        margin-top: 50px;
+        margin-right: 20%;
+    }
+
+    .item-menu{
+        color: rgb(51, 51, 51);
+        text-decoration: none;
+        text-align: center !important;
+        border-left: solid 0px !important ;
+    }
+
+    .boton-info-usuario{
+        justify-content: center !important;
+        margin-right: 30% !important;
+    }
+
+    .collapse{
+        background-color: white;
+        border: solid 1px rgb(209, 209, 209);
+    }
+}
+    
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+
 .img-usuario{
     display: flex;
     justify-content: center;
@@ -11,25 +48,25 @@
 }
 
 .container-navbar{
+    text-align: center;
     width: auto;
-    height: 30px;
+    height: 50px;
     display:flex;
     flex-direction: row;
     margin-left: 20%;
     margin-top: 50px;
     margin-right: 20%;
-    border-right: black 1px solid;
-
+    padding-bottom: 5px;
 }
 
 
 .item-menu{
-    color: rgb(0, 0, 0);
+    color: rgb(51, 51, 51);
     text-decoration: none;
-    text-align: center;
-    height: 30px;
-    width: 16.69%;
-    border-bottom: black 1px solid;
-    border-left: black 1px solid;
-    text-decoration: none;
+    text-align: center !important;
+    border-left: solid 1px black;
+}
+
+.navbar {
+    box-shadow: none !important;
 }
