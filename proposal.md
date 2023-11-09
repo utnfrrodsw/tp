@@ -99,6 +99,7 @@ classDiagram
         +id: int
         +descripcion: string
         +direccion: string
+        +imagen: string
     }
     class Pedido{
         +id: int
