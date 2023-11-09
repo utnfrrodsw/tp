@@ -66,4 +66,34 @@ export class LibroRepository implements Repository<Libro>{
             throw error;
         }
     }
+
+    public async findByAutor(autorId: string): Promise<Libro[] | undefined> {
+        try {
+            const librosEncontrados = await libros.find({ autores: new ObjectId(autorId) }).toArray();
+            return librosEncontrados;
+        } catch (error) {
+            console.error("Error en findByAutor:", error);
+            throw error;
+        }
+    }
+
+    public async findByCategoria(categoriaId: string): Promise<Libro[] | undefined> {
+        try {
+            const librosEncontrados = await libros.find({ categorias: new ObjectId(categoriaId) }).toArray();
+            return librosEncontrados;
+        } catch (error) {
+            console.error("Error en findByCategoria:", error);
+            throw error;
+        }
+    }
+
+    public async findByFormatoLibro(formatoId: string): Promise<Libro[] | undefined> {
+        try {
+            const librosEncontrados = await libros.find({ formatos: new ObjectId(formatoId) }).toArray();
+            return librosEncontrados;
+        } catch (error) {
+            console.error("Error en findByFormatoLibro:", error);
+            throw error;
+        }
+    }
 }

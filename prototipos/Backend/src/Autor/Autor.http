@@ -144,3 +144,53 @@ Content-Type: application/json
     "perfil": "http://localhost:4200/assets/img/Autores/Daniel Zingaro.jpg",
     "info": "Daniel Zingaro es profesor asociado en la Universidad de Toronto Mississauga. Sus principales áreas de investigación son la evaluación de la educación en informática y el aprendizaje en línea."
 }
+
+### Autor 11
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Andrew S. Tanenbaum",
+    "perfil": "http://localhost:4200/assets/img/Autores/Andrew S. Tanenbaum.jpg",
+    "info": "Andrew Stuart 'Andy' Tanenbaum, también conocido como ast o Papá Tanenbaum, es profesor de ciencias de la computación de la Universidad Libre de Ámsterdam, Países Bajos. Tanenbaum es conocido por ser el creador de Minix, una réplica gratuita del sistema operativo UNIX con propósitos educativos."
+}
+
+### Autor 12
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Erich Gamma",
+    "perfil": "http://localhost:4200/assets/img/Autores/Erich Gamma.jpg",
+    "info": "Erich Gamma es un informático suizo. Es actualmente empleado de Microsoft tras pasar por IBM Rational software y ser director del Object Technology International Zurich Lab en Zúrich liderando el desarrollo de la plataforma Eclipse. Formó parte del grupo de los cuatro que popularizaron los patrones de diseño."
+}
+
+### Autor 13
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "John Vlissides",
+    "perfil": "http://localhost:4200/assets/img/Autores/John Vlissides.jpg",
+    "info": "John Matthew Vlissides fue un ingeniero de software conocido principalmente como uno de los cuatro autores del libro Design Patterns: Elements of Reusable Object-Oriented Software. Vlissides se refirió a sí mismo como '#4 de la Banda de los Cuatro y no lo tendría de otra manera'."
+}
+
+### Autor 14
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Richard Helm",
+    "perfil": "http://localhost:4200/assets/img/Autores/Perfil Default.jpg",
+    "info": "Richard Helm es uno de la 'banda de los cuatro' que escribió el influyente libro Design Patterns. En 2006 recibió el Premio Dahl-Nygaard por sus contribuciones al estado del arte plasmado en ese libro."
+}
+
+### Autor 15
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Ralph Johnson",
+    "perfil": "http://localhost:4200/assets/img/Autores/Ralph Johnson.jpg",
+    "info": "Ralph E. Johnson es profesor asociado de investigación en el Departamento de Ciencias de la Computación de la Universidad de Illinois en Urbana-Champaign."
+}

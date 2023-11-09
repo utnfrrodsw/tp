@@ -61,5 +61,35 @@ export class LibroRepository {
             throw error;
         }
     }
+    async findByAutor(autorId) {
+        try {
+            const librosEncontrados = await libros.find({ autores: new ObjectId(autorId) }).toArray();
+            return librosEncontrados;
+        }
+        catch (error) {
+            console.error("Error en findByAutor:", error);
+            throw error;
+        }
+    }
+    async findByCategoria(categoriaId) {
+        try {
+            const librosEncontrados = await libros.find({ categorias: new ObjectId(categoriaId) }).toArray();
+            return librosEncontrados;
+        }
+        catch (error) {
+            console.error("Error en findByCategoria:", error);
+            throw error;
+        }
+    }
+    async findByFormatoLibro(formatoId) {
+        try {
+            const librosEncontrados = await libros.find({ formatos: new ObjectId(formatoId) }).toArray();
+            return librosEncontrados;
+        }
+        catch (error) {
+            console.error("Error en findByFormatoLibro:", error);
+            throw error;
+        }
+    }
 }
 //# sourceMappingURL=Libro.repository.js.map

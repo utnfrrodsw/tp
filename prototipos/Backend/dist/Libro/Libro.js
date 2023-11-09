@@ -1,5 +1,5 @@
 export class Libro {
-    constructor(isbn, titulo, idioma, descripcion, precio, fecha_edicion, autores, editorial, categorias, formatos, _id) {
+    constructor(isbn, titulo, idioma, descripcion, precio, fecha_edicion, autores, editorial, categorias, formatos, portada, calificacion, _id) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.idioma = idioma;
@@ -10,8 +10,9 @@ export class Libro {
         this.editorial = editorial;
         this.categorias = categorias;
         this.formatos = formatos;
+        this.portada = portada;
+        this.calificacion = calificacion;
         this._id = _id;
     }
 }
-// TODO: Agregar portada de libro y calificación 
 //# sourceMappingURL=Libro.js.map

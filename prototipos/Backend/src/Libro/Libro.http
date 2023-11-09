@@ -44,6 +44,14 @@ Content-Type: application/json
 ### Get de Libro por Editorial
 GET http://localhost:3000/api/libros/editoriales/654bee46df333bf9237a1407
 
+### Get de Libro por Autor
+GET http://localhost:3000/api/libros/autores/654a8a23e9bd128c04108bbb
+
+### Get de Libro por Categoria
+GET http://localhost:3000/api/libros/categorias/654a87d834149a6f152448c9
+
+### Get de Libro por Formato
+GET http://localhost:3000/api/libros/formatos/654bfee69906829dff7bca05
 
 // ------------------------
 
@@ -64,7 +72,9 @@ Content-Type: application/json
     "autores": ["654a8a23e9bd128c04108bbb"],
     "editorial": "654bee46df333bf9237a1407",
     "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
-    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"]
+    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"],
+    "portada": "http://localhost:4200/assets/img/Libros/Clean Code.webp",
+    "calificacion": 4.4
 }
 
 ### Libro 2
@@ -81,7 +91,9 @@ Content-Type: application/json
     "autores": ["654a8b40e9bd128c04108bbe"],
     "editorial": "654bfa69df333bf9237a140a",
     "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
-    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"]
+    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"],
+    "portada": "http://localhost:4200/assets/img/Libros/Introducción a la Programación Estructurada en C.jpg",
+    "calificacion": 4
 }
 
 ### Libro 3
@@ -98,5 +110,45 @@ Content-Type: application/json
     "autores": ["654a8b3ee9bd128c04108bbd"],
     "editorial": "654bf9abdf333bf9237a1408",
     "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
-    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"]
+    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"],
+    "portada": "Learning Python.png",
+    "calificacion": 4
+}
+
+### Libro 4
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+    "isbn": "978-0133591620",
+    "titulo": "Sistemas Operativos Modernos",
+    "idioma": "Español",
+    "descripcion": "Sistemas Operativos Modernos es un influyente libro escrito por Andrew S. Tanenbaum, que ha sido ampliamente adoptado en cursos de sistemas operativos en todo el mundo. Publicado por primera vez en 1992 y actualizado en varias ediciones, el libro se ha convertido en un recurso indispensable para estudiantes, profesionales y entusiastas de la informática interesados en comprender a fondo los fundamentos de los sistemas operativos modernos.\nTanenbaum presenta una visión profunda y exhaustiva de los principios fundamentales de los sistemas operativos, abarcando una amplia gama de temas que van desde la administración de procesos y la gestión de memoria hasta la planificación de la CPU y la comunicación entre procesos. A lo largo del libro, el autor aborda conceptos clave como la concurrencia, la sincronización y la comunicación entre procesos, proporcionando ejemplos y casos de estudio para ilustrar de manera clara y práctica estos temas complejos.\nAdemás de discutir los conceptos básicos, el autor también analiza temas más avanzados, como los sistemas de archivos, la protección y la seguridad, así como los sistemas distribuidos y la virtualización. Al integrar ejemplos del mundo real y casos de estudio actuales, Tanenbaum demuestra la relevancia de los sistemas operativos en el panorama tecnológico actual y su papel fundamental en la administración eficiente de recursos y la garantía de la estabilidad y seguridad del sistema.\nCon su enfoque didáctico y su atención a los desarrollos más recientes en el campo de los sistemas operativos, Sistemas Operativos Modernos se ha consolidado como un texto de referencia clave para estudiantes de informática y profesionales de la industria, proporcionando una comprensión sólida y profunda de los principios esenciales que sustentan el funcionamiento de los sistemas informáticos contemporáneos.",
+    "precio": 19899,
+    "fecha_edicion": "2013-6-6",
+    "autores": ["654d44461de02c673186f9ae"],
+    "editorial": "654bee46df333bf9237a1407",
+    "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
+    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"],
+    "portada": "Sistemas Operativos Modernos.webp",
+    "calificacion": 3
+}
+
+### Libro 5
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+    "isbn": "978-0201633610",
+    "titulo": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "idioma": "Inglés",
+    "descripcion": "Este libro revolucionario, publicado en 1994, ha sido un recurso fundamental en el campo de la ingeniería de software y el diseño de software orientado a objetos.\nEl libro Design Patterns: Elements of Reusable Object-Oriented Software es una obra maestra que introduce a los lectores en el concepto de patrones de diseño, proporcionando soluciones probadas y bien documentadas a problemas comunes en el desarrollo de software. A través de ejemplos prácticos y explicaciones detalladas, los autores presentan una colección de patrones de diseño fundamentales, como el patrón Singleton, el patrón Factory, el patrón Observer y muchos otros, que han influido significativamente en la forma en que los desarrolladores abordan el diseño de software.\nEste libro ha sido elogiado por su enfoque en la reutilización de código y la mejora de la eficiencia en el desarrollo de software, al ofrecer soluciones elegantes y flexibles para desafíos comunes en el diseño y la implementación de sistemas orientados a objetos. Con un énfasis en la claridad y la practicidad, el libro proporciona una comprensión profunda de cómo aplicar los patrones de diseño de manera efectiva en una amplia gama de contextos de desarrollo de software.\nEn resumen, Design Patterns: Elements of Reusable Object-Oriented Software ha dejado un legado duradero en la ingeniería de software, al proporcionar a los profesionales y estudiantes de informática un marco de trabajo sólido para abordar problemas comunes en el diseño de software. Su enfoque atemporal y su enfoque práctico han convertido este libro en un recurso indispensable para cualquiera que busque mejorar sus habilidades en el diseño de software orientado a objetos.",
+    "precio": 5099,
+    "fecha_edicion": "1994-10-10",
+    "autores": ["654d45481de02c673186f9b0", "654d47141de02c673186f9b1", "654d487b1de02c673186f9b3", "654d47fd1de02c673186f9b2"],
+    "editorial": "654bfa25df333bf9237a1409",
+    "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
+    "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"],
+    "portada": "Design Patterns.jpg",
+    "calificacion": 5
 }

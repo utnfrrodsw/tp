@@ -18,6 +18,8 @@ async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
             editorial: req.body.editorial,
             categorias: req.body.categorias,
             formatos: req.body.formatos,
+            portada: req.body.portada,
+            calificacion: req.body.portada
         };
 
         // Eliminar claves no definidas
@@ -72,7 +74,9 @@ async function add(req: Request, res: Response) {
             input.autores.map((autorId: string) => new ObjectId(autorId)),
             new ObjectId(input.editorial),
             input.categorias,
-            input.formatos
+            input.formatos,
+            input.portada,
+            input.calificacion
         );
 
         const libro = await repository.add(libroInput);
@@ -137,4 +141,53 @@ async function findByEditorial(req: Request, res: Response) {
     }
 }
 
-export { sanitizeInput, findAll, findOne, add, update, remove, findByEditorial }
+async function findByAutor(req: Request, res: Response) {
+    try {
+        const autorId = req.params.autorId;
+        const libros = await repository.findByAutor(autorId);
+
+        if (!libros || libros.length === 0) {
+            return res.status(404).send({ message: "No se encontraron libros para el autor proporcionado." });
+        }
+
+        res.status(200).send({ message: 'Libros encontrados con éxito.', data: libros });
+    } catch (error) {
+        console.error("Error en findByAutor:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function findByCategoria(req: Request, res: Response) { // TODO: Arreglar este método (no devuelve nada)
+    try {
+        const categoriaId = req.params.categoriaId;
+        const libros = await repository.findByCategoria(categoriaId);
+
+        if (!libros || libros.length === 0) {
+            return res.status(404).send({ message: "No se encontraron libros para la categoría proporcionada." });
+        }
+
+        res.status(200).send({ message: 'Libros encontrados con éxito.', data: libros });
+    } catch (error) {
+        console.error("Error en findByCategoria:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function findByFormatoLibro(req: Request, res: Response) { // TODO: Arreglar este método (no devuelve nada)
+    try {
+        const formatoId = req.params.formatoId;
+        const libros = await repository.findByFormatoLibro(formatoId);
+
+        if (!libros || libros.length === 0) {
+            return res.status(404).send({ message: "No se encontraron libros para el formato proporcionado." });
+        }
+
+        res.status(200).send({ message: 'Libros encontrados con éxito.', data: libros });
+    } catch (error) {
+        console.error("Error en findByFormatoLibro:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+
+export { sanitizeInput, findAll, findOne, add, update, remove, findByEditorial, findByAutor, findByCategoria, findByFormatoLibro }

@@ -12,8 +12,8 @@ export class Libro {
         public editorial: ObjectId,
         public categorias: ObjectId[],
         public formatos: ObjectId[],
+        public portada: string,
+        public calificacion: Double,
         public _id?: ObjectId,
     ) { }
 }
-
-// TODO: Agregar portada de libro y calificación 
