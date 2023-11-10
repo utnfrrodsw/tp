@@ -184,7 +184,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           <div className="form-group">
             <label>Profesion</label>
             <select value={profesion} onChange={(e) => setProfesion(e.target.value)} >
-              <option value="1">seleccione una profesion</option>
+              <option value="0">seleccione una profesion</option>
               {profesiones.length > 0 &&
               profesiones.map((profesion, index) => (
                 <option key={index + 1} value={profesion.idProfesion}>{profesion.nombreProfesion}</option>
@@ -197,7 +197,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           <div className="form-group">
             <label>Direccion</label>
             <select value={direccion} onChange={hendleDireccion}>
-              <option value="1">seleccione una dirección</option>
+              <option value="0">seleccione una dirección</option>
               {direcciones.length > 0 &&
                 direcciones.map((direccion, index) => (
                   <option key={index + 1} value={direccion.idDireccion}>
