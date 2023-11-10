@@ -20,6 +20,7 @@ const direccionesRoutes = require('./routes/direccionesRoutes.js');
 const profesionesRouter = require('./routes/profesionesRouter');
 const presupuestosRoutes = require('./routes/presupuestosRoutes.js');
 const serviciosRoutes = require('./routes/servicioRoutes.js');
+const especialidadesRoutes = require('./routes/especialidadRoutes.js');
 
 //use app
 app.use(express.json());
@@ -35,6 +36,7 @@ app.use('/api/direccion', direccionesRoutes);
 app.use('/api/profesion', profesionesRouter);
 app.use('/api/presupuesto', presupuestosRoutes);
 app.use('/api/servicio', serviciosRoutes);
+app.use('/api/especialidad', especialidadesRoutes);
 
 
 app.use((req, res, next) =>{
