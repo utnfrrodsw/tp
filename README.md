@@ -76,7 +76,7 @@ FLUSH PRIVILEGES;
 En el directorio `server`, ejecuta:
 
 ```bash
-npm start
+npm run dev
 ```
 
 El servidor estará disponible en [http://localhost:PORTBACK](http://localhost:PORTBACK).
