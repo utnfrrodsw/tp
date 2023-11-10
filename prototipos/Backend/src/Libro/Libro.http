@@ -38,7 +38,7 @@ Content-Type: application/json
 }
 
 ### Delete de libro
-DELETE http://localhost:3000/api/libros/654d354858bbd30caba73d21
+DELETE http://localhost:3000/api/libros/5
 Content-Type: application/json
 
 ### Get de Libro por Editorial
@@ -48,7 +48,7 @@ GET http://localhost:3000/api/libros/editoriales/654bee46df333bf9237a1407
 GET http://localhost:3000/api/libros/autores/654a8a23e9bd128c04108bbb
 
 ### Get de Libro por Categoria
-GET http://localhost:3000/api/libros/categorias/654a87d834149a6f152448c9
+GET http://localhost:3000/api/libros/categorias/654a87d534149a6f152448c7
 
 ### Get de Libro por Formato
 GET http://localhost:3000/api/libros/formatos/654bfee69906829dff7bca05
@@ -59,7 +59,7 @@ GET http://localhost:3000/api/libros/formatos/654bfee69906829dff7bca05
 // SI ES NECESARIO CAMBIAR IDS PARA QUE COINCIDAN AUTORES, EDITORIAL Y FORMATOS
 
 ### Libro 1
-POST http://localhost:3000/api/libros
+PUT http://localhost:3000/api/libros/654d364a58bbd30caba73d22
 Content-Type: application/json
 
 {
@@ -78,7 +78,7 @@ Content-Type: application/json
 }
 
 ### Libro 2
-POST http://localhost:3000/api/libros
+PUT http://localhost:3000/api/libros/654d36fe58bbd30caba73d23
 Content-Type: application/json
 
 {
@@ -97,7 +97,7 @@ Content-Type: application/json
 }
 
 ### Libro 3
-POST http://localhost:3000/api/libros
+PUT http://localhost:3000/api/libros/654d37ae58bbd30caba73d24
 Content-Type: application/json
 
 {
@@ -116,7 +116,7 @@ Content-Type: application/json
 }
 
 ### Libro 4
-POST http://localhost:3000/api/libros
+PUT http://localhost:3000/api/libros/654d44bb1de02c673186f9af
 Content-Type: application/json
 
 {
@@ -135,7 +135,7 @@ Content-Type: application/json
 }
 
 ### Libro 5
-POST http://localhost:3000/api/libros
+PUT http://localhost:3000/api/libros/654d48ce1de02c673186f9b4
 Content-Type: application/json
 
 {

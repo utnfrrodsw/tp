@@ -79,7 +79,7 @@ export class LibroRepository implements Repository<Libro>{
 
     public async findByCategoria(categoriaId: string): Promise<Libro[] | undefined> {
         try {
-            const librosEncontrados = await libros.find({ categorias: new ObjectId(categoriaId) }).toArray();
+            const librosEncontrados = await libros.find({ categorias: { $in: [new ObjectId(categoriaId)] } }).toArray();
             return librosEncontrados;
         } catch (error) {
             console.error("Error en findByCategoria:", error);
@@ -89,7 +89,7 @@ export class LibroRepository implements Repository<Libro>{
 
     public async findByFormatoLibro(formatoId: string): Promise<Libro[] | undefined> {
         try {
-            const librosEncontrados = await libros.find({ formatos: new ObjectId(formatoId) }).toArray();
+            const librosEncontrados = await libros.find({ formatos: { $in: [new ObjectId(formatoId)] } }).toArray();
             return librosEncontrados;
         } catch (error) {
             console.error("Error en findByFormatoLibro:", error);

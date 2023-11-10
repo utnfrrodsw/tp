@@ -4,26 +4,14 @@ import { ObjectId } from "mongodb";
 const repository = new LibroRepository();
 async function sanitizeInput(req, res, next) {
     try {
-        req.body.sanitizedInput = {
-            isbn: req.body.isbn,
-            titulo: req.body.titulo,
-            idioma: req.body.idioma,
-            descripcion: req.body.descripcion,
-            precio: req.body.precio,
-            fecha_edicion: req.body.fecha_edicion,
-            autores: req.body.autores,
-            editorial: req.body.editorial,
-            categorias: req.body.categorias,
-            formatos: req.body.formatos,
-            portada: req.body.portada,
-            calificacion: req.body.portada
-        };
-        // Eliminar claves no definidas
-        Object.keys(req.body.sanitizedInput).forEach(key => {
-            if (req.body.sanitizedInput[key] === undefined) {
-                delete req.body.sanitizedInput[key];
+        const requiredKeys = ['isbn', 'titulo', 'idioma', 'descripcion', 'precio', 'fecha_edicion', 'autores', 'editorial', 'categorias', 'formatos', 'portada', 'calificacion'];
+        req.body.sanitizedInput = {};
+        for (const key of requiredKeys) {
+            if (req.body[key] === undefined) {
+                return res.status(400).send({ message: `Campo '${key}' es requerido.` });
             }
-        });
+            req.body.sanitizedInput[key] = req.body[key];
+        }
         next();
     }
     catch (error) {
@@ -58,7 +46,7 @@ async function findOne(req, res) {
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
-        const libroInput = new Libro(input.isbn, input.titulo, input.idioma, input.descripcion, input.precio, input.fecha_edicion, input.autores.map((autorId) => new ObjectId(autorId)), new ObjectId(input.editorial), input.categorias, input.formatos, input.portada, input.calificacion);
+        const libroInput = new Libro(input.isbn, input.titulo, input.idioma, input.descripcion, input.precio, input.fecha_edicion, input.autores.map((autorId) => new ObjectId(autorId)), new ObjectId(input.editorial), input.categorias.map((categoriaId) => new ObjectId(categoriaId)), input.formatos.map((formatoId) => new ObjectId(formatoId)), input.portada, input.calificacion);
         const libro = await repository.add(libroInput);
         res.status(201).send({ message: 'Libro agregado con éxito.', data: libro });
     }
@@ -74,9 +62,15 @@ async function update(req, res) {
         // Verificar si el libro existe antes de intentar actualizarlo
         const libroExiste = await repository.findOne({ id: libroId });
         if (!libroExiste) {
-            return res.status(404).send({ message: "Libro no encontrado." });
+            const objectIdLibroId = new ObjectId(libroId);
+            const libroInput = new Libro(updatedData.isbn, updatedData.titulo, updatedData.idioma, updatedData.descripcion, updatedData.precio, updatedData.fecha_edicion, updatedData.autores, updatedData.editorial, updatedData.categorias, updatedData.formatos, updatedData.portada, updatedData.calificacion, objectIdLibroId);
+            const nuevoLibro = await repository.add(libroInput);
+            if (!nuevoLibro) {
+                return res.status(500).send({ message: "Error al crear el nuevo libro." });
+            }
+            return res.status(201).send({ message: 'Libro creado con éxito.', data: nuevoLibro });
         }
-        // Actualizar el libro
+        // Si el libro existe, lo actualiza
         const updatedLibro = await repository.update(libroId, updatedData);
         if (!updatedLibro) {
             return res.status(500).send({ message: "Error al actualizar el libro." });

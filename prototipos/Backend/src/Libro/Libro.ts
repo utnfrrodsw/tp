@@ -6,14 +6,14 @@ export class Libro {
         public titulo: string,
         public idioma: string,
         public descripcion: string,
-        public precio: Double,
+        public precio: number,
         public fecha_edicion: Date,
         public autores: ObjectId[],
         public editorial: ObjectId,
         public categorias: ObjectId[],
         public formatos: ObjectId[],
         public portada: string,
-        public calificacion: Double,
+        public calificacion: number,
         public _id?: ObjectId,
     ) { }
 }

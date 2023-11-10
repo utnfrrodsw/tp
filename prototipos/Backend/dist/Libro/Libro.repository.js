@@ -73,7 +73,7 @@ export class LibroRepository {
     }
     async findByCategoria(categoriaId) {
         try {
-            const librosEncontrados = await libros.find({ categorias: new ObjectId(categoriaId) }).toArray();
+            const librosEncontrados = await libros.find({ categorias: { $in: [new ObjectId(categoriaId)] } }).toArray();
             return librosEncontrados;
         }
         catch (error) {
@@ -83,7 +83,7 @@ export class LibroRepository {
     }
     async findByFormatoLibro(formatoId) {
         try {
-            const librosEncontrados = await libros.find({ formatos: new ObjectId(formatoId) }).toArray();
+            const librosEncontrados = await libros.find({ formatos: { $in: [new ObjectId(formatoId)] } }).toArray();
             return librosEncontrados;
         }
         catch (error) {
