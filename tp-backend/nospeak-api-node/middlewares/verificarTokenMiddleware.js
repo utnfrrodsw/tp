@@ -1,17 +1,21 @@
 const jwt = require('jsonwebtoken');
 
 function verificarToken(req, res, next) {
+  // Obtenemos el token desde las cabeceras
   const token = req.headers.authorization;
 
+  // Comprobamos si no hay token
   if (!token) {
     return res.status(401).json({ message: 'Token no proporcionado' });
   }
 
+  // Verificamos el token
   jwt.verify(token, '1234', (error, usuario) => {
     if (error) {
       return res.status(401).json({ message: 'Token inválido' });
     }
 
+    // Almacenamos el usuario en la petición
     req.usuario = usuario;
     next();
   });
