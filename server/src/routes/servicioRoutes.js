@@ -7,6 +7,6 @@ router.get('/isreviewed/:idSolicitud/:idUsuario', servicioController.isReviewed)
 
 router.patch('/setreview/:idSolicitud/:idUsuario', servicioController.setReview);
 
-router.patch('/ATerminar/:idSolicitud/prestador/:id',servicioController.setAConfirmar);
+router.patch('/aterminar/:idSolicitud/prestador/:id',servicioController.setAConfirmar);
 
 module.exports = router;

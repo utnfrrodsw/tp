@@ -25,7 +25,10 @@ function DetalleServicio() {
 
   const updateServicio = async () => {
     try {
-      fetch(`${API_URL}/servicio/ATerminar/${idSolicitud}/prestador/${user.id}`);
+      console.log('solicitar finalizacion');
+      fetch(`${API_URL}/servicio/aterminar/${idSolicitud}/prestador/${user.id}`, {
+        method: 'PATCH',
+      });
       setSuccessMessage('El servicio se actualizó exitosamente.');
       setTimeout(() => {
           history('/provider/home/add/');
