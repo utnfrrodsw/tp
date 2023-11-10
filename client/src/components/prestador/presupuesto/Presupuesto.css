@@ -101,3 +101,13 @@ button{
   background-color: gray;
   color: aliceblue;
 }
+
+.scroll-container {
+  max-height: 80vh;
+  /* Ajusta la altura máxima según tus necesidades */
+  overflow-y: auto;
+  padding: 10px;
+  /* Puedes ajustar el espaciado según tus necesidades */
+}
+
+/* Agrega cualquier otro estilo que desees para el scroll-container */

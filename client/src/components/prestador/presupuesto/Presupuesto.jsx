@@ -93,7 +93,7 @@ function Presupuesto(props) {
       });
   };
   return (
-    <>
+    <div className='scroll-container'>
       <div className="anuncio-Content">
         {anuncio ? (
           <>
@@ -168,7 +168,7 @@ function Presupuesto(props) {
       <button type="button" onClick={() => history(-1)}>Atrás</button>
       <button type="submit">Enviar presupuesto</button>
     </form>
-  </>
+  </div>
   )
 }
 
