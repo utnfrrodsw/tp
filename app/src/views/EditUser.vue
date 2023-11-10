@@ -106,7 +106,7 @@
         const token = localStorage.getItem('token')
         const decoded = JSON.parse(atob(token.split('.')[1]))
         const id = decoded.user.id
-        const apiUrl = process.env.VUE_APP_API_URL;
+        const apiUrl = process.env.VUE_APP_API_URL
         const url = `${apiUrl}api/users/${id}`
         const response = await fetch(url, {
           headers: {
@@ -127,7 +127,7 @@
         this.loading = true
 
         try {
-          const apiUrl = process.env.VUE_APP_API_URL;
+          const apiUrl = process.env.VUE_APP_API_URL
           const url = `${apiUrl}api/user/${this.user.id}`
           const response = await fetch(url, {
             method: 'PUT',

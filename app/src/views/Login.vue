@@ -46,7 +46,7 @@
             password: this.password
           }
           const redirectPath = this.$route.query.redirect || '/'
-          const apiUrl = process.env.VUE_APP_API_URL;
+          const apiUrl = process.env.VUE_APP_API_URL
           const url = `${apiUrl}api/auth/login`
           const response = await axios.post(url, body)
           const data = await response.data

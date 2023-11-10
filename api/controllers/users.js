@@ -1,4 +1,5 @@
 const { User } = require('../sequelize')
+const bcrypt = require('bcryptjs')
 
 const getUsers = async (req, res) => {
   try {
@@ -32,6 +33,11 @@ const updateUser = async (req, res) => {
 
   if (!id) {
     return res.status(400).send('Ups! Error')
+  }
+
+  if (password) {
+    const salt = await bcrypt.genSalt(10)
+    const password = await bcrypt.hash(password, salt)
   }
 
   try {

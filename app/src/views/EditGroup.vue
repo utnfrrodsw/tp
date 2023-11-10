@@ -54,7 +54,7 @@
   </v-container>
 </template>
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   name: "EditGroup",
@@ -66,89 +66,89 @@ export default {
       mostrarAgregarTecnico: false,
       tecnicosDisponibles: [],
       tecnicoSeleccionado: null,
-    };
+    }
   },
   mounted() {
-    this.numGrupo = this.$route.params.idGrupo;
-    const tecnicosIds = this.$route.params.tecnicosIds;
-    this.fetchTecnicos(tecnicosIds);
-    this.fetchTecnicosDisponibles();
+    this.numGrupo = this.$route.params.idGrupo
+    const tecnicosIds = this.$route.params.tecnicosIds
+    this.fetchTecnicos(tecnicosIds)
+    this.fetchTecnicosDisponibles()
   },
   methods: {
     mostrarMensajeEliminado() {
-      this.mensajeEliminado = true;
+      this.mensajeEliminado = true
       // Actualizar la vista para mostrar los técnicos actuales en el grupo
-      this.fetchTecnicos();
+      this.fetchTecnicos()
     },
     async fetchTecnicos(tecnicosIds) {
       try {
         const requests = tecnicosIds.map((idTecnico) =>
           axios.get(`http://localhost:4000/api/technicians/${idTecnico}`)
-        );
-        const responses = await axios.all(requests);
-        this.tecnicos = responses.map((response) => response.data.body[0]);
+        )
+        const responses = await axios.all(requests)
+        this.tecnicos = responses.map((response) => response.data.body[0])
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
     },
     async fetchTecnicosDisponibles() {
       try {
-        const apiUrl = process.env.VUE_APP_API_URL;
+        const apiUrl = process.env.VUE_APP_API_URL
         const url = `${apiUrl}api/group_technicians/`
         const response = await axios.get(
           url
-        );
-        this.tecnicosDisponibles = response.data.body;
+        )
+        this.tecnicosDisponibles = response.data.body
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
     },
     eliminarTecnico(idTecnico) {
   const data = {
     idGupo: this.numGrupo,
     idTecnico: idTecnico,
-  };
+  }
   axios
     .put("http://localhost:4000/api/grupos/editarGrupo", data)
     .then((response) => {
-      console.log(response.data);
+      console.log(response.data)
       // Eliminar el técnico de la lista tecnicos
-      this.tecnicos = this.tecnicos.filter((tecnico) => tecnico.id !== idTecnico);
-      this.mostrarMensajeEliminado();
+      this.tecnicos = this.tecnicos.filter((tecnico) => tecnico.id !== idTecnico)
+      this.mostrarMensajeEliminado()
     })
     .catch((error) => {
-      console.error(error);
+      console.error(error)
       // Manejar errores en caso de que la solicitud PUT falle
-    });
+    })
 },
 
 agregarTecnico() {
   // Obtener el técnico seleccionado por su ID
   const tecnicoSeleccionado = this.tecnicosDisponibles.find(
     (tecnico) => tecnico.id === this.tecnicoSeleccionado
-  );
+  )
   if (tecnicoSeleccionado) {
     const data = {
       idGupo: this.numGrupo,
       idTecnico: tecnicoSeleccionado.id,
-    };
+    }
     axios
       .post("http://localhost:4000/api/grupos/agregarGrupo", data)
       .then((response) => {
-        console.log(response.data);
-        this.mostrarMensajeEliminado();
+        console.log(response.data)
+        this.mostrarMensajeEliminado()
         // Agregar el nuevo técnico a la lista tecnicos
-        this.tecnicos.push(tecnicoSeleccionado);
-        this.tecnicoSeleccionado = null; // Restablecer el valor seleccionado en la lista desplegable
-        this.mostrarAgregarTecnico = false; // Cerrar el diálogo
+        this.tecnicos.push(tecnicoSeleccionado)
+        this.tecnicoSeleccionado = null // Restablecer el valor seleccionado en la lista desplegable
+        this.mostrarAgregarTecnico = false // Cerrar el diálogo
       })
       .catch((error) => {
-        console.error(error);
+        console.error(error)
         // Manejar errores en caso de que la solicitud PUT falle
-      });
+      })
   }
 },
 
   },
-};
+}
 </script>

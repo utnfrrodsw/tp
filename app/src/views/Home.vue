@@ -44,7 +44,7 @@
     methods: {
       fetchData() {
         axios
-          const apiUrl = process.env.VUE_APP_API_URL;
+          const apiUrl = process.env.VUE_APP_API_URL
           const url = `${apiUrl}api/tasks/sum-tasks`
           .get(url)
           .then(response => {

@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const { Technician, GroupTechnician } = require('../sequelize');
+const Sequelize = require('sequelize')
+const { Technician, GroupTechnician } = require('../sequelize')
 
 const freeTechnicians = async (req, res) => {
   try {
@@ -9,9 +9,9 @@ const freeTechnicians = async (req, res) => {
         date_end: null
       },
       raw: true
-    });
+    })
 
-    const technicianIdsInAssignments = techniciansInAssignments.map((tech) => tech.technicianId);
+    const technicianIdsInAssignments = techniciansInAssignments.map((tech) => tech.technicianId)
 
     const freeTechniciansDetails = await Technician.findAll({
       where: {
@@ -19,16 +19,16 @@ const freeTechnicians = async (req, res) => {
           [Sequelize.Op.notIn]: technicianIdsInAssignments
         }
       }
-    });
+    })
 
-    res.status(200).json(freeTechniciansDetails);
-    console.log(freeTechniciansDetails);
+    res.status(200).json(freeTechniciansDetails)
+    console.log(freeTechniciansDetails)
   } catch (error) {
-    console.log(error);
-    res.status(400).send('Ups! Error');
+    console.log(error)
+    res.status(400).send('Ups! Error')
   }
-};
+}
 
 module.exports = {
   freeTechnicians
-};
+}

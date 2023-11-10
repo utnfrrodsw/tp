@@ -33,11 +33,11 @@
     data() {
       return {
         groups: [],
-      };
+      }
     },
     async mounted() {
       try {
-        const apiUrl = process.env.VUE_APP_API_URL;
+        const apiUrl = process.env.VUE_APP_API_URL
         const url = `${apiUrl}api/groups`
         const response = await fetch(url)
         const data = await response.json()

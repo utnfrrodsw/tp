@@ -49,7 +49,7 @@
         this.loading = true
 
         try {
-          const apiUrl = process.env.VUE_APP_API_URL;
+          const apiUrl = process.env.VUE_APP_API_URL
           const url = `${apiUrl}api/groups`
           const token = localStorage.getItem('token')
           const response = await fetch(url, {

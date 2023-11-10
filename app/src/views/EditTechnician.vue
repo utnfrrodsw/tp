@@ -104,7 +104,7 @@
               name: this.tecnico.name,
               date_born: this.tecnico.date_born
             }
-            const apiUrl = process.env.VUE_APP_API_URL;
+            const apiUrl = process.env.VUE_APP_API_URL
             const url = `${apiUrl}api/technicians/${this.tecnico.id}`
             const response = await axios.put(url, body)
             const data = await response.data
