@@ -15,11 +15,11 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [direcciones, setDirecciones] = useState([]);
   const [fotos, setFotos] = useState(null);
   const [errorProfesiones, setErrorProfesiones] = useState(false);
-  const [errorTitulo, setErrorTitulo] = useState(false);
-  const [errorDescripcion, setErrorDescripcion] = useState(false);
-  const [errorProfesion, setErrorProfesion] = useState(false);
-  const [errorDirecciones, setErrorDirecciones] = useState(false);
-  const [errorFotos, setErrorFotos] = useState(false);
+  const [errorTitulo, setErrorTitulo] = useState("");
+  const [errorDescripcion, setErrorDescripcion] = useState("");
+  const [errorProfesion, setErrorProfesion] = useState("");
+  const [errorDirecciones, setErrorDirecciones] = useState("");
+  const [errorFotos, setErrorFotos] = useState("");
   const [error, setError] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const auth = useAuth();
@@ -89,20 +89,29 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
     setEnviando(true);
     //Validar los campos del formulario
     if (!titulo || !descripcion || !profesion || !direccion || fotos.length === 0) {
-      if (!titulo) setErrorTitulo(true);
-      if (!descripcion) setErrorDescripcion(true);
-      if (!profesion) setErrorProfesion(true);
-      if (!direccion) setErrorDirecciones(true);
-      if (fotos.length === 0) setErrorFotos(true);
+      if (!titulo) setErrorTitulo("El titulo es requerido");
+      if (!descripcion) setErrorDescripcion("La descripcion es requerida");
+      if (!profesion) setErrorProfesion("La profesion es requerida");
+      if (!direccion) setErrorDirecciones("La direccion es requerida");
+      if (fotos.length === 0) setErrorFotos("Debe cargar al menos una foto");
+      if (fotos.length > 5) setErrorFotos("Solo puede cargar hasta 5 fotos");
+      setEnviando(false);
+      setTimeout(() => {
+        setErrorTitulo("");
+        setErrorDescripcion("");
+        setErrorProfesion("");
+        setErrorDirecciones("");
+        setErrorFotos("");
+      }, 10000);
       return;
     }
 
-    console.log("footoss" + fotos)
     const formdata = new FormData();
     formdata.append('titulo', titulo);
     formdata.append('descripcion', descripcion);
     formdata.append('idProfesion', profesion);
     formdata.append('idDireccion', direccion);
+    fotos &&
     fotos.forEach((foto) => {
       formdata.append('fotos', foto);
     });
@@ -119,11 +128,29 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
       })
       .then((res) => res.json())
       .then((data) => {
-        setEnviando(false);
-        hendleSolicitudesUpdate();
-        handleClose();
-        console.log(data);
-      })
+              if(data.error){
+                console.log(data.error);
+                data.error.map((error) => {
+                  if(error.path === 'titulo') setErrorTitulo(error.msg);
+                  if(error.path === 'descripcion') setErrorDescripcion(error.msg);
+                  if(error.path === 'idProfesion') setErrorProfesion(error.msg);
+                  if(error.path === 'idDireccion') setErrorDirecciones(error.msg);
+                  if(error.path === 'fotos') setErrorFotos(error.msg);
+                  return null;
+                });
+                setTimeout(() => {
+                  setErrorTitulo("");
+                  setErrorDescripcion("");
+                  setErrorProfesion("");
+                  setErrorDirecciones("");
+                  setErrorFotos("");
+                }, 10000);
+              }else{
+                setEnviando(false);
+                hendleSolicitudesUpdate();
+                handleClose();
+              }
+            })
       .catch((error) => {
         setEnviando(false);
         setError(true);
@@ -174,12 +201,12 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           <div className="form-group">
             <label>Título</label>
             <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
-            {errorTitulo && <span className="error-message">Ingrese un título</span>}
+            {errorTitulo && <span className="error-message">{errorTitulo}</span>}
           </div>
           <div className="form-group">
             <label>Descripción</label>
             <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
-            {errorDescripcion && <span className="error-message">Ingrese una descripción</span>}
+            {errorDescripcion && <span className="error-message">{errorDescripcion}</span>}
           </div>
           <div className="form-group">
             <label>Profesion</label>
@@ -191,7 +218,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
               ))}
               {/* Agrega más opciones según tus necesidades */}
             </select>
-            {errorProfesion && <span className="error-message">Seleccione una profesion</span>}
+            {errorProfesion && <span className="error-message">{errorProfesion}</span>}
             {errorProfesiones && <span className="error-message">Error al traer profesiones</span>}
           </div>
           <div className="form-group">
@@ -209,12 +236,12 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
                   </option>
                 ))}
             </select>
-            {errorDirecciones && <span className="error-message">Ingrese una direccion valida</span>}
+            {errorDirecciones && <span className="error-message">{errorDirecciones}</span>}
           </div>
           <div className="form-group">
             <label>Fotos</label>
             <input type="file" multiple onChange={handleFileChange} />
-            {errorFotos && <span className="error-message">Ingrese al menos una foto</span>}
+            {errorFotos && <span className="error-message">{errorFotos}</span>}
           </div>
         </Modal.Body>
         <Modal.Footer>
