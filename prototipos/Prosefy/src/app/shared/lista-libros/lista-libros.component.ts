@@ -32,7 +32,7 @@ export class ListaLibrosComponent implements OnInit {
 
   constructor(
     public currencyService: CurrencyService,
-    public librosService: LibrosService
+    private librosService: LibrosService
   ) { }
 
   ngOnInit() {
