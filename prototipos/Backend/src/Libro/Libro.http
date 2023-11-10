@@ -53,6 +53,15 @@ GET http://localhost:3000/api/libros/categorias/654a87d534149a6f152448c7
 ### Get de Libro por Formato
 GET http://localhost:3000/api/libros/formatos/654bfee69906829dff7bca05
 
+### Get IDs de Libro
+GET http://localhost:3000/api/libros/libros
+
+### Get Autores
+GET http://localhost:3000/api/libros/getautores/654d48ce1de02c673186f9b4
+
+### Get ISBN de Libro
+GET http://localhost:3000/api/libros/isbn/654d364a58bbd30caba73d22
+
 // ------------------------
 
 // AGREGAR LIBROS

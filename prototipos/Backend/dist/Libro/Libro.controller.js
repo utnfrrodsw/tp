@@ -152,5 +152,171 @@ async function findByFormatoLibro(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, findByEditorial, findByAutor, findByCategoria, findByFormatoLibro };
+async function getLibros(req, res) {
+    try {
+        const libros = await repository.findAll();
+        const libroIds = libros?.map((libro) => libro._id);
+        res.json({ data: libroIds });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getIsbn(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.isbn });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getTitulo(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.titulo });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getIdioma(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.idioma });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getDescripcion(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.descripcion });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getPrecio(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.precio });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getFechaEdicion(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.fecha_edicion });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getAutores(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.autores });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getCategorias(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.categorias });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getFormatos(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.formatos });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getEditorial(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.editorial });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getPortada(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.portada });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getCalificacion(req, res) {
+    try {
+        const id = req.params.id;
+        const libro = await repository.findOne({ id });
+        if (!libro) {
+            return res.status(404).send({ message: "Libro no encontrado." });
+        }
+        res.json({ data: libro.calificacion });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+export { sanitizeInput, findAll, findOne, add, update, remove, findByEditorial, findByAutor, findByCategoria, findByFormatoLibro, getLibros, getIsbn, getTitulo, getIdioma, getDescripcion, getPrecio, getFechaEdicion, getAutores, getEditorial, getCategorias, getFormatos, getPortada, getCalificacion };
 //# sourceMappingURL=Libro.controller.js.map
