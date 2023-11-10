@@ -56,7 +56,10 @@ function Presupuesto(props) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    
+    if (selectedDates.length === 0) {
+    setSuccessMessage('Debes seleccionar al menos una fecha y hora.');
+    return;
+    }
     // Crea un objeto con los datos del presupuesto
     const presupuestoData = {
       idSolicitud: anuncio.idSolicitud,
@@ -67,7 +70,7 @@ function Presupuesto(props) {
       costoxHora: costoxHora,
       fechasSeleccionadas: selectedDates,
     };
-    console.log(anuncio.idSolicitud);
+
     // Realiza una solicitud POST para enviar el presupuesto a la base de datos
     fetch(`${API_URL}/presupuesto/nuevoPresupuesto`, {
       method: 'POST',
@@ -111,12 +114,17 @@ function Presupuesto(props) {
           {successMessage && <div className="modal show" style={{ display: 'block', position: 'center' }}>
             <Modal.Dialog>
               <Modal.Header>
-                <Modal.Title><h1>ATENCION</h1></Modal.Title>
+                <Modal.Title>
+                  <h1>ATENCIÓN</h1>
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <p>{successMessage}</p>
               </Modal.Body>
-              </Modal.Dialog>
+              <Modal.Footer>
+                <button onClick={() => setSuccessMessage('')}>Cerrar</button>
+              </Modal.Footer>
+            </Modal.Dialog>
           </div>}
       <div className='campos'>
         <div className='listaMat'>
