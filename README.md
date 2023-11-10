@@ -1,8 +1,11 @@
 # FastServices
 
-FastServices es una aplicación web que permite a los usuarios solicitar servicios, como electricistas y fontaneros, de manera rápida y sencilla. Además, brinda la posibilidad a profesionales de registrarse como proveedores de servicios y enviar presupuestos con fechas disponibles para realizar los servicios.
+FastServices representa una plataforma web de servicios, diseñada para brindar a los usuarios la facilidad de solicitar una variedad de servicios, incluyendo pero no limitándose a electricistas, fontaneros, y una amplia gama de opciones. Nuestra aplicación está diseñada para facilitar un proceso rápido y sencillo para que los clientes encuentren y soliciten los servicios que necesitan.
 
-## Requisitos
+Además, FastServices ofrece la posibilidad de que profesionales se conviertan en proveedores de servicios registrados en nuestra plataforma. Como proveedor, tienes la capacidad de enviar presupuestos detallados, especificando fechas disponibles para llevar a cabo los servicios. Esto no solo permite una mayor visibilidad para tu negocio, sino que también simplifica el proceso de gestión y contratación de servicios para los usuarios. Nuestra plataforma se esfuerza por brindar una experiencia eficiente y efectiva tanto para los solicitantes de servicios como para los proveedores.
+
+
+## Requisitos para la instalación
 
 Asegúrate de tener instalada la versión 18 de Node.js.
 
@@ -34,9 +37,9 @@ Crea un archivo `.env` en el directorio `server` con el siguiente contenido:
 
 ```env
 PORT=5000
-ACCESS_TOKEN_SECRET=84c4a2c5-c807-4edc-b76e-1bc25bdc4db4
-REFRESH_TOKEN_SECRET=dcfb7493-718c-495a-adc7-3dc3e792c122
-API_URL=http://localhost:5000/api
+ACCESS_TOKEN_SECRET= secret
+REFRESH_TOKEN_SECRET= secret2
+API_URL=http://localhost:PORTBACK/api
 ```
 
 ### Cliente (frontend)
@@ -44,7 +47,7 @@ API_URL=http://localhost:5000/api
 Crea un archivo `.env` en el directorio `client` con el siguiente contenido:
 
 ```env
-API_URL=http://localhost:5000/api
+API_URL=http://localhost:PORTBACK/api
 ```
 
 ## Configuración de la Base de Datos
@@ -76,7 +79,7 @@ En el directorio `server`, ejecuta:
 npm start
 ```
 
-El servidor estará disponible en [http://localhost:5000](http://localhost:5000).
+El servidor estará disponible en [http://localhost:PORTBACK](http://localhost:PORTBACK).
 
 ### Cliente (frontend)
 
@@ -86,4 +89,4 @@ En el directorio `client`, ejecuta:
 npm start
 ```
 
-La aplicación de React estará disponible en [http://localhost:3000](http://localhost:3000).
+La aplicación de React estará disponible en [http://localhost:PORTFRONT](http://localhost:PORTFRONT).
