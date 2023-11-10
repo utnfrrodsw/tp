@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CurrencyService } from '../../services/currency.service';
-import { Libro, LibrosService } from '../../services/libros.service'; // Obtiene los libros del servicio
+import { Libro, LibrosService } from '../../services/libros.service';
+import { forkJoin, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-lista-libros',
@@ -8,9 +9,18 @@ import { Libro, LibrosService } from '../../services/libros.service'; // Obtiene
   styleUrls: ['./lista-libros.component.css'],
 })
 export class ListaLibrosComponent implements OnInit {
-  libros: Libro[] = [];
   elementosAlInicio: boolean = true;
   elementosAlFinal: boolean = false;
+  librosIds: string[] = [];
+  librosData: {
+    [key: string]: {
+      titulo: string | undefined,
+      descripcion: string | undefined,
+      precio: number | undefined,
+      portada: string | undefined,
+    }
+  } = {};
+  librosAMostrar: any = [];
 
   // Índice del elemento actual en la lista de libros
   elementoActual = 0;
@@ -19,32 +29,59 @@ export class ListaLibrosComponent implements OnInit {
   // Longitud máxima de la descripción de un libro
   descripcionMaxLength: number = 60;
 
+
   constructor(
     public currencyService: CurrencyService,
-    private librosService: LibrosService
-  ) {}
+    public librosService: LibrosService
+  ) { }
 
-  ngOnInit(): void {
-    this.libros = this.librosService.getLibros();
+  ngOnInit() {
+    this.librosService.getLibrosIds().subscribe((librosIds: string[]) => {
+      console.log("Libros Ids: ", librosIds); // Verifica que los Ids se estén cargando correctamente
+      this.librosIds = librosIds;
+
+      const requests = librosIds.map(id =>
+        forkJoin({
+          titulo: this.librosService.getTitulo(id),
+          descripcion: this.librosService.getDescripcion(id),
+          precio: this.librosService.getPrecio(id),
+          portada: this.librosService.getPortada(id)
+        }).pipe(map(({ titulo, descripcion, precio, portada }) => ({ id, titulo, descripcion, precio, portada })))
+      );
+
+      forkJoin(requests).subscribe((libros) => {
+        console.log("Libros Data: ", libros); // Verifica que los datos de los libros se estén cargando correctamente
+        libros.forEach(libro => {
+          this.librosData[libro.id] = { titulo: libro.titulo, descripcion: libro.descripcion, precio: libro.precio, portada: libro.portada };
+        });
+
+        this.actualizarLibrosAMostrar();
+      });
+    });
   }
 
-  // Método para mover la lista de libros hacia la izquierda
   moverIzquierda() {
     if (this.elementoActual > 0) {
       this.elementoActual -= this.elementosPorPaso;
+      this.actualizarLibrosAMostrar();
     }
     this.elementosAlFinal = false;
     this.elementosAlInicio = this.elementoActual === 0;
   }
 
-  // Método para mover la lista de libros hacia la derecha
   moverDerecha() {
-    if (this.elementoActual < this.libros.length - this.elementosPorPaso) {
+    if (this.elementoActual < this.librosIds.length - this.elementosPorPaso) {
       this.elementoActual += this.elementosPorPaso;
+      this.actualizarLibrosAMostrar();
     }
     this.elementosAlInicio = false;
-    this.elementosAlFinal =
-      this.elementoActual + this.elementosPorPaso >= this.libros.length;
+    this.elementosAlFinal = this.elementoActual + this.elementosPorPaso >= this.librosIds.length;
+  }
+
+  actualizarLibrosAMostrar() {
+    const fin = Math.min(this.elementoActual + this.elementosPorPaso, this.librosIds.length);
+    this.librosAMostrar = this.librosIds.slice(this.elementoActual, fin)
+      .map(id => this.librosData[id]);
   }
 
   // Escuchar el evento de redimensionamiento de la ventana
@@ -65,9 +102,10 @@ export class ListaLibrosComponent implements OnInit {
     }
 
     // Asegurarse de que el elemento actual no sea mayor al total de elementos
-    if (this.elementoActual + this.elementosPorPaso > this.libros.length) {
-      this.elementoActual = this.libros.length - this.elementosPorPaso;
+    if (this.elementoActual + this.elementosPorPaso > (this.librosIds.length || 0)) {
+      this.elementoActual = (this.librosIds.length || 0) - this.elementosPorPaso;
     }
+    this.actualizarLibrosAMostrar();
   }
 
   calculatePriceInSelectedCurrency(precio: number): number {

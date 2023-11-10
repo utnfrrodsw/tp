@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Libro, LibrosService } from '../../services/libros.service';
+import { catchError, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-opiniones-libro',
@@ -17,20 +19,25 @@ export class OpinionesLibroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.route && this.route.paramMap) {
-      this.route.paramMap.subscribe((params) => {
+    this.route.paramMap.pipe(
+      switchMap(params => {
         const idParam = params.get('id');
 
-        if (idParam !== null) {
-          const libroId = parseInt(idParam, 10);
-          this.libro = this.librosService.getLibroById(libroId);
+        if (idParam) {
+          // Convertir idParam a string
+          const libroId = idParam.toString();
+          return this.librosService.getLibro(libroId);
         } else {
           this.router.navigate(['/inicio']);
+          return of(null);
         }
-      });
-    } else {
-      // Manejo del caso en el que this.route o this.route.paramMap son undefined
-      console.error('this.route o this.route.paramMap es undefined');
-    }
+      }),
+      catchError(error => {
+        console.error('Error obteniendo el libro:', error);
+        return of(null);
+      })
+    ).subscribe(libro => {
+      this.libro = libro as Libro;
+    });
   }
-}  
+}

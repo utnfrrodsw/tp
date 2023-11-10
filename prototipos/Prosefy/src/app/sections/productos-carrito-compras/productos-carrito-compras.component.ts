@@ -29,9 +29,18 @@ export class ProductosCarritoComprasComponent implements OnInit {
 
   obtenerLibrosEnCarrito() {
     const librosEnCarritoIds = this.carritoService.getLibrosEnCarrito();
-    this.libros = this.librosService.getLibros()
-      .filter(libro => librosEnCarritoIds.includes(libro.id));
-    this.calculateTotal();
+
+    // Obtén la lista completa de libros
+    this.librosService.getAll().subscribe(
+      (libros: Libro[]) => {
+        // Filtra los libros según los IDs en el carrito
+        this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro.id));
+        this.calculateTotal();
+      },
+      (error) => {
+        console.error('Error obteniendo libros:', error);
+      }
+    );
   }
 
 

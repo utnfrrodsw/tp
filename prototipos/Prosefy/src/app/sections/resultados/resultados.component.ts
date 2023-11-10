@@ -16,13 +16,20 @@ export class ResultadosComponent {
     private librosService: LibrosService,
     public currencyService: CurrencyService,
     private datePipe: DatePipe
-  ) {}
+  ) { }
 
   deseos: { [libroId: string]: boolean } = {}; // Objeto para mantener el estado de deseos para cada libro
   pulsateStates: { [libroId: string]: boolean } = {}; // Objeto para mantener el estado de animación para cada libro
 
   ngOnInit(): void {
-    this.libros = this.librosService.getLibros();
+    this.librosService.getAll().subscribe(
+      (libros: Libro[]) => {
+        this.libros = libros;
+      },
+      (error) => {
+        console.error('Error obteniendo libros:', error);
+      }
+    );
   }
 
   calculatePriceInSelectedCurrency(precio: number): number {

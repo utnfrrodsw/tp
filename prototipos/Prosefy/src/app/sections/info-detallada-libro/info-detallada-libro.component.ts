@@ -31,7 +31,7 @@ export class InfoDetalladaLibroComponent /*implements OnInit*/ {
 
         if (idParam !== null) {
           const libroId = parseInt(idParam, 10);
-          this.libro = this.librosService.getLibroById(libroId);
+          this.libro = this.librosService.getLibro(libroId);
 
           if (this.libro && this.libro.autores) {
             const observables: Observable<Autor | undefined>[] = this.libro.autores.map((idAutor) => this.getAutor(idAutor));

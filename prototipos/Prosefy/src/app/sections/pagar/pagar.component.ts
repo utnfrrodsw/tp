@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit  } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Libro, LibrosService } from '../../services/libros.service';
 import { CarritoComprasService } from '../../services/carrito-compras.service';
 
@@ -30,12 +30,19 @@ export class PagarComponent implements OnInit {
 
   obtenerLibrosEnCarrito() {
     const librosEnCarritoIds = this.carritoService.getLibrosEnCarrito();
-    this.libros = this.librosService.getLibros()
-      .filter(libro => librosEnCarritoIds.includes(libro.id));
-    this.calculateTotal();
-        
-  }
 
+    // Obtén la lista completa de libros
+    this.librosService.getAll().subscribe(
+      (libros: Libro[]) => {
+        // Filtra los libros según los IDs en el carrito
+        this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro.id));
+        this.calculateTotal();
+      },
+      (error) => {
+        console.error('Error obteniendo libros:', error);
+      }
+    );
+  }
 
   eliminarDelCarrito(libroId: number) {
     this.carritoService.eliminarDelCarrito(libroId);
@@ -57,13 +64,13 @@ export class PagarComponent implements OnInit {
       }
     }
 
-    if (this.contador ==1) {
+    if (this.contador == 1) {
       this.total += 0
     }
-    else if (this.contador ==2) {
+    else if (this.contador == 2) {
       this.total += 2.000
     }
-    else if (this.contador ==3) {
+    else if (this.contador == 3) {
       this.total += 3.000
     }
     this.total += envio
@@ -99,7 +106,7 @@ export class PagarComponent implements OnInit {
     }
   }
 
-  
+
   aumentarContador() {
     if (this.contador < 3) {
       this.contador++;
@@ -111,7 +118,7 @@ export class PagarComponent implements OnInit {
       this.contador--;
     }
   }
-  
+
   divStyles: any = {
     'background-color': 'white'
   };

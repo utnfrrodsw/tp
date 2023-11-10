@@ -1,73 +1,41 @@
-<div
-  class="container-fluid d-flex justify-content-center align-items-center flex-column py-2"
->
+<!-- lista-libros.component.html -->
+
+<div class="container-fluid d-flex justify-content-center align-items-center flex-column py-2">
   <div class="lista-libros">
-    <div
-      class="rounded-button shadow d-flex justify-content-center align-items-center"
-    >
-      <button
-        class="btn boton-izquierda boton-moderno"
-        (click)="moverIzquierda()"
-        [class.disabled]="elementosAlInicio"
-      >
+    <div class="rounded-button shadow d-flex justify-content-center align-items-center">
+      <button class="btn boton-izquierda boton-moderno" (click)="moverIzquierda()" [class.disabled]="elementosAlInicio">
         &lt;
       </button>
     </div>
     <div class="lista-contenedor container-fluid">
       <div class="elementos-lista py-4 container-fluid">
-        <div
-          *ngFor="
-            let libro of libros.slice(
-              elementoActual,
-              elementoActual + elementosPorPaso
-            );
-            let i = index
-          "
-          class="elemento-lista elemento-animado animacion-tarjeta hover-grow"
-        >
+        <div *ngFor="let libroId of librosIds.slice(elementoActual, elementoActual + elementosPorPaso); let i = index">
           <div class="libro card">
-            <a
-              [routerLink]="['/libro-seleccionado', libro.id]"
-              class="text-decoration-none"
-            >
-              <img
-                src="{{ libro.imagen }}"
-                alt="Portada del libro"
-                class="card-img-top tarjeta-imagen"
-              />
-              <div class="card-body">
-                <p class="card-text precio">
-                  ${{
-                    calculatePriceInSelectedCurrency(
-                      libro.precio
-                    ).toLocaleString()
-                  }}
-                  <small class="text-muted">
-                    {{ currencyService.getCurrency() }}
-                  </small>
-                </p>
-                <p class="card-text descripcion">
-                  {{
-                    libro.descripcion.length > descripcionMaxLength
-                      ? (libro.descripcion | slice : 0 : descripcionMaxLength) +
-                        "..."
-                      : libro.descripcion
-                  }}
-                </p>
-              </div></a
-            >
+            <a [routerLink]="['/libro-seleccionado', libroId]" class="text-decoration-none">
+              <ng-container *ngIf="librosData[libroId]">
+                <img src="{{ librosData[libroId].portada }}" alt="Portada del libro"
+                  class="card-img-top tarjeta-imagen" />
+                <div class="card-body">
+                  <p class="card-text precio">
+                    ${{ librosData[libroId].precio !== undefined ? (librosData[libroId].precio | number:'1.2-2') : 'N/A'
+                    }}
+                    <small class="text-muted">
+                      {{ currencyService.getCurrency() }}
+                    </small>
+                  </p>
+                  <!--<p class="card-text descripcion">
+                    {{ (librosData[libroId].descripcion | async || '').slice(0, descripcionMaxLength) }}
+                    {{ (librosData[libroId].descripcion | async)?.length > descripcionMaxLength ? '...' : '' }}
+                  </p>-->
+                </div>
+              </ng-container>
+            </a>
           </div>
         </div>
       </div>
     </div>
-    <div
-      class="rounded-button shadow d-flex justify-content-center align-items-center"
-    >
-      <button
-        class="btn boton-derecha boton-moderno"
-        (click)="moverDerecha()"
-        [class.disabled]="elementosAlFinal"
-      >
+    <div class="rounded-button shadow d-flex justify-content-center align-items-center">
+      <button class="btn boton-derecha boton-moderno" (click)="moverDerecha()" [class.disabled]="elementosAlFinal">
         &gt;
       </button>
     </div>
