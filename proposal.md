@@ -158,7 +158,7 @@ el envío será gratuito"
 | CRUD Simple             | 1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial                                                                                                                                                             |
 | CRUD Dependiente        | 1. CRUD Localidad **{depende de}** CRUD Provincia.<br>2. CRUD Libro **{depende de}** CRUD Autor, CRUD Categoría y CRUD Editorial.                                                                                                        |
 | Listado<br>+<br>Detalle | 1. Listado de libros filtrado por categoría, muestra ISBN, título, autores, editorial y precio → **detalle CRUD Libro**.<br> 2. Listado de libros filtrado por autor, muestra ISBN, título, editorial y precio → **detalle CRUD Libro**. |
-| CUU/Epic                | 1. Comprar libro<br>2. Consultar estado de envío                                                                                                                                                                                         |
+| CUU/Epic                | 1. Comprar libro<br>2. Reseñar libro                                                                                                                                                                                         |
 
 -   **Consideraciones:**
 
@@ -173,7 +173,7 @@ el envío será gratuito"
 | Req      | Detalle                                                                                                                                                                                                                                            |
 | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | CRUD     | 1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial<br>5. CRUD Localidad<br>6. CRUD Usuario<br>7. CRUD Libro<br>8. CRUD Reseña<br>9. CRUD Oferta<br>10. CRUD Pedido **<sup>[1]<sup>**<br>11. CRUD Envío **<sup>[2]<sup>** |
-| CUU/Epic | 1. Comprar libro<br>2. Consultar estado de envío<br>3. Cancelar pedido<br>4. Reseñar libro<br>                                                                                                                                                     |
+| CUU/Epic | 1. Comprar libro<br>2. Consultar estado de envío<br>3. Cancelar pedido<br>4. Consultar estado envío<br>                                                                                                                                                     |
 
 -   **Consideraciones:**
 
@@ -185,10 +185,10 @@ el envío será gratuito"
 
 ### Alcance Adicional Voluntario
 
-<!--- Es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo --->
+<!--- Es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo. Pero por ahora no se llevará a cabo nada extra.
 
 | Req      | Detalle                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Listados | 1. Listado de ofertas vigentes filtrado por fecha actual, muestra fecha de fin, porcentaje de descuento y libros.<br>2. Listado de pedidos filtrado por usuario, muestra fecha y hora, estado, importe total, método de pago y libros adquiridos con su cantidad.<br>3. Listado de autores seguidos filtrado por usuario, muestra nombre y apellido.<br>4. Listado de libros en la lista de deseos filtrado por usuario, muestra ISBN, título, autores, editorial y precio. |
 | CUU/Epic | 1. Consultar historial de compras<br>2. Agregar libro a lista de deseos<br>3. Seguir a autor                                                                                                                                                                                                                                                                                                                                                                                |
-| Otros    | 1. Envío de comprobante de compra con los detalles del pago y la fecha estimada de entrega o retiro por email.                                                                                                                                                                                                                                                                                                                                                              |
+| Otros    | 1. Envío de comprobante de compra con los detalles del pago y la fecha estimada de entrega o retiro por email.                                                                                                                         --->                                                                                                                                                                                                                                     |
