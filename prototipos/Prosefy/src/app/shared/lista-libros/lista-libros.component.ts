@@ -111,4 +111,12 @@ export class ListaLibrosComponent implements OnInit {
   calculatePriceInSelectedCurrency(precio: number): number {
     return this.currencyService.calculatePriceInSelectedCurrency(precio);
   }
+
+  calcularAlturaImagen(): number {
+    // Definir la altura deseada, por ejemplo, 200 píxeles
+    const alturaDeseada = 350;
+
+    // Devuelve la altura deseada
+    return alturaDeseada;
+  }
 }

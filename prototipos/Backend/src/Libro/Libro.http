@@ -120,7 +120,7 @@ Content-Type: application/json
     "editorial": "654bf9abdf333bf9237a1408",
     "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
     "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"],
-    "portada": "Learning Python.png",
+    "portada": "http://localhost:4200/assets/img/Libros/Learning Python.png",
     "calificacion": 4
 }
 
@@ -139,7 +139,7 @@ Content-Type: application/json
     "editorial": "654bee46df333bf9237a1407",
     "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
     "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"],
-    "portada": "Sistemas Operativos Modernos.webp",
+    "portada": "http://localhost:4200/assets/img/Libros/Sistemas Operativos Modernos.webp",
     "calificacion": 3
 }
 
@@ -158,6 +158,6 @@ Content-Type: application/json
     "editorial": "654bfa25df333bf9237a1409",
     "categorias": ["654a87d534149a6f152448c7", "654a87d834149a6f152448c9"],
     "formatos": ["654bfee69906829dff7bca05", "654bfec19906829dff7bca04"],
-    "portada": "Design Patterns.jpg",
+    "portada": "http://localhost:4200/assets/img/Libros/Design Patterns.jpg",
     "calificacion": 5
 }

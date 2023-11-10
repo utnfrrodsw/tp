@@ -13,8 +13,8 @@
           <div class="libro card">
             <a [routerLink]="['/libro-seleccionado', libroId]" class="text-decoration-none">
               <ng-container *ngIf="librosData[libroId]">
-                <img src="{{ librosData[libroId].portada }}" alt="Portada del libro"
-                  class="card-img-top tarjeta-imagen" />
+                <img [src]="librosData[libroId].portada" alt="Portada del libro" class="card-img-top tarjeta-imagen"
+                  [style.height.px]="calcularAlturaImagen()" [style.width]="'auto'" />
                 <div class="card-body">
                   <p class="card-text precio">
                     ${{ librosData[libroId].precio !== undefined ? (librosData[libroId].precio | number:'1.2-2') : 'N/A'
