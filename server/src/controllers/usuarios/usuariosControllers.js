@@ -10,6 +10,10 @@ const validateToken = require('../../auth/validateToken');
 const { sendPasswordResetEmail } = require('./email'); // Importar la función sendPasswordResetEmail desde email.js
 const { generateRandomResetCode } = require('./codeReset');
 const { storeResetCodeInDatabase } = require('./codeResetDb');
+ 
+ 
+ 
+
 
 const usuarioController = {
 
@@ -219,6 +223,8 @@ const usuarioController = {
       console.log(ex);
     }
   },
+
+
   
   obtenerDatosUsuario: async (req, res) => {
     const { id } = req.params;
@@ -240,28 +246,83 @@ const usuarioController = {
       }
   },
 
+  obtenerProfesionesUsuario: async (req, res) => {
+    try {
+      const idUsuario = req.params.id;
+      const prestadorProfesiones = await db.PrestadorProfesiones.findAll({
+        where: { idprestador: idUsuario },
+        include: [
+          {
+            model: db.Profesion,
+            as: 'profesion',
+          },
+        ],
+      });
+  
+      const profesiones = prestadorProfesiones.map(prestadorProfesion => prestadorProfesion.profesion.nombreProfesion);
+  
+      console.log(profesiones); // Agrega esta línea
+  
+      res.json(profesiones);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error al obtener las profesiones del usuario' });
+    }
+  },
+
+  agregarProfesionesUsuario: async (req, res) => {
+    try {
+      const { idUsuario, profesiones } = req.body;
+  
+      // Asegúrate de que el usuario es un prestador
+      const usuario = await db.Usuario.findOne({ where: { idUsuario } });
+      if (!usuario || !usuario.esPrestador) {
+        return res.status(400).json({ message: 'El usuario no es un prestador' });
+      }
+  
+      // Agrega las profesiones al usuario
+      for (const nombreProfesion of profesiones) {
+        const [profesion] = await db.Profesion.findOrCreate({ where: { nombreProfesion } });
+        await db.PrestadorProfesiones.create({ idprestador: idUsuario, idProfesion: profesion.idProfesion });
+      }
+  
+      res.status(200).json({ message: 'Profesiones agregadas con éxito' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error al agregar las profesiones al usuario' });
+    }
+  },
+
   modificarDatosPersonales: async (req, res) => {
     const { id } = req.params;
     const { nombre, apellido, email, fechaNacimiento } = req.body;
-
+  
     try {
       const usuario = await db.Usuario.findByPk(id);
       if (!usuario) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
       }
-
-      // Actualizar los datos personales del usuario
-      usuario.nombre = nombre;
-      usuario.apellido = apellido;
-      usuario.email = email;
-      usuario.fechaNacimiento = fechaNacimiento;
-
+  
+      // Verificar si el correo electrónico ya está en uso solo si el correo electrónico ha cambiado
+      if (email !== usuario.email) {
+        const existingUser = await db.Usuario.findOne({ where: { email } });
+        if (existingUser) {
+          return res.status(400).json({ message: 'El correo electrónico ya está en uso' });
+        }
+      }
+  
+      // Actualizar los campos que han cambiado
+      if (nombre !== undefined) usuario.nombre = nombre;
+      if (apellido !== undefined) usuario.apellido = apellido;
+      if (email !== undefined) usuario.email = email;
+      if (fechaNacimiento !== undefined) usuario.fechaNacimiento = fechaNacimiento;
+  
       await usuario.save();
-
-      res.status(200).json({ message: 'Datos personales actualizados exitosamente' });
+  
+      res.json({ success: true, message: 'Datos personales actualizados con éxito' });
     } catch (error) {
-      console.error('Error al modificar los datos personales del usuario', error);
-      res.status(500).json({ message: 'Error en el servidor' });
+      console.error('Error al actualizar los datos personales:', error);
+      return res.status(500).json({ error: 'Error al actualizar los datos personales' });
     }
   },
 
