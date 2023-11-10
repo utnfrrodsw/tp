@@ -53,8 +53,10 @@ export class LibroRepository {
     }
     async findByEditorial(editorialId) {
         try {
-            const librosEncontrados = await libros.find({ editorial: new ObjectId(editorialId) }).toArray();
-            return librosEncontrados;
+            const todosLosLibros = await libros.find().toArray();
+            // Filtrar los libros que tienen la editorial con el ObjectId indicado
+            const librosFiltrados = todosLosLibros.filter(libro => libro.editorial.toString() === editorialId);
+            return librosFiltrados;
         }
         catch (error) {
             console.error("Error en findByEditorial:", error);
@@ -63,8 +65,10 @@ export class LibroRepository {
     }
     async findByAutor(autorId) {
         try {
-            const librosEncontrados = await libros.find({ autores: new ObjectId(autorId) }).toArray();
-            return librosEncontrados;
+            const todosLosLibros = await libros.find().toArray();
+            // Filtrar los libros que tienen al menos un autor con el ObjectId indicado
+            const librosFiltrados = todosLosLibros.filter(libro => libro.autores.some(autor => autor.toString() === autorId));
+            return librosFiltrados;
         }
         catch (error) {
             console.error("Error en findByAutor:", error);
@@ -73,8 +77,10 @@ export class LibroRepository {
     }
     async findByCategoria(categoriaId) {
         try {
-            const librosEncontrados = await libros.find({ categorias: { $in: [new ObjectId(categoriaId)] } }).toArray();
-            return librosEncontrados;
+            const todosLosLibros = await libros.find().toArray();
+            // Filtrar los libros que tienen al menos una categoría con el ObjectId indicado
+            const librosFiltrados = todosLosLibros.filter(libro => libro.categorias.some(categoria => categoria.toString() === categoriaId));
+            return librosFiltrados;
         }
         catch (error) {
             console.error("Error en findByCategoria:", error);
@@ -83,8 +89,10 @@ export class LibroRepository {
     }
     async findByFormatoLibro(formatoId) {
         try {
-            const librosEncontrados = await libros.find({ formatos: { $in: [new ObjectId(formatoId)] } }).toArray();
-            return librosEncontrados;
+            const todosLosLibros = await libros.find().toArray();
+            // Filtrar los libros que tienen al menos un formato con el ObjectId indicado
+            const librosFiltrados = todosLosLibros.filter(libro => libro.formatos.some(formato => formato.toString() === formatoId));
+            return librosFiltrados;
         }
         catch (error) {
             console.error("Error en findByFormatoLibro:", error);

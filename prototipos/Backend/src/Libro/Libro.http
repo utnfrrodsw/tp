@@ -45,7 +45,7 @@ Content-Type: application/json
 GET http://localhost:3000/api/libros/editoriales/654bee46df333bf9237a1407
 
 ### Get de Libro por Autor
-GET http://localhost:3000/api/libros/autores/654a8a23e9bd128c04108bbb
+GET http://localhost:3000/api/libros/autores/654d45481de02c673186f9b0
 
 ### Get de Libro por Categoria
 GET http://localhost:3000/api/libros/categorias/654a87d534149a6f152448c7
