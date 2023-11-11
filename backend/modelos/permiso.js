@@ -34,7 +34,7 @@ Permiso.sync()
                 if(! permisos.length){
                     Permiso.bulkCreate([
                         {
-                            descripcion:'Enviar Tokens'
+                            descripcion:'Generar Tokens'
                             ,predeterminado:false
                         }
                         ,{

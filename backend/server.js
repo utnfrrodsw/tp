@@ -38,6 +38,7 @@ app.use((req,res,next) => {
         '/api/usuarios'
         ,'/api/usuarios/ingresar'
         ,'/api/usuarios/salir'
+        // ,'/api/permisos'
     ].includes(req.path))
         res.status(401).send('Inicie sesión.');
     else{

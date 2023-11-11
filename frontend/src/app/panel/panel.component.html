@@ -108,7 +108,7 @@
 			<summary>
 				<h3>Amigos</h3>
 			</summary>
-		<!-- TODO para cada uno de estos, esconder si uno es el invitador o no... -->
+		<!-- TODO Feature para cada uno de estos, esconder si uno es el invitador o no... -->
 			<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-12 row">
 				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 				<span class="col">{{usuario.nombreCompleto}}</span>
@@ -124,7 +124,8 @@
 			<span>No se han encontrado usuarios.</span>
 		</ng-template>
 		<fieldset id="resultados" class="row">
-			<!-- TODO capturar el submit en el fieldset? -->
+			<!-- TODO Refactor capturar el submit en el fieldset? -->
+			<!-- TODO Refactor: Pensar qué onda si viene muucha gente. -->
 			
 			<form *ngFor="let usuario of usuariosEncontrados" (submit)="invitar($event)" class="col-12 row">
 				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">

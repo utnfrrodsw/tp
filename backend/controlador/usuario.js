@@ -20,6 +20,7 @@ var usuarioController = {
 }
 
 function addUsuario(req, res) {
+    // * Registro. Lo puede hacer cualquiera.
     let usuario = req.body;
     usuario.habilitado=true;
     usuarioDao.create(usuario)
@@ -44,6 +45,7 @@ function findUsuarioById(req, res) {
 }
 
 function deleteById(req, res) {
+    // TODO Security: ¿Quién puede hacer esto? Un usuario podría eliminar su cuenta...
     usuarioDao.deleteById(req.params.id).
         then((data) => {
             res.status(200).json({
@@ -71,6 +73,7 @@ function updateUsuario(req, res) {
 
 function findUsuarios(req, res) {
     // ! incluirHabilitado es si incluir que habilitado=true; so true here will bring you solo habilitados, false es todos.
+    // TODO Refactor: Cambiar a "soloHabilitados"
     usuarioDao.findAll({incluirHabilitado:req.query.incluirHabilitado!=undefined}).
         then((data) => {
             res.send(data);
@@ -91,6 +94,7 @@ function findUsuariosFuzzilyByName(req, res) {
 }
 
 function cantidadDeUsuarios(req, res) {
+    // TODO Security: Solo permitir a personas con el permiso de administrar permisos
     // ! El segundo parámetro es la persona a OMITIR; o sea, el usuario actual.
     usuarioDao.buscarPorNombre(req.params.consulta,req.session.usuarioID)
         .then((data) => {
@@ -102,6 +106,7 @@ function cantidadDeUsuarios(req, res) {
 }
 
 function cambiarHabilitado(req, res) {
+    // TODO Security: Solo permitir a personas con el permiso adecuado
     usuarioDao.cambiarHabilitado(req.params.id,req.body.valor)
         .then((data) => {
             res.send(data);

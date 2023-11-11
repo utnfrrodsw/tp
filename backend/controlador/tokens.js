@@ -27,6 +27,7 @@ function obtenerCantidadCirculando(req, res) {
 function generar(req,res){
 	usuarioDao.findById(req.session.usuarioID)
 		.then(usuario=>{
+			// TODO Refactor: Uhm... wtf? Quizá chequear esto cuando se chequee la sesión en server.js
 			if(!usuario)
 				res.status(404).send();
 				// TODO Refactor: early return
