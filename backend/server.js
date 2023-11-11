@@ -33,6 +33,18 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
+app.use((req,res,next) => {
+    if(!req.session.usuarioID && ![
+        '/api/usuarios'
+        ,'/api/usuarios/ingresar'
+        ,'/api/usuarios/salir'
+    ].includes(req.path))
+        res.status(401).send('Inicie sesión.');
+    else{
+        next();
+    }
+})
+
 app.use('/api',require('./rutas/todas'))
 
 // Init the server
