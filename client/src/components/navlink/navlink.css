@@ -1,0 +1,25 @@
+nav {
+    text-align: center; /* Centrar el contenido horizontalmente */
+}
+
+nav ul {
+    list-style: none; /* Quitar los puntos de la lista */
+    padding: 0; /* Eliminar el relleno por defecto */
+}
+
+nav li {
+    display: block; /* Hacer que los elementos sean bloques para que estén uno debajo del otro */
+    margin-bottom: 10px; /* Agregar espacio entre los elementos */
+}
+  
+nav a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+nav a.is-active {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    pointer-events: none;
+}

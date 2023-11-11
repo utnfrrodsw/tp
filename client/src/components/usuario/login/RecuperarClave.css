@@ -1,0 +1,70 @@
+.conteinerRecClave {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+  background-color: #f0f0f000;
+}
+
+.conteinerRecClave h2 {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.Formulario {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.Formulario label {
+  font-size: 16px;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.Formulario input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.formularioGrupo {
+  display: flex;
+  justify-content: center;
+}
+
+.enviarSolicitud {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.enviarSolicitud:hover {
+  background-color: #0056b3;
+}
+
+.message {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.success {
+  background-color: #00ff00; /* Fondo verde para éxito (código 200) */
+  color: #ffffff; /* Texto blanco */
+  border: 1px solid #00ff00;
+}
+
+.error {
+  background-color: #ff0000; /* Fondo rojo para errores (códigos 404 o 500) */
+  color: #ffffff; /* Texto blanco */
+  border: 1px solid #ff0000;
+}
