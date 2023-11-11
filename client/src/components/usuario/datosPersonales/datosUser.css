@@ -102,9 +102,34 @@
   }
 
   .round-image {
+    margin: 0.25rem 0 0.8rem 0; 
     border-radius: 50%;  
     width: 100px;  
     height: 100px; 
     object-fit: cover; /* Asegura que la imagen cubra todo el espacio disponible sin distorsionarse */
   }
+
+  .profesion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa; /* Un color de fondo suave */
+    padding: 10px; /* Espacio alrededor del contenido */
+    margin-bottom: 10px; /* Espacio entre los elementos de la lista */
+    border-radius: 5px; /* Bordes redondeados */
+  }
+
+.profesion-item p {
+  color: #333;
+  flex-grow: 1; /* Permite que el texto ocupe todo el espacio disponible */
+  margin-right: 10px; /* Espacio a la derecha del texto */
+}
+
+.profesion-item button {
+  margin-left: auto; /* Alinea el botón a la derecha */
+}
+
+input::placeholder {
+  color: white;
+}
   

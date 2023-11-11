@@ -86,6 +86,7 @@ const usuarioController = {
         fechaNacimiento,
         telefono,
         esPrestador,
+        fotoPerfil: "file-1699675999630.png", 
         // Otras propiedades específicas del usuario si las tienes
       });
   
@@ -261,8 +262,6 @@ const usuarioController = {
   
       const profesiones = prestadorProfesiones.map(prestadorProfesion => prestadorProfesion.profesion.nombreProfesion);
   
-      console.log(profesiones); // Agrega esta línea
-  
       res.json(profesiones);
     } catch (error) {
       console.error(error);
@@ -282,7 +281,7 @@ const usuarioController = {
   
       // Agrega las profesiones al usuario
       for (const nombreProfesion of profesiones) {
-        const [profesion] = await db.Profesion.findOrCreate({ where: { nombreProfesion } });
+        const [profesion] = await db.Profesion.findOrCreate({ where: { nombreProfesion: nombreProfesion.toLowerCase() } });
         await db.PrestadorProfesiones.create({ idprestador: idUsuario, idProfesion: profesion.idProfesion });
       }
   
@@ -292,6 +291,38 @@ const usuarioController = {
       res.status(500).json({ message: 'Error al agregar las profesiones al usuario' });
     }
   },
+
+  eliminarProfesionUsuario: async (req, res) => {
+  try {
+    const { idUsuario, profesion } = req.body;
+
+    // Asegúrate de que el usuario es un prestador
+    const usuario = await db.Usuario.findOne({ where: { idUsuario } });
+    if (!usuario || !usuario.esPrestador) {
+      return res.status(400).json({ message: 'El usuario no es un prestador' });
+    }
+
+    // Encuentra la profesión en la base de datos
+    const profesionEncontrada = await db.Profesion.findOne({ where: { nombreProfesion: profesion.toLowerCase() } });
+
+    if (!profesionEncontrada) {
+      return res.status(400).json({ message: 'La profesión no existe' });
+    }
+
+    // Elimina la relación entre el prestador y la profesión
+    await db.PrestadorProfesiones.destroy({
+      where: {
+        idprestador: idUsuario,
+        idProfesion: profesionEncontrada.idProfesion
+      }
+    });
+
+    res.status(200).json({ message: 'Profesión eliminada con éxito' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al eliminar la profesión del usuario' });
+  }
+},
 
   modificarDatosPersonales: async (req, res) => {
     const { id } = req.params;

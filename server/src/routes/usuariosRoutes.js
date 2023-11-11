@@ -49,6 +49,7 @@ router.get('/obtenerFotoPerfil/:id', obtenerFotoPerfil);
 
 //profesiones
 router.get('/obtenerProfesionesUsuario/:id', usuarioController.obtenerProfesionesUsuario);
-router.get('/agregarProfesionesUsuario/:id', usuarioController.agregarProfesionesUsuario);
+router.post('/agregarProfesionesUsuario/:id', usuarioController.agregarProfesionesUsuario);
+router.delete('/eliminarProfesionUsuario/:id', usuarioController.eliminarProfesionUsuario);
 
 module.exports = router;
