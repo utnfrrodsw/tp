@@ -28,7 +28,7 @@ const user = JSON.parse(localStorage.getItem('user'));
             <div className='blocks'>
                 <div className="block">
                     <h2>Anuncios</h2>
-                    <Link to='/provider/home/add'></Link>
+                    <Link to='/provider/home/add'>Ver más</Link>
                 </div>
                 <div className="block">
                     <h2>Presupuestados</h2>
