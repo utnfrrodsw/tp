@@ -45,7 +45,7 @@ function valoresEspecialesUsuario(usuario,incluirTokensAsociadas=false,incluirAm
         // findOptions.group=['usuario.ID'];
     }
     // TODO incluirAmigos?
-    usuario.setDataValue('amigos',[...usuario.amigosInvitados,...usuario.amigosAceptados]);
+    usuario.amigos=[...usuario.amigosInvitados,...usuario.amigosAceptados];
     return usuario;
 }
 
@@ -198,9 +198,7 @@ async function quitarTokens(usuario,cantidad){
 async function buscarNoAmigosPorNombre(consulta,usuarioID,pagina=0){
     return (await buscarPorNombre(consulta,usuarioID,pagina)).filter(usu=>{
         // TODO hacer que .amigos ande
-        return !(usu.amigos?
-            usu.amigos
-            :[...usu.amigosInvitados,...usu.amigosAceptados]).some(ami=>ami.ID==usuarioID);
+        return !usu.amigos.some(ami=>ami.ID==usuarioID);
     });
 }
 
@@ -280,10 +278,9 @@ async function eliminarAmigo(usuarioID,amigoID){
     findById(usuarioID)
         .then(usuario=>{
             let amistad=usuario.amigosAceptados.find(usu=>usu.ID==amigoID);
-            // console.log(amistad, usuario, usuario.amigosAceptados, amistad.amistades);
             if(amistad){
                 return amistad.amistades.destroy();
-            } // TODO else fallar http
+            } // TODO else fallar http // O, no-content
         });
 }
 

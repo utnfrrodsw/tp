@@ -39,6 +39,9 @@ const Usuario = db.define('usuario', {
     habilitado: {
         type: Sequelize.BOOLEAN,
         allowNull: false
+    },
+    amigos: {
+        type: Sequelize.VIRTUAL
     }
 });
 
