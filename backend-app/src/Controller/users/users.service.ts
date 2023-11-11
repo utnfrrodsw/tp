@@ -7,7 +7,6 @@ import { Repository } from 'typeorm';
 import { Address } from './entities/address.entity';
 import { DeleteUserDto } from './dto/delete-user.dto';
 import { State } from './entities/status';
-import { log } from 'console';
 
 @Injectable()
 export class UsersService {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AILogicService } from './ai-logic.service';
 import { Bank } from 'src/models/bank';
 import { TextGeneratorService } from '../main/text-generator.service';
-import { finalize, first, map,  } from 'rxjs';
+import { finalize, first, forkJoin, map,  } from 'rxjs';
 import { Investment } from 'src/models/investment';
 import { Dolar } from 'src/models/dolar';
 
@@ -33,47 +33,46 @@ export class InvestmentMainComponent implements OnInit{
     private textGeneratorService: TextGeneratorService) {
       this.inflation = this.IA.inflation;
       this.investment = this.IA.investment!;
-      this.IA.generateBanks().pipe(
-        first()).subscribe((banks: Bank[]) => {
-          this.configBanks = banks;
-      });
-
-      this.IA.getContructionData().pipe(
-        first(),
-        finalize(()=>
-        this.ICCLoading = true))
-        .subscribe(
-          data => this.configICC= data
-        );
-
+      const observables = [
+        this.IA.generateBanks().pipe(first()),
+        this.IA.getContructionData().pipe(
+          first(),
+          finalize(() => (this.ICCLoading = true))
+        ),
         this.IA.getDolar().pipe(
           first(),
-          map(dolars => dolars.filter(d => this.filterDolar.includes(d.casa)))
-        ).subscribe( (dolars: Dolar[])=>{
-          this.configDolar = dolars;
-          this.configDolar.map(d => d.cost = +(this.investment! / d.venta).toFixed(2))
-        }); 
+          map((dolars) => dolars.filter((d) => this.filterDolar.includes(d.casa)))
+        ),
+      ];
+
+      forkJoin(observables).subscribe(([banks , iccData, dolars]) => {
+        this.configBanks = banks as Bank[];
+        this.configICC = iccData as Investment[];
+        this.configDolar = dolars as Dolar[];
+    
+        this.configDolar.map((d) => (d.cost = +(this.investment! / d.venta).toFixed(2)));
+    
+        // Después de que todos los observables se completen, realiza las acciones necesarias
+        this.timeoutId = setTimeout(() => {
+          this.configICC.map((y) => {
+            this.generateTextforICC(y.InvestmentId, this.investment!).subscribe((value) => {
+              y.Content = +value.toFixed(2) ?? 0;
+            });
+          }),
+          this.configBanks.map((x) => {
+            x.content = this.textGeneratorService.generateTextForBanks(x.Name, x.InterestRate);
+          }),
+          this.cancelTimeout();
+        }, 200);
+    
+        this.finalTimeOutId = setTimeout(() => {
+          this.calculateRevenue();
+          clearTimeout(this.finalTimeOutId!);
+        }, 1000);
+      });
     }
 
   ngOnInit(): void {
-    console.log(this.inflation);
-    this.timeoutId = setTimeout(()=> {
-        this.configICC.map(y => {
-          this.generateTextforICC(y.InvestmentId, this.investment!)
-          .subscribe(value => {
-            y.Content = +value.toFixed(2) ?? 0;
-          })
-        }),
-        this.configBanks.map(x => {
-          x.content = this.textGeneratorService.generateTextForBanks(x.Name, x.InterestRate);
-        }),
-        this.cancelTimeout();
-      }, 200)
-
-      this.finalTimeOutId = setTimeout( ()=> {
-        this.calculateRevenue();
-        clearTimeout(this.finalTimeOutId!);
-      }, 1000)
   }
 
   cancelTimeout (): void {

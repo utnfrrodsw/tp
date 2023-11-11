@@ -16,7 +16,7 @@ export class LoginFormComponent {
       '',
       [Validators.required, Validators.minLength(3), Validators.maxLength(25)],
     ],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(4)]],
   });
   constructor(
     private formBuilder: FormBuilder,
@@ -35,6 +35,10 @@ export class LoginFormComponent {
           this.router.navigate(['money']);
         });
     }
+  }
+
+  handlerSignUp() {
+    this.router.navigate(['create-user']);
   }
 }
 

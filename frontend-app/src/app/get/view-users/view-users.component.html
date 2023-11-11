@@ -1,12 +1,17 @@
-<button (click)="viewUsers()">Ver Usuarios</button>
+<div *ngIf="accRol === 'admin'">
+  <button mat-raised-button (click)="viewUsers()">Ver Usuarios</button>
 <ul>
   <li *ngFor="let user of users">
     {{ user.FirstName }} {{ user.LastName }}
-    <button (click)="deleteUser(user)">Borrar Usuario</button>
-    <button (click)="updateUser(user)">Actualizar</button>
-    <ul>
-      <li *ngIf="user.Editing">{{ user.Email }}</li>
-    </ul>
+    <button mat-stroked-button color="warn" (click)="deleteUser(user)">Borrar Usuario</button>
+    <button mat-stroked-button color="primary"(click)="updateUser(user)"><div *ngIf="!user.Editing">
+      Actualizar
+    </div>
+    <div *ngIf="user.Editing">No Actualizar</div>
+  </button>
+    <div class="email-container" *ngIf="user.Editing"
+    >Email Actual: <span class="actual-email">{{ user.Email }}</span>
+    </div>
     <form
       *ngIf="user.Editing"
       action=""
@@ -14,7 +19,10 @@
       [formGroup]="viewDataUsers"
       (ngSubmit)="handlerUpdate(viewDataUsers, user)"
     >
+    <mat-form-field class="field-flex">
+      <mat-label for="userUpdatedEmail">Nuevo Email:</mat-label>
       <input
+        matInput
         *ngIf="user.Editing"
         type="email"
         [(ngModel)]="user.UpdatedEmail"
@@ -23,16 +31,18 @@
         id="userUpdatedEmail"
         placeholder="Nuevo Email"
       />
-      <label
-        for="userUpdatedEmail"
-        *ngIf="viewDataUsers.get('userUpdatedEmail')?.invalid"
-        class="error-message"
-        >Ingrese formato de mail</label
-      >
-      <button type="submit">Actualizar Email</button>
+      <mat-error *ngIf="viewDataUsers.get('userUpdatedEmail')?.invalid"
+          >Ingrese formato de mail</mat-error>
+    </mat-form-field>
+
+      <button mat-raised-button type="submit">Actualizar Email</button>
+      
     </form>
     <hr />
   </li>
 </ul>
-<div *ngIf="deletionMessage">{{ deletionMessage }}</div>
+<div class="fail-message" *ngIf="deletionMessage">{{ deletionMessage }}</div>
+<div class="succes-message" *ngIf="succesMessage">{{ succesMessage }}</div>
 <hr />
+</div>
+

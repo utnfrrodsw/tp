@@ -9,7 +9,6 @@ import { MoneyMainComponent } from './money-main/money-main.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
-  { path: 'post', component: CreateUsersComponent },
   { path: 'get', component: ViewUsersComponent },
   {
     path: 'investment',
@@ -20,19 +19,12 @@ const routes: Routes = [
    canActivate: [authGuard],
    component: MoneyMainComponent
   },
+  {path: 'create-user',
+   component: CreateUsersComponent
+  },
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
-    redirectTo: 'post',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
-    redirectTo: 'get',
     pathMatch: 'full',
   },
 ];

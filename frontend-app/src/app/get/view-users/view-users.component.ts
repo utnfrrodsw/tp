@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { UserService } from 'src/app/user.service';
 import { User } from 'src/models/user';
 
 @Component({
@@ -13,22 +14,24 @@ export class ViewUsersComponent implements OnInit {
   viewDataUsers = this.formBuilder.group({
     userUpdatedEmail: ['', [Validators.required, Validators.email]],
   });
-  deletionMessage: string = ''; // Variable para almacenar el mensaje de eliminación
+  deletionMessage: string = ''; 
+  succesMessage: string = '';
+  @Input() accRol: string = '';
+
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+    private userService: UserService,
+    ) {}
   ngOnInit(): void {}
 
   users?: User[];
 
   viewUsers() {
-    this.authService.getUsers().subscribe((data: any) => {
-      this.users = data; // Asigna los usuarios obtenidos al arreglo 'users'
+    this.userService.getUsers().subscribe((data: any) => {
+      this.users = data; 
       data.forEach(
         (user: { Editing: boolean; UpdatedEmail: any; Email: any }) => {
-          user.Editing = false; // Agrega una bandera de edición a cada usuario
+          user.Editing = false; 
         }
       );
     });
@@ -42,22 +45,25 @@ export class ViewUsersComponent implements OnInit {
     if (this.viewDataUsers.valid) {
       user.UpdatedEmail = viewDataUsers.controls['userUpdatedEmail'].value;
       console.log(user);
-      this.authService
+      this.userService
         .updateEmailUser(user.UserId, user.UpdatedEmail)
-        .subscribe(() => {});
+        .subscribe(() => {
+          this.succesMessage = `Usuario ${user.FirstName} ${user.LastName} ha sido actualizado`;
+          this.deletionMessage = "";
+        });
     }
   }
 
   deleteUser(users: any) {
-    this.authService.deleteUser(users.UserId).subscribe(
+    this.userService.deleteUser(users.UserId).subscribe(
       (user: User) => {
-        // Elimina el usuario del arreglo 'users' local
         this.users = this.users?.filter((u) => u.UserId !== user.UserId);
         this.deletionMessage = `Usuario ${user.FirstName} ${user.LastName} ha sido borrado`;
+        this.viewUsers();
       },
       (error) => {
-        // Manejar errores si la eliminación falla
         this.deletionMessage = 'Error al borrar el usuario';
+        this.succesMessage = "";
         console.error(error);
       }
     );

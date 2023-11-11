@@ -19,7 +19,6 @@
           name="userName"
           id="userName"
           placeholder="ingrese el email"
-          id="userName"
         />
         <mat-error *ngIf="formLogin.get('userName')?.invalid"
           >El nombre debe ser entre 3 y 25 letras, sin simbolos
@@ -50,15 +49,16 @@
       </div>
     </mat-card-content>
     <mat-divider></mat-divider>
-    <mat-card-actions>
-      <div>
-        <button class="field-flex button-flex" mat-raised-button type="submit">
+    <mat-card-actions class="button-container">
+        <button class="field-flex button-style" 
+        mat-raised-button type="submit">
           Log In
         </button>
-      </div>
+        <button class="return-button" 
+        mat-raised-button type="button"
+        (click)="handlerSignUp()">
+          Sign Up
+        </button>
     </mat-card-actions>
   </form>
 </mat-card>
-<mat-divider></mat-divider>
-
-<app-create-users><app-create-users> </app-create-users></app-create-users>
