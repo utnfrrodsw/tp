@@ -158,7 +158,7 @@ function Anuncios(props) {
             ))
           ) : (
             <div>
-              <h1>No hay anuncios {props.estado}</h1>
+              <h1>No hay nunguna solicitud en {props.estado}</h1>
             </div>
           )
         ) : (

@@ -100,7 +100,7 @@ function Solicitudes(props) {
                     />
                 ))) : (
                     <div>
-                        <h1>No hay solicitudes {props.estado}</h1>
+                        <h1>No hay nunguna solicitud en {props.estado}</h1>
                     </div>
                 )) : (
                     <div>
