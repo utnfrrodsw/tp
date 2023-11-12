@@ -1,16 +1,16 @@
 <fieldset class="container">
-	<legend>Información del usuario {{this.usuarioActual?.ID}}:</legend>
+	<legend>Información del usuario {{this.usuarioDetallado?.ID}}:</legend>
 
 	<h2>Nombre Completo:</h2>
-	<p>{{this.usuarioActual?.nombreCompleto}}</p>
+	<p>{{this.usuarioDetallado?.nombreCompleto}}</p>
 	<h2>DNI:</h2>
-	<p>{{(+(this.usuarioActual?.DNI||0)).toLocaleString()}}</p>
+	<p>{{(+(this.usuarioDetallado?.DNI||0)).toLocaleString()}}</p>
 	<h2>Correo electrónico:</h2>
-	<a href="mail:{{this.usuarioActual?.correo}}">{{this.usuarioActual?.correo}}</a>
-	<h2>Tokens: <small>({{this.usuarioActual?.tokens||0}})</small></h2>
+	<a href="mail:{{this.usuarioDetallado?.correo}}">{{this.usuarioDetallado?.correo}}</a>
+	<h2>Tokens: <small>({{this.usuarioDetallado?.tokens||0}})</small></h2>
 	<div id="particles"></div>
-	<button class="button {{this.usuarioActual?.habilitado?'error':'primary'}}" (click)="cambiarHabilitado()">
-		<h3><b>{{this.usuarioActual?.habilitado?'Desh':'H'}}abilitar</b></h3>
+	<button class="button {{this.usuarioDetallado?.habilitado?'error':'primary'}}" (click)="cambiarHabilitado()">
+		<h3><b>{{this.usuarioDetallado?.habilitado?'Desh':'H'}}abilitar</b></h3>
 	</button>
 
 	<hr/>

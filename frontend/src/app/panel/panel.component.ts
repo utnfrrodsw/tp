@@ -4,6 +4,7 @@ import { UsuarioActualService } from '../servicios/usuario-actual.service';
 import {Router} from "@angular/router";
 import { Usuario, UsuarioService as UsuariosService,Amistad,EstadosAmistades } from '../servicios/usuario.service';
 import { TokensService } from '../servicios/tokens.service';
+import { UsuarioDetalladoService } from '../servicios/usuario-detallado.service';
 
 @Component({
   selector: 'app-panel',
@@ -54,6 +55,7 @@ export class PanelComponent implements OnInit {
 
   constructor(
     private usuarioActualService:UsuarioActualService,
+    private usuarioDetalladoService:UsuarioDetalladoService,
     private usuariosService: UsuariosService,
     private tokensService: TokensService,
     private router: Router
@@ -124,7 +126,7 @@ export class PanelComponent implements OnInit {
         .buscarDifusamentePorNombre(consulta)
         .subscribe((result: any)=>{
           if(this.busquedaID==busquedaID){
-            this.usuariosEncontrados=result;
+            this.usuariosEncontrados=result.filter((usu:Usuario)=>usu.habilitado);
             if(result.length==0){
               this.puedeMostrarVacio=true;
             }
@@ -366,5 +368,16 @@ export class PanelComponent implements OnInit {
 
   usuarioTienePermiso(usu:Usuario,perID:number){
     return usu.permisos?.some(p=>p.ID==perID) || false;
+  }
+  
+  establecerUsuarioADetallar(e:Event){
+    let usuarioADetallarID:any=((<HTMLElement>e.target).dataset['id']);
+    if(usuarioADetallarID){
+      usuarioADetallarID=parseInt(usuarioADetallarID);
+      let usuarioADetallar=this.usuariosPaginaActual.find(usu=>usu.ID==usuarioADetallarID);
+      if(usuarioADetallar){
+        this.usuarioDetalladoService.setUsuarioDetallado(usuarioADetallar);
+      }
+    }
   }
 }

@@ -6,7 +6,7 @@ import { ListaComponent } from './lista/lista.component';
 import { PanelComponent } from './panel/panel.component';
 
 const routes: Routes = [
-  { path: 'detalle', component: DetalleComponent }
+  { path: 'detalle/:ID', component: DetalleComponent }
   ,{ path: 'lista', component: ListaComponent }
   ,{ path: 'panel', component: PanelComponent }
   ,{ path: '', component: InicioComponent }

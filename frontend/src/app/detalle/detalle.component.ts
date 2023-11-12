@@ -11,7 +11,7 @@ declare var particlesJS: any;
 })
 export class DetalleComponent implements OnInit {
 
-  usuarioActual:(Usuario|undefined)=undefined;
+  usuarioDetallado:(Usuario|undefined)=undefined;
   
   constructor(
     private usuarioDetalladoService:UsuarioDetalladoService,
@@ -19,17 +19,17 @@ export class DetalleComponent implements OnInit {
   ){}
   
   ngOnInit(): void {
-    this.usuarioActual=this.usuarioDetalladoService.getUsuarioDetallado();
+    this.usuarioDetallado=this.usuarioDetalladoService.getUsuarioDetallado();
     
-    if(this.usuarioActual==undefined){
-      this.volver()
+    if(this.usuarioDetallado==undefined){
+      // this.volver()
       return;
     }
 
     particlesJS("particles", {
       "particles": {
         "number": {
-          "value": this.usuarioActual?.tokens
+          "value": this.usuarioDetallado?.tokens
           ,"density":{"enable":false}
         },"shape":{
           "type":"image"
@@ -55,14 +55,14 @@ export class DetalleComponent implements OnInit {
   }
 
   cambiarHabilitado(){
-    if(this.usuarioActual!=undefined){
-      let valor=!this.usuarioActual?.habilitado;
+    if(this.usuarioDetallado!=undefined){
+      let valor=!this.usuarioDetallado?.habilitado;
       this.usuarioService
-        .cambiarHabilitado(this.usuarioActual.ID,valor)
+        .cambiarHabilitado(this.usuarioDetallado.ID,valor)
         .subscribe(()=>{
           // TODO if ok
-          if(this.usuarioActual!=undefined)
-            this.usuarioActual.habilitado=valor;
+          if(this.usuarioDetallado!=undefined)
+            this.usuarioDetallado.habilitado=valor;
         });
     }
   }
