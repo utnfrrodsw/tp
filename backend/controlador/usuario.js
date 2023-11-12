@@ -45,8 +45,8 @@ function findUsuarioById(req, res) {
 }
 
 function deleteById(req, res) {
-    // TODO Security: ¿Quién puede hacer esto? Un usuario podría eliminar su cuenta...
-    usuarioDao.deleteById(req.params.id).
+    let eliminarUsuario=()=>{
+        usuarioDao.deleteById(req.params.id).
         then((data) => {
             res.status(200).json({
                 message: "Usuario deleted successfully",
@@ -56,6 +56,19 @@ function deleteById(req, res) {
         .catch((error) => {
             console.log(error);
         });
+    }
+
+    if(req.session.usuarioID==req.params.id){
+        eliminarUsuario();
+    }else usuarioDao.findById(req.session.usuarioID)
+		.then(usuario=>{
+            // TODO Refactor: Enum para los permisos
+            if(!usuario.permisos.some((per)=>per.ID==2)){
+                res.status(403).send();
+            }else{
+                eliminarUsuario();
+            }
+        })
 }
 
 function updateUsuario(req, res) {
@@ -94,26 +107,40 @@ function findUsuariosFuzzilyByName(req, res) {
 }
 
 function cantidadDeUsuarios(req, res) {
-    // TODO Security: Solo permitir a personas con el permiso de administrar permisos
-    // ! El segundo parámetro es la persona a OMITIR; o sea, el usuario actual.
-    usuarioDao.buscarPorNombre(req.params.consulta,req.session.usuarioID)
-        .then((data) => {
-            res.send(Math.ceil(data.length/usuarioDao.cantidadPorPagina).toString());
+	usuarioDao.findById(req.session.usuarioID)
+		.then(usuario=>{
+            // TODO Refactor: Enum para los permisos
+            if(!usuario.permisos.some((per)=>per.ID==2)){
+                res.status(403).send();
+            }else{
+                // ! El segundo parámetro es la persona a OMITIR; o sea, el usuario actual.
+                usuarioDao.buscarPorNombre(req.params.consulta,req.session.usuarioID)
+                    .then((data) => {
+                        res.send(Math.ceil(data.length/usuarioDao.cantidadPorPagina).toString());
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
         })
-        .catch((error) => {
-            console.log(error);
-        });
 }
 
 function cambiarHabilitado(req, res) {
-    // TODO Security: Solo permitir a personas con el permiso adecuado
-    usuarioDao.cambiarHabilitado(req.params.id,req.body.valor)
-        .then((data) => {
-            res.send(data);
+	usuarioDao.findById(req.session.usuarioID)
+    .then(usuario=>{
+        // TODO Refactor: Enum para los permisos
+        if(!usuario.permisos.some((per)=>per.ID==2)){
+            res.status(403).send();
+        }else{
+            usuarioDao.cambiarHabilitado(req.params.id,req.body.valor)
+                .then((data) => {
+                    res.send(data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
         })
-        .catch((error) => {
-            console.log(error);
-        });
 }
 
 function ingresar(req, res) {
@@ -192,36 +219,31 @@ function aceptarInvitacion(req,res){
 function eliminarAmigo(req,res){
     usuarioDao.eliminarAmigo(req.session.usuarioID,req.params.id)
         .then((usuario) => {
-            // TODO mandar explicitamente un código??
+            // TODO mandar explicitamente un código??  no content
             res.send(/* usuario */);
         })
         .catch((error) => {
             console.log(error);
             res.status(500).send(error);
         });
-    /* // TODO DRY? (ala window[?'':''])
-    return req.body.soyInvitador?
-        cancelarInvitacion(req,res)
-        :rechazarInvitacion(req,res);
-    
-        usuarioDao.eliminarInvitacion(req.session.usuarioID,req.params.id)
-        .then(() => {
-            res.send();
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(500).send(error);
-        }); */
 }
 
 function actualizarPermisos(req,res){
-    usuarioDao.actualizarPermisos(req.params.id,req.body.permisos)
-        .then((data) => {
-            res.send(data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+	usuarioDao.findById(req.session.usuarioID)
+    .then(usuario=>{
+        // TODO Refactor: Enum para los permisos
+        if(!usuario.permisos.some((per)=>per.ID==2)){
+            res.status(403).send();
+        }else{
+            usuarioDao.actualizarPermisos(req.params.id,req.body.permisos)
+                .then((data) => {
+                    res.send(data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    })
 }
 
 module.exports = usuarioController;
