@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { CreateUsersComponent } from './post/create-users/create-users.component';
-import { ViewUsersComponent } from './get/view-users/view-users.component';
 import { InvestmentMainComponent } from './investment-main/investment-main.component';
 import { authGuard } from './auth.guard';
 import { MoneyMainComponent } from './money-main/money-main.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginFormComponent },
-  { path: 'get', component: ViewUsersComponent },
+  { path: 'login', 
+  component: LoginFormComponent 
+  },
   {
     path: 'investment',
     canActivate: [authGuard],

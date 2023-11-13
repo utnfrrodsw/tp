@@ -1,9 +1,9 @@
 import { UsersService } from 'src/controller/users/users.service';
 import {
-  BadRequestException,
   HttpException,
   Injectable,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -49,10 +49,9 @@ export class AuthService {
     const isOk = await bcrypt.compare(user.password, hasPass);
 
     if (isOk) {
-      console.log('ok return', token);
       return {
         access_token: token,
       };
-    } else return { error: 'error en el hash' };
+    } else throw new UnauthorizedException();
   }
 }

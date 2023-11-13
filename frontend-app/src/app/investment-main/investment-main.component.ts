@@ -52,7 +52,6 @@ export class InvestmentMainComponent implements OnInit{
     
         this.configDolar.map((d) => (d.cost = +(this.investment! / d.venta).toFixed(2)));
     
-        // Después de que todos los observables se completen, realiza las acciones necesarias
         this.timeoutId = setTimeout(() => {
           this.configICC.map((y) => {
             this.generateTextforICC(y.InvestmentId, this.investment!).subscribe((value) => {

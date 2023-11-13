@@ -28,6 +28,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CurrencyPipe } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatChipsModule} from '@angular/material/chips';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -58,7 +59,9 @@ export function tokenGetter() {
     MatCardModule,
     MatCheckboxModule,
     FormsModule,
+    MatChipsModule,
     MatSnackBarModule,
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
