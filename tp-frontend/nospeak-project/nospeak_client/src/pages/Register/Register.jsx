@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import {FormLogin, FormLoginContainer, NavLogin, LoginButton, LoginInput, StyledH1} from '../Login/styles';
+import {FormLogin, FormLoginContainer, NavLogin, LoginButton, LoginInput, StyledH1, StyledSpan, StyledLink} from '../Login/styles';
 import { Navigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../redux/slices/userSlice.js';
-import { ErrorMessage, SuccessMessage } from '../Register/styles';
+import { ErrorMessage, SuccessMessage, LoginContainer } from '../Register/styles';
 
 
 
@@ -167,6 +167,10 @@ export default function Register({client}) {
         <LoginButton onClick={(e) => { handleRegister(e); }}>
           Sign up
         </LoginButton>
+        <LoginContainer>
+          <StyledSpan>Already have an account?</StyledSpan>
+          <StyledLink to='/login'>Log in</StyledLink>
+        </LoginContainer>
       </FormLogin>
     </FormLoginContainer>
   );

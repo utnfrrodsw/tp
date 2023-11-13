@@ -98,7 +98,6 @@ export default function Login({ client, testing }) {
               Log in
             </StyledButton>
           </ButtonContainer>
-          <br />
           <RegisterContainer>
             <StyledSpan>Don't have an account?</StyledSpan>
             <StyledLink to='/register'>Sign up for NoSpeak</StyledLink>

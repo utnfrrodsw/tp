@@ -47,7 +47,6 @@ router.patch('/playlists/:id', verificarToken, playlistController.updatePlaylist
 router.delete('/playlists/:id', verificarToken, playlistController.deletePlaylist);
 router.get('/playlists-usuario/:usuario_id', verificarToken, playlistController.getPlaylistsByUsuario);
 
-
 router.post('/recomendaciones', verificarToken, recomendacionController.createRecomendacion);
 
 router.get('/historiales', verificarToken, historialController.getHistoriales);
