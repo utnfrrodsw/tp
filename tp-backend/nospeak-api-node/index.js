@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
 const apiRoutes = require('./routes/apiRoutes');
+const config = require('./config');
 
-mongoose.connect('mongodb+srv://bautistaguerra:bautista1234@nospeakdb.2pmdvhk.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect(config.databaseConnectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const config = require('../config');
 
 function verificarToken(req, res, next) {
   // Obtenemos el token desde las cabeceras
@@ -10,7 +11,7 @@ function verificarToken(req, res, next) {
   }
 
   // Verificamos el token
-  jwt.verify(token, '1234', (error, usuario) => {
+  jwt.verify(token, config.tokenSecretKey, (error, usuario) => {
     if (error) {
       return res.status(401).json({ message: 'Token inválido' });
     }
