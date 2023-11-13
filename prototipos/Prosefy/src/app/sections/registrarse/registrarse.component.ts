@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { UsuarioService, Usuario } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-registrarse',
@@ -9,10 +10,16 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 export class RegistrarseComponent {
   registroForm: FormGroup;
   showErrorMessages: boolean = false; // Variable para controlar la visualización de mensajes de error
+  inputNombre: string = '';
+  inputApellido: string = '';
+  inputEmail: string = '';
+  inputAvatar: string = '';
+
+
 
   //TODO: Las validaciones no funcionan del todo bien todavía
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, public usuariosService: UsuarioService) {
     this.registroForm = this.formBuilder.group(
       {
         nombre: [
@@ -46,6 +53,15 @@ export class RegistrarseComponent {
       },
       { validator: this.passwordMatchValidator }
     );
+  }
+
+// Uso el Avatar como contraseña por el momento para no tener que cambiar tantos archivos
+  login() {
+    const user = { nombre: this.inputNombre,apellido: this.inputApellido, email: this.inputEmail, avatar: this.inputAvatar };
+    console.log(user);
+    this.usuariosService.registrarUsuario(user).subscribe((data) => {
+      console.log("Se realizó el post de usuario");
+    });
   }
 
   // Función para validar que las contraseñas coincidan

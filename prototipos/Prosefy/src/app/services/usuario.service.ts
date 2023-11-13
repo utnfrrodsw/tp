@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 export interface Usuario {
 
@@ -31,8 +33,13 @@ export class UsuarioService {
       tipo: 'Administrador'
     }
   ]
+  
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  registrarUsuario(user: any): Observable<any> {
+    return this.http.post("https://localhost:3000/api/usuarios", user);
+  }
+
 
   getUsuarios(): Usuario[] {
     return this.usuarios;
