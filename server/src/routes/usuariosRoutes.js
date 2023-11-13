@@ -7,9 +7,7 @@ const { cargarFotoPerfil,obtenerFotoPerfil, upload } = require("../controllers/u
 
 const { authenticate } = require("../auth/authenticate.js");
 const { jsonResponse } = require("../lib/jsonResponse.js");
-const { validacionModDatosPer } = require('../middlewares/usuarios/validacionModDatosPer.js');
-const { validacionModClave } = require('../middlewares/usuarios/validacionModClave.js');
-const { verificarClave } = require('../middlewares/usuarios/verificarClave.js');
+const { validateRegister } = require("../middlewares/usuarios/validateRegistro.js");
 
 router.get('/', (req, res) => {
   res.send('usuarios');
@@ -24,7 +22,7 @@ router.get('/auth', authenticate,  (req, res) => {
 // Login, register
 router.post('/login', usuarioController.login);
 router.delete('/logout', usuarioController.logout);
-router.post('/register', usuarioController.register);
+router.post('/register',validateRegister, usuarioController.register);
 
 // Restablecimiento de contraseña
 router.post('/reset-password/request', usuarioController.passwordReset);
@@ -49,6 +47,9 @@ router.get('/obtenerFotoPerfil/:id', obtenerFotoPerfil);
 
 //profesiones
 router.get('/obtenerProfesionesUsuario/:id', usuarioController.obtenerProfesionesUsuario);
-router.get('/agregarProfesionesUsuario/:id', usuarioController.agregarProfesionesUsuario);
+router.post('/agregarProfesionesUsuario/:id', usuarioController.agregarProfesionesUsuario);
+router.delete('/eliminarProfesionUsuario/:id', usuarioController.eliminarProfesionUsuario);
+
+ 
 
 module.exports = router;

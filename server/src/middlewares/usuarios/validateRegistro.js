@@ -1,47 +1,69 @@
-const validateRegistro = (req, res, next) => {
-  const {
-    name,
-    lastName,
-    email,
-    password,
-    birthDate,
-    phoneNumber,
-    address,
-    codPostal,
-    tipo,
-  } = req.body;
+const { check, validationResult } = require('express-validator');
+const moment = require('moment');
 
-  if (!name || !lastName || !email || !password || !birthDate || !phoneNumber || !address || !codPostal || !tipo) {
-    return res.status(400).json({ message: 'Todos los campos son obligatorios' });
-  }
 
-  // Validaciones adicionales
-  if (!isValidEmail(email)) {
-    return res.status(400).json({ message: 'El correo electrónico proporcionado no es válido' });
-  }
+// Middleware de validación para el registro de usuario
+const validateRegister = [
+  // Validación del campo 'nombre'
+  check('nombre').notEmpty().withMessage('El nombre es requerido'),
 
-  if (!isValidPhoneNumber(phoneNumber)) {
-    return res.status(400).json({ message: 'El número de teléfono proporcionado no es válido' });
-  }
+  // Validación del campo 'apellido'
+  check('apellido').notEmpty().withMessage('El apellido es requerido'),
 
-  // Puedes agregar más validaciones según tus necesidades aquí.
+  // Validación del campo 'email'
+  check('email').isEmail().withMessage('El email debe ser válido'),
 
-  next();
-};
+  // Validación del campo 'contrasena'
+  check('contrasena').isLength({ min: 6 }).withMessage('La contraseña debe tener al menos 6 caracteres'),
 
-  // Función para validar un correo electrónico
-function isValidEmail(email) {
-  // Utiliza una expresión regular para validar el formato del correo electrónico
-  const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-  return emailRegex.test(email);
-}
-  
-  // Función para validar un número de teléfono
-function isValidPhoneNumber(phoneNumber) {
-  // Usar una expresión regular o cualquier otro método para validar el formato del número de teléfono
-  // Por ejemplo, se puede verificar que solo contenga números y tenga una longitud válida.
-  // Aca, un ejemplo simple solo verifica que el número contenga al menos 9 dígitos.
-  return /^\d{9,}$/.test(phoneNumber);
-}
+  // Validación del campo 'confirmarContrasena'
+   
 
-module.exports = validateRegistro;
+  // Validación del campo 'fechaNacimiento'
+  check('fechaNacimiento')
+  .custom(value => {
+    if (!moment(value, 'YYYY-MM-DD', true).isValid()) {
+      throw new Error('La fecha de nacimiento debe ser una fecha válida en formato YYYY-MM-DD');
+    }
+    return true;
+  })
+  .custom(value => {
+    const birthDate = moment(value, 'YYYY-MM-DD');
+    const currentDate = moment();
+    const age = currentDate.diff(birthDate, 'years');
+    if (age < 18) {
+      throw new Error('Debes ser mayor de 18 años');
+    }
+    return true;
+  }),
+
+   
+  check('telefono').isMobilePhone().withMessage('El teléfono debe ser un número de teléfono válido'),
+
+   
+  check('esPrestador').isBoolean().withMessage('EsPrestador debe ser un valor booleano'),
+
+   
+  check('especialidades').isArray().withMessage('Especialidades debe ser un array'),
+
+  //   proporciona al menos un campo
+  (req, res, next) => {
+    const { nombre, apellido, email, contrasena, fechaNacimiento, telefono, esPrestador, especialidades } = req.body;
+
+    // Verificar si al menos un campo está presente
+    if (!nombre && !apellido && !email && !contrasena && !fechaNacimiento && !telefono && esPrestador === undefined && (!especialidades || especialidades.length === 0)) {
+      return res.status(400).json({ errors: [{ msg: 'Se debe proporcionar al menos un campo' }] });
+    }
+
+    // Ejecutar el resto de las validaciones
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    next();
+  },
+];
+
+// Exportar el middleware de validación
+exports.validateRegister = validateRegister;

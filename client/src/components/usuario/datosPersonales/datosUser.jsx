@@ -4,6 +4,7 @@ import { Button, Card, Col, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
 import { API_URL } from '../../../auth/constants.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
+import avatarDefecto from './avatarDefecto.png';
 import './datosUser.css';
 
 const DatosPersonales = () => {
@@ -32,7 +33,7 @@ const DatosPersonales = () => {
   const [contrasenaActual, setContrasenaActual] = useState('');
   const [nuevaContrasena, setNuevaContrasena] = useState('');
   const [confirmNuevaContrasena, setConfirmNuevaContrasena] = useState('');
-  const [fotoPerfil, setFotoPerfil] = useState(null);
+  const [fotoPerfil, setFotoPerfil] = useState(avatarDefecto);
   const [selectedFile, setSelectedFile] = useState(null);
   const [successMessageFoto, setSuccessMessageFoto] = useState('');
 
@@ -48,6 +49,9 @@ const DatosPersonales = () => {
     setNuevaDireccion(false);
   };
 
+
+  const [loadingFotoPerfil, setLoadingFotoPerfil] = useState(true);
+
   // Función para obtener los datos del usuario
   const fetchUserData = async () => {
     try {
@@ -56,15 +60,21 @@ const DatosPersonales = () => {
         const data = await response.json();
         setUserData(data);
         setOriginalData(data);
-
-        // Obtén la URL de la imagen de perfil
+  
         const fotoPerfilUrl = `${API_URL}/usuario/obtenerFotoPerfil/${user.id}`;
-        setFotoPerfil(fotoPerfilUrl);
+        const responseFotoPerfil = await fetch(fotoPerfilUrl);
+        if (responseFotoPerfil.ok) {
+          setFotoPerfil(fotoPerfilUrl);
+        } else {
+          setFotoPerfil(avatarDefecto); // Si la URL de la foto de perfil es falsa, muestra el avatar por defecto
+        }
+        setLoadingFotoPerfil(false); // Set loading to false when the image is loaded
       } else {
         throw new Error('Error al obtener los datos del usuario');
       }
     } catch (error) {
       console.error('Error en fetchUserData:', error);
+      setLoadingFotoPerfil(false); // Set loading to false in case of an error
     }
   };
 
@@ -182,7 +192,7 @@ const DatosPersonales = () => {
   const [nuevaProfesion, setNuevaProfesion] = useState('');
 
   const agregarProfesionUsuario = async (userId, profesion) => {
-    const response = await fetch('http://localhost:3000/usuario/agregarProfesionesUsuario', {
+    const response = await fetch(`${API_URL}/usuario/agregarProfesionesUsuario/${user.id}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ idUsuario: userId, profesiones: [profesion] }),
@@ -194,6 +204,27 @@ const DatosPersonales = () => {
 
     const data = await response.json();
     return data;
+  };
+
+  const handleRemoveProfesion = async (profesion) => {
+    try {
+      // Lógica para eliminar la profesión del usuario
+      // ...
+      const response = await fetch(`${API_URL}/usuario/eliminarProfesionUsuario/${user.id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idUsuario: user.id, profesion: profesion }),
+      });
+
+      if (response.ok) {
+        // Actualiza la lista de profesiones eliminando la que se eliminó
+        setProfesiones(prevProfesiones => prevProfesiones.filter(p => p !== profesion));
+      } else {
+        throw new Error(`Error al eliminar la profesión: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Error al eliminar la profesión:', error);
+    }
   };
 
   const [isPasswordVerified, setIsPasswordVerified] = useState(false);
@@ -267,10 +298,19 @@ const DatosPersonales = () => {
     }
   };
 
+
+
+
   const handleProfilePictureChange = (e) => {
-    const file = e.target.files[0];
-    setFotoPerfil(URL.createObjectURL(file));
-    setSelectedFile(file);
+    if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setFotoPerfil(URL.createObjectURL(file));
+      setSelectedFile(file);
+    } else {
+      // Si el usuario no seleccionó una foto, establece la foto de perfil en una imagen predeterminada
+      setFotoPerfil(avatarDefecto);
+      setSelectedFile(null);
+    }
   };
 
   const handleProfilePictureUpload = async () => {
@@ -306,17 +346,19 @@ const DatosPersonales = () => {
               <h2 className="h2">Datos Personales</h2>
               <div className="user-details">
                 <div className="profile-picture">
-                  <IonAvatar className="ion-avatar">
-                    {fotoPerfil ? (
-                      <img src={fotoPerfil} alt="Foto de perfil" className="round-image" />
-                    ) : (
+                  {loadingFotoPerfil ? (
+                    // Loading state while the image is being fetched
+                    <div>Loading...</div>
+                  ) : (
+                    // Render the image only when it is loaded successfully
+                    <IonAvatar className="ion-avatar">
                       <img
-                        src="https://ionicframework.com/docs/img/demos/avatar.svg"
-                        alt="Foto de perfil por defecto"
+                        src={fotoPerfil ? fotoPerfil : avatarDefecto}
+                        alt="Foto de perfil"
                         className="round-image"
                       />
-                    )}
-                  </IonAvatar>
+                    </IonAvatar>
+                  )}
                   <Button
                 variant='primary'
                 className='button'
@@ -384,28 +426,42 @@ const DatosPersonales = () => {
           </Card>
         </Col>
         {!!user.esPrestador && (
-            <Col>
-            <Card className='cardSegurity'>
-              <Card.Body>
-  <div>
-    <h2 className="h2">Mis Profesiones</h2>
-    <div className="user-details">
-    
-        
-        
-        {profesiones.map((profesion, index) => (
-          <p key={index}>{profesion}</p>
-        ))}
-         
-         
-      
-         
-    </div>
-  </div>
-  </Card.Body>
+  <Col>
+    <Card className='cardSegurity'>
+      <Card.Body>
+        <div>
+          <h2 className="h2">Profesiones</h2>
+          <div className="user-details">
+            {profesiones.map((profesion, index) => (
+              <div key={index} className="profesion-item">
+  <p>{profesion}</p>
+  <Button variant="danger" onClick={() => handleRemoveProfesion(profesion)}>Eliminar</Button>
+</div>
+            ))}
+          </div>
+          <form
+            onSubmit={async (event) => {
+              event.preventDefault();
+              try {
+                await agregarProfesionUsuario(user.id, nuevaProfesion.toLowerCase());
+                setNuevaProfesion('');
+                setProfesiones(prevProfesiones => [...prevProfesiones, nuevaProfesion.toLowerCase()]);
+              } catch (error) {
+                console.error(error);
+              }
+            }}
+          >
+            <label className='agregarProfesion'>
+               
+              <input type="text" placeholder='Nueva Profesion' value={nuevaProfesion} onChange={(e) => setNuevaProfesion(e.target.value)} />
+            </label>
+            <button type="submit"  className='button'>Agregar profesión</button>
+          </form>
+        </div>
+      </Card.Body>
     </Card>
   </Col>
- )}
+)}
         
 
         <Col>
