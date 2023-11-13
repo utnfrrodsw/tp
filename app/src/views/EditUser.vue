@@ -70,6 +70,7 @@
 
 <script>
   import Alerts from '@/components/Alerts.vue'
+  import axios from 'axios'
 
   export default {
     name: 'EditUser',
@@ -108,12 +109,12 @@
         const id = decoded.user.id
         const apiUrl = process.env.VUE_APP_API_URL
         const url = `${apiUrl}api/users/${id}`
-        const response = await fetch(url, {
+        const response = await axios.get(url, {
           headers: {
             'x-access-token': token
           }
         })
-        const data = await response.json()
+        const data = response.data
         this.user.id = data.id
         this.user.name = data.name
         this.user.lastName = data.last_name
@@ -128,16 +129,16 @@
 
         try {
           const apiUrl = process.env.VUE_APP_API_URL
-          const url = `${apiUrl}api/user/${this.user.id}`
-          const response = await fetch(url, {
-            method: 'PUT',
+          const url = `${apiUrl}api/users/${this.user.id}`
+          const token = localStorage.getItem('token')
+          const response = await axios.put(url, this.user, {
             headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.user)
+              'Content-Type': 'application/json',
+              'x-access-token': token
+            }
           })
 
-          const data = await response.json()
+          const data = response.data
           this.alert.show = true
           this.alert.message = data.body
           this.alert.type = 'success'
