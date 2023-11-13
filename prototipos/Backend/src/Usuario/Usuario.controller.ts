@@ -7,26 +7,21 @@ const repository = new UsuarioRepository()
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     try {
-        req.body.sanitizedInput = {
-            id: req.body.id,
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            email: req.body.email,
-            direccion: req.body.direccion,
-            localidad: req.body.localidad,
-            avatar: req.body.avatar,
-            tipo: req.body.tipo,
-        };
+        const requiredKeys = ['id', 'nombre', 'apellido', 'email', 'direccion', 'localidad', 'avatar', 'tipo'];
 
-        // Eliminar claves no definidas
-        Object.keys(req.body.sanitizedInput).forEach(key => {
-            if (req.body.sanitizedInput[key] === undefined) {
-                delete req.body.sanitizedInput[key]
+        req.body.sanitizedInput = {};
+
+        for (const key of requiredKeys) {
+            if (req.body[key] === undefined) {
+                return res.status(400).send({ message: `Campo '${key}' es requerido.` });
             }
-        });
+
+            req.body.sanitizedInput[key] = req.body[key];
+        }
 
         next();
     } catch (error) {
+        console.error("Error en sanitizeInput:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
@@ -96,5 +91,7 @@ async function remove(req: Request, res: Response) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
+
+
 
 export { sanitizeInput, findAll, findOne, add, update, remove }

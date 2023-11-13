@@ -7,6 +7,7 @@ import { libroRouter } from "./Libro/Libro.routes.js";
 import { localidadRouter } from "./Localidad/Localidad.routes.js";
 import { provinciaRouter } from "./Provincia/Provincia.routes.js";
 import { formatoRouter } from "./formatoLibro/formatoLibro.routes.js";
+import { comentarioRouter } from "./Comentario/Comentario.routes.js";
 import cors from "cors";
 
 const app = express();
@@ -24,6 +25,7 @@ app.use("/api/categorias", categoriaRouter);
 app.use("/api/localidad", localidadRouter);
 app.use("/api/provincia", provinciaRouter);
 app.use("/api/formato", formatoRouter);
+app.use("/api/comentario", comentarioRouter);
 
 app.use((_, res) => {
 	return res.status(404).send({ message: "Resource not found" });

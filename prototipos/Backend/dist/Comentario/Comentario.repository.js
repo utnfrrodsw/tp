@@ -1,10 +1,10 @@
 import { db } from "../Shared/db/conn.mongo.js";
 import { ObjectId } from 'mongodb';
-const usuarios = db.collection('usuarios');
-export class UsuarioRepository {
+const comentarios = db.collection('Comentarios');
+export class ComentarioRepository {
     async findAll() {
         try {
-            return await usuarios.find().toArray();
+            return await comentarios.find().toArray();
         }
         catch (error) {
             console.error("Error en findAll:", error);
@@ -14,7 +14,7 @@ export class UsuarioRepository {
     async findOne(item) {
         try {
             const _id = new ObjectId(item.id);
-            return (await usuarios.findOne({ _id })) || undefined;
+            return (await comentarios.findOne({ _id })) || undefined;
         }
         catch (error) {
             console.error("Error en findOne:", error);
@@ -23,7 +23,7 @@ export class UsuarioRepository {
     }
     async add(item) {
         try {
-            item._id = (await usuarios.insertOne(item)).insertedId;
+            item._id = (await comentarios.insertOne(item)).insertedId;
             return item;
         }
         catch (error) {
@@ -34,7 +34,7 @@ export class UsuarioRepository {
     async update(id, item) {
         try {
             const _id = new ObjectId(id);
-            return (await usuarios.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined;
+            return (await comentarios.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined;
         }
         catch (error) {
             console.error("Error en update:", error);
@@ -44,12 +44,23 @@ export class UsuarioRepository {
     async delete(item) {
         try {
             const _id = new ObjectId(item.id);
-            return (await usuarios.findOneAndDelete({ _id })) || undefined;
+            return (await comentarios.findOneAndDelete({ _id })) || undefined;
         }
         catch (error) {
             console.error("Error en delete:", error);
             throw error;
         }
     }
+    async findByUsuario(usuarioId) {
+        try {
+            const todosLosComentarios = await comentarios.find().toArray();
+            const comentariosFiltrados = todosLosComentarios.filter(comentario => comentario.usuario.toString() === usuarioId);
+            return comentariosFiltrados;
+        }
+        catch (error) {
+            console.error("Error en findByUsuario:", error);
+            throw error;
+        }
+    }
 }
-//# sourceMappingURL=Usuario.repository.js.map
+//# sourceMappingURL=Comentario.repository.js.map

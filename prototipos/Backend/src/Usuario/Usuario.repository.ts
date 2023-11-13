@@ -3,28 +3,6 @@ import { Usuario } from "./Usuario.js";
 import { db } from "../Shared/db/conn.mongo.js";
 import { ObjectId } from 'mongodb'
 
-const usuariosArray = [
-    new Usuario(
-        "1",
-        "Admin",
-        "Admin",
-        "admin@gmail.com",
-        "Calle admin 456",
-        new ObjectId("615a04308f47a056acc31e3c"), // Localidad Rosario
-        "",
-        "admin"
-    ),
-    new Usuario(
-        "2",
-        "Jhon",
-        "Smith",
-        "jhonsmt@gmail.com",
-        "Calle falsa 123",
-        new ObjectId("615a04308f47a056acc31e3c"), // Localidad Rosario
-        "",
-        "usuario"
-    )
-];
 
 const usuarios = db.collection<Usuario>('usuarios')
 
