@@ -28,16 +28,16 @@ const getUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-  const { name, lastName, email, password, active } = req.body
+  const { name, lastName, email, password, active } = req.body ?? {}
   const { id } = req.params
 
   if (!id) {
     return res.status(400).send('Ups! Error')
   }
-
+  let hashedPassword = password
   if (password) {
     const salt = await bcrypt.genSalt(10)
-    const password = await bcrypt.hash(password, salt)
+    hashedPassword = await bcrypt.hash(password, salt)
   }
 
   try {
@@ -45,7 +45,7 @@ const updateUser = async (req, res) => {
       name,
       last_name: lastName,
       email,
-      password,
+      password: hashedPassword,
       active
     }, {
       where: { id }
