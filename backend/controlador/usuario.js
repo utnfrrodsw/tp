@@ -15,6 +15,7 @@ var usuarioController = {
     ,aceptarInvitacion
     ,eliminarAmigo
     ,actualizarPermisos
+    ,actualizarDatos
 
     ,salir
 }
@@ -125,6 +126,7 @@ function cantidadDeUsuarios(req, res) {
         })
 }
 
+// TODO Refactor: Unir con actualizarDatos
 function cambiarHabilitado(req, res) {
 	usuarioDao.findById(req.session.usuarioID)
     .then(usuario=>{
@@ -230,20 +232,62 @@ function eliminarAmigo(req,res){
 
 function actualizarPermisos(req,res){
 	usuarioDao.findById(req.session.usuarioID)
-    .then(usuario=>{
-        // TODO Refactor: Enum para los permisos
-        if(!usuario.permisos.some((per)=>per.ID==2)){
-            res.status(403).send();
-        }else{
-            usuarioDao.actualizarPermisos(req.params.id,req.body.permisos)
-                .then((data) => {
-                    res.send(data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        .then(usuario=>{
+            // TODO Refactor: Enum para los permisos
+            if(!usuario.permisos.some((per)=>per.ID==2)){
+                res.status(403).send();
+            }else{
+                usuarioDao.actualizarPermisos(req.params.id,req.body.permisos)
+                    .then((data) => {
+                        res.send(data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
+        })
+}
+
+function actualizarDatos(req,res){
+    let editadoID=req.params.id;
+    let dato=req.body.dato;
+    let datosPosibles=[
+            'nombreCompleto'
+            // TODO Now: setter de contraseña, ver cómo se hace en la creación
+            ,'contrasenia'
+            ,'correo'
+        ]
+    
+        // TODO Refactor: No me acuerdo como funciona el hoisting acá, pero estaría bueno que semánticamente esta función vaya después de los chequeos de abajo. Lo mismo más arriba con los permisos o de donde sea que saqué parte del algoritmo.
+    let realizarActualizacion=()=>{
+        if(!datosPosibles.includes(dato)){
+            res.status(400).send();
         }
-    })
+        usuarioDao.findById(editadoID)
+            .then(usuario=>{
+                // TODO Refactor: Enum para los permisos
+                usuario[req.body.dato]=req.body.valor;
+                usuario.save()
+                    .then(r=>{
+                        res.send();
+                    })
+            })
+    }
+
+    // TODO Refactor: quizá hacer algo con las rutas que se puedan si se tienen permisos
+    if(req.session.usuarioID==editadoID){
+        realizarActualizacion();
+    }else usuarioDao.findById(req.session.usuarioID)
+		.then(usuario=>{
+            // TODO Refactor: Enum para los permisos
+            if(!usuario.permisos.some((per)=>per.ID==2)){
+                res.status(403).send();
+            }else{
+                // TODO Refactor: (duplicado) pasar habilitado para acá, de su propia función
+                datosPosibles.concat('DNI','nombreUsuario','habilitado');
+                realizarActualizacion();
+            }
+        });
 }
 
 module.exports = usuarioController;

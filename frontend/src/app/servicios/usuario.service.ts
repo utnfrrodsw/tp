@@ -74,6 +74,10 @@ export class UsuarioService {
   actualizarPermisos(usuarioID:number, permisos:Permiso[]){
     return this.clienteHTTP.post(this.URL+`${usuarioID}/permisos`,{permisos},{withCredentials:true});
   }
+
+  actualizarDatos(usuarioID:number,dato:string,valor:string){
+    return this.clienteHTTP.patch(this.URL+usuarioID, {dato,valor} , {withCredentials: true});
+  }
 }
 
 export enum EstadosAmistades {

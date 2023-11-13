@@ -287,20 +287,20 @@ export class PanelComponent implements OnInit {
     
     let fD:FormData = new FormData(e.target as HTMLFormElement);
 
-    let u: Usuario=(((Object.fromEntries((fD)))) as unknown) as Usuario;
+    let u: Usuario=(((Object.fromEntries(fD))) as unknown) as Usuario;
     u.permisos=fD.getAll('permisoID').map(permisoID => ({ID:permisoID}) as unknown as Permiso)
 
-    // TODO que funcione bien  ??? anda bien qué decís
+    // TODO Feature: que funcione bien  ??? anda bien qué decís
     this.usuariosService
       .create(u)
       .subscribe((result:any)=>{
-        // TODO Avisar con un cartelito Toast.
-        // TODO Avisar todo con un cartelito lindo.
+        // TODO UX: Avisar con un cartelito Toast.
+        // TODO UX: Avisar todo con un cartelito lindo.
         alert('Se ha creado el usuario');
       });
   }
 
-  // TODO ver si esta tabla de actualizar permisos puede ser un componente hijo, como dijo Butti
+  // TODO Feature: (en realidad creo que es más Refactor) ver si esta tabla de actualizar permisos puede ser un componente hijo, como dijo Butti
 
   actualizarPermisos(e:Event) {
     e.preventDefault();
@@ -308,7 +308,7 @@ export class PanelComponent implements OnInit {
     let fd=new FormData(e.target as HTMLFormElement);
     let nuevoVectorPermisos:Permiso[]=fd.getAll('permiso').map((e:FormDataEntryValue)=>(({ID:((e as any) as number)}) as Permiso));
     let usuarioID:number = fd.get('usuario-id') as any as number;
-    // TODO as any as BASTA
+    // TODO Refactor: as any as BASTA
 
     this.usuariosService
       .actualizarPermisos(usuarioID,nuevoVectorPermisos)
@@ -331,7 +331,7 @@ export class PanelComponent implements OnInit {
   actualizarFiltroTablaAdministracion(e:Event) {
     this.filtroDePaginacion=(e.target as HTMLInputElement).value.trim();
     let nuevaID:Number=this.nuevaIDPeticion();
-    // TODO hacer alguna reacción o DRY con el primero.
+    // TODO Refactor: hacer alguna reacción o DRY con el primero.
     this.usuariosService.getCantidadDePaginas(this.filtroDePaginacion)
       .subscribe((cantidadDePaginas: any)=>{
           if(this.IDPeticion==nuevaID) {
@@ -353,7 +353,7 @@ export class PanelComponent implements OnInit {
     if(!nuevaID){
       nuevaID=this.nuevaIDPeticion();
     }
-    // TODO deshabilitar formulario de navegacion y mostrar que se está actualizando
+    // TODO UX: deshabilitar formulario de navegacion y mostrar que se está actualizando
     this.usuariosService.getUsuariosPagina(this.filtroDePaginacion,this.paginaActual)
       .subscribe((data:any) =>{
         if(this.IDPeticion==nuevaID) {
@@ -407,5 +407,31 @@ export class PanelComponent implements OnInit {
 
     // TODO Refactor: alguna gracia de casteo booleano => numérico => string??
     form.dataset['puedeEnviar']=error;
+  }
+
+  enviarActualizacionDeDatos(e:Event){
+    e.preventDefault();
+    let fd=new FormData(<HTMLFormElement>e.target);
+    let dato:string=[...fd.keys()][0];
+    let valor=<string>fd.get(dato);
+    this.usuariosService.actualizarDatos(
+      this.usuarioActual.ID
+      ,dato
+      ,valor
+    )
+      .subscribe((result: any)=>{
+        switch(dato){
+        case 'nombreCompleto':
+        // case 'DNI':
+        // case 'nombreUsuario':
+          this.usuarioActual.nombreCompleto=valor;
+          break;
+        case 'correo':
+          this.usuarioActual.correo=valor;
+          break;
+        }
+          // this.usuarioActual[dato]=valor;
+      });
+      ;
   }
 }
