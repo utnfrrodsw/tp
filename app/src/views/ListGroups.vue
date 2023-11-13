@@ -32,14 +32,12 @@
     name: 'ListGroups',
     data() {
       return {
-        groups: [],
+        groups: []
       }
     },
     async mounted() {
       try {
-        const apiUrl = process.env.VUE_APP_API_URL
-        const url = `${apiUrl}api/groups`
-        const response = await fetch(url)
+        const response = await fetch(`${process.env.VUE_APP_API_URL}api/groups`)
         const data = await response.json()
         this.groups = data
       } catch (error) {

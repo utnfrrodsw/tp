@@ -15,7 +15,7 @@
 
     <v-row>
       <v-col cols="12" md="6">
-        <v-text-field v-model="user.email" label="Email" required></v-text-field>
+        <v-text-field v-model="user.email" label="Email" readonly></v-text-field>
       </v-col>
     </v-row>
 

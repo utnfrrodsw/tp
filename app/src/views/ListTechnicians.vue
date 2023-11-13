@@ -36,9 +36,7 @@
     },
     methods: {
       async fetchData() {
-        const apiUrl = process.env.VUE_APP_API_URL
-        const url = `${apiUrl}api/technicians`
-        const response = await fetch(url)
+        const response = await fetch(`${process.env.VUE_APP_API_URL}api/technicians`)
         const data = await response.json()
         this.items = data
       },

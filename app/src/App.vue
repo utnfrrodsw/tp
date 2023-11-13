@@ -73,6 +73,45 @@
           ]
         },
         {
+          name: "Tareas",
+          icon: "mdi-format-list-checkbox",
+          menu:false,
+          subitems: [
+            {
+              name: "Agregar Tarea",
+              route: "/add-task", icon:
+              "mdi-plus"
+            },
+            {
+              name: "Listar Tareas",
+              route: "/list-tasks",
+              icon: "mdi-list-box"
+            }
+          ]
+        },
+        {
+          name: "Certificar Tareas",
+          icon: "mdi-cash",
+          menu:false,
+          subitems: [
+            {
+              name: "Nueva Certificacion",
+              route: "/add-certification",
+              icon: "mdi-cash-plus"
+            },
+            {
+              name: "Consultar Certifiacion por Tecnico",
+              route: "/list-certifications",
+              icon: "mdi-pencil"
+            },
+            {
+              name: "Consultar Certificacion",
+              route: "/query-certification",
+              icon: "mdi-view-list"
+            }
+          ]
+        },
+        {
           name: 'Mi cuenta',
           icon: 'mdi-account',
           menu: false,

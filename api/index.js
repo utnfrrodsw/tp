@@ -9,7 +9,7 @@ app.use(express.json({ extended: true }))
 
 const PORT = config.app.port || 4000
 
-// app.use('/api/tasks', require('./routes/tasks'))
+app.use('/api/tasks', require('./routes/tasks'))
 app.use('/api/groups', require('./routes/groups'))
 app.use('/api/technicians', require('./routes/technicians'))
 app.use('/api/group_technicians', require('./routes/group_technicians'))

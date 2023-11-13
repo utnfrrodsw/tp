@@ -6,11 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true
     },
-    date_from: {
-      type: DataTypes.DATE,
-      primaryKey: true,
-      allowNull: false
-    },
     price: {
       type: DataTypes.INTEGER,
       allowNull: false

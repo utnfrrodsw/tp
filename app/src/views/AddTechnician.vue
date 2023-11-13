@@ -90,10 +90,8 @@
         if (this.$refs.form.validate()) {
           this.loading = true
           try {
-            const apiUrl = process.env.VUE_APP_API_URL
-            const url = `${apiUrl}api/technicians`
             const token = localStorage.getItem('token')
-            const response = await fetch(url, {
+            const response = await fetch(`${process.env.VUE_APP_API_URL}api/technicians`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -104,7 +102,6 @@
                 date_born: this.tecnico.date_born,
               }
             })
-            const data = await response.data
     
             this.alert.show = true
             this.alert.message = 'Tecnico creado correctamente'

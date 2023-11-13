@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="12" md="6">
           <v-text-field 
-            v-model="tecnico.name" 
+            v-model="technician.name" 
             :rules="validationRules.name"
             label="Nombre"
           >
@@ -16,7 +16,7 @@
               <v-text-field v-model="formattedDate" label="Fecha de Nacimiento" readonly v-bind="attrs" v-on="on"></v-text-field>
             </template>
             <v-date-picker 
-              v-model="tecnico.date_born" 
+              v-model="technician.date_born" 
               :rules="validationRules.date_born"
               @input="menu = false"
             >
@@ -45,7 +45,7 @@
     },
     data() {
       return {
-        tecnico: {
+        technician: {
           id: this.$route.params.id,
           name: '',
           date_born: null
@@ -74,8 +74,8 @@
     },
     computed: {
       formattedDate() {
-        if (this.tecnico.date_born) {
-          const date = new Date(this.tecnico.date_born)
+        if (this.technician.date_born) {
+          const date = new Date(this.technician.date_born)
           return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
         }
         return ''
@@ -85,11 +85,11 @@
       async fetchData() {
         this.loading = true
         try {
-          
+          const apiUrl = process.env.VUE_APP_API_URL
+          const url = `${apiUrl}api/technicians/${this.technician.id}`
           const response = await axios.get(url)
-          const technician = response.data
-          this.tecnico.name = technician.name
-          this.tecnico.date_born = technician.date_born.substring(0, 10)
+          this.technician.name = response.data.name
+          this.technician.date_born = response.data.date_born.substring(0, 10)
         } catch (error) {
           console.error(error)
         }
@@ -101,11 +101,11 @@
     
           try {
             const body = {
-              name: this.tecnico.name,
-              date_born: this.tecnico.date_born
+              name: this.technician.name,
+              date_born: this.technician.date_born
             }
             const apiUrl = process.env.VUE_APP_API_URL
-            const url = `${apiUrl}api/technicians/${this.tecnico.id}`
+            const url = `${apiUrl}api/technicians/${this.technician.id}`
             const response = await axios.put(url, body)
             const data = await response.data
             this.alert.show = true

@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize')
 const { Group, Task, Price, sequelize } = require('../sequelize')
 
 const getTasks = async (req, res) => {
@@ -24,10 +25,14 @@ const getTask = async (req, res) => {
   }
 
   try {
-    const technician = await Task.findByPk(id, {
-      include: Group
+    const task = await Task.findByPk(id, {
+      include: [{
+        model: Group
+      }, {
+        model: Price
+      }]
     })
-    res.status(200).json(technician)
+    res.status(200).json(task)
   } catch (error) {
     console.log(error)
     res.status(400).send('Ups! Error')
@@ -35,7 +40,7 @@ const getTask = async (req, res) => {
 }
 
 const updateTask = async (req, res) => {
-  const { name, dateBorn } = req.body
+  const { name, price } = req.body
   const { id } = req.params
 
   if (!id) {
@@ -43,13 +48,16 @@ const updateTask = async (req, res) => {
   }
 
   try {
-    const technician = await Task.update({
-      name,
-      date_born: dateBorn
+    const task = await Task.update({
+      name
     }, {
       where: { id }
     })
-    res.json(technician)
+    const priceTask = await Price.create({
+      taskId: id,
+      price
+    })
+    res.json(task)
   } catch (error) {
     console.log(error)
     res.status(400).send('Ups! Error')
@@ -57,14 +65,17 @@ const updateTask = async (req, res) => {
 }
 
 const createTask = async (req, res) => {
-  const { name, dateBorn } = req.body
+  const { name, price } = req.body
 
   try {
-    const technician = await Task.create({
-      name,
-      date_born: dateBorn
+    const task = await Task.create({
+      name
     })
-    res.json(technician)
+    const priceTask = await Price.create({
+      taskId: task.id,
+      price
+    })
+    res.json(task)
   } catch (error) {
     console.log(error)
     res.status(400).send('Ups! Error')
@@ -79,8 +90,8 @@ const deleteTask = async (req, res) => {
   }
 
   try {
-    const technician = await Task.destroy({ where: { id } })
-    res.json(technician)
+    const task = await Task.destroy({ where: { id } })
+    res.json(task)
   } catch (error) {
     console.log(error)
     res.status(400).send('Ups! Error')
