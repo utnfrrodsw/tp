@@ -193,12 +193,8 @@ export class PanelComponent implements OnInit {
         .aceptarInvitacion(usuarioID)
         .subscribe({
           next:(amigo: any)=>{
-            // this.console.log(this.usuarioActual.amigos);
-            this.console.log(amigo);
-            // this.usuarioActual.amigos
             ((this.usuarioActual.amigos||[]).find(ami=>ami.ID==usuarioID) as Usuario).amistades.estado=EstadosAmistades.Amigos/* 'amigos' */; //delet, Ig
             return;
-
           }
           ,error:error=>{
             this.console.log(error);
@@ -379,5 +375,37 @@ export class PanelComponent implements OnInit {
         this.usuarioDetalladoService.setUsuarioDetallado(usuarioADetallar);
       }
     }
+  }
+
+  ERRORES_DE_CONTRASENIA=[
+    'Los campos no deben estar vacíos.'
+    ,'La contraseña debe tener más de '+this.LARGO_MINIMO_CONTRASENIA+' caracteres.'
+    ,'Las contraseñas deben coincidir.'
+  ];
+
+  verificarCamposContrasenia(e:Event, form:HTMLFormElement){
+    e.preventDefault();
+    
+    let fD:FormData = new FormData(form);
+
+    let contrasenia=(<String>fD.get('contrasenia')).trim();
+    let contraseniaRepetida=(<String>fD.get('contrasenia-repetida')).trim();
+
+    let error='-1'
+
+    switch (true){
+    case (!contrasenia || !contraseniaRepetida):
+      error='0'
+      break;
+    case contrasenia.length<this.LARGO_MINIMO_CONTRASENIA:
+      error='1'
+      break;
+    case contrasenia!=contraseniaRepetida:
+      error='2'
+      break;
+    }
+
+    // TODO Refactor: alguna gracia de casteo booleano => numérico => string??
+    form.dataset['puedeEnviar']=error;
   }
 }
