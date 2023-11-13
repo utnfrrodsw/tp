@@ -17,11 +17,11 @@ module.exports = (sequelize, dataTypes) => {
         },
         piso: {
             type: dataTypes.STRING(10),
-            allowNull: false,
+            allowNull: true,
         },
         dpto: {
             type: dataTypes.STRING(10),
-            allowNull: false,
+            allowNull: true,
         },
         idUsuario: {
             type: dataTypes.INTEGER,

@@ -50,7 +50,7 @@ const usuarioController = {
       }));    
     }
   },
- 
+
   register: async (req, res) => {
     const {
       nombre,
@@ -61,6 +61,7 @@ const usuarioController = {
       telefono,
       esPrestador,
       especialidades,
+      direcciones,
     } = req.body;
   
     try {
@@ -86,52 +87,100 @@ const usuarioController = {
         fechaNacimiento,
         telefono,
         esPrestador,
-        fotoPerfil: "file-1699675999630.png", 
         // Otras propiedades específicas del usuario si las tienes
       });
   
-      if (esPrestador && especialidades && especialidades.length > 0) {
-        const profesionesIds = [];
-      
-        // Obtener las especialidades existentes y crear las nuevas
-        await Promise.all(
-          especialidades.map(async (especialidad) => {
-            const existingEspecialidad = await db.Profesion.findOne({
-              where: { nombreProfesion: especialidad },
-            });
-      
-            if (existingEspecialidad) {
-              // Si la especialidad ya existe, agrega su ID a la lista
-              profesionesIds.push(existingEspecialidad.idProfesion);
-            } else {
-              // Si es una nueva especialidad, créala y agrega su ID
-              const newProfesion = await db.Profesion.create({
-                nombreProfesion: especialidad,
-              });
-              profesionesIds.push(newProfesion.idProfesion);
-            }
-          })
-        );
-      
-        // Relacionar al usuario prestador con las especialidades
-        await Promise.all(
-          profesionesIds.map(async (profesionId) => {
-              await db.PrestadorProfesiones.create({
-                  idprestador: newUser.idUsuario, // ID del usuario recién creado
-                  idProfesion: profesionId,
-              });
-          })
-        );
-      // Responder con un mensaje de registro exitoso
-      res.status(201).json({
-        message: 'Registro exitoso',
+// Asociar las direcciones con el nuevo usuario
+if (direcciones && direcciones.length > 0) {
+  for (const direccion of direcciones) {
+    let existingLocalidad;
+
+    try {
+      // Verificar si la Localidad ya existe
+      existingLocalidad = await db.Localidad.findOne({
+        where: { codPostal: direccion.codPostal },
       });
-      }
+
+      console.log('Localidad existente:', existingLocalidad);
     } catch (error) {
-      console.error('Error en el registro:', error);
-      res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
+      console.error('Error al buscar la localidad:', error);
+      throw error; // Lanza el error para detener la ejecución
     }
-  },
+
+    // Si no existe, créala
+    if (!existingLocalidad) {
+      try {
+        existingLocalidad = await db.Localidad.create({
+          codPostal: direccion.codPostal,
+          nombre: direccion.ciudad,
+          provincia: direccion.provincia,
+        });
+
+        console.log('Localidad creada:', existingLocalidad);
+      } catch (error) {
+        console.error('Error al crear la localidad:', error);
+        throw error; // Lanza el error para detener la ejecución
+      }
+    }
+
+    try {
+      // Ahora puedes crear la dirección
+      await db.Direccion.create({
+        ...direccion,
+        idUsuario: newUser.idUsuario,
+      });
+
+      console.log('Dirección creada correctamente');
+    } catch (error) {
+      console.error('Error al crear la dirección:', error);
+      throw error; // Lanza el error para detener la ejecución
+    }
+  }
+}
+
+    if (esPrestador && especialidades && especialidades.length > 0) {
+      const profesionesIds = [];
+
+      // Obtener las especialidades existentes y crear las nuevas
+      await Promise.all(
+        especialidades.map(async (especialidad) => {
+          const existingEspecialidad = await db.Profesion.findOne({
+            where: { nombreProfesion: especialidad },
+          });
+
+          if (existingEspecialidad) {
+            // Si la especialidad ya existe, agrega su ID a la lista
+            profesionesIds.push(existingEspecialidad.idProfesion);
+          } else {
+            // Si es una nueva especialidad, créala y agrega su ID
+            const newProfesion = await db.Profesion.create({
+              nombreProfesion: especialidad,
+            });
+            profesionesIds.push(newProfesion.idProfesion);
+          }
+        })
+      );
+
+      // Relacionar al usuario prestador con las especialidades
+      await Promise.all(
+        profesionesIds.map(async (profesionId) => {
+          await db.PrestadorProfesiones.create({
+            idprestador: newUser.idUsuario, // ID del usuario recién creado
+            idProfesion: profesionId,
+          });
+        })
+      );
+    }
+
+    // Responder con un mensaje de registro exitoso
+    res.status(201).json({
+      message: 'Registro exitoso',
+    });
+  } catch (error) {
+    console.error('Error en el registro:', error);
+    res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
+  }
+},
 
   login: async (req, res) => {
     const { email, constrasena } = req.body;
