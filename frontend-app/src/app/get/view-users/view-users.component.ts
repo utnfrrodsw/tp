@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { UserService } from 'src/app/user.service';
 import { User } from 'src/models/user';
+
 
 @Component({
   selector: 'app-view-users',
@@ -14,24 +16,25 @@ export class ViewUsersComponent implements OnInit {
   viewDataUsers = this.formBuilder.group({
     userUpdatedEmail: ['', [Validators.required, Validators.email]],
   });
-  deletionMessage: string = ''; 
+  deletionMessage: string = '';
   succesMessage: string = '';
   @Input() accRol: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    ) {}
+    private _snackBar: MatSnackBar,
+  ) {}
   ngOnInit(): void {}
 
   users?: User[];
 
   viewUsers() {
     this.userService.getUsers().subscribe((data: any) => {
-      this.users = data; 
+      this.users = data;
       data.forEach(
         (user: { Editing: boolean; UpdatedEmail: any; Email: any }) => {
-          user.Editing = false; 
+          user.Editing = false;
         }
       );
     });
@@ -44,12 +47,15 @@ export class ViewUsersComponent implements OnInit {
   handlerUpdate(viewDataUsers: FormGroup, user: any) {
     if (this.viewDataUsers.valid) {
       user.UpdatedEmail = viewDataUsers.controls['userUpdatedEmail'].value;
-      console.log(user);
+      // console.log(user);
       this.userService
         .updateEmailUser(user.UserId, user.UpdatedEmail)
         .subscribe(() => {
-          this.succesMessage = `Usuario ${user.FirstName} ${user.LastName} ha sido actualizado`;
-          this.deletionMessage = "";
+          this._snackBar.open(`Email actualizado con exito!`, 'CERRAR', {
+            duration: 4000,
+          });
+          // this.succesMessage = `Usuario ${user.FirstName} ${user.LastName} ha sido actualizado`;
+          // this.deletionMessage = '';
         });
     }
   }
@@ -58,12 +64,19 @@ export class ViewUsersComponent implements OnInit {
     this.userService.deleteUser(users.UserId).subscribe(
       (user: User) => {
         this.users = this.users?.filter((u) => u.UserId !== user.UserId);
-        this.deletionMessage = `Usuario ${user.FirstName} ${user.LastName} ha sido borrado`;
+        // this.deletionMessage = `Usuario ${user.FirstName} ${user.LastName} ha sido borrado`;
+        this._snackBar.open(
+          `Usuario ${user.FirstName} ${user.LastName} ha sido borrado`,
+          'CERRAR',
+          {
+            duration: 4000,
+          }
+        );
         this.viewUsers();
       },
       (error) => {
         this.deletionMessage = 'Error al borrar el usuario';
-        this.succesMessage = "";
+        this.succesMessage = '';
         console.error(error);
       }
     );
