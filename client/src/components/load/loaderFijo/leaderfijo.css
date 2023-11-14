@@ -1,0 +1,21 @@
+.loader-container {
+  position: relative; /* Cambia a relative */
+  width: 100px; /* Define un ancho y alto para el contenedor según tus necesidades */
+  height: 100px;
+  align-self: center;
+}
+
+.loader {
+  border: 8px solid transparent;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  align-self: center;
+  width: 50%;
+  height: 50%;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
