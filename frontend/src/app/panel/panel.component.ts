@@ -126,7 +126,8 @@ export class PanelComponent implements OnInit {
         .buscarDifusamentePorNombre(consulta)
         .subscribe((result: any)=>{
           if(this.busquedaID==busquedaID){
-            this.usuariosEncontrados=result.filter((usu:Usuario)=>usu.habilitado);
+            // ! Ya vienen filtrados por habilitados.
+            this.usuariosEncontrados=result/* .filter((usu:Usuario)=>usu.habilitado) */;
             if(result.length==0){
               this.puedeMostrarVacio=true;
             }
@@ -344,7 +345,10 @@ export class PanelComponent implements OnInit {
   navegar(e:Event){
     e.preventDefault();
 
-    // TODO Now: ver si tenemos el array de permisos, la id de la persona (hidden); mandarla y EDITARLA; also, disable stuff.
+    if(!(e.target instanceof HTMLInputElement))
+      return
+  
+  // TODO UX: disable stuff on send and such.
     this.paginaActual+= +(e.target as HTMLInputElement).value;
     this.actualizarTablaAdministracion();
   }
