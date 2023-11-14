@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment.development';
 import { User } from 'src/models/user';
 
 @Injectable({
@@ -11,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
   
   users(user: User): Observable<any> {
-    return this.http.post<any>('http://localhost:3001/users', user, {
+    return this.http.post<any>(`${environment}users`, user, {
       withCredentials: true,
     });
   }

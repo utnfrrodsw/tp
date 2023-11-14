@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateBankDto } from './dto/create-bank.dto';
-import { UpdateBankDto } from './dto/update-bank.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bank } from './entities/bank.entity';
 import { Repository } from 'typeorm';
@@ -36,12 +35,4 @@ export class BankService {
 
     return bank;
   }
-
-  /*update(id: number, updateBankDto: UpdateBankDto) {
-    return `This action updates a #${id} bank`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} bank`;
-  }*/
 }

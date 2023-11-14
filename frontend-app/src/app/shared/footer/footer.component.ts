@@ -4,7 +4,6 @@ import { faGithub, faLinkedin }from "@fortawesome/free-brands-svg-icons"
 @Component({
   selector: 'app-footer',
   template: `
-  
   <div class="shared-container">
   <div class="icon-margin">
     <a href="https://github.com/FedericoUTN/tp/tree/FedeEnzoDev" type="button" target="_blank"><fa-icon [icon]="faGithub" size="lg">git</fa-icon></a>

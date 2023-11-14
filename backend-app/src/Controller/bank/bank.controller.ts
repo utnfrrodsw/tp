@@ -28,14 +28,4 @@ export class BankController {
   async findOne(@Param('name') name: string): Promise<Bank | HttpException> {
     return await this.bankService.findOne(name);
   }
-
-  /* @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBankDto: UpdateBankDto) {
-    return this.bankService.update(+id, updateBankDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.bankService.remove(+id);
-  }*/
 }

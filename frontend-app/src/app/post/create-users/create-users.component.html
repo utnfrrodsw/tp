@@ -5,129 +5,137 @@
     [formGroup]="createUsers"
     (ngSubmit)="handlerCreate()"
   >
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Crear Usuario</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-form-field class="field-flex">
-    <mat-label for="userName">Ingrese nombre:</mat-label>
-    <input
-      matInput
-      type="text"
-      formControlName="userName"
-      name="userName"
-      id="userName"
-      placeholder=" "
-    />
-    </mat-form-field>
-    <mat-form-field class="field-flex">
-      <mat-label for="userLastName">Ingrese apellido:</mat-label>
-    <input
-      matInput
-      type="text"
-      formControlName="userLastName"
-      name="userLastName"
-      id="userLastName"
-      placeholder=" "
-    />
-    </mat-form-field>
-    <mat-form-field class="field-flex">
-    <mat-label for="userEmail">Ingrese email:</mat-label>
-    <input
-      matInput
-      type="email"
-      formControlName="userEmail"
-      name="userEmail"
-      id="userEmail"
-      placeholder=" "
-    />
-    <mat-error *ngIf="createUsers.get('userEmail')?.invalid"
-          >Ingrese formato de mail</mat-error>
-    </mat-form-field>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Crear Usuario</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field class="field-flex">
+        <mat-label for="userName">Ingrese nombre:</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="userName"
+          name="userName"
+          id="userName"
+          placeholder=" "
+        />
+      </mat-form-field>
+      <mat-form-field class="field-flex">
+        <mat-label for="userLastName">Ingrese apellido:</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="userLastName"
+          name="userLastName"
+          id="userLastName"
+          placeholder=" "
+        />
+      </mat-form-field>
+      <mat-form-field class="field-flex">
+        <mat-label for="userEmail">Ingrese email:</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="userEmail"
+          name="userEmail"
+          id="userEmail"
+          placeholder=" "
+        />
+        <mat-error *ngIf="createUsers.get('userEmail')?.invalid"
+          >Ingrese formato de mail</mat-error
+        >
+      </mat-form-field>
 
-    <mat-form-field class="field-flex">
-    <mat-label for="userPassword">Ingrese contraseña:</mat-label>
-    <input
-      matInput
-      type="password"
-      formControlName="userPassword"
-      name="userPassword"
-      id="userPassword"
-      placeholder=" "
-    />
-    <mat-error *ngIf="createUsers.get('userPassword')?.invalid"
-          >La contraseña debe tener como mínimo 4 caracteres</mat-error>
-    </mat-form-field>
+      <mat-form-field class="field-flex">
+        <mat-label for="userPassword">Ingrese contraseña:</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="userPassword"
+          name="userPassword"
+          id="userPassword"
+          placeholder=" "
+        />
+        <mat-error *ngIf="createUsers.get('userPassword')?.invalid"
+          >La contraseña debe tener como mínimo 4 caracteres</mat-error
+        >
+      </mat-form-field>
 
-    <mat-form-field class="field-flex">
-    <mat-label for="anotherUserPassword">Repita la contraseña:</mat-label>
-    <input
-      matInput
-      type="password"
-      formControlName="anotherUserPassword"
-      name="anotherUserPassword"
-      id="anotherUserPassword"
-      placeholder=" "
-    />
-    <mat-error *ngIf="createUsers.get('userPassword')?.value !=
-    createUsers.get('anotherUserPassword')?.value "
-          >La contraseña debe ser la misma</mat-error>
-    </mat-form-field>
+      <mat-form-field class="field-flex">
+        <mat-label for="anotherUserPassword">Repita la contraseña:</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="anotherUserPassword"
+          name="anotherUserPassword"
+          id="anotherUserPassword"
+          placeholder=" "
+        />
+        <mat-error
+          *ngIf="
+            createUsers.get('userPassword')?.value !=
+            createUsers.get('anotherUserPassword')?.value
+          "
+          >La contraseña debe ser la misma</mat-error
+        >
+      </mat-form-field>
 
-    <mat-form-field class="field-flex">
-    <mat-label for="userAddress_Street">Ingrese calle:</mat-label>
-    <input
-      matInput
-      type="text"
-      formControlName="userAddress_Street"
-      name="userAddress_Street"
-      id="userAddress_Street"
-      placeholder=" "
-      id="userAddress_Street"
-    />
-    </mat-form-field>
-    
+      <mat-form-field class="field-flex">
+        <mat-label for="userAddress_Street">Ingrese calle:</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="userAddress_Street"
+          name="userAddress_Street"
+          id="userAddress_Street"
+          placeholder=" "
+          id="userAddress_Street"
+        />
+      </mat-form-field>
 
-    <mat-form-field class="field-flex">
-    <mat-label for="userAddress_Number">Ingrese altura:</mat-label>
-    <input
-      matInput
-      type="number"
-      formControlName="userAddress_Number"
-      name="userAddress_Number"
-      id="userAddress_Number"
-      placeholder=" "
-      id="userAddress_Number"
-    />
-    </mat-form-field>
+      <mat-form-field class="field-flex">
+        <mat-label for="userAddress_Number">Ingrese altura:</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="userAddress_Number"
+          name="userAddress_Number"
+          id="userAddress_Number"
+          placeholder=" "
+          id="userAddress_Number"
+        />
+      </mat-form-field>
 
-    <mat-form-field class="field-flex">
-    <mat-label for="userAddress_City">Ingrese ciudad:</mat-label>
-    <input
-      matInput
-      type="text"
-      formControlName="userAddress_City"
-      name="userAddress_City"
-      id="userAddress_City"
-      placeholder=" "
-      id="userAddress_City"
-    />
-    </mat-form-field>
-    
-  </mat-card-content>
-  <mat-divider></mat-divider>
-  <mat-card-actions class="button-container">
-    <button class="field-flex button-style" 
-      mat-raised-button type="submit">
-      Crear Usuario
+      <mat-form-field class="field-flex">
+        <mat-label for="userAddress_City">Ingrese ciudad:</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="userAddress_City"
+          name="userAddress_City"
+          id="userAddress_City"
+          placeholder=" "
+          id="userAddress_City"
+        />
+      </mat-form-field>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions class="button-container">
+      <button class="field-flex button-style" mat-raised-button type="submit">
+        Crear Usuario
       </button>
-      <button class="return-button" 
-      mat-raised-button type="button"
-      (click)="returnPage()">
+      <button
+        class="return-button"
+        mat-raised-button
+        type="button"
+        (click)="returnPage()"
+      >
         Volver
       </button>
-  </mat-card-actions>
+    </mat-card-actions>
   </form>
 </mat-card>
-    <app-view-users [accRol]=accRol><app-view-users>
+<app-view-users [accRol]="accRol"
+  ><app-view-users> </app-view-users
+></app-view-users>

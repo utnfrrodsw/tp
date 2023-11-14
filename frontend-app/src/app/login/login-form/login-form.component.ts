@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
-
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -21,7 +20,7 @@ export class LoginFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   handlerLogin() {
@@ -31,7 +30,7 @@ export class LoginFormComponent {
           this.formLogin.controls['userName'].value ?? '',
           this.formLogin.controls['password'].value ?? ''
         )
-        .subscribe((response) => {
+        .subscribe(() => {
           this.router.navigate(['money']);
         });
     }
@@ -41,5 +40,3 @@ export class LoginFormComponent {
     this.router.navigate(['create-user']);
   }
 }
-
-
