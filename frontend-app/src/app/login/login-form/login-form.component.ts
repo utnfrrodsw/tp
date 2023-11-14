@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-form',
@@ -21,6 +22,7 @@ export class LoginFormComponent {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   handlerLogin() {
@@ -31,8 +33,16 @@ export class LoginFormComponent {
           this.formLogin.controls['password'].value ?? ''
         )
         .subscribe(() => {
+          this._snackBar.open('Sesión iniciada exitosamente!', 'X', {
+            duration: 4000,
+          });
           this.router.navigate(['money']);
         });
+    }
+    else{
+      this._snackBar.open('Error al iniciar sesión', 'X', {
+        duration: 4000,
+      });
     }
   }
 
