@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FormLoginContainer, FormLogin, NavLogin, LoginInput, StyledH1, RegisterContainer } from './styles.js';
-import { StyledLink, StyledSpan, ButtonContainer } from './styles.js';
+import { StyledLink, StyledSpan, ButtonContainer, LoginButton } from './styles.js';
 import { Navigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../redux/slices/userSlice.js';
@@ -93,11 +93,9 @@ export default function Login({ client, testing }) {
           <LoginInput value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Username" />
           <span>Password</span>
           <LoginInput value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
-          <ButtonContainer>
-            <StyledButton onClick={handleLogin}>
-              Log in
-            </StyledButton>
-          </ButtonContainer>
+          <LoginButton onClick={handleLogin}>
+            Log in
+          </LoginButton>
           <RegisterContainer>
             <StyledSpan>Don't have an account?</StyledSpan>
             <StyledLink to='/register'>Sign up for NoSpeak</StyledLink>
