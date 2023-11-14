@@ -19,6 +19,14 @@ function Presupuesto(props) {
   const auth = useAuth();
   const user = auth.getUser();
 
+  const [errorIdSolicitud, setErrorIdSolicitud] = useState("");
+  const [errorIdPrestador, setErrorIdPrestador] = useState("");
+  const [errorMateriales, setErrorMateriales] = useState("");
+  const [errorTiempo, setErrorTiempo] = useState("");
+  const [errorCostoxHora, setErrorCostoxHora] = useState("");
+  const [errorFechasSeleccionadas, setErrorFechasSeleccionadas] = useState("");
+
+
   useEffect(() => {
     // Realiza la consulta a la base de datos para obtener los detalles del anuncio usando el ID
     fetch(`${API_URL}/solicitud/nuevas/prestador/${id}/presupuestar`)
@@ -57,7 +65,10 @@ function Presupuesto(props) {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (selectedDates.length === 0) {
-    setSuccessMessage('Debes seleccionar al menos una fecha y hora.');
+    setErrorFechasSeleccionadas('Debes seleccionar al menos una fecha y hora.');
+    setTimeout(() => {
+      setErrorFechasSeleccionadas("");
+    }, 10000);
     return;
     }
     // Crea un objeto con los datos del presupuesto
@@ -81,12 +92,32 @@ function Presupuesto(props) {
     })
       .then((res) => res.json())
       .then((data) => {
-        setSuccessMessage('Presupuesto cargado con éxito.');
-        
-        // Programa una redirección a la página principal después de unos segundos
-        setTimeout(() => {
-          history('/provider/home/add/');
-        }, 3000); // Redirigir después de 3 segundos
+        if(data.error){
+          console.log(data.error);
+          data.error.map((error) => {
+            if(error.path === 'idSolicitud') setErrorIdSolicitud(error.msg);
+            if(error.path === 'idPrestador') setErrorIdPrestador(error.msg);
+            if(error.path === 'materiales') setErrorMateriales(error.msg);
+            if(error.path === 'tiempo') setErrorTiempo(error.msg);
+            if(error.path === 'costoxHora') setErrorCostoxHora(error.msg);
+            if(error.path === 'fechasSeleccionadas') setErrorFechasSeleccionadas(error.msg);
+            return null;
+          });
+          setTimeout(() => {
+            setErrorIdSolicitud("");
+            setErrorIdPrestador("");
+            setErrorMateriales("");
+            setErrorTiempo("");
+            setErrorCostoxHora("");
+            setErrorFechasSeleccionadas("");
+          }, 10000);
+        }else{
+          setSuccessMessage('Presupuesto cargado con éxito.');
+          // Programa una redirección a la página principal después de unos segundos
+          setTimeout(() => {
+            history('/provider/home/add/');
+          }, 3000); // Redirigir después de 3 segundos
+        }
       })
       .catch((error) => {
         console.error('Error al enviar el presupuesto:', error);
@@ -100,6 +131,8 @@ function Presupuesto(props) {
             <div className='datos'>
               <p><h2>Detalles:</h2></p>
               <p>Número de anuncio: {anuncio.idSolicitud}</p>
+              {errorIdSolicitud && <span className="error-message">{errorIdSolicitud}</span>}
+              {errorIdPrestador && <span className="error-message">{errorIdPrestador}</span>}
               <p>Título: {anuncio.titulo}</p>
               <p>Fecha de publicacion: {new Date(anuncio.fechaHora).toLocaleString()}</p>
               <p>Ubicacion: {anuncio.direccion.codPostal} (Ver de modificar por ciudad y prov)</p> 
@@ -133,8 +166,11 @@ function Presupuesto(props) {
         </div>
         <div className='textoCampos'>
           <p>Costo total en materiales aproximado</p>
+          {errorTiempo && <span className="error-message">{errorTiempo}</span>}
           <p>Tiempo(En horas) aproximado</p> 
+          {errorCostoxHora && <span className="error-message">{errorCostoxHora}</span>}
           <p>Costo por hora </p>
+          {errorMateriales && <span className="error-message">{errorMateriales}</span>}
         </div>
         <div className='entradasCampos'>
             <input type="number" name="costo-materiales" min={1} required value={costoMateriales} onChange={(e) => setCostoMateriales(e.target.value)}/>
@@ -164,6 +200,7 @@ function Presupuesto(props) {
           ))}
         </ul>
         </div>
+        {errorFechasSeleccionadas && <span className="error-message">{errorFechasSeleccionadas}</span>}
       </div>
       <button type="button" onClick={() => history(-1)}>Atrás</button>
       <button type="submit">Enviar presupuesto</button>
