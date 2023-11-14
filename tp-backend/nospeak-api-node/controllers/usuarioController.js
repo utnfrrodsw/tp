@@ -1,7 +1,7 @@
-const Usuario = require('../models/Usuario');
+const Usuario = require('../models/usuario');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const config = require('../config');
 
 exports.getUsuarios = async (req, res) => {
   try {
@@ -76,7 +76,7 @@ exports.deleteUsuario = async (req, res) => {
 
 exports.createUsuario = async (req, res) => {
   try {
-    const { nombre, email, password } = req.body;
+    const { nombre, email, password, isAdmin } = req.body;
 
     const usuarioExistente = await Usuario.findOne({ email });
 
@@ -90,6 +90,7 @@ exports.createUsuario = async (req, res) => {
       nombre,
       email,
       password: hashedPassword,
+      isAdmin,
     });
 
     await nuevoUsuario.save();
@@ -118,12 +119,12 @@ exports.loginUsuario = async (req, res) =>{
     }
 
     const token = jwt.sign(
-      { userId: usuario._id, nombre: usuario.nombre },
-      '1234',
+      { userId: usuario._id, nombre: usuario.nombre, isAdmin: usuario.isAdmin },
+      config.tokenSecretKey,
       { expiresIn: '1h' }
     );
 
-    res.status(200).json({ token, userId: usuario._id, nombre: usuario.nombre });
+    res.status(200).json({ token, userId: usuario._id, nombre: usuario.nombre, isAdmin: usuario.isAdmin });
   } catch (error) {
     console.error('Error al iniciar sesión:', error);
     res.status(500).json({ message: 'Error interno del servidor' });

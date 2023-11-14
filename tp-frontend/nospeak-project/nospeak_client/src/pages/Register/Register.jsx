@@ -20,6 +20,7 @@ export default function Register({client}) {
   const [repeatPasswordError, setRepeatPasswordError] = useState('');
 
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [isArtist, setIsArtist] = useState(false);
 
 
   const [goToHome, setGoToHome] = useState(false);
@@ -80,6 +81,7 @@ export default function Register({client}) {
         nombre: name,
         email: email,
         password,
+        isArtist,
       });
 
 
@@ -156,7 +158,7 @@ export default function Register({client}) {
         {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
         <span>What should we call you?</span>
         <LoginInput value={name} onChange={handleNameChange} type="text" placeholder="Username" />
-        {nameError && <ErrorMessage>{nameError}</ErrorMessage>}
+        {nameError && <ErrorMessage>{nameError}</ErrorMessage>} 
         <span>Create a password</span>
         <LoginInput value={password} onChange={handlePasswordChange} type="password" placeholder="Password" />
         {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
