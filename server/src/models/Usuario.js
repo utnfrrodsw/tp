@@ -46,6 +46,10 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING(255), 
       allowNull: true, // Puede ser nulo si el usuario aún no ha establecido una foto de perfil
     },
+    foto: {
+      type: dataTypes.BLOB,
+      allowNull: true, // Puede ser nulo si el usuario aún no ha establecido una foto de perfil
+    },
   }
   const config = {
     tableName: 'usuario',
