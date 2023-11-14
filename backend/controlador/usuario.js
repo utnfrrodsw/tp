@@ -98,7 +98,14 @@ function findUsuarios(req, res) {
 }
 
 function findUsuariosFuzzilyByName(req, res) {
-    usuarioDao[req.query.incluirAmigos?'buscarPorNombre':'buscarNoAmigosPorNombre'](req.params.consulta,req.session.usuarioID,req.query.pagina)
+    usuarioDao[req.query.incluirAmigos?'buscarPorNombre':'buscarNoAmigosPorNombre'](
+        req.params.consulta
+        ,req.session.usuarioID
+        ,{
+            pagina:req.query.pagina
+            ,soloHabilitados:!!+req.query.soloHabilitados
+        }
+    )
         .then((data) => {
             res.send(data);
         })

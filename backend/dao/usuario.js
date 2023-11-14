@@ -195,20 +195,19 @@ async function quitarTokens(usuario,cantidad){
     // await usuario.removeTokensAsociadas(tokensAsociadas.splice(0,cantidad));
 }
 
-async function buscarNoAmigosPorNombre(consulta,usuarioID,pagina=0){
-    return (await buscarPorNombre(consulta,usuarioID,pagina)).filter(usu=>{
-        // TODO hacer que .amigos ande
-        return !usu.amigos.some(ami=>ami.ID==usuarioID);
-    });
+async function buscarNoAmigosPorNombre(consulta,usuarioID,{pagina=0}){
+    return (await buscarPorNombre(consulta,usuarioID,{pagina})).filter(usu=>!usu.amigos.some(ami=>ami.ID==usuarioID));
 }
 
-async function buscarPorNombre(consulta,usuarioID,pagina=0){
+async function buscarPorNombre(consulta,usuarioID,{pagina=0,soloHabilitados=true}={}){
     let where={
         ID:{
             [Sequelize.Op.not]:usuarioID
         }
-        ,habilitado:1
     };
+    if(soloHabilitados){
+        where.habilitado=1;
+    }
     if(consulta?.trim())
         where.nombreCompleto={
             [Sequelize.Op.like]:`%${consulta}%`
@@ -223,6 +222,7 @@ async function buscarPorNombre(consulta,usuarioID,pagina=0){
         ]
         ,limit:pagina?CANTIDAD_POR_PAGINA:null // TODO comprobar que esto funciona, si se tiene que poner undefined, o cómo hacerlo bien.
         ,offset:pagina?((pagina-1)*CANTIDAD_POR_PAGINA):null
+        ,incluirHabilitado:!soloHabilitados
     });
 }
 

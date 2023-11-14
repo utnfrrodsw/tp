@@ -68,7 +68,7 @@ export class UsuarioService {
   }
 
   getUsuariosPagina(filtro:string,n:number){
-    return this.clienteHTTP.get(this.URL+`buscar/${filtro}`+'?pagina='+n+'&incluirAmigos=1',{withCredentials: true});
+    return this.clienteHTTP.get(this.URL+`buscar/${filtro}`+'?pagina='+n+'&incluirAmigos=1'+'&soloHabilitados=0',{withCredentials: true});
   }
 
   actualizarPermisos(usuarioID:number, permisos:Permiso[]){
