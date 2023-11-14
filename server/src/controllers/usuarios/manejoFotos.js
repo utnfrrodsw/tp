@@ -37,8 +37,12 @@ const cargarFotoPerfil = async (req, res) => {
       }
     }
 
-    // Actualizar el campo fotoPerfil en la base de datos
+    // Leer el archivo de la imagen
+    const foto = fs.readFileSync(req.file.path);
+
+    // Actualizar los campos fotoPerfil y foto en la base de datos
     usuario.fotoPerfil = req.file.filename; // Almacenar el nombre del archivo en la base de datos
+    usuario.foto = foto; // Almacenar la imagen en la base de datos
     await usuario.save();
 
     res.json({ success: true, message: 'Foto de perfil cargada con éxito' });
@@ -65,9 +69,16 @@ const obtenerFotoPerfil = async (req, res) => {
 
     // Verifica si el archivo de la foto de perfil existe
     if (!fs.existsSync(fotoPerfilPath)) {
-      // Si el archivo no existe, devuelve un error 404
-      return res.status(404).json({ error: 'Foto de perfil no encontrada' });
+      // Si el archivo no existe, verifica si la foto está en la base de datos
+      if (usuario.foto) {
+        // Si la foto está en la base de datos, la escribe en el sistema de archivos
+        fs.writeFileSync(fotoPerfilPath, usuario.foto);
+      } else {
+        // Si la foto no está en la base de datos, devuelve un error 404
+        return res.status(404).json({ error: 'Foto de perfil no encontrada' });
+      }
     }
+
     // Envía el archivo de imagen como respuesta
     res.sendFile(fotoPerfilPath);
   } catch (error) {
