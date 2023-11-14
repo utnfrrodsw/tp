@@ -37,32 +37,28 @@ export default function Account({client}){
     
 
     useEffect(() => {
-      if (!isAuthenticated) {
-        return <Navigate to="/login" />;
-      }
-  
-      if (goToInicio) {
-        return <Navigate to="/" />;
-      }
-
-      const fetchUserData = async () => {
-        try {
-          if(user){
-            const response = await client.get(`/api/usuarios/${user.id}`);
-            if (response) {
-              setUserData(response.data);
-            }
-
-          }
-          
-        } catch (error) {
-          console.error('Error al obtener los datos del usuario:', error);
+      (async () => {
+        if (goToInicio) {
+          return <Navigate to="/" />;
         }
-      };
-  
-      fetchUserData();
-    }, [isAuthenticated, goToInicio, user.id]);
-
+    
+        const fetchUserData = async () => {
+          try {
+            if(user){
+              const response = await client.get(`/api/usuarios/${user.id}`);
+              if (response) {
+                setUserData(response.data);
+              }
+            }
+          } catch (error) {
+            console.error('Error al obtener los datos del usuario:', error);
+          }
+        };
+    
+        await fetchUserData();
+      })();
+    
+    }, [isAuthenticated, goToInicio, user ? user.id : null]);
     if (!user) {
       return <Navigate to="/login" />;
     }
