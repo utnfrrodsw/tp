@@ -15,6 +15,8 @@ import { AutorSeleccionadoComponent } from './pages/autor-seleccionado/autor-sel
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
 import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
+import { UsuarioService } from './services/usuario.service';
+import { userGuard } from './guards/user.guard';
 
 const routes: Routes = [
   // RUTAS DE LA PÁGINA
@@ -30,7 +32,9 @@ const routes: Routes = [
   { path: 'finalizar-compra', component: FinalizarCompraComponent },
   { path: 'identificarse', component: IdentificarseComponent },
   { path: 'autor-seleccionado/:id', component: AutorSeleccionadoComponent },
-  { path: 'perfil', component: PerfilUsuarioComponent },
+  { path: 'perfil', component: PerfilUsuarioComponent,
+  providers: [UsuarioService],
+  canMatch: [userGuard] },
   { path: 'crear-cuenta', component: CrearCuentaComponent },
   { path: 'busqueda/:term', component: BusquedaComponent },
 ];

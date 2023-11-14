@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 
 export interface Usuario {
 
@@ -43,6 +43,12 @@ export class UsuarioService {
 
   getUsuarios(): Usuario[] {
     return this.usuarios;
+  }
+
+  getUserToken(): Observable<boolean> {
+
+    // Si está True se puede acceder a la ruta
+    return of(true);
   }
   
 }
