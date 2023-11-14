@@ -82,24 +82,27 @@
 				<h3>Invitaciones Recibidas</h3>
 			</summary>
 	
-<!-- TODO Mensaje para cuando no hay nada. <em> o <i> -->
+			<em class="col is-center" *ngIf="amigosEntrantes.length===0">No tenés invitaciones.</em>
+
 			<form *ngFor="let usuario of amigosEntrantes" (submit)="responder($event)" class="col-12 row">
 				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-				<span class="col">{{usuario.nombreCompleto}}</span>
+				<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
 				<button type="submit" value="1" (click)="asignarNombreABoton($event)" class="fas fa-check col-2"></button>
 				<button type="submit" value="0" (click)="asignarNombreABoton($event)" class="button error fas fa-ban col-2"></button>
 			</form>
+
 		</details>
 		
 		<details>
 			<summary>
 				<h3>Invitaciones Enviadas</h3>
 			</summary>
+			
+			<em class="col is-center" *ngIf="amigosSalientes.length===0">No tenés invitaciones enviadas sin responder.</em>
 
-<!-- TODO Mensaje para cuando no hay nada. <em> o <i> -->
 			<form *ngFor="let usuario of amigosSalientes" (submit)="cancelar($event)" class="col-12 row">
 				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-				<span class="col">{{usuario.nombreCompleto}}</span>
+				<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
 				<button type="submit" class="button error fas fa-xmark col-2"></button>
 			</form>
 		</details>
@@ -108,10 +111,13 @@
 			<summary>
 				<h3>Amigos</h3>
 			</summary>
+			
+			<em class="col is-center" *ngIf="amigosReales.length===0">No tenés amigos. 🙁 Todavía. 😉</em>
+
 		<!-- TODO Feature para cada uno de estos, esconder si uno es el invitador o no... -->
 			<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-12 row">
 				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-				<span class="col">{{usuario.nombreCompleto}}</span>
+				<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
 				<button type="submit" class="button error fas fa-trash-can col-2"></button>
 			</form>
 		</details>
