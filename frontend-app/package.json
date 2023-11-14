@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "dev": "ng serve --configuration development",
     "test": "jest --coverage"
   },
   "private": true,

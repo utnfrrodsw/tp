@@ -3,17 +3,19 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { jwtConstants } from 'auth.config';
 import { Observable, Subject, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  authUrl = `${environment.baseUrl}/auth`;
   private loginSuccessSubject = new Subject<void>();
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {}
 
   login(username: string, password: string): Observable<any> {
     return this.http
-      .post<any>('http://localhost:3001/auth/login', { username, password })
+      .post<any>(`${this.authUrl}/login`, { username, password })
       .pipe(
         map((response) => {
           const token = response.access_token;
