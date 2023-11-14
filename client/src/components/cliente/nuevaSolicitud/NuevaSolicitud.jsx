@@ -128,7 +128,6 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
       .then((res) => res.json())
       .then((data) => {
               if(data.error){
-                console.log(data.error);
                 data.error.map((error) => {
                   if(error.path === 'titulo') setErrorTitulo(error.msg);
                   if(error.path === 'descripcion') setErrorDescripcion(error.msg);
