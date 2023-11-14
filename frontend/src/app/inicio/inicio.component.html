@@ -1,0 +1,64 @@
+<form class="container" id=ingresar (submit)="intentarIngresar($event)" class="{{registrandose ? 'is-hidden':''}}">
+
+	<h1>Sistema de Tokens</h1>
+	<h2>Ingrese sus credenciales para comenzar.</h2>
+	
+	<fieldset class="col">
+
+		<label class="row">
+			<h3 class="col-3">Nombre de Usuario:</h3>
+			<input class=col type="text" id="usuario" placeholder="Nombre de Usuario" required>
+		</label>
+		
+		<label class="row">
+			<h3 class="col-3">Contraseña:</h3>
+			<input class=col type="password" id="contrasenia" placeholder="Contraseña">
+		</label>
+		
+		<div class="row">
+			<input class="col-2" type="submit" value="Ingresar">
+		</div>
+		
+	</fieldset>
+	
+	<p>También puede <button type="button" (click)="registrandose=true">Registrarse</button>.</p>
+</form>
+
+<div class="is-full-screen is-fixed is-vertical-align {{registrandose ? '':'is-hidden'}}" id="modal" (click)="cerrarModal($event.target)">
+	<form class="container card" (submit)="registrarse($event)">
+
+		<h2>Registro</h2>
+		
+		<fieldset>
+			<label class="row">
+				<h3 class="col-3 is-center">Nombre completo</h3>
+				<!-- TODO chequeos en todos los campos acá y en el formulario de crear usuario -->
+				<input type="text" name="nombreCompleto" placeholder="Nombre completo" required class="col">
+			</label>
+			<label class="row">
+				<h3 class="col-3 is-center">DNI</h3>
+				<input type="number" name="DNI" placeholder="DNI" required class="col">
+			</label>
+			<label class="row">
+				<h3 class="col-3 is-center">Nombre de usuario</h3>
+				<input type="text" name="nombreUsuario" placeholder="Nombre de usuario" required class="col">
+			</label>
+			<label class="row">
+				<h3 class="col-3 is-center">Contraseña</h3>
+				<input type="password" name="contrasenia" placeholder="Contraseña" required class="col">
+			</label>
+			<label class="row">
+				<h3 class="col-3 is-center">Repetir contraseña</h3>
+				<input type="password" id="contrasenia2" placeholder="Repetir contraseña" required class="col">
+			</label>
+			<label class="row">
+				<h3 class="col-3 is-center">Correo electrónico</h3>
+				<input type="email" name="correo" placeholder="Correo electrónico" required class="col">
+			</label>
+			<div class="row">
+				<input type="submit" value="Registrarme" class="col-3">
+			</div>
+		</fieldset>
+	</form>
+
+</div>

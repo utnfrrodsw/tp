@@ -1,0 +1,275 @@
+<h1>Inicio</h1>
+<!-- TODO UX: llenar de íconos -->
+<!-- TODO UX: guardar los estados de open de los details -->
+
+<p>Tus tokens: <b id="tokens">{{usuarioActual?.tokens}}</b></p>
+
+<fieldset class="row card">
+	<legend><h2>Administración de Tokens</h2></legend>
+
+	<details class="col-12" open>
+		<summary><h3>Envío de tokens</h3></summary>
+		<form id=form-enviar (submit)="enviarTokens($event)">
+			<fieldset class="row">
+				<input
+					type="number"
+					name="form-enviar-cantidad"
+					id="form-enviar-cantidad"
+					step=1
+					value=1
+					min=1
+					max={{usuarioActual?.tokens}}
+					required
+					class="col"
+				>
+				<select
+					name="form-enviar-usuario"
+					id="form-enviar-usuario"
+					required
+					class="col-8"
+					(input)="actualizarAmigoSeleccionadoID($event)"
+				>
+					<option value="0" >Elegir destinatario</option>
+					
+					<option *ngFor="let usuario of amigosReales" value="{{usuario.ID}}">{{usuario.nombreCompleto}}</option>
+					
+				</select>
+				<input
+					class="col"
+					type=submit
+					value="Enviar tokens"
+					id=form-enviar-submit
+					[disabled]="!amigoSeleccionadoID"
+					title="Debe elegir un usuario para enviarle tokens."
+				>
+			</fieldset>
+		</form>
+	</details>
+
+	<ng-template [ngIf]="puedeGenerarTokens">
+		<details class="col-12">
+			<summary><h3>Generar tokens</h3></summary>
+			<form id="form-generar" (submit)="generarTokens($event)">
+				<fieldset class="row">
+					<legend>Generar tokens</legend>
+					<input
+						type="number"
+						name="form-generar-cantidad"
+						id=""
+						min=1
+						step=1
+						max={{CANTIDAD_MAXIMA_TOKENS_GENERADOS}}
+						required
+						placeholder="Cantidad de tokens"
+						class="col"
+					>
+					<input type=submit value=Generar class="col-2">
+					<p class="col-12">Tokens en circulación: <b id=tokens-circulando>{{tokensCirculando}}</b></p>
+				</fieldset>
+			</form>
+		</details>
+	</ng-template>
+
+</fieldset>
+
+<fieldset class="row card">
+	<legend><h2>Administración de Amigos</h2></legend>
+
+	<div id="amigos" class="col">
+		
+		<details>
+			<summary>
+				<h3>Invitaciones Recibidas</h3>
+			</summary>
+	
+			<em class="col is-center" *ngIf="amigosEntrantes.length===0">No tenés invitaciones.</em>
+
+			<div class="row">
+				<form *ngFor="let usuario of amigosEntrantes" (submit)="responder($event)" class="col-6 row">
+					<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+					<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
+					<button type="submit" value="1" (click)="asignarNombreABoton($event)" class="fas fa-check col-2"></button>
+					<button type="submit" value="0" (click)="asignarNombreABoton($event)" class="button error fas fa-ban col-2"></button>
+				</form>
+			</div>
+
+		</details>
+		
+		<details>
+			<summary>
+				<h3>Invitaciones Enviadas</h3>
+			</summary>
+			
+			<em class="col is-center" *ngIf="amigosSalientes.length===0">No tenés invitaciones enviadas sin responder.</em>
+
+			<div class="row">
+				<form *ngFor="let usuario of amigosSalientes" (submit)="cancelar($event)" class="col-6 row">
+					<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+					<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
+					<button type="submit" class="button error fas fa-xmark col-2"></button>
+				</form>
+			</div>
+		</details>
+		
+		<details>
+			<summary>
+				<h3>Amigos</h3>
+			</summary>
+			
+			<em class="col is-center" *ngIf="amigosReales.length===0">No tenés amigos. 🙁 Todavía. 😉</em>
+
+			<div class="row">
+				<!-- TODO Feature para cada uno de estos, esconder si uno es el invitador o no...  ?? -->
+				<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-6 row">
+					<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+					<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
+					<button type="submit" class="button error fas fa-trash-can col-2"></button>
+				</form>
+			</div>
+		</details>
+		
+	</div>
+
+	<div id="invitaciones" class="col">
+		<input type="text" (input)="busqueda($event)" placeholder="Busque por nombre">
+		<ng-template [ngIf]="this.mostrarVacio">
+			<em class="is-center">No se han encontrado usuarios.</em>
+		</ng-template>
+		<fieldset id="resultados" class="row">
+			<!-- TODO Refactor capturar el submit en el fieldset? -->
+			<!-- TODO Refactor: Pensar qué onda si viene muucha gente.  Crece de forma inparable. Solucionar con overflow o algo.-->
+			
+			<form *ngFor="let usuario of usuariosEncontrados" (submit)="invitar($event)" class="col-6 row">
+				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+				<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
+				<button type="submit" class="fas fa-plus col-4"></button>
+			</form>
+					
+		</fieldset>
+	</div>
+
+</fieldset>
+
+<ng-template [ngIf]="puedeAdministrarUsuarios">
+	<fieldset class="row card">
+		<legend>
+			<h2>Administración de usuarios</h2>
+		</legend>
+		
+		<details class="col-12">
+			<summary><h3>Crear usuario</h3></summary>
+
+			<form id=form-crear (submit)="crearUsuario($event)">
+				<label class="row">
+					<span class="col-2 is-center">Nombre completo</span>
+					<input type="text" name="nombreCompleto" placeholder="Nombre completo" required class="col" minLength="{{LARGO_MINIMO_NOMBRE_COMPLETO}}">
+				</label>
+				<label class="row">
+					<span class="col-2 is-center">DNI</span>
+					<input type="number" name="DNI" placeholder="DNI" required class="col" min="0">
+				</label>
+				<label class="row">
+					<span class="col-2 is-center">Nombre de usuario</span>
+					<input type="text" name="nombreUsuario" placeholder="Nombre de usuario" required class="col" minLength="{{LARGO_MINIMO_NOMBRE_USUARIO}}">
+				</label>
+				<label class="row">
+					<span class="col-2 is-center">Contraseña temporal</span>
+					<input type="text" name="contrasenia" placeholder="Contraseña" required class="col" minLength="{{LARGO_MINIMO_CONTRASENIA}}">
+				</label>
+				<label class="row">
+					<span class="col-2 is-center">Correo electrónico</span>
+					<input type="email" name="correo" placeholder="Correo electrónico" required class="col">
+				</label>
+				<!-- ! No hay condicional, porque si esto se ve, el usuario tiene minimo permiso de crear usuarios -->
+				<fieldset class="row">
+					<legend>Permisos</legend>
+					<label *ngFor="let permiso of usuarioActual.permisos" class="col-4 row">
+						<input type="checkbox" name="permisoID" value="{{permiso.ID}}" [checked]="permiso.predeterminado">
+						<span class="col">{{permiso.descripcion}}</span>
+					</label>
+				</fieldset>
+				<div class="row">
+					<div class="col-9"></div>
+					<input type="submit" value="Crear usuario" class="col">
+				</div>
+			</form>
+		</details>
+		<details id="administrar-permisos" class="col-12">
+			<summary><h3>Administrar usuarios</h3></summary>
+
+			<div class="row"><input (input)="actualizarFiltroTablaAdministracion($event)" type="text" placeholder="Filtrar Usuarios"></div>
+			<!-- TODO UX: que sucio se reinicie si se vuelve a los permisos originales -->
+			<table class="striped">
+				<thead>
+					<tr>
+						<th rowspan="2">Usuario</th>
+						<th colSpan="{{usuarioActual.permisos?.length}}">Permisos</th>
+						<th rowspan="2">Actualizar</th>
+					</tr>
+					<tr>
+						<th *ngFor="let permiso of usuarioActual.permisos">{{permiso.descripcion}}</th>
+					</tr>
+				</thead>
+				
+				<tbody (submit)="actualizarPermisos($event)">
+					<tr *ngFor="let usu of usuariosPaginaActual" #tr (change)="tr.dataset['sucio']='1'">
+						<td>
+							<a class="{{usu.habilitado?'':'tachado'}}" [routerLink]="['/detalle',usu.ID]" (click)="establecerUsuarioADetallar($event)" attr.data-id="{{usu.ID}}">{{usu.nombreCompleto}}</a>
+						</td>
+						<td *ngFor="let per of usuarioActual.permisos">
+							<input type="checkbox" value="{{per.ID}}" name="permiso" [checked]="usuarioTienePermiso(usu,per.ID)" [attr.form]="'editar-'+usu.ID">
+						</td>
+						<td>
+							<!-- ! Los controles fuera de este formulario usan la propiedad form, con el ID del usuario a editar. -->
+							<form id="editar-{{usu.ID}}">
+								<input type="hidden" name="usuario-id" [value]="usu.ID">
+								<input type="submit" value="Actualizar" [disabled]="(tr.dataset['sucio']!=='1')">
+							</form>
+						</td>
+					</tr>
+					<!-- TODO mensaje si no hay -->
+				</tbody>
+
+				<tfoot>
+					<th colSpan="{{(usuarioActual.permisos?.length||0)+2}}">
+						<div (click)="navegar($event)">
+							<button class="secondary" [disabled]="paginaActual===1" value="-1" name="navegacion">Anterior</button>
+							<span>{{paginaActual}} / {{cantidadPaginas}}</span>
+							<button class="secondary" [disabled]="paginaActual>=cantidadPaginas" value="1" name="navegacion">Siguiente</button>
+						</div>
+					</th>
+					<!-- TODO Now controles -->
+				</tfoot>
+			</table>
+		</details>
+
+	</fieldset>
+</ng-template>
+
+<fieldset class="card" id="perfil" (submit)="enviarActualizacionDeDatos($event)">
+	<legend>
+		<h2>Administración de Perfil</h2>
+	</legend>
+	<form class="row" #nombreCompletoForm (reset)="nombreCompletoForm.dataset['sucio']='0'">
+		<span class="col-2 is-center">Nombre Completo:</span>
+		<input required type="text" name="nombreCompleto" class="col-4" placeholder="Nombre Completo" (input)="nombreCompletoForm.dataset['sucio']='1'" [defaultValue]="usuarioActual.nombreCompleto" minLength="{{LARGO_MINIMO_NOMBRE_COMPLETO}}">
+		<button class="col-2" type="reset">Reestablecer</button>
+		<button class="col-2" type="submit" [disabled]="(nombreCompletoForm.dataset['sucio']!=='1')">Actualizar</button>
+	</form>
+	<form class="row" #contraseniaForm (input)="verificarCamposContrasenia($event,contraseniaForm)">
+		<span class="col-2 is-center">Contraseña:</span>
+		<input required type="password" name="contrasenia" placeholder="Contraseña Nueva" class="col-3" minLength="{{LARGO_MINIMO_CONTRASENIA}}">
+		<input required type="password" name="contrasenia-repetida" class="col-3" placeholder="Repetir Contraseña" minLength="{{LARGO_MINIMO_CONTRASENIA}}">
+		<button class="col-2" type="submit" [disabled]="(contraseniaForm.dataset['puedeEnviar']!=='-1')" [title]="ERRORES_DE_CONTRASENIA[+(contraseniaForm.dataset['puedeEnviar']||0)]">Actualizar</button>
+	</form>
+	<form class="row" #correoForm (reset)="correoForm.dataset['sucio']='0'">
+		<span class="col-2 is-center">Correo Electrónico:</span>
+		<input required type="email" name="correo" class="col-4" (input)="correoForm.dataset['sucio']='1'" [defaultValue]="usuarioActual.correo">
+		<button class="col-2" type="reset">Reestablecer</button>
+		<button class="col-2" type="submit" [disabled]="(correoForm.dataset['sucio']!=='1')">Actualizar</button>
+	</form>
+	<div class="row">
+		<div class="col-10"></div>
+		<button class="col-2 button error" (click)="salir()">Cerrar Sesión</button>
+	</div>
+</fieldset>
