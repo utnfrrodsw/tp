@@ -1,5 +1,6 @@
 <h1>Inicio</h1>
-<!-- TODO llenar de íconos -->
+<!-- TODO UX: llenar de íconos -->
+<!-- TODO UX: guardar los estados de open de los details -->
 
 <p>Tus tokens: <b id="tokens">{{usuarioActual?.tokens}}</b></p>
 
@@ -73,7 +74,6 @@
 
 <fieldset class="row card">
 	<legend><h2>Administración de Amigos</h2></legend>
-	<!-- TODO Se ven feos descentrados los nombres de las invitaciones -->
 
 	<div id="amigos" class="col">
 		
@@ -84,12 +84,14 @@
 	
 			<em class="col is-center" *ngIf="amigosEntrantes.length===0">No tenés invitaciones.</em>
 
-			<form *ngFor="let usuario of amigosEntrantes" (submit)="responder($event)" class="col-12 row">
-				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-				<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
-				<button type="submit" value="1" (click)="asignarNombreABoton($event)" class="fas fa-check col-2"></button>
-				<button type="submit" value="0" (click)="asignarNombreABoton($event)" class="button error fas fa-ban col-2"></button>
-			</form>
+			<div class="row">
+				<form *ngFor="let usuario of amigosEntrantes" (submit)="responder($event)" class="col-6 row">
+					<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+					<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
+					<button type="submit" value="1" (click)="asignarNombreABoton($event)" class="fas fa-check col-2"></button>
+					<button type="submit" value="0" (click)="asignarNombreABoton($event)" class="button error fas fa-ban col-2"></button>
+				</form>
+			</div>
 
 		</details>
 		
@@ -100,11 +102,13 @@
 			
 			<em class="col is-center" *ngIf="amigosSalientes.length===0">No tenés invitaciones enviadas sin responder.</em>
 
-			<form *ngFor="let usuario of amigosSalientes" (submit)="cancelar($event)" class="col-12 row">
-				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-				<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
-				<button type="submit" class="button error fas fa-xmark col-2"></button>
-			</form>
+			<div class="row">
+				<form *ngFor="let usuario of amigosSalientes" (submit)="cancelar($event)" class="col-6 row">
+					<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+					<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
+					<button type="submit" class="button error fas fa-xmark col-2"></button>
+				</form>
+			</div>
 		</details>
 		
 		<details>
@@ -114,12 +118,14 @@
 			
 			<em class="col is-center" *ngIf="amigosReales.length===0">No tenés amigos. 🙁 Todavía. 😉</em>
 
-		<!-- TODO Feature para cada uno de estos, esconder si uno es el invitador o no... -->
-			<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-12 row">
-				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-				<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
-				<button type="submit" class="button error fas fa-trash-can col-2"></button>
-			</form>
+			<div class="row">
+				<!-- TODO Feature para cada uno de estos, esconder si uno es el invitador o no...  ?? -->
+				<form *ngFor="let usuario of amigosReales" (submit)="eliminar($event)" class="col-6 row">
+					<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
+					<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
+					<button type="submit" class="button error fas fa-trash-can col-2"></button>
+				</form>
+			</div>
 		</details>
 		
 	</div>
@@ -127,16 +133,16 @@
 	<div id="invitaciones" class="col">
 		<input type="text" (input)="busqueda($event)" placeholder="Busque por nombre">
 		<ng-template [ngIf]="this.mostrarVacio">
-			<span>No se han encontrado usuarios.</span>
+			<em class="is-center">No se han encontrado usuarios.</em>
 		</ng-template>
 		<fieldset id="resultados" class="row">
 			<!-- TODO Refactor capturar el submit en el fieldset? -->
-			<!-- TODO Refactor: Pensar qué onda si viene muucha gente. -->
+			<!-- TODO Refactor: Pensar qué onda si viene muucha gente.  Crece de forma inparable. Solucionar con overflow o algo.-->
 			
-			<form *ngFor="let usuario of usuariosEncontrados" (submit)="invitar($event)" class="col-12 row">
+			<form *ngFor="let usuario of usuariosEncontrados" (submit)="invitar($event)" class="col-6 row">
 				<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
-				<span class="col">{{usuario.nombreCompleto}}</span>
-				<button type="submit" class="fas fa-plus col-2"></button>
+				<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
+				<button type="submit" class="fas fa-plus col-4"></button>
 			</form>
 					
 		</fieldset>
