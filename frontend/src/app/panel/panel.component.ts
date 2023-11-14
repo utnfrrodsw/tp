@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import { Usuario, UsuarioService as UsuariosService,Amistad,EstadosAmistades } from '../servicios/usuario.service';
 import { TokensService } from '../servicios/tokens.service';
 import { UsuarioDetalladoService } from '../servicios/usuario-detallado.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-panel',
@@ -20,8 +21,8 @@ export class PanelComponent implements OnInit {
 
   usuarioActual:Usuario={} as Usuario;
   
-  // TODO DRY
-  // TODO sort
+  // TODO Refactor: DRY
+  // TODO Refactor: sort
   get amigosEntrantes() {
     return (this.usuarioActual?.amigos??[]).filter(ami=> ami.amistades.estado=='esperando' && ami.amistades.amigoID==this.usuarioActual.ID);
   }
@@ -58,7 +59,8 @@ export class PanelComponent implements OnInit {
     private usuarioDetalladoService:UsuarioDetalladoService,
     private usuariosService: UsuariosService,
     private tokensService: TokensService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -66,12 +68,8 @@ export class PanelComponent implements OnInit {
       .subscribe({
         next:(usuario:any) => {
           this.usuarioActual= usuario as Usuario;
-          /* this.console.log(this.usuarioActual);
-          this.console.log(this.usuarioActual.amigos); */
 
           /* * Cada Usuario.amigos tiene un .amistad con los detalles de la invitación; estado y quien la mando */
-
-          /* TODO Que solo se puedan enviar tokens a amigos */
 
           this.puedeGenerarTokens=this.usuarioActual.permisos?.some((per:Permiso)=>per.ID==1) || false;
           if(this.puedeGenerarTokens)
@@ -127,7 +125,7 @@ export class PanelComponent implements OnInit {
         .subscribe((result: any)=>{
           if(this.busquedaID==busquedaID){
             // ! Ya vienen filtrados por habilitados.
-            this.usuariosEncontrados=result/* .filter((usu:Usuario)=>usu.habilitado) */;
+            this.usuariosEncontrados=result;
             if(result.length==0){
               this.puedeMostrarVacio=true;
             }
@@ -267,18 +265,25 @@ export class PanelComponent implements OnInit {
   actualizarAmigoSeleccionadoID(e:Event){
     this.amigoSeleccionadoID=+(e.target as HTMLInputElement).value;
   }
+
   enviarTokens(e:Event){
     e.preventDefault();
     
     let cantidad=+((e.target as any)['form-enviar-cantidad'].value)
-      ,amigoID=+((e.target as any)['form-enviar-usuario'].value);
+      ,amigoID=+((e.target as any)['form-enviar-usuario'].value)
+      ,boton:HTMLInputElement=(e.target as any)['form-enviar-submit'];
+    boton.disabled=true;
     this.tokensService.enviar(cantidad,amigoID).subscribe({
       next:()=>{
         // TODO Toast + reiniciar formulario
+        this.toastr.success('Se han enviado los tokens exitosamente.');
         this.usuarioActual.tokens-=cantidad;
       }
       ,error:error=>{
         this.console.log(error);
+      }
+      ,complete:()=>{
+        boton.disabled=false;
       }
     })
   }
@@ -434,7 +439,6 @@ export class PanelComponent implements OnInit {
           this.usuarioActual.correo=valor;
           break;
         }
-          // this.usuarioActual[dato]=valor;
       });
       ;
   }

@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "ngx-toastr": "^14.3.0",
     "particles.js": "^2.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

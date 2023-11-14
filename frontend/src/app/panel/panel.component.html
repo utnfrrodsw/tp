@@ -198,12 +198,12 @@
 			<summary><h3>Administrar usuarios</h3></summary>
 
 			<div class="row"><input (input)="actualizarFiltroTablaAdministracion($event)" type="text" placeholder="Filtrar Usuarios"></div>
+			<!-- TODO UX: que sucio se reinicie si se vuelve a los permisos originales -->
 			<table class="striped">
 				<thead>
 					<tr>
 						<th rowspan="2">Usuario</th>
-						<!-- TODO cantidad de permisos -->
-						<th colSpan="{{usuarioActual.permisos?.length}}"> Permisos</th>
+						<th colSpan="{{usuarioActual.permisos?.length}}">Permisos</th>
 						<th rowspan="2">Actualizar</th>
 					</tr>
 					<tr>
@@ -250,7 +250,6 @@
 	<legend>
 		<h2>Administración de Perfil</h2>
 	</legend>
-	<!-- nombreCompleto	nombreUsuario	contrasenia	correo -->
 	<form class="row" #nombreCompletoForm (reset)="nombreCompletoForm.dataset['sucio']='0'">
 		<span class="col-2 is-center">Nombre Completo:</span>
 		<input required type="text" name="nombreCompleto" class="col-4" placeholder="Nombre Completo" (input)="nombreCompletoForm.dataset['sucio']='1'" [defaultValue]="usuarioActual.nombreCompleto" minLength="{{LARGO_MINIMO_NOMBRE_COMPLETO}}">
