@@ -118,7 +118,6 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
     
 
     try{
-      console.log('enviando solicitud 2')
       await fetch(`${API_URL}/solicitud/cliente/${user.id}`, {
         method: 'POST',
         headers: {
