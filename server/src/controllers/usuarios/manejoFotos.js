@@ -52,19 +52,22 @@ const obtenerFotoPerfil = async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Busca al usuario en la base de datos por su ID
     const usuario = await db.Usuario.findByPk(id);
 
+    // Si el usuario no se encuentra, devuelve un error 404
     if (!usuario) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
+    // Construye la ruta al archivo de la foto de perfil
     const fotoPerfilPath = path.join(__dirname, '../../../public/images/fotoPerfil', usuario.fotoPerfil);
 
-    // Verifica si el archivo existe
+    // Verifica si el archivo de la foto de perfil existe
     if (!fs.existsSync(fotoPerfilPath)) {
+      // Si el archivo no existe, devuelve un error 404
       return res.status(404).json({ error: 'Foto de perfil no encontrada' });
     }
-
     // Envía el archivo de imagen como respuesta
     res.sendFile(fotoPerfilPath);
   } catch (error) {
