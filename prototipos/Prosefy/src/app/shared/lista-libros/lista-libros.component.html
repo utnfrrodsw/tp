@@ -1,5 +1,3 @@
-<!-- lista-libros.component.html -->
-
 <div class="container-fluid d-flex justify-content-center align-items-center flex-column py-2">
   <div class="lista-libros">
     <div class="rounded-button shadow d-flex justify-content-center align-items-center">
@@ -9,24 +7,25 @@
     </div>
     <div class="lista-contenedor container-fluid">
       <div class="elementos-lista py-4 container-fluid">
-        <div *ngFor="let libroId of librosIds.slice(elementoActual, elementoActual + elementosPorPaso); let i = index">
+        <div *ngFor="let libroId of librosIds.slice(elementoActual, elementoActual + elementosPorPaso); let i = index"
+          class="elemento-lista elemento-animado animacion-tarjeta hover-grow">
           <div class="libro card">
             <a [routerLink]="['/libro-seleccionado', libroId]" class="text-decoration-none">
-              <ng-container *ngIf="librosData[libroId]">
-                <img [src]="librosData[libroId].portada" alt="Portada del libro" class="card-img-top tarjeta-imagen"
+              <ng-container *ngIf="librosData[libroId] as libro">
+                <img [src]="libro.portada" alt="Portada del libro" class="card-img-top tarjeta-imagen"
                   [style.height.px]="calcularAlturaImagen()" [style.width]="'auto'" />
                 <div class="card-body">
                   <p class="card-text precio">
-                    ${{ librosData[libroId].precio !== undefined ? (librosData[libroId].precio | number:'1.2-2') : 'N/A'
-                    }}
+                    {{ libro.precio !== undefined ? (libro.precio | number:'1.2-2') : 'N/A' }}
                     <small class="text-muted">
                       {{ currencyService.getCurrency() }}
                     </small>
                   </p>
-                  <!--<p class="card-text descripcion">
-                    {{ (librosData[libroId].descripcion | async || '').slice(0, descripcionMaxLength) }}
-                    {{ (librosData[libroId].descripcion | async)?.length > descripcionMaxLength ? '...' : '' }}
-                  </p>-->
+                  <p class="card-text descripcion" *ngIf="libro.descripcion">
+                    {{ libro.descripcion | slice:0:descripcionMaxLength }}
+                    <span *ngIf="libro.descripcion.length > descripcionMaxLength">...</span>
+                  </p>
+                  <p *ngIf="!libro.descripcion">Sin descripción disponible.</p>
                 </div>
               </ng-container>
             </a>
