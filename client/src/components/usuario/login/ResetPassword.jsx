@@ -33,22 +33,14 @@ const ResetPasswordPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    // Verificar que la contraseña y la confirmación de la contraseña coinciden
-    if (newPassword !== confirmPassword) {
-      setMessage('Las contraseñas no coinciden');
-      return;
-    }
-  
     try {
       const response = await fetch(`${API_URL}/usuario/reset-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, code, newPassword }),
+        body: JSON.stringify({ email, code, newPassword, confirmPassword }),
       });
-  
-      setResponseStatus(response.status);
   
       const data = await response.json();
   
@@ -60,14 +52,17 @@ const ResetPasswordPage = () => {
           goTo('/login');
         }, 5000);
       } else {
-        setMessage(data.message);
+        // Si hay errores del middleware, utiliza el primer mensaje de error
+        // Si no, utiliza el mensaje de error del controlador
+        setMessage(data.errors && data.errors.length > 0 ? data.errors[0].msg : data.message);
       }
+  
+      setResponseStatus(response.status);
     } catch (error) {
       console.error('Error al restablecer la contraseña:', error);
-      setMessage('Error al restablecer la contraseña');
+      setMessage(error.message);
     }
   };
-
   return (
     <section className="contenedor">
       <div className="pagina-restablecer-contrasena">
@@ -87,7 +82,7 @@ const ResetPasswordPage = () => {
                 name="code"
                 value={code}
                 onChange={handleCodeChange}
-                required
+                 
               />
             </div>
             <div className="grupo-formulario">
@@ -96,10 +91,9 @@ const ResetPasswordPage = () => {
                 type="password"
                 id="newPassword"
                 name="newPassword"
-                minLength="6"
                 value={newPassword}
                 onChange={handleNewPasswordChange}
-                required
+                 
               />
             </div>
             <div className="grupo-formulario">
@@ -110,7 +104,7 @@ const ResetPasswordPage = () => {
               name="confirmPassword"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
-              required
+               
             />
           </div>
             <div className="grupo-formulario">

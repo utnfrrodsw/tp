@@ -1,6 +1,6 @@
 import { IonAvatar } from '@ionic/react';
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Row } from 'react-bootstrap';
+import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
 import { API_URL } from '../../../auth/constants.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
@@ -104,7 +104,8 @@ const DatosPersonales = () => {
 
   const handleUpdateData = async () => {
     try {
-       
+      setErrorCurrentDp('');
+      setSuccessMessageDp('');
   
       // Comprobar si se han realizado cambios
       if (JSON.stringify(userData) === JSON.stringify(originalData) && !selectedFile) {
@@ -352,6 +353,17 @@ const DatosPersonales = () => {
       }
     }
   };
+
+  const [showModal, setShowModal] = useState(false);
+
+const handleImageClick = () => {
+  setShowModal(true);
+};
+
+const handleCloseModal = () => {
+  setShowModal(false);
+};
+
   return (
     <div className="datosPersonales">
       <Row className="row">
@@ -360,37 +372,48 @@ const DatosPersonales = () => {
             <Card.Body>
               <h2 className="h2">Datos Personales</h2>
               <div className="user-details">
-                <div className="profile-picture">
-                  {loadingFotoPerfil ? (
-                    // Loading state while the image is being fetched
-                    <div>Loading...</div>
-                  ) : (
-                    // Render the image only when it is loaded successfully
-                    <IonAvatar className="ion-avatar">
-                      <img
-                        src={fotoPerfil ? fotoPerfil : avatarDefecto}
-                        alt="foto"
-                         
-                        className="round-image"
-                      />
-                    </IonAvatar>
-                  )}
-                  <Button
-                variant='primary'
-                className='button'
-                onClick={handleProfilePictureUpload} 
-                >
-                Cambiar Foto
-                </Button>
-                {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
-                {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}	
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleProfilePictureChange}
-                    className="file-input"
-                  />
-                </div>
+              <div className="profile-picture">
+  {loadingFotoPerfil ? (
+    <div>Loading...</div>
+  ) : (
+    <IonAvatar className="ion-avatar" onClick={handleImageClick}>
+      <img
+        src={fotoPerfil ? fotoPerfil : avatarDefecto}
+        alt="foto"
+        className="round-image"
+      />
+    </IonAvatar>
+  )}
+  <Button
+    variant='primary'
+    className='button'
+    onClick={handleProfilePictureUpload} 
+  >
+    Cambiar Foto
+  </Button>
+  {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
+  {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}  
+  <input
+    type="file"
+    accept="image/*"
+    onChange={handleProfilePictureChange}
+    className="file-input"
+  />
+
+<Modal show={showModal} onHide={handleCloseModal}>
+  <Modal.Header closeButton>
+    <Modal.Title>Visualización de imagen</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <img
+      src={fotoPerfil ? fotoPerfil : avatarDefecto}
+      alt="foto"
+      className="modal-image"
+      style={{ width: '100%', height: 'auto' }}
+    />
+  </Modal.Body>
+</Modal>
+</div>
               
 
                 <label htmlFor="firstName">Nombre:</label>
