@@ -167,8 +167,13 @@ const Library = ({client}) => {
 
 
     const handleComboBoxButtonClick = () => {
-        setIsComboBoxOpen(!isComboBoxOpen);
-    };
+        if (user.isAdmin) {
+          setIsComboBoxOpen(!isComboBoxOpen);
+        } else {
+          // Si el usuario no es admin, llama directamente a handleOptionClick('playlist')
+          handleOptionClick('playlist');
+        }
+      };
 
     const handleOptionClick = (option) => {
         if(option === 'playlist'){
@@ -259,16 +264,16 @@ const Library = ({client}) => {
                             {isComboBoxOpen && (
                                 <ComboBoxContainer>
                                     <ComboBoxOptions>
-                                    <ComboBoxOption onClick={() => handleOptionClick('playlist')}>
-                                    Crear playlist
-                                    </ComboBoxOption>
-                                    <ComboBoxOption onClick={() => handleOptionClick('artista')}>
-                                    Crear artista
-                                    </ComboBoxOption>
-                                    <ComboBoxOption onClick={() => handleOptionClick('album')}>
-                                    Crear album
-                                    </ComboBoxOption>
-                                </ComboBoxOptions>
+                                        <ComboBoxOption onClick={() => handleOptionClick('playlist')}>
+                                        Crear playlist
+                                        </ComboBoxOption>
+                                        <ComboBoxOption onClick={() => handleOptionClick('artista')}>
+                                        Crear artista
+                                        </ComboBoxOption>
+                                        <ComboBoxOption onClick={() => handleOptionClick('album')}>
+                                        Crear album
+                                        </ComboBoxOption>
+                                    </ComboBoxOptions>
                                 </ComboBoxContainer>
                                 )}
                         </IconContainer>

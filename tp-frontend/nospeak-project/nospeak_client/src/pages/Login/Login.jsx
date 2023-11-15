@@ -34,12 +34,12 @@ export default function Login({ client, testing }) {
         password,
       });
       
-      const { token, userId, nombre } = response.data;
+      const { token, userId, nombre, isAdmin } = response.data;
       localStorage.setItem('token', token);
       
       dispatch(loginSuccess({ 
         isAuthenticated: true,
-        user: { id: userId, nombre },
+        user: { id: userId, nombre, isAdmin: isAdmin},
       }));
 
       setSuccessMessage('Successful login. Redirecting...');

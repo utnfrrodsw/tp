@@ -11,6 +11,7 @@ import {
 } from '../Song/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -73,6 +74,8 @@ const ArtistPage = ({client}) => {
     });
 
     const [goToLibrary, setGoToLibrary] = React.useState(false);
+
+    const user = useSelector(state => state.user.user);
 
 
     useEffect(() => {
@@ -183,9 +186,12 @@ const ArtistPage = ({client}) => {
 
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginRight:'20px' }}>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <StyledEditIcon style={{ color: 'white', margin: '5px', fontSize: '36px' }} onClick={handleEditButtonClick} />
-                                    <StyledDeleteIcon style={{ color: 'white', margin: '5px', fontSize: '36px' }} onClick={() => handleDeleteArtist()}/>
-                                </div>
+                                    {user.isAdmin && (
+                                    <>
+                                        <StyledEditIcon style={{ color: 'white', margin: '5px', fontSize: '36px' }} onClick={handleEditButtonClick} />
+                                        <StyledDeleteIcon style={{ color: 'white', margin: '5px', fontSize: '36px' }} onClick={() => handleDeleteArtist()}/>
+                                    </>)}
+                                    </div>
                             </div>
                         </CardContainer>
 
@@ -217,7 +223,7 @@ const ArtistPage = ({client}) => {
                                                         align={column.align}
                                                         sx={{ backgroundColor: 'transparent', color: '#fff' }}
                                                     >
-                                                        {column.id === 'option' && columnIndex === 0 ? (
+                                                        {column.id === 'option' && columnIndex === 0 && user.isAdmin ? (
                                                             <StyledDeleteIcon fontSize="small" cursor="pointer" onClick={() => handleDeleteSong(song.id, rowIndex)}/>
                                                         ) : null}
                                                         {column.id === 'titulo' && columnIndex === 1 ? (
