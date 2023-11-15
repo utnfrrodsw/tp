@@ -6,13 +6,13 @@ const validateSolicitudCreate = [
     check("titulo")
     .notEmpty()
     .withMessage("El titulo es requerido")
-    .isLength({ min: 4 })   
-    .withMessage("El titulo debe tener al menos 4 caracteres"),
+    .isLength({ min: 4 , max: 45})   
+    .withMessage("El titulo debe tener al menos 4 caracteres y 45 como maximo"),
     check("descripcion")
     .notEmpty()
     .withMessage("Debe explicar brevemente su solicitud")
-    .isLength({ min: 20 })
-    .withMessage("La descripcion debe tener al menos 20 caracteres"),
+    .isLength({ min: 20 , max: 255})
+    .withMessage("La descripcion debe tener al menos 20 caracteres y 255 como maximo"),
     check("idProfesion")
     .notEmpty()
     .withMessage("Debe seleccionar una profesion"),
@@ -21,7 +21,7 @@ const validateSolicitudCreate = [
     .withMessage("Debe seleccionar una direccion, puede agregarlo en sus datos personales"),
     check("fotos").custom((value, { req }) => {
         let files = req.files;
-        let acceptedExtensions = [".jpg", ".png", ".gif", ".jpeg"];
+        let acceptedExtensions = [".jpg", ".png", ".jpeg"];
         console.log(files);
         if (files.length == 0 ) {
           throw new Error("Tiene que subir al menos una imagen");
