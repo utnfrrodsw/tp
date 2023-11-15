@@ -8,16 +8,17 @@ function Anuncio(props) {
   console.log(props.filtrado);
   const [show, setShow] = useState(true);
   const [verfotos, setVerfotos] = useState(false);
-  const dateTime = new Date(props.fecha);
+  const dateTime = new Date(props.fechaHora);
+  console.log(dateTime);
   return (
     <div className={`anuncioprincipal-card ${show ? 'anuncioprincipal-card' : 'anuncioprincipal-fullcontent'}`}>
       <div>
         <h1 className='titulo-anuncio'>{props.titulo}</h1>
         <p className='fecha-anuncio'>
-          {dateTime.getDay()}/{dateTime.getMonth()}/{dateTime.getFullYear()} {dateTime.getHours()}:{dateTime.getMinutes()}hs
+          Fecha publicacion: {dateTime.toLocaleDateString()}
         </p>
         <p className='ubicacion-anuncio'>
-          {props.direccion.calle} {props.direccion.numero}
+          {props.direccion.calle} {props.direccion.numero}, {props.direccion.codPostal}
         </p>
       </div>
       {show ? (
