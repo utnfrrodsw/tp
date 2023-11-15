@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
 export interface Editorial {
+  id: number;
   descripcion: string;
   direccion: string;
   imagen: string;
-
 }
 
 @Injectable({
@@ -58,7 +58,7 @@ export class EditorialesService {
 
   private apiUrl = 'http://Localhost:3000/api/editoriales';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getEditorialesIds(): Observable<string[]> {
     return this.http.get<any>(`${this.apiUrl}/editoriales`).pipe(
@@ -78,14 +78,14 @@ export class EditorialesService {
     );
   }
 
-  getEditorialr(id: string): Observable<Editorial | undefined> {
+  getEditorial(id: string): Observable<Editorial | undefined> {
     return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
       map((response: any) => response.data)
     );
   }
 
 }
-  
-  
+
+
 
 

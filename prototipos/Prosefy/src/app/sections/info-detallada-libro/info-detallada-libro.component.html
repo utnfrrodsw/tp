@@ -1,45 +1,43 @@
+<!-- TODO: La tabla con la información del libro no se muestra correctamente -->
+
 <hr />
 <h2 class="mt-4 mb-2">Información del Libro</h2>
-<!--
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-8">
       <div *ngIf="libro" class="container mt-4">
         <table class="custom-table">
           <tbody>
-            <tr>
+            <tr *ngIf="libro.autores && libro.autores.length > 0">
               <td class="table-header gris-oscuro text-center">Autores</td>
               <td class="table-value gris-claro">
-                {{ libro.autores.join(", ") }}
+                {{ obtenerNombresAutores() }}
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="libro.editorial">
               <td class="table-header gris-claro text-center">Editorial</td>
               <td>{{ libro.editorial }}</td>
             </tr>
-            <tr>
+            <tr *ngIf="libro.fecha_edicion">
               <td class="table-header gris-oscuro text-center">Edición</td>
               <td class="table-value gris-claro">
                 {{ formatearFecha(libro.fecha_edicion) }}
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="libro.categorias && libro.categorias.length > 0">
               <td class="table-header gris-claro text-center">Categorías</td>
-              <td>{{ libro.categorias.join(", ") }}</td>
+              <td>{{ obtenerNombresCategorias() }}</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="container mt-4 custom-rounded-shadow p-3">
+      <div *ngIf="libro?.descripcion" class="container mt-4 custom-rounded-shadow p-3">
         <h2>Sinopsis</h2>
-        <p class="mx-5 mt-3" [innerHTML]="formatearSinopsisConSaltosDeLinea(libro?.sinopsis)"></p>
+        <p class="mx-5 mt-3" [innerHTML]="formatearSinopsisConSaltosDeLinea(libro?.descripcion)"></p>
       </div>
-
     </div>
-
     <div class="col-md-4">
-      <app-libros-autor [autores]="libro?.autores"></app-libros-autor>
+      <!--<app-libros-autor [autores]="libro?.autores"></app-libros-autor>-->
     </div>
   </div>
 </div>
--->

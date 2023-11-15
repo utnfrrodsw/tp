@@ -94,6 +94,12 @@ export class LibrosService {
     );
   }
 
+  getCategorias(id: string): Observable<string[] | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/getcategorias/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
   getPrecio(id: string): Observable<number | undefined> {
     return this.http.get<any>(`${this.apiUrl}/precio/${id}`).pipe(
       map((response: any) => response.data)
