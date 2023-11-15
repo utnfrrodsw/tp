@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
+    "@ionic/react": "^7.5.4",
     "@mui/material": "5.14.8",
     "@testing-library/jest-dom": "6.0.0",
     "@testing-library/react": "14.0.0",

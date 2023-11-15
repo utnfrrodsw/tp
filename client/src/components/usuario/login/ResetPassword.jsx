@@ -23,9 +23,22 @@ const ResetPasswordPage = () => {
     setNewPassword(e.target.value);
   };
 
+  const [confirmPassword, setConfirmPassword] = useState(''); // Nuevo estado para confirmar la contraseña
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Verificar que la contraseña y la confirmación de la contraseña coinciden
+    if (newPassword !== confirmPassword) {
+      setMessage('Las contraseñas no coinciden');
+      return;
+    }
+  
     try {
       const response = await fetch(`${API_URL}/usuario/reset-password`, {
         method: 'POST',
@@ -34,20 +47,18 @@ const ResetPasswordPage = () => {
         },
         body: JSON.stringify({ email, code, newPassword }),
       });
-
+  
       setResponseStatus(response.status);
-
+  
       const data = await response.json();
-
+  
       if (response.status === 200) {
         setMessage(data.message);
         setSubmitted(true);
         //quiero que tarde 5 segundos en redirigirme a la pagina de login
         setTimeout(() => {
           goTo('/login');
-        }
-          , 5000);
-  
+        }, 5000);
       } else {
         setMessage(data.message);
       }
@@ -85,11 +96,23 @@ const ResetPasswordPage = () => {
                 type="password"
                 id="newPassword"
                 name="newPassword"
+                minLength="6"
                 value={newPassword}
                 onChange={handleNewPasswordChange}
                 required
               />
             </div>
+            <div className="grupo-formulario">
+            <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              required
+            />
+          </div>
             <div className="grupo-formulario">
               <button type="submit">Restablecer Contraseña</button>
             </div>

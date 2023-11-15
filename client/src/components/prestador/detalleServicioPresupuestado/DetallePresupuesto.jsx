@@ -23,7 +23,7 @@ function DetallePresupuesto(){
   }, [idSolicitud,user.id]);
 console.log(presupuesto);
 return(
-<>
+<div className='scroll-container'>
   {presupuesto ? (
     <>
     <Detalle
@@ -46,7 +46,7 @@ return(
   ) : (
         <p>Loading...</p> // You can show a loading message or component while waiting for the data
       )}
-    </>
+    </div>
 );
 }
 export default DetallePresupuesto;

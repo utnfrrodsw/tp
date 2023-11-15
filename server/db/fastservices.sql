@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `fastservices` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `fastservices`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
 --
 -- Host: 100.93.197.20    Database: fastservices
@@ -37,7 +35,7 @@ CREATE TABLE `direccion` (
   KEY `cp` (`codPostal`),
   CONSTRAINT `cp` FOREIGN KEY (`codPostal`) REFERENCES `localidad` (`codPostal`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_direccion_cliente` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,7 +54,7 @@ CREATE TABLE `foto_solicitud` (
   PRIMARY KEY (`idfoto`),
   KEY `fk_fotos_solicitud_idx` (`idSolicitud`),
   CONSTRAINT `fk_fotos_solicitud` FOREIGN KEY (`idSolicitud`) REFERENCES `solicitud` (`idSolicitud`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +138,7 @@ CREATE TABLE `profesion` (
   `idProfesion` int NOT NULL AUTO_INCREMENT,
   `nombreProfesion` varchar(255) NOT NULL,
   PRIMARY KEY (`idProfesion`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +158,7 @@ CREATE TABLE `reset_codes` (
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
   CONSTRAINT `reset_codes_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `usuario` (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,7 +203,7 @@ CREATE TABLE `solicitud` (
   KEY `fk_solicitud_profesion` (`idProfesion`),
   CONSTRAINT `cliente` FOREIGN KEY (`idDireccion`) REFERENCES `direccion` (`idDireccion`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_solicitud_profesion` FOREIGN KEY (`idProfesion`) REFERENCES `profesion` (`idProfesion`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,7 +217,7 @@ CREATE TABLE `token` (
   `idtoken` int NOT NULL AUTO_INCREMENT,
   `token` varchar(1000) NOT NULL,
   PRIMARY KEY (`idtoken`)
-) ENGINE=InnoDB AUTO_INCREMENT=308 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=402 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,8 +236,10 @@ CREATE TABLE `usuario` (
   `fechaNacimiento` date NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `esPrestador` tinyint NOT NULL DEFAULT '0',
+  `fotoPerfil` varchar(255) DEFAULT NULL,
+  `foto` longblob,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -251,4 +251,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-10 10:36:42
+-- Dump completed on 2023-11-15 12:10:22

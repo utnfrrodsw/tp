@@ -72,7 +72,6 @@ function Solicitud(props){
   const handleHacerReseña = async () => {
     try{
       setReseniaError(false);
-      console.log('hacer reseña para id ' + props.id + ' y idPrestador ' + props.idPrestador)
       await fetch(`${API_URL}/servicio/isreviewed/${props.id}/${props.idPrestador}`)
       .then((res) => res.json())
       .then((data) => {
@@ -222,7 +221,8 @@ function Solicitud(props){
 
                 {props.estado === "terminado" ? (
                 <>
-                  <Button className='ver-presupuestos-button' onClick={handleHacerReseña}>Hacer Reseña</Button>
+                {props.cartelResenia === "No Calificado" &&
+                  <Button className='ver-presupuestos-button' onClick={handleHacerReseña}>Hacer Reseña</Button>}
                   {reseniaError && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>Error al cargar reseña</p>}
                   <Modal show={hacerReseña} onHide={() => setHacerReseña(false)} style={{padding: '0px'}}>
                       <Modal.Header closeButton>
