@@ -19,6 +19,8 @@ export interface Usuario {
 })
 export class UsuarioService {
 
+  private apiUrl: string = "http://localhost:3000/api/usuarios";
+
   private usuarios: Usuario[] = [
     {
       id: "1",
