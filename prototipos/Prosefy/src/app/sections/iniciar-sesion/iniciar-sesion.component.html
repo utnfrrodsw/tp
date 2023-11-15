@@ -7,7 +7,7 @@
   </div>
   <div class="login-container mb-5 pb-5">
     <!-- Cuadro movido aquí -->
-    <form>
+    <form [formGroup] = "loginGroup">
       <div class="form-group my-4">
         <!-- TODO: No hay nombre de usuario, cambiarlo por el email -->
         <label for="username">Nombre de usuario</label>
@@ -17,7 +17,17 @@
           class="form-control mx-auto mt-2"
           style="width: 80%"
           placeholder="Ingrese su nombre de usuario"
+          [(ngModel)]="inputUsuario"
+          formCotrolName="email"
         />
+        <div *ngIf = "email.invalid && (email.dirty || email.touched)" class="text-danger">
+          <div *ngIf = "email.errors?.['required']">
+            El email es requerido
+          </div>
+          <div *ngIf = "email.errors?.['email']">
+            El email debe ser válido
+          </div>
+        </div>
       </div>
       <div class="form-group my-4">
         <label for="password">Contraseña</label>
@@ -27,11 +37,18 @@
           class="form-control mx-auto mt-2"
           style="width: 80%"
           placeholder="Ingrese su contraseña"
+          [(ngModel)]="inputContrasena"
+          formControlName="password"
         />
+        <div *ngIf = "password.invalid && (password.dirty || password.touched)" class="text-danger">
+          <div *ngIf = "password.errors?.['required']">
+            La contraseña es requerido
+          </div>
+        </div>
       </div>
       <a routerLink="" class="custom-a"> ¿Olvidaste tu contraseña? </a>
       <div class="button-group">
-        <button type="button" class="btn btn-primary custom-btn-primary">
+        <button type="button" class="btn btn-primary custom-btn-primary" (click)="login()">
           Acceder
         </button>
         <button
