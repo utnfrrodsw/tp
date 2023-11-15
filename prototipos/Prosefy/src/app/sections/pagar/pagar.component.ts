@@ -12,7 +12,7 @@ export class PagarComponent implements OnInit {
   contador = 1;
   libros: Libro[] = [];
   total: number = 0;
-  cantidades: { [id: number]: number } = {};
+  cantidades: { [id: string]: number } = {};
 
   constructor(
     private librosService: LibrosService,
@@ -44,7 +44,7 @@ export class PagarComponent implements OnInit {
     );
   }
 
-  eliminarDelCarrito(libroId: number) {
+  eliminarDelCarrito(libroId: string) {
     this.carritoService.eliminarDelCarrito(libroId);
     this.obtenerLibrosEnCarrito();
   }
@@ -76,7 +76,7 @@ export class PagarComponent implements OnInit {
     this.total += envio
   }
 
-  validarCantidad(event: Event, libroId: number) {
+  validarCantidad(event: Event, libroId: string) {
     const inputElement = event.target as HTMLInputElement;
     let cantidad = parseInt(inputElement.value);
 

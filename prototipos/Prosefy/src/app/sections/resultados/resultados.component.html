@@ -5,53 +5,55 @@
   <div class="row">
     <div class="col-12">
       <div class="vertical-list">
-        <div class="book" *ngFor="
-            let libro of libros
-              | slice
-                : (currentPage - 1) * itemsPerPage
-                : currentPage * itemsPerPage
-          ">
-          <div class="row align-items-center">
-            <div class="col-md-4 col-6">
-              <a [routerLink]="['/libro-seleccionado', libro.id]" class="text-decoration-none">
-                <img class="book-cover" [src]="libro.portada" alt="Portada del libro" />
-              </a>
-            </div>
-            <div class="col-md-8 col-6">
-              <div class="d-flex align-items-center justify-content-between">
-                <a [routerLink]="['/libro-seleccionado', libro.id]" class="text-decoration-none">
-                  <h5 class="book-title">{{ libro.titulo }}</h5>
+        <div class="book"
+          *ngFor="let libroId of librosIds | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+          <ng-container *ngIf="librosData[libroId] as libro">
+            <div class="row align-items-center">
+              <div class="col-md-4 col-6">
+                <a [routerLink]="['/libro-seleccionado', libroId]" class="text-decoration-none">
+
+                  <img class="book-cover" [src]="libro.portada" alt="Portada del libro" />
+
                 </a>
-                <!-- Icono de corazón para agregar a la lista de deseos -->
-                <svg class="heart-icon" [ngClass]="{
-                    filled: isInDeseos(libro),
-                    'heart-pulse': pulsateStates[libro.id.toString()]
-                  }" (click)="toggleDeseo(libro)" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                  viewBox="0 0 24 24">
-                  <path
-                    d="M12 21.35l-1.45-1.32C5.4 16.13 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 7.63-8.55 11.54L12 21.35z" />
-                </svg>
               </div>
-              <div class="rating">
-                <span class="star" *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
-                  [class.filled]="i < libro.calificacion">&#9733;</span>
+              <div class="col-md-8 col-6">
+                <div class="d-flex align-items-center justify-content-between">
+                  <a [routerLink]="['/libro-seleccionado', libroId]" class="text-decoration-none">
+
+                    <h5 class="book-title">{{ libro.titulo }}</h5>
+
+                  </a>
+                  <svg class="heart-icon" [ngClass]="{
+                  filled: isInDeseos(librosData[libroId]),
+                  'heart-pulse': pulsateStates[libroId]
+                }" (click)="toggleDeseo(librosData[libroId])" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24">
+                    <path
+                      d="M12 21.35l-1.45-1.32C5.4 16.13 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 7.63-8.55 11.54L12 21.35z" />
+                  </svg>
+                </div>
+                <div class="rating">
+
+                  <span class="star" *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+                    [class.filled]="libro.calificacion !== undefined && i < libro.calificacion">&#9733;</span>
+
+                </div>
+
+                <p class="book-text">
+                  {{ libro.autores.join(', ') || 'N/A' }} | {{ getDescripcion(libro.id) || 'N/A' }}
+                  | {{
+                  libro.fecha_edicion ? formatearFecha(libro.fecha_edicion) : 'N/A' }}
+                </p>
+
+                <p class="card-text precio">
+                  ${{ libro.precio !== undefined ?
+                  calculatePriceInSelectedCurrency(libro.precio).toLocaleString() : 'N/A' }}
+                  <small class="text-muted">{{ currencyService.getCurrency() }}</small>
+                </p>
+
               </div>
-              <p class="book-text">
-                {{ libro.autores }} | {{ libro.editorial }} |
-                {{ formatearFecha(libro.fecha_edicion) }}
-              </p>
-              <p class="card-text precio">
-                ${{
-                calculatePriceInSelectedCurrency(
-                libro.precio
-                ).toLocaleString()
-                }}
-                <small class="text-muted">
-                  {{ currencyService.getCurrency() }}
-                </small>
-              </p>
             </div>
-          </div>
+          </ng-container>
         </div>
       </div>
     </div>

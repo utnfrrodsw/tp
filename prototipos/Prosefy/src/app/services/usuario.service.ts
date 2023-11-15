@@ -3,8 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 
 export interface Usuario {
-
-  id: number;
+  id: string;
   nombre: string;
   apellido: string;
   email: string;
@@ -12,8 +11,6 @@ export interface Usuario {
   localidad: string;
   avatar: string;
   tipo: string;
-
-
 }
 
 @Injectable({
@@ -23,7 +20,7 @@ export class UsuarioService {
 
   private usuarios: Usuario[] = [
     {
-      id: 1,
+      id: "1",
       nombre: 'Juan',
       apellido: 'Perez',
       email: 'JuanPerez@gmail.com',
@@ -33,8 +30,8 @@ export class UsuarioService {
       tipo: 'Administrador'
     }
   ]
-  
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) { }
 
   registrarUsuario(user: any): Observable<any> {
     return this.http.post("https://localhost:3000/api/usuarios", user);
@@ -50,5 +47,5 @@ export class UsuarioService {
     // Si está True se puede acceder a la ruta
     return of(true);
   }
-  
+
 }

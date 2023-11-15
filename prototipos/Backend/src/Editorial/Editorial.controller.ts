@@ -97,14 +97,14 @@ async function getEditoriales(req: Request, res: Response) {
     }
 }
 
-async function getNombreCompleto(req: Request, res: Response) {
+async function getDescripcion(req: Request, res: Response) {
     try {
         const id = req.params.id;
         const editorial = await repository.findOne({ id });
         if (!editorial) {
             return res.status(404).send({ message: "Editorial no encontrada." });
         }
-        res.json({ data: editorial.descripcion});
+        res.json(editorial.descripcion); // Devolver directamente la descripción
     } catch (error) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
@@ -123,4 +123,4 @@ async function getImagen(req: Request, res: Response) {
     }
 }
 
-export { sanitizeInput, findAll, findOne, add, update, remove, getEditoriales, getNombreCompleto, getImagen }
+export { sanitizeInput, findAll, findOne, add, update, remove, getEditoriales, getDescripcion, getImagen }

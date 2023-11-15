@@ -10,17 +10,15 @@ export class CarritoComprasService {
     this.obtenerCarritoAlmacenamientoLocal();
   }
 
-  agregarAlCarrito(libroId: number) {
-    const libroIdString = libroId.toString();
-    if (!this.librosEnCarrito.includes(libroIdString)) {
-      this.librosEnCarrito.push(libroIdString);
+  agregarAlCarrito(libroId: string) {
+    if (!this.librosEnCarrito.includes(libroId)) {
+      this.librosEnCarrito.push(libroId);
       this.actualizarAlmacenamientoLocal();
     }
   }
 
-  eliminarDelCarrito(libroId: number) {
-    const libroIdString = libroId.toString();
-    const index = this.librosEnCarrito.indexOf(libroIdString);
+  eliminarDelCarrito(libroId: string) {
+    const index = this.librosEnCarrito.indexOf(libroId);
     if (index !== -1) {
       this.librosEnCarrito.splice(index, 1);
       this.actualizarAlmacenamientoLocal();
@@ -31,9 +29,8 @@ export class CarritoComprasService {
     localStorage.setItem('librosEnCarrito', JSON.stringify(this.librosEnCarrito));
   }
 
-
-  getLibrosEnCarrito(): number[] {
-    return this.librosEnCarrito.map(libroIdString => +libroIdString);
+  getLibrosEnCarrito(): string[] {
+    return this.librosEnCarrito;
   }
 
   limpiarCarrito() {

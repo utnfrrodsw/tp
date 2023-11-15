@@ -11,7 +11,7 @@ import { CurrencyService } from '../../services/currency.service';
 export class ProductosCarritoComprasComponent implements OnInit {
   libros: Libro[] = [];
   total: number = 0;
-  cantidades: { [id: number]: number } = {};
+  cantidades: { [id: string]: number } = {};
 
   constructor(
     public currencyService: CurrencyService,
@@ -26,14 +26,12 @@ export class ProductosCarritoComprasComponent implements OnInit {
   obtenerLibrosEnCarrito() {
     const librosEnCarritoIds = this.carritoService.getLibrosEnCarrito();
 
-    // Obtén la lista completa de libros
     this.librosService.getAll().subscribe(
       (libros: Libro[]) => {
-        // Filtra los libros según los IDs en el carrito
-        this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro.id));
-        this.cantidades = {}; // Reinicia las cantidades
+        this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro.id.toString()));
+        this.cantidades = {};
         this.libros.forEach((libro) => {
-          this.cantidades[libro.id] = 1; // Inicializando las cantidades en 1 por defecto
+          this.cantidades[libro.id.toString()] = 1; // Inicializar las cantidades en 1 por defecto
         });
         this.calculateTotal();
       },
@@ -43,7 +41,7 @@ export class ProductosCarritoComprasComponent implements OnInit {
     );
   }
 
-  eliminarDelCarrito(libroId: number) {
+  eliminarDelCarrito(libroId: string) {
     this.carritoService.eliminarDelCarrito(libroId);
     this.obtenerLibrosEnCarrito();
   }
@@ -63,10 +61,8 @@ export class ProductosCarritoComprasComponent implements OnInit {
     }
   }
 
-  // Resto del código...
 
-
-  validarCantidad(event: Event, libroId: number) {
+  validarCantidad(event: Event, libroId: string) {
     const inputElement = event.target as HTMLInputElement;
     let cantidad = parseInt(inputElement.value);
 

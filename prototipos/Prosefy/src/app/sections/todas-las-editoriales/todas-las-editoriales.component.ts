@@ -7,22 +7,22 @@ import { EditorialesService, Editorial } from '../../services/editoriales.servic
   styleUrls: ['./todas-las-editoriales.component.css']
 })
 export class TodasLasEditorialesComponent {
-  
+
   editorialesIds: string[] = [];
-  editorialesData: { [key: string]: { nombreCompleto: string | undefined, imagen: string | undefined } } = {};
+  editorialesData: { [key: string]: { descripcion: string | undefined, imagen: string | undefined } } = {};
 
   isHovered = false;
-  
+
   public editoriales: Editorial[] = [];
 
-  constructor(private editorialesService: EditorialesService) {}
+  constructor(private editorialesService: EditorialesService) { }
 
   ngOnInit() {
     this.editorialesService.getEditorialesIds().subscribe((editorialesIds: string[]) => {
       this.editorialesIds = editorialesIds;
       this.editorialesIds.forEach((id) => {
-        this.editorialesService.getNombreCompleto(id).subscribe((nombreCompleto) => {
-          this.editorialesData[id] = { nombreCompleto: nombreCompleto, imagen: '' };
+        this.editorialesService.getDescripcion(id).subscribe((descripcion) => {
+          this.editorialesData[id] = { descripcion: descripcion, imagen: '' };
         });
         this.editorialesService.getImagen(id).subscribe((imagen) => {
           this.editorialesData[id].imagen = imagen;
@@ -36,7 +36,7 @@ export class TodasLasEditorialesComponent {
   } */
 
   onMouseEnter() {
-    this.isHovered = true; 
+    this.isHovered = true;
   }
 
   onMouseLeave() {

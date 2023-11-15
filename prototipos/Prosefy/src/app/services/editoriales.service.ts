@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
 export interface Editorial {
-  id: number;
+  id: string;
   descripcion: string;
   direccion: string;
   imagen: string;
@@ -66,11 +66,12 @@ export class EditorialesService {
     );
   }
 
-  getNombreCompleto(id: string): Observable<string | undefined> {
-    return this.http.get<any>(`${this.apiUrl}/nombre-completo/${id}`).pipe(
-      map((response: any) => response.data)
+  getDescripcion(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/descripcion/${id}`).pipe(
+      map((response: any) => response),
     );
   }
+
 
   getImagen(id: string): Observable<string | undefined> {
     return this.http.get<any>(`${this.apiUrl}/imagen/${id}`).pipe(
@@ -83,7 +84,6 @@ export class EditorialesService {
       map((response: any) => response.data)
     );
   }
-
 }
 
 

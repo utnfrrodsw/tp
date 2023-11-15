@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, throwError } from 'rxjs';
+import { Observable, map, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 export interface Libro {
-  id: number;
+  id: string;
   isbn: string;
   titulo: string;
   idioma: string;
@@ -59,7 +59,7 @@ export class LibrosService {
       map((response: any) => response.data),
       catchError((error: any) => {
         console.error('Error en la solicitud de getLibro', error);
-        return throwError(error); // Puedes devolver un valor por defecto aquí si lo prefieres
+        return of(undefined); // Devuelve un observable con valor por defecto
       })
     );
   }
