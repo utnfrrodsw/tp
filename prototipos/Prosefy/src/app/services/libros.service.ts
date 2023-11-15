@@ -89,7 +89,7 @@ export class LibrosService {
   }
 
   getEditorial(id: string): Observable<string | undefined> {
-    return this.http.get<any>(`${this.apiUrl}/editorial/${id}`).pipe(
+    return this.http.get<any>(`${this.apiUrl}/geteditorial/${id}`).pipe(
       map((response: any) => response.data)
     );
   }

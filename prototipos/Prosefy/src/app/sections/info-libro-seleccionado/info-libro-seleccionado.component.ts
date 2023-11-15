@@ -2,10 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Libro, LibrosService } from '../../services/libros.service';
 import { CurrencyService } from '../../services/currency.service';
-import { switchMap, catchError, tap } from 'rxjs/operators';
-import { CarritoComprasService } from '../../services/carrito-compras.service';
+import { switchMap, catchError } from 'rxjs/operators';
 import { Observable, throwError, Subscription } from 'rxjs';
 import { ParamMap } from '@angular/router';
+import { CarritoComprasService } from '../../services/carrito-compras.service';
 
 @Component({
   selector: 'app-info-libro-seleccionado',
@@ -30,25 +30,29 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
       this.route.paramMap.pipe(
         switchMap((params: ParamMap) => {
           const idParam = params.get('id');
-          if (!idParam || isNaN(parseInt(idParam, 10))) {
+          if (!idParam) {
             this.handleError('ID del libro no válido.');
             return throwError('ID del libro no válido.');
           }
 
-          const libroId = idParam.toString(); // Convertir a cadena
-          return this.librosService.getLibro(libroId).pipe(
+          // Utiliza directamente idParam en lugar de parseInt
+          return this.librosService.getLibro(idParam).pipe(
             catchError((error) => {
-              this.handleError(`Error obteniendo el libro con ID ${libroId}: ${error}`);
-              return throwError(`No se encontró el libro con ID ${libroId}`);
+              this.handleError(`Error obteniendo el libro con ID ${idParam}: ${error}`);
+              return throwError(`No se encontró el libro con ID ${idParam}`);
             })
           );
-        }),
-        tap((foundLibro: Libro | undefined) => {
+        })
+      ).subscribe(
+        (foundLibro: Libro | undefined) => {
           if (foundLibro) {
             this.libro = foundLibro;
           }
-        })
-      ).subscribe()
+        },
+        error => {
+          this.handleError('Error al cargar el libro.');
+        }
+      )
     );
   }
 
@@ -57,7 +61,6 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
   }
 
   getPrice(): number | undefined {
-    // Aquí utilizamos el operador '?' para manejar la posibilidad de que this.libro sea 'undefined'
     return this.libro?.precio;
   }
 
@@ -66,7 +69,6 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
   }
 
   agregarAlCarrito() {
-    // Aquí también manejamos la posibilidad de que this.libro sea 'undefined'
     if (this.libro && this.libro.id) {
       this.carritoService.agregarAlCarrito(this.libro.id);
       this.libroAgregado = true;
@@ -84,7 +86,6 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
 
   private handleError(errorMessage: string) {
     console.error(errorMessage);
-    // Puedes mostrar un mensaje de error al usuario en la interfaz aquí
     this.router.navigate(['/inicio']);
   }
 }

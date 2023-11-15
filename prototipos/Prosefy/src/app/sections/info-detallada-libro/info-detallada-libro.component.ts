@@ -36,49 +36,30 @@ export class InfoDetalladaLibroComponent implements OnInit {
           switchMap((params) => {
             const idParam = params.get('id');
 
-            if (idParam !== null) {
-              const libroId = parseInt(idParam, 10);
-
-              if (isNaN(libroId)) {
-                this.router.navigate(['/inicio']);
-                return of(undefined);
-              }
-
-              return forkJoin({
-                libro: this.librosService.getLibro(libroId.toString()),
-                autores: this.librosService.getAutores(libroId.toString()) || [],
-                editorial: this.librosService.getEditorial(libroId.toString()) || undefined,
-                categorias: this.librosService.getCategorias(libroId.toString()) || [],
-              });
-            } else {
+            if (!idParam) {
               this.router.navigate(['/inicio']);
               return of(undefined);
             }
+
+            return forkJoin({
+              libro: this.librosService.getLibro(idParam),
+              autores: this.librosService.getAutores(idParam) || [],
+              editorial: this.librosService.getEditorial(idParam) || undefined,
+              categorias: this.librosService.getCategorias(idParam) || [],
+            });
           }),
-          switchMap((result) => {
-            if (!result || !result.libro) {
-              return of({ autores: [], editorial: undefined, categorias: [] });
-            }
-
-            this.libro = result.libro;
-            this.editorial = result.editorial as Editorial | undefined;
-            this.categorias = result.categorias as Categoria[] | undefined;
-
-            const observables: Observable<Autor | undefined>[] = this.libro.autores.map((idAutor) =>
-              this.autoresService.getAutor(idAutor)
-            );
-
-            return forkJoin(observables).pipe(
-              map((autores) => ({ autores, editorial: this.editorial, categorias: this.categorias }))
-            );
-          }),
-          catchError((error) => {
-            console.error('Error en la solicitud:', error);
-            return of({ autores: [], editorial: undefined, categorias: [] });
-          })
+          // ...
         )
         .subscribe((result) => {
-          this.autores = result.autores.filter((autor) => !!autor) as Autor[];
+          if (result && result.autores) {
+            const observables: Observable<Autor | undefined>[] = result.autores
+              .filter((autorId) => typeof autorId === 'string')
+              .map((autorId) => this.autoresService.getAutor(autorId) || of(undefined));
+
+            forkJoin(observables).subscribe((autores: (Autor | undefined)[]) => {
+              this.autores = autores.filter((autor) => !!autor) as Autor[];
+            });
+          }
         });
     }
   }

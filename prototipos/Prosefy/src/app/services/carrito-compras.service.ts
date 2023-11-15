@@ -4,21 +4,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CarritoComprasService {
-  private librosEnCarrito: number[] = [];
+  private librosEnCarrito: string[] = [];
 
   constructor() {
     this.obtenerCarritoAlmacenamientoLocal();
   }
 
   agregarAlCarrito(libroId: number) {
-    if (!this.librosEnCarrito.includes(libroId)) {
-      this.librosEnCarrito.push(libroId);
+    const libroIdString = libroId.toString();
+    if (!this.librosEnCarrito.includes(libroIdString)) {
+      this.librosEnCarrito.push(libroIdString);
       this.actualizarAlmacenamientoLocal();
     }
   }
 
   eliminarDelCarrito(libroId: number) {
-    const index = this.librosEnCarrito.indexOf(libroId);
+    const libroIdString = libroId.toString();
+    const index = this.librosEnCarrito.indexOf(libroIdString);
     if (index !== -1) {
       this.librosEnCarrito.splice(index, 1);
       this.actualizarAlmacenamientoLocal();
@@ -31,7 +33,7 @@ export class CarritoComprasService {
 
 
   getLibrosEnCarrito(): number[] {
-    return this.librosEnCarrito;
+    return this.librosEnCarrito.map(libroIdString => +libroIdString);
   }
 
   limpiarCarrito() {

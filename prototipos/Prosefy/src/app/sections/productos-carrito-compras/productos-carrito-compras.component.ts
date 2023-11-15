@@ -21,10 +21,6 @@ export class ProductosCarritoComprasComponent implements OnInit {
 
   ngOnInit() {
     this.obtenerLibrosEnCarrito();
-    this.libros.forEach((libro) => {
-      this.cantidades[libro.id] = 1; // Inicializando las cantidades en 1 por defecto
-    });
-    this.calculateTotal(); // Calcular el total inicial
   }
 
   obtenerLibrosEnCarrito() {
@@ -35,6 +31,10 @@ export class ProductosCarritoComprasComponent implements OnInit {
       (libros: Libro[]) => {
         // Filtra los libros según los IDs en el carrito
         this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro.id));
+        this.cantidades = {}; // Reinicia las cantidades
+        this.libros.forEach((libro) => {
+          this.cantidades[libro.id] = 1; // Inicializando las cantidades en 1 por defecto
+        });
         this.calculateTotal();
       },
       (error) => {
@@ -42,7 +42,6 @@ export class ProductosCarritoComprasComponent implements OnInit {
       }
     );
   }
-
 
   eliminarDelCarrito(libroId: number) {
     this.carritoService.eliminarDelCarrito(libroId);
@@ -63,6 +62,9 @@ export class ProductosCarritoComprasComponent implements OnInit {
       }
     }
   }
+
+  // Resto del código...
+
 
   validarCantidad(event: Event, libroId: number) {
     const inputElement = event.target as HTMLInputElement;
