@@ -4,7 +4,6 @@ const db = require('../../models');
 const fs = require('fs'); // Añade esta línea
 
 
-
 // Configuración de multer para la carga de archivos
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

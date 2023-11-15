@@ -67,10 +67,38 @@ function Register() {
     setDireccionesUsuario(nuevasDirecciones);
   };
   
-
+  const [direccionError, setDireccionError] = useState(null);
 
   const handleAgregarDireccion = () => {
-    if (nuevaDireccion.calle && nuevaDireccion.numero) {
+    const errors = [];
+  
+    if (!nuevaDireccion.calle) {
+      errors.push('La calle es requerida');
+    }
+  
+    if (!nuevaDireccion.numero) {
+      errors.push('El número es requerido');
+    } else if (!Number.isInteger(Number(nuevaDireccion.numero))) {
+      errors.push('El número debe ser un valor numérico');
+    }
+  
+    if (!nuevaDireccion.codPostal) {
+      errors.push('El código postal es requerido');
+    } else if (!Number.isInteger(Number(nuevaDireccion.codPostal))) {
+      errors.push('El código postal debe ser un valor numérico');
+    }
+  
+    if (!nuevaDireccion.ciudad) {
+      errors.push('La ciudad es requerida');
+    }
+  
+    if (!nuevaDireccion.provincia) {
+      errors.push('La provincia es requerida');
+    }
+  
+    if (errors.length > 0) {
+      setDireccionError(errors.join(', ')); // Establece el error
+    } else {
       setDireccionesUsuario([...direccionesUsuario, nuevaDireccion]);
       setNuevaDireccion({
         calle: '',
@@ -82,8 +110,7 @@ function Register() {
         provincia: '',
       });
       handleDireccionModalClose();
-    } else {
-      // Muestra un mensaje de error
+      setDireccionError(null); // Limpia cualquier error anterior
     }
   };
 
@@ -244,11 +271,11 @@ function Register() {
         </div>
 
         {/* Modal para agregar dirección */}
-       <Modal show={showDireccionModal} onHide={handleDireccionModalClose}>
-       <Modal.Header closeButton>
-       <Modal.Title>Agregar Dirección</Modal.Title>
-       </Modal.Header>
-       <Modal.Body>
+        <Modal show={showDireccionModal} onHide={handleDireccionModalClose}>
+  <Modal.Header closeButton>
+    <Modal.Title>Agregar Dirección</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
        <input
              type="text"
              placeholder="Calle"
@@ -291,6 +318,8 @@ function Register() {
              value={nuevaDireccion.provincia || ''}
              onChange={(e) => setNuevaDireccion({ ...nuevaDireccion, provincia: e.target.value })}
               />
+
+            {direccionError && <div className="error-message">{direccionError}</div>}
          </Modal.Body>
          <Modal.Footer>
          <Button variant="secondary" onClick={handleDireccionModalClose}>

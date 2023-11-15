@@ -104,22 +104,21 @@ const DatosPersonales = () => {
 
   const handleUpdateData = async () => {
     try {
-      setErrorCurrentDp('');
-      setSuccessMessageDp('');
-
+       
+  
       // Comprobar si se han realizado cambios
       if (JSON.stringify(userData) === JSON.stringify(originalData) && !selectedFile) {
-        setSuccessMessageDp('No se han realizado cambios en los datos personales.');
+        setErrorCurrentDp('No se han realizado cambios en los datos personales.');
         return;
       }
-
+  
       const updatedData = {
         nombre: userData.nombre,
         apellido: userData.apellido,
         email: userData.email,
         fechaNacimiento: userData.fechaNacimiento,
       };
-
+  
       // Actualizar datos personales solo si se han modificado
       if (JSON.stringify(updatedData) !== JSON.stringify(originalData)) {
         const response = await fetch(`${API_URL}/usuario/modificarDatosPersonales/${user.id}`, {
@@ -129,41 +128,29 @@ const DatosPersonales = () => {
           },
           body: JSON.stringify(updatedData),
         });
-
+  
+        const data = await response.json();
+  
         if (response.ok) {
           setSuccessMessageDp('Datos actualizados con éxito');
           setOriginalData({ ...originalData, ...updatedData });
           setUserData({ ...userData, ...updatedData });
         } else {
-          if (response.status === 400) {
-            setErrorCurrentDp('El correo electrónico ya está en uso');
+          // Si la respuesta contiene un campo de errores, mostrar esos mensajes de error
+          if (data.errors) {
+            setErrorCurrentDp(data.errors.map(error => error.msg).join(', '));
+          } else if (data.error) {
+            setErrorCurrentDp(data.error);
           } else {
-            setErrorCurrentDp('Error al actualizar los datos personales');
+            setErrorCurrentDp(data.message);
           }
           return;
         }
       }
-
-      // Actualizar foto de perfil solo si se ha seleccionado un nuevo archivo
-      if (selectedFile) {
-        const formData = new FormData();
-        formData.append('file', selectedFile);
-
-        const photoResponse = await fetch(`${API_URL}/usuario/cargarFotoPerfil/${user.id}`, {
-          method: 'PUT',
-          body: formData,
-        });
-
-        if (photoResponse.ok) {
-          setSuccessMessageDp('Foto de perfil actualizada con éxito');
-          setFotoPerfil(URL.createObjectURL(selectedFile));
-        } else {
-          throw new Error('Error al cargar la foto de perfil');
-        }
-      }
+  
     } catch (error) {
       console.error('Error al actualizar los datos personales:', error);
-      setErrorCurrentDp('Error al actualizar los datos personales');
+      setErrorCurrentDp(error.message);
     }
   };
 
@@ -190,26 +177,44 @@ const DatosPersonales = () => {
   }, [user.id]);
 
   const [nuevaProfesion, setNuevaProfesion] = useState('');
+  const [errorProfesion, setErrorProfesion] = useState('');
+  const [successMessageProfesion, setSuccessMessageProfesion] = useState('');
 
   const agregarProfesionUsuario = async (userId, profesion) => {
-    const response = await fetch(`${API_URL}/usuario/agregarProfesionesUsuario/${user.id}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ idUsuario: userId, profesiones: [profesion] }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    setErrorProfesion('');
+    setSuccessMessageProfesion('');
+    try {
+      const response = await fetch(`${API_URL}/usuario/agregarProfesionesUsuario/${userId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idUsuario: userId, profesiones: [profesion] }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        setNuevaProfesion('');
+        setProfesiones((prevProfesiones) => [...prevProfesiones, profesion]);
+        setSuccessMessageProfesion(data.message || 'Profesión agregada con éxito');
+        setErrorProfesion('');
+        return data;
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          setErrorProfesion(data.errors.map(error => error.msg).join(', '));
+        } else {
+          setErrorProfesion(data.message || 'Error desconocido');
+        }
+      }
+    } catch (error) {
+      setErrorProfesion(error.message);
+      setSuccessMessageProfesion('');
     }
-
-    const data = await response.json();
-    return data;
   };
 
   const handleRemoveProfesion = async (profesion) => {
+    setSuccessMessageProfesion('');
+    setErrorProfesion('');
     try {
-      // Lógica para eliminar la profesión del usuario
-      // ...
       const response = await fetch(`${API_URL}/usuario/eliminarProfesionUsuario/${user.id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
@@ -219,6 +224,7 @@ const DatosPersonales = () => {
       if (response.ok) {
         // Actualiza la lista de profesiones eliminando la que se eliminó
         setProfesiones(prevProfesiones => prevProfesiones.filter(p => p !== profesion));
+        setSuccessMessageProfesion('Profesión eliminada con éxito');
       } else {
         throw new Error(`Error al eliminar la profesión: ${response.status}`);
       }
@@ -230,6 +236,8 @@ const DatosPersonales = () => {
   const [isPasswordVerified, setIsPasswordVerified] = useState(false);
 
   const verifyCurrentPassword = async () => {
+    setErrorCurrentDp('');
+    setSuccessMessageDp('');
     try {
       if (contrasenaActual === '') {
         setErrorCurrentPassword('Por favor, ingresa la contraseña actual.');
@@ -262,16 +270,6 @@ const DatosPersonales = () => {
 
   const handleChangePassword = async () => {
     try {
-      if (nuevaContrasena === '' || confirmNuevaContrasena === '') {
-        setErrorNewPassword('Por favor, ingresa la nueva contraseña y confírmala.');
-        return;
-      }
-
-      if (nuevaContrasena !== confirmNuevaContrasena) {
-        setErrorNewPassword('La nueva contraseña y la confirmación no coinciden.');
-        return;
-      }
-
       const response = await fetch(`${API_URL}/usuario/change-password`, {
         method: 'POST',
         headers: {
@@ -280,9 +278,12 @@ const DatosPersonales = () => {
         body: JSON.stringify({
           idUsuario: user.id,
           newPassword: nuevaContrasena,
+          passwordConfirmation: confirmNuevaContrasena,
         }),
       });
-
+  
+      const data = await response.json();
+  
       if (response.status === 200) {
         setErrorNewPassword('');
         setSuccessMessage('Contraseña cambiada con éxito');
@@ -291,15 +292,17 @@ const DatosPersonales = () => {
         setConfirmNuevaContrasena('');
         setIsPasswordVerified(false);
       } else {
-        setErrorNewPassword('Error al cambiar la contraseña. Intenta nuevamente.');
+        // Si la respuesta contiene un campo de errores, mostrar esos mensajes de error
+        if (data.errors) {
+          setErrorNewPassword(data.errors.map(error => error.msg).join(', '));
+        } else {
+          setErrorNewPassword(data.messages);
+        }
       }
     } catch (error) {
       console.error('Error al cambiar la contraseña:', error);
     }
   };
-
-
-
 
   const handleProfilePictureChange = (e) => {
     if (e.target.files.length > 0) {
@@ -313,30 +316,42 @@ const DatosPersonales = () => {
     }
   };
 
+  const [errorMessageFoto, setErrorMessageFoto] = useState(null);
+
   const handleProfilePictureUpload = async () => {
+    setErrorMessageFoto('');
+    setSuccessMessageFoto('');
     if (selectedFile) {
       const formData = new FormData();
       formData.append('file', selectedFile);
-
+  
       try {
         const response = await fetch(`${API_URL}/usuario/cargarFotoPerfil/${user.id}`, {
           method: 'PUT',
           body: formData,
         });
-
+  
+        const data = await response.json();
+  
         if (response.ok) {
-          const data = await response.json();
           console.log(data);
           setSuccessMessageFoto('Foto de perfil actualizada con éxito');
+          // Limpiar el mensaje de error si la carga fue exitosa
+          setErrorMessageFoto(null);
         } else {
-          throw new Error('Error al cargar la foto de perfil');
+          // Si la respuesta contiene un campo de error, mostrar ese mensaje de error
+          if (data.error) {
+            setErrorMessageFoto(data.error);
+          } else {
+            setErrorMessageFoto('Error al cargar la foto de perfil');
+          }
         }
       } catch (error) {
         console.error('Error en handleProfilePictureUpload:', error);
+        setErrorMessageFoto(error.message);
       }
     }
   };
-
   return (
     <div className="datosPersonales">
       <Row className="row">
@@ -354,7 +369,8 @@ const DatosPersonales = () => {
                     <IonAvatar className="ion-avatar">
                       <img
                         src={fotoPerfil ? fotoPerfil : avatarDefecto}
-                        alt="Foto de perfil"
+                        alt="foto"
+                         
                         className="round-image"
                       />
                     </IonAvatar>
@@ -367,6 +383,7 @@ const DatosPersonales = () => {
                 Cambiar Foto
                 </Button>
                 {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
+                {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}	
                   <input
                     type="file"
                     accept="image/*"
@@ -434,35 +451,44 @@ const DatosPersonales = () => {
           <div className="user-details">
             {profesiones.map((profesion, index) => (
               <div key={index} className="profesion-item">
-  <p>{profesion}</p>
-  <Button variant="danger" onClick={() => handleRemoveProfesion(profesion)}>Eliminar</Button>
-</div>
+                <p>{profesion}</p>
+                <Button variant="danger" onClick={() => handleRemoveProfesion(profesion)}>
+                  Eliminar
+                </Button>
+              </div>
             ))}
           </div>
           <form
-            onSubmit={async (event) => {
-              event.preventDefault();
-              try {
-                await agregarProfesionUsuario(user.id, nuevaProfesion.toLowerCase());
-                setNuevaProfesion('');
-                setProfesiones(prevProfesiones => [...prevProfesiones, nuevaProfesion.toLowerCase()]);
-              } catch (error) {
-                console.error(error);
-              }
-            }}
-          >
-            <label className='agregarProfesion'>
-               
-              <input type="text" placeholder='Nueva Profesion' value={nuevaProfesion} onChange={(e) => setNuevaProfesion(e.target.value)} />
-            </label>
-            <button type="submit"  className='button'>Agregar profesión</button>
-          </form>
+  onSubmit={async (event) => {
+    event.preventDefault();
+    if (!nuevaProfesion.trim()) {
+      setErrorProfesion('La profesión no puede estar vacía.');
+      return;
+    }
+    await agregarProfesionUsuario(user.id, nuevaProfesion.toLowerCase());
+    await fetchProfesiones();
+  }}
+>
+  <label className='agregarProfesion'>
+    <input
+      type="text"
+      placeholder='Nueva Profesion'
+      value={nuevaProfesion}
+      onChange={(e) => setNuevaProfesion(e.target.value)}
+    />
+  </label>
+  <button type="submit" className='button' disabled={!nuevaProfesion.trim()}>
+    Agregar profesión
+  </button>
+</form>
+{errorProfesion && <div className="error-message">{errorProfesion}</div>}
+{successMessageProfesion && <div className="success-message">{successMessageProfesion}</div>}
         </div>
       </Card.Body>
     </Card>
   </Col>
 )}
-        
+
 
         <Col>
           <Card className='cardDatosPer'>

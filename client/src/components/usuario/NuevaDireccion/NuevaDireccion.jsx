@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import '../../cliente/Inicio/InicioCliente.css';
-import { API_URL } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider.jsx';
+import { API_URL } from '../../../auth/constants';
+import '../../cliente/Inicio/InicioCliente.css';
 import LoandingDots from '../../load/loandingDots/LoandingDots.jsx';
 
 export function NuevaDireccion(props) {
@@ -55,8 +55,8 @@ export function NuevaDireccion(props) {
 
   const handleSubmit = async () => {
     setEnviando(true);
-    try{
-      await fetch(`${API_URL}/direccion/agregarDireccion/cliente/${user.id}`, {
+    try {
+      const response = await fetch(`${API_URL}/direccion/agregarDireccion/cliente/${user.id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,26 +71,25 @@ export function NuevaDireccion(props) {
           ciudad: ciudad,
           provincia: provincia,
         }),
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        setEnviando(false);
-        props.hendleDireccionesUpdate();
-        handleClose();
-      })
-      .catch((error) => {
-        setError(true);
-        setEnviando(false);
       });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.errors[0].msg);
+      }
+  
       setEnviando(false);
-    }catch(error){
-      console.log(error.body.message)
+      props.hendleDireccionesUpdate();
+      handleClose();
+      setError(data.errors.map(error => error.msg).join(', '));
+    } catch (error) {
+      console.error(error);
+      setError(error.message);
       setEnviando(false);
-      setError(true);
     }
   };
-
-
+  
   return (
     <div>
       <Modal show={showModal}>
@@ -145,7 +144,7 @@ export function NuevaDireccion(props) {
             {enviando ? <><LoandingDots /></> : 'Enviar'}
         </Button>
         </Modal.Footer>
-        {error && <span className="error-message">Error al agregar direccion</span>}
+        {error && <span className="error-message">{error}</span>}
       </Modal>
     </div>
   );

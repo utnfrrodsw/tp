@@ -8,6 +8,9 @@ const { cargarFotoPerfil,obtenerFotoPerfil, upload } = require("../controllers/u
 const { authenticate } = require("../auth/authenticate.js");
 const { jsonResponse } = require("../lib/jsonResponse.js");
 const { validateRegister } = require("../middlewares/usuarios/validateRegistro.js");
+const { validateUserData,validateFotoPerfil  } = require("../middlewares/usuarios/validacionDatosUser.js");
+const { validateProfesionesUsuario } = require("../middlewares/usuarios/validacionProfesion.js");
+const { validarCambioClave } = require("../middlewares/usuarios/validacionCambioClave.js");
 
 router.get('/', (req, res) => {
   res.send('usuarios');
@@ -31,7 +34,7 @@ router.post('/reset-password', usuarioController.resetPassword);
 // Ruta para verificar la contraseña actual
 router.post('/verify-password', usuarioController.verifyPassword);
 // Ruta para cambiar la contraseña
-router.post('/change-password', usuarioController.changePassword);
+router.post('/change-password', validarCambioClave, usuarioController.changePassword);
 
 // Consultas
 router.get('/listaUsuarios', usuarioController.getUsuarios);
@@ -39,15 +42,15 @@ router.get('/listaUsuario/:id', usuarioController.getUsuario);
 
 // Datos personales
 router.get('/obtenerDatosPersonales/:id', usuarioController.obtenerDatosUsuario);
-router.put('/modificarDatosPersonales/:id', usuarioController.modificarDatosPersonales); 
+router.put('/modificarDatosPersonales/:id', validateUserData,  usuarioController.modificarDatosPersonales);
 
 //foto de perfil
-router.put('/cargarFotoPerfil/:id', upload.single('file'), cargarFotoPerfil);
+router.put('/cargarFotoPerfil/:id', upload.single('file'),validateFotoPerfil, cargarFotoPerfil);
 router.get('/obtenerFotoPerfil/:id', obtenerFotoPerfil);
 
 //profesiones
 router.get('/obtenerProfesionesUsuario/:id', usuarioController.obtenerProfesionesUsuario);
-router.post('/agregarProfesionesUsuario/:id', usuarioController.agregarProfesionesUsuario);
+router.post('/agregarProfesionesUsuario/:id', validateProfesionesUsuario,usuarioController.agregarProfesionesUsuario);
 router.delete('/eliminarProfesionUsuario/:id', usuarioController.eliminarProfesionUsuario);
 
  
