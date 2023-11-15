@@ -11,6 +11,7 @@ const { validateRegister } = require("../middlewares/usuarios/validateRegistro.j
 const { validateUserData,validateFotoPerfil  } = require("../middlewares/usuarios/validacionDatosUser.js");
 const { validateProfesionesUsuario } = require("../middlewares/usuarios/validacionProfesion.js");
 const { validarCambioClave } = require("../middlewares/usuarios/validacionCambioClave.js");
+const { validateResetPassword } = require("../middlewares/usuarios/validacionReserPassword.js");
 
 router.get('/', (req, res) => {
   res.send('usuarios');
@@ -29,7 +30,7 @@ router.post('/register',validateRegister, usuarioController.register);
 
 // Restablecimiento de contraseña
 router.post('/reset-password/request', usuarioController.passwordReset);
-router.post('/reset-password', usuarioController.resetPassword);
+router.post('/reset-password', validateResetPassword, usuarioController.resetPassword);
 
 // Ruta para verificar la contraseña actual
 router.post('/verify-password', usuarioController.verifyPassword);

@@ -18,6 +18,7 @@ const validateFotoPerfil = (req, res, next) => {
 
 // Middleware de validación para los datos del usuario
 const validateUserData = [
+  
   // Validación del campo 'nombre'
   check('nombre').optional().notEmpty().withMessage('El nombre es requerido'),
 
