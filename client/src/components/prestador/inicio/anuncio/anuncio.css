@@ -33,13 +33,13 @@
   width: 60%;
   padding: 15px;
   grid-template-columns: 60% 40%;
-    grid-template-rows: 20% 60% 10%;
-    gap: 00px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      " titulo fecha"
-      "nombre  ubicacion"
-      "boton   boton";
+  grid-template-rows: 20% 60% 10%;
+  gap: 00px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    " titulo fecha"
+    "nombre  ubicacion"
+    "boton   boton";
   /* Aumenta el espacio interno para pantallas de PC */
   background-color: #213555;
   border-radius: 12px;
@@ -243,7 +243,7 @@ img {
 
 /* En un archivo CSS externo o en un componente CSS-in-JS */
 .button-link {
-  align-self:center;
+  align-self: center;
   margin-bottom: 5px;
   display: inline-block;
   width: 20%;
@@ -269,4 +269,28 @@ img {
   background-color: #0056b3;
   /* Cambia el color de fondo al pasar el cursor por encima */
   border: 2px solid #0056b3;
+}
+
+/* Estilos para pantallas medianas */
+@media (max-width: 768px) {
+
+  .anuncioprincipal-card,
+  .anuncioprincipal-fullcontent {
+    width: 90%;
+  }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 576px) {
+
+  .anuncioprincipal-card,
+  .button-link{
+    width: 75%
+  };
+  .boton-anuncio{
+    width: 80%;
+  }
+  .anuncioprincipal-fullcontent {
+    width: 100%;
+  }
 }

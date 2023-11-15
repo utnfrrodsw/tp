@@ -27,7 +27,8 @@ if (!props) {
               
             <div className='listaMat'>
               <p><h2>Detalles del Presupuesto:</h2></p>
-              <p>Materiales: {props.materiales}</p>
+              <p>Materiales:</p>
+              <p>{props.materiales}</p>
             </div>
             <div className='textoCampos'>
               <p>Costo de Materiales: {props.costoMateriales}</p>
