@@ -7,7 +7,7 @@ function authenticate(req, res, next){
 
     console.log("authenticate");
 
-    if(token){
+    if(token){ // si hay token
         const decoded = verifyAccessToken(token);
         if(decoded){
             req.user = {... decoded.user};
@@ -18,7 +18,7 @@ function authenticate(req, res, next){
             }));
         }
         
-    }else{
+    }else{ // si no hay token
         res.status(401).json(jsonResponse(401,{
             message: 'No token provided'
         }));

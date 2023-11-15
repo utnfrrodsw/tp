@@ -13,7 +13,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [profesiones, setProfesiones] = useState([]);
   const [direccion, setDireccion] = useState('');
   const [direcciones, setDirecciones] = useState([]);
-  const [fotos, setFotos] = useState(null);
+  const [fotos, setFotos] = useState([]);
   const [errorProfesiones, setErrorProfesiones] = useState(false);
   const [errorTitulo, setErrorTitulo] = useState("");
   const [errorDescripcion, setErrorDescripcion] = useState("");

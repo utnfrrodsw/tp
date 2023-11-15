@@ -18,7 +18,7 @@ function Register() {
   const [esPrestador, setEsPrestador] = useState(false);
   const [especialidades, setEspecialidades] = useState([]);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  const [errorResponse, setErrorResponse] = useState(null);
+  const [errorResponse, setErrorResponse] = useState("");
   const auth = useAuth();
   const [direccionesUsuario, setDireccionesUsuario] = useState([]);
   const [nuevaDireccion, setNuevaDireccion] = useState({});  
@@ -155,7 +155,7 @@ function Register() {
       if (response.ok) {
         setValidationErrors([]);
         setRegistrationSuccess(true);
-        setErrorResponse(null);
+        setErrorResponse("");
         setRegistrationMessage(
           'Registro exitoso. Redirigiendo a la página de inicio de sesión...'
         );
@@ -165,11 +165,13 @@ function Register() {
       } else {
         const json = await response.json();
         setValidationErrors(json.errors || []);
+        setErrorResponse('Error al registrarse');
         setRegistrationSuccess(false);
       }
     } catch (error) {
       console.error(error);
-      setErrorResponse({ message: 'Error en el servidor' });
+      setErrorResponse('Error en el servidor');
+
       setRegistrationSuccess(false);
     }
   };
@@ -370,6 +372,7 @@ function Register() {
         <button type="submit" className="btn">
           Registrarse
         </button>
+        {errorResponse && <div className="error-message">{errorResponse.message}</div>}
       </form>
         
         <Modal show={showModal} onHide={handleModalClose}>
