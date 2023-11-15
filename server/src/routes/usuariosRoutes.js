@@ -13,7 +13,7 @@ const { validateProfesionesUsuario } = require("../middlewares/usuarios/validaci
 const { validarCambioClave } = require("../middlewares/usuarios/validacionCambioClave.js");
 
 router.get('/', (req, res) => {
-  res.send('usuarios');
+  res.send('index');
 });
 
 // Tokens
