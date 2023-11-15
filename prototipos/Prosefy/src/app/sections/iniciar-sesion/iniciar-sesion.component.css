@@ -1,3 +1,11 @@
+.ng-valid:not(form).ng-touched{
+  border: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form).ng-touched{
+  border: 5px sold rgb(255, 39, 39);
+}
+
 .custom-btn-primary {
   background-color: #bd8464;
   border-color: #bd8464;
