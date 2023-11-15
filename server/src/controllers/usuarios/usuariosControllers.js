@@ -274,8 +274,6 @@ if (direcciones && direcciones.length > 0) {
     }
   },
 
-
-  
   obtenerDatosUsuario: async (req, res) => {
     const { id } = req.params;
   
@@ -322,24 +320,32 @@ if (direcciones && direcciones.length > 0) {
     try {
       const { idUsuario, profesiones } = req.body;
   
-      // Asegúrate de que el usuario es un prestador
+      // Verifica  que el usuario es un prestador
       const usuario = await db.Usuario.findOne({ where: { idUsuario } });
       if (!usuario || !usuario.esPrestador) {
         return res.status(400).json({ message: 'El usuario no es un prestador' });
       }
   
-      // Agrega las profesiones al usuario
-      for (const nombreProfesion of profesiones) {
-        const [profesion] = await db.Profesion.findOrCreate({ where: { nombreProfesion: nombreProfesion.toLowerCase() } });
-        await db.PrestadorProfesiones.create({ idprestador: idUsuario, idProfesion: profesion.idProfesion });
+    // Agrega las profesiones al usuario
+    for (const nombreProfesion of profesiones) {
+      const profesionExistente = await db.Profesion.findOne({ where: { nombreProfesion: nombreProfesion.toLowerCase() } });
+
+      if (profesionExistente) {
+        const profesionUsuarioExistente = await db.PrestadorProfesiones.findOne({ where: { idprestador: idUsuario, idProfesion: profesionExistente.idProfesion } });
+        if (profesionUsuarioExistente) {
+          return res.status(400).json({ message: 'La profesión ya existe para este usuario' });
+        }
       }
-  
-      res.status(200).json({ message: 'Profesiones agregadas con éxito' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Error al agregar las profesiones al usuario' });
+      const [profesion] = await db.Profesion.findOrCreate({ where: { nombreProfesion: nombreProfesion.toLowerCase() } });
+      await db.PrestadorProfesiones.create({ idprestador: idUsuario, idProfesion: profesion.idProfesion });
     }
-  },
+
+    res.status(200).json({ message: 'Profesión agregada con éxito' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al agregar la profesion al usuario' });
+  }
+},
 
   eliminarProfesionUsuario: async (req, res) => {
   try {
