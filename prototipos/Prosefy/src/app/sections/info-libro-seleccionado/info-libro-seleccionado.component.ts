@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Libro, LibrosService } from '../../services/libros.service';
 import { CurrencyService } from '../../services/currency.service';
-import { switchMap, catchError } from 'rxjs/operators';
-import { Observable, throwError, Subscription } from 'rxjs';
+import { switchMap, catchError, delay } from 'rxjs/operators';
+import { Observable, throwError, Subscription, of } from 'rxjs';
 import { ParamMap } from '@angular/router';
 import { CarritoComprasService } from '../../services/carrito-compras.service';
 
@@ -19,10 +19,10 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
 
   constructor(
     public currencyService: CurrencyService,
-    private librosService: LibrosService,
+    public librosService: LibrosService,
     private route: ActivatedRoute,
     private router: Router,
-    private carritoService: CarritoComprasService
+    public carritoService: CarritoComprasService
   ) { }
 
   ngOnInit() {
@@ -35,7 +35,6 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
             return throwError('ID del libro no válido.');
           }
 
-          // Utiliza directamente idParam en lugar de parseInt
           return this.librosService.getLibro(idParam).pipe(
             catchError((error) => {
               this.handleError(`Error obteniendo el libro con ID ${idParam}: ${error}`);
@@ -49,7 +48,7 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
             this.libro = foundLibro;
           }
         },
-        error => {
+        (error: any) => {
           this.handleError('Error al cargar el libro.');
         }
       )
@@ -68,20 +67,29 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
     return this.currencyService.calculatePriceInSelectedCurrency(precio);
   }
 
-  agregarAlCarrito() {
-    if (this.libro && this.libro.id) {
-      this.carritoService.agregarAlCarrito(this.libro.id);
+  agregarAlCarrito(libro: Libro | undefined) {
+    console.log('Libro al intentar agregar al carrito:', libro);
+
+    const libroId = libro?._id;
+    console.log('ID del libro:', libroId);
+
+    if (libroId) {
+      this.carritoService.agregarAlCarrito(libroId);
       this.libroAgregado = true;
       this.mostrarMensaje();
+      console.log('Libro agregado al carrito:', libroId);
     } else {
       this.handleError('ID del libro no definido.');
     }
   }
 
   mostrarMensaje() {
-    setTimeout(() => {
-      this.libroAgregado = false;
-    }, 3000);
+    this.libroAgregado = true;
+    this.subscription.add(
+      of(null).pipe(delay(3000)).subscribe(() => {
+        this.libroAgregado = false;
+      })
+    );
   }
 
   private handleError(errorMessage: string) {

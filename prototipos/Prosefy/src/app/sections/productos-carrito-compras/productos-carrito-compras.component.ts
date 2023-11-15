@@ -27,13 +27,18 @@ export class ProductosCarritoComprasComponent implements OnInit {
     const librosEnCarritoIds = this.carritoService.getLibrosEnCarrito();
 
     this.librosService.getAll().subscribe(
-      (libros: Libro[]) => {
-        this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro.id.toString()));
-        this.cantidades = {};
-        this.libros.forEach((libro) => {
-          this.cantidades[libro.id.toString()] = 1; // Inicializar las cantidades en 1 por defecto
-        });
-        this.calculateTotal();
+      (response: any) => {
+        const libros: Libro[] = response.data;
+        if (Array.isArray(libros)) {
+          this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro._id.toString()));
+          this.cantidades = {};
+          this.libros.forEach((libro) => {
+            this.cantidades[libro._id.toString()] = 1;
+          });
+          this.calculateTotal();
+        } else {
+          console.error('La respuesta del servidor no es un array de libros:', response);
+        }
       },
       (error) => {
         console.error('Error obteniendo libros:', error);
@@ -49,14 +54,14 @@ export class ProductosCarritoComprasComponent implements OnInit {
   calculateTotal() {
     const maxCantidad = 10;
     const minCantidad = 1;
-    this.total = this.libros.reduce((sum, libro) => sum + (libro.precio * this.cantidades[libro.id]), 0);
+    this.total = this.libros.reduce((sum, libro) => sum + (libro.precio * this.cantidades[libro._id]), 0);
 
     for (let libro of this.libros) {
-      if (this.cantidades[libro.id] > maxCantidad) {
-        this.cantidades[libro.id] = maxCantidad;
+      if (this.cantidades[libro._id] > maxCantidad) {
+        this.cantidades[libro._id] = maxCantidad;
       }
-      if (this.cantidades[libro.id] < minCantidad) {
-        this.cantidades[libro.id] = minCantidad;
+      if (this.cantidades[libro._id] < minCantidad) {
+        this.cantidades[libro._id] = minCantidad;
       }
     }
   }
@@ -78,7 +83,7 @@ export class ProductosCarritoComprasComponent implements OnInit {
   }
 
   subTotal(libro: Libro) {
-    return libro.precio * this.cantidades[libro.id];
+    return libro.precio * this.cantidades[libro._id];
   }
 
   calculatePriceInSelectedCurrency(precio: number): number {

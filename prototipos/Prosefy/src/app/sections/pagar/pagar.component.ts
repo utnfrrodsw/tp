@@ -22,7 +22,7 @@ export class PagarComponent implements OnInit {
   ngOnInit() {
     this.obtenerLibrosEnCarrito();
     this.libros.forEach((libro) => {
-      this.cantidades[libro.id] = 1;
+      this.cantidades[libro._id] = 1;
     });
     this.calculateTotal();
     this.subTotal();
@@ -35,7 +35,7 @@ export class PagarComponent implements OnInit {
     this.librosService.getAll().subscribe(
       (libros: Libro[]) => {
         // Filtra los libros según los IDs en el carrito
-        this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro.id));
+        this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro._id));
         this.calculateTotal();
       },
       (error) => {
@@ -53,14 +53,14 @@ export class PagarComponent implements OnInit {
     const envio = 500;
     const maxCantidad = 10;
     const minCantidad = 1;
-    this.total = this.libros.reduce((sum, libro) => sum + (libro.precio * this.cantidades[libro.id]), 0);
+    this.total = this.libros.reduce((sum, libro) => sum + (libro.precio * this.cantidades[libro._id]), 0);
 
     for (let libro of this.libros) {
-      if (this.cantidades[libro.id] > maxCantidad) {
-        this.cantidades[libro.id] = maxCantidad;
+      if (this.cantidades[libro._id] > maxCantidad) {
+        this.cantidades[libro._id] = maxCantidad;
       }
-      if (this.cantidades[libro.id] < minCantidad) {
-        this.cantidades[libro.id] = minCantidad;
+      if (this.cantidades[libro._id] < minCantidad) {
+        this.cantidades[libro._id] = minCantidad;
       }
     }
 
@@ -94,14 +94,14 @@ export class PagarComponent implements OnInit {
   subTotal() {
     const maxCantidad = 10;
     const minCantidad = 1;
-    this.subtotal = this.libros.reduce((sum, libro) => sum + (libro.precio * this.cantidades[libro.id]), 0);
+    this.subtotal = this.libros.reduce((sum, libro) => sum + (libro.precio * this.cantidades[libro._id]), 0);
 
     for (let libro of this.libros) {
-      if (this.cantidades[libro.id] > maxCantidad) {
-        this.cantidades[libro.id] = maxCantidad;
+      if (this.cantidades[libro._id] > maxCantidad) {
+        this.cantidades[libro._id] = maxCantidad;
       }
-      if (this.cantidades[libro.id] < minCantidad) {
-        this.cantidades[libro.id] = minCantidad;
+      if (this.cantidades[libro._id] < minCantidad) {
+        this.cantidades[libro._id] = minCantidad;
       }
     }
   }

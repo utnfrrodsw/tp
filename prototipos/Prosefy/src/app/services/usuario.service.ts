@@ -4,7 +4,7 @@ import { Observable, of, map } from "rxjs";
 import { LoginRequest } from './Auth/LoginRequest.js';
 
 export interface Usuario {
-  id: string;
+  _id: string;
   nombre: string;
   apellido: string;
   email: string;
@@ -23,7 +23,7 @@ export class UsuarioService {
 
   private usuarios: Usuario[] = [
     {
-      id: "1",
+      _id: "1",
       nombre: 'Juan',
       apellido: 'Perez',
       email: 'JuanPerez@gmail.com',

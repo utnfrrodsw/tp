@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
 export interface Autor {
-  id: string;
+  _id: string;
   nombreCompleto: string;
   perfil: string;
   info: string;

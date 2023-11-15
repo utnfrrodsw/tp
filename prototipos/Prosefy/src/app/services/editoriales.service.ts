@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
 export interface Editorial {
-  id: string;
+  _id: string;
   descripcion: string;
   direccion: string;
   imagen: string;

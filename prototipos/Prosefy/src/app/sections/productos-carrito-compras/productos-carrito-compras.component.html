@@ -12,15 +12,15 @@
             <h6 class="card-subtitle mb-2 text-muted" style="margin-bottom: 10px;">{{libro.autores}}</h6>
             <div class="row align-items-center" style="margin-bottom: 5px;">
               <div class="col">
-                <input type="number" class="form-control" [(ngModel)]="cantidades[libro.id]"
-                  (ngModelChange)="calculateTotal()" (input)="validarCantidad($event, libro.id)" min="1" max="10"
+                <input type="number" class="form-control" [(ngModel)]="cantidades[libro._id]"
+                  (ngModelChange)="calculateTotal()" (input)="validarCantidad($event, libro._id)" min="1" max="10"
                   step="1" value="1" required />
               </div>
               <div class="col">
                 <a href="#" class="text-primary" style="margin-left: 10px;">Agregar a favoritos</a>
               </div>
               <div class="col">
-                <a class="text-danger" (click)="eliminarDelCarrito(libro.id)" style="margin-left: 10px;">Eliminar</a>
+                <a class="text-danger" (click)="eliminarDelCarrito(libro._id)" style="margin-left: 10px;">Eliminar</a>
               </div>
             </div>
           </div>

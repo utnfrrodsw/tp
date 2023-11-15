@@ -69,16 +69,14 @@
       <p>O retiralo <strong>GRATIS</strong> en nuestra tienda</p>
       <div class="d-flex justify-content-center mt-4">
         <!-- TODO: CORREGIR PARA QUE OBTENGA CORRECTAMENTE EL ID DE LIBRO PARA EL CARRITO DE COMPRAS -->
-        <button routerLink="/carrito-compras" class="btn btn-primary custom-btn-primary mx-4"
-          (click)="agregarAlCarrito()" *ngIf="libro?.id !== undefined">
+        <button class="btn btn-primary custom-btn-primary mx-4" (click)="agregarAlCarrito(libro)">
           Comprar ahora
         </button>
-        <button class="btn btn-primary custom-btn-secondary mx-4" (click)="agregarAlCarrito(); mostrarMensaje()"
-          *ngIf="libro?.id !== undefined">
+        <button class="btn btn-primary custom-btn-secondary mx-4" (click)="agregarAlCarrito(libro); mostrarMensaje()">
           Agregar al carrito
         </button>
       </div>
-      <div *ngIf="libroAgregado" class="alert alert-success mt-3" role="alert">
+      <div *ngIf="libro && libroAgregado" class="alert alert-success mt-3" role="alert">
         El libro se ha agregado al carrito de compras correctamente.
       </div>
     </div>

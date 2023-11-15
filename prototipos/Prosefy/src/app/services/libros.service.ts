@@ -5,7 +5,7 @@ import { Observable, map, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 export interface Libro {
-  id: string;
+  _id: string;
   isbn: string;
   titulo: string;
   idioma: string;
