@@ -34,6 +34,7 @@ function App() {
       <Header/>
       <div className='content'>
         <Routes>
+          {/*rutas publicas*/}
           <Route path='/' element={<ProtectedRoute/>} >
             <Route path='/'  element={ <Home/>} />
             <Route path='/login'  element={ <Login/>}/>
@@ -69,7 +70,8 @@ function App() {
             <Route path='/client/home/finished'  element={ <Solicitudes estado = "terminado" />}/>
           </Route>
           
-          <Route path="*" errorElement={<Error/>}/>;
+          {/* 404 */}
+          <Route path="*" element={<Error/>} />
         </Routes >
       </div>
       <Footer/>

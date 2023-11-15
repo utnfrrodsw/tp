@@ -23,6 +23,7 @@ export function AuthProvider({children}) {
     },[]);
 
     async function requestNewAccessToken(refreshToken){
+        // pide un nuevo token de entrada enviando el de refresco
         try{
             const response = await fetch(`${API_URL}/usuario/refreshToken`,{
                 method: "POST",
@@ -48,6 +49,7 @@ export function AuthProvider({children}) {
     }
 
     async function getUserInfo(accessToken){
+        // trae la info del usuario con el token de entrada
         try{
             const response = await fetch(`${API_URL}/usuario/auth`,{
                 method: "GET",
@@ -56,7 +58,6 @@ export function AuthProvider({children}) {
                     Authorization: `Bearer ${accessToken}`,
                 },
             })
-            console.log(response);
             if(response.ok){
                 const json = await response.json();
                 if(json.error){
@@ -75,10 +76,10 @@ export function AuthProvider({children}) {
     };
 
     function saveSessionInfo(userInfo, accessToken, refreshToken){
-        setAccessToken(accessToken);
-        localStorage.setItem("token", JSON.stringify(refreshToken));
-        setIsAuthenticated(true);
-        setUser(userInfo);
+        setAccessToken(accessToken); // guarda token de entrada
+        localStorage.setItem("token", JSON.stringify(refreshToken)); // guarda token de refresco en localstorage
+        setIsAuthenticated(true); // setea el estado de autenticacion
+        setUser(userInfo); // guarda el usuario en el estado
     }
 
     function getAccessToken(){
@@ -86,55 +87,56 @@ export function AuthProvider({children}) {
     }
 
     function getRefreshToken(){
-        const tokenData = localStorage.getItem("token");
-        if(tokenData){
-            const token = JSON.parse(tokenData);
-            return token;
+        const tokenData = localStorage.getItem("token"); // obtiene el token de refresco del localstorage
+        if(tokenData){ // chequea si hay un token de refresco
+            const token = JSON.parse(tokenData); // parsea el token de refresco
+            return token; 
         }
-        return null;
+        return null; // no hay token de refresco
     }
 
     function saveUser(userData){
-        localStorage.setItem("user", JSON.stringify(userData.body.user));
-        saveSessionInfo(userData.body.user, userData.body.token, userData.body.refreshToken);
+        localStorage.setItem("user", JSON.stringify(userData.body.user)); // guarda el usuario en localstorage
+        saveSessionInfo(userData.body.user, userData.body.token, userData.body.refreshToken); // guarda info de los tokens
     }
 
     function getUser(){
-        return user;
+        return user; // devuelve el usuario del estado
     }
 
     function logout(){
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        setAccessToken("");
-        setUser(undefined);
-        setIsAuthenticated(false);
+        localStorage.removeItem("token"); // borra el token de refresco del localstorage
+        localStorage.removeItem("user"); // borra el usuario del localstorage
+        setAccessToken(""); // borra el token de entrada
+        setUser(undefined); // borra el usuario del estado
+        setIsAuthenticated(false); // setea el estado de autenticacion
     }
 
     async function checkAuth(){
-        if(accessToken){
+        if(accessToken){ // chequea si hay un token de entrada
             //el usuario esta autenticado
-            const userInfo = await getUserInfo(accessToken);
+            const userInfo = await getUserInfo(accessToken); // pide la info del usuario con el token de entrada
             if(userInfo){
-                saveSessionInfo(userInfo, accessToken, getRefreshToken());
+                saveSessionInfo(userInfo, accessToken, getRefreshToken()); // guarda info de los tokens
                 setIsLoading(false);
                 return;
             }
-        }else{
+        }else{ // no hay token de entrada
             //el usuario no esta autenticado
-            const token = getRefreshToken();
-            if(token){
-                const newAccessToken = await requestNewAccessToken(token);
+            const token = getRefreshToken(); 
+            if(token){ // chequea si hay un token de refresco
+                const newAccessToken = await requestNewAccessToken(token); // pide un nuevo token de entrada enviando el de refresco
                 console.log("newAccessToken: " + newAccessToken)
-                if(newAccessToken){
-                    const userInfo = await getUserInfo(newAccessToken);
-                    if(userInfo){
-                        saveSessionInfo(userInfo, newAccessToken, token);
-                        setIsLoading(false);
+                if(newAccessToken){ // chequea si el nuevo token de entrada es valido
+                    const userInfo = await getUserInfo(newAccessToken); // pide la info del usuario con el nuevo token de entrada
+                    if(userInfo){ // chequea si la info del usuario es valida
+                        saveSessionInfo(userInfo, newAccessToken, token); // guarda info de los tokens
+                        setIsLoading(false); 
                         return;
                     }
                 }
             }
+            // no hay token de refresco
         }
         setIsLoading(false);
     };

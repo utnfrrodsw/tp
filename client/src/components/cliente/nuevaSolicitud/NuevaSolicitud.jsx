@@ -13,7 +13,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [profesiones, setProfesiones] = useState([]);
   const [direccion, setDireccion] = useState('');
   const [direcciones, setDirecciones] = useState([]);
-  const [fotos, setFotos] = useState(null);
+  const [fotos, setFotos] = useState([]);
   const [errorProfesiones, setErrorProfesiones] = useState(false);
   const [errorTitulo, setErrorTitulo] = useState("");
   const [errorDescripcion, setErrorDescripcion] = useState("");
@@ -118,7 +118,6 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
     
 
     try{
-      console.log('enviando solicitud 2')
       await fetch(`${API_URL}/solicitud/cliente/${user.id}`, {
         method: 'POST',
         headers: {
@@ -129,7 +128,6 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
       .then((res) => res.json())
       .then((data) => {
               if(data.error){
-                console.log(data.error);
                 data.error.map((error) => {
                   if(error.path === 'titulo') setErrorTitulo(error.msg);
                   if(error.path === 'descripcion') setErrorDescripcion(error.msg);

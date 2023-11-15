@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
 });
 
 // Tokens
-router.post('/refreshToken', usuarioController.refreshToken);
-router.get('/auth', authenticate,  (req, res) => {
+router.post('/refreshToken', usuarioController.refreshToken); // post Refresh token
+router.get('/auth', authenticate,  (req, res) => { // get Auth
   res.status(200).json(jsonResponse(200, req.user));
 });
 

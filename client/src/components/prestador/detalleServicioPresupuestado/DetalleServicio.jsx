@@ -40,7 +40,7 @@ function DetalleServicio() {
   };
 
   return (
-    <>
+    <div className='scroll-container'>
       {presupuesto ? (
         <>
           <Detalle
@@ -88,7 +88,7 @@ function DetalleServicio() {
       ) : (
         <p>Loading...</p>
       )}
-    </>
+    </div>
   );
 }
 
