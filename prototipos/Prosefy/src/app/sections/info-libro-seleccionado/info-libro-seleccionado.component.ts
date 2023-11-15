@@ -83,6 +83,11 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
     }
   }
 
+  comprarAhora(libro: Libro | undefined) {
+    this.agregarAlCarrito(libro);
+    this.router.navigate(['/carrito-compras']);
+  }
+
   mostrarMensaje() {
     this.libroAgregado = true;
     this.subscription.add(
