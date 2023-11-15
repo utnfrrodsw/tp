@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { Observable, of, map } from "rxjs";
+import { LoginRequest } from './Auth/LoginRequest.js';
 
 export interface Usuario {
 
@@ -33,6 +34,8 @@ export class UsuarioService {
       tipo: 'Administrador'
     }
   ]
+
+  private apiUrl = 'http://localhost:3000/api/usuarios';
   
   constructor(private http: HttpClient) {}
 
@@ -40,15 +43,39 @@ export class UsuarioService {
     return this.http.post("https://localhost:3000/api/usuarios", user);
   }
 
+  login(credentials: LoginRequest): Observable<any>{
+    return this.http.get('http://localhost:3000/api/usuarios')
+  } 
+
+  getEmail(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/email/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  } 
+
+  getContraseña(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/contraseña/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
+  getUsuariosIds(): Observable<string[]> {
+    return this.http.get<any>(`${this.apiUrl}/usuarios`).pipe(
+      map((response: any) => response.data)
+    );
+  }
 
   getUsuarios(): Usuario[] {
     return this.usuarios;
   }
 
-  getUserToken(): Observable<boolean> {
-
-    // Si está True se puede acceder a la ruta
-    return of(true);
+  updateFlag(): boolean {
+    return true;  
   }
-  
+
+  getUserToken(): Observable<boolean> {
+    const flag = this.updateFlag();
+    // Si está True se puede acceder a la ruta
+    return of(flag);
+  }
 }

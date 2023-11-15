@@ -8,6 +8,7 @@
   <div class="login-container mb-5 pb-5">
     <!-- Cuadro movido aquí -->
     <form [formGroup] = "loginGroup">
+      <p class="text-danger">{{loginError}}</p>
       <div class="form-group my-4">
         <!-- TODO: No hay nombre de usuario, cambiarlo por el email -->
         <label for="username">Nombre de usuario</label>

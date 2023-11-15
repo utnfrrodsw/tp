@@ -3,6 +3,7 @@ import { UsuarioService, Usuario } from '../../services/usuario.service';
 import { forkJoin, map, switchMap } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginRequest } from 'src/app/services/Auth/LoginRequest.js';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./iniciar-sesion.component.css']
 })
 export class IniciarSesionComponent implements OnInit{
+  loginError: string= "";
   loginGroup = this.formBuilder.group({
     email: ['bla@gmail.com', [Validators.required, Validators.email]],
     password: ['',[Validators.required]]
@@ -48,14 +50,6 @@ export class IniciarSesionComponent implements OnInit{
         usuarios.forEach(usuario => {
           this.usuariosData[usuario.id] = { email: usuario.email, password: usuario.password };
         });
-
-        usuarios.forEach(usuario => {
-          if (this.usuariosData[usuario.id].email == this.inputUsuario) {
-            if (this.usuariosData[usuario.id].password == this.inputContrasena) {
-              this.usuarioService.updateFlag();
-            }
-          }
-        });
       });
     });
 
@@ -63,8 +57,22 @@ export class IniciarSesionComponent implements OnInit{
 
   login(){
     if (this.loginGroup.valid){
-      this.router.navigateByUrl('/perfil');
-      this.loginGroup.reset();
+      this.usuarioService.login(this.loginGroup.value as LoginRequest).subscribe({
+        
+        next: (userData) =>{
+          console.log(userData);
+          
+        },
+
+        error: (errorData) =>{ 
+          this.loginError = errorData;
+        },
+
+        complete: () =>{
+          this.router.navigateByUrl('/perfil');
+          this.loginGroup.reset();
+        },
+      });
     }
     else{
       this.loginGroup.markAllAsTouched();
