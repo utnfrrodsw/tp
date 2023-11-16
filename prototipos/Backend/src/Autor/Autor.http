@@ -46,7 +46,7 @@ GET http://localhost:3000/api/autores/perfil/654a8a23e9bd128c04108bbb
 // CREAR TODOS LOS AUTORES
 
 ### Autor 1
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654a8a23e9bd128c04108bbb
 Content-Type: application/json
 
 {
@@ -56,7 +56,7 @@ Content-Type: application/json
 }
 
 ### Autor 2
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654a8b3de9bd128c04108bbc
 Content-Type: application/json
 
 {
@@ -66,7 +66,7 @@ Content-Type: application/json
 }
 
 ### Autor 3
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654a8b3ee9bd128c04108bbd
 Content-Type: application/json
 
 {
@@ -76,7 +76,7 @@ Content-Type: application/json
 }
 
 ### Autor 4
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654a8b40e9bd128c04108bbe
 Content-Type: application/json
 
 {
@@ -86,7 +86,7 @@ Content-Type: application/json
 }
 
 ### Autor 5
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654b88d627e5c1b5feb052c1
 Content-Type: application/json
 
 {
@@ -96,7 +96,7 @@ Content-Type: application/json
 }
 
 ### Autor 6
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654b893b27e5c1b5feb052c2
 Content-Type: application/json
 
 {
@@ -106,7 +106,7 @@ Content-Type: application/json
 }
 
 ### Autor 7
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654b899927e5c1b5feb052c3
 Content-Type: application/json
 
 {
@@ -116,7 +116,7 @@ Content-Type: application/json
 }
 
 ### Autor 8
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654b8a3f27e5c1b5feb052c4
 Content-Type: application/json
 
 {
@@ -126,7 +126,7 @@ Content-Type: application/json
 }
 
 ### Autor 9
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654b8f4827e5c1b5feb052c5
 Content-Type: application/json
 
 {
@@ -136,7 +136,7 @@ Content-Type: application/json
 }
 
 ### Autor 10
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654b8fd827e5c1b5feb052c6
 Content-Type: application/json
 
 {
@@ -146,7 +146,7 @@ Content-Type: application/json
 }
 
 ### Autor 11
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654d44461de02c673186f9ae
 Content-Type: application/json
 
 {
@@ -156,7 +156,7 @@ Content-Type: application/json
 }
 
 ### Autor 12
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654d45481de02c673186f9b0
 Content-Type: application/json
 
 {
@@ -166,7 +166,7 @@ Content-Type: application/json
 }
 
 ### Autor 13
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654d47141de02c673186f9b1
 Content-Type: application/json
 
 {
@@ -176,7 +176,7 @@ Content-Type: application/json
 }
 
 ### Autor 14
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654d47fd1de02c673186f9b2
 Content-Type: application/json
 
 {
@@ -186,7 +186,7 @@ Content-Type: application/json
 }
 
 ### Autor 15
-POST http://localhost:3000/api/autores
+PUT http://localhost:3000/api/autores/654d487b1de02c673186f9b3
 Content-Type: application/json
 
 {

@@ -33,7 +33,7 @@ DELETE http://localhost:3000/api/formato/654bfee79906829dff7bca06
 // CREAR TODOS LOS FORMATOS
 
 ### Formato 1
-POST http://localhost:3000/api/formato
+PUT http://localhost:3000/api/formato/654bfec19906829dff7bca04
 Content-Type: application/json
 
 {
@@ -41,7 +41,7 @@ Content-Type: application/json
 }
 
 ### Formato 2
-POST http://localhost:3000/api/formato
+PUT http://localhost:3000/api/formato/654bfee69906829dff7bca05
 Content-Type: application/json
 
 {
@@ -49,7 +49,7 @@ Content-Type: application/json
 }
 
 ### Formato 3
-POST http://localhost:3000/api/formato
+PUT http://localhost:3000/api/formato/654bfef79906829dff7bca07
 Content-Type: application/json
 
 {

@@ -1,29 +1,28 @@
 import { LocalidadRepository } from "./Localidad.repository.js";
 import { Localidad } from "./Localidad.entity.js";
+import { ObjectId } from "mongodb";
 const repository = new LocalidadRepository();
 async function sanitizeInput(req, res, next) {
     try {
-        req.body.sanitizedInput = {
-            cod_postal: req.body.cod_postal,
-            descripcion: req.body.descripcion,
-            provincia: req.body.provincia,
-        };
-        // Eliminar claves no definidas
-        Object.keys(req.body.sanitizedInput).forEach((key) => {
-            if (req.body.sanitizedInput[key] === undefined) {
-                delete req.body.sanitizedInput[key];
+        const requiredKeys = ['cod_postal', "descripcion", "provincia"];
+        req.body.sanitizedInput = {};
+        for (const key of requiredKeys) {
+            if (req.body[key] === undefined) {
+                return res.status(400).send({ message: `Campo '${key}' es requerido.` });
             }
-        });
+            req.body.sanitizedInput[key] = req.body[key];
+        }
         next();
     }
     catch (error) {
-        res.status(500).send({ message: 'Error interno del servidor.' });
+        console.error("Error en sanitizeInput:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 async function findAll(req, res) {
     try {
-        const localidades = await repository.findAll();
-        res.json({ data: localidades });
+        const data = await repository.findAll();
+        res.json({ data });
     }
     catch (error) {
         console.error("Error en findAll:", error);
@@ -35,9 +34,9 @@ async function findOne(req, res) {
         const id = req.params.id;
         const localidad = await repository.findOne({ id });
         if (!localidad) {
-            return res.status(404).send({ message: "No se encontró la localidad." });
+            return res.status(404).send({ message: "Localidad no encontrada." });
         }
-        res.json({ data: localidad });
+        return res.json({ data: localidad });
     }
     catch (error) {
         console.error("Error en findOne:", error);
@@ -49,7 +48,7 @@ async function add(req, res) {
         const input = req.body.sanitizedInput;
         const localidadInput = new Localidad(input.cod_postal, input.descripcion, input.provincia);
         const localidad = await repository.add(localidadInput);
-        res.status(201).send({ message: 'Localidad agregada exitosamente.', data: localidad });
+        res.status(201).send({ message: 'Localidad agregada con éxito.', data: localidad });
     }
     catch (error) {
         console.error("Error en add:", error);
@@ -58,11 +57,25 @@ async function add(req, res) {
 }
 async function update(req, res) {
     try {
-        const localidad = await repository.update(req.params.id, req.body.sanitizedInput);
-        if (!localidad) {
-            return res.status(404).send({ message: "No se encontró la localidad." });
+        const localidadId = req.params.id;
+        const updatedData = req.body.sanitizedInput;
+        // Verificar si la localidad existe antes de intentar actualizarla
+        const localidadExiste = await repository.findOne({ id: localidadId });
+        if (!localidadExiste) {
+            const objectIdLocalidadId = new ObjectId(localidadId);
+            const localidadInput = new Localidad(updatedData.cod_postal, updatedData.descripcion, updatedData.provincia, objectIdLocalidadId);
+            const nuevoLocalidad = await repository.add(localidadInput);
+            if (!nuevoLocalidad) {
+                return res.status(500).send({ message: "Error al crear la nueva localidad." });
+            }
+            return res.status(201).send({ message: 'Localidad creada con éxito.', data: nuevoLocalidad });
         }
-        res.status(200).send({ message: 'Localidad actualizada exitosamente.', data: localidad });
+        // Si la localidad existe, la actualiza
+        const updatedLocalidad = await repository.update(localidadId, updatedData);
+        if (!updatedLocalidad) {
+            return res.status(500).send({ message: "Error al actualizar la localidad." });
+        }
+        return res.status(200).send({ message: 'Localidad actualizada con éxito.', data: updatedLocalidad });
     }
     catch (error) {
         console.error("Error en update:", error);
@@ -74,9 +87,9 @@ async function remove(req, res) {
         const id = req.params.id;
         const localidad = await repository.delete({ id });
         if (!localidad) {
-            return res.status(404).send({ message: "No se encontró la localidad." });
+            res.status(404).send({ message: "Localidad no encontrada." });
         }
-        res.status(204).send({ message: 'Localidad eliminada exitosamente.' });
+        res.status(204).send({ message: 'Localidad eliminada con éxito.' });
     }
     catch (error) {
         console.error("Error en remove:", error);

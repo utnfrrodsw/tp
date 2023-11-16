@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express"
 import { AutorRepository } from "./Autor.repository.js"
 import { Autor } from "./Autor.js"
+import { ObjectId } from "mongodb"
 
 const repository = new AutorRepository()
 
@@ -60,15 +61,45 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
     try {
-        const autor = await repository.update(req.params.id, req.body.sanitizedInput);
-        if (!autor) {
-            return res.status(404).send({ message: "Autor no encontrado." });
+        const autorId = req.params.id;
+        const updatedData = req.body.sanitizedInput;
+
+        // Verificar si el autor existe antes de intentar actualizarlo
+        const autorExiste = await repository.findOne({ id: autorId });
+
+        if (!autorExiste) {
+            const objectIdAutorId = new ObjectId(autorId);
+            const autorInput = new Autor(
+                updatedData.nombreCompleto,
+                updatedData.perfil,
+                updatedData.info,
+                objectIdAutorId
+            );
+
+            const nuevoAutor = await repository.add(autorInput);
+
+            if (!nuevoAutor) {
+                return res.status(500).send({ message: "Error al crear el nuevo autor." });
+            }
+
+            return res.status(201).send({ message: 'Autor creado con éxito.', data: nuevoAutor });
         }
-        return res.status(200).send({ message: 'Autor actualizado con éxito.', data: autor });
+
+        // Si el autor existe, lo actualiza
+        const updatedAutor = await repository.update(autorId, updatedData);
+
+        if (!updatedAutor) {
+            return res.status(500).send({ message: "Error al actualizar el autor." });
+        }
+
+        return res.status(200).send({ message: 'Autor actualizado con éxito.', data: updatedAutor });
+
     } catch (error) {
+        console.error("Error en update:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
+
 
 async function remove(req: Request, res: Response) {
     try {

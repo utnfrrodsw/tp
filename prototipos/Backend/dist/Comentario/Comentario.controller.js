@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb";
 const repository = new ComentarioRepository();
 async function sanitizeInput(req, res, next) {
     try {
-        const requiredKeys = ['id', 'comentario', 'usuario'];
+        const requiredKeys = ['comentario', 'usuario'];
         req.body.sanitizedInput = {};
         for (const key of requiredKeys) {
             if (req.body[key] === undefined) {
@@ -62,7 +62,7 @@ async function update(req, res) {
         const comentarioExiste = await repository.findOne({ id: comentarioId });
         if (!comentarioExiste) {
             const objectIdComentarioId = new ObjectId(comentarioId);
-            const comentarioInput = new Comentario(updatedData.id, updatedData.comentario, updatedData.usuarios, objectIdComentarioId);
+            const comentarioInput = new Comentario(updatedData.comentario, updatedData.usuario, objectIdComentarioId);
             const nuevoComentario = await repository.add(comentarioInput);
             if (!nuevoComentario) {
                 return res.status(500).send({ message: "Error al crear el nuevo comentario." });

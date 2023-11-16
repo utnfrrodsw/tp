@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express"
 import { formatoLibroRepository } from "./formatoLibro.repository.js"
 import { formatoLibro } from "./formatoLibro.js"
+import { ObjectId } from "mongodb"
 
 const repository = new formatoLibroRepository()
 
@@ -58,14 +59,40 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
     try {
-        const formato = await repository.update(req.params.id, req.body.sanitizedInput);
-        if (!formato) {
-            return res.status(404).send({ message: "Formato no encontrado" });
+        const formatoId = req.params.id;
+        const updatedData = req.body.sanitizedInput;
+
+        // Verificar si el formato existe antes de intentar actualizarlo
+        const formatoExiste = await repository.findOne({ id: formatoId });
+
+        if (!formatoExiste) {
+            const objectIdFormatoId = new ObjectId(formatoId);
+            const formatoInput = new formatoLibro(
+                updatedData.descripcion,
+                objectIdFormatoId
+            );
+
+            const nuevoFormato = await repository.add(formatoInput);
+
+            if (!nuevoFormato) {
+                return res.status(500).send({ message: "Error al crear el nuevo formato." });
+            }
+
+            return res.status(201).send({ message: 'Formato creado con éxito.', data: nuevoFormato });
         }
-        return res.status(200).send({ message: 'Formato actualizado con éxito', data: formato });
+
+        // Si el formato existe, lo actualiza
+        const updatedFormato = await repository.update(formatoId, updatedData);
+
+        if (!updatedFormato) {
+            return res.status(500).send({ message: "Error al actualizar el formato." });
+        }
+
+        return res.status(200).send({ message: 'Formato actualizado con éxito.', data: updatedFormato });
+
     } catch (error) {
         console.error("Error en update:", error);
-        res.status(500).send({ message: "Error interno del servidor" });
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 

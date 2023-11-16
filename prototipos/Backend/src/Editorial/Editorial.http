@@ -27,51 +27,51 @@ DELETE http://localhost:3000/api/editoriales/654c03fc0251f41e6d75b636
 // CREAR EDITORIALES
 
 ### Editorial 1
-POST http://localhost:3000/api/editoriales
+PUT http://localhost:3000/api/editoriales/654bee46df333bf9237a1407
 Content-Type: application/json
 
 {
-    "descripcion": "BOOKRACK",
+    "descripcion": "Pearson",
     "direccion": "Londres, Reino Unido",
-    "imagen": "../../../../assets/img/Editoriales/editorial-bookrack.webp"
+    "imagen": "../../../../assets/img/Editoriales/Pearson.png"
 }
 
 ### Editorial 2
-POST http://localhost:3000/api/editoriales
+PUT http://localhost:3000/api/editoriales/654bf9abdf333bf9237a1408
 Content-Type: application/json
 
 {
-    "descripcion": "DJaen",
+    "descripcion": "O'Reilly Media",
     "direccion": "Sebastopol, California, Estados Unidos",
-    "imagen": "../../../../assets/img/Editoriales/editorial-djaen.webp"
+    "imagen": "../../../../assets/img/Editoriales/OReilly.png"
 }
 
 ### Editorial 3
-POST http://localhost:3000/api/editoriales
+PUT http://localhost:3000/api/editoriales/654bfa25df333bf9237a1409
 Content-Type: application/json
 
 {
-    "descripcion": "Gato Malo",
+    "descripcion": "Addison-Wesley Professional",
     "direccion": "Reading, Massachusetts, Estados Unidos",
-    "imagen": "../../../../assets/img/Editoriales/editorial-gato-malo.webp"
+    "imagen": "../../../../assets/img/Editoriales/Addison-Wesley.webp"
 }
 
 ### Editorial 4
-POST http://localhost:3000/api/editoriales
+PUT http://localhost:3000/api/editoriales/654bfa69df333bf9237a140a
 Content-Type: application/json
 
 {
-    "descripcion": "Tierra de Mu",
+    "descripcion": "McGraw Hill",
     "direccion": "Nueva York, Estados Unidos",
-    "imagen": "../../../../assets/img/Editoriales/editorial-tierra-de-mu.webp"
+    "imagen": "../../../../assets/img/Editoriales/McGraw-Hill.png"
 }
 
 ### Editorial 5
-POST http://localhost:3000/api/editoriales
+PUT http://localhost:3000/api/editoriales/654bfac5df333bf9237a140b
 Content-Type: application/json
 
 {
-    "descripcion": "Vealia",
+    "descripcion": "Springer",
     "direccion": "Berlín, Alemania",
-    "imagen": "../../../../assets/img/Editoriales/editorial-vealia.webp"
+    "imagen": "../../../../assets/img/Editoriales/Springer.jpg"
 }

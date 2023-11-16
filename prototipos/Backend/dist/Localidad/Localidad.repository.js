@@ -1,31 +1,55 @@
-import { Localidad } from "./Localidad.entity.js";
 import { db } from "../Shared/db/conn.mongo.js";
 import { ObjectId } from 'mongodb';
-const localidadesArray = [
-    new Localidad("2000", "Rosario", new ObjectId("615a04308f47a056acc31e3c")),
-    new Localidad("3000", "Santa Fe", new ObjectId("615a04308f47a056acc31e3d")),
-    new Localidad("5000", "Venado Tuerto", new ObjectId("615a04308f47a056acc31e3e"))
-];
 const localidades = db.collection('localidades');
 export class LocalidadRepository {
     async findAll() {
-        return await localidades.find().toArray();
+        try {
+            return await localidades.find().toArray();
+        }
+        catch (error) {
+            console.error("Error en findAll:", error);
+            throw error;
+        }
     }
     async findOne(item) {
-        const _id = new ObjectId(item.id);
-        return (await localidades.findOne({ _id })) || undefined;
+        try {
+            const _id = new ObjectId(item.id);
+            return (await localidades.findOne({ _id })) || undefined;
+        }
+        catch (error) {
+            console.error("Error en findOne:", error);
+            throw error;
+        }
     }
     async add(item) {
-        item._id = (await localidades.insertOne(item)).insertedId;
-        return item;
+        try {
+            item._id = (await localidades.insertOne(item)).insertedId;
+            return item;
+        }
+        catch (error) {
+            console.error("Error en add:", error);
+            throw error;
+        }
     }
     async update(id, item) {
-        const _id = new ObjectId(id);
-        return (await localidades.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined;
+        try {
+            const _id = new ObjectId(id);
+            return (await localidades.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined;
+        }
+        catch (error) {
+            console.error("Error en update:", error);
+            throw error;
+        }
     }
     async delete(item) {
-        const _id = new ObjectId(item.id);
-        return (await localidades.findOneAndDelete({ _id })) || undefined;
+        try {
+            const _id = new ObjectId(item.id);
+            return (await localidades.findOneAndDelete({ _id })) || undefined;
+        }
+        catch (error) {
+            console.error("Error en delete:", error);
+            throw error;
+        }
     }
 }
 //# sourceMappingURL=Localidad.repository.js.map

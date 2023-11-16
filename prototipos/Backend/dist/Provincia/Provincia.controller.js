@@ -1,32 +1,32 @@
 import { ProvinciaRepository } from './Provincia.repository.js';
 import { Provincia } from './Provincia.entity.js';
+import { ObjectId } from 'mongodb';
 const repository = new ProvinciaRepository();
 async function sanitizeInput(req, res, next) {
     try {
-        req.body.sanitizedInput = {
-            id: req.body.id,
-            descripcion: req.body.descripcion,
-        };
-        // Eliminar claves no definidas
-        Object.keys(req.body.sanitizedInput).forEach(key => {
-            if (req.body.sanitizedInput[key] === undefined) {
-                delete req.body.sanitizedInput[key];
+        const requiredKeys = ['descripcion'];
+        req.body.sanitizedInput = {};
+        for (const key of requiredKeys) {
+            if (req.body[key] === undefined) {
+                return res.status(400).send({ message: `Campo '${key}' es requerido.` });
             }
-        });
+            req.body.sanitizedInput[key] = req.body[key];
+        }
         next();
     }
     catch (error) {
-        res.status(500).send({ message: 'Error interno del servidor.' });
+        console.error("Error en sanitizeInput:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 async function findAll(req, res) {
     try {
-        const provincias = await repository.findAll();
-        res.json({ data: provincias });
+        const data = await repository.findAll();
+        res.json({ data });
     }
     catch (error) {
-        console.error('Error en findAll:', error);
-        res.status(500).send({ message: 'Error interno del servidor' });
+        console.error("Error en findAll:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 async function findOne(req, res) {
@@ -34,38 +34,52 @@ async function findOne(req, res) {
         const id = req.params.id;
         const provincia = await repository.findOne({ id });
         if (!provincia) {
-            return res.status(404).send({ message: 'No se encontró la provincia.' });
+            return res.status(404).send({ message: "Provincia no encontrada." });
         }
-        res.json({ data: provincia });
+        return res.json({ data: provincia });
     }
     catch (error) {
-        console.error('Error en findOne:', error);
-        res.status(500).send({ message: 'Error interno del servidor.' });
+        console.error("Error en findOne:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
-        const provinciaInput = new Provincia(input.id, input.descripcion);
+        const provinciaInput = new Provincia(input.descripcion);
         const provincia = await repository.add(provinciaInput);
-        res.status(201).send({ message: 'Provincia agregada exitosamente.', data: provincia });
+        res.status(201).send({ message: 'Provincia agregada con éxito.', data: provincia });
     }
     catch (error) {
-        console.error('Error en add:', error);
-        res.status(500).send({ message: 'Error interno del servidor.' });
+        console.error("Error en add:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 async function update(req, res) {
     try {
-        const provincia = await repository.update(req.params.id, req.body.sanitizedInput);
-        if (!provincia) {
-            return res.status(404).send({ message: 'No se encontró la provincia' });
+        const provinciaId = req.params.id;
+        const updatedData = req.body.sanitizedInput;
+        // Verificar si la provincia existe antes de intentar actualizarla
+        const provinciaExiste = await repository.findOne({ id: provinciaId });
+        if (!provinciaExiste) {
+            const objectIdProvinciaId = new ObjectId(provinciaId);
+            const provinciaInput = new Provincia(updatedData.descripcion, objectIdProvinciaId);
+            const nuevoProvincia = await repository.add(provinciaInput);
+            if (!nuevoProvincia) {
+                return res.status(500).send({ message: "Error al crear la nueva provincia." });
+            }
+            return res.status(201).send({ message: 'Provincia creada con éxito.', data: nuevoProvincia });
         }
-        res.status(200).send({ message: 'Provincia actualizada exitosamente', data: provincia });
+        // Si la provincia existe, la actualiza
+        const updatedProvincia = await repository.update(provinciaId, updatedData);
+        if (!updatedProvincia) {
+            return res.status(500).send({ message: "Error al actualizar la provincia." });
+        }
+        return res.status(200).send({ message: 'Provincia actualizada con éxito.', data: updatedProvincia });
     }
     catch (error) {
-        console.error('Error en update:', error);
-        res.status(500).send({ message: 'Error interno del servidor' });
+        console.error("Error en update:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 async function remove(req, res) {
@@ -73,13 +87,13 @@ async function remove(req, res) {
         const id = req.params.id;
         const provincia = await repository.delete({ id });
         if (!provincia) {
-            return res.status(404).send({ message: 'No se encontró la provincia.' });
+            res.status(404).send({ message: "Provincia no encontrada." });
         }
-        res.status(204).send({ message: 'Provincia eliminada exitosamente.' });
+        res.status(204).send({ message: 'Provincia eliminada con éxito.' });
     }
     catch (error) {
-        console.error('Error en remove:', error);
-        res.status(500).send({ message: 'Error interno del servidor.' });
+        console.error("Error en remove:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 export { sanitizeInput, findAll, findOne, add, update, remove };

@@ -4,7 +4,6 @@
 GET http://Localhost:3000/api/usuarios
 
 
-
 ### Get de usuario por id
 GET http://Localhost:3000/api/usuarios/6521d2ab2c7369d343ab91ba
 
@@ -18,22 +17,28 @@ Content-Type: application/json
     "apellido":"Jasom",
     "email":"JasonMtn@gmail.com",
     "direccion":"calle falsa 123",
-    "localidad":"New Orleands",
+    "localidad":"6556a826e9f6a54f39587147",
     "avatar":"",
     "tipo":"Administrador"
-}
-
-
-### Put de usuario
-PUT http://localhost:3000/api/usuarios/6521d2ab2c7369d343ab91ba
-Content-Type: application/json
-
-{
-    "nombre": "Pump",
-    "apellido": "Turner"
 }
 
 
 ### Delete de usuario
 DELETE http://localhost:3000/api/usuarios/6521d2ab2c7369d343ab91ba
 
+
+// CREAR USUARIOS
+
+### Usuario 1
+PUT http://localhost:3000/api/usuarios/6556a8c6e9f6a54f3958714a
+Content-Type: application/json
+
+{
+    "nombre":"Martin",
+    "apellido":"Jasom",
+    "email":"JasonMtn@gmail.com",
+    "direccion":"calle falsa 123",
+    "localidad":"6556a826e9f6a54f39587147",
+    "avatar":"",
+    "tipo":"Administrador"
+}

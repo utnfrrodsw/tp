@@ -9,7 +9,7 @@ POST http://localhost:3000/api/comentario
 Content-Type: application/json
 
 {
-    "id": 1,
     "comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium aliquid, delectu ullam nobis facere, debitis deserunt enim culpa quia nam porro. Quaerat dicta sed animi voluptate laudantium debitis amet saepe....",
     "usuario": "6522a43f176057b2ea4ed842"
 }
+

@@ -10,8 +10,7 @@ async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
         req.body.sanitizedInput = {
             descripcion: req.body.descripcion,
             direccion: req.body.direccion,
-            imagen: req.body.imagen,
-            id: req.body.id instanceof ObjectId ? req.body.id.toString() : req.body.id
+            imagen: req.body.imagen
         };
         Object.keys(req.body.sanitizedInput).forEach((key) => {
             if (req.body.sanitizedInput[key] === undefined) {
@@ -62,16 +61,45 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
     try {
-        const editorial = await repository.update(req.params.id, req.body.sanitizedInput);
-        if (!editorial) {
-            return res.status(404).send({ message: "No se encontró la editorial" });
+        const editorialId = req.params.id;
+        const updatedData = req.body.sanitizedInput;
+
+        // Verificar si la editorial existe antes de intentar actualizarla
+        const editorialExiste = await repository.findOne({ id: editorialId });
+
+        if (!editorialExiste) {
+            const objectIdEditorialId = new ObjectId(editorialId);
+            const editorialInput = new Editorial(
+                updatedData.descripcion,
+                updatedData.direccion,
+                updatedData.imagen,
+                objectIdEditorialId
+            );
+
+            const nuevaEditorial = await repository.add(editorialInput);
+
+            if (!nuevaEditorial) {
+                return res.status(500).send({ message: "Error al crear la nueva editorial." });
+            }
+
+            return res.status(201).send({ message: 'Editorial creada con éxito.', data: nuevaEditorial });
         }
-        res.status(200).send({ message: 'Editorial actualizada exitosamente', data: editorial });
+
+        // Si la editorial existe, lo actualiza
+        const updatedEditorial = await repository.update(editorialId, updatedData);
+
+        if (!updatedEditorial) {
+            return res.status(500).send({ message: "Error al actualizar la editorial." });
+        }
+
+        return res.status(200).send({ message: 'Editorial actualizada con éxito.', data: updatedEditorial });
+
     } catch (error) {
         console.error("Error en update:", error);
-        res.status(500).send({ message: "Error interno del servidor" });
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
+
 
 async function remove(req: Request, res: Response) {
     try {

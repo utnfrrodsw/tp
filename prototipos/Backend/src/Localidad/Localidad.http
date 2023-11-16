@@ -9,13 +9,48 @@ GET http://Localhost:3000/api/localidad/65478b956995ffbaff023003
 
 ### Post de localidad
 POST http://Localhost:3000/api/localidad
+Content-Type: application/json
 
 {
-    "cod_postal": "2000",
-    "descipcion": "Rosario",
-    "provincia": "654a3355ec059958d479c37d",
+    "cod_postal": "7600",
+    "descripcion": "Mar del Plata",
+    "provincia": "6556a4c8e8bf2517b0bbc6ac"
 }
+
 
 
 ### Delete de localidad
 DELETE http://localhost:3000/api/localidad/654a3360ec059958d479c37e
+
+
+// CREAR LOCALIDADES
+
+### Localidad 1
+PUT http://Localhost:3000/api/localidad/6556a826e9f6a54f39587147
+Content-Type: application/json
+
+{
+    "cod_postal": "2000",
+    "descripcion": "Rosario",
+    "provincia": "6556a42b682042abd14423e3"
+}
+
+### Localidad 2
+PUT http://Localhost:3000/api/localidad/6556a84de9f6a54f39587148
+Content-Type: application/json
+
+{
+    "cod_postal": "1900",
+    "descripcion": "La Plata",
+    "provincia": "6556a4c8e8bf2517b0bbc6ac"
+}
+
+### Localidad 3
+PUT http://Localhost:3000/api/localidad/6556a874e9f6a54f39587149
+Content-Type: application/json
+
+{
+    "cod_postal": "7600",
+    "descripcion": "Mar del Plata",
+    "provincia": "6556a4c8e8bf2517b0bbc6ac"
+}

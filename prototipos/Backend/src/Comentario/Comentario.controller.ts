@@ -7,7 +7,7 @@ const repository = new ComentarioRepository();
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     try {
-        const requiredKeys = ['id', 'comentario', 'usuario'];
+        const requiredKeys = ['comentario', 'usuario'];
 
         req.body.sanitizedInput = {};
 
@@ -77,15 +77,14 @@ async function update(req: Request, res: Response) {
         const comentarioExiste = await repository.findOne({ id: comentarioId });
 
         if (!comentarioExiste) {
-            
+
             const objectIdComentarioId = new ObjectId(comentarioId);
 
             const comentarioInput = new Comentario(
-                updatedData.id,
                 updatedData.comentario,
-                updatedData.usuarios,
+                updatedData.usuario,
                 objectIdComentarioId
-    
+
             );
             const nuevoComentario = await repository.add(comentarioInput);
 
@@ -128,18 +127,18 @@ async function findByUsuario(req: Request, res: Response) {
     try {
         const usuarioId = req.params.usuarioId;
         const comentarios = await repository.findByUsuario(usuarioId);
-    
+
         if (!comentarios || comentarios.length === 0) {
             return res.status(404).send({ message: "No se encontraron comentarios para el Usuario proporcionado." });
         }
-    
+
         res.status(200).send({ message: 'Comentarios encontrados con éxito.', data: comentarios });
     } catch (error) {
         console.error("Error en findByUsuario:", error);
         res.status(500).send({ message: "Error interno del servidor." });
-    }    
+    }
 }
 
 
 
-export {sanitizeInput, findAll, findOne, add, update, remove, findByUsuario}
+export { sanitizeInput, findAll, findOne, add, update, remove, findByUsuario }

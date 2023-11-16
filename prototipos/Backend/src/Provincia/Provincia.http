@@ -5,11 +5,46 @@ GET http://Localhost:3000/api/provincia
 
 GET http://Localhost:3000/api/provincia/65478b586995ffbaff023002
 
-### Post de Provincia
 
-POST http://Localhost:3000/api/provincia
+### Post de Provincia
+POST http://localhost:3000/api/provincia
+Content-Type: application/json
 
 {
-    "id": "1",
+    "descripcion": "Mendoza"
+}
+
+
+// CREAR PROVINCIAS
+
+### Provincia 1
+PUT http://localhost:3000/api/provincia/6556a42b682042abd14423e3
+Content-Type: application/json
+
+{
     "descripcion": "Santa Fe"
+}
+
+### Provincia 2
+PUT http://localhost:3000/api/provincia/6556a4a7e8bf2517b0bbc6ab
+Content-Type: application/json
+
+{
+    "descripcion": "Córdoba"
+}
+
+### Provincia 3
+PUT http://localhost:3000/api/provincia/6556a4c8e8bf2517b0bbc6ac
+Content-Type: application/json
+
+{
+    "descripcion": "Buenos Aires"
+}
+
+### Provincia 4
+PUT http://localhost:3000/api/provincia/6556a4e6e8bf2517b0bbc6ad
+Content-Type: application/json
+
+{
+    "descripcion": "Mendoza"
 }
