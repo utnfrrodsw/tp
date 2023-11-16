@@ -41,7 +41,7 @@ Para más información sobre cómo ejecutar los tests de backend consulte https:
 Test e2e:
 
 ![image](./res/ejecucion_e2e_crear_pedido.png)
-[Enlace a imagen completa](https://github.com/francobidart/dsw-tp-frontend/blob/main/docs/img/ejecucion_e2e_crear_pedido.png)
+[Enlace a imagen completa](https://github.com/francobidart/dsw-tp-2023/blob/main/res/ejecucion_e2e_crear_pedido.png)
 
 ### Demo de app en video
 
