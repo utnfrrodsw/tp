@@ -207,46 +207,47 @@ const usuarioController = {
 
   login: async (req, res) => {
     const { email, constrasena } = req.body;
+  
+    const t = await db.sequelize.transaction();
+  
     try {
       // Buscar al usuario en la base de datos por su correo electrónico
       const usuario = await db.Usuario.findOne({
         where: { email },
-      })
-      .then(usuario => {
-        return usuario;
+        transaction: t,
       });
-
-      if (usuario != null) {
-        const comprare = await bcrypt.compare(constrasena, usuario.contrasena);
-        if (comprare === true) {
-          console.log("usuario logueado, generando token");
+  
+      if (usuario) {
+        const compare = await bcrypt.compare(constrasena, usuario.contrasena);
+  
+        if (compare) {
+          console.log("Usuario logueado, generando token");
           const user = getUserInfo(usuario);
           const token = await generateAccessTokes(user);
           const refreshToken = await generateRefreshToken(user);
-          try{
-            console.log("guardando token")
-            await new db.Token({ token: refreshToken }).save();
-          }catch(error){
+  
+          try {
+            console.log("Guardando token");
+            await db.Token.create({ token: refreshToken }, { transaction: t });
+          } catch (error) {
             console.log(error);
+            await t.rollback(); // Deshacer la transacción en caso de error
+            res.status(500).json(jsonResponse(500, { message: 'Error al loguearse' }));
           }
-          console.log("inicio sesion correctamente");
-          res.status(200).json(jsonResponse(200, {message: 'Inicio de sesión exitoso', user, token, refreshToken}));
-        }else{
-          res.status(401).json(jsonResponse(401, {
-            message: 'Usuario o contraseña incorrectos' 
-          }));  
+  
+          console.log("Inicio de sesión correctamente");
+          await t.commit(); // Confirmar la transacción
+          res.status(200).json(jsonResponse(200, { message: 'Inicio de sesión exitoso', user, token, refreshToken }));
+        } else {
+          res.status(401).json(jsonResponse(401, { message: 'Usuario o contraseña incorrectos' }));
         }
-      }else{
-        res.status(401).json(jsonResponse(401, {
-          message: 'Usuario o contraseña incorrectos' 
-        }));
+      } else {
+        res.status(401).json(jsonResponse(401, { message: 'Usuario o contraseña incorrectos' }));
       }
-      
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
-      res.status(500).json(jsonResponse(500, {
-        message: 'Error al loguearse' 
-      }));
+      await t.rollback(); // Deshacer la transacción en caso de error
+      res.status(500).json(jsonResponse(500, { message: 'Error al loguearse' }));
     }
   },
 
@@ -284,16 +285,25 @@ const usuarioController = {
 
   },
 
-  logout: async (req, res) => {
+   logout: async (req, res) => {
+    const refreshToken = validateToken(req.headers);
+  
+    const t = await db.sequelize.transaction();
+  
     try {
-      const refreshToken = validateToken(req.headers);
-      await db.Token.destroy({where: {token: refreshToken }});
-      res.status(200).json(jsonResponse(200, {
-        success: "Token eliminado exitosamente",
-      }));
-      console.log("cerro sesion correctamente");
-    } catch (ex) {
-      console.log(ex);
+      await db.Token.destroy({
+        where: { token: refreshToken },
+        transaction: t,
+      });
+  
+      await t.commit(); // Confirmar la transacción
+  
+      console.log("Cerró sesión correctamente");
+      res.status(200).json(jsonResponse(200, { success: "Token eliminado exitosamente" }));
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+      await t.rollback(); // Deshacer la transacción en caso de error
+      res.status(500).json(jsonResponse(500, { message: 'Error al cerrar sesión' }));
     }
   },
 
@@ -512,14 +522,16 @@ agregarProfesionesUsuario: async (req, res) => {
 },
 
 // Controlador para cambiar la contraseña
- changePassword: async (req, res) => {
-  try {
-    const { idUsuario, newPassword } = req.body;
+changePassword: async (req, res) => {
+  const { idUsuario, newPassword } = req.body;
+  const t = await db.sequelize.transaction(); // Inicia la transacción
 
+  try {
     // Busca el usuario en la base de datos
-    const user = await db.Usuario.findByPk(idUsuario);
+    const user = await db.Usuario.findByPk(idUsuario, { transaction: t });
 
     if (!user) {
+      await t.rollback(); // Revierte la transacción
       return res.status(404).json(jsonResponse(404, { message: 'Usuario no encontrado' }));
     }
 
@@ -529,14 +541,18 @@ agregarProfesionesUsuario: async (req, res) => {
 
     // Actualiza la contraseña del usuario con la nueva contraseña hasheada
     user.contrasena = hashedPassword;
-    await user.save();
+    await user.save({ transaction: t });
+
+    await t.commit(); // Confirma la transacción
 
     return res.status(200).json(jsonResponse(200, { message: 'Contraseña cambiada con éxito' }));
   } catch (error) {
     console.error('Error al cambiar la contraseña:', error);
+    await t.rollback(); // Revierte la transacción en caso de error
     return res.status(500).json(jsonResponse(500, { message: 'Error al cambiar la contraseña' }));
   }
 },
+
 
   getDireccion: async(req,res)=>{
       const { id } = req.params;

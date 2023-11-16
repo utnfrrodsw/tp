@@ -11,6 +11,7 @@ const validateResetPassword = [
   .isLength({ min: 6 }).withMessage('La nueva contraseña debe tener al menos 6 caracteres')
   .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/).withMessage('La contraseña debe contener al menos una letra y un número'),
   
+  body('confirmPassword').notEmpty().withMessage('Debes confirmar la contraseña'),
   body('confirmPassword').custom((value, { req }) => {
     if (value !== req.body.newPassword) {
       throw new Error('Las contraseñas no coinciden');
