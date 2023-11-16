@@ -15,7 +15,7 @@ import { Autor, AutoresService } from 'src/app/services/autores.service';
 export class ResultadosComponent implements OnInit {
   librosIds: string[] = [];
   librosData: { [key: string]: Libro } = {};
-  autoresNombres: { [key: string]: string[] } = {}; // Agregamos esta variable
+  autoresNombres: { [key: string]: string[] } = {};
   currentPage = 1;
   itemsPerPage = 5;
   deseos: { [libroId: string]: boolean } = {};
@@ -26,7 +26,7 @@ export class ResultadosComponent implements OnInit {
     public currencyService: CurrencyService,
     private datePipe: DatePipe,
     private editorialesService: EditorialesService,
-    private autoresService: AutoresService // Inyectar el servicio AutoresService
+    private autoresService: AutoresService
   ) { }
 
   ngOnInit(): void {

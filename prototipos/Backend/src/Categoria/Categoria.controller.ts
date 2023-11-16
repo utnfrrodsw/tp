@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from "express"
 import { CategoriaRepository } from "./Categoria.repository.js"
 import { Categoria } from "./Categoria.js"
+import { ObjectId } from "mongodb"
 
 const repository = new CategoriaRepository()
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     try {
         req.body.sanitizedInput = {
-            id: req.body.id,
             descripcion: req.body.descripcion,
         };
         Object.keys(req.body.sanitizedInput).forEach((key) => {
@@ -48,7 +48,7 @@ async function findOne(req: Request, res: Response) {
 async function add(req: Request, res: Response) {
     try {
         const input = req.body.sanitizedInput;
-        const categoriaInput = new Categoria(input.id, input.descripcion);
+        const categoriaInput = new Categoria(input.descripcion, input.id);
         const categoria = await repository.add(categoriaInput);
         res.status(201).send({ message: 'Categoría agregada con éxito', data: categoria });
     } catch (error) {
@@ -59,14 +59,40 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
     try {
-        const categoria = await repository.update(req.params.id, req.body.sanitizedInput);
-        if (!categoria) {
-            return res.status(404).send({ message: "Categoría no encontrada" });
+        const categoriaId = req.params.id;
+        const updatedData = req.body.sanitizedInput;
+
+        // Verificar si la categoría existe antes de intentar actualizarlo
+        const categoriaExiste = await repository.findOne({ id: categoriaId });
+
+        if (!categoriaExiste) {
+            const objectIdCategoriaId = new ObjectId(categoriaId);
+            const categoriaInput = new Categoria(
+                updatedData.descripcion,
+                objectIdCategoriaId
+            );
+
+            const nuevaCategoria = await repository.add(categoriaInput);
+
+            if (!nuevaCategoria) {
+                return res.status(500).send({ message: "Error al crear la nueva categoría." });
+            }
+
+            return res.status(201).send({ message: 'Categoría creada con éxito.', data: nuevaCategoria });
         }
-        return res.status(200).send({ message: 'Categoría actualizada con éxito', data: categoria });
+
+        // Si la categoria existe, la actualiza
+        const updatedCategoria = await repository.update(categoriaId, updatedData);
+
+        if (!updatedCategoria) {
+            return res.status(500).send({ message: "Error al actualizar la categoría." });
+        }
+
+        return res.status(200).send({ message: 'Categoría actualizada con éxito.', data: updatedCategoria });
+
     } catch (error) {
         console.error("Error en update:", error);
-        res.status(500).send({ message: "Error interno del servidor" });
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 
@@ -102,4 +128,17 @@ async function obtenerDescripcionesCategoria(req: Request, res: Response) {
     }
 }
 
-export { sanitizeInput, findAll, findOne, add, update, remove, obtenerDescripcionesCategoria }
+async function getDescripcion(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const categoria = await repository.findOne({ id });
+        if (!categoria) {
+            return res.status(404).send({ message: "Categoría no encontrada." });
+        }
+        res.json({ data: categoria.descripcion });
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+export { sanitizeInput, findAll, findOne, add, update, remove, obtenerDescripcionesCategoria, getDescripcion }

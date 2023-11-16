@@ -5,28 +5,30 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-8">
-      <div *ngIf="libro" class="container mt-4">
+      <div class="container mt-4">
         <table class="custom-table">
           <tbody>
-            <tr *ngIf="libro.autores && libro.autores.length > 0">
+            <tr *ngIf="libro">
               <td class="table-header gris-oscuro text-center">Autores</td>
               <td class="table-value gris-claro">
-                {{ obtenerNombresAutores() }}
+                {{ autoresNombres[libro._id]?.join(', ') || 'N/A' }}
               </td>
             </tr>
-            <tr *ngIf="libro.editorial">
+            <tr *ngIf="libro">
               <td class="table-header gris-claro text-center">Editorial</td>
-              <td>{{ libro.editorial }}</td>
+              <td>{{ editorialDescripcion[libro._id] || 'N/A' }}</td>
             </tr>
-            <tr *ngIf="libro.fecha_edicion">
+            <tr>
               <td class="table-header gris-oscuro text-center">Edición</td>
               <td class="table-value gris-claro">
-                {{ formatearFecha(libro.fecha_edicion) }}
+                {{ formatearFecha(libro?.fecha_edicion) }}
               </td>
             </tr>
-            <tr *ngIf="libro.categorias && libro.categorias.length > 0">
+            <tr *ngIf="libro && libro.categorias && libro.categorias.length > 0">
               <td class="table-header gris-claro text-center">Categorías</td>
-              <td>{{ obtenerNombresCategorias() }}</td>
+              <td>
+                {{ formatCategorias(categoriasDescripcion[libro._id]) || 'N/A' }}
+              </td>
             </tr>
           </tbody>
         </table>

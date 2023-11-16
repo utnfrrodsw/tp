@@ -1,9 +1,8 @@
 ### Get de categoria
 GET http://localhost:3000/api/categorias
 
-
 ### Get de categoria por id
-GET http://localhost:3000/api/categorias/654a3766d2295b02b09bbc90
+GET http://localhost:3000/api/categorias/654a87d534149a6f152448c7
 
 
 ### Post de categoria
@@ -12,7 +11,6 @@ Content-Type: application/json
 
 {
     "descripcion": "No ficción",
-    "id": "2"
 }
 
 
@@ -22,7 +20,6 @@ Content-Type: application/json
 
 {
     "descripcion": "Ficción",
-    "id": "1"
 }
 
 
@@ -39,82 +36,73 @@ GET http://localhost:3000/api/categorias/descripciones
 // CREAR TODAS LAS CATEGORÍAS
 
 ### Categoría 1
-POST http://localhost:3000/api/categorias
+PUT http://localhost:3000/api/categorias/654a87d434149a6f152448c6
 Content-Type: application/json
 
 {
-    "descripcion": "Ficción",
-    "id": "1"
+    "descripcion": "Ficción"
 }
 
 ### Categoría 2
-POST http://localhost:3000/api/categorias
+PUT http://localhost:3000/api/categorias/654a87d534149a6f152448c7
 Content-Type: application/json
 
 {
-    "descripcion": "No ficción",
-    "id": "2"
+    "descripcion": "No ficción"
 }
 
 ### Categoría 3
-POST http://localhost:3000/api/categorias
+PUT http://localhost:3000/api/categorias/654a87d734149a6f152448c8
 Content-Type: application/json
 
 {
-    "descripcion": "Literatura infantil",
-    "id": "3"
+    "descripcion": "Literatura infantil"
 }
 
 ### Categoría 4
-POST http://localhost:3000/api/categorias
+PUT http://localhost:3000/api/categorias/654a87d834149a6f152448c9
 Content-Type: application/json
 
 {
-    "descripcion": "Educación y referencia",
-    "id": "4"
+    "descripcion": "Educación y referencia"
 }
 
 ### Categoría 5
-POST http://localhost:3000/api/categorias
+PUT http://localhost:3000/api/categorias/654a87d934149a6f152448ca
 Content-Type: application/json
 
 {
-    "descripcion": "Ciencia y naturaleza",
-    "id": "5"
+    "descripcion": "Ciencia y naturaleza"
 }
 
 ### Categoría 6
-POST http://localhost:3000/api/categorias
+PUT http://localhost:3000/api/categorias/654a87da34149a6f152448cb
 Content-Type: application/json
 
 {
-    "descripcion": "Religión y espiritualidad",
-    "id": "6"
+    "descripcion": "Religión y espiritualidad"
 }
 
 ### Categoría 7
-POST http://localhost:3000/api/categorias
+PUT http://localhost:3000/api/categorias/654a87db34149a6f152448cc
 Content-Type: application/json
 
 {
-    "descripcion": "Política y sociedad",
-    "id": "7"
+    "descripcion": "Política y sociedad"
 }
 
 ### Categoría 8
-POST http://localhost:3000/api/categorias
+PUT http://localhost:3000/api/categorias/654a87dc34149a6f152448cd
 Content-Type: application/json
 
 {
-    "descripcion": "Salud y bienestar",
-    "id": "8"
+    "descripcion": "Salud y bienestar"
 }
 
 ### Categoría 9
-POST http://localhost:3000/api/categorias
+PUT http://localhost:3000/api/categorias/654a87dd34149a6f152448ce
 Content-Type: application/json
 
 {
-    "descripcion": "Negocios y finanzas",
-    "id": "9"
+    "descripcion": "Negocios y finanzas"
 }

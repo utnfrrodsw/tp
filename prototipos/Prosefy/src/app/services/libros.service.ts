@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, map, of, throwError } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
 import { Autor, AutoresService } from '../services/autores.service';
+import { Categoria, CategoriasService } from './categorias.service';
 
 export interface Libro {
   _id: string;
@@ -27,7 +28,7 @@ export interface Libro {
 export class LibrosService {
   private apiUrl = 'http://localhost:3000/api/libros';
 
-  constructor(private http: HttpClient, private autoresService: AutoresService) { }
+  constructor(private http: HttpClient, private autoresService: AutoresService, private categoriasService: CategoriasService) { }
 
   getLibrosIds(): Observable<string[]> {
     return this.http.get<any>(`${this.apiUrl}/libros`).pipe(
@@ -127,6 +128,27 @@ export class LibrosService {
       filter((nombres): nombres is string[] => nombres.every(nombre => nombre !== undefined))
     );
   }
+
+  getAutoresObservables(idsAutores: string[]): Observable<string> {
+    const observables = idsAutores.map(id => this.autoresService.getNombreCompleto(id));
+    return forkJoin(observables).pipe(
+      // Filtra los valores undefined
+      filter((nombres): nombres is string[] => nombres.every(nombre => nombre !== undefined)),
+      // Convierte el arreglo de nombres en un solo string separado por comas
+      map(nombres => nombres.join(', '))
+    );
+  }
+
+  getCategoriasObservables(idsCategorias: string[]): Observable<string> {
+    const observables = idsCategorias.map(id => this.categoriasService.getDescripcion(id));
+    return forkJoin(observables).pipe(
+      // Filtra los valores undefined
+      filter((descripciones): descripciones is string[] => descripciones.every(descripcion => descripcion !== undefined)),
+      // Convierte el arreglo de descripciones en un solo string separado por comas
+      map(descripciones => descripciones.join(', '))
+    );
+  }
+
 
   /* OTROS
   

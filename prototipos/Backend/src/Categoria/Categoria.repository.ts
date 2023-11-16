@@ -3,13 +3,6 @@ import { Categoria } from "./Categoria.js";
 import { db } from "../Shared/db/conn.mongo.js";
 import { ObjectId } from 'mongodb'
 
-const categoriasArray = [
-    new Categoria(
-        "1",
-        "Terror"
-    )
-]
-
 const categorias = db.collection<Categoria>('categorias')
 
 export class CategoriaRepository implements Repository<Categoria>{

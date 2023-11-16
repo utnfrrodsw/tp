@@ -1,1 +1,1 @@
-{"version":3,"file":"Categoria.js","sourceRoot":"","sources":["../../src/Categoria/Categoria.ts"],"names":[],"mappings":"AAEA,MAAM,OAAO,SAAS;IAClB,YACW,EAAU,EACV,WAAmB,EACnB,GAAc;QAFd,OAAE,GAAF,EAAE,CAAQ;QACV,gBAAW,GAAX,WAAW,CAAQ;QACnB,QAAG,GAAH,GAAG,CAAW;IACnB,CAAC;CACV"}
+{"version":3,"file":"Categoria.js","sourceRoot":"","sources":["../../src/Categoria/Categoria.ts"],"names":[],"mappings":"AAEA,MAAM,OAAO,SAAS;IAClB,YACW,WAAmB,EACnB,GAAc;QADd,gBAAW,GAAX,WAAW,CAAQ;QACnB,QAAG,GAAH,GAAG,CAAW;IACrB,CAAC;CACR"}

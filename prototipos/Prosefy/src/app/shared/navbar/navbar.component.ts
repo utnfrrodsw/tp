@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { CurrencyService } from '../../services/currency.service';
 import { PopupLocalidadComponent } from '../popup-localidad/popup-localidad.component';
-import { CategoriasService } from '../../services/categorias.service';
+import { Categoria, CategoriasService } from '../../services/categorias.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,8 +19,8 @@ export class NavbarComponent implements OnInit {
   constructor(public currencyService: CurrencyService, private categoriasService: CategoriasService) { }
 
   ngOnInit() {
-    this.categoriasService.getCategorias().subscribe((data: string[]) => {
-      this.categorias = data;
+    this.categoriasService.getCategorias().subscribe((data: Categoria[]) => {
+      this.categorias = data.map(categoria => categoria.descripcion);
     });
   }
 

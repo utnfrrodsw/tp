@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Libro, LibrosService } from '../../services/libros.service';
-import { Autor, AutoresService } from '../../services/autores.service';
-import { Editorial, EditorialesService } from 'src/app/services/editoriales.service';
-import { Categoria, CategoriasService } from 'src/app/services/categorias.service';
+import { AutoresService } from '../../services/autores.service';
+import { CategoriasService } from 'src/app/services/categorias.service';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, forkJoin, of } from 'rxjs';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { forkJoin, of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { Editorial, EditorialesService } from 'src/app/services/editoriales.service';
 
 @Component({
   selector: 'app-info-detallada-libro',
@@ -15,86 +15,128 @@ import { map, switchMap, catchError } from 'rxjs/operators';
 })
 export class InfoDetalladaLibroComponent implements OnInit {
   libro: Libro | undefined;
-  autores: Autor[] = [];
-  editorial: Editorial | undefined;
-  categorias: Categoria[] | undefined;
+  autoresNombres: { [key: string]: string[] } = {};
+  categoriasDescripcion: { [key: string]: string[] } = {};
+  editorialDescripcion: { [key: string]: string } = {};
 
   constructor(
-    private librosService: LibrosService,
-    private autoresService: AutoresService,
-    private editorialesService: EditorialesService,
-    private categoriasService: CategoriasService,
+    public librosService: LibrosService,
+    public autoresService: AutoresService,
+    public categoriasService: CategoriasService,
+    public editorialesService: EditorialesService,
     private datePipe: DatePipe,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit() {
-    if (this.route && this.route.paramMap) {
-      this.route.paramMap
-        .pipe(
-          switchMap((params) => {
-            const idParam = params.get('id');
+    this.route.paramMap
+      .pipe(
+        switchMap((params) => {
+          const idParam = params.get('id');
 
-            if (!idParam) {
-              this.router.navigate(['/inicio']);
-              return of(undefined);
-            }
-
-            return forkJoin({
-              libro: this.librosService.getLibro(idParam),
-              autores: this.librosService.getAutores(idParam) || [],
-              editorial: this.librosService.getEditorial(idParam) || undefined,
-              categorias: this.librosService.getCategorias(idParam) || [],
-            });
-          }),
-          // ...
-        )
-        .subscribe((result) => {
-          if (result && result.autores) {
-            const observables: Observable<Autor | undefined>[] = result.autores
-              .filter((autorId) => typeof autorId === 'string')
-              .map((autorId) => this.autoresService.getAutor(autorId) || of(undefined));
-
-            forkJoin(observables).subscribe((autores: (Autor | undefined)[]) => {
-              this.autores = autores.filter((autor) => !!autor) as Autor[];
-            });
+          if (!idParam) {
+            this.router.navigate(['/inicio']);
+            return of(undefined);
           }
-        });
-    }
+
+          return forkJoin({
+            libro: this.librosService.getLibro(idParam),
+          }).pipe(
+            switchMap((result) => {
+              if (!result.libro) {
+                console.error('El libro no está definido.');
+                return of(undefined);
+              }
+
+              const idsAutores = result.libro.autores || [];
+              const nombresAutores$ = this.librosService.getAutoresObservables(idsAutores);
+
+              const idsCategorias = result.libro.categorias || [];
+              const descripcionesCategorias$ = this.librosService.getCategoriasObservables(idsCategorias);
+
+              const idEditorial = result.libro.editorial || '';
+              const descripcionEditorial$ = this.editorialesService.getDescripcion(idEditorial);
+
+              return forkJoin({
+                libro: of(result.libro),
+                nombresAutores: nombresAutores$,
+                descripcionesCategorias: descripcionesCategorias$.pipe(
+                  map(descripciones => this.formatCategorias(descripciones))
+                ),
+                descripcionEditorial: descripcionEditorial$,
+              });
+            })
+          );
+        })
+      )
+      .subscribe(
+        (result) => {
+          if (result && result.libro) {
+            const { libro, nombresAutores, descripcionesCategorias, descripcionEditorial } = result;
+            this.autoresNombres[libro._id] = nombresAutores.split(', ');
+            this.categoriasDescripcion[libro._id] = descripcionesCategorias.split(', ');
+            this.editorialDescripcion[libro._id] = descripcionEditorial ?? '';
+
+            this.libro = libro;
+          } else {
+            console.error('El ID del libro no está definido.');
+          }
+        },
+        (error) => {
+          console.error('Error obteniendo información: ', error);
+        }
+      );
   }
 
-  formatearFecha(fecha: Date): string {
-    const fechaFormateada = this.datePipe.transform(fecha, 'dd MMMM', 'es');
-    if (fechaFormateada) {
-      const año = fecha.getFullYear().toString();
-      return `${fechaFormateada} del ${año}`;
-    } else {
-      return '';
+  formatCategorias(descripciones: string | string[]): string {
+    if (Array.isArray(descripciones)) {
+      if (descripciones.length > 1) {
+        const primeraDescripcion = descripciones[0];
+        const otrasDescripciones = descripciones.slice(1).map(desc => desc.charAt(0).toLowerCase() + desc.slice(1));
+        return [primeraDescripcion, ...otrasDescripciones].join(', ');
+      }
+      return descripciones.join(', ');
     }
+
+    // Si descripciones no es un array, simplemente devolverlo
+    return descripciones || '';
+  }
+
+  private getNombresAutores(idsAutores: string[]) {
+    return forkJoin(idsAutores.map((id) => this.autoresService.getNombreCompleto(id))).pipe(
+      catchError((error) => {
+        console.error('Error obteniendo nombres de autores: ', error);
+        return of([]);
+      })
+    );
+  }
+
+  private getDescripcionesCategorias(idsCategorias: string[]) {
+    return forkJoin(idsCategorias.map((id) => this.categoriasService.getDescripcion(id))).pipe(
+      catchError((error) => {
+        console.error('Error obteniendo descripciones de categorías: ', error);
+        return of([]);
+      })
+    );
+  }
+
+  formatearFecha(fecha: Date | string | undefined): string {
+    if (fecha) {
+      const fechaObj = typeof fecha === 'string' ? new Date(fecha) : fecha;
+
+      if (fechaObj instanceof Date) {
+        const fechaFormateada = this.datePipe.transform(fechaObj, 'dd/MM/yyyy', 'es');
+
+        if (fechaFormateada) {
+          return fechaFormateada;
+        }
+      }
+    }
+    return 'N/A';
   }
 
   formatearSinopsisConSaltosDeLinea(sinopsis: string | undefined): string {
-    if (sinopsis) {
-      return sinopsis.replace(/\n/g, '<br><br>');
-    } else {
-      return '';
-    }
-  }
-
-  obtenerNombresAutores(): string {
-    if (this.autores && this.autores.length > 0) {
-      return this.autores.map((autor) => autor.nombreCompleto).join(', ');
-    } else {
-      return '';
-    }
-  }
-
-  obtenerNombresCategorias(): string {
-    if (this.categorias && this.categorias.length > 0) {
-      return this.categorias.map((categoria) => categoria.descripcion).join(', ');
-    } else {
-      return '';
-    }
+    return sinopsis ? sinopsis.replace(/\n/g, '<br><br>') : '';
   }
 }

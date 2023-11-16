@@ -4,7 +4,6 @@ import { Observable, map } from 'rxjs';
 
 export interface Categoria {
   _id: string;
-  id: string;
   descripcion: string;
 }
 
@@ -17,7 +16,7 @@ export class CategoriasService {
   constructor(private http: HttpClient) { }
 
   getCategorias() {
-    return this.http.get<any[]>('http://localhost:3000/api/categorias/descripciones');
+    return this.http.get<Categoria[]>(`${this.apiUrl}/descripciones`);
   }
 
   getDescripcion(id: string): Observable<string | undefined> {
