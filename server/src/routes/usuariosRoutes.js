@@ -12,6 +12,7 @@ const { validateUserData,validateFotoPerfil  } = require("../middlewares/usuario
 const { validateProfesionesUsuario } = require("../middlewares/usuarios/validacionProfesion.js");
 const { validarCambioClave } = require("../middlewares/usuarios/validacionCambioClave.js");
 const { validateResetPassword } = require("../middlewares/usuarios/validacionReserPassword.js");
+const {validateLogin} = require("../middlewares/usuarios/validacionLogin.js");
 
 router.get('/', (req, res) => {
   res.send('usuarios');
@@ -24,7 +25,7 @@ router.get('/auth', authenticate,  (req, res) => { // get Auth
 });
 
 // Login, register
-router.post('/login', usuarioController.login);
+router.post('/login',validateLogin, usuarioController.login);
 router.delete('/logout', usuarioController.logout);
 router.post('/register',validateRegister, usuarioController.register);
 
