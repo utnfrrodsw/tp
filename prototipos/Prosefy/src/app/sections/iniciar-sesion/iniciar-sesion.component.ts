@@ -11,6 +11,7 @@ import { LoginRequest } from 'src/app/services/Auth/LoginRequest.js';
   styleUrls: ['./iniciar-sesion.component.css']
 })
 export class IniciarSesionComponent implements OnInit{
+  usuarios: Usuario[] = [];
   loginError: string= "";
   loginGroup = this.formBuilder.group({
     email: ['bla@gmail.com', [Validators.required, Validators.email]],
@@ -53,6 +54,7 @@ export class IniciarSesionComponent implements OnInit{
       });
     });
 
+  
   }
 
   login(){
@@ -67,10 +69,12 @@ export class IniciarSesionComponent implements OnInit{
         error: (errorData) =>{ 
           this.loginError = errorData;
         },
-
+        
         complete: () =>{
-          this.router.navigateByUrl('/perfil');
-          this.loginGroup.reset();
+          //if (this.buscarUsuario() && this.buscarPassword()){
+            this.router.navigateByUrl('/perfil');
+            this.loginGroup.reset();
+          //}
         },
       });
     }
@@ -80,6 +84,18 @@ export class IniciarSesionComponent implements OnInit{
     }
     
   }
+
+  buscarUsuario() {
+    const emailEncontrado = this.usuarios.some(usuario => usuario.email === this.inputUsuario);
+
+    return emailEncontrado;
+  }  
+
+  buscarPassword() {
+    const passEncontrado = this.usuarios.some(usuario => usuario.avatar === this.inputContrasena);
+
+    return passEncontrado;
+  }  
 
   get email (){
     return this.loginGroup.controls.email;
