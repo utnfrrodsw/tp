@@ -3,6 +3,7 @@ import { findAll, findOne, sanitizeInput, add, remove, update } from './Usuario.
 
 export const usuarioRouter = Router();
 
+
 usuarioRouter.get('/', findAll)
 usuarioRouter.get('/:id', findOne)
 usuarioRouter.post('/', sanitizeInput, add)
