@@ -15,6 +15,7 @@ import { Autor, AutoresService } from 'src/app/services/autores.service';
 export class ResultadosComponent implements OnInit {
   librosIds: string[] = [];
   librosData: { [key: string]: Libro } = {};
+  autoresNombres: { [key: string]: string[] } = {}; // Agregamos esta variable
   currentPage = 1;
   itemsPerPage = 5;
   deseos: { [libroId: string]: boolean } = {};
@@ -25,6 +26,7 @@ export class ResultadosComponent implements OnInit {
     public currencyService: CurrencyService,
     private datePipe: DatePipe,
     private editorialesService: EditorialesService,
+    private autoresService: AutoresService // Inyectar el servicio AutoresService
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +45,7 @@ export class ResultadosComponent implements OnInit {
             })
           )
         );
+
         // Combina todos los observables en un solo observable que emite un array de libros
         return forkJoin(requests);
       })
@@ -51,6 +54,30 @@ export class ResultadosComponent implements OnInit {
       libros.forEach(({ id, libro }) => {
         if (libro) {
           this.librosData[id] = libro;
+
+          // Obtener los nombres de los autores usando el servicio AutoresService
+          this.autoresService.getAutores().subscribe(
+            (autores: Autor[]) => {
+              const idsAutores = libro.autores || [];
+
+              // Crear un array de observables para las solicitudes de nombres de autores
+              const observables = idsAutores.map(autorId => this.autoresService.getNombreCompleto(autorId));
+
+              // Usar forkJoin para esperar a que todas las solicitudes se completen
+              forkJoin(observables).subscribe(
+                (nombres: (string | undefined)[]) => {
+                  // Asignar los nombres al arreglo autoresNombres
+                  this.autoresNombres[id] = nombres.filter(nombre => !!nombre) as string[];
+                },
+                (error) => {
+                  console.error('Error obteniendo autores:', error);
+                }
+              );
+            },
+            (error) => {
+              console.error('Error obteniendo autores:', error);
+            }
+          );
         }
       });
     });
@@ -60,16 +87,21 @@ export class ResultadosComponent implements OnInit {
     return this.currencyService.calculatePriceInSelectedCurrency(precio);
   }
 
-  formatearFecha(fecha: Date | undefined): string {
-    if (fecha instanceof Date) {
-      const fechaFormateada = this.datePipe.transform(fecha, 'dd MMMM', 'es');
-      if (fechaFormateada) {
-        const año = fecha.getFullYear().toString();
-        return `${fechaFormateada} del ${año}`;
+  formatearFecha(fecha: Date | string | undefined): string {
+    if (fecha) {
+      const fechaObj = typeof fecha === 'string' ? new Date(fecha) : fecha;
+
+      if (fechaObj instanceof Date) {
+        const fechaFormateada = this.datePipe.transform(fechaObj, 'dd/MM/yyyy', 'es');
+
+        if (fechaFormateada) {
+          return fechaFormateada;
+        }
       }
     }
     return 'N/A';
   }
+
 
   toggleDeseo(libro: any): void {
     const libroId = libro.id ? libro.id.toString() : '';
