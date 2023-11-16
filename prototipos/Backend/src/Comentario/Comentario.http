@@ -1,15 +1,10 @@
-### Get de comentarios
-GET http://localhost:3000/api/comentario
+// AGREGAR COMENTARIOS
 
-### Get de comentarios por id
-GET http://localhost:3000/api/comentario/:id
-
-### Post de comentarios
-POST http://localhost:3000/api/comentario
+### Put de comentarios
+PUT http://localhost:3000/api/comentario/6556ab6e88e21f44c884626f
 Content-Type: application/json
 
 {
     "comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium aliquid, delectu ullam nobis facere, debitis deserunt enim culpa quia nam porro. Quaerat dicta sed animi voluptate laudantium debitis amet saepe....",
-    "usuario": "6522a43f176057b2ea4ed842"
+    "usuario": "6556a8c6e9f6a54f3958714a"
 }
-

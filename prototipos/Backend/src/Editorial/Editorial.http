@@ -1,29 +1,3 @@
-
-
-### Get de editorial
-GET http://Localhost:3000/api/editoriales
-
-
-### Get de editorial por id
-GET http://Localhost:3000/api/editoriales/654bee46df333bf9237a1407
-
-
-### Post de editorial
-POST http://localhost:3000/api/editoriales
-Content-Type: application/json
-
-{
-    "descripcion": "Pearson",
-    "direccion": "Londres, Reino Unido"
-}
-
-
-### Delete de editorial
-DELETE http://localhost:3000/api/editoriales/654c03fc0251f41e6d75b636
-
-
-// -----------------------------------------
-
 // CREAR EDITORIALES
 
 ### Editorial 1

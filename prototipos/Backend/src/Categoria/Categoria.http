@@ -1,38 +1,3 @@
-### Get de categoria
-GET http://localhost:3000/api/categorias
-
-### Get de categoria por id
-GET http://localhost:3000/api/categorias/654a87d534149a6f152448c7
-
-
-### Post de categoria
-POST http://localhost:3000/api/categorias
-Content-Type: application/json
-
-{
-    "descripcion": "No ficción",
-}
-
-
-### Put de categoria
-PUT http://localhost:3000/api/categorias/654a3766d2295b02b09bbc90
-Content-Type: application/json
-
-{
-    "descripcion": "Ficción",
-}
-
-
-### Delete de categoria
-DELETE http://localhost:3000/api/categorias/654a86ac34149a6f152448c5
-
-
-### Obtener descripciones
-GET http://localhost:3000/api/categorias/descripciones
-
-
-// -----------------------------------------------
-
 // CREAR TODAS LAS CATEGORÍAS
 
 ### Categoría 1

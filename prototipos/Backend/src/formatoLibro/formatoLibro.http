@@ -1,35 +1,3 @@
-### Get de formato
-GET http://localhost:3000/api/formato
-
-
-### Get de formato por id
-GET http://localhost:3000/api/formato/654a3766d2295b02b09bbc90
-
-
-### Post de formato
-POST http://localhost:3000/api/formato
-Content-Type: application/json
-
-{
-    "descripcion": "Físico"
-}
-
-
-### Put de formato
-PUT http://localhost:3000/api/formato/654a3766d2295b02b09bbc90
-Content-Type: application/json
-
-{
-    "descripcion": "Físico"
-}
-
-
-### Delete de formato
-DELETE http://localhost:3000/api/formato/654bfee79906829dff7bca06
-
-
-// -----------------------------------------------
-
 // CREAR TODOS LOS FORMATOS
 
 ### Formato 1

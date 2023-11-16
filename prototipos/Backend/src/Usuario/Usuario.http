@@ -1,32 +1,3 @@
-
-
-### Get de usuario
-GET http://Localhost:3000/api/usuarios
-
-
-### Get de usuario por id
-GET http://Localhost:3000/api/usuarios/6521d2ab2c7369d343ab91ba
-
-
-### Post de usuario
-POST http://localhost:3000/api/usuarios
-Content-Type: application/json
-
-{
-    "nombre":"Martin",
-    "apellido":"Jasom",
-    "email":"JasonMtn@gmail.com",
-    "direccion":"calle falsa 123",
-    "localidad":"6556a826e9f6a54f39587147",
-    "avatar":"",
-    "tipo":"Administrador"
-}
-
-
-### Delete de usuario
-DELETE http://localhost:3000/api/usuarios/6521d2ab2c7369d343ab91ba
-
-
 // CREAR USUARIOS
 
 ### Usuario 1

@@ -46,7 +46,7 @@ async function findOne(req, res) {
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
-        const comentarioInput = new Comentario(input.id, input.comentario, new ObjectId(input.usuario));
+        const comentarioInput = new Comentario(input.comentario, new ObjectId(input.usuario));
         const comentario = await repository.add(comentarioInput);
         res.status(201).send({ message: 'Comentario agregado con éxito.', data: comentario });
     }

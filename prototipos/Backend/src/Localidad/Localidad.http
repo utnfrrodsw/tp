@@ -1,28 +1,4 @@
 
-### Get de localidad
-GET http://Localhost:3000/api/localidad
-
-
-### Get de localidad por id
-GET http://Localhost:3000/api/localidad/65478b956995ffbaff023003
-
-
-### Post de localidad
-POST http://Localhost:3000/api/localidad
-Content-Type: application/json
-
-{
-    "cod_postal": "7600",
-    "descripcion": "Mar del Plata",
-    "provincia": "6556a4c8e8bf2517b0bbc6ac"
-}
-
-
-
-### Delete de localidad
-DELETE http://localhost:3000/api/localidad/654a3360ec059958d479c37e
-
-
 // CREAR LOCALIDADES
 
 ### Localidad 1

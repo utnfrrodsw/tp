@@ -55,10 +55,8 @@ async function add(req: Request, res: Response) {
         const input = req.body.sanitizedInput;
 
         const comentarioInput = new Comentario(
-            input.id,
             input.comentario,
             new ObjectId(input.usuario),
-
         );
 
         const comentario = await repository.add(comentarioInput);
@@ -84,7 +82,6 @@ async function update(req: Request, res: Response) {
                 updatedData.comentario,
                 updatedData.usuario,
                 objectIdComentarioId
-
             );
             const nuevoComentario = await repository.add(comentarioInput);
 
