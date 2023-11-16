@@ -2,6 +2,9 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Libro, LibrosService } from '../../services/libros.service';
 import { CarritoComprasService } from '../../services/carrito-compras.service';
 import { CurrencyService } from '../../services/currency.service';
+import { Autor, AutoresService } from '../../services/autores.service';
+import { forkJoin } from 'rxjs';
+
 
 @Component({
   selector: 'app-productos-carrito-compras',
@@ -12,11 +15,13 @@ export class ProductosCarritoComprasComponent implements OnInit {
   libros: Libro[] = [];
   total: number = 0;
   cantidades: { [id: string]: number } = {};
+  autoresNombres: { [id: string]: string[] } = {}; // Agregamos esta variable
 
   constructor(
     public currencyService: CurrencyService,
     private librosService: LibrosService,
-    private carritoService: CarritoComprasService
+    private carritoService: CarritoComprasService,
+    private autoresService: AutoresService // Inyectar el servicio AutoresService
   ) { }
 
   ngOnInit() {
@@ -30,12 +35,35 @@ export class ProductosCarritoComprasComponent implements OnInit {
       (response: any) => {
         const libros: Libro[] = response.data;
         if (Array.isArray(libros)) {
-          this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro._id.toString()));
+          this.libros = libros
+            .filter(libro => librosEnCarritoIds.includes(libro._id.toString()));
+
+          this.libros.forEach((libro) => {
+            // Crear un array de IDs de autores específico para cada libro
+            const idsAutores = libro.autores;
+
+            // Crear un array de observables para las solicitudes de nombres de autores
+            const observables = idsAutores.map(autorId => this.autoresService.getNombreCompleto(autorId));
+
+            // Usar forkJoin para esperar a que todas las solicitudes se completen
+            forkJoin(observables).subscribe(
+              (nombres: (string | undefined)[]) => {
+                // Asignar los nombres al arreglo autoresNombres
+                this.autoresNombres[libro._id.toString()] = nombres.filter(nombre => !!nombre) as string[];
+              },
+              (error) => {
+                console.error('Error obteniendo autores:', error);
+              }
+            );
+          });
+
+          // Después de que todas las solicitudes se completen, continuar con el resto del código
           this.cantidades = {};
           this.libros.forEach((libro) => {
             this.cantidades[libro._id.toString()] = 1;
           });
           this.calculateTotal();
+
         } else {
           console.error('La respuesta del servidor no es un array de libros:', response);
         }
@@ -65,7 +93,6 @@ export class ProductosCarritoComprasComponent implements OnInit {
       }
     }
   }
-
 
   validarCantidad(event: Event, libroId: string) {
     const inputElement = event.target as HTMLInputElement;

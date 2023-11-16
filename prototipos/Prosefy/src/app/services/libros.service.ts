@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, of, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, forkJoin, map, of, throwError } from 'rxjs';
+import { catchError, filter } from 'rxjs/operators';
+import { Autor, AutoresService } from '../services/autores.service';
 
 export interface Libro {
   _id: string;
@@ -26,7 +27,7 @@ export interface Libro {
 export class LibrosService {
   private apiUrl = 'http://localhost:3000/api/libros';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private autoresService: AutoresService) { }
 
   getLibrosIds(): Observable<string[]> {
     return this.http.get<any>(`${this.apiUrl}/libros`).pipe(
@@ -115,6 +116,15 @@ export class LibrosService {
   getFechaEdicion(id: string): Observable<Date | undefined> {
     return this.http.get<any>(`${this.apiUrl}/fechaEdicion/${id}`).pipe(
       map((response: any) => response.data)
+    );
+  }
+
+  getNombresAutores(idsAutores: string[]): Observable<string[]> {
+    const observables = idsAutores.map(id => this.autoresService.getNombreCompleto(id));
+
+    return forkJoin(observables).pipe(
+      // Filtra los valores undefined
+      filter((nombres): nombres is string[] => nombres.every(nombre => nombre !== undefined))
     );
   }
 

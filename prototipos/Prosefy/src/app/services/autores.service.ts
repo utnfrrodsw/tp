@@ -17,6 +17,12 @@ export class AutoresService {
 
   constructor(private http: HttpClient) { }
 
+  getAutores(): Observable<Autor[]> {
+    return this.http.get<any>(`${this.apiUrl}/autores`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
   getAutoresIds(): Observable<string[]> {
     return this.http.get<any>(`${this.apiUrl}/autores`).pipe(
       map((response: any) => response.data)
