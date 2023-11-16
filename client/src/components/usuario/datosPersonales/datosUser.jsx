@@ -36,6 +36,8 @@ const DatosPersonales = () => {
   const [fotoPerfil, setFotoPerfil] = useState(avatarDefecto);
   const [selectedFile, setSelectedFile] = useState(null);
   const [successMessageFoto, setSuccessMessageFoto] = useState('');
+  const [mostrarContrasena, setMostrarContrasena] = useState('');
+  const [mostrarContrasena2, setMostrarContrasena2] = useState('');
 
 
   const [nuevaDireccion, setNuevaDireccion] = useState(false);
@@ -237,8 +239,8 @@ const DatosPersonales = () => {
   const [isPasswordVerified, setIsPasswordVerified] = useState(false);
 
   const verifyCurrentPassword = async () => {
-    setErrorCurrentDp('');
-    setSuccessMessageDp('');
+    setErrorCurrentPassword('');
+    setSuccessMessage('');
     try {
       if (contrasenaActual === '') {
         setErrorCurrentPassword('Por favor, ingresa la contraseña actual.');
@@ -279,7 +281,7 @@ const DatosPersonales = () => {
         body: JSON.stringify({
           idUsuario: user.id,
           newPassword: nuevaContrasena,
-          passwordConfirmation: confirmNuevaContrasena,
+          confirmPassword: confirmNuevaContrasena,
         }),
       });
   
@@ -294,11 +296,8 @@ const DatosPersonales = () => {
         setIsPasswordVerified(false);
       } else {
         // Si la respuesta contiene un campo de errores, mostrar esos mensajes de error
-        if (data.errors) {
-          setErrorNewPassword(data.errors.map(error => error.msg).join(', '));
-        } else {
-          setErrorNewPassword(data.messages);
-        }
+        setErrorNewPassword(data.errors && data.errors.length > 0 ? data.errors[0].msg : data.message );
+      
       }
     } catch (error) {
       console.error('Error al cambiar la contraseña:', error);
@@ -373,51 +372,50 @@ const handleCloseModal = () => {
               <h2 className="h2">Datos Personales</h2>
               <div className="user-details">
               <div className="profile-picture">
-  {loadingFotoPerfil ? (
-    <div>Loading...</div>
-  ) : (
-    <IonAvatar className="ion-avatar" onClick={handleImageClick}>
-      <img
-        src={fotoPerfil ? fotoPerfil : avatarDefecto}
-        alt="foto"
-        className="round-image"
-      />
-    </IonAvatar>
-  )}
-  <Button
-    variant='primary'
-    className='button'
-    onClick={handleProfilePictureUpload} 
-  >
-    Cambiar Foto
-  </Button>
-  {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
-  {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}  
-  <input
-    type="file"
-    accept="image/*"
-    onChange={handleProfilePictureChange}
-    className="file-input"
-  />
+              {loadingFotoPerfil ? (
+                 <div>Loading...</div>
+                 ) : (
+                  <IonAvatar className="ion-avatar" onClick={handleImageClick}>
+                   <img
+                     src={fotoPerfil ? fotoPerfil : avatarDefecto}
+                     alt="foto"
+                     className="round-image"
+                     />
+                    </IonAvatar>
+                     )}
+                     <Button
+                     variant='primary'
+                     className='button'
+                     onClick={handleProfilePictureUpload} 
+                     >
+                    Cambiar Foto
+                  </Button>
+                 {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
+                 {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}  
+                 <input
+                 type="file"
+                accept="image/*"
+            onChange={handleProfilePictureChange}
+          className="file-input"
+         />
 
-<Modal show={showModal} onHide={handleCloseModal}>
-  <Modal.Header closeButton>
-    <Modal.Title>Visualización de imagen</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>
-    <img
-      src={fotoPerfil ? fotoPerfil : avatarDefecto}
-      alt="foto"
-      className="modal-image"
-      style={{ width: '100%', height: 'auto' }}
-    />
-  </Modal.Body>
-</Modal>
-</div>
+         <Modal show={showModal} onHide={handleCloseModal}>
+         <Modal.Header closeButton>
+          <Modal.Title>Visualización de imagen</Modal.Title>
+           </Modal.Header>
+            <Modal.Body>
+               <img
+               src={fotoPerfil ? fotoPerfil : avatarDefecto}
+               alt="foto"
+               className="modal-image"
+              style={{ width: '100%', height: 'auto' }}
+             />
+            </Modal.Body>
+          </Modal>
+          </div>
               
-
-                <label htmlFor="firstName">Nombre:</label>
-                <input
+          <label htmlFor="firstName">Nombre:</label>
+              <input
                   type="text"
                   id="firstName"
                   name="firstName"
@@ -466,13 +464,13 @@ const handleCloseModal = () => {
           </Card>
         </Col>
         {!!user.esPrestador && (
-  <Col>
-    <Card className='cardSegurity'>
-      <Card.Body>
-        <div>
-          <h2 className="h2">Profesiones</h2>
-          <div className="user-details">
-            {profesiones.map((profesion, index) => (
+       <Col>
+        <Card className='cardSegurity'>
+         <Card.Body>
+          <div>
+           <h2 className="h2">Profesiones</h2>
+            <div className="user-details">
+             {profesiones.map((profesion, index) => (
               <div key={index} className="profesion-item">
                 <p>{profesion}</p>
                 <Button variant="danger" onClick={() => handleRemoveProfesion(profesion)}>
@@ -482,35 +480,35 @@ const handleCloseModal = () => {
             ))}
           </div>
           <form
-  onSubmit={async (event) => {
-    event.preventDefault();
-    if (!nuevaProfesion.trim()) {
-      setErrorProfesion('La profesión no puede estar vacía.');
-      return;
-    }
-    await agregarProfesionUsuario(user.id, nuevaProfesion.toLowerCase());
-    await fetchProfesiones();
-  }}
->
-  <label className='agregarProfesion'>
-    <input
-      type="text"
-      placeholder='Nueva Profesion'
-      value={nuevaProfesion}
-      onChange={(e) => setNuevaProfesion(e.target.value)}
-    />
-  </label>
-  <button type="submit" className='button' disabled={!nuevaProfesion.trim()}>
-    Agregar profesión
-  </button>
-</form>
-{errorProfesion && <div className="error-message">{errorProfesion}</div>}
-{successMessageProfesion && <div className="success-message">{successMessageProfesion}</div>}
+          onSubmit={async (event) => {
+          event.preventDefault();
+          if (!nuevaProfesion.trim()) {
+          setErrorProfesion('La profesión no puede estar vacía.');
+          return;
+          }
+           await agregarProfesionUsuario(user.id, nuevaProfesion.toLowerCase());
+           await fetchProfesiones();
+           }}
+           >
+           <label className='agregarProfesion'>
+             <input
+               type="text"
+                placeholder='Nueva Profesion'
+                 value={nuevaProfesion}
+                   onChange={(e) => setNuevaProfesion(e.target.value)}
+                   />
+            </label>
+            <button type="submit" className='button' disabled={!nuevaProfesion.trim()}>
+              Agregar profesión
+             </button>
+          </form>
+         {errorProfesion && <div className="error-message">{errorProfesion}</div>}
+         {successMessageProfesion && <div className="success-message">{successMessageProfesion}</div>}
         </div>
-      </Card.Body>
-    </Card>
-  </Col>
-)}
+        </Card.Body>
+        </Card>
+        </Col>
+         )}
 
 
         <Col>
@@ -537,17 +535,26 @@ const handleCloseModal = () => {
           </Card>
           <Card className='cardSegurity'>
             <Card.Body>
-              <h2 className='h2'>Cambiar Contraseña</h2>
               <div className="security-details">
+                <h2 className='h2'>Cambiar Contraseña</h2>
                 <label htmlFor="currentPassword">Contraseña Actual:</label>
+                <div className='input-wrapper'>
                 <input
-                  type="password"
+                  type={mostrarContrasena ? "text" : "password"}
+                  placeholder="Contraseña"
                   id="currentPassword"
                   name="currentPassword"
                   value={contrasenaActual}
                   onChange={(e) => setContrasenaActual(e.target.value)}
-                  className="form-control"
                 />
+               <button
+                 type="button"
+                 className="mostrar-ocultar"
+                 onClick={() => setMostrarContrasena(!mostrarContrasena)}
+                 >
+                {mostrarContrasena ? "🙈" : "👁️"}
+              </button>
+              </div>
                 {errorCurrentPassword && <div className="error-message">{errorCurrentPassword}</div>}
                 {successMessage && <div className="success-message">{successMessage}</div>}
                 <Button variant="primary" className='button' onClick={verifyCurrentPassword}>
@@ -557,18 +564,28 @@ const handleCloseModal = () => {
                 {isPasswordVerified && (
                   <>
                     <label htmlFor="newPassword">Nueva Contraseña:</label>
-                    <input
-                      type="password"
-                      id="newPassword"
-                      name="newPassword"
-                      value={nuevaContrasena}
-                      onChange={(e) => setNuevaContrasena(e.target.value)}
-                      className="form-control"
-                    />
+                    <div className='input-wrapper'>
+                     <input
+                     type={mostrarContrasena2 ? "text" : "password"}
+                     placeholder="Contraseña"
+                     id="currentPassword"
+                     name="currentPassword"
+                     value={nuevaContrasena}
+                     onChange={(e) => setNuevaContrasena(e.target.value)}
+                       />
+                      <button
+                     type="button"
+                     className="mostrar-ocultar"
+                     onClick={() => setMostrarContrasena2(!mostrarContrasena2)}
+                      >
+                      {mostrarContrasena2 ? "🙈" : "👁️"}
+                    </button>
+                    </div>
                     <label htmlFor="confirmNewPassword">Confirmar Nueva Contraseña:</label>
                     <input
                       type="password"
                       id="confirmNewPassword"
+                      placeholder="Constraseña"
                       name="confirmNewPassword"
                       value={confirmNuevaContrasena}
                       onChange={(e) => setConfirmNuevaContrasena(e.target.value)}
