@@ -1,9 +1,8 @@
 const { validationResult, body } = require('express-validator');
 
-const validateLogin = [
+const validacionPreCambioClave = [
   body('email').notEmpty().withMessage('El email es requerido'), 
-  body ('email').isEmail().withMessage('El email es inválido'),
-  body('constrasena').notEmpty().withMessage('La contraseña es requerida'),
+  body ('email').isEmail().withMessage('Ingresa un email válido'),
 
   (req, res, next) => {
 
@@ -15,4 +14,4 @@ const validateLogin = [
   },
 ];
 // Exportar el middleware de validación
-exports.validateLogin = validateLogin;
+exports.validacionPreCambioClave = validacionPreCambioClave;
