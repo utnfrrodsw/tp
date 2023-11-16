@@ -30,7 +30,11 @@ Más información en https://github.com/francobidart/dsw-tp-backend/blob/main/do
 
 ### Evidencia de la ejecución de test automáticos
 
-TODO
+Backend:
+
+![image](./res/resultados_test_backend.png)
+
+Para más información sobre cómo ejecutar los tests de backend consulte https://github.com/francobidart/dsw-tp-backend/blob/main/docs/README.md
 
 ### Demo de app en video
 

@@ -3,6 +3,14 @@ tags: #dsw #tp
 
 Status: draft
 
+---
+
+## Proposal actualizada
+
+Encontrará información sobre el proyecto, enlaces y requisitos para aprobación en https://github.com/francobidart/dsw-tp-2023/blob/main/proposal.md
+
+---
+
 ## 1. Objetivo
 
 Desarrollar en grupo una aplicación web full stack en base a un alcance propuesto por los integrantes.
