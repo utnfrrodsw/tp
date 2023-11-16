@@ -13,6 +13,7 @@ const { validateProfesionesUsuario } = require("../middlewares/usuarios/validaci
 const { validarCambioClave } = require("../middlewares/usuarios/validacionCambioClave.js");
 const { validateResetPassword } = require("../middlewares/usuarios/validacionReserPassword.js");
 const {validateLogin} = require("../middlewares/usuarios/validacionLogin.js");
+const {validacionPreCambioClave} = require ("../middlewares/usuarios/validacionPreCambioClave.js");
 
 router.get('/', (req, res) => {
   res.send('usuarios');
@@ -30,7 +31,7 @@ router.delete('/logout', usuarioController.logout);
 router.post('/register',validateRegister, usuarioController.register);
 
 // Restablecimiento de contraseña
-router.post('/reset-password/request', usuarioController.passwordReset);
+router.post('/reset-password/request',validacionPreCambioClave, usuarioController.passwordReset);
 router.post('/reset-password', validateResetPassword, usuarioController.resetPassword);
 
 // Ruta para verificar la contraseña actual
