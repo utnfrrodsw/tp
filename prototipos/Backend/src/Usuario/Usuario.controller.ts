@@ -94,4 +94,4 @@ async function remove(req: Request, res: Response) {
 
 
 
-export { sanitizeInput, findAll, findOne, add, update, remove }
+export { sanitizeInput, findAll, findOne, add, update, remove}
