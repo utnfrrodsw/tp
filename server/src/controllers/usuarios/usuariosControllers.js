@@ -64,14 +64,20 @@ const usuarioController = {
       direcciones,
     } = req.body;
   
+    const t = await db.sequelize.transaction(); // Start a transaction
+  
     try {
       // Verificar si el usuario ya existe en la base de datos
       const existingUser = await db.Usuario.findOne({
         where: { email },
+        transaction: t,
       });
   
       if (existingUser) {
+        await t.rollback(); // Rollback the transaction
+        console.log("el usuario ya existe");
         return res.status(400).json(jsonResponse(400, { message: 'El usuario ya existe' }));
+        
       }
   
       // Hashear la contraseña antes de guardarla
@@ -79,108 +85,125 @@ const usuarioController = {
       const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
   
       // Crear el nuevo usuario en la base de datos
-      const newUser = await db.Usuario.create({
-        nombre,
-        apellido,
-        email,
-        contrasena: hashedPassword,
-        fechaNacimiento,
-        telefono,
-        esPrestador,
-        // Otras propiedades específicas del usuario si las tienes
-      });
+      const newUser = await db.Usuario.create(
+        {
+          nombre,
+          apellido,
+          email,
+          contrasena: hashedPassword,
+          fechaNacimiento,
+          telefono,
+          esPrestador,
+          // Otras propiedades específicas del usuario si las tienes
+        },
+        { transaction: t }
+      );
   
-// Asociar las direcciones con el nuevo usuario
-if (direcciones && direcciones.length > 0) {
-  for (const direccion of direcciones) {
-    let existingLocalidad;
-
-    try {
-      // Verificar si la Localidad ya existe
-      existingLocalidad = await db.Localidad.findOne({
-        where: { codPostal: direccion.codPostal },
-      });
-
-      console.log('Localidad existente:', existingLocalidad);
-    } catch (error) {
-      console.error('Error al buscar la localidad:', error);
-      throw error; // Lanza el error para detener la ejecución
-    }
-
-    // Si no existe, créala
-    if (!existingLocalidad) {
-      try {
-        existingLocalidad = await db.Localidad.create({
-          codPostal: direccion.codPostal,
-          nombre: direccion.ciudad,
-          provincia: direccion.provincia,
-        });
-
-        console.log('Localidad creada:', existingLocalidad);
-      } catch (error) {
-        console.error('Error al crear la localidad:', error);
-        throw error; // Lanza el error para detener la ejecución
-      }
-    }
-
-    try {
-      // Ahora puedes crear la dirección
-      await db.Direccion.create({
-        ...direccion,
-        idUsuario: newUser.idUsuario,
-      });
-
-      console.log('Dirección creada correctamente');
-    } catch (error) {
-      console.error('Error al crear la dirección:', error);
-      throw error; // Lanza el error para detener la ejecución
-    }
-  }
-}
-
-    if (esPrestador && especialidades && especialidades.length > 0) {
-      const profesionesIds = [];
-
-      // Obtener las especialidades existentes y crear las nuevas
-      await Promise.all(
-        especialidades.map(async (especialidad) => {
-          const existingEspecialidad = await db.Profesion.findOne({
-            where: { nombreProfesion: especialidad },
-          });
-
-          if (existingEspecialidad) {
-            // Si la especialidad ya existe, agrega su ID a la lista
-            profesionesIds.push(existingEspecialidad.idProfesion);
-          } else {
-            // Si es una nueva especialidad, créala y agrega su ID
-            const newProfesion = await db.Profesion.create({
-              nombreProfesion: especialidad,
+      // Asociar las direcciones con el nuevo usuario
+      if (direcciones && direcciones.length > 0) {
+        for (const direccion of direcciones) {
+          let existingLocalidad;
+  
+          try {
+            // Verificar si la Localidad ya existe
+            existingLocalidad = await db.Localidad.findOne({
+              where: { codPostal: direccion.codPostal },
+              transaction: t,
             });
-            profesionesIds.push(newProfesion.idProfesion);
+  
+            console.log('Localidad existente:', existingLocalidad);
+          } catch (error) {
+            console.error('Error al buscar la localidad:', error);
+            await t.rollback(); // Rollback the transaction
+            throw error; // Lanza el error para detener la ejecución
           }
-        })
-      );
-
+  
+          // Si no existe, créala
+          if (!existingLocalidad) {
+            try {
+              existingLocalidad = await db.Localidad.create({
+                codPostal: direccion.codPostal,
+                nombre: direccion.ciudad,
+                provincia: direccion.provincia,
+              }, { transaction: t });
+  
+              console.log('Localidad creada:', existingLocalidad);
+            } catch (error) {
+              console.error('Error al crear la localidad:', error);
+              await t.rollback(); // Rollback the transaction
+              throw error; // Lanza el error para detener la ejecución
+            }
+          }
+  
+          try {
+            // Ahora puedes crear la dirección
+            await db.Direccion.create({
+              ...direccion,
+              idUsuario: newUser.idUsuario,
+            }, { transaction: t });
+  
+            console.log('Dirección creada correctamente');
+          } catch (error) {
+            console.error('Error al crear la dirección:', error);
+            await t.rollback(); // Rollback the transaction
+            throw error; // Lanza el error para detener la ejecución
+          }
+        }
+      }
+  
       // Relacionar al usuario prestador con las especialidades
-      await Promise.all(
-        profesionesIds.map(async (profesionId) => {
-          await db.PrestadorProfesiones.create({
-            idprestador: newUser.idUsuario, // ID del usuario recién creado
-            idProfesion: profesionId,
-          });
-        })
-      );
+      if (esPrestador && especialidades && especialidades.length > 0) {
+        const profesionesIds = [];
+  
+        // Obtener las especialidades existentes y crear las nuevas
+        await Promise.all(
+          especialidades.map(async (especialidad) => {
+            const existingEspecialidad = await db.Profesion.findOne({
+              where: { nombreProfesion: especialidad },
+              transaction: t,
+            });
+  
+            if (existingEspecialidad) {
+              // Si la especialidad ya existe, agrega su ID a la lista
+              profesionesIds.push(existingEspecialidad.idProfesion);
+            } else {
+              // Si es una nueva especialidad, créala y agrega su ID
+              const newProfesion = await db.Profesion.create({
+                nombreProfesion: especialidad,
+              }, { transaction: t });
+              profesionesIds.push(newProfesion.idProfesion);
+            }
+          })
+        );
+  
+        // Relacionar al usuario prestador con las especialidades
+        await Promise.all(
+          profesionesIds.map(async (profesionId) => {
+            await db.PrestadorProfesiones.create({
+              idprestador: newUser.idUsuario, // ID del usuario recién creado
+              idProfesion: profesionId,
+            }, { transaction: t });
+          })
+        );
+      }
+  
+      // Commit the transaction if everything is successful
+      await t.commit();
+  
+      // Responder con un mensaje de registro exitoso
+      res.status(201).json({
+        message: 'Registro exitoso',
+      });
+    } catch (error) {
+      console.error('Error en el registro:', error);
+  
+      // Rollback the transaction in case of an error
+      await t.rollback();
+  
+      res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
     }
-
-    // Responder con un mensaje de registro exitoso
-    res.status(201).json({
-      message: 'Registro exitoso',
-    });
-  } catch (error) {
-    console.error('Error en el registro:', error);
-    res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
-  }
-},
+  },
+  
 
   login: async (req, res) => {
     const { email, constrasena } = req.body;
@@ -274,27 +297,35 @@ if (direcciones && direcciones.length > 0) {
     }
   },
 
-  obtenerDatosUsuario: async (req, res) => {
+obtenerDatosUsuario: async (req, res) => {
     const { id } = req.params;
   
-      try {
-        // Buscar el usuario por su ID y seleccionar solo los campos necesarios
-        const usuario = await db.Usuario.findByPk(id, {
-          attributes: ['nombre', 'apellido', 'email', 'fechaNacimiento'],
-        });
+    const t = await db.sequelize.transaction(); // Inicia una transacción
   
-        if (!usuario) {
-          return res.status(404).json({ message: 'Usuario no encontrado' });
-        }
+    try {
+      // Buscar el usuario por su ID y seleccionar solo los campos necesarios
+      const usuario = await db.Usuario.findByPk(id, {
+        attributes: ['nombre', 'apellido', 'email', 'fechaNacimiento'],
+        transaction: t, // Asocia la transacción a la consulta
+      });
   
-        res.json(usuario);
-      } catch (error) {
-        console.error('Error al obtener datos del usuario', error);
-        res.status(500).json({ message: 'Error en el servidor' });
+      if (!usuario) {
+        await t.rollback(); // Revierte la transacción si el usuario no se encuentra
+        return res.status(404).json({ message: 'Usuario no encontrado' });
       }
+  
+      await t.commit(); // Confirma la transacción si todo está bien
+      res.json(usuario);
+    } catch (error) {
+      console.error('Error al obtener datos del usuario', error);
+      await t.rollback(); // Revierte la transacción en caso de error
+      res.status(500).json({ message: 'Error en el servidor' });
+    }
   },
-
-  obtenerProfesionesUsuario: async (req, res) => {
+  
+obtenerProfesionesUsuario: async (req, res) => {
+    const t = await db.sequelize.transaction(); // Inicia una transacción
+  
     try {
       const idUsuario = req.params.id;
       const prestadorProfesiones = await db.PrestadorProfesiones.findAll({
@@ -303,89 +334,121 @@ if (direcciones && direcciones.length > 0) {
           {
             model: db.Profesion,
             as: 'profesion',
+            transaction: t, // Asocia la transacción a la consulta
           },
         ],
+        transaction: t, // Asocia la transacción a la consulta principal
       });
   
       const profesiones = prestadorProfesiones.map(prestadorProfesion => prestadorProfesion.profesion.nombreProfesion);
   
+      await t.commit(); // Confirma la transacción si todo está bien
       res.json(profesiones);
     } catch (error) {
       console.error(error);
+      await t.rollback(); // Revierte la transacción en caso de error
       res.status(500).json({ message: 'Error al obtener las profesiones del usuario' });
     }
   },
 
-  agregarProfesionesUsuario: async (req, res) => {
+agregarProfesionesUsuario: async (req, res) => {
+    const t = await db.sequelize.transaction(); // Inicia una transacción
+  
     try {
       const { idUsuario, profesiones } = req.body;
   
-      // Verifica  que el usuario es un prestador
-      const usuario = await db.Usuario.findOne({ where: { idUsuario } });
+      // Verifica que el usuario es un prestador
+      const usuario = await db.Usuario.findOne({ where: { idUsuario }, transaction: t });
       if (!usuario || !usuario.esPrestador) {
+        await t.rollback(); // Revierte la transacción en caso de error
         return res.status(400).json({ message: 'El usuario no es un prestador' });
       }
   
-    // Agrega las profesiones al usuario
-    for (const nombreProfesion of profesiones) {
-      const profesionExistente = await db.Profesion.findOne({ where: { nombreProfesion: nombreProfesion.toLowerCase() } });
-
-      if (profesionExistente) {
-        const profesionUsuarioExistente = await db.PrestadorProfesiones.findOne({ where: { idprestador: idUsuario, idProfesion: profesionExistente.idProfesion } });
-        if (profesionUsuarioExistente) {
-          return res.status(400).json({ message: 'La profesión ya existe para este usuario' });
+      // Agrega las profesiones al usuario
+      for (const nombreProfesion of profesiones) {
+        const profesionExistente = await db.Profesion.findOne({
+          where: { nombreProfesion: nombreProfesion.toLowerCase() },
+          transaction: t,
+        });
+  
+        if (profesionExistente) {
+          const profesionUsuarioExistente = await db.PrestadorProfesiones.findOne({
+            where: { idprestador: idUsuario, idProfesion: profesionExistente.idProfesion },
+            transaction: t,
+          });
+          if (profesionUsuarioExistente) {
+            await t.rollback(); // Revierte la transacción en caso de error
+            return res.status(400).json({ message: 'La profesión ya existe para este usuario' });
+          }
         }
+  
+        const [profesion] = await db.Profesion.findOrCreate({
+          where: { nombreProfesion: nombreProfesion.toLowerCase() },
+          transaction: t,
+        });
+  
+        await db.PrestadorProfesiones.create({ idprestador: idUsuario, idProfesion: profesion.idProfesion }, { transaction: t });
       }
-      const [profesion] = await db.Profesion.findOrCreate({ where: { nombreProfesion: nombreProfesion.toLowerCase() } });
-      await db.PrestadorProfesiones.create({ idprestador: idUsuario, idProfesion: profesion.idProfesion });
+  
+      await t.commit(); // Confirma la transacción si todo está bien
+      res.status(200).json({ message: 'Profesión agregada con éxito' });
+    } catch (error) {
+      console.error(error);
+      await t.rollback(); // Revierte la transacción en caso de error
+      res.status(500).json({ message: 'Error al agregar la profesion al usuario' });
     }
-
-    res.status(200).json({ message: 'Profesión agregada con éxito' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al agregar la profesion al usuario' });
-  }
-},
+  },
+  
 
   eliminarProfesionUsuario: async (req, res) => {
-  try {
-    const { idUsuario, profesion } = req.body;
-
-    // Asegúrate de que el usuario es un prestador
-    const usuario = await db.Usuario.findOne({ where: { idUsuario } });
-    if (!usuario || !usuario.esPrestador) {
-      return res.status(400).json({ message: 'El usuario no es un prestador' });
-    }
-
-    // Encuentra la profesión en la base de datos
-    const profesionEncontrada = await db.Profesion.findOne({ where: { nombreProfesion: profesion.toLowerCase() } });
-
-    if (!profesionEncontrada) {
-      return res.status(400).json({ message: 'La profesión no existe' });
-    }
-
-    // Elimina la relación entre el prestador y la profesión
-    await db.PrestadorProfesiones.destroy({
-      where: {
-        idprestador: idUsuario,
-        idProfesion: profesionEncontrada.idProfesion
+    const t = await db.sequelize.transaction(); // Inicia la transacción
+  
+    try {
+      const { idUsuario, profesion } = req.body;
+  
+      // Asegúrate de que el usuario es un prestador
+      const usuario = await db.Usuario.findOne({ where: { idUsuario } });
+      if (!usuario || !usuario.esPrestador) {
+        await t.rollback(); // Revierte la transacción
+        return res.status(400).json({ message: 'El usuario no es un prestador' });
       }
-    });
-
-    res.status(200).json({ message: 'Profesión eliminada con éxito' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al eliminar la profesión del usuario' });
-  }
-},
+  
+      // Encuentra la profesión en la base de datos
+      const profesionEncontrada = await db.Profesion.findOne({ where: { nombreProfesion: profesion.toLowerCase() } });
+  
+      if (!profesionEncontrada) {
+        await t.rollback(); // Revierte la transacción
+        return res.status(400).json({ message: 'La profesión no existe' });
+      }
+  
+      // Elimina la relación entre el prestador y la profesión
+      await db.PrestadorProfesiones.destroy({
+        where: {
+          idprestador: idUsuario,
+          idProfesion: profesionEncontrada.idProfesion
+        },
+        transaction: t // Asocia la transacción con la operación
+      });
+  
+      await t.commit(); // Confirma la transacción
+      res.status(200).json({ message: 'Profesión eliminada con éxito' });
+    } catch (error) {
+      console.error(error);
+      await t.rollback(); // Revierte la transacción en caso de error
+      res.status(500).json({ message: 'Error al eliminar la profesión del usuario' });
+    }
+  },
+  
 
   modificarDatosPersonales: async (req, res) => {
     const { id } = req.params;
     const { nombre, apellido, email, fechaNacimiento } = req.body;
+    const t = await db.sequelize.transaction(); // Inicia la transacción
   
     try {
       const usuario = await db.Usuario.findByPk(id);
       if (!usuario) {
+        await t.rollback(); // Revierte la transacción
         return res.status(404).json({ message: 'Usuario no encontrado' });
       }
   
@@ -393,6 +456,7 @@ if (direcciones && direcciones.length > 0) {
       if (email !== usuario.email) {
         const existingUser = await db.Usuario.findOne({ where: { email } });
         if (existingUser) {
+          await t.rollback(); // Revierte la transacción
           return res.status(400).json({ message: 'El correo electrónico ya está en uso' });
         }
       }
@@ -403,24 +467,28 @@ if (direcciones && direcciones.length > 0) {
       if (email !== undefined) usuario.email = email;
       if (fechaNacimiento !== undefined) usuario.fechaNacimiento = fechaNacimiento;
   
-      await usuario.save();
+      await usuario.save({ transaction: t }); // Asocia la transacción con la operación
   
+      await t.commit(); // Confirma la transacción
       res.json({ success: true, message: 'Datos personales actualizados con éxito' });
     } catch (error) {
       console.error('Error al actualizar los datos personales:', error);
+      await t.rollback(); // Revierte la transacción en caso de error
       return res.status(500).json({ error: 'Error al actualizar los datos personales' });
     }
   },
-
-  // Controlador para verificar la contraseña actual
+  
+// Controlador para verificar la contraseña actual
  verifyPassword: async (req, res) => {
-  try {
-    const { idUsuario, currentPassword } = req.body;
+  const { idUsuario, currentPassword } = req.body;
+  const t = await db.sequelize.transaction(); // Inicia la transacción
 
+  try {
     // Busca el usuario en la base de datos
-    const user = await db.Usuario.findByPk(idUsuario);
+    const user = await db.Usuario.findByPk(idUsuario, { transaction: t });
 
     if (!user) {
+      await t.rollback(); // Revierte la transacción
       return res.status(404).json(jsonResponse(404, { message: 'Usuario no encontrado' }));
     }
 
@@ -429,13 +497,16 @@ if (direcciones && direcciones.length > 0) {
 
     if (passwordMatch) {
       // La contraseña actual es correcta
+      await t.commit(); // Confirma la transacción
       return res.status(200).json(jsonResponse(200, { message: 'Contraseña actual verificada' }));
     } else {
       // La contraseña actual es incorrecta
+      await t.rollback(); // Revierte la transacción
       return res.status(400).json(jsonResponse(400, { message: 'Contraseña actual incorrecta' }));
     }
   } catch (error) {
     console.error('Error al verificar la contraseña actual:', error);
+    await t.rollback(); // Revierte la transacción en caso de error
     return res.status(500).json(jsonResponse(500, { message: 'Error al verificar la contraseña actual' }));
   }
 },
