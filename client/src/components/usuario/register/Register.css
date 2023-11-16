@@ -135,7 +135,7 @@
 
 .switch-label input:checked + .switch::before {
   left: 1.5rem;
-  background-color: #213555;
+  background-color: #081b3b;
 }
 
 /* Estilo para los mensajes de error */
@@ -230,17 +230,18 @@
 }
 
 .input-box input {
-  padding-right: 30px; /* Ajusta según sea necesario para dar espacio al botón */
+  padding-right: 30px;  
 }
 
 .input-box button {
   position: absolute;
+  padding-bottom: 0.6rem;
   top: 50%;
-  right: 8px; /* Ajusta según sea necesario para dar espacio al final del input */
+  right: 8px;  
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 14px; /* Ajusta según sea necesario */
-  color: #ffffff; /* Ajusta según sea necesario */
+  font-size: 14px;  
+  color: #ffffff; 
 }
