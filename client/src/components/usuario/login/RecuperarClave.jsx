@@ -35,6 +35,8 @@ const PasswordResetPage = () => {
       // Actualizamos el estado de respuesta.
       setResponseStatus(response.status);
 
+      const json = await response.json();
+
       if (response.status === 200) {
         setMessage('Se ha enviado un código a tu correo electrónico, por favor revisa tu bandeja de entrada');
         setSubmitted(true);
@@ -42,11 +44,14 @@ const PasswordResetPage = () => {
         // Redirigir a la URL de inicio de sesión después de un retraso (5 segundos).
         setTimeout(() => {
           goTo(loginURL);
-        }, 5000);
-      } else if (response.status === 404) {
-        setMessage('El correo electrónico proporcionado no corresponde a ningún usuario registrado');
-      } else if (response.status === 500) {
-        setMessage('Error al solicitar el restablecimiento de contraseña');
+        }, 5000)
+      } else {
+        // Si la respuesta contiene errores de validación, manejarlos aquí
+        setMessage(json.errors && json.errors.length > 0 ? json.errors[0].msg : json.message );
+       
+        if (json.statusCode === 404) {
+          setMessage('No se encontró una cuenta con ese correo electrónico');
+        }
       }
     } catch (error) {
       console.error('Error al solicitar el restablecimiento de contraseña:', error);
@@ -69,12 +74,10 @@ const PasswordResetPage = () => {
           <div className="Formulario">
             <label htmlFor="email">Proporciona tu email de registro</label>
             <input
-              type="email"
               id="email"
               name="email"
               value={email}
               onChange={handleEmailChange}
-              required
             />
           </div>
           <div className="formularioGrupo">
