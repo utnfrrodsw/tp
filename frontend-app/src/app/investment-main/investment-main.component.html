@@ -1,0 +1,46 @@
+<div *ngFor="let bank of configBanks; let i = index">
+    <app-box-generator 
+    [id]="i"
+    [title]="bank.Name"
+    [content]="bank.content!" 
+    [hasImage]="false" 
+    [revenue]="revenue[i].toString()"
+    [investment]="investment!"
+    [type]="'bank'"
+    ></app-box-generator>
+</div>
+<hr>
+<div *ngFor="let icc of configICC; let j = index">
+    <app-box-generator
+    [id]="j + configBanks.length"
+    [title]="icc.Label"
+    [content]="'Segun el indice de la construccion anualizado, el retorno es $'  + icc.Content!"
+    [hasImage]="false"
+    [revenue]="revenue[j + configBanks.length].toString()"
+    [investment]="investment!"
+    [type]="'icc'"
+    ></app-box-generator>
+</div>
+<hr>
+<div *ngFor="let dolar of configDolar; let k = index">
+    <app-box-generator
+    [id]="k + configBanks.length + configICC.length"
+    [title]="'Dolar ' + dolar.nombre"
+    [content]="'El dolar cotiza a $' + dolar.compra + ' la compra, y $' + dolar.venta + ' la venta, puede comprar u$' + dolar.cost"
+    [hasImage]="false"
+    [revenue]="revenue[k + configBanks.length + configICC.length].toString()"
+    [investment]="investment!"
+    [type]="'dolar'"
+    ></app-box-generator>
+</div>
+<app-box-generator
+[id]="revenue.length - 1"
+[title]="'Pérdida por no invertir' "
+[content]="'Tus $ ' + investment + ' hubieras pasado a valer $ ' + (investment! / (1 + (this.inflation!/100))).toFixed(2) "
+[hasImage]="false"
+[revenue]="revenue[revenue.length - 1].toString()"
+[investment]="investment!"
+></app-box-generator>
+<hr>
+<app-recomendation-box [best]="bestOption"></app-recomendation-box>
+

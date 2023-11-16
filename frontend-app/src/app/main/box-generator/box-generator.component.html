@@ -1,0 +1,26 @@
+<mat-card>
+    <div class="box-container" [ngClass]="getType(type)">
+    <div *ngIf="id === undefined">
+        <fa-icon [icon]="faSpinner" size="lg"  animation="spin"></fa-icon><span style="size: 24px;">&nbsp;cargando...</span>
+    </div>
+    <div *ngIf="id">
+        <mat-card-header>
+            <div *ngIf="title" class="title">{{title | uppercase}}</div>
+        </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content class="content">
+        <div *ngIf="content">
+            <div *ngIf="hasImage"><img [src]="IMG" alt="una imagen"></div>
+            {{content}}
+        </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-footer>
+        <small class="revenue" [style]="isBetter ? 'color: #f6fff8': 'color: #f8edeb'">
+            $ {{revenue}} &nbsp; {{percentaje}}% 
+        </small>
+    </mat-card-footer>
+    </div>
+    </div>
+</mat-card>
+
