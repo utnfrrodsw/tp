@@ -10,6 +10,34 @@
 * [Repositorio FRONTEND](https://github.com/francobidart/dsw-tp-frontend)
 * [Repositorio BACKEND](https://github.com/francobidart/dsw-tp-backend)
 
+### Instrucciones de instalación
+* [Intrucciones Frontend](https://github.com/francobidart/dsw-tp-frontend/blob/main/docs/README.md)
+* [Instrucciones Backend](https://github.com/francobidart/dsw-tp-backend/blob/main/docs/README.md)
+
+### Histórico de commits
+* [Histórico Frontend](https://github.com/francobidart/dsw-tp-frontend/commits/main)
+* [Histórico Backend](https://github.com/francobidart/dsw-tp-backend/commits/main)
+
+### Board de Trello con tareas asignadas y track de features
+
+* [Board trello](https://trello.com/invite/b/zwhwWKR1/ATTIebd2f5bd2e2ca994f68ff653280ea0aa6B0E8CD7/plataforma-dsw)
+
+### Documentación de API
+
+Utilizamos Swagger UI para la documentación de la API de la aplicación, se ejecuta junto con el backend en la ruta **/api-docs**
+
+Más información en https://github.com/francobidart/dsw-tp-backend/blob/main/docs/README.md
+
+### Evidencia de la ejecución de test automáticos
+
+TODO
+
+### Demo de app en video
+
+TODO
+
+---
+
 ## Tema
 ### Descripción
 
@@ -24,29 +52,15 @@ Link: [Modelo](https://drive.google.com/file/d/1pel8NPW2CEdsYUWWS26cUfVe_WRnkMDX
 
 ## Alcance Funcional 
 
-### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
+La funcionalidad de la plataforma está completa, es posible realizar todas las acciones desde la API REST o bien desde el frontend, donde se proveen todos los componentes necesarios para la ejecución de los casos de uso.
 
 Aprobación Directa:
 
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Producto <br>2. CRUD Usuario<br>3. CRUD Medio de Pago<br>4. CRUD Estados<br>5. CRUD Sucursal<br>6. CRUD TipoProducto<br>|
-|CRUD dependiente|1. CRUD Producto {depende de} CRUD Tipo Producto.<br>|
-|Listado<br>+<br>detalle| 1. Listado de producto filtrado por tipo de producto y por precio, mostrando nombre y precio del producto.<br> 2. Listado de pedido por usuario y por sucursal, mostrando numero de pedido, nombre de cliente, nombre de sucursal e importe del pedido.|
-|CUU/Epic|1. Realizar pedido.<br>2. Marcar pedido como entregado.|
+|Req| Detalle                                                                                                                                                                                                                  |
+|:-|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|CRUD simple| 1. CRUD Producto <br>2. CRUD Usuario<br>3. CRUD Medio de Pago<br>4. CRUD Sucursal<br>5. CRUD Categorías<br>                                                                                                              |
+|CRUD dependiente| 1. CRUD Producto {depende de} CRUD Categorías.<br>                                                                                                                                                                       |
+|Listado<br>+<br>detalle| 1. Listado de producto filtrado por nombre y por precio, mostrando los datos del producto.<br> 2. Listado de pedido por usuario, mostrando numero de pedido, nombre de cliente, nombre de sucursal e importe del pedido. |
+|CUU/Epic| 1. Realizar pedido.<br>2. Marcar pedido como entregado.<br>3. Marcar pedido como cancelado y restaurar stock.                                                                                                            |
 
-
-
-
-
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|CUU/Epic|1. Cancelación de pedido.|
-|Otros|1. Envío de confirmación de pedido.<br>2.Cambio de sucursal de pedido pendiente de entrega.|
 
