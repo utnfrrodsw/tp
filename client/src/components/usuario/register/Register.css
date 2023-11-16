@@ -83,7 +83,30 @@
   display: flex;
   align-items: center;
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+.especialidad-item {
+   
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+}	
+
+.nuevaEspecialidad h5{
+  color: white;
+  margin: 0.45rem 0.25rem;
+}
+
+.botonDireccion-btn-small {
+  margin: 0.5rem 0 0.8rem 0;
+  font-size: 14px; /* Tamaño de fuente más pequeño */
+  padding: 8px 16px; /* Ajusta el relleno */
+  margin: 0.5rem 0 0.8rem 0;
+  background-color: #213555;
+  border: white;
+  
 }
 
 .switch-label input {
@@ -198,6 +221,26 @@
   font-size: 14px; /* Tamaño de fuente más pequeño */
   padding: 8px 16px; /* Ajusta el relleno */
   margin: 0.5rem 0 0.8rem 0;
-  background-color: #213555;
+  background-color: #081b3b;
   border: white;
+}
+
+.input-box {
+  position: relative;
+}
+
+.input-box input {
+  padding-right: 30px; /* Ajusta según sea necesario para dar espacio al botón */
+}
+
+.input-box button {
+  position: absolute;
+  top: 50%;
+  right: 8px; /* Ajusta según sea necesario para dar espacio al final del input */
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px; /* Ajusta según sea necesario */
+  color: #ffffff; /* Ajusta según sea necesario */
 }
