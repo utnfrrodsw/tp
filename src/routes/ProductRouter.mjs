@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-    createProduct, getAll, getAllByShop, paginated, getOne, deleteProduct, updateProduct
+    createProduct, getAll, getAllByShop, paginated, getOne, deleteProduct, updateProduct, maxPaginationIndex
 } from '../controllers/ProductController.mjs'
 import {
     verifyTokenSeller, verifyTokenUser
@@ -14,5 +14,6 @@ router.put('/products/:productId', verifyTokenSeller, updateProduct);
 router.get('/productsbyshop/:tiendaId', verifyTokenSeller, getAllByShop);
 router.get('/productos', verifyTokenUser, paginated);
 router.delete('/products/:id', verifyTokenSeller, deleteProduct);
+router.get('/productos/paginate', maxPaginationIndex);
 
 export default router;

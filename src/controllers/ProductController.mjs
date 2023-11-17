@@ -48,7 +48,7 @@ export const createProduct = async (req, res) => {
                 precio,
                 stock,
             } = req.body;
-            let fotos = [] 
+            let fotos = []
             if (req.files) {
                 fotos = req.files.map(file => file.path.replace(/\\/g, '/').replace(/^src\//, '')); // Obtén las rutas de las imágenes
             }
@@ -85,51 +85,51 @@ export const updateProduct = async (req, res) => {
             return res.status(500).json({ error: 'Error al cargar imágenes' });
         }
         try {
-        const { productId } = req.params;
-        // Verifica si el producto existe
-        console.log(productId)
-        const product = await ProductModel.findById(productId);
-        if (!product) {
-            return res.status(404).json({
-                message: 'El producto no existe'
+            const { productId } = req.params;
+            // Verifica si el producto existe
+            console.log(productId)
+            const product = await ProductModel.findById(productId);
+            if (!product) {
+                return res.status(404).json({
+                    message: 'El producto no existe'
+                });
+            }
+
+            // Actualiza los campos del producto según la solicitud
+            const {
+                categoria,
+                nombre,
+                descripcion,
+                precio,
+                stock,
+            } = req.body;
+
+            // Actualiza los campos del producto
+            product.categoria = categoria;
+            product.nombre = nombre;
+            product.descripcion = descripcion;
+            product.precio = precio;
+            product.stock = stock;
+
+            // Si hay imágenes nuevas en la solicitud, actualiza las imágenes
+            if (req.files) {
+                const nuevasFotos = req.files.map(file => file.path.replace(/\\/g, '/').replace(/^src\//, ''));
+                product.fotos = nuevasFotos;
+            }
+
+            // Guarda el producto actualizado
+            await product.save();
+
+            res.status(200).json({
+                message: 'Producto actualizado',
+                product
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({
+                error: 'Error al actualizar el producto'
             });
         }
-
-        // Actualiza los campos del producto según la solicitud
-        const {
-            categoria,
-            nombre,
-            descripcion,
-            precio,
-            stock,
-        } = req.body;
-
-        // Actualiza los campos del producto
-        product.categoria = categoria;
-        product.nombre = nombre;
-        product.descripcion = descripcion;
-        product.precio = precio;
-        product.stock = stock;
-
-        // Si hay imágenes nuevas en la solicitud, actualiza las imágenes
-        if (req.files) {
-            const nuevasFotos = req.files.map(file => file.path.replace(/\\/g, '/').replace(/^src\//, ''));
-            product.fotos = nuevasFotos;
-        }
-
-        // Guarda el producto actualizado
-        await product.save();
-
-        res.status(200).json({
-            message: 'Producto actualizado',
-            product
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            error: 'Error al actualizar el producto'
-        });
-    }
     })
 };
 
@@ -224,28 +224,28 @@ export const getAllByShop = async (req, res) => {
 };
 
 export const deleteProduct = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const product = await ProductModel.findById(id);
+    try {
+        const { id } = req.params;
+        const product = await ProductModel.findById(id);
 
-    if (!product) {
-      return res.status(404).json({ error: 'Producto no encontrado' });
+        if (!product) {
+            return res.status(404).json({ error: 'Producto no encontrado' });
+        }
+
+        await ProductModel.findByIdAndRemove(id);
+        res.status(200).json({ message: 'Producto eliminado correctamente' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al eliminar el producto' });
     }
-
-    await ProductModel.findByIdAndRemove(id);
-    res.status(200).json({ message: 'Producto eliminado correctamente' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al eliminar el producto' });
-  }
 };
 
-export const paginated = async (req, res, next) => {
+export const paginated = async (req, res) => {
     try {
-        let { orden, categoria } = req.query;
+        let { orden, categoria, nombre } = req.query;
 
-        let page = parseInt(req.query.page);
-        let limit = parseInt(req.query.limit);
+        let page = parseInt(req.query.page) || 1; //Pagina 1 si no se especifica
+        let limit = parseInt(req.query.limit) || 20; //hasta 20 productos cuando no se especifica
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
 
@@ -258,38 +258,60 @@ export const paginated = async (req, res, next) => {
             filters.categoria = categoria;
         }
 
-        //si no se especifica tamano el max es 20
-        if (limit) {
-            limit = 20;
-        }
-        // If the page is not applied in query.
-        if (!page) {
-            // Make the Default value one.
-            page = 1;
+        if (nombre) {
+            filters.nombre = { $regex: nombre, $options: "i" };
         }
 
-        const products = {};
+        // Buscar productos y aplicar filtros y ordenamiento
+        let query = ProductModel.find(filters, req.query.fields).limit(limit).skip(startIndex);
 
-        if (endIndex < (await ProductModel.countDocuments().exec())) {
-            products.next = {
-                page: page + 1,
-                limit: limit,
-            };
-        }
-        if (startIndex > 0) {
-            products.previous = {
-                page: page - 1,
-                limit: limit,
-            };
+        // Ordenar productos según la dirección especificada (ascendente o descendente)
+        if (orden === 'asc') {
+            query = query.sort({ precio: 1 });
+        } else if (orden === 'desc') {
+            query = query.sort({ precio: -1 });
         }
 
-        products.results = await ProductModel.find(filters).limit(limit).skip(startIndex);
-        res.paginated = products;
-        next();
+        let products = await query.exec();
+
+        res.status(200).json({
+            products
+        });
+
+
     } catch (error) {
         console.error(error);
         res.status(500).json({
             error: 'Error al obtener Productos'
         });
     }
+}
+
+/**
+ * Returns number of indexes according to filter
+ * @param {*} req Contain filters such as { categoria, nombre, limit }
+ * @param {*} res Return numbers of pages accesible according to filter
+ */
+export const maxPaginationIndex = async (req, res) => {
+    let { categoria, nombre, limit } = req.query;
+    let filters = {
+        habilitado: true
+    };
+    if (!limit) {
+        limit = 20;
+    }
+    // Agregar filtro por categoría si se proporciona
+    if (categoria) {
+        filters.categoria = categoria;
+    }
+    // Agregar filtro por nombre si se proporciona
+    if (nombre) {
+        filters.nombre = { $regex: nombre, $options: "i" };
+    }
+    let result = await ProductModel.find(filters, req.query.fields).count().exec();
+    result /= limit;
+    result = Math.ceil(result);
+    res.status(200).json({
+        "pages": result
+    });
 }
