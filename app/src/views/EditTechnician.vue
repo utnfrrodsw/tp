@@ -13,7 +13,14 @@
         <v-col cols="12" md="6">
           <v-menu v-model="menu" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y>
             <template v-slot:activator="{ on, attrs }">
-              <v-text-field v-model="formattedDate" label="Fecha de Nacimiento" readonly v-bind="attrs" v-on="on"></v-text-field>
+              <v-text-field 
+                v-model="formattedDate" 
+                label="Fecha de Nacimiento" 
+                readonly 
+                v-bind="attrs" 
+                v-on="on"
+              >
+              </v-text-field>
             </template>
             <v-date-picker 
               v-model="technician.date_born" 
@@ -37,102 +44,107 @@
 <script>
   import axios from 'axios'
   import Alerts from '@/components/Alerts.vue'
+  import TechnicianDataService from "../services/TechnicianDataService";
 
-  export default {
-    name: 'EditTechnician',
-    components: {
-      Alerts
-    },
-    data() {
-      return {
-        technician: {
-          id: this.$route.params.id,
-          name: '',
-          date_born: null
-        },
-        validationRules: {
-          name: [
-            v => !!v || 'Nombre is required',
-            v => (v && v.length <= 10) || 'Nombre must be less than 10 characters'
-          ],
-          date_born: [
-            v => !!v || 'Fecha de nacimiento is required'
-          ]
-        },
-        menu: false,
-        alert: {
-          show: false,
-          title: '',
-          message: '',
-          type: ''
-        },
-        loading: false,
-      }
-    },
-    mounted() {
-      this.fetchData()
-    },
-    computed: {
-      formattedDate() {
+export default {
+  name: 'EditTechnician',
+  components: {
+    Alerts,
+  },
+  data() {
+    return {
+      technician: {
+        id: this.$route.params.id,
+        name: "",
+        date_born: null,
+      },
+      validationRules: {
+        name: [
+          v => !!v || 'Nombre is required',
+          v => (v && v.length <= 10) || 'Nombre must be less than 10 characters',
+        ],
+        date_born: [
+          v => !!v || 'Fecha de nacimiento is required',
+        ],
+      },
+      menu: false,
+      alert: {
+        show: false,
+        title: "",
+        message: "",
+        type: "",
+      },
+      loading: false,
+    };
+  },
+  mounted() {
+    this.fetchData();
+  },
+  computed: {
+    formattedDate: {
+      // getter
+      get: function () {
         if (this.technician.date_born) {
-          const date = new Date(this.technician.date_born)
-          return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
+          const date = new Date(this.technician.date_born);
+          return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
         }
-        return ''
+        return '';
+      },
+      // setter
+      set: function (newValue) {
+        this.technician.date_born = newValue
       }
     },
-    methods: {
-      async fetchData() {
+  },
+  methods: {
+    async fetchData() {
+      this.loading = true
+      try {
+        const apiUrl = process.env.VUE_APP_API_URL
+        const url = `${apiUrl}api/technicians/${this.technician.id}`
+        const response = await axios.get(url)
+        this.technician.name = response.data.name
+        this.technician.date_born = response.data.date_born.substring(0, 10)
+      } catch (error) {
+        console.error(error)
+      }
+      this.loading = false
+    },
+    async submitForm() {
+      if (this.$refs.form.validate()) {
         this.loading = true
+  
         try {
-          const apiUrl = process.env.VUE_APP_API_URL
-          const url = `${apiUrl}api/technicians/${this.technician.id}`
-          const response = await axios.get(url)
-          this.technician.name = response.data.name
-          this.technician.date_born = response.data.date_born.substring(0, 10)
+          const data = {
+            name: this.technician.name,
+            date_born: this.technician.date_born
+          }
+          const response = await TechnicianDataService.update(this.technician.id, data)
+          this.alert.show = true
+          this.alert.title = 'Guardado exitoso'
+          this.alert.message = 'El cambio se realizó exitosamente'
+          this.alert.type = 'success'
+  
+          this.reset()
+          this.resetValidation()
         } catch (error) {
-          console.error(error)
+          this.alerta.show = true
+          this.alerta.title = 'Error'
+          this.alerta.mensaje = 'Error al agregar técnico'
+          this.alerta.type = 'error'
         }
         this.loading = false
-      },
-      async submitForm() {
-        if (this.$refs.form.validate()) {
-          this.loading = true
-    
-          try {
-            const body = {
-              name: this.technician.name,
-              date_born: this.technician.date_born
-            }
-            const apiUrl = process.env.VUE_APP_API_URL
-            const url = `${apiUrl}api/technicians/${this.technician.id}`
-            const response = await axios.put(url, body)
-            const data = await response.data
-            this.alert.show = true
-            this.alert.title = 'Guardado exitoso'
-            this.alert.message = 'El cambio se realizó exitosamente'
-            this.alert.type = 'success'
-    
-            this.reset()
-            this.resetValidation()
-          } catch (error) {
-            this.alerta.show = true
-            this.alerta.title = 'Error'
-            this.alerta.mensaje = 'Error al agregar técnico'
-            this.alerta.type = 'error'
-          }
-          this.loading = false
-        }
-      },
-      redirectList() {
-        this.$router.push({ path: '/list-technicians' }).catch(() => {})
-      },
-      reset () {
-        this.$refs.form.reset()
-      },
-      resetValidation () {
-        this.$refs.form.resetValidation()
       }
+    },
+    redirectList() {
+      this.$router.push({ path: '/list-technicians' }).catch(() => {})
+    },
+    reset () {
+      this.$refs.form.reset()
+    },
+    resetValidation () {
+      this.$refs.form.resetValidation()
     }
   }
+}
 </script>

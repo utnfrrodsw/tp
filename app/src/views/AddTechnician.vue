@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="12" md="6">
           <v-text-field 
-            v-model="tecnico.name" 
+            v-model="technician.name" 
             label="Nombre" 
             :rules="validationRules.name"
             required
@@ -22,7 +22,7 @@
           >
             <template v-slot:activator="{ on }">
               <v-text-field
-                v-model="tecnico.date_born"
+                v-model="formattedDate" 
                 label="Fecha de nacimiento"
                 prepend-icon="mdi-calendar"
                 :rules="validationRules.date_born"
@@ -31,7 +31,7 @@
                 v-on="on"
               ></v-text-field>
             </template>
-            <v-date-picker v-model="tecnico.date_born" @input="menu = false"></v-date-picker>
+            <v-date-picker v-model="technician.date_born" @input="menu = false"></v-date-picker>
           </v-menu>
         </v-col>
       </v-row>
@@ -55,7 +55,7 @@
 
 <script>
   import Alerts from '@/components/Alerts.vue'
-
+  import TechnicianDataService from "../services/TechnicianDataService";
   export default {
     name: 'AddTechnician',
     components: {
@@ -63,7 +63,7 @@
     },
     data() {
       return {
-        tecnico: {
+        technician: {
           name: '',
           date_born: '',
         },
@@ -90,29 +90,18 @@
         if (this.$refs.form.validate()) {
           this.loading = true
           try {
-            const token = localStorage.getItem('token')
-            const response = await fetch(`${process.env.VUE_APP_API_URL}api/technicians`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': token
-              },
-              body: {
-                name: this.tecnico.name,
-                date_born: this.tecnico.date_born,
-              }
-            })
-    
+            const data = {
+              name: this.technician.name,
+              date_born: this.technician.date_born
+            }
+            const response = await TechnicianDataService.create(data)
             this.alert.show = true
             this.alert.message = 'Tecnico creado correctamente'
             this.alert.type = 'success'
-
             this.reset()
-            this.resetValidation()
-            this
           } catch (e) {
             this.alert.show = true
-            this.alert.message = 'Error al agregar técnico'
+            this.alert.message = e
             this.alert.type = 'error'
           }
           this.loading = false
@@ -121,9 +110,22 @@
       reset () {
         this.$refs.form.reset()
       },
-      resetValidation () {
-        this.$refs.form.resetValidation()
-      }
+    },
+    computed: {
+      formattedDate: {
+        // getter
+        get: function () {
+          if (this.technician.date_born) {
+            const date = new Date(this.technician.date_born);
+            return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+          }
+          return '';
+        },
+        // setter
+        set: function (newValue) {
+          this.technician.date_born = newValue
+        }
+      },
     }
   }
 </script>
