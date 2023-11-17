@@ -6,142 +6,124 @@
     </div>
   </div>
   <div class="login-container mb-5 pb-5 text-center">
-    <!-- TODO: Los mensajes de error del formulario hay que cambiarlos para que no se vean mal, algunos mensajes no se muestran, como el de las contraseñas no coinciden -->
     <form [formGroup]="registroForm">
       <div class="form-group my-4 custom-input">
-        <!-- TODO: No hay Nombre de usuario, quitarlo -->
         <label for="username">Nombre de usuario</label>
-        <input
-          type="text"
-          id="username"
-          class="form-control"
-          formControlName="username"
-          placeholder="Ingrese su nombre de usuario"
-        />
+        <input type="text" id="username" class="form-control" formControlName="username"
+          placeholder="Ingrese su nombre de usuario" />
+        <!-- Mensajes de error para el campo de nombre de usuario -->
+        <div *ngIf="registroForm.get('username')?.hasError('usuarioExistente') && registroForm.get('username')?.touched"
+          class="text-danger">
+          El nombre de usuario ya está en uso.
+        </div>
+        <div *ngIf="
+            registroForm.get('username')?.hasError('required') &&
+            registroForm.get('username')?.touched
+          " class="text-danger">
+          El nombre de usuario es obligatorio.
+        </div>
+        <div *ngIf="
+            registroForm.get('username')?.hasError('pattern') &&
+            registroForm.get('username')?.touched
+          " class="text-danger">
+          El nombre de usuario solo puede contener letras, números y guiones bajos.
+        </div>
       </div>
       <div class="form-group my-4 custom-input">
         <label for="email">Correo electrónico</label>
-        <input
-          type="email"
-          id="email"
-          class="form-control"
-          formControlName="email"
-          placeholder="Ingrese su correo electrónico"
-        />
-        <div
-          *ngIf="
+        <input type="email" id="email" class="form-control" formControlName="email"
+          placeholder="Ingrese su correo electrónico" />
+        <div *ngIf="
             registroForm.get('email')?.hasError('required') &&
             registroForm.get('email')?.touched
-          "
-          class="text-danger"
-        >
+          " class="text-danger">
           El correo electrónico es obligatorio.
         </div>
-        <div
-          *ngIf="
+        <div *ngIf="
             registroForm.get('email')?.hasError('email') &&
             registroForm.get('email')?.touched
-          "
-          class="text-danger"
-        >
+          " class="text-danger">
           El correo electrónico no es válido.
         </div>
       </div>
       <div class="form-group my-4 custom-input">
         <label for="nombre">Nombre</label>
-        <input
-          type="text"
-          id="nombre"
-          class="form-control"
-          formControlName="nombre"
-          placeholder="Ingrese su nombre"
-          [(ngModel)]="inputNombre"
-        />
+        <input type="text" id="nombre" class="form-control" formControlName="nombre" placeholder="Ingrese su nombre" />
+        <!-- Mensajes de error para el campo de nombre -->
+        <div *ngIf="
+            registroForm.get('nombre')?.hasError('required') &&
+            registroForm.get('nombre')?.touched
+          " class="text-danger">
+          El nombre es obligatorio.
+        </div>
+        <div *ngIf="
+            registroForm.get('nombre')?.hasError('pattern') &&
+            registroForm.get('nombre')?.touched
+          " class="text-danger">
+          El nombre solo puede contener letras.
+        </div>
       </div>
+
       <div class="form-group my-4 custom-input">
         <label for="apellido">Apellido</label>
-        <input
-          type="text"
-          id="apellido"
-          class="form-control"
-          formControlName="apellido"
-          placeholder="Ingrese su apellido"
-          [(ngModel)]="inputApellido"
-        />
+        <input type="text" id="apellido" class="form-control" formControlName="apellido"
+          placeholder="Ingrese su apellido" />
+        <!-- Mensajes de error para el campo de apellido -->
+        <div *ngIf="
+            registroForm.get('apellido')?.hasError('required') &&
+            registroForm.get('apellido')?.touched
+          " class="text-danger">
+          El apellido es obligatorio.
+        </div>
+        <div *ngIf="
+            registroForm.get('apellido')?.hasError('pattern') &&
+            registroForm.get('apellido')?.touched
+          " class="text-danger">
+          El apellido solo puede contener letras.
+        </div>
       </div>
       <div class="form-group my-4 custom-input">
         <label for="password">Contraseña</label>
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          formControlName="password"
-          placeholder="Ingrese su contraseña"
-          [(ngModel)]="inputAvatar"
-        />
-        <div
-          *ngIf="
+        <input type="password" id="password" class="form-control" formControlName="password"
+          placeholder="Ingrese su contraseña" />
+        <div *ngIf="
             registroForm.get('password')?.hasError('required') &&
             registroForm.get('password')?.touched
-          "
-          class="text-danger"
-        >
+          " class="text-danger">
           La contraseña es obligatoria.
         </div>
-        <div
-          *ngIf="
+        <div *ngIf="
             registroForm.get('password')?.hasError('minlength') &&
             registroForm.get('password')?.touched
-          "
-          class="text-danger"
-        >
+          " class="text-danger">
           La contraseña debe tener al menos 8 caracteres.
         </div>
-        <div
-          *ngIf="
+        <div *ngIf="
             registroForm.get('password')?.hasError('pattern') &&
             registroForm.get('password')?.touched
-          "
-          class="text-danger"
-        >
+          " class="text-danger">
           La contraseña debe contener al menos una mayúscula y una minúscula.
         </div>
       </div>
 
       <div class="form-group my-4 custom-input mb-4">
         <label for="repeat-password">Repetir contraseña</label>
-        <input
-          type="password"
-          id="repeatPassword"
-          class="form-control"
-          formControlName="repeatPassword"
-          placeholder="Repetir su contraseña"
-        />
-        <div
-          *ngIf="
+        <input type="password" id="repeatPassword" class="form-control" formControlName="repeatPassword"
+          placeholder="Repetir su contraseña" />
+        <div *ngIf="
             registroForm.get('repeatPassword')?.hasError('passwordMismatch') &&
             registroForm.get('repeatPassword')?.touched
-          "
-          class="text-danger"
-        >
+          " class="text-danger">
           Las contraseñas no coinciden.
         </div>
       </div>
       <a routerLink="" class="custom-a"> ¿Olvidaste tu contraseña? </a>
       <div class="button-group">
-        <button
-          type="button"
-          class="btn btn-primary custom-btn-primary"
-          (click)="login()"
-        >
+        <button type="button" class="btn btn-primary custom-btn-primary" (click)="registrarUsuario()">
           Continuar
         </button>
 
-        <button
-          routerLink="/identificarse"
-          type="button"
-          class="btn btn-secondary custom-btn-secondary"
-        >
+        <button routerLink="/identificarse" type="button" class="btn btn-secondary custom-btn-secondary">
           Ya tengo una cuenta
         </button>
       </div>

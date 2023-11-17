@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { UsuarioService, Usuario } from '../../services/usuario.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from '../../services/usuario.service';
+import { RegistroService } from 'src/app/services/registro.service';
 
 @Component({
   selector: 'app-registrarse',
@@ -9,45 +10,22 @@ import { UsuarioService, Usuario } from '../../services/usuario.service';
 })
 export class RegistrarseComponent {
   registroForm: FormGroup;
-  showErrorMessages: boolean = false; // Variable para controlar la visualización de mensajes de error
-  inputNombre: string = '';
-  inputApellido: string = '';
-  inputEmail: string = '';
-  inputAvatar: string = '';
+  showErrorMessages: boolean = false;
 
-
-
-  //TODO: Las validaciones no funcionan del todo bien todavía
-
-  constructor(private formBuilder: FormBuilder, public usuariosService: UsuarioService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    public usuariosService: UsuarioService,
+    private registroService: RegistroService
+  ) {
     this.registroForm = this.formBuilder.group(
       {
-        nombre: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern(/^[a-zA-Z]+$/), // Aceptar solo letras de a-z o A-Z
-          ],
-        ],
-        apellido: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern(/^[a-zA-Z]+$/), // Aceptar solo letras de a-z o A-Z
-          ],
-        ],
-        username: [
-          '',
-          [Validators.required, Validators.pattern(/^[a-zA-Z0-9_]+$/)], // Aceptar solo letras de a-z o A-Z, números de 0-9 y guión bajo
-        ],
+        username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9_]+$/)]],
+        nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
+        apellido: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
         email: ['', [Validators.required, Validators.email]],
         password: [
           '',
-          [
-            Validators.required,
-            Validators.minLength(8),
-            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])/),
-          ],
+          [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])/)],
         ],
         repeatPassword: [''],
       },
@@ -55,16 +33,15 @@ export class RegistrarseComponent {
     );
   }
 
-// Uso el Avatar como contraseña por el momento para no tener que cambiar tantos archivos
   login() {
-    const user = { nombre: this.inputNombre,apellido: this.inputApellido, email: this.inputEmail, avatar: this.inputAvatar };
+    const user = this.registroForm.value;
     console.log(user);
+
     this.usuariosService.registrarUsuario(user).subscribe((data) => {
-      console.log("Se realizó el post de usuario");
+      console.log('Se realizó el post de usuario');
     });
   }
 
-  // Función para validar que las contraseñas coincidan
   passwordMatchValidator(formGroup: FormGroup) {
     const passwordControl = formGroup.get('password');
     const repeatPasswordControl = formGroup.get('repeatPassword');
@@ -78,16 +55,44 @@ export class RegistrarseComponent {
       } else {
         repeatPasswordControl.setErrors(null);
       }
-    };
-  }
-
-  // Función para registrar al usuario
-  registrarUsuario() {
-    this.showErrorMessages = true; // Mostrar mensajes de error al hacer clic en "Continuar"
-
-    if (this.registroForm.valid) {
-      // Realizar la acción de registro aquí
-      // Por ejemplo, enviar datos al servidor
     }
   }
-}
+
+  registrarUsuario() {
+    console.log('Clicked Continuar button');
+    this.showErrorMessages = true;
+
+    if (this.registroForm.valid) {
+      console.log('Form is valid. Making API call.');
+      const username = this.registroForm.get('username');
+
+      if (username) {
+        const userUsername = username.value;
+
+        // Validar si el usuario ya existe antes de realizar el registro
+        this.registroService.validarUsuarioExistente(userUsername).subscribe(
+          (usuarioExistente) => {
+            if (!usuarioExistente) {
+              const user = this.registroForm.value;
+
+              this.registroService.registrarUsuario(user).subscribe(
+                (data) => {
+                  console.log('Se realizó el registro del usuario', data);
+                },
+                (error) => {
+                  console.error('Error en el registro del usuario', error);
+                }
+              );
+            } else {
+              username.setErrors({ usuarioExistente: true });
+              console.error('El usuario ya existe');
+            }
+          },
+          (error) => {
+            console.error('Error al validar el usuario', error);
+          }
+        );
+      }
+    }
+  }
+}  

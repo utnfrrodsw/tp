@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 
 export class Usuario {
     constructor(
+        public username: string,
         public nombre: string,
         public apellido: string,
         public email: string,
@@ -10,6 +11,6 @@ export class Usuario {
         public avatar: string,
         public tipo: string,
         public contraseña: string,
-        public _id?: ObjectId,
+        public _id?: ObjectId
     ) { }
 }

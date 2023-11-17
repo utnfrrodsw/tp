@@ -19,8 +19,10 @@ export class UsuarioRepository implements Repository<Usuario>{
 
     public async findOne(item: { id: string; }): Promise<Usuario | undefined> {
         try {
-            const _id = new ObjectId(item.id)
-            return (await usuarios.findOne({ _id })) || undefined
+            const _id = new ObjectId(item.id);
+            const usuario = await usuarios.findOne({ _id });
+
+            return usuario || undefined;
         } catch (error) {
             console.error("Error en findOne:", error);
             throw error;
@@ -63,6 +65,16 @@ export class UsuarioRepository implements Repository<Usuario>{
             return (await usuarios.findOneAndDelete({ _id })) || undefined
         } catch (error) {
             console.error("Error en delete:", error);
+            throw error;
+        }
+    }
+
+    async getByUsername(username: string): Promise<Usuario | undefined> {
+        try {
+            const usuario = await usuarios.findOne({ username });
+            return usuario || undefined;
+        } catch (error) {
+            console.error("Error en getByUsername:", error);
             throw error;
         }
     }

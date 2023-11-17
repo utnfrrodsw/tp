@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { findAll, findOne, sanitizeInput, add, remove, update, iniciarSesion } from './Usuario.controller.js';
+import { findAll, findOne, sanitizeInput, add, remove, update, iniciarSesion, getByUsername } from './Usuario.controller.js';
 
 export const usuarioRouter = Router();
 
 // Otras rutas
 usuarioRouter.post('/iniciar-sesion', iniciarSesion);
+usuarioRouter.get('/:username', getByUsername)
 
 usuarioRouter.get('/', findAll)
 usuarioRouter.get('/:id', findOne)

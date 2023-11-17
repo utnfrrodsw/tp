@@ -1,3 +1,5 @@
+// TODO: Al hacer update la contraseña no se hashea
+
 // CREAR USUARIOS
 
 ### Usuario 1
@@ -5,15 +7,26 @@ PUT http://localhost:3000/api/usuarios/6556a8c6e9f6a54f3958714a
 Content-Type: application/json
 
 {
+    "username": "martin_jasom",
     "nombre":"Martin",
     "apellido":"Jasom",
     "email":"JasonMtn@gmail.com",
     "direccion":"calle falsa 123",
     "localidad":"6556a826e9f6a54f39587147",
     "tipo":"Administrador",
-    "contraseña": "contrasena223445"
+    "contraseña": "contrasena2223"
 }
 
-### Usuario 1
-GET http://localhost:3000/api/usuarios
+### Usuario 2
+PUT http://localhost:3000/api/usuarios/6556e650d4630d9628e3ebd2
 Content-Type: application/json
+
+{
+    "username": "lucia_smithy",
+    "nombre":"Lucia",
+    "apellido":"Smithy",
+    "email":"LuciaSmithy@email.com",
+    "direccion":"avenida imaginaria 456",
+    "localidad":"6556a826e9f6a54f39587147",
+    "contraseña": "claveSegura789"
+}

@@ -14,7 +14,8 @@ export class UsuarioRepository {
     async findOne(item) {
         try {
             const _id = new ObjectId(item.id);
-            return (await usuarios.findOne({ _id })) || undefined;
+            const usuario = await usuarios.findOne({ _id });
+            return usuario || undefined;
         }
         catch (error) {
             console.error("Error en findOne:", error);
@@ -58,6 +59,16 @@ export class UsuarioRepository {
         }
         catch (error) {
             console.error("Error en delete:", error);
+            throw error;
+        }
+    }
+    async getByUsername(username) {
+        try {
+            const usuario = await usuarios.findOne({ username });
+            return usuario || undefined;
+        }
+        catch (error) {
+            console.error("Error en getByUsername:", error);
             throw error;
         }
     }

@@ -10,7 +10,7 @@ const repository = new UsuarioRepository()
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     try {
-        const requiredKeys = ['nombre', 'apellido', 'email', 'direccion', 'localidad', 'tipo', 'contraseña'];
+        const requiredKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña'];
 
         req.body.sanitizedInput = {};
 
@@ -59,13 +59,14 @@ async function add(req: Request, res: Response) {
 
         // Crear una instancia de Usuario con la contraseña cifrada
         const usuarioInput = new Usuario(
+            input.username,
             input.nombre,
             input.apellido,
             input.email,
             input.direccion,
             new ObjectId(input.localidad),
             input.avatar,
-            input.tipo,
+            input.tipo || 'usuario',
             hashContraseña  // Utilizar la contraseña cifrada
         );
 
@@ -85,8 +86,18 @@ async function update(req: Request, res: Response) {
         // Verificar si el usuario existe antes de intentar actualizarlo
         const usuarioExiste = await repository.findOne({ id: usuarioId });
 
+        // Check if the password is provided
+        let hashContraseña: string | undefined;
+        if (updatedData.contraseña) {
+            const contraseñaSinHash = updatedData.contraseña;
+            hashContraseña = await bcrypt.hash(contraseñaSinHash, 10);
+        }
+
         const objectIdUsuarioId = new ObjectId(usuarioId);
+
+        // Wait for bcrypt.hash to complete before creating Usuario instance
         const usuarioInput = new Usuario(
+            updatedData.username,
             updatedData.nombre,
             updatedData.apellido,
             updatedData.email,
@@ -94,13 +105,9 @@ async function update(req: Request, res: Response) {
             updatedData.localidad,
             updatedData.avatar,
             updatedData.tipo,
-            updatedData.contraseña,
+            hashContraseña || '',
             objectIdUsuarioId
         );
-
-        // Generar un hash de la contraseña antes de almacenarla en la base de datos
-        const hashContraseña = await bcrypt.hash(usuarioInput.contraseña, 10);
-        usuarioInput.contraseña = hashContraseña;  // Utilizar la contraseña cifrada
 
         if (!usuarioExiste) {
             // Si el usuario no existe, lo crea
@@ -189,5 +196,21 @@ async function iniciarSesion(req: Request, res: Response) {
     }
 }
 
+async function getByUsername(req: Request, res: Response) {
+    try {
+        const username = req.params.username;
+        const usuario = await repository.getByUsername(username);
 
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion }
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
+        }
+
+        return res.json({ data: usuario });
+    } catch (error) {
+        console.error("Error en getByUsername:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername }

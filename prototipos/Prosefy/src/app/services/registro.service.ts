@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 export interface RegistroResponse {
   mensaje: string;
   usuario: {
-    id: string;
+    username: string;
     nombre: string;
     apellido: string;
     email: string;
+    id: string;
   };
 }
 
@@ -24,7 +25,7 @@ export interface ErrorRegistroResponse {
 })
 export class RegistroService {
 
-  private apiUrl = 'http://localhost:3000/api/usuarios/registro';
+  private apiUrl = 'http://localhost:3000/api/usuarios/';
 
   constructor(private http: HttpClient) { }
 
@@ -38,6 +39,19 @@ export class RegistroService {
         catchError(this.handleServerError)
       );
   }
+
+  validarUsuarioExistente(username: string): Observable<boolean> {
+    const url = `${this.apiUrl}${username}`;
+    return this.http.get<any>(url)
+      .pipe(
+        map(response => {
+          console.log('Validación de usuario existente', response);
+          return response.exists === true;
+        }),
+        catchError(this.handleServerError)
+      );
+  }
+
 
   private handleServerError(error: any): Observable<never> {
     console.error('Error en el registro', error);
