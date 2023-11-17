@@ -3,54 +3,56 @@ import { UsuarioService } from '../../services/usuario.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/services/Auth/LoginRequest';
+import { IniciarSesionService, IniciarSesionResponse } from 'src/app/services/iniciar-sesion.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
   templateUrl: './iniciar-sesion.component.html',
   styleUrls: ['./iniciar-sesion.component.css']
 })
-export class IniciarSesionComponent implements OnInit{
-  loginError: string= "";
+export class IniciarSesionComponent implements OnInit {
+  loginError: string = "";
   loginGroup = this.formBuilder.group({
-    email: ['bla@gmail.com', [Validators.required, Validators.email]],
-    password: ['',[Validators.required]]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]]
   });
-  inputUsuario: string = '';
-  inputContrasena: string = '';
-
-
 
   constructor(
     private usuarioService: UsuarioService,
-    private formBuilder : FormBuilder,
-    private router: Router
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private iniciarSesionService: IniciarSesionService
   ) { }
 
   ngOnInit() {
   }
 
-  login(){
-    console.log(this.loginGroup.value);
-    if (this.loginGroup.valid){
-      this.usuarioService.login(this.loginGroup.value as LoginRequest).subscribe({
+  login() {
+    const email = this.loginGroup.get('email')?.value ?? '';
+    const password = this.loginGroup.get('password')?.value ?? '';
 
-          //this.router.navigateByUrl('/perfil')
-          //this.loginGroup.reset()
-      });
-    }
-    else{
+    if (this.loginGroup.valid) {
+      this.iniciarSesionService.iniciarSesion(email, password).subscribe(
+        (response: IniciarSesionResponse) => {
+          console.log('Inicio de sesión exitoso', response);
+          // TODO: Almacena el token en el almacenamiento local
+
+          this.router.navigateByUrl('/inicio');
+        },
+        (error) => {
+          console.error('Error en el inicio de sesión', error);
+
+          if (error.status === 401) {
+            this.loginError = 'Credenciales inválidas. Verifica tu email y contraseña.';
+          } else if (error.status === 404) {
+            this.loginError = 'No hay ninguna cuenta registrada con el email introducido.';
+          } else {
+            this.loginError = error.mensaje || 'Error desconocido en el inicio de sesión';
+          }
+        }
+      );
+    } else {
       this.loginGroup.markAllAsTouched();
-      alert("Datos incorrectos");
     }
-    
   }
-  
-  get email (){
-    return this.loginGroup.controls.email;
-  }
-
-  get password (){
-    return this.loginGroup.controls.password;
-  }
-
-}
+}  
