@@ -62,7 +62,6 @@ import { AutoresService } from './services/autores.service';
 import { ComentarioUsuarioComponent } from './shared/comentario-usuario/comentario-usuario.component';
 import { CarritoComprasService } from './services/carrito-compras.service';
 import { ListaAutoresComponent } from './shared/lista-autores/lista-autores.component';
-import { ModalRegistroComponent } from './sections/modal-registro/modal-registro.component';
 import { NuevoComentarioComponent } from './shared/nuevo-comentario/nuevo-comentario/nuevo-comentario.component';
 
 registerLocaleData(localeEs, 'es');
@@ -112,7 +111,6 @@ registerLocaleData(localeEs, 'es');
     NavbarComponent,
     ComentarioUsuarioComponent,
     ListaAutoresComponent,
-    ModalRegistroComponent,
     NuevoComentarioComponent
   ],
   imports: [

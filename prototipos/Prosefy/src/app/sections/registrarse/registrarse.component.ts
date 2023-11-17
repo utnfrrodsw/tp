@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { RegistroService, RegistroResponse, Usuario } from 'src/app/services/registro.service';
 @Component({
@@ -12,6 +13,7 @@ export class RegistrarseComponent {
   showErrorMessages: boolean = false;
   isPopupOpen: boolean = false;
   modalMessage: string = '';
+  showRedirectButton: boolean = false;
 
   @Output() closed = new EventEmitter<void>();
 
@@ -21,6 +23,7 @@ export class RegistrarseComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     public usuariosService: UsuarioService,
     private registroService: RegistroService
   ) {
@@ -137,8 +140,8 @@ export class RegistrarseComponent {
     this.registroService.registrarUsuario(usuario).subscribe(
       (response: RegistroResponse) => {
         console.log('Registro exitoso', response);
-        const Message = 'Usuario registrado exitosamente.';
-        this.updateModalContent(Message);
+        const message = 'Usuario registrado exitosamente.';
+        this.updateModalContent(message, true);
       },
       (error) => {
         console.error('Error al registrar el usuario', error);
@@ -156,8 +159,14 @@ export class RegistrarseComponent {
     );
   }
 
-  private updateModalContent(message: string): void {
+  private updateModalContent(message: string, showRedirectButton: boolean = false): void {
     this.modalMessage = message;
+    this.showRedirectButton = showRedirectButton;
     this.isPopupOpen = true;
   }
-}  
+
+  redirectToLogin(): void {
+    this.isPopupOpen = false;
+    this.router.navigate(['/identificarse']);
+  }
+}

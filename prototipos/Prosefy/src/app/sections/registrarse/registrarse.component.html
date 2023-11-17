@@ -143,7 +143,10 @@
           <p>{{ modalMessage }}</p>
         </div>
         <div class="modal-footer d-flex justify-content-center mt-5">
-          <button type="button" class="btn btn-primary mx-5 custom-btn-primary" (click)="closePopup()">Aceptar</button>
+          <button *ngIf="!showRedirectButton" type="button" class="btn btn-primary mx-5 custom-btn-primary"
+            (click)="closePopup()">Aceptar</button>
+          <button *ngIf="showRedirectButton" type="button" class="btn btn-primary mx-5 custom-btn-primary"
+            (click)="redirectToLogin()">Iniciar sesión</button>
         </div>
       </div>
     </div>
