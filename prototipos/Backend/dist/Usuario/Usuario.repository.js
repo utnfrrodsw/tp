@@ -21,6 +21,16 @@ export class UsuarioRepository {
             throw error;
         }
     }
+    async findOneByEmail(item) {
+        try {
+            const usuario = await usuarios.findOne({ email: item.email });
+            return usuario || undefined;
+        }
+        catch (error) {
+            console.error("Error en findOneByEmail:", error);
+            throw error;
+        }
+    }
     async add(item) {
         try {
             item._id = (await usuarios.insertOne(item)).insertedId;

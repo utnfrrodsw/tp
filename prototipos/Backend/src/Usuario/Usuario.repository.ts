@@ -27,6 +27,16 @@ export class UsuarioRepository implements Repository<Usuario>{
         }
     }
 
+    public async findOneByEmail(item: { email: string }): Promise<Usuario | undefined> {
+        try {
+            const usuario = await usuarios.findOne({ email: item.email });
+            return usuario || undefined;
+        } catch (error) {
+            console.error("Error en findOneByEmail:", error);
+            throw error;
+        }
+    }
+
     public async add(item: Usuario): Promise<Usuario | undefined> {
         try {
             item._id = (await usuarios.insertOne(item)).insertedId

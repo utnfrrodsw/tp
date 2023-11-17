@@ -9,6 +9,7 @@ export class Usuario {
         public localidad: ObjectId,
         public avatar: string,
         public tipo: string,
+        public contraseña: string,
         public _id?: ObjectId,
     ) { }
 }
