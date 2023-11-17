@@ -1,80 +1,77 @@
-<div class="container-perfil-usuario" *ngFor="let usuario of usuarios">
-  <!-- Primer encabezado-->
+<div class="container-fluid custom-container-fluid mt-5 mb-5" *ngFor="let usuario of usuarios">
   <div class="encabezado">
-    <h3 class="mt-5 mb-4">Perfil</h3>
+    <h4 class="mb-4">Perfil</h4>
   </div>
-  <!--Datos del usuario-->  
   <div class="container-perfil">
-    <!--Primer bloque-->
     <div class="datos">
-      <!--Secciones de cada dato-->
-      <div class="datos-personales etiqueta-color rounded">
+      <div class="datos-personales etiqueta-color rounded py-2">
         <div>
           <span>
             <label>Nombre</label>
           </span>
         </div>
         <div>
-          <label>{{usuario.nombre}}</label>
-          <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
+          <label *ngIf="!edicion.nombre">{{usuario.nombre}}</label>
+          <input *ngIf="edicion.nombre" class="custom-input" type="text" id="nombre" name="nombre" required>
+          <img (click)="toggleEdicion('nombre')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
       </div>
-      <!--Otra seccion más-->
-      <div class="datos-personales">
+      <div class="datos-personales py-2">
         <div>
           <span>
             <label>Email</label>
           </span>
         </div>
         <div>
-          <label>{{usuario.email}}</label>
-          <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
+          <label *ngIf="!edicion.email">{{usuario.email}}</label>
+          <input *ngIf="edicion.email" class="custom-input" type="text" id="email" name="email" required>
+          <img (click)="toggleEdicion('email')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
-      </div>        
+      </div>
     </div>
     <div class="espacio"></div>
-    <!--Segundo bloque-->
     <div class="datos">
-      <div class="datos-personales etiqueta-color rounded">
+      <div class="datos-personales etiqueta-color rounded py-2">
         <div>
           <span>
             <label>Apellido</label>
           </span>
         </div>
         <div>
-          <label>{{usuario.apellido}}</label>
-          <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
+          <label *ngIf="!edicion.apellido">{{usuario.apellido}}</label>
+          <input *ngIf="edicion.apellido" class="custom-input" type="text" id="apellido" name="apellido" required>
+          <img (click)="toggleEdicion('apellido')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
       </div>
-      <div class="datos-personales">
+      <div class="datos-personales py-2">
         <div>
           <span>
-            <label>Fecha de nacimiento</label> 
+            <label>Nombre de usuario</label>
           </span>
         </div>
         <div>
-          <label>08/12/1992</label>
-          <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
+          <label *ngIf="!edicion.username">juan_perez</label>
+          <input *ngIf="edicion.username" class="custom-input" type="text" id="username" name="username" required>
+          <img (click)="toggleEdicion('username')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
-      </div>        
+      </div>
     </div>
   </div>
-  <!-- Segunda sección-->
   <div class="container-bloques">
     <div class="bloque">
       <div class="encabezado">
         <div>
-          <h3 class="mt-5 mb-4">Direcciones</h3>
+          <h4 class="mt-5 mb-4">Direcciones</h4>
         </div>
-        <div class="img-plus">
-          <label>+</label>
+        <div>
+          <label class="img-plus">+</label>
         </div>
-      </div>  
+      </div>
       <div class="datos-2">
-        <div class="datos-personales etiqueta-color rounded">
+        <div class="datos-personales etiqueta-color rounded py-2">
           <div>
             <span>
-              <a class="boton-direcciones rounded-pill">Principal</a>
+              <a class="boton-direcciones rounded-pill px-3">Principal</a>
               <label>{{usuario.direccion}}</label>
             </span>
           </div>
@@ -82,7 +79,7 @@
             <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
           </div>
         </div>
-        <div class="datos-personales">
+        <div class="datos-personales py-2">
           <div>
             <span>
               <label>Wegner 2300</label>
@@ -92,7 +89,7 @@
             <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
           </div>
         </div>
-        <div class="datos-personales etiqueta-color rounded">
+        <div class="datos-personales etiqueta-color rounded py-2">
           <div>
             <span>
               <label>Av. beethoven 1291</label>
@@ -101,96 +98,97 @@
           <div>
             <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
           </div>
-        </div>        
+        </div>
       </div>
     </div>
     <div class="espacio"></div>
     <div class="bloque">
       <div class="encabezado">
-        <h3 class="mt-5 mb-4">Cambio de credenciales</h3>
+        <h4 class="mt-5 mb-4">Cambio de credenciales</h4>
       </div>
       <div class="datos-2">
-        <div class="datos-personales etiqueta-color rounded">
+        <div class="datos-personales etiqueta-color rounded py-2">
           <div>
             <span>
-              <label>Contraseña actual:</label>
+              <label>Contraseña</label>
             </span>
           </div>
           <div>
-            <label>******</label>
-            <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
+            <label *ngIf="!edicion.contrasena">******</label>
+            <input *ngIf="edicion.contrasena" class="custom-input" type="text" id="contrasena" name="contrasena"
+              required>
+            <img (click)="toggleEdicion('contrasena')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
+              alt="">
           </div>
         </div>
-        <div class="datos-personales">
-          <div>
-            <span>
-              <label>Nueva contraseña</label>
-            </span>
-          </div>
-          <div>
-            <label>******</label>
-            <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
-          </div>
-        </div>
-        <div class="datos-personales etiqueta-color rounded">
+        <div class="datos-personales py-2">
           <div>
             <span>
               <label>Confirmar contraseña</label>
             </span>
           </div>
           <div>
-            <label>******</label>
-            <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
+            <label *ngIf="!edicion.confirmarContrasena">******</label>
+            <input *ngIf="edicion.confirmarContrasena" class="custom-input" type="text" id="confirmarContrasena"
+              name="confirmarContrasena" required>
+            <img (click)="toggleEdicion('confirmarContrasena')" class="img-lápiz"
+              src="./assets/img/lápiz-perfil-usuario.png" alt="">
           </div>
-        </div>        
+        </div>
       </div>
     </div>
   </div>
-  <!--Tercera sección-->
   <div class="encabezado">
-    <h3 class="mt-5 mb-4">Ubicaciones</h3>
-  </div>  
+    <h4 class="mt-5 mb-4">Ubicaciones</h4>
+  </div>
   <div class="container-perfil">
     <div class="datos">
-      <div class="datos-personales etiqueta-color rounded">
+      <div class="datos-personales etiqueta-color rounded py-2">
         <div>
           <span>
             <label>Localidad</label>
           </span>
         </div>
         <div>
-          <label>{{usuario.localidad}}</label>
-          <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
+          <label *ngIf="!edicion.localidad">{{usuario.localidad}}</label>
+          <input *ngIf="edicion.localidad" class="custom-input" type="text" id="localidad" name="localidad" required>
+          <img (click)="toggleEdicion('localidad')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
+            alt="">
         </div>
       </div>
-      <div class="datos-personales">
+      <div class="datos-personales py-2">
         <div>
           <span>
             <label>Código postal</label>
           </span>
         </div>
         <div>
-          <label>2154</label>
-          <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
+          <label *ngIf="!edicion.codigoPostal">2000</label>
+          <input *ngIf="edicion.codigoPostal" class="custom-input" type="text" id="codigoPostal" name="codigoPostal"
+            required>
+          <img (click)="toggleEdicion('codigoPostal')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
+            alt="">
         </div>
-      </div>        
+      </div>
     </div>
     <div class="espacio"></div>
     <div class="datos">
-      <div class="datos-personales etiqueta-color rounded">
+      <div class="datos-personales etiqueta-color rounded py-2">
         <div>
           <span>
             <label>Provincia</label>
           </span>
         </div>
         <div>
-          <label>Santa Fe</label>
-          <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
+          <label *ngIf="!edicion.provincia">Santa Fe</label>
+          <input *ngIf="edicion.provincia" class="custom-input" type="text" id="provincia" name="provincia" required>
+          <img (click)="toggleEdicion('provincia')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
+            alt="">
         </div>
-      </div>       
+      </div>
     </div>
   </div>
   <div class="container-buttom-guardar-cambios">
-    <a class="buttom-cambios rounded-pill" href="">Guardar Cambios</a>
+    <a class="buttom-cambios rounded-pill mt-4" href="">Guardar cambios</a>
   </div>
 </div>

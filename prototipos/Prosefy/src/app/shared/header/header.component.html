@@ -23,6 +23,7 @@
           <!-- Diferentes opciones al hacer clic sobre el perfil de usuario -->
           <a *ngIf="!isLoggedIn" class="dropdown-item custom-dropdown-item" routerLink="/identificarse">Iniciar
             sesión</a>
+          <a routerLink="/perfil" *ngIf="isLoggedIn" class="dropdown-item custom-dropdown-item mb-2">Mi cuenta</a>
           <a *ngIf="isLoggedIn" class="dropdown-item custom-dropdown-item" (click)="logout()">Cerrar sesión</a>
         </div>
         <a routerLink="/carrito-compras"><img src="../../assets/img/carrito-de-compras.png" alt="Carrito de compras"

@@ -1,57 +1,57 @@
-@media only screen and (max-width: 768px){
-    
-    .container-navbar{
+@media only screen and (max-width: 768px) {
+
+    .container-navbar {
         width: auto;
         height: 30px;
-        display:flex;
+        display: flex;
         flex-direction: column !important;
         margin-left: 20%;
         margin-top: 50px;
         margin-right: 20%;
     }
 
-    .item-menu{
+    .item-menu {
         color: rgb(51, 51, 51);
         text-decoration: none;
         text-align: center !important;
-        border-left: solid 0px !important ;
+        border-left: solid 0px !important;
     }
 
-    .boton-info-usuario{
+    .boton-info-usuario {
         justify-content: center !important;
         margin-right: 30% !important;
     }
 
-    .collapse{
+    .collapse {
         background-color: white;
         border: solid 1px rgb(209, 209, 209);
     }
 }
-    
 
-.container{
+
+.container {
     display: flex;
     flex-direction: column;
 }
 
 
-.img-usuario{
+.img-usuario {
     display: flex;
     justify-content: center;
 }
 
 .imagen-usuario-azul {
-    width: 150px; 
-    height: 150px; 
-    border-radius: 50%; 
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
     object-fit: cover;
 }
 
-.container-navbar{
+.container-navbar {
     text-align: center;
     width: auto;
     height: 50px;
-    display:flex;
+    display: flex;
     flex-direction: row;
     margin-left: 20%;
     margin-top: 50px;
@@ -60,7 +60,7 @@
 }
 
 
-.item-menu{
+.item-menu {
     color: rgb(51, 51, 51);
     text-decoration: none;
     text-align: center !important;
@@ -69,4 +69,8 @@
 
 .navbar {
     box-shadow: none !important;
+}
+
+.custom-perfil {
+    max-width: 200px;
 }

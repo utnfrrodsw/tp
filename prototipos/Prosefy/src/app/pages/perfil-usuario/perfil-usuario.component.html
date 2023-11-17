@@ -1,49 +1,53 @@
+<!-- app.component.html -->
 <app-header></app-header>
 <app-navbar></app-navbar>
 <div class="container">
-  <h2 class="text-center mt-5 custom-title">Perfil de usuario</h2>
-  <div class="img-usuario">
-    <img class="imagen-usuario-azul" src="./assets/img/usuario-azul.jpg" alt="loco">
+  <div class="row mt-5">
+    <div class="col-12 text-center">
+      <h2 class="custom-title">Perfil de usuario</h2>
+    </div>
   </div>
-  <!-- app.component.html o tu componente de barra de navegación -->
-  <nav class="navbar navbar-expand-lg container-navbar">
-    <a class="navbar-brand" href="#"></a>
-    <div class="boton-info-usuario">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4 mt-4">
+      <div class="img-usuario">
+        <img class="img-fluid rounded-circle custom-perfil" src="./assets/img/usuario-azul.jpg" alt="Usuario">
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Mis datos</a>
-        </li>
-        <li class="nav-item item-menu">
-          <a class="nav-link" href="#">Mis pedidos</a>
-        </li>
-        <li class="nav-item item-menu">
-          <a class="nav-link" href="#">Mis reseñas</a>
-        </li>
-        <li class="nav-item item-menu">
-          <a class="nav-link" href="#">Medios de pago</a>
-        </li>
-        <li class="nav-item item-menu">
-          <a class="nav-link" href="#">Eliminar cuenta</a>
-        </li>
-      </ul>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <nav class="navbar navbar-expand-lg navbar-light container-navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Mis datos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Mis pedidos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Mis reseñas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Medios de pago</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Eliminar cuenta</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
-  </nav>
-
-  <!--
-  <div class="container-navbar shadow-sm bg-light">
-    <a class="item-menu" href="">Mis datos</a>
-    <a class="item-menu" href="">Mis datos</a>
-    <a class="item-menu" href="">Mis pedidos</a>
-    <a class="item-menu" href="">Mis reseñas</a>
-    <a class="item-menu" href="">Medios de pago</a>
-    <a class="item-menu" href="">Eliminar cuenta</a>
-  </div>-->
-  <h2 class="text-center mt-5 custom-title">Mis datos</h2>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12">
+      <h2 class="custom-title">Mis datos</h2>
+    </div>
+  </div>
 </div>
 <app-info-usuario></app-info-usuario>
 <app-footer></app-footer>

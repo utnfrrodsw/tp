@@ -1,23 +1,23 @@
-@media only screen and (max-width: 768px){
-
-    .container-perfil-usuario{
+@media only screen and (max-width: 768px) {
+    .container-perfil-usuario {
         display: flex;
         flex-direction: column;
-        width: 100% !important;
-        margin-left: 0% !important;
-        margin-right: 0% !important;
         margin-top: 30px;
-        margin-bottom: 20%; 
+        margin-bottom: 20%;
+        margin-left: 5%;
+        /* Ajusta este valor según tus necesidades */
+        margin-right: 5%;
+        /* Ajusta este valor según tus necesidades */
     }
 
-    .container-bloques{
+    .container-bloques {
         display: flex;
         flex-direction: column !important;
         justify-content: space-between;
         width: 100% !important;
     }
 
-    .encabezado{
+    .encabezado {
         width: 100% !important;
         display: flex;
         flex-direction: row;
@@ -25,29 +25,29 @@
         justify-content: space-between;
     }
 
-    .container-perfil{
+    .container-perfil {
         display: flex;
         flex-direction: column !important;
         justify-content: space-between;
-        
+
     }
 
-    .bloque{
+    .bloque {
         width: 100% !important;
     }
 
-    .datos-personales{
+    .datos-personales {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         height: 40px;
-        width: 200px;    
+        width: 200px;
         padding-top: 7px;
         padding-left: 10px;
         padding-right: 10px;
     }
 
-    .boton-direcciones{
+    .boton-direcciones {
         text-decoration: none;
         background-color: rgb(131, 73, 46);
         width: 15px;
@@ -55,43 +55,47 @@
         color: white;
         margin-right: 7px;
     }
-    
+
 
 }
 
-.container-perfil-usuario{
+.custom-container-fluid {
+    width: 90%;
+}
+
+.container-perfil-usuario {
     display: flex;
     flex-direction: column;
-    margin-left: 20%;
+    margin-left: 10%;
     margin-top: 30px;
-    margin-right: 20%;
-    margin-bottom: 20%; 
+    margin-right: 10%;
+    margin-bottom: 20%;
 }
 
-.container-bloques{
+.container-bloques {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     height: 25%;
-    width: 100% ;
+    width: 100%;
 }
 
 
 
-.container-perfil{
+.container-perfil {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
 }
 
-.container-buttom-guardar-cambios{
+.container-buttom-guardar-cambios {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.buttom-cambios{
+.buttom-cambios {
     background-color: rgb(131, 73, 46);
     color: white;
     width: 60;
@@ -102,14 +106,14 @@
     padding-right: 10px;
 }
 
-.encabezado{
+.encabezado {
     display: flex;
     flex-direction: row;
     border-bottom: black 1px solid;
     justify-content: space-between;
 }
 
-.datos{
+.datos {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -119,7 +123,7 @@
     padding-bottom: 35px;
 }
 
-.datos-2{
+.datos-2 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -129,7 +133,7 @@
     padding-bottom: 35px;
 }
 
-.boton-direcciones{
+.boton-direcciones {
     text-decoration: none;
     background-color: rgb(131, 73, 46);
     width: 15px;
@@ -139,12 +143,12 @@
 }
 
 
-.etiqueta-color{
+.etiqueta-color {
     background-color: rgb(218, 216, 216);
 }
 
 
-.datos-personales{
+.datos-personales {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -155,22 +159,38 @@
     padding-right: 10px;
 }
 
-.img-lápiz{
+.img-lápiz {
     width: 20px;
     height: 20px;
     margin-left: 10px;
 }
 
-.espacio{
+.espacio {
     width: 25%;
 }
 
-.bloque{
+.bloque {
     height: 25%;
     width: 100%;
 }
 
-.img-plus{
+.img-plus {
     padding-top: 55px;
-    padding-right: 20px ;
+    padding-right: 20px;
+    font-size: 18px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.custom-input {
+    background-color: transparent;
+    border: 1px solid #b6b6b6;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    height: 90%;
+}
+
+.custom-input:focus {
+    outline: none;
+    border-color: #83492e;
 }
