@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { RegistroService, RegistroResponse, Usuario } from 'src/app/services/registro.service';
+import { IniciarSesionService } from 'src/app/services/iniciar-sesion.service';
 @Component({
   selector: 'app-registrarse',
   templateUrl: './registrarse.component.html',
@@ -25,7 +26,8 @@ export class RegistrarseComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     public usuariosService: UsuarioService,
-    private registroService: RegistroService
+    private registroService: RegistroService,
+    private iniciarSesionService: IniciarSesionService
   ) {
     this.registroForm = this.formBuilder.group(
       {
@@ -41,6 +43,13 @@ export class RegistrarseComponent {
       },
       { validator: this.passwordMatchValidator }
     );
+  }
+
+  ngOnInit() {
+    // Verifica el estado de inicio de sesión al iniciar el componente
+    if (this.iniciarSesionService.isLoggedIn) {
+      this.router.navigateByUrl('/inicio');
+    }
   }
 
   login() {
@@ -71,6 +80,12 @@ export class RegistrarseComponent {
   registrarUsuario(): void {
     console.log('Se hizo clic en el botón Continuar');
     this.showErrorMessages = true;
+
+    // Verifica el estado de inicio de sesión antes de intentar registrarse
+    if (this.iniciarSesionService.isLoggedIn) {
+      this.router.navigateByUrl('/inicio');
+      return;
+    }
 
     if (this.registroForm.valid) {
       console.log('El formulario es válido. Realizar una llamada API.');
