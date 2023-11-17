@@ -1,6 +1,11 @@
 <template>
   <v-container fluid>
     <v-row>
+      <v-col cols="12" sm="12" v-if="groups.length==0">
+        <v-card outlined>
+          <v-card-text>No hay registros de grupos.</v-card-text>
+        </v-card>
+      </v-col>
       <v-col v-for="(group, index) in groups" :key="index" cols="3">
         <v-card outlined>
           <v-card-title>

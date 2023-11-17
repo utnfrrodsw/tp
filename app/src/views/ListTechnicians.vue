@@ -11,6 +11,19 @@
         </v-btn>
       </v-col>
 
+      <v-col cols="12" sm="12">
+        <v-card class="mx-auto" tile>
+          <v-card-title>Tecnicos</v-card-title>
+          <v-data-table :headers="headers" :items="items" disable-pagination :hide-default-footer="true">
+            <template v-slot:[`item.actions`]="{ item }">
+              <v-icon small class="mr-2" @click="editTechnician(item.id)">
+                mdi-pencil
+              </v-icon>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-col>
+      
       <v-col cols="4" sm="3">
         <v-select v-model="pageSize" :items="pageSizes" label="Items por pagina" @change="handlePageSizeChange"></v-select>
       </v-col>
@@ -24,19 +37,6 @@
           prev-icon="mdi-menu-left" 
           @input="handlePageChange">
         </v-pagination>
-      </v-col>
-
-      <v-col cols="12" sm="12">
-        <v-card class="mx-auto" tile>
-          <v-card-title>Tecnicos</v-card-title>
-          <v-data-table :headers="headers" :items="items" disable-pagination :hide-default-footer="true">
-            <template v-slot:[`item.actions`]="{ item }">
-              <v-icon small class="mr-2" @click="editTechnician(item.id)">
-                mdi-pencil
-              </v-icon>
-            </template>
-          </v-data-table>
-        </v-card>
       </v-col>
     </v-row>
   </v-container>
