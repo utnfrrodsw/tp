@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
-import { RegistroService } from 'src/app/services/registro.service';
+import { RegistroService, RegistroResponse } from 'src/app/services/registro.service';
 
 @Component({
   selector: 'app-registrarse',
@@ -64,35 +64,17 @@ export class RegistrarseComponent {
 
     if (this.registroForm.valid) {
       console.log('Form is valid. Making API call.');
-      const username = this.registroForm.get('username');
+      console.log('Form is valid. Making API call.');
 
-      if (username) {
-        const userUsername = username.value;
-
-        // Validar si el usuario ya existe antes de realizar el registro
-        this.registroService.validarUsuarioExistente(userUsername).subscribe(
-          (usuarioExistente) => {
-            if (!usuarioExistente) {
-              const user = this.registroForm.value;
-
-              this.registroService.registrarUsuario(user).subscribe(
-                (data) => {
-                  console.log('Se realizó el registro del usuario', data);
-                },
-                (error) => {
-                  console.error('Error en el registro del usuario', error);
-                }
-              );
-            } else {
-              username.setErrors({ usuarioExistente: true });
-              console.error('El usuario ya existe');
-            }
-          },
-          (error) => {
-            console.error('Error al validar el usuario', error);
-          }
-        );
-      }
+      const user = this.registroForm.value;
+      this.registroService.registrarUsuario(user).subscribe(
+        (response: RegistroResponse) => {
+          console.log('Registro exitoso', response);
+        },
+        (error) => {
+          console.error('Error al validar el usuario', error);
+        }
+      );
     }
   }
-}  
+}
