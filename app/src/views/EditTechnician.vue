@@ -11,12 +11,19 @@
         </v-text-field>
         </v-col>
         <v-col cols="12" md="6">
-          <v-menu v-model="menu" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y>
+          <v-menu 
+            v-model="menu" 
+            :close-on-content-click="false" 
+            :nudge-right="40" 
+            transition="scale-transition" 
+            offset-y
+          >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field 
                 v-model="formattedDate" 
                 label="Fecha de Nacimiento" 
                 readonly 
+                :rules="validationRules.date_born"
                 v-bind="attrs" 
                 v-on="on"
               >
@@ -45,6 +52,7 @@
   import axios from 'axios'
   import Alerts from '@/components/Alerts.vue'
   import TechnicianDataService from "../services/TechnicianDataService";
+  import { esMayorDe18 } from '@/utilities/utilities.js';
 
 export default {
   name: 'EditTechnician',
@@ -64,7 +72,14 @@ export default {
           v => (v && v.length <= 10) || 'Nombre must be less than 10 characters',
         ],
         date_born: [
-          v => !!v || 'Fecha de nacimiento is required',
+          value => {
+            if (value) return true
+            return 'Fecha Nacimiento is required'
+          },
+          value => {
+            if (esMayorDe18(value)) return true
+            return 'Fecha Nacimiento invalida: edad minima 18'
+          },
         ],
       },
       menu: false,
@@ -86,7 +101,8 @@ export default {
       get: function () {
         if (this.technician.date_born) {
           const date = new Date(this.technician.date_born);
-          return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+          const [year, month, day] = date.toISOString().substring(0, 10).split('-')
+          return `${day}/${month}/${year}`
         }
         return '';
       },
@@ -100,9 +116,8 @@ export default {
     async fetchData() {
       this.loading = true
       try {
-        const apiUrl = process.env.VUE_APP_API_URL
-        const url = `${apiUrl}api/technicians/${this.technician.id}`
-        const response = await axios.get(url)
+        const response = await TechnicianDataService.get(this.technician.id)
+
         this.technician.name = response.data.name
         this.technician.date_born = response.data.date_born.substring(0, 10)
       } catch (error) {
