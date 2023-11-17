@@ -10,6 +10,10 @@ Content-Type: application/json
     "email":"JasonMtn@gmail.com",
     "direccion":"calle falsa 123",
     "localidad":"6556a826e9f6a54f39587147",
-    "avatar":"",
-    "tipo":"Administrador"
+    "tipo":"Administrador",
+    "contraseña": "contrasena223445"
 }
+
+### Usuario 1
+GET http://localhost:3000/api/usuarios
+Content-Type: application/json
