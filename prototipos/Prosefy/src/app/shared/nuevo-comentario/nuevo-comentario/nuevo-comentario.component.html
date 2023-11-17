@@ -1,4 +1,4 @@
-<div class="comentario-usuario row mx-4 align-items-center" *ngFor="let comentario of allComentarios">
+<div class="comentario-usuario row mx-4 align-items-center">
     <div class="col-md-2 col-12 mb-3 mb-md-0">
         <img src="../../../assets/img/usuario sin sombra.png" alt="Imagen de perfil" class="profile-image">
     </div>
@@ -11,9 +11,14 @@
                 </div>
             </div>
             <div class="opinion text-start">
-                <p class="mb-0">{{comentario}}</p>
+                <form (ngSubmit)="addComment()" [formGroup] = "comentarioForm">
+                    <div><label for="text">Comentario:</label></div>
+                    <div><textarea class="mb-0 comentarioCss" id="text" [(ngModel)]="comentario" required formCotrolName="comentario"></textarea></div>
+                    <div><button type="submit">Agregar Comentario</button></div>
+                </form>
             </div>
         </div>
         <p class="fecha-publicacion mt-2 text-gray">28 de octubre de 2023</p>
     </div>
 </div>
+
