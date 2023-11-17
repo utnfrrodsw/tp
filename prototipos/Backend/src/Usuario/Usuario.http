@@ -1,5 +1,7 @@
 // TODO: Al hacer update la contraseña no se hashea
 
+// TODO: Al no introducir tipo por defecto tiene que establecerse en 'usuario'
+
 // CREAR USUARIOS
 
 ### Usuario 1

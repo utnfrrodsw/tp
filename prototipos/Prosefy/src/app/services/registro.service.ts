@@ -3,6 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+export interface Usuario {
+  username: string;
+  nombre: string;
+  apellido: string;
+  email: string;
+  contraseña: string;
+}
+
 export interface RegistroResponse {
   mensaje: string;
   usuario: {
@@ -29,7 +37,7 @@ export class RegistroService {
 
   constructor(private http: HttpClient) { }
 
-  registrarUsuario(usuario: any): Observable<RegistroResponse> {
+  registrarUsuario(usuario: Usuario): Observable<RegistroResponse> {
     return this.http.post<RegistroResponse>(this.apiUrl, usuario)
       .pipe(
         tap(response => {
