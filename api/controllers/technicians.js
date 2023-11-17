@@ -1,18 +1,42 @@
 const { Group, Technician } = require('../sequelize')
 
-const getTechnicians = async (req, res) => {
-  try {
-    const technicians = await Technician.findAll({
-      include: {
-        model: Group
-      }
-    })
-    res.status(200).json(technicians)
-  } catch (error) {
-    console.log(error)
-    res.status(400).send('Ups! Error')
-  }
+const getTechnicians = (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = getPagination(page, size);
+
+  Technician.findAndCountAll({
+    limit,
+    offset,
+    include: {
+      model: Group
+    }
+  })
+  .then(data => {
+    const response = getPagingData(data, page, limit);
+    res.send(response);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving tutorials."
+    });
+  });
 }
+
+const getPagingData = (data, page, limit) => {
+  const { count: totalItems, rows: technicians } = data;
+  const currentPage = page ? +page : 0;
+  const totalPages = Math.ceil(totalItems / limit);
+
+  return { totalItems, technicians, totalPages, currentPage };
+};
+
+const getPagination = (page, size) => {
+  const limit = size ? +size : 3;
+  const offset = page ? page * limit : 0;
+
+  return { limit, offset };
+};
 
 const getTechnician = async (req, res) => {
   const { id } = req.params
@@ -85,6 +109,7 @@ const deleteTechnician = async (req, res) => {
 }
 
 module.exports = {
+  findAll,
   getTechnicians,
   getTechnician,
   updateTechnician,
