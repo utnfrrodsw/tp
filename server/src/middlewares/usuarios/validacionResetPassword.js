@@ -1,14 +1,17 @@
 const express = require('express');
 const { body, check, validationResult } = require('express-validator');
+const router = express.Router();
 
-const validacionCambioClave = [
+const validateResetPassword = [
+  body('code').notEmpty().withMessage('El código de recuperación es requerido'),
+  body('code').isAlphanumeric().withMessage('El código de recuperación debe ser alfanumérico'),
   check('newPassword')
+    
   .notEmpty().withMessage('Debes ingresar una contraseña')
   .isLength({ min: 6 }).withMessage('La nueva contraseña debe tener al menos 6 caracteres')
   .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/).withMessage('La contraseña debe contener al menos una letra y un número'),
-
-  body('confirmPassword').notEmpty().withMessage('Debes confirmar la contraseña'),
   
+  body('confirmPassword').notEmpty().withMessage('Debes confirmar la contraseña'),
   body('confirmPassword').custom((value, { req }) => {
     if (value !== req.body.newPassword) {
       throw new Error('Las contraseñas no coinciden');
@@ -26,4 +29,4 @@ const validacionCambioClave = [
   },
 ];
 
-exports.validacionCambioClave = validacionCambioClave ;
+module.exports = { validateResetPassword };

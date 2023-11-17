@@ -17,13 +17,13 @@ function Register() {
   const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [esPrestador, setEsPrestador] = useState(false);
   const [especialidades, setEspecialidades] = useState([]);
-  const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [errorResponse, setErrorResponse] = useState("");
   const auth = useAuth();
   const [direccionesUsuario, setDireccionesUsuario] = useState([]);
   const [nuevaDireccion, setNuevaDireccion] = useState({});  
-  
   const [nuevaEspecialidad, setNuevaEspecialidad] = useState('');
+  const [mostrarContrasena, setMostrarContrasena] = useState(false);
+
   
 
   // Función para abrir el modal de agregar especialidad
@@ -70,34 +70,26 @@ function Register() {
   const [direccionError, setDireccionError] = useState(null);
 
   const handleAgregarDireccion = () => {
-    const errors = [];
+    let error = null;
   
     if (!nuevaDireccion.calle) {
-      errors.push('La calle es requerida');
-    }
-  
-    if (!nuevaDireccion.numero) {
-      errors.push('El número es requerido');
+      error = 'La calle es requerida';
+    } else if (!nuevaDireccion.numero) {
+      error = 'El número es requerido';
     } else if (!Number.isInteger(Number(nuevaDireccion.numero))) {
-      errors.push('El número debe ser un valor numérico');
-    }
-  
-    if (!nuevaDireccion.codPostal) {
-      errors.push('El código postal es requerido');
+      error = 'El número debe ser un valor numérico';
+    } else if (!nuevaDireccion.codPostal) {
+      error = 'El código postal es requerido';
     } else if (!Number.isInteger(Number(nuevaDireccion.codPostal))) {
-      errors.push('El código postal debe ser un valor numérico');
+      error = 'El código postal debe ser un valor numérico';
+    } else if (!nuevaDireccion.ciudad) {
+      error = 'La ciudad es requerida';
+    } else if (!nuevaDireccion.provincia) {
+      error = 'La provincia es requerida';
     }
   
-    if (!nuevaDireccion.ciudad) {
-      errors.push('La ciudad es requerida');
-    }
-  
-    if (!nuevaDireccion.provincia) {
-      errors.push('La provincia es requerida');
-    }
-  
-    if (errors.length > 0) {
-      setDireccionError(errors.join(', ')); // Establece el error
+    if (error) {
+      setDireccionError(error); // Establece el primer error
     } else {
       setDireccionesUsuario([...direccionesUsuario, nuevaDireccion]);
       setNuevaDireccion({
@@ -118,20 +110,14 @@ function Register() {
     setShowDireccionModal(true);
   };
 
+  const [message, setMessage] = useState('');
+  const [successMessage, setSucceseMessage] = useState(null);
 
-  const [validationErrors, setValidationErrors] = useState([]);
-  const [registrationMessage, setRegistrationMessage] = useState('');
    
   const handleRegister = async (e) => {
     e.preventDefault();
-    setValidationErrors([]);
-  
-    // Verifica si las contraseñas coinciden
-    if (contrasena !== confirmContrasena) {
-      setValidationErrors([{ msg: 'Las contraseñas no coinciden' }]);
-      return;
-    }
-  
+    setMessage('');
+
     try {
       const response = await fetch(`${API_URL}/usuario/register`, {
         method: 'POST',
@@ -152,30 +138,26 @@ function Register() {
         }),
       });
   
-      if (response.ok) {
-        setValidationErrors([]);
-        setRegistrationSuccess(true);
-        setErrorResponse("");
-        setRegistrationMessage(
-          'Registro exitoso. Redirigiendo a la página de inicio de sesión...'
-        );
+      const data = await response.json();
+    
+      if (response.status === 201) {
+        setSucceseMessage('Registro exitoso, redirigiendo al login...');
         setTimeout(() => {
-          goTo('/login');
-        }, 5000);
+          goTo('/login');}, 5000);
       } else {
-        const json = await response.json();
-        setValidationErrors(json.errors || []);
-        setErrorResponse('Error al registrarse');
-        setRegistrationSuccess(false);
+        // Si hay errores del middleware, utiliza el primer mensaje de error
+        // Si no, utiliza el mensaje de error del controlador
+        setMessage(data.errors && data.errors.length > 0 ? data.errors[0].msg : data.message);
       }
-    } catch (error) {
-      console.error(error);
-      setErrorResponse('Error en el servidor');
+      if (data.statusCode === 400){
+        setMessage('El email ingresado ya esta en uso');
+      }
 
-      setRegistrationSuccess(false);
+    } catch (error) {
+      setMessage(error.message);
     }
   };
-
+  
   return (
     <section className="fondoRegister">
       <div className="register-container">
@@ -187,7 +169,7 @@ function Register() {
               <input
                 type="text"
                 placeholder="Nombre"
-                required
+                
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
               />
@@ -196,7 +178,7 @@ function Register() {
               <input
                 type="text"
                 placeholder="Apellido"
-                required
+                
                 value={apellido}
                 onChange={(e) => setApellido(e.target.value)}
               />
@@ -204,28 +186,32 @@ function Register() {
           </div>
           <div className="input-box">
             <input
-              required
-              type="email"
+              
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="input-box">
-            <input
-              type="password"
-              placeholder="Contraseña"
-              required
-              minLength="6"
-              value={contrasena}
-              onChange={(e) => setContrasena(e.target.value)}
-            />
-          </div>
-          <div className="input-box">
+          <input
+             type={mostrarContrasena ? "text" : "password"}
+             placeholder="Contraseña"
+             value={contrasena}
+             onChange={(e) => setContrasena(e.target.value)}
+           />
+           <button
+              type="button"
+              className="mostrar-ocultar"
+              onClick={() => setMostrarContrasena(!mostrarContrasena)}
+              >
+            {mostrarContrasena ? "🙈" : "👁️"}
+           </button>
+           </div>
+           <div className="input-box">
             <input
               type="password"
               placeholder="Confirmar Contraseña"
-              required
+              
               value={confirmContrasena}
               onChange={(e) => setConfirmContrasena(e.target.value)}
             />
@@ -234,8 +220,7 @@ function Register() {
             <input
               type="text"
               placeholder="Número de Teléfono"
-              required
-              minLength="9"
+              
               value={telefono}
               onChange={(e) => setTelefono(e.target.value)}
             />
@@ -245,7 +230,7 @@ function Register() {
             <input
               type="date"
               placeholder="Fecha de Nacimiento"
-              required
+              
               value={fechaNacimiento}
               onChange={(e) => setFechaNacimiento(e.target.value)}
             />
@@ -254,7 +239,7 @@ function Register() {
         {/* Sección de direcciones */}
         <div className="direcciones-section">
                     {/* Botón para abrir el modal de agregar dirección */}
-         <button className="botonDireccion btn-small" type="button" onClick={handleDireccionModalOpen}>
+         <button className="botonDireccion-btn-small" type="button" onClick={handleDireccionModalOpen}>
           Agregar Dirección
          </button>  
   <      div className="direcciones-list">
@@ -274,10 +259,10 @@ function Register() {
 
         {/* Modal para agregar dirección */}
         <Modal show={showDireccionModal} onHide={handleDireccionModalClose}>
-  <Modal.Header closeButton>
-    <Modal.Title>Agregar Dirección</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>
+        <Modal.Header closeButton>
+        <Modal.Title>Agregar Dirección</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
        <input
              type="text"
              placeholder="Calle"
@@ -381,7 +366,7 @@ function Register() {
           </Modal.Header>
           <Modal.Body>
             <div className="form-group">
-              <label>Nueva Especialidad</label>
+              <label className='nuevaEspecialidad'> <h5>Nueva Especialidad</h5></label>
               <input
                 type="text"
                 placeholder="Ej: Gasista"
@@ -398,18 +383,9 @@ function Register() {
               Agregar
             </Button>
           </Modal.Footer>
-        </Modal>
-
-       {validationErrors.length > 0 && (
-        <div className="error-messages">
-        {validationErrors.map((error, index) => (
-      <div key={index} className="error-message">{error.msg}</div>
-      ))}
-     </div>
-       )}
-        {registrationSuccess && (
-         <div className="success-message">{registrationMessage}</div>
-        )}
+        </Modal> 
+         {message && <div className="error-message">{message}</div>}
+         {successMessage && <div className="success-message">{successMessage}</div>}
         <p>
           ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
         </p>

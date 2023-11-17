@@ -8,8 +8,17 @@
     overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
   }
   
-  .user-details,
+  .user-details {
+    margin: 1rem;
+    background-color: #4F709C;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
   .security-details {
+    display: flex;
+    flex-direction: column;
     margin: 1rem;
     background-color: #4F709C;
     border-radius: 8px;
@@ -129,7 +138,34 @@
   margin-left: auto; /* Alinea el botón a la derecha */
 }
 
+.security-details input::placeholder {
+  color: rgb(71, 66, 66);
+}
+
 input::placeholder {
   color: white;
 }
+
   
+.input-wrapper {
+  position: relative;
+}
+
+.input-container {
+  display: flex;
+  position: relative;
+}
+
+input {
+  width: 100%;
+  /* Agrega otros estilos según sea necesario */
+}
+
+.mostrar-ocultar {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+}
