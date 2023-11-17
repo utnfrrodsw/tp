@@ -109,7 +109,6 @@ const deleteTechnician = async (req, res) => {
 }
 
 module.exports = {
-  findAll,
   getTechnicians,
   getTechnician,
   updateTechnician,
