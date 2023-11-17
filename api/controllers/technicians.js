@@ -1,10 +1,14 @@
 const { Group, Technician } = require('../sequelize')
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 const getTechnicians = (req, res) => {
-  const { page, size } = req.query;
+  const { page, size, name } = req.query;
   const { limit, offset } = getPagination(page, size);
-
+  var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+  
   Technician.findAndCountAll({
+    where: condition,
     limit,
     offset,
     include: {
@@ -18,7 +22,7 @@ const getTechnicians = (req, res) => {
   .catch(err => {
     res.status(500).send({
       message:
-        err.message || "Some error occurred while retrieving tutorials."
+        err.message || "Some error occurred while retrieving technicians."
     });
   });
 }

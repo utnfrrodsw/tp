@@ -66,8 +66,12 @@ export default {
     this.retrieveTechnician();
   },
   methods: {
-    getRequestParams(page, pageSize) {
+    getRequestParams(searchName, page, pageSize) {
       let params = {};
+
+      if (searchName) {
+        params["name"] = searchName;
+      }
 
       if (page) {
         params["page"] = page - 1;
@@ -81,6 +85,7 @@ export default {
     },
     retrieveTechnician() {
       const params = this.getRequestParams(
+        this.searchName,
         this.page,
         this.pageSize
       );
