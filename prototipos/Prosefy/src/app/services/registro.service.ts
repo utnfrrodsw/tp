@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 export interface Usuario {
   username: string;
   nombre: string;
   apellido: string;
   email: string;
+  direccion?: string;
+  localidad?: string;
+  avatar?: string;
+  tipo?: string;
   contraseña: string;
+  _id?: string;
 }
 
 export interface RegistroResponse {
@@ -38,28 +43,51 @@ export class RegistroService {
   constructor(private http: HttpClient) { }
 
   registrarUsuario(usuario: Usuario): Observable<RegistroResponse> {
-    return this.http.post<RegistroResponse>(this.apiUrl, usuario)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http.post<RegistroResponse>(this.apiUrl, usuario, httpOptions)
       .pipe(
         tap(response => {
           console.log('Registro exitoso', response);
           // Lógica para manejar la respuesta exitosa del registro
         }),
-        catchError(this.handleServerError)
+        catchError((error: HttpErrorResponse) => {
+          return this.handleServerError(error); // Llamar a la función handleServerError
+        })
       );
   }
 
-  validarUsuarioExistente(username: string): Observable<boolean> {
+  validarUsuarioExistente(username: string): Observable<Usuario | null> {
     const url = `${this.apiUrl}${username}`;
-    return this.http.get<any>(url)
+    return this.http.get<Usuario>(url)
       .pipe(
-        map(response => {
-          console.log('Validación de usuario existente', response);
-          return response.exists === true;
-        }),
-        catchError(this.handleServerError)
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            return of(null);
+          } else {
+            return throwError(error);
+          }
+        })
       );
   }
 
+  validarEmailExistente(email: string): Observable<Usuario | null> {
+    const url = `${this.apiUrl}email/${email}`;
+    return this.http.get<Usuario>(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            return of(null);
+          } else {
+            return throwError(error);
+          }
+        })
+      );
+  }
 
   private handleServerError(error: any): Observable<never> {
     console.error('Error en el registro', error);
@@ -68,7 +96,10 @@ export class RegistroService {
       mensaje: 'Error desconocido en el registro'
     };
 
-    // Manejar otros errores
+    if (error instanceof HttpErrorResponse) {
+      errorMessage.mensaje = error.error?.mensaje || 'Error desconocido en el registro';
+      console.error('Detalles del error:', error.error);
+    }
 
     return throwError(errorMessage);
   }

@@ -62,6 +62,7 @@ import { AutoresService } from './services/autores.service';
 import { ComentarioUsuarioComponent } from './shared/comentario-usuario/comentario-usuario.component';
 import { CarritoComprasService } from './services/carrito-compras.service';
 import { ListaAutoresComponent } from './shared/lista-autores/lista-autores.component';
+import { ModalRegistroComponent } from './sections/modal-registro/modal-registro.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -109,7 +110,8 @@ registerLocaleData(localeEs, 'es');
     ListaLibrosComponent,
     NavbarComponent,
     ComentarioUsuarioComponent,
-    ListaAutoresComponent
+    ListaAutoresComponent,
+    ModalRegistroComponent
   ],
   imports: [
     BrowserModule,

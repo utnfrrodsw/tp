@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { editorialRouter } from "./Editorial/Editorial.routes.js";
 import { usuarioRouter } from "./Usuario/Usuario.routes.js";
 import { autorRouter } from "./Autor/Autor.routes.js";
@@ -8,10 +9,15 @@ import { localidadRouter } from "./Localidad/Localidad.routes.js";
 import { provinciaRouter } from "./Provincia/Provincia.routes.js";
 import { formatoRouter } from "./formatoLibro/formatoLibro.routes.js";
 import { comentarioRouter } from "./Comentario/Comentario.routes.js";
-import cors from "cors";
 const app = express();
-//const cors = require('cors');
-app.use(cors());
+// Configurar opciones de CORS
+const corsOptions = {
+    origin: "http://localhost:4200",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api/libros", libroRouter);
 app.use("/api/usuarios", usuarioRouter);

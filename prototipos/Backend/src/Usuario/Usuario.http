@@ -32,3 +32,15 @@ Content-Type: application/json
     "localidad":"6556a826e9f6a54f39587147",
     "contraseña": "claveSegura789"
 }
+
+### CREAR USUARIO
+POST http://localhost:3000/api/usuarios/
+Content-Type: application/json
+
+{
+    "username": "marina_milo",
+    "nombre":"Marina",
+    "apellido":"Milo",
+    "email":"milomarina51@gmail.com",
+    "contraseña": "Marina12345"
+}

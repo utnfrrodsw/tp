@@ -45,11 +45,16 @@ async function findOne(req, res) {
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
+        console.log('Antes de generar hash de contraseña');
         // Generar un hash de la contraseña antes de almacenarla en la base de datos
         const hashContraseña = await bcrypt.hash(input.contraseña, 10);
+        console.log('Después de generar hash de contraseña');
+        console.log('Antes de crear instancia de Usuario');
         // Crear una instancia de Usuario con la contraseña cifrada
-        const usuarioInput = new Usuario(input.username, input.nombre, input.apellido, input.email, input.direccion, new ObjectId(input.localidad), input.avatar, input.tipo || 'usuario', hashContraseña // Utilizar la contraseña cifrada
+        const usuarioInput = new Usuario(input.username, input.nombre, input.apellido, input.email, input.direccion, input.localidad, input.avatar, input.tipo || 'usuario', hashContraseña // Utilizar la contraseña cifrada
         );
+        console.log('Después de crear instancia de Usuario');
+        console.log('Antes de agregar usuario a la base de datos');
         const usuario = await repository.add(usuarioInput);
         res.status(201).send({ message: 'Usuario agregado con éxito.', data: usuario });
     }
@@ -157,5 +162,5 @@ async function getByUsername(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername };
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail };
 //# sourceMappingURL=Usuario.controller.js.map

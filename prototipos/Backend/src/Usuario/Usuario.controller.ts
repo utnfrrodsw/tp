@@ -5,7 +5,6 @@ import { ObjectId } from "mongodb";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-
 const repository = new UsuarioRepository()
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
@@ -54,9 +53,12 @@ async function add(req: Request, res: Response) {
     try {
         const input = req.body.sanitizedInput;
 
+        console.log('Antes de generar hash de contraseña');
         // Generar un hash de la contraseña antes de almacenarla en la base de datos
         const hashContraseña = await bcrypt.hash(input.contraseña, 10);
+        console.log('Después de generar hash de contraseña');
 
+        console.log('Antes de crear instancia de Usuario');
         // Crear una instancia de Usuario con la contraseña cifrada
         const usuarioInput = new Usuario(
             input.username,
@@ -64,12 +66,14 @@ async function add(req: Request, res: Response) {
             input.apellido,
             input.email,
             input.direccion,
-            new ObjectId(input.localidad),
+            input.localidad,
             input.avatar,
             input.tipo || 'usuario',
             hashContraseña  // Utilizar la contraseña cifrada
         );
+        console.log('Después de crear instancia de Usuario');
 
+        console.log('Antes de agregar usuario a la base de datos');
         const usuario = await repository.add(usuarioInput);
         res.status(201).send({ message: 'Usuario agregado con éxito.', data: usuario });
     } catch (error) {
@@ -213,4 +217,4 @@ async function getByUsername(req: Request, res: Response) {
 }
 
 
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername }
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail }

@@ -33,17 +33,18 @@
         <label for="email">Correo electrónico</label>
         <input type="email" id="email" class="form-control" formControlName="email"
           placeholder="Ingrese su correo electrónico" />
-        <div *ngIf="
-            registroForm.get('email')?.hasError('required') &&
-            registroForm.get('email')?.touched
-          " class="text-danger">
+        <!-- Mensajes de error para el campo de correo electrónico -->
+        <div *ngIf="registroForm.get('email')?.hasError('required') && registroForm.get('email')?.touched"
+          class="text-danger">
           El correo electrónico es obligatorio.
         </div>
-        <div *ngIf="
-            registroForm.get('email')?.hasError('email') &&
-            registroForm.get('email')?.touched
-          " class="text-danger">
+        <div *ngIf="registroForm.get('email')?.hasError('email') && registroForm.get('email')?.touched"
+          class="text-danger">
           El correo electrónico no es válido.
+        </div>
+        <div *ngIf="registroForm.get('email')?.hasError('emailExistente') && registroForm.get('email')?.touched"
+          class="text-danger">
+          El correo electrónico ya está en uso. Por favor, utilice otro.
         </div>
       </div>
       <div class="form-group my-4 custom-input">
@@ -122,7 +123,6 @@
         <button type="button" class="btn btn-primary custom-btn-primary" (click)="registrarUsuario()">
           Continuar
         </button>
-
         <button routerLink="/identificarse" type="button" class="btn btn-secondary custom-btn-secondary">
           Ya tengo una cuenta
         </button>
