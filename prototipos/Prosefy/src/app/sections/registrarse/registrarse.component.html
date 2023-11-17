@@ -129,4 +129,22 @@
       </div>
     </form>
   </div>
-</div>
+
+  <!-- Modal Panel con Mensaje -->
+  <div class="overlay" [ngClass]="{ active: isPopupOpen }"></div>
+  <div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isPopupOpen }">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header mx-5">
+          <h4 class="modal-title text-center">Mensaje de Registro</h4>
+          <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body mx-5 mt-2">
+          <p>{{ modalMessage }}</p>
+        </div>
+        <div class="modal-footer d-flex justify-content-center mt-5">
+          <button type="button" class="btn btn-primary mx-5 custom-btn-primary" (click)="closePopup()">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>

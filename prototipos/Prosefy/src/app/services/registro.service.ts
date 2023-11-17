@@ -56,7 +56,7 @@ export class RegistroService {
           // Lógica para manejar la respuesta exitosa del registro
         }),
         catchError((error: HttpErrorResponse) => {
-          return this.handleServerError(error); // Llamar a la función handleServerError
+          return this.handleServerError(error);
         })
       );
   }

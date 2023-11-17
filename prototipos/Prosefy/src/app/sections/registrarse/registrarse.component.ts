@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { RegistroService, RegistroResponse, Usuario } from 'src/app/services/registro.service';
-
-
 @Component({
   selector: 'app-registrarse',
   templateUrl: './registrarse.component.html',
@@ -12,6 +10,14 @@ import { RegistroService, RegistroResponse, Usuario } from 'src/app/services/reg
 export class RegistrarseComponent {
   registroForm: FormGroup;
   showErrorMessages: boolean = false;
+  isPopupOpen: boolean = false;
+  modalMessage: string = '';
+
+  @Output() closed = new EventEmitter<void>();
+
+  closePopup() {
+    this.isPopupOpen = false;
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,14 +73,14 @@ export class RegistrarseComponent {
       console.log('El formulario es válido. Realizar una llamada API.');
 
       const usernameControl = this.registroForm.get('username');
-      const emailControl = this.registroForm.get('email'); // Define emailControl aquí
+      const emailControl = this.registroForm.get('email');
 
       if (!usernameControl || !emailControl) {
         return;
       }
 
       const userUsername = usernameControl.value;
-      const userEmail = emailControl.value; // Define userEmail aquí
+      const userEmail = emailControl.value;
 
       // Validar si el usuario ya existe antes de realizar el registro
       this.registroService.validarUsuarioExistente(userUsername).subscribe(
@@ -82,6 +88,7 @@ export class RegistrarseComponent {
           if (usuarioExistente !== null) {
             usernameControl.setErrors({ usuarioExistente: true });
             console.error('El nombre de usuario ya está en uso. Por favor, intente con otro.');
+            this.updateModalContent('El nombre de usuario ya está en uso. Por favor, intente con otro.');
           } else {
             // Validar si el correo electrónico ya está registrado
             this.registroService.validarEmailExistente(userEmail).subscribe(
@@ -89,6 +96,7 @@ export class RegistrarseComponent {
                 if (emailExistente !== null) {
                   emailControl.setErrors({ emailExistente: true });
                   console.error('El correo electrónico ya está registrado. Por favor, utilice otro.');
+                  this.updateModalContent('El correo electrónico ya está en uso. Por favor, intente con otro.');
                 } else {
                   this.realizarRegistro();
                 }
@@ -103,6 +111,13 @@ export class RegistrarseComponent {
         (error) => {
           console.error('Error al validar el usuario', error);
           console.error('Detalles del error:', error);
+
+          if (error && error.error && error.error.mensaje) {
+            this.updateModalContent(error.error.mensaje);
+          } else {
+            const errorMessage = 'Error desconocido en el registro';
+            this.updateModalContent(errorMessage);
+          }
         }
       );
     }
@@ -117,12 +132,13 @@ export class RegistrarseComponent {
       apellido: this.registroForm.value.apellido,
       email: this.registroForm.value.email,
       contraseña: this.registroForm.value.password,
-      // Asegúrate de incluir otros campos si es necesario
     };
 
     this.registroService.registrarUsuario(usuario).subscribe(
       (response: RegistroResponse) => {
         console.log('Registro exitoso', response);
+        const Message = 'Usuario registrado exitosamente.';
+        this.updateModalContent(Message);
       },
       (error) => {
         console.error('Error al registrar el usuario', error);
@@ -130,10 +146,18 @@ export class RegistrarseComponent {
         // Imprime detalles específicos del error en la consola
         if (error && error.error && error.error.mensaje) {
           console.error('Detalles del error:', error.error.mensaje);
+          this.updateModalContent(error.error.mensaje);
         } else {
           console.error('Error desconocido en el registro');
+          const errorMessage = 'Error desconocido en el registro';
+          this.updateModalContent(errorMessage);
         }
       }
     );
+  }
+
+  private updateModalContent(message: string): void {
+    this.modalMessage = message;
+    this.isPopupOpen = true;
   }
 }  
