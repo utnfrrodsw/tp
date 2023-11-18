@@ -130,3 +130,24 @@
   font-size: 14px;
   margin: 1rem 0;  
 }
+
+.input-box {
+  position: relative;
+}
+
+.input-box input {
+  padding-right: 30px;  
+}
+
+.input-box button {
+  position: absolute;
+  padding-bottom: 0.6rem;
+  top: 50%;
+  right: 8px;  
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;  
+  color: #ffffff;  
+}

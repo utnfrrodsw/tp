@@ -1,13 +1,12 @@
-import React, {useEffect, useState} from "react";
-import { Link, Navigate } from 'react-router-dom';
-import './Header.css';
-import logo from "./logoPosta.png";
-import notifylogo from './notify.png';
-import userlogo from './user.png';
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../auth/authProvider';
 import { API_URL } from '../../auth/constants';
+import './Header.css';
+import logo from "./logoPosta.png";
+import userlogo from './user.png';
 
 function Header(props) {
     const [show, setShow] = useState(false);
@@ -47,7 +46,7 @@ function Header(props) {
 
             <div className="header-links">
                 <div className="links">
-                    <Link to="/notify"><img src={notifylogo} alt="" className="notifylogo" /></Link>
+                     
                     {user.nombre !== "" ?
                         (<Link onClick={handleShow} ><img src={userlogo} className="userlogo" /></Link>) : 
                         <Link to="/login"><img src={userlogo} className="userlogo" /></Link>}
