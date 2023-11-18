@@ -43,6 +43,10 @@ Test e2e:
 ![image](./res/ejecucion_e2e_crear_pedido.png)
 [Enlace a imagen completa](https://github.com/francobidart/dsw-tp-2023/blob/main/res/ejecucion_e2e_crear_pedido.png)
 
+Test unitario:
+
+![image](./res/ejecucion_unit_registrarse_component.png)
+[Enlace a imagen completa](https://github.com/francobidart/dsw-tp-2023/blob/main/res/ejecucion_unit_registrarse_component.png)
 ### Demo de app en video
 
 TODO
