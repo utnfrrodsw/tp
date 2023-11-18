@@ -10,7 +10,11 @@ const { jsonResponse } = require("../lib/jsonResponse.js");
 const { validateRegister } = require("../middlewares/usuarios/validateRegistro.js");
 const { validateUserData,validateFotoPerfil  } = require("../middlewares/usuarios/validacionDatosUser.js");
 const { validateProfesionesUsuario } = require("../middlewares/usuarios/validacionProfesion.js");
-const { validarCambioClave } = require("../middlewares/usuarios/validacionCambioClave.js");
+const { validacionCambioClave } = require("../middlewares/usuarios/validacionCambioClave.js");
+const { validateResetPassword } = require("../middlewares/usuarios/validacionResetPassword.js");
+const {validateLogin} = require("../middlewares/usuarios/validacionLogin.js");
+const {validacionPreCambioClave} = require ("../middlewares/usuarios/validacionPreCambioClave.js");
+
 
 router.get('/', (req, res) => {
   res.send('index');
@@ -23,18 +27,18 @@ router.get('/auth', authenticate,  (req, res) => { // get Auth
 });
 
 // Login, register
-router.post('/login', usuarioController.login);
+router.post('/login',validateLogin, usuarioController.login);
 router.delete('/logout', usuarioController.logout);
 router.post('/register',validateRegister, usuarioController.register);
 
 // Restablecimiento de contraseña
-router.post('/reset-password/request', usuarioController.passwordReset);
-router.post('/reset-password', usuarioController.resetPassword);
+router.post('/reset-password/request',validacionPreCambioClave, usuarioController.passwordReset);
+router.post('/reset-password', validateResetPassword, usuarioController.resetPassword);
 
 // Ruta para verificar la contraseña actual
 router.post('/verify-password', usuarioController.verifyPassword);
 // Ruta para cambiar la contraseña
-router.post('/change-password', validarCambioClave, usuarioController.changePassword);
+router.post('/change-password', validacionCambioClave, usuarioController.changePassword);
 
 // Consultas
 router.get('/listaUsuarios', usuarioController.getUsuarios);
