@@ -1,8 +1,9 @@
-.ng-valid:not(form).ng-touched{
-  border: 5px solid #42A948; /* green */
+.ng-valid:not(form).ng-touched {
+  border: 5px solid #42A948;
+  /* green */
 }
 
-.ng-invalid:not(form).ng-touched{
+.ng-invalid:not(form).ng-touched {
   border: 5px sold rgb(255, 39, 39);
 }
 
@@ -43,13 +44,15 @@
 }
 
 .login-container {
-  max-width: 600px; /* Ancho del cuadro aumentado */
+  max-width: 600px;
+  /* Ancho del cuadro aumentado */
   margin: 0 auto;
   padding: 20px;
   background-color: #fafafa;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-  text-align: center; /* Centrar contenido en el cuadro */
+  text-align: center;
+  /* Centrar contenido en el cuadro */
 }
 
 .separator-container {
@@ -64,8 +67,10 @@
   height: 1px;
   background-color: #ccc;
 }
+
 .form-group {
-  text-align: center; /* Centrar los campos de entrada */
+  text-align: center;
+  /* Centrar los campos de entrada */
 }
 
 .form-group label {
@@ -74,17 +79,166 @@
 
 .button-group {
   display: flex;
-  flex-direction: column; /* Apilar botones verticalmente */
-  align-items: center; /* Centrar botones horizontalmente */
+  flex-direction: column;
+  /* Apilar botones verticalmente */
+  align-items: center;
+  /* Centrar botones horizontalmente */
   margin-top: 20px;
 }
 
 .custom-btn-primary,
 .custom-btn-secondary {
   width: 50%;
-  margin-bottom: 1rem; /* Espacio entre los botones */
+  margin-bottom: 1rem;
+  /* Espacio entre los botones */
 }
 
 .form-control {
   background-color: #fff !important;
+}
+
+.custom-btn-primary {
+  background-color: #bd8464;
+  border-color: #bd8464;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-primary:active {
+  background-color: #976950;
+  border-color: #976950;
+}
+
+.custom-btn-secondary {
+  background-color: #fff;
+  border-color: #cecece;
+  color: #646464;
+}
+
+.custom-btn-secondary:hover,
+.custom-btn-secondary:active {
+  background-color: #eeeeee;
+  border-color: #afafaf;
+}
+
+.custom-a {
+  color: #4eafda;
+  margin: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.custom-a:hover,
+.custom-a:active {
+  color: #4291b3;
+}
+
+.login-container {
+  max-width: 50rem;
+  /* Ancho del cuadro aumentado */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  /* Centrar contenido en el cuadro */
+}
+
+.separator-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.form-group {
+  text-align: center;
+  /* Centrar los campos de entrada */
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  /* Margen inferior entre etiquetas y campos */
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  /* Apilar botones verticalmente */
+  align-items: center;
+  /* Centrar botones horizontalmente */
+  margin-top: 20px;
+}
+
+.custom-btn-primary,
+.custom-btn-secondary {
+  width: 50%;
+  margin-bottom: 1rem;
+  /* Espacio entre los botones */
+}
+
+.form-control {
+  background-color: #fff !important;
+  width: 80% !important;
+  margin: 0 auto !important;
+  /* Margen automático a izquierda y derecha para centrar */
+}
+
+.custom-input {
+  width: 45% !important;
+  /* Ancho personalizado para los campos de entrada */
+  display: inline-block !important;
+  margin-right: 1% !important;
+  /* Espacio entre los campos de entrada */
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+  .custom-input {
+    width: 100% !important;
+    /* Ancho completo en dispositivos móviles */
+    display: block !important;
+    /* Cambiar a bloque para mostrar uno debajo del otro */
+    margin-right: 0 !important;
+    /* Eliminar margen entre campos en dispositivos móviles */
+  }
+
+  .button-group {
+    width: 100%;
+    /* Ancho completo para los botones en dispositivos móviles */
+  }
+}
+
+/* Estilos para el fondo oscurecido */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Fondo semi-transparente */
+  z-index: 1000;
+  /* Asegurar que esté por detrás del popup */
+  opacity: 0;
+  /* Comenzar con opacidad 0 */
+  pointer-events: none;
+  /* Evitar interacción con el fondo */
+  transition: opacity 0.3s ease;
+  /* Animación de transparencia */
+}
+
+.overlay.active {
+  opacity: 1;
+  /* Mostrar el fondo oscurecido al abrir el popup */
+  pointer-events: auto;
+  /* Permitir interacción con el fondo oscurecido */
 }

@@ -50,4 +50,19 @@
       <!-- TODO: Crear página para olvidaste tu contraseña -->
     </form>
   </div>
+  <!-- Modal Panel con Mensaje -->
+  <div class="overlay" [ngClass]="{ active: isPopupOpen }"></div>
+  <div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isPopupOpen }">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header mx-5">
+          <h4 class="modal-title text-center">Error al Iniciar Sesión</h4>
+          <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body mx-5 mt-2">
+          <p>{{ modalMessage }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

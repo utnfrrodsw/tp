@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { UsuarioService, Usuario } from '../../services/usuario.service';
 
-
 interface Edicion {
   nombre: boolean;
   email: boolean;
@@ -23,11 +22,13 @@ export class InfoUsuarioComponent {
 
   usuarios: Usuario[] = [];
 
-  constructor(private usuariosService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService) { }
 
+  /*
   ngOnInit() {
-    this.usuarios = this.usuariosService.getUsuarios();
-  }
+    this.usuarios = this.usuarioService.getUsuarios();
+  }*/
+
   editando = false;
 
   edicion = {

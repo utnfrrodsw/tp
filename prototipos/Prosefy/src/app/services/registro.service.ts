@@ -2,19 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-
-export interface Usuario {
-  username: string;
-  nombre: string;
-  apellido: string;
-  email: string;
-  direccion?: string;
-  localidad?: string;
-  avatar?: string;
-  tipo?: string;
-  contraseña: string;
-  _id?: string;
-}
+import { Usuario } from './usuario.service';
 
 export interface RegistroResponse {
   mensaje: string;

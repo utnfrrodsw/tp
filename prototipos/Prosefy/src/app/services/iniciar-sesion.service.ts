@@ -37,12 +37,8 @@ export class IniciarSesionService {
     return this.http.post<IniciarSesionResponse>(this.apiUrl, body)
       .pipe(
         tap(response => {
-          // Lógica para manejar la respuesta exitosa
           console.log('Inicio de sesión exitoso', response);
-
-          // Almacena el token en el almacenamiento local
           localStorage.setItem('token', response.token);
-          // Actualiza el estado de inicio de sesión
           this.isLoggedInSubject.next(true);
         }),
         catchError(this.handleServerError)
@@ -60,7 +56,6 @@ export class IniciarSesionService {
   }
 
   private handleServerError(error: any): Observable<never> {
-    // Lógica para manejar errores del servidor
     console.error('Error en el inicio de sesión', error);
 
     const errorMessage: ErrorIniciarSesionResponse = {
@@ -68,7 +63,6 @@ export class IniciarSesionService {
     };
 
     if (error.status === 401) {
-      // Lógica para manejar errores de autenticación (por ejemplo, credenciales incorrectas)
       errorMessage.mensaje = 'Credenciales inválidas';
     }
 

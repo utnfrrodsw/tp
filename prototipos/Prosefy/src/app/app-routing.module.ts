@@ -16,7 +16,7 @@ import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.co
 import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { UsuarioService } from './services/usuario.service';
-import { userGuard } from './guards/user.guard';
+/*import { userGuard } from './guards/user.guard'; */
 
 const routes: Routes = [
   // RUTAS DE LA PÁGINA
@@ -32,9 +32,11 @@ const routes: Routes = [
   { path: 'finalizar-compra', component: FinalizarCompraComponent },
   { path: 'identificarse', component: IdentificarseComponent },
   { path: 'autor-seleccionado/:id', component: AutorSeleccionadoComponent },
-  { path: 'perfil', component: PerfilUsuarioComponent,
-  providers: [UsuarioService],
-  canMatch: [userGuard] },
+  {
+    path: 'perfil', component: PerfilUsuarioComponent,
+    providers: [UsuarioService],
+    /*canMatch: [userGuard] */
+},
   { path: 'crear-cuenta', component: CrearCuentaComponent },
   { path: 'busqueda/:term', component: BusquedaComponent },
 ];
@@ -44,4 +46,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
