@@ -190,7 +190,7 @@ export const StyledButtonAlert = styled.button`
 const StyledAddCircle = styled(AddCircle)`
   &:hover {
       transform: scale(1.1);
-      color: #FFD560; /* Cambia el color de fondo en el hover */
+      // color: #FFD560; /* Cambia el color de fondo en el hover */
     }
 `;
 

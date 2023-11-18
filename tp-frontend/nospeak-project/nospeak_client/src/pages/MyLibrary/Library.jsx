@@ -170,8 +170,9 @@ const Library = ({client}) => {
         if (user.isAdmin) {
           setIsComboBoxOpen(!isComboBoxOpen);
         } else {
-          // Si el usuario no es admin, llama directamente a handleOptionClick('playlist')
-          handleOptionClick('playlist');
+            if(activeCategory === 'Playlists')
+            // Si el usuario no es admin, llama directamente a handleOptionClick('playlist')
+                handleOptionClick('playlist');
         }
       };
 
@@ -259,8 +260,13 @@ const Library = ({client}) => {
                             {category}
                             </NavItem>
                         ))}
+                        
                         <IconContainer>
-                            <StyledAddCircle sx={{ color: '#FFA130'}} onClick={handleComboBoxButtonClick}/>
+                            <StyledAddCircle   sx={{
+            color: user.isAdmin || activeCategory === 'Playlists' ? '#FFA130' : 'gray',
+            cursor: user.isAdmin || activeCategory === 'Playlists' ? 'pointer' : 'not-allowed',
+        }}
+         onClick={handleComboBoxButtonClick}/>
                             {isComboBoxOpen && (
                                 <ComboBoxContainer>
                                     <ComboBoxOptions>
