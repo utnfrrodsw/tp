@@ -31,7 +31,8 @@
         <div class="boton rounded-pill bg-light shadow"></div>
         <div class="tarjeta rounded shadow bg-light">
           <img class="img-tarjeta rounded mb-2 ml-2" src="./assets/img/Pagar/tarjeta-de-pago.png" alt="img">
-          <label class="label-text font-style">Nueva tarjeta de crédito</label>
+          <label class="label-text font-style" *ngIf="mostrarLabel">Nueva tarjeta de crédito</label>
+          <label class="label-text font-style" *ngIf="noMostrarlabel">Nueva tarjeta</label>
           <div class="container-contador">
             <button class="fw-bold lead ml-1 btn btn-lg  boton-contador" (click)="disminuirContador()">-</button>
             <h1 class="fw-bold lead ml-1 mt-1">{{ contador }}</h1>
@@ -46,7 +47,7 @@
         <div class="boton rounded-pill bg-light shadow"></div>
         <div class="tarjeta rounded shadow bg-light">
           <img class="img-tarjeta rounded mb-2 ml-2" src="./assets/img/Pagar/efectivo.png" alt="img">
-          <label class="label-text font-style">Master **** 4563</label>
+          <label class="label-text font-style">Efectivo</label>
         </div>
       </div>
       <div class="boton-abajo">
@@ -86,7 +87,8 @@
           <label class="font-style lead">Envio</label>
         </div>
         <div>
-          <label class="font-style">$500</label>
+          <label class="font-style" *ngIf="total > 10000">¡Gratis!</label>
+          <label class="font-style" *ngIf="total < 10000">3.000</label>
         </div>
       </div>
     </div>
