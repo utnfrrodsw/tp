@@ -6,8 +6,12 @@
   "type": "commonjs",
   "scripts": {
     "dev": "nodemon src/app.js",
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "vercel-build": "echo hello"
   },
+  "includes": [
+    "./api/*.js"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

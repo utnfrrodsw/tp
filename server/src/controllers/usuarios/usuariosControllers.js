@@ -257,7 +257,8 @@ const usuarioController = {
       try{
         const found = await db.Token.findOne({ 
           where: { token: refreshToken } 
-        });
+        })
+
         if(!found){
           res.status(401).json(jsonResponse(401, {
             error: 'No Autorizado 1' 
@@ -272,6 +273,7 @@ const usuarioController = {
             error: 'No Autorizado 2'
           })); 
         }
+        
       }catch(error){
         return res.status(401).json(jsonResponse(401, {
           error: 'No Autorizado 3'

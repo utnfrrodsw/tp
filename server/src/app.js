@@ -1,8 +1,11 @@
 //CONFIGURACIONES DE EXPRESS: llama a las rutas,  configuras la instancia de Express y aplicas middleware
 const express = require('express');
 const app = express();
+
 const { PORT } = require('./config');
+
 app.set("port", PORT || 5000); //seteamos el puerto que nos da el servidor o el 5000
+
 
 const cors = require('cors');
 app.use(cors());
@@ -29,6 +32,10 @@ app.listen(app.get("port"), () => {
 });
 
 //rutas
+app.use("/", (req, res) => {
+    res.send("api fast services funcionando");
+});
+
 app.use("/api/usuario", usuariosRoutes);
 app.use('/api/solicitud', solicitudRoutes);
 app.use('/api/direccion', direccionesRoutes);
@@ -36,11 +43,14 @@ app.use('/api/profesion', profesionesRouter);
 app.use('/api/presupuesto', presupuestosRoutes);
 app.use('/api/servicio', serviciosRoutes);
 
+// Manejo de errores
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({
+        message: 'Error interno del servidor',
+        error: err.message
+    });
+});
 
-app.use((req, res, next) =>{
-    res.status(404).json({
-        message: 'no se encontro la ruta'
-    })
-})
-
+export default app;
 
