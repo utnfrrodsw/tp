@@ -28,7 +28,6 @@ export class ListaLibrosComponent implements OnInit {
   ngOnInit() {
     this.librosService.getLibrosIds().pipe(
       switchMap((librosIds: string[]) => {
-        console.log("Libros Ids: ", librosIds);
         this.librosIds = librosIds;
 
         const requests = librosIds.map(id =>
@@ -46,7 +45,7 @@ export class ListaLibrosComponent implements OnInit {
         return forkJoin(requests);
       })
     ).subscribe((libros) => {
-      console.log("Libros Data: ", libros);
+  
       libros.forEach(({ id, libro }) => {
         if (libro) {
           this.librosData[id] = libro;

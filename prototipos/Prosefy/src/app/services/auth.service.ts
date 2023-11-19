@@ -3,7 +3,6 @@ import { IniciarSesionService, IniciarSesionResponse } from './iniciar-sesion.se
 import { RegistroService, RegistroResponse } from './registro.service';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -43,9 +42,6 @@ export class AuthService {
 
   private apiUrl = 'http://localhost:3000/api/usuarios/';
 
-  private isLoggedInSubject = new BehaviorSubject<boolean>(false);
-  isLoggedIn$ = this.isLoggedInSubject.asObservable();
-
   constructor(
     private iniciarSesionService: IniciarSesionService,
     private registroService: RegistroService,
@@ -64,7 +60,6 @@ export class AuthService {
 
   cerrarSesion(): void {
     this.iniciarSesionService.cerrarSesion();
-    this.isLoggedInSubject.next(false);
   }
 
   getIdUsuario(): string | null {

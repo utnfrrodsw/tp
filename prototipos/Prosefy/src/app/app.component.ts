@@ -17,9 +17,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.smoothScrollService.initializeSmoothScrollbar();
-    // Verifica el estado de inicio de sesión al iniciar la aplicación
-    const isLoggedIn = localStorage.getItem('token') !== null;
-    this.iniciarSesionService.setLoggedInState(isLoggedIn);
+    setTimeout(() => {
+      this.iniciarSesionService.checkToken();
+    }, 200);
   }
-
-}  
+}

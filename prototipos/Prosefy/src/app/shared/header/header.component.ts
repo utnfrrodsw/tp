@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, RouterModule } from '@angular/router';
 import { IniciarSesionService } from 'src/app/services/iniciar-sesion.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent {
   // Esta variable indica si el usuario ha iniciado sesión
   isLoggedIn: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private iniciarSesionService: IniciarSesionService) {
+  constructor(private router: Router, private route: ActivatedRoute, private iniciarSesionService: IniciarSesionService, private authService: AuthService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updatePlaceholder(event.url);
@@ -32,7 +33,6 @@ export class HeaderComponent {
       });
     }
 
-    // Verifica si el usuario inició sesión
     this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
@@ -64,11 +64,6 @@ export class HeaderComponent {
   }
 
   logout() {
-    // Elimina el token del localStorage
     this.iniciarSesionService.cerrarSesion();
-    // Actualiza el estado de inicio de sesión
-    this.isLoggedIn = false;
-    // Redirige al usuario a la página de inicio de sesión
-    this.router.navigate(['/identificarse']);
   }
 }

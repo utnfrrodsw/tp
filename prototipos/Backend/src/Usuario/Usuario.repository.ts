@@ -6,7 +6,13 @@ import { ObjectId } from 'mongodb'
 
 const usuarios = db.collection<Usuario>('usuarios')
 
-export class UsuarioRepository implements Repository<Usuario>{
+interface UsuarioRepository extends Repository<Usuario> {
+    // Añadir una firma adicional para findOne que acepta propiedades dinámicas
+    findOne(item: { [key: string]: any }): Promise<Usuario | undefined>;
+}
+
+export class UsuarioRepositoryImpl implements UsuarioRepository {
+
 
     public async findAll(): Promise<Usuario[] | undefined> {
         try {
@@ -17,12 +23,10 @@ export class UsuarioRepository implements Repository<Usuario>{
         }
     }
 
-    public async findOne(item: { id: string; }): Promise<Usuario | undefined> {
+    public async findOne(item: { [key: string]: any }): Promise<Usuario | undefined> {
         try {
-            const _id = new ObjectId(item.id);
-            const usuario = await usuarios.findOne({ _id });
-
-            return usuario || undefined;
+            const result = await usuarios.findOne(item);
+            return result ? result : undefined;
         } catch (error) {
             console.error("Error en findOne:", error);
             throw error;
@@ -49,10 +53,10 @@ export class UsuarioRepository implements Repository<Usuario>{
         }
     }
 
-    public async update(id: string, item: Usuario): Promise<Usuario | undefined> {
+    public async update(id: string | ObjectId, item: Usuario): Promise<Usuario | undefined> {
         try {
-            const _id = new ObjectId(id)
-            return (await usuarios.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined
+            const _id = id instanceof ObjectId ? id : new ObjectId(id);
+            return (await usuarios.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined;
         } catch (error) {
             console.error("Error en update:", error);
             throw error;

@@ -25,7 +25,6 @@ export class ListaAutoresComponent implements OnInit {
 
   ngOnInit() {
     this.autoresService.getAutoresIds().subscribe((autoresIds: string[]) => {
-      console.log("Autores Ids: ", autoresIds); // Verifica que los Ids se estén cargando correctamente
       this.autoresIds = autoresIds;
 
       const requests = autoresIds.map(id =>
@@ -36,7 +35,6 @@ export class ListaAutoresComponent implements OnInit {
       );
 
       forkJoin(requests).subscribe((autores) => {
-        console.log("Autores Data: ", autores); // Verifica que los datos de los autores se estén cargando correctamente
         autores.forEach(autor => {
           this.autoresData[autor.id] = { nombreCompleto: autor.nombreCompleto, perfil: autor.perfil };
         });

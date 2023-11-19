@@ -50,7 +50,6 @@ export class ResultadosComponent implements OnInit {
         return forkJoin(requests);
       })
     ).subscribe((libros) => {
-      console.log("Libros Data: ", libros);
       libros.forEach(({ id, libro }) => {
         if (libro) {
           this.librosData[id] = libro;

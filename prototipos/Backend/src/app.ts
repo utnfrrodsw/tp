@@ -15,7 +15,7 @@ const app = express();
 
 // Configurar opciones de CORS
 const corsOptions = {
-	origin: "http://localhost:4200",
+	origin: "*",
 	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 	credentials: true,
 	optionsSuccessStatus: 204,

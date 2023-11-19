@@ -1,7 +1,7 @@
 import { db } from "../Shared/db/conn.mongo.js";
 import { ObjectId } from 'mongodb';
 const usuarios = db.collection('usuarios');
-export class UsuarioRepository {
+export class UsuarioRepositoryImpl {
     async findAll() {
         try {
             return await usuarios.find().toArray();
@@ -13,9 +13,8 @@ export class UsuarioRepository {
     }
     async findOne(item) {
         try {
-            const _id = new ObjectId(item.id);
-            const usuario = await usuarios.findOne({ _id });
-            return usuario || undefined;
+            const result = await usuarios.findOne(item);
+            return result ? result : undefined;
         }
         catch (error) {
             console.error("Error en findOne:", error);
@@ -44,7 +43,7 @@ export class UsuarioRepository {
     }
     async update(id, item) {
         try {
-            const _id = new ObjectId(id);
+            const _id = id instanceof ObjectId ? id : new ObjectId(id);
             return (await usuarios.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined;
         }
         catch (error) {

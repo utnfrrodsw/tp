@@ -11,6 +11,18 @@ export class Usuario {
         public avatar: string,
         public tipo: string,
         public contraseña: string,
+        public tokens: Token[],
+        public tokensRevocados: TokenRevocado[],
         public _id?: ObjectId
     ) { }
+}
+
+export interface Token {
+    token: string;
+    fechaExpiracion: Date;
+}
+
+export interface TokenRevocado {
+    token: string;
+    fechaRevocacion: Date;
 }

@@ -1,11 +1,11 @@
-import { Request, Response, NextFunction } from "express"
-import { UsuarioRepository } from "./Usuario.repository.js"
-import { Usuario } from "./Usuario.js"
+import { Request, Response, NextFunction } from "express";
+import { UsuarioRepositoryImpl } from "./Usuario.repository.js";
+import { Usuario, Token, TokenRevocado } from "./Usuario.js";
 import { ObjectId } from "mongodb";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const repository = new UsuarioRepository()
+const repository = new UsuarioRepositoryImpl();
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     try {
@@ -38,12 +38,12 @@ async function findAll(req: Request, res: Response) {
 
 async function findOne(req: Request, res: Response) {
     try {
-        const id = req.params.id
-        const usuario = await repository.findOne({ id })
+        const id = req.params.id;
+        const usuario = await repository.findOne({ id });
         if (!usuario) {
-            return res.status(404).send({ message: "Usuario no encontrado." })
+            return res.status(404).send({ message: "Usuario no encontrado." });
         }
-        return res.json({ data: usuario })
+        return res.json({ data: usuario });
     } catch (error) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
@@ -69,7 +69,9 @@ async function add(req: Request, res: Response) {
             input.localidad,
             input.avatar,
             input.tipo || 'usuario',
-            hashContraseña  // Utilizar la contraseña cifrada
+            hashContraseña,  // Utilizar la contraseña cifrada
+            [],             // Inicializar tokens como un array vacío
+            []              // Inicializar tokensRevocados como un array vacío
         );
         console.log('Después de crear instancia de Usuario');
 
@@ -110,7 +112,8 @@ async function update(req: Request, res: Response) {
             updatedData.avatar,
             updatedData.tipo,
             hashContraseña || '',
-            objectIdUsuarioId
+            usuarioExiste ? usuarioExiste.tokens : [],                // Mantener tokens existentes
+            usuarioExiste ? usuarioExiste.tokensRevocados : []         // Mantener tokensRevocados existentes
         );
 
         if (!usuarioExiste) {
@@ -139,15 +142,14 @@ async function update(req: Request, res: Response) {
     }
 }
 
-
 async function remove(req: Request, res: Response) {
     try {
-        const id = req.params.id
-        const usuario = await repository.delete({ id })
+        const id = req.params.id;
+        const usuario = await repository.delete({ id });
         if (!usuario) {
-            return res.status(404).send({ message: "Usuario no encontrado." })
+            return res.status(404).send({ message: "Usuario no encontrado." });
         }
-        res.status(204).send({ message: 'Usuario eliminado con éxito.' })
+        res.status(204).send({ message: 'Usuario eliminado con éxito.' });
     } catch (error) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
@@ -177,25 +179,72 @@ async function iniciarSesion(req: Request, res: Response) {
         const { email, contraseña } = req.body;
 
         // Obtener el usuario por su correo electrónico desde la base de datos
-        const usuario = await repository.findOneByEmail({ email });
+        const usuarioCompleto = await repository.findOneByEmail({ email });
 
-        if (!usuario) {
+        if (!usuarioCompleto) {
             return res.status(401).send({ message: "Credenciales inválidas." });
         }
 
         // Comparar la contraseña proporcionada con el hash almacenado en la base de datos
-        const esContraseñaValida = await bcrypt.compare(contraseña, usuario.contraseña);
+        const esContraseñaValida = await bcrypt.compare(contraseña, usuarioCompleto.contraseña);
 
         if (!esContraseñaValida) {
             return res.status(401).send({ message: "Credenciales inválidas." });
         }
 
         // Generar un token JWT
-        const token = jwt.sign({ userId: usuario._id }, 'secretKey', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: usuarioCompleto._id?.toString() }, 'secretKey', { expiresIn: '1h' });
 
-        res.status(200).send({ message: "Inicio de sesión exitoso.", data: { usuario, token } });
+        // Modificar solo las propiedades necesarias
+        usuarioCompleto.tokens.push({ token, fechaExpiracion: new Date(Date.now() + 3600000) });
+
+        // Actualizar el usuario en la base de datos
+        await repository.update(usuarioCompleto._id?.toString() || '', usuarioCompleto);
+
+        console.log('Token generado:', token);
+
+        res.status(200).send({ message: "Inicio de sesión exitoso.", usuarioCompleto, token });
+
     } catch (error) {
         console.error("Error en iniciarSesion:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function cerrarSesion(req: Request, res: Response) {
+    try {
+        const token = req.params.token;
+
+        if (!token) {
+            return res.status(401).send({ message: "Token de autorización no proporcionado." });
+        }
+
+        // Obtener el usuario por su token
+        const usuario = await repository.findOne({ "tokens.token": token });
+
+        if (!usuario) {
+            return res.status(401).send({ message: "Usuario no encontrado." });
+        }
+
+        // Revocar el token guardándolo en la lista de tokens revocados
+        usuario.tokensRevocados.push({ token, fechaRevocacion: new Date() });
+
+        // Actualizar el usuario en la base de datos
+        if (usuario._id) {
+            const updatedUser = await repository.update(usuario._id.toString(), usuario);
+
+            if (!updatedUser) {
+                return res.status(500).send({ message: "Error al cerrar sesión: No se pudo actualizar el usuario." });
+            }
+        } else {
+            return res.status(500).send({ message: "Error al cerrar sesión: ID de usuario no válido." });
+        }
+
+        console.log('Recibida solicitud de cierre de sesión');
+        res.status(200).send({ message: "Sesión cerrada con éxito." });
+
+    } catch (error) {
+        console.error("Error en cerrarSesion:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
@@ -216,5 +265,4 @@ async function getByUsername(req: Request, res: Response) {
     }
 }
 
-
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail }
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion };

@@ -68,16 +68,13 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
   }
 
   agregarAlCarrito(libro: Libro | undefined) {
-    console.log('Libro al intentar agregar al carrito:', libro);
 
     const libroId = libro?._id;
-    console.log('ID del libro:', libroId);
 
     if (libroId) {
       this.carritoService.agregarAlCarrito(libroId);
       this.libroAgregado = true;
       this.mostrarMensaje();
-      console.log('Libro agregado al carrito:', libroId);
     } else {
       this.handleError('ID del libro no definido.');
     }

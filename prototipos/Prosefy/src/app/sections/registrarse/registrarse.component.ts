@@ -70,7 +70,6 @@ export class RegistrarseComponent {
   }
 
   registrarUsuario(): void {
-    console.log('Se hizo clic en el botón Continuar');
     this.showErrorMessages = true;
 
     // Verifica el estado de inicio de sesión antes de intentar registrarse
@@ -80,7 +79,6 @@ export class RegistrarseComponent {
     }
 
     if (this.registroForm.valid) {
-      console.log('El formulario es válido. Realizar una llamada API.');
 
       const usernameControl = this.registroForm.get('username');
       const emailControl = this.registroForm.get('email');
@@ -134,7 +132,6 @@ export class RegistrarseComponent {
   }
 
   private realizarRegistro(): void {
-    console.log('Entró a realizarRegistro()');
 
     const usuario: Usuario = {
       username: this.registroForm.value.username,

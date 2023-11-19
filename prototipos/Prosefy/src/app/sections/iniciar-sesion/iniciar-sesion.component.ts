@@ -33,12 +33,6 @@ export class IniciarSesionComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Verifica el estado de inicio de sesión al iniciar el componente
-    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn) => {
-      if (isLoggedIn === true) {
-        this.router.navigateByUrl('/inicio');
-      }
-    });
   }
 
   login() {
