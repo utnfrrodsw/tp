@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { FormLoginContainer, FormLogin, NavLogin, LoginInput, StyledH1, RegisterContainer } from './styles.js';
-import { StyledLink, StyledSpan, ButtonContainer } from './styles.js';
+import { StyledLink, StyledSpan, ButtonContainer, LoginButton } from './styles.js';
 import { Navigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../redux/slices/userSlice.js';
 import { StyledButton } from '../../styled-components/styles.js';
 import Alert from '../../styled-components/Alert/Alert.jsx';
 
-export default function Login({ client }) {
+export default function Login({ client, testing }) {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +17,7 @@ export default function Login({ client }) {
 
   const [goToHome, setGoToHome] = useState(false);
 
-  if (goToHome) {
+  if (goToHome && !testing) {
     return <Navigate to="/home" />;
   }
 
@@ -29,17 +29,17 @@ export default function Login({ client }) {
         return;
       }
 
-      const response = await client.post('/nospeak-app/api/login/', {
-        username: name,
+      const response = await client.post('/api/usuarios-login/', {
+        nombre: name,
         password,
       });
-
-      const { token, user_id, username } = response.data;
+      
+      const { token, userId, nombre, isAdmin } = response.data;
       localStorage.setItem('token', token);
-
-      dispatch(loginSuccess({
+      
+      dispatch(loginSuccess({ 
         isAuthenticated: true,
-        user: { id: user_id, username },
+        user: { id: userId, nombre, isAdmin: isAdmin},
       }));
 
       setSuccessMessage('Successful login. Redirecting...');
@@ -56,13 +56,13 @@ export default function Login({ client }) {
         } else {
           setError('Request error. Please try again later.');
         }
-        setSuccessMessage(''); // Limpiar el mensaje de éxito
+        setSuccessMessage(''); 
       } else if (error.request) {
         setError('Request error. Please try again later.');
-        setSuccessMessage(''); // Limpiar el mensaje de éxito
+        setSuccessMessage(''); 
       } else {
         setError('Unexpected error. Please try again later.');
-        setSuccessMessage(''); // Limpiar el mensaje de éxito
+        setSuccessMessage(''); 
       }
     }
   };
@@ -85,7 +85,7 @@ export default function Login({ client }) {
       )}
       <FormLoginContainer>
         <NavLogin>
-          <img src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg" alt="Spotify logo" />
+          <img src={process.env.PUBLIC_URL + '/logo_nospeak.png'} alt="logo" style={{ width: '130px', height: '60%' }}/>
         </NavLogin>
         <FormLogin>
           <StyledH1>Log in to NoSpeak</StyledH1>
@@ -93,12 +93,9 @@ export default function Login({ client }) {
           <LoginInput value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Username" />
           <span>Password</span>
           <LoginInput value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
-          <ButtonContainer>
-            <StyledButton onClick={handleLogin}>
-              Log in
-            </StyledButton>
-          </ButtonContainer>
-          <br />
+          <LoginButton onClick={handleLogin}>
+            Log in
+          </LoginButton>
           <RegisterContainer>
             <StyledSpan>Don't have an account?</StyledSpan>
             <StyledLink to='/register'>Sign up for NoSpeak</StyledLink>

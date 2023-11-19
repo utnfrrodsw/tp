@@ -9,7 +9,7 @@ import { CategoryContainer, CategoryBox, CategoryName } from './styles.js';
 
 const Search = () => {
 
-    let generos = ['For You', 'New Releases', 'Rankings', 'Live', 'Cumbia', 'Reggeaton', 'Rock', 'Pop', 'Hip Hop', 'Indie', 'Jazz', 'Blues', 'Latina', 'Country', 'Nacional'];
+    let generos = ['For You', 'New Releases', 'Rankings', 'Live', 'Cumbia', 'Reggaeton', 'Rock', 'Pop', 'Hip Hop', 'Indie', 'Jazz', 'Blues', 'Latina', 'Country', 'Nacional'];
     let colores = [
         '#FFB6C1', // Light Pink
         '#B19CD9', // Light Purple

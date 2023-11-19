@@ -1,4 +1,4 @@
-const Album = require('../models/Album');
+const Album = require('../models/album');
 
 exports.getAlbums = async (req, res) => {
     try {

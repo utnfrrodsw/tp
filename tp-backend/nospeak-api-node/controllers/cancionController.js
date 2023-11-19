@@ -1,5 +1,5 @@
-const Cancion = require('../models/Cancion');
-
+const Cancion = require('../models/cancion');
+const Usuario = require('../models/usuario');
 exports.getCanciones = async (req, res) => {
   try {
     const canciones = await Cancion.find().populate('artista album');
@@ -10,37 +10,43 @@ exports.getCanciones = async (req, res) => {
   }
 };
 
-exports.createCancion = async (req, res) => {
-  try {
-    const {
-      titulo,
-      anio_lanzamiento,
-      genero,
-      duracion,
-      audio,
-      spotify_id,
-      artista,
-      album,
-    } = req.body;
+  exports.createCancion = async (req, res) => {
+    try {
+      const {
+        titulo,
+        anio_lanzamiento,
+        genero,
+        duracion,
+        audio,
+        spotify_id,
+        artista,
+        album,
+      } = req.body;
+      const usuario = await Usuario.findById(req.userId);
+      console.log(req.userId)
+      // Verifica si el usuario es un artista
+      if (usuario && !usuario.isArtist) {
+        return res.status(401).json({ mensaje: 'No tiene permisos para crear canciones' });
+      } else {
+      const nuevaCancion = new Cancion({
+        titulo,
+        anio_lanzamiento,
+        genero,
+        duracion,
+        audio,
+        spotify_id,
+        artista,
+        album,
+      });
 
-    const nuevaCancion = new Cancion({
-      titulo,
-      anio_lanzamiento,
-      genero,
-      duracion,
-      audio,
-      spotify_id,
-      artista,
-      album,
-    });
+      await nuevaCancion.save();
 
-    await nuevaCancion.save();
-
-    return res.status(201).json(nuevaCancion);
-  } catch (error) {
-    console.error('Error al crear la canción:', error);
-    return res.status(500).json({ mensaje: 'Error interno del servidor' });
-  }
+      return res.status(201).json(nuevaCancion);
+    }
+    } catch (error) {
+      console.error('Error al crear la canción:', error);
+      return res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
 };
 
 exports.getCancionById = async (req, res) => {
@@ -74,7 +80,10 @@ exports.updateCancion = async (req, res) => {
       artista,
       album,
     } = req.body;
-
+  
+  if(Usuario.isArtist === false){
+    return res.status(401).json({ mensaje: 'No tiene permisos para editar canciones' });
+  } else {
     const cancionActualizada = await Cancion.findByIdAndUpdate(
       cancionId,
       {
@@ -95,6 +104,7 @@ exports.updateCancion = async (req, res) => {
     }
 
     return res.status(200).json(cancionActualizada);
+  }
   } catch (error) {
     console.error('Error al actualizar la canción por ID:', error);
     return res.status(500).json({ mensaje: 'Error interno del servidor' });
@@ -106,13 +116,18 @@ exports.deleteCancion = async (req, res) => {
   try {
     const cancionId = req.params.id;
 
+    if (Usuario.isArtist === false) {
+      return res.status(401).json({ mensaje: 'No tiene permisos para eliminar canciones' });
+    } else {
     const result = await Cancion.findByIdAndRemove(cancionId);
 
     if (!result) {
       return res.status(404).json({ mensaje: 'Canción no encontrada' });
     }
 
+
     return res.status(200).json({ mensaje: 'Canción eliminada con éxito' });
+  }
   } catch (error) {
     console.error('Error al eliminar la canción:', error);
     return res.status(500).json({ mensaje: 'Error interno del servidor' });

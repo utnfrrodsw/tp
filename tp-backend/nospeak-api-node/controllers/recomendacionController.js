@@ -1,4 +1,4 @@
-const Recomendacion = require('../models/Recomendacion');
+const Recomendacion = require('../models/recomendacion');
 
 
 exports.createRecomendacion = async (req, res) => {

@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose'); 
 const app = express();
+const cors = require('cors');
 const apiRoutes = require('./routes/apiRoutes');
+const config = require('./config');
 
-mongoose.connect('', {
+mongoose.connect(config.databaseConnectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -13,6 +15,11 @@ mongoose.connection.on('connected', () => {
 });
 
 app.use(express.json());
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Reemplaza con la URL de tu aplicación React
+  credentials: true, // Habilita el intercambio de cookies (si es necesario)
+}));
 
 app.use('/api', apiRoutes); 
 const PORT = process.env.PORT || 9000;

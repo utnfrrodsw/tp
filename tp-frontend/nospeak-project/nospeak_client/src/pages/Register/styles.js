@@ -95,4 +95,22 @@ const SuccessMessage = styled.div`
   margin-top: 10px;
 `;
 
-export { StyledRadio, StyledSelect, DateInput, ErrorMessage, SuccessMessage };
+const LoginContainer = styled.div`
+  /* Estilos para el contenedor de login */
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 500px) {
+    flex-direction: row;
+    gap: 10px;
+  }
+`;
+
+export {
+  StyledRadio,
+  StyledSelect,
+  DateInput,
+  ErrorMessage,
+  SuccessMessage,
+  LoginContainer,
+};

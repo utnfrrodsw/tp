@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import {FormLogin, FormLoginContainer, NavLogin, LoginButton, LoginInput, StyledH1} from '../Login/styles';
+import {FormLogin, FormLoginContainer, NavLogin, LoginButton, LoginInput, StyledH1, StyledSpan, StyledLink} from '../Login/styles';
 import { Navigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../redux/slices/userSlice.js';
-import { ErrorMessage, SuccessMessage } from '../Register/styles';
+import { ErrorMessage, SuccessMessage, LoginContainer } from '../Register/styles';
 
 
 
@@ -20,6 +20,7 @@ export default function Register({client}) {
   const [repeatPasswordError, setRepeatPasswordError] = useState('');
 
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [isArtist, setIsArtist] = useState(false);
 
 
   const [goToHome, setGoToHome] = useState(false);
@@ -80,6 +81,7 @@ export default function Register({client}) {
         nombre: name,
         email: email,
         password,
+        isArtist,
       });
 
 
@@ -92,7 +94,7 @@ export default function Register({client}) {
 
           setRegistrationSuccess(true);
                       
-          // Inicia sesión con el nuevo usuario
+
           const response_login = await client.post('/api/usuarios-login/', {
             nombre: name,
             password,
@@ -147,7 +149,7 @@ export default function Register({client}) {
   return (
     <FormLoginContainer>
       <NavLogin>
-        <img src="https://1000logos.net/wp-content/uploads/2017/08/Spotify-symbol.jpg" alt="Logo de spotify" />
+        <img src={process.env.PUBLIC_URL + '/logo_nospeak.png'} alt="logo" style={{ width: '130px', height: '60%' }}/>
       </NavLogin>
       <FormLogin>
         <StyledH1>Sign up for NoSpeak</StyledH1>
@@ -156,7 +158,7 @@ export default function Register({client}) {
         {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
         <span>What should we call you?</span>
         <LoginInput value={name} onChange={handleNameChange} type="text" placeholder="Username" />
-        {nameError && <ErrorMessage>{nameError}</ErrorMessage>}
+        {nameError && <ErrorMessage>{nameError}</ErrorMessage>} 
         <span>Create a password</span>
         <LoginInput value={password} onChange={handlePasswordChange} type="password" placeholder="Password" />
         {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
@@ -167,6 +169,10 @@ export default function Register({client}) {
         <LoginButton onClick={(e) => { handleRegister(e); }}>
           Sign up
         </LoginButton>
+        <LoginContainer>
+          <StyledSpan>Already have an account?</StyledSpan>
+          <StyledLink to='/login'>Log in</StyledLink>
+        </LoginContainer>
       </FormLogin>
     </FormLoginContainer>
   );

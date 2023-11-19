@@ -37,6 +37,7 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
 
     const fetchUserHistorial = () => {
         if (user && user.id) {
+            console.log(user)
             client.get(`/api/historiales-usuario/${user.id}`)
             .then(response => {
                 setUserHistorial(response.data);
@@ -91,9 +92,10 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
             <TitleContainer>
                 <h1 style={{color: 'white'}}>Songs</h1>
                 <IconContainer>
+                    {user.isAdmin && (
                     <Link to={{ pathname: `/song/${0}` }}>
                         <StyledAddCircle sx={{ color: '#FFA130'}} />
-                    </Link>
+                    </Link>)}
                 </IconContainer>
             </TitleContainer>
             <React.Fragment>
@@ -110,9 +112,10 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
                                 </Typography>
                             </CardContent>
                             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pl: 1, pb: 1}}>
+                                    {user.isAdmin && (
                                     <IconButton aria-label="delete" onClick={() => handleDelete(song._id, index)}>
                                         <StyledDeleteIcon sx={{ color: 'white' }} />
-                                    </IconButton>
+                                    </IconButton>)}
                                     <IconButton
                                         aria-label="play/pause"
                                         onClick={() => handleFavoriteClick(song._id)}
@@ -125,11 +128,13 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
                                             }}
                                         />
                                     </IconButton>
+                                    {user.isAdmin && (
                                     <IconButton aria-label="edit">
                                         <Link to={{ pathname: `/song/${song._id}` }}>
                                             <StyledEditIcon sx={{ color: 'white' }} />
                                         </Link>
                                     </IconButton>
+                                    )}
                             </Box>
                             
                         </Box>
