@@ -27,19 +27,10 @@ const serviciosRoutes = require('./routes/servicioRoutes.js');
 //use app
 app.use(express.json());
 
-app.listen(app.get("port"), () => {
-    console.log(`Server corriendo en el puerto ${app.get("port") || 5000}`);
-});
-
 //rutas
 app.get("/", (req, res) => {
-    res.status(200).send('OK');
+    res.status(200).send('API FastServices funcionando correctamente');
 });
-
-app.get('/health', (req, res) => {
-  res.status(200).send('OK');
-});
-
 
 app.use("/api/usuario", usuariosRoutes);
 app.use('/api/solicitud', solicitudRoutes);
@@ -57,4 +48,7 @@ app.use((err, req, res, next) => {
     });
 });
 
+app.listen(app.get("port"), () => {
+    console.log(`Server corriendo en el puerto ${app.get("port") || 5000}`);
+});
 
