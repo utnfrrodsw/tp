@@ -7,7 +7,7 @@
     "deploy": {
       "numReplicas": 1,
       "startCommand": "echo starting!",
-      "healthcheckPath": "/",
+      "healthcheckPath": "/health",
       "sleepApplication": false,
       "restartPolicyType": "NEVER",
       "healthcheckTimeout": 100
