@@ -32,7 +32,7 @@ app.listen(app.get("port"), () => {
 });
 
 //rutas
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
     res.send("api fast services funcionando");
 });
 
