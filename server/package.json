@@ -9,9 +9,6 @@
     "start": "node src/app.js",
     "vercel-build": "echo hello"
   },
-  "includes": [
-    "./api/*.js"
-  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
