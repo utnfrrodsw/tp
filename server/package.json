@@ -5,7 +5,6 @@
   "main": "src/app.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "node src/app.js",
     "start": "node src/app.js"
   },
   "author": "",
