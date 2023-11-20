@@ -1,8 +1,11 @@
+import os
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
 
-csv_file_path = '/Users/bautistaguerra/Documents/source/TP-TTADS/tp-frontend/nospeak-project/nospeak_app/recommendations/data_songs.csv'
+script_dir = os.path.dirname(__file__)
+
+csv_file_path = os.path.join(script_dir, 'data_songs.csv')
 
 data_songs = pd.read_csv(csv_file_path)
 
