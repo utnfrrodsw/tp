@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  authUrl = `${environment.baseUrl}/auth`;
+  authUrl = `${environment.baseUrl}auth`;
   private loginSuccessSubject = new Subject<void>();
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {}
 

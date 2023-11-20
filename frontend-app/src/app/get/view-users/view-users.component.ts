@@ -47,37 +47,35 @@ export class ViewUsersComponent implements OnInit {
   handlerUpdate(viewDataUsers: FormGroup, user: any) {
     if (this.viewDataUsers.valid) {
       user.UpdatedEmail = viewDataUsers.controls['userUpdatedEmail'].value;
-      // console.log(user);
       this.userService
         .updateEmailUser(user.UserId, user.UpdatedEmail)
         .subscribe(() => {
           this._snackBar.open(`Email actualizado con exito!`, 'CERRAR', {
             duration: 4000,
           });
-          // this.succesMessage = `Usuario ${user.FirstName} ${user.LastName} ha sido actualizado`;
-          // this.deletionMessage = '';
         });
     }
   }
 
   deleteUser(users: any) {
     this.userService.deleteUser(users.UserId).subscribe(
-      (user: User) => {
-        this.users = this.users?.filter((u) => u.UserId !== user.UserId);
-        // this.deletionMessage = `Usuario ${user.FirstName} ${user.LastName} ha sido borrado`;
-        this._snackBar.open(
-          `Usuario ${user.FirstName} ${user.LastName} ha sido borrado`,
-          'CERRAR',
-          {
-            duration: 4000,
-          }
-        );
-        this.viewUsers();
-      },
-      (error) => {
-        this.deletionMessage = 'Error al borrar el usuario';
-        this.succesMessage = '';
-        console.error(error);
+      {
+        next:(user: User) => {
+          this.users = this.users?.filter((u) => u.UserId !== user.UserId);
+          this._snackBar.open(
+            `Usuario ${user.FirstName} ${user.LastName} ha sido borrado`,
+            'CERRAR',
+            {
+              duration: 4000,
+            }
+          );
+          this.viewUsers();
+        },
+        error:(error) => {
+          this.deletionMessage = 'Error al borrar el usuario';
+          this.succesMessage = '';
+          console.error(error);
+        }
       }
     );
   }

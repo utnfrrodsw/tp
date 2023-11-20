@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageGeneratorService {
-  STABLE_API_TOKEN = 'sk-3PTBJ1rxILnQG2t8dMreugaYdt3dFQ1xV5YJbaW0Of1lJMr0';
   constructor(private http: HttpClient) { }
 
   async generateImage() {
@@ -23,7 +23,7 @@ export class ImageGeneratorService {
     },
     {
       headers: {
-        Authorization: `${this.STABLE_API_TOKEN}`,
+        Authorization: `${environment.STABLE_API_TOKEN}`,
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
