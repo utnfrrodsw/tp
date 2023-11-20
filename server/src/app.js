@@ -31,14 +31,15 @@ app.listen(app.get("port"), () => {
     console.log(`Server corriendo en el puerto ${app.get("port") || 5000}`);
 });
 
-app.get('/', (req, res) => {
-    res.status(200).send('api fast services funcionando');
-});
-
 //rutas
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
     res.send("api fast services funcionando");
 });
+
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 
 app.use("/api/usuario", usuariosRoutes);
 app.use('/api/solicitud', solicitudRoutes);
