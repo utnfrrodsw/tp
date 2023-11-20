@@ -2,11 +2,6 @@
 const express = require('express');
 const app = express();
 
-const { PORT } = require('./config');
-
-app.set("port", PORT || 5000); //seteamos el puerto que nos da el servidor o el 5000
-
-
 const cors = require('cors');
 app.use(cors());
 
@@ -27,12 +22,8 @@ const serviciosRoutes = require('./routes/servicioRoutes.js');
 //use app
 app.use(express.json());
 
-app.listen(app.get("port"), () => {
-    console.log(`Server corriendo en el puerto ${app.get("port") || 5000}`);
-});
-
 //rutas
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
     res.send("api fast services funcionando");
 });
 
@@ -52,4 +43,5 @@ app.use((err, req, res, next) => {
     });
 });
 
+module.exports = app;
 
