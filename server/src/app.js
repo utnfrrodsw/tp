@@ -36,11 +36,10 @@ app.get("/", (req, res) => {
     res.send("api fast services funcionando");
 });
 
-app.get("/health", (req, res) => {
-    res.status(200).json({
-        message: "Server is OK"
-    });
-});
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+  });
+  
 
 app.use("/api/usuario", usuariosRoutes);
 app.use('/api/solicitud', solicitudRoutes);
