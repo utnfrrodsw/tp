@@ -14,7 +14,10 @@
       <v-col cols="12" sm="12">
         <v-card class="mx-auto" tile>
           <v-card-title>Tecnicos</v-card-title>
-          <v-data-table :headers="headers" :items="items" disable-pagination :hide-default-footer="true">
+          <v-data-table :headers="headers" :items="items"
+            @pagination="handlePageChange" :server-items-length="totalItems"
+            :currentPage="page"
+          >
             <template v-slot:[`item.actions`]="{ item }">
               <v-icon small class="mr-2" @click="editTechnician(item.id)">
                 mdi-pencil
@@ -22,21 +25,6 @@
             </template>
           </v-data-table>
         </v-card>
-      </v-col>
-      
-      <v-col cols="4" sm="3">
-        <v-select v-model="pageSize" :items="pageSizes" label="Items por pagina" @change="handlePageSizeChange"></v-select>
-      </v-col>
-
-      <v-col cols="12" sm="9">
-        <v-pagination 
-          v-model="page" 
-          :length="totalPages" 
-          total-visible="7" 
-          next-icon="mdi-menu-right"
-          prev-icon="mdi-menu-left" 
-          @input="handlePageChange">
-        </v-pagination>
       </v-col>
     </v-row>
   </v-container>
@@ -50,9 +38,8 @@ export default {
     return {
       items: [],
       page: 1,
-      totalPages: 0,
-      pageSize: 3,
-      pageSizes: [3, 6, 9],
+      pageSize: 5,
+      totalItems: 0,
       searchName: "",
       headers: [
         { text: "Codigo", align: "start", sortable: false, value: "id" },
@@ -65,36 +52,18 @@ export default {
   mounted() {
     this.retrieveTechnician();
   },
+  computed: {
+    requestParams() {
+      return { name: this.searchName ? this.searchName : undefined, page: this.page ? (this.page - 1) : undefined, size: this.pageSize ? this.pageSize : undefined }
+    }
+  },
   methods: {
-    getRequestParams(searchName, page, pageSize) {
-      let params = {};
-
-      if (searchName) {
-        params["name"] = searchName;
-      }
-
-      if (page) {
-        params["page"] = page - 1;
-      }
-
-      if (pageSize) {
-        params["size"] = pageSize;
-      }
-
-      return params;
-    },
     retrieveTechnician() {
-      const params = this.getRequestParams(
-        this.searchName,
-        this.page,
-        this.pageSize
-      );
-
-      TechnicianDataService.getAll(params)
+      TechnicianDataService.getAll(this.requestParams)
         .then((response) => {
-          const { technicians, totalPages } = response.data;
+          const { technicians, totalItems } = response.data;
           this.items = technicians.map(this.getDisplayTechnician);
-          this.totalPages = totalPages;
+          this.totalItems = totalItems;
 
           console.log(response.data);
         })
@@ -105,14 +74,12 @@ export default {
     editTechnician(id) {
       this.$router.push({ name: 'EditTechnician', params: { id } })
     },
-    handlePageChange(value) {
-      this.page = value;
-      this.retrieveTechnician();
-    },
-    handlePageSizeChange(size) {
-      this.pageSize = size;
-      this.page = 1;
-      this.retrieveTechnician();
+    handlePageChange({ page, itemsPerPage }) {
+      if (this.pageSize !== itemsPerPage || page !== this.page) {
+        this.pageSize = itemsPerPage;
+        this.page = page;
+        this.retrieveTechnician();
+      }
     },
     getDisplayTechnician(technician) {
       return {
