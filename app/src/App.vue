@@ -10,22 +10,24 @@
         </router-link>
       </div>
       <v-spacer></v-spacer>
-      <v-menu v-for="(item, index) in routes" :key="index" :close-on-content-click="false" transition="scale-transition" offset-y v-model="item.menu">
-        <template v-slot:activator="{ on }">
-          <v-btn text v-on="on">
-            <v-icon v-if="item.icon">{{ item.icon }}</v-icon>
-            {{ item.name }}            
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="(subItem, subIndex) in item.subitems" :key="subIndex" @click="insertRoute(subItem.route, item); closeMenu(subItem)">
-            <v-list-item-title v-bind:style="activeRoute(subItem.route) ? 'font-weight: bold;' : '' ">
-              <v-icon v-if="subItem.icon">{{ subItem.icon }}</v-icon>
-              {{ subItem.name }}
-            </v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+      <template v-if="true">
+        <v-menu v-for="(item, index) in routes" :key="index" close-on-content-click transition="scale-transition" offset-y v-model="item.menu">
+          <template v-slot:activator="{ on }">
+            <v-btn text v-on="on">
+              <v-icon v-if="item.icon">{{ item.icon }}</v-icon>
+              {{ item.name }}            
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="(subItem, subIndex) in item.subitems" :key="subIndex" @click="insertRoute(subItem.route, item)">
+              <v-list-item-title v-bind:style="activeRoute(subItem.route) ? 'font-weight: bold;' : '' ">
+                <v-icon v-if="subItem.icon">{{ subItem.icon }}</v-icon>
+                {{ subItem.name }}
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </template>
     </v-app-bar>
 
     <!-- Nueva sección para el logotipo en la vista móvil -->
@@ -172,7 +174,7 @@ export default {
   computed: {
     isMobileScreen() {
       return this.$vuetify.breakpoint.smAndDown;
-    },
+    }
   },
   watch: {
     isMobileScreen(newValue) {
