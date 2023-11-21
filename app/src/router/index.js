@@ -16,7 +16,6 @@ import EditTask from '../views/EditTask.vue'
 import ListTasks from '../views/ListTasks.vue'
 
 import AddCertification from '../views/AddCertification.vue'
-import EditCertification from '../views/EditCertification.vue'
 import ListCertifications from '../views/ListCertifications.vue'
 
 import EditUser from '../views/EditUser.vue'
@@ -91,12 +90,6 @@ const routes = [
     path: '/add-certification',
     name: 'AddCertification',
     component: AddCertification,
-    beforeEnter: auth
-  },
-  {
-    path: '/edit-certification',
-    name: 'EditCertification',
-    component: EditCertification,
     beforeEnter: auth
   },
   {

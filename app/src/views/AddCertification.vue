@@ -88,11 +88,11 @@
   </v-container>
 </template>
 <script>
-  import axios from "axios"
-  import Alerts from "@/components/Alerts.vue"
+  import axios from 'axios'
+  import Alerts from '@/components/Alerts.vue'
 
   export default {
-    name: "Formulario",
+    name: 'Formulario',
     data() {
       return {
         date: '',
@@ -149,8 +149,8 @@
           }
 
           const response = await axios.post(`${this.url}api/group_tasks`, data)
-          this.alert.message = "Tarea agregada correctamente"
-          this.alert.type = "success"
+          this.alert.message = 'Tarea agregada correctamente'
+          this.alert.type = 'success'
           this.alert.show = true
           this.date = ''
           this.dateMenu = ''
@@ -162,8 +162,8 @@
 
           this.tareas = [{ descripcion: '', cantidad: '' }]
         } catch (error) {
-          this.alert.message = "No se pudo agregar la tarea"
-          this.alert.type = "Error"
+          this.alert.message = 'No se pudo agregar la tarea'
+          this.alert.type = 'Error'
           this.alert.show = true
           console.error(error)
         }
