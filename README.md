@@ -36,10 +36,15 @@ npm install
 Crea un archivo `.env` en el directorio `server` con el siguiente contenido:
 
 ```env
-PORT=5000
-ACCESS_TOKEN_SECRET= secret
-REFRESH_TOKEN_SECRET= secret2
-API_URL=http://localhost:PORTBACK/api
+PORT = 5000
+ACCESS_TOKEN_SECRET = secret1
+REFRESH_TOKEN_SECRET = secret2
+API_URL = http://apiurl/api
+DB_USER=root
+DB_PASSWORD=root
+DB_NAME=fastservices
+DB_HOST=localhost
+DB_PORT=3306
 ```
 
 ### Cliente (frontend)
@@ -47,7 +52,8 @@ API_URL=http://localhost:PORTBACK/api
 Crea un archivo `.env` en el directorio `client` con el siguiente contenido:
 
 ```env
-API_URL=http://localhost:PORTBACK/api
+REACT_APP_API_URL = http://apiurl/api
+REACT_APP_PHOTO = http://apiurl
 ```
 
 ## Configuración de la Base de Datos
