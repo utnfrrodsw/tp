@@ -3,6 +3,7 @@ import './anuncio.css';
 import { Carousel, Container, Image, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import {REACT_APP_PHOTO} from '../../../../auth/constants.js';
 
 function Anuncio(props) {
   console.log(props.filtrado);
@@ -40,7 +41,7 @@ function Anuncio(props) {
                       <Container>
                         <Image
                           key={index}
-                          src={'http://localhost:5000/images/imagesdb/' + img.foto}
+                          src={REACT_APP_PHOTO + '/images/imagesdb/'+ img.foto}
                           alt='foto'
                           className='foto'
                           style={{ width: '60%', height: '60%' }}

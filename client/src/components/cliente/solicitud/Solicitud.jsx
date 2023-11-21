@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import './solicitud.css';
-import { API_URL } from '../../../auth/constants';
+import { API_URL, REACT_APP_PHOTO } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider';
 import { Modal, Carousel, Container, Image, Button} from 'react-bootstrap';
 import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
@@ -159,7 +159,7 @@ function Solicitud(props){
                       {props.fotos.map((img, index) => (
                           <Carousel.Item style={{margin_top: '10px'}}>
                             <Container>
-                              <Image key={index} src={'http://localhost:5000/images/imagesdb/'+ img.foto} alt="foto" className="foto" style={{ width: '45%', height: '45%' }}  />
+                              <Image key={index} src={ REACT_APP_PHOTO + '/images/imagesdb/'+ img.foto} alt="foto" className="foto" style={{ width: '45%', height: '45%' }}  />
                             </Container>
                           </Carousel.Item>
                       ))}
