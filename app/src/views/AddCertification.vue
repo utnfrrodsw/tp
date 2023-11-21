@@ -50,7 +50,13 @@
         </v-menu>
       </v-col>
       <v-col cols="12" sm="6" md="6">
-        <v-select :items="groupOptions" label="Grupo" v-model="descripcion"></v-select>
+        <v-select
+          v-model="selectedGroup"
+          :items="groupOptions"
+          label="Grupo"
+          item-text="description"
+          item-value="id"
+        ></v-select>
       </v-col>
       <v-col cols="12" sm="6" md="3">
         <v-text-field label="Conexión" v-model="conection"></v-text-field>
@@ -64,7 +70,7 @@
       <v-col cols="12" v-for="(task, index) in tasks" :key="index">
         <v-row>
           <v-col cols="12" sm="6" md="6">
-            <v-select :items="availableTasks" label="Tarea" v-model="task.description"></v-select>
+            <v-select :items="availableTasks" label="Tarea" v-model="task.name"></v-select>
           </v-col>
           <v-col cols="12" sm="6" md="3">
             <v-text-field label="Cantidad" v-model.number="task.quantity"></v-text-field>
@@ -92,15 +98,15 @@
   import Alerts from '@/components/Alerts.vue'
 
   export default {
-    name: 'Formulario',
+    name: 'AddCertification',
     data() {
       return {
         date: '',
         hour: '',
-        description: '',
+        selectedGroup: null,
         conection: '',
         observations: '',
-        tasks: [{ description: '', quantity: '' }],
+        tasks: [{ name: '', quantity: '' }],
         availableTasks: [],
         groupOptions: [],
         url: process.env.VUE_APP_API_URL,
@@ -119,10 +125,7 @@
           text: task.name
         }))
         const responseGroups = await axios.get(`${this.url}api/groups`)
-        this.groupOptions = responseGroups.data.map((group) => ({
-          value: group.id,
-          text: group.description
-        }))
+        this.groupOptions = responseGroups.data
       } catch (error) {
         console.error(error)
       }
@@ -132,7 +135,10 @@
     },
     methods: {
       addTask() {
-        this.tasks.push({ descripcion: '', cantidad: '' })
+        this.tasks.push({
+          description: '',
+          quantity: ''
+        })
       },
       deleteTask(index) {
         this.tasks.splice(index, 1)
@@ -140,7 +146,7 @@
       async submitForm() {
         try {
           const data = {
-            groupId: this.descripcion,
+            groupId: this.description,
             conection: this.conection,
             tasks: this.tasks,
             date: this.date,
@@ -156,11 +162,11 @@
           this.dateMenu = ''
           this.timeMenu = ''
           this.time = ''
-          this.descripcion = ''
+          this.description = ''
           this.conection = ''
           this.observaciones = ''
 
-          this.tareas = [{ descripcion: '', cantidad: '' }]
+          this.task = [{ name: '', quantity: '' }]
         } catch (error) {
           this.alert.message = 'No se pudo agregar la tarea'
           this.alert.type = 'Error'

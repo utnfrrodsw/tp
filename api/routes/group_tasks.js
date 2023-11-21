@@ -5,6 +5,6 @@ const auth = require('../middlewares/auth')
 
 // api/group_tasks
 router.get('/', groupTasksController.getGroupTasks)
-router.post('/', groupTasksController.queryGroupTask)
+router.post('/', auth, groupTasksController.createGroupTask)
 
 module.exports = router

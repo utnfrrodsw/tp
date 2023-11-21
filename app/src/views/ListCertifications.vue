@@ -178,8 +178,7 @@
         }
 
         try {
-          const response = await axios.post(`${process.env.VUE_APP_API_URL}api/group_tasks`, data)
-          debugger
+          const response = await axios.get(`${process.env.VUE_APP_API_URL}api/group_tasks`, data)
           this.tasks = response.data
         } catch (error) {
           console.error(error)
