@@ -33,5 +33,9 @@ export class ComentarioService {
     this.comentarios.push(comentario);
   }
 
+  eliminarComentario(index: number): void {
+    this.comentarios.splice(index, 1);
+  }
+
   constructor() { }
 }

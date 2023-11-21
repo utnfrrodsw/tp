@@ -46,3 +46,10 @@
     text-align: right;
     font-weight: bold;
 }
+
+.delete-buttom{
+    margin-right: auto;
+    border: none;
+    background-color: rgb(206, 4, 4);
+    color: white;
+}
