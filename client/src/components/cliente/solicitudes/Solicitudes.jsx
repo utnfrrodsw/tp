@@ -21,7 +21,11 @@ function Solicitudes(props) {
           .then((res) => res.json())
           .then((data) => {
             console.log(data.body.solicitudes);
-            setSolicitudes(data.body.solicitudes);
+            if(data.body.solicitudes !== undefined){
+                setSolicitudes(data.body.solicitudes);
+            }else{
+                setSolicitudes([]);
+            }
             setSolicitudesUpdate(false); // Mover esta línea aquí
             setLoad(false);
           })
@@ -100,7 +104,7 @@ function Solicitudes(props) {
                     />
                 ))) : (
                     <div>
-                        <h1>No hay nunguna solicitud en {props.estado}</h1>
+                        <h1>No hay solicitudes en {props.estado}</h1>
                     </div>
                 )) : (
                     <div>
