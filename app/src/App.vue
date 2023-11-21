@@ -28,6 +28,16 @@
       </v-menu>
     </v-app-bar>
 
+    <!-- Nueva sección para el logotipo en la vista móvil -->
+    <v-app-bar v-if="isMobile" app color="primary" dark>
+      <v-container class="d-flex justify-center">
+      <router-link to="/">
+      <v-img alt="SPM Logo" class="shrink mr-2" contain src="@/assets/SPM.png" transition="scale-transition" width="40" cursor-pointer />
+      </router-link>
+    </v-container>
+
+    </v-app-bar>
+
     <v-bottom-navigation v-if="isMobile" app color="primary">
       <v-btn
         v-for="(item, index) in routes"
@@ -44,6 +54,16 @@
 
     <v-main>
       <router-view />
+      <v-bottom-sheet v-model="bottomSheet" max-width="600">
+        <v-list>
+          <v-list-item v-for="(subItem, subIndex) in activeSubItems" :key="subIndex" @click="insertRoute(subItem.route, activeItem); closeBottomSheet()">
+            <v-list-item-title v-bind:style="activeRoute(subItem.route) ? 'font-weight: bold;' : '' ">
+              <v-icon v-if="subItem.icon">{{ subItem.icon }}</v-icon>
+              {{ subItem.name }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-bottom-sheet>
     </v-main>
   </v-app>
 </template>
@@ -143,8 +163,11 @@ export default {
           }
         ]
       }
-      ],
+    ],
     isMobile: false,
+    bottomSheet: false,
+    activeItem: {},
+    activeSubItems: [],
   }),
   computed: {
     isMobileScreen() {
@@ -159,9 +182,10 @@ export default {
   methods: {
     toggleSubMenu(item) {
       if (item.subitems) {
-        item.menu = !item.menu;
+        this.activeItem = item;
+        this.activeSubItems = item.subitems;
+        this.bottomSheet = true;
       } else {
-        // Si no hay submenú, navega a la ruta principal
         this.$router.push(item.route).catch(error => {
           if (error.name !== 'NavigationDuplicated') {
             throw error;
@@ -175,24 +199,27 @@ export default {
           throw error;
         }
       });
-      this.closeMenu(item);
+      this.closeBottomSheet();
     },
-    closeMenu(item) {
-      item.menu = false;
+    closeBottomSheet() {
+      this.bottomSheet = false;
     },
     activeRoute(route) {
       return this.$route.path === route;
     },
   },
-  mounted() {
+  created() {
+    this.routes.forEach(item => {
+      this.$set(item, 'menu', false);
+    });
+
     this.isMobile = this.isMobileScreen;
   },
 };
 </script>
 
 <style>
-  /* Estilos adicionales según sea necesario */
   .v-btn--active {
-    background-color: #1976D2; /* Color activo de los botones en la parte inferior */
+    background-color: #1976D2;
   }
 </style>
