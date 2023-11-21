@@ -15,6 +15,10 @@ import AddTask from '../views/AddTask.vue'
 import EditTask from '../views/EditTask.vue'
 import ListTasks from '../views/ListTasks.vue'
 
+import AddCertification from '../views/AddCertification.vue'
+import EditCertification from '../views/EditCertification.vue'
+import ListCertifications from '../views/ListCertifications.vue'
+
 import EditUser from '../views/EditUser.vue'
 import login from '../views/Login.vue'
 import logout from '../views/Logout.vue'
@@ -33,6 +37,12 @@ const routes = [
     path: '/add-group',
     name: 'AddGroup',
     component: AddGroup,
+    beforeEnter: auth
+  },
+  {
+    path: '/edit-group',
+    name: 'EditGroup',
+    component: EditGroup,
     beforeEnter: auth
   },
   {
@@ -78,15 +88,27 @@ const routes = [
     beforeEnter: auth
   },
   {
-    path: '/edit-account',
-    name: 'EditUser',
-    component: EditUser,
+    path: '/add-certification',
+    name: 'AddCertification',
+    component: AddCertification,
     beforeEnter: auth
   },
   {
-    path: '/edit-group',
-    name: 'EditGroup',
-    component: EditGroup,
+    path: '/edit-certification',
+    name: 'EditCertification',
+    component: EditCertification,
+    beforeEnter: auth
+  },
+  {
+    path: '/list-certifications',
+    name: 'ListCertifications',
+    component: ListCertifications,
+    beforeEnter: auth
+  },
+  {
+    path: '/edit-account',
+    name: 'EditUser',
+    component: EditUser,
     beforeEnter: auth
   },
   {

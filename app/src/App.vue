@@ -71,153 +71,148 @@
 </template>
 
 <script>
-export default {
-  name: 'App',
-  data: () => ({
-    routes: [
-      {
-        name: 'Grupos',
-        icon: 'mdi-account-group',
-        menu: false,
-        subitems: [
-          {
-            name: 'Crear Grupo',
-            route: '/add-group',
-            icon: 'mdi-account-multiple-plus'
-          },
-          {
-            name: 'Listar Grupos',
-            route: '/list-groups',
-            icon: 'mdi-list-box'
-          }
-        ]
-      },
-      {
-        name: 'Tecnicos',
-        icon: 'mdi-account-group',
-        menu: false,
-        subitems: [
-          {
-            name: 'Crear Tecnico',
-            route: '/add-technician',
-            icon: 'mdi-account-multiple-plus'
-          },
-          {
-            name: 'Listar Tecnicos',
-            route: '/list-technicians',
-            icon: 'mdi-list-box'
-          }
-        ]
-      },
-      {
-        name: "Tareas",
-        icon: "mdi-format-list-checkbox",
-        menu:false,
-        subitems: [
-          {
-            name: "Agregar Tarea",
-            route: "/add-task", icon:
-            "mdi-plus"
-          },
-          {
-            name: "Listar Tareas",
-            route: "/list-tasks",
-            icon: "mdi-list-box"
-          }
-        ]
-      },
-      {
-        name: "Certificar",
-        icon: "mdi-cash",
-        menu:false,
-        subitems: [
-          {
-            name: "Nueva Certificacion",
-            route: "/add-certification",
-            icon: "mdi-cash-plus"
-          },
-          {
-            name: "Consultar Certifiacion por Tecnico",
-            route: "/list-certifications",
-            icon: "mdi-pencil"
-          },
-          {
-            name: "Consultar Certificacion",
-            route: "/query-certification",
-            icon: "mdi-view-list"
-          }
-        ]
-      },
-      {
-        name: 'Cuenta',
-        icon: 'mdi-account',
-        menu: false,
-        subitems: [
-          {
-            name: 'Editar cuenta',
-            route: '/edit-account',
-            icon: 'mdi-account-edit'
-          },
-          {
-            name: 'Cerrar sesión',
-            route: '/logout',
-            icon: 'mdi-logout'
-          }
-        ]
+  export default {
+    name: 'App',
+    data: () => ({
+      routes: [
+        {
+          name: 'Grupos',
+          icon: 'mdi-account-group',
+          menu: false,
+          subitems: [
+            {
+              name: 'Crear Grupo',
+              route: '/add-group',
+              icon: 'mdi-account-multiple-plus'
+            },
+            {
+              name: 'Listar Grupos',
+              route: '/list-groups',
+              icon: 'mdi-list-box'
+            }
+          ]
+        },
+        {
+          name: 'Tecnicos',
+          icon: 'mdi-account-group',
+          menu: false,
+          subitems: [
+            {
+              name: 'Crear Tecnico',
+              route: '/add-technician',
+              icon: 'mdi-account-multiple-plus'
+            },
+            {
+              name: 'Listar Tecnicos',
+              route: '/list-technicians',
+              icon: 'mdi-list-box'
+            }
+          ]
+        },
+        {
+          name: "Tareas",
+          icon: "mdi-format-list-checkbox",
+          menu:false,
+          subitems: [
+            {
+              name: "Agregar Tarea",
+              route: "/add-task",
+              icon: "mdi-plus"
+            },
+            {
+              name: "Listar Tareas",
+              route: "/list-tasks",
+              icon: "mdi-list-box"
+            }
+          ]
+        },
+        {
+          name: "Certificar",
+          icon: "mdi-cash",
+          menu:false,
+          subitems: [
+            {
+              name: "Nueva Certificacion",
+              route: "/add-certification",
+              icon: "mdi-cash-plus"
+            },
+            {
+              name: "Consultar Certificacion",
+              route: "/list-certifications",
+              icon: "mdi-view-list"
+            }
+          ]
+        },
+        {
+          name: 'Cuenta',
+          icon: 'mdi-account',
+          menu: false,
+          subitems: [
+            {
+              name: 'Editar cuenta',
+              route: '/edit-account',
+              icon: 'mdi-account-edit'
+            },
+            {
+              name: 'Cerrar sesión',
+              route: '/logout',
+              icon: 'mdi-logout'
+            }
+          ]
+        }
+      ],
+      isMobile: false,
+      bottomSheet: false,
+      activeItem: {},
+      activeSubItems: [],
+    }),
+    computed: {
+      isMobileScreen() {
+        return this.$vuetify.breakpoint.smAndDown
       }
-    ],
-    isMobile: false,
-    bottomSheet: false,
-    activeItem: {},
-    activeSubItems: [],
-  }),
-  computed: {
-    isMobileScreen() {
-      return this.$vuetify.breakpoint.smAndDown;
-    }
-  },
-  watch: {
-    isMobileScreen(newValue) {
-      this.isMobile = newValue;
     },
-  },
-  methods: {
-    toggleSubMenu(item) {
-      if (item.subitems) {
-        this.activeItem = item;
-        this.activeSubItems = item.subitems;
-        this.bottomSheet = true;
-      } else {
-        this.$router.push(item.route).catch(error => {
+    watch: {
+      isMobileScreen(newValue) {
+        this.isMobile = newValue
+      },
+    },
+    methods: {
+      toggleSubMenu(item) {
+        if (item.subitems) {
+          this.activeItem = item
+          this.activeSubItems = item.subitems
+          this.bottomSheet = true
+        } else {
+          this.$router.push(item.route).catch(error => {
+            if (error.name !== 'NavigationDuplicated') {
+              throw error
+            }
+          });
+        }
+      },
+      insertRoute(route, item) {
+        this.$router.push(route).catch(error => {
           if (error.name !== 'NavigationDuplicated') {
-            throw error;
+            throw error
           }
         });
-      }
+        this.closeBottomSheet()
+      },
+      closeBottomSheet() {
+        this.bottomSheet = false
+      },
+      activeRoute(route) {
+        return this.$route.path === route
+      },
     },
-    insertRoute(route, item) {
-      this.$router.push(route).catch(error => {
-        if (error.name !== 'NavigationDuplicated') {
-          throw error;
-        }
-      });
-      this.closeBottomSheet();
-    },
-    closeBottomSheet() {
-      this.bottomSheet = false;
-    },
-    activeRoute(route) {
-      return this.$route.path === route;
-    },
-  },
-  created() {
-    this.routes.forEach(item => {
-      this.$set(item, 'menu', false);
-    });
+    created() {
+      this.routes.forEach(item => {
+        this.$set(item, 'menu', false)
+      })
 
-    this.isMobile = this.isMobileScreen;
-  },
-};
+      this.isMobile = this.isMobileScreen
+    }
+  }
 </script>
 
 <style>

@@ -65,9 +65,6 @@ const freeTechnicians = async (req, res) => {
 }
 
 module.exports = {
-  // getGroupTechnicians,
-  // getGroupTechnician,
-  // updateGroupTechnician,
   createGroupTechnician,
   deleteGroupTechnician,
   freeTechnicians

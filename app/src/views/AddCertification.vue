@@ -1,0 +1,173 @@
+<template>
+  <v-container>
+    <v-row>
+      <v-col cols="12" sm="6" md="3">
+        <v-menu
+          v-model="dateMenu"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              v-model="date"
+              label="Fecha"
+              append-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+              dense
+              class="mt-2"
+            ></v-text-field>
+          </template>
+          <v-date-picker v-model="date" @input="dateMenu = false" ></v-date-picker>
+        </v-menu>
+      </v-col>
+      <v-col cols="12" sm="6" md="3">
+        <v-menu
+          v-model="timeMenu"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              v-model="time"
+              label="Hora"
+              append-icon="mdi-clock"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+              dense
+              class="mt-2"
+            ></v-text-field>
+          </template>
+          <v-time-picker v-model="time" @input="timeMenu = false"></v-time-picker>
+        </v-menu>
+      </v-col>
+      <v-col cols="12" sm="6" md="6">
+        <v-select :items="groupOptions" label="Grupo" v-model="descripcion"></v-select>
+      </v-col>
+      <v-col cols="12" sm="6" md="3">
+        <v-text-field label="Conexión" v-model="conection"></v-text-field>
+      </v-col>
+      <v-col cols="12" sm="6" md="9">
+        <v-textarea label="Observaciones" v-model="observations"></v-textarea>
+      </v-col>
+      <v-col cols="12">
+        <v-btn color="primary" @click="addTask">Agregar tarea</v-btn>
+      </v-col>
+      <v-col cols="12" v-for="(task, index) in tasks" :key="index">
+        <v-row>
+          <v-col cols="12" sm="6" md="6">
+            <v-select :items="availableTasks" label="Tarea" v-model="task.description"></v-select>
+          </v-col>
+          <v-col cols="12" sm="6" md="3">
+            <v-text-field label="Cantidad" v-model.number="task.quantity"></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="3">
+            <v-btn color="error" @click="deleteTask(index)">Eliminar tarea</v-btn>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="12">
+        <v-btn color="primary" @click="submitForm">Enviar formulario</v-btn>
+      </v-col>
+
+      <v-row v-if="alert.show">
+      <v-col>
+        <alerts :type="alert.type" :message="alert.message" @quit="alert.show = false"></alerts>
+      </v-col>
+    </v-row>
+    </v-row>
+    
+  </v-container>
+</template>
+<script>
+  import axios from "axios"
+  import Alerts from "@/components/Alerts.vue"
+
+  export default {
+    name: "Formulario",
+    data() {
+      return {
+        date: '',
+        hour: '',
+        description: '',
+        conection: '',
+        observations: '',
+        tasks: [{ description: '', quantity: '' }],
+        availableTasks: [],
+        groupOptions: [],
+        url: process.env.VUE_APP_API_URL,
+        alert: {
+          show: false,
+          message: '',
+          type: ''
+        }
+      }
+    },
+    async mounted() {
+      try {
+        const responseTasks = await axios.get(`${this.url}api/tasks`)
+        this.availableTasks = responseTasks.data.map((task) => ({
+          value: task.id,
+          text: task.name
+        }))
+        const responseGroups = await axios.get(`${this.url}api/groups`)
+        this.groupOptions = responseGroups.data.map((group) => ({
+          value: group.id,
+          text: group.description
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    components: {
+      Alerts
+    },
+    methods: {
+      addTask() {
+        this.tasks.push({ descripcion: '', cantidad: '' })
+      },
+      deleteTask(index) {
+        this.tasks.splice(index, 1)
+      },
+      async submitForm() {
+        try {
+          const data = {
+            groupId: this.descripcion,
+            conection: this.conection,
+            tasks: this.tasks,
+            date: this.date,
+            time: this.time,
+            observations: this.observations
+          }
+
+          const response = await axios.post(`${this.url}api/group_tasks`, data)
+          this.alert.message = "Tarea agregada correctamente"
+          this.alert.type = "success"
+          this.alert.show = true
+          this.date = ''
+          this.dateMenu = ''
+          this.timeMenu = ''
+          this.time = ''
+          this.descripcion = ''
+          this.conection = ''
+          this.observaciones = ''
+
+          this.tareas = [{ descripcion: '', cantidad: '' }]
+        } catch (error) {
+          this.alert.message = "No se pudo agregar la tarea"
+          this.alert.type = "Error"
+          this.alert.show = true
+          console.error(error)
+        }
+      }
+    }
+  }
+</script>
