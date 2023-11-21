@@ -10,7 +10,7 @@
         </router-link>
       </div>
       <v-spacer></v-spacer>
-      <template v-if="true">
+      <template v-if="$isLogged">
         <v-menu v-for="(item, index) in routes" :key="index" close-on-content-click transition="scale-transition" offset-y v-model="item.menu">
           <template v-slot:activator="{ on }">
             <v-btn text v-on="on">
