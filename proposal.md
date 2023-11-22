@@ -38,18 +38,22 @@ Para más información sobre cómo ejecutar los tests de backend consulte https:
 
 **Frontend:**
 
-Test e2e:
+Prueba end-to-end (e2e):
 
 ![image](./res/ejecucion_e2e_crear_pedido.png)
 [Enlace a imagen completa](https://github.com/francobidart/dsw-tp-2023/blob/main/res/ejecucion_e2e_crear_pedido.png)
 
-Test unitario:
+Prueba unitaria:
 
 ![image](./res/ejecucion_unit_registrarse_component.png)
 [Enlace a imagen completa](https://github.com/francobidart/dsw-tp-2023/blob/main/res/ejecucion_unit_registrarse_component.png)
-### Demo de app en video
 
-TODO
+### Demostración en video del funcionamiento de la plataforma
+
+[![Demostración en video](https://img.youtube.com/vi/XbLrnse9iSo/0.jpg)](https://www.youtube.com/watch?v=XbLrnse9iSo "Demostración en video")
+
+[Enlace a video completo](https://www.youtube.com/watch?v=XbLrnse9iSo)
+g
 
 ---
 
