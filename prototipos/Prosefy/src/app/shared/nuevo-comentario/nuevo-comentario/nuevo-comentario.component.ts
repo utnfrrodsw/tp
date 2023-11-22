@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Comentario, ComentarioService } from 'src/app/services/comentario-service.service';
+import { IniciarSesionService } from 'src/app/services/iniciar-sesion.service';
 
 @Component({
   selector: 'app-nuevo-comentario',
@@ -14,8 +15,15 @@ export class NuevoComentarioComponent {
   });
   comentario!: string;
   allComentarios: string[] = [];
+  isLoggedIn: boolean = false;
 
-  constructor(private ComentarioService: ComentarioService, private formBuilder : FormBuilder,) {}
+  constructor(private ComentarioService: ComentarioService, private formBuilder : FormBuilder, private iniciarSesionService: IniciarSesionService) {}
+
+  ngOnInit(){
+    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: any) => {
+      this.isLoggedIn = isLoggedIn;
+    });
+  }
 
   getComentarios() {
     this.allComentarios = this.ComentarioService.getComentarios();
