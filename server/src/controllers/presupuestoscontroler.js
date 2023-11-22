@@ -2,6 +2,7 @@ const { jsonResponse } = require('../lib/jsonResponse');
 const db = require('../models');
 const {getPresupuestoInfo} = require('../lib/getPresupuestoInfo');
 const {getPresuServInfo}= require('../lib/getPresuServInfo');
+const serviciosController = require('./serviciosController');
 
 
 const presupuestosController = {
@@ -28,7 +29,17 @@ const presupuestosController = {
                   }, { transaction: t });
             
                   console.log(horarios);
-                  presupuestosInfo.push(getPresupuestoInfo(presupuesto, horarios));
+                  const promedio = await db.Servicio.findOne({
+                    attributes: [
+                    [db.sequelize.fn('AVG', db.sequelize.col('resenia')), 'rating'],
+                    ],
+                    group: ['idUsuario'],
+                    where: {
+                      idUsuario: presupuesto.idUsuario
+                    }
+                  }, { transaction: t });
+                
+                  presupuestosInfo.push(getPresupuestoInfo(presupuesto, horarios,promedio));
                 });
             
                 await Promise.all(promises);
