@@ -28,6 +28,9 @@
 </template>
 
 <script>
+import GroupDataService from '../services/GroupDataService';
+import GroupTechnicianDataService from '../services/GroupTechnicianDataService';
+
 export default {
   name: 'ListGroups',
   data() {
@@ -36,17 +39,21 @@ export default {
     };
   },
   async mounted() {
+    this.loading = true
     try {
-      const response = await fetch(`${process.env.VUE_APP_API_URL}api/groups`);
-      const data = await response.json();
-      this.groups = data;
+      const response = await GroupDataService.getAll()
+      this.groups = response.data;
+      this.groups.forEach(async g => {
+        g.technicians = (await GroupTechnicianDataService.getTechnicians(g.id)).data
+      })
+      this.loading = false
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
   methods: {
     editGroup(id) {
-      this.$router.push({ name: 'EditGroup', params: { id } });
+      this.$router.push({ name: 'EditGroup', params: { id } })
     },
   },
 };

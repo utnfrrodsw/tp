@@ -49,7 +49,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import Alerts from '@/components/Alerts.vue'
   import TechnicianDataService from "../services/TechnicianDataService";
   import { esMayorDe18 } from '@/utilities/utilities.js';

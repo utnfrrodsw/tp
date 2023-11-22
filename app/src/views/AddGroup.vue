@@ -1,18 +1,20 @@
 <template>
   <v-container class="my-10">
-    <v-row>
-      <v-col cols="12" md="6">
-        <v-text-field v-model="group.description" label="Nombre" required></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12">
-        <v-btn color="primary" :loading="loading" @click="submitForm">
-          <v-icon left>mdi-account-plus</v-icon>
-          Agregar Grupo
-        </v-btn>
-      </v-col>
-    </v-row>
+    <v-form ref="form" class="mx-2" lazy-validation>
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-text-field v-model="group.description" label="Nombre" required></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          <v-btn color="primary" :loading="loading" @click="submitForm">
+            <v-icon left>mdi-account-plus</v-icon>
+            Agregar Grupo
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-form>
 
     <v-row v-if="alert.show">
       <v-col>
@@ -24,6 +26,7 @@
 
 <script>
   import Alerts from '@/components/Alerts.vue'
+  import GroupDataService from '../services/GroupDataService'
 
   export default {
     name: 'AddGroup',
@@ -46,28 +49,27 @@
     },
     methods: {
       async submitForm() {
-        this.loading = true
-
-        try {
-          const token = localStorage.getItem('token')
-          const response = await fetch(`${process.env.VUE_APP_API_URL}api/groups`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'x-access-token': token
-            },
-            body: JSON.stringify(this.group)
-          })
-          this.alert.message = 'Grupo creado correctamente'
-          this.alert.type = 'success'
-          this.alert.show = true
-        } catch (error) {
-          this.alert.message = 'Error al agregar técnico'
-          this.alert.type = 'error'
-          this.alert.show = true
+        if (this.$refs.form.validate()) {
+          this.loading = true
+          try {
+            const data = {
+              description: this.group.description
+            }
+            const response = await GroupDataService.create(data)
+            this.alert.message = 'Grupo creado correctamente'
+            this.alert.type = 'success'
+            this.alert.show = true
+            this.reset()
+          } catch (error) {
+            this.alert.message = 'Error al agregar técnico'
+            this.alert.type = 'error'
+            this.alert.show = true
+          }
+          this.loading = false
         }
-
-        this.loading = false
+      },
+      reset() {
+        this.$refs.form.reset()
       }
     }
   }

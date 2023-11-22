@@ -96,6 +96,8 @@
 <script>
   import axios from 'axios'
   import Alerts from '@/components/Alerts.vue'
+  import GroupTechnicianDataService from '../services/GroupTechnicianDataService'
+  import GroupDataService from '../services/GroupDataService'
 
   export default {
     name: 'AddCertification',
@@ -124,8 +126,11 @@
           value: task.id,
           text: task.name
         }))
-        const responseGroups = await axios.get(`${this.url}api/groups`)
+        const responseGroups = await GroupDataService.getAll()
         this.groupOptions = responseGroups.data
+        this.groupOptions.forEach(async g => {
+          g.technicians = (await GroupTechnicianDataService.getTechnicians(g.id)).data
+        })
       } catch (error) {
         console.error(error)
       }
