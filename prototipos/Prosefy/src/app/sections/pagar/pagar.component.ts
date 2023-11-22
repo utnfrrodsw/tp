@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { Libro, LibrosService } from '../../services/libros.service';
 import { CarritoComprasService } from '../../services/carrito-compras.service';
+import { AutoresService } from '../../services/autores.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-pagar',
@@ -16,6 +18,7 @@ export class PagarComponent implements OnInit {
   cantidades: { [id: string]: number } = {};
   mostrarLabel: boolean = true;
   noMostrarlabel: boolean = false;
+  autoresNombres: any;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
@@ -24,7 +27,8 @@ export class PagarComponent implements OnInit {
 
   constructor(
     private librosService: LibrosService,
-    private carritoService: CarritoComprasService
+    private carritoService: CarritoComprasService,
+    private autoresService: AutoresService
   ) { }
 
   ngOnInit() {
@@ -40,18 +44,43 @@ export class PagarComponent implements OnInit {
   obtenerLibrosEnCarrito() {
     const librosEnCarritoIds = this.carritoService.getLibrosEnCarrito();
 
-    // Obtén la lista completa de libros
     this.librosService.getAll().subscribe(
-      (libros: Libro[]) => {
-        // Filtra los libros según los IDs en el carrito
-        this.libros = libros.filter(libro => librosEnCarritoIds.includes(libro._id));
-        this.calculateTotal();
+      (response: any) => {
+        const libros: Libro[] = response.data;
+        if (Array.isArray(libros)) {
+          this.libros = libros
+            .filter(libro => librosEnCarritoIds.includes(libro._id.toString()));
+
+          this.libros.forEach((libro) => {
+            const idsAutores = libro.autores;
+            const observables = idsAutores.map(autorId => this.autoresService.getNombreCompleto(autorId));
+
+            forkJoin(observables).subscribe(
+              (nombres: (string | undefined)[]) => {
+                this.autoresNombres[libro._id.toString()] = nombres.filter(nombre => !!nombre) as string[];
+              },
+              (error) => {
+                console.error('Error obteniendo autores:', error);
+              }
+            );
+          });
+
+          this.cantidades = {};
+          this.libros.forEach((libro) => {
+            this.cantidades[libro._id.toString()] = 1;
+          });
+          this.calculateTotal();
+
+        } else {
+          console.error('La respuesta del servidor no es un array de libros:', response);
+        }
       },
       (error) => {
         console.error('Error obteniendo libros:', error);
       }
     );
   }
+
 
   eliminarDelCarrito(libroId: string) {
     this.carritoService.eliminarDelCarrito(libroId);
