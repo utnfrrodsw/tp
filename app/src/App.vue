@@ -41,7 +41,8 @@
     </v-app-bar>
 
     <v-bottom-navigation v-if="isMobile" app color="primary">
-      <v-btn
+      <template v-if="$isLogged">
+      <v-btn 
         v-for="(item, index) in routes"
         :key="index"
         :to="item.subitems ? undefined : item.route"
@@ -52,6 +53,7 @@
         <v-icon>{{ item.icon }}</v-icon>
         <v-span>{{ item.name }}</v-span>
       </v-btn>
+    </template>
     </v-bottom-navigation>
 
     <v-main>
