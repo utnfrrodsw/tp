@@ -62,17 +62,22 @@ export class AuthService {
     this.iniciarSesionService.cerrarSesion();
   }
 
-  getIdUsuario(): string | null {
-    // Implementa la lógica para obtener el ID del usuario desde el token
-    const token = localStorage.getItem('token');
+  getIdUsuarioPorToken(): Observable<string | null> {
+    const token = this.getTokenFromLocalStorage();
+
     if (token) {
-      // Realiza la decodificación del token y extrae el ID del usuario
-      // Aquí se asume que el token es un JWT (JSON Web Token)
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.id;
+      const url = `${this.apiUrl}token/${token}`;
+      return this.http.get<string>(url);
     } else {
-      return null;
+      return new Observable<string | null>((observer) => {
+        observer.next(null);
+        observer.complete();
+      });
     }
+  }
+
+  private getTokenFromLocalStorage(): string | null {
+    return localStorage.getItem('token');
   }
 }
 

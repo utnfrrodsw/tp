@@ -71,5 +71,25 @@ export class UsuarioRepositoryImpl {
             throw error;
         }
     }
+    async getById(userId) {
+        try {
+            const usuario = await usuarios.findOne({ userId });
+            return usuario || undefined;
+        }
+        catch (error) {
+            console.error("Error en getById:", error);
+            throw error;
+        }
+    }
+    async getByToken(token) {
+        try {
+            const usuario = await usuarios.findOne({ "tokens.token": token });
+            return usuario || undefined;
+        }
+        catch (error) {
+            console.error("Error en getByToken:", error);
+            throw error;
+        }
+    }
 }
 //# sourceMappingURL=Usuario.repository.js.map

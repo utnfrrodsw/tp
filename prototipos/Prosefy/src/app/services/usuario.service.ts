@@ -24,6 +24,12 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
+  getUsuarioPorId(usuarioId: string): Observable<Usuario> {
+    const url = `${this.apiUrl}/${usuarioId}`;
+
+    return this.http.get<Usuario>(url);
+  }
+
   eliminarCuenta(idUsuario: string): Observable<any> {
     const url = `${this.apiUrl}/${idUsuario}`;
 

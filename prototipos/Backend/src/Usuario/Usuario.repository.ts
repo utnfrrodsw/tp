@@ -82,4 +82,24 @@ export class UsuarioRepositoryImpl implements UsuarioRepository {
             throw error;
         }
     }
+
+    async getById(userId: string): Promise<Usuario | undefined> {
+        try {
+            const usuario = await usuarios.findOne({ userId });
+            return usuario || undefined;
+        } catch (error) {
+            console.error("Error en getById:", error);
+            throw error;
+        }
+    }
+
+    async getByToken(token: string): Promise<Usuario | undefined> {
+        try {
+            const usuario = await usuarios.findOne({ "tokens.token": token });
+            return usuario || undefined;
+        } catch (error) {
+            console.error("Error en getByToken:", error);
+            throw error;
+        }
+    }
 }

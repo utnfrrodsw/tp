@@ -40,7 +40,7 @@
                 </div>
 
                 <p class="book-text">
-                  {{autoresNombres[libro._id.toString()]?.join(', ')}}
+                  {{autoresNombres[libro._id.toString()] ? autoresNombres[libro._id.toString()].join(', ') : ''}}
                   | {{
                   libro.fecha_edicion ? formatearFecha(libro.fecha_edicion) : 'N/A' }}
                 </p>

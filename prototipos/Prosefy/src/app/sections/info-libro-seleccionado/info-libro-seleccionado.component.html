@@ -11,12 +11,8 @@
       </div>
       <div *ngIf="libro">
         <p class="precio">
-          {{
-          libro?.precio
-          ? "$" +
-          calculatePriceInSelectedCurrency(libro!.precio).toLocaleString()
-          : "Precio no disponible"
-          }}
+          {{ libro.precio ? "$" + calculatePriceInSelectedCurrency(libro!.precio).toLocaleString() : "Precio no
+          disponible" }}
           <small class="text-muted">
             {{ currencyService.getCurrency() }}
           </small>
@@ -24,7 +20,7 @@
           <br />
           <span class="text-normal"><strong>6 cuotas</strong> fijas de</span>
           <span class="cuota">{{
-            libro?.precio
+            libro.precio
             ? "$" +
             calculatePriceInSelectedCurrency(
             (libro.precio * 1.2) / 6
@@ -37,7 +33,7 @@
           <br />
           <span class="text-normal"><strong>3 cuotas</strong> fijas de</span>
           <span class="cuota">{{
-            libro?.precio
+            libro.precio
             ? "$" +
             calculatePriceInSelectedCurrency(
             (libro.precio * 1.1) / 3
@@ -53,15 +49,10 @@
       <p>
         <img src="../../../assets/img/envio.png" class="ml-5 img-envio">
         Envío a Rosario
-        <span class="envio">{{
-          libro?.precio && libro!.precio > 10000
-          ? "GRATIS"
-          : "$" +
-          calculatePriceInSelectedCurrency(1499).toLocaleString(undefined, {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0
-          })
-          }}</span>
+        <span class="envio">{{ libro?.precio && libro!.precio > 10000 ? "GRATIS" : "$" +
+          calculatePriceInSelectedCurrency(1499).toLocaleString(undefined, { minimumFractionDigits: 0,
+          maximumFractionDigits: 0 }) }}
+        </span>
         <small *ngIf="libro?.precio && libro!.precio <= 10000">
           {{ currencyService.getCurrency() }}
         </small>

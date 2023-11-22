@@ -1,4 +1,4 @@
-<div class="container-fluid custom-container-fluid mt-5 mb-5" *ngFor="let usuario of usuarios">
+<div class="container-fluid custom-container-fluid mt-5 mb-5" *ngIf="usuario">
   <div class="encabezado">
     <h4 class="mb-4">Perfil</h4>
   </div>
@@ -12,7 +12,8 @@
         </div>
         <div>
           <label *ngIf="!edicion.nombre">{{usuario.nombre}}</label>
-          <input *ngIf="edicion.nombre" class="custom-input" type="text" id="nombre" name="nombre" required>
+          <input *ngIf="edicion.nombre" class="custom-input" type="text" id="nombre" name="nombre" required
+            [(ngModel)]="usuario.nombre">
           <img (click)="toggleEdicion('nombre')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
       </div>
@@ -24,7 +25,8 @@
         </div>
         <div>
           <label *ngIf="!edicion.email">{{usuario.email}}</label>
-          <input *ngIf="edicion.email" class="custom-input" type="text" id="email" name="email" required>
+          <input *ngIf="edicion.email" class="custom-input" type="text" id="email" name="email" required
+            [(ngModel)]="usuario.email">
           <img (click)="toggleEdicion('email')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
       </div>
@@ -39,7 +41,8 @@
         </div>
         <div>
           <label *ngIf="!edicion.apellido">{{usuario.apellido}}</label>
-          <input *ngIf="edicion.apellido" class="custom-input" type="text" id="apellido" name="apellido" required>
+          <input *ngIf="edicion.apellido" class="custom-input" type="text" id="apellido" name="apellido" required
+            [(ngModel)]="usuario.apellido">
           <img (click)="toggleEdicion('apellido')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
       </div>
@@ -51,7 +54,8 @@
         </div>
         <div>
           <label *ngIf="!edicion.username">juan_perez</label>
-          <input *ngIf="edicion.username" class="custom-input" type="text" id="username" name="username" required>
+          <input *ngIf="edicion.username" class="custom-input" type="text" id="username" name="username" required
+            [(ngModel)]="usuario.username">
           <img (click)="toggleEdicion('username')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
         </div>
       </div>
@@ -114,11 +118,7 @@
             </span>
           </div>
           <div>
-            <label *ngIf="!edicion.contrasena">******</label>
-            <input *ngIf="edicion.contrasena" class="custom-input" type="text" id="contrasena" name="contrasena"
-              required>
-            <img (click)="toggleEdicion('contrasena')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
-              alt="">
+            <label>******</label>
           </div>
         </div>
         <div class="datos-personales py-2">
@@ -128,11 +128,7 @@
             </span>
           </div>
           <div>
-            <label *ngIf="!edicion.confirmarContrasena">******</label>
-            <input *ngIf="edicion.confirmarContrasena" class="custom-input" type="text" id="confirmarContrasena"
-              name="confirmarContrasena" required>
-            <img (click)="toggleEdicion('confirmarContrasena')" class="img-lápiz"
-              src="./assets/img/lápiz-perfil-usuario.png" alt="">
+            <label>******</label>
           </div>
         </div>
       </div>
@@ -151,7 +147,8 @@
         </div>
         <div>
           <label *ngIf="!edicion.localidad">{{usuario.localidad}}</label>
-          <input *ngIf="edicion.localidad" class="custom-input" type="text" id="localidad" name="localidad" required>
+          <input *ngIf="edicion.localidad" class="custom-input" type="text" id="localidad" name="localidad" required
+            [(ngModel)]="usuario.localidad">
           <img (click)="toggleEdicion('localidad')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
             alt="">
         </div>
@@ -163,14 +160,11 @@
           </span>
         </div>
         <div>
-          <label *ngIf="!edicion.codigoPostal">2000</label>
-          <input *ngIf="edicion.codigoPostal" class="custom-input" type="text" id="codigoPostal" name="codigoPostal"
-            required>
-          <img (click)="toggleEdicion('codigoPostal')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
-            alt="">
+          <label>...</label>
         </div>
       </div>
     </div>
+    <!--
     <div class="espacio"></div>
     <div class="datos">
       <div class="datos-personales etiqueta-color rounded py-2">
@@ -180,15 +174,16 @@
           </span>
         </div>
         <div>
-          <label *ngIf="!edicion.provincia">Santa Fe</label>
-          <input *ngIf="edicion.provincia" class="custom-input" type="text" id="provincia" name="provincia" required>
+          <label *ngIf="!edicion.provincia">...</label>
+          <input *ngIf="edicion.provincia" class="custom-input" type="text" id="provincia" name="provincia" required
+            [(ngModel)]="usuario.provincia">
           <img (click)="toggleEdicion('provincia')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
             alt="">
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
   <div class="container-buttom-guardar-cambios">
-    <a class="buttom-cambios rounded-pill mt-4" href="">Guardar cambios</a>
+    <a class="buttom-cambios rounded-pill mt-4" href="" (click)="guardarCambios()">Guardar cambios</a>
   </div>
 </div>

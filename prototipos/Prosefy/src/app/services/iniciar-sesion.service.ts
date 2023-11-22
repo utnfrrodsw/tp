@@ -41,10 +41,6 @@ export class IniciarSesionService {
       this.isLoggedInSubject.next(true);
     } else {
       this.isLoggedInSubject.next(false);
-      this.cerrarSesion().subscribe(
-        () => console.log('Sesión cerrada exitosamente al cargar la aplicación'),
-        error => console.error('Error al cerrar sesión al cargar la aplicación', error)
-      );
     }
   }
 
@@ -86,16 +82,10 @@ export class IniciarSesionService {
       return throwError('No hay un token almacenado.');
     }
 
-    // Realizar la solicitud POST con el token en el encabezado
     return this.http.post<any>(`${this.apiUrl}/cerrar-sesion/${token}`, {}).pipe(
       tap(() => {
         console.log('Sesión cerrada exitosamente');
         localStorage.removeItem('token');
-      }),
-      catchError(error => {
-        console.error('Error al cerrar sesión', error);
-        // Agregar este bloque para manejar el error y emitir un mensaje si es necesario
-        return throwError(error);
       }),
       finalize(() => {
         this.isLoggedInSubject.next(false);

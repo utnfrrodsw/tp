@@ -45,18 +45,11 @@ async function findOne(req, res) {
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
-        console.log('Antes de generar hash de contraseña');
-        // Generar un hash de la contraseña antes de almacenarla en la base de datos
         const hashContraseña = await bcrypt.hash(input.contraseña, 10);
-        console.log('Después de generar hash de contraseña');
-        console.log('Antes de crear instancia de Usuario');
-        // Crear una instancia de Usuario con la contraseña cifrada
         const usuarioInput = new Usuario(input.username, input.nombre, input.apellido, input.email, input.direccion, input.localidad, input.avatar, input.tipo || 'usuario', hashContraseña, // Utilizar la contraseña cifrada
         [], // Inicializar tokens como un array vacío
         [] // Inicializar tokensRevocados como un array vacío
         );
-        console.log('Después de crear instancia de Usuario');
-        console.log('Antes de agregar usuario a la base de datos');
         const usuario = await repository.add(usuarioInput);
         res.status(201).send({ message: 'Usuario agregado con éxito.', data: usuario });
     }
@@ -202,5 +195,37 @@ async function getByUsername(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion };
+async function getById(req, res) {
+    try {
+        const userId = req.params.userId;
+        const usuario = await repository.getById(userId);
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
+        }
+        return res.json({ data: usuario });
+    }
+    catch (error) {
+        console.error("Error en getById:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getIdUsuarioPorToken(req, res) {
+    try {
+        const token = req.params.token;
+        if (!token) {
+            return res.status(401).send({ message: "Token de autorización no proporcionado." });
+        }
+        // Obtener el usuario por su token
+        const usuario = await repository.getByToken(token);
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
+        }
+        res.json({ data: { userId: usuario._id?.toString() } });
+    }
+    catch (error) {
+        console.error("Error en getIdUsuarioPorToken:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById };
 //# sourceMappingURL=Usuario.controller.js.map

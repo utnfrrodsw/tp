@@ -1,13 +1,14 @@
 import { Router } from 'express';
-import { findAll, findOne, sanitizeInput, add, remove, update, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion } from './Usuario.controller.js';
+import { findAll, sanitizeInput, add, remove, update, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById } from './Usuario.controller.js';
 export const usuarioRouter = Router();
 // Otras rutas
 usuarioRouter.post('/iniciar-sesion', iniciarSesion);
 usuarioRouter.post('/cerrar-sesion/:token', cerrarSesion);
-usuarioRouter.get('/:username', getByUsername);
+usuarioRouter.get('/username/:username', getByUsername);
 usuarioRouter.get('/email/:email', findOneByEmail);
+usuarioRouter.get('/token/:token', getIdUsuarioPorToken);
 usuarioRouter.get('/', findAll);
-usuarioRouter.get('/:id', findOne);
+usuarioRouter.get('/:id', getById);
 usuarioRouter.post('/', sanitizeInput, add);
 usuarioRouter.put('/:id', sanitizeInput, update);
 usuarioRouter.patch('/:id', sanitizeInput, update);
