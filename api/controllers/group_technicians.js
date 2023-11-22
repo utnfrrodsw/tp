@@ -23,12 +23,17 @@ const deleteGroupTechnician = async (req, res) => {
   console.log(`groupId: ${groupId}, technicianId: ${technicianId}`)
 
   try {
-    const groupTechnician = await GroupTechnician.destroy({
-      where: {
-        groupId,
-        technicianId
+    const groupTechnician = await GroupTechnician.update(
+      { 
+        date_end: new Date()
+      },
+      {
+        where: {
+          groupId,
+          technicianId
+        }
       }
-    })
+    )
     res.json(groupTechnician)
   } catch (error) {
     console.log(error)
@@ -57,7 +62,40 @@ const freeTechnicians = async (req, res) => {
     })
 
     res.status(200).json(freeTechniciansDetails)
-    console.log(freeTechniciansDetails)
+  } catch (error) {
+    console.log(error)
+    res.status(400).send('Ups! Error')
+  }
+}
+
+const getTechnicians = async (req, res) => {
+  const { groupId } = req.params
+
+  if (!groupId) {
+    return res.status(400).send('Ups! Error')
+  }
+
+  try {
+    const techniciansInGroup = await GroupTechnician.findAll({
+      attributes: ['technicianId'],
+      where: {
+        date_end: null,
+        groupId: groupId
+      },
+      raw: true
+    })
+
+    const technicianIdsInGroup = techniciansInGroup.map((tech) => tech.technicianId)
+
+    const technicians = await Technician.findAll({
+      where: {
+        id: {
+          [Sequelize.Op.in]: technicianIdsInGroup
+        }
+      }
+    })
+
+    res.status(200).json(technicians)
   } catch (error) {
     console.log(error)
     res.status(400).send('Ups! Error')
@@ -67,5 +105,6 @@ const freeTechnicians = async (req, res) => {
 module.exports = {
   createGroupTechnician,
   deleteGroupTechnician,
-  freeTechnicians
+  freeTechnicians,
+  getTechnicians
 }
