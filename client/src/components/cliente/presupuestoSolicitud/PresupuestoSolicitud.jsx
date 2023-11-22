@@ -39,7 +39,6 @@ function PresupuestoSolicitud(props){
             props.hendlePresupuestoPagado();
         }, 3000);
     }
-    const value=2.25;
     return (
         <Card className='card-presu' style={{backgroundColor: '#213555', height: '40%', margin:'10px'}}>
             <Card.Header>

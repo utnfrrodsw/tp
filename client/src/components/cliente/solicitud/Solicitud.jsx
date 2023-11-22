@@ -184,7 +184,7 @@ function Solicitud(props){
                                   <PresupuestoSolicitud 
                                     key={presupuesto.idPrestador}
                                     idPrestador={presupuesto.idPrestador}
-                                    rating={parseInt(presupuesto.rating.rating)}
+                                    rating={parseFloat(presupuesto.rating.rating)}
                                     idSolicitud={presupuesto.idSolicitud}
                                     nombrePrestador={presupuesto.nombrePrestador}
                                     materiales={presupuesto.materiales}
