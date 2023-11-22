@@ -53,3 +53,6 @@ GET http://localhost:3000/api/usuarios/username/marina_milo
 
 ### OBTENER USUARIO POR USERNAME
 GET http://localhost:3000/api/usuarios/655e2727a3bb4eb64b69eacd
+
+### BORRAR USUARIO
+DELETE http://localhost:3000/api/usuarios/655e2727a3bb4eb64b69eacd

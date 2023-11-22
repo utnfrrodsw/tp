@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario, UsuarioService } from 'src/app/services/usuario.service';
 
@@ -13,7 +14,8 @@ export class PerfilUsuarioComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -33,5 +35,19 @@ export class PerfilUsuarioComponent implements OnInit {
         }
       }
     );
+  }
+
+  eliminarCuenta() {
+    if (this.usuarioId) {
+      this.usuarioService.eliminarCuenta(this.usuarioId).subscribe(
+        () => {
+          console.log('Usuario eliminado con éxito.');
+
+        },
+        (error: any) => {
+          console.error('Error al eliminar la cuenta:', error);
+        }
+      );
+    }
   }
 }  

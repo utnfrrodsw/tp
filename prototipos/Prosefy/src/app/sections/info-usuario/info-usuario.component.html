@@ -11,7 +11,7 @@
           </span>
         </div>
         <div>
-          <label *ngIf="!edicion.nombre">{{usuario.nombre}}</label>
+          <label *ngIf="!edicion.nombre">Marina</label>
           <input *ngIf="edicion.nombre" class="custom-input" type="text" id="nombre" name="nombre" required
             [(ngModel)]="usuario.nombre">
           <img (click)="toggleEdicion('nombre')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
@@ -24,7 +24,7 @@
           </span>
         </div>
         <div>
-          <label *ngIf="!edicion.email">{{usuario.email}}</label>
+          <label *ngIf="!edicion.email">milomarina51@gmail.com</label>
           <input *ngIf="edicion.email" class="custom-input" type="text" id="email" name="email" required
             [(ngModel)]="usuario.email">
           <img (click)="toggleEdicion('email')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
@@ -40,7 +40,7 @@
           </span>
         </div>
         <div>
-          <label *ngIf="!edicion.apellido">{{usuario.apellido}}</label>
+          <label *ngIf="!edicion.apellido">Milo</label>
           <input *ngIf="edicion.apellido" class="custom-input" type="text" id="apellido" name="apellido" required
             [(ngModel)]="usuario.apellido">
           <img (click)="toggleEdicion('apellido')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
@@ -53,7 +53,7 @@
           </span>
         </div>
         <div>
-          <label *ngIf="!edicion.username">juan_perez</label>
+          <label *ngIf="!edicion.username">marina_milo</label>
           <input *ngIf="edicion.username" class="custom-input" type="text" id="username" name="username" required
             [(ngModel)]="usuario.username">
           <img (click)="toggleEdicion('username')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
