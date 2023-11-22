@@ -95,30 +95,22 @@
     },
     mounted() {
       this.fetchData()
-      this.fetchAvailableTechnicians()
     },
     methods: {
       updateData() {
         // Actualizar la vista para mostrar los técnicos actuales en el grupo
         this.fetchData()
-        this.fetchAvailableTechnicians()
         this.showAddTechnician = false // Cerrar el diálogo
       },
       async fetchData() {
         this.loading = true
         try {
-          const response = await GroupDataService.get(this.group.id)
-          this.group.description = response.data.description
+          const responseGroups = await GroupDataService.get(this.group.id)
+          this.group.description = responseGroups.data.description
           this.group.technicians = (await GroupTechnicianDataService.getTechnicians(this.group.id)).data
-        } catch (error) {
-          console.error(error)
-        }
-        this.loading = false
-      },
-      async fetchAvailableTechnicians() {
-        try {
-          const response = await GroupTechnicianDataService.freeTechnicians()
-          this.availableTechnicians = response.data
+
+          const responseTechnicians = await GroupTechnicianDataService.freeTechnicians()
+          this.availableTechnicians = responseTechnicians.data
           if (this.group.technicians.length > 0) {
             let userTechnicianIds = this.group.technicians.map((t) => t.id) // IDs de los técnicos actuales del grupo
             this.availableTechnicians = response.data.filter((t) => !userTechnicianIds.includes(t.id)) // Filtrar los técnicos disponibles
@@ -126,26 +118,27 @@
         } catch (error) {
           console.error(error)
         }
+        this.loading = false
       },
-      deleteTechnician(technicianId) {
-        const data = {
-          groupId: this.group.id,
-          technicianId: technicianId
-        }
-        GroupTechnicianDataService.deleteTechnician(data)
-        .then((response) => {
+      async deleteTechnician(technicianId) {
+        try {
+          const data = {
+            groupId: this.group.id,
+            technicianId: technicianId
+          }
+          await GroupTechnicianDataService.deleteTechnician(data)
           this.updateData()
           this.alert.show = true
           this.alert.title = 'Eliminacion exitosa'
           this.alert.message = 'El tecnico se elimino exitosamente'
           this.alert.type = 'success'
-        }).catch((error) => {
+        } catch (error) {
           console.error(error)
           this.alert.show = true
           this.alert.title = 'Error'
           this.alert.message = error
           this.alert.type = 'error'
-        })
+        }
       },
       addTechnician() {
         // Obtener el técnico seleccionado por su ID
