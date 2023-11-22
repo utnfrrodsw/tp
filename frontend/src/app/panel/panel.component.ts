@@ -94,7 +94,6 @@ export class PanelComponent implements OnInit {
           }
         }
         ,error:error=>{
-          this.console.log(error);
           this.router.navigate(['/'])
         }
       });
@@ -420,9 +419,12 @@ export class PanelComponent implements OnInit {
 
   enviarActualizacionDeDatos(e:Event){
     e.preventDefault();
-    let fd=new FormData(<HTMLFormElement>e.target);
+
+    let form=<HTMLFormElement>e.target;
+    let fd=new FormData(form);
     let dato:string=[...fd.keys()][0];
     let valor=<string>fd.get(dato);
+    form.dataset['enviando']='1';
     this.usuariosService.actualizarDatos(
       this.usuarioActual.ID
       ,dato
@@ -439,6 +441,9 @@ export class PanelComponent implements OnInit {
           this.usuarioActual.correo=valor;
           break;
         }
+
+        form.dataset['sucio']='0';
+        form.dataset['enviando']='0';
       });
       ;
   }

@@ -251,22 +251,28 @@
 		<h2>Administración de Perfil</h2>
 	</legend>
 	<form class="row" #nombreCompletoForm (reset)="nombreCompletoForm.dataset['sucio']='0'">
-		<span class="col-2 is-center">Nombre Completo:</span>
-		<input required type="text" name="nombreCompleto" class="col-4" placeholder="Nombre Completo" (input)="nombreCompletoForm.dataset['sucio']='1'" [defaultValue]="usuarioActual.nombreCompleto" minLength="{{LARGO_MINIMO_NOMBRE_COMPLETO}}">
-		<button class="col-2" type="reset">Reestablecer</button>
-		<button class="col-2" type="submit" [disabled]="(nombreCompletoForm.dataset['sucio']!=='1')">Actualizar</button>
+		<fieldset class="is-full-width is-marginless is-paddingless row" [disabled]="(nombreCompletoForm.dataset['enviando']==='1')">
+			<span class="col-2 is-center">Nombre Completo:</span>
+			<input required type="text" name="nombreCompleto" class="col-4" placeholder="Nombre Completo" (input)="nombreCompletoForm.dataset['sucio']='1'" [defaultValue]="usuarioActual.nombreCompleto" minLength="{{LARGO_MINIMO_NOMBRE_COMPLETO}}">
+			<button class="col-2" type="reset">Reestablecer</button>
+			<button class="col-2" type="submit" [disabled]="(nombreCompletoForm.dataset['sucio']!=='1')">Actualizar</button>
+		</fieldset>
 	</form>
 	<form class="row" #contraseniaForm (input)="verificarCamposContrasenia($event,contraseniaForm)">
-		<span class="col-2 is-center">Contraseña:</span>
-		<input required type="password" name="contrasenia" placeholder="Contraseña Nueva" class="col-3" minLength="{{LARGO_MINIMO_CONTRASENIA}}">
-		<input required type="password" name="contrasenia-repetida" class="col-3" placeholder="Repetir Contraseña" minLength="{{LARGO_MINIMO_CONTRASENIA}}">
-		<button class="col-2" type="submit" [disabled]="(contraseniaForm.dataset['puedeEnviar']!=='-1')" [title]="ERRORES_DE_CONTRASENIA[+(contraseniaForm.dataset['puedeEnviar']||0)]">Actualizar</button>
+		<fieldset class="is-full-width is-marginless is-paddingless row" [disabled]="(contraseniaForm.dataset['enviando']==='1')">
+			<span class="col-2 is-center">Contraseña:</span>
+			<input required type="password" name="contrasenia" placeholder="Contraseña Nueva" class="col-3" minLength="{{LARGO_MINIMO_CONTRASENIA}}">
+			<input required type="password" name="contrasenia-repetida" class="col-3" placeholder="Repetir Contraseña" minLength="{{LARGO_MINIMO_CONTRASENIA}}">
+			<button class="col-2" type="submit" [disabled]="(contraseniaForm.dataset['puedeEnviar']!=='-1')" [title]="ERRORES_DE_CONTRASENIA[+(contraseniaForm.dataset['puedeEnviar']||0)]">Actualizar</button>
+		</fieldset>	
 	</form>
 	<form class="row" #correoForm (reset)="correoForm.dataset['sucio']='0'">
-		<span class="col-2 is-center">Correo Electrónico:</span>
-		<input required type="email" name="correo" class="col-4" (input)="correoForm.dataset['sucio']='1'" [defaultValue]="usuarioActual.correo">
-		<button class="col-2" type="reset">Reestablecer</button>
-		<button class="col-2" type="submit" [disabled]="(correoForm.dataset['sucio']!=='1')">Actualizar</button>
+		<fieldset class="is-full-width is-marginless is-paddingless row" [disabled]="(correoForm.dataset['enviando']==='1')">
+			<span class="col-2 is-center">Correo Electrónico:</span>
+			<input required type="email" name="correo" class="col-4" (input)="correoForm.dataset['sucio']='1'" [defaultValue]="usuarioActual.correo">
+			<button class="col-2" type="reset">Reestablecer</button>
+			<button class="col-2" type="submit" [disabled]="(correoForm.dataset['sucio']!=='1')">Actualizar</button>
+		</fieldset>
 	</form>
 	<div class="row">
 		<div class="col-10"></div>
