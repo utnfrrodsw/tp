@@ -35,7 +35,7 @@
 
 <script>
   export default {
-    name: 'ListGroups',
+    name: 'ListTasks',
     data() {
       return {
         tasks: []
