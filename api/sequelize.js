@@ -27,8 +27,8 @@ const Price = PriceModel(sequelize, DataTypes)
 const GroupTask = GroupTaskModel(sequelize, DataTypes)
 const GroupTechnician = GroupTechnicianModel(sequelize, DataTypes)
 
-Group.belongsToMany(Technician, { through: GroupTechnician })
-Technician.belongsToMany(Group, { through: GroupTechnician })
+Group.belongsToMany(Technician, { through: { model: GroupTechnician, unique: false }})
+Technician.belongsToMany(Group, { through: { model: GroupTechnician, unique: false }})
 
 Task.hasMany(Price)
 Price.belongsTo(Task)
@@ -42,7 +42,7 @@ GroupTechnician.belongsTo(Technician)
 GroupTask.belongsTo(Group)
 GroupTask.belongsTo(Task)
 
-sequelize.sync({ alter: true })
+sequelize.sync({ force: true })
   .then(() => {
     console.log('Models sync successfully')
   })

@@ -33,7 +33,7 @@ CREATE TABLE `groups_technicians` (
   `updatedAt` datetime NOT NULL,
   `groupId` int NOT NULL,
   `technicianId` int NOT NULL,
-  PRIMARY KEY (`groupId`,`technicianId`),
+  PRIMARY KEY (`groupId`,`technicianId`,`date_assigned`),
   KEY `technicianId` (`technicianId`),
   CONSTRAINT `groups_technicians_ibfk_1` FOREIGN KEY (`groupId`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `groups_technicians_ibfk_2` FOREIGN KEY (`technicianId`) REFERENCES `technicians` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
