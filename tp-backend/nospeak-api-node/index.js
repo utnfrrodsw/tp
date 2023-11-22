@@ -17,8 +17,8 @@ mongoose.connection.on('connected', () => {
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://nospeak-client.vercel.app', // Reemplaza con la URL de tu aplicación React
-  credentials: true, // Habilita el intercambio de cookies (si es necesario)
+  origin: 'https://nospeak-client.vercel.app', 
+  credentials: true,
 }));
 
 app.use('/api', apiRoutes); 

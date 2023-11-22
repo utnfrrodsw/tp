@@ -40,7 +40,6 @@ export default function Sidebar() {
 
   useEffect(() => {
     if (user) {
-      // Llamada a la API para obtener las playlists del usuario
       axios.get(`/api/playlists-usuario/${user.id}`)
         .then(response => {
           setPlaylists(response.data);

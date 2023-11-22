@@ -37,7 +37,6 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
 
     const fetchUserHistorial = () => {
         if (user && user.id) {
-            console.log(user)
             client.get(`/api/historiales-usuario/${user.id}`)
             .then(response => {
                 setUserHistorial(response.data);
@@ -78,7 +77,6 @@ export default function MediaControlCard({client, songs, setSongs, setDeleteAler
         }
     
         try {
-            console.log(userHistorial);
 
             await client.patch(`/api/historiales/${userHistorial._id}/`, userHistorial);
             setUserHistorial({ ...userHistorial });

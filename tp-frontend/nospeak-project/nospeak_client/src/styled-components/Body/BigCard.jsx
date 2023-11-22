@@ -14,7 +14,6 @@ export default function BigCard({songs}) {
 
     return (
         <React.Fragment>
-        {/* Card promocional */}
         <Card sx={{ ...gradientStyle, display: 'flex', marginBottom: 10, width:900,height:200, marginLeft:2 }}>
             <CardMedia
             component="img"

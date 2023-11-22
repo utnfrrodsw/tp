@@ -90,6 +90,8 @@ export default function Account({client}){
           
           await client.delete(`/api/usuarios/${user.id}`);
 
+          localStorage.removeItem('token');
+
           dispatch(logout());
           
           setGoToInicio(true);

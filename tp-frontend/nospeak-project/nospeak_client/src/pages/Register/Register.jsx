@@ -29,10 +29,9 @@ export default function Register({client}) {
   }
 
   const isEmailValid = (email) => {
-  // Expresión regular para validar el formato de un email
-  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  return emailPattern.test(email);
-};
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(email);
+  };
 
 
   const handleRegister = async () => {

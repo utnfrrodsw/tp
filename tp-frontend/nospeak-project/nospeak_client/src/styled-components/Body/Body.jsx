@@ -26,8 +26,6 @@ export default function Body({ client }) {
     const handleDeleteConfirm = async (alertData) => {
         try {
         
-            console.log(alertData.songId)
-        
           await client.delete(`/api/canciones/${alertData.songId}/`);
     
           const updatedSongs = [...songs];
@@ -63,7 +61,7 @@ export default function Body({ client }) {
                 <Header songs={songs} setFilteredSongs={setFilteredSongs} />
                 <MediaControlCard
                     client={client}
-                    songs={filteredSongs} // Usa las canciones filtradas
+                    songs={filteredSongs} 
                     setSongs={setSongs}
                     style={{ marginBottom: -150 }}
                     setDeleteAlertData={setDeleteAlertData}

@@ -56,7 +56,7 @@ const columns = [
 
 const ArtistPage = ({client}) => {
 
-    const [artista, setArtista] = useState(null);
+    const [artist, setArtist] = useState(null);
     const [songs, setSongs] = useState([]);
     const { artistId } = useParams();
 
@@ -66,7 +66,7 @@ const ArtistPage = ({client}) => {
 
     const [isEditAlertOpen, setIsEditAlertOpen] = useState(false);
 
-    const [editedArtista, setEditedArtista] = useState({
+    const [editedArtist, setEditedArtist] = useState({
         nombre: '',
         nacionalidad: '',
         nro_seguidores: '',
@@ -82,8 +82,8 @@ const ArtistPage = ({client}) => {
 
         client.get(`/api/artistas/${artistId}/`)
           .then(response => {
-            setArtista(response.data)
-            setEditedArtista(response.data)
+            setArtist(response.data)
+            setEditedArtist(response.data)
           })
           .catch(error => console.error('Error fetching artist:', error));
         
@@ -157,8 +157,8 @@ const ArtistPage = ({client}) => {
 
       const handleSaveButtonClick = async () => {
         try {
-            await client.patch(`/api/artistas/${artistId}/`, editedArtista);
-            setArtista(editedArtista);
+            await client.patch(`/api/artistas/${artistId}/`, editedArtist);
+            setArtist(editedArtist);
             setIsEditAlertOpen(false);
         } catch (error) {
             console.error('Error updating artist:', error);
@@ -171,17 +171,17 @@ const ArtistPage = ({client}) => {
                 <Sidebar />
                 <BodyContainer css={`align-items: center;`}>
                     <PlaylistContainer>
-                    {artista ? (
+                    {artist ? (
                         <CardContainer>
                             <CardLeftContainer>
-                                <ImagePlaylist src={artista.portada}></ImagePlaylist>
+                                <ImagePlaylist src={artist.portada}></ImagePlaylist>
                             </CardLeftContainer>
 
                             <CardRightContainer style={{ paddingBottom: '30px' }}>
                                 <p style={{ marginBottom: '0', marginTop: '20px' }}>Artista</p>
-                                <StyledH1 style={{ marginTop: '0px', marginBottom: '0px', fontSize: '3em' }}>{artista.nombre}</StyledH1>
-                                <p style={{ margin: '0' }}>{artista.nacionalidad}</p>
-                                <p style={{ margin: '0' }}>{formatFollowers(artista.nro_seguidores)} oyentes.</p>
+                                <StyledH1 style={{ marginTop: '0px', marginBottom: '0px', fontSize: '3em' }}>{artist.nombre}</StyledH1>
+                                <p style={{ margin: '0' }}>{artist.nacionalidad}</p>
+                                <p style={{ margin: '0' }}>{formatFollowers(artist.nro_seguidores)} oyentes.</p>
                             </CardRightContainer>
 
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginRight:'20px' }}>
@@ -272,29 +272,29 @@ const ArtistPage = ({client}) => {
                                 <Label style={{marginBottom: '0px', marginTop: '10px'}}>Nombre</Label>
                                 <Input
                                     type="text"
-                                    value={editedArtista.nombre}
-                                    onChange={event => setEditedArtista({ ...editedArtista, nombre: event.target.value })}
+                                    value={editedArtist.nombre}
+                                    onChange={event => setEditedArtist({ ...editedArtist, nombre: event.target.value })}
                                 />
 
                                 <Label style={{marginBottom: '0px', marginTop: '10px'}}>Nacionalidad</Label>
                                 <Input
                                     type="text"
-                                    value={editedArtista.nacionalidad}
-                                    onChange={event => setEditedArtista({ ...editedArtista, nacionalidad: event.target.value })}
+                                    value={editedArtist.nacionalidad}
+                                    onChange={event => setEditedArtist({ ...editedArtist, nacionalidad: event.target.value })}
                                 />
 
                                 <Label style={{marginBottom: '0px', marginTop: '10px'}}>Número de seguidores</Label>
                                 <Input
                                     type="text"
-                                    value={editedArtista.nro_seguidores}
-                                    onChange={event => setEditedArtista({ ...editedArtista, nro_seguidores: event.target.value })}
+                                    value={editedArtist.nro_seguidores}
+                                    onChange={event => setEditedArtist({ ...editedArtist, nro_seguidores: event.target.value })}
                                 />
 
                                 <Label style={{marginBottom: '0px', marginTop: '10px'}}>Portada</Label>
                                 <Input
                                     type="text"
-                                    value={editedArtista.portada}
-                                    onChange={event => setEditedArtista({ ...editedArtista, portada: event.target.value })}
+                                    value={editedArtist.portada}
+                                    onChange={event => setEditedArtist({ ...editedArtist, portada: event.target.value })}
                                 />
                             </EditAlertText>
                             <EditAlertButtonContainer>
@@ -311,7 +311,7 @@ const ArtistPage = ({client}) => {
                     <AlertContainer>
                     <AlertTitle>Eliminar artista</AlertTitle>
                     <AlertText>
-                        ¿Estás seguro de que deseas eliminar el artista "{artista?.nombre}"?
+                        ¿Estás seguro de que deseas eliminar el artista "{artist?.nombre}"?
                     </AlertText>
                     <ButtonContainer>
                         <StyledButtonSecondary style={{width: '50%', marginRight: '5px'}} onClick={handleDeleteCancel}>Cancelar</StyledButtonSecondary>

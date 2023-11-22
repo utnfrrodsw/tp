@@ -2,7 +2,6 @@ import React from 'react'
 import Sidebar from '../../styled-components/Sidebar/Sidebar'
 import { BodyContainer } from '../../styled-components/Body/styles';
 import { SpotifyBody } from '../../pages/Home/styles.js'
-import Footer from '../../styled-components/Footer/Footer'
 import { 
     PlaylistContainer, 
     CardContainer, 
@@ -43,23 +42,18 @@ export default function Song({client}) {
     const [artists, setArtists] = React.useState([]);
     const [albums, setAlbums] = React.useState([]);
 
-    const [titulo, setTitulo] = React.useState(null);
-    const [anioLanzamiento, setAnioLanzamiento] = React.useState(null);
-    const [genero, setGenero] = React.useState(null);
-    const [duracion, setDuracion] = React.useState(null);
+    const [title, setTitle] = React.useState(null);
+    const [year, setYear] = React.useState(null);
+    const [genre, setGenre] = React.useState(null);
+    const [duration, setDuration] = React.useState(null);
     const [audio, setAudio] = React.useState(null);
     const [spotify_id, setSpotifyId] = React.useState(null);
-    const [artista, setArtista] = React.useState(null);
+    const [artist, setArtist] = React.useState(null);
     const [album, setAlbum] = React.useState(null);
 
     const [goToHome, setGoToHome] = React.useState(false);
 
     const [showSuccessAlert, setShowSuccessAlert] = React.useState(false);
-
-    
-
-    console.log(songId);
-
 
     React.useEffect(() => {
         if (songId !== '0') {
@@ -67,13 +61,13 @@ export default function Song({client}) {
               .then(response => {
                 setSong(response.data);
       
-                setTitulo(response.data.titulo);
-                setAnioLanzamiento(response.data.anio_lanzamiento);
-                setGenero(response.data.genero);
-                setDuracion(response.data.duracion);
+                setTitle(response.data.titulo);
+                setYear(response.data.anio_lanzamiento);
+                setGenre(response.data.genero);
+                setDuration(response.data.duracion);
                 setAudio(response.data.audio);
                 setSpotifyId(response.data.spotify_id);
-                setArtista(response.data.artista._id);
+                setArtist(response.data.artista._id);
                 setAlbum(response.data.album._id);
               })
               .catch(error => {
@@ -100,18 +94,18 @@ export default function Song({client}) {
         
 
     }, [songId]);
-    console.log(song)
+
 
 
     const handleSave = () => {
         const newSong = {
-          titulo,
-          anio_lanzamiento: anioLanzamiento,
-          genero,
-          duracion,
+          title,
+          anio_lanzamiento: year,
+          genre,
+          duration,
           audio,
           spotify_id,
-          artista,
+          artist,
           album,
         };
     
@@ -119,7 +113,6 @@ export default function Song({client}) {
 
           client.post('/api/canciones/', newSong)
             .then(response => {
-              console.log('Nueva canción creada:', response.data);
               setShowSuccessAlert(true);
             })
             .catch(error => {
@@ -128,7 +121,6 @@ export default function Song({client}) {
         } else {
           client.patch(`/api/canciones/${songId}/`, newSong)
             .then(response => {
-              console.log('Canción actualizada:', response.data);
               setShowSuccessAlert(true);
             })
             .catch(error => {
@@ -146,13 +138,11 @@ export default function Song({client}) {
     };
     
 
-    const handleArtistaChange = (value) => {
-        console.log('Valor combo:', value);
-        setArtista(value);
+    const handleArtistChange = (value) => {
+        setArtist(value);
     };
     
     const handleAlbumChange = (value) => {
-        console.log('Valor combo:', value);
         setAlbum(value);
     };
 
@@ -191,16 +181,16 @@ export default function Song({client}) {
                                 <ColumnContainer>
                                     <ColumnForm>
                                         <Label>Título</Label>
-                                        <Input type="text" value={titulo} onChange={(e) => {setTitulo(e.target.value)}}/>
+                                        <Input type="text" value={title} onChange={(e) => {setTitle(e.target.value)}}/>
 
                                         <Label>Año lanzamiento</Label>
-                                        <Input type="text" value={anioLanzamiento} onChange={(e) => setAnioLanzamiento(e.target.value)}/>
+                                        <Input type="text" value={year} onChange={(e) => setYear(e.target.value)}/>
 
                                         <Label>Género</Label>
-                                        <Input type="text" value={genero} onChange={(e) => setGenero(e.target.value)}/>
+                                        <Input type="text" value={genre} onChange={(e) => setGenre(e.target.value)}/>
                                         
                                         <Label>Duración</Label>
-                                        <Input type="text" value={duracion} onChange={(e) => setDuracion(e.target.value)}/>
+                                        <Input type="text" value={duration} onChange={(e) => setDuration(e.target.value)}/>
     
                                     </ColumnForm>
                                     <ColumnForm>
@@ -211,7 +201,7 @@ export default function Song({client}) {
                                         <Input type="text" value={spotify_id} onChange={(e) => setSpotifyId(e.target.value)}/>
                                         
                                         <Label>Artista</Label>
-                                        <ComboBox value={artista} onChange={(e) => handleArtistaChange(e.target.value)}>
+                                        <ComboBox value={artist} onChange={(e) => handleArtistChange(e.target.value)}>
                                             <option value="">Seleccionar artista...</option>
                                             {artists.map(artist => (
                                                 <option key={artist._id} value={artist._id}>
@@ -249,8 +239,8 @@ export default function Song({client}) {
                         </AlertTitle>
                         <AlertText>
                         {songId === '0'
-                            ? `La canción ${titulo} se ha creado correctamente.`
-                            : `La canción ${titulo} se ha actualizado correctamente.`}
+                            ? `La canción ${title} se ha creado correctamente.`
+                            : `La canción ${title} se ha actualizado correctamente.`}
                         </AlertText>
                         <AlertButtonContainer>
                         <StyledButton

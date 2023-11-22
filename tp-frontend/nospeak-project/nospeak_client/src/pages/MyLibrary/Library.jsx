@@ -131,7 +131,6 @@ const Library = ({client}) => {
                     song_names: lastFiveSongs,
                 })
                 .then((response) => {
-                    console.log(response.data.recommended_songs)
                   setRecommendedSongs(response.data.recommended_songs);
                 })
                 .catch((error) => {
@@ -171,7 +170,6 @@ const Library = ({client}) => {
           setIsComboBoxOpen(!isComboBoxOpen);
         } else {
             if(activeCategory === 'Playlists')
-            // Si el usuario no es admin, llama directamente a handleOptionClick('playlist')
                 handleOptionClick('playlist');
         }
       };
@@ -188,7 +186,6 @@ const Library = ({client}) => {
             setIsCreateAlbumAlertOpen(true)
 
         }
-        console.log('Selected option:', option);
         setIsComboBoxOpen(false);
     };
 
@@ -254,7 +251,7 @@ const Library = ({client}) => {
                         {categories.map(category => (
                             <NavItem
                                 key={category}
-                                onClick={() => handleCategoryChange(category)} // Change category on click
+                                onClick={() => handleCategoryChange(category)} 
                                 active={category === activeCategory}
                             >
                             {category}
@@ -316,7 +313,6 @@ const Library = ({client}) => {
                                     <PlaylistBox key={index}>
                                         <PlaylistImage src={album.portada}></PlaylistImage>
                                         <PlaylistName>{album.titulo}</PlaylistName>
-                                        {/* Puedes agregar más detalles aquí si lo deseas */}
                                     </PlaylistBox>
                                 </Link>
                             ))

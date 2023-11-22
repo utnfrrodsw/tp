@@ -113,7 +113,6 @@ const AlbumPage = ({client}) => {
         }
     };
     const handleDeleteCancel = () => {
-        // Cierra la alerta
         setDeleteAlertData(null);
         setDeleteAlbumAlertData(null);
       };

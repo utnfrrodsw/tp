@@ -15,7 +15,6 @@ export default function Home({client}) {
                 <Sidebar client={client}/>
                 <Body client={client}/>
             </SpotifyBody>
-            {/* <Footer/> */}
         </HomeContainer>
         );
     
