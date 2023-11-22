@@ -6,7 +6,6 @@ exports.getHistoriales = async (req, res) => {
     const historiales = await Historial.find().populate('canciones usuario');
     res.status(200).json(historiales);
   } catch (error) {
-    console.error('Error al obtener los historiales de reproducción:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -26,7 +25,6 @@ exports.createHistorial = async (req, res) => {
 
     res.status(201).json({ message: 'Historial de reproducción creado exitosamente' });
   } catch (error) {
-    console.error('Error al crear el historial de reproducción:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -41,7 +39,6 @@ exports.getHistorialById = async (req, res) => {
     }
     res.status(200).json(historial);
   } catch (error) {
-    console.error('Error al obtener el historial de reproducción por ID:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -64,7 +61,6 @@ exports.updateHistorial = async (req, res) => {
 
     res.status(200).json({ message: 'Historial de reproducción actualizado exitosamente', historial });
   } catch (error) {
-    console.error('Error al actualizar el historial de reproducción:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -82,7 +78,6 @@ exports.deleteHistorial = async (req, res) => {
 
     res.status(200).json({ message: 'Historial de reproducción eliminado exitosamente' });
   } catch (error) {
-    console.error('Error al eliminar el historial de reproducción:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -100,7 +95,6 @@ exports.getHistorialByUsuario = async (req, res) => {
 
     res.status(200).json(historial);
   } catch (error) {
-    console.error('Error al obtener el historial:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };

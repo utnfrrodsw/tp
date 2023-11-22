@@ -5,7 +5,6 @@ exports.getCanciones = async (req, res) => {
     const canciones = await Cancion.find().populate('artista album');
     return res.status(200).json(canciones);
   } catch (error) {
-    console.error('Error al obtener las canciones:', error);
     return res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 };
@@ -44,7 +43,6 @@ exports.getCanciones = async (req, res) => {
       return res.status(201).json(nuevaCancion);
     }
     } catch (error) {
-      console.error('Error al crear la canción:', error);
       return res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 };
@@ -61,7 +59,6 @@ exports.getCancionById = async (req, res) => {
 
     return res.status(200).json(cancion);
   } catch (error) {
-    console.error('Error al obtener la canción por ID:', error);
     return res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 };
@@ -106,7 +103,6 @@ exports.updateCancion = async (req, res) => {
     return res.status(200).json(cancionActualizada);
   }
   } catch (error) {
-    console.error('Error al actualizar la canción por ID:', error);
     return res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 };
@@ -129,7 +125,6 @@ exports.deleteCancion = async (req, res) => {
     return res.status(200).json({ mensaje: 'Canción eliminada con éxito' });
   }
   } catch (error) {
-    console.error('Error al eliminar la canción:', error);
     return res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 };
@@ -145,7 +140,6 @@ exports.getCancionesPorArtista = async (req, res) => {
 
     res.json(canciones);
   } catch (error) {
-    console.error('Error al obtener canciones por artista:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
@@ -160,7 +154,6 @@ exports.getCancionesPorAlbum = async (req, res) => {
 
     res.json(canciones);
   } catch (error) {
-    console.error('Error al obtener canciones por álbum:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };

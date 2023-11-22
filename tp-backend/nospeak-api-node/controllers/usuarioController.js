@@ -8,7 +8,6 @@ exports.getUsuarios = async (req, res) => {
     const usuarios = await Usuario.find();
     res.status(200).json(usuarios);
   } catch (error) {
-    console.error('Error al obtener usuarios:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -24,7 +23,6 @@ exports.getUsuarioById = async (req, res) => {
 
     res.status(200).json(usuario);
   } catch (error) {
-    console.error('Error al obtener usuario por ID:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -50,7 +48,6 @@ exports.updateUsuario = async (req, res) => {
 
     res.status(200).json({ message: 'Usuario actualizado correctamente' });
   } catch (error) {
-    console.error('Error al actualizar usuario por ID:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -67,7 +64,6 @@ exports.deleteUsuario = async (req, res) => {
 
     res.status(200).json({ message: 'Usuario eliminado correctamente' });
   } catch (error) {
-    console.error('Error al eliminar usuario por ID:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -97,7 +93,6 @@ exports.createUsuario = async (req, res) => {
 
     res.status(201).json({ message: 'Usuario registrado exitosamente' });
   } catch (error) {
-    console.error('Error al registrar el usuario:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
   };
@@ -126,7 +121,6 @@ exports.loginUsuario = async (req, res) =>{
 
     res.status(200).json({ token, userId: usuario._id, nombre: usuario.nombre, isAdmin: usuario.isAdmin });
   } catch (error) {
-    console.error('Error al iniciar sesión:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 

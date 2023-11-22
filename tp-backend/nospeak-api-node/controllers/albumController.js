@@ -5,7 +5,6 @@ exports.getAlbums = async (req, res) => {
       const albums = await Album.find();
       res.json(albums);
     } catch (error) {
-      console.error('Error al obtener álbumes:', error);
       res.status(500).json({ message: 'Error al obtener álbumes' });
     }
   };  
@@ -17,7 +16,6 @@ exports.createAlbum = async (req, res) => {
       await album.save();
       res.status(201).json(album);
     } catch (error) {
-      console.error('Error al crear el álbum:', error);
       res.status(500).json({ error: 'Error interno del servidor' });
     }
   };
@@ -33,7 +31,6 @@ exports.createAlbum = async (req, res) => {
   
       return res.status(200).json(album);
     } catch (error) {
-      console.error('Error al buscar el álbum por ID:', error);
       return res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
   };
@@ -57,7 +54,6 @@ exports.updateAlbum = async (req, res) => {
 
         return res.status(200).json(existingAlbum);
     } catch (error) {
-        console.error('Error al actualizar el álbum:', error);
         return res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 };
@@ -76,7 +72,6 @@ exports.deleteAlbum = async (req, res) => {
 
     return res.status(200).json({ mensaje: 'Álbum eliminado con éxito' });
   } catch (error) {
-    console.error('Error al eliminar el álbum:', error);
     return res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 };

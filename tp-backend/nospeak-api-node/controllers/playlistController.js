@@ -5,7 +5,6 @@ exports.getPlaylists = async (req, res) => {
     const playlists = await Playlist.find().populate('canciones usuario');
     res.status(200).json(playlists);
   } catch (error) {
-    console.error('Error al obtener las playlists:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -26,7 +25,6 @@ exports.createPlaylist = async (req, res) => {
 
     res.status(201).json({ message: 'Playlist creada exitosamente' });
   } catch (error) {
-    console.error('Error al crear la playlist:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -42,7 +40,6 @@ exports.getPlaylistById = async (req, res) => {
 
     res.status(200).json(playlist);
   } catch (error) {
-    console.error('Error al obtener la playlist por ID:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -64,7 +61,6 @@ exports.updatePlaylist = async (req, res) => {
 
     res.status(200).json(playlistActualizada);
   } catch (error) {
-    console.error('Error al actualizar la playlist por ID:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -80,7 +76,6 @@ exports.deletePlaylist = async (req, res) => {
 
     res.status(200).json({ message: 'Playlist eliminada con éxito' });
   } catch (error) {
-    console.error('Error al eliminar la playlist por ID:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
@@ -92,7 +87,6 @@ exports.getPlaylistsByUsuario = async (req, res) => {
 
     res.status(200).json(playlists);
   } catch (error) {
-    console.error('Error al obtener las playlists del usuario por ID:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
