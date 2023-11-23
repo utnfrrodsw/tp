@@ -75,21 +75,23 @@ export class ViewUsersComponent {
 
   deleteUser(users: any) {
     this.userService.deleteUser(users.UserId).subscribe(
-      (user: User) => {
-        this.users = this.users?.filter((u) => u.UserId !== user.UserId);
-        this._snackBar.open(
-          `Usuario ${user.FirstName} ${user.LastName} ha sido borrado`,
-          'CERRAR',
-          {
-            duration: 4000,
-          }
-        );
-        this.viewUsers();
-      },
-      (error) => {
-        this.deletionMessage = 'Error al borrar el usuario';
-        this.succesMessage = '';
-        console.error(error);
+      {
+        next:(user: User) => {
+          this.users = this.users?.filter((u) => u.UserId !== user.UserId);
+          this._snackBar.open(
+            `Usuario ${user.FirstName} ${user.LastName} ha sido borrado`,
+            'CERRAR',
+            {
+              duration: 4000,
+            }
+          );
+          this.viewUsers();
+        },
+        error:(error) => {
+          this.deletionMessage = 'Error al borrar el usuario';
+          this.succesMessage = '';
+          console.error(error);
+        }
       }
     );
   }
