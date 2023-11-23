@@ -15,7 +15,7 @@ import { AuthModule } from './auth/auth.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'Durzo153',
+      password: '1234',
       database: 'investmentdb',
       entities: [__dirname + '**/*.entity{.ts,.js}'],
       autoLoadEntities: true,
