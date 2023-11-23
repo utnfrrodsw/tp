@@ -23,18 +23,18 @@ function Solicitud(props){
   // eslint-disable-next-line
   useEffect(() => {
     if(verPresupuestos){
-      console.log(verPresupuestos)
+      
       setLoading(true);
       fetch(`${API_URL}/presupuesto/solicitud/${props.id}`)
       .then((res) => res.json())
       .then((data) => {
         setPresupuestosSolicitud(data.body.presupuestos);
 
-        console.log(data.body.presupuestos);
+        
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error)
+        
         console.error('Error al cargar presupuestos:', error);
         setError(true);
         setLoading(false);
@@ -44,7 +44,7 @@ function Solicitud(props){
 
   const hendleCancelar = async () => {
     try{
-      console.log('cancelar solicitud para id ' + props.id)
+      
       const response = await fetch(`${API_URL}/solicitud/cancelar/`+props.id, {
         method: 'DELETE',
         headers: {
@@ -55,11 +55,11 @@ function Solicitud(props){
       if(response.ok){
         setError(false);
       }else{
-        console.log('Error al cancelar solicitud');
+        
         setError(true);
       }
     }catch(err){
-      console.log(err);
+      
       setError(true);
     }
   }
@@ -75,7 +75,7 @@ function Solicitud(props){
       await fetch(`${API_URL}/servicio/isreviewed/${props.id}/${props.idPrestador}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         if(data.body.isReviewed === false){
           setHacerReseña(true);
         }else{
@@ -91,7 +91,7 @@ function Solicitud(props){
       });
       
     }catch(err){
-      console.log(err);
+      
     }
   };
 
@@ -118,11 +118,11 @@ function Solicitud(props){
         props.hendleSolicitudesUpdate();
       }else{
         setLoadAceptarRechazar(false);
-        console.log('Error al aceptar/rechazar solicitud');
+        
       }
     }catch(err){
       setLoadAceptarRechazar(true);
-      console.log(err);
+      
     }
   }
   

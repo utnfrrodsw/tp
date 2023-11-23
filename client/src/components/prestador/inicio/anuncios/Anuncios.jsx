@@ -27,13 +27,13 @@ function Anuncios(props) {
       .then((res) => res.json())
       .then((data) => {
         setAnuncios(data.body.solicitudes);
-        console.log(data.body.solicitudes);
+        
         setAnunciosUpdate(false);
         setLoad(false);
       })
       .catch((error) => {
         setLoad(false);
-        console.log(error);
+        
         console.error('Error al cargar anuncios:', error);
       });
   }, [anunciosUpdate, props.estado, user.id, props.filtrado]);

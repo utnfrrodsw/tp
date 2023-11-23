@@ -13,7 +13,7 @@ function PresupuestoSolicitud(props){
 
     const handlePagar = async () => {
         setPagarLoading(true);
-        console.log('pagar presupuesto para idPrestador ' + props.idPrestador + ' y idSolicitud ' + props.idSolicitud)
+        
         const response = await fetch(`${API_URL}/presupuesto/pagar/${props.idSolicitud}/${props.idPrestador}`, {
             method: 'PATCH',
             headers: {
@@ -28,9 +28,9 @@ function PresupuestoSolicitud(props){
         });
 
         if(response.ok){
-            console.log('Presupuesto pagado');
+            
         }else{
-            console.log('Error al pagar presupuesto');
+            
         }
 
         setTimeout(() => {

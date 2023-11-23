@@ -5,8 +5,6 @@ const getTokenFromHeader = require("./getTokenFromHeader");
 function authenticate(req, res, next){
     const token = getTokenFromHeader(req.headers);
 
-    console.log("authenticate");
-
     if(token){ // si hay token
         const decoded = verifyAccessToken(token);
         if(decoded){

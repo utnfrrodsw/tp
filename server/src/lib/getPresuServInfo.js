@@ -4,7 +4,7 @@ exports.getPresuServInfo = function(presupuesto,direccion){
     const servicio=JSON.parse(JSON.stringify(presupuesto.presupuesto))[0];
     const fechasDisponibles = [];
     presupuesto.horariosPresupuesto.map((horario) => {
-        console.log(horario.horario);
+        
         const date = new Date(horario.horario);
         const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
         const formattedDate = date.toLocaleString('es-AR', options); // Ajusta 'es-ES' según la zona horaria deseada

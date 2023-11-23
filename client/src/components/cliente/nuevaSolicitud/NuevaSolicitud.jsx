@@ -152,13 +152,13 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
       .catch((error) => {
         setEnviando(false);
         setError(true);
-        console.log(error);
+        
       });
       setEnviando(false);
     }catch(error){
       setEnviando(false);
       setError(true);
-      console.log(error);
+      
     }
     
   };

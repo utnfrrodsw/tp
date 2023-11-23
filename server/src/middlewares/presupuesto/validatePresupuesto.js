@@ -41,7 +41,7 @@ const validatePresupuesto = [
 
             const fechaHora = new Date(fecha);
             const hora = fechaHora.getHours();
-            console.log(hora);
+            
 
             if(hora > 18 || hora < 8){
                 throw new Error("Debe seleccionar una hora entre las 08:00 hs y las 19:00 hs");

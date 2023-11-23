@@ -22,7 +22,7 @@ const validateSolicitudCreate = [
     check("fotos").custom((value, { req }) => {
         let files = req.files;
         let acceptedExtensions = [".jpg", ".png", ".jpeg"];
-        console.log(files);
+        
         if (files.length == 0 ) {
           throw new Error("Tiene que subir al menos una imagen");
         } else if (files.length <= 5) {

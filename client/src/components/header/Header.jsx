@@ -34,7 +34,7 @@ function Header(props) {
             auth.logout();
         }
         } catch (error) {
-        console.log(error);
+        
         }
     }
 

@@ -93,7 +93,7 @@ function Presupuesto(props) {
       .then((res) => res.json())
       .then((data) => {
         if(data.error){
-          console.log(data.error);
+          
           data.error.map((error) => {
             if(error.path === 'idSolicitud') setErrorIdSolicitud(error.msg);
             if(error.path === 'idPrestador') setErrorIdPrestador(error.msg);
