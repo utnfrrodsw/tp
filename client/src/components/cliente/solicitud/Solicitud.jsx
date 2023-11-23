@@ -140,7 +140,7 @@ function Solicitud(props){
           {props.estado === "progreso" || props.estado === "terminado" ? <p className='fecha-solicitud'>{props.nombrePrestador}</p> : <></>}
           {props.estado === "activa"? (<p className='fecha-solicitud'>Fecha Solicitud: {props.fecha}</p>) :<></>}
           {props.estado === "progreso" || props.estado === "terminado" ? <p className='fecha-solicitud'>Fecha Servicio: {props.fecha} </p>:<></>}
-          <p className='ubicacion-solicitud'>{props.direccion.calle} {props.direccion.numero}</p>
+          <p className='ubicacion-solicitud'>{props.direccion.calle} {props.direccion.numero}, {props.direccion.localidad.nombre} {props.direccion.localidad.provincia}</p>
         </div>
         {show ? (
           <> </>

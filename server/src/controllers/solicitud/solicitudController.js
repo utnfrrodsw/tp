@@ -44,6 +44,9 @@ const solicitudController = {
                 where: {
                     idUsuario: id
                 },
+                include: [
+                        { association: 'localidad' }
+                ]
                 },
                 {
                     association: 'fotosSolicitud' // Si necesitas acceder a las fotos de las solicitudes
@@ -88,7 +91,7 @@ const solicitudController = {
                                 },
                                 include: [{
                                     association: 'usuario'
-                                }]
+                                }],
                             }).then((presupuesto) => {
                                 console.log(resenia);
                                 const presu = getSolicitudPresuInfo(solicitud, imgs, presupuesto, resenia, estado);
@@ -253,7 +256,10 @@ const solicitudController = {
                     association: 'direccion',
                     where:{
                         codPostal:codPostalPres,
-                    }
+                    },
+                    include:[{
+                        association: 'localidad'
+                    }]
                 },
                 {
                     association: 'fotosSolicitud' 
@@ -334,7 +340,10 @@ const solicitudController = {
             },
             include: [
                 {
-                    association: 'direccion'
+                    association: 'direccion',
+                    include:[{
+                        association: 'localidad'
+                    }]
                 },
                 {
                     association: 'fotosSolicitud' 
@@ -404,7 +413,10 @@ const solicitudController = {
             },
             include: [
                 {
-                    association: 'direccion'
+                    association: 'direccion',
+                    include:[{
+                        association: 'localidad'
+                    }]
                 },
                 {
                     association: 'fotosSolicitud' 

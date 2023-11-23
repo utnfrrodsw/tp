@@ -19,7 +19,7 @@ function Anuncio(props) {
           Fecha publicacion: {dateTime.toLocaleDateString()}
         </p>
         <p className='ubicacion-anuncio'>
-          {props.direccion.calle} {props.direccion.numero}, {props.direccion.codPostal}
+          {props.direccion.localidad.nombre},{props.direccion.localidad.provincia}
         </p>
       </div>
       {show ? (
