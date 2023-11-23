@@ -46,8 +46,8 @@ function Header(props) {
 
             <div className="header-links">
                 <div className="links">
-                     
-                    {user.nombre !== "" ?
+                    
+                    {auth.isAuthenticated ?
                         (<Link onClick={handleShow} ><img src={userlogo} className="userlogo" /></Link>) : 
                         <Link to="/login"><img src={userlogo} className="userlogo" /></Link>}
                     <Offcanvas  show={show} onHide={handleClose} placement="end" {...props} style={{backgraouncolor: '#2a4063'}}>

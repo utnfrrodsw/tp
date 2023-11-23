@@ -48,7 +48,7 @@ function PresupuestoSolicitud(props){
                 <div>
                     <Card.Text className='card-text'>
                         <p>Prestador: {props.nombrePrestador}</p>
-                        <p>Reputacion del prestador: <Rating name="read-only" value={props.rating} readOnly precision={0.25}/></p>
+                        <p><Rating name="read-only" value={props.rating} readOnly precision={0.25}/></p>
                         <p>Materiales: {props.materiales}</p>
                         <p>Costo Materiales: {props.costoMateriales}</p>
                         <p>Costo por Hora: {props.costoXHora}</p>

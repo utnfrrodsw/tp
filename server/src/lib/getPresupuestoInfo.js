@@ -5,7 +5,7 @@ exports.getPresupuestoInfo = function(presupuesto, horarios,promedio){
     return {
         idPrestador: presupuesto.usuario.idUsuario,
         nombrePrestador: presupuesto.usuario.nombre + ' ' + presupuesto.usuario.apellido,
-        rating: promedio,
+        rating: promedio || 0,
         id: presupuesto.idSolicitud,
         idSolicitud: presupuesto.idSolicitud,
         materiales: presupuesto.materiales,
