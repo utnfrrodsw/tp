@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, Button, Spinner} from 'react-bootstrap';
 import './presupuestosSolicitud.css'
 import { API_URL } from '../../../auth/constants';
+import Rating from '@mui/material/Rating';
 
 
 function PresupuestoSolicitud(props){
@@ -38,7 +39,6 @@ function PresupuestoSolicitud(props){
             props.hendlePresupuestoPagado();
         }, 3000);
     }
-
     return (
         <Card className='card-presu' style={{backgroundColor: '#213555', height: '40%', margin:'10px'}}>
             <Card.Header>
@@ -48,6 +48,7 @@ function PresupuestoSolicitud(props){
                 <div>
                     <Card.Text className='card-text'>
                         <p>Prestador: {props.nombrePrestador}</p>
+                        <p>Reputacion del prestador: <Rating name="read-only" value={props.rating} readOnly precision={0.25}/></p>
                         <p>Materiales: {props.materiales}</p>
                         <p>Costo Materiales: {props.costoMateriales}</p>
                         <p>Costo por Hora: {props.costoXHora}</p>

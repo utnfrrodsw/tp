@@ -72,7 +72,6 @@ function Anuncios(props) {
     handleEstadoClick(nuevoEstado);
     handleFiltradoClick(nuevoFiltro);
   };
-
   return (
     <div className="anuncios-container">
       <nav className="navigation">
@@ -150,7 +149,7 @@ function Anuncios(props) {
                 key={anuncio.id}
                 id={anuncio.id}
                 titulo={anuncio.titulo}
-                fecha={anuncio.fechaHora}
+                fechaHora={anuncio.fechaHora}
                 direccion={anuncio.direccion}
                 descripcion={anuncio.descripcion}
                 fotos={anuncio.fotos}

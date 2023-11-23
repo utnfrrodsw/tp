@@ -309,31 +309,42 @@ const usuarioController = {
     }
   },
 
-obtenerDatosUsuario: async (req, res) => {
+obtenerDatosUsuario : async (req, res) => {
     const { id } = req.params;
-  
-    const t = await db.sequelize.transaction(); // Inicia una transacción
-  
+
     try {
-      // Buscar el usuario por su ID y seleccionar solo los campos necesarios
-      const usuario = await db.Usuario.findByPk(id, {
-        attributes: ['nombre', 'apellido', 'email', 'fechaNacimiento'],
-        transaction: t, // Asocia la transacción a la consulta
-      });
-  
-      if (!usuario) {
-        await t.rollback(); // Revierte la transacción si el usuario no se encuentra
-        return res.status(404).json({ message: 'Usuario no encontrado' });
-      }
-  
-      await t.commit(); // Confirma la transacción si todo está bien
-      res.json(usuario);
+        const usuario = await db.Usuario.findByPk(id, {
+            attributes: ['nombre', 'apellido', 'email', 'fechaNacimiento'],
+        });
+
+        if (!usuario) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        // Consulta para obtener el promedio de reseñas
+        const promedioResenas = await db.Servicio.findOne({
+            attributes: [
+                [db.sequelize.fn('AVG', db.sequelize.col('resenia')), 'promedioResenas'],
+            ],
+            where: {
+                idUsuario: id,
+            }
+        });
+
+        // Agrega el promedio de reseñas a la respuesta
+        const respuestaUsuario = {
+          ...usuario.toJSON(),
+          promedioResenas: promedioResenas ? parseFloat(promedioResenas.dataValues.promedioResenas) : null,
+        };
+
+        console.log(promedioResenas);
+        console.log(respuestaUsuario);
+        res.json(respuestaUsuario);
     } catch (error) {
-      console.error('Error al obtener datos del usuario', error);
-      await t.rollback(); // Revierte la transacción en caso de error
-      res.status(500).json({ message: 'Error en el servidor' });
+        console.error('Error al obtener datos del usuario', error);
+        res.status(500).json({ message: 'Error en el servidor' });
     }
-  },
+},
   
 obtenerProfesionesUsuario: async (req, res) => {
     const t = await db.sequelize.transaction(); // Inicia una transacción
