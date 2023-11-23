@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioDetalladoService } from '../servicios/usuario-detallado.service';
-import { Usuario, UsuarioService } from '../servicios/usuario.service';
-import { UsuarioService as UsuariosService} from '../servicios/usuario.service';
+import { Usuario,UsuarioService as UsuariosService } from '../servicios/usuario.service';
 import { UsuarioActualService } from '../servicios/usuario-actual.service';
+import { ToastrService } from 'ngx-toastr';
 
 declare var particlesJS: any; 
 
@@ -19,7 +19,7 @@ export class DetalleComponent implements OnInit {
     private usuarioActualService:UsuarioActualService,
     private usuarioDetalladoService:UsuarioDetalladoService,
     private usuariosService: UsuariosService,
-    private usuarioService:UsuarioService
+    private toastr: ToastrService
   ){}
   
   ngOnInit(): void {
@@ -81,26 +81,35 @@ export class DetalleComponent implements OnInit {
       ,valor
     )
       .subscribe((result: any)=>{
+        let datoMensaje;
+
         switch(dato){
         case 'nombreCompleto':
           this.usuarioDetallado.nombreCompleto=valor;
+          datoMensaje='Nombre completo';
           break;
         case 'DNI':
           this.usuarioDetallado.DNI=valor;
+          datoMensaje='DNI';
           break;
         case 'nombreUsuario':
           this.usuarioDetallado.nombreUsuario=valor;
+          datoMensaje='Nombre de usuario';
           break;
         case 'correo':
           this.usuarioDetallado.correo=valor;
+          datoMensaje='Correo';
           break;
         case 'habilitado':
           this.usuarioDetallado.habilitado = valor=='1';
+          datoMensaje='Estaod del usuario';
           break;
         }
 
         form.dataset['sucio']='0';
         form.dataset['enviando']='0';
+
+        this.toastr.success(`${datoMensaje} actualizado.`);
       });
       ;
   }  

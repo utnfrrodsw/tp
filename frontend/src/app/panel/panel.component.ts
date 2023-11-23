@@ -101,6 +101,7 @@ export class PanelComponent implements OnInit {
 
   busqueda(e:Event):void{
 
+    // TODO Feature: lo que sea que diga este comentario
     /* Estados de la búsqueda:
     Esperando entrada del usuario (inicial)
       ❌ Hoy es this.mostrarVacío=false y this.usuariosEncontrados vacío, y es literalmente nada. Podría ser una llamada a la acción.
@@ -147,7 +148,9 @@ export class PanelComponent implements OnInit {
         next:(result: any)=>{
           let indice:number =this.usuariosEncontrados.findIndex(usu=>usu.ID==usuarioID);
           let nuevoAmigo:Usuario= this.usuariosEncontrados[indice] as Usuario;
+          this.toastr.success(`¡Invitación enviada a ${nuevoAmigo.nombreCompleto}!`);
           nuevoAmigo.amistades=({estado:'esperando',amigoID:usuarioID}) as Amistad;
+          // TODO Feature: Si esto es real, y puede pasar, ¿no deberíamos corregirlo, en un paso como este? Guardar resultado de la investigación en un comentario
           this.usuarioActual.amigos?.push(nuevoAmigo as Usuario);
           
           this.usuariosEncontrados.splice(indice, 1);
@@ -171,8 +174,13 @@ export class PanelComponent implements OnInit {
       .eliminarInvitacion(usuarioID,true)
       .subscribe({
         next:(result: any)=>{
-          let indice:number =(this.usuarioActual.amigos||[]).findIndex(usu=>usu.ID==usuarioID);
-          this.usuarioActual.amigos?.splice(indice, 1);
+          if(this.usuarioActual.amigos){
+            let indice:number =this.usuarioActual.amigos.findIndex(usu=>usu.ID==usuarioID);
+            this.toastr.success(`Invitación a ${this.usuarioActual.amigos[indice].nombreCompleto} eliminada.`);
+            this.usuarioActual.amigos.splice(indice, 1);
+          }else{
+            this.console.log('Error al cancelar invitación. ¿No hay amigos?')
+          }
         }
         ,error:error=>{
           this.console.log(error);
@@ -191,7 +199,13 @@ export class PanelComponent implements OnInit {
         .aceptarInvitacion(usuarioID)
         .subscribe({
           next:(amigo: any)=>{
-            ((this.usuarioActual.amigos||[]).find(ami=>ami.ID==usuarioID) as Usuario).amistades.estado=EstadosAmistades.Amigos/* 'amigos' */; //delet, Ig
+            if(this.usuarioActual.amigos){
+              let amigoNuevo=this.usuarioActual.amigos.find(ami=>ami.ID==usuarioID) as Usuario;
+              amigoNuevo.amistades.estado=EstadosAmistades.Amigos
+              // TODO Feature: Ver si esto realmente anda: /* 'amigos' */; //delet, Ig
+              this.toastr.success(`¡Ahora vos y ${amigoNuevo.nombreCompleto} son amigos!`);
+            }else this.console.log('Error al responder positivamente a una invitación. ¿No hay amigos?');
+
             return;
           }
           ,error:error=>{
@@ -202,8 +216,11 @@ export class PanelComponent implements OnInit {
       .eliminarInvitacion(usuarioID,false)
       .subscribe({
         next:(result: any)=>{
-          let indice:number =(this.usuarioActual.amigos||[]).findIndex(usu=>usu.ID==usuarioID);
-          this.usuarioActual.amigos?.splice(indice, 1);
+          if(this.usuarioActual.amigos){
+            let indice:number =this.usuarioActual.amigos.findIndex(usu=>usu.ID==usuarioID);
+            this.toastr.success(`Invitación de ${this.usuarioActual.amigos[indice].nombreCompleto} eliminada.`);
+            this.usuarioActual.amigos.splice(indice, 1);
+          }else this.console.log('Error al eliminar invitación. ¿No hay amigos?');
         }
         ,error:error=>{
           this.console.log(error);
@@ -214,14 +231,17 @@ export class PanelComponent implements OnInit {
   eliminar(e:Event):void{
     e.preventDefault();
 
-    // TODO Avisar que es no se puede deshacer
+    // TODO Feature: Avisar que es no se puede deshacer
     let usuarioID=(e.target as any)['usuarioID'].value;
     this.usuariosService
       .eliminarAmigo(usuarioID)
       .subscribe({
         next:(result: any)=>{
-          let indice:number =(this.usuarioActual.amigos||[]).findIndex(usu=>usu.ID==usuarioID);
-          this.usuarioActual.amigos?.splice(indice, 1);
+          if(this.usuarioActual.amigos){
+            let indice:number =this.usuarioActual.amigos.findIndex(usu=>usu.ID==usuarioID);
+            this.toastr.success(`${this.usuarioActual.amigos[indice].nombreCompleto} ya no es tu amigo.`);
+            this.usuarioActual.amigos.splice(indice, 1);
+          }else this.console.log('Error al eliminar un amigo. ¿No hay array amigos?');
         }
         ,error:error=>{
           this.console.log(error);
@@ -238,6 +258,7 @@ export class PanelComponent implements OnInit {
       .generar(cantidad)
       .subscribe({
         next:()=>{
+          this.toastr.success(`Se han generado ${cantidad} tokens, y se agregaron a tu cuenta.`);
           this.tokensCirculando+=cantidad;
           this.usuarioActual.tokens+=cantidad;
         }
@@ -247,6 +268,7 @@ export class PanelComponent implements OnInit {
       });
   }
 
+  // TODO Refactor: Seguro puede volar esto...
   asignarNombreABoton(e:Event):void{
     (e.target as HTMLInputElement).name='accion';
   }
@@ -261,6 +283,7 @@ export class PanelComponent implements OnInit {
       })
   }
 
+  // TODO Refactor: Queda feo... quitar?
   actualizarAmigoSeleccionadoID(e:Event){
     this.amigoSeleccionadoID=+(e.target as HTMLInputElement).value;
   }
@@ -274,8 +297,8 @@ export class PanelComponent implements OnInit {
     boton.disabled=true;
     this.tokensService.enviar(cantidad,amigoID).subscribe({
       next:()=>{
-        // TODO Toast + reiniciar formulario
-        this.toastr.success('Se han enviado los tokens exitosamente.');
+        // TODO reiniciar formulario
+        this.toastr.success('¡Se han enviado los tokens exitosamente!');
         this.usuarioActual.tokens-=cantidad;
       }
       ,error:error=>{
@@ -299,9 +322,7 @@ export class PanelComponent implements OnInit {
     this.usuariosService
       .create(u)
       .subscribe((result:any)=>{
-        // TODO UX: Avisar con un cartelito Toast.
-        // TODO UX: Avisar todo con un cartelito lindo.
-        alert('Se ha creado el usuario');
+        this.toastr.success(`El usuario se creó exitosamente.`);
       });
   }
 
@@ -320,6 +341,8 @@ export class PanelComponent implements OnInit {
       .subscribe({
         next:(result: any)=>{
           ((e.target as HTMLElement).closest('TR') as HTMLElement).dataset['sucio']='0';
+          // TODO UX: Considerar si hace falta el cartel de éxito en ciertos casos, como este; que tienen una respuesta muy clara.
+          this.toastr.success(`Permisos del usuario ${this.usuariosPaginaActual.find(usu=>usu.ID==usuarioID)?.nombreCompleto} actualizados.`);
         }
         ,error:error=>{
           this.console.log(error);
@@ -329,6 +352,7 @@ export class PanelComponent implements OnInit {
     return false;
   }
 
+  // TODO Refactor: private? Maybe esa es la solución al tema de las funcioncitas helper
   nuevaIDPeticion():Number{
     return ++this.IDPeticion;
   }
@@ -339,10 +363,10 @@ export class PanelComponent implements OnInit {
     // TODO Refactor: hacer alguna reacción o DRY con el primero.
     this.usuariosService.getCantidadDePaginas(this.filtroDePaginacion)
       .subscribe((cantidadDePaginas: any)=>{
-          if(this.IDPeticion==nuevaID) {
-            this.cantidadPaginas=cantidadDePaginas;
-          }
-        });
+        if(this.IDPeticion==nuevaID) {
+          this.cantidadPaginas=cantidadDePaginas;
+        }
+      });
     this.actualizarTablaAdministracion(nuevaID);
   }
 
@@ -370,6 +394,7 @@ export class PanelComponent implements OnInit {
       });
   }
 
+// TODO Refactor: privada
   usuarioTienePermiso(usu:Usuario,perID:number){
     return usu.permisos?.some(p=>p.ID==perID) || false;
   }
@@ -413,7 +438,7 @@ export class PanelComponent implements OnInit {
       break;
     }
 
-    // TODO Refactor: alguna gracia de casteo booleano => numérico => string??
+    // TODO Refactor: Meter directamente el error, disable= error!=''
     form.dataset['puedeEnviar']=error;
   }
 
@@ -431,19 +456,26 @@ export class PanelComponent implements OnInit {
       ,valor
     )
       .subscribe((result: any)=>{
+        let datoMensaje;
+
         switch(dato){
         case 'nombreCompleto':
+          // TODO Feature: Permitir these two si es admin
         // case 'DNI':
         // case 'nombreUsuario':
           this.usuarioActual.nombreCompleto=valor;
+          datoMensaje='Nombre completo';
           break;
         case 'correo':
           this.usuarioActual.correo=valor;
+          datoMensaje='Correo';
           break;
         }
 
         form.dataset['sucio']='0';
         form.dataset['enviando']='0';
+
+        this.toastr.success(`${datoMensaje} actualizado.`);
       });
       ;
   }
