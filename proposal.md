@@ -172,8 +172,8 @@ el envío será gratuito"
 
 | Req      | Detalle                                                                                                                                                                                                                                            |
 | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CRUD     | 1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial<br>5. CRUD Localidad<br>6. CRUD Usuario<br>7. CRUD Libro<br>8. CRUD Reseña<br>9. CRUD Oferta<br> **<sup>[1]<sup>**<br>11. CRUD Envío **<sup>[2]<sup>** |
-| CUU/Epic | 1. Comprar libro<br>2. Reseñar libro<br>3. Registrar Editorial<br>4. Registrar Autor<br>                                                                                                                                                     |
+| CRUD     | 1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial<br>5. CRUD Localidad<br>6. CRUD Usuario<br>7. CRUD Libro<br>8. CRUD Reseña<br>9. CRUD Oferta<br>10. CRUD Pedido **<sup>[1]<sup>**<br>11. CRUD Envío **<sup>[2]<sup>** |
+| CUU/Epic | 1. Comprar libro<br>2. Reseñar libro<br>3. Registra Editorial<br>4. Registrar Autor<br>                                                                                                                                                     |
 
 -   **Consideraciones:**
 
