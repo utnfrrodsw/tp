@@ -36,6 +36,9 @@
             name="password"
             id="password"
           />
+          <mat-error *ngIf="formLogin.get('password')?.invalid"
+            >La contraseña debe tener como mínimo 4 caracteres</mat-error
+          >
           <button
             mat-icon-button
             matSuffix
@@ -46,19 +49,24 @@
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
         </mat-form-field>
+        <div class="fail-message" *ngIf="deletionMessage">
+          {{ deletionMessage }}
+        </div>
       </div>
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-actions class="button-container">
-        <button class="field-flex button-style" 
-        mat-raised-button type="submit">
-          Log In
-        </button>
-        <button class="return-button" 
-        mat-raised-button type="button"
-        (click)="handlerSignUp()">
-          Sign Up
-        </button>
+      <button class="field-flex button-style" mat-raised-button type="submit">
+        Log In
+      </button>
+      <button
+        class="return-button"
+        mat-raised-button
+        type="button"
+        (click)="handlerSignUp()"
+      >
+        Sign Up
+      </button>
     </mat-card-actions>
   </form>
 </mat-card>

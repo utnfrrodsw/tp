@@ -1,0 +1,55 @@
+<mat-card>
+  <form action="" [formGroup]="formLogin" (ngSubmit)="invest()">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Cuantos pesos Argentinos puede invertir ?</mat-card-title>
+    </mat-card-header>
+    <mat-form-field class="field-flex" floatLabel="always">
+      <mat-label for="money" id="money">Dinero: </mat-label>
+      <input
+        matInput
+        type="number"
+        name="money"
+        id="money"
+        formControlName="money"
+        class="money-field"
+        step="0.01"
+      />
+      <span matTextPrefix>$&nbsp;</span>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-error *ngIf="formLogin.get('money')?.invalid"
+        >Ingrese el monto en pesos($) a invertir
+      </mat-error>
+    </mat-form-field>
+    <div class="inflation-container">
+      <mat-checkbox
+        class="checkbox-field"
+        style="display: table-cell"
+        formControlName="editInflation"
+        (change)="canEditInflation = !canEditInflation"
+        >Editar</mat-checkbox
+      >
+      <mat-form-field
+        class="field-flex inflation-field"
+        style="display: table-cell"
+      >
+        <mat-label for="inflation" id="inflation">Inflación: </mat-label>
+        <input
+          matInput
+          type="number"
+          name="inflation"
+          id="inflation"
+          formControlName="inflation"
+          [readonly]="!canEditInflation"
+        />
+        <span matTextSuffix>%&nbsp;</span>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+      <div class="button-container">
+        <button class="field-flex button-style" mat-raised-button type="submit">
+          Invertir
+        </button>
+      </div>
+  </form>
+</mat-card>

@@ -18,6 +18,8 @@ export class LoginFormComponent {
     ],
     password: ['', [Validators.required, Validators.minLength(4)]],
   });
+  deletionMessage: string = '';
+  succesMessage: string = '';
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -32,17 +34,17 @@ export class LoginFormComponent {
           this.formLogin.controls['userName'].value ?? '',
           this.formLogin.controls['password'].value ?? ''
         )
-        .subscribe(() => {
-          this._snackBar.open('Sesión iniciada exitosamente!', 'X', {
-            duration: 4000,
-          });
-          this.router.navigate(['money']);
-        });
-    }
-    else{
-      this._snackBar.open('Error al iniciar sesión', 'X', {
-        duration: 4000,
-      });
+        .subscribe(
+          () => {
+            this._snackBar.open('Sesión iniciada exitosamente!', 'X', {
+              duration: 4000,
+            });
+            this.router.navigate(['money']);
+          },
+          () => {
+            this.deletionMessage = 'Usuario o contraseña invalida';
+          }
+        );
     }
   }
 

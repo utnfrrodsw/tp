@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class TextGeneratorService {
 
-  constructor() { }
-
   generateTextForBanks(bankName: string, intestRate: number): string{
     let result: string;
     const seed = Math.floor(Math.random()*10);

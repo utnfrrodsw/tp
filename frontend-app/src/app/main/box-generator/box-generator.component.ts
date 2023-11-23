@@ -44,7 +44,6 @@ export class BoxGeneratorComponent implements OnInit{
     if (this.hasImage) {
       const result = this.imageGenerator.generateImage();
       result.then((okey: Observable<any>) => okey.subscribe((imagen: ImageData) => {
-        console.log(imagen);
         this.IMG= this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'+ imagen.artifacts[0].base64);
       }))
     }

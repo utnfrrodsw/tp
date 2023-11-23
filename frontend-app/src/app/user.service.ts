@@ -30,7 +30,6 @@ export class UserService {
   updateEmailUser(userId: number, newEmail: string){
     const url = `${this.usersUrl}/${userId}`;
     const updateData = { UserId: userId, NewEmail: newEmail };
-    console.log(updateData);
     return this.http.patch(url, updateData);
   }
 }

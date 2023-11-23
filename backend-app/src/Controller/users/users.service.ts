@@ -20,7 +20,6 @@ export class UsersService {
       where: { Email: createUserDto.Email },
     });
     if (user) {
-      console.log(user);
       return new HttpException('Email en uso', HttpStatus.CONFLICT);
     }
     const newAddress = await this.AddressRepository.save(createUserDto.Address);
@@ -61,7 +60,6 @@ export class UsersService {
     }
 
     user.Email = updateUserEmailDto.NewEmail;
-    console.log(user);
     return this.userRepository.save(user);
   }
 

@@ -1,50 +1,55 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-header',
-  template: `
-  <div class="shared-container fix-header">
-    <div>Recomendador de inversiones</div>
-    <span class="user">{{username}}
-      <button
-      *ngIf="username != 'anonimo'"  
-      mat-icon-button 
-      color="warn"
-      (click)="logout()">
-        <mat-icon class="icon-align">close</mat-icon>
-      </button>
-    </span>
-  </div>
-  `,
-  styleUrls: ['./header.component.sass']
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.sass'],
 })
-export class HeaderComponent implements OnInit{
-  username: string = 'anonimo';
+export class HeaderComponent implements OnInit {
+  accRol: string = '';
+  username: string = 'Anonimo';
   private loginSuccessSubscription?: Subscription;
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.getUsername();
+    const rol = this.authService.getRolSession();
+    if (rol) {
+      this.accRol = rol;
+    }
   }
+
   ngOnInit(): void {
-    this.loginSuccessSubscription = this.authService.onLoginSuccess().subscribe(() => {
-      this.getUsername();
-    });
+    this.loginSuccessSubscription = this.authService
+      .onLoginSuccess()
+      .subscribe(() => {
+        this.getUsername();
+        const rol = this.authService.getRolSession();
+        if (rol) {
+          this.accRol = rol;
+        }
+      });
   }
-  
+
   logout() {
     this.authService.logout();
-    this.username = 'anonimo';
+    this.router.navigate(['login']);
+    this.username = 'Anonimo';
   }
 
   getUsername() {
     const user = this.authService.getUsername();
-    if(user) {
+    if (user) {
       this.username = user;
     }
   }
 
   ngOnDestroy() {
     this.loginSuccessSubscription?.unsubscribe();
+  }
+
+  navigateViewUsers() {
+    this.router.navigate(['view-users']);
   }
 }
