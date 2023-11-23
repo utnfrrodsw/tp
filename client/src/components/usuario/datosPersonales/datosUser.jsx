@@ -6,6 +6,7 @@ import { API_URL } from '../../../auth/constants.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import avatarDefecto from './avatarDefecto.png';
 import './datosUser.css';
+import Rating from '@mui/material/Rating';
 
 const DatosPersonales = () => {
   const [userData, setUserData] = useState({
@@ -13,6 +14,7 @@ const DatosPersonales = () => {
     apellido: '',
     email: '',
     fechaNacimiento: '',
+    promedioResenas: null
   });
 
   const [originalData, setOriginalData] = useState({ ...userData });
@@ -465,6 +467,10 @@ const handleCloseModal = () => {
         </Col>
         {!!user.esPrestador && (
        <Col>
+        <Card className='cardSegurity'>
+          <h2 className='h2'>Reputación:</h2>
+          <h2><Rating name="read-only" value={userData.promedioResenas} readOnly precision={0.25}/></h2>
+        </Card>
         <Card className='cardSegurity'>
          <Card.Body>
           <div>
