@@ -202,8 +202,10 @@ function Presupuesto(props) {
         </div>
         {errorFechasSeleccionadas && <span className="error-message">{errorFechasSeleccionadas}</span>}
       </div>
+      <div className='botones'>
       <button type="button" onClick={() => history(-1)}>Atrás</button>
       <button type="submit">Enviar presupuesto</button>
+      </div>
     </form>
   </div>
   )
