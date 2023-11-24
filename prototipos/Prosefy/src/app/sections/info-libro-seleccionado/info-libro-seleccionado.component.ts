@@ -6,6 +6,7 @@ import { switchMap, catchError, delay } from 'rxjs/operators';
 import { Observable, throwError, Subscription, of } from 'rxjs';
 import { ParamMap } from '@angular/router';
 import { CarritoComprasService } from '../../services/carrito-compras.service';
+import { IniciarSesionService } from '../../services/iniciar-sesion.service';
 
 @Component({
   selector: 'app-info-libro-seleccionado',
@@ -16,13 +17,15 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
   libro: Libro | undefined;
   libroAgregado: boolean = false;
   private subscription: Subscription = new Subscription();
+  isLoggedIn: boolean = false;
 
   constructor(
     public currencyService: CurrencyService,
     public librosService: LibrosService,
     private route: ActivatedRoute,
     private router: Router,
-    public carritoService: CarritoComprasService
+    public carritoService: CarritoComprasService,
+    private iniciarSesionService: IniciarSesionService
   ) { }
 
   ngOnInit() {
@@ -53,6 +56,10 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
         }
       )
     );
+
+    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: any) => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
   ngOnDestroy() {

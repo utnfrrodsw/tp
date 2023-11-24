@@ -26,8 +26,10 @@
           <a routerLink="/perfil" *ngIf="isLoggedIn" class="dropdown-item custom-dropdown-item mb-2">Mi cuenta</a>
           <a *ngIf="isLoggedIn" class="dropdown-item custom-dropdown-item" (click)="logout()">Cerrar sesión</a>
         </div>
-        <a routerLink="/carrito-compras"><img src="../../assets/img/carrito-de-compras.png" alt="Carrito de compras"
+        <a routerLink="/carrito-compras" *ngIf="isLoggedIn"><img src="../../assets/img/carrito-de-compras.png" alt="Carrito de compras"
             class="cart-shopping-image" /></a>
+        <a routerLink="/identificarse" *ngIf="!isLoggedIn"><img src="../../assets/img/carrito-de-compras.png" alt="Carrito de compras"
+            class="cart-shopping-image" /></a>    
       </div>
     </div>
   </div>
