@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="login-container mb-5 pb-5">
-    <form [formGroup]="loginGroup">
+    <form [formGroup]="loginGroup" (keydown.enter)="login()">
       <div class="form-group my-4">
         <label for="email">Correo Electrónico</label>
         <input type="text" id="email" class="form-control mx-auto mt-2" style="width: 80%"

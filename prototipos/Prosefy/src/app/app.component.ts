@@ -17,8 +17,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.smoothScrollService.initializeSmoothScrollbar();
-    setTimeout(() => {
-      this.iniciarSesionService.checkToken();
-    }, 200);
+    this.iniciarSesionService.checkToken();
   }
 }

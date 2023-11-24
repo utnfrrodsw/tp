@@ -1,8 +1,8 @@
 // iniciar-sesion.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, finalize, tap } from 'rxjs/operators';
+import { Observable, throwError, BehaviorSubject, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 export interface IniciarSesionResponse {
   token: string;
@@ -39,8 +39,10 @@ export class IniciarSesionService {
     if (token) {
       console.log('Token encontrado al cargar la aplicación:', token);
       this.isLoggedInSubject.next(true);
+      console.log('Estado de inicio de sesión:', this.isLoggedIn);
     } else {
       this.isLoggedInSubject.next(false);
+      console.log('Estado de inicio de sesión:', this.isLoggedIn);
     }
   }
 
@@ -72,24 +74,22 @@ export class IniciarSesionService {
     console.log('Cerrando sesión...');
 
     // Obtener el token almacenado en localStorage
-    const token = localStorage.getItem('token');
+    const tokenAlmacenado = localStorage.getItem('token');
     localStorage.removeItem('token');
     this.isLoggedInSubject.next(false);
 
     // Verificar si hay un token antes de realizar la solicitud
-    if (!token) {
+    if (!tokenAlmacenado) {
       console.warn('No hay un token almacenado al intentar cerrar sesión.');
-      return throwError('No hay un token almacenado.');
     }
 
-    return this.http.post<any>(`${this.apiUrl}/cerrar-sesion/${token}`, {}).pipe(
+    return this.http.post<any>(`${this.apiUrl}/cerrar-sesion/${tokenAlmacenado}`, {}).pipe(
       tap(() => {
         console.log('Sesión cerrada exitosamente');
-        localStorage.removeItem('token');
       }),
-      finalize(() => {
-        this.isLoggedInSubject.next(false);
-        console.log('Cierre de sesión finalizado.');
+      catchError((error) => {
+        console.error('Error al cerrar sesión', error);
+        return throwError(error);
       })
     );
   }

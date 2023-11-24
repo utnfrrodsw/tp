@@ -55,14 +55,20 @@ import { SeccionesAyudaComponent } from './sections/secciones-ayuda/secciones-ay
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { ResultadosComponent } from './sections/resultados/resultados.component';
 import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
-import { CurrencyService } from './services/currency.service';
 import { ListaLibrosComponent } from './shared/lista-libros/lista-libros.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { AutoresService } from './services/autores.service';
 import { ComentarioUsuarioComponent } from './shared/comentario-usuario/comentario-usuario.component';
-import { CarritoComprasService } from './services/carrito-compras.service';
 import { ListaAutoresComponent } from './shared/lista-autores/lista-autores.component';
 import { NuevoComentarioComponent } from './shared/nuevo-comentario/nuevo-comentario/nuevo-comentario.component';
+
+/* ------------------------------------------------------------------- */
+
+/* SERVICIOS */
+
+import { IniciarSesionService } from './services/iniciar-sesion.service';
+import { CarritoComprasService } from './services/carrito-compras.service';
+import { CurrencyService } from './services/currency.service';
+import { AutoresService } from './services/autores.service';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -129,7 +135,8 @@ registerLocaleData(localeEs, 'es');
     DatePipe,
     { provide: LOCALE_ID, useValue: 'es' },
     AutoresService,
-    CarritoComprasService
+    CarritoComprasService,
+    IniciarSesionService
   ],
   bootstrap: [AppComponent],
 })

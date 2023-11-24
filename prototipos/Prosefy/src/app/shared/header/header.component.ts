@@ -1,14 +1,14 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, EventEmitter, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, RouterModule } from '@angular/router';
 import { IniciarSesionService } from 'src/app/services/iniciar-sesion.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnChanges {
   // Propiedad para controlar si el encabezado se ha desplazado
   headerScrolled = false;
   placeholderText = 'Buscar...'; // Valor predeterminado
@@ -17,8 +17,19 @@ export class HeaderComponent {
   showUserOptions: boolean = false;
   // Esta variable indica si el usuario ha iniciado sesión
   isLoggedIn: boolean = false;
+  isPopupOpen: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private iniciarSesionService: IniciarSesionService, private authService: AuthService) {
+  @Output() closed = new EventEmitter<void>();
+
+  openPopup(): void {
+    this.isPopupOpen = true;
+  }
+
+  closePopup() {
+    this.isPopupOpen = false;
+  }
+
+  constructor(private router: Router, private route: ActivatedRoute, private iniciarSesionService: IniciarSesionService, private location: Location) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updatePlaceholder(event.url);
@@ -65,5 +76,15 @@ export class HeaderComponent {
 
   logout() {
     this.iniciarSesionService.cerrarSesion();
+    this.openPopup();
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isLoggedIn$']) {
+      this.isLoggedIn = changes['isLoggedIn$'].currentValue;
+    }
   }
 }

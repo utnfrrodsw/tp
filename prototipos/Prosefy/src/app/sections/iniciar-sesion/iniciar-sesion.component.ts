@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../../services/usuario.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IniciarSesionService, IniciarSesionResponse } from 'src/app/services/iniciar-sesion.service';
@@ -13,7 +12,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class IniciarSesionComponent implements OnInit {
 
   constructor(
-    private usuarioService: UsuarioService,
     private formBuilder: FormBuilder,
     private router: Router,
     private iniciarSesionService: IniciarSesionService,

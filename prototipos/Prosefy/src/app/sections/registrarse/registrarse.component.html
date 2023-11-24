@@ -5,8 +5,8 @@
       <div class="separator"></div>
     </div>
   </div>
-  <div class="login-container mb-5 pb-5 text-center">
-    <form [formGroup]="registroForm">
+  <div class="registro-container mb-5 pb-5 text-center">
+    <form [formGroup]="registroForm" (keydown.enter)="registrarUsuario()">
       <div class="form-group my-4 custom-input">
         <label for="username">Nombre de usuario</label>
         <input type="text" id="username" class="form-control" formControlName="username"
