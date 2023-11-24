@@ -40,7 +40,7 @@ function PresupuestoSolicitud(props){
         }, 3000);
     }
     return (
-        <Card className='card-presu' style={{backgroundColor: '#213555', height: '40%', margin:'10px'}}>
+        <Card className='card-presu' style={{backgroundColor: '#213555', height: 'auto', margin:'10px'}}>
             <Card.Header>
                 <Card.Title style={{color:'white', fontSize:'24px'}}>Presupuesto #{props.idPrestador}</Card.Title>
             </Card.Header>
