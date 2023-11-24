@@ -27,25 +27,25 @@ test('Renderiza el componente Login', () => {
   expect(loginButton).toBeInTheDocument();
 });
 
-// test('Muestra un mensaje de error cuando no se proporcionan credenciales', async () => {
-//     const store = mockStore({});
-//     render(
-//       <Provider store={store}>
-//         <MemoryRouter>
-//             <Login testing={true} />
-//         </MemoryRouter>
-//       </Provider>
-//     );
+test('Muestra un mensaje de error cuando no se proporcionan credenciales', async () => {
+    const store = mockStore({});
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+            <Login testing={true} />
+        </MemoryRouter>
+      </Provider>
+    );
   
-//     const loginButton = screen.getByText('Log in');
-//     userEvent.click(loginButton);
+    const loginButton = screen.getByText('Log in');
+    userEvent.click(loginButton);
   
-//     // Espera hasta que el mensaje de error aparezca en el DOM
-//     await waitFor(() => {
-//       const errorMessage = screen.queryByText('Please enter your username and password');
-//       expect(errorMessage).toBeInTheDocument();
-//     });
-//   });
+    // Espera hasta que el mensaje de error aparezca en el DOM
+    await waitFor(() => {
+      const errorMessage = screen.queryByText('Please enter your username and password.');
+      expect(errorMessage).toBeInTheDocument();
+    });
+  });
   
   
 
