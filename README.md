@@ -53,11 +53,11 @@ Para instalar las dependencias del lado del Backend deberás hacer lo mismo, só
 
 Una vez completado los pasos anteriores, para ejecutar el proyecto deberás hacerlo por partes.
 
-# Ejecutar Frontend
+### Ejecutar Frontend
 
 Para ejecutar el Frontend debes posicionate con el siguiente comando: `cd ruta-del.proyecto\Prosefy` seguido de `npm start`
 
-# Ejecutar Backend
+### Ejecutar Backend
 
 Para ejecutar el Backend debes posicionate con el siguiente comando: `cd ruta-del.proyecto\Backend` seguido de `npm run start:dev`
 
