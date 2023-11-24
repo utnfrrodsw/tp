@@ -59,7 +59,7 @@ function Anuncio(props) {
       {show ? (
           <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
           ): (
-          <div className='boton'>
+          <div className='botones'>
             {props.filtrado === "nuevas" ?
             <Link to={`/provider/home/add/budget/${props.id}`} className='button-link'>Presupuestar</Link>
             : <></>}
