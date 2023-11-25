@@ -17,10 +17,10 @@ export class NuevoComentarioComponent {
   allComentarios: string[] = [];
   isLoggedIn: boolean = false;
 
-  constructor(private ComentarioService: ComentarioService, private formBuilder : FormBuilder, private iniciarSesionService: IniciarSesionService) {}
+  constructor(private ComentarioService: ComentarioService, private formBuilder: FormBuilder, private iniciarSesionService: IniciarSesionService) { }
 
-  ngOnInit(){
-    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: any) => {
+  ngOnInit() {
+    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
     });
   }
@@ -32,12 +32,12 @@ export class NuevoComentarioComponent {
   addComment(): void {
 
     console.log(this.comentario);
-    if (this.comentarioForm.valid){
+    if (this.comentarioForm.valid) {
       this.ComentarioService.agregarComentario(this.comentario);
     }
   }
 
-  get email (){
+  get email() {
     return this.comentarioForm.controls.comentario;
   }
 }

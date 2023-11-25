@@ -57,7 +57,7 @@ export class InfoLibroSeleccionadoComponent implements OnInit, OnDestroy {
       )
     );
 
-    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: any) => {
+    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
     });
   }

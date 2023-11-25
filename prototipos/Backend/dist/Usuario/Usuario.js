@@ -1,5 +1,5 @@
 export class Usuario {
-    constructor(username, nombre, apellido, email, direccion, localidad, avatar, tipo, contraseña, tokens, tokensRevocados, _id) {
+    constructor(username, nombre, apellido, email, direccion, localidad, avatar, tipo, contraseña, tokens, _id) {
         this.username = username;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -10,7 +10,6 @@ export class Usuario {
         this.tipo = tipo;
         this.contraseña = contraseña;
         this.tokens = tokens;
-        this.tokensRevocados = tokensRevocados;
         this._id = _id;
     }
 }

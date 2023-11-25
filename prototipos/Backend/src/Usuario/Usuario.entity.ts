@@ -12,7 +12,6 @@ export class Usuario {
         public tipo: string,
         public contraseña: string,
         public tokens: Token[],
-        public tokensRevocados: TokenRevocado[],
         public _id?: ObjectId
     ) { }
 }
@@ -20,9 +19,4 @@ export class Usuario {
 export interface Token {
     token: string;
     fechaExpiracion: Date;
-}
-
-export interface TokenRevocado {
-    token: string;
-    fechaRevocacion: Date;
 }

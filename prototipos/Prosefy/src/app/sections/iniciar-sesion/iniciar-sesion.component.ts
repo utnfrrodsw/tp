@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IniciarSesionService, IniciarSesionResponse } from 'src/app/services/iniciar-sesion.service';
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './iniciar-sesion.component.html',
   styleUrls: ['./iniciar-sesion.component.css']
 })
-export class IniciarSesionComponent implements OnInit {
+export class IniciarSesionComponent {
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,15 +30,12 @@ export class IniciarSesionComponent implements OnInit {
     this.isPopupOpen = false;
   }
 
-  ngOnInit() {
-  }
-
   login() {
     const email = this.loginGroup.get('email')?.value ?? '';
     const password = this.loginGroup.get('password')?.value ?? '';
 
     // Verifica el estado de inicio de sesión antes de intentar iniciar sesión
-    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn) => {
+    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
       if (isLoggedIn === true) {
         this.router.navigateByUrl('/inicio');
         return;

@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 export interface IniciarSesionResponse {
   token: string;
@@ -56,7 +56,7 @@ export class IniciarSesionService {
           if (response.token) {
             console.log('Token guardado durante el inicio de sesión:', response.token);
             localStorage.setItem('token', response.token);
-            this.isLoggedInSubject.next(true);
+            this.checkToken();
           } else {
             console.error('Respuesta del servidor sin token', response);
           }
@@ -71,24 +71,34 @@ export class IniciarSesionService {
   }
 
   cerrarSesion(): Observable<any> {
-    console.log('Cerrando sesión...');
+    const token = localStorage.getItem('token');
+    console.log('Token enviado al cerrar sesión:', token);
+    const url = `${this.apiUrl}/cerrar-sesion`;
 
-    // Obtener el token almacenado en localStorage
-    const tokenAlmacenado = localStorage.getItem('token');
-    localStorage.removeItem('token');
-    this.isLoggedInSubject.next(false);
-
-    // Verificar si hay un token antes de realizar la solicitud
-    if (!tokenAlmacenado) {
-      console.warn('No hay un token almacenado al intentar cerrar sesión.');
+    if (!token) {
+      console.log('No hay token para cerrar sesión.');
+      return throwError({ mensaje: 'No hay token para cerrar sesión.' });
     }
 
-    return this.http.post<any>(`${this.apiUrl}/cerrar-sesion/${tokenAlmacenado}`, {}).pipe(
-      tap(() => {
-        console.log('Sesión cerrada exitosamente');
+    const headers = { Authorization: `Bearer ${token}` };
+
+    console.log('Cerrando sesión con URL:', url);
+
+    return this.http.post(url, { token }, { headers }).pipe(
+      tap(response => {
+        console.log('Respuesta del servidor al cerrar sesión:', response);
+        localStorage.removeItem('token');
+        this.checkToken();
       }),
-      catchError((error) => {
-        console.error('Error al cerrar sesión', error);
+      catchError(error => {
+        if (error.status === 401 && error.error.message === 'El token ha expirado.') {
+          console.log('Error al cerrar sesión: El token ha expirado.');
+          localStorage.removeItem('token');
+          this.checkToken();
+        } else {
+          console.error('Error al cerrar sesión:', error);
+        }
+        // Manejar el error de cerrar sesión
         return throwError(error);
       })
     );

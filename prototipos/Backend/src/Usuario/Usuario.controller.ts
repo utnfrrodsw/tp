@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { UsuarioRepositoryImpl } from "./Usuario.repository.js";
-import { Usuario, Token, TokenRevocado } from "./Usuario.js";
+import { Usuario, Token } from "./Usuario.js";
 import { ObjectId } from "mongodb";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -66,7 +66,6 @@ async function add(req: Request, res: Response) {
             input.tipo || 'usuario',
             hashContraseña,  // Utilizar la contraseña cifrada
             [],             // Inicializar tokens como un array vacío
-            []              // Inicializar tokensRevocados como un array vacío
         );
         const usuario = await repository.add(usuarioInput);
         res.status(201).send({ message: 'Usuario agregado con éxito.', data: usuario });
@@ -105,7 +104,6 @@ async function update(req: Request, res: Response) {
             updatedData.tipo,
             hashContraseña || '',
             usuarioExiste ? usuarioExiste.tokens : [],                // Mantener tokens existentes
-            usuarioExiste ? usuarioExiste.tokensRevocados : []         // Mantener tokensRevocados existentes
         );
 
         if (!usuarioExiste) {
@@ -205,39 +203,52 @@ async function iniciarSesion(req: Request, res: Response) {
 
 async function cerrarSesion(req: Request, res: Response) {
     try {
-        const token = req.params.token;
+        console.log('Cerrando sesión...');
+        const token = req.header('Authorization')?.replace('Bearer ', '');
 
         if (!token) {
-            return res.status(401).send({ message: "Token de autorización no proporcionado." });
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
         }
 
-        // Obtener el usuario por su token
-        const usuario = await repository.findOne({ "tokens.token": token });
+        const decoded = jwt.verify(token, 'secretKey') as { userId: string };
+        console.log('Token decodificado:', decoded);
 
-        if (!usuario) {
-            return res.status(401).send({ message: "Usuario no encontrado." });
+        // Obtener el usuario por su ID desde la base de datos
+        const usuarioCompleto = await repository.getById(decoded.userId);
+        console.log('Usuario encontrado en la base de datos:', usuarioCompleto);
+
+        if (!usuarioCompleto) {
+            return res.status(401).send({ message: 'No se pudo encontrar el usuario asociado con el token proporcionado al cerrar la sesión.' });
         }
 
-        // Revocar el token guardándolo en la lista de tokens revocados
-        usuario.tokensRevocados.push({ token, fechaRevocacion: new Date() });
+        // Verificar que el token proporcionado está en la lista de tokens del usuario
+        const tokenIndex = usuarioCompleto.tokens.findIndex(t => t.token === token);
+
+        if (tokenIndex === -1) {
+            return res.status(401).send({ message: 'Token no válido para este usuario.' });
+        }
+
+        // Verificar si el token ha expirado
+        if (usuarioCompleto.tokens[tokenIndex].fechaExpiracion.getTime() < Date.now()) {
+            return res.status(401).send({ message: 'El token ha expirado.' });
+        }
+
+        // Eliminar el token de la lista de tokens del usuario
+        usuarioCompleto.tokens.splice(tokenIndex, 1);
 
         // Actualizar el usuario en la base de datos
-        if (usuario._id) {
-            const updatedUser = await repository.update(usuario._id.toString(), usuario);
+        await repository.update(usuarioCompleto._id?.toString() || '', usuarioCompleto);
 
-            if (!updatedUser) {
-                return res.status(500).send({ message: "Error al cerrar sesión: No se pudo actualizar el usuario." });
-            }
+        res.status(200).json({ message: 'Cierre de sesión exitoso.' });
+
+    } catch (error: any) {
+        if (error instanceof jwt.TokenExpiredError) {
+            // Token ha expirado
+            res.status(401).send({ message: 'El token ha expirado.' });
         } else {
-            return res.status(500).send({ message: "Error al cerrar sesión: ID de usuario no válido." });
+            console.error('Error en cerrarSesion:', error);
+            res.status(500).json({ message: 'Error interno del servidor.' });
         }
-
-        console.log('Recibida solicitud de cierre de sesión');
-        res.status(200).send({ message: "Sesión cerrada con éxito." });
-
-    } catch (error) {
-        console.error("Error en cerrarSesion:", error);
-        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 

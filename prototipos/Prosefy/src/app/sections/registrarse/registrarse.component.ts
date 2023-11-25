@@ -47,10 +47,9 @@ export class RegistrarseComponent {
   }
 
   ngOnInit() {
-    // Verifica el estado de inicio de sesión al iniciar el componente
-    if (this.iniciarSesionService.isLoggedIn) {
+    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
       this.router.navigateByUrl('/inicio');
-    }
+    });
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
@@ -73,10 +72,10 @@ export class RegistrarseComponent {
     this.showErrorMessages = true;
 
     // Verifica el estado de inicio de sesión antes de intentar registrarse
-    if (this.iniciarSesionService.isLoggedIn) {
+    this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
       this.router.navigateByUrl('/inicio');
       return;
-    }
+    });
 
     if (this.registroForm.valid) {
 

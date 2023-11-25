@@ -85,7 +85,7 @@ export class UsuarioRepositoryImpl implements UsuarioRepository {
 
     async getById(userId: string): Promise<Usuario | undefined> {
         try {
-            const usuario = await usuarios.findOne({ userId });
+            const usuario = await usuarios.findOne({ _id: new ObjectId(userId) });
             return usuario || undefined;
         } catch (error) {
             console.error("Error en getById:", error);

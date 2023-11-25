@@ -5,7 +5,7 @@ export const usuarioRouter = Router();
 
 // Otras rutas
 usuarioRouter.post('/iniciar-sesion', iniciarSesion);
-usuarioRouter.post('/cerrar-sesion/:token', cerrarSesion);
+usuarioRouter.post('/cerrar-sesion', cerrarSesion);
 usuarioRouter.get('/username/:username', getByUsername);
 usuarioRouter.get('/email/:email', findOneByEmail);
 usuarioRouter.get('/token/:token', getIdUsuarioPorToken);

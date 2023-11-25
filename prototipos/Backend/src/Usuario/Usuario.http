@@ -56,3 +56,6 @@ GET http://localhost:3000/api/usuarios/655e2727a3bb4eb64b69eacd
 
 ### BORRAR USUARIO
 DELETE http://localhost:3000/api/usuarios/655e2727a3bb4eb64b69eacd
+
+### OBTENER USUARIO POR ID
+GET http://localhost:3000/api/usuarios/6561065f8a68d4ddd28c058b

@@ -73,7 +73,7 @@ export class UsuarioRepositoryImpl {
     }
     async getById(userId) {
         try {
-            const usuario = await usuarios.findOne({ userId });
+            const usuario = await usuarios.findOne({ _id: new ObjectId(userId) });
             return usuario || undefined;
         }
         catch (error) {
