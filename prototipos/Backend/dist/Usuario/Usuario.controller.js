@@ -93,15 +93,30 @@ async function update(req, res) {
 }
 async function remove(req, res) {
     try {
-        const id = req.params.id;
-        const usuario = await repository.delete({ id });
-        if (!usuario) {
-            return res.status(404).send({ message: "Usuario no encontrado." });
+        const token = req.header('Authorization')?.replace('Bearer ', '') || '';
+        if (!token) {
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
         }
+        // Decodificar el token para obtener el userId
+        const decoded = jwt.verify(token, 'secretKey');
+        // Obtener el usuario por su ID desde la base de datos
+        const usuarioCompleto = await repository.getById(decoded.userId);
+        if (!usuarioCompleto) {
+            return res.status(404).send({ message: 'Usuario no encontrado.' });
+        }
+        // Eliminar el usuario
+        await repository.delete({ id: decoded.userId });
         res.status(204).send({ message: 'Usuario eliminado con éxito.' });
     }
     catch (error) {
-        res.status(500).send({ message: "Error interno del servidor." });
+        // Manejar errores, por ejemplo, token inválido, userId no válido, etc.
+        if (error instanceof jwt.TokenExpiredError) {
+            return res.status(401).send({ message: 'El token ha expirado.' });
+        }
+        else {
+            console.error('Error en remove:', error);
+            res.status(500).send({ message: 'Error interno del servidor.' });
+        }
     }
 }
 // OTROS MÉTODOS
@@ -283,5 +298,78 @@ async function refreshToken(req: Request, res: Response) {
     }
 }
 */
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken*/ };
+/* GETTERS */
+async function getNombre(req, res) {
+    try {
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+        if (!token) {
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        }
+        const decoded = jwt.verify(token, 'secretKey');
+        const usuarioCompleto = await repository.getById(decoded.userId);
+        if (!usuarioCompleto) {
+            return res.status(401).send({ message: 'No se pudo encontrar el usuario asociado con el token proporcionado.' });
+        }
+        res.json({ data: { nombre: usuarioCompleto.nombre } });
+    }
+    catch (error) {
+        console.error("Error en getNombre:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getApellido(req, res) {
+    try {
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+        if (!token) {
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        }
+        const decoded = jwt.verify(token, 'secretKey');
+        const usuarioCompleto = await repository.getById(decoded.userId);
+        if (!usuarioCompleto) {
+            return res.status(401).send({ message: 'No se pudo encontrar el usuario asociado con el token proporcionado.' });
+        }
+        res.json({ data: { apellido: usuarioCompleto.apellido } });
+    }
+    catch (error) {
+        console.error("Error en getNombre:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getEmail(req, res) {
+    try {
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+        if (!token) {
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        }
+        const decoded = jwt.verify(token, 'secretKey');
+        const usuarioCompleto = await repository.getById(decoded.userId);
+        if (!usuarioCompleto) {
+            return res.status(401).send({ message: 'No se pudo encontrar el usuario asociado con el token proporcionado.' });
+        }
+        res.json({ data: { email: usuarioCompleto.email } });
+    }
+    catch (error) {
+        console.error("Error en getNombre:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getUsername(req, res) {
+    try {
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+        if (!token) {
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        }
+        const decoded = jwt.verify(token, 'secretKey');
+        const usuarioCompleto = await repository.getById(decoded.userId);
+        if (!usuarioCompleto) {
+            return res.status(401).send({ message: 'No se pudo encontrar el usuario asociado con el token proporcionado.' });
+        }
+        res.json({ data: { username: usuarioCompleto.username } });
+    }
+    catch (error) {
+        console.error("Error en getNombre:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername };
 //# sourceMappingURL=Usuario.controller.js.map

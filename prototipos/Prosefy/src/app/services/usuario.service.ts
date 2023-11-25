@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, catchError, map, throwError } from "rxjs";
+import { IniciarSesionService } from './iniciar-sesion.service';
 
 export interface Usuario {
   username: string;
@@ -22,25 +23,65 @@ export class UsuarioService {
 
   private apiUrl: string = "http://localhost:3000/api/usuarios";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private iniciarSesionService: IniciarSesionService) { }
 
-  getUsuarioPorId(usuarioId: string): Observable<Usuario> {
-    const url = `${this.apiUrl}/${usuarioId}`;
-    return this.http.get<Usuario>(url);
-  }
+  eliminarCuenta(): Observable<any> {
+    const token = localStorage.getItem('token');
 
-  eliminarCuenta(idUsuario: string): Observable<any> {
-    // Verifica si el ID tiene el formato correcto
-    const isValidId = /^[0-9a-fA-F]{24}$/.test(idUsuario);
-
-    if (!isValidId) {
-      // Maneja el error o lanza una excepción según tu lógica
-      console.error('ID de usuario no válido');
-      return throwError('ID de usuario no válido');
+    if (!token) {
+      // Manejar el caso en el que no haya un token en el almacenamiento local
+      return throwError('No se encontró un token en el almacenamiento local.');
     }
 
-    const url = `${this.apiUrl}/${idUsuario}`;
+    const url = "http://localhost:3000/api/usuarios";
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+    localStorage.removeItem('token');
+    this.iniciarSesionService.checkToken();
+    return this.http.delete(url, options);
+  }
 
-    return this.http.delete(url);
+  getNombre(): Observable<{ data: { nombre: string } }> {
+    const endpoint = "get-nombre";
+    return this.getData(endpoint);
+  }
+
+  getApellido(): Observable<{ data: { apellido: string } }> {
+    const endpoint = "get-apellido";
+    return this.getData(endpoint);
+  }
+
+  getEmail(): Observable<{ data: { email: string } }> {
+    const endpoint = "get-email";
+    return this.getData(endpoint);
+  }
+
+  getUsername(): Observable<{ data: { username: string } }> {
+    const endpoint = "get-username";
+    return this.getData(endpoint);
+  }
+
+  private getData(endpoint: string): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      return throwError('No se encontró un token en el almacenamiento local.');
+    }
+
+    const url = `${this.apiUrl}/${endpoint}`;
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.get(url, { headers }).pipe(
+      map(response => response),
+      catchError(error => {
+        console.error('Error obteniendo datos:', error);
+        return throwError('Error en la solicitud al servidor.');
+      })
+    );
   }
 }

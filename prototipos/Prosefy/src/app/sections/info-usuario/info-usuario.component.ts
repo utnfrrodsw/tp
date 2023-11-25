@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioService, Usuario } from '../../services/usuario.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,9 +16,8 @@ interface Edicion {
   templateUrl: './info-usuario.component.html',
   styleUrls: ['./info-usuario.component.css']
 })
-export class InfoUsuarioComponent {
-  usuarioId: string | null = null;
-  usuario: Usuario | undefined;
+export class InfoUsuarioComponent implements OnInit {
+  usuario: any = {};
   editando = false;
   formulario: FormGroup;
 
@@ -40,25 +39,39 @@ export class InfoUsuarioComponent {
   }
 
   ngOnInit() {
-    this.authService.getIdUsuarioPorToken().subscribe(
-      (response: any) => {
-        this.usuarioId = response.data.userId;
-        console.log("Id de usuario:", this.usuarioId);
-
-        if (this.usuarioId !== null) {
-          this.usuarioService.getUsuarioPorId(this.usuarioId).subscribe(
-            (usuario: Usuario) => {
-              this.usuario = usuario;
-              this.inicializarFormulario();
-            },
-            (error: any) => {
-              console.error('Error obteniendo el usuario:', error);
-            }
-          );
-        }
+    this.usuarioService.getNombre().subscribe(
+      (data: any) => {
+        this.usuario.nombre = data.data.nombre;
       },
       (error: any) => {
-        console.error('Error obteniendo el usuario ID:', error);
+        console.error('Error obteniendo nombre:', error);
+      }
+    );
+
+    this.usuarioService.getApellido().subscribe(
+      (data: any) => {
+        this.usuario.apellido = data.data.apellido;
+      },
+      (error: any) => {
+        console.error('Error obteniendo apellido:', error);
+      }
+    );
+
+    this.usuarioService.getEmail().subscribe(
+      (data: any) => {
+        this.usuario.email = data.data.email;
+      },
+      (error: any) => {
+        console.error('Error obteniendo email:', error);
+      }
+    );
+
+    this.usuarioService.getUsername().subscribe(
+      (data: any) => {
+        this.usuario.username = data.data.username;
+      },
+      (error: any) => {
+        console.error('Error obteniendo nombre de usuario:', error);
       }
     );
   }

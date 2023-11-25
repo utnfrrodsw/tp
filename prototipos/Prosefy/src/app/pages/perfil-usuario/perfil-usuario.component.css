@@ -74,3 +74,7 @@
 .custom-perfil {
     max-width: 200px;
 }
+
+.nav-link {
+    cursor: pointer;
+}
