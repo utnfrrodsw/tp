@@ -15,8 +15,12 @@ import { AutorSeleccionadoComponent } from './pages/autor-seleccionado/autor-sel
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
 import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
+
+/* SERVICIOS */
 import { UsuarioService } from './services/usuario.service';
-/*import { userGuard } from './guards/user.guard'; */
+import { AuthService } from './services/auth.service';
+import { RegistroService } from './services/registro.service';
+
 
 const routes: Routes = [
   // RUTAS DE LA PÁGINA
@@ -30,14 +34,14 @@ const routes: Routes = [
   { path: 'libro-seleccionado/:id', component: LibroSeleccionadoComponent },
   { path: 'carrito-compras', component: CarritoComprasComponent },
   { path: 'finalizar-compra', component: FinalizarCompraComponent },
-  { path: 'identificarse', component: IdentificarseComponent },
+  { path: 'identificarse', component: IdentificarseComponent, canActivate: [RegistroService] },
   { path: 'autor-seleccionado/:id', component: AutorSeleccionadoComponent },
   {
     path: 'perfil', component: PerfilUsuarioComponent,
     providers: [UsuarioService],
-    /*canMatch: [userGuard] */
-},
-  { path: 'crear-cuenta', component: CrearCuentaComponent },
+    canActivate: [AuthService]
+  },
+  { path: 'crear-cuenta', component: CrearCuentaComponent, canActivate: [RegistroService] },
   { path: 'busqueda/:term', component: BusquedaComponent },
 ];
 

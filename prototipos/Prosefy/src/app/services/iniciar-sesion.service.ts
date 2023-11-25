@@ -94,8 +94,6 @@ export class IniciarSesionService {
 
     const headers = { Authorization: `Bearer ${token}` };
 
-    console.log('Cerrando sesión con URL:', url);
-
     return this.http.post(url, { token }, { headers }).pipe(
       tap(response => {
         console.log('Respuesta del servidor al cerrar sesión:', response);

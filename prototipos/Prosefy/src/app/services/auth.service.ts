@@ -1,15 +1,36 @@
 import { Injectable } from '@angular/core';
 import { IniciarSesionService, IniciarSesionResponse } from './iniciar-sesion.service';
 import { RegistroService, RegistroResponse } from './registro.service';
-import { BehaviorSubject, Observable, timer } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements CanActivate {
+
   private failedLoginAttempts = 0;
   private isBlockedSubject = new BehaviorSubject<boolean>(false);
+
+  private apiUrl = 'http://localhost:3000/api/usuarios/';
+
+  constructor(
+    private iniciarSesionService: IniciarSesionService,
+    private registroService: RegistroService,
+    private router: Router
+  ) { }
+
+  /* Si no está autenticado, se bloquea el acceso a ciertas rutas */
+  canActivate(): boolean {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      return true; // Hay token, permitir acceso
+    } else {
+      this.router.navigate(['/inicio']);
+      return false; // No hay token, bloquear acceso
+    }
+  }
 
   get isBlocked$(): Observable<boolean> {
     return this.isBlockedSubject.asObservable();
@@ -40,14 +61,6 @@ export class AuthService {
     }, 5 * 60 * 1000); // Bloquear durante 5 minutos
   }
 
-  private apiUrl = 'http://localhost:3000/api/usuarios/';
-
-  constructor(
-    private iniciarSesionService: IniciarSesionService,
-    private registroService: RegistroService,
-    private http: HttpClient
-  ) { }
-
   iniciarSesion(email: string, contraseña: string): Observable<IniciarSesionResponse> {
     return this.iniciarSesionService.iniciarSesion(email, contraseña).pipe(
     );
@@ -62,22 +75,7 @@ export class AuthService {
     this.iniciarSesionService.cerrarSesion();
   }
 
-  getIdUsuarioPorToken(): Observable<string | null> {
-    const token = this.getTokenFromLocalStorage();
-
-    if (token) {
-      const url = `${this.apiUrl}token/${token}`;
-      return this.http.get<string>(url);
-    } else {
-      return new Observable<string | null>((observer) => {
-        observer.next(null);
-        observer.complete();
-      });
-    }
-  }
-
-  private getTokenFromLocalStorage(): string | null {
-    return localStorage.getItem('token');
+  checkToken(): void {
+    this.iniciarSesionService.checkToken();
   }
 }
-

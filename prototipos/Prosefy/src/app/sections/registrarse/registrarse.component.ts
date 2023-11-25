@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { RegistroService, RegistroResponse } from 'src/app/services/registro.service';
-import { IniciarSesionService } from 'src/app/services/iniciar-sesion.service';
 import { Usuario } from '../../services/usuario.service';
 @Component({
   selector: 'app-registrarse',
@@ -28,7 +27,6 @@ export class RegistrarseComponent {
     private router: Router,
     public usuariosService: UsuarioService,
     private registroService: RegistroService,
-    private iniciarSesionService: IniciarSesionService
   ) {
     this.registroForm = this.formBuilder.group(
       {
@@ -44,13 +42,6 @@ export class RegistrarseComponent {
       },
       { validator: this.passwordMatchValidator }
     );
-  }
-
-  ngOnInit() {
-    // Verifica el estado de inicio de sesión al iniciar el componente
-    if (this.iniciarSesionService.isLoggedIn) {
-      this.router.navigateByUrl('/inicio');
-    }
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
@@ -71,12 +62,6 @@ export class RegistrarseComponent {
 
   registrarUsuario(): void {
     this.showErrorMessages = true;
-
-    // Verifica el estado de inicio de sesión antes de intentar registrarse
-    if (this.iniciarSesionService.isLoggedIn) {
-      this.router.navigateByUrl('/inicio');
-      return;
-    }
 
     if (this.registroForm.valid) {
 

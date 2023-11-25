@@ -3,6 +3,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Usuario } from './usuario.service';
+import { CanActivate, Router } from '@angular/router';
+import { IniciarSesionService } from './iniciar-sesion.service';
 
 export interface RegistroResponse {
   mensaje: string;
@@ -24,11 +26,23 @@ export interface ErrorRegistroResponse {
 @Injectable({
   providedIn: 'root'
 })
-export class RegistroService {
+export class RegistroService implements CanActivate {
 
   private apiUrl = 'http://localhost:3000/api/usuarios/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router, private iniciarSesionService: IniciarSesionService) { }
+
+  /* Si está autenticado, se bloquea el acceso a ciertas rutas */
+  canActivate(): boolean {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      return true; // No hay token, permitir acceso
+    } else {
+      this.router.navigate(['/inicio']);
+      return false; // Hay token, bloquear acceso
+    }
+  }
 
   registrarUsuario(usuario: Usuario): Observable<RegistroResponse> {
     const httpOptions = {
