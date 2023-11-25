@@ -32,6 +32,9 @@ Las tokens las crea un usuario administrador que las da por alguna razón ajena 
   <tr><td>detalle de tokens</td><td></td></tr> -->
 </table>
 
+### 1.2.1 Modelo de dominio
+![Modelo de dominio del Sistema de Tokens](modelo-de-dominio.png)
+
 ### 1.3 - Planificación y documentación
 
 *Capaz* que use [commits convencionales](https://www.conventionalcommits.org/en/v1.0.0/).
