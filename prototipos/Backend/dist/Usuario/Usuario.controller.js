@@ -132,8 +132,10 @@ async function iniciarSesion(req, res) {
         if (!esContraseñaValida) {
             return res.status(401).send({ message: "Credenciales inválidas." });
         }
+        // Limpiar los tokens expirados antes de generar un nuevo token
+        usuarioCompleto.tokens = usuarioCompleto.tokens.filter(token => token.fechaExpiracion.getTime() > Date.now());
         // Generar un token JWT
-        const token = jwt.sign({ userId: usuarioCompleto._id?.toString() }, 'secretKey', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: usuarioCompleto._id?.toString() }, 'secretKey', { expiresIn: '7d' });
         // Modificar solo las propiedades necesarias
         usuarioCompleto.tokens.push({ token, fechaExpiracion: new Date(Date.now() + 3600000) });
         // Actualizar el usuario en la base de datos
@@ -233,5 +235,53 @@ async function getIdUsuarioPorToken(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById };
+/*
+REFRESH TOKEN POR MOTIVOS DE SEGURIDAD -> NO SE IMPLEMENTA PARA NO COMPLEJIZAR DEMASIADO LA APP
+
+async function refreshToken(req: Request, res: Response) {
+    try {
+        const token = req.body.token;
+
+        // Verificar si se proporcionó un token
+        if (!token) {
+            return res.status(401).send({ message: 'Token no proporcionado.' });
+        }
+
+        // Verificar el token y obtener el usuario asociado
+        const usuario = await repository.getByToken(token);
+
+        if (!usuario) {
+            return res.status(401).send({ message: 'Token no válido.' });
+        }
+
+        // Verificar si el token ha expirado
+        const tokenExpired = usuario.tokens.some(t => t.token === token && t.fechaExpiracion.getTime() < Date.now());
+
+        if (tokenExpired) {
+            return res.status(401).send({ message: 'Token ha expirado.' });
+        }
+
+        // Generar un nuevo token
+        const newToken = jwt.sign({ userId: usuario._id?.toString() }, 'secretKey', { expiresIn: '7d' });
+
+        // Actualizar el refresh token en la base de datos
+        const updatedTokens: Token[] = usuario.tokens.map(t => (t.token === token ? { token: newToken, fechaExpiracion: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) } : t));
+
+        // Actualizar otras propiedades del usuario si es necesario
+        const updatedUsuario: Usuario = {
+            ...usuario,
+            tokens: updatedTokens,
+        };
+
+        await repository.update(usuario._id?.toString() || '', updatedUsuario);
+
+        // Enviar el nuevo token al cliente
+        res.json({ refreshToken: newToken });
+    } catch (error) {
+        console.error('Error en refreshToken:', error);
+        res.status(500).send({ message: 'Error interno del servidor.' });
+    }
+}
+*/
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken*/ };
 //# sourceMappingURL=Usuario.controller.js.map
