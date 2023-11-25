@@ -78,47 +78,48 @@ async function add(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
     try {
         const usuarioId = req.params.id;
-        const updatedData = req.body.sanitizedInput;
+        const updatedData: {
+            username?: string;
+            nombre?: string;
+            apellido?: string;
+            email?: string;
+            direccion?: string;
+            localidad?: ObjectId;
+            avatar?: string;
+            tipo?: string;
+            contraseña?: string;
+        } = req.body.sanitizedInput;
 
         // Verificar si el usuario existe antes de intentar actualizarlo
-        const usuarioExiste = await repository.findOne({ id: usuarioId });
+        const usuarioExiste = await repository.findOne({ _id: new ObjectId(usuarioId) });
 
-        // Check if the password is provided
+        if (!usuarioExiste) {
+            return res.status(404).send({ message: 'Usuario no encontrado.' });
+        }
+
+        // Comprueba si la contraseña es provista
         let hashContraseña: string | undefined;
         if (updatedData.contraseña) {
             const contraseñaSinHash = updatedData.contraseña;
             hashContraseña = await bcrypt.hash(contraseñaSinHash, 10);
         }
 
-        const objectIdUsuarioId = new ObjectId(usuarioId);
-
-        // Wait for bcrypt.hash to complete before creating Usuario instance
         const usuarioInput = new Usuario(
-            updatedData.username,
-            updatedData.nombre,
-            updatedData.apellido,
-            updatedData.email,
-            updatedData.direccion,
-            updatedData.localidad,
-            updatedData.avatar,
-            updatedData.tipo,
-            hashContraseña || '',
-            usuarioExiste ? usuarioExiste.tokens : [],                // Mantener tokens existentes
+            updatedData.username || usuarioExiste.username,
+            updatedData.nombre || usuarioExiste.nombre,
+            updatedData.apellido || usuarioExiste.apellido,
+            updatedData.email || usuarioExiste.email,
+            updatedData.direccion || usuarioExiste.direccion,
+            updatedData.localidad || usuarioExiste.localidad,
+            updatedData.avatar || usuarioExiste.avatar,
+            updatedData.tipo || usuarioExiste.tipo,
+            hashContraseña || usuarioExiste.contraseña,
+            usuarioExiste.tokens || [],
+            new ObjectId(usuarioId)
         );
 
-        if (!usuarioExiste) {
-            // Si el usuario no existe, lo crea
-            const nuevoUsuario = await repository.add(usuarioInput);
-
-            if (!nuevoUsuario) {
-                return res.status(500).send({ message: "Error al crear el nuevo usuario." });
-            }
-
-            return res.status(201).send({ message: 'Usuario creado con éxito.', data: nuevoUsuario });
-        }
-
-        // Si el usuario existe, lo actualiza
-        const updatedUsuario = await repository.update(usuarioId, updatedData);
+        // Actualizar el usuario en la base de datos
+        const updatedUsuario = await repository.update(usuarioId, usuarioInput);
 
         if (!updatedUsuario) {
             return res.status(500).send({ message: "Error al actualizar el usuario." });
@@ -515,5 +516,84 @@ async function getUsername(req: Request, res: Response) {
     }
 }
 
+/* SETTERS */
 
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, checkToken };
+async function setNombre(req: Request, res: Response) {
+    try {
+        await updateUserAttribute(req, res, 'nombre');
+    } catch (error) {
+        console.error("Error en setNombre:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function setApellido(req: Request, res: Response) {
+    try {
+        await updateUserAttribute(req, res, 'apellido');
+    } catch (error) {
+        console.error("Error en setApellido:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function setEmail(req: Request, res: Response) {
+    try {
+        await updateUserAttribute(req, res, 'email');
+    } catch (error) {
+        console.error("Error en setEmail:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function setUsername(req: Request, res: Response) {
+    try {
+        await updateUserAttribute(req, res, 'username');
+    } catch (error) {
+        console.error("Error en setUsername:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function updateUserAttribute(req: Request, res: Response, attribute: string) {
+    try {
+        const updatedData = req.body;
+
+        // Obtener el token y decodificarlo para obtener el userId
+        const token = req.header('Authorization')?.replace('Bearer ', '') || '';
+
+        const decoded = jwt.verify(token, 'secretKey') as { userId: string };
+
+        // Obtener el usuario por su ID desde la base de datos
+        const usuarioCompleto = await repository.getById(decoded.userId);
+
+        if (!usuarioCompleto) {
+            return res.status(404).send({ message: 'Usuario no encontrado.' });
+        }
+
+        // Verificar si el token ha expirado
+        const tokenExpired = usuarioCompleto.tokens.some(t => t.token === token && t.fechaExpiracion.getTime() < Date.now());
+
+        if (tokenExpired) {
+            return res.status(401).send({ message: 'El token ha expirado.' });
+        }
+
+        // Actualizar el atributo específico del usuario
+        const updatedUsuario: any = { ...usuarioCompleto };
+        updatedUsuario[attribute] = updatedData[attribute];
+
+        // Actualizar el usuario en la base de datos
+        const updatedUsuarioResult = await repository.update(usuarioCompleto._id?.toString() || '', updatedUsuario);
+
+        if (!updatedUsuarioResult) {
+            return res.status(500).send({ message: "Error al actualizar el usuario." });
+        }
+
+        return res.status(200).send({ message: `Atributo '${attribute}' actualizado con éxito.`, data: updatedUsuarioResult });
+    } catch (error) {
+        console.error("Error en updateUserAttribute:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername };

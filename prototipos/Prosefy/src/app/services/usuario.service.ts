@@ -21,8 +21,6 @@ export interface Usuario {
 })
 export class UsuarioService {
 
-  private apiUrl: string = "http://localhost:3000/api/usuarios";
-
   constructor(private http: HttpClient, private iniciarSesionService: IniciarSesionService) { }
 
   eliminarCuenta(): Observable<any> {
@@ -43,6 +41,8 @@ export class UsuarioService {
     this.iniciarSesionService.checkToken();
     return this.http.delete(url, options);
   }
+
+  // GETTERS
 
   getNombre(): Observable<{ data: { nombre: string } }> {
     const endpoint = "get-nombre";
@@ -71,7 +71,9 @@ export class UsuarioService {
       return throwError('No se encontró un token en el almacenamiento local.');
     }
 
-    const url = `${this.apiUrl}/${endpoint}`;
+    const apiUrl = 'http://localhost:3000/api/usuarios/'
+
+    const url = `${apiUrl}/${endpoint}`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
@@ -84,4 +86,55 @@ export class UsuarioService {
       })
     );
   }
+
+  // SETTERS
+
+  private setData<T>(setter: string, value: string): Observable<T> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No se encontró un token en el almacenamiento local.');
+    }
+
+    const apiUrl = 'http://localhost:3000/api/usuarios'
+    const url = `${apiUrl}/${setter}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    const body = {
+      sanitizedInput: {
+        [setter]: value,
+      },
+    };
+
+    return this.http.put<T>(url, body, { headers });
+  }
+
+  // Función para actualizar el nombre
+  setNombre(nombre: string): Observable<any> {
+    return this.setData('set-nombre', nombre);
+  }
+
+  // Función para actualizar el apellido
+  setApellido(apellido: string): Observable<any> {
+    return this.setData('set-apellido', apellido);
+  }
+
+  // Función para actualizar el correo electrónico
+  setEmail(email: string): Observable<any> {
+    return this.setData('set-email', email);
+  }
+
+  // Función para actualizar el nombre de usuario
+  setUsername(username: string): Observable<any> {
+    return this.setData('set-username', username);
+  }
+
+  actualizarUsuario(usuarioId: string, datosActualizados: any): Observable<any> {
+    const url = `http://localhost:3000/api/usuarios/${usuarioId}`;
+
+    // Puedes ajustar el tipo de solicitud (POST, PUT, PATCH) según la implementación de tu servidor
+    return this.http.put(url, { sanitizedInput: datosActualizados });
+  }
+
 }

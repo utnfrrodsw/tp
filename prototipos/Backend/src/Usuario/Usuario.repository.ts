@@ -7,7 +7,7 @@ import { ObjectId } from 'mongodb'
 const usuarios = db.collection<Usuario>('usuarios')
 
 interface UsuarioRepository extends Repository<Usuario> {
-    // Añadir una firma adicional para findOne que acepta propiedades dinámicas
+    // findOne que acepta propiedades dinámicas
     findOne(item: { [key: string]: any }): Promise<Usuario | undefined>;
 }
 

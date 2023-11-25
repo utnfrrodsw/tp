@@ -146,11 +146,7 @@
           </span>
         </div>
         <div>
-          <label *ngIf="!edicion.localidad">{{usuario.localidad}}</label>
-          <input *ngIf="edicion.localidad" class="custom-input" type="text" id="localidad" name="localidad" required
-            [(ngModel)]="usuario.localidad">
-          <img (click)="toggleEdicion('localidad')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
-            alt="">
+          <label>Localidad</label>
         </div>
       </div>
       <div class="datos-personales py-2">
@@ -184,6 +180,6 @@
     </div>-->
   </div>
   <div class="container-buttom-guardar-cambios">
-    <a class="buttom-cambios rounded-pill mt-4" href="" (click)="guardarCambios()">Guardar cambios</a>
+    <button class="btn buttom-cambios rounded-pill mt-4" (click)="guardarCambios()">Guardar cambios</button>
   </div>
 </div>

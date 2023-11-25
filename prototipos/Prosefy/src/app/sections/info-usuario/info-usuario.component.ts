@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService, Usuario } from '../../services/usuario.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from '../../services/usuario.service';
 
 interface Edicion {
   nombre: boolean;
   email: boolean;
   apellido: boolean;
   username: boolean;
-  localidad: boolean;
 };
 
 @Component({
@@ -19,26 +16,18 @@ interface Edicion {
 export class InfoUsuarioComponent implements OnInit {
   usuario: any = {};
   editando = false;
-  formulario: FormGroup;
 
   edicion = {
     nombre: false,
     email: false,
     apellido: false,
     username: false,
-    localidad: false,
   };
 
-  constructor(private usuarioService: UsuarioService, private authService: AuthService, private formBuilder: FormBuilder
-  ) {
-    this.formulario = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      // Agrega otros campos según sea necesario
-    });
-  }
+  constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
+    // Obtener los valores del usuario y asignarlos a las propiedades del componente
     this.usuarioService.getNombre().subscribe(
       (data: any) => {
         this.usuario.nombre = data.data.nombre;
@@ -76,29 +65,88 @@ export class InfoUsuarioComponent implements OnInit {
     );
   }
 
-  inicializarFormulario() {
-    if (this.usuario) {
-      this.formulario.setValue({
-        nombre: this.usuario.nombre || '',
-        email: this.usuario.email || '',
-        // Inicializa otros campos según sea necesario
-      });
-    }
-  }
-
 
   toggleEdicion(campo: keyof Edicion) {
     this.edicion[campo] = !this.edicion[campo];
   }
 
   guardarCambios() {
-    if (this.formulario.valid) {
-      // Aquí puedes enviar el formulario actualizado al servidor
-      console.log('Formulario válido:', this.formulario.value);
-      // También puedes desactivar el modo de edición
-      this.editando = false;
-    } else {
-      console.log('Formulario inválido. Revisa los campos.');
+    // Itera sobre los campos en edición y actualiza
+    (Object.keys(this.edicion) as (keyof Edicion)[]).forEach((campo: keyof Edicion) => {
+      if (this.edicion[campo] && this.usuario[campo] !== '') {
+        this.actualizarCampo(campo, this.usuario[campo]);
+      }
+    });
+  }
+
+  actualizarCampo(campo: keyof Edicion, nuevoValor: any) {
+    switch (campo) {
+      case 'nombre':
+        this.usuarioService.setNombre(nuevoValor).subscribe(
+          (response) => {
+            console.log(`Éxito al actualizar ${campo}:`, response);
+            this.edicion[campo] = false; // Desactiva la edición para el campo específico
+          },
+          (error) => console.error(`Error al actualizar ${campo}:`, error)
+        );
+        break;
+      case 'apellido':
+        this.usuarioService.setApellido(nuevoValor).subscribe(
+          (response) => {
+            console.log(`Éxito al actualizar ${campo}:`, response);
+            this.edicion[campo] = false; // Desactiva la edición para el campo específico
+          },
+          (error) => console.error(`Error al actualizar ${campo}:`, error)
+        );
+        break;
+      case 'email':
+        this.usuarioService.setEmail(nuevoValor).subscribe(
+          (response) => {
+            console.log(`Éxito al actualizar ${campo}:`, response);
+            this.edicion[campo] = false; // Desactiva la edición para el campo específico
+          },
+          (error) => console.error(`Error al actualizar ${campo}:`, error)
+        );
+        break;
+      case 'username':
+        this.usuarioService.setUsername(nuevoValor).subscribe(
+          (response) => {
+            console.log(`Éxito al actualizar ${campo}:`, response);
+            this.edicion[campo] = false; // Desactiva la edición para el campo específico
+          },
+          (error) => console.error(`Error al actualizar ${campo}:`, error)
+        );
+        break;
+      default:
+        console.log(`Campo no manejado: ${campo}`);
     }
+  }
+
+  updateNombre(): void {
+    this.usuarioService.setNombre('nombre').subscribe(
+      (response) => console.log('Éxito:', response),
+      (error) => console.error('Error:', error)
+    );
+  }
+
+  updateApellido(): void {
+    this.usuarioService.setApellido('apellido').subscribe(
+      (response) => console.log('Éxito:', response),
+      (error) => console.error('Error:', error)
+    );
+  }
+
+  updateEmail(): void {
+    this.usuarioService.setEmail('email').subscribe(
+      (response) => console.log('Éxito:', response),
+      (error) => console.error('Error:', error)
+    );
+  }
+
+  updateUsername(): void {
+    this.usuarioService.setUsername('username').subscribe(
+      (response) => console.log('Éxito:', response),
+      (error) => console.error('Error:', error)
+    );
   }
 }
