@@ -33,16 +33,28 @@ export class IniciarSesionService {
   constructor(private http: HttpClient) {
   }
 
-  public checkToken(): void {
+  checkToken(): void {
     const token = localStorage.getItem('token');
 
     if (token) {
-      console.log('Token encontrado al cargar la aplicación:', token);
-      this.isLoggedInSubject.next(true);
-      console.log('Estado de inicio de sesión:', this.isLoggedIn);
+      const headers = { Authorization: `Bearer ${token}` };
+      const url = `${this.apiUrl}/check-token`;
+
+      this.http.get(url, { headers }).pipe(
+        tap(() => {
+          console.log('Token válido.');
+          this.isLoggedInSubject.next(true);
+        }),
+        catchError(error => {
+          console.log('Token no válido o expirado.');
+          this.isLoggedInSubject.next(false);
+          localStorage.removeItem('token');
+          return throwError(error);
+        })
+      ).subscribe();
     } else {
+      console.log('No hay token almacenado.');
       this.isLoggedInSubject.next(false);
-      console.log('Estado de inicio de sesión:', this.isLoggedIn);
     }
   }
 

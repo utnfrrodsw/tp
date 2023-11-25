@@ -250,6 +250,38 @@ async function getIdUsuarioPorToken(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
+async function checkToken(req, res, next) {
+    try {
+        const token = req.header('Authorization')?.replace('Bearer ', '') || '';
+        if (!token) {
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        }
+        // Decodificar el token para obtener el userId
+        const decoded = jwt.verify(token, 'secretKey');
+        // Obtener el usuario por su ID desde la base de datos
+        const usuarioCompleto = await repository.getById(decoded.userId);
+        if (!usuarioCompleto) {
+            return res.status(404).send({ message: 'Usuario no encontrado.' });
+        }
+        // Verificar si el token ha expirado
+        const tokenExpired = usuarioCompleto.tokens.some(t => t.token === token && t.fechaExpiracion.getTime() < Date.now());
+        if (tokenExpired) {
+            return res.status(401).send({ message: 'El token ha expirado.' });
+        }
+        // Si el token es válido, envía una respuesta exitosa al cliente
+        return res.status(200).send({ message: 'Token válido.' });
+    }
+    catch (error) {
+        // Manejar errores, por ejemplo, token inválido, userId no válido, etc.
+        if (error instanceof jwt.TokenExpiredError) {
+            return res.status(401).send({ message: 'El token ha expirado.' });
+        }
+        else {
+            console.error('Error en checkToken:', error);
+            return res.status(500).send({ message: 'Error interno del servidor.' });
+        }
+    }
+}
 /*
 REFRESH TOKEN POR MOTIVOS DE SEGURIDAD -> NO SE IMPLEMENTA PARA NO COMPLEJIZAR DEMASIADO LA APP
 
@@ -371,5 +403,5 @@ async function getUsername(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername };
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, checkToken };
 //# sourceMappingURL=Usuario.controller.js.map
