@@ -3,6 +3,7 @@ import { Card, Button, Spinner} from 'react-bootstrap';
 import './presupuestosSolicitud.css'
 import { API_URL } from '../../../auth/constants';
 import Rating from '@mui/material/Rating';
+import { useAuth } from '../../../auth/authProvider.jsx';
 
 
 function PresupuestoSolicitud(props){
@@ -10,6 +11,7 @@ function PresupuestoSolicitud(props){
     const [pagarLoading, setPagarLoading] = useState(false);
     const [pagoExitoso, setPagoExitoso] = useState(false);
     const [fecha, setFecha] = useState(undefined);
+    const auth = useAuth();
 
     const handlePagar = async () => {
         setPagarLoading(true);
@@ -17,7 +19,7 @@ function PresupuestoSolicitud(props){
         const response = await fetch(`${API_URL}/presupuesto/pagar/${props.idSolicitud}/${props.idPrestador}`, {
             method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json', 
+                Authorization: `Bearer ${auth.token}`
             },
             body: JSON.stringify({
                 fecha: fecha,

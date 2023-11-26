@@ -20,7 +20,6 @@ function Solicitudes(props) {
         fetch(`${API_URL}/solicitud/${props.estado}/cliente/${user.id}`)
           .then((res) => res.json())
           .then((data) => {
-            console.log(data.body.solicitudes);
             if(data.body.solicitudes !== undefined){
                 setSolicitudes(data.body.solicitudes);
             }else{
