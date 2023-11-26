@@ -24,6 +24,8 @@
           <a *ngIf="!isLoggedIn" class="dropdown-item custom-dropdown-item" routerLink="/identificarse">Iniciar
             sesión</a>
           <a routerLink="/perfil" *ngIf="isLoggedIn" class="dropdown-item custom-dropdown-item mb-2">Mi cuenta</a>
+          <a routerLink="/panel-admin" *ngIf="isLoggedIn && isAdmin" class="dropdown-item custom-dropdown-item mb-2">Panel
+            de administración</a>
           <a *ngIf="isLoggedIn" class="dropdown-item custom-dropdown-item" (click)="logout()">Cerrar sesión</a>
         </div>
         <a routerLink="/carrito-compras" *ngIf="isLoggedIn"><img src="../../assets/img/carrito-de-compras.png"

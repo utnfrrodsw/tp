@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { IniciarSesionService } from 'src/app/services/iniciar-sesion.service';
 import { Location } from '@angular/common';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  usuario: any = {};
+  isAdmin: boolean = false;
   // Propiedad para controlar si el encabezado se ha desplazado
   headerScrolled = false;
   placeholderText = 'Buscar...'; // Valor predeterminado
@@ -29,7 +32,7 @@ export class HeaderComponent {
     this.isPopupOpen = false;
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private iniciarSesionService: IniciarSesionService, private location: Location) {
+  constructor(private router: Router, private route: ActivatedRoute, private iniciarSesionService: IniciarSesionService, private location: Location, private usuarioService: UsuarioService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updatePlaceholder(event.url);
@@ -47,6 +50,20 @@ export class HeaderComponent {
     this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
     });
+
+    this.usuarioService.getTipo().subscribe(
+      (data: any) => {
+        this.usuario.tipo = data.data.tipo;
+        console.log('Tipo de usuario:', this.usuario.tipo);
+        if (this.usuario.tipo.trim() === 'admin') {
+          this.isAdmin = !this.isAdmin;
+          console.log('Tipo de usuario:', this.isAdmin);
+        }
+      },
+      (error: any) => {
+        console.error('Error obteniendo tipo:', error);
+      }
+    );
   }
 
   private updatePlaceholder(url: string) {

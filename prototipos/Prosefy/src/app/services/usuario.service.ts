@@ -11,7 +11,7 @@ export interface Usuario {
   direccion?: string;
   localidad?: string;
   avatar?: string;
-  tipo?: string;
+  tipo: string;
   contraseña: string;
   _id?: string;
 }
@@ -64,6 +64,11 @@ export class UsuarioService {
     return this.getData(endpoint);
   }
 
+  getTipo(): Observable<{ data: { tipo: string } }> {
+    const endpoint = "get-tipo";
+    return this.getData(endpoint);
+  }
+
   private getData(endpoint: string): Observable<any> {
     const token = localStorage.getItem('token');
 
@@ -71,7 +76,7 @@ export class UsuarioService {
       return throwError('No se encontró un token en el almacenamiento local.');
     }
 
-    const apiUrl = 'http://localhost:3000/api/usuarios/'
+    const apiUrl = 'http://localhost:3000/api/usuarios'
 
     const url = `${apiUrl}/${endpoint}`;
     const headers = new HttpHeaders({
@@ -128,6 +133,11 @@ export class UsuarioService {
   // Función para actualizar el nombre de usuario
   setUsername(username: string): Observable<any> {
     return this.setData('set-username', username);
+  }
+
+  // Función para actualizar el tipo
+  setTipo(tipo: string): Observable<any> {
+    return this.setData('set-tipo', tipo);
   }
 
   actualizarUsuario(usuarioId: string, datosActualizados: any): Observable<any> {

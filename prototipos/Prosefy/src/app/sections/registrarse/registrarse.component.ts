@@ -17,6 +17,7 @@ export class RegistrarseComponent {
   showRedirectButton: boolean = false;
 
   @Output() closed = new EventEmitter<void>();
+  tipoUsuario: string = 'usuario';
 
   closePopup() {
     this.isPopupOpen = false;
@@ -124,6 +125,7 @@ export class RegistrarseComponent {
       apellido: this.registroForm.value.apellido,
       email: this.registroForm.value.email,
       contraseña: this.registroForm.value.password,
+      tipo: this.tipoUsuario
     };
 
     this.registroService.registrarUsuario(usuario).subscribe(
