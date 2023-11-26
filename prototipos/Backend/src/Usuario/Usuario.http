@@ -45,6 +45,19 @@ Content-Type: application/json
     "contraseña": "Marina12345"
 }
 
+### CREAR USUARIO
+POST http://localhost:3000/api/usuarios/
+Content-Type: application/json
+
+{
+    "username": "Alex_12",
+    "nombre":"Alejo",
+    "apellido":"Retamal",
+    "email":"alejoretamal123@gmail.com",
+    "contraseña": "Alejo12345",
+    "tipo": "Adminr" // Esto sobra, para poner tu usuario como admin deberías modificarlo desde la base de datos.
+}
+
 ### OBTENER USUARIO POR TOKEN
 GET http://localhost:3000/api/usuarios/token/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTVlMjcyN2EzYmI0ZWI2NGI2OWVhY2QiLCJpYXQiOjE3MDA2Nzg5MTAsImV4cCI6MTcwMDY4MjUxMH0.BUPnhOEISy7FTydqTNnfmwlG7cYUa3N8rQ-vRPiTy40
 

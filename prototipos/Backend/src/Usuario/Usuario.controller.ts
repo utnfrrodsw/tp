@@ -9,7 +9,7 @@ const repository = new UsuarioRepositoryImpl();
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     try {
-        const requiredKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña'];
+        const requiredKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña', 'tipo'];
 
         req.body.sanitizedInput = {};
 
@@ -516,6 +516,31 @@ async function getUsername(req: Request, res: Response) {
     }
 }
 
+async function getTipo(req: Request, res: Response) {
+    try {
+
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+
+        if (!token) {
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        }
+
+        const decoded = jwt.verify(token, 'secretKey') as { userId: string };
+
+        const usuarioCompleto = await repository.getById(decoded.userId);
+
+        if (!usuarioCompleto) {
+            return res.status(401).send({ message: 'No se pudo encontrar el usuario asociado con el token proporcionado.' });
+        }
+
+        res.json({ data: { tipo: usuarioCompleto.tipo } });
+    } catch (error) {
+        console.error("Error en getTipo:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+
 /* SETTERS */
 
 async function setNombre(req: Request, res: Response) {
@@ -550,6 +575,15 @@ async function setUsername(req: Request, res: Response) {
         await updateUserAttribute(req, res, 'username');
     } catch (error) {
         console.error("Error en setUsername:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function setTipo(req: Request, res: Response) {
+    try {
+        await updateUserAttribute(req, res, 'tipo');
+    } catch (error) {
+        console.error("Error en setTipo:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
@@ -596,4 +630,4 @@ async function updateUserAttribute(req: Request, res: Response, attribute: strin
 }
 
 
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername };
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername, setTipo };

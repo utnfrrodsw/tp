@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 const repository = new UsuarioRepositoryImpl();
 async function sanitizeInput(req, res, next) {
     try {
-        const requiredKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña'];
+        const requiredKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña', 'tipo'];
         req.body.sanitizedInput = {};
         for (const key of requiredKeys) {
             if (req.body[key] === undefined) {
@@ -396,6 +396,24 @@ async function getUsername(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
+async function getTipo(req, res) {
+    try {
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+        if (!token) {
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        }
+        const decoded = jwt.verify(token, 'secretKey');
+        const usuarioCompleto = await repository.getById(decoded.userId);
+        if (!usuarioCompleto) {
+            return res.status(401).send({ message: 'No se pudo encontrar el usuario asociado con el token proporcionado.' });
+        }
+        res.json({ data: { tipo: usuarioCompleto.tipo } });
+    }
+    catch (error) {
+        console.error("Error en getTipo:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
 /* SETTERS */
 async function setNombre(req, res) {
     try {
@@ -433,6 +451,15 @@ async function setUsername(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
+async function setTipo(req, res) {
+    try {
+        await updateUserAttribute(req, res, 'tipo');
+    }
+    catch (error) {
+        console.error("Error en setTipo:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
 async function updateUserAttribute(req, res, attribute) {
     try {
         const updatedData = req.body;
@@ -464,5 +491,5 @@ async function updateUserAttribute(req, res, attribute) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername };
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername, setTipo };
 //# sourceMappingURL=Usuario.controller.js.map
