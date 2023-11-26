@@ -75,7 +75,7 @@ const usuarioController = {
   
       if (existingUser) {
         await t.rollback(); // Rollback the transaction
-        console.log("el usuario ya existe");
+        
         return res.status(400).json(jsonResponse(400, { message: 'El usuario ya existe' }));
         
       }
@@ -111,7 +111,7 @@ const usuarioController = {
               transaction: t,
             });
   
-            console.log('Localidad existente:', existingLocalidad);
+            
           } catch (error) {
             console.error('Error al buscar la localidad:', error);
             await t.rollback(); // Rollback the transaction
@@ -127,7 +127,7 @@ const usuarioController = {
                 provincia: direccion.provincia,
               }, { transaction: t });
   
-              console.log('Localidad creada:', existingLocalidad);
+              
             } catch (error) {
               console.error('Error al crear la localidad:', error);
               await t.rollback(); // Rollback the transaction
@@ -142,7 +142,7 @@ const usuarioController = {
               idUsuario: newUser.idUsuario,
             }, { transaction: t });
   
-            console.log('Dirección creada correctamente');
+            
           } catch (error) {
             console.error('Error al crear la dirección:', error);
             await t.rollback(); // Rollback the transaction
@@ -221,21 +221,21 @@ const usuarioController = {
         const compare = await bcrypt.compare(constrasena, usuario.contrasena);
   
         if (compare) {
-          console.log("Usuario logueado, generando token");
+          
           const user = getUserInfo(usuario);
           const token = await generateAccessTokes(user);
           const refreshToken = await generateRefreshToken(user);
   
           try {
-            console.log("Guardando token");
+            
             await db.Token.create({ token: refreshToken }, { transaction: t });
           } catch (error) {
-            console.log(error);
+            
             await t.rollback(); // Deshacer la transacción en caso de error
             res.status(500).json(jsonResponse(500, { message: 'Error al loguearse' }));
           }
   
-          console.log("Inicio de sesión correctamente");
+          
           await t.commit(); // Confirmar la transacción
           res.status(200).json(jsonResponse(200, { message: 'Inicio de sesión exitoso', user, token, refreshToken }));
         } else {
@@ -300,7 +300,7 @@ const usuarioController = {
   
       await t.commit(); // Confirmar la transacción
   
-      console.log("Cerró sesión correctamente");
+      
       res.status(200).json(jsonResponse(200, { success: "Token eliminado exitosamente" }));
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
@@ -337,8 +337,8 @@ obtenerDatosUsuario : async (req, res) => {
           promedioResenas: promedioResenas ? parseFloat(promedioResenas.dataValues.promedioResenas) : null,
         };
 
-        console.log(promedioResenas);
-        console.log(respuestaUsuario);
+        
+        
         res.json(respuestaUsuario);
     } catch (error) {
         console.error('Error al obtener datos del usuario', error);

@@ -31,7 +31,7 @@ function Login () {
 
       if (response.ok) {
         setErrorResponse(null);
-        console.log('Usuario logueado');
+        
 
         if (json.body.token && json.body.refreshToken) {
           auth.saveUser(json);

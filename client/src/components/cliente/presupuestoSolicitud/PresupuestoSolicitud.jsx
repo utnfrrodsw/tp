@@ -13,7 +13,7 @@ function PresupuestoSolicitud(props){
 
     const handlePagar = async () => {
         setPagarLoading(true);
-        console.log('pagar presupuesto para idPrestador ' + props.idPrestador + ' y idSolicitud ' + props.idSolicitud)
+        
         const response = await fetch(`${API_URL}/presupuesto/pagar/${props.idSolicitud}/${props.idPrestador}`, {
             method: 'PATCH',
             headers: {
@@ -28,9 +28,9 @@ function PresupuestoSolicitud(props){
         });
 
         if(response.ok){
-            console.log('Presupuesto pagado');
+            
         }else{
-            console.log('Error al pagar presupuesto');
+            
         }
 
         setTimeout(() => {
@@ -40,7 +40,7 @@ function PresupuestoSolicitud(props){
         }, 3000);
     }
     return (
-        <Card className='card-presu' style={{backgroundColor: '#213555', height: '40%', margin:'10px'}}>
+        <Card className='card-presu' style={{backgroundColor: '#213555', height: 'auto', margin:'10px'}}>
             <Card.Header>
                 <Card.Title style={{color:'white', fontSize:'24px'}}>Presupuesto #{props.idPrestador}</Card.Title>
             </Card.Header>

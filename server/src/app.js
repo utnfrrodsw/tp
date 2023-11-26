@@ -53,6 +53,6 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(app.get("port"), () => {
-    console.log(`Server corriendo en el puerto ${app.get("port") || 5000}`);
+    
 });
 

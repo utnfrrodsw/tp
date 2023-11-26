@@ -1,6 +1,7 @@
 import '../presupuesto/Presupuesto.css'
 
 function Detalle(props) {
+  console.log(props.fechasSeleccionadas);
 if (!props) {
     return <p>Loading...</p>;
   }  
@@ -39,7 +40,9 @@ if (!props) {
           <div className='horarios'>
               <p></p>
               <h3>Fechas Seleccionadas:</h3>
-              <p>{props.fechasSeleccionadas}</p>
+              {props.fechasSeleccionadas.map((fecha, index) => (
+                <p key={index}>{fecha}</p>
+              ))}
           </div> 
       </div>
     </>

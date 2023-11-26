@@ -93,7 +93,7 @@ function Presupuesto(props) {
       .then((res) => res.json())
       .then((data) => {
         if(data.error){
-          console.log(data.error);
+          
           data.error.map((error) => {
             if(error.path === 'idSolicitud') setErrorIdSolicitud(error.msg);
             if(error.path === 'idPrestador') setErrorIdPrestador(error.msg);
@@ -202,8 +202,10 @@ function Presupuesto(props) {
         </div>
         {errorFechasSeleccionadas && <span className="error-message">{errorFechasSeleccionadas}</span>}
       </div>
+      <div className='botones'>
       <button type="button" onClick={() => history(-1)}>Atrás</button>
       <button type="submit">Enviar presupuesto</button>
+      </div>
     </form>
   </div>
   )
