@@ -60,6 +60,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ComentarioUsuarioComponent } from './shared/comentario-usuario/comentario-usuario.component';
 import { ListaAutoresComponent } from './shared/lista-autores/lista-autores.component';
 import { NuevoComentarioComponent } from './shared/nuevo-comentario/nuevo-comentario/nuevo-comentario.component';
+import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
 
 /* ------------------------------------------------------------------- */
 
@@ -117,7 +118,8 @@ registerLocaleData(localeEs, 'es');
     NavbarComponent,
     ComentarioUsuarioComponent,
     ListaAutoresComponent,
-    NuevoComentarioComponent
+    NuevoComentarioComponent,
+    PanelAdminComponent
   ],
   imports: [
     BrowserModule,

@@ -1,29 +1,23 @@
 .header {
   position: relative;
-  /* Transición para el header */
   transition: background-color 1s ease;
 }
 
 .header.scrolled {
-  /* Estilo para el header cuando se hace scroll */
   background-color: rgba(255, 255, 255, 0.9);
 }
 
 .header {
-  /* Transición para el header */
   transition: background-color 1s ease;
 }
 
 .header.scrolled {
-  /* Estilo para el header cuando se hace scroll */
   background-color: rgba(255, 255, 255, 0.9);
 }
 
 .logo-sm {
   width: 48px;
-  /* Ajusta el ancho según tus necesidades */
   height: auto;
-  /* Mantiene la proporción original de la imagen */
 }
 
 /* ANIMACIÓN DE ESCRITURA EN LA BARRA DE BÚSQUEDA */
@@ -108,16 +102,11 @@
 .user-options {
   position: absolute;
   right: 0;
-  /* Alineación a la derecha */
   margin-right: 3rem;
   background-color: white;
-  /* Fondo blanco */
   border: 1px solid #ccc;
-  /* Borde ligero */
   padding: 10px;
-  /* Espaciado interior */
   z-index: 1000;
-  /* Asegura que esté encima de otros elementos */
 }
 
 .user-image {
@@ -127,10 +116,8 @@
 .custom-dropdown {
   position: absolute;
   top: 100%;
-  /* Coloca el menú debajo del elemento padre */
   margin-right: 9.4%;
   z-index: 1000;
-  /* Ajusta el z-index para superponerse a otros elementos */
   min-width: var(--bs-dropdown-min-width);
   color: var(--bs-dropdown-color);
   border-radius: 1rem;
@@ -141,7 +128,6 @@
   color: var(--bs-nav-link-hover-color);
 }
 
-/* Estilos para el fondo oscurecido */
 .overlay {
   position: fixed;
   top: 0;
@@ -149,20 +135,13 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  /* Fondo semi-transparente */
   z-index: 1000;
-  /* Asegurar que esté por detrás del popup */
   opacity: 0;
-  /* Comenzar con opacidad 0 */
   pointer-events: none;
-  /* Evitar interacción con el fondo */
   transition: opacity 0.3s ease;
-  /* Animación de transparencia */
 }
 
 .overlay.active {
   opacity: 1;
-  /* Mostrar el fondo oscurecido al abrir el popup */
   pointer-events: auto;
-  /* Permitir interacción con el fondo oscurecido */
 }
