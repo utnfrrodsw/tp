@@ -51,6 +51,8 @@
     background: #242729;
     border: 1px solid #343a40;
     color: #ffffff;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 .card-header {
@@ -71,4 +73,22 @@
     background: #343a40;
     color: #ffffff;
     transition: all .5s;
+}
+
+.modal-body{
+    color: #222426;
+}
+
+.card-body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.btn{
+    margin-top: 2%;
 }

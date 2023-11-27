@@ -14,10 +14,43 @@
                     <div class="card-body">
                         <div class="btn btn-primary custom-btn-primary mx-2"><label>Ingrese Descripción</label></div>
                         <input class="btn btn-primary custom-btn-secondary mx-2" type="text" placeholder="descripción" id="descripcion" formControlName="descripcion">
+                        <!--Mensajes de error--> 
+                        <div *ngIf="EditorialForm.get('descripcion')?.hasError('editorialExistente') && EditorialForm.get('descripcion')?.touched"
+                          class="text-danger">
+                          La descripción ya está en uso.
+                        </div>
+                        <div *ngIf="
+                          EditorialForm.get('descripcion')?.hasError('required') &&
+                          EditorialForm.get('descripcion')?.touched
+                          " class="text-danger">
+                          La descripcion es obligatoria.
+                        </div>
                         <div class="btn btn-primary custom-btn-primary mx-2"><label>Ingrese Dirección</label></div>
                         <input class="btn btn-primary custom-btn-secondary mx-2" type="text" placeholder="dirección" id="direccion" formControlName="direccion">
+                        <!--Mensajes de error--> 
+                        <div *ngIf="EditorialForm.get('direccion')?.hasError('editorialExistente') && EditorialForm.get('direccion')?.touched"
+                          class="text-danger">
+                          La direccion ya está en uso.
+                        </div>
+                        <div *ngIf="
+                          EditorialForm.get('direccion')?.hasError('required') &&
+                          EditorialForm.get('direccion')?.touched
+                          " class="text-danger">
+                          La direccion es obligatoria.
+                        </div>
                         <div class="btn btn-primary custom-btn-primary mx-2"><label>Ingrese URL imagen</label></div>
                         <input class="btn btn-primary custom-btn-secondary mx-2" type="text" placeholder="URL" id="imagen" formControlName="imagen">
+                        <!--Mensajes de error--> 
+                        <div *ngIf="EditorialForm.get('imagen')?.hasError('editorialExistente') && EditorialForm.get('imagen')?.touched"
+                          class="text-danger">
+                          La URL ya está en uso.
+                        </div>
+                        <div *ngIf="
+                          EditorialForm.get('imagen')?.hasError('required') &&
+                          EditorialForm.get('imagen')?.touched
+                          " class="text-danger">
+                          La imagen es obligatoria.
+                        </div>
                     </div>
                 </form>
             </div>
