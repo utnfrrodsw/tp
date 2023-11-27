@@ -55,5 +55,15 @@ export class EditorialRepository {
             return undefined;
         }
     }
+    async findOneByDescripcion(item) {
+        try {
+            const editorial = await editoriales.findOne({ descripcion: item.descripcion });
+            return editorial || undefined;
+        }
+        catch (error) {
+            console.error("Error en findOneByEmail:", error);
+            throw error;
+        }
+    }
 }
 //# sourceMappingURL=Editorial.repository.js.map

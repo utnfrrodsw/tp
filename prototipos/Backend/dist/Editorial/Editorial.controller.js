@@ -133,5 +133,19 @@ async function getImagen(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, getEditoriales, getDescripcion, getImagen };
+async function findOneByDescripcion(req, res) {
+    try {
+        const descripcion = req.params.email;
+        const editorial = await repository.findOneByDescripcion({ descripcion });
+        if (!editorial) {
+            return res.status(404).send({ message: "Editorial no encontrado." });
+        }
+        return res.json({ data: editorial });
+    }
+    catch (error) {
+        console.error("Error en findOneByEmail:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+export { sanitizeInput, findAll, findOne, add, update, remove, getEditoriales, getDescripcion, getImagen, findOneByDescripcion };
 //# sourceMappingURL=Editorial.controller.js.map

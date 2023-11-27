@@ -50,8 +50,11 @@ async function findOne(req: Request, res: Response) {
 async function add(req: Request, res: Response) {
     try {
         const input = req.body.sanitizedInput;
+
         const editorialInput = new Editorial(input.descripcion, input.direccion, input.imagen);
+
         const editorial = await repository.add(editorialInput);
+        
         res.status(201).send({ message: 'Editorial agregada exitosamente', data: editorial });
     } catch (error) {
         console.error("Error en add:", error);
@@ -151,4 +154,21 @@ async function getImagen(req: Request, res: Response) {
     }
 }
 
-export { sanitizeInput, findAll, findOne, add, update, remove, getEditoriales, getDescripcion, getImagen }
+async function findOneByDescripcion(req: Request, res: Response) {
+    try {
+        const descripcion = req.params.email;
+
+        const editorial = await repository.findOneByDescripcion({ descripcion });
+
+        if (!editorial) {
+            return res.status(404).send({ message: "Editorial no encontrado." });
+        }
+
+        return res.json({ data: editorial });
+    } catch (error) {
+        console.error("Error en findOneByEmail:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+export { sanitizeInput, findAll, findOne, add, update, remove, getEditoriales, getDescripcion, getImagen, findOneByDescripcion }

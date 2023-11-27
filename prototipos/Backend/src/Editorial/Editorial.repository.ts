@@ -60,4 +60,14 @@ export class EditorialRepository implements Repository<Editorial>{
             return undefined;
         }
     }
+
+    public async findOneByDescripcion(item: { descripcion: string }): Promise<Editorial | undefined> {
+        try {
+            const editorial = await editoriales.findOne({ descripcion: item.descripcion });
+            return editorial || undefined;
+        } catch (error) {
+            console.error("Error en findOneByEmail:", error);
+            throw error;
+        }
+    }
 }
