@@ -21,7 +21,7 @@ function DetallePresupuesto(){
         console.error('Error al cargar los detalles del presupuesto:', error);
       });
   }, [idSolicitud,user.id]);
-console.log(presupuesto);
+
 return(
 <div className='scroll-container'>
   {presupuesto ? (

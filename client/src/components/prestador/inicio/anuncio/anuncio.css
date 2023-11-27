@@ -277,6 +277,7 @@ img {
   .anuncioprincipal-card,
   .anuncioprincipal-fullcontent {
     width: 90%;
+    height: auto;
   }
 }
 
@@ -292,5 +293,6 @@ img {
   }
   .anuncioprincipal-fullcontent {
     width: 100%;
+    height: auto;
   }
 }

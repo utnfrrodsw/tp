@@ -50,7 +50,7 @@ export function NuevaDireccion(props) {
 
   useEffect(() => {
     setShowModal(props.nuevaDireccion)
-    console.log("nueva direccion: " + props.nuevaDireccion)
+    
   }, [props.nuevaDireccion]);
 
   const handleSubmit = async () => {

@@ -114,7 +114,6 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
       setEnviando(false);
     }catch(error){
       setError(true);
-      console.log(error);
     }finally{
       setEnviando(false);
     }

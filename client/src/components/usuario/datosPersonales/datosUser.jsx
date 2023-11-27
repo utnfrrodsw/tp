@@ -336,7 +336,7 @@ const DatosPersonales = () => {
         const data = await response.json();
   
         if (response.ok) {
-          console.log(data);
+          
           setSuccessMessageFoto('Foto de perfil actualizada con éxito');
           // Limpiar el mensaje de error si la carga fue exitosa
           setErrorMessageFoto(null);

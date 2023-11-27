@@ -1,5 +1,4 @@
 function getTokenFromHeader(headers){
-    console.log(headers + " && " + headers.authorization + " === " + headers && headers.authorization);
     if(headers && headers.authorization){
         let parted = headers.authorization.split(' ');
         

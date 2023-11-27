@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import {REACT_APP_PHOTO} from '../../../../auth/constants.js';
 
 function Anuncio(props) {
-  console.log(props.filtrado);
+  
   const [show, setShow] = useState(true);
   const [verfotos, setVerfotos] = useState(false);
   const dateTime = new Date(props.fechaHora);
-  console.log(dateTime);
+  
   return (
     <div className={`anuncioprincipal-card ${show ? 'anuncioprincipal-card' : 'anuncioprincipal-fullcontent'}`}>
       <div>
@@ -59,7 +59,7 @@ function Anuncio(props) {
       {show ? (
           <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
           ): (
-          <div className='boton'>
+          <div className='botones'>
             {props.filtrado === "nuevas" ?
             <Link to={`/provider/home/add/budget/${props.id}`} className='button-link'>Presupuestar</Link>
             : <></>}

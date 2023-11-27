@@ -25,7 +25,7 @@ function DetalleServicio() {
 
   const updateServicio = async () => {
     try {
-      console.log('solicitar finalizacion');
+      
       fetch(`${API_URL}/servicio/aterminar/${idSolicitud}/prestador/${user.id}`, {
         method: 'PATCH',
       });

@@ -41,7 +41,7 @@ const direccionesController = {
                     where: { calle: calle, numero: numero, piso: piso, dpto: departamento, idUsuario: idUsuario },
                 }, { transaction: t})
 
-                console.log(direccion);
+                
 
                 if (!direccion) {
                     await db.Direccion.create(
@@ -60,7 +60,7 @@ const direccionesController = {
                 }
 
             });
-            console.log('Direccion agregada con éxito')
+            
             res.status(200).json(jsonResponse(200, {
                 message: 'Direccion agregada con éxito'
             }));
