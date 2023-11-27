@@ -1,23 +1,23 @@
 <div class="container-editoriales">
   <div class="editoriales-col">
-    <div class="editoriales" *ngFor="let id of editorialesIds; let i = index">
-      <img class="img-editorial" [src]="editorialesData[id].imagen" alt="loco">
+    <div class="editoriales" *ngFor="let id of editorialesIds.slice(0,5); let i = index">
+      <img class="img-editorial" [src]="editorialesData[id].imagen" alt="">
       <div class="texto-editorial">
         <label>{{editorialesData[id].descripcion}}</label>
       </div>
     </div>
   </div>
   <div class="editoriales-col">
-    <div class="editoriales" *ngFor="let id of editorialesIds; let i = index">
-      <img class="img-editorial" [src]="editorialesData[id].imagen" alt=" loco">
+    <div class="editoriales" *ngFor="let id of editorialesIds.slice(0,5); let i = index">
+      <img class="img-editorial" [src]="editorialesData[id].imagen" alt="">
       <div class="texto-editorial">
         <label>{{editorialesData[id].descripcion}}</label>
       </div>
     </div>
   </div>
   <div class="editoriales-col">
-    <div class="editoriales" *ngFor="let id of editorialesIds; let i = index">
-      <img class="img-editorial" [src]="editorialesData[id].imagen" alt=" loco">
+    <div class="editoriales" *ngFor="let id of editorialesIds.slice(0,5); let i = index">
+      <img class="img-editorial" [src]="editorialesData[id].imagen" alt="">
       <div class="texto-editorial">
         <label>{{editorialesData[id].descripcion}}</label>
       </div>
