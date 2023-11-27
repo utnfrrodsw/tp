@@ -16,14 +16,13 @@ export class EditorialRepository implements Repository<Editorial>{
         }
     }
 
-    public async findOne(item: { id: string; }): Promise<Editorial | undefined> {
-        const _id = new ObjectId(item.id);
+    public async findOne(item: { [key: string]: any }): Promise<Editorial | undefined> {
         try {
-            const result = await editoriales.findOne({ _id });
-            return result || undefined;
+            const result = await editoriales.findOne(item);
+            return result ? result : undefined;
         } catch (error) {
             console.error("Error en findOne:", error);
-            return undefined;
+            throw error;
         }
     }
 
@@ -64,6 +63,7 @@ export class EditorialRepository implements Repository<Editorial>{
     public async findOneByDescripcion(item: { descripcion: string }): Promise<Editorial | undefined> {
         try {
             const editorial = await editoriales.findOne({ descripcion: item.descripcion });
+            console.log(editorial); 
             return editorial || undefined;
         } catch (error) {
             console.error("Error en findOneByEmail:", error);
