@@ -31,13 +31,10 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-
         const addresses = await getClientAdresses(user.id, auth.token);
         setDirecciones(addresses);
-        
         const professions = await getExistingProfessions(auth.token);
         setProfesiones(professions);
-
       } catch (error) {
         setErrorProfDir(error);
       }
@@ -94,8 +91,6 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
     fotos.forEach((foto) => {
       formdata.append('fotos', foto);
     });
-    
-
     
     try{
       const response = await setSolicitud(user.id, formdata, auth.token)

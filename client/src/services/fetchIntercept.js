@@ -44,13 +44,20 @@ export const fetchPut = async (url, data, token) => {
 };
 
 export const fetchPatch = async (url, data, token) => {
-    await fetch(API_URL + url, {
-        method: 'PATCH',
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
-        body: data
-    });
+    try{
+        const response = await fetch(API_URL + url, {
+            method: 'PATCH',
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            body: data
+        })
+        .then(res => res.json())
+        .then(data => {return data});
+        return response;
+    }catch(error){
+        throw new Error(error.message);
+    }
 };
 
 export const fetchDelete = async (url, token) => {

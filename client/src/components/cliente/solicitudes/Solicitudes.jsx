@@ -3,9 +3,9 @@ import { NavLink } from "../../navlink/Navlink.jsx";
 import { NuevaSolicitud } from "../nuevaSolicitud/NuevaSolicitud.jsx";
 import Solicitud from "../solicitud/Solicitud.jsx";
 import "./solicitudes.css";
-import { API_URL } from "../../../auth/constants.js";
 import LoaderFijo from "../../load/loaderFijo/LoaderFijo.jsx";
-
+import { getSolicitudes } from "../../../services/Solicitud.js";
+import { useAuth } from '../../../auth/authProvider';
 
 function Solicitudes(props) {
 
@@ -13,27 +13,26 @@ function Solicitudes(props) {
     const [solicitudesUpdate, setSolicitudesUpdate] = useState(false);
     const [load, setLoad] = useState(false);
     const user = JSON.parse(localStorage.getItem('user'));
+    const auth = useAuth();
     
     // eslint-disable-next-line
     useEffect(() => {
-        setLoad(true);
-        fetch(`${API_URL}/solicitud/${props.estado}/cliente/${user.id}`)
-          .then((res) => res.json())
-          .then((data) => {
-            if(data.body.solicitudes !== undefined){
-                setSolicitudes(data.body.solicitudes);
-            }else{
-                setSolicitudes([]);
+        const fetchData = async () => {
+            setLoad(true);
+            try {
+                const solicitudes = await getSolicitudes(props.estado, user.id, auth.getRefreshToken());
+                setSolicitudes(solicitudes);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoad(false);
             }
-            setSolicitudesUpdate(false); // Mover esta línea aquí
-            setLoad(false);
-          })
-          .catch((error) => {
-            setLoad(false);
-            console.log(error)
-            console.error('Error al cargar solicitudes:', error);
-          });
-    }, [solicitudesUpdate, props.estado ,user.id]);
+        };
+    
+        fetchData(); // Llamada a la función asíncrona dentro del efecto
+    
+    }, [solicitudesUpdate, props.estado, user.id, auth.getRefreshToken]);
+    
       
     // pagination
     const [paginaActual, setPaginaActual] = useState(1);

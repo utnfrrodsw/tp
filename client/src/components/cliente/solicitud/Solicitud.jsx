@@ -6,11 +6,13 @@ import { Modal, Carousel, Container, Image, Button} from 'react-bootstrap';
 import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 import Review from '../../reseña/Review';
+import { getPresupuestosSolicitud } from '../../../services/Presupuesto.js';
 
 function Solicitud(props){
 
   const [show, setShow] = useState(true);
   const [error, setError] = useState(false);
+  const [errorGetPresupuestos, setErrorGetPresupuestos] = useState(""); // eslint-disable-line no-unused-vars
   const [verfotos, setVerfotos] = useState(false);
   const [verPresupuestos, setVerPresupuestos] = useState(false);
   const [presupuestosSolicitud, setPresupuestosSolicitud] = useState([]);
@@ -22,25 +24,22 @@ function Solicitud(props){
 
   // eslint-disable-next-line
   useEffect(() => {
-    if(verPresupuestos){
-      console.log(verPresupuestos)
+    const fetchData = async () => {
       setLoading(true);
-      fetch(`${API_URL}/presupuesto/solicitud/${props.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPresupuestosSolicitud(data.body.presupuestos);
-
-        console.log(data.body.presupuestos);
+      try {
+        const presupuestos = await getPresupuestosSolicitud(props.id, auth.getAccessToken());
+        setPresupuestosSolicitud(presupuestos);
+      } catch (error) {
+        setErrorGetPresupuestos(error);
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error)
-        console.error('Error al cargar presupuestos:', error);
-        setError(true);
-        setLoading(false);
-      });
+      }
+    };
+  
+    if (verPresupuestos) {
+      fetchData();
     }
-  }, [verPresupuestos]);
+  }, [verPresupuestos, props.id, auth.getAccessToken]);
 
   const hendleCancelar = async () => {
     try{
@@ -204,6 +203,7 @@ function Solicitud(props){
                           )
                         }
                       </div>
+                      {errorGetPresupuestos && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>{errorGetPresupuestos}</p>}
                     </Modal.Body>
                     <Modal.Footer></Modal.Footer>
                   </Modal>

@@ -126,7 +126,8 @@ const solicitudController = {
                     // Maneja cualquier error que pueda ocurrir
                     console.error(error);
                     res.status(500).json(jsonResponse(500, {
-                        error: 'Error interno del servidor'
+                        message: 'Error interno del servidor',
+                        solicitudes: [],
                     }));
                 });
                 

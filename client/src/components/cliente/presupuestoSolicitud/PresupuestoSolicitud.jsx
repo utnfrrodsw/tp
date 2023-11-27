@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Button, Spinner} from 'react-bootstrap';
 import './presupuestosSolicitud.css'
-import { API_URL } from '../../../auth/constants';
 import Rating from '@mui/material/Rating';
 import { useAuth } from '../../../auth/authProvider.jsx';
+import { fetchPagarPresupuesto } from '../../../services/Presupuesto.js';
 
 
 function PresupuestoSolicitud(props){
@@ -15,32 +15,19 @@ function PresupuestoSolicitud(props){
 
     const handlePagar = async () => {
         setPagarLoading(true);
-        console.log('pagar presupuesto para idPrestador ' + props.idPrestador + ' y idSolicitud ' + props.idSolicitud)
-        const response = await fetch(`${API_URL}/presupuesto/pagar/${props.idSolicitud}/${props.idPrestador}`, {
-            method: 'PATCH',
-            headers: {
-                Authorization: `Bearer ${auth.token}`
-            },
-            body: JSON.stringify({
-                fecha: fecha,
-            }),
-        })
-        .catch((error) => {
-            console.error('Error al pagar presupuesto:', error);
-        });
-
-        if(response.ok){
-            console.log('Presupuesto pagado');
-        }else{
-            console.log('Error al pagar presupuesto');
+        try{
+            await fetchPagarPresupuesto(props.idSolicitud, props.idPrestador, fecha, auth.getRefreshToken());
+        }catch(error){
+            setPagoExitoso(false);
+        }finally{
+            setTimeout(() => {
+                setPagarLoading(false);
+                setPagoExitoso(true);
+                props.hendlePresupuestoPagado();
+            }, 3000);
         }
-
-        setTimeout(() => {
-            setPagarLoading(false);
-            setPagoExitoso(true);
-            props.hendlePresupuestoPagado();
-        }, 3000);
     }
+    
     return (
         <Card className='card-presu' style={{backgroundColor: '#213555', height: '40%', margin:'10px'}}>
             <Card.Header>

@@ -8,6 +8,6 @@ export const getExistingProfessions = async (token) => {
         })
         return Professions;
     } catch (error) {
-        throw new Error(`Error al obtener profesiones: ${error.message}`);
+        throw new Error(error.message);
     }
 };
