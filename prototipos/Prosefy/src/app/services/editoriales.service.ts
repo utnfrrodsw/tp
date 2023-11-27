@@ -1,62 +1,34 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
+import { ErrorRegistroResponse } from './registro.service';
 
 export interface Editorial {
-  _id: string;
   descripcion: string;
   direccion: string;
   imagen: string;
+}
+
+export interface editorialResponse {
+  mensaje: string;
+  editorial: {
+    descripcion: string;
+    direccion: string;
+    imagen: string;
+  };
+}
+
+export interface ErrorEditorialResponse {
+  mensaje: string; // Un mensaje de error descriptivo
+  codigo?: number; // Un código de error opcional
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class EditorialesService {
-  /*private editoriales: Editorial[] = [
-    {
-      id: 1,
-      nombre: 'Editorial BOOKRACK',
-      direccion: 'Direccion 1', 
-      imagen: '../../../../assets/img/Editoriales/editorial-bookrack.webp',
-    },
-
-    {
-      id: 2,
-      nombre: 'Editorial DJaen',
-      direccion: 'Direccion 2',
-      imagen: '../../../../assets/img/Editoriales/editorial-djaen.webp',
-    },
-
-    {
-      id: 3,
-      nombre: 'Editorial Gato Malo',
-      direccion: 'Direccion 3',
-      imagen: '../../../../assets/img/Editoriales/editorial-gato-malo.webp',
-    },
-
-    {
-      id: 4,
-      nombre: 'Editorial Tierra de Mu',
-      direccion: 'Direccion 4',
-      imagen: '../../../../assets/img/Editoriales/editorial-tierra-de-mu.webp',
-    },
-
-    {
-      id: 5,
-      nombre: 'Editorial Vealia',
-      direccion: 'Direccion 5',
-      imagen: '../../../../assets/img/Editoriales/editorial-vealia.webp',
-    },
-  ];
-  constructor() {}
-
-  getEditoriales(): Editorial[] {
-    return this.editoriales;
-  }*/
-
-
-  private apiUrl = 'http://Localhost:3000/api/editoriales';
+  
+  private apiUrl = 'http://Localhost:3000/api/editoriales/';
 
   constructor(private http: HttpClient) { }
 
@@ -84,8 +56,59 @@ export class EditorialesService {
       map((response: any) => response.data)
     );
   }
+
+  // Registro de la editorial
+
+  registrarEditorial(editorial: Editorial): Observable<editorialResponse> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http.post<editorialResponse>(this.apiUrl, editorial, httpOptions)
+    .pipe(
+      tap((response) => {
+        console.log('Registro exitoso', response);
+        // Lógica para manejar la respuesta exitosa del registro
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return this.handleServerError(error);
+      })
+    );
+  }
+
+  validarEditorialExistente(descripcion: string): Observable<Editorial | null> {
+    const url = `${this.apiUrl}{descripcion/}${descripcion}`;
+    return this.http.get<Editorial>(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            return of(null);
+          } else {
+            return throwError(error);
+          }
+        })
+      );
+  }
+
+private handleServerError(error: any): Observable<never> {
+  console.error('Error en el registro', error);
+
+  const errorMessage: ErrorEditorialResponse = {
+    mensaje: 'Error desconocido en el registro'
+  };
+
+  if (error instanceof HttpErrorResponse) {
+    errorMessage.mensaje = error.error?.mensaje || 'Error desconocido en el registro';
+    console.error('Detalles del error:', error.error);
+  }
+
+  return throwError(errorMessage);
+  }
+
+
+
 }
-
-
 
 
