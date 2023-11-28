@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap'; // Importa los componentes del modal
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../auth/authProvider';
+import { registerUser } from '../../../services/Register';
 import './Register.css';
 const { API_URL } = require('../../../auth/constants');
 
@@ -117,42 +118,35 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     setMessage('');
-
+  
     try {
-      const response = await fetch(`${API_URL}/usuario/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nombre,
-          apellido,
-          email,
-          contrasena,
-          confirmContrasena,
-          telefono,
-          fechaNacimiento,
-          esPrestador,
-          especialidades,
-          direcciones: direccionesUsuario, // Agrega las direcciones del usuario
-        }),
+      const { response, data, error } = await registerUser({
+        nombre,
+        apellido,
+        email,
+        contrasena,
+        confirmContrasena,
+        telefono,
+        fechaNacimiento,
+        esPrestador,
+        especialidades,
+        direccionesUsuario,
       });
   
-      const data = await response.json();
-    
-      if (response.status === 201) {
+      if (response && response.status === 201) {
         setSucceseMessage('Registro exitoso, redirigiendo al login...');
         setTimeout(() => {
-          goTo('/login');}, 5000);
+          goTo('/login');
+        }, 5000);
       } else {
-        // Si hay errores del middleware, utiliza el primer mensaje de error
-        // Si no, utiliza el mensaje de error del controlador
+        // If there are middleware errors, use the first error message
+        // Otherwise, use the controller's error message
         setMessage(data.errors && data.errors.length > 0 ? data.errors[0].msg : data.message);
       }
-      if (data.statusCode === 400){
-        setMessage('El email ingresado ya esta en uso');
+  
+      if (data && data.statusCode === 400) {
+        setMessage('El email ingresado ya está en uso');
       }
-
     } catch (error) {
       setMessage(error.message);
     }
