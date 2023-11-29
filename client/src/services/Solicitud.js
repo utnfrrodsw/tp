@@ -29,5 +29,16 @@ export const getSolicitudes = async (estado, idUsuario, token ) => {
     }
 };
 
+export const getSolicitudesPrestador= async (estado, idUsuario,filtrado)=>{
+    try{
+        const response= await fetchGet(`/solicitud/${filtrado}/prestador/${idUsuario}/${estado}`)
+        .then(response=>{
+            return response;
+        })
+        return response.body.solicitudes;
+    }catch(error){
+        throw new Error(error.message);
+    }
+}
 
 
