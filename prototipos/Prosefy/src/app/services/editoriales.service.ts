@@ -28,7 +28,7 @@ export interface ErrorEditorialResponse {
 })
 export class EditorialesService {
   
-  private apiUrl = 'http://Localhost:3000/api/editoriales/';
+  private apiUrl = 'http://Localhost:3000/api/editoriales';
 
   constructor(private http: HttpClient) { }
 
@@ -79,7 +79,7 @@ export class EditorialesService {
   }
 
   validarEditorialExistente(descripcion: string): Observable<Editorial | null> {
-    const url = `${this.apiUrl}{descripcion/}${descripcion}`;
+    const url = `${this.apiUrl}{/descripcion/}${descripcion}`;
     return this.http.get<Editorial>(url)
       .pipe(
         catchError((error: HttpErrorResponse) => {

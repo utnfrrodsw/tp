@@ -71,6 +71,7 @@ import { CarritoComprasService } from './services/carrito-compras.service';
 import { CurrencyService } from './services/currency.service';
 import { AutoresService } from './services/autores.service';
 import { CrearEditorialComponent } from './pages/crear-editorial-admin/crear-editorial/crear-editorial.component';
+import { EliminarEditorialComponent } from './pages/eliminar-editorial/eliminar-editorial.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -121,7 +122,8 @@ registerLocaleData(localeEs, 'es');
     ListaAutoresComponent,
     NuevoComentarioComponent,
     PanelAdminComponent,
-    CrearEditorialComponent
+    CrearEditorialComponent,
+    EliminarEditorialComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,7 @@ import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.componen
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
 import { CrearEditorialComponent } from './pages/crear-editorial-admin/crear-editorial/crear-editorial.component';
+import { EliminarEditorialComponent } from './pages/eliminar-editorial/eliminar-editorial.component';
 
 /* SERVICIOS */
 import { UsuarioService } from './services/usuario.service';
@@ -46,7 +47,8 @@ const routes: Routes = [
   { path: 'crear-cuenta', component: CrearCuentaComponent, canActivate: [RegistroService] },
   { path: 'busqueda/:term', component: BusquedaComponent },
   { path: 'panel-admin', component: PanelAdminComponent },
-  { path: 'crear-editorial', component: CrearEditorialComponent }
+  { path: 'crear-editorial', component: CrearEditorialComponent },
+  { path: 'eliminar-editorial', component: EliminarEditorialComponent }
 ];
 
 @NgModule({
