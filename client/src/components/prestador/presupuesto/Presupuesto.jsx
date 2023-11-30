@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from "../../../auth/constants.js";
 import { useAuth } from "../../../auth/authProvider.jsx";
 import { Modal } from 'react-bootstrap';
+import {getSolicitudId} from "../../../services/Solicitud.js"
 function Presupuesto(props) {
    const [anuncio, setAnuncio] = useState(null);
   const [datetimeValue, setDatetimeValue] = useState('');
@@ -28,15 +29,15 @@ function Presupuesto(props) {
 
 
   useEffect(() => {
-    // Realiza la consulta a la base de datos para obtener los detalles del anuncio usando el ID
-    fetch(`${API_URL}/solicitud/nuevas/prestador/${id}/presupuestar`)
-      .then((res) => res.json())
-      .then((data) => {
-        setAnuncio(data); // Almacena los detalles del anuncio en el estado
-      })
-      .catch((error) => {
-        console.error('Error al cargar los detalles del anuncio:', error);
-      });
+    const fetchData=async()=>{
+      try{
+        const anuncio=await getSolicitudId(id);
+        setAnuncio(anuncio);
+      }catch(error){
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [id]);
   
   const handleDatetimeChange = (event) => {

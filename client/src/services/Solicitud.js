@@ -41,4 +41,15 @@ export const getSolicitudesPrestador= async (estado, idUsuario,filtrado)=>{
     }
 }
 
+export const getSolicitudId= async (idSolicitud)=>{
+    try{
+        const response=await fetchGet(`/solicitud/nuevas/prestador/${idSolicitud}/presupuestar`)
+        .then(response=>{
+            return response;
+        })
+        return response;
+    }catch(error){
+        throw new Error(error.message);
+    }
+}
 
