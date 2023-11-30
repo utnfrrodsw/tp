@@ -3,6 +3,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { IniciarSesionService } from 'src/app/services/iniciar-sesion.service';
 import { Location } from '@angular/common';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -33,10 +34,10 @@ export class HeaderComponent {
   }
 
   constructor(private router: Router, private route: ActivatedRoute, private iniciarSesionService: IniciarSesionService, private location: Location, private usuarioService: UsuarioService) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.updatePlaceholder(event.url);
-      }
+    this.router.events.pipe(
+      filter(((event): event is NavigationEnd => event instanceof NavigationEnd)
+    )).subscribe((event: NavigationEnd ) => {
+      this.updatePlaceholder(event.url);
     });
   }
 
@@ -54,10 +55,10 @@ export class HeaderComponent {
     this.usuarioService.getTipo().subscribe(
       (data: any) => {
         this.usuario.tipo = data.data.tipo;
-        console.log('Tipo de usuario:', this.usuario.tipo);
+        //console.log('Tipo de usuario:', this.usuario.tipo);
         if (this.usuario.tipo.trim() === 'admin') {
           this.isAdmin = !this.isAdmin;
-          console.log('Tipo de usuario:', this.isAdmin);
+          //console.log('Tipo de usuario:', this.isAdmin);
         }
       },
       (error: any) => {
