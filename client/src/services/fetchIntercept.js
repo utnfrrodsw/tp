@@ -34,13 +34,17 @@ export const fetchGet = async (url, token) => {
 };
 
 export const fetchPut = async (url, data, token) => {
-    await fetch( API_URL + url, {
-        method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        body: data
-    })
+    try{
+        await fetch( API_URL + url, {
+            method: 'PUT',
+            headers: {
+            Authorization: `Bearer ${token}`
+            },
+            body: data
+        })
+    }catch(error){
+        throw new Error(error.message);
+    }
 };
 
 export const fetchPatch = async (url, data, token) => {
@@ -61,10 +65,14 @@ export const fetchPatch = async (url, data, token) => {
 };
 
 export const fetchDelete = async (url, token) => {
-    await fetch(API_URL + url, {
+    try{
+        await fetch(API_URL + url, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${token}`
         }
-    });
+        });
+    }catch(error){
+        throw new Error(error.message);
+    }
 };
