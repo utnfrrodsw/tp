@@ -38,9 +38,20 @@ export class EditorialesService {
     );
   }
 
+  eliminarEditorial(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url);
+  }
+
   getDescripcion(id: string): Observable<string | undefined> {
     return this.http.get<any>(`${this.apiUrl}/descripcion/${id}`).pipe(
-      map((response: any) => response),
+      map((response: any) => response.data),
+    );
+  }
+
+  getDireccion(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/direccion/${id}`).pipe(
+      map((response: any) => response.data),
     );
   }
 
