@@ -37,8 +37,9 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           setDirecciones(responseAddresses.body.direcciones);
           setProfesiones(responseProfessions.body.profesiones);
         }else{
-          setErrorProfDir(responseAddresses.body.message);
+          setErrorDirecciones(responseAddresses.body.message);
           setErrorProfesiones(responseProfessions.body.message);
+          setErrorProfDir("No se pudo cargar la informacion");
         }
       } catch (error) {
         setErrorProfDir(error);
@@ -213,6 +214,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
         </Button>
         </Modal.Footer>
         {error && <span className="error-message">Error al enviar la solicitud</span>}
+        {errorProfDir && <span className="error-message">{errorProfDir}</span>}
       </Modal>
     </div>
   );

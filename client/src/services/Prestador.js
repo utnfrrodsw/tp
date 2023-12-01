@@ -2,11 +2,11 @@ import { fetchGet } from "./fetchIntercept";
 
 export const getExistingProfessions = async (token) => {
     try{
-        const Professions = await fetchGet(`/profesion/getProfesionesExistentes`, token)
+        const response = await fetchGet(`/profesion/getProfesionesExistentes`, token)
         .then(response => {
-            return response.body.profesiones;
+            return response;
         })
-        return Professions;
+        return response;
     } catch (error) {
         throw new Error(error.message);
     }
