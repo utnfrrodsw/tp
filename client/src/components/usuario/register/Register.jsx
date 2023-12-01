@@ -3,6 +3,7 @@ import { Button, Modal } from 'react-bootstrap'; // Importa los componentes del 
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../auth/authProvider';
 import { registerUser } from '../../../services/Register';
+import Loader from '../../load/loader/Loader';
 import './Register.css';
 const { API_URL } = require('../../../auth/constants');
 
@@ -24,7 +25,7 @@ function Register() {
   const [nuevaDireccion, setNuevaDireccion] = useState({});  
   const [nuevaEspecialidad, setNuevaEspecialidad] = useState('');
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
-
+  const [showSuccessModal, setShowSuccessModal] = useState(false); 
   
 
   // Función para abrir el modal de agregar especialidad
@@ -113,10 +114,12 @@ function Register() {
 
   const [message, setMessage] = useState('');
   const [successMessage, setSucceseMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
    
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsLoading(true);  
     setMessage('');
   
     try {
@@ -124,10 +127,11 @@ function Register() {
         confirmContrasena,telefono, fechaNacimiento,esPrestador,especialidades, direccionesUsuario,  );
   
         if (jsonResponse && jsonResponse.message === 'Registro exitoso') {
-          setSucceseMessage('Registro exitoso, redirigiendo al login...');
-        setTimeout(() => {
-          goTo('/login');
-        }, 5000);
+          setShowSuccessModal(true);  
+          setTimeout(() => {
+            setShowSuccessModal(false);  
+            goTo('/login');
+          }, 5000);
       } else {
          
         const firstError = jsonResponse.errors && jsonResponse.errors.length > 0
@@ -146,9 +150,13 @@ function Register() {
     } catch (error) {
       setMessage(error.message || 'Error al conectar con el servidor');
     }
+    finally {
+      setIsLoading(false); // Detiene el loader
+    }
   };
   
   return (
+    <section>{isLoading ? <Loader /> : (
     <section className="fondoRegister">
       <div className="register-container">
         <h2>Registro de Usuario</h2>
@@ -380,7 +388,16 @@ function Register() {
           ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
         </p>
       </div>
+      <Modal show={showSuccessModal} onHide={() => setShowSuccessModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Registro exitoso</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Registro exitoso, redirigiendo al login...</p>
+         </Modal.Body>
+      </Modal>
     </section>
+    )}</section>
   );
 }
 
