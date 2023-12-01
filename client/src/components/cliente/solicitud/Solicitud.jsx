@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import './solicitud.css';
 import { REACT_APP_PHOTO } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider';
-import { Modal, Carousel, Container, Image, Button} from 'react-bootstrap';
+import { Modal, Carousel, Container, Image, Button, Spinner} from 'react-bootstrap';
 import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 import Review from '../../reseña/Review';
@@ -204,7 +204,7 @@ function Solicitud(props){
 
                 {props.estado === "progreso" && props.estadoServicio === "aConfirmar" ? (
                   <section className='botones-confirmacion-container'>
-                    {loadAceptarRechazar ? <LoaderFijo/>: <>
+                    {loadAceptarRechazar ? <><Spinner/>Enviando...</>: <>
                       <Button className='button-confirmar' onClick={() => handleConfirmarRechazar("terminado")}>Confirmar</Button>
                       <Button className='button-rechazar' onClick={() => handleConfirmarRechazar("progreso")}>Rechazar</Button>
                     </>}
@@ -237,7 +237,15 @@ function Solicitud(props){
           ): (
           <div>
             {props.estado === "activa" ?
-            <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>{loadCancelar ? <>Cancelando...</> : <>Cancelar Solicitud</>}</button>
+            <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>
+              {loadCancelar ? <> 
+              <Spinner as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+              />
+              Cancelando... </>: <>Cancelar Solicitud</>}</button>
             : <></>}
             <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
             {error && <p className='error' style={{color: "red", backgroundColor: "white", width: "20%", alignSelf: "self-end"}}>Error al cancelar solicitud</p>}

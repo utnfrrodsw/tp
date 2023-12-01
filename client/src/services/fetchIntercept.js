@@ -17,7 +17,7 @@ export const fetchPost = async (url, data, headers) => {
     }
 };
 
-export const fetchGet = async (url, token) => {
+export const fetchGet = async (url, token,) => {
     try{
         const response = await fetch( API_URL + url, {
             method: 'GET',

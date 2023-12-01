@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Spinner } from 'react-bootstrap';
 import '../Inicio/InicioCliente.css';
 import { useAuth } from '../../../auth/authProvider.jsx';
-import LoandingDots from '../../load/loandingDots/LoandingDots.jsx';
 import { getClientAdresses } from '../../../services/Cliente.js'
 import { getExistingProfessions } from '../../../services/Prestador.js'
 import { setSolicitud } from '../../../services/Solicitud.js'
@@ -210,7 +209,15 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           </Button>
           </div>
           <Button  onClick={async() => {await handleSubmit();}}>
-            {enviando ? <><LoandingDots /></> : 'Enviar'}
+            {enviando ? <><Spinner
+              as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+              />
+              Enviando...</> : 'Enviar'
+            }
         </Button>
         </Modal.Footer>
         {error && <span className="error-message">Error al enviar la solicitud</span>}
