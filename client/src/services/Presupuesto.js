@@ -2,8 +2,7 @@ import { fetchPatch, fetchGet,fetchPost } from "../services/fetchIntercept.js";
 
 export const setPresupuesto= async (presupuestoData) => {
   try {
-    const response = await fetch(`presupuesto/nuevoPresupuesto`, {
-      method: 'POST',
+    const response = await fetchPost(`/presupuesto/nuevoPresupuesto`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -45,4 +44,16 @@ export const getPresupuestosSolicitud = async (id, token ) => {
     }catch(error){
         throw new Error(error.message);
     }
+}
+
+export const getPresupuestoPrestador= async(idSolicitud,idPrestador)=>{
+  try{
+    const presupuesto= await fetchGet(`/presupuesto/solicitud/${idSolicitud}/prestador/${idPrestador}`)
+    .then(response=>{
+      return response.body.presupuesto;
+    })
+    return presupuesto;
+  }catch(error){
+    throw new Error(error.message);
+  }
 }

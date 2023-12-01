@@ -2,8 +2,7 @@ import '../presupuesto/Presupuesto.css'
 import Detalle from './Detalle.jsx';
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import { API_URL } from "../../../auth/constants.js";
-
+import { getPresupuestoPrestador } from '../../../services/Presupuesto';
 function DetallePresupuesto(){
 
   const history = useNavigate();
@@ -11,17 +10,17 @@ function DetallePresupuesto(){
   const [presupuesto, setPresupuesto] = useState(null);
   const user=JSON.parse(localStorage.getItem('user'));
   useEffect(() => {
-    // Realiza la consulta a la base de datos para obtener los detalles del presupuesto usando el ID del presupuesto
-    fetch(`${API_URL}/presupuesto/solicitud/${idSolicitud}/prestador/${user.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPresupuesto(data.body.presupuesto); // Almacena los detalles del presupuesto en el estado
-      })
-      .catch((error) => {
-        console.error('Error al cargar los detalles del presupuesto:', error);
-      });
+    const fetchData= async()=>{
+      try{
+        const presupuesto=await getPresupuestoPrestador(idSolicitud,user.id)
+        setPresupuesto(presupuesto);
+      }catch(error){
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [idSolicitud,user.id]);
-
+console.log(presupuesto);
 return(
 <div className='scroll-container'>
   {presupuesto ? (
