@@ -17,7 +17,7 @@ export const fetchPost = async (url, data, headers) => {
     }
 };
 
-export const fetchGet = async (url, token) => {
+export const fetchGet = async (url, token,) => {
     try{
         const response = await fetch( API_URL + url, {
             method: 'GET',
@@ -52,6 +52,7 @@ export const fetchPatch = async (url, data, token) => {
         const response = await fetch(API_URL + url, {
             method: 'PATCH',
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
             },
             body: data
@@ -66,12 +67,15 @@ export const fetchPatch = async (url, data, token) => {
 
 export const fetchDelete = async (url, token) => {
     try{
-        await fetch(API_URL + url, {
+        const response = await fetch(API_URL + url, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${token}`
         }
-        });
+        })
+        .then(res => res.json())
+        .then(data => {return data});
+        return response;
     }catch(error){
         throw new Error(error.message);
     }

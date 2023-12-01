@@ -1,24 +1,27 @@
 import React, { useEffect, useState} from 'react';
 import './solicitud.css';
-import { API_URL, REACT_APP_PHOTO } from '../../../auth/constants';
+import { REACT_APP_PHOTO } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider';
-import { Modal, Carousel, Container, Image, Button} from 'react-bootstrap';
+import { Modal, Carousel, Container, Image, Button, Spinner} from 'react-bootstrap';
 import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 import Review from '../../reseña/Review';
 import { getPresupuestosSolicitud } from '../../../services/Presupuesto.js';
+import { deleteSolicitud, fetchGetReseña, fetchConfirmarRechazar} from '../../../services/Solicitud.js';
+
 
 function Solicitud(props){
-
   const [show, setShow] = useState(true);
   const [error, setError] = useState(false);
   const [errorGetPresupuestos, setErrorGetPresupuestos] = useState(""); // eslint-disable-line no-unused-vars
+  const [errorConfirmarRechazar, setErrorConfirmarRechazar] = useState(""); // eslint-disable-line no-unused-vars
   const [verfotos, setVerfotos] = useState(false);
   const [verPresupuestos, setVerPresupuestos] = useState(false);
   const [presupuestosSolicitud, setPresupuestosSolicitud] = useState([]);
-  const [reseniaError, setReseniaError] = useState(false);
+  const [reseniaError, setReseniaError] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadAceptarRechazar, setLoadAceptarRechazar] = useState(false);
+  const [loadCancelar, setLoadCancelar] = useState(false); // eslint-disable-line no-unused-vars
   const [hacerReseña, setHacerReseña] = useState(false);
   const auth = useAuth();
 
@@ -27,8 +30,12 @@ function Solicitud(props){
     const fetchData = async () => {
       setLoading(true);
       try {
-        const presupuestos = await getPresupuestosSolicitud(props.id, auth.getAccessToken());
-        setPresupuestosSolicitud(presupuestos);
+        const response = await getPresupuestosSolicitud(props.id, auth.getAccessToken());
+        if(response.statusCode == 200){
+          setPresupuestosSolicitud(response.body.presupuestos);
+        }else{
+          setErrorGetPresupuestos("Error al obtener presupuestos");
+        }
       } catch (error) {
         setErrorGetPresupuestos(error);
       } finally {
@@ -42,24 +49,19 @@ function Solicitud(props){
   }, [verPresupuestos, props.id, auth.getAccessToken]);
 
   const hendleCancelar = async () => {
+    setLoadCancelar(true);
     try{
-      
-      const response = await fetch(`${API_URL}/solicitud/cancelar/`+props.id, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth.getRefreshToken()}`,
-        },
-      });
-      if(response.ok){
+      const response = await deleteSolicitud(props.id, auth.getRefreshToken());
+      if(response.statusCode === 200){
         setError(false);
+        props.hendleSolicitudesUpdate();
       }else{
-        
         setError(true);
       }
     }catch(err){
-      
       setError(true);
+    }finally{
+      setLoadCancelar(false);
     }
   }
 
@@ -70,27 +72,22 @@ function Solicitud(props){
 
   const handleHacerReseña = async () => {
     try{
-      setReseniaError(false);
-      await fetch(`${API_URL}/servicio/isreviewed/${props.id}/${props.idPrestador}`)
-      .then((res) => res.json())
-      .then((data) => {
-        
-        if(data.body.isReviewed === false){
-          setHacerReseña(true);
-        }else{
-          setHacerReseña(false);
-          alert('Ya has realizado una reseña para este servicio');
-        }
-      }).catch((error) => {
-        console.error('Error al cargar reseña:', error);
-        setReseniaError(true);
+      setReseniaError("");
+      const response = await fetchGetReseña(props.id, props.idPrestador, auth.getAccessToken());
+      if(response.statusCode === 200){
+        setHacerReseña(true);
+      }else{
+        setHacerReseña(false);
+        setReseniaError("Error al hacer reseña");
         setTimeout(() => {
-          setReseniaError(false);
+          setReseniaError("");
         }, 10000);
-      });
-      
-    }catch(err){
-      
+      }
+    }catch(error){
+      setReseniaError(error);
+      setTimeout(() => {
+        setReseniaError("");
+      }, 10000);
     }
   };
 
@@ -102,26 +99,20 @@ function Solicitud(props){
   const handleConfirmarRechazar = async (estado) => {
     try{
       setLoadAceptarRechazar(true);
-      const response = await fetch(`${API_URL}/solicitud/updateEstado/${props.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth.getRefreshToken()}`,
-        },
-        body: JSON.stringify({
-          estado: estado,
-        }),
-      })
-      if(response.ok){
-        setLoadAceptarRechazar(false);
+      const response = await fetchConfirmarRechazar(props.id, estado, auth.getRefreshToken());
+      if(response.statusCode === 200){
+        setErrorConfirmarRechazar("");
         props.hendleSolicitudesUpdate();
       }else{
-        setLoadAceptarRechazar(false);
-        
+        setErrorConfirmarRechazar("Error al confirmar/rechazar");
       }
-    }catch(err){
-      setLoadAceptarRechazar(true);
-      
+    }catch(error){
+      setErrorConfirmarRechazar(error);
+    }finally{
+      setLoadAceptarRechazar(false);
+      setTimeout(() => {
+        setErrorConfirmarRechazar("");
+      }, 10000);
     }
   }
   
@@ -213,10 +204,11 @@ function Solicitud(props){
 
                 {props.estado === "progreso" && props.estadoServicio === "aConfirmar" ? (
                   <section className='botones-confirmacion-container'>
-                    {loadAceptarRechazar ? <LoaderFijo/>: <>
+                    {loadAceptarRechazar ? <><Spinner/>Enviando...</>: <>
                       <Button className='button-confirmar' onClick={() => handleConfirmarRechazar("terminado")}>Confirmar</Button>
                       <Button className='button-rechazar' onClick={() => handleConfirmarRechazar("progreso")}>Rechazar</Button>
                     </>}
+                    {errorConfirmarRechazar !== "" && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>{errorConfirmarRechazar}</p>}
                   </section>
                 ): <></>}
 
@@ -224,15 +216,15 @@ function Solicitud(props){
                 <>
                 {props.cartelResenia === "No Calificado" &&
                   <Button className='ver-presupuestos-button' onClick={handleHacerReseña}>Hacer Reseña</Button>}
-                  {reseniaError && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>Error al cargar reseña</p>}
+                  {reseniaError !== "" && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>{reseniaError}</p>}
                   <Modal show={hacerReseña} onHide={() => setHacerReseña(false)} style={{padding: '0px'}}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>Reseña del Servicio</Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body>
-                        <Review idSolicitud={props.id} idPrestador={props.idPrestador} hendleCalificarUpdate={hendleCalificarUpdate}/>
-                      </Modal.Body>
-                    </Modal>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Reseña del Servicio</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <Review idSolicitud={props.id} idPrestador={props.idPrestador} hendleCalificarUpdate={hendleCalificarUpdate}/>
+                    </Modal.Body>
+                  </Modal>
                 </>
                 ): <></>}
               </section>
@@ -245,7 +237,15 @@ function Solicitud(props){
           ): (
           <div>
             {props.estado === "activa" ?
-            <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>Cancelar Solicitud</button>
+            <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>
+              {loadCancelar ? <> 
+              <Spinner as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+              />
+              Cancelando... </>: <>Cancelar Solicitud</>}</button>
             : <></>}
             <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
             {error && <p className='error' style={{color: "red", backgroundColor: "white", width: "20%", alignSelf: "self-end"}}>Error al cancelar solicitud</p>}

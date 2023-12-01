@@ -1,36 +1,33 @@
 import React, { useState } from 'react';
 import { Button, Spinner } from 'react-bootstrap';
-import { API_URL } from '../../auth/constants';
+import { fetchHacerReseña } from '../../services/Solicitud.js';
+import { useAuth } from '../../auth/authProvider';
 
 const Review = (props) => {
     const [rating, setRating] = useState(0);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);  
+    const auth = useAuth();
 
     const handleCalificar = async () => {
         setLoading(true);
-        const response = await fetch(`${API_URL}/servicio/setreview/${props.idSolicitud}/${props.idPrestador}`, {
-            method: 'PATCH',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                resenia: rating
-            }
-        )});
-        if(response.ok){
-            setTimeout(() => {
-                setLoading(false);
+        try{
+            const response = await fetchHacerReseña(props.idSolicitud, props.idPrestador, rating, auth.getRefreshToken());
+            if (response.statusCode === 200) {
                 props.hendleCalificarUpdate();
-            }, 3000);
-        }else{
+            } else {
+                setError(true);
+            }
+        }catch(error){
             setError(true);
+        }finally{
             setLoading(false);
-            setTimeout(() => {
-                setError(false);
-            }, 10000);
+            if(error){
+                setTimeout(() => {
+                    setError(false);
+                }, 10000);
+            }
         }
-
     };
 
     const handleRatingChange = (newRating) => {
@@ -55,7 +52,7 @@ const Review = (props) => {
                 ))}
             </div>
             <p>Tu calificación: {rating} estrella(s)</p>
-            <p>{error ? 'Error al calificar' : ''}</p>
+            <p style={{color: 'red'}}>{error ? 'Error al calificar' : ''}</p>
             { loading ? (
                 <Button variant="primary" disabled>
                     <Spinner
