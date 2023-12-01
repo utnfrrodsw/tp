@@ -12,7 +12,7 @@ router.get('/products', getAll);
 router.get('/products/:id', getOne);
 router.put('/products/:productId', verifyTokenSeller, updateProduct);
 router.get('/productsbyshop/:tiendaId', verifyTokenSeller, getAllByShop);
-router.get('/productos', verifyTokenUser, paginated);
+router.get('/productos', paginated);
 router.delete('/products/:id', verifyTokenSeller, deleteProduct);
 router.get('/productos/paginate', maxPaginationIndex);
 

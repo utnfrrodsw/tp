@@ -6,7 +6,7 @@ import {
 } from '../middlewares/uploadImg.mjs'
 import multer from 'multer';
 
-
+const LIMIT = 20;
 
 export const createProduct = async (req, res) => {
     upload(req, res, async function (err) {
@@ -245,9 +245,8 @@ export const paginated = async (req, res) => {
         let { orden, categoria, nombre } = req.query;
 
         let page = parseInt(req.query.page) || 1; //Pagina 1 si no se especifica
-        let limit = parseInt(req.query.limit) || 20; //hasta 20 productos cuando no se especifica
+        let limit = parseInt(req.query.limit) || LIMIT; //hasta 20 productos cuando no se especifica
         const startIndex = (page - 1) * limit;
-        const endIndex = page * limit;
 
         let filters = {
             habilitado: true
@@ -298,7 +297,7 @@ export const maxPaginationIndex = async (req, res) => {
         habilitado: true
     };
     if (!limit) {
-        limit = 20;
+        limit = LIMIT;
     }
     // Agregar filtro por categoría si se proporciona
     if (categoria) {
