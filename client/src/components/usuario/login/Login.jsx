@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../auth/authProvider';
 import { loginUser } from '../../../services/Login';
+import Loader from '../../load/loader/Loader';
 import './Login.css';
 const { API_URL } = require('../../../auth/constants');
 
@@ -12,35 +13,38 @@ function Login() {
   const goTo = useNavigate();
   const auth = useAuth();
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleLogin(e) {
     e.preventDefault();
+    setIsLoading(true);  
     try {
-      const { response, json, error } = await loginUser(email, constrasena); 
-
-      if (response.ok) {
-        setErrorResponse(null);
-
-        const responseBody = json.body;
-
-        if (responseBody.token && responseBody.refreshToken) {
-          auth.saveUser(json);
-
-          if (responseBody.user.esPrestador) {
+      const jsonResponse = await loginUser(email, constrasena);
+  
+      setErrorResponse(null);
+  
+      if (jsonResponse.statusCode === 200) {
+        const responseBody = jsonResponse.body;
+  
+        if (responseBody && responseBody.token && responseBody.refreshToken) {
+          auth.saveUser(jsonResponse);
+  
+          if (responseBody.user && responseBody.user.esPrestador) {
             goTo('/provider/home');
-          } else if (!responseBody.user.esPrestador) {
+          } else if (responseBody.user && !responseBody.user.esPrestador) {
             goTo('/client/home');
           }
         }
       } else {
+        const firstError = jsonResponse.errors && jsonResponse.errors.length > 0
+          ? jsonResponse.errors[0].msg
+          : 'Error during login';
+  
         setErrorResponse(
-          error ||
-            (json && json.errors && json.errors.length > 0
-              ? json.errors[0].msg
-              : json.message)
+          jsonResponse.error || firstError
         );
-
-        if (json && json.statusCode === 401) {
+  
+        if (jsonResponse.statusCode === 401) {
           setErrorResponse('Usuario o contraseña incorrectos');
         }
       }
@@ -48,14 +52,17 @@ function Login() {
       setErrorResponse(
         error.message || 'Error al conectar con el servidor'
       );
+    } finally {
+      setIsLoading(false);  
     }
   }
-
+  
   if (auth.isAuthenticated) {
     return <Navigate to="/client/home" />;
   }
 
   return (
+    <section>{isLoading ? <Loader /> : (             
     <section className='fondoLogin'>
       <div className="wrapper">
         <form onSubmit={handleLogin}>
@@ -99,7 +106,8 @@ function Login() {
           </div>
         </form>
       </div>
-    </section>
+     </section>
+    )}</section>
   );
 }
 

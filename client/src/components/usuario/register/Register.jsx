@@ -120,35 +120,31 @@ function Register() {
     setMessage('');
   
     try {
-      const { response, data, error } = await registerUser({
-        nombre,
-        apellido,
-        email,
-        contrasena,
-        confirmContrasena,
-        telefono,
-        fechaNacimiento,
-        esPrestador,
-        especialidades,
-        direccionesUsuario,
-      });
+       const jsonResponse = await registerUser( nombre,apellido,email,contrasena,
+        confirmContrasena,telefono, fechaNacimiento,esPrestador,especialidades, direccionesUsuario,  );
   
-      if (response && response.status === 201) {
-        setSucceseMessage('Registro exitoso, redirigiendo al login...');
+        if (jsonResponse && jsonResponse.message === 'Registro exitoso') {
+          setSucceseMessage('Registro exitoso, redirigiendo al login...');
         setTimeout(() => {
           goTo('/login');
         }, 5000);
       } else {
-        // If there are middleware errors, use the first error message
-        // Otherwise, use the controller's error message
-        setMessage(data.errors && data.errors.length > 0 ? data.errors[0].msg : data.message);
+         
+        const firstError = jsonResponse.errors && jsonResponse.errors.length > 0
+        ? jsonResponse.errors[0].msg
+        : 'Error during login';
+
+        setMessage(
+          jsonResponse.error || firstError
+        );
+
       }
   
-      if (data && data.statusCode === 400) {
+      if (jsonResponse.statusCode === 400) {
         setMessage('El email ingresado ya está en uso');
       }
     } catch (error) {
-      setMessage(error.message);
+      setMessage(error.message || 'Error al conectar con el servidor');
     }
   };
   

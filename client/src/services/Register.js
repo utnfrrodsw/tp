@@ -1,49 +1,17 @@
-const { API_URL } = require('../auth/constants');
 
-async function fetchWithTimeout(url, options, timeout = 10000) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeout);
+import { fetchPost } from "../services/fetchIntercept.js";
 
+export const registerUser  = async (nombre, apellido, email, contrasena, confirmContrasena, telefono,
+  fechaNacimiento, esPrestador, especialidades, direcciones) => {
   try {
-    const response = await fetch(url, { ...options, signal: controller.signal });
-    const data = await response.json();
+    const body = JSON.stringify({ nombre, apellido,email, contrasena, confirmContrasena, telefono,
+      fechaNacimiento, esPrestador, especialidades, direcciones});
+    const headers = { 'Content-Type': 'application/json' };
+    const response = await fetchPost(`/usuario/register`, body, headers);
 
-    return { response, data, error: null };
+      return response;  
+ 
   } catch (error) {
-    return { response: null, data: null, error: error.message || 'Error al conectar con el servidor' };
-  } finally {
-    clearTimeout(timeoutId);
+    throw new Error(error.message);
   }
-}
-
-export async function registerUser({
-  nombre,
-  apellido,
-  email,
-  contrasena,
-  confirmContrasena,
-  telefono,
-  fechaNacimiento,
-  esPrestador,
-  especialidades,
-  direcciones,
-}) {
-  return fetchWithTimeout(`${API_URL}/usuario/register`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      nombre,
-      apellido,
-      email,
-      contrasena,
-      confirmContrasena,
-      telefono,
-      fechaNacimiento,
-      esPrestador,
-      especialidades,
-      direcciones,
-    }),
-  });
-}
+};
