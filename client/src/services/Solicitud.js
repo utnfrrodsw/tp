@@ -82,9 +82,9 @@ export const fetchHacerReseña = async (idSolicitud, idPrestador, resenia, token
     }
 }
 
-export const getSolicitudId= async (idSolicitud)=>{
+export const getSolicitudId= async (idSolicitud, token)=>{
     try{
-        const response=await fetchGet(`/solicitud/nuevas/prestador/${idSolicitud}/presupuestar`)
+        const response = await fetchGet(`/solicitud/nuevas/prestador/${idSolicitud}/presupuestar`, token)
         .then(response=>{
             return response;
         })

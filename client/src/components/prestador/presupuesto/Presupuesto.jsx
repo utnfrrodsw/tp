@@ -2,13 +2,15 @@ import './Presupuesto.css'
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from "../../../auth/authProvider.jsx";
-import { Modal } from 'react-bootstrap';
+import { Modal , Button, Spinner } from 'react-bootstrap';
 import {getSolicitudId} from "../../../services/Solicitud.js"
 import { setPresupuesto } from '../../../services/Presupuesto.js';
+
 function Presupuesto(props) {
-   const [anuncio, setAnuncio] = useState(null);
+  const [anuncio, setAnuncio] = useState(null);
   const [datetimeValue, setDatetimeValue] = useState('');
   const [selectedDates, setSelectedDates] = useState([]);
+  const [enviandoPresupuesto, setEnviandoPresupuesto] = useState(false);
   const [materiales, setMateriales] = useState('');
   const [costoMateriales, setCostoMateriales] = useState();
   const [tiempo, setTiempo] = useState();
@@ -22,6 +24,8 @@ function Presupuesto(props) {
 
   const [errorIdSolicitud, setErrorIdSolicitud] = useState("");
   const [errorIdPrestador, setErrorIdPrestador] = useState("");
+  const [error, setError] = useState(""); // Array of errors [
+  const [errorEnviarPresupuesto, setErrorEnviarPresupuesto] = useState("");
   const [errorMateriales, setErrorMateriales] = useState("");
   const [errorTiempo, setErrorTiempo] = useState("");
   const [errorCostoxHora, setErrorCostoxHora] = useState("");
@@ -29,12 +33,18 @@ function Presupuesto(props) {
 
 
   useEffect(() => {
-    const fetchData=async()=>{
+    const fetchData = async() => {
       try{
-        const anuncio=await getSolicitudId(id);
-        setAnuncio(anuncio);
+        const response = await getSolicitudId(id, auth.getRefreshToken());
+        console.log(response.body.solicitud);
+        if(response.statusCode === 200){
+          setError("");
+          setAnuncio(response.body.solicitud);
+        }else{
+          setError(response.body.message);
+        }
       }catch(error){
-        console.error(error);
+        setError(error);
       }
     };
     fetchData();
@@ -62,77 +72,84 @@ function Presupuesto(props) {
     setSelectedDates(newDates);
   };
 
-
   const handleFormSubmit = async (e) => {
-  e.preventDefault();
+    setEnviandoPresupuesto(true);
+    e.preventDefault();
+    try {
+      if (selectedDates.length === 0) {
+        setErrorFechasSeleccionadas('Debes seleccionar al menos una fecha y hora.');
+        setTimeout(() => {
+          setErrorFechasSeleccionadas('');
+        }, 10000);
+        return;
+      }
 
-  if (selectedDates.length === 0) {
-    setErrorFechasSeleccionadas('Debes seleccionar al menos una fecha y hora.');
-    setTimeout(() => {
-      setErrorFechasSeleccionadas('');
-    }, 10000);
-    return;
-  }
+      // Create an object with the data for the budget
+      const presupuestoData = {
+        idSolicitud: anuncio.idSolicitud,
+        idUsuario: user.id,
+        materiales: materiales,
+        costoMateriales: costoMateriales,
+        tiempo: tiempo,
+        costoxHora: costoxHora,
+        fechasSeleccionadas: selectedDates,
+      };
 
-  // Create an object with the data for the budget
-  const presupuestoData = {
-    idSolicitud: anuncio.idSolicitud,
-    idUsuario: user.id,
-    materiales: materiales,
-    costoMateriales: costoMateriales,
-    tiempo: tiempo,
-    costoxHora: costoxHora,
-    fechasSeleccionadas: selectedDates,
-  };
-  console.log(presupuestoData);
-  try {
-    const response = await setPresupuesto(presupuestoData);
-
-    if (response.error) {
-      response.error.forEach((error) => {
-        switch (error.path) {
-          case 'idSolicitud':
-            setErrorIdSolicitud(error.msg);
-            break;
-          case 'idPrestador':
-            setErrorIdPrestador(error.msg);
-            break;
-          case 'materiales':
-            setErrorMateriales(error.msg);
-            break;
-          case 'tiempo':
-            setErrorTiempo(error.msg);
-            break;
-          case 'costoxHora':
-            setErrorCostoxHora(error.msg);
-            break;
-          case 'fechasSeleccionadas':
-            setErrorFechasSeleccionadas(error.msg);
-            break;
-          default:
-            break;
+      const response = await setPresupuesto(presupuestoData);
+      if(response.statusCode === 200){
+        if (response.error) {
+          response.error.forEach((error) => {
+            switch (error.path) {
+              case 'idSolicitud':
+                setErrorIdSolicitud(error.msg);
+                break;
+              case 'idPrestador':
+                setErrorIdPrestador(error.msg);
+                break;
+              case 'materiales':
+                setErrorMateriales(error.msg);
+                break;
+              case 'tiempo':
+                setErrorTiempo(error.msg);
+                break;
+              case 'costoxHora':
+                setErrorCostoxHora(error.msg);
+                break;
+              case 'fechasSeleccionadas':
+                setErrorFechasSeleccionadas(error.msg);
+                break;
+              default:
+                break;
+            }
+          });
+          setTimeout(() => {
+            setErrorIdSolicitud('');
+            setErrorIdPrestador('');
+            setErrorMateriales('');
+            setErrorTiempo('');
+            setErrorCostoxHora('');
+            setErrorFechasSeleccionadas('');
+          }, 10000);
+        } else {
+          setSuccessMessage('Presupuesto cargado con éxito.');
+          // Schedule a redirection to the main page after a few seconds
+          setTimeout(() => {
+            history('/provider/home/add/');
+          }, 3000); // Redirect after 3 seconds
         }
-      });
-
+      }else{
+        
+      }
+    } catch (error) {
+      setErrorEnviarPresupuesto(error.message || 'Error al enviar el presupuesto');
       setTimeout(() => {
-        setErrorIdSolicitud('');
-        setErrorIdPrestador('');
-        setErrorMateriales('');
-        setErrorTiempo('');
-        setErrorCostoxHora('');
-        setErrorFechasSeleccionadas('');
+        setErrorEnviarPresupuesto('');
       }, 10000);
-    } else {
-      setSuccessMessage('Presupuesto cargado con éxito.');
-      // Schedule a redirection to the main page after a few seconds
-      setTimeout(() => {
-        history('/provider/home/add/');
-      }, 3000); // Redirect after 3 seconds
+    }finally{
+      setEnviandoPresupuesto(false);
     }
-  } catch (error) {
-    console.error('Error al enviar el presupuesto:', error);
-  }
-};
+  };
+
   return (
     <div className='scroll-container'>
       <div className="anuncio-Content">
@@ -145,12 +162,16 @@ function Presupuesto(props) {
               {errorIdPrestador && <span className="error-message">{errorIdPrestador}</span>}
               <p>Título: {anuncio.titulo}</p>
               <p>Fecha de publicacion: {new Date(anuncio.fechaHora).toLocaleString()}</p>
-              <p>Ubicacion: {anuncio.direccion.localidad.nombre}, {anuncio.direccion.localidad.provincia}</p> 
+              <p>Ubicacion: {anuncio.direccion.localidad.nombre}, {anuncio.direccion.localidad.provincia}</p>
+              {error && <span className="error-message">{error}</span>}
             </div>
             <div className='descripcion'><h3><p>Descripcion:</p></h3> {anuncio.descripcion}</div>
           </>
         ) : (
-          <p>Cargando detalles del anuncio...</p>
+          <>
+            <p>Cargando detalles del anuncio...</p>
+            {error && <span className="error-message">{error}</span>}
+          </>
         )}
       </div>
     <form className='presupuesto-Content'  onSubmit={handleFormSubmit}>
@@ -213,8 +234,20 @@ function Presupuesto(props) {
         {errorFechasSeleccionadas && <span className="error-message">{errorFechasSeleccionadas}</span>}
       </div>
       <div className='botones'>
-      <button type="button" onClick={() => history(-1)}>Atrás</button>
-      <button type="submit">Enviar presupuesto</button>
+      <Button onClick={() => history(-1)}>Atrás</Button>
+      <Button onClick={handleFormSubmit}>{enviandoPresupuesto ? 
+        <>
+          <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+          />
+          Enviando...
+        </> : 'Enviar Presupuesto'
+      }</Button>
+      {errorEnviarPresupuesto && <span className="error-message">{errorEnviarPresupuesto}</span>}
       </div>
     </form>
   </div>

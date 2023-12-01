@@ -10,8 +10,8 @@ exports.getPresuServInfo = function(presupuesto,direccion){
         const formattedDate = date.toLocaleString('es-AR', options); // Ajusta 'es-ES' según la zona horaria deseada
         fechasDisponibles.push(formattedDate);
     });
-    const dir=direccion.calle +" "+ direccion.numero +", "+ direccion.piso +" "+ 
-    direccion.dpto +". "+direccion.localidad.nombre +", "+direccion.localidad.provincia;
+    const dir=direccion.calle +" "+ direccion.numero  + (direccion.piso || "") + (direccion.dpto || "") 
+    +", "+direccion.localidad.nombre +", "+direccion.localidad.provincia;
     return {
         idSolicitud: presupuesto.idSolicitud,
         cliente: direccion.usuario.nombre+" "+direccion.usuario.apellido,

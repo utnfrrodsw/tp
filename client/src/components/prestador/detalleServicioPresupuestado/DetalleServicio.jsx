@@ -2,37 +2,50 @@ import '../presupuesto/Presupuesto.css';
 import Detalle from './Detalle.jsx';
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import { API_URL } from "../../../auth/constants.js";
-import { Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
+import {fetchDetalleServicio, fetchSolicitarTerminacion} from '../../../services/servicio.js';
+import {useAuth} from '../../../auth/authProvider.jsx';
+import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 
 function DetalleServicio() {
+
   const history = useNavigate();
-  const { idSolicitud } = useParams();
+  const {idSolicitud } = useParams();
   const [presupuesto, setPresupuesto] = useState(null);
+  const [errorCargarPresupuesto, setErrorCargarPresupuesto] = useState("");
+  const [errorSolicitarTerminacion, setErrorSolicitarTerminacion] = useState("");
   const user = JSON.parse(localStorage.getItem('user'));
   const [successMessage, setSuccessMessage] = useState();
-  useEffect(() => {
-    // Realiza la consulta a la base de datos para obtener los detalles del presupuesto usando el ID del presupuesto
-    fetch(`${API_URL}/presupuesto/solicitud/${idSolicitud}/prestador/${user.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPresupuesto(data.body.presupuesto); // Almacena los detalles del presupuesto en el estado
-      })
-      .catch((error) => {
-        console.error('Error al cargar los detalles del presupuesto:', error);
-      });
-  }, [idSolicitud, user.id]);
+  const auth = useAuth();
+
+  useEffect( () => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchDetalleServicio(idSolicitud, user.id, auth.token);
+        console.log(response);
+        if (response.statusCode === 200) {
+          setPresupuesto(response.body.presupuesto);
+        } else {
+          setErrorCargarPresupuesto("error al cargar el presupuesto");
+        }
+      } catch (error) {
+        setErrorCargarPresupuesto(error.message);
+      }
+    };
+    fetchData();
+  }, []);
 
   const updateServicio = async () => {
     try {
-      
-      fetch(`${API_URL}/servicio/aterminar/${idSolicitud}/prestador/${user.id}`, {
-        method: 'PATCH',
-      });
-      setSuccessMessage('El servicio se actualizó exitosamente.');
-      setTimeout(() => {
+      const response = await fetchSolicitarTerminacion(idSolicitud, user.id, auth.token);
+      if(response.statusCode === 200){
+        setSuccessMessage('El servicio se actualizó exitosamente.');
+        setTimeout(() => {
           history('/provider/home/add/');
         }, 3000);
+      }else{
+        setErrorSolicitarTerminacion(response.body.message)
+      }
     } catch (error) {
       console.error('Error al actualizar el servicio:', error);
       setSuccessMessage('Error al actualizar el servicio.')
@@ -77,17 +90,21 @@ function DetalleServicio() {
             </div>
           </div>
           <div>
-            <button type='button' onClick={() => history(-1)}>ir Atras</button>
+            <Button type='button' onClick={() => {history(-1);}}>ir Atras</Button>
             {presupuesto.estado === "progreso" && (
-              <button type="button" onClick={updateServicio}>
+              <>
+              <Button type="button" onClick={updateServicio}>
               Solicitar finalización
-              </button>
+              </Button>
+              {errorSolicitarTerminacion && <p style={{ color: 'red' }}>{errorSolicitarTerminacion}</p>}
+              </>
             )}
           </div>
         </>
       ) : (
-        <p>Loading...</p>
+        <LoaderFijo/>
       )}
+      {errorCargarPresupuesto && <p style={{ color: 'red' }}>{errorCargarPresupuesto}</p>}
     </div>
   );
 }

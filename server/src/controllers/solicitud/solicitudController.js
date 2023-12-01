@@ -23,13 +23,16 @@ const solicitudController = {
             })
             .then(function(solicitud){
                 if(!solicitud) {
-                    res.status(404).json({ message: 'Solicitud no encontrada' });
+                    res.status(404).json(jsonResponse(404, { message: 'Solicitud no encontrada' }));
                 }
-                res.json(solicitud);
+                res.status(200).json(jsonResponse(200, {
+                    message: 'Solicitud encontrada',
+                    solicitud: solicitud
+                }));
             })
         }catch(error){
             console.error('Error al obtener solicitud', error);
-            res.status(500).json({ message: 'Error en el servidor' });
+            res.status(500).json(jsonResponse(500, { message: 'Error en el servidor' }));
         }
     },
 
