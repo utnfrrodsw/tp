@@ -3,29 +3,41 @@ import Detalle from './Detalle.jsx';
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPresupuestoPrestador } from '../../../services/Presupuesto';
+import LoaderFijo from "../../load/loaderFijo/LoaderFijo.jsx";
+import { Button } from 'react-bootstrap';
+
+
+
 function DetallePresupuesto(){
 
   const history = useNavigate();
   const { idSolicitud } = useParams();
+  const [loading, setLoading] = useState(false);
   const [presupuesto, setPresupuesto] = useState(null);
-  const user=JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [errorCargarPresupuesto, setErrorCargarPresupuesto] = useState("");
+
   useEffect(() => {
-    const fetchData= async()=>{
+    const fetchData = async () => {
       try{
-        const presupuesto=await getPresupuestoPrestador(idSolicitud,user.id)
-        setPresupuesto(presupuesto);
+        const response = await getPresupuestoPrestador(idSolicitud,user.id)
+        if(response.statusCode === 200){
+          setPresupuesto(response.body.presupuesto);
+        }else{
+          setErrorCargarPresupuesto(response.body.message);
+        }
       }catch(error){
-        console.error(error);
+        setErrorCargarPresupuesto(error.message);
       }
     };
     fetchData();
-  }, [idSolicitud,user.id]);
-console.log(presupuesto);
+  }, [idSolicitud, user.id]);
+
 return(
-<div className='scroll-container'>
-  {presupuesto ? (
+  <div className='scroll-container'>
+    { presupuesto ? (
     <>
-    <Detalle
+      <Detalle
       idSolicitud={presupuesto.idSolicitud}
       cliente={presupuesto.cliente}
       titulo={presupuesto.titulo}
@@ -39,13 +51,16 @@ return(
       fechasSeleccionadas={presupuesto.fechasDisponibles}
         />
       <div>
-        <button type='button' onClick={()=> history(-1)}>ir Atras</button>
+        <Button type='button' onClick={()=> history(-1)}>ir Atras</Button>
       </div>
-  </>
-  ) : (
-        <p>Loading...</p> // You can show a loading message or component while waiting for the data
-      )}
-    </div>
+    </>
+    ) : (
+      <div>
+        <LoaderFijo/>
+      </div>
+    )}
+  {errorCargarPresupuesto && <p style={{ color: 'red' }}>{errorCargarPresupuesto}</p>}
+  </div>
 );
 }
 export default DetallePresupuesto;

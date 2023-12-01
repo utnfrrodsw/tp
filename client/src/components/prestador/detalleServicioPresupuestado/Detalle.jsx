@@ -1,8 +1,7 @@
 import '../presupuesto/Presupuesto.css'
 
 function Detalle(props) {
-  console.log(props.fechasSeleccionadas);
-if (!props) {
+  if (!props) {
     return <p>Loading...</p>;
   }  
   return (
@@ -11,7 +10,7 @@ if (!props) {
           <>
             <div className='datos'>
               <p><h2>Detalles del Anuncio:</h2></p>
-                            <p>Número de Anuncio: {props.idSolicitud}</p>
+              <p>Número de Anuncio: {props.idSolicitud}</p>
               <p>Usuario: {props.cliente}</p>
               <p>Fecha de publicación: {new Date(props.fechaHora).toLocaleString()}</p>
               <p>Ubicación: {props.direccion}</p> 
@@ -24,8 +23,7 @@ if (!props) {
       </div>
 
       <div className="presupuesto-Content">
-          <div className='campos'>              
-              
+          <div className='campos'>
             <div className='listaMat'>
               <p><h2>Detalles del Presupuesto:</h2></p>
               <p>Materiales:</p>
@@ -36,7 +34,7 @@ if (!props) {
               <p>Tiempo: {props.tiempo} horas</p>
               <p>Costo por Hora: {props.costoxHora}</p>
             </div>
-          </div> 
+          </div>
           <div className='horarios'>
               <p></p>
               <h3>Fechas Seleccionadas:</h3>
