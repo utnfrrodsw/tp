@@ -7,7 +7,7 @@ import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.j
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 import Review from '../../reseña/Review';
 import { getPresupuestosSolicitud } from '../../../services/Presupuesto.js';
-import { deleteSolicitud } from '../../../services/Solicitud.js';
+import { deleteSolicitud, fetchGetReseña } from '../../../services/Solicitud.js';
 
 
 function Solicitud(props){
@@ -17,7 +17,7 @@ function Solicitud(props){
   const [verfotos, setVerfotos] = useState(false);
   const [verPresupuestos, setVerPresupuestos] = useState(false);
   const [presupuestosSolicitud, setPresupuestosSolicitud] = useState([]);
-  const [reseniaError, setReseniaError] = useState(false);
+  const [reseniaError, setReseniaError] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadAceptarRechazar, setLoadAceptarRechazar] = useState(false);
   const [loadCancelar, setLoadCancelar] = useState(false); // eslint-disable-line no-unused-vars
@@ -67,27 +67,22 @@ function Solicitud(props){
 
   const handleHacerReseña = async () => {
     try{
-      setReseniaError(false);
-      await fetch(`${API_URL}/servicio/isreviewed/${props.id}/${props.idPrestador}`)
-      .then((res) => res.json())
-      .then((data) => {
-        
-        if(data.body.isReviewed === false){
-          setHacerReseña(true);
-        }else{
-          setHacerReseña(false);
-          alert('Ya has realizado una reseña para este servicio');
-        }
-      }).catch((error) => {
-        console.error('Error al cargar reseña:', error);
-        setReseniaError(true);
+      setReseniaError("");
+      const response = await fetchGetReseña(props.id, props.idPrestador, auth.getAccessToken());
+      if(response.statusCode === 200){
+        setHacerReseña(true);
+      }else{
+        setHacerReseña(false);
+        setReseniaError("Error al hacer reseña");
         setTimeout(() => {
-          setReseniaError(false);
+          setReseniaError("");
         }, 10000);
-      });
-      
-    }catch(err){
-      
+      }
+    }catch(error){
+      setReseniaError(error);
+      setTimeout(() => {
+        setReseniaError("");
+      }, 10000);
     }
   };
 
@@ -221,15 +216,15 @@ function Solicitud(props){
                 <>
                 {props.cartelResenia === "No Calificado" &&
                   <Button className='ver-presupuestos-button' onClick={handleHacerReseña}>Hacer Reseña</Button>}
-                  {reseniaError && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>Error al cargar reseña</p>}
+                  {reseniaError !== "" && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>{reseniaError}</p>}
                   <Modal show={hacerReseña} onHide={() => setHacerReseña(false)} style={{padding: '0px'}}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>Reseña del Servicio</Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body>
-                        <Review idSolicitud={props.id} idPrestador={props.idPrestador} hendleCalificarUpdate={hendleCalificarUpdate}/>
-                      </Modal.Body>
-                    </Modal>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Reseña del Servicio</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <Review idSolicitud={props.id} idPrestador={props.idPrestador} hendleCalificarUpdate={hendleCalificarUpdate}/>
+                    </Modal.Body>
+                  </Modal>
                 </>
                 ): <></>}
               </section>

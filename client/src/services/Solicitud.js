@@ -1,4 +1,4 @@
-import { fetchGet, fetchPost, fetchDelete } from "../services/fetchIntercept.js";
+import { fetchGet, fetchPost, fetchDelete, fetchPatch } from "../services/fetchIntercept.js";
 
 export const setSolicitud = async (id, data, token ) => {
     try{
@@ -42,4 +42,30 @@ export const deleteSolicitud = async (id, token ) => {
     }
 };
 
+export const fetchGetReseña = async (idSolicitud, idPrestador, token ) => {
+    try{
+        const response = await fetchGet(`/servicio/isreviewed/${idSolicitud}/${idPrestador}`, token)
+        .then(response => {
+            return response;
+        })
+        return response;
+    }catch(error){
+        throw new Error(error.message);
+    }
+}
 
+export const fetchHacerReseña = async (idSolicitud, idPrestador, resenia, token ) => {   
+    try{
+        const body =  JSON.stringify({
+            resenia: resenia
+        });
+        const response = await fetchPatch(`/servicio/setreview/${idSolicitud}/${idPrestador}`, body, token)
+        .then(response => {
+            return response;
+        })
+        console.log(response)
+        return response;
+    }catch(error){
+        throw new Error(error.message);
+    }
+}

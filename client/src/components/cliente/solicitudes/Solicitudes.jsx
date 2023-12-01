@@ -18,7 +18,6 @@ function Solicitudes(props) {
     
     // eslint-disable-next-line
     useEffect(() => {
-        console.log("useEffect");
         const fetchData = async () => {
             setLoad(true);
             try {

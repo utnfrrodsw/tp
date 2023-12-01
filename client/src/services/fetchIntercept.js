@@ -52,6 +52,7 @@ export const fetchPatch = async (url, data, token) => {
         const response = await fetch(API_URL + url, {
             method: 'PATCH',
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
             },
             body: data
