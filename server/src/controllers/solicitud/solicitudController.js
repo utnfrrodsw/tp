@@ -15,7 +15,11 @@ const solicitudController = {
         let idSolicitud = req.params.id;
         try{
             db.Solicitud.findByPk(idSolicitud,{
-                include: [{association: 'direccion'}]
+                include: [{association: 'direccion',
+                            include:[{
+                                association: 'localidad'
+                            }]
+                }]
             })
             .then(function(solicitud){
                 if(!solicitud) {

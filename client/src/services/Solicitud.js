@@ -28,6 +28,7 @@ export const getSolicitudes = async (estado, idUsuario, token ) => {
     }
 };
 
+
 export const deleteSolicitud = async (id, token ) => {
     try{
         const response = await fetchDelete(`/solicitud/cancelar/${id}`, token)
@@ -53,6 +54,18 @@ export const fetchGetReseña = async (idSolicitud, idPrestador, token ) => {
     }
 }
 
+ export const getSolicitudesPrestador = async (estado, idUsuario,filtrado)=>{
+  try{
+      const response= await fetchGet(`/solicitud/${filtrado}/prestador/${idUsuario}/${estado}`)
+      .then(response=>{
+          return response;
+      })
+      return response.body.solicitudes;
+    }catch(error){
+        throw new Error(error.message);
+    }
+}
+ 
 export const fetchHacerReseña = async (idSolicitud, idPrestador, resenia, token ) => {   
     try{
         const body =  JSON.stringify({
@@ -63,6 +76,18 @@ export const fetchHacerReseña = async (idSolicitud, idPrestador, resenia, token
             return response;
         })
         console.log(response)
+        return response;
+    }catch(error){
+        throw new Error(error.message);
+    }
+}
+
+export const getSolicitudId= async (idSolicitud)=>{
+    try{
+        const response=await fetchGet(`/solicitud/nuevas/prestador/${idSolicitud}/presupuestar`)
+        .then(response=>{
+            return response;
+        })
         return response;
     }catch(error){
         throw new Error(error.message);

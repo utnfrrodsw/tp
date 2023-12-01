@@ -1,9 +1,10 @@
 import './Presupuesto.css'
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import { API_URL } from "../../../auth/constants.js";
 import { useAuth } from "../../../auth/authProvider.jsx";
 import { Modal } from 'react-bootstrap';
+import {getSolicitudId} from "../../../services/Solicitud.js"
+import { setPresupuesto } from '../../../services/Presupuesto.js';
 function Presupuesto(props) {
    const [anuncio, setAnuncio] = useState(null);
   const [datetimeValue, setDatetimeValue] = useState('');
@@ -28,15 +29,15 @@ function Presupuesto(props) {
 
 
   useEffect(() => {
-    // Realiza la consulta a la base de datos para obtener los detalles del anuncio usando el ID
-    fetch(`${API_URL}/solicitud/nuevas/prestador/${id}/presupuestar`)
-      .then((res) => res.json())
-      .then((data) => {
-        setAnuncio(data); // Almacena los detalles del anuncio en el estado
-      })
-      .catch((error) => {
-        console.error('Error al cargar los detalles del anuncio:', error);
-      });
+    const fetchData=async()=>{
+      try{
+        const anuncio=await getSolicitudId(id);
+        setAnuncio(anuncio);
+      }catch(error){
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [id]);
   
   const handleDatetimeChange = (event) => {
@@ -62,67 +63,76 @@ function Presupuesto(props) {
   };
 
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (selectedDates.length === 0) {
+  const handleFormSubmit = async (e) => {
+  e.preventDefault();
+
+  if (selectedDates.length === 0) {
     setErrorFechasSeleccionadas('Debes seleccionar al menos una fecha y hora.');
     setTimeout(() => {
-      setErrorFechasSeleccionadas("");
+      setErrorFechasSeleccionadas('');
     }, 10000);
     return;
-    }
-    // Crea un objeto con los datos del presupuesto
-    const presupuestoData = {
-      idSolicitud: anuncio.idSolicitud,
-      idUsuario: user.id,
-      materiales: materiales,
-      costoMateriales: costoMateriales,
-      tiempo: tiempo,
-      costoxHora: costoxHora,
-      fechasSeleccionadas: selectedDates,
-    };
+  }
 
-    // Realiza una solicitud POST para enviar el presupuesto a la base de datos
-    fetch(`${API_URL}/presupuesto/nuevoPresupuesto`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(presupuestoData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if(data.error){
-          
-          data.error.map((error) => {
-            if(error.path === 'idSolicitud') setErrorIdSolicitud(error.msg);
-            if(error.path === 'idPrestador') setErrorIdPrestador(error.msg);
-            if(error.path === 'materiales') setErrorMateriales(error.msg);
-            if(error.path === 'tiempo') setErrorTiempo(error.msg);
-            if(error.path === 'costoxHora') setErrorCostoxHora(error.msg);
-            if(error.path === 'fechasSeleccionadas') setErrorFechasSeleccionadas(error.msg);
-            return null;
-          });
-          setTimeout(() => {
-            setErrorIdSolicitud("");
-            setErrorIdPrestador("");
-            setErrorMateriales("");
-            setErrorTiempo("");
-            setErrorCostoxHora("");
-            setErrorFechasSeleccionadas("");
-          }, 10000);
-        }else{
-          setSuccessMessage('Presupuesto cargado con éxito.');
-          // Programa una redirección a la página principal después de unos segundos
-          setTimeout(() => {
-            history('/provider/home/add/');
-          }, 3000); // Redirigir después de 3 segundos
-        }
-      })
-      .catch((error) => {
-        console.error('Error al enviar el presupuesto:', error);
-      });
+  // Create an object with the data for the budget
+  const presupuestoData = {
+    idSolicitud: anuncio.idSolicitud,
+    idUsuario: user.id,
+    materiales: materiales,
+    costoMateriales: costoMateriales,
+    tiempo: tiempo,
+    costoxHora: costoxHora,
+    fechasSeleccionadas: selectedDates,
   };
+  console.log(presupuestoData);
+  try {
+    const response = await setPresupuesto(presupuestoData);
+
+    if (response.error) {
+      response.error.forEach((error) => {
+        switch (error.path) {
+          case 'idSolicitud':
+            setErrorIdSolicitud(error.msg);
+            break;
+          case 'idPrestador':
+            setErrorIdPrestador(error.msg);
+            break;
+          case 'materiales':
+            setErrorMateriales(error.msg);
+            break;
+          case 'tiempo':
+            setErrorTiempo(error.msg);
+            break;
+          case 'costoxHora':
+            setErrorCostoxHora(error.msg);
+            break;
+          case 'fechasSeleccionadas':
+            setErrorFechasSeleccionadas(error.msg);
+            break;
+          default:
+            break;
+        }
+      });
+
+      setTimeout(() => {
+        setErrorIdSolicitud('');
+        setErrorIdPrestador('');
+        setErrorMateriales('');
+        setErrorTiempo('');
+        setErrorCostoxHora('');
+        setErrorFechasSeleccionadas('');
+      }, 10000);
+    } else {
+      setSuccessMessage('Presupuesto cargado con éxito.');
+      // Schedule a redirection to the main page after a few seconds
+      setTimeout(() => {
+        history('/provider/home/add/');
+      }, 3000); // Redirect after 3 seconds
+    }
+  } catch (error) {
+    console.error('Error al enviar el presupuesto:', error);
+  }
+};
   return (
     <div className='scroll-container'>
       <div className="anuncio-Content">
@@ -135,7 +145,7 @@ function Presupuesto(props) {
               {errorIdPrestador && <span className="error-message">{errorIdPrestador}</span>}
               <p>Título: {anuncio.titulo}</p>
               <p>Fecha de publicacion: {new Date(anuncio.fechaHora).toLocaleString()}</p>
-              <p>Ubicacion: {anuncio.direccion.codPostal} (Ver de modificar por ciudad y prov)</p> 
+              <p>Ubicacion: {anuncio.direccion.localidad.nombre}, {anuncio.direccion.localidad.provincia}</p> 
             </div>
             <div className='descripcion'><h3><p>Descripcion:</p></h3> {anuncio.descripcion}</div>
           </>
@@ -193,10 +203,10 @@ function Presupuesto(props) {
           <h2>Fechas y Horas Seleccionadas:</h2>
           <ul>
           {selectedDates.map((date , index) => (
-            <li key={index}>
+            <p><li key={index}>
               {new Date(date).toLocaleString()}
               <button type='button' onClick={() => handleRemoveDate(index)}>-</button>
-            </li>
+            </li></p>
           ))}
         </ul>
         </div>
