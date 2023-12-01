@@ -251,24 +251,40 @@ export const getUserRole = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
-  try {
-    const userId = req.userID; 
+    try {
+        const userId = req.userID;
 
-    // Verificar si el usuario existe
-    const user = await userModel.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: 'El usuario no existe' });
+        // Verificar si el usuario existe
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'El usuario no existe' });
+        }
+
+        // Eliminar el usuario
+        await userModel.findByIdAndRemove(userId);
+
+        res.status(200).json({ message: 'Usuario eliminado con éxito' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al eliminar el usuario' });
     }
-
-    // Eliminar el usuario
-    await userModel.findByIdAndRemove(userId);
-
-    res.status(200).json({ message: 'Usuario eliminado con éxito' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al eliminar el usuario' });
-  }
 };
+
+export const validar = async (req, res) => {
+    try {
+        const userId = req.userID;
+        const user = await userModel.findById(userId);
+        let estado;
+        if (!user) {
+            estado = 'invalido';
+        } else {
+            estado = 'valido';
+        }
+        return res.status(201).json({ estado: estado });
+    } catch (error) {
+        res.status(500).json({ message: 'Error al validar existencia de usuario' });
+    }
+}
 
 /* export default {
     createUser,
