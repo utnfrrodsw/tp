@@ -1,4 +1,4 @@
-import { fetchGet, fetchPost } from "../services/fetchIntercept.js";
+import { fetchGet, fetchPost, fetchDelete } from "../services/fetchIntercept.js";
 
 export const setSolicitud = async (id, data, token ) => {
     try{
@@ -29,5 +29,17 @@ export const getSolicitudes = async (estado, idUsuario, token ) => {
     }
 };
 
+export const deleteSolicitud = async (id, token ) => {
+    try{
+        const response = await fetchDelete(`/solicitud/cancelar/${id}`, token)
+        .then(response => {
+            return response;
+        })
+        console.log(response)
+        return response;
+    }catch(error){
+        throw new Error(error.message);
+    }
+};
 
 

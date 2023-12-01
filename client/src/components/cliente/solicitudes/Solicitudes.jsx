@@ -12,20 +12,23 @@ function Solicitudes(props) {
     const [solicitudes, setSolicitudes] = useState([]);
     const [solicitudesUpdate, setSolicitudesUpdate] = useState(false);
     const [load, setLoad] = useState(false);
+    const [error, setError] = useState("");
     const user = JSON.parse(localStorage.getItem('user'));
     const auth = useAuth();
     
     // eslint-disable-next-line
     useEffect(() => {
+        console.log("useEffect");
         const fetchData = async () => {
             setLoad(true);
             try {
                 const solicitudes = await getSolicitudes(props.estado, user.id, auth.getRefreshToken());
                 setSolicitudes(solicitudes);
             } catch (error) {
-                console.error(error);
+                setError(error);
             } finally {
                 setLoad(false);
+                setSolicitudesUpdate(false);
             }
         };
     
@@ -55,6 +58,7 @@ function Solicitudes(props) {
     };
 
     const hendleSolicitudesUpdate = () => {
+        console.log(solicitudesUpdate);
         setSolicitudesUpdate(true);
     };
 
@@ -110,6 +114,7 @@ function Solicitudes(props) {
                     </div>
                 )}
             </div>
+            {error !== "" && <div>{error}</div>}
             <div className="pagination">
                 <button onClick={irAtras} disabled={paginaActual === 1}>Atrás</button>
                 <span>{paginaActual} / {totalPaginas}</span>

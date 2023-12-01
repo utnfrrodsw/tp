@@ -66,12 +66,15 @@ export const fetchPatch = async (url, data, token) => {
 
 export const fetchDelete = async (url, token) => {
     try{
-        await fetch(API_URL + url, {
+        const response = await fetch(API_URL + url, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${token}`
         }
-        });
+        })
+        .then(res => res.json())
+        .then(data => {return data});
+        return response;
     }catch(error){
         throw new Error(error.message);
     }

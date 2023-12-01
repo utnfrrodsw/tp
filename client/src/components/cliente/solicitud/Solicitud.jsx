@@ -7,9 +7,10 @@ import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.j
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 import Review from '../../reseña/Review';
 import { getPresupuestosSolicitud } from '../../../services/Presupuesto.js';
+import { deleteSolicitud } from '../../../services/Solicitud.js';
+
 
 function Solicitud(props){
-
   const [show, setShow] = useState(true);
   const [error, setError] = useState(false);
   const [errorGetPresupuestos, setErrorGetPresupuestos] = useState(""); // eslint-disable-line no-unused-vars
@@ -19,6 +20,7 @@ function Solicitud(props){
   const [reseniaError, setReseniaError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadAceptarRechazar, setLoadAceptarRechazar] = useState(false);
+  const [loadCancelar, setLoadCancelar] = useState(false); // eslint-disable-line no-unused-vars
   const [hacerReseña, setHacerReseña] = useState(false);
   const auth = useAuth();
 
@@ -42,24 +44,19 @@ function Solicitud(props){
   }, [verPresupuestos, props.id, auth.getAccessToken]);
 
   const hendleCancelar = async () => {
+    setLoadCancelar(true);
     try{
-      
-      const response = await fetch(`${API_URL}/solicitud/cancelar/`+props.id, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth.getRefreshToken()}`,
-        },
-      });
-      if(response.ok){
+      const response = await deleteSolicitud(props.id, auth.getRefreshToken());
+      if(response.statusCode === 200){
         setError(false);
+        props.hendleSolicitudesUpdate();
       }else{
-        
         setError(true);
       }
     }catch(err){
-      
       setError(true);
+    }finally{
+      setLoadCancelar(false);
     }
   }
 
@@ -245,7 +242,7 @@ function Solicitud(props){
           ): (
           <div>
             {props.estado === "activa" ?
-            <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>Cancelar Solicitud</button>
+            <button className='cancelar' onClick={async() => {await hendleCancelar(); props.hendleSolicitudesUpdate();}}>{loadCancelar ? <>Cancelando...</> : <>Cancelar Solicitud</>}</button>
             : <></>}
             <button className='boton-solicitud' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
             {error && <p className='error' style={{color: "red", backgroundColor: "white", width: "20%", alignSelf: "self-end"}}>Error al cancelar solicitud</p>}
