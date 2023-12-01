@@ -22,8 +22,7 @@ export const getSolicitudes = async (estado, idUsuario, token ) => {
         .then(response => {
             return response;
         })
-        console.log(response.body.solicitudes)
-        return response.body.solicitudes;
+        return response;
     }catch(error){
         throw new Error(error.message);
     }
@@ -64,6 +63,21 @@ export const fetchHacerReseña = async (idSolicitud, idPrestador, resenia, token
             return response;
         })
         console.log(response)
+        return response;
+    }catch(error){
+        throw new Error(error.message);
+    }
+}
+
+export const fetchConfirmarRechazar = async (idSolicitud, estado, token ) => {
+    try{
+        const body =  JSON.stringify({
+            estado: estado
+        });
+        const response = await fetchPatch(`/solicitud/updateEstado/${idSolicitud}`, body ,token)
+        .then(response => {
+            return response;
+        })
         return response;
     }catch(error){
         throw new Error(error.message);

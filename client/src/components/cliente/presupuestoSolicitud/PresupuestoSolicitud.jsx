@@ -16,13 +16,17 @@ function PresupuestoSolicitud(props){
     const handlePagar = async () => {
         setPagarLoading(true);
         try{
-            await fetchPagarPresupuesto(props.idSolicitud, props.idPrestador, fecha, auth.getRefreshToken());
+            const response = await fetchPagarPresupuesto(props.idSolicitud, props.idPrestador, fecha, auth.getRefreshToken());
+            if(response.statusCode === 200){
+                setPagoExitoso(true);
+            }else{
+                setPagoExitoso(false);
+            }
         }catch(error){
             setPagoExitoso(false);
         }finally{
             setTimeout(() => {
                 setPagarLoading(false);
-                setPagoExitoso(true);
                 props.hendlePresupuestoPagado();
             }, 3000);
         }
@@ -37,7 +41,7 @@ function PresupuestoSolicitud(props){
                 <div>
                     <Card.Text className='card-text'>
                         <p>Prestador: {props.nombrePrestador}</p>
-                        <p><Rating name="read-only" value={props.rating} readOnly precision={0.25}/></p>
+                        <Rating name="read-only" value={props.rating} readOnly precision={0.25}/>
                         <p>Materiales: {props.materiales}</p>
                         <p>Costo Materiales: {props.costoMateriales}</p>
                         <p>Costo por Hora: {props.costoXHora}</p>

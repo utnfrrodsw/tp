@@ -21,8 +21,12 @@ function Solicitudes(props) {
         const fetchData = async () => {
             setLoad(true);
             try {
-                const solicitudes = await getSolicitudes(props.estado, user.id, auth.getRefreshToken());
-                setSolicitudes(solicitudes);
+                const response = await getSolicitudes(props.estado, user.id, auth.getRefreshToken());
+                if(response.statusCode === 200){
+                    setSolicitudes(response.body.solicitudes);
+                }else{
+                    setError(response.body.message);
+                }
             } catch (error) {
                 setError(error);
             } finally {

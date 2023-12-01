@@ -17,11 +17,11 @@ export const fetchPagarPresupuesto = async (idSolicitud, idPrestador, fecha, tok
 
 export const getPresupuestosSolicitud = async (id, token ) => {
     try{
-        const presupuestos = await fetchGet(`/presupuesto/solicitud/${id}`, token)
+        const response = await fetchGet(`/presupuesto/solicitud/${id}`, token)
         .then(response => {
             return response;
         })
-        return presupuestos;
+        return response;
     }catch(error){
         throw new Error(error.message);
     }

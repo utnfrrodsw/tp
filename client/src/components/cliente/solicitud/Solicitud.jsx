@@ -1,19 +1,20 @@
 import React, { useEffect, useState} from 'react';
 import './solicitud.css';
-import { API_URL, REACT_APP_PHOTO } from '../../../auth/constants';
+import { REACT_APP_PHOTO } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider';
 import { Modal, Carousel, Container, Image, Button} from 'react-bootstrap';
 import PresupuestoSolicitud from '../presupuestoSolicitud/PresupuestoSolicitud.jsx';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 import Review from '../../reseña/Review';
 import { getPresupuestosSolicitud } from '../../../services/Presupuesto.js';
-import { deleteSolicitud, fetchGetReseña } from '../../../services/Solicitud.js';
+import { deleteSolicitud, fetchGetReseña, fetchConfirmarRechazar} from '../../../services/Solicitud.js';
 
 
 function Solicitud(props){
   const [show, setShow] = useState(true);
   const [error, setError] = useState(false);
   const [errorGetPresupuestos, setErrorGetPresupuestos] = useState(""); // eslint-disable-line no-unused-vars
+  const [errorConfirmarRechazar, setErrorConfirmarRechazar] = useState(""); // eslint-disable-line no-unused-vars
   const [verfotos, setVerfotos] = useState(false);
   const [verPresupuestos, setVerPresupuestos] = useState(false);
   const [presupuestosSolicitud, setPresupuestosSolicitud] = useState([]);
@@ -29,8 +30,12 @@ function Solicitud(props){
     const fetchData = async () => {
       setLoading(true);
       try {
-        const presupuestos = await getPresupuestosSolicitud(props.id, auth.getAccessToken());
-        setPresupuestosSolicitud(presupuestos);
+        const response = await getPresupuestosSolicitud(props.id, auth.getAccessToken());
+        if(response.statusCode == 200){
+          setPresupuestosSolicitud(response.body.presupuestos);
+        }else{
+          setErrorGetPresupuestos("Error al obtener presupuestos");
+        }
       } catch (error) {
         setErrorGetPresupuestos(error);
       } finally {
@@ -94,26 +99,20 @@ function Solicitud(props){
   const handleConfirmarRechazar = async (estado) => {
     try{
       setLoadAceptarRechazar(true);
-      const response = await fetch(`${API_URL}/solicitud/updateEstado/${props.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth.getRefreshToken()}`,
-        },
-        body: JSON.stringify({
-          estado: estado,
-        }),
-      })
-      if(response.ok){
-        setLoadAceptarRechazar(false);
+      const response = await fetchConfirmarRechazar(props.id, estado, auth.getRefreshToken());
+      if(response.statusCode === 200){
+        setErrorConfirmarRechazar("");
         props.hendleSolicitudesUpdate();
       }else{
-        setLoadAceptarRechazar(false);
-        
+        setErrorConfirmarRechazar("Error al confirmar/rechazar");
       }
-    }catch(err){
-      setLoadAceptarRechazar(true);
-      
+    }catch(error){
+      setErrorConfirmarRechazar(error);
+    }finally{
+      setLoadAceptarRechazar(false);
+      setTimeout(() => {
+        setErrorConfirmarRechazar("");
+      }, 10000);
     }
   }
   
@@ -209,6 +208,7 @@ function Solicitud(props){
                       <Button className='button-confirmar' onClick={() => handleConfirmarRechazar("terminado")}>Confirmar</Button>
                       <Button className='button-rechazar' onClick={() => handleConfirmarRechazar("progreso")}>Rechazar</Button>
                     </>}
+                    {errorConfirmarRechazar !== "" && <p className='error' style={{color: "red", width: "100%", alignSelf: "center"}}>{errorConfirmarRechazar}</p>}
                   </section>
                 ): <></>}
 

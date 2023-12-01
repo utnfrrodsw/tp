@@ -16,7 +16,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [direccion, setDireccion] = useState('');
   const [direcciones, setDirecciones] = useState([]);
   const [fotos, setFotos] = useState([]);
-  const [errorProfesiones, setErrorProfesiones] = useState(false);
+  const [errorProfesiones, setErrorProfesiones] = useState("");
   const [errorTitulo, setErrorTitulo] = useState("");
   const [errorDescripcion, setErrorDescripcion] = useState("");
   const [errorProfesion, setErrorProfesion] = useState("");
@@ -31,10 +31,15 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const addresses = await getClientAdresses(user.id, auth.token);
-        setDirecciones(addresses);
-        const professions = await getExistingProfessions(auth.token);
-        setProfesiones(professions);
+        const responseAddresses = await getClientAdresses(user.id, auth.token);
+        const responseProfessions = await getExistingProfessions(auth.token);
+        if(responseAddresses.statusCode === 200 && responseProfessions.statusCode === 200){
+          setDirecciones(responseAddresses.body.direcciones);
+          setProfesiones(responseProfessions.body.profesiones);
+        }else{
+          setErrorProfDir(responseAddresses.body.message);
+          setErrorProfesiones(responseProfessions.body.message);
+        }
       } catch (error) {
         setErrorProfDir(error);
       }
@@ -94,7 +99,6 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
     
     try{
       const response = await setSolicitud(user.id, formdata, auth.token)
-      console.log(response);
       if(response.error){
         response.error.map((error) => {
           if(error.path === 'titulo') setErrorTitulo(error.msg);
@@ -173,7 +177,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
               {/* Agrega más opciones según tus necesidades */}
             </select>
             {errorProfesion && <span className="error-message">{errorProfesion}</span>}
-            {errorProfesiones && <span className="error-message">Error al traer profesiones</span>}
+            {errorProfesiones && <span className="error-message">{errorProfesiones}</span>}
           </div>
           <div className="form-group">
             <label>Direccion</label>

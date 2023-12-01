@@ -2,11 +2,11 @@ import { fetchGet } from "./fetchIntercept";
 
 export const getClientAdresses = async (id, token) => {
     try {
-        const adresses = await fetchGet(`/direccion/cliente/${id}`, token)
+        const response = await fetchGet(`/direccion/cliente/${id}`, token)
         .then(response => {
-            return response.body.direcciones
+            return response
         })
-        return adresses;
+        return response;
     } catch (error) {
         throw new Error(error.message);
     }
