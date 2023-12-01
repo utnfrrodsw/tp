@@ -1,0 +1,7 @@
+
+# node modules
+/tp-backend/nospeak-api-node/node_modules/
+
+
+# env
+/tp-backend/nospeak-api-node/.env
