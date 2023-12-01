@@ -13,12 +13,12 @@ export class EditorialRepository {
     }
     async findOne(item) {
         try {
-            const result = await editoriales.findOne(item);
-            return result ? result : undefined;
+            const _id = new ObjectId(item.id);
+            return (await editoriales.findOne({ _id })) || undefined;
         }
         catch (error) {
             console.error("Error en findOne:", error);
-            throw error;
+            return undefined;
         }
     }
     async add(item) {

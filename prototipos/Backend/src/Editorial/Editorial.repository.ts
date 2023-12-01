@@ -16,13 +16,13 @@ export class EditorialRepository implements Repository<Editorial>{
         }
     }
 
-    public async findOne(item: { [key: string]: any }): Promise<Editorial | undefined> {
+    public async findOne(item: { id: string }): Promise<Editorial | undefined> {
         try {
-            const result = await editoriales.findOne(item);
-            return result ? result : undefined;
+            const _id = new ObjectId(item.id);
+            return (await editoriales.findOne({ _id })) || undefined;
         } catch (error) {
             console.error("Error en findOne:", error);
-            throw error;
+            return undefined;
         }
     }
 

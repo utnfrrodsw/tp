@@ -49,3 +49,13 @@ Content-Type: application/json
     "direccion": "Berlín, Alemania",
     "imagen": "../../../../assets/img/Editoriales/Springer.jpg"
 }
+
+###
+GET http://localhost:3000/api/editoriales/
+
+###
+GET http://localhost:3000/api/editoriales/descripcion/654bee46df333bf9237a1407
+
+###
+
+GET http://localhost:3000/api/editoriales/descripciones/Pearson
