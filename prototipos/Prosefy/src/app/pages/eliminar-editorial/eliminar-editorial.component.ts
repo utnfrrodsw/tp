@@ -32,13 +32,13 @@ export class EliminarEditorialComponent {
   }
 
   eliminarEditorial(id: string) {
-    this.editorialesService.eliminarEditorial(id).subscribe(
-      () => {
+    this.editorialesService.eliminarEditorial(id).subscribe({
+      next: () => {
         console.log('Editorial eliminada con éxito.');
       },
-      (error: any) => {
+      error: (error: any) => {
         console.error('Error al eliminar la editorial:', error);
       }
-    )
+    });
   }
 }

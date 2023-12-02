@@ -15,14 +15,14 @@ export class PerfilUsuarioComponent {
   ) { }
 
   eliminarCuenta() {
-    this.usuarioService.eliminarCuenta().subscribe(
-      () => {
+    this.usuarioService.eliminarCuenta().subscribe({
+      next: () => {
         console.log('Usuario eliminado con éxito.');
         this.router.navigate(['/inicio']);
       },
-      (error: any) => {
+      error: (error: any) => {
         console.error('Error al eliminar la cuenta:', error);
       }
-    );
+    });
   }
 }

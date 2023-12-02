@@ -44,8 +44,8 @@ export class PagarComponent implements OnInit {
   obtenerLibrosEnCarrito() {
     const librosEnCarritoIds = this.carritoService.getLibrosEnCarrito();
 
-    this.librosService.getAll().subscribe(
-      (response: any) => {
+    this.librosService.getAll().subscribe({
+      next: (response: any) => {
         const libros: Libro[] = response.data;
         if (Array.isArray(libros)) {
           this.libros = libros
@@ -55,14 +55,14 @@ export class PagarComponent implements OnInit {
             const idsAutores = libro.autores;
             const observables = idsAutores.map(autorId => this.autoresService.getNombreCompleto(autorId));
 
-            forkJoin(observables).subscribe(
-              (nombres: (string | undefined)[]) => {
+            forkJoin(observables).subscribe({
+              next: (nombres: (string | undefined)[]) => {
                 this.autoresNombres[libro._id.toString()] = nombres.filter(nombre => !!nombre) as string[];
               },
-              (error) => {
+              error: (error) => {
                 console.error('Error obteniendo autores:', error);
               }
-            );
+            });
           });
 
           this.cantidades = {};
@@ -75,10 +75,10 @@ export class PagarComponent implements OnInit {
           console.error('La respuesta del servidor no es un array de libros:', response);
         }
       },
-      (error) => {
+      error: (error) => {
         console.error('Error obteniendo libros:', error);
       }
-    );
+    });
   }
 
 

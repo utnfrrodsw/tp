@@ -28,41 +28,41 @@ export class InfoUsuarioComponent implements OnInit {
 
   ngOnInit() {
     // Obtener los valores del usuario y asignarlos a las propiedades del componente
-    this.usuarioService.getNombre().subscribe(
-      (data: any) => {
+    this.usuarioService.getNombre().subscribe({
+      next: (data: any) => {
         this.usuario.nombre = data.data.nombre;
       },
-      (error: any) => {
+      error:(error: any) => {
         console.error('Error obteniendo nombre:', error);
       }
-    );
+    });
 
-    this.usuarioService.getApellido().subscribe(
-      (data: any) => {
+    this.usuarioService.getApellido().subscribe({
+      next: (data: any) => {
         this.usuario.apellido = data.data.apellido;
       },
-      (error: any) => {
+      error:(error: any) => {
         console.error('Error obteniendo apellido:', error);
       }
-    );
+    });
 
-    this.usuarioService.getEmail().subscribe(
-      (data: any) => {
+    this.usuarioService.getEmail().subscribe({
+      next: (data: any) => {
         this.usuario.email = data.data.email;
       },
-      (error: any) => {
+      error:(error: any) => {
         console.error('Error obteniendo email:', error);
       }
-    );
+    });
 
-    this.usuarioService.getUsername().subscribe(
-      (data: any) => {
+    this.usuarioService.getUsername().subscribe({
+      next: (data: any) => {
         this.usuario.username = data.data.username;
       },
-      (error: any) => {
+      error: (error: any) => {
         console.error('Error obteniendo nombre de usuario:', error);
       }
-    );
+    });
   }
 
 
@@ -82,40 +82,40 @@ export class InfoUsuarioComponent implements OnInit {
   actualizarCampo(campo: keyof Edicion, nuevoValor: any) {
     switch (campo) {
       case 'nombre':
-        this.usuarioService.setNombre(nuevoValor).subscribe(
-          (response) => {
+        this.usuarioService.setNombre(nuevoValor).subscribe({
+          next: (response) => {
             console.log(`Éxito al actualizar ${campo}:`, response);
             this.edicion[campo] = false; // Desactiva la edición para el campo específico
           },
-          (error) => console.error(`Error al actualizar ${campo}:`, error)
-        );
+          error: (error) => console.error(`Error al actualizar ${campo}:`, error)
+        });
         break;
       case 'apellido':
-        this.usuarioService.setApellido(nuevoValor).subscribe(
-          (response) => {
+        this.usuarioService.setApellido(nuevoValor).subscribe({
+          next: (response) => {
             console.log(`Éxito al actualizar ${campo}:`, response);
             this.edicion[campo] = false; // Desactiva la edición para el campo específico
           },
-          (error) => console.error(`Error al actualizar ${campo}:`, error)
-        );
+          error: (error) => console.error(`Error al actualizar ${campo}:`, error)
+        });
         break;
       case 'email':
-        this.usuarioService.setEmail(nuevoValor).subscribe(
-          (response) => {
+        this.usuarioService.setEmail(nuevoValor).subscribe({
+          next: (response) => {
             console.log(`Éxito al actualizar ${campo}:`, response);
             this.edicion[campo] = false; // Desactiva la edición para el campo específico
           },
-          (error) => console.error(`Error al actualizar ${campo}:`, error)
-        );
+          error: (error) => console.error(`Error al actualizar ${campo}:`, error)
+        });
         break;
       case 'username':
-        this.usuarioService.setUsername(nuevoValor).subscribe(
-          (response) => {
+        this.usuarioService.setUsername(nuevoValor).subscribe({
+          next: (response) => {
             console.log(`Éxito al actualizar ${campo}:`, response);
             this.edicion[campo] = false; // Desactiva la edición para el campo específico
           },
-          (error) => console.error(`Error al actualizar ${campo}:`, error)
-        );
+          error: (error) => console.error(`Error al actualizar ${campo}:`, error)
+        });
         break;
       default:
         console.log(`Campo no manejado: ${campo}`);
@@ -123,30 +123,30 @@ export class InfoUsuarioComponent implements OnInit {
   }
 
   updateNombre(): void {
-    this.usuarioService.setNombre('nombre').subscribe(
-      (response) => console.log('Éxito:', response),
-      (error) => console.error('Error:', error)
-    );
+    this.usuarioService.setNombre('nombre').subscribe({
+      next: (response) => console.log('Éxito:', response),
+      error: (error) => console.error('Error:', error)
+    });
   }
 
   updateApellido(): void {
-    this.usuarioService.setApellido('apellido').subscribe(
-      (response) => console.log('Éxito:', response),
-      (error) => console.error('Error:', error)
-    );
+    this.usuarioService.setApellido('apellido').subscribe({
+      next: (response) => console.log('Éxito:', response),
+      error: (error) => console.error('Error:', error)
+    });
   }
 
   updateEmail(): void {
-    this.usuarioService.setEmail('email').subscribe(
-      (response) => console.log('Éxito:', response),
-      (error) => console.error('Error:', error)
-    );
+    this.usuarioService.setEmail('email').subscribe({
+      next: (response) => console.log('Éxito:', response),
+      error: (error) => console.error('Error:', error)
+    });
   }
 
   updateUsername(): void {
-    this.usuarioService.setUsername('username').subscribe(
-      (response) => console.log('Éxito:', response),
-      (error) => console.error('Error:', error)
-    );
+    this.usuarioService.setUsername('username').subscribe({
+      next: (response) => console.log('Éxito:', response),
+      error: (error) => console.error('Error:', error)
+    });
   }
 }

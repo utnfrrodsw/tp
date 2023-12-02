@@ -42,24 +42,23 @@ export class IniciarSesionComponent {
         this.updateModalContent('Demasiados intentos fallidos. Intenta nuevamente más tarde.');
         return;
       }
-
-      this.iniciarSesionService.iniciarSesion(email, password).subscribe(
-        (response: IniciarSesionResponse) => {
+  
+      this.iniciarSesionService.iniciarSesion(email, password).subscribe({
+        next: (response: IniciarSesionResponse) => {
           console.log('Inicio de sesión exitoso', response);
           this.router.navigateByUrl('/inicio');
         },
-        (error) => {
+        error: (error) => {
           console.error('Error en el inicio de sesión', error);
           this.authService.incrementFailedAttempts();
           this.loginError = 'Verifica tu email y contraseña.';
           this.updateModalContent('Credenciales inválidas. Por favor, vuelva a intentar.');
         }
-      );
+      });
     } else {
       this.loginGroup.markAllAsTouched();
     }
   }
-
 
   private updateModalContent(message: string): void {
     this.modalMessage = message;

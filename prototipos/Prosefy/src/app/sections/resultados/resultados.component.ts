@@ -55,28 +55,28 @@ export class ResultadosComponent implements OnInit {
           this.librosData[id] = libro;
 
           // Obtener los nombres de los autores usando el servicio AutoresService
-          this.autoresService.getAutores().subscribe(
-            (autores: Autor[]) => {
+          this.autoresService.getAutores().subscribe({
+            next: (autores: Autor[]) => {
               const idsAutores = libro.autores || [];
 
               // Crear un array de observables para las solicitudes de nombres de autores
               const observables = idsAutores.map(autorId => this.autoresService.getNombreCompleto(autorId));
 
               // Usar forkJoin para esperar a que todas las solicitudes se completen
-              forkJoin(observables).subscribe(
-                (nombres: (string | undefined)[]) => {
+              forkJoin(observables).subscribe({
+                next: (nombres: (string | undefined)[]) => {
                   // Asignar los nombres al arreglo autoresNombres
                   this.autoresNombres[id] = nombres.filter(nombre => !!nombre) as string[];
                 },
-                (error) => {
+                error: (error) => {
                   console.error('Error obteniendo autores:', error);
                 }
-              );
+              });
             },
-            (error) => {
+            error: (error) => {
               console.error('Error obteniendo autores:', error);
             }
-          );
+          });
         }
       });
     });

@@ -77,16 +77,16 @@ export class RegistrarseComponent {
       const userEmail = emailControl.value;
 
       // Validar si el usuario ya existe antes de realizar el registro
-      this.registroService.validarUsuarioExistente(userUsername).subscribe(
-        (usuarioExistente) => {
+      this.registroService.validarUsuarioExistente(userUsername).subscribe({
+        next: (usuarioExistente) => {
           if (usuarioExistente !== null) {
             usernameControl.setErrors({ usuarioExistente: true });
             console.error('El nombre de usuario ya está en uso. Por favor, intente con otro.');
             this.updateModalContent('El nombre de usuario ya está en uso. Por favor, intente con otro.');
           } else {
             // Validar si el correo electrónico ya está registrado
-            this.registroService.validarEmailExistente(userEmail).subscribe(
-              (emailExistente) => {
+            this.registroService.validarEmailExistente(userEmail).subscribe({
+              next: (emailExistente) => {
                 if (emailExistente !== null) {
                   emailControl.setErrors({ emailExistente: true });
                   console.error('El correo electrónico ya está registrado. Por favor, utilice otro.');
@@ -95,14 +95,14 @@ export class RegistrarseComponent {
                   this.realizarRegistro();
                 }
               },
-              (error) => {
+              error: (error) => {
                 console.error('Error al validar el correo electrónico', error);
                 console.error('Detalles del error:', error);
               }
-            );
+            });
           }
         },
-        (error) => {
+        error: (error) => {
           console.error('Error al validar el usuario', error);
           console.error('Detalles del error:', error);
 
@@ -113,7 +113,7 @@ export class RegistrarseComponent {
             this.updateModalContent(errorMessage);
           }
         }
-      );
+      });
     }
   }
 
@@ -128,13 +128,13 @@ export class RegistrarseComponent {
       tipo: this.tipoUsuario
     };
 
-    this.registroService.registrarUsuario(usuario).subscribe(
-      (response: RegistroResponse) => {
+    this.registroService.registrarUsuario(usuario).subscribe({
+      next: (response: RegistroResponse) => {
         console.log('Registro exitoso', response);
         const message = 'Usuario registrado exitosamente.';
         this.updateModalContent(message, true);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error al registrar el usuario', error);
 
         // Imprime detalles específicos del error en la consola
@@ -147,7 +147,7 @@ export class RegistrarseComponent {
           this.updateModalContent(errorMessage);
         }
       }
-    );
+    });
   }
 
   private updateModalContent(message: string, showRedirectButton: boolean = false): void {

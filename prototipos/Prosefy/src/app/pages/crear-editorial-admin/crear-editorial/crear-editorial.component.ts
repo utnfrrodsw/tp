@@ -47,8 +47,8 @@ export class CrearEditorialComponent {
       const imagen = imagenControl.value;
   
       // Validar si la editorial ya existe antes de realizar el registro
-      this.editorialesService.validarEditorialExistente(descripcion).subscribe(
-        (editorialExistente) => {
+      this.editorialesService.validarEditorialExistente(descripcion).subscribe({
+        next: (editorialExistente) => {
           if (editorialExistente !== null) {
             descripcionControl.setErrors({ editorialExistente: true });
             console.error('El nombre de la editorial ya está en uso. Por favor, intente con otro.');
@@ -57,7 +57,7 @@ export class CrearEditorialComponent {
           this.realizarRegistro();
         }, 
         
-        (error) => {
+        error: (error) => {
           console.error('Error al validar la editorial', error);
           console.error('Detalles del error:', error);
   
@@ -68,7 +68,7 @@ export class CrearEditorialComponent {
             this.updateModalContent(errorMessage);
           }
         }
-      );
+      });
     }
   }
   

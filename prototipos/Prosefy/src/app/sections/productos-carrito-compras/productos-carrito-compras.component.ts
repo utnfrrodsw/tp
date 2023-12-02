@@ -31,8 +31,8 @@ export class ProductosCarritoComprasComponent implements OnInit {
   obtenerLibrosEnCarrito() {
     const librosEnCarritoIds = this.carritoService.getLibrosEnCarrito();
 
-    this.librosService.getAll().subscribe(
-      (response: any) => {
+    this.librosService.getAll().subscribe({
+      next: (response: any) => {
         const libros: Libro[] = response.data;
         if (Array.isArray(libros)) {
           this.libros = libros
@@ -46,15 +46,15 @@ export class ProductosCarritoComprasComponent implements OnInit {
             const observables = idsAutores.map(autorId => this.autoresService.getNombreCompleto(autorId));
 
             // Usar forkJoin para esperar a que todas las solicitudes se completen
-            forkJoin(observables).subscribe(
-              (nombres: (string | undefined)[]) => {
+            forkJoin(observables).subscribe({
+              next: (nombres: (string | undefined)[]) => {
                 // Asignar los nombres al arreglo autoresNombres
                 this.autoresNombres[libro._id.toString()] = nombres.filter(nombre => !!nombre) as string[];
               },
-              (error) => {
+              error: (error) => {
                 console.error('Error obteniendo autores:', error);
               }
-            );
+            });
           });
 
           // Después de que todas las solicitudes se completen, continuar con el resto del código
@@ -68,10 +68,10 @@ export class ProductosCarritoComprasComponent implements OnInit {
           console.error('La respuesta del servidor no es un array de libros:', response);
         }
       },
-      (error) => {
+      error: (error) => {
         console.error('Error obteniendo libros:', error);
       }
-    );
+    });
   }
 
   eliminarDelCarrito(libroId: string) {
