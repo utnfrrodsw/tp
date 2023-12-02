@@ -28,7 +28,7 @@ export class UsuarioService {
 
     if (!token) {
       // Manejar el caso en el que no haya un token en el almacenamiento local
-      return throwError('No se encontró un token en el almacenamiento local.');
+      return throwError(()=>'No se encontró un token en el almacenamiento local.');
     }
 
     const url = "http://localhost:3000/api/usuarios";

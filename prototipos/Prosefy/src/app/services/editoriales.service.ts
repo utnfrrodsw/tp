@@ -97,7 +97,7 @@ export class EditorialesService {
           if (error.status === 404) {
             return of(null);
           } else {
-            return throwError(error);
+            return throwError(()=>error);
           }
         })
       );
@@ -115,7 +115,7 @@ private handleServerError(error: any): Observable<never> {
     console.error('Detalles del error:', error.error);
   }
 
-  return throwError(errorMessage);
+  return throwError(()=>errorMessage);
   }
 
 

@@ -103,6 +103,6 @@ export class RegistroService implements CanActivate {
       console.error('Detalles del error:', error.error);
     }
 
-    return throwError(errorMessage);
+    return throwError(()=>errorMessage);
   }
 }

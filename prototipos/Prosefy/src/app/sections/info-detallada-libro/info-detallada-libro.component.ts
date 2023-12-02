@@ -4,7 +4,7 @@ import { AutoresService } from '../../services/autores.service';
 import { CategoriasService } from 'src/app/services/categorias.service';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { forkJoin, of } from 'rxjs';
+import { forkJoin, of, combineLatest } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { Editorial, EditorialesService } from 'src/app/services/editoriales.service';
 
@@ -58,7 +58,7 @@ export class InfoDetalladaLibroComponent implements OnInit {
               const idEditorial = result.libro.editorial || '';
               const descripcionEditorial$ = this.editorialesService.getDescripcion(idEditorial);
 
-              return forkJoin({
+              return combineLatest({
                 libro: of(result.libro),
                 nombresAutores: nombresAutores$,
                 descripcionesCategorias: descripcionesCategorias$.pipe(
@@ -70,8 +70,8 @@ export class InfoDetalladaLibroComponent implements OnInit {
           );
         })
       )
-      .subscribe(
-        (result) => {
+      .subscribe({
+        next: (result) => {
           if (result && result.libro) {
             const { libro, nombresAutores, descripcionesCategorias, descripcionEditorial } = result;
             this.autoresNombres[libro._id] = nombresAutores.split(', ');
@@ -83,10 +83,10 @@ export class InfoDetalladaLibroComponent implements OnInit {
             console.error('El ID del libro no está definido.');
           }
         },
-        (error) => {
+        error: (error) => {
           console.error('Error obteniendo información: ', error);
         }
-      );
+      });
   }
 
   formatCategorias(descripciones: string | string[]): string {
