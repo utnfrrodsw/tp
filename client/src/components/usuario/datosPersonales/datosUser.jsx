@@ -1,12 +1,13 @@
 import { IonAvatar } from '@ionic/react';
+import Rating from '@mui/material/Rating';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
 import { API_URL } from '../../../auth/constants.js';
+import { modificarDatosPer, obtenerDatosPer } from '../../../services/DatosPersonales.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import avatarDefecto from './avatarDefecto.png';
 import './datosUser.css';
-import Rating from '@mui/material/Rating';
 
 const DatosPersonales = () => {
   const [userData, setUserData] = useState({
@@ -58,27 +59,24 @@ const DatosPersonales = () => {
 
   // Función para obtener los datos del usuario
   const fetchUserData = async () => {
+    const idUser = user.id;
+    console.log('idUser', idUser);
     try {
-      const response = await fetch(`${API_URL}/usuario/obtenerDatosPersonales/${user.id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setUserData(data);
-        setOriginalData(data);
+      const data = await obtenerDatosPer({idUser});
+      setUserData(data);
+      setOriginalData(data);
   
-        const fotoPerfilUrl = `${API_URL}/usuario/obtenerFotoPerfil/${user.id}`;
-        const responseFotoPerfil = await fetch(fotoPerfilUrl);
-        if (responseFotoPerfil.ok) {
-          setFotoPerfil(fotoPerfilUrl);
-        } else {
-          setFotoPerfil(avatarDefecto); // Si la URL de la foto de perfil es falsa, muestra el avatar por defecto
-        }
-        setLoadingFotoPerfil(false); // Set loading to false when the image is loaded
+      const fotoPerfilUrl = `${API_URL}/usuario/obtenerFotoPerfil/${user.id}`;
+      const responseFotoPerfil = await fetch(fotoPerfilUrl);
+      if (responseFotoPerfil.ok) {
+        setFotoPerfil(fotoPerfilUrl);
       } else {
-        throw new Error('Error al obtener los datos del usuario');
+        setFotoPerfil(avatarDefecto);  
       }
+      setLoadingFotoPerfil(false);  
     } catch (error) {
       console.error('Error en fetchUserData:', error);
-      setLoadingFotoPerfil(false); // Set loading to false in case of an error
+      setLoadingFotoPerfil(false);  
     }
   };
 
@@ -126,29 +124,14 @@ const DatosPersonales = () => {
   
       // Actualizar datos personales solo si se han modificado
       if (JSON.stringify(updatedData) !== JSON.stringify(originalData)) {
-        const response = await fetch(`${API_URL}/usuario/modificarDatosPersonales/${user.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(updatedData),
-        });
+        const data = await modificarDatosPer(updatedData, user.id);
   
-        const data = await response.json();
-  
-        if (response.ok) {
+        if (data) {
           setSuccessMessageDp('Datos actualizados con éxito');
           setOriginalData({ ...originalData, ...updatedData });
           setUserData({ ...userData, ...updatedData });
         } else {
-          // Si la respuesta contiene un campo de errores, mostrar esos mensajes de error
-          if (data.errors) {
-            setErrorCurrentDp(data.errors.map(error => error.msg).join(', '));
-          } else if (data.error) {
-            setErrorCurrentDp(data.error);
-          } else {
-            setErrorCurrentDp(data.message);
-          }
+          setErrorCurrentDp(data.error || data.message);
           return;
         }
       }
