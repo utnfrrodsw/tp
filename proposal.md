@@ -177,6 +177,8 @@ el envío será gratuito"
 
 -   **Consideraciones:**
 
+...
+
 
 ---
 
@@ -188,4 +190,5 @@ el envío será gratuito"
 | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Listados | 1. Listado de ofertas vigentes filtrado por fecha actual, muestra fecha de fin, porcentaje de descuento y libros.<br>2. Listado de pedidos filtrado por usuario, muestra fecha y hora, estado, importe total, método de pago y libros adquiridos con su cantidad.<br>3. Listado de autores seguidos filtrado por usuario, muestra nombre y apellido.<br>4. Listado de libros en la lista de deseos filtrado por usuario, muestra ISBN, título, autores, editorial y precio. |
 | CUU/Epic | 1. Consultar historial de compras<br>2. Agregar libro a lista de deseos<br>3. Seguir a autor                                                                                                                                                                                                                                                                                                                                                                                |
-| Otros    | 1. Envío de comprobante de compra con los detalles del pago y la fecha estimada de entrega o retiro por email.                                                                                                                         --->                                                                                                                                                                                                                                     |
+| Otros    | 1. Envío de comprobante de compra con los detalles del pago y la fecha estimada de entrega o retiro por email.                                                                                                                         --->                                                                                                                                                                                                                        
+...
