@@ -1,29 +1,30 @@
+import { fetchPost } from "../services/fetchIntercept.js";
 
-const { API_URL } = require('../auth/constants');
 
-const recuperarClave = async (endpoint, method = 'POST', body = null) => {
-  const headers = {
-    'Content-Type': 'application/json',
-  };
-
-  const requestOptions = {
-    method,
-    headers,
-  };
-
-  if (body) {
-    requestOptions.body = JSON.stringify(body);
-  }
-
+export const recClave = async (email) => {
   try {
-    const response = await fetch(`${API_URL}${endpoint}`, requestOptions);
-    const json = await response.json();
+    const body = JSON.stringify({ email });
+    const headers = { 'Content-Type': 'application/json' };
+    const response = await fetchPost(`/usuario/reset-password/request`, body, headers);
 
-    return { response, json, error: null };
+    return response;
+
   } catch (error) {
-    console.error('API request error:', error);
-    return { response: null, json: null, error: 'Error making API request' };
+    console.error('Error en recuperarClave:', error);
+    return { error: 'Error making API request', originalError: error }; // Devuelve un objeto con el error
   }
 };
 
-export default recuperarClave;
+export const resetRecPass = async (email, code, newPassword, confirmPassword) => {
+  try {
+    const body = JSON.stringify({ email, code, newPassword, confirmPassword });
+    const headers = { 'Content-Type': 'application/json' };
+    const response = await fetchPost(`/usuario/reset-password`, body, headers);
+  
+    return response;
+
+  } catch (error) {
+    console.error('Error en resetRecPass:', error);
+    return { error: 'Error making API request', originalError: error }; // Devuelve un objeto con el error
+  }
+};
