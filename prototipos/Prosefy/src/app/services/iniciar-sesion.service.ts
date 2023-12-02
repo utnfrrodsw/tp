@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 export interface IniciarSesionResponse {
   token: string;
@@ -24,7 +25,7 @@ export interface ErrorIniciarSesionResponse {
 })
 export class IniciarSesionService {
 
-  private apiUrl = 'http://localhost:3000/api/usuarios';
+  private apiUrl: string = environment.apiUrl;
 
   // BehaviorSubject para rastrear el estado de inicio de sesión
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
