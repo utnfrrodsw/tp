@@ -71,7 +71,7 @@ export class RegistroService implements CanActivate {
           if (error.status === 404) {
             return of(null);
           } else {
-            return throwError(error);
+            return throwError(()=>error);
           }
         })
       );
@@ -85,7 +85,7 @@ export class RegistroService implements CanActivate {
           if (error.status === 404) {
             return of(null);
           } else {
-            return throwError(error);
+            return throwError(()=>error);
           }
         })
       );

@@ -87,7 +87,7 @@ export class UsuarioService {
       map(response => response),
       catchError(error => {
         console.error('Error obteniendo datos:', error);
-        return throwError('Error en la solicitud al servidor.');
+        return throwError(()=>'Error en la solicitud al servidor.');
       })
     );
   }

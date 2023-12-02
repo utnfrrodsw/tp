@@ -49,7 +49,7 @@ export class IniciarSesionService {
           console.log('Token no válido o expirado.');
           this.isLoggedInSubject.next(false);
           localStorage.removeItem('token');
-          return throwError(error);
+          return throwError(()=>error);
         })
       ).subscribe();
     } else {
@@ -89,7 +89,7 @@ export class IniciarSesionService {
 
     if (!token) {
       console.log('No hay token para cerrar sesión.');
-      return throwError({ mensaje: 'No hay token para cerrar sesión.' });
+      return throwError(()=>{ mensaje: 'No hay token para cerrar sesión.' });
     }
 
     const headers = { Authorization: `Bearer ${token}` };
@@ -109,7 +109,7 @@ export class IniciarSesionService {
           console.error('Error al cerrar sesión:', error);
         }
         // Manejar el error de cerrar sesión
-        return throwError(error);
+        return throwError(()=> error);
       })
     );
   }
@@ -125,6 +125,6 @@ export class IniciarSesionService {
       errorMessage.mensaje = 'Credenciales inválidas';
     }
 
-    return throwError(errorMessage);
+    return throwError(()=>errorMessage);
   }
 }
