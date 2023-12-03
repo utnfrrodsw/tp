@@ -161,10 +161,10 @@ function Solicitud(props){
                 <>
                   <Button className='ver-presupuestos-button' onClick={() => setVerPresupuestos(true)} >ver presupuestos</Button>
                   <Modal show={verPresupuestos} onHide={() => setVerPresupuestos(false)} fullscreen={true} className='modales-solicitud'>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Presupuestos</Modal.Title>
+                    <Modal.Header closeButton >
+                      <Modal.Title >Presupuestos</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body style={{display: 'flex', justifyContent:'center'}}>
+                    <Modal.Body>
                       <div className='contenedor-presupuestos'>
                         {loading === false ? 
                           (<>

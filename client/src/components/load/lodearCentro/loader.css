@@ -5,7 +5,7 @@
   height: 100vh;
 }
   
-.loader-fijo {
+.loader-fijo-auth {
   border: 8px solid #f3f3f300; /* Light grey */
   border-top: 8px solid #0098fd; /* Blue */
   border-radius: 50%;

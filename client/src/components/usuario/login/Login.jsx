@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../auth/authProvider';
 import { loginUser } from '../../../services/Login';
-import Loader from '../../load/loader/Loader';
 import './Login.css';
-const { API_URL } = require('../../../auth/constants');
+import LoaderFijo from '../../load/loaderFijo/LoaderFijo';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -62,7 +61,7 @@ function Login() {
   }
 
   return (
-    <section>{isLoading ? <Loader /> : (             
+    <section style={{height: '100%'}}>{isLoading ? <LoaderFijo /> : (             
     <section className='fondoLogin'>
       <div className="wrapper">
         <form onSubmit={handleLogin}>

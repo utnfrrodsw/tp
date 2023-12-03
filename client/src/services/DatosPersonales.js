@@ -72,10 +72,10 @@ export const cambiarClave  = async (idUsuario, nuevaContrasena, confirmNuevaCont
 
  
 const { API_URL } = require('../auth/constants');
+const { fetchDelete } = require('./fetchIntercept.js');
+
 
 export async function modificarDatosPer(updatedData,idUser) {
-     
-   
   try {
     const response = await fetch(`${API_URL}/usuario/modificarDatosPersonales/${idUser}`, {
       method: 'PUT',  
@@ -89,10 +89,21 @@ export async function modificarDatosPer(updatedData,idUser) {
     } else {
       throw new Error('Error al Modificar datos personales del usuario');
     }
-  } catch (error) {
-     
-    throw error;
+  }catch (error) {
+    throw new Error(error.message);
   }
 }
 
+
+export const fetchCerrarSesion = async (token) => {
+  try{
+    const response = await fetchDelete('/usuario/logout', token)
+    .then(response => {
+      return response
+    })
+    return response;
+  }catch(error){
+    throw new Error(error.messasge || 'Error al cerrar sesion');
+  }
+};
  
