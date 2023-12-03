@@ -3,8 +3,8 @@ import { Button, Modal } from 'react-bootstrap'; // Importa los componentes del 
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../auth/authProvider';
 import { registerUser } from '../../../services/Register';
-import Loader from '../../load/loader/Loader';
 import './Register.css';
+import LoaderFijo from '../../load/loaderFijo/LoaderFijo';
 const { API_URL } = require('../../../auth/constants');
 
 function Register() {
@@ -156,7 +156,7 @@ function Register() {
   };
   
   return (
-    <section>{isLoading ? <Loader /> : (
+    <section>{isLoading ? <LoaderFijo /> : (
     <section className="fondoRegister">
       <div className="register-container">
         <h2>Registro de Usuario</h2>

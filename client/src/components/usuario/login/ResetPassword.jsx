@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { resetRecPass } from '../../../services/RecuperarClave';
-import Loader from '../../load/loader/Loader';
 import './ResetPassword.css';
+import LoaderFijo from '../../load/loaderFijo/LoaderFijo';
 const { API_URL } = require('../../../auth/constants');
 
 const ResetPasswordPage = () => {
@@ -72,7 +72,7 @@ const ResetPasswordPage = () => {
 
 
   return (
-    <section>{isLoading ? <Loader /> : (
+    <section>{isLoading ? <LoaderFijo /> : (
     <section className="contenedor">
       <div className="pagina-restablecer-contrasena">
         <h2>Restablecimiento de Contraseña</h2>

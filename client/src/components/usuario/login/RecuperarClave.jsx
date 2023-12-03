@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { recClave } from '../../../services/RecuperarClave.js';
-import Loader from '../../load/loader/Loader';
 import './RecuperarClave.css';
+import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 
 const PasswordResetPage = () => {
   // Inicializamos la función de navegación.
@@ -68,7 +68,7 @@ const PasswordResetPage = () => {
 
   return (
     <section>
-      {isLoading ? <Loader /> : (
+      {isLoading ? <LoaderFijo /> : (
         <div className="conteinerRecClave">
           <h2>Recuperación de Contraseña</h2>
           {message && <div className={`message ${responseStatus === 200 ? 'success' : 'error'}`}>{message}</div>}

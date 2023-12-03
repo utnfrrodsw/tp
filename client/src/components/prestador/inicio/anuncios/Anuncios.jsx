@@ -14,7 +14,6 @@ function Anuncios(props) {
   const [load, setLoad] = useState(false);
   const auth = useAuth();
   const user = auth.getUser();
-  const userData = JSON.parse(localStorage.getItem("user"));
   const [selectedTab, setSelectedTab] = useState('');
 
   const handleTabClick = (tab) => {
@@ -145,6 +144,7 @@ function Anuncios(props) {
             AnunciosPagina.map((anuncio) => (
               <Anuncio
                 filtrado={props.filtrado}
+                estado={props.estado}
                 handleAnunciosUpdate={handleAnunciosUpdate}
                 key={anuncio.id}
                 id={anuncio.id}
@@ -157,7 +157,7 @@ function Anuncios(props) {
             ))
           ) : (
             <div>
-              <h1>No hay nunguna solicitud en {props.estado}</h1>
+              <h1>No hay Anuncios {props.estado === 'activa' ? <>Activos</> : <>{props.estado}</> } </h1>
             </div>
           )
         ) : (

@@ -22,7 +22,6 @@ function DetalleServicio() {
     const fetchData = async () => {
       try {
         const response = await fetchDetalleServicio(idSolicitud, user.id, auth.token);
-        console.log(response);
         if (response.statusCode === 200) {
           setPresupuesto(response.body.presupuesto);
         } else {
@@ -94,7 +93,7 @@ function DetalleServicio() {
             {presupuesto.estado === "progreso" && (
               <>
               <Button type="button" onClick={updateServicio}>
-              Solicitar finalización
+                Solicitar finalización
               </Button>
               {errorSolicitarTerminacion && <p style={{ color: 'red' }}>{errorSolicitarTerminacion}</p>}
               </>
@@ -102,7 +101,9 @@ function DetalleServicio() {
           </div>
         </>
       ) : (
-        <LoaderFijo/>
+        <div className='content-loaderFijo'>
+          <LoaderFijo />
+        </div>
       )}
       {errorCargarPresupuesto && <p style={{ color: 'red' }}>{errorCargarPresupuesto}</p>}
     </div>

@@ -60,6 +60,7 @@ export const fetchGetReseña = async (idSolicitud, idPrestador, token ) => {
       .then(response=>{
           return response;
       })
+      console.log(response)
       return response.body.solicitudes;
     }catch(error){
         throw new Error(error.message);

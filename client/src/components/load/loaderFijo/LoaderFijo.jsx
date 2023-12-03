@@ -3,8 +3,10 @@ import './leaderfijo.css';
 
 function LoaderFijo() {
   return (
-    <div className="loader-container">
-      <div className="loader"></div>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems:'center', height: '100%'}}>
+      <div className="loader-container">
+        <div className="loader-fijo"></div>
+      </div>
     </div>
   );
 }

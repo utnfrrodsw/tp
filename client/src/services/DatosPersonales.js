@@ -1,4 +1,5 @@
 const { API_URL } = require('../auth/constants');
+const { fetchDelete } = require('./fetchIntercept.js');
 
 async function fetchWithTimeout(url, options, timeout = 10000) {
   const controller = new AbortController();
@@ -57,3 +58,15 @@ export async function modificarDatosPer(updatedData,idUser) {
     }
   }
 
+
+export const fetchCerrarSesion = async (token) => {
+  try{
+    const response = await fetchDelete('/usuario/logout', token)
+    .then(response => {
+      return response
+    })
+    return response;
+  }catch(error){
+    throw new Error(error.messasge || 'Error al cerrar sesion');
+  }
+};
