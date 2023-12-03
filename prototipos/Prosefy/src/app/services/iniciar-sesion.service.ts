@@ -1,9 +1,9 @@
 // iniciar-sesion.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment.development';
 
 export interface IniciarSesionResponse {
   token: string;
@@ -25,7 +25,7 @@ export interface ErrorIniciarSesionResponse {
 })
 export class IniciarSesionService {
 
-  private apiUrl: string = environment.apiUrl;
+  private apiUrl: string = environment.apiUrlUsuarios;
 
   // BehaviorSubject para rastrear el estado de inicio de sesión
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
@@ -50,7 +50,7 @@ export class IniciarSesionService {
           console.log('Token no válido o expirado.');
           this.isLoggedInSubject.next(false);
           localStorage.removeItem('token');
-          return throwError(()=>error);
+          return throwError(() => error);
         })
       ).subscribe();
     } else {
@@ -90,7 +90,7 @@ export class IniciarSesionService {
 
     if (!token) {
       console.log('No hay token para cerrar sesión.');
-      return throwError(()=>{ mensaje: 'No hay token para cerrar sesión.' });
+      return throwError(() => { mensaje: 'No hay token para cerrar sesión.' });
     }
 
     const headers = { Authorization: `Bearer ${token}` };
@@ -110,7 +110,7 @@ export class IniciarSesionService {
           console.error('Error al cerrar sesión:', error);
         }
         // Manejar el error de cerrar sesión
-        return throwError(()=> error);
+        return throwError(() => error);
       })
     );
   }
@@ -126,6 +126,6 @@ export class IniciarSesionService {
       errorMessage.mensaje = 'Credenciales inválidas';
     }
 
-    return throwError(()=>errorMessage);
+    return throwError(() => errorMessage);
   }
 }

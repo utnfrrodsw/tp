@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { IniciarSesionService } from 'src/app/services/iniciar-sesion.service';
-import { Location } from '@angular/common';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { filter } from 'rxjs/operators';
 
@@ -33,12 +32,12 @@ export class HeaderComponent {
     this.isPopupOpen = false;
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private iniciarSesionService: IniciarSesionService, private location: Location, private usuarioService: UsuarioService) {
+  constructor(private router: Router, private route: ActivatedRoute, private iniciarSesionService: IniciarSesionService, private usuarioService: UsuarioService) {
     this.router.events.pipe(
       filter(((event): event is NavigationEnd => event instanceof NavigationEnd)
-    )).subscribe((event: NavigationEnd ) => {
-      this.updatePlaceholder(event.url);
-    });
+      )).subscribe((event: NavigationEnd) => {
+        this.updatePlaceholder(event.url);
+      });
   }
 
   ngOnInit() {
@@ -50,15 +49,19 @@ export class HeaderComponent {
 
     this.iniciarSesionService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
+      // Verificar si el usuario ha iniciado sesión antes de llamar a getTipo
+      if (this.isLoggedIn) {
+        this.obtenerTipoUsuario();
+      }
     });
+  }
 
+  private obtenerTipoUsuario() {
     this.usuarioService.getTipo().subscribe(
       (data: any) => {
         this.usuario.tipo = data.data.tipo;
-        //console.log('Tipo de usuario:', this.usuario.tipo);
         if (this.usuario.tipo.trim() === 'admin') {
-          this.isAdmin = !this.isAdmin;
-          //console.log('Tipo de usuario:', this.isAdmin);
+          this.isAdmin = true;
         }
       },
       (error: any) => {
@@ -106,4 +109,9 @@ export class HeaderComponent {
       window.location.reload();
     }, 2000);
   }
+
+  closeUserOptions() {
+    this.showUserOptions = false;
+  }
+
 }

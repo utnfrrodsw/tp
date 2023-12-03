@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { IniciarSesionService, IniciarSesionResponse } from './iniciar-sesion.service';
 import { RegistroService, RegistroResponse } from './registro.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CanActivate, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements CanActivate {
+export class AuthService {
 
   private failedLoginAttempts = 0;
   private isBlockedSubject = new BehaviorSubject<boolean>(false);
-
-  private apiUrl = 'http://localhost:3000/api/usuarios/';
 
   constructor(
     private iniciarSesionService: IniciarSesionService,

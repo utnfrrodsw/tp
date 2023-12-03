@@ -1,47 +1,33 @@
-<div class="container-editoriales">
-  <div class="editoriales-col">
-    <div class="editoriales" *ngFor="let id of editorialesIds.slice(0,5); let i = index">
-      <img class="img-editorial" [src]="editorialesData[id].imagen" alt="">
-      <div class="texto-editorial">
-        <label>{{editorialesData[id].descripcion}}</label>
+<div class="container mt-3">
+  <div class="row">
+    <div *ngFor="let id of editorialesIds | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage"
+      class="col-md-4 mb-3 editoriales">
+      <div class="card" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+        <img *ngIf="editorialesData[id]" [src]="editorialesData[id].imagen"
+          class="card-img-top img-fluid img-editorial">
+        <div class="card-body">
+          <div *ngIf="editorialesData[id]">
+            <h5 class="card-title">{{ editorialesData[id].descripcion }}</h5>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="editoriales-col">
-    <div class="editoriales" *ngFor="let id of editorialesIds.slice(0,5); let i = index">
-      <img class="img-editorial" [src]="editorialesData[id].imagen" alt="">
-      <div class="texto-editorial">
-        <label>{{editorialesData[id].descripcion}}</label>
-      </div>
-    </div>
-  </div>
-  <div class="editoriales-col">
-    <div class="editoriales" *ngFor="let id of editorialesIds.slice(0,5); let i = index">
-      <img class="img-editorial" [src]="editorialesData[id].imagen" alt="">
-      <div class="texto-editorial">
-        <label>{{editorialesData[id].descripcion}}</label>
-      </div>
-    </div>
-  </div>
-  <div class="container-pages shadow rounded-pill">
-    <div>
-      <button class="page">
-        <label>◄</label>
-      </button>
-    </div>
-    <div>
-      <a class="page" href="">1</a>
-    </div>
-    <div>
-      <a class="page" href="">2</a>
-    </div>
-    <div>
-      <a class="page" href="">3</a>
-    </div>
-    <div>
-      <button class="page">
-        <label>►</label>
-      </button>
-    </div>
+  <div class="col-12 d-flex justify-content-center align-items-center mt-4 custom-pagination">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link custom-page-link" (click)="currentPage = currentPage - 1" aria-label="Previous">
+          <span aria-hidden="true">&#60;</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <span class="page-link custom-pages">{{ currentPage }} de {{ totalPages }}</span>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link custom-page-link" (click)="currentPage = currentPage + 1" aria-label="Next">
+          <span aria-hidden="true">&#62;</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </div>

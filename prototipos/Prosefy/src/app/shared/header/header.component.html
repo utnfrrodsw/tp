@@ -3,7 +3,6 @@
     <div class="d-flex align-items-center justify-content-between">
       <div>
         <a routerLink="/inicio" class="d-flex align-items-center">
-          <!-- Al hacer clic sobre el logo va a la página de inicio -->
           <img src="../../assets/img/Logo.png" alt="Logo de la página web" class="logo img-fluid logo-sm" />
         </a>
       </div>
@@ -18,15 +17,17 @@
         <a (click)="showUserOptions = !showUserOptions">
           <img src="../../assets/img/usuario.png" alt="Usuario" class="user-image" />
         </a>
-        <!-- Mostrar las opciones del usuario si showUserOptions es verdadero -->
         <div *ngIf="showUserOptions" class="bg-light user-options custom-dropdown" aria-labelledby="navbarDropdown">
-          <!-- Diferentes opciones al hacer clic sobre el perfil de usuario -->
-          <a *ngIf="!isLoggedIn" class="dropdown-item custom-dropdown-item" routerLink="/identificarse">Iniciar
+          <a *ngIf="!isLoggedIn" class="dropdown-item custom-dropdown-item" routerLink="/identificarse"
+            (click)="closeUserOptions()">Iniciar
             sesión</a>
-          <a routerLink="/perfil" *ngIf="isLoggedIn" class="dropdown-item custom-dropdown-item mb-2">Mi cuenta</a>
-          <a routerLink="/panel-admin" *ngIf="isLoggedIn && isAdmin" class="dropdown-item custom-dropdown-item mb-2">Panel
-            de administración</a>
-          <a *ngIf="isLoggedIn" class="dropdown-item custom-dropdown-item" (click)="logout()">Cerrar sesión</a>
+          <a routerLink="/perfil" *ngIf="isLoggedIn" class="dropdown-item custom-dropdown-item mb-2"
+            (click)="closeUserOptions()">Mi cuenta</a>
+          <a routerLink="/panel-admin" *ngIf="isLoggedIn && isAdmin" class="dropdown-item custom-dropdown-item mb-2"
+            (click)="closeUserOptions()">Panel
+            Admin</a>
+          <a *ngIf="isLoggedIn" class="dropdown-item custom-dropdown-item" (click)="logout()"
+            (click)="closeUserOptions()">Cerrar sesión</a>
         </div>
         <a routerLink="/carrito-compras" *ngIf="isLoggedIn"><img src="../../assets/img/carrito-de-compras.png"
             alt="Carrito de compras" class="cart-shopping-image" /></a>

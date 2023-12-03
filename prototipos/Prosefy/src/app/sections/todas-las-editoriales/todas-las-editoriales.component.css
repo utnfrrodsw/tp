@@ -1,86 +1,20 @@
-@media only screen and (max-width: 768px){
-    
-    .container-editoriales{
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .editoriales-col{
-        display: flex;
-        flex-direction: column !important;
-        justify-content: space-between;
-        margin: 5%;
-        padding-left: 18%;
-    }
-
-    .container-pages{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-top: 50px;
-        background-color: rgb(189, 189, 189);
-        width: 25% !important;
-    }
-
-    .page{
-        text-decoration-line: none;
-        color: gray;
-        background-color: rgb(189, 189, 189) ;
-        border: none;
-    }
-
-    .editoriales{
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease;
-        margin-top: 20px;
-    }
+.img-editorial {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
-
-.container-editoriales{
-    display: flex;
-    flex-direction: column;
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 5%;
-    margin-bottom: 10%;
-}
-
-.editoriales-col{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 5%;
-}
-
-.img-editorial{
-    width: 175px;
-    height: 175px;
-}
-
-
-
-.editoriales{
+.editoriales {
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease;
 }
 
-.editoriales:hover{
+.editoriales:hover {
     transform: scale(1.1);
 }
 
-.texto-editorial{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    margin-top: 10px;
-    margin-left: 10px;
-}
-
-.container-pages{
+.container-pages {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -90,11 +24,23 @@
     margin-right: 40%;
 }
 
-.page{
-    margin-left: 15px;
-    margin-right: 15px;
-    text-decoration-line: none;
-    color: gray;
-    background-color: rgb(189, 189, 189) ;
-    border: none;
+.custom-form-control {
+    width: 10% !important;
+}
+
+.custom-pagination {
+    gap: 0.6rem;
+}
+
+.custom-page-link {
+    cursor: pointer;
+}
+
+.custom-pages {
+    font-weight: bold;
+    color: #292929;
+}
+
+.text-decoration-none {
+    color: #1e1e1e;
 }

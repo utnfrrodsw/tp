@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin, map, of, throwError } from 'rxjs';
+import { Observable, forkJoin, map, of } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
-import { Autor, AutoresService } from '../services/autores.service';
-import { Categoria, CategoriasService } from './categorias.service';
+import { AutoresService } from '../services/autores.service';
+import { CategoriasService } from './categorias.service';
+import { environment } from 'src/environments/environment.development';
+environment
 
 export interface Libro {
   _id: string;
@@ -26,7 +27,7 @@ export interface Libro {
   providedIn: 'root',
 })
 export class LibrosService {
-  private apiUrl = 'http://localhost:3000/api/libros';
+  private apiUrl: string = environment.apiUrlLibros;
 
   constructor(private http: HttpClient, private autoresService: AutoresService, private categoriasService: CategoriasService) { }
 
@@ -61,7 +62,7 @@ export class LibrosService {
       map((response: any) => response.data),
       catchError((error: any) => {
         console.error('Error en la solicitud de getLibro', error);
-        return of(undefined); // Devuelve un observable con valor por defecto
+        return of(undefined);
       })
     );
   }
@@ -124,7 +125,6 @@ export class LibrosService {
     const observables = idsAutores.map(id => this.autoresService.getNombreCompleto(id));
 
     return forkJoin(observables).pipe(
-      // Filtra los valores undefined
       filter((nombres): nombres is string[] => nombres.every(nombre => nombre !== undefined))
     );
   }
@@ -132,9 +132,7 @@ export class LibrosService {
   getAutoresObservables(idsAutores: string[]): Observable<string> {
     const observables = idsAutores.map(id => this.autoresService.getNombreCompleto(id));
     return forkJoin(observables).pipe(
-      // Filtra los valores undefined
       filter((nombres): nombres is string[] => nombres.every(nombre => nombre !== undefined)),
-      // Convierte el arreglo de nombres en un solo string separado por comas
       map(nombres => nombres.join(', '))
     );
   }
@@ -142,9 +140,7 @@ export class LibrosService {
   getCategoriasObservables(idsCategorias: string[]): Observable<string> {
     const observables = idsCategorias.map(id => this.categoriasService.getDescripcion(id));
     return forkJoin(observables).pipe(
-      // Filtra los valores undefined
       filter((descripciones): descripciones is string[] => descripciones.every(descripcion => descripcion !== undefined)),
-      // Convierte el arreglo de descripciones en un solo string separado por comas
       map(descripciones => descripciones.join(', '))
     );
   }

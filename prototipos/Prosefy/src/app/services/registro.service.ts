@@ -3,8 +3,9 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Usuario } from './usuario.service';
-import { CanActivate, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { IniciarSesionService } from './iniciar-sesion.service';
+import { environment } from 'src/environments/environment.development';
 
 export interface RegistroResponse {
   mensaje: string;
@@ -26,9 +27,9 @@ export interface ErrorRegistroResponse {
 @Injectable({
   providedIn: 'root'
 })
-export class RegistroService implements CanActivate {
+export class RegistroService {
 
-  private apiUrl = 'http://localhost:3000/api/usuarios/';
+  private apiUrl: string = environment.apiUrlUsuarios;
 
   constructor(private http: HttpClient, private router: Router, private iniciarSesionService: IniciarSesionService) { }
 
@@ -55,7 +56,6 @@ export class RegistroService implements CanActivate {
       .pipe(
         tap(response => {
           console.log('Registro exitoso', response);
-          // Lógica para manejar la respuesta exitosa del registro
         }),
         catchError((error: HttpErrorResponse) => {
           return this.handleServerError(error);
@@ -64,28 +64,28 @@ export class RegistroService implements CanActivate {
   }
 
   validarUsuarioExistente(username: string): Observable<Usuario | null> {
-    const url = `${this.apiUrl}${username}`;
+    const url = `${this.apiUrl}/username/${username}`;
     return this.http.get<Usuario>(url)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 404) {
             return of(null);
           } else {
-            return throwError(()=>error);
+            return throwError(() => error);
           }
         })
       );
   }
 
   validarEmailExistente(email: string): Observable<Usuario | null> {
-    const url = `${this.apiUrl}email/${email}`;
+    const url = `${this.apiUrl}/email/${email}`;
     return this.http.get<Usuario>(url)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 404) {
             return of(null);
           } else {
-            return throwError(()=>error);
+            return throwError(() => error);
           }
         })
       );
@@ -103,6 +103,6 @@ export class RegistroService implements CanActivate {
       console.error('Detalles del error:', error.error);
     }
 
-    return throwError(()=>errorMessage);
+    return throwError(() => errorMessage);
   }
 }

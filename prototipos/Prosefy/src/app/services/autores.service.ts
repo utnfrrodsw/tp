@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 export interface Autor {
   _id: string;
@@ -13,7 +14,7 @@ export interface Autor {
   providedIn: 'root',
 })
 export class AutoresService {
-  private apiUrl = 'http://localhost:3000/api/autores';
+  private apiUrl: string = environment.apiUrlAutores;
 
   constructor(private http: HttpClient) { }
 

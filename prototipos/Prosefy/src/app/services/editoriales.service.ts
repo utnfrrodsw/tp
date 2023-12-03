@@ -1,14 +1,13 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
-import { ErrorRegistroResponse } from './registro.service';
+import { environment } from 'src/environments/environment.development';
 
 export interface Editorial {
   descripcion: string;
   direccion: string;
   imagen: string;
 }
-
 export interface editorialResponse {
   mensaje: string;
   editorial: {
@@ -17,18 +16,16 @@ export interface editorialResponse {
     imagen: string;
   };
 }
-
 export interface ErrorEditorialResponse {
   mensaje: string; // Un mensaje de error descriptivo
   codigo?: number; // Un código de error opcional
 }
-
 @Injectable({
   providedIn: 'root',
 })
 export class EditorialesService {
-  
-  private apiUrl = 'http://Localhost:3000/api/editoriales';
+
+  private apiUrl: string = environment.apiUrlEditoriales;
 
   constructor(private http: HttpClient) { }
 
@@ -68,8 +65,6 @@ export class EditorialesService {
     );
   }
 
-  // Registro de la editorial
-
   registrarEditorial(editorial: Editorial): Observable<editorialResponse> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -78,15 +73,14 @@ export class EditorialesService {
     };
 
     return this.http.post<editorialResponse>(this.apiUrl, editorial, httpOptions)
-    .pipe(
-      tap((response) => {
-        console.log('Registro exitoso', response);
-        // Lógica para manejar la respuesta exitosa del registro
-      }),
-      catchError((error: HttpErrorResponse) => {
-        return this.handleServerError(error);
-      })
-    );
+      .pipe(
+        tap((response) => {
+          console.log('Registro exitoso', response);
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return this.handleServerError(error);
+        })
+      );
   }
 
   validarEditorialExistente(descripcion: string): Observable<Editorial | null> {
@@ -97,29 +91,24 @@ export class EditorialesService {
           if (error.status === 404) {
             return of(null);
           } else {
-            return throwError(()=>error);
+            return throwError(() => error);
           }
         })
       );
   }
 
-private handleServerError(error: any): Observable<never> {
-  console.error('Error en el registro', error);
+  private handleServerError(error: any): Observable<never> {
+    console.error('Error en el registro', error);
 
-  const errorMessage: ErrorEditorialResponse = {
-    mensaje: 'Error desconocido en el registro'
-  };
+    const errorMessage: ErrorEditorialResponse = {
+      mensaje: 'Error desconocido en el registro'
+    };
 
-  if (error instanceof HttpErrorResponse) {
-    errorMessage.mensaje = error.error?.mensaje || 'Error desconocido en el registro';
-    console.error('Detalles del error:', error.error);
+    if (error instanceof HttpErrorResponse) {
+      errorMessage.mensaje = error.error?.mensaje || 'Error desconocido en el registro';
+      console.error('Detalles del error:', error.error);
+    }
+
+    return throwError(() => errorMessage);
   }
-
-  return throwError(()=>errorMessage);
-  }
-
-
-
 }
-
-

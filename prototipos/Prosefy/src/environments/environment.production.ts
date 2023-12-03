@@ -1,7 +1,7 @@
-// Entorno de desarrollo
+// Entorno de producción
 
 export const environment = {
-    production: false,
+    production: true,
     apiUrlUsuarios: 'http://localhost:3000/api/usuarios',
     apiUrlAutores: 'http://localhost:3000/api/autores',
     apiUrlCategorias: 'http://localhost:3000/api/categorias',

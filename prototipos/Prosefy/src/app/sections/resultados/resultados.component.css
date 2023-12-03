@@ -7,7 +7,8 @@
 }
 
 .book {
-  margin-bottom: 20px; /* Espacio entre libros */
+  margin-bottom: 20px;
+  /* Espacio entre libros */
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 10px;
@@ -48,31 +49,26 @@
 }
 
 .precio {
-  font-size: 1.6em; /* Tamaño de fuente relativo */
+  font-size: 1.6em;
   font-weight: bold;
   margin-bottom: 0;
 }
 
-/* Estilos para el objeto del corazón */
 .heart-icon {
   cursor: pointer;
-  display: inline-block; /* Para que el objeto se muestre en línea con el texto */
-  vertical-align: middle; /* Alinea verticalmente con el texto en el contenedor */
-  margin-left: 5px; /* Espacio entre el icono y el texto (ajusta según sea necesario) */
-  /* Otros estilos personalizados según tus preferencias */
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
 }
 
-/* Estilo para el corazón lleno */
 .filled {
   fill: red;
 }
 
-/* Estilo para el corazón vacío */
 .heart-icon:not(.filled) {
   fill: gray;
 }
 
-/* Estilo para el corazón con animación */
 .heart-pulse {
   animation: pulse 0.5s ease-in-out;
 }
@@ -81,9 +77,11 @@
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.2);
   }
+
   100% {
     transform: scale(1);
   }
