@@ -1,59 +1,98 @@
+import { fetchGet, fetchPost } from "./fetchIntercept";
+
+export const getDatosPersonales = async (id) => {
+  try {
+    const data = await fetchGet(`/usuario/obtenerDatosPersonales/${id}`);
+    
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getDirecciones = async (id) => {
+  try {
+    const data = await fetchGet(`/direccion/cliente/${id}`);
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getProfesiones = async (id) => {
+  try {
+    const data = await fetchGet(`/usuario/obtenerProfesionesUsuario/${id}`);
+    
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+
+export const agregarProfesion  = async (idUsuario, profesion) => {
+  try {
+    const body = JSON.stringify({ idUsuario, profesiones: [profesion] });
+    const headers = { 'Content-Type': 'application/json' };
+    const response = await fetchPost(`/usuario/agregarProfesionesUsuario/${idUsuario}`, body, headers);
+     
+    return response;  
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const verificarClave  = async (idUsuario, currentPassword) => {
+  try {
+     
+    const body = JSON.stringify({ idUsuario, currentPassword });
+    const headers = { 'Content-Type': 'application/json' };
+    const response = await fetchPost(`/usuario/usuario/verify-password`, body, headers);
+  
+    return response;
+
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const cambiarClave  = async (idUsuario, nuevaContrasena, confirmNuevaContrasena) => {
+  try {
+ 
+    const body = JSON.stringify({ idUsuario, nuevaContrasena , confirmNuevaContrasena});
+    const headers = { 'Content-Type': 'application/json' };
+    const response = await fetchPost(`/usuario/change-password`, body, headers);
+  
+    return response;
+    
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+ 
 const { API_URL } = require('../auth/constants');
 
-async function fetchWithTimeout(url, options, timeout = 10000) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeout);
-
+export async function modificarDatosPer(updatedData,idUser) {
+     
+   
   try {
-    const response = await fetch(url, { ...options, signal: controller.signal });
-    const data = await response.json();
-
-    return { response, data, error: null };
-  } catch (error) {
-    return { response: null, data: null, error: error.message || 'Error al conectar con el servidor' };
-  } finally {
-    clearTimeout(timeoutId);
-  }
-}
-
-export async function obtenerDatosPer({ idUser }) {
-  try {
-    const response = await fetch(`${API_URL}/usuario/obtenerDatosPersonales/${idUser}`, {
-      method: 'GET',  
+    const response = await fetch(`${API_URL}/usuario/modificarDatosPersonales/${idUser}`, {
+      method: 'PUT',  
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(updatedData)
     });
     if (response.ok) {
       return response.json();
     } else {
-      throw new Error('Error al obtener datos personales del usuario');
+      throw new Error('Error al Modificar datos personales del usuario');
     }
   } catch (error) {
-    console.error('Error en obtenerDatosPer:', error);
+     
     throw error;
   }
 }
 
-export async function modificarDatosPer(updatedData,idUser) {
-     
-    console.log('asds',idUser);
-    try {
-      const response = await fetch(`${API_URL}/usuario/modificarDatosPersonales/${idUser}`, {
-        method: 'PUT',  
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedData)
-      });
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Error al Modificar datos personales del usuario');
-      }
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  }
-
+ 
