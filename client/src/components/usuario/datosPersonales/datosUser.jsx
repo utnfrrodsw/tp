@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
 import { API_URL } from '../../../auth/constants.js';
-import { modificarDatosPer, obtenerDatosPer } from '../../../services/DatosPersonales.js';
+import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer } from '../../../services/DatosPersonales.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import avatarDefecto from './avatarDefecto.png';
 import './datosUser.css';
@@ -60,9 +60,9 @@ const DatosPersonales = () => {
   // Función para obtener los datos del usuario
   const fetchUserData = async () => {
     const idUser = user.id;
-    console.log('idUser', idUser);
+  
     try {
-      const data = await obtenerDatosPer({idUser});
+      const data = await getDatosPersonales(idUser);
       setUserData(data);
       setOriginalData(data);
   
@@ -76,7 +76,7 @@ const DatosPersonales = () => {
       setLoadingFotoPerfil(false);  
     } catch (error) {
       console.error('Error en fetchUserData:', error);
-      setLoadingFotoPerfil(false);  
+      setLoadingFotoPerfil(false);
     }
   };
 
@@ -86,22 +86,18 @@ const DatosPersonales = () => {
   }, []);
 
   useEffect(() => {
-    try {
-      const response = fetch(`${API_URL}/direccion/cliente/${user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setDirecciones(data.body.direcciones);
-        });
-
-      if (response.ok) {
+    const fetchDireccionesData = async () => {
+      try {
+        const data = await getDirecciones(user.id);
+        setDirecciones(data.body.direcciones);
         setError(false);
-      } else {
+      } catch (error) {
+        console.error(error ? error : 'Error al cargar direcciones');
         setError(true);
       }
-    } catch (error) {
-      console.error(error ? error : 'Error al cargar direcciones');
-      setError(true);
-    }
+    };
+  
+    fetchDireccionesData();
   }, [reloadDirecciones, user.id]);
 
   const handleUpdateData = async () => {
@@ -142,15 +138,16 @@ const DatosPersonales = () => {
     }
   };
 
+
   const [profesiones, setProfesiones] = useState([]);
 
   // Función para obtener las profesiones del usuario
   const fetchProfesiones = async () => {
     try {
-      const response = await fetch(`${API_URL}/usuario/obtenerProfesionesUsuario/${user.id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setProfesiones(data);
+      const response = await getProfesiones(user.id);
+       
+      if (Array.isArray(response) && response.length) {
+        setProfesiones(response);
       } else {
         throw new Error('Error al obtener las profesiones del usuario');
       }
@@ -168,30 +165,33 @@ const DatosPersonales = () => {
   const [errorProfesion, setErrorProfesion] = useState('');
   const [successMessageProfesion, setSuccessMessageProfesion] = useState('');
 
-  const agregarProfesionUsuario = async (userId, profesion) => {
+  const agregarProfesionUsuario = async (idUsuario, profesion) => {
     setErrorProfesion('');
     setSuccessMessageProfesion('');
-    try {
-      const response = await fetch(`${API_URL}/usuario/agregarProfesionesUsuario/${userId}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idUsuario: userId, profesiones: [profesion] }),
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
+     try {
+      const response = await agregarProfesion( idUsuario,profesion  );
+      
+       
+      if (response.message === 'Profesión agregada con éxito') {
+         
         setNuevaProfesion('');
         setProfesiones((prevProfesiones) => [...prevProfesiones, profesion]);
-        setSuccessMessageProfesion(data.message || 'Profesión agregada con éxito');
+        setSuccessMessageProfesion( 'Profesión agregada con éxito');
         setErrorProfesion('');
-        return data;
-      } else {
-        const data = await response.json();
-        if (data.errors) {
-          setErrorProfesion(data.errors.map(error => error.msg).join(', '));
-        } else {
-          setErrorProfesion(data.message || 'Error desconocido');
+         
+      } else {     
+
+        if (response.menssage === 'La profesión ya existe para este usuario') {
+          setErrorProfesion('La profesión ya existe para este usuario');
         }
+        const firstError = response.errors && response.errors.length > 0
+        ? response.errors[0].msg
+        : 'Error al agregar la profesión';
+
+        setErrorProfesion(
+          response.error || firstError
+      );
+
       }
     } catch (error) {
       setErrorProfesion(error.message);
