@@ -51,6 +51,6 @@ test('shows error messages when required fields are not filled', async () => {
 
   // Asegúrate de que la función hendleSolicitudesUpdate no se haya llamado
   expect(screen.queryByText('Enviando...')).toBeNull();
-});
+  });
 
 });
