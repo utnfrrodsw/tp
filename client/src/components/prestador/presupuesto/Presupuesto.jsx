@@ -193,7 +193,7 @@ function Presupuesto(props) {
       <div className='campos'>
         <div className='listaMat'>
           <p>Lista Materiales:</p> 
-          <textarea name="materiales" id="1" cols="60" rows="10" required value={materiales} onChange={(e) => setMateriales(e.target.value)}></textarea>
+          <textarea name="materiales" id="1" cols="60" rows="10" required value={materiales} onChange={(e) => setMateriales(e.target.value)} data-testid="listaMateriales-input"></textarea>
         </div>
         <div className='textoCampos'>
           <p>Costo total en materiales aproximado</p>
@@ -204,9 +204,9 @@ function Presupuesto(props) {
           {errorMateriales && <span className="error-message">{errorMateriales}</span>}
         </div>
         <div className='entradasCampos'>
-            <input type="number" name="costo-materiales" min={1} required value={costoMateriales} onChange={(e) => setCostoMateriales(e.target.value)}/>
-            <p><input name='tiempo' type="number" min={1} required value={tiempo} onChange={(e) => setTiempo(e.target.value)}/></p>
-            <input type="number" name='costoxHora' min={1} required value={costoxHora} onChange={(e) => setCostoxHora(e.target.value)}/>
+            <input type="number" name="costo-materiales" min={1} required value={costoMateriales} onChange={(e) => setCostoMateriales(e.target.value)} data-testid="costoMateriales-input"/>
+            <p><input name='tiempo' type="number" min={1} required value={tiempo} onChange={(e) => setTiempo(e.target.value)} data-testid="tiempo-input"/></p>
+            <input type="number" name='costoxHora' min={1} required value={costoxHora} onChange={(e) => setCostoxHora(e.target.value)} data-testid="costoHora-input"/>
         </div>
       </div>
       <div className='horarios'>
@@ -217,6 +217,7 @@ function Presupuesto(props) {
           value={datetimeValue} 
           onChange={handleDatetimeChange}
           min={currentDate}
+          data-testid="horarios-input"
         />
         <button type='button' onClick={handleAddDate}>+</button>
         <div>
