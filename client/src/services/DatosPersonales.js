@@ -1,8 +1,12 @@
-import { fetchGet, fetchPost } from "./fetchIntercept";
+import { fetchGet, fetchPost, fetchDelete, fetchPut, fetchPatch } from "./fetchIntercept";
+const { API_URL } = require('../auth/constants');
 
 export const getDatosPersonales = async (id) => {
   try {
-    const data = await fetchGet(`/usuario/obtenerDatosPersonales/${id}`);
+    const data = await fetchGet(`/usuario/obtenerDatosPersonales/${id}`)
+    .then(response => {
+      return response
+    });
     
     return data;
   } catch (error) {
@@ -28,7 +32,6 @@ export const getProfesiones = async (id) => {
     throw new Error(error.message);
   }
 };
-
 
 export const agregarProfesion  = async (idUsuario, profesion) => {
   try {
@@ -56,6 +59,24 @@ export const verificarClave  = async (idUsuario, currentPassword) => {
   }
 };
 
+export const fetchCambiarContrasena = async (idUsuario, nuevaContrasena, confirmNuevaContrasena) => {
+  try {
+    const body = JSON.stringify({
+      idUsuario: idUsuario,
+      newPassword: nuevaContrasena,
+      confirmPassword: confirmNuevaContrasena,
+    });
+    const headers = { 'Content-Type': 'application/json' };
+    const response = await fetchPost(`/usuario/change-password`, body, headers)
+    .then(response => {
+      return response
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export const cambiarClave  = async (idUsuario, nuevaContrasena, confirmNuevaContrasena) => {
   try {
  
@@ -70,25 +91,64 @@ export const cambiarClave  = async (idUsuario, nuevaContrasena, confirmNuevaCont
   }
 };
 
- 
-const { API_URL } = require('../auth/constants');
-const { fetchDelete } = require('./fetchIntercept.js');
-
-
-export async function modificarDatosPer(updatedData,idUser) {
+export const fetchFotoPerfil = async (idUsuario) => {
   try {
-    const response = await fetch(`${API_URL}/usuario/modificarDatosPersonales/${idUser}`, {
-      method: 'PUT',  
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedData)
+    const response = await fetchGet(`/usuario/obtenerFotoPerfil/${idUsuario}`)
+    .then(response => {
+      return response
     });
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error('Error al Modificar datos personales del usuario');
-    }
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const fetchSetFotoPerfil = async (idUsuario, file) => {
+  try {
+    const response = await fetchPut(`/usuario/cargarFotoPerfil/${idUsuario}`, file)
+    .then(response => {
+      return response
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  } 
+}
+
+export const fetchDeleteProfesion = async (idUsuario, idProfesion, token) => {
+  try {
+    const response = await fetchDelete(`/usuario/eliminarProfesionUsuario/${idUsuario}/${idProfesion}`, token)
+    .then(response => {
+      return response
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const fetchVerificarPassword = async (idUsuario, currentPassword) => {
+  try {
+    const body = JSON.stringify({ idUsuario: idUsuario, currentPassword: currentPassword });
+    const headers = { 'Content-Type': 'application/json' };
+    const response = await fetchPost(`/usuario/verify-password`, body, headers)
+    .then(response => {
+      return response
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function modificarDatosPer(updatedData,idUser, token) {
+  try {
+    const body = JSON.stringify(updatedData);
+    const response = await fetchPatch(`/usuario/modificarDatosPersonales/${idUser}`, body, token)
+    .then(response => {
+      return response
+    });
+    return response;
   }catch (error) {
     throw new Error(error.message);
   }

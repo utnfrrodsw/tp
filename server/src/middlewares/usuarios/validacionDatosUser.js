@@ -3,6 +3,7 @@ const moment = require('moment');
 
 // Middleware para validar la foto de perfil
 const validateFotoPerfil = (req, res, next) => {
+  console.log(req.file);
   if (!req.file || !['image/png', 'image/jpeg', 'image/jpg'].includes(req.file.mimetype)) {
     return res.status(400).json({ error: 'La foto de perfil debe ser en formato PNG o JPEG.' });
   }

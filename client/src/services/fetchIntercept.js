@@ -35,13 +35,15 @@ export const fetchGet = async (url, token,) => {
 
 export const fetchPut = async (url, data, token) => {
     try{
-        await fetch( API_URL + url, {
+        const response = await fetch( API_URL + url, {
             method: 'PUT',
             headers: {
-            Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`
             },
             body: data
-        })
+        }).then(res => res.json())
+        .then(data => {return data});
+        return response;
     }catch(error){
         throw new Error(error.message);
     }
@@ -65,13 +67,13 @@ export const fetchPatch = async (url, data, token) => {
     }
 };
 
-export const fetchDelete = async (url, token) => {
+export const fetchDelete = async (url, token, body) => {
     try{
         const response = await fetch(API_URL + url, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${token}`
-            }
+            },
         })
         .then(res => res.json())
         .then(data => {return data});

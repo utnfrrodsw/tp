@@ -96,49 +96,46 @@ function Presupuesto(props) {
       };
 
       const response = await setPresupuesto(presupuestoData);
-      if(response.statusCode === 200){
-        if (response.error) {
-          response.error.forEach((error) => {
-            switch (error.path) {
-              case 'idSolicitud':
-                setErrorIdSolicitud(error.msg);
-                break;
-              case 'idPrestador':
-                setErrorIdPrestador(error.msg);
-                break;
-              case 'materiales':
-                setErrorMateriales(error.msg);
-                break;
-              case 'tiempo':
-                setErrorTiempo(error.msg);
-                break;
-              case 'costoxHora':
-                setErrorCostoxHora(error.msg);
-                break;
-              case 'fechasSeleccionadas':
-                setErrorFechasSeleccionadas(error.msg);
-                break;
-              default:
-                break;
-            }
-          });
-          setTimeout(() => {
-            setErrorIdSolicitud('');
-            setErrorIdPrestador('');
-            setErrorMateriales('');
-            setErrorTiempo('');
-            setErrorCostoxHora('');
-            setErrorFechasSeleccionadas('');
-          }, 10000);
-        } else {
-          setSuccessMessage('Presupuesto cargado con éxito.');
-          // Schedule a redirection to the main page after a few seconds
-          setTimeout(() => {
-            history('/provider/home/add/');
-          }, 3000); // Redirect after 3 seconds
-        }
+      console.log(response.error);
+      if(response.error){
+        response.error.forEach((error) => {
+          switch (error.path) {
+            case 'idSolicitud':
+              setErrorIdSolicitud(error.msg);
+              break;
+            case 'idPrestador':
+              setErrorIdPrestador(error.msg);
+              break;
+            case 'materiales':
+              setErrorMateriales(error.msg);
+              break;
+            case 'tiempo':
+              setErrorTiempo(error.msg);
+              break;
+            case 'costoxHora':
+              setErrorCostoxHora(error.msg);
+              break;
+            case 'fechasSeleccionadas':
+              setErrorFechasSeleccionadas(error.msg);
+              break;
+            default:
+              break;
+          }
+        });
+        setTimeout(() => {
+          setErrorIdSolicitud('');
+          setErrorIdPrestador('');
+          setErrorMateriales('');
+          setErrorTiempo('');
+          setErrorCostoxHora('');
+          setErrorFechasSeleccionadas('');
+        }, 10000);
       }else{
-        
+        setSuccessMessage('Presupuesto cargado con éxito.');
+        // Schedule a redirection to the main page after a few seconds
+        setTimeout(() => {
+          history('/provider/home/add/');
+        }, 3000); // Redirect after 3 seconds      
       }
     } catch (error) {
       setErrorEnviarPresupuesto(error.message || 'Error al enviar el presupuesto');

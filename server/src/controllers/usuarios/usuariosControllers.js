@@ -25,10 +25,7 @@ const usuarioController = {
         message: 'Usuarios obtenidos exitosamente' 
       }));
     } catch (error) {
-      console.error('Error al obtener usuarios', error);
-      res.status(500).json(jsonResponse(500, {
-        message: 'Error al obtener usuarios' 
-      }));
+      res.status(500).json(jsonResponse(500, {message: 'Error al obtener usuarios', error: error }));
     }
   },
 
@@ -37,16 +34,16 @@ const usuarioController = {
     try {
       const usuario = await db.Usuario.findByPk(id);
       if (!usuario) {
-        return res.status(404).json({ message: 'Usuario no encontrado' });
+        return res.status(404).json(jsonResponse(404,{ message: 'Usuario no encontrado' }));
       }
       res.status(200).json(jsonResponse(200, {
         usuario,
         message: 'Usuario obtenido exitosamente'
       }));
     } catch (error) {
-      console.error('Error al obtener usuario por ID', error);
       res.status(500).json(jsonResponse(500, {
-        message: 'Error al obtener usuario por ID' 
+        message: 'Error al obtener usuario por ID',
+        error: error
       }));    
     }
   },
@@ -189,27 +186,21 @@ const usuarioController = {
   
       // Commit the transaction if everything is successful
       await t.commit();
-  
       // Responder con un mensaje de registro exitoso
-      res.status(201).json({
-        message: 'Registro exitoso',
-      });
-    } catch (error) {
-      console.error('Error en el registro:', error);
-  
+      //aca estaba como 201 no se porque
+      res.status(200).json(jsonResponse(200,{message: 'Registro exitoso'}));
+    } catch (error) {  
       // Rollback the transaction in case of an error
       await t.rollback();
-  
-      res.status(500).json(jsonResponse(500, { message: 'Error al registrarse' }));
+      res.status(500).json(jsonResponse(500, { message: 'Error al registrarse', error: error }));
     }
   },
   
 
   login: async (req, res) => {
+
     const { email, constrasena } = req.body;
-  
     const t = await db.sequelize.transaction();
-  
     try {
       // Buscar al usuario en la base de datos por su correo electrónico
       const usuario = await db.Usuario.findOne({
@@ -232,7 +223,7 @@ const usuarioController = {
           } catch (error) {
             
             await t.rollback(); // Deshacer la transacción en caso de error
-            res.status(500).json(jsonResponse(500, { message: 'Error al loguearse' }));
+            res.status(500).json(jsonResponse(500, { message: 'Error al loguearse', error: error }));
           }
   
           
@@ -245,9 +236,8 @@ const usuarioController = {
         res.status(401).json(jsonResponse(401, { message: 'Usuario o contraseña incorrectos' }));
       }
     } catch (error) {
-      console.error('Error en el inicio de sesión:', error);
       await t.rollback(); // Deshacer la transacción en caso de error
-      res.status(500).json(jsonResponse(500, { message: 'Error al loguearse' }));
+      res.status(500).json(jsonResponse(500, { message: 'Error al loguearse', error: error }));
     }
   },
 
@@ -303,9 +293,8 @@ const usuarioController = {
       
       res.status(200).json(jsonResponse(200, { success: "Token eliminado exitosamente" }));
     } catch (error) {
-      console.error('Error al cerrar sesión:', error);
       await t.rollback(); // Deshacer la transacción en caso de error
-      res.status(500).json(jsonResponse(500, { message: 'Error al cerrar sesión' }));
+      res.status(500).json(jsonResponse(500, { message: 'Error al cerrar sesión', error: error }));
     }
   },
 
@@ -313,36 +302,34 @@ obtenerDatosUsuario : async (req, res) => {
     const { id } = req.params;
 
     try {
-        const usuario = await db.Usuario.findByPk(id, {
-            attributes: ['nombre', 'apellido', 'email', 'fechaNacimiento'],
-        });
+      const usuario = await db.Usuario.findByPk(id, {
+          attributes: ['nombre', 'apellido', 'email', 'fechaNacimiento'],
+      });
 
-        if (!usuario) {
-            return res.status(404).json({ message: 'Usuario no encontrado' });
-        }
+      if (!usuario) {
+          return res.status(404).json(jsonResponse(404,{ message: 'Usuario no encontrado' }));
+      }
 
-        // Consulta para obtener el promedio de reseñas
-        const promedioResenas = await db.Servicio.findOne({
-            attributes: [
-                [db.sequelize.fn('AVG', db.sequelize.col('resenia')), 'promedioResenas'],
-            ],
-            where: {
-                idUsuario: id,
-            }
-        });
+      // Consulta para obtener el promedio de reseñas
+      const promedioResenas = await db.Servicio.findOne({
+          attributes: [
+              [db.sequelize.fn('AVG', db.sequelize.col('resenia')), 'promedioResenas'],
+          ],
+          where: {
+              idUsuario: id,
+          }
+      });
 
-        // Agrega el promedio de reseñas a la respuesta
-        const respuestaUsuario = {
-          ...usuario.toJSON(),
-          promedioResenas: promedioResenas ? parseFloat(promedioResenas.dataValues.promedioResenas) : null,
-        };
+      // Agrega el promedio de reseñas a la respuesta
+      const respuestaUsuario = {
+        ...usuario.toJSON(),
+        promedioResenas: promedioResenas ? parseFloat(promedioResenas.dataValues.promedioResenas) : null,
+      };
 
-        
-        
-        res.json(respuestaUsuario);
-    } catch (error) {
-        console.error('Error al obtener datos del usuario', error);
-        res.status(500).json({ message: 'Error en el servidor' });
+      res.status(200).json(jsonResponse(200,{ message: 'Usuario encontrado', respuestaUsuario: respuestaUsuario}));
+
+    }catch (error) {
+      res.status(500).json(jsonResponse(500,{ message: 'Error en el servidor', error: error }));
     }
 },
   
@@ -363,18 +350,22 @@ obtenerProfesionesUsuario: async (req, res) => {
         transaction: t, // Asocia la transacción a la consulta principal
       });
   
-      const profesiones = prestadorProfesiones.map(prestadorProfesion => prestadorProfesion.profesion.nombreProfesion);
+      const profesiones = prestadorProfesiones.map(prestadorProfesion => {
+        return {
+          idProfesion: prestadorProfesion.profesion.idProfesion,
+          profesion: prestadorProfesion.profesion.nombreProfesion
+        }
+      });
   
       await t.commit(); // Confirma la transacción si todo está bien
-      res.json(profesiones);
+      res.status(200).json(jsonResponse(200,{ message: 'Profesiones encontradas', profesiones: profesiones}));
     } catch (error) {
-      console.error(error);
       await t.rollback(); // Revierte la transacción en caso de error
-      res.status(500).json({ message: 'Error al obtener las profesiones del usuario' });
+      res.status(500).json(jsonResponse(500, { message: 'Error al obtener las profesiones del usuario', error: error }));
     }
   },
 
-agregarProfesionesUsuario: async (req, res) => {
+  agregarProfesionesUsuario: async (req, res) => {
     const t = await db.sequelize.transaction(); // Inicia una transacción
   
     try {
@@ -384,7 +375,7 @@ agregarProfesionesUsuario: async (req, res) => {
       const usuario = await db.Usuario.findOne({ where: { idUsuario }, transaction: t });
       if (!usuario || !usuario.esPrestador) {
         await t.rollback(); // Revierte la transacción en caso de error
-        return res.status(400).json({ message: 'El usuario no es un prestador' });
+        return res.status(400).json(jsonResponse(400, { message: 'El usuario no es un prestador' }));
       }
   
       // Agrega las profesiones al usuario
@@ -401,7 +392,7 @@ agregarProfesionesUsuario: async (req, res) => {
           });
           if (profesionUsuarioExistente) {
             await t.rollback(); // Revierte la transacción en caso de error
-            return res.status(400).json({ message: 'La profesión ya existe para este usuario' });
+            return res.status(400).json(jsonResponse(400, { message: 'La profesión ya existe para este usuario' }));
           }
         }
   
@@ -414,11 +405,10 @@ agregarProfesionesUsuario: async (req, res) => {
       }
   
       await t.commit(); // Confirma la transacción si todo está bien
-      res.status(200).json({ message: 'Profesión agregada con éxito' });
-    } catch (error) {
-      console.error(error);
+      res.status(200).json(jsonResponse(200,{ message: 'Profesión agregada con éxito' }));
+    } catch (error){
       await t.rollback(); // Revierte la transacción en caso de error
-      res.status(500).json({ message: 'Error al agregar la profesion al usuario' });
+      res.status(500).json(jsonResponse(500,{ message: 'Error al agregar la profesion al usuario', error: error }));
     }
   },
   
@@ -427,21 +417,21 @@ agregarProfesionesUsuario: async (req, res) => {
     const t = await db.sequelize.transaction(); // Inicia la transacción
   
     try {
-      const { idUsuario, profesion } = req.body;
+      const { idUsuario, idProfesion } = req.params;
   
       // Asegúrate de que el usuario es un prestador
       const usuario = await db.Usuario.findOne({ where: { idUsuario } });
       if (!usuario || !usuario.esPrestador) {
         await t.rollback(); // Revierte la transacción
-        return res.status(400).json({ message: 'El usuario no es un prestador' });
+        return res.status(400).json(jsonResponse(400,{ message: 'El usuario no es un prestador' }));
       }
   
       // Encuentra la profesión en la base de datos
-      const profesionEncontrada = await db.Profesion.findOne({ where: { nombreProfesion: profesion.toLowerCase() } });
+      const profesionEncontrada = await db.Profesion.findOne({ where: { idProfesion: idProfesion } });
   
       if (!profesionEncontrada) {
         await t.rollback(); // Revierte la transacción
-        return res.status(400).json({ message: 'La profesión no existe' });
+        return res.status(400).json(jsonResponse(400,{ message: 'La profesión no existe' }));
       }
   
       // Elimina la relación entre el prestador y la profesión
@@ -454,11 +444,10 @@ agregarProfesionesUsuario: async (req, res) => {
       });
   
       await t.commit(); // Confirma la transacción
-      res.status(200).json({ message: 'Profesión eliminada con éxito' });
-    } catch (error) {
-      console.error(error);
+      res.status(200).json(jsonResponse(200,{ message: 'Profesión eliminada con éxito' }));
+    } catch (error){
       await t.rollback(); // Revierte la transacción en caso de error
-      res.status(500).json({ message: 'Error al eliminar la profesión del usuario' });
+      res.status(500).json(jsonResponse(500,{ message: 'Error al eliminar la profesión del usuario', error: error}));
     }
   },
   
@@ -472,7 +461,7 @@ agregarProfesionesUsuario: async (req, res) => {
       const usuario = await db.Usuario.findByPk(id);
       if (!usuario) {
         await t.rollback(); // Revierte la transacción
-        return res.status(404).json({ message: 'Usuario no encontrado' });
+        return res.status(404).json(jsonResponse(404,{ message: 'Usuario no encontrado' }));
       }
   
       // Verificar si el correo electrónico ya está en uso solo si el correo electrónico ha cambiado
@@ -480,7 +469,7 @@ agregarProfesionesUsuario: async (req, res) => {
         const existingUser = await db.Usuario.findOne({ where: { email } });
         if (existingUser) {
           await t.rollback(); // Revierte la transacción
-          return res.status(400).json({ message: 'El correo electrónico ya está en uso' });
+          return res.status(400).json(jsonResponse(400,{ message: 'El correo electrónico ya está en uso' }));
         }
       }
   
@@ -493,11 +482,12 @@ agregarProfesionesUsuario: async (req, res) => {
       await usuario.save({ transaction: t }); // Asocia la transacción con la operación
   
       await t.commit(); // Confirma la transacción
-      res.json({ success: true, message: 'Datos personales actualizados con éxito' });
+      return res.status(200).json(jsonResponse(200, {success: true, message: 'Datos personales actualizados con éxito'}));
+
     } catch (error) {
-      console.error('Error al actualizar los datos personales:', error);
+
       await t.rollback(); // Revierte la transacción en caso de error
-      return res.status(500).json({ error: 'Error al actualizar los datos personales' });
+      return res.status(500).json(jsonResponse(500,{ error: 'Error al actualizar los datos personales', error: error }));
     }
   },
   
@@ -528,9 +518,8 @@ agregarProfesionesUsuario: async (req, res) => {
       return res.status(400).json(jsonResponse(400, { message: 'Contraseña actual incorrecta' }));
     }
   } catch (error) {
-    console.error('Error al verificar la contraseña actual:', error);
     await t.rollback(); // Revierte la transacción en caso de error
-    return res.status(500).json(jsonResponse(500, { message: 'Error al verificar la contraseña actual' }));
+    return res.status(500).json(jsonResponse(500, { message: 'Error al verificar la contraseña actual', error: error }));
   }
 },
 
@@ -560,9 +549,8 @@ changePassword: async (req, res) => {
 
     return res.status(200).json(jsonResponse(200, { message: 'Contraseña cambiada con éxito' }));
   } catch (error) {
-    console.error('Error al cambiar la contraseña:', error);
     await t.rollback(); // Revierte la transacción en caso de error
-    return res.status(500).json(jsonResponse(500, { message: 'Error al cambiar la contraseña' }));
+    return res.status(500).json(jsonResponse(500, { message: 'Error al cambiar la contraseña', error: error }));
   }
 },
 
@@ -573,15 +561,12 @@ changePassword: async (req, res) => {
       try {
         // Buscar la dirección por su ID
         const direccion = await db.Direccion.findByPk(id);
-  
         if (!direccion) {
-          return res.status(404).json({ message: 'Dirección no encontrada' });
+          return res.status(404).json(jsonResponse(404,{ message: 'Dirección no encontrada' }));
         }
-  
-        res.json(direccion);
+        res.status(200).json(jsonResponse(200, {message: 'Direccion Encontrada', direccion: direccion}));
       } catch (error) {
-        console.error('Error al obtener dirección por ID', error);
-        res.status(500).json({ message: 'Error en el servidor' });
+        res.status(500).json(jsonResponse(500,{ message: 'Error en el servidor', error: error }));
       }
   },
 
@@ -600,13 +585,14 @@ changePassword: async (req, res) => {
       });
 
       if (!localidad) {
-        return res.status(404).json({ message: 'Localidad no encontrada' });
+        return res.status(404).json(jsonResponse(404,{ message: 'Localidad no encontrada' }));
       }
 
-      res.json(localidad);
+      res.status(200).json(jsonResponse(200, {message: 'Localidad Encontrada', localidad: localidad}));
+
     } catch (error) {
-      console.error('Error al obtener localidad por código postal', error);
-      res.status(500).json({ message: 'Error en el servidor' });
+
+      res.status(500).json(jsonResponse(500,{ message: 'Error en el servidor', error: error }));
     }
     
   },
@@ -635,8 +621,8 @@ changePassword: async (req, res) => {
 
       res.status(200).json(jsonResponse(200, { message: 'Se ha enviado un correo electrónico con las instrucciones para restablecer la contraseña.' }));
     } catch (error) {
-      console.error('Error al solicitar restablecimiento de contraseña:', error);
-      res.status(500).json(jsonResponse(500, { message: 'Error al solicitar restablecimiento de contraseña' }));
+
+      res.status(500).json(jsonResponse(500, { message: 'Error al solicitar restablecimiento de contraseña', error: error }));
     }
   },
 
@@ -650,7 +636,7 @@ changePassword: async (req, res) => {
       });
   
       if (!user) {
-        return res.status(404).json({ message: 'Usuario no encontrado' });
+        return res.status(404).json(jsonResponse(404,{ message: 'Usuario no encontrado' }));
       }
   
       const idUsuario = user.idUsuario;
@@ -661,14 +647,14 @@ changePassword: async (req, res) => {
       });
   
       if (!resetCodeRecord) {
-        return res.status(404).json({ message: 'Código de recuperación no válido' });
+        return res.status(404).json(jsonResponse(404,{ message: 'Código de recuperación no válido' }));
       }
   
       // Verificar si el código ha expirado
       const currentDate = new Date();
       if (resetCodeRecord.expiresAt < currentDate) {
         // El código ha expirado
-        return res.status(400).json({ message: 'El código de recuperación ha expirado' });
+        return res.status(400).json(jsonResponse(400,{ message: 'El código de recuperación ha expirado' }));
       }
   
       // Verificar si el código proporcionado coincide con el de la base de datos
@@ -685,13 +671,12 @@ changePassword: async (req, res) => {
         await resetCodeRecord.destroy();
   
         // Enviar una respuesta exitosa
-        return res.status(200).json({ message: 'Contraseña restablecida con éxito' });
+        return res.status(200).json(jsonResponse(200,{ message: 'Contraseña restablecida con éxito' }));
       }
   
-      return res.status(400).json({ message: 'Código de recuperación incorrecto' });
+      return res.status(400).json(jsonResponse(404,{ message: 'Código de recuperación incorrecto' }));
     } catch (error) {
-      console.error('Error al restablecer la contraseña:', error);
-      return res.status(500).json({ message: 'Error al restablecer la contraseña' });
+      return res.status(500).json(jsonResponse(500,{ message: 'Error al restablecer la contraseña', error: error }));
     }
   },
 
