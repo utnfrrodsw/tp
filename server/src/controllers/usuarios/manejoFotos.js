@@ -45,7 +45,7 @@ const cargarFotoPerfil = async (req, res) => {
     usuario.foto = foto; // Almacenar la imagen en la base de datos
     await usuario.save();
 
-    res.json({ success: true, message: 'Foto de perfil cargada con éxito' });
+    res.status(200).json(jsonResponse(200,{ success: true, message: 'Foto de perfil cargada con éxito' }));
   } catch (error) {
     console.error('Error al actualizar la foto de perfil:', error);
     return res.status(500).json({ error: 'Error al actualizar la foto de perfil' });

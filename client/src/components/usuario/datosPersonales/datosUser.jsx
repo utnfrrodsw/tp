@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
 import { API_URL, REACT_APP_PHOTO } from '../../../auth/constants.js';
-import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil } from '../../../services/DatosPersonales.js';
+import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil, fetchSetFotoPerfil } from '../../../services/DatosPersonales.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import avatarDefecto from './avatarDefecto.png';
 import './datosUser.css';
@@ -84,9 +84,7 @@ const DatosPersonales = () => {
       }else{
         setError(responseDatosUser.message);
       }
-
       hendleObtenerFotoPerfil();
-
     } catch (error) {
       setError(error || "Error al cargar Foto de Perfil");
     } finally {
@@ -105,18 +103,21 @@ const DatosPersonales = () => {
   useEffect(() => {
     const fetchDireccionesData = async () => {
       try {
-        const data = await getDirecciones(user.id);
-        setDirecciones(data.body.direcciones);
-        setError("");
+        const response = await getDirecciones(user.id);
+        if(response.statusCode === 200){
+          setDirecciones(response.body.direcciones);
+          setError("");
+        }else{
+          setError(response.message);
+        }
       } catch (error) {
-        setError(error || 'Error al cargar direcciones');
+        setError(error.message || 'Error al cargar direcciones');
       }finally{
         setTimeout(() => {
           setError("");
         }, 10000);
       }
     };
-  
     fetchDireccionesData();
   }, [reloadDirecciones, user.id]);
 
@@ -164,11 +165,10 @@ const DatosPersonales = () => {
   const fetchProfesiones = async () => {
     try {
       const response = await getProfesiones(user.id);
-       
-      if (Array.isArray(response) && response.length) {
-        setProfesiones(response);
-      } else {
-        throw new Error({message: 'Error al obtener las profesiones del usuario'});
+      if(response.statusCode === 200){
+        setProfesiones(response.body.profesiones);
+      }else{
+        setError(response.message);
       }
     } catch (error) {
       setError(error.message)
@@ -189,7 +189,6 @@ const DatosPersonales = () => {
     setSuccessMessageProfesion('');
      try {
       const response = await agregarProfesion( idUsuario,profesion  );
-      console.log(response)
       if (response.statusCode === 200) {
          
         setNuevaProfesion('');
@@ -307,53 +306,29 @@ const DatosPersonales = () => {
     }
   };
 
-  const handleProfilePictureChange = (e) => {
-      if (e.target.files.length > 0) {
-        const file = e.target.files[0];
-        setFotoPerfil(URL.createObjectURL(file));
-        console.log(file);
-        setSelectedFile(file);
-        handleProfilePictureUpload();
-      } else {
-        // Si el usuario no seleccionó una foto, establece la foto de perfil en una imagen predeterminada
-        setFotoPerfil(avatarDefecto);
-        setSelectedFile(null);
-      }
-  };
-
   const [errorMessageFoto, setErrorMessageFoto] = useState(null);
 
-  const handleProfilePictureUpload = async () => {
+  const handleProfilePictureUpload = async (e) => {
     setErrorMessageFoto('');
     setSuccessMessageFoto('');
     setLoadingFotoPerfil(true);
-    if (selectedFile) {
+    const file = e.target.files[0];
+    if (file) {
       const formData = new FormData();
-      formData.append('file', selectedFile);
-      
+      formData.append('file', file);
       try {
-        const response = await fetch(`${API_URL}/usuario/cargarFotoPerfil/${user.id}`, {
-          method: 'PUT',
-          body: formData,
-        });
-  
-        const data = await response.json();
-        console.log(response)
-        if (response.ok) {
-          
+        const response = await fetchSetFotoPerfil(user.id, formData);
+        if(response.statusCode === 200){
           setSuccessMessageFoto('Foto de perfil actualizada con éxito');
-          // Limpiar el mensaje de error si la carga fue exitosa
           setErrorMessageFoto(null);
-        } else {
-          // Si la respuesta contiene un campo de error, mostrar ese mensaje de error
-          if (data.error) {
-            setErrorMessageFoto(data.error);
+          hendleObtenerFotoPerfil();
+        }else{
+          if (response.error) {
+            setErrorMessageFoto(response.error);
           } else {
             setErrorMessageFoto('Error al cargar la foto de perfil');
           }
         }
-
-        hendleObtenerFotoPerfil();
       } catch (error) {
         console.error('Error en handleProfilePictureUpload:', error);
         setErrorMessageFoto(error.message);
@@ -365,13 +340,13 @@ const DatosPersonales = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-const handleImageClick = () => {
-  setShowModal(true);
-};
+  const handleImageClick = () => {
+    setShowModal(true);
+  };
 
-const handleCloseModal = () => {
-  setShowModal(false);
-};
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <div className="datosPersonales">
@@ -387,7 +362,7 @@ const handleCloseModal = () => {
                 ) : (
                 <IonAvatar className="ion-avatar" onClick={handleImageClick}>
                   <img
-                    src={fotoPerfil ? (`${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}`) : avatarDefecto}
+                    src={fotoPerfil ? `${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}` : `${REACT_APP_PHOTO}/images/fotoPerfil/avatarDefecto.png`}
                     alt="foto"
                     className="round-image"
                     />
@@ -395,14 +370,14 @@ const handleCloseModal = () => {
                 )}
                 {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
                 {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}  
-                <input type="file" accept="image/*" onChange={handleProfilePictureChange} className="file-input"/>
+                <input type="file" accept="image/*" onChange={handleProfilePictureUpload} className="file-input"/>
          <Modal show={showModal} onHide={handleCloseModal}>
          <Modal.Header closeButton>
           <Modal.Title>Visualización de imagen</Modal.Title>
            </Modal.Header>
             <Modal.Body>
                <img
-               src={fotoPerfil ? fotoPerfil : avatarDefecto}
+               src={fotoPerfil ? (`${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}`) : `${REACT_APP_PHOTO}/images/fotoPerfil/avatarDefecto.png`}
                alt="foto"
                className="modal-image"
               style={{ width: '100%', height: 'auto' }}

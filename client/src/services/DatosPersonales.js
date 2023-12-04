@@ -1,4 +1,4 @@
-import { fetchGet, fetchPost, fetchDelete } from "./fetchIntercept";
+import { fetchGet, fetchPost, fetchDelete, fetchPut } from "./fetchIntercept";
 const { API_URL } = require('../auth/constants');
 
 export const getDatosPersonales = async (id) => {
@@ -85,6 +85,18 @@ export const fetchFotoPerfil = async (idUsuario) => {
     throw new Error(error.message);
   }
 };
+
+export const fetchSetFotoPerfil = async (idUsuario, file) => {
+  try {
+    const response = await fetchPut(`/usuario/cargarFotoPerfil/${idUsuario}`, file)
+    .then(response => {
+      return response
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  } 
+}
 
 export async function modificarDatosPer(updatedData,idUser) {
   try {
