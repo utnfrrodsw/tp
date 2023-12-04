@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SmoothScrollService } from './smooth-scroll.service';
 import { nombreSitio } from '../app/shared/constants';
-import { IniciarSesionService, IniciarSesionResponse, ErrorIniciarSesionResponse } from './services/iniciar-sesion.service';
+import { IniciarSesionService } from './services/iniciar-sesion.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
     this.nombreSitio = nombreSitio;
   }
 
-
   ngOnInit() {
     this.smoothScrollService.initializeSmoothScrollbar();
     this.iniciarSesionService.checkToken();
@@ -30,8 +29,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // Verifica si la ruta actual es 'panel-admin'
+  // Verifica si la ruta actual contiene 'panel-admin'
   isPanelAdminRoute(): boolean {
-    return this.activatedRoute.firstChild?.snapshot.routeConfig?.path === 'panel-admin';
+    return this.router.url.includes('panel-admin');
   }
 }

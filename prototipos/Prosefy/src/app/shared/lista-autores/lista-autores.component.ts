@@ -101,6 +101,4 @@ export class ListaAutoresComponent implements OnInit {
       return nombreCompleto;
     }
   }
-
-
 }

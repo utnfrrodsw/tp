@@ -140,6 +140,19 @@ async function getNombreCompleto(req: Request, res: Response) {
     }
 }
 
+async function getInfo(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const autor = await repository.findOne({ id });
+        if (!autor) {
+            return res.status(404).send({ message: "Autor no encontrado." });
+        }
+        res.json({ data: autor.info });
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
 async function getPerfil(req: Request, res: Response) {
     try {
         const id = req.params.id;
@@ -153,4 +166,4 @@ async function getPerfil(req: Request, res: Response) {
     }
 }
 
-export { sanitizeInput, findAll, findOne, add, update, remove, getAutores, getNombreCompleto, getPerfil }
+export { sanitizeInput, findAll, findOne, add, update, remove, getAutores, getNombreCompleto, getPerfil, getInfo }

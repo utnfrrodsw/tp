@@ -15,9 +15,13 @@ import { AutorSeleccionadoComponent } from './pages/autor-seleccionado/autor-sel
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
 import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
-import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
+import { PanelAdminComponent } from './admin/panel-admin/panel-admin.component';
 import { CrearEditorialComponent } from './pages/crear-editorial-admin/crear-editorial/crear-editorial.component';
 import { EliminarEditorialComponent } from './pages/eliminar-editorial/eliminar-editorial.component';
+import { CrudAutoresComponent } from './admin/crud-autores/crud-autores.component';
+import { CrudEditorialesComponent } from './admin/crud-editoriales/crud-editoriales.component';
+import { CrudLibrosComponent } from './admin/crud-libros/crud-libros.component';
+import { CrudOfertasComponent } from './admin/crud-ofertas/crud-ofertas.component';
 
 /* SERVICIOS */
 import { UsuarioService } from './services/usuario.service';
@@ -47,6 +51,10 @@ const routes: Routes = [
   { path: 'crear-cuenta', component: CrearCuentaComponent, canActivate: [RegistroService] },
   { path: 'busqueda/:term', component: BusquedaComponent },
   { path: 'panel-admin', component: PanelAdminComponent },
+  { path: 'panel-admin/autores', component: CrudAutoresComponent },
+  { path: 'panel-admin/editoriales', component: CrudEditorialesComponent },
+  { path: 'panel-admin/libros', component: CrudLibrosComponent },
+  { path: 'panel-admin/ofertas', component: CrudOfertasComponent },
   { path: 'crear-editorial', component: CrearEditorialComponent },
   { path: 'eliminar-editorial', component: EliminarEditorialComponent }
 ];

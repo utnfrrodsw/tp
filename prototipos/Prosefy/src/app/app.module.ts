@@ -60,7 +60,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ComentarioUsuarioComponent } from './shared/comentario-usuario/comentario-usuario.component';
 import { ListaAutoresComponent } from './shared/lista-autores/lista-autores.component';
 import { NuevoComentarioComponent } from './shared/nuevo-comentario/nuevo-comentario/nuevo-comentario.component';
-import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
+import { PanelAdminComponent } from './admin/panel-admin/panel-admin.component';
 
 /* ------------------------------------------------------------------- */
 
@@ -72,6 +72,11 @@ import { CurrencyService } from './services/currency.service';
 import { AutoresService } from './services/autores.service';
 import { CrearEditorialComponent } from './pages/crear-editorial-admin/crear-editorial/crear-editorial.component';
 import { EliminarEditorialComponent } from './pages/eliminar-editorial/eliminar-editorial.component';
+import { HeaderAdminComponent } from './admin/header-admin/header-admin.component';
+import { CrudAutoresComponent } from './admin/crud-autores/crud-autores.component';
+import { CrudEditorialesComponent } from './admin/crud-editoriales/crud-editoriales.component';
+import { CrudLibrosComponent } from './admin/crud-libros/crud-libros.component';
+import { CrudOfertasComponent } from './admin/crud-ofertas/crud-ofertas.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -123,7 +128,12 @@ registerLocaleData(localeEs, 'es');
     NuevoComentarioComponent,
     PanelAdminComponent,
     CrearEditorialComponent,
-    EliminarEditorialComponent
+    EliminarEditorialComponent,
+    HeaderAdminComponent,
+    CrudAutoresComponent,
+    CrudEditorialesComponent,
+    CrudLibrosComponent,
+    CrudOfertasComponent
   ],
   imports: [
     BrowserModule,

@@ -101,7 +101,6 @@ export class ResultadosComponent implements OnInit {
     return 'N/A';
   }
 
-
   toggleDeseo(libro: any): void {
     const libroId = libro.id ? libro.id.toString() : '';
     this.deseos[libroId] = !this.deseos[libroId];

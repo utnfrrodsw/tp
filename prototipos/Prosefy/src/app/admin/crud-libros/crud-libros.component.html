@@ -1,0 +1,32 @@
+<div class="custom-background pb-5 pt-2">
+    <app-boton-volver></app-boton-volver>
+    <div class="container pt-4">
+        <div class="row mb-4">
+            <div class="col">
+                <h3>Todos los libros</h3>
+            </div>
+        </div>
+        <button class="btn btn-primary custom-btn-primary mx-2 mb-3">Nuevo Libro</button>
+        <div class="row">
+            <div *ngFor="let libroId of librosIds" class="col-md-4 mb-4">
+                <div class="card">
+                    <img [src]="librosData[libroId]?.portada" class="card-img-top" alt="Imagen del Libro">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ librosData[libroId]?.titulo }}</h5>
+                        <p class="card-text">ISBN: {{ librosData[libroId]?.isbn }}</p>
+                        <p class="card-text">Idioma: {{ librosData[libroId]?.idioma }}</p>
+                        <p class="card-text">Precio: ${{ librosData[libroId]?.precio !== undefined ?
+                            (librosData[libroId]?.precio | number:'1.2-2') :
+                            'N/A' }} ARS</p>
+                        <p class="card-text">Fecha de Edición: {{
+                            librosData[libroId].fecha_edicion ? formatearFecha(librosData[libroId].fecha_edicion) :
+                            'N/A' }}</p>
+                        <p class="card-text"><small>ID: {{ libroId }}</small></p>
+                        <button class="btn btn-primary custom-btn-primary mx-2">Editar</button>
+                        <button class="btn btn-primary custom-btn-secondary mx-2">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

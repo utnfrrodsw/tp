@@ -42,6 +42,12 @@ export class AutoresService {
     );
   }
 
+  getInfo(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/info/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
   getAutor(id: string): Observable<Autor | undefined> {
     return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
       map((response: any) => response.data)

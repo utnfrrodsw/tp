@@ -1,0 +1,24 @@
+<div class="custom-background pb-5 pt-2">
+    <app-boton-volver></app-boton-volver>
+    <div class="container pt-4">
+        <div class="row mb-4">
+            <div class="col">
+                <h3>Todas las editoriales</h3>
+            </div>
+        </div>
+        <button class="btn btn-primary custom-btn-primary mx-2 mb-3">Nueva Editorial</button>
+        <div class="row">
+            <div *ngFor="let editorialId of editorialesIds" class="col-md-4 mb-4">
+                <div class="card">
+                    <img [src]="editorialesData[editorialId]?.imagen" class="card-img-top" alt="Imagen de la Editorial">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ editorialesData[editorialId]?.descripcion }}</h5>
+                        <p class="card-text"><small>ID: {{ editorialId }}</small></p>
+                        <button class="btn btn-primary custom-btn-primary mx-2">Editar</button>
+                        <button class="btn btn-primary custom-btn-secondary mx-2">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

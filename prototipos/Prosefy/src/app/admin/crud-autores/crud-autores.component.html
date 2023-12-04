@@ -1,0 +1,25 @@
+<div class="custom-background pb-5 pt-2">
+    <app-boton-volver></app-boton-volver>
+    <div class="container pt-4">
+        <div class="row mb-4">
+            <div class="col">
+                <h3>Todos los autores</h3>
+            </div>
+        </div>
+        <button class="btn btn-primary custom-btn-primary mx-2 mb-3">Nuevo Autor</button>
+        <div class="row">
+            <div *ngFor="let autorId of autoresIds" class="col-md-4 mb-4">
+                <div class="card">
+                    <img [src]="autoresData[autorId]?.perfil" class="card-img-top" alt="Perfil del Autor">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ autoresData[autorId]?.nombreCompleto }}</h5>
+                        <p class="card-text">{{ autoresData[autorId]?.info }}</p>
+                        <p class="card-text"><small>ID: {{ autorId }}</small></p>
+                        <button class="btn btn-primary custom-btn-primary mx-2">Editar</button>
+                        <button class="btn btn-primary custom-btn-secondary mx-2">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

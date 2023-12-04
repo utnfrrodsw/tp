@@ -118,6 +118,19 @@ async function getNombreCompleto(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
+async function getInfo(req, res) {
+    try {
+        const id = req.params.id;
+        const autor = await repository.findOne({ id });
+        if (!autor) {
+            return res.status(404).send({ message: "Autor no encontrado." });
+        }
+        res.json({ data: autor.info });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
 async function getPerfil(req, res) {
     try {
         const id = req.params.id;
@@ -131,5 +144,5 @@ async function getPerfil(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, getAutores, getNombreCompleto, getPerfil };
+export { sanitizeInput, findAll, findOne, add, update, remove, getAutores, getNombreCompleto, getPerfil, getInfo };
 //# sourceMappingURL=Autor.controller.js.map
