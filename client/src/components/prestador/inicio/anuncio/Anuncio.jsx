@@ -63,8 +63,9 @@ function Anuncio(props) {
           </section>
         </div>
       )}
+      <button className='boton-anuncio' onClick={() => { setShow(!show); }} >Ver {show ? 'más' : 'menos'}</button>
       {show ? (
-          <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+          <></>
           ): (
           <div className='botones'>
             {props.filtrado === "nuevas" ?
@@ -75,9 +76,7 @@ function Anuncio(props) {
             : <></>}
             {props.filtrado === "aceptadas" ?
             <Link to={`/provider/home/accepted/more/${props.id}`} className='button-link'>Ver informacion Servicio</Link>
-            : <></>}
-            <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
-            
+            : <></>}            
           </div>
           )}
     </div>

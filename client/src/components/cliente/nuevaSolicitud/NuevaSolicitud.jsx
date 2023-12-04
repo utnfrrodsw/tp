@@ -158,18 +158,18 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
         <Modal.Body>
           <div className="form-group">
             <label>Título</label>
-            <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
+            <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} data-testid="titulo-input"/>
             {errorTitulo && <span className="error-message">{errorTitulo}</span>}
           </div>
           <div className="form-group">
             <label>Descripción</label>
-            <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+            <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} data-testid="descripcion-input"/>
             {errorDescripcion && <span className="error-message">{errorDescripcion}</span>}
           </div>
           <div className="form-group">
             <label>Profesion</label>
-            <select value={profesion} onChange={(e) => setProfesion(e.target.value)} >
-              <option value="0">seleccione una profesion</option>
+            <select value={profesion} onChange={(e) => setProfesion(e.target.value)}>
+              <option value="0" data-testid="profesion-input">seleccione una profesion</option>
               {profesiones.length > 0 &&
               profesiones.map((profesion, index) => (
                 <option key={index + 1} value={profesion.idProfesion}>{profesion.nombreProfesion}</option>
@@ -182,7 +182,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           <div className="form-group">
             <label>Direccion</label>
             <select value={direccion} onChange={hendleDireccion}>
-              <option value="0">seleccione una dirección</option>
+              <option value="0" data-testid="direccion-input">seleccione una dirección</option>
               {direcciones.length > 0 &&
                 direcciones.map((direccion, index) => (
                   <option key={index + 1} value={direccion.idDireccion}>
@@ -198,7 +198,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           </div>
           <div className="form-group">
             <label>Fotos</label>
-            <input type="file" multiple onChange={handleFileChange} />
+            <input type="file" multiple onChange={handleFileChange} data-testid="fotos-input"/>
             {errorFotos && <span className="error-message">{errorFotos}</span>}
           </div>
         </Modal.Body>

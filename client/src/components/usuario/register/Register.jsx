@@ -388,7 +388,7 @@ function Register() {
           ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
         </p>
       </div>
-      <Modal show={showSuccessModal} onHide={() => setShowSuccessModal(false)}>
+      <Modal show={showSuccessModal} onHide={() => setShowSuccessModal(false)}  data-testid="exito-modal">
         <Modal.Header closeButton>
           <Modal.Title>Registro exitoso</Modal.Title>
           </Modal.Header>
