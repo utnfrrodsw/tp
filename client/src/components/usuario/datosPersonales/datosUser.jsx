@@ -3,11 +3,12 @@ import Rating from '@mui/material/Rating';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
-import { API_URL } from '../../../auth/constants.js';
-import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer } from '../../../services/DatosPersonales.js';
+import { API_URL, REACT_APP_PHOTO } from '../../../auth/constants.js';
+import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil } from '../../../services/DatosPersonales.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import avatarDefecto from './avatarDefecto.png';
 import './datosUser.css';
+import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 
 const DatosPersonales = () => {
   const [userData, setUserData] = useState({
@@ -24,7 +25,7 @@ const DatosPersonales = () => {
   const user = auth.getUser();
 
   const [direcciones, setDirecciones] = useState([]);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [reloadDirecciones, setReloadDirecciones] = useState(false);
 
   const [errorCurrentPassword, setErrorCurrentPassword] = useState('');
@@ -57,26 +58,42 @@ const DatosPersonales = () => {
 
   const [loadingFotoPerfil, setLoadingFotoPerfil] = useState(true);
 
+  const hendleObtenerFotoPerfil = async () => {
+    setLoadingFotoPerfil(true);
+    try{
+      const responseFoto = await fetchFotoPerfil(user.id);
+      if(responseFoto.statusCode === 200){
+        setFotoPerfil(responseFoto.body.NombreFoto);
+      }
+    }catch(error){
+      setError(error.message);
+    }finally{
+      setLoadingFotoPerfil(false);
+    }
+  };
+
   // Función para obtener los datos del usuario
   const fetchUserData = async () => {
     const idUser = user.id;
   
     try {
-      const data = await getDatosPersonales(idUser);
-      setUserData(data);
-      setOriginalData(data);
-  
-      const fotoPerfilUrl = `${API_URL}/usuario/obtenerFotoPerfil/${user.id}`;
-      const responseFotoPerfil = await fetch(fotoPerfilUrl);
-      if (responseFotoPerfil.ok) {
-        setFotoPerfil(fotoPerfilUrl);
-      } else {
-        setFotoPerfil(avatarDefecto);  
+      const responseDatosUser = await getDatosPersonales(idUser);
+      if(responseDatosUser.statusCode === 200){
+        setUserData(responseDatosUser.body.respuestaUsuario);
+        setOriginalData(responseDatosUser.body.respuestaUsuario);
+      }else{
+        setError(responseDatosUser.message);
       }
-      setLoadingFotoPerfil(false);  
+
+      hendleObtenerFotoPerfil();
+
     } catch (error) {
-      console.error('Error en fetchUserData:', error);
+      setError(error || "Error al cargar Foto de Perfil");
+    } finally {
       setLoadingFotoPerfil(false);
+      setTimeout(() => {
+        setError("");
+      }, 10000);
     }
   };
 
@@ -90,10 +107,13 @@ const DatosPersonales = () => {
       try {
         const data = await getDirecciones(user.id);
         setDirecciones(data.body.direcciones);
-        setError(false);
+        setError("");
       } catch (error) {
-        console.error(error ? error : 'Error al cargar direcciones');
-        setError(true);
+        setError(error || 'Error al cargar direcciones');
+      }finally{
+        setTimeout(() => {
+          setError("");
+        }, 10000);
       }
     };
   
@@ -133,7 +153,6 @@ const DatosPersonales = () => {
       }
   
     } catch (error) {
-      console.error('Error al actualizar los datos personales:', error);
       setErrorCurrentDp(error.message);
     }
   };
@@ -149,10 +168,10 @@ const DatosPersonales = () => {
       if (Array.isArray(response) && response.length) {
         setProfesiones(response);
       } else {
-        throw new Error('Error al obtener las profesiones del usuario');
+        throw new Error({message: 'Error al obtener las profesiones del usuario'});
       }
     } catch (error) {
-      console.error('Error al obtener las profesiones del usuario:', error);
+      setError(error.message)
     }
   };
 
@@ -170,9 +189,8 @@ const DatosPersonales = () => {
     setSuccessMessageProfesion('');
      try {
       const response = await agregarProfesion( idUsuario,profesion  );
-      
-       
-      if (response.message === 'Profesión agregada con éxito') {
+      console.log(response)
+      if (response.statusCode === 200) {
          
         setNuevaProfesion('');
         setProfesiones((prevProfesiones) => [...prevProfesiones, profesion]);
@@ -290,15 +308,17 @@ const DatosPersonales = () => {
   };
 
   const handleProfilePictureChange = (e) => {
-    if (e.target.files.length > 0) {
-      const file = e.target.files[0];
-      setFotoPerfil(URL.createObjectURL(file));
-      setSelectedFile(file);
-    } else {
-      // Si el usuario no seleccionó una foto, establece la foto de perfil en una imagen predeterminada
-      setFotoPerfil(avatarDefecto);
-      setSelectedFile(null);
-    }
+      if (e.target.files.length > 0) {
+        const file = e.target.files[0];
+        setFotoPerfil(URL.createObjectURL(file));
+        console.log(file);
+        setSelectedFile(file);
+        handleProfilePictureUpload();
+      } else {
+        // Si el usuario no seleccionó una foto, establece la foto de perfil en una imagen predeterminada
+        setFotoPerfil(avatarDefecto);
+        setSelectedFile(null);
+      }
   };
 
   const [errorMessageFoto, setErrorMessageFoto] = useState(null);
@@ -306,10 +326,11 @@ const DatosPersonales = () => {
   const handleProfilePictureUpload = async () => {
     setErrorMessageFoto('');
     setSuccessMessageFoto('');
+    setLoadingFotoPerfil(true);
     if (selectedFile) {
       const formData = new FormData();
       formData.append('file', selectedFile);
-  
+      
       try {
         const response = await fetch(`${API_URL}/usuario/cargarFotoPerfil/${user.id}`, {
           method: 'PUT',
@@ -317,7 +338,7 @@ const DatosPersonales = () => {
         });
   
         const data = await response.json();
-  
+        console.log(response)
         if (response.ok) {
           
           setSuccessMessageFoto('Foto de perfil actualizada con éxito');
@@ -331,9 +352,13 @@ const DatosPersonales = () => {
             setErrorMessageFoto('Error al cargar la foto de perfil');
           }
         }
+
+        hendleObtenerFotoPerfil();
       } catch (error) {
         console.error('Error en handleProfilePictureUpload:', error);
         setErrorMessageFoto(error.message);
+      }finally{
+        setLoadingFotoPerfil(false);
       }
     }
   };
@@ -358,32 +383,19 @@ const handleCloseModal = () => {
               <div className="user-details">
               <div className="profile-picture">
               {loadingFotoPerfil ? (
-                 <div>Loading...</div>
-                 ) : (
-                  <IonAvatar className="ion-avatar" onClick={handleImageClick}>
-                   <img
-                     src={fotoPerfil ? fotoPerfil : avatarDefecto}
-                     alt="foto"
-                     className="round-image"
-                     />
-                    </IonAvatar>
-                     )}
-                     <Button
-                     variant='primary'
-                     className='button'
-                     onClick={handleProfilePictureUpload} 
-                     >
-                    Cambiar Foto
-                  </Button>
-                 {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
-                 {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}  
-                 <input
-                 type="file"
-                accept="image/*"
-            onChange={handleProfilePictureChange}
-          className="file-input"
-         />
-
+                <div><LoaderFijo/></div>
+                ) : (
+                <IonAvatar className="ion-avatar" onClick={handleImageClick}>
+                  <img
+                    src={fotoPerfil ? (`${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}`) : avatarDefecto}
+                    alt="foto"
+                    className="round-image"
+                    />
+                </IonAvatar>
+                )}
+                {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
+                {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}  
+                <input type="file" accept="image/*" onChange={handleProfilePictureChange} className="file-input"/>
          <Modal show={showModal} onHide={handleCloseModal}>
          <Modal.Header closeButton>
           <Modal.Title>Visualización de imagen</Modal.Title>
@@ -589,6 +601,7 @@ const handleCloseModal = () => {
           </Card>
         </Col>
       </Row>
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 };

@@ -1,8 +1,12 @@
-import { fetchGet, fetchPost } from "./fetchIntercept";
+import { fetchGet, fetchPost, fetchDelete } from "./fetchIntercept";
+const { API_URL } = require('../auth/constants');
 
 export const getDatosPersonales = async (id) => {
   try {
-    const data = await fetchGet(`/usuario/obtenerDatosPersonales/${id}`);
+    const data = await fetchGet(`/usuario/obtenerDatosPersonales/${id}`)
+    .then(response => {
+      return response
+    });
     
     return data;
   } catch (error) {
@@ -70,10 +74,17 @@ export const cambiarClave  = async (idUsuario, nuevaContrasena, confirmNuevaCont
   }
 };
 
- 
-const { API_URL } = require('../auth/constants');
-const { fetchDelete } = require('./fetchIntercept.js');
-
+export const fetchFotoPerfil = async (idUsuario) => {
+  try {
+    const response = await fetchGet(`/usuario/obtenerFotoPerfil/${idUsuario}`)
+    .then(response => {
+      return response
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
 export async function modificarDatosPer(updatedData,idUser) {
   try {

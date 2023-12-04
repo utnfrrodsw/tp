@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { resetRecPass } from '../../../services/RecuperarClave';
 import './ResetPassword.css';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo';
-const { API_URL } = require('../../../auth/constants');
 
 const ResetPasswordPage = () => {
   const goTo = useNavigate();

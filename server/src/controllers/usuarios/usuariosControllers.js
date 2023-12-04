@@ -360,7 +360,7 @@ obtenerProfesionesUsuario: async (req, res) => {
     }
   },
 
-agregarProfesionesUsuario: async (req, res) => {
+  agregarProfesionesUsuario: async (req, res) => {
     const t = await db.sequelize.transaction(); // Inicia una transacción
   
     try {
