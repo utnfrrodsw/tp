@@ -147,7 +147,7 @@ describe('Registration Component', () => {
 
 
   //Para test 'registers a non-provider user', hay que fijarse que el usuario no haya sido registrado ya en la bd. Si es así, eliminarlo antes de testear 
-  /*test('registers a non-provider user', async () => {
+  test('registers a non-provider user', async () => {
   render(
     <MemoryRouter>
       <Register />
@@ -196,6 +196,6 @@ describe('Registration Component', () => {
     const successMessage = screen.queryByText('Registro exitoso');
     expect(successMessage).toBeInTheDocument();
   });
-});*/ 
+}); 
 
 });
