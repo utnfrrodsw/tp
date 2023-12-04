@@ -9,6 +9,7 @@ import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, m
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import './datosUser.css';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
+import Placeholder from 'react-bootstrap/Placeholder';
 
 const DatosPersonales = () => {
   const [userData, setUserData] = useState({
@@ -72,8 +73,10 @@ const DatosPersonales = () => {
     }
   };
 
+  const [loadDatosPersonales, setLoadDatosPersonales] = useState(true);
   // Función para obtener los datos del usuario
   const fetchUserData = async () => {
+    setLoadDatosPersonales(true);
     const idUser = JSON.parse(localStorage.getItem('user')).id;
     try {
       const responseDatosUser = await getDatosPersonales(idUser);
@@ -88,6 +91,7 @@ const DatosPersonales = () => {
       setError(error || "Error al cargar Foto de Perfil");
     } finally {
       setLoadingFotoPerfil(false);
+      setLoadDatosPersonales(false);
       setTimeout(() => {
         setError("");
       }, 10000);
@@ -99,8 +103,10 @@ const DatosPersonales = () => {
     fetchUserData();
   }, []);
 
+  const [loadDirecciones, setLoadDirecciones] = useState(true);
   useEffect(() => {
     const fetchDireccionesData = async () => {
+      setLoadDirecciones(true);
       try {
         const response = await getDirecciones(user.id);
         if(response.statusCode === 200){
@@ -112,6 +118,7 @@ const DatosPersonales = () => {
       } catch (error) {
         setError(error.message || 'Error al cargar direcciones');
       }finally{
+        setLoadDirecciones(false);
         setTimeout(() => {
           setError("");
         }, 10000);
@@ -158,10 +165,11 @@ const DatosPersonales = () => {
 
 
   const [profesiones, setProfesiones] = useState([]);
-
+  const [loadProfesiones, setLoadProfesiones] = useState(false);
   // Función para obtener las profesiones del usuario
   const fetchProfesiones = async () => {
     try {
+      setLoadProfesiones(true)
       const response = await getProfesiones(user.id);
       if(response.statusCode === 200){
         setProfesiones(response.body.profesiones);
@@ -170,6 +178,8 @@ const DatosPersonales = () => {
       }
     } catch (error) {
       setError(error.message)
+    }finally{
+      setLoadProfesiones(false);
     }
   };
 
@@ -183,12 +193,12 @@ const DatosPersonales = () => {
   const [successMessageProfesion, setSuccessMessageProfesion] = useState('');
 
   const agregarProfesionUsuario = async (idUsuario, profesion) => {
+    setLoadProfesiones(true);
     setErrorProfesion('');
     setSuccessMessageProfesion('');
      try {
       const response = await agregarProfesion( idUsuario,profesion  );
       if (response.statusCode === 200) {
-         
         setNuevaProfesion('');
         setProfesiones((prevProfesiones) => [...prevProfesiones, profesion]);
         setSuccessMessageProfesion( 'Profesión agregada con éxito');
@@ -209,6 +219,8 @@ const DatosPersonales = () => {
     } catch (error) {
       setErrorProfesion(error.message);
       setSuccessMessageProfesion('');
+    }finally{
+      setLoadProfesiones(false);
     }
   };
 
@@ -216,6 +228,7 @@ const DatosPersonales = () => {
     setSuccessMessageProfesion('');
     setErrorProfesion('');
     try {
+      setLoadProfesiones(true);
       const response = await fetchDeleteProfesion(user.id, idProfesion, auth.getRefreshToken());
       if (response.statusCode === 200) {
         setProfesiones(prevProfesiones => prevProfesiones.filter(p => p.idProfesion !== idProfesion));
@@ -225,6 +238,8 @@ const DatosPersonales = () => {
       }
     } catch (error) {
       setErrorProfesion(error.message);
+    }finally{
+      setLoadProfesiones(false);
     }
   };
 
@@ -317,8 +332,9 @@ const DatosPersonales = () => {
 
   return (
     <div className="datosPersonales">
-      <Row className="row">
+      <Row className="row" >
         <Col>
+          {!loadDatosPersonales ? (
           <Card className="cardDatosPer">
             <Card.Body>
               <h2 className="h2">Datos Personales</h2>
@@ -400,81 +416,134 @@ const DatosPersonales = () => {
               </div>
             </Card.Body>
           </Card>
-        </Col>
-        {!!user.esPrestador && (
-       <Col>
-        <Card className='cardSegurity'>
-          <h2 className='h2'>Reputación:</h2>
-          <h2><Rating name="read-only" value={userData.promedioResenas} readOnly precision={0.25}/></h2>
-        </Card>
-        <Card className='cardSegurity'>
-         <Card.Body>
-          <div>
-           <h2 className="h2">Profesiones</h2>
-            <div className="user-details">
-             {profesiones.map((profesion, index) => (
-              <div key={index} className="profesion-item">
-                <p>{profesion.profesion}</p>
-                <Button variant="danger" onClick={() => handleRemoveProfesion(profesion.idProfesion)}>
-                  Eliminar
-                </Button>
-              </div>
-            ))}
-          </div>
-          <form
-          onSubmit={async (event) => {
-          event.preventDefault();
-          if (!nuevaProfesion.trim()) {
-          setErrorProfesion('La profesión no puede estar vacía.');
-          return;
-          }
-           await agregarProfesionUsuario(user.id, nuevaProfesion.toLowerCase());
-           await fetchProfesiones();
-           }}
-           >
-           <label className='agregarProfesion'>
-             <input
-               type="text"
-                placeholder='Nueva Profesion'
-                 value={nuevaProfesion}
-                   onChange={(e) => setNuevaProfesion(e.target.value)}
-                   />
-            </label>
-            <button type="submit" className='button' disabled={!nuevaProfesion.trim()}>
-              Agregar profesión
-             </button>
-          </form>
-         {errorProfesion && <div className="error-message">{errorProfesion}</div>}
-         {successMessageProfesion && <div className="success-message">{successMessageProfesion}</div>}
-        </div>
-        </Card.Body>
-        </Card>
-        </Col>
-         )}
-
-
-        <Col>
-          <Card className='cardDatosPer'>
-            <Card.Body>
-              <h2 className='h2'>Direcciones</h2>
-              <div className="user-details">
-                <select>
-                  <option>Mis Direcciones</option>
-                  {direcciones && direcciones.map((direccion, index) => (
-                    <option key={direccion.idDireccion} value={direccion.idDireccion}>
-                      {direccion.calle} {direccion.numero}
-                      {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null}
-                      /{direccion.localidad.nombre}/{direccion.localidad.provincia}
-                    </option>
-                  ))}
-                </select>
-                <Button variant="primary" className='button' onClick={() => { setNuevaDireccion(true); console.log(nuevaDireccion) }}>Agregar Dirección</Button>
-                {nuevaDireccion && (
-                  <NuevaDireccion nuevaDireccion={nuevaDireccion} hendleDireccionesUpdate={agregarDireccion} cerrarMenu={cerrarMenu} />
-                )}
+          ) : (
+            <Card className="cardDatosPer" style={{width: '100%', height:'80%'}}>
+            <Card.Body >
+              <div className="user-details" style={{height:'90%'}}  >
+              <Placeholder as={Card.Title} animation="glow">
+                <Placeholder sm={10} />
+              </Placeholder>
+              <Placeholder as={Card.Text} animation="glow">
+                <Placeholder lg={7} />
+                <Placeholder lg={8} /> 
+                <Placeholder lg={5} /> 
+                <Placeholder lg={9} />
+                <Placeholder lg={8} />
+                <Placeholder lg={5} />
+                <Placeholder lg={7} />
+                <Placeholder lg={6} />
+              </Placeholder>
+              <Placeholder.Button variant="primary" sm={6} />
               </div>
             </Card.Body>
-          </Card>
+            </Card>
+          )}
+        </Col>
+        {!!user.esPrestador && (
+          <>
+            <Col>
+              <Card className='cardSegurity'>
+                <h2 className='h2'>Reputación:</h2>
+                <h2><Rating name="read-only" value={userData.promedioResenas} readOnly precision={0.25}/></h2>
+              </Card>
+              <Card className='cardSegurity'>
+              {!loadProfesiones ? (
+                <Card.Body>
+                  <div>
+                  <h2 className="h2">Profesiones</h2>
+                    <div className="user-details">
+                    {profesiones.map((profesion, index) => (
+                      <div key={index} className="profesion-item">
+                        <p>{profesion.profesion}</p>
+                        <Button variant="danger" onClick={() => handleRemoveProfesion(profesion.idProfesion)}>
+                          Eliminar
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                  <form
+                  onSubmit={async (event) => {
+                  event.preventDefault();
+                  if (!nuevaProfesion.trim()) {
+                  setErrorProfesion('La profesión no puede estar vacía.');
+                  return;
+                  }
+                  await agregarProfesionUsuario(user.id, nuevaProfesion.toLowerCase());
+                  await fetchProfesiones();
+                  }}
+                  >
+                  <label className='agregarProfesion'>
+                    <input
+                      type="text"
+                        placeholder='Nueva Profesion'
+                        value={nuevaProfesion}
+                          onChange={(e) => setNuevaProfesion(e.target.value)}
+                          />
+                    </label>
+                    <button type="submit" className='button' disabled={!nuevaProfesion.trim()}>
+                      Agregar profesión
+                    </button>
+                  </form>
+                {errorProfesion && <div className="error-message">{errorProfesion}</div>}
+                {successMessageProfesion && <div className="success-message">{successMessageProfesion}</div>}
+                </div>
+                </Card.Body>
+              ) : (
+                <Card.Body>
+                  <div className="user-details">
+                    <Placeholder as={Card.Title} animation="glow">
+                      <Placeholder xs={10} />
+                    </Placeholder>
+                    <Placeholder as={Card.Text} animation="glow">
+                      <Placeholder xs={15} />
+                      <Placeholder xs={10} /> 
+                    </Placeholder>
+                    <Placeholder.Button variant="primary" xs={6} />
+                  </div>
+                </Card.Body>
+              )}
+              </Card>
+            </Col>
+          </>
+        )}
+        <Col>
+          {!loadDirecciones ?
+            <Card className='cardDatosPer'>
+              <Card.Body>
+                <h2 className='h2'>Direcciones</h2>
+                <div className="user-details">
+                  <select>
+                    <option>Mis Direcciones</option>
+                    {direcciones && direcciones.map((direccion, index) => (
+                      <option key={direccion.idDireccion} value={direccion.idDireccion}>
+                        {direccion.calle} {direccion.numero}
+                        {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null}
+                        /{direccion.localidad.nombre}/{direccion.localidad.provincia}
+                      </option>
+                    ))}
+                  </select>
+                  <Button variant="primary" className='button' onClick={() => { setNuevaDireccion(true); console.log(nuevaDireccion) }}>Agregar Dirección</Button>
+                  {nuevaDireccion && (
+                    <NuevaDireccion nuevaDireccion={nuevaDireccion} hendleDireccionesUpdate={agregarDireccion} cerrarMenu={cerrarMenu} />
+                  )}
+                </div>
+              </Card.Body>
+            </Card>:
+            <Card className="cardDatosPer" style={{ width: '100%' }}>
+              <Card.Body>
+                <div className="user-details">
+                  <Placeholder as={Card.Title} animation="glow">
+                    <Placeholder xs={10} />
+                  </Placeholder>
+                  <Placeholder as={Card.Text} animation="glow">
+                    <Placeholder xs={15} />
+                    <Placeholder xs={10} /> 
+                  </Placeholder>
+                  <Placeholder.Button variant="primary" xs={6} />
+                </div>
+              </Card.Body>
+            </Card>
+          }
           <Card className='cardSegurity'>
             <Card.Body>
               <div className="security-details">
