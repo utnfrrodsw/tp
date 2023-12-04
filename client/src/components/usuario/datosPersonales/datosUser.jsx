@@ -6,7 +6,6 @@ import { useAuth } from '../../../auth/authProvider';
 import { API_URL, REACT_APP_PHOTO } from '../../../auth/constants.js';
 import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil, fetchSetFotoPerfil } from '../../../services/DatosPersonales.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
-import avatarDefecto from './avatarDefecto.png';
 import './datosUser.css';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 
@@ -37,7 +36,7 @@ const DatosPersonales = () => {
   const [contrasenaActual, setContrasenaActual] = useState('');
   const [nuevaContrasena, setNuevaContrasena] = useState('');
   const [confirmNuevaContrasena, setConfirmNuevaContrasena] = useState('');
-  const [fotoPerfil, setFotoPerfil] = useState(avatarDefecto);
+  const [fotoPerfil, setFotoPerfil] = useState(undefined);
   const [selectedFile, setSelectedFile] = useState(null);
   const [successMessageFoto, setSuccessMessageFoto] = useState('');
   const [mostrarContrasena, setMostrarContrasena] = useState('');
