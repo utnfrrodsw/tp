@@ -350,7 +350,12 @@ obtenerProfesionesUsuario: async (req, res) => {
         transaction: t, // Asocia la transacción a la consulta principal
       });
   
-      const profesiones = prestadorProfesiones.map(prestadorProfesion => prestadorProfesion.profesion.nombreProfesion);
+      const profesiones = prestadorProfesiones.map(prestadorProfesion => {
+        return {
+          idProfesion: prestadorProfesion.profesion.idProfesion,
+          profesion: prestadorProfesion.profesion.nombreProfesion
+        }
+      });
   
       await t.commit(); // Confirma la transacción si todo está bien
       res.status(200).json(jsonResponse(200,{ message: 'Profesiones encontradas', profesiones: profesiones}));
@@ -412,7 +417,7 @@ obtenerProfesionesUsuario: async (req, res) => {
     const t = await db.sequelize.transaction(); // Inicia la transacción
   
     try {
-      const { idUsuario, profesion } = req.body;
+      const { idUsuario, idProfesion } = req.params;
   
       // Asegúrate de que el usuario es un prestador
       const usuario = await db.Usuario.findOne({ where: { idUsuario } });
@@ -422,7 +427,7 @@ obtenerProfesionesUsuario: async (req, res) => {
       }
   
       // Encuentra la profesión en la base de datos
-      const profesionEncontrada = await db.Profesion.findOne({ where: { nombreProfesion: profesion.toLowerCase() } });
+      const profesionEncontrada = await db.Profesion.findOne({ where: { idProfesion: idProfesion } });
   
       if (!profesionEncontrada) {
         await t.rollback(); // Revierte la transacción

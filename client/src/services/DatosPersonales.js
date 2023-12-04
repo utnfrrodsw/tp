@@ -98,6 +98,18 @@ export const fetchSetFotoPerfil = async (idUsuario, file) => {
   } 
 }
 
+export const fetchDeleteProfesion = async (idUsuario, idProfesion, token) => {
+  try {
+    const response = await fetchDelete(`/usuario/eliminarProfesionUsuario/${idUsuario}/${idProfesion}`, token)
+    .then(response => {
+      return response
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export async function modificarDatosPer(updatedData,idUser) {
   try {
     const response = await fetch(`${API_URL}/usuario/modificarDatosPersonales/${idUser}`, {

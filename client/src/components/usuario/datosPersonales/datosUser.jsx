@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
 import { API_URL, REACT_APP_PHOTO } from '../../../auth/constants.js';
-import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil, fetchSetFotoPerfil } from '../../../services/DatosPersonales.js';
+import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil, fetchSetFotoPerfil, fetchDeleteProfesion } from '../../../services/DatosPersonales.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import './datosUser.css';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
@@ -21,7 +21,7 @@ const DatosPersonales = () => {
   const [originalData, setOriginalData] = useState({ ...userData });
 
   const auth = useAuth();
-  const user = auth.getUser();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [direcciones, setDirecciones] = useState([]);
   const [error, setError] = useState("");
@@ -73,8 +73,7 @@ const DatosPersonales = () => {
 
   // Función para obtener los datos del usuario
   const fetchUserData = async () => {
-    const idUser = user.id;
-  
+    const idUser = JSON.parse(localStorage.getItem('user')).id;
     try {
       const responseDatosUser = await getDatosPersonales(idUser);
       if(responseDatosUser.statusCode === 200){
@@ -194,9 +193,7 @@ const DatosPersonales = () => {
         setProfesiones((prevProfesiones) => [...prevProfesiones, profesion]);
         setSuccessMessageProfesion( 'Profesión agregada con éxito');
         setErrorProfesion('');
-         
-      } else {     
-
+      } else {
         if (response.menssage === 'La profesión ya existe para este usuario') {
           setErrorProfesion('La profesión ya existe para este usuario');
         }
@@ -206,7 +203,7 @@ const DatosPersonales = () => {
 
         setErrorProfesion(
           response.error || firstError
-      );
+        );
 
       }
     } catch (error) {
@@ -215,25 +212,19 @@ const DatosPersonales = () => {
     }
   };
 
-  const handleRemoveProfesion = async (profesion) => {
+  const handleRemoveProfesion = async (idProfesion) => {
     setSuccessMessageProfesion('');
     setErrorProfesion('');
     try {
-      const response = await fetch(`${API_URL}/usuario/eliminarProfesionUsuario/${user.id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idUsuario: user.id, profesion: profesion }),
-      });
-
-      if (response.ok) {
-        // Actualiza la lista de profesiones eliminando la que se eliminó
-        setProfesiones(prevProfesiones => prevProfesiones.filter(p => p !== profesion));
+      const response = await fetchDeleteProfesion(user.id, idProfesion, auth.getRefreshToken());
+      if (response.statusCode === 200) {
+        setProfesiones(prevProfesiones => prevProfesiones.filter(p => p.idProfesion !== idProfesion));
         setSuccessMessageProfesion('Profesión eliminada con éxito');
-      } else {
-        throw new Error(`Error al eliminar la profesión: ${response.status}`);
+      }else{
+        setErrorProfesion(response.body.message);
       }
     } catch (error) {
-      console.error('Error al eliminar la profesión:', error);
+      setErrorProfesion(error.message);
     }
   };
 
@@ -447,8 +438,8 @@ const DatosPersonales = () => {
             <div className="user-details">
              {profesiones.map((profesion, index) => (
               <div key={index} className="profesion-item">
-                <p>{profesion}</p>
-                <Button variant="danger" onClick={() => handleRemoveProfesion(profesion)}>
+                <p>{profesion.profesion}</p>
+                <Button variant="danger" onClick={() => handleRemoveProfesion(profesion.idProfesion)}>
                   Eliminar
                 </Button>
               </div>

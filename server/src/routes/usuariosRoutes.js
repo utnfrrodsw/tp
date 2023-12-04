@@ -55,7 +55,7 @@ router.get('/obtenerFotoPerfil/:id', obtenerFotoPerfil);
 //profesiones
 router.get('/obtenerProfesionesUsuario/:id', usuarioController.obtenerProfesionesUsuario);
 router.post('/agregarProfesionesUsuario/:id', validateProfesionesUsuario,usuarioController.agregarProfesionesUsuario);
-router.delete('/eliminarProfesionUsuario/:id', usuarioController.eliminarProfesionUsuario);
+router.delete('/eliminarProfesionUsuario/:idUsuario/:idProfesion', usuarioController.eliminarProfesionUsuario);
 
  
 
