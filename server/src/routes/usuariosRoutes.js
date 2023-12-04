@@ -46,7 +46,7 @@ router.get('/listaUsuario/:id', usuarioController.getUsuario);
 
 // Datos personales
 router.get('/obtenerDatosPersonales/:id', usuarioController.obtenerDatosUsuario);
-router.put('/modificarDatosPersonales/:id', validateUserData,  usuarioController.modificarDatosPersonales);
+router.patch('/modificarDatosPersonales/:id', validateUserData,  usuarioController.modificarDatosPersonales);
 
 //foto de perfil
 router.put('/cargarFotoPerfil/:id', upload.single('file'),validateFotoPerfil, cargarFotoPerfil);

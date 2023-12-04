@@ -3,8 +3,9 @@ import Rating from '@mui/material/Rating';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
-import { API_URL, REACT_APP_PHOTO } from '../../../auth/constants.js';
-import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil, fetchSetFotoPerfil, fetchDeleteProfesion } from '../../../services/DatosPersonales.js';
+import { REACT_APP_PHOTO } from '../../../auth/constants.js';
+import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil,
+ fetchSetFotoPerfil, fetchDeleteProfesion, fetchVerificarPassword, fetchCambiarContrasena } from '../../../services/DatosPersonales.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import './datosUser.css';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
@@ -129,7 +130,7 @@ const DatosPersonales = () => {
         setErrorCurrentDp('No se han realizado cambios en los datos personales.');
         return;
       }
-  
+      
       const updatedData = {
         nombre: userData.nombre,
         apellido: userData.apellido,
@@ -139,14 +140,13 @@ const DatosPersonales = () => {
   
       // Actualizar datos personales solo si se han modificado
       if (JSON.stringify(updatedData) !== JSON.stringify(originalData)) {
-        const data = await modificarDatosPer(updatedData, user.id);
-  
-        if (data) {
+        const response = await modificarDatosPer(updatedData, user.id, auth.getRefreshToken());
+        if (response.statusCode === 200) {
           setSuccessMessageDp('Datos actualizados con éxito');
           setOriginalData({ ...originalData, ...updatedData });
           setUserData({ ...userData, ...updatedData });
         } else {
-          setErrorCurrentDp(data.error || data.message);
+          setErrorCurrentDp(response.error || response.message);
           return;
         }
       }
@@ -239,18 +239,8 @@ const DatosPersonales = () => {
         return;
       }
 
-      const response = await fetch(`${API_URL}/usuario/verify-password`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          idUsuario: user.id,
-          currentPassword: contrasenaActual,
-        }),
-      });
-
-      if (response.status === 200) {
+      const response = await fetchVerificarPassword(user.id, contrasenaActual);
+      if (response.statusCode === 200) {
         setErrorCurrentPassword('');
         setSuccessMessage('Contraseña actual verificada. Ahora puedes cambiar la contraseña.');
         setIsPasswordVerified(true);
@@ -259,27 +249,14 @@ const DatosPersonales = () => {
         setIsPasswordVerified(false);
       }
     } catch (error) {
-      console.error('Error al verificar la contraseña actual:', error);
+      setError(error.message)
     }
   };
 
   const handleChangePassword = async () => {
     try {
-      const response = await fetch(`${API_URL}/usuario/change-password`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          idUsuario: user.id,
-          newPassword: nuevaContrasena,
-          confirmPassword: confirmNuevaContrasena,
-        }),
-      });
-  
-      const data = await response.json();
-  
-      if (response.status === 200) {
+      const response = await fetchCambiarContrasena( user.id, nuevaContrasena, confirmNuevaContrasena);
+      if (response.statusCode === 200) {
         setErrorNewPassword('');
         setSuccessMessage('Contraseña cambiada con éxito');
         setContrasenaActual('');
@@ -288,11 +265,11 @@ const DatosPersonales = () => {
         setIsPasswordVerified(false);
       } else {
         // Si la respuesta contiene un campo de errores, mostrar esos mensajes de error
-        setErrorNewPassword(data.errors && data.errors.length > 0 ? data.errors[0].msg : data.message );
-      
+        setErrorNewPassword(response.errors && response.errors.length > 0 ? response.errors[0].msg : response.message );
       }
     } catch (error) {
       console.error('Error al cambiar la contraseña:', error);
+      setError(error.message)
     }
   };
 
@@ -347,7 +324,7 @@ const DatosPersonales = () => {
               <h2 className="h2">Datos Personales</h2>
               <div className="user-details">
               <div className="profile-picture">
-              {loadingFotoPerfil ? (
+                {loadingFotoPerfil ? (
                 <div><LoaderFijo/></div>
                 ) : (
                 <IonAvatar className="ion-avatar" onClick={handleImageClick}>
@@ -361,22 +338,21 @@ const DatosPersonales = () => {
                 {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
                 {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}  
                 <input type="file" accept="image/*" onChange={handleProfilePictureUpload} className="file-input"/>
-         <Modal show={showModal} onHide={handleCloseModal}>
-         <Modal.Header closeButton>
-          <Modal.Title>Visualización de imagen</Modal.Title>
-           </Modal.Header>
-            <Modal.Body>
-               <img
-               src={fotoPerfil ? (`${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}`) : `${REACT_APP_PHOTO}/images/fotoPerfil/avatarDefecto.png`}
-               alt="foto"
-               className="modal-image"
-              style={{ width: '100%', height: 'auto' }}
-             />
-            </Modal.Body>
-          </Modal>
-          </div>
-              
-          <label htmlFor="firstName">Nombre:</label>
+                <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Visualización de imagen</Modal.Title>
+                  </Modal.Header>
+                    <Modal.Body>
+                      <img
+                      src={fotoPerfil ? (`${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}`) : `${REACT_APP_PHOTO}/images/fotoPerfil/avatarDefecto.png`}
+                      alt="foto"
+                      className="modal-image"
+                      style={{ width: '100%', height: 'auto' }}
+                    />
+                    </Modal.Body>
+                  </Modal>
+              </div>
+              <label htmlFor="firstName">Nombre:</label>
               <input
                   type="text"
                   id="firstName"
