@@ -1,12 +1,13 @@
 import { IonAvatar } from '@ionic/react';
+import Rating from '@mui/material/Rating';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
 import { API_URL } from '../../../auth/constants.js';
+import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer } from '../../../services/DatosPersonales.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import avatarDefecto from './avatarDefecto.png';
 import './datosUser.css';
-import Rating from '@mui/material/Rating';
 
 const DatosPersonales = () => {
   const [userData, setUserData] = useState({
@@ -58,27 +59,24 @@ const DatosPersonales = () => {
 
   // Función para obtener los datos del usuario
   const fetchUserData = async () => {
-    try {
-      const response = await fetch(`${API_URL}/usuario/obtenerDatosPersonales/${user.id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setUserData(data);
-        setOriginalData(data);
+    const idUser = user.id;
   
-        const fotoPerfilUrl = `${API_URL}/usuario/obtenerFotoPerfil/${user.id}`;
-        const responseFotoPerfil = await fetch(fotoPerfilUrl);
-        if (responseFotoPerfil.ok) {
-          setFotoPerfil(fotoPerfilUrl);
-        } else {
-          setFotoPerfil(avatarDefecto); // Si la URL de la foto de perfil es falsa, muestra el avatar por defecto
-        }
-        setLoadingFotoPerfil(false); // Set loading to false when the image is loaded
+    try {
+      const data = await getDatosPersonales(idUser);
+      setUserData(data);
+      setOriginalData(data);
+  
+      const fotoPerfilUrl = `${API_URL}/usuario/obtenerFotoPerfil/${user.id}`;
+      const responseFotoPerfil = await fetch(fotoPerfilUrl);
+      if (responseFotoPerfil.ok) {
+        setFotoPerfil(fotoPerfilUrl);
       } else {
-        throw new Error('Error al obtener los datos del usuario');
+        setFotoPerfil(avatarDefecto);  
       }
+      setLoadingFotoPerfil(false);  
     } catch (error) {
       console.error('Error en fetchUserData:', error);
-      setLoadingFotoPerfil(false); // Set loading to false in case of an error
+      setLoadingFotoPerfil(false);
     }
   };
 
@@ -88,22 +86,18 @@ const DatosPersonales = () => {
   }, []);
 
   useEffect(() => {
-    try {
-      const response = fetch(`${API_URL}/direccion/cliente/${user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setDirecciones(data.body.direcciones);
-        });
-
-      if (response.ok) {
+    const fetchDireccionesData = async () => {
+      try {
+        const data = await getDirecciones(user.id);
+        setDirecciones(data.body.direcciones);
         setError(false);
-      } else {
+      } catch (error) {
+        console.error(error ? error : 'Error al cargar direcciones');
         setError(true);
       }
-    } catch (error) {
-      console.error(error ? error : 'Error al cargar direcciones');
-      setError(true);
-    }
+    };
+  
+    fetchDireccionesData();
   }, [reloadDirecciones, user.id]);
 
   const handleUpdateData = async () => {
@@ -126,29 +120,14 @@ const DatosPersonales = () => {
   
       // Actualizar datos personales solo si se han modificado
       if (JSON.stringify(updatedData) !== JSON.stringify(originalData)) {
-        const response = await fetch(`${API_URL}/usuario/modificarDatosPersonales/${user.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(updatedData),
-        });
+        const data = await modificarDatosPer(updatedData, user.id);
   
-        const data = await response.json();
-  
-        if (response.ok) {
+        if (data) {
           setSuccessMessageDp('Datos actualizados con éxito');
           setOriginalData({ ...originalData, ...updatedData });
           setUserData({ ...userData, ...updatedData });
         } else {
-          // Si la respuesta contiene un campo de errores, mostrar esos mensajes de error
-          if (data.errors) {
-            setErrorCurrentDp(data.errors.map(error => error.msg).join(', '));
-          } else if (data.error) {
-            setErrorCurrentDp(data.error);
-          } else {
-            setErrorCurrentDp(data.message);
-          }
+          setErrorCurrentDp(data.error || data.message);
           return;
         }
       }
@@ -159,15 +138,16 @@ const DatosPersonales = () => {
     }
   };
 
+
   const [profesiones, setProfesiones] = useState([]);
 
   // Función para obtener las profesiones del usuario
   const fetchProfesiones = async () => {
     try {
-      const response = await fetch(`${API_URL}/usuario/obtenerProfesionesUsuario/${user.id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setProfesiones(data);
+      const response = await getProfesiones(user.id);
+       
+      if (Array.isArray(response) && response.length) {
+        setProfesiones(response);
       } else {
         throw new Error('Error al obtener las profesiones del usuario');
       }
@@ -185,30 +165,33 @@ const DatosPersonales = () => {
   const [errorProfesion, setErrorProfesion] = useState('');
   const [successMessageProfesion, setSuccessMessageProfesion] = useState('');
 
-  const agregarProfesionUsuario = async (userId, profesion) => {
+  const agregarProfesionUsuario = async (idUsuario, profesion) => {
     setErrorProfesion('');
     setSuccessMessageProfesion('');
-    try {
-      const response = await fetch(`${API_URL}/usuario/agregarProfesionesUsuario/${userId}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idUsuario: userId, profesiones: [profesion] }),
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
+     try {
+      const response = await agregarProfesion( idUsuario,profesion  );
+      
+       
+      if (response.message === 'Profesión agregada con éxito') {
+         
         setNuevaProfesion('');
         setProfesiones((prevProfesiones) => [...prevProfesiones, profesion]);
-        setSuccessMessageProfesion(data.message || 'Profesión agregada con éxito');
+        setSuccessMessageProfesion( 'Profesión agregada con éxito');
         setErrorProfesion('');
-        return data;
-      } else {
-        const data = await response.json();
-        if (data.errors) {
-          setErrorProfesion(data.errors.map(error => error.msg).join(', '));
-        } else {
-          setErrorProfesion(data.message || 'Error desconocido');
+         
+      } else {     
+
+        if (response.menssage === 'La profesión ya existe para este usuario') {
+          setErrorProfesion('La profesión ya existe para este usuario');
         }
+        const firstError = response.errors && response.errors.length > 0
+        ? response.errors[0].msg
+        : 'Error al agregar la profesión';
+
+        setErrorProfesion(
+          response.error || firstError
+      );
+
       }
     } catch (error) {
       setErrorProfesion(error.message);

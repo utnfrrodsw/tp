@@ -1,3 +1,47 @@
+.modal-content {
+  padding: 0;
+  border-radius: 0;
+  padding: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Agregado para centrar verticalmente */
+}
+.modal-header {
+  background-color: #213555;
+  color: white;
+  border: none;
+  width: 100%;
+  
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.modal-body {
+  background-color: #4F709C;
+  color: white;
+  border: none;
+  width: 100%;
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4em;
+  
+}
+
+.modal-footer {
+  border: none;
+  color: white;
+}
+
+.desc{
+  color: white;
+}
+
+.puntaje{
+ color: white; 
+}
 
 .solicprincipal-card {
   display: flex;

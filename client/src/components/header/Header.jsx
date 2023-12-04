@@ -4,6 +4,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../auth/authProvider';
 import { API_URL } from '../../auth/constants';
+import { fetchCerrarSesion } from "../../services/DatosPersonales";
 import './Header.css';
 import logo from "./logoPosta.png";
 import userlogo from './user.png';
@@ -23,16 +24,10 @@ function Header(props) {
         e.preventDefault();
         setShow(false);
         try {
-        const response = await fetch(`${API_URL}/usuario/logout`, {
-            method: "DELETE",
-            headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${auth.getRefreshToken()}`,
-            },
-        });
-        if (response.ok) {
-            auth.logout();
-        }
+            const response = await fetchCerrarSesion(auth.getRefreshToken());
+            if(response.statusCode === 200){
+                auth.logout();
+            }
         } catch (error) {
         
         }

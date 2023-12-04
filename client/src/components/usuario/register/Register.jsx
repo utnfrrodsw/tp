@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap'; // Importa los componentes del modal
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../auth/authProvider';
+import { registerUser } from '../../../services/Register';
 import './Register.css';
+import LoaderFijo from '../../load/loaderFijo/LoaderFijo';
 const { API_URL } = require('../../../auth/constants');
 
 function Register() {
@@ -23,7 +25,7 @@ function Register() {
   const [nuevaDireccion, setNuevaDireccion] = useState({});  
   const [nuevaEspecialidad, setNuevaEspecialidad] = useState('');
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
-
+  const [showSuccessModal, setShowSuccessModal] = useState(false); 
   
 
   // Función para abrir el modal de agregar especialidad
@@ -112,53 +114,49 @@ function Register() {
 
   const [message, setMessage] = useState('');
   const [successMessage, setSucceseMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
    
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsLoading(true);  
     setMessage('');
-
-    try {
-      const response = await fetch(`${API_URL}/usuario/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nombre,
-          apellido,
-          email,
-          contrasena,
-          confirmContrasena,
-          telefono,
-          fechaNacimiento,
-          esPrestador,
-          especialidades,
-          direcciones: direccionesUsuario, // Agrega las direcciones del usuario
-        }),
-      });
   
-      const data = await response.json();
-    
-      if (response.status === 201) {
-        setSucceseMessage('Registro exitoso, redirigiendo al login...');
-        setTimeout(() => {
-          goTo('/login');}, 5000);
+    try {
+       const jsonResponse = await registerUser( nombre,apellido,email,contrasena,
+        confirmContrasena,telefono, fechaNacimiento,esPrestador,especialidades, direccionesUsuario,  );
+  
+        if (jsonResponse && jsonResponse.message === 'Registro exitoso') {
+          setShowSuccessModal(true);  
+          setTimeout(() => {
+            setShowSuccessModal(false);  
+            goTo('/login');
+          }, 5000);
       } else {
-        // Si hay errores del middleware, utiliza el primer mensaje de error
-        // Si no, utiliza el mensaje de error del controlador
-        setMessage(data.errors && data.errors.length > 0 ? data.errors[0].msg : data.message);
-      }
-      if (data.statusCode === 400){
-        setMessage('El email ingresado ya esta en uso');
-      }
+         
+        const firstError = jsonResponse.errors && jsonResponse.errors.length > 0
+        ? jsonResponse.errors[0].msg
+        : 'Error during login';
 
+        setMessage(
+          jsonResponse.error || firstError
+        );
+
+      }
+  
+      if (jsonResponse.statusCode === 400) {
+        setMessage('El email ingresado ya está en uso');
+      }
     } catch (error) {
-      setMessage(error.message);
+      setMessage(error.message || 'Error al conectar con el servidor');
+    }
+    finally {
+      setIsLoading(false); // Detiene el loader
     }
   };
   
   return (
+    <section>{isLoading ? <LoaderFijo /> : (
     <section className="fondoRegister">
       <div className="register-container">
         <h2>Registro de Usuario</h2>
@@ -390,7 +388,16 @@ function Register() {
           ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
         </p>
       </div>
+      <Modal show={showSuccessModal} onHide={() => setShowSuccessModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Registro exitoso</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Registro exitoso, redirigiendo al login...</p>
+         </Modal.Body>
+      </Modal>
     </section>
+    )}</section>
   );
 }
 

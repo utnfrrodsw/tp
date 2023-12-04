@@ -7,7 +7,6 @@ import Error from './components/error/Error.jsx';
 import Footer from './components/footer/Footer.jsx';
 import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
-import Evaluaciones from './components/prestador/evaluaciones/Evaluaciones';
 import InicioPrestador from './components/prestador/inicio/InicioPrestador.jsx';
 import Anuncios from './components/prestador/inicio/anuncios/Anuncios.jsx'
 import Presupuesto from './components/prestador/presupuesto/Presupuesto.jsx';
@@ -51,7 +50,6 @@ function App() {
           {/*prestador*/}
           <Route path='/' element={<ProtectedRouteProvider/>}>
             <Route path='/provider/home/'  element={ <InicioPrestador />}/>
-            <Route path='/evaluations' element={<Evaluaciones />} />
             <Route path='/provider/home/add'  element={ <Anuncios filtrado="nuevas" estado="activa"/> }/> 
             <Route path='/provider/home/budgeted' element={<Anuncios filtrado="presupuestadas" estado="activa"/>}/>
             <Route path='/provider/home/expired' element={<Anuncios filtrado="presupuestadas" estado="progreso"/>}/>

@@ -14,6 +14,13 @@ function Anuncio(props) {
   return (
     <div className={`anuncioprincipal-card ${show ? 'anuncioprincipal-card' : 'anuncioprincipal-fullcontent'}`}>
       <div>
+          <div className={`estado-solicitud anuncio-${props.estado}-filtrado-${props.filtrado}`}>
+            {props.estado === "activa" && props.filtrado === "nuevas" && <>Nuevo</>}
+            {props.estado === "activa" && props.filtrado === "presupuestadas" && <>Presupuestada</>}
+            {props.estado === "progreso" && props.filtrado === "presupuestadas" && <>Caducada</>}
+            {props.estado === "progreso" && props.filtrado === "aceptadas" && <>Progreso</>}
+            {props.estado === "terminado" && props.filtrado === "aceptadas" && <>Finalizado</>}
+          </div>
         <h1 className='titulo-anuncio'>{props.titulo}</h1>
         <p className='fecha-anuncio'>
           Fecha publicacion: {dateTime.toLocaleDateString()}
@@ -35,7 +42,7 @@ function Anuncio(props) {
               <Modal.Header closeButton>
                 <Modal.Title>Fotos</Modal.Title>
               </Modal.Header>
-              <Modal.Body>
+              <Modal.Body style={{backgroundColor: 'rgb(33, 53, 85)'}}>
                 <Carousel style={{ width: '100%', height: '100%' }}>
                   {props.fotos.map((img, index) => (
                     <Carousel.Item style={{ margin_top: '10px' }}>
