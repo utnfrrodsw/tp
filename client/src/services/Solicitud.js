@@ -5,7 +5,7 @@ export const setSolicitud = async (id, data, token ) => {
         const headers = {
             Authorization: `Bearer ${token}`
         };
-        const response = await fetchPost(`/solicitud/cliente/${id}`, data, token, headers)
+        const response = await fetchPost(`/solicitud/cliente/${id}`, data, headers)
         .then(response => {
             return response;
         })

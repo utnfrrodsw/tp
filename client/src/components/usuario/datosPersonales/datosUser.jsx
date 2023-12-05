@@ -84,10 +84,10 @@ const DatosPersonales = () => {
         setUserData(responseDatosUser.body.respuestaUsuario);
         setOriginalData(responseDatosUser.body.respuestaUsuario);
       }else{
-        setError(responseDatosUser.message);
+        setError(responseDatosUser.body.message);
       }
       hendleObtenerFotoPerfil();
-    } catch (error) {
+    } catch(error) {
       setError(error || "Error al cargar Foto de Perfil");
     } finally {
       setLoadingFotoPerfil(false);
