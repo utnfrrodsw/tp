@@ -1,12 +1,15 @@
 import { IonAvatar } from '@ionic/react';
+import Rating from '@mui/material/Rating';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import { useAuth } from '../../../auth/authProvider';
-import { API_URL } from '../../../auth/constants.js';
+import { REACT_APP_PHOTO } from '../../../auth/constants.js';
+import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil,
+ fetchSetFotoPerfil, fetchDeleteProfesion, fetchVerificarPassword, fetchCambiarContrasena } from '../../../services/DatosPersonales.js';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
-import avatarDefecto from './avatarDefecto.png';
 import './datosUser.css';
-import Rating from '@mui/material/Rating';
+import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
+import Placeholder from 'react-bootstrap/Placeholder';
 
 const DatosPersonales = () => {
   const [userData, setUserData] = useState({
@@ -20,10 +23,10 @@ const DatosPersonales = () => {
   const [originalData, setOriginalData] = useState({ ...userData });
 
   const auth = useAuth();
-  const user = auth.getUser();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [direcciones, setDirecciones] = useState([]);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [reloadDirecciones, setReloadDirecciones] = useState(false);
 
   const [errorCurrentPassword, setErrorCurrentPassword] = useState('');
@@ -35,7 +38,7 @@ const DatosPersonales = () => {
   const [contrasenaActual, setContrasenaActual] = useState('');
   const [nuevaContrasena, setNuevaContrasena] = useState('');
   const [confirmNuevaContrasena, setConfirmNuevaContrasena] = useState('');
-  const [fotoPerfil, setFotoPerfil] = useState(avatarDefecto);
+  const [fotoPerfil, setFotoPerfil] = useState(undefined);
   const [selectedFile, setSelectedFile] = useState(null);
   const [successMessageFoto, setSuccessMessageFoto] = useState('');
   const [mostrarContrasena, setMostrarContrasena] = useState('');
@@ -56,29 +59,42 @@ const DatosPersonales = () => {
 
   const [loadingFotoPerfil, setLoadingFotoPerfil] = useState(true);
 
+  const hendleObtenerFotoPerfil = async () => {
+    setLoadingFotoPerfil(true);
+    try{
+      const responseFoto = await fetchFotoPerfil(user.id);
+      if(responseFoto.statusCode === 200){
+        setFotoPerfil(responseFoto.body.NombreFoto);
+      }
+    }catch(error){
+      setError(error.message);
+    }finally{
+      setLoadingFotoPerfil(false);
+    }
+  };
+
+  const [loadDatosPersonales, setLoadDatosPersonales] = useState(true);
   // Función para obtener los datos del usuario
   const fetchUserData = async () => {
+    setLoadDatosPersonales(true);
+    const idUser = JSON.parse(localStorage.getItem('user')).id;
     try {
-      const response = await fetch(`${API_URL}/usuario/obtenerDatosPersonales/${user.id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setUserData(data);
-        setOriginalData(data);
-  
-        const fotoPerfilUrl = `${API_URL}/usuario/obtenerFotoPerfil/${user.id}`;
-        const responseFotoPerfil = await fetch(fotoPerfilUrl);
-        if (responseFotoPerfil.ok) {
-          setFotoPerfil(fotoPerfilUrl);
-        } else {
-          setFotoPerfil(avatarDefecto); // Si la URL de la foto de perfil es falsa, muestra el avatar por defecto
-        }
-        setLoadingFotoPerfil(false); // Set loading to false when the image is loaded
-      } else {
-        throw new Error('Error al obtener los datos del usuario');
+      const responseDatosUser = await getDatosPersonales(idUser);
+      if(responseDatosUser.statusCode === 200){
+        setUserData(responseDatosUser.body.respuestaUsuario);
+        setOriginalData(responseDatosUser.body.respuestaUsuario);
+      }else{
+        setError(responseDatosUser.message);
       }
+      hendleObtenerFotoPerfil();
     } catch (error) {
-      console.error('Error en fetchUserData:', error);
-      setLoadingFotoPerfil(false); // Set loading to false in case of an error
+      setError(error || "Error al cargar Foto de Perfil");
+    } finally {
+      setLoadingFotoPerfil(false);
+      setLoadDatosPersonales(false);
+      setTimeout(() => {
+        setError("");
+      }, 10000);
     }
   };
 
@@ -87,23 +103,28 @@ const DatosPersonales = () => {
     fetchUserData();
   }, []);
 
+  const [loadDirecciones, setLoadDirecciones] = useState(true);
   useEffect(() => {
-    try {
-      const response = fetch(`${API_URL}/direccion/cliente/${user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setDirecciones(data.body.direcciones);
-        });
-
-      if (response.ok) {
-        setError(false);
-      } else {
-        setError(true);
+    const fetchDireccionesData = async () => {
+      setLoadDirecciones(true);
+      try {
+        const response = await getDirecciones(user.id);
+        if(response.statusCode === 200){
+          setDirecciones(response.body.direcciones);
+          setError("");
+        }else{
+          setError(response.message);
+        }
+      } catch (error) {
+        setError(error.message || 'Error al cargar direcciones');
+      }finally{
+        setLoadDirecciones(false);
+        setTimeout(() => {
+          setError("");
+        }, 10000);
       }
-    } catch (error) {
-      console.error(error ? error : 'Error al cargar direcciones');
-      setError(true);
-    }
+    };
+    fetchDireccionesData();
   }, [reloadDirecciones, user.id]);
 
   const handleUpdateData = async () => {
@@ -116,7 +137,7 @@ const DatosPersonales = () => {
         setErrorCurrentDp('No se han realizado cambios en los datos personales.');
         return;
       }
-  
+      
       const updatedData = {
         nombre: userData.nombre,
         apellido: userData.apellido,
@@ -126,53 +147,39 @@ const DatosPersonales = () => {
   
       // Actualizar datos personales solo si se han modificado
       if (JSON.stringify(updatedData) !== JSON.stringify(originalData)) {
-        const response = await fetch(`${API_URL}/usuario/modificarDatosPersonales/${user.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(updatedData),
-        });
-  
-        const data = await response.json();
-  
-        if (response.ok) {
+        const response = await modificarDatosPer(updatedData, user.id, auth.getRefreshToken());
+        if (response.statusCode === 200) {
           setSuccessMessageDp('Datos actualizados con éxito');
           setOriginalData({ ...originalData, ...updatedData });
           setUserData({ ...userData, ...updatedData });
         } else {
-          // Si la respuesta contiene un campo de errores, mostrar esos mensajes de error
-          if (data.errors) {
-            setErrorCurrentDp(data.errors.map(error => error.msg).join(', '));
-          } else if (data.error) {
-            setErrorCurrentDp(data.error);
-          } else {
-            setErrorCurrentDp(data.message);
-          }
+          setErrorCurrentDp(response.error || response.message);
           return;
         }
       }
   
     } catch (error) {
-      console.error('Error al actualizar los datos personales:', error);
       setErrorCurrentDp(error.message);
     }
   };
 
-  const [profesiones, setProfesiones] = useState([]);
 
+  const [profesiones, setProfesiones] = useState([]);
+  const [loadProfesiones, setLoadProfesiones] = useState(false);
   // Función para obtener las profesiones del usuario
   const fetchProfesiones = async () => {
     try {
-      const response = await fetch(`${API_URL}/usuario/obtenerProfesionesUsuario/${user.id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setProfesiones(data);
-      } else {
-        throw new Error('Error al obtener las profesiones del usuario');
+      setLoadProfesiones(true)
+      const response = await getProfesiones(user.id);
+      if(response.statusCode === 200){
+        setProfesiones(response.body.profesiones);
+      }else{
+        setError(response.message);
       }
     } catch (error) {
-      console.error('Error al obtener las profesiones del usuario:', error);
+      setError(error.message)
+    }finally{
+      setLoadProfesiones(false);
     }
   };
 
@@ -185,56 +192,54 @@ const DatosPersonales = () => {
   const [errorProfesion, setErrorProfesion] = useState('');
   const [successMessageProfesion, setSuccessMessageProfesion] = useState('');
 
-  const agregarProfesionUsuario = async (userId, profesion) => {
+  const agregarProfesionUsuario = async (idUsuario, profesion) => {
+    setLoadProfesiones(true);
     setErrorProfesion('');
     setSuccessMessageProfesion('');
-    try {
-      const response = await fetch(`${API_URL}/usuario/agregarProfesionesUsuario/${userId}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idUsuario: userId, profesiones: [profesion] }),
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
+     try {
+      const response = await agregarProfesion( idUsuario,profesion  );
+      if (response.statusCode === 200) {
         setNuevaProfesion('');
         setProfesiones((prevProfesiones) => [...prevProfesiones, profesion]);
-        setSuccessMessageProfesion(data.message || 'Profesión agregada con éxito');
+        setSuccessMessageProfesion( 'Profesión agregada con éxito');
         setErrorProfesion('');
-        return data;
       } else {
-        const data = await response.json();
-        if (data.errors) {
-          setErrorProfesion(data.errors.map(error => error.msg).join(', '));
-        } else {
-          setErrorProfesion(data.message || 'Error desconocido');
+        if (response.menssage === 'La profesión ya existe para este usuario') {
+          setErrorProfesion('La profesión ya existe para este usuario');
         }
+        const firstError = response.errors && response.errors.length > 0
+        ? response.errors[0].msg
+        : 'Error al agregar la profesión';
+
+        setErrorProfesion(
+          response.error || firstError
+        );
+
       }
     } catch (error) {
       setErrorProfesion(error.message);
       setSuccessMessageProfesion('');
+    }finally{
+      setLoadProfesiones(false);
     }
   };
 
-  const handleRemoveProfesion = async (profesion) => {
+  const handleRemoveProfesion = async (idProfesion) => {
     setSuccessMessageProfesion('');
     setErrorProfesion('');
     try {
-      const response = await fetch(`${API_URL}/usuario/eliminarProfesionUsuario/${user.id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idUsuario: user.id, profesion: profesion }),
-      });
-
-      if (response.ok) {
-        // Actualiza la lista de profesiones eliminando la que se eliminó
-        setProfesiones(prevProfesiones => prevProfesiones.filter(p => p !== profesion));
+      setLoadProfesiones(true);
+      const response = await fetchDeleteProfesion(user.id, idProfesion, auth.getRefreshToken());
+      if (response.statusCode === 200) {
+        setProfesiones(prevProfesiones => prevProfesiones.filter(p => p.idProfesion !== idProfesion));
         setSuccessMessageProfesion('Profesión eliminada con éxito');
-      } else {
-        throw new Error(`Error al eliminar la profesión: ${response.status}`);
+      }else{
+        setErrorProfesion(response.body.message);
       }
     } catch (error) {
-      console.error('Error al eliminar la profesión:', error);
+      setErrorProfesion(error.message);
+    }finally{
+      setLoadProfesiones(false);
     }
   };
 
@@ -249,18 +254,8 @@ const DatosPersonales = () => {
         return;
       }
 
-      const response = await fetch(`${API_URL}/usuario/verify-password`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          idUsuario: user.id,
-          currentPassword: contrasenaActual,
-        }),
-      });
-
-      if (response.status === 200) {
+      const response = await fetchVerificarPassword(user.id, contrasenaActual);
+      if (response.statusCode === 200) {
         setErrorCurrentPassword('');
         setSuccessMessage('Contraseña actual verificada. Ahora puedes cambiar la contraseña.');
         setIsPasswordVerified(true);
@@ -269,27 +264,14 @@ const DatosPersonales = () => {
         setIsPasswordVerified(false);
       }
     } catch (error) {
-      console.error('Error al verificar la contraseña actual:', error);
+      setError(error.message)
     }
   };
 
   const handleChangePassword = async () => {
     try {
-      const response = await fetch(`${API_URL}/usuario/change-password`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          idUsuario: user.id,
-          newPassword: nuevaContrasena,
-          confirmPassword: confirmNuevaContrasena,
-        }),
-      });
-  
-      const data = await response.json();
-  
-      if (response.status === 200) {
+      const response = await fetchCambiarContrasena( user.id, nuevaContrasena, confirmNuevaContrasena);
+      if (response.statusCode === 200) {
         setErrorNewPassword('');
         setSuccessMessage('Contraseña cambiada con éxito');
         setContrasenaActual('');
@@ -298,52 +280,33 @@ const DatosPersonales = () => {
         setIsPasswordVerified(false);
       } else {
         // Si la respuesta contiene un campo de errores, mostrar esos mensajes de error
-        setErrorNewPassword(data.errors && data.errors.length > 0 ? data.errors[0].msg : data.message );
-      
+        setErrorNewPassword(response.errors && response.errors.length > 0 ? response.errors[0].msg : response.message );
       }
     } catch (error) {
       console.error('Error al cambiar la contraseña:', error);
-    }
-  };
-
-  const handleProfilePictureChange = (e) => {
-    if (e.target.files.length > 0) {
-      const file = e.target.files[0];
-      setFotoPerfil(URL.createObjectURL(file));
-      setSelectedFile(file);
-    } else {
-      // Si el usuario no seleccionó una foto, establece la foto de perfil en una imagen predeterminada
-      setFotoPerfil(avatarDefecto);
-      setSelectedFile(null);
+      setError(error.message)
     }
   };
 
   const [errorMessageFoto, setErrorMessageFoto] = useState(null);
 
-  const handleProfilePictureUpload = async () => {
+  const handleProfilePictureUpload = async (e) => {
     setErrorMessageFoto('');
     setSuccessMessageFoto('');
-    if (selectedFile) {
+    setLoadingFotoPerfil(true);
+    const file = e.target.files[0];
+    if (file) {
       const formData = new FormData();
-      formData.append('file', selectedFile);
-  
+      formData.append('file', file);
       try {
-        const response = await fetch(`${API_URL}/usuario/cargarFotoPerfil/${user.id}`, {
-          method: 'PUT',
-          body: formData,
-        });
-  
-        const data = await response.json();
-  
-        if (response.ok) {
-          console.log(data);
+        const response = await fetchSetFotoPerfil(user.id, formData);
+        if(response.statusCode === 200){
           setSuccessMessageFoto('Foto de perfil actualizada con éxito');
-          // Limpiar el mensaje de error si la carga fue exitosa
           setErrorMessageFoto(null);
-        } else {
-          // Si la respuesta contiene un campo de error, mostrar ese mensaje de error
-          if (data.error) {
-            setErrorMessageFoto(data.error);
+          hendleObtenerFotoPerfil();
+        }else{
+          if (response.error) {
+            setErrorMessageFoto(response.error);
           } else {
             setErrorMessageFoto('Error al cargar la foto de perfil');
           }
@@ -351,72 +314,61 @@ const DatosPersonales = () => {
       } catch (error) {
         console.error('Error en handleProfilePictureUpload:', error);
         setErrorMessageFoto(error.message);
+      }finally{
+        setLoadingFotoPerfil(false);
       }
     }
   };
 
   const [showModal, setShowModal] = useState(false);
 
-const handleImageClick = () => {
-  setShowModal(true);
-};
+  const handleImageClick = () => {
+    setShowModal(true);
+  };
 
-const handleCloseModal = () => {
-  setShowModal(false);
-};
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <div className="datosPersonales">
-      <Row className="row">
+      <Row className="row" style={user.esPrestador ? ({width: '100%'}): ({width:'80%'}) }>
         <Col>
+          {!loadDatosPersonales ? (
           <Card className="cardDatosPer">
             <Card.Body>
               <h2 className="h2">Datos Personales</h2>
               <div className="user-details">
               <div className="profile-picture">
-              {loadingFotoPerfil ? (
-                 <div>Loading...</div>
-                 ) : (
-                  <IonAvatar className="ion-avatar" onClick={handleImageClick}>
-                   <img
-                     src={fotoPerfil ? fotoPerfil : avatarDefecto}
-                     alt="foto"
-                     className="round-image"
-                     />
-                    </IonAvatar>
-                     )}
-                     <Button
-                     variant='primary'
-                     className='button'
-                     onClick={handleProfilePictureUpload} 
-                     >
-                    Cambiar Foto
-                  </Button>
-                 {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
-                 {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}  
-                 <input
-                 type="file"
-                accept="image/*"
-            onChange={handleProfilePictureChange}
-          className="file-input"
-         />
-
-         <Modal show={showModal} onHide={handleCloseModal}>
-         <Modal.Header closeButton>
-          <Modal.Title>Visualización de imagen</Modal.Title>
-           </Modal.Header>
-            <Modal.Body>
-               <img
-               src={fotoPerfil ? fotoPerfil : avatarDefecto}
-               alt="foto"
-               className="modal-image"
-              style={{ width: '100%', height: 'auto' }}
-             />
-            </Modal.Body>
-          </Modal>
-          </div>
-              
-          <label htmlFor="firstName">Nombre:</label>
+                {loadingFotoPerfil ? (
+                <div><LoaderFijo/></div>
+                ) : (
+                <IonAvatar className="ion-avatar" onClick={handleImageClick}>
+                  <img
+                    src={fotoPerfil ? `${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}` : `${REACT_APP_PHOTO}/images/fotoPerfil/avatarDefecto.png`}
+                    alt="foto"
+                    className="round-image"
+                    />
+                </IonAvatar>
+                )}
+                {successMessageFoto && <div className="success-message">{successMessageFoto}</div>}
+                {errorMessageFoto && <div className="error-message">{errorMessageFoto}</div>}  
+                <input type="file" accept="image/*" onChange={handleProfilePictureUpload} className="file-input"/>
+                <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Visualización de imagen</Modal.Title>
+                  </Modal.Header>
+                    <Modal.Body>
+                      <img
+                      src={fotoPerfil ? (`${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}`) : `${REACT_APP_PHOTO}/images/fotoPerfil/avatarDefecto.png`}
+                      alt="foto"
+                      className="modal-image"
+                      style={{ width: '100%', height: 'auto' }}
+                    />
+                    </Modal.Body>
+                  </Modal>
+              </div>
+              <label htmlFor="firstName">Nombre:</label>
               <input
                   type="text"
                   id="firstName"
@@ -464,81 +416,134 @@ const handleCloseModal = () => {
               </div>
             </Card.Body>
           </Card>
-        </Col>
-        {!!user.esPrestador && (
-       <Col>
-        <Card className='cardSegurity'>
-          <h2 className='h2'>Reputación:</h2>
-          <h2><Rating name="read-only" value={userData.promedioResenas} readOnly precision={0.25}/></h2>
-        </Card>
-        <Card className='cardSegurity'>
-         <Card.Body>
-          <div>
-           <h2 className="h2">Profesiones</h2>
-            <div className="user-details">
-             {profesiones.map((profesion, index) => (
-              <div key={index} className="profesion-item">
-                <p>{profesion}</p>
-                <Button variant="danger" onClick={() => handleRemoveProfesion(profesion)}>
-                  Eliminar
-                </Button>
-              </div>
-            ))}
-          </div>
-          <form
-          onSubmit={async (event) => {
-          event.preventDefault();
-          if (!nuevaProfesion.trim()) {
-          setErrorProfesion('La profesión no puede estar vacía.');
-          return;
-          }
-           await agregarProfesionUsuario(user.id, nuevaProfesion.toLowerCase());
-           await fetchProfesiones();
-           }}
-           >
-           <label className='agregarProfesion'>
-             <input
-               type="text"
-                placeholder='Nueva Profesion'
-                 value={nuevaProfesion}
-                   onChange={(e) => setNuevaProfesion(e.target.value)}
-                   />
-            </label>
-            <button type="submit" className='button' disabled={!nuevaProfesion.trim()}>
-              Agregar profesión
-             </button>
-          </form>
-         {errorProfesion && <div className="error-message">{errorProfesion}</div>}
-         {successMessageProfesion && <div className="success-message">{successMessageProfesion}</div>}
-        </div>
-        </Card.Body>
-        </Card>
-        </Col>
-         )}
-
-
-        <Col>
-          <Card className='cardDatosPer'>
-            <Card.Body>
-              <h2 className='h2'>Direcciones</h2>
-              <div className="user-details">
-                <select>
-                  <option>Mis Direcciones</option>
-                  {direcciones && direcciones.map((direccion, index) => (
-                    <option key={direccion.idDireccion} value={direccion.idDireccion}>
-                      {direccion.calle} {direccion.numero}
-                      {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null}
-                      /{direccion.localidad.nombre}/{direccion.localidad.provincia}
-                    </option>
-                  ))}
-                </select>
-                <Button variant="primary" className='button' onClick={() => { setNuevaDireccion(true); console.log(nuevaDireccion) }}>Agregar Dirección</Button>
-                {nuevaDireccion && (
-                  <NuevaDireccion nuevaDireccion={nuevaDireccion} hendleDireccionesUpdate={agregarDireccion} cerrarMenu={cerrarMenu} />
-                )}
+          ) : (
+            <Card className="cardDatosPer" style={{width: '100%', height:'80%'}}>
+            <Card.Body >
+              <div className="user-details" style={{height:'90%'}}  >
+              <Placeholder as={Card.Title} animation="glow">
+                <Placeholder sm={10} />
+              </Placeholder>
+              <Placeholder as={Card.Text} animation="glow">
+                <Placeholder lg={7} />
+                <Placeholder lg={8} /> 
+                <Placeholder lg={5} /> 
+                <Placeholder lg={9} />
+                <Placeholder lg={8} />
+                <Placeholder lg={5} />
+                <Placeholder lg={7} />
+                <Placeholder lg={6} />
+              </Placeholder>
+              <Placeholder.Button variant="primary" sm={6} />
               </div>
             </Card.Body>
-          </Card>
+            </Card>
+          )}
+        </Col>
+        {!!user.esPrestador && (
+          <>
+            <Col>
+              <Card className='cardSegurity'>
+                <h2 className='h2'>Reputación:</h2>
+                <h2><Rating name="read-only" value={userData.promedioResenas} readOnly precision={0.25}/></h2>
+              </Card>
+              <Card className='cardSegurity'>
+              {!loadProfesiones ? (
+                <Card.Body>
+                  <div>
+                  <h2 className="h2">Profesiones</h2>
+                    <div className="user-details">
+                    {profesiones.map((profesion, index) => (
+                      <div key={index} className="profesion-item">
+                        <p>{profesion.profesion}</p>
+                        <Button variant="danger" onClick={() => handleRemoveProfesion(profesion.idProfesion)}>
+                          Eliminar
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                  <form
+                  onSubmit={async (event) => {
+                  event.preventDefault();
+                  if (!nuevaProfesion.trim()) {
+                  setErrorProfesion('La profesión no puede estar vacía.');
+                  return;
+                  }
+                  await agregarProfesionUsuario(user.id, nuevaProfesion.toLowerCase());
+                  await fetchProfesiones();
+                  }}
+                  >
+                  <label className='agregarProfesion'>
+                    <input
+                      type="text"
+                        placeholder='Nueva Profesion'
+                        value={nuevaProfesion}
+                          onChange={(e) => setNuevaProfesion(e.target.value)}
+                          />
+                    </label>
+                    <button type="submit" className='button' disabled={!nuevaProfesion.trim()}>
+                      Agregar profesión
+                    </button>
+                  </form>
+                {errorProfesion && <div className="error-message">{errorProfesion}</div>}
+                {successMessageProfesion && <div className="success-message">{successMessageProfesion}</div>}
+                </div>
+                </Card.Body>
+              ) : (
+                <Card.Body>
+                  <div className="user-details">
+                    <Placeholder as={Card.Title} animation="glow">
+                      <Placeholder xs={10} />
+                    </Placeholder>
+                    <Placeholder as={Card.Text} animation="glow">
+                      <Placeholder xs={15} />
+                      <Placeholder xs={10} /> 
+                    </Placeholder>
+                    <Placeholder.Button variant="primary" xs={6} />
+                  </div>
+                </Card.Body>
+              )}
+              </Card>
+            </Col>
+          </>
+        )}
+        <Col>
+          {!loadDirecciones ?
+            <Card className='cardDatosPer'>
+              <Card.Body>
+                <h2 className='h2'>Direcciones</h2>
+                <div className="user-details">
+                  <select>
+                    <option>Mis Direcciones</option>
+                    {direcciones && direcciones.map((direccion, index) => (
+                      <option key={direccion.idDireccion} value={direccion.idDireccion}>
+                        {direccion.calle} {direccion.numero}
+                        {direccion.piso || direccion.dpto ? <span>({direccion.piso}{direccion.dpto})</span> : null}
+                        /{direccion.localidad.nombre}/{direccion.localidad.provincia}
+                      </option>
+                    ))}
+                  </select>
+                  <Button variant="primary" className='button' onClick={() => { setNuevaDireccion(true); console.log(nuevaDireccion) }}>Agregar Dirección</Button>
+                  {nuevaDireccion && (
+                    <NuevaDireccion nuevaDireccion={nuevaDireccion} hendleDireccionesUpdate={agregarDireccion} cerrarMenu={cerrarMenu} />
+                  )}
+                </div>
+              </Card.Body>
+            </Card>:
+            <Card className="cardDatosPer" style={{ width: '100%' }}>
+              <Card.Body>
+                <div className="user-details">
+                  <Placeholder as={Card.Title} animation="glow">
+                    <Placeholder xs={10} />
+                  </Placeholder>
+                  <Placeholder as={Card.Text} animation="glow">
+                    <Placeholder xs={15} />
+                    <Placeholder xs={10} /> 
+                  </Placeholder>
+                  <Placeholder.Button variant="primary" xs={6} />
+                </div>
+              </Card.Body>
+            </Card>
+          }
           <Card className='cardSegurity'>
             <Card.Body>
               <div className="security-details">
@@ -606,6 +611,7 @@ const handleCloseModal = () => {
           </Card>
         </Col>
       </Row>
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 };

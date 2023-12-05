@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Spinner } from 'react-bootstrap';
 import '../Inicio/InicioCliente.css';
-import { API_URL } from '../../../auth/constants';
 import { useAuth } from '../../../auth/authProvider.jsx';
-import LoandingDots from '../../load/loandingDots/LoandingDots.jsx';
+import { getClientAdresses } from '../../../services/Cliente.js'
+import { getExistingProfessions } from '../../../services/Prestador.js'
+import { setSolicitud } from '../../../services/Solicitud.js'
 
 export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [showModal, setShowModal] = useState(false);
@@ -14,10 +15,11 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const [direccion, setDireccion] = useState('');
   const [direcciones, setDirecciones] = useState([]);
   const [fotos, setFotos] = useState([]);
-  const [errorProfesiones, setErrorProfesiones] = useState(false);
+  const [errorProfesiones, setErrorProfesiones] = useState("");
   const [errorTitulo, setErrorTitulo] = useState("");
   const [errorDescripcion, setErrorDescripcion] = useState("");
   const [errorProfesion, setErrorProfesion] = useState("");
+  const [errorProfDir, setErrorProfDir] = useState("");
   const [errorDirecciones, setErrorDirecciones] = useState("");
   const [errorFotos, setErrorFotos] = useState("");
   const [error, setError] = useState(false);
@@ -25,57 +27,29 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
   const auth = useAuth();
   const user = auth.getUser();
 
-
-  //direcciones
-  // eslint-disable-next-line
   useEffect(() => {
-    try{
-      const response = fetch(`${API_URL}/direccion/cliente/${user.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setErrorDirecciones(false);
-        setDirecciones(data.body.direcciones);
-      })
-      if(response.ok){
-        setErrorDirecciones(false);
-      }else{
-        setErrorDirecciones(true);
+    const fetchData = async () => {
+      try {
+        const responseAddresses = await getClientAdresses(user.id, auth.token);
+        const responseProfessions = await getExistingProfessions(auth.token);
+        if(responseAddresses.statusCode === 200 && responseProfessions.statusCode === 200){
+          setDirecciones(responseAddresses.body.direcciones);
+          setProfesiones(responseProfessions.body.profesiones);
+        }else{
+          setErrorDirecciones(responseAddresses.body.message);
+          setErrorProfesiones(responseProfessions.body.message);
+          setErrorProfDir("No se pudo cargar la informacion");
+        }
+      } catch (error) {
+        setErrorProfDir(error);
       }
-    }catch(error){
-      error ? console.log(error): console.log('Error al cargar direcciones');
-      setErrorDirecciones(true);
-    }
-  }, [user.id]);
-
-  //profesiones
-  // eslint-disable-next-line
-  useEffect(() => {
-    try{
-      const response = fetch(`${API_URL}/profesion/getProfesionesExistentes`)
-      .then((res) => res.json())
-      .then((data) => {
-        setErrorProfesiones(false);
-        setProfesiones(data.body.profesiones);
-      })
-      if(response.ok){
-        setErrorProfesiones(false);
-      }else{
-        setErrorProfesiones(true);
-      }
-    }catch(error){
-      error ? console.log(error): console.log('Error al cargar profesiones');
-      setErrorProfesiones(true);
-    }
+    };
+    fetchData();
   }, [user.id]);
 
   const handleClose = () => {
-    setError(false);
-    setEnviando(false);
-    setShowModal(false);
-    setErrorTitulo(false);
-    setErrorDescripcion(false);
-    setErrorProfesion(false);
-    // Limpiar los campos del formulario
+    hendleErrors();
+    setDireccion('');
     setTitulo('');
     setDescripcion('');
     setProfesion('');
@@ -83,10 +57,21 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
     setFotos([]);
   };
 
+  const hendleErrors = () => {
+    setError(false);
+    setEnviando(false);
+    setShowModal(false);
+    setErrorTitulo(false);
+    setErrorDescripcion(false);
+    setErrorProfesion('');
+    setErrorDirecciones('');
+  };
+
   const handleShow = () => setShowModal(true);
 
   const handleSubmit = async () => {
     setEnviando(true);
+
     //Validar los campos del formulario
     if (!titulo || !descripcion || !profesion || !direccion || fotos.length === 0) {
       if (!titulo) setErrorTitulo("El titulo es requerido");
@@ -97,11 +82,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
       if (fotos.length > 5) setErrorFotos("Solo puede cargar hasta 5 fotos");
       setEnviando(false);
       setTimeout(() => {
-        setErrorTitulo("");
-        setErrorDescripcion("");
-        setErrorProfesion("");
-        setErrorDirecciones("");
-        setErrorFotos("");
+        hendleErrors();
       }, 10000);
       return;
     }
@@ -116,51 +97,30 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
       formdata.append('fotos', foto);
     });
     
-
     try{
-      await fetch(`${API_URL}/solicitud/cliente/${user.id}`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${auth.getRefreshToken()}`
-        },
-        body: formdata
-      })
-      .then((res) => res.json())
-      .then((data) => {
-              if(data.error){
-                data.error.map((error) => {
-                  if(error.path === 'titulo') setErrorTitulo(error.msg);
-                  if(error.path === 'descripcion') setErrorDescripcion(error.msg);
-                  if(error.path === 'idProfesion') setErrorProfesion(error.msg);
-                  if(error.path === 'idDireccion') setErrorDirecciones(error.msg);
-                  if(error.path === 'fotos') setErrorFotos(error.msg);
-                  return null;
-                });
-                setTimeout(() => {
-                  setErrorTitulo("");
-                  setErrorDescripcion("");
-                  setErrorProfesion("");
-                  setErrorDirecciones("");
-                  setErrorFotos("");
-                }, 10000);
-              }else{
-                setEnviando(false);
-                hendleSolicitudesUpdate();
-                handleClose();
-              }
-            })
-      .catch((error) => {
-        setEnviando(false);
-        setError(true);
-        console.log(error);
-      });
+      const response = await setSolicitud(user.id, formdata, auth.token)
+      if(response.error){
+        response.error.map((error) => {
+          if(error.path === 'titulo') setErrorTitulo(error.msg);
+          if(error.path === 'descripcion') setErrorDescripcion(error.msg);
+          if(error.path === 'idProfesion') setErrorProfesion(error.msg);
+          if(error.path === 'idDireccion') setErrorDirecciones(error.msg);
+          if(error.path === 'fotos') setErrorFotos(error.msg);
+          return null;
+        });
+        setTimeout(() => {
+          hendleErrors();
+        }, 10000);
+      }else{
+        hendleSolicitudesUpdate();
+        handleClose();
+      }
       setEnviando(false);
     }catch(error){
-      setEnviando(false);
       setError(true);
-      console.log(error);
+    }finally{
+      setEnviando(false);
     }
-    
   };
 
   const handleFileChange = (e) => {
@@ -198,18 +158,18 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
         <Modal.Body>
           <div className="form-group">
             <label>Título</label>
-            <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
+            <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} data-testid="titulo-input"/>
             {errorTitulo && <span className="error-message">{errorTitulo}</span>}
           </div>
           <div className="form-group">
             <label>Descripción</label>
-            <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+            <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} data-testid="descripcion-input"/>
             {errorDescripcion && <span className="error-message">{errorDescripcion}</span>}
           </div>
           <div className="form-group">
             <label>Profesion</label>
-            <select value={profesion} onChange={(e) => setProfesion(e.target.value)} >
-              <option value="0">seleccione una profesion</option>
+            <select value={profesion} onChange={(e) => setProfesion(e.target.value)}>
+              <option value="0" data-testid="profesion-input">seleccione una profesion</option>
               {profesiones.length > 0 &&
               profesiones.map((profesion, index) => (
                 <option key={index + 1} value={profesion.idProfesion}>{profesion.nombreProfesion}</option>
@@ -217,12 +177,12 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
               {/* Agrega más opciones según tus necesidades */}
             </select>
             {errorProfesion && <span className="error-message">{errorProfesion}</span>}
-            {errorProfesiones && <span className="error-message">Error al traer profesiones</span>}
+            {errorProfesiones && <span className="error-message">{errorProfesiones}</span>}
           </div>
           <div className="form-group">
             <label>Direccion</label>
             <select value={direccion} onChange={hendleDireccion}>
-              <option value="0">seleccione una dirección</option>
+              <option value="0" data-testid="direccion-input">seleccione una dirección</option>
               {direcciones.length > 0 &&
                 direcciones.map((direccion, index) => (
                   <option key={index + 1} value={direccion.idDireccion}>
@@ -238,7 +198,7 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           </div>
           <div className="form-group">
             <label>Fotos</label>
-            <input type="file" multiple onChange={handleFileChange} />
+            <input type="file" multiple onChange={handleFileChange} data-testid="fotos-input"/>
             {errorFotos && <span className="error-message">{errorFotos}</span>}
           </div>
         </Modal.Body>
@@ -249,10 +209,19 @@ export function NuevaSolicitud({hendleSolicitudesUpdate}) {
           </Button>
           </div>
           <Button  onClick={async() => {await handleSubmit();}}>
-            {enviando ? <><LoandingDots /></> : 'Enviar'}
+            {enviando ? <><Spinner
+              as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+              />
+              Enviando...</> : 'Enviar'
+            }
         </Button>
         </Modal.Footer>
         {error && <span className="error-message">Error al enviar la solicitud</span>}
+        {errorProfDir && <span className="error-message">{errorProfDir}</span>}
       </Modal>
     </div>
   );

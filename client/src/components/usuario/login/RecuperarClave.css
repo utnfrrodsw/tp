@@ -57,13 +57,17 @@
   margin-bottom: 10px;
 }
 
-.success {
+.message.success{
+  padding: 10px;
+  margin-bottom: 10px;
   background-color: #00ff00; /* Fondo verde para éxito (código 200) */
   color: #ffffff; /* Texto blanco */
   border: 1px solid #00ff00;
 }
 
-.error {
+.message.error {
+  padding: 10px;
+  margin-bottom: 10px;
   background-color: #ff0000; /* Fondo rojo para errores (códigos 404 o 500) */
   color: #ffffff; /* Texto blanco */
   border: 1px solid #ff0000;

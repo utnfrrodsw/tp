@@ -13,21 +13,26 @@ const solicitudController = {
     
     getSolicitud: function (req, res){
         let idSolicitud = req.params.id;
-        console.log(idSolicitud);
         try{
             db.Solicitud.findByPk(idSolicitud,{
-                include: [{association: 'direccion'}]
+                include: [{association: 'direccion',
+                            include:[{
+                                association: 'localidad'
+                            }]
+                }]
             })
             .then(function(solicitud){
                 if(!solicitud) {
-                    res.status(404).json({ message: 'Solicitud no encontrada' });
+                    res.status(404).json(jsonResponse(404, { message: 'Solicitud no encontrada' }));
                 }
-                console.log(solicitud);
-                res.json(solicitud);
+                res.status(200).json(jsonResponse(200, {
+                    message: 'Solicitud encontrada',
+                    solicitud: solicitud
+                }));
             })
         }catch(error){
             console.error('Error al obtener solicitud', error);
-            res.status(500).json({ message: 'Error en el servidor' });
+            res.status(500).json(jsonResponse(500, { message: 'Error en el servidor' }));
         }
     },
 
@@ -93,7 +98,7 @@ const solicitudController = {
                                     association: 'usuario'
                                 }],
                             }).then((presupuesto) => {
-                                console.log(resenia);
+                                
                                 const presu = getSolicitudPresuInfo(solicitud, imgs, presupuesto, resenia, estado);
                                 solicitudes.push(presu);
                             });
@@ -115,7 +120,7 @@ const solicitudController = {
 
                 Promise.all(promises)
                 .then(() => {
-                    console.log(solicitudes)
+                    
                     // Todas las promesas se han completado, puedes enviar la respuesta
                     res.status(200).json(jsonResponse(200, {
                         message: 'Solicitudes encontradas',
@@ -126,7 +131,8 @@ const solicitudController = {
                     // Maneja cualquier error que pueda ocurrir
                     console.error(error);
                     res.status(500).json(jsonResponse(500, {
-                        error: 'Error interno del servidor'
+                        message: 'Error interno del servidor',
+                        solicitudes: [],
                     }));
                 });
                 
@@ -148,8 +154,8 @@ const solicitudController = {
     createSolicitud: async function (req, res){
         try{
             const { titulo, descripcion, idProfesion, idDireccion} = req.body;
-            console.log(req.body);
-            console.log(req.files);
+            
+            
             const fotosArray = req.files
             await db.sequelize.transaction( async (t) => {
                 // Paso 1: Crea una solicitud
@@ -184,7 +190,7 @@ const solicitudController = {
     CancelarSolicitud: async function (req, res){
         try {
             const idSolicitud = req.params.id;
-            console.log(idSolicitud);
+            
             await db.sequelize.transaction(async (t) => {
               // Paso 1: Buscar la solicitud
               await db.FotoSolicitud.destroy({ where: { idSolicitud: idSolicitud } }, { transaction: t });
@@ -239,9 +245,9 @@ const solicitudController = {
         const codPostalPres = prestadorCiudad.map(dir => dir.codPostal);
 
 
-        console.log(presupuestoIds);
-        console.log(profesionIds);
-        console.log(codPostalPres);
+        
+        
+        
         // Ahora, busca las solicitudes que tienen profesiones en la lista de IDs
         await db.Solicitud.findAll({
             where: {
@@ -266,7 +272,7 @@ const solicitudController = {
                 },
             ]
             }).then( (solicitudesResponse) => {
-                console.log(solicitudesResponse);
+                
                 const solicitudes = []
 
                 solicitudesResponse.map((solicitud) => {

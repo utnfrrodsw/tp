@@ -2,6 +2,7 @@ const multer = require('multer');
 const path = require('path');
 const db = require('../../models');  
 const fs = require('fs'); // Añade esta línea
+const { jsonResponse } = require('../../lib/jsonResponse');
 
 
 // Configuración de multer para la carga de archivos
@@ -44,7 +45,7 @@ const cargarFotoPerfil = async (req, res) => {
     usuario.foto = foto; // Almacenar la imagen en la base de datos
     await usuario.save();
 
-    res.json({ success: true, message: 'Foto de perfil cargada con éxito' });
+    res.status(200).json(jsonResponse(200,{ success: true, message: 'Foto de perfil cargada con éxito' }));
   } catch (error) {
     console.error('Error al actualizar la foto de perfil:', error);
     return res.status(500).json({ error: 'Error al actualizar la foto de perfil' });
@@ -60,11 +61,11 @@ const obtenerFotoPerfil = async (req, res) => {
 
     // Si el usuario no se encuentra, devuelve un error 404
     if (!usuario) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
+      return res.status(404).json(jsonResponse(404, { error: 'Usuario no encontrado' }));
     }
 
     // Construye la ruta al archivo de la foto de perfil
-    const fotoPerfilPath = path.join(__dirname, '../../../public/images/fotoPerfil', usuario.fotoPerfil);
+    const fotoPerfilPath = path.join(__dirname, '../../../public/images/fotoPerfil/' + usuario.fotoPerfil);
 
     // Verifica si el archivo de la foto de perfil existe
     if (!fs.existsSync(fotoPerfilPath)) {
@@ -74,15 +75,15 @@ const obtenerFotoPerfil = async (req, res) => {
         fs.writeFileSync(fotoPerfilPath, usuario.foto);
       } else {
         // Si la foto no está en la base de datos, devuelve un error 404
-        return res.status(404).json({ error: 'Foto de perfil no encontrada' });
+        return res.status(404).json(jsonResponse(404, { error: 'Foto de perfil no encontrada' }));
       }
     }
-
     // Envía el archivo de imagen como respuesta
-    res.sendFile(fotoPerfilPath);
+    return res.status(200).json(jsonResponse(200, {message: 'Foto de perfil econtrada', NombreFoto: usuario.fotoPerfil }));
+
   } catch (error) {
     console.error('Error al obtener la foto de perfil:', error);
-    return res.status(500).json({ error: 'Error al obtener la foto de perfil' });
+    return res.status(500).json({ error: 'Error al obtener la foto de perfil', error: error });
   }
 };
 

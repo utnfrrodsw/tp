@@ -43,7 +43,7 @@ export function AuthProvider({children}) {
                 throw new Error(response.statusText);
             }
         }catch(error){
-            console.log(error);
+            
             return null;
         }
     }
@@ -65,12 +65,12 @@ export function AuthProvider({children}) {
                 }
                 return json.body;
             }else{
-                console.log(response.statusText);
+                
                 throw new Error(response.statusText);
             }
 
         }catch(error){
-            console.log(error);
+            
             return null;
         }
     };
@@ -126,7 +126,7 @@ export function AuthProvider({children}) {
             const token = getRefreshToken(); 
             if(token){ // chequea si hay un token de refresco
                 const newAccessToken = await requestNewAccessToken(token); // pide un nuevo token de entrada enviando el de refresco
-                console.log("newAccessToken: " + newAccessToken)
+                
                 if(newAccessToken){ // chequea si el nuevo token de entrada es valido
                     const userInfo = await getUserInfo(newAccessToken); // pide la info del usuario con el nuevo token de entrada
                     if(userInfo){ // chequea si la info del usuario es valida

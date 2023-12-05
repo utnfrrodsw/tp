@@ -46,7 +46,7 @@ router.get('/listaUsuario/:id', usuarioController.getUsuario);
 
 // Datos personales
 router.get('/obtenerDatosPersonales/:id', usuarioController.obtenerDatosUsuario);
-router.put('/modificarDatosPersonales/:id', validateUserData,  usuarioController.modificarDatosPersonales);
+router.patch('/modificarDatosPersonales/:id', validateUserData,  usuarioController.modificarDatosPersonales);
 
 //foto de perfil
 router.put('/cargarFotoPerfil/:id', upload.single('file'),validateFotoPerfil, cargarFotoPerfil);
@@ -55,7 +55,7 @@ router.get('/obtenerFotoPerfil/:id', obtenerFotoPerfil);
 //profesiones
 router.get('/obtenerProfesionesUsuario/:id', usuarioController.obtenerProfesionesUsuario);
 router.post('/agregarProfesionesUsuario/:id', validateProfesionesUsuario,usuarioController.agregarProfesionesUsuario);
-router.delete('/eliminarProfesionUsuario/:id', usuarioController.eliminarProfesionUsuario);
+router.delete('/eliminarProfesionUsuario/:idUsuario/:idProfesion', usuarioController.eliminarProfesionUsuario);
 
  
 

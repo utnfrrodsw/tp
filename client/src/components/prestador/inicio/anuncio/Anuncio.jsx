@@ -6,14 +6,21 @@ import { Link } from 'react-router-dom';
 import {REACT_APP_PHOTO} from '../../../../auth/constants.js';
 
 function Anuncio(props) {
-  console.log(props.filtrado);
+  
   const [show, setShow] = useState(true);
   const [verfotos, setVerfotos] = useState(false);
   const dateTime = new Date(props.fechaHora);
-  console.log(dateTime);
+  
   return (
     <div className={`anuncioprincipal-card ${show ? 'anuncioprincipal-card' : 'anuncioprincipal-fullcontent'}`}>
       <div>
+          <div className={`estado-solicitud anuncio-${props.estado}-filtrado-${props.filtrado}`}>
+            {props.estado === "activa" && props.filtrado === "nuevas" && <>Nuevo</>}
+            {props.estado === "activa" && props.filtrado === "presupuestadas" && <>Presupuestada</>}
+            {props.estado === "progreso" && props.filtrado === "presupuestadas" && <>Caducada</>}
+            {props.estado === "progreso" && props.filtrado === "aceptadas" && <>Progreso</>}
+            {props.estado === "terminado" && props.filtrado === "aceptadas" && <>Finalizado</>}
+          </div>
         <h1 className='titulo-anuncio'>{props.titulo}</h1>
         <p className='fecha-anuncio'>
           Fecha publicacion: {dateTime.toLocaleDateString()}
@@ -35,7 +42,7 @@ function Anuncio(props) {
               <Modal.Header closeButton>
                 <Modal.Title>Fotos</Modal.Title>
               </Modal.Header>
-              <Modal.Body>
+              <Modal.Body style={{backgroundColor: 'rgb(33, 53, 85)'}}>
                 <Carousel style={{ width: '100%', height: '100%' }}>
                   {props.fotos.map((img, index) => (
                     <Carousel.Item style={{ margin_top: '10px' }}>
@@ -56,10 +63,11 @@ function Anuncio(props) {
           </section>
         </div>
       )}
+      <button className='boton-anuncio' onClick={() => { setShow(!show); }} >Ver {show ? 'más' : 'menos'}</button>
       {show ? (
-          <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
+          <></>
           ): (
-          <div className='boton'>
+          <div className='botones'>
             {props.filtrado === "nuevas" ?
             <Link to={`/provider/home/add/budget/${props.id}`} className='button-link'>Presupuestar</Link>
             : <></>}
@@ -68,9 +76,7 @@ function Anuncio(props) {
             : <></>}
             {props.filtrado === "aceptadas" ?
             <Link to={`/provider/home/accepted/more/${props.id}`} className='button-link'>Ver informacion Servicio</Link>
-            : <></>}
-            <button className='boton-anuncio' onClick={() => { setShow(!show); }}>Ver {show ? 'más' : 'menos'}</button>
-            
+            : <></>}            
           </div>
           )}
     </div>

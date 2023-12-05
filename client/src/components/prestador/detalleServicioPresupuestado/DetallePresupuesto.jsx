@@ -2,31 +2,42 @@ import '../presupuesto/Presupuesto.css'
 import Detalle from './Detalle.jsx';
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import { API_URL } from "../../../auth/constants.js";
+import { getPresupuestoPrestador } from '../../../services/Presupuesto';
+import LoaderFijo from "../../load/loaderFijo/LoaderFijo.jsx";
+import { Button } from 'react-bootstrap';
+
+
 
 function DetallePresupuesto(){
 
   const history = useNavigate();
   const { idSolicitud } = useParams();
+  const [loading, setLoading] = useState(false);
   const [presupuesto, setPresupuesto] = useState(null);
-  const user=JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [errorCargarPresupuesto, setErrorCargarPresupuesto] = useState("");
+
   useEffect(() => {
-    // Realiza la consulta a la base de datos para obtener los detalles del presupuesto usando el ID del presupuesto
-    fetch(`${API_URL}/presupuesto/solicitud/${idSolicitud}/prestador/${user.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPresupuesto(data.body.presupuesto); // Almacena los detalles del presupuesto en el estado
-      })
-      .catch((error) => {
-        console.error('Error al cargar los detalles del presupuesto:', error);
-      });
-  }, [idSolicitud,user.id]);
-console.log(presupuesto);
+    const fetchData = async () => {
+      try{
+        const response = await getPresupuestoPrestador(idSolicitud,user.id)
+        if(response.statusCode === 200){
+          setPresupuesto(response.body.presupuesto);
+        }else{
+          setErrorCargarPresupuesto(response.body.message);
+        }
+      }catch(error){
+        setErrorCargarPresupuesto(error.message);
+      }
+    };
+    fetchData();
+  }, [idSolicitud, user.id]);
+
 return(
-<div className='scroll-container'>
-  {presupuesto ? (
+  <div className='scroll-container'>
+    { presupuesto ? (
     <>
-    <Detalle
+      <Detalle
       idSolicitud={presupuesto.idSolicitud}
       cliente={presupuesto.cliente}
       titulo={presupuesto.titulo}
@@ -40,13 +51,16 @@ return(
       fechasSeleccionadas={presupuesto.fechasDisponibles}
         />
       <div>
-        <button type='button' onClick={()=> history(-1)}>ir Atras</button>
+        <Button type='button' onClick={()=> history(-1)}>ir Atras</Button>
       </div>
-  </>
-  ) : (
-        <p>Loading...</p> // You can show a loading message or component while waiting for the data
-      )}
-    </div>
+    </>
+    ) : (
+      <div>
+        <LoaderFijo/>
+      </div>
+    )}
+  {errorCargarPresupuesto && <p style={{ color: 'red' }}>{errorCargarPresupuesto}</p>}
+  </div>
 );
 }
 export default DetallePresupuesto;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "../../../navlink/Navlink.jsx";
 import Anuncio from "../anuncio/Anuncio.jsx";
 import "./anuncios.css";
-import { API_URL } from "../../../../auth/constants.js";
+import { getSolicitudesPrestador } from "../../../../services/Solicitud.js";
 import { useAuth } from "../../../../auth/authProvider.jsx";
 import LoaderFijo from "../../../load/loaderFijo/LoaderFijo.jsx";
 
@@ -14,7 +14,6 @@ function Anuncios(props) {
   const [load, setLoad] = useState(false);
   const auth = useAuth();
   const user = auth.getUser();
-  const userData = JSON.parse(localStorage.getItem("user"));
   const [selectedTab, setSelectedTab] = useState('');
 
   const handleTabClick = (tab) => {
@@ -22,20 +21,20 @@ function Anuncios(props) {
   };
 
   useEffect(() => {
-    setLoad(true);
-    fetch(`${API_URL}/solicitud/${props.filtrado}/prestador/${user.id}/${props.estado}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setAnuncios(data.body.solicitudes);
-        console.log(data.body.solicitudes);
-        setAnunciosUpdate(false);
+    const fetchData = async () => {
+      setLoad(true);
+      try {
+        const solicitudes = await getSolicitudesPrestador(props.estado, user.id, props.filtrado);
+        setAnuncios(solicitudes);
+      } catch (error) {
+        console.error(error);
+      } finally {
         setLoad(false);
-      })
-      .catch((error) => {
-        setLoad(false);
-        console.log(error);
-        console.error('Error al cargar anuncios:', error);
-      });
+      }
+      };
+    
+      fetchData(); // Llamada a la función asíncrona dentro del efecto
+    
   }, [anunciosUpdate, props.estado, user.id, props.filtrado]);
 
   const [paginaActual, setPaginaActual] = useState(1);
@@ -145,6 +144,7 @@ function Anuncios(props) {
             AnunciosPagina.map((anuncio) => (
               <Anuncio
                 filtrado={props.filtrado}
+                estado={props.estado}
                 handleAnunciosUpdate={handleAnunciosUpdate}
                 key={anuncio.id}
                 id={anuncio.id}
@@ -157,7 +157,7 @@ function Anuncios(props) {
             ))
           ) : (
             <div>
-              <h1>No hay nunguna solicitud en {props.estado}</h1>
+              <h1>No hay Anuncios {props.estado === 'activa' ? <>Activos</> : <>{props.estado}</> } </h1>
             </div>
           )
         ) : (

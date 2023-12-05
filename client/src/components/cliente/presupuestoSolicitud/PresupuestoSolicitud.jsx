@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Button, Spinner} from 'react-bootstrap';
 import './presupuestosSolicitud.css'
-import { API_URL } from '../../../auth/constants';
 import Rating from '@mui/material/Rating';
+import { useAuth } from '../../../auth/authProvider.jsx';
+import { fetchPagarPresupuesto } from '../../../services/Presupuesto.js';
 
 
 function PresupuestoSolicitud(props){
@@ -10,37 +11,29 @@ function PresupuestoSolicitud(props){
     const [pagarLoading, setPagarLoading] = useState(false);
     const [pagoExitoso, setPagoExitoso] = useState(false);
     const [fecha, setFecha] = useState(undefined);
+    const auth = useAuth();
 
     const handlePagar = async () => {
         setPagarLoading(true);
-        console.log('pagar presupuesto para idPrestador ' + props.idPrestador + ' y idSolicitud ' + props.idSolicitud)
-        const response = await fetch(`${API_URL}/presupuesto/pagar/${props.idSolicitud}/${props.idPrestador}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json', 
-            },
-            body: JSON.stringify({
-                fecha: fecha,
-            }),
-        })
-        .catch((error) => {
-            console.error('Error al pagar presupuesto:', error);
-        });
-
-        if(response.ok){
-            console.log('Presupuesto pagado');
-        }else{
-            console.log('Error al pagar presupuesto');
+        try{
+            const response = await fetchPagarPresupuesto(props.idSolicitud, props.idPrestador, fecha, auth.getRefreshToken());
+            if(response.statusCode === 200){
+                setPagoExitoso(true);
+            }else{
+                setPagoExitoso(false);
+            }
+        }catch(error){
+            setPagoExitoso(false);
+        }finally{
+            setTimeout(() => {
+                setPagarLoading(false);
+                props.hendlePresupuestoPagado();
+            }, 3000);
         }
-
-        setTimeout(() => {
-            setPagarLoading(false);
-            setPagoExitoso(true);
-            props.hendlePresupuestoPagado();
-        }, 3000);
     }
+    
     return (
-        <Card className='card-presu' style={{backgroundColor: '#213555', height: '40%', margin:'10px'}}>
+        <Card className='card-presu' style={{backgroundColor: '#213555', height: 'auto', margin:'10px'}}>
             <Card.Header>
                 <Card.Title style={{color:'white', fontSize:'24px'}}>Presupuesto #{props.idPrestador}</Card.Title>
             </Card.Header>
@@ -48,7 +41,7 @@ function PresupuestoSolicitud(props){
                 <div>
                     <Card.Text className='card-text'>
                         <p>Prestador: {props.nombrePrestador}</p>
-                        <p><Rating name="read-only" value={props.rating} readOnly precision={0.25}/></p>
+                        <Rating name="read-only" value={props.rating} readOnly precision={0.25}/>
                         <p>Materiales: {props.materiales}</p>
                         <p>Costo Materiales: {props.costoMateriales}</p>
                         <p>Costo por Hora: {props.costoXHora}</p>

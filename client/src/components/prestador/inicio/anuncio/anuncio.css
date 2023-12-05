@@ -160,15 +160,24 @@
   font-weight: bold;
 }
 
-.estado-activa {
+
+.anuncio-activa-filtrado-nuevas{
   background-color: #369336;
 }
 
-.estado-enProceso {
-  background-color: #cea500;
+.anuncio-activa-filtrado-presupuestadas{
+  background-color: #ceb545;
 }
 
-.estado-finalizado {
+.anuncio-progreso-filtrado-presupuestadas{
+  background-color: #ff0000;
+}
+
+.anuncio-progreso-filtrado-aceptadas{
+  background-color: #066639;
+}
+
+.anuncio-terminado-filtrado-aceptadas{
   background-color: #ff0000;
 }
 
@@ -277,6 +286,7 @@ img {
   .anuncioprincipal-card,
   .anuncioprincipal-fullcontent {
     width: 90%;
+    height: auto;
   }
 }
 
@@ -292,5 +302,6 @@ img {
   }
   .anuncioprincipal-fullcontent {
     width: 100%;
+    height: auto;
   }
 }
