@@ -7,7 +7,6 @@
     "@emotion/styled": "11.11.0",
     "@ionic/react": "^7.5.4",
     "@mui/material": "5.14.8",
-    "@testing-library/jest-dom": "6.0.0",
     "@testing-library/user-event": "14.4.3",
     "axios": "^1.5.1",
     "bootstrap": "^5.3.2",
@@ -51,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "jest": "^29.7.0",
     "react-icon": "^1.0.0"
