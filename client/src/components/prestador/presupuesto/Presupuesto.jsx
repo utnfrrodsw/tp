@@ -96,7 +96,6 @@ function Presupuesto(props) {
       };
 
       const response = await setPresupuesto(presupuestoData);
-      console.log(response.error);
       if(response.error){
         response.error.forEach((error) => {
           switch (error.path) {
