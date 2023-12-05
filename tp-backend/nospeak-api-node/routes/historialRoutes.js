@@ -9,6 +9,6 @@ router.post('/historiales', verificarToken, historialController.createHistorial)
 router.get('/historiales/:id', verificarToken, historialController.getHistorialById);
 router.patch('/historiales/:id', verificarToken, historialController.updateHistorial);
 router.delete('/historiales/:id', verificarToken, verificarRol, historialController.deleteHistorial);
-router.get('/historiales-usuario/:usuario_id', verificarToken, verificarRol, historialController.getHistorialByUsuario);
+router.get('/historiales-usuario/:usuario_id', verificarToken, historialController.getHistorialByUsuario);
 
 module.exports = router;
