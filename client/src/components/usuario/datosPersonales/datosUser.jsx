@@ -332,7 +332,7 @@ const DatosPersonales = () => {
 
   return (
     <div className="datosPersonales">
-      <Row className="row" >
+      <Row className="row" style={user.esPrestador ? ({width: '100%'}): ({width:'80%'}) }>
         <Col>
           {!loadDatosPersonales ? (
           <Card className="cardDatosPer">
