@@ -42,7 +42,7 @@ GroupTechnician.belongsTo(Technician)
 GroupTask.belongsTo(Group)
 GroupTask.belongsTo(Task)
 
-sequelize.sync({ force: true })
+sequelize.sync({ alter: true })
   .then(() => {
     console.log('Models sync successfully')
   })

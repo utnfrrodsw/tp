@@ -28,7 +28,7 @@ const getUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-  const { name, lastName, email, password, active } = req.body ?? {}
+  const { name, lastName, email, password, active, role } = req.body ?? {}
   const { id } = req.params
 
   if (!id) {
@@ -46,7 +46,8 @@ const updateUser = async (req, res) => {
       last_name: lastName,
       email,
       password: hashedPassword,
-      active
+      active,
+      role
     }, {
       where: { id }
     })

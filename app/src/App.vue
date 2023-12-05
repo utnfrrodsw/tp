@@ -12,15 +12,15 @@
       <v-spacer></v-spacer>
       <template v-if="$isLogged">
         <v-menu v-for="(item, index) in routes" :key="index" close-on-content-click transition="scale-transition" offset-y v-model="item.menu">
-          <template v-slot:activator="{ on }">
-            <v-btn text v-on="on">
+          <template v-slot:activator="{ on }" >
+            <v-btn text v-on="on" >
               <v-icon v-if="item.icon">{{ item.icon }}</v-icon>
               {{ item.name }}            
             </v-btn>
           </template>
-          <v-list>
-            <v-list-item v-for="(subItem, subIndex) in item.subitems" :key="subIndex" @click="insertRoute(subItem.route, item)">
-              <v-list-item-title v-bind:style="activeRoute(subItem.route) ? 'font-weight: bold;' : '' ">
+          <v-list >
+            <v-list-item v-for="(subItem, subIndex) in filteredSubitems(item.subitems)" :key="subIndex" @click="insertRoute(subItem.route, item)" >
+              <v-list-item-title  v-bind:style="activeRoute(subItem.route) ? 'font-weight: bold;' : '' " >
                 <v-icon v-if="subItem.icon">{{ subItem.icon }}</v-icon>
                 {{ subItem.name }}
               </v-list-item-title>
@@ -51,7 +51,7 @@
         @click="toggleSubMenu(item)"
       >
         <v-icon>{{ item.icon }}</v-icon>
-        <v-span>{{ item.name }}</v-span>
+        {{ item.name }}
       </v-btn>
     </template>
     </v-bottom-navigation>
@@ -60,7 +60,7 @@
       <router-view />
       <v-bottom-sheet v-model="bottomSheet" max-width="600">
         <v-list>
-          <v-list-item v-for="(subItem, subIndex) in activeSubItems" :key="subIndex" @click="insertRoute(subItem.route, activeItem); closeBottomSheet()">
+          <v-list-item v-for="(subItem, subIndex) in filteredSubitems(activeSubItems)" :key="subIndex" @click="insertRoute(subItem.route, activeItem); closeBottomSheet()">
             <v-list-item-title v-bind:style="activeRoute(subItem.route) ? 'font-weight: bold;' : '' ">
               <v-icon v-if="subItem.icon">{{ subItem.icon }}</v-icon>
               {{ subItem.name }}
@@ -85,12 +85,16 @@
             {
               name: 'Crear Grupo',
               route: '/add-group',
-              icon: 'mdi-account-multiple-plus'
+              icon: 'mdi-account-multiple-plus',
+              grant: '$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq'
             },
             {
               name: 'Listar Grupos',
               route: '/list-groups',
-              icon: 'mdi-list-box'
+              icon: 'mdi-list-box',
+              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
+                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
+            ]
             }
           ]
         },
@@ -102,12 +106,16 @@
             {
               name: 'Crear Tecnico',
               route: '/add-technician',
-              icon: 'mdi-account-multiple-plus'
+              icon: 'mdi-account-multiple-plus',
+              grant: '$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq'
             },
             {
               name: 'Listar Tecnicos',
               route: '/list-technicians',
-              icon: 'mdi-list-box'
+              icon: 'mdi-list-box',
+              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
+                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
+            ]
             }
           ]
         },
@@ -119,12 +127,16 @@
             {
               name: "Agregar Tarea",
               route: "/add-task",
-              icon: "mdi-plus"
+              icon: "mdi-plus",
+              grant: '$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq'
             },
             {
               name: "Listar Tareas",
               route: "/list-tasks",
-              icon: "mdi-list-box"
+              icon: "mdi-list-box",
+              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
+                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
+            ] 
             }
           ]
         },
@@ -136,12 +148,18 @@
             {
               name: "Nueva Certificacion",
               route: "/add-certification",
-              icon: "mdi-cash-plus"
+              icon: "mdi-cash-plus",
+              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
+                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
+            ]
             },
             {
               name: "Consultar Certificacion",
               route: "/list-certifications",
-              icon: "mdi-view-list"
+              icon: "mdi-view-list",
+              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
+                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
+            ]
             }
           ]
         },
@@ -153,12 +171,18 @@
             {
               name: 'Editar cuenta',
               route: '/edit-account',
-              icon: 'mdi-account-edit'
+              icon: 'mdi-account-edit',
+              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
+                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
+            ]
             },
             {
               name: 'Cerrar sesión',
               route: '/logout',
-              icon: 'mdi-logout'
+              icon: 'mdi-logout',
+              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
+                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
+            ]
             }
           ]
         }
@@ -179,6 +203,10 @@
       },
     },
     methods: {
+      filteredSubitems(subitems) {
+        const alowedGrant = localStorage.rol
+        return subitems.filter(subItem => subItem.grant.includes(alowedGrant))
+    },
       toggleSubMenu(item) {
         if (item.subitems) {
           this.activeItem = item

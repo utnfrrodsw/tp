@@ -55,6 +55,7 @@ export default {
         const response = await axios.post(url, body)
         const data = await response.data
         localStorage.setItem('token', data.token)
+        localStorage.setItem('rol',data.user.role )
         this.$router.push(redirectPath)
       } catch (error) {
         console.error(error)
