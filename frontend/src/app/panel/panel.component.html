@@ -77,7 +77,7 @@
 
 	<div id="amigos" class="col">
 		
-		<details>
+		<details [open]="amigosEntrantes.length!==0">
 			<summary>
 				<h3>Invitaciones Recibidas</h3>
 			</summary>
@@ -85,7 +85,7 @@
 			<em class="col is-center" *ngIf="amigosEntrantes.length===0">No tenés invitaciones.</em>
 
 			<div class="row">
-				<form *ngFor="let usuario of amigosEntrantes" (submit)="responder($event)" class="col-6 row">
+				<form *ngFor="let usuario of amigosEntrantes" (submit)="responder($event)" class="col row">
 					<input type="hidden" name="usuarioID" value="{{usuario.ID}}">
 					<span class="col text-left is-vertical-align">{{usuario.nombreCompleto}}</span>
 					<button type="submit" value="1" (click)="asignarNombreABoton($event)" class="fas fa-check col-2"></button>

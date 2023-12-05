@@ -102,7 +102,7 @@ export class DetalleComponent implements OnInit {
           break;
         case 'habilitado':
           this.usuarioDetallado.habilitado = valor=='1';
-          datoMensaje='Estaod del usuario';
+          datoMensaje='Estado del usuario';
           break;
         }
 
