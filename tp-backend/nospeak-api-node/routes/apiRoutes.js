@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const usuarioRoutes = require('./usuarioRoutes');
-const artistaRoutes = require('./artistaRoutes');
+const artistaRoutes = require('./artistasRoutes');
 const albumRoutes = require('./albumRoutes');
 const cancionRoutes = require('./cancionRoutes');
 const playlistRoutes = require('./playlistRoutes');
