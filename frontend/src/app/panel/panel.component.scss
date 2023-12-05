@@ -1,0 +1,38 @@
+#resultados{
+	border:none;
+}
+
+summary h3{
+	display: inline-block;
+	user-select: none;
+}
+
+#form-crear > fieldset{
+	margin-bottom: 10px;
+}
+
+#administrar-permisos{
+	th{
+		text-align: center;
+	}
+	tbody{
+		td{
+			text-align: center;
+		}
+	}
+	tfoot span{
+		margin: 0 1rem;
+	}
+}
+
+.tachado{
+	text-decoration: line-through;
+}
+
+#perfil{
+	margin-bottom: 2rem;
+}
+
+fieldset.is-full-width.is-marginless.is-paddingless.row{
+	border: none;
+}

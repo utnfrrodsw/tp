@@ -1,0 +1,12 @@
+#particles{
+	height:300px
+}
+
+#volver{
+	margin: 1rem;
+}
+
+// TODO Refactor: DRY en esto, que es de las actualizaciones de datos personales. ¿Quizá hacerlo un componente?
+fieldset.is-full-width.is-marginless.is-paddingless.row{
+	border: none;
+}
