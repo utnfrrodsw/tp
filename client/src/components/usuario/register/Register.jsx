@@ -125,9 +125,10 @@ function Register() {
     try {
        const jsonResponse = await registerUser( nombre,apellido,email,contrasena,
         confirmContrasena,telefono, fechaNacimiento,esPrestador,especialidades, direccionesUsuario,  );
-  
-        if (jsonResponse && jsonResponse.message === 'Registro exitoso') {
-          setShowSuccessModal(true);  
+        console.log(jsonResponse);
+
+        if (jsonResponse.statusCode === 200) {
+          setShowSuccessModal(true);
           setTimeout(() => {
             setShowSuccessModal(false);  
             goTo('/login');
