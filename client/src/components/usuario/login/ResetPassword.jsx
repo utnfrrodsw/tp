@@ -37,9 +37,8 @@ const ResetPasswordPage = () => {
     setIsLoading(true);
     try {
       const jsonResponse = await resetRecPass(email, code, newPassword, confirmPassword);
-      setResponseStatus(jsonResponse.message);
-       
-      if ( jsonResponse.message === 'Contraseña restablecida con éxito') {
+      setResponseStatus(jsonResponse.body.message);
+      if ( jsonResponse.statusCode === 200) {
         setMessage( 'Contraseña restablecida con éxito');
         setSubmitted(true);
         //quiero que tarde 5 segundos en redirigirme a la pagina de login
@@ -50,12 +49,12 @@ const ResetPasswordPage = () => {
       } else {
         const firstError = jsonResponse.errors && jsonResponse.errors.length > 0
         ? jsonResponse.errors[0].msg
-        : 'Error during reset password';
+        : 'Error al resetear password';
         setMessage(
         jsonResponse.error || firstError
         );
         
-        if (jsonResponse.message === 'Código de recuperación no válido') {
+        if (jsonResponse.body.message === 'Código de recuperación no válido') {
           setMessage('Código de recuperación no válido');
         }
 

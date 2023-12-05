@@ -67,6 +67,7 @@ function DetalleServicio() {
             tiempo={presupuesto.tiempoAprox}
             costoxHora={presupuesto.costoXHora}
             fechasSeleccionadas={presupuesto.fechasDisponibles}
+            resenia={presupuesto.resenia}
           />
           <div className='presupuesto-Content'>
             {successMessage && <div className="modal show" style={{ display: 'block', position: 'center' }}>

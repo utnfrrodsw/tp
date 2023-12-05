@@ -1,5 +1,4 @@
 import { fetchGet, fetchPost, fetchDelete, fetchPut, fetchPatch } from "./fetchIntercept";
-const { API_URL } = require('../auth/constants');
 
 export const getDatosPersonales = async (id) => {
   try {

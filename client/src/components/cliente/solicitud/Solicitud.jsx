@@ -31,7 +31,7 @@ function Solicitud(props){
       setLoading(true);
       try {
         const response = await getPresupuestosSolicitud(props.id, auth.getAccessToken());
-        if(response.statusCode == 200){
+        if(response.statusCode === 200){
           setPresupuestosSolicitud(response.body.presupuestos);
         }else{
           setErrorGetPresupuestos("Error al obtener presupuestos");
@@ -165,7 +165,7 @@ function Solicitud(props){
                       <Modal.Title >Presupuestos</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                      <div className='contenedor-presupuestos'>
+                      <div className = 'contenedor-presupuestos'>
                         {loading === false ? 
                           (<>
                             {presupuestosSolicitud.length > 0 ? (
