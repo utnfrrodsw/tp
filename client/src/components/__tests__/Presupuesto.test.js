@@ -10,7 +10,6 @@ describe('Componente Presupuesto', () => {
       <MemoryRouter>
       <Presupuesto />
       </MemoryRouter>);
-    // Agrega aserciones basadas en el renderizado inicial de tu componente
   });
 
 

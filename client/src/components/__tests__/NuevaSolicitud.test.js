@@ -6,7 +6,6 @@ import NuevaSolicitud from '../cliente/nuevaSolicitud/NuevaSolicitud';
 describe('Componente Nueva Solicitud',()=>{
   test('renders NuevaSolicitud component', () => {
   render(<NuevaSolicitud hendleSolicitudesUpdate={() => {}} />);
-  // Add assertions based on your component's initial render
 });
 
 test('opens and closes modal on button click', async () => {
