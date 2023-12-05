@@ -291,7 +291,7 @@ function actualizarDatos(req,res){
                 res.status(403).send();
             }else{
                 // TODO Refactor: (duplicado) pasar habilitado para acá, de su propia función
-                datosPosibles.concat('DNI','nombreUsuario','habilitado');
+                datosPosibles=datosPosibles.concat('DNI','nombreUsuario','habilitado');
                 realizarActualizacion();
             }
         });

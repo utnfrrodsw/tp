@@ -1,17 +1,79 @@
-<fieldset class="container">
-	<legend>Información del usuario {{this.usuarioDetallado?.ID}}:</legend>
+<!-- TODO UX: al caer acá, está scrolleado. Hacer que no. -->
 
-	<h2>Nombre Completo:</h2>
-	<p>{{this.usuarioDetallado?.nombreCompleto}}</p>
+<fieldset class="container" (submit)="enviarActualizacionDeDatosAjenos($event)">
+	<legend><h1>Información del usuario {{this.usuarioDetallado?.ID}}:</h1></legend>
+
 	<h2>DNI:</h2>
-	<p>{{(+(this.usuarioDetallado?.DNI||0)).toLocaleString()}}</p>
+	<form class="row" #DNIForm (reset)="DNIForm.dataset['sucio']='0'">
+		<!-- TODO UX: ver si poner una alerta o tener que acceder a la edicion, porque editar el DNI no debería ser joda (en caso de ser una opcion cambiarlo, mostrarlo con localeString) -->
+		<!-- (+(this.usuarioDetallado?.DNI?.replaceAll('.','')||0)).toLocaleString() -->
+		<fieldset class="is-full-width is-marginless is-paddingless row" [disabled]="(DNIForm.dataset['enviando']==='1')">
+			<input
+				required
+				type="number"
+				name="DNI"
+				class="col-4"
+				placeholder="DNI"
+				(input)="DNIForm.dataset['sucio']='1'"
+				[defaultValue]="this.usuarioDetallado?.DNI?.replaceAll('.','')"
+				max="99999999"
+			>
+			<button class="col-2" type="reset">Reestablecer</button>
+			<button class="col-2" type="submit" [disabled]="(DNIForm.dataset['sucio']!=='1')">Actualizar</button>
+		</fieldset>
+	</form>
+	<h2>Nombre Completo:</h2>
+	<form class="row" #nombreCompletoForm (reset)="nombreCompletoForm.dataset['sucio']='0'">
+		<fieldset class="is-full-width is-marginless is-paddingless row" [disabled]="(nombreCompletoForm.dataset['enviando']==='1')">
+			<input
+				required
+				type="text"
+				name="nombreCompleto"
+				class="col-4"
+				placeholder="Nombre Completo"
+				(input)="nombreCompletoForm.dataset['sucio']='1'"
+				[defaultValue]="this.usuarioDetallado?.nombreCompleto"
+			>
+				<!-- TODO UX: minLength="{{LARGO_MINIMO_NOMBRE_COMPLETO}}" -->
+			<button class="col-2" type="reset">Reestablecer</button>
+			<button class="col-2" type="submit" [disabled]="(nombreCompletoForm.dataset['sucio']!=='1')">Actualizar</button>
+		</fieldset>
+	</form>
+	<h2>Nombre de Usuario:</h2>
+	<form class="row" #nombreUsuarioForm (reset)="nombreUsuarioForm.dataset['sucio']='0'">
+		<fieldset class="is-full-width is-marginless is-paddingless row" [disabled]="(nombreUsuarioForm.dataset['enviando']==='1')">
+			<input
+				required
+				type="text"
+				name="nombreUsuario"
+				class="col-4"
+				placeholder="Nombre Usuario"
+				(input)="nombreUsuarioForm.dataset['sucio']='1'"
+				[defaultValue]="this.usuarioDetallado?.nombreUsuario"
+			>
+				<!-- TODO UX: minLength="{{LARGO_MINIMO_NOMBRE_USUARIO}}" -->
+			<button class="col-2" type="reset">Reestablecer</button>
+			<button class="col-2" type="submit" [disabled]="(nombreUsuarioForm.dataset['sucio']!=='1')">Actualizar</button>
+		</fieldset>
+	</form>
 	<h2>Correo electrónico:</h2>
-	<a href="mail:{{this.usuarioDetallado?.correo}}">{{this.usuarioDetallado?.correo}}</a>
+	<form class="row" #correoForm (reset)="correoForm.dataset['sucio']='0'">
+		<fieldset class="is-full-width is-marginless is-paddingless row" [disabled]="(correoForm.dataset['enviando']==='1')">
+			<input required type="email" name="correo" class="col-4" (input)="correoForm.dataset['sucio']='1'" [defaultValue]="usuarioDetallado?.correo">
+			<button class="col-2" type="reset">Reestablecer</button>
+			<button class="col-2" type="submit" [disabled]="(correoForm.dataset['sucio']!=='1')">Actualizar</button>
+		</fieldset>
+	</form>	
 	<h2>Tokens: <small>({{this.usuarioDetallado?.tokens||0}})</small></h2>
 	<div id="particles"></div>
-	<button class="button {{this.usuarioDetallado?.habilitado?'error':'primary'}}" (click)="cambiarHabilitado()">
-		<h3><b>{{this.usuarioDetallado?.habilitado?'Desh':'H'}}abilitar</b></h3>
-	</button>
+	<form #habilitadoForm>
+		<fieldset class="is-full-width is-marginless is-paddingless row" [disabled]="(habilitadoForm.dataset['enviando']==='1')">
+			<input type="hidden" name="habilitado" [value]="+!+this.usuarioDetallado.habilitado">
+			<button class="button {{this.usuarioDetallado?.habilitado?'error':'primary'}}">
+				<h3><b>{{this.usuarioDetallado?.habilitado?'Desh':'H'}}abilitar</b></h3>
+			</button>
+		</fieldset>
+	</form>
 
 	<hr/>
 	<div class="is-right">
