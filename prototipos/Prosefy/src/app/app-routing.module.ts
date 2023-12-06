@@ -26,6 +26,7 @@ import { UsuarioService } from './services/usuario.service';
 import { AuthService } from './services/auth.service';
 import { RegistroService } from './services/registro.service';
 import { AdminService } from './services/admin.service';
+import { CrudUsuariosComponent } from './admin/crud-usuarios/crud-usuarios.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'crear-cuenta', component: CrearCuentaComponent, canActivate: [RegistroService] },
   { path: 'busqueda/:term', component: BusquedaComponent },
   { path: 'panel-admin', component: PanelAdminComponent, canActivate: [AdminService] },
+  { path: 'panel-admin/usuarios', component: CrudUsuariosComponent, canActivate: [AdminService] },
   { path: 'panel-admin/autores', component: CrudAutoresComponent, canActivate: [AdminService] },
   { path: 'panel-admin/editoriales', component: CrudEditorialesComponent, canActivate: [AdminService] },
   { path: 'panel-admin/libros', component: CrudLibrosComponent, canActivate: [AdminService] },
