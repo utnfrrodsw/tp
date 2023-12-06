@@ -87,7 +87,7 @@ const DatosPersonales = () => {
         setError(responseDatosUser.body.message);
       }
       hendleObtenerFotoPerfil();
-    } catch(error) {
+    } catch (error) {
       setError(error || "Error al cargar Foto de Perfil");
     } finally {
       setLoadingFotoPerfil(false);
@@ -345,7 +345,7 @@ const DatosPersonales = () => {
                 ) : (
                 <IonAvatar className="ion-avatar" onClick={handleImageClick}>
                   <img
-                    src={fotoPerfil ? `${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}` : `${REACT_APP_PHOTO}/images/fotoPerfil/avatarDefecto.png`}
+                    src={fotoPerfil ? `${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}` : REACT_APP_PHOTO + `/images/fotoPerfil/avatarDefecto.png`}
                     alt="foto"
                     className="round-image"
                     />
