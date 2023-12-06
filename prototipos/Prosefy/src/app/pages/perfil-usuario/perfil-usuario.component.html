@@ -47,3 +47,24 @@
   </div>
 </div>
 <app-info-usuario></app-info-usuario>
+
+<!-- Modal Panel con Mensaje -->
+<div class="overlay" [ngClass]="{ active: isPopupOpen }"></div>
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isPopupOpen }">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header mx-5">
+        <h4 class="modal-title text-center">Confirmación</h4>
+        <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body mx-5 mt-2">
+        <p>¿Estás seguro de que querés eliminar tu cuenta?</p>
+      </div>
+      <div class="modal-footer d-flex justify-content-center mt-5">
+        <button type="button" class="btn btn-primary mx-5 custom-btn-primary"
+          (click)="confirmarEliminarCuenta()">Aceptar</button>
+        <button type="button" class="btn btn-primary mx-5 custom-btn-secondary" (click)="closePopup()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

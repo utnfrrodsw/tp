@@ -16,8 +16,6 @@ import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.co
 import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { PanelAdminComponent } from './admin/panel-admin/panel-admin.component';
-import { CrearEditorialComponent } from './pages/crear-editorial-admin/crear-editorial/crear-editorial.component';
-import { EliminarEditorialComponent } from './pages/eliminar-editorial/eliminar-editorial.component';
 import { CrudAutoresComponent } from './admin/crud-autores/crud-autores.component';
 import { CrudEditorialesComponent } from './admin/crud-editoriales/crud-editoriales.component';
 import { CrudLibrosComponent } from './admin/crud-libros/crud-libros.component';
@@ -27,6 +25,7 @@ import { CrudOfertasComponent } from './admin/crud-ofertas/crud-ofertas.componen
 import { UsuarioService } from './services/usuario.service';
 import { AuthService } from './services/auth.service';
 import { RegistroService } from './services/registro.service';
+import { AdminService } from './services/admin.service';
 
 
 const routes: Routes = [
@@ -50,13 +49,11 @@ const routes: Routes = [
   },
   { path: 'crear-cuenta', component: CrearCuentaComponent, canActivate: [RegistroService] },
   { path: 'busqueda/:term', component: BusquedaComponent },
-  { path: 'panel-admin', component: PanelAdminComponent },
-  { path: 'panel-admin/autores', component: CrudAutoresComponent },
-  { path: 'panel-admin/editoriales', component: CrudEditorialesComponent },
-  { path: 'panel-admin/libros', component: CrudLibrosComponent },
-  { path: 'panel-admin/ofertas', component: CrudOfertasComponent },
-  { path: 'crear-editorial', component: CrearEditorialComponent },
-  { path: 'eliminar-editorial', component: EliminarEditorialComponent }
+  { path: 'panel-admin', component: PanelAdminComponent, canActivate: [AdminService] },
+  { path: 'panel-admin/autores', component: CrudAutoresComponent, canActivate: [AdminService] },
+  { path: 'panel-admin/editoriales', component: CrudEditorialesComponent, canActivate: [AdminService] },
+  { path: 'panel-admin/libros', component: CrudLibrosComponent, canActivate: [AdminService] },
+  { path: 'panel-admin/ofertas', component: CrudOfertasComponent, canActivate: [AdminService] },
 ];
 
 @NgModule({

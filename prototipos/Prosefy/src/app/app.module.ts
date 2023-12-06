@@ -70,8 +70,6 @@ import { IniciarSesionService } from './services/iniciar-sesion.service';
 import { CarritoComprasService } from './services/carrito-compras.service';
 import { CurrencyService } from './services/currency.service';
 import { AutoresService } from './services/autores.service';
-import { CrearEditorialComponent } from './pages/crear-editorial-admin/crear-editorial/crear-editorial.component';
-import { EliminarEditorialComponent } from './pages/eliminar-editorial/eliminar-editorial.component';
 import { HeaderAdminComponent } from './admin/header-admin/header-admin.component';
 import { CrudAutoresComponent } from './admin/crud-autores/crud-autores.component';
 import { CrudEditorialesComponent } from './admin/crud-editoriales/crud-editoriales.component';
@@ -127,8 +125,6 @@ registerLocaleData(localeEs, 'es');
     ListaAutoresComponent,
     NuevoComentarioComponent,
     PanelAdminComponent,
-    CrearEditorialComponent,
-    EliminarEditorialComponent,
     HeaderAdminComponent,
     CrudAutoresComponent,
     CrudEditorialesComponent,

@@ -6,7 +6,8 @@
                 <h3>Todas las editoriales</h3>
             </div>
         </div>
-        <button class="btn btn-primary custom-btn-primary mx-2 mb-3">Nueva Editorial</button>
+        <button class="btn btn-primary custom-btn-primary mx-2 mb-3" (click)="openPopup()">Nueva
+            Editorial</button>
         <div class="row">
             <div *ngFor="let editorialId of editorialesIds" class="col-md-4 mb-4">
                 <div class="card">
@@ -15,8 +16,96 @@
                         <h5 class="card-title">{{ editorialesData[editorialId]?.descripcion }}</h5>
                         <p class="card-text"><small>ID: {{ editorialId }}</small></p>
                         <button class="btn btn-primary custom-btn-primary mx-2">Editar</button>
-                        <button class="btn btn-primary custom-btn-secondary mx-2">Eliminar</button>
+                        <button class="btn btn-primary custom-btn-secondary mx-2"
+                            (click)="eliminarEditorial(editorialId)">Eliminar</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Panel para Crear Editorial -->
+<div class="overlay" [ngClass]="{ active: isPopupOpen }">
+    <div class="modal " tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isPopupOpen }">
+        <div class="modal-dialog modal-lg custom-modal-panel">
+            <div class="modal-content custom-modal-panel">
+                <div class="modal-header mx-5">
+                    <h4 class="modal-title text-center">Crear Editorial</h4>
+                    <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mx-5 mt-2">
+
+                    <form [formGroup]="EditorialForm" (keydown.enter)="registrarEditorial()">
+                        <div class="form-group my-4 custom-input">
+                            <label for="descripcion">Descripción de la editorial</label>
+                            <input type="text" id="descripcion" class="form-control" formControlName="descripcion"
+                                placeholder="Ingrese la descripción" />
+                            <!-- Mensajes de error para el campo de descripción -->
+                            <div *ngIf="EditorialForm.get('descripcion')?.hasError('editorialExistente') && EditorialForm.get('descripcion')?.touched"
+                                class="text-danger">
+                                La descripción ya está en uso.
+                            </div>
+                            <div *ngIf="
+                            EditorialForm.get('descripcion')?.hasError('required') &&
+                            EditorialForm.get('descripcion')?.touched
+                            " class="text-danger">
+                                La descripcion es obligatoria.
+                            </div>
+                            <div *ngIf="
+                            EditorialForm.get('descripcion')?.hasError('pattern') &&
+                            EditorialForm.get('descripcion')?.touched
+                            " class="text-danger">
+                                La descripción solo puede contener letras, números y espacios.
+                            </div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="direccion">Dirección</label>
+                            <input type="direccion" id="direccion" class="form-control" formControlName="direccion"
+                                placeholder="Ingrese la dirección" />
+                            <!-- Mensajes de error para el campo de dirección -->
+                            <div *ngIf="EditorialForm.get('direccion')?.hasError('required') && EditorialForm.get('direccion')?.touched"
+                                class="text-danger">
+                                La direccion es obligatoria.
+                            </div>
+                            <div *ngIf="
+                            EditorialForm.get('direccion')?.hasError('pattern') &&
+                            EditorialForm.get('direccion')?.touched
+                          " class="text-danger">
+                                La dirección no es válida.
+                            </div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="imagen">URL de imagen</label>
+                            <input type="text" id="imagen" class="form-control" formControlName="imagen"
+                                placeholder="Ingrese la URL de la imagen" />
+                            <!-- Mensajes de error para el campo de imagen -->
+                            <div *ngIf="
+                              EditorialForm.get('imagen')?.hasError('required') &&
+                              EditorialForm.get('imagen')?.touched
+                            " class="text-danger">
+                                La imagen es obligatoria.
+                            </div>
+                            <div *ngIf="
+                              EditorialForm.get('imagen')?.hasError('pattern') &&
+                              EditorialForm.get('imagen')?.touched
+                            " class="text-danger">
+                                La URL no puede contener espacios.
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary custom-btn-primary form-custom-btn-primary"
+                                (click)="registrarEditorial()">
+                                Crear
+                            </button>
+                            <button type="button"
+                                class="btn btn-secondary custom-btn-secondary form-custom-btn-secondary"
+                                (click)="closePopup()">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
