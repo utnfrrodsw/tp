@@ -2,7 +2,6 @@
   <div class="container-fluid">
     <ul class="navbar-nav-localidad alinear-izquierda">
       <li class="nav-item">
-        <!-- Abre el popup al hacer clic sobre "Localidad" -->
         <a class="nav-link" (click)="openPopup()">
           <span>
             <img src="../../../assets/img/Emojis/Closed Mailbox with Raised Flag.png"
@@ -27,38 +26,24 @@
           <a class="nav-link" routerLink="/inicio">Inicio</a>
         </li>
         <li class="nav-item dropdown">
-          <!-- Permite que se "desplieguen" los enlaces de la sección "Categorías" -->
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Categorías
           </a>
           <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
             <a *ngFor="let categoria of categorias" class="dropdown-item custom-dropdown-item" href="#">
-              {{ categoria }}
+              <p class="dropdown-item custom-dropdown-item custom-text-color">{{
+                categoria }}</p>
             </a>
           </div>
-          <!--<div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown"> -->
-          <!-- Diferentes enlaces de la sección "Categoría" en el nav 
-            <a class="dropdown-item custom-dropdown-item" href="#">Ficción</a>
-            <a class="dropdown-item custom-dropdown-item" href="#">No ficción</a>
-            <a class="dropdown-item custom-dropdown-item" href="#">Literatura infantil</a>
-            <a class="dropdown-item custom-dropdown-item" href="#">Educación y referencia</a>
-            <a class="dropdown-item custom-dropdown-item" href="#">Ciencia y naturaleza</a>
-            <a class="dropdown-item custom-dropdown-item" href="#">Religión y espiritualidad</a>
-            <a class="dropdown-item custom-dropdown-item" href="#">Política y sociedad</a>
-            <a class="dropdown-item custom-dropdown-item" href="#">Salud y bienestar</a>
-            <a class="dropdown-item custom-dropdown-item" href="#">Negocios y finanzas</a>
-          </div> -->
         </li>
 
         <li class="nav-item dropdown">
-          <!-- Permite que se "desplieguen" los enlaces de la sección "Formatos" -->
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Formatos
           </a>
           <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
-            <!-- Diferentes enlaces de la sección "Formatos" en el nav -->
             <a class="dropdown-item custom-dropdown-item" href="#">Físicos</a>
             <a class="dropdown-item custom-dropdown-item" href="#">Ebooks</a>
             <a class="dropdown-item custom-dropdown-item" href="#">Audiolibros</a>

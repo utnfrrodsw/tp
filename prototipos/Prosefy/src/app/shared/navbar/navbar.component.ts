@@ -1,7 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { CurrencyService } from '../../services/currency.service';
-import { PopupLocalidadComponent } from '../popup-localidad/popup-localidad.component';
 import { Categoria, CategoriasService } from '../../services/categorias.service';
 
 @Component({
@@ -20,7 +19,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.categoriasService.getCategorias().subscribe((data: Categoria[]) => {
-      this.categorias = data.map(categoria => categoria.descripcion);
+      this.categorias = data.map(categoria => {
+        return categoria.descripcion;
+      });
     });
   }
 

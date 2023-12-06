@@ -135,34 +135,14 @@ async function update(req: Request, res: Response) {
 
 async function remove(req: Request, res: Response) {
     try {
-        const token = req.header('Authorization')?.replace('Bearer ', '') || '';
-
-        if (!token) {
-            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        const id = req.params.id;
+        const usuario = await repository.delete({ id });
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
         }
-
-        // Decodificar el token para obtener el userId
-        const decoded = jwt.verify(token, 'secretKey') as { userId: string };
-
-        // Obtener el usuario por su ID desde la base de datos
-        const usuarioCompleto = await repository.getById(decoded.userId);
-
-        if (!usuarioCompleto) {
-            return res.status(404).send({ message: 'Usuario no encontrado.' });
-        }
-
-        // Eliminar el usuario
-        await repository.delete({ id: decoded.userId });
-
-        res.status(204).send({ message: 'Usuario eliminado con éxito.' });
+        return res.status(204).send({ message: 'Usuario eliminado con éxito.' });
     } catch (error) {
-        // Manejar errores, por ejemplo, token inválido, userId no válido, etc.
-        if (error instanceof jwt.TokenExpiredError) {
-            return res.status(401).send({ message: 'El token ha expirado.' });
-        } else {
-            console.error('Error en remove:', error);
-            res.status(500).send({ message: 'Error interno del servidor.' });
-        }
+        res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 
@@ -369,56 +349,41 @@ async function checkToken(req: Request, res: Response, next: NextFunction) {
     }
 }
 
-/*
-REFRESH TOKEN POR MOTIVOS DE SEGURIDAD -> NO SE IMPLEMENTA PARA NO COMPLEJIZAR DEMASIADO LA APP
-
-async function refreshToken(req: Request, res: Response) {
+// Requiere token
+async function eliminarCuenta(req: Request, res: Response) {
     try {
-        const token = req.body.token;
+        const token = req.header('Authorization')?.replace('Bearer ', '') || '';
 
-        // Verificar si se proporcionó un token
         if (!token) {
-            return res.status(401).send({ message: 'Token no proporcionado.' });
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
         }
 
-        // Verificar el token y obtener el usuario asociado
-        const usuario = await repository.getByToken(token);
+        // Decodificar el token para obtener el userId
+        const decoded = jwt.verify(token, 'secretKey') as { userId: string };
 
-        if (!usuario) {
-            return res.status(401).send({ message: 'Token no válido.' });
+        // Obtener el usuario por su ID desde la base de datos
+        const usuarioCompleto = await repository.getById(decoded.userId);
+
+        if (!usuarioCompleto) {
+            return res.status(404).send({ message: 'Usuario no encontrado.' });
         }
 
-        // Verificar si el token ha expirado
-        const tokenExpired = usuario.tokens.some(t => t.token === token && t.fechaExpiracion.getTime() < Date.now());
+        // Eliminar el usuario
+        await repository.delete({ id: decoded.userId });
 
-        if (tokenExpired) {
-            return res.status(401).send({ message: 'Token ha expirado.' });
-        }
-
-        // Generar un nuevo token
-        const newToken = jwt.sign({ userId: usuario._id?.toString() }, 'secretKey', { expiresIn: '7d' });
-
-        // Actualizar el refresh token en la base de datos
-        const updatedTokens: Token[] = usuario.tokens.map(t => (t.token === token ? { token: newToken, fechaExpiracion: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) } : t));
-
-        // Actualizar otras propiedades del usuario si es necesario
-        const updatedUsuario: Usuario = {
-            ...usuario,
-            tokens: updatedTokens,
-        };
-
-        await repository.update(usuario._id?.toString() || '', updatedUsuario);
-
-        // Enviar el nuevo token al cliente
-        res.json({ refreshToken: newToken });
+        res.status(204).send({ message: 'Usuario eliminado con éxito.' });
     } catch (error) {
-        console.error('Error en refreshToken:', error);
-        res.status(500).send({ message: 'Error interno del servidor.' });
+        // Manejar errores, por ejemplo, token inválido, userId no válido, etc.
+        if (error instanceof jwt.TokenExpiredError) {
+            return res.status(401).send({ message: 'El token ha expirado.' });
+        } else {
+            console.error('Error en remove:', error);
+            res.status(500).send({ message: 'Error interno del servidor.' });
+        }
     }
 }
-*/
 
-/* GETTERS */
+/* GETTERS CON PERMISOS (TOKEN ASOCIADO) */
 
 async function getNombre(req: Request, res: Response) {
     try {
@@ -540,6 +505,118 @@ async function getTipo(req: Request, res: Response) {
     }
 }
 
+/* GETTERS */
+
+async function getUsernameById(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const usuario = await repository.getById(id);
+
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
+        }
+
+        res.json({ data: usuario.username });
+    } catch (error) {
+        console.error("Error en getUsernameById:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+
+async function getNombreById(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const usuario = await repository.getById(id);
+
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
+        }
+
+        res.json({ data: usuario.nombre });
+    } catch (error) {
+        console.error("Error en getNombreById:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+
+async function getApellidoById(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const usuario = await repository.getById(id);
+
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
+        }
+
+        res.json({ data: usuario.apellido });
+    } catch (error) {
+        console.error("Error en getApellidoById:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+
+async function getEmailById(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const usuario = await repository.getById(id);
+
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
+        }
+
+        res.json({ data: usuario.email });
+    } catch (error) {
+        console.error("Error en getEmailById:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+
+async function getAvatarById(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const usuario = await repository.getById(id);
+
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
+        }
+
+        res.json({ data: usuario.avatar });
+    } catch (error) {
+        console.error("Error en getAvatarById:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+
+async function getTipoById(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const usuario = await repository.getById(id);
+
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
+        }
+
+        res.json({ data: usuario.tipo });
+    } catch (error) {
+        console.error("Error en getTipoById:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function getUsuarios(req: Request, res: Response) {
+    try {
+        const usuarios = await repository.findAll();
+        const usuarioIds = usuarios?.map((usuario) => usuario._id);
+        res.json({ data: usuarioIds });
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
 
 /* SETTERS */
 
@@ -630,4 +707,4 @@ async function updateUserAttribute(req: Request, res: Response, attribute: strin
 }
 
 
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername, setTipo };
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername, setTipo, getUsernameById, getNombreById, getApellidoById, getEmailById, getAvatarById, getTipoById, getUsuarios, eliminarCuenta };

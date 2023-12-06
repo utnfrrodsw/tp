@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, catchError, map, throwError } from "rxjs";
+import { Observable, throwError, combineLatest } from "rxjs";
+import { catchError, map } from 'rxjs/operators';
 import { IniciarSesionService } from './iniciar-sesion.service';
 import { environment } from 'src/environments/environment.development';
 
 export interface Usuario {
+  _id?: string;
   username: string;
   nombre: string;
   apellido: string;
@@ -13,8 +15,7 @@ export interface Usuario {
   localidad?: string;
   avatar?: string;
   tipo: string;
-  contraseña: string;
-  _id?: string;
+  contraseña?: string;
 }
 
 @Injectable({
@@ -42,7 +43,21 @@ export class UsuarioService {
     return this.http.delete(this.apiUrl, options);
   }
 
-  // GETTERS
+  findAll(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.apiUrl}/`).pipe(
+      catchError(error => {
+        console.error('Error obteniendo usuarios:', error);
+        return throwError(() => 'Error en la solicitud al servidor.');
+      })
+    );
+  }
+
+  eliminarUsuario(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url);
+  }
+
+  // GETTERS CON PERMISOS (TOKEN)
 
   getNombre(): Observable<{ data: { nombre: string } }> {
     const endpoint = "get-nombre";
@@ -83,6 +98,50 @@ export class UsuarioService {
         console.error('Error obteniendo datos:', error);
         return throwError(() => 'Error en la solicitud al servidor.');
       })
+    );
+  }
+
+  // GETTERS
+
+  getNombreById(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/get-nombre/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
+  getApellidoById(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/get-apellido/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
+  getEmailById(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/get-email/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
+  getUsernameById(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/get-username/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
+  getTipoById(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/get-tipo/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
+  getAvatarById(id: string): Observable<string | undefined> {
+    return this.http.get<any>(`${this.apiUrl}/get-avatar/${id}`).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
+  getUsuariosIds(): Observable<string[]> {
+    return this.http.get<any>(`${this.apiUrl}/usuarios`).pipe(
+      map((response: any) => response.data)
     );
   }
 

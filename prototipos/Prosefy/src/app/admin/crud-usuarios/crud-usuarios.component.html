@@ -7,6 +7,26 @@
             </div>
         </div>
         <div class="row">
+            <div *ngFor="let usuarioId of usuariosIds" class="col-md-4 mb-4">
+                <div class="card">
+                    <img [src]="usuariosData[usuarioId]?.avatar || 'assets/img/usuario.png'" class="card-img-top"
+                        alt="Avatar del Usuario">
+                    <div class="card-body">
+                        <p class="card-text highlight-text px-2 py-1 rounded-pill" *ngIf="usuariosData[usuarioId]">{{
+                            usuariosData[usuarioId].tipo || 'Tipo no
+                            disponible' }}</p>
+                        <h5 class="card-title mt-3" *ngIf="usuariosData[usuarioId]">
+                            {{ (usuariosData[usuarioId].nombre || 'Nombre no disponible') + ' ' +
+                            (usuariosData[usuarioId].apellido || 'Apellido no disponible') }}
+                        </h5>
+                        <p class="card-text" *ngIf="usuariosData[usuarioId]">{{ usuariosData[usuarioId].email || 'Email
+                            no disponible' }}</p>
+                        <button class="btn btn-primary custom-btn-primary mx-2">Editar</button>
+                        <button class="btn btn-primary custom-btn-secondary mx-2"
+                            (click)="eliminarUsuario(usuarioId)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

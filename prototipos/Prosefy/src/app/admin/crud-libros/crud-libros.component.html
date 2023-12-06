@@ -10,13 +10,13 @@
         <div class="row">
             <div *ngFor="let libroId of librosIds" class="col-md-4 mb-4">
                 <div class="card">
-                    <img [src]="librosData[libroId]?.portada" class="card-img-top" alt="Imagen del Libro">
+                    <img [src]="librosData[libroId].portada" class="card-img-top" alt="Imagen del Libro">
                     <div class="card-body">
-                        <h5 class="card-title">{{ librosData[libroId]?.titulo }}</h5>
-                        <p class="card-text">ISBN: {{ librosData[libroId]?.isbn }}</p>
-                        <p class="card-text">Idioma: {{ librosData[libroId]?.idioma }}</p>
-                        <p class="card-text">Precio: ${{ librosData[libroId]?.precio !== undefined ?
-                            (librosData[libroId]?.precio | number:'1.2-2') :
+                        <h5 class="card-title">{{ librosData[libroId].titulo }}</h5>
+                        <p class="card-text">ISBN: {{ librosData[libroId].isbn }}</p>
+                        <p class="card-text">Idioma: {{ librosData[libroId].idioma }}</p>
+                        <p class="card-text">Precio: ${{ librosData[libroId].precio !== undefined ?
+                            (librosData[libroId].precio | number:'1.2-2') :
                             'N/A' }} ARS</p>
                         <p class="card-text">Fecha de Edición: {{
                             librosData[libroId].fecha_edicion ? formatearFecha(librosData[libroId].fecha_edicion) :

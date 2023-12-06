@@ -39,3 +39,8 @@
     border-bottom: 1px solid #343a40;
     color: #ffffff;
 }
+
+.highlight-text {
+    background-color: #473226;
+    display: inline;
+}
