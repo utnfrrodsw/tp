@@ -147,7 +147,7 @@ export class UsuarioService {
 
   // SETTERS
 
-  private setData<T>(setter: string, value: string): Observable<T> {
+  private setData<T>(setter: string, body: any): Observable<T> {
     const token = localStorage.getItem('token');
     if (!token) {
       throw new Error('No se encontró un token en el almacenamiento local.');
@@ -158,38 +158,54 @@ export class UsuarioService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     });
-    const body = {
-      sanitizedInput: {
-        [setter]: value,
-      },
-    };
 
     return this.http.put<T>(url, body, { headers });
   }
 
   setNombre(nombre: string): Observable<any> {
-    return this.setData('set-nombre', nombre);
+    const body = {
+      nombre: nombre
+    };
+
+    return this.setData('set-nombre', body);
   }
 
   setApellido(apellido: string): Observable<any> {
-    return this.setData('set-apellido', apellido);
+    const body = {
+      apellido: apellido
+    };
+
+    return this.setData('set-apellido', body);
   }
 
   setEmail(email: string): Observable<any> {
-    return this.setData('set-email', email);
+    const body = {
+      email: email
+    };
+
+    return this.setData('set-email', body);
   }
 
   setUsername(username: string): Observable<any> {
-    return this.setData('set-username', username);
+    const body = {
+      username: username
+    };
+
+    return this.setData('set-username', body);
   }
 
-  setTipo(tipo: string): Observable<any> {
-    return this.setData('set-tipo', tipo);
+  setTipo(id: string, tipo: string): Observable<any> {
+    const body = {
+      tipo: tipo
+    };
+
+    const url = `${this.apiUrl}/set-tipo/${id}`;
+
+    return this.http.put(url, body);
   }
 
   actualizarUsuario(usuarioId: string, datosActualizados: any): Observable<any> {
     const url = `${this.apiUrl}/${usuarioId}`;
     return this.http.put(url, { sanitizedInput: datosActualizados });
   }
-
 }

@@ -21,7 +21,19 @@
                         </h5>
                         <p class="card-text" *ngIf="usuariosData[usuarioId]">{{ usuariosData[usuarioId].email || 'Email
                             no disponible' }}</p>
-                        <button class="btn btn-primary custom-btn-primary mx-2">Editar</button>
+
+                        <!-- Campo de desplegable para el nuevo tipo -->
+                        <div *ngIf="usuarioEditandoId === usuarioId" class="m-2 mb-4">
+                            <label for="nuevoTipo" class="mb-2">Nuevo Tipo:</label>
+                            <select id="nuevoTipo" [(ngModel)]="nuevoTipo" class="form-control bg-dark text-light">
+                                <option value="usuario">Usuario</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+
+                        <button class="btn btn-primary custom-btn-primary mx-2" (click)="editarUsuario(usuarioId)">
+                            {{ usuarioEditandoId === usuarioId ? 'Guardar' : 'Editar' }}
+                        </button>
                         <button class="btn btn-primary custom-btn-secondary mx-2"
                             (click)="eliminarUsuario(usuarioId)">Eliminar</button>
                     </div>

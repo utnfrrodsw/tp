@@ -6,13 +6,12 @@ import jwt from 'jsonwebtoken';
 const repository = new UsuarioRepositoryImpl();
 async function sanitizeInput(req, res, next) {
     try {
-        const requiredKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña', 'tipo'];
+        const allowedKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña', 'tipo'];
         req.body.sanitizedInput = {};
-        for (const key of requiredKeys) {
-            if (req.body[key] === undefined) {
-                return res.status(400).send({ message: `Campo '${key}' es requerido.` });
+        for (const key of allowedKeys) {
+            if (req.body[key] !== undefined) {
+                req.body.sanitizedInput[key] = req.body[key];
             }
-            req.body.sanitizedInput[key] = req.body[key];
         }
         next();
     }
@@ -58,8 +57,10 @@ async function add(req, res) {
 }
 async function update(req, res) {
     try {
+        console.log('Entrando en update');
         const usuarioId = req.params.id;
         const updatedData = req.body.sanitizedInput;
+        console.log('Valor del nombre antes de la actualización:', updatedData.nombre);
         // Verificar si el usuario existe antes de intentar actualizarlo
         const usuarioExiste = await repository.findOne({ _id: new ObjectId(usuarioId) });
         if (!usuarioExiste) {
@@ -72,11 +73,13 @@ async function update(req, res) {
             hashContraseña = await bcrypt.hash(contraseñaSinHash, 10);
         }
         const usuarioInput = new Usuario(updatedData.username || usuarioExiste.username, updatedData.nombre || usuarioExiste.nombre, updatedData.apellido || usuarioExiste.apellido, updatedData.email || usuarioExiste.email, updatedData.direccion || usuarioExiste.direccion, updatedData.localidad || usuarioExiste.localidad, updatedData.avatar || usuarioExiste.avatar, updatedData.tipo || usuarioExiste.tipo, hashContraseña || usuarioExiste.contraseña, usuarioExiste.tokens || [], new ObjectId(usuarioId));
+        console.log('usuarioInput antes de la actualización:', usuarioInput);
         // Actualizar el usuario en la base de datos
         const updatedUsuario = await repository.update(usuarioId, usuarioInput);
         if (!updatedUsuario) {
             return res.status(500).send({ message: "Error al actualizar el usuario." });
         }
+        console.log('Usuario actualizado con éxito:', updatedUsuario);
         return res.status(200).send({ message: 'Usuario actualizado con éxito.', data: updatedUsuario });
     }
     catch (error) {
@@ -477,53 +480,27 @@ async function getUsuarios(req, res) {
 }
 /* SETTERS */
 async function setNombre(req, res) {
-    try {
-        await updateUserAttribute(req, res, 'nombre');
-    }
-    catch (error) {
-        console.error("Error en setNombre:", error);
-        res.status(500).send({ message: "Error interno del servidor." });
-    }
+    console.log('Entrando en setNombre');
+    await updateUserAttribute(req, res, 'nombre');
 }
 async function setApellido(req, res) {
-    try {
-        await updateUserAttribute(req, res, 'apellido');
-    }
-    catch (error) {
-        console.error("Error en setApellido:", error);
-        res.status(500).send({ message: "Error interno del servidor." });
-    }
+    await updateUserAttribute(req, res, 'apellido');
 }
 async function setEmail(req, res) {
-    try {
-        await updateUserAttribute(req, res, 'email');
-    }
-    catch (error) {
-        console.error("Error en setEmail:", error);
-        res.status(500).send({ message: "Error interno del servidor." });
-    }
+    await updateUserAttribute(req, res, 'email');
 }
 async function setUsername(req, res) {
-    try {
-        await updateUserAttribute(req, res, 'username');
-    }
-    catch (error) {
-        console.error("Error en setUsername:", error);
-        res.status(500).send({ message: "Error interno del servidor." });
-    }
-}
-async function setTipo(req, res) {
-    try {
-        await updateUserAttribute(req, res, 'tipo');
-    }
-    catch (error) {
-        console.error("Error en setTipo:", error);
-        res.status(500).send({ message: "Error interno del servidor." });
-    }
+    await updateUserAttribute(req, res, 'username');
 }
 async function updateUserAttribute(req, res, attribute) {
     try {
-        const updatedData = req.body;
+        console.log('Entrando en updateUserAttribute');
+        // Verifica si req.body tiene el formato correcto y contiene el atributo específico
+        const updatedData = req.body.sanitizedInput || {};
+        if (!updatedData || typeof updatedData !== 'object' || !updatedData.hasOwnProperty(attribute)) {
+            console.log('Datos de actualización no válidos:', updatedData);
+            return res.status(400).send({ message: 'Datos de actualización no válidos.' });
+        }
         // Obtener el token y decodificarlo para obtener el userId
         const token = req.header('Authorization')?.replace('Bearer ', '') || '';
         const decoded = jwt.verify(token, 'secretKey');
@@ -538,17 +515,44 @@ async function updateUserAttribute(req, res, attribute) {
             return res.status(401).send({ message: 'El token ha expirado.' });
         }
         // Actualizar el atributo específico del usuario
-        const updatedUsuario = { ...usuarioCompleto };
-        updatedUsuario[attribute] = updatedData[attribute];
-        // Actualizar el usuario en la base de datos
-        const updatedUsuarioResult = await repository.update(usuarioCompleto._id?.toString() || '', updatedUsuario);
+        console.log(`Antes de la actualización - Valor actualizado para ${attribute}:`, updatedData[attribute]);
+        // Actualizar el atributo específico del usuario
+        const updatedUsuarioResult = await repository.updateAttribute(usuarioCompleto._id?.toString() || '', attribute, updatedData[attribute]);
+        console.log(`Después de la actualización - Valor actualizado para ${attribute}:`, updatedUsuarioResult);
         if (!updatedUsuarioResult) {
             return res.status(500).send({ message: "Error al actualizar el usuario." });
         }
         return res.status(200).send({ message: `Atributo '${attribute}' actualizado con éxito.`, data: updatedUsuarioResult });
     }
     catch (error) {
-        console.error("Error en updateUserAttribute:", error);
+        console.error(`Error en update${attribute}:`, error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+// ADMIN
+async function setTipo(req, res) {
+    try {
+        // Verifica si req.body tiene el formato correcto y contiene el atributo específico
+        const updatedData = req.body.sanitizedInput || {};
+        if (!updatedData || typeof updatedData !== 'object' || !updatedData.hasOwnProperty('tipo')) {
+            console.log('Datos de actualización no válidos:', updatedData);
+            return res.status(400).send({ message: 'Datos de actualización no válidos.' });
+        }
+        // Obtener el usuario por su ID desde la base de datos
+        const usuarioId = req.params.id;
+        const usuarioCompleto = await repository.getById(usuarioId);
+        if (!usuarioCompleto) {
+            return res.status(404).send({ message: 'Usuario no encontrado.' });
+        }
+        // Actualizar el atributo 'tipo' del usuario
+        const updatedUsuarioResult = await repository.updateAttribute(usuarioCompleto._id?.toString() || '', 'tipo', updatedData.tipo);
+        if (!updatedUsuarioResult) {
+            return res.status(500).send({ message: "Error al actualizar el usuario." });
+        }
+        return res.status(200).send({ message: "Atributo 'tipo' actualizado con éxito.", data: updatedUsuarioResult });
+    }
+    catch (error) {
+        console.error("Error en setTipo:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }

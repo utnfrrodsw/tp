@@ -55,6 +55,7 @@ export class UsuarioRepositoryImpl implements UsuarioRepository {
 
     public async update(id: string | ObjectId, item: Usuario): Promise<Usuario | undefined> {
         try {
+            console.log('Entrando en update');
             const _id = id instanceof ObjectId ? id : new ObjectId(id);
             return (await usuarios.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined;
         } catch (error) {
@@ -99,6 +100,19 @@ export class UsuarioRepositoryImpl implements UsuarioRepository {
             return usuario || undefined;
         } catch (error) {
             console.error("Error en getByToken:", error);
+            throw error;
+        }
+    }
+
+    public async updateAttribute(id: string | ObjectId, attribute: string, value: any): Promise<Usuario | undefined> {
+        try {
+            console.log('Entrando en updateAttribute');
+            const _id = id instanceof ObjectId ? id : new ObjectId(id);
+            const updateQuery: any = {};
+            updateQuery[attribute] = value;
+            return (await usuarios.findOneAndUpdate({ _id }, { $set: updateQuery }, { returnDocument: 'after' })) || undefined;
+        } catch (error) {
+            console.error("Error en updateAttribute:", error);
             throw error;
         }
     }

@@ -3,6 +3,9 @@ import { findAll, findOne, sanitizeInput, add, remove, update, iniciarSesion, ge
 
 export const usuarioRouter = Router();
 
+// ADMIN
+usuarioRouter.put('/set-tipo/:id', sanitizeInput, setTipo);
+
 // Otras rutas
 usuarioRouter.post('/iniciar-sesion', iniciarSesion);
 usuarioRouter.post('/cerrar-sesion', cerrarSesion);
@@ -33,7 +36,6 @@ usuarioRouter.put('/set-nombre', sanitizeInput, setNombre);
 usuarioRouter.put('/set-apellido', sanitizeInput, setApellido);
 usuarioRouter.put('/set-email', sanitizeInput, setEmail);
 usuarioRouter.put('/set-username', sanitizeInput, setUsername);
-usuarioRouter.put('/set-tipo', sanitizeInput, setTipo);
 
 usuarioRouter.get('/', findAll);
 usuarioRouter.get('/:id', getById);

@@ -9,6 +9,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class CrudUsuariosComponent implements OnInit {
 
+  usuarioEditandoId: string | null = null;
+  nuevoTipo: string = '';
+
   constructor(private usuarioService: UsuarioService) { }
 
   usuariosIds: string[] = [];
@@ -66,5 +69,22 @@ export class CrudUsuariosComponent implements OnInit {
         }
       );
     }
+  }
+
+  editarUsuario(usuarioId: string): void {
+    if (this.usuarioEditandoId === usuarioId) {
+      this.usuarioService.setTipo(usuarioId, this.nuevoTipo).subscribe(
+        (response) => {
+          console.log('Tipo actualizado con éxito:', response);
+          window.location.reload();
+        },
+        (error) => {
+          console.error('Error al actualizar el tipo:', error);
+        }
+      );
+    }
+
+    this.usuarioEditandoId = (this.usuarioEditandoId === usuarioId) ? null : usuarioId;
+    this.nuevoTipo = '';
   }
 }

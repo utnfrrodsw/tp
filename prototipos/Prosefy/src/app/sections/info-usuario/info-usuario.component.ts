@@ -32,7 +32,7 @@ export class InfoUsuarioComponent implements OnInit {
       next: (data: any) => {
         this.usuario.nombre = data.data.nombre;
       },
-      error:(error: any) => {
+      error: (error: any) => {
         console.error('Error obteniendo nombre:', error);
       }
     });
@@ -41,7 +41,7 @@ export class InfoUsuarioComponent implements OnInit {
       next: (data: any) => {
         this.usuario.apellido = data.data.apellido;
       },
-      error:(error: any) => {
+      error: (error: any) => {
         console.error('Error obteniendo apellido:', error);
       }
     });
@@ -50,7 +50,7 @@ export class InfoUsuarioComponent implements OnInit {
       next: (data: any) => {
         this.usuario.email = data.data.email;
       },
-      error:(error: any) => {
+      error: (error: any) => {
         console.error('Error obteniendo email:', error);
       }
     });
@@ -80,6 +80,7 @@ export class InfoUsuarioComponent implements OnInit {
   }
 
   actualizarCampo(campo: keyof Edicion, nuevoValor: any) {
+    console.log(`Actualizando campo ${campo} con nuevo valor: ${nuevoValor}`);
     switch (campo) {
       case 'nombre':
         this.usuarioService.setNombre(nuevoValor).subscribe({

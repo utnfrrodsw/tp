@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import { findAll, sanitizeInput, add, remove, update, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getById, getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, setNombre, setApellido, setEmail, setUsername, setTipo, getUsernameById, getNombreById, getApellidoById, getEmailById, getAvatarById, getTipoById, getUsuarios, eliminarCuenta } from './Usuario.controller.js';
 export const usuarioRouter = Router();
+// ADMIN
+usuarioRouter.put('/set-tipo/:id', sanitizeInput, setTipo);
 // Otras rutas
 usuarioRouter.post('/iniciar-sesion', iniciarSesion);
 usuarioRouter.post('/cerrar-sesion', cerrarSesion);
@@ -27,7 +29,6 @@ usuarioRouter.put('/set-nombre', sanitizeInput, setNombre);
 usuarioRouter.put('/set-apellido', sanitizeInput, setApellido);
 usuarioRouter.put('/set-email', sanitizeInput, setEmail);
 usuarioRouter.put('/set-username', sanitizeInput, setUsername);
-usuarioRouter.put('/set-tipo', sanitizeInput, setTipo);
 usuarioRouter.get('/', findAll);
 usuarioRouter.get('/:id', getById);
 usuarioRouter.post('/', sanitizeInput, add);
