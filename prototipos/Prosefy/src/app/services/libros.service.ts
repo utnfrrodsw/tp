@@ -145,19 +145,8 @@ export class LibrosService {
     );
   }
 
-
-  /* OTROS
-  
-    add(libro: any): Observable<any> {
-      return this.http.post(`${this.apiUrl}/`, libro);
-    }
-  
-    update(id: string, libro: any): Observable<any> {
-      return this.http.put(`${this.apiUrl}/${id}`, libro);
-    }
-  
-    remove(id: string): Observable<any> {
-      return this.http.delete(`${this.apiUrl}/${id}`);
-    }
-    */
+  eliminarLibro(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url);
+  }
 }

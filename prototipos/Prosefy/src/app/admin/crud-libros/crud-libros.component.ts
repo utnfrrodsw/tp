@@ -58,4 +58,18 @@ export class CrudLibrosComponent implements OnInit {
     }
     return 'N/A';
   }
+
+  eliminarLibro(libroId: string): void {
+    if (confirm('¿Está seguro de que desea eliminar este libro?')) {
+      this.librosService.eliminarLibro(libroId).subscribe(
+        () => {
+          console.log('Libro eliminado con éxito');
+          location.reload();
+        },
+        (error) => {
+          console.error('Error al eliminar el libro', error);
+        }
+      );
+    }
+  }
 }

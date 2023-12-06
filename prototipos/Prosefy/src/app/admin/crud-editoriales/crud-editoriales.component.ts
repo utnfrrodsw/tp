@@ -167,13 +167,10 @@ export class CrudEditorialesComponent implements OnInit {
       this.editorialesService.eliminarEditorial(editorialId).subscribe(
         () => {
           console.log('Editorial eliminada con éxito');
-          // Puedes recargar la página o actualizar la lista después de la eliminación.
-          // En este ejemplo, recargamos la página completa.
           location.reload();
         },
         (error) => {
           console.error('Error al eliminar la editorial', error);
-          // Maneja el error de eliminación si es necesario
         }
       );
     }

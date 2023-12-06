@@ -34,4 +34,19 @@ export class CrudAutoresComponent implements OnInit {
       });
     });
   }
+
+  eliminarAutor(autorId: string): void {
+    if (confirm('¿Está seguro de que desea eliminar este autor?')) {
+      this.autoresService.eliminarAutor(autorId).subscribe(
+        () => {
+          console.log('Autor eliminado con éxito');
+          location.reload();
+        },
+        (error) => {
+          console.error('Error al eliminar el autor', error);
+        }
+      );
+    }
+  }
+
 }

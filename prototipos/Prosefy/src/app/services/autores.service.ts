@@ -53,4 +53,9 @@ export class AutoresService {
       map((response: any) => response.data)
     );
   }
+
+  eliminarAutor(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url);
+  }
 }
