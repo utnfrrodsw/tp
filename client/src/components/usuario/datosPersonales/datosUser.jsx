@@ -348,7 +348,7 @@ const DatosPersonales = () => {
                 ) : (
                 <IonAvatar className="ion-avatar" onClick={handleImageClick}>
                   <img
-                    src={fotoPerfil ? `${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}` : REACT_APP_PHOTO + `/images/fotoPerfil/avatarDefecto.png`}
+                    src={fotoPerfil ? `${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}` : REACT_APP_CLIENT + `/images/fotoPerfil/avatarDefecto.png`}
                     alt="foto"
                     className="round-image"
                     />
@@ -363,7 +363,7 @@ const DatosPersonales = () => {
                   </Modal.Header>
                     <Modal.Body>
                       <img
-                      src={fotoPerfil ? (`${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}`) : `${REACT_APP_CLIENT}/images/fotoPerfil/avatarDefecto.png`}
+                      src={fotoPerfil ? (`${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}`) : REACT_APP_CLIENT  + `/images/fotoPerfil/avatarDefecto.png`}
                       alt="foto"
                       className="modal-image"
                       style={{ width: '100%', height: 'auto' }}
