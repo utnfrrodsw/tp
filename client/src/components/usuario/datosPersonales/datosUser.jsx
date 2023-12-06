@@ -4,16 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import Placeholder from 'react-bootstrap/Placeholder';
 import { useAuth } from '../../../auth/authProvider';
-import { REACT_APP_PHOTO } from '../../../auth/constants.js';
-import {
-  agregarProfesion,
-  fetchCambiarContrasena,
-  fetchDeleteProfesion,
-  fetchFotoPerfil,
-  fetchSetFotoPerfil,
-  fetchVerificarPassword,
-  getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer
-} from '../../../services/DatosPersonales.js';
+import { REACT_APP_PHOTO, REACT_APP_CLIENT } from '../../../auth/constants.js';
+import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil, fetchSetFotoPerfil, fetchDeleteProfesion, fetchVerificarPassword, fetchCambiarContrasena } from '../../../services/DatosPersonales.js';
 import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import './datosUser.css';
@@ -371,7 +363,7 @@ const DatosPersonales = () => {
                   </Modal.Header>
                     <Modal.Body>
                       <img
-                      src={fotoPerfil ? (`${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}`) : `${REACT_APP_PHOTO}/images/fotoPerfil/avatarDefecto.png`}
+                      src={fotoPerfil ? (`${REACT_APP_PHOTO}/images/fotoPerfil/${fotoPerfil}`) : `${REACT_APP_CLIENT}/images/fotoPerfil/avatarDefecto.png`}
                       alt="foto"
                       className="modal-image"
                       style={{ width: '100%', height: 'auto' }}
