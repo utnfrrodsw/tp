@@ -89,7 +89,7 @@ button.button-cerrarSesion{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background-color: #3638ac; /* Azul claro */
+        background-color:#2a4063; /* Azul claro */
         padding: 10px 20px;
         color: white;
     }

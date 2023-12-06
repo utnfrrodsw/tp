@@ -2,14 +2,13 @@ import { IonAvatar } from '@ionic/react';
 import Rating from '@mui/material/Rating';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
+import Placeholder from 'react-bootstrap/Placeholder';
 import { useAuth } from '../../../auth/authProvider';
 import { REACT_APP_PHOTO, REACT_APP_CLIENT } from '../../../auth/constants.js';
-import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil,
- fetchSetFotoPerfil, fetchDeleteProfesion, fetchVerificarPassword, fetchCambiarContrasena } from '../../../services/DatosPersonales.js';
+import { agregarProfesion, getDatosPersonales, getDirecciones, getProfesiones, modificarDatosPer, fetchFotoPerfil, fetchSetFotoPerfil, fetchDeleteProfesion, fetchVerificarPassword, fetchCambiarContrasena } from '../../../services/DatosPersonales.js';
+import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
 import NuevaDireccion from '../NuevaDireccion/NuevaDireccion';
 import './datosUser.css';
-import LoaderFijo from '../../load/loaderFijo/LoaderFijo.jsx';
-import Placeholder from 'react-bootstrap/Placeholder';
 
 const DatosPersonales = () => {
   const [userData, setUserData] = useState({
@@ -153,7 +152,11 @@ const DatosPersonales = () => {
           setOriginalData({ ...originalData, ...updatedData });
           setUserData({ ...userData, ...updatedData });
         } else {
-          setErrorCurrentDp(response.error || response.message);
+          if (response.errors && response.errors.length > 0) {
+            setErrorCurrentDp(response.errors[0].msg);
+          } else {
+            setErrorCurrentDp('Ocurrió un error desconocido');
+          }
           return;
         }
       }
