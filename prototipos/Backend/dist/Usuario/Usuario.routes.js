@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { findAll, sanitizeInput, add, remove, update, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getById, getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, setNombre, setApellido, setEmail, setUsername, setTipo, getUsernameById, getNombreById, getApellidoById, getEmailById, getAvatarById, getTipoById, getUsuarios, eliminarCuenta } from './Usuario.controller.js';
+import { findAll, sanitizeInput, add, remove, update, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getById, getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, setNombre, setApellido, setEmail, setUsername, setTipo, getUsernameById, getNombreById, getApellidoById, getEmailById, getAvatarById, getTipoById, getUsuarios, eliminarCuenta, getDireccion, setDireccion, setProvincia } from './Usuario.controller.js';
 export const usuarioRouter = Router();
 // ADMIN
 usuarioRouter.put('/set-tipo/:id', sanitizeInput, setTipo);
@@ -16,6 +16,7 @@ usuarioRouter.get('/get-apellido', getApellido);
 usuarioRouter.get('/get-email', getEmail);
 usuarioRouter.get('/get-username', getUsername);
 usuarioRouter.get('/get-tipo', getTipo);
+usuarioRouter.get('/get-direccion', getDireccion);
 // Getters
 usuarioRouter.get('/get-username/:id', getUsernameById);
 usuarioRouter.get('/get-nombre/:id', getNombreById);
@@ -29,6 +30,8 @@ usuarioRouter.put('/set-nombre', sanitizeInput, setNombre);
 usuarioRouter.put('/set-apellido', sanitizeInput, setApellido);
 usuarioRouter.put('/set-email', sanitizeInput, setEmail);
 usuarioRouter.put('/set-username', sanitizeInput, setUsername);
+usuarioRouter.put('/set-direccion', sanitizeInput, setDireccion);
+usuarioRouter.put('/set-provincia', sanitizeInput, setProvincia);
 usuarioRouter.get('/', findAll);
 usuarioRouter.get('/:id', getById);
 usuarioRouter.post('/', sanitizeInput, add);

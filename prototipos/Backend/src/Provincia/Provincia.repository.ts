@@ -56,4 +56,13 @@ export class ProvinciaRepository implements Repository<Provincia> {
             throw error;
         }
     }
+
+    public async findOneByDescripcion(descripcion: string): Promise<Provincia | undefined> {
+        try {
+            return (await provincias.findOne({ descripcion })) || undefined;
+        } catch (error) {
+            console.error("Error en findOneByDescripcion:", error);
+            throw error;
+        }
+    }
 }

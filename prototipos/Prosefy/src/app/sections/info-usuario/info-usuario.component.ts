@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
+import { ProvinciasService } from 'src/app/services/provincias.service';
 
 interface Edicion {
   nombre: boolean;
   email: boolean;
   apellido: boolean;
   username: boolean;
+  direccion: boolean;
+  provincia: boolean;
 };
 
 @Component({
@@ -22,9 +25,14 @@ export class InfoUsuarioComponent implements OnInit {
     email: false,
     apellido: false,
     username: false,
+    direccion: false,
+    provincia: false,
   };
 
-  constructor(private usuarioService: UsuarioService) { }
+  provincias: string[] = [];
+  provinciaSeleccionada: string = '';
+
+  constructor(private usuarioService: UsuarioService, private provinciasService: ProvinciasService) { }
 
   ngOnInit() {
     // Obtener los valores del usuario y asignarlos a las propiedades del componente
@@ -61,6 +69,24 @@ export class InfoUsuarioComponent implements OnInit {
       },
       error: (error: any) => {
         console.error('Error obteniendo nombre de usuario:', error);
+      }
+    });
+
+    this.usuarioService.getDireccion().subscribe({
+      next: (data: any) => {
+        this.usuario.direccion = data.data.direccion;
+      },
+      error: (error: any) => {
+        console.error('Error obteniendo dirección de usuario:', error);
+      }
+    });
+
+    this.provinciasService.getProvincias().subscribe({
+      next: (data: any) => {
+        this.provincias = data;
+      },
+      error: (error: any) => {
+        console.error('Error obteniendo provincias:', error);
       }
     });
   }
@@ -118,36 +144,42 @@ export class InfoUsuarioComponent implements OnInit {
           error: (error) => console.error(`Error al actualizar ${campo}:`, error)
         });
         break;
+      case 'direccion':
+        this.usuarioService.setDireccion(nuevoValor).subscribe({
+          next: (response) => {
+            console.log(`Éxito al actualizar ${campo}:`, response);
+            this.edicion[campo] = false; // Desactiva la edición para el campo específico
+          },
+          error: (error) => console.error(`Error al actualizar ${campo}:`, error)
+        });
+        break;
+      case 'provincia':
+        this.actualizarProvincia(nuevoValor);
+        break;
       default:
         console.log(`Campo no manejado: ${campo}`);
     }
   }
 
-  updateNombre(): void {
-    this.usuarioService.setNombre('nombre').subscribe({
-      next: (response) => console.log('Éxito:', response),
-      error: (error) => console.error('Error:', error)
-    });
-  }
+  actualizarProvincia(descripcion: string) {
+    this.provinciasService.getProvinciaByDescripcion(descripcion).subscribe({
+      next: (provincia: any) => {
+        if (provincia && provincia._id) {
+          this.usuario.idProvincia = provincia._id;  // Ajusta esto según la estructura del objeto devuelto
+          console.log('ID de la provincia actualizada:', this.usuario.idProvincia);
 
-  updateApellido(): void {
-    this.usuarioService.setApellido('apellido').subscribe({
-      next: (response) => console.log('Éxito:', response),
-      error: (error) => console.error('Error:', error)
-    });
-  }
-
-  updateEmail(): void {
-    this.usuarioService.setEmail('email').subscribe({
-      next: (response) => console.log('Éxito:', response),
-      error: (error) => console.error('Error:', error)
-    });
-  }
-
-  updateUsername(): void {
-    this.usuarioService.setUsername('username').subscribe({
-      next: (response) => console.log('Éxito:', response),
-      error: (error) => console.error('Error:', error)
+          this.usuarioService.setProvincia(this.usuario.idProvincia).subscribe({
+            next: (response) => {
+              console.log('Éxito al actualizar la provincia del usuario:', response);
+              this.edicion['provincia'] = false; // Desactiva la edición para el campo de provincia
+            },
+            error: (error) => console.error('Error al actualizar la provincia del usuario:', error)
+          });
+        } else {
+          console.error('No se encontró la provincia con la descripción:', descripcion);
+        }
+      },
+      error: (error) => console.error('Error al obtener la provincia por descripción:', error)
     });
   }
 }

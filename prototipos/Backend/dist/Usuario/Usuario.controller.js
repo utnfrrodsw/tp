@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 const repository = new UsuarioRepositoryImpl();
 async function sanitizeInput(req, res, next) {
     try {
-        const allowedKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña', 'tipo'];
+        const allowedKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña', 'tipo', 'direccion', 'provincia'];
         req.body.sanitizedInput = {};
         for (const key of allowedKeys) {
             if (req.body[key] !== undefined) {
@@ -383,6 +383,24 @@ async function getTipo(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
+async function getDireccion(req, res) {
+    try {
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+        if (!token) {
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        }
+        const decoded = jwt.verify(token, 'secretKey');
+        const usuarioCompleto = await repository.getById(decoded.userId);
+        if (!usuarioCompleto) {
+            return res.status(401).send({ message: 'No se pudo encontrar el usuario asociado con el token proporcionado.' });
+        }
+        res.json({ data: { direccion: usuarioCompleto.direccion } });
+    }
+    catch (error) {
+        console.error("Error en getDireccion:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
 /* GETTERS */
 async function getUsernameById(req, res) {
     try {
@@ -492,6 +510,12 @@ async function setEmail(req, res) {
 async function setUsername(req, res) {
     await updateUserAttribute(req, res, 'username');
 }
+async function setDireccion(req, res) {
+    await updateUserAttribute(req, res, 'direccion');
+}
+async function setProvincia(req, res) {
+    await updateUserAttribute(req, res, 'provincia');
+}
 async function updateUserAttribute(req, res, attribute) {
     try {
         console.log('Entrando en updateUserAttribute');
@@ -556,5 +580,5 @@ async function setTipo(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername, setTipo, getUsernameById, getNombreById, getApellidoById, getEmailById, getAvatarById, getTipoById, getUsuarios, eliminarCuenta };
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername, setTipo, getUsernameById, getNombreById, getApellidoById, getEmailById, getAvatarById, getTipoById, getUsuarios, eliminarCuenta, setDireccion, getDireccion, setProvincia };
 //# sourceMappingURL=Usuario.controller.js.map

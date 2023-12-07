@@ -96,5 +96,36 @@ async function remove(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove };
+// OTROS MÉTODOS
+async function getProvincias(req, res) {
+    try {
+        const provincia = await repository.findAll();
+        if (provincia) {
+            const descripciones = provincia.map((provincia) => provincia.descripcion);
+            res.json(descripciones);
+        }
+        else {
+            res.status(404).send({ message: "No se encontraron provincias" });
+        }
+    }
+    catch (error) {
+        console.error("Error en obtener las descripciones de las provincias:", error);
+        res.status(500).send({ message: "Error interno del servidor" });
+    }
+}
+async function getProvinciaByDescripcion(req, res) {
+    try {
+        const descripcion = req.params.descripcion;
+        const provincia = await repository.findOneByDescripcion(descripcion);
+        if (!provincia) {
+            return res.status(404).send({ message: "Provincia no encontrada." });
+        }
+        return res.json({ data: provincia });
+    }
+    catch (error) {
+        console.error("Error en getProvinciaByDescripcion:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+export { sanitizeInput, findAll, findOne, add, update, remove, getProvincias, getProvinciaByDescripcion };
 //# sourceMappingURL=Provincia.controller.js.map

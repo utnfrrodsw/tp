@@ -30,10 +30,10 @@ app.use("/api/usuarios", usuarioRouter);
 app.use("/api/editoriales", editorialRouter);
 app.use("/api/autores", autorRouter);
 app.use("/api/categorias", categoriaRouter);
-app.use("/api/localidad", localidadRouter);
-app.use("/api/provincia", provinciaRouter);
-app.use("/api/formato", formatoRouter);
-app.use("/api/comentario", comentarioRouter);
+app.use("/api/localidades", localidadRouter);
+app.use("/api/provincias", provinciaRouter);
+app.use("/api/formatos", formatoRouter);
+app.use("/api/comentarios", comentarioRouter);
 
 app.use((_, res) => {
 	return res.status(404).send({ message: "Resource not found" });

@@ -9,7 +9,7 @@ const repository = new UsuarioRepositoryImpl();
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     try {
-        const allowedKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña', 'tipo'];
+        const allowedKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña', 'tipo', 'direccion', 'provincia'];
 
         req.body.sanitizedInput = {};
 
@@ -511,6 +511,30 @@ async function getTipo(req: Request, res: Response) {
     }
 }
 
+async function getDireccion(req: Request, res: Response) {
+    try {
+
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+
+        if (!token) {
+            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        }
+
+        const decoded = jwt.verify(token, 'secretKey') as { userId: string };
+
+        const usuarioCompleto = await repository.getById(decoded.userId);
+
+        if (!usuarioCompleto) {
+            return res.status(401).send({ message: 'No se pudo encontrar el usuario asociado con el token proporcionado.' });
+        }
+
+        res.json({ data: { direccion: usuarioCompleto.direccion } });
+    } catch (error) {
+        console.error("Error en getDireccion:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
 /* GETTERS */
 
 async function getUsernameById(req: Request, res: Response) {
@@ -643,6 +667,14 @@ async function setUsername(req: Request, res: Response) {
     await updateUserAttribute(req, res, 'username');
 }
 
+async function setDireccion(req: Request, res: Response) {
+    await updateUserAttribute(req, res, 'direccion');
+}
+
+async function setProvincia(req: Request, res: Response) {
+    await updateUserAttribute(req, res, 'provincia');
+}
+
 async function updateUserAttribute(req: Request, res: Response, attribute: string) {
     try {
         console.log('Entrando en updateUserAttribute');
@@ -735,4 +767,4 @@ async function setTipo(req: Request, res: Response) {
 }
 
 
-export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, /*refreshToken,*/ getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername, setTipo, getUsernameById, getNombreById, getApellidoById, getEmailById, getAvatarById, getTipoById, getUsuarios, eliminarCuenta };
+export { sanitizeInput, findAll, findOne, add, update, remove, iniciarSesion, getByUsername, findOneByEmail, cerrarSesion, getIdUsuarioPorToken, getById, getNombre, getApellido, getEmail, getUsername, getTipo, checkToken, updateUserAttribute, setNombre, setApellido, setEmail, setUsername, setTipo, getUsernameById, getNombreById, getApellidoById, getEmailById, getAvatarById, getTipoById, getUsuarios, eliminarCuenta, setDireccion, getDireccion, setProvincia };

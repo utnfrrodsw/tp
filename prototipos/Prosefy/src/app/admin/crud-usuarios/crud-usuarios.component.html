@@ -22,9 +22,9 @@
                         <p class="card-text" *ngIf="usuariosData[usuarioId]">{{ usuariosData[usuarioId].email || 'Email
                             no disponible' }}</p>
 
-                        <!-- Campo de desplegable para el nuevo tipo -->
+                        <!-- Campo de desplegable para cambiar el rol del usuario -->
                         <div *ngIf="usuarioEditandoId === usuarioId" class="m-2 mb-4">
-                            <label for="nuevoTipo" class="mb-2">Nuevo Tipo:</label>
+                            <label for="nuevoTipo" class="mb-2">Cambiar rol:</label>
                             <select id="nuevoTipo" [(ngModel)]="nuevoTipo" class="form-control bg-dark text-light">
                                 <option value="usuario">Usuario</option>
                                 <option value="admin">Admin</option>

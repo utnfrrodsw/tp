@@ -51,5 +51,15 @@ export class LocalidadRepository {
             throw error;
         }
     }
+    async getLocalidadesByProvincia(provinciaId) {
+        try {
+            const localidadesEnProvincia = await localidades.find({ provincia: new ObjectId(provinciaId) }).toArray();
+            return localidadesEnProvincia;
+        }
+        catch (error) {
+            console.error("Error en getLocalidadesByProvincia:", error);
+            throw error;
+        }
+    }
 }
 //# sourceMappingURL=Localidad.repository.js.map

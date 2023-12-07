@@ -56,4 +56,14 @@ export class LocalidadRepository implements Repository<Localidad> {
             throw error;
         }
     }
+
+    public async getLocalidadesByProvincia(provinciaId: string): Promise<Localidad[] | undefined> {
+        try {
+            const localidadesEnProvincia = await localidades.find({ provincia: new ObjectId(provinciaId) }).toArray();
+            return localidadesEnProvincia;
+        } catch (error) {
+            console.error("Error en getLocalidadesByProvincia:", error);
+            throw error;
+        }
+    }
 }

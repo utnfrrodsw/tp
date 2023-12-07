@@ -84,6 +84,11 @@ export class UsuarioService {
     return this.getData(endpoint);
   }
 
+  getDireccion(): Observable<{ data: { tipo: string } }> {
+    const endpoint = "get-direccion";
+    return this.getData(endpoint);
+  }
+
   private getData(endpoint: string): Observable<any> {
     const token = localStorage.getItem('token');
 
@@ -194,6 +199,14 @@ export class UsuarioService {
     return this.setData('set-username', body);
   }
 
+  setDireccion(direccion: string): Observable<any> {
+    const body = {
+      direccion: direccion
+    };
+
+    return this.setData('set-direccion', body);
+  }
+
   setTipo(id: string, tipo: string): Observable<any> {
     const body = {
       tipo: tipo
@@ -202,6 +215,14 @@ export class UsuarioService {
     const url = `${this.apiUrl}/set-tipo/${id}`;
 
     return this.http.put(url, body);
+  }
+
+  setProvincia(provincia: string): Observable<any> {
+    const body = {
+      provincia: provincia
+    };
+
+    return this.setData('set-direccion', body);
   }
 
   actualizarUsuario(usuarioId: string, datosActualizados: any): Observable<any> {

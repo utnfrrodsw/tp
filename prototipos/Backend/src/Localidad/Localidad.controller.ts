@@ -123,4 +123,23 @@ async function remove(req: Request, res: Response) {
     }
 }
 
-export { sanitizeInput, findAll, findOne, add, update, remove };
+// OTROS MÉTODOS
+
+async function getLocalidadesByProvincia(req: Request, res: Response) {
+    try {
+        const provinciaId = req.body.provincia;
+
+        if (!provinciaId) {
+            return res.status(400).send({ message: "ID de provincia es requerido en el cuerpo de la solicitud." });
+        }
+
+        const localidades = await repository.getLocalidadesByProvincia(provinciaId);
+
+        res.json({ data: localidades });
+    } catch (error) {
+        console.error("Error en getLocalidadesByProvincia:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+export { sanitizeInput, findAll, findOne, add, update, remove, getLocalidadesByProvincia };

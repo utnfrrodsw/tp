@@ -51,5 +51,14 @@ export class ProvinciaRepository {
             throw error;
         }
     }
+    async findOneByDescripcion(descripcion) {
+        try {
+            return (await provincias.findOne({ descripcion })) || undefined;
+        }
+        catch (error) {
+            console.error("Error en findOneByDescripcion:", error);
+            throw error;
+        }
+    }
 }
 //# sourceMappingURL=Provincia.repository.js.map

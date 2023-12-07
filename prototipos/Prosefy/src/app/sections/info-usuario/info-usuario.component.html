@@ -75,32 +75,14 @@
         <div class="datos-personales etiqueta-color rounded py-2">
           <div>
             <span>
-              <a class="boton-direcciones rounded-pill px-3">Principal</a>
-              <label>{{usuario.direccion}}</label>
+              <a *ngIf="usuario.direccion" class="boton-direcciones rounded-pill px-3">Principal</a>
+              <label *ngIf="!edicion.direccion && usuario.direccion">{{usuario.direccion}}</label>
+              <label *ngIf="!edicion.direccion && !usuario.direccion">No se registró una dirección</label>
+              <input *ngIf="edicion.direccion" class="custom-input" type="text" id="direccion" name="direccion" required
+                [(ngModel)]="usuario.direccion">
+              <img (click)="toggleEdicion('direccion')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
+                alt="">
             </span>
-          </div>
-          <div>
-            <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
-          </div>
-        </div>
-        <div class="datos-personales py-2">
-          <div>
-            <span>
-              <label>Wegner 2300</label>
-            </span>
-          </div>
-          <div>
-            <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
-          </div>
-        </div>
-        <div class="datos-personales etiqueta-color rounded py-2">
-          <div>
-            <span>
-              <label>Av. beethoven 1291</label>
-            </span>
-          </div>
-          <div>
-            <img class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
           </div>
         </div>
       </div>
@@ -142,42 +124,27 @@
       <div class="datos-personales etiqueta-color rounded py-2">
         <div>
           <span>
-            <label>Localidad</label>
+            <label>Provincia</label>
           </span>
         </div>
-        <div>
-          <label>Localidad</label>
-        </div>
+        <label *ngIf="!edicion.provincia">{{usuario.provincia}}</label>
+        <select *ngIf="edicion.provincia" class="custom-input" id="provincia" name="provincia"
+          [(ngModel)]="usuario.provincia">
+          <option *ngFor="let provincia of provincias" [value]="provincia">{{provincia}}</option>
+        </select>
+        <img (click)="toggleEdicion('provincia')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png" alt="">
       </div>
       <div class="datos-personales py-2">
         <div>
           <span>
-            <label>Código postal</label>
+            <label>Localidad</label>
           </span>
         </div>
         <div>
-          <label>...</label>
+          <label>-</label>
         </div>
       </div>
     </div>
-    <!--
-    <div class="espacio"></div>
-    <div class="datos">
-      <div class="datos-personales etiqueta-color rounded py-2">
-        <div>
-          <span>
-            <label>Provincia</label>
-          </span>
-        </div>
-        <div>
-          <label *ngIf="!edicion.provincia">...</label>
-          <input *ngIf="edicion.provincia" class="custom-input" type="text" id="provincia" name="provincia" required
-            [(ngModel)]="usuario.provincia">
-          <img (click)="toggleEdicion('provincia')" class="img-lápiz" src="./assets/img/lápiz-perfil-usuario.png"
-            alt="">
-        </div>
-      </div>
-    </div>-->
   </div>
   <div class="container-buttom-guardar-cambios">
     <button class="btn buttom-cambios rounded-pill mt-4" (click)="guardarCambios()">Guardar cambios</button>
