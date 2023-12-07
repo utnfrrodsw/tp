@@ -6,18 +6,190 @@
                 <h3>Todas las editoriales</h3>
             </div>
         </div>
-        <button class="btn btn-primary custom-btn-primary mx-2 mb-3" (click)="openPopup()">Nueva Editorial</button>
+        <button class="btn btn-primary custom-btn-primary mx-2 mb-3" (click)="openPopup()">Nueva
+            Editorial</button>
         <div class="row">
             <div *ngFor="let editorialId of editorialesIds" class="col-md-4 mb-4">
-                <div class="card">
-                    <img [src]="editorialesData[editorialId].imagen" class="card-img-top" alt="Imagen de la Editorial">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ editorialesData[editorialId].descripcion }}</h5>
-                        <p class="card-text"><small>ID: {{ editorialId }}</small></p>
-                        <button class="btn btn-primary custom-btn-primary mx-2">Editar</button>
-                        <button class="btn btn-primary custom-btn-secondary mx-2"
-                            (click)="eliminarEditorial(editorialId)">Eliminar</button>
+                <ng-container *ngIf="editorialesData[editorialId]">
+                    <div class="card">
+                        <img [src]="editorialesData[editorialId].imagen" class="card-img-top"
+                            alt="Imagen de la Editorial">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ editorialesData[editorialId].descripcion }}</h5>
+                            <p class="card-text highlight-text px-2 rounded-pill">
+                                <small>{{editorialesData[editorialId].direccion}}</small>
+                            </p>
+                            <p class="card-text mt-2"><small>ID: {{ editorialId }}</small></p>
+                            <button class="btn btn-primary custom-btn-primary mx-2"
+                                (click)="openEditPopup(editorialId)">Editar</button>
+                            <button class=" btn btn-primary custom-btn-secondary mx-2"
+                                (click)="eliminarEditorial(editorialId)">Eliminar</button>
+                        </div>
                     </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Panel para Crear Editorial -->
+<div class="overlay" [ngClass]="{ active: isPopupOpen }">
+    <div class="modal " tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isPopupOpen }">
+        <div class="modal-dialog modal-lg custom-modal-panel">
+            <div class="modal-content custom-modal-panel">
+                <div class="modal-header mx-5">
+                    <h4 class="modal-title text-center">Crear Editorial</h4>
+                    <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mx-5 mt-2">
+
+                    <form [formGroup]="EditorialForm" (keydown.enter)="registrarEditorial()">
+                        <div class="form-group my-4 custom-input">
+                            <label for="descripcion">Descripción de la editorial</label>
+                            <input type="text" id="descripcion" class="form-control" formControlName="descripcion"
+                                placeholder="Ingrese la descripción" />
+                            <!-- Mensajes de error para el campo de descripción -->
+                            <div *ngIf="errorMessage" class="text-danger">
+                                {{ errorMessage }}
+                            </div>
+                            <div *ngIf="EditorialForm.get('descripcion')?.hasError('required') && EditorialForm.get('descripcion')?.touched"
+                                class="text-danger">
+                                La descripción es obligatoria.
+                            </div>
+                            <div *ngIf="EditorialForm.get('descripcion')?.hasError('pattern') && EditorialForm.get('descripcion')?.touched"
+                                class="text-danger">
+                                La descripción solo puede contener letras, números y espacios.
+                            </div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="direccion">Dirección</label>
+                            <input type="direccion" id="direccion" class="form-control" formControlName="direccion"
+                                placeholder="Ingrese la dirección" />
+                            <!-- Mensajes de error para el campo de dirección -->
+                            <div *ngIf="EditorialForm.get('direccion')?.hasError('required') && EditorialForm.get('direccion')?.touched"
+                                class="text-danger">
+                                La direccion es obligatoria.
+                            </div>
+                            <div *ngIf="
+                            EditorialForm.get('direccion')?.hasError('pattern') &&
+                            EditorialForm.get('direccion')?.touched
+                          " class="text-danger">
+                                La dirección no es válida.
+                            </div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="imagen">URL de imagen</label>
+                            <input type="text" id="imagen" class="form-control" formControlName="imagen"
+                                placeholder="Ingrese la URL de la imagen" />
+                            <!-- Mensajes de error para el campo de imagen -->
+                            <div *ngIf="
+                              EditorialForm.get('imagen')?.hasError('required') &&
+                              EditorialForm.get('imagen')?.touched
+                            " class="text-danger">
+                                La imagen es obligatoria.
+                            </div>
+                            <div *ngIf="
+                              EditorialForm.get('imagen')?.hasError('pattern') &&
+                              EditorialForm.get('imagen')?.touched
+                            " class="text-danger">
+                                La URL no puede contener espacios.
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary custom-btn-primary form-custom-btn-primary"
+                                (click)="registrarEditorial()">
+                                Crear
+                            </button>
+                            <button type="button"
+                                class="btn btn-secondary custom-btn-secondary form-custom-btn-secondary"
+                                (click)="closePopup()">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Panel para Editar Editorial -->
+<div class="overlay" [ngClass]="{ active: isEditPopupOpen }">
+    <div class="modal " tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isEditPopupOpen }">
+        <div class="modal-dialog modal-lg custom-modal-panel">
+            <div class="modal-content custom-modal-panel">
+                <div class="modal-header mx-5">
+                    <h4 class="modal-title text-center">Editar Editorial</h4>
+                    <button type="button" class="btn-close" (click)="closeEditPopup()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mx-5 mt-2">
+
+                    <!-- Lógica y el formulario de edición -->
+
+                    <form [formGroup]="EditEditorialForm" (keydown.enter)="actualizarEditorial()">
+                        <div class="form-group my-4 custom-input">
+                            <label for="editDescripcion">Descripción de la editorial</label>
+                            <input type="text" id="editDescripcion" class="form-control"
+                                formControlName="editDescripcion" placeholder="Ingrese la nueva descripción" />
+                            <!-- Mensajes de error para el campo de descripción -->
+                            <div *ngIf="EditEditorialForm.get('editDescripcion')?.hasError('required') && EditEditorialForm.get('editDescripcion')?.touched"
+                                class="text-danger">
+                                La descripción es obligatoria.
+                            </div>
+                            <div *ngIf="EditEditorialForm.get('editDescripcion')?.hasError('pattern') && EditEditorialForm.get('editDescripcion')?.touched"
+                                class="text-danger">
+                                La descripción solo puede contener letras, números y espacios.
+                            </div>
+                        </div>
+
+                        <div class="form-group my-4 custom-input">
+                            <label for="editDireccion">Dirección</label>
+                            <input type="direccion" id="editDireccion" class="form-control"
+                                formControlName="editDireccion" placeholder="Ingrese la nueva dirección" />
+                            <!-- Mensajes de error para el campo de dirección -->
+                            <div *ngIf="EditEditorialForm.get('editDireccion')?.hasError('required') && EditEditorialForm.get('editDireccion')?.touched"
+                                class="text-danger">
+                                La direccion es obligatoria.
+                            </div>
+                            <div *ngIf="
+                            EditEditorialForm.get('editDireccion')?.hasError('pattern') &&
+                            EditEditorialForm.get('editDireccion')?.touched
+                          " class="text-danger">
+                                La dirección no es válida.
+                            </div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editImagen">URL de imagen</label>
+                            <input type="text" id="editImagen" class="form-control" formControlName="editImagen"
+                                placeholder="Ingrese la nueva URL de la imagen" />
+                            <!-- Mensajes de error para el campo de imagen -->
+                            <div *ngIf="
+                            EditEditorialForm.get('editImagen')?.hasError('required') &&
+                            EditEditorialForm.get('editImagen')?.touched
+                            " class="text-danger">
+                                La imagen es obligatoria.
+                            </div>
+                            <div *ngIf="
+                            EditEditorialForm.get('editImagen')?.hasError('pattern') &&
+                            EditEditorialForm.get('editImagen')?.touched
+                            " class="text-danger">
+                                La URL no puede contener espacios.
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary custom-btn-primary form-custom-btn-primary"
+                                (click)="actualizarEditorial()">
+                                Actualizar
+                            </button>
+                            <button type="button"
+                                class="btn btn-secondary custom-btn-secondary form-custom-btn-secondary"
+                                (click)="closeEditPopup()">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

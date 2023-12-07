@@ -156,7 +156,7 @@ async function findOneByDescripcion(req, res) {
         return res.json({ data: editorial });
     }
     catch (error) {
-        console.error("Error en findOneByEmail:", error);
+        console.error("Error en findOneByDescripcion:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }

@@ -51,5 +51,16 @@ export class AutorRepository {
             throw error;
         }
     }
+    async findOneByNombreCompleto(item) {
+        try {
+            const autor = await autores.findOne({ nombreCompleto: item.nombreCompleto });
+            console.log(autor);
+            return autor || undefined;
+        }
+        catch (error) {
+            console.error("Error en findOneByNombreCompleto:", error);
+            throw error;
+        }
+    }
 }
 //# sourceMappingURL=Autor.repository.js.map

@@ -6,19 +6,173 @@
                 <h3>Todos los autores</h3>
             </div>
         </div>
-        <button class="btn btn-primary custom-btn-primary mx-2 mb-3">Nuevo Autor</button>
+        <button class="btn btn-primary custom-btn-primary mx-2 mb-3" (click)="openPopup()">Nuevo Autor</button>
         <div class="row">
             <div *ngFor="let autorId of autoresIds" class="col-md-4 mb-4">
-                <div class="card">
-                    <img [src]="autoresData[autorId].perfil" class="card-img-top" alt="Perfil del Autor">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ autoresData[autorId].nombreCompleto }}</h5>
-                        <p class="card-text">{{ autoresData[autorId].info }}</p>
-                        <p class="card-text"><small>ID: {{ autorId }}</small></p>
-                        <button class="btn btn-primary custom-btn-primary mx-2">Editar</button>
-                        <button class="btn btn-primary custom-btn-secondary mx-2"
-                            (click)="eliminarAutor(autorId)">Eliminar</button>
+                <ng-container *ngIf="autoresData[autorId]">
+                    <div class="card">
+                        <img [src]="autoresData[autorId].perfil" class="card-img-top" alt="Perfil del Autor">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ autoresData[autorId].nombreCompleto }}</h5>
+                            <p class="card-text">{{ autoresData[autorId].info }}</p>
+                            <p class="card-text"><small>ID: {{ autorId }}</small></p>
+                            <button class="btn btn-primary custom-btn-primary mx-2"
+                                (click)="openEditPopup(autorId)">Editar</button>
+                            <button class="btn btn-primary custom-btn-secondary mx-2"
+                                (click)="eliminarAutor(autorId)">Eliminar</button>
+                        </div>
                     </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Panel para Crear Autor -->
+<div class="overlay" [ngClass]="{ active: isPopupOpen }">
+    <div class="modal " tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isPopupOpen }">
+        <div class="modal-dialog modal-lg custom-modal-panel">
+            <div class="modal-content custom-modal-panel">
+                <div class="modal-header mx-5">
+                    <h4 class="modal-title text-center">Crear Autor</h4>
+                    <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mx-5 mt-2">
+
+                    <form [formGroup]="AutorForm" (keydown.enter)="registrarAutor()">
+                        <div class="form-group my-4 custom-input">
+                            <label for="nombreCompleto">Nombre completo del autor</label>
+                            <input type="text" id="nombreCompleto" class="form-control" formControlName="nombreCompleto"
+                                placeholder="Ingrese el nombre completo" />
+                            <!-- Mensajes de error para el campo de nombreCompleto -->
+                            <div *ngIf="errorMessage" class="text-danger">
+                                {{ errorMessage }}
+                            </div>
+                            <div *ngIf="AutorForm.get('nombreCompleto')?.hasError('required') && AutorForm.get('nombreCompleto')?.touched"
+                                class="text-danger">
+                                El nombre es obligatorio.
+                            </div>
+                            <div *ngIf="AutorForm.get('nombreCompleto')?.hasError('pattern') && AutorForm.get('nombreCompleto')?.touched"
+                                class="text-danger">
+                                El nombre solo puede contener letras y espacios.
+                            </div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="perfil">Imagen de perfil</label>
+                            <input type="text" id="perfil" class="form-control" formControlName="perfil"
+                                placeholder="Ingrese la URL de la imagen" />
+                            <!-- Mensajes de error para el campo de dirección -->
+                            <div *ngIf="
+                            AutorForm.get('perfil')?.hasError('pattern') &&
+                            AutorForm.get('perfil')?.touched
+                          " class="text-danger">
+                                La imagen de perfil no es válida.
+                            </div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="info">Información del autor</label>
+                            <input type="text" id="info" class="form-control" formControlName="info"
+                                placeholder="Ingrese la información" />
+                            <!-- Mensajes de error para el campo info -->
+                            <div *ngIf="
+                              AutorForm.get('info')?.hasError('required') &&
+                              AutorForm.get('info')?.touched
+                            " class="text-danger">
+                                La información es obligatoria.
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary custom-btn-primary form-custom-btn-primary"
+                                (click)="registrarAutor()">
+                                Crear
+                            </button>
+                            <button type="button"
+                                class="btn btn-secondary custom-btn-secondary form-custom-btn-secondary"
+                                (click)="closePopup()">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Panel para Editar Autor -->
+<div class="overlay" [ngClass]="{ active: isEditPopupOpen }">
+    <div class="modal " tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isEditPopupOpen }">
+        <div class="modal-dialog modal-lg custom-modal-panel">
+            <div class="modal-content custom-modal-panel">
+                <div class="modal-header mx-5">
+                    <h4 class="modal-title text-center">Editar Autor</h4>
+                    <button type="button" class="btn-close" (click)="closeEditPopup()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mx-5 mt-2">
+
+                    <!-- Lógica y el formulario de edición -->
+
+                    <form [formGroup]="EditAutorForm" (keydown.enter)="actualizarAutor()">
+                        <div class="form-group my-4 custom-input">
+                            <label for="editNombreCompleto">Nombre completo del autor</label>
+                            <input type="text" id="editNombreCompleto" class="form-control"
+                                formControlName="editNombreCompleto" placeholder="Ingrese el nuevo nombre completo" />
+                            <!-- Mensajes de error para el campo de nombreCompleto -->
+                            <div *ngIf="EditAutorForm.get('editNombreCompleto')?.hasError('required') && EditAutorForm.get('editNombreCompleto')?.touched"
+                                class="text-danger">
+                                El nombre es obligatorio.
+                            </div>
+                            <div *ngIf="EditAutorForm.get('editNombreCompleto')?.hasError('pattern') && EditAutorForm.get('editNombreCompleto')?.touched"
+                                class="text-danger">
+                                El nombre solo puede contener letras y espacios.
+                            </div>
+                        </div>
+
+                        <div class="form-group my-4 custom-input">
+                            <label for="editPerfil">Perfil</label>
+                            <input type="perfil" id="editPerfil" class="form-control" formControlName="editPerfil"
+                                placeholder="Ingrese la URL de la imagen" />
+                            <!-- Mensajes de error para el campo de perfil -->
+                            <div *ngIf="
+                            EditAutorForm.get('editPerfil')?.hasError('pattern') &&
+                            EditAutorForm.get('editPerfil')?.touched
+                          " class="text-danger">
+                                La imagen de perfil no es válida.
+                            </div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editInfo">Información del autor</label>
+                            <input type="text" id="editInfo" class="form-control" formControlName="editInfo"
+                                placeholder="Ingrese la nueva URL de la imagen" />
+                            <!-- Mensajes de error para el campo de imagen -->
+                            <div *ngIf="
+                            EditAutorForm.get('editInfo')?.hasError('required') &&
+                            EditAutorForm.get('editInfo')?.touched
+                            " class="text-danger">
+                                La imagen es obligatoria.
+                            </div>
+                            <div *ngIf="
+                            EditAutorForm.get('editInfo')?.hasError('pattern') &&
+                            EditAutorForm.get('editInfo')?.touched
+                            " class="text-danger">
+                                La URL no puede contener espacios.
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary custom-btn-primary form-custom-btn-primary"
+                                (click)="actualizarAutor()">
+                                Actualizar
+                            </button>
+                            <button type="button"
+                                class="btn btn-secondary custom-btn-secondary form-custom-btn-secondary"
+                                (click)="closeEditPopup()">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

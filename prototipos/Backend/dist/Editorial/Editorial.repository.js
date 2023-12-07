@@ -61,7 +61,7 @@ export class EditorialRepository {
             return editorial || undefined;
         }
         catch (error) {
-            console.error("Error en findOneByEmail:", error);
+            console.error("Error en findOneByDescripcion:", error);
             throw error;
         }
     }

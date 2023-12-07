@@ -55,4 +55,15 @@ export class AutorRepository implements Repository<Autor>{
             throw error;
         }
     }
+
+    public async findOneByNombreCompleto(item: { nombreCompleto: string }): Promise<Autor | undefined> {
+        try {
+            const autor = await autores.findOne({ nombreCompleto: item.nombreCompleto });
+            console.log(autor);
+            return autor || undefined;
+        } catch (error) {
+            console.error("Error en findOneByNombreCompleto:", error);
+            throw error;
+        }
+    }
 }

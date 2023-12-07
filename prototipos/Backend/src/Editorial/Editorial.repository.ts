@@ -63,10 +63,10 @@ export class EditorialRepository implements Repository<Editorial>{
     public async findOneByDescripcion(item: { descripcion: string }): Promise<Editorial | undefined> {
         try {
             const editorial = await editoriales.findOne({ descripcion: item.descripcion });
-            console.log(editorial); 
+            console.log(editorial);
             return editorial || undefined;
         } catch (error) {
-            console.error("Error en findOneByEmail:", error);
+            console.error("Error en findOneByDescripcion:", error);
             throw error;
         }
     }

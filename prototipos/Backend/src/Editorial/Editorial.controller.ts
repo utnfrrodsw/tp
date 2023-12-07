@@ -54,7 +54,7 @@ async function add(req: Request, res: Response) {
         const editorialInput = new Editorial(input.descripcion, input.direccion, input.imagen);
 
         const editorial = await repository.add(editorialInput);
-        
+
         res.status(201).send({ message: 'Editorial agregada exitosamente', data: editorial });
     } catch (error) {
         console.error("Error en add:", error);
@@ -179,7 +179,7 @@ async function findOneByDescripcion(req: Request, res: Response) {
 
         return res.json({ data: editorial });
     } catch (error) {
-        console.error("Error en findOneByEmail:", error);
+        console.error("Error en findOneByDescripcion:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }

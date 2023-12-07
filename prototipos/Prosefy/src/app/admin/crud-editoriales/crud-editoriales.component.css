@@ -115,3 +115,11 @@
     background-color: #181a1b;
     color: #fff;
 }
+
+
+.highlight-text {
+    background-color: #f8f9fa;
+    color: #181a1b;
+    display: inline;
+    font-weight: 500;
+}

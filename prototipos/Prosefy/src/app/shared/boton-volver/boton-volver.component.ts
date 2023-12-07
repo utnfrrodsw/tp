@@ -10,7 +10,6 @@ export class BotonVolverComponent {
 
   ngOnInit() {
     this.renderer.listen('window', 'popstate', () => {
-      console.log('Se produjo el evento Popstate.');
     });
   }
 

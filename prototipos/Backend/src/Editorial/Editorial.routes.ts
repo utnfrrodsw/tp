@@ -4,9 +4,9 @@ import { findAll, findOne, sanitizeInput, add, remove, update, getEditoriales, g
 export const editorialRouter = Router();
 
 editorialRouter.get('/editoriales', getEditoriales);
-editorialRouter.get('/descripcion/:id', getDescripcion);
-editorialRouter.get('/imagen/:id', getImagen);
-editorialRouter.get('/direccion/:id', getDireccion);
+editorialRouter.get('/get-descripcion/:id', getDescripcion);
+editorialRouter.get('/get-imagen/:id', getImagen);
+editorialRouter.get('/get-direccion/:id', getDireccion);
 
 editorialRouter.get('/descripcion/:descripcion', findOneByDescripcion);
 

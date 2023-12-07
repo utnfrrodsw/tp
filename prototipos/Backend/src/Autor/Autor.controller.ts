@@ -166,4 +166,21 @@ async function getPerfil(req: Request, res: Response) {
     }
 }
 
-export { sanitizeInput, findAll, findOne, add, update, remove, getAutores, getNombreCompleto, getPerfil, getInfo }
+async function findOneByNombreCompleto(req: Request, res: Response) {
+    try {
+        const nombreCompleto = req.params.nombreCompleto;
+
+        const autor = await repository.findOneByNombreCompleto({ nombreCompleto });
+
+        if (!autor) {
+            return res.status(404).send({ message: "Autor no encontrado." });
+        }
+
+        return res.json({ data: autor });
+    } catch (error) {
+        console.error("Error en findOneByNombreCompleto:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+export { sanitizeInput, findAll, findOne, add, update, remove, getAutores, getNombreCompleto, getPerfil, getInfo, findOneByNombreCompleto }

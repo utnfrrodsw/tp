@@ -20,6 +20,12 @@ export interface ErrorEditorialResponse {
   mensaje: string; // Un mensaje de error descriptivo
   codigo?: number; // Un código de error opcional
 }
+
+export interface UpdateEditorialResponse {
+  message: string;
+  data?: Editorial; // Datos actualizados de la editorial en caso de éxito
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -41,20 +47,19 @@ export class EditorialesService {
   }
 
   getDescripcion(id: string): Observable<string | undefined> {
-    return this.http.get<any>(`${this.apiUrl}/descripcion/${id}`).pipe(
+    return this.http.get<any>(`${this.apiUrl}/get-descripcion/${id}`).pipe(
       map((response: any) => response.data),
     );
   }
 
   getDireccion(id: string): Observable<string | undefined> {
-    return this.http.get<any>(`${this.apiUrl}/direccion/${id}`).pipe(
+    return this.http.get<any>(`${this.apiUrl}/get-direccion/${id}`).pipe(
       map((response: any) => response.data),
     );
   }
 
-
   getImagen(id: string): Observable<string | undefined> {
-    return this.http.get<any>(`${this.apiUrl}/imagen/${id}`).pipe(
+    return this.http.get<any>(`${this.apiUrl}/get-imagen/${id}`).pipe(
       map((response: any) => response.data)
     );
   }
@@ -84,7 +89,7 @@ export class EditorialesService {
   }
 
   validarEditorialExistente(descripcion: string): Observable<Editorial | null> {
-    const url = `${this.apiUrl}{/descripcion/}${descripcion}`;
+    const url = `${this.apiUrl}/descripcion/${descripcion}`;
     return this.http.get<Editorial>(url)
       .pipe(
         catchError((error: HttpErrorResponse) => {
@@ -93,6 +98,25 @@ export class EditorialesService {
           } else {
             return throwError(() => error);
           }
+        })
+      );
+  }
+
+  updateEditorial(id: string, editorial: Editorial): Observable<UpdateEditorialResponse> {
+    const url = `${this.apiUrl}/${id}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http.put<UpdateEditorialResponse>(url, editorial, httpOptions)
+      .pipe(
+        tap((response) => {
+          console.log('Actualización exitosa', response);
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return this.handleServerError(error);
         })
       );
   }

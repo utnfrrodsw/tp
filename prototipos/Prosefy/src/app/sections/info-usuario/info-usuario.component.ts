@@ -19,6 +19,12 @@ interface Edicion {
 export class InfoUsuarioComponent implements OnInit {
   usuario: any = {};
   editando = false;
+  isPopupOpen: boolean = false;
+  modalMessage: string = '';
+
+  closePopup(): void {
+    this.isPopupOpen = false;
+  }
 
   edicion = {
     nombre: false,
@@ -112,45 +118,50 @@ export class InfoUsuarioComponent implements OnInit {
         this.usuarioService.setNombre(nuevoValor).subscribe({
           next: (response) => {
             console.log(`Éxito al actualizar ${campo}:`, response);
-            this.edicion[campo] = false; // Desactiva la edición para el campo específico
+            this.edicion[campo] = false;
+            this.mostrarMensaje('¡Actualización exitosa!');
           },
-          error: (error) => console.error(`Error al actualizar ${campo}:`, error)
+          error: (error) => this.mostrarMensaje('Error al actualizar ' + campo)
         });
         break;
       case 'apellido':
         this.usuarioService.setApellido(nuevoValor).subscribe({
           next: (response) => {
             console.log(`Éxito al actualizar ${campo}:`, response);
-            this.edicion[campo] = false; // Desactiva la edición para el campo específico
+            this.edicion[campo] = false;
+            this.mostrarMensaje('¡Actualización exitosa!');
           },
-          error: (error) => console.error(`Error al actualizar ${campo}:`, error)
+          error: (error) => this.mostrarMensaje('Error al actualizar ' + campo)
         });
         break;
       case 'email':
         this.usuarioService.setEmail(nuevoValor).subscribe({
           next: (response) => {
             console.log(`Éxito al actualizar ${campo}:`, response);
-            this.edicion[campo] = false; // Desactiva la edición para el campo específico
+            this.edicion[campo] = false;
+            this.mostrarMensaje('¡Actualización exitosa!');
           },
-          error: (error) => console.error(`Error al actualizar ${campo}:`, error)
+          error: (error) => this.mostrarMensaje('Error al actualizar ' + campo)
         });
         break;
       case 'username':
         this.usuarioService.setUsername(nuevoValor).subscribe({
           next: (response) => {
             console.log(`Éxito al actualizar ${campo}:`, response);
-            this.edicion[campo] = false; // Desactiva la edición para el campo específico
+            this.edicion[campo] = false;
+            this.mostrarMensaje('¡Actualización exitosa!');
           },
-          error: (error) => console.error(`Error al actualizar ${campo}:`, error)
+          error: (error) => this.mostrarMensaje('Error al actualizar ' + campo)
         });
         break;
       case 'direccion':
         this.usuarioService.setDireccion(nuevoValor).subscribe({
           next: (response) => {
             console.log(`Éxito al actualizar ${campo}:`, response);
-            this.edicion[campo] = false; // Desactiva la edición para el campo específico
+            this.edicion[campo] = false;
+            this.mostrarMensaje('¡Actualización exitosa!');
           },
-          error: (error) => console.error(`Error al actualizar ${campo}:`, error)
+          error: (error) => this.mostrarMensaje('Error al actualizar ' + campo)
         });
         break;
       case 'provincia':
@@ -158,6 +169,7 @@ export class InfoUsuarioComponent implements OnInit {
         break;
       default:
         console.log(`Campo no manejado: ${campo}`);
+        this.mostrarMensaje('El campo ' + campo + ' no se puede actualizar.')
     }
   }
 
@@ -165,21 +177,28 @@ export class InfoUsuarioComponent implements OnInit {
     this.provinciasService.getProvinciaByDescripcion(descripcion).subscribe({
       next: (provincia: any) => {
         if (provincia && provincia._id) {
-          this.usuario.idProvincia = provincia._id;  // Ajusta esto según la estructura del objeto devuelto
+          this.usuario.idProvincia = provincia._id;
           console.log('ID de la provincia actualizada:', this.usuario.idProvincia);
 
           this.usuarioService.setProvincia(this.usuario.idProvincia).subscribe({
             next: (response) => {
               console.log('Éxito al actualizar la provincia del usuario:', response);
-              this.edicion['provincia'] = false; // Desactiva la edición para el campo de provincia
+              this.edicion['provincia'] = false;
+              this.mostrarMensaje('¡Actualización exitosa!');
             },
             error: (error) => console.error('Error al actualizar la provincia del usuario:', error)
           });
         } else {
           console.error('No se encontró la provincia con la descripción:', descripcion);
+          this.mostrarMensaje('No se encontró la provincia con la descripción ' + descripcion)
         }
       },
       error: (error) => console.error('Error al obtener la provincia por descripción:', error)
     });
+  }
+
+  mostrarMensaje(mensaje: string) {
+    this.modalMessage = mensaje;
+    this.isPopupOpen = true;
   }
 }
