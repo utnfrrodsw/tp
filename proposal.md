@@ -6,8 +6,6 @@
 
 -   46950 - Retamal, Alejo
 -   48042 - Milo, Marina Ana
--   ~~47116 - Martel, Marco Antonio~~
--   ~~47141 - Fernandez, Santiago Jesús~~
 
 ### Repositorio
 
@@ -35,108 +33,113 @@ El sistema deberá contar con las siguientes funcionalidades:
 
 ```mermaid
 classDiagram
+note "IDs generados por MongoDB (string)"
     class Libro{
-        +id: int
+        +id: string
         +isbn: string
         +titulo: string
-        +autores: Autor[]
-        +editorial: Editorial
         +idioma: string
         +descripcion: string
         +precio: decimal
         +fecha_edicion: Date
-        +categorias: Categoria[]
-        +formatos: FormatoLibro[]
+	    +portada: string
     }
     class Categoria{
-        +id: int
+        +id: string
         +descripcion: string
     }
     class Envio{
-        +id: int
+        +id: string
         +estado: string
         +fecha_entrega_estimada: Date
         +fecha_entrega_real: Date
     }
 	class HistorialPreciosEnvio{
+        +id: string
 		+fecha_ini: Date
 		+fecha_fin: Date
 		+precio: decimal
 		+envio_gratis: decimal
 	}
     class Reseña{
-        +id: int
+        +id: string
         +calificacion: int
-        +opinion: string
-        +cliente: Usuario
-        +libro: Libro
+        +comentario: string
     }
     class Usuario{
-        +id: int
+        +id: string
+	    +username: string
         +nombre: string
-        +apellido: string
+        +apellido: string	
         +email: string
         +direccion: string
-        +localidad: Localidad
         +avatar: string
         +tipo: string
+	    +contraseña: string
     }
     class Autor{
-        +id: int
-        +nombre: string
-        +apellido: string
+        +id: string
+        +nombre_completo: string
+        +perfil: string
+	    +info: string
     }
     class Provincia{
-        +id: int
+        +id: string
         +descripcion: string
     }
     class Localidad{
-        +cod_postal: int
+	    +id: string
+        +cod_postal: string
         +descripcion: string
-        +provincia: Provincia
     }
     class Editorial{
-        +id: int
+        +id: string
         +descripcion: string
         +direccion: string
         +imagen: string
     }
     class Pedido{
-        +id: int
-        +cliente: Usuario
+        +id: string
         +fecha_hora: Date
         +metodo_pago: string
     }
     class FormatoLibro{
-        +id: int
+        +id: string
         +descripcion: string
     }
     class Cuota{
+        +id: string
         +fecha_venc: Date
-	+fecha_pago: Date
+	    +fecha_pago: Date
     }
     class Oferta{
-        +id: int
+        +id: string
         +fecha_ini: Date
         +fecha_fin: Date
         +porcentaje_descuento: decimal
     }
+    class Token{
+        <<interface>>
+        +token: string
+        +fecha_expiracion: Date
+    }
 
-    Libro "*" -- "1..*" Categoria
-    Libro "*" -- "1..*" Autor
-    Libro "*" -- "1" Editorial
-    Libro "*" -- "1..3" FormatoLibro
-    Usuario "1" -- "*" Pedido
+    Libro "*" -- "1..*" Categoria: categorías
+    Libro "*" -- "1..*" Autor: autores
+    Libro "*" -- "1" Editorial: editorial
+    Libro "*" -- "1..3" FormatoLibro: formatos
+    Usuario "1" -- "*" Pedido: pedidos
     Usuario "1" -- "*" Libro: listaDeseos
-    Usuario "1" -- "*" Reseña
-    Localidad "1" -- "*" Usuario
-    Pedido "1" -- "1..*" Cuota
-    Localidad "*" -- "1" Provincia
-    Oferta "*" -- "1..*" Libro
-    Reseña "*" -- "1" Libro
-    Envio "0..1" -- "1" Pedido
+    Usuario "1" -- "*" Reseña: reseñas
+    Localidad "1" -- "*" Usuario: localidad
+    Pedido "1" -- "1..*" Cuota: cuotas
+    Localidad "*" -- "1" Provincia: provincia
+    Oferta "*" -- "1..*" Libro: ofertas
+    Reseña "*" -- "1" Libro: libro
+    Envio "0..1" -- "1" Pedido: envío
     Pedido "*" -- "1..*" Libro : cantidad int
     Usuario "*" -- "*" Autor: autoresSeguidos
+    Usuario "1" ..|> "*" Token: tokens
 
 note for FormatoLibro "Ejemplos: físico,
 digital, audiolibro..."
