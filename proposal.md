@@ -158,8 +158,8 @@ el envío será gratuito"
 
 | Req                     | Detalle                                                                                                                                                                                                                                  |
 | :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CRUD Simple             | 1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial                                                                                                                                                             |
-| CRUD Dependiente        | 1. CRUD Localidad **{depende de}** CRUD Provincia.<br>2. CRUD Libro **{depende de}** CRUD Autor, CRUD Categoría y CRUD Editorial.                                                                                                        |
+| CRUD Simple             | 1. CRUD Autor<br>2. CRUD Editorial                                                                                                                                                             |
+| CRUD Dependiente        | 1. CRUD Libro **{depende de}** CRUD Autor, CRUD Categoría y CRUD Editorial.                                                                                                        |
 | Listado<br>+<br>Detalle | 1. Listado de libros filtrado por categoría, muestra ISBN, título, autores, editorial y precio → **detalle CRUD Libro**.<br> 2. Listado de libros filtrado por autor, muestra ISBN, título, editorial y precio → **detalle CRUD Libro**. |
 | CUU/Epic                | 1. Comprar libro<br>2. Reseñar libro                                                                                                                                                                                         |
 
