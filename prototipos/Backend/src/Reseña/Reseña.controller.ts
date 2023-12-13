@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from "express";
-import { ComentarioRepository } from "./Comentario.repository.js";
-import { Comentario } from "./Comentario.js";
+import { ReseñaRepository } from "./Reseña.repository.js";
+import { Reseña } from "./Reseña.js";
 import { ObjectId } from "mongodb";
 
-const repository = new ComentarioRepository();
+const repository = new ReseñaRepository();
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     try {
-        const requiredKeys = ['comentario', 'usuario'];
+        const requiredKeys = ['comentario', 'usuario', 'calificacion'];
 
         req.body.sanitizedInput = {};
 
@@ -39,11 +39,11 @@ async function findAll(req: Request, res: Response) {
 async function findOne(req: Request, res: Response) {
     try {
         const id = req.params.id;
-        const comentario = await repository.findOne({ id });
-        if (!comentario) {
-            return res.status(404).send({ message: "Comentario no encontrado." });
+        const reseña = await repository.findOne({ id });
+        if (!reseña) {
+            return res.status(404).send({ message: "Reseña no encontrada." });
         }
-        return res.json({ data: comentario });
+        return res.json({ data: reseña });
     } catch (error) {
         console.error("Error en findOne:", error);
         res.status(500).send({ message: "Error interno del servidor." });
@@ -54,13 +54,15 @@ async function add(req: Request, res: Response) {
     try {
         const input = req.body.sanitizedInput;
 
-        const comentarioInput = new Comentario(
+        const reseñaInput = new Reseña(
             input.comentario,
+            input.calificacion,
             new ObjectId(input.usuario),
+            new ObjectId(input.libro),
         );
 
-        const comentario = await repository.add(comentarioInput);
-        res.status(201).send({ message: 'Comentario agregado con éxito.', data: comentario });
+        const reseña = await repository.add(reseñaInput);
+        res.status(201).send({ message: 'Reseña agregada con éxito.', data: reseña });
     } catch (error) {
         console.error("Error en add:", error);
         res.status(500).send({ message: "Error interno del servidor." });
@@ -69,36 +71,38 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
     try {
-        const comentarioId = req.params.id;
+        const reseñaId = req.params.id;
         const updatedData = req.body.sanitizedInput;
 
-        const comentarioExiste = await repository.findOne({ id: comentarioId });
+        const reseñaExiste = await repository.findOne({ id: reseñaId });
 
-        if (!comentarioExiste) {
+        if (!reseñaExiste) {
 
-            const objectIdComentarioId = new ObjectId(comentarioId);
+            const objectIdReseñaId = new ObjectId(reseñaId);
 
-            const comentarioInput = new Comentario(
+            const reseñaInput = new Reseña(
                 updatedData.comentario,
+                updatedData.calificacion,
                 updatedData.usuario,
-                objectIdComentarioId
+                updatedData.libro,
+                objectIdReseñaId
             );
-            const nuevoComentario = await repository.add(comentarioInput);
+            const nuevoReseña = await repository.add(reseñaInput);
 
-            if (!nuevoComentario) {
-                return res.status(500).send({ message: "Error al crear el nuevo comentario." });
+            if (!nuevoReseña) {
+                return res.status(500).send({ message: "Error al crear la nueva reseña." });
             }
 
-            return res.status(201).send({ message: 'Comentario creado con éxito.', data: nuevoComentario });
+            return res.status(201).send({ message: 'Reseña creada con éxito.', data: nuevoReseña });
         }
 
-        const updatedComentario = await repository.update(comentarioId, updatedData);
+        const updatedReseña = await repository.update(reseñaId, updatedData);
 
-        if (!updatedComentario) {
-            return res.status(500).send({ message: "Error al actualizar el Comentario" });
+        if (!updatedReseña) {
+            return res.status(500).send({ message: "Error al actualizar la Reseña" });
         }
 
-        return res.status(200).send({ message: 'Comentario actualizado con éxito.', data: updatedComentario });
+        return res.status(200).send({ message: 'Reseña actualizada con éxito.', data: updatedReseña });
 
     } catch (error) {
         console.error("Error en update:", error);
@@ -109,11 +113,11 @@ async function update(req: Request, res: Response) {
 async function remove(req: Request, res: Response) {
     try {
         const id = req.params.id;
-        const comentario = await repository.delete({ id });
-        if (!comentario) {
-            res.status(404).send({ message: "Comentario no encontrado." });
+        const reseña = await repository.delete({ id });
+        if (!reseña) {
+            res.status(404).send({ message: "Reseña no encontrada." });
         }
-        res.status(204).send({ message: 'Comentario eliminado con éxito.' });
+        res.status(204).send({ message: 'Reseña eliminada con éxito.' });
     } catch (error) {
         console.error("Error en remove:", error);
         res.status(500).send({ message: "Error interno del servidor." });
@@ -123,13 +127,13 @@ async function remove(req: Request, res: Response) {
 async function findByUsuario(req: Request, res: Response) {
     try {
         const usuarioId = req.params.usuarioId;
-        const comentarios = await repository.findByUsuario(usuarioId);
+        const reseñas = await repository.findByUsuario(usuarioId);
 
-        if (!comentarios || comentarios.length === 0) {
-            return res.status(404).send({ message: "No se encontraron comentarios para el Usuario proporcionado." });
+        if (!reseñas || reseñas.length === 0) {
+            return res.status(404).send({ message: "No se encontraron reseñas para el Usuario proporcionado." });
         }
 
-        res.status(200).send({ message: 'Comentarios encontrados con éxito.', data: comentarios });
+        res.status(200).send({ message: 'Reseñas encontradas con éxito.', data: reseñas });
     } catch (error) {
         console.error("Error en findByUsuario:", error);
         res.status(500).send({ message: "Error interno del servidor." });

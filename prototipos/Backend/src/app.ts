@@ -9,7 +9,7 @@ import { libroRouter } from "./Libro/Libro.routes.js";
 import { localidadRouter } from "./Localidad/Localidad.routes.js";
 import { provinciaRouter } from "./Provincia/Provincia.routes.js";
 import { formatoRouter } from "./formatoLibro/formatoLibro.routes.js";
-import { comentarioRouter } from "./Comentario/Comentario.routes.js";
+import { reseñaRouter } from "./Reseña/Reseña.routes.js";
 
 const app = express();
 
@@ -33,7 +33,7 @@ app.use("/api/categorias", categoriaRouter);
 app.use("/api/localidades", localidadRouter);
 app.use("/api/provincias", provinciaRouter);
 app.use("/api/formatos", formatoRouter);
-app.use("/api/comentarios", comentarioRouter);
+app.use("/api/comentarios", reseñaRouter);
 
 app.use((_, res) => {
 	return res.status(404).send({ message: "Resource not found" });
