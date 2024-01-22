@@ -38,17 +38,15 @@ const presupuestosController = {
                       idUsuario: presupuesto.idUsuario
                     }
                   }, { transaction: t });
-                
-                  presupuestosInfo.push(getPresupuestoInfo(presupuesto, horarios,promedio));
+                  presupuestosInfo.push(getPresupuestoInfo(presupuesto, horarios, promedio));
                 });
             
                 await Promise.all(promises);
             });
             //ordenar presupuestos por costo total, menor a mayor
             presupuestosInfo.sort((a, b) => a.costoTotal - b.costoTotal);
-            
             res.status(200).json(jsonResponse(200, {
-            presupuestos: presupuestosInfo
+                presupuestos: presupuestosInfo
             }));
 
         }catch(error){
@@ -123,7 +121,6 @@ const presupuestosController = {
             
             if (fechasSeleccionadas.length > 0) {
                 const fechasPromises = fechasSeleccionadas.map(async (fecha) => {
-                    
                     return db.HorariosPresupuesto.create(
                         { idSolicitud: idSolicitud, idUsuario:idUsuario, horario: fecha},
                         { transaction: t }
