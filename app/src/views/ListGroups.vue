@@ -19,7 +19,7 @@
             </v-row>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" @click="editGroup(group.id)">Modificar</v-btn>
+            <v-btn v-if="$isAdmin" color="primary" @click="editGroup(group.id)">Modificar</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -28,33 +28,33 @@
 </template>
 
 <script>
-import GroupDataService from '../services/GroupDataService';
-import GroupTechnicianDataService from '../services/GroupTechnicianDataService';
+  import GroupDataService from '../services/GroupDataService'
+  import GroupTechnicianDataService from '../services/GroupTechnicianDataService'
 
-export default {
-  name: 'ListGroups',
-  data() {
-    return {
-      groups: [],
-    };
-  },
-  async mounted() {
-    this.loading = true
-    try {
-      const response = await GroupDataService.getAll()
-      this.groups = response.data;
-      this.groups.forEach(async g => {
-        g.technicians = (await GroupTechnicianDataService.getTechnicians(g.id)).data
-      })
-      this.loading = false
-    } catch (error) {
-      console.error(error)
-    }
-  },
-  methods: {
-    editGroup(id) {
-      this.$router.push({ name: 'EditGroup', params: { id } })
+  export default {
+    name: 'ListGroups',
+    data() {
+      return {
+        groups: [],
+      };
     },
-  },
-};
+    async mounted() {
+      this.loading = true
+      try {
+        const response = await GroupDataService.getAll()
+        this.groups = response.data;
+        this.groups.forEach(async g => {
+          g.technicians = (await GroupTechnicianDataService.getTechnicians(g.id)).data
+        })
+        this.loading = false
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    methods: {
+      editGroup(id) {
+        this.$router.push({ name: 'EditGroup', params: { id } })
+      }
+    }
+  }
 </script>

@@ -33,48 +33,47 @@
 </template>
 
 <script>
-import axios from 'axios'
+  import axios from 'axios'
 
-export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-    };
-  },
-  methods: {
-    async login() {
-      try {
-        const body = {
-          email: this.email,
-          password: this.password,
-        };
-        const redirectPath = this.$route.query.redirect || '/'
-        const apiUrl = process.env.VUE_APP_API_URL
-        const url = `${apiUrl}api/auth/login`
-        const response = await axios.post(url, body)
-        const data = await response.data
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('rol',data.user.role )
-        this.$router.push(redirectPath)
-      } catch (error) {
-        console.error(error)
-      }
+  export default {
+    data() {
+      return {
+        email: '',
+        password: '',
+      };
     },
-  },
-};
+    methods: {
+      async login() {
+        try {
+          const body = {
+            email: this.email,
+            password: this.password,
+          }
+          const redirectPath = this.$route.query.redirect || '/'
+          const apiUrl = process.env.VUE_APP_API_URL
+          const url = `${apiUrl}api/auth/login`
+          const response = await axios.post(url, body)
+          const data = await response.data
+          localStorage.setItem('token', data.token)
+          this.$router.push(redirectPath)
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    }
+  }
 </script>
 
 <style scoped>
-.custom-card {
-  border-radius: 12px; 
-  overflow: hidden; 
-  border: 1px solid lightgrey; 
-  max-width: 400px; 
-  margin: auto; 
-}
+  .custom-card {
+    border-radius: 12px; 
+    overflow: hidden; 
+    border: 1px solid lightgrey; 
+    max-width: 400px; 
+    margin: auto; 
+  }
 
-.elevation-12 {
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.14), 0 1px 18px rgba(0, 0, 0, 0.12), 0 3px 5px rgba(0, 0, 0, 0.2);
-}
+  .elevation-12 {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.14), 0 1px 18px rgba(0, 0, 0, 0.12), 0 3px 5px rgba(0, 0, 0, 0.2);
+  }
 </style>

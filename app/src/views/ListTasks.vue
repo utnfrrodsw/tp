@@ -24,8 +24,8 @@
             </v-row>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" @click="editTask(task.id)">Modificar</v-btn>
-            <v-btn color="error" @click="deleteTask(task.id)">Eliminar</v-btn>
+            <v-btn v-if="$isAdmin" color="primary" @click="editTask(task.id)">Modificar</v-btn>
+            <v-btn v-if="$isAdmin" color="error" @click="deleteTask(task.id)">Eliminar</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

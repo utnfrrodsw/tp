@@ -86,15 +86,16 @@
               name: 'Crear Grupo',
               route: '/add-group',
               icon: 'mdi-account-multiple-plus',
-              grant: '$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq'
+              grant: 'admin'
             },
             {
               name: 'Listar Grupos',
               route: '/list-groups',
               icon: 'mdi-list-box',
-              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
-                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
-            ]
+              grant: [
+                'admin',
+                'operator'
+              ]
             }
           ]
         },
@@ -107,15 +108,16 @@
               name: 'Crear Tecnico',
               route: '/add-technician',
               icon: 'mdi-account-multiple-plus',
-              grant: '$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq'
+              grant: 'admin'
             },
             {
               name: 'Listar Tecnicos',
               route: '/list-technicians',
               icon: 'mdi-list-box',
-              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
-                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
-            ]
+              grant: [
+                'admin',
+                'operator'
+              ]
             }
           ]
         },
@@ -128,15 +130,16 @@
               name: "Agregar Tarea",
               route: "/add-task",
               icon: "mdi-plus",
-              grant: '$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq'
+              grant: 'admin'
             },
             {
               name: "Listar Tareas",
               route: "/list-tasks",
               icon: "mdi-list-box",
-              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
-                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
-            ] 
+              grant: [
+                'admin',
+                'operator'
+              ]
             }
           ]
         },
@@ -149,17 +152,19 @@
               name: "Nueva Certificacion",
               route: "/add-certification",
               icon: "mdi-cash-plus",
-              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
-                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
-            ]
+              grant: [
+                'admin',
+                'operator'
+              ]
             },
             {
               name: "Consultar Certificacion",
               route: "/list-certifications",
               icon: "mdi-view-list",
-              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
-                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
-            ]
+              grant: [
+                'admin',
+                'operator'
+              ]
             }
           ]
         },
@@ -172,17 +177,19 @@
               name: 'Editar cuenta',
               route: '/edit-account',
               icon: 'mdi-account-edit',
-              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
-                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
-            ]
+              grant: [
+                'admin',
+                'operator'
+              ]
             },
             {
               name: 'Cerrar sesión',
               route: '/logout',
               icon: 'mdi-logout',
-              grant: ['$2a$10$ShhNXqyfyjjQ/.bY9.QSTOwuabm281Xt6EtRvZKkmuD18zQjcENgq',
-                  '$2a$10$3Q1QYnoBC8yppqbxC9GeG.gX0NSs7LDGtMxHttLhOTTOxWlWozU8C'
-            ]
+              grant: [
+                'admin',
+                'operator'
+              ]
             }
           ]
         }
@@ -204,8 +211,8 @@
     },
     methods: {
       filteredSubitems(subitems) {
-        const alowedGrant = localStorage.rol
-        return subitems.filter(subItem => subItem.grant.includes(alowedGrant))
+        const allowedGrant = this.$isAdmin ? 'admin' : 'operator'
+        return subitems.filter(subItem => subItem.grant.includes(allowedGrant))
     },
       toggleSubMenu(item) {
         if (item.subitems) {

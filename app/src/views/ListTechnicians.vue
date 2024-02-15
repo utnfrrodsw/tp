@@ -19,7 +19,7 @@
             :currentPage="page"
           >
             <template v-slot:[`item.actions`]="{ item }">
-              <v-icon small class="mr-2" @click="editTechnician(item.id)">
+              <v-icon v-if="$isAdmin" small class="mr-2" @click="editTechnician(item.id)">
                 mdi-pencil
               </v-icon>
             </template>
