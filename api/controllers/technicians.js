@@ -1,11 +1,12 @@
+const Sequelize = require('sequelize')
 const { Group, Technician } = require('../sequelize')
-const Sequelize = require("sequelize")
+const { getPagination, getPaginationData } = require('../helpers/pagination')
 
-const getTechnicians = (req, res) => {
+const getTechnicians = async (req, res) => {
   const { page, size, name } = req.query
   const { limit, offset } = getPagination(page, size)
   var condition = name ? { name: { [Sequelize.Op.like]: `%${name}%` } } : null
-  
+
   Technician.findAndCountAll({
     where: condition,
     limit,
@@ -15,30 +16,14 @@ const getTechnicians = (req, res) => {
     }
   })
   .then(data => {
-    const response = getPagingData(data, page, limit)
+    const response = getPaginationData(data, page, limit)
     res.send(response)
   })
   .catch(err => {
     res.status(500).send({
-      message:
-        err.message || "Some error occurred while retrieving technicians."
+      message: err.message || 'Some error occurred while retrieving technicians.'
     })
   })
-}
-
-const getPagingData = (data, page, limit) => {
-  const { count: totalItems, rows: technicians } = data
-  const currentPage = page ? +page : 0
-  const totalPages = Math.ceil(totalItems / limit)
-
-  return { totalItems, technicians, totalPages, currentPage }
-};
-
-const getPagination = (page, size) => {
-  const limit = size ? +size : 3
-  const offset = page ? page * limit : 0
-
-  return { limit, offset }
 }
 
 const getTechnician = async (req, res) => {

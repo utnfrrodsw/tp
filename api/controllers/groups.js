@@ -1,19 +1,30 @@
+const Sequelize = require('sequelize')
 const { Group, Technician, Task } = require('../sequelize')
+const { getPagination, getPaginationData } = require('../helpers/pagination')
 
 const getGroups = async (req, res) => {
-  try {
-    const groups = await Group.findAll({
-      include: [{
-        model: Technician
-      }, {
-        model: Task
-      }]
+  const { page, size, description } = req.query
+  const { limit, offset } = getPagination(page, size)
+  var condition = description ? { description: { [Sequelize.Op.like]: `%${description}%` } } : null
+
+  Group.findAndCountAll({
+    where: condition,
+    limit,
+    offset,
+    include: [
+      { model: Technician },
+      { model: Task }
+    ]
+  })
+  .then(data => {
+    const response = getPaginationData(data, page, limit)
+    res.send(response)
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: err.message || 'Some error occurred while retrieving groups.'
     })
-    res.status(200).json(groups)
-  } catch (error) {
-    console.log(error)
-    res.status(400).send('Ups! Error')
-  }
+  })
 }
 
 const getGroup = async (req, res) => {

@@ -96,8 +96,8 @@
 <script>
   import axios from 'axios'
   import Alerts from '@/components/Alerts.vue'
-  import GroupTechnicianDataService from '../services/GroupTechnicianDataService'
-  import GroupDataService from '../services/GroupDataService'
+  import GroupTechnicianService from '../services/GroupTechnicianService'
+  import GroupService from '../services/GroupService'
 
   export default {
     name: 'AddCertification',
@@ -126,10 +126,10 @@
           value: task.id,
           text: task.name
         }))
-        const responseGroups = await GroupDataService.getAll()
+        const responseGroups = await GroupService.getAll()
         this.groupOptions = responseGroups.data
         this.groupOptions.forEach(async g => {
-          g.technicians = (await GroupTechnicianDataService.getTechnicians(g.id)).data
+          g.technicians = (await GroupTechnicianService.getTechnicians(g.id)).data
         })
       } catch (error) {
         console.error(error)

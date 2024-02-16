@@ -36,94 +36,94 @@
 </template>
 
 <script>
-import Alerts from '@/components/Alerts.vue'
-import TechnicianDataService from "../services/TechnicianDataService";
-import { esMayorDe18 } from '@/utilities/utilities.js';
+  import Alerts from '@/components/Alerts.vue'
+  import TechnicianService from '../services/TechnicianService'
+  import { esMayorDe18 } from '@/utilities/utilities.js'
 
-export default {
-  name: 'AddTechnician',
-  components: {
-    Alerts,
-  },
-  data() {
-    return {
-      technician: {
-        name: '',
-        date_born: '',
-      },
-      validationRules: {
-        name: [
-          v => !!v || 'Nombre is required',
-          v => (v && v.length <= 10) || 'Nombre must be less than 10 characters',
-        ],
-        date_born: [
-          value => {
-            if (value) return true
-            return 'Fecha Nacimiento is required'
-          },
-          value => {
-            if (esMayorDe18(value)) return true
-            return 'Fecha Nacimiento invalida: edad minima 18'
-          },
-        ],
-      },
-      loading: false,
-      alert: {
-        show: false,
-        message: '',
-        type: ''
-      },
-      menu: false
-    }
-  },
-  methods: {
-    async submitForm() {
-      if (this.$refs.form.validate()) {
-        this.loading = true
-        try {
-          const data = {
-            name: this.technician.name,
-            date_born: this.technician.date_born
+  export default {
+    name: 'AddTechnician',
+    components: {
+      Alerts,
+    },
+    data() {
+      return {
+        technician: {
+          name: '',
+          date_born: '',
+        },
+        validationRules: {
+          name: [
+            v => !!v || 'Nombre is required',
+            v => (v && v.length <= 10) || 'Nombre must be less than 10 characters',
+          ],
+          date_born: [
+            value => {
+              if (value) return true
+              return 'Fecha Nacimiento is required'
+            },
+            value => {
+              if (esMayorDe18(value)) return true
+              return 'Fecha Nacimiento invalida: edad minima 18'
+            },
+          ],
+        },
+        loading: false,
+        alert: {
+          show: false,
+          message: '',
+          type: ''
+        },
+        menu: false
+      }
+    },
+    methods: {
+      async submitForm() {
+        if (this.$refs.form.validate()) {
+          this.loading = true
+          try {
+            const data = {
+              name: this.technician.name,
+              date_born: this.technician.date_born
+            }
+            const response = await TechnicianService.create(data)
+            this.alert.show = true
+            this.alert.message = 'Tecnico creado correctamente'
+            this.alert.type = 'success'
+            this.reset()
+          } catch (e) {
+            this.alert.show = true
+            this.alert.message = e
+            this.alert.type = 'error'
           }
-          const response = await TechnicianDataService.create(data)
-          this.alert.show = true
-          this.alert.message = 'Tecnico creado correctamente'
-          this.alert.type = 'success'
-          this.reset()
-        } catch (e) {
-          this.alert.show = true
-          this.alert.message = e
-          this.alert.type = 'error'
+          this.loading = false
         }
-        this.loading = false
-      }
-    },
-    reset() {
-      this.$refs.form.reset()
-    },
-  },
-  computed: {
-    formattedDate: {
-      // getter
-      get: function () {
-        if (this.technician.date_born) {
-          const date = new Date(this.technician.date_born);
-          const [year, month, day] = date.toISOString().substring(0, 10).split('-')
-          return `${day}/${month}/${year}`
-        }
-        return '';
       },
-      // setter
-      set: function (newValue) {
-        this.technician.date_born = newValue
-      }
+      reset() {
+        this.$refs.form.reset()
+      },
     },
+    computed: {
+      formattedDate: {
+        // getter
+        get: function () {
+          if (this.technician.date_born) {
+            const date = new Date(this.technician.date_born);
+            const [year, month, day] = date.toISOString().substring(0, 10).split('-')
+            return `${day}/${month}/${year}`
+          }
+          return '';
+        },
+        // setter
+        set: function (newValue) {
+          this.technician.date_born = newValue
+        }
+      },
+    }
   }
-}
 </script>
 
 <style scoped>
-.v-menu__content {
-  z-index: 9999;
-}
+  .v-menu__content {
+    z-index: 9999;
+  }
 </style>

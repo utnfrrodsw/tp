@@ -66,8 +66,8 @@
 </template>
 
 <script>
-  import GroupDataService from '../services/GroupDataService'
-  import GroupTechnicianDataService from '../services/GroupTechnicianDataService'
+  import GroupService from '../services/GroupService'
+  import GroupTechnicianService from '../services/GroupTechnicianService'
   import Alerts from '@/components/Alerts.vue'
 
   export default {
@@ -105,11 +105,11 @@
       async fetchData() {
         this.loading = true
         try {
-          const responseGroups = await GroupDataService.get(this.group.id)
+          const responseGroups = await GroupService.get(this.group.id)
           this.group.description = responseGroups.data.description
-          this.group.technicians = (await GroupTechnicianDataService.getTechnicians(this.group.id)).data
+          this.group.technicians = (await GroupTechnicianService.getTechnicians(this.group.id)).data
 
-          const responseTechnicians = await GroupTechnicianDataService.freeTechnicians()
+          const responseTechnicians = await GroupTechnicianService.freeTechnicians()
           this.availableTechnicians = responseTechnicians.data
           if (this.group.technicians.length > 0) {
             let userTechnicianIds = this.group.technicians.map((t) => t.id) // IDs de los técnicos actuales del grupo
@@ -126,7 +126,7 @@
             groupId: this.group.id,
             technicianId: technicianId
           }
-          await GroupTechnicianDataService.deleteTechnician(data)
+          await GroupTechnicianService.deleteTechnician(data)
           this.updateData()
           this.alert.show = true
           this.alert.title = 'Eliminacion exitosa'
@@ -151,7 +151,7 @@
             technicianId: selectedTechnician.id
           }
 
-          GroupTechnicianDataService.create(data)
+          GroupTechnicianService.create(data)
           .then(async (response) => {
             this.alert.show = true
             this.alert.title = 'Guardado exitoso'

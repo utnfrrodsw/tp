@@ -26,7 +26,7 @@
 
 <script>
   import Alerts from '@/components/Alerts.vue'
-  import GroupDataService from '../services/GroupDataService'
+  import GroupService from '../services/GroupService'
 
   export default {
     name: 'AddGroup',
@@ -55,7 +55,7 @@
             const data = {
               description: this.group.description
             }
-            const response = await GroupDataService.create(data)
+            const response = await GroupService.create(data)
             this.alert.message = 'Grupo creado correctamente'
             this.alert.type = 'success'
             this.alert.show = true

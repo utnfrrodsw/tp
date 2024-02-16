@@ -50,7 +50,7 @@
 
 <script>
   import Alerts from '@/components/Alerts.vue'
-  import TechnicianDataService from "../services/TechnicianDataService";
+  import TechnicianService from "../services/TechnicianService";
   import { esMayorDe18 } from '@/utilities/utilities.js';
 
 export default {
@@ -115,7 +115,7 @@ export default {
     async fetchData() {
       this.loading = true
       try {
-        const response = await TechnicianDataService.get(this.technician.id)
+        const response = await TechnicianService.get(this.technician.id)
 
         this.technician.name = response.data.name
         this.technician.date_born = response.data.date_born.substring(0, 10)
@@ -133,7 +133,7 @@ export default {
             name: this.technician.name,
             date_born: this.technician.date_born
           }
-          const response = await TechnicianDataService.update(this.technician.id, data)
+          const response = await TechnicianService.update(this.technician.id, data)
           this.alert.show = true
           this.alert.title = 'Guardado exitoso'
           this.alert.message = 'El cambio se realizó exitosamente'
