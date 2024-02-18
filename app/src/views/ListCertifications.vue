@@ -123,8 +123,8 @@
 </template>
 
 <script>
-  import axios from 'axios'
-
+  import TechnicianService from '../services/TechnicianService'
+  import GroupTaskService from '../services/GroupTaskService'
   export default {
     data() {
       return {
@@ -161,12 +161,13 @@
         return this.tasks.reduce((total, item) => total + this.getSubtotal(item), 0)
       },
       async fetchTechnicians() {
-        const response = await axios.get(`${process.env.VUE_APP_API_URL}api/technicians?size=1000`)
-        this.technicians = response.data.technicians
+        const responseTechnicians = await TechnicianService.getAll()
+        console.log(responseTechnicians.data.items)
+        this.technicians = responseTechnicians.data.items
       },
-      async fetchCertifications() {
-        const response = await axios.get(`${process.env.VUE_APP_API_URL}api/group_tasks`)
-        this.tasks = response.data
+      async fetchCertifications(data) {
+        const responseGroupTask = await GroupTaskService.get(data)
+        this.tasks = responseGroupTask.data
       },
       async queryTasks() {
         const data = {
@@ -178,7 +179,7 @@
         }
 
         try {
-          const response = await axios.get(`${process.env.VUE_APP_API_URL}api/group_tasks`, data)
+          const response = await GroupTaskService.get(data)
           this.tasks = response.data
         } catch (error) {
           console.error(error)

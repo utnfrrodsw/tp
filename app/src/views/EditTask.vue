@@ -29,9 +29,8 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import Alerts from '@/components/Alerts.vue'
-
+  import TaskService from "../services/TaskService"
   export default {
     name: 'EditTask',
     components: {
@@ -58,10 +57,10 @@
     methods: {
       async fetchData() {
         try {
-          const response = await axios.get(`${process.env.VUE_APP_API_URL}api/tasks/${this.task.id}`)
-          this.task.name = response.data.name
-          this.task.price = response.data.prices.at(-1).price
-          this.task.prices = response.data.prices.map(price => ({
+          const responseTask = await TaskService.get(this.task.id)
+          this.task.name = responseTask.data.name
+          this.task.price = responseTask.data.prices.at(-1).price
+          this.task.prices = responseTask.data.prices.map(price => ({
             price: price.price,
             createdAt: new Date(price.createdAt).toLocaleString()
           }))
@@ -77,12 +76,7 @@
         }
         try {
           const token = localStorage.getItem('token')
-          await axios.put(`${process.env.VUE_APP_API_URL}api/tasks/${this.task.id}`, data, {
-            headers: {
-              'Content-Type': 'application/json',
-              'x-access-token': token
-            }
-          })
+          await TaskService.update(this.task.id, data)
           this.task.prices.push({
             price: this.task.price,
             createdAt: new Date().toLocaleString()

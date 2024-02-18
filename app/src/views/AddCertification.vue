@@ -94,10 +94,11 @@
   </v-container>
 </template>
 <script>
-  import axios from 'axios'
   import Alerts from '@/components/Alerts.vue'
   import GroupTechnicianService from '../services/GroupTechnicianService'
   import GroupService from '../services/GroupService'
+  import TaskService from '../services/TaskService'
+  import GroupTaskService from '../services/GroupTaskService'
 
   export default {
     name: 'AddCertification',
@@ -121,13 +122,14 @@
     },
     async mounted() {
       try {
-        const responseTasks = await axios.get(`${this.url}api/tasks`)
-        this.availableTasks = responseTasks.data.map((task) => ({
+        const responseTasks = await TaskService.getAll()
+        this.availableTasks = responseTasks.data.items.map((task) => ({
           value: task.id,
           text: task.name
         }))
         const responseGroups = await GroupService.getAll()
-        this.groupOptions = responseGroups.data
+        console.log(responseGroups.data.items)
+        this.groupOptions = responseGroups.data.items
         this.groupOptions.forEach(async g => {
           g.technicians = (await GroupTechnicianService.getTechnicians(g.id)).data
         })
@@ -159,7 +161,7 @@
             observations: this.observations
           }
 
-          const response = await axios.post(`${this.url}api/group_tasks`, data)
+          const response = await GroupTaskService.create(data)
           this.alert.message = 'Tarea agregada correctamente'
           this.alert.type = 'success'
           this.alert.show = true
