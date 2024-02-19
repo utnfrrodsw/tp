@@ -1,0 +1,14 @@
+# Get all users
+GET http://localhost:4000/api/users
+
+# Get user by id
+GET http://localhost:4000/api/users/11
+
+# Update user by id
+PUT http://localhost:4000/api/users/11
+Content-Type: application/json
+
+{
+  "name": "Prueba",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMX0sImlhdCI6MTY5Njc3NzAxMCwiZXhwIjoxNjk3MzgxODEwfQ.ssBV9htVYJ5AbblQWFSKhdb2dtMn-uGLnyWw5EJY7rQ"
+}
