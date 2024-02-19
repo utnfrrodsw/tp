@@ -20,6 +20,10 @@ class TaskService {
   delete(id) {
     return http.delete(`/tasks/${id}`)
   }
+
+  sumTasks() {
+    return http.get('/tasks/sum-tasks')
+  }
 }
 
 export default new TaskService()

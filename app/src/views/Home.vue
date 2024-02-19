@@ -6,7 +6,7 @@
 
 <script>
   import { Chart } from 'highcharts-vue'
-  import axios from 'axios'
+  import TaskService from '../services/TaskService'
 
   export default {
     name: 'Home',
@@ -44,10 +44,7 @@
     },
     methods: {
       fetchData() {
-        const apiUrl = process.env.VUE_APP_API_URL
-        const url = `${apiUrl}api/tasks/sum-tasks`
-        axios
-          .get(url)
+        TaskService.sumTasks()
           .then(response => {
             const data = response.data[0]
             this.chartOptions.series = [{

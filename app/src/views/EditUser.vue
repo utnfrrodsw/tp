@@ -62,15 +62,15 @@
 
     <v-row v-if="alert.show">
       <v-col>
-        <alerts :type="alert.type" :mensaje="alert.message" @quit="alert.show = false"></alerts>
+        <alerts :type="alert.type" :message="alert.message" @quit="alert.show = false"></alerts>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+  import UserService from '../services/UserService'
   import Alerts from '@/components/Alerts.vue'
-  import axios from 'axios'
 
   export default {
     name: 'EditUser',
@@ -107,13 +107,7 @@
         const token = localStorage.getItem('token')
         const decoded = JSON.parse(atob(token.split('.')[1]))
         const id = decoded.user.id
-        const apiUrl = process.env.VUE_APP_API_URL
-        const url = `${apiUrl}api/users/${id}`
-        const response = await axios.get(url, {
-          headers: {
-            'x-access-token': token
-          }
-        })
+        const response = await UserService.get(id)
         const data = response.data
         this.user.id = data.id
         this.user.name = data.name
@@ -125,29 +119,16 @@
     },
     methods: {
       async submitForm() {
-        this.loading = true
-
         try {
-          const apiUrl = process.env.VUE_APP_API_URL
-          const url = `${apiUrl}api/users/${this.user.id}`
-          const token = localStorage.getItem('token')
-          const response = await axios.put(url, this.user, {
-            headers: {
-              'Content-Type': 'application/json',
-              'x-access-token': token
-            }
-          })
-
-          const data = response.data
-          this.alert.show = true
-          this.alert.message = data.body
+          this.loading = true
+          const response = await UserService.update(this.user.id, this.user)
+          this.alert.message = 'Usuario actualizado correctamente'
           this.alert.type = 'success'
         } catch (error) {
-          this.alert.show = true
           this.alert.message = 'Error al actualizar el usuario'
           this.alert.type = 'error'
         }
-
+        this.alert.show = true
         this.loading = false
       }
     }

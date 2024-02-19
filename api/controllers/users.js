@@ -28,27 +28,27 @@ const getUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-  const { name, lastName, email, password, active, role } = req.body ?? {}
+  const { name, lastName, email, password, passwordConfirm, active, role } = req.body ?? {}
   const { id } = req.params
 
-  if (!id) {
+  if (!id || password !== passwordConfirm) {
     return res.status(400).send('Ups! Error')
   }
-  let hashedPassword = password
   if (password) {
     const salt = await bcrypt.genSalt(10)
     hashedPassword = await bcrypt.hash(password, salt)
   }
+  const data = {
+    ...(name && { name }),
+    ...(lastName && { last_name: lastName }),
+    ...(email && { email }),
+    ...(password && { password: hashedPassword }),
+    ...(active && { active }),
+    ...(role && { role })
+  }
 
   try {
-    const user = await User.update({
-      name,
-      last_name: lastName,
-      email,
-      password: hashedPassword,
-      active,
-      role
-    }, {
+    const user = await User.update(data, {
       where: { id }
     })
     res.json(user)

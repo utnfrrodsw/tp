@@ -33,26 +33,23 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import AuthService from '../services/AuthService'
 
   export default {
     data() {
       return {
         email: '',
-        password: '',
-      };
+        password: ''
+      }
     },
     methods: {
       async login() {
         try {
-          const body = {
-            email: this.email,
-            password: this.password,
-          }
           const redirectPath = this.$route.query.redirect || '/'
-          const apiUrl = process.env.VUE_APP_API_URL
-          const url = `${apiUrl}api/auth/login`
-          const response = await axios.post(url, body)
+          const response = await AuthService.login({
+            email: this.email,
+            password: this.password
+          })
           const data = await response.data
           localStorage.setItem('token', data.token)
           this.$router.push(redirectPath)
