@@ -36,7 +36,7 @@ El backend debe cumplir con las siguientes condiciones para regularidad y aproba
 * herramientas a través de middlewares, pluggins o modulos.
 * Exponer una API web (rest, tRPC o gRPC) para interactuar con el frontend.
 * Utilizar una base de datos persistente que acceda a través de un servicio externo (es decir que no sea una base de datos embebida).
-* La persistencia a la base de datos debe realizarse mediante un mapper (ORM/ODM/OXM). En caso que la base de datos utilizada no tenga un mapper disponible para JavaScript se deberá implementar la persistencai utilizando un patron Repository.
+* La persistencia a la base de datos debe realizarse mediante un mapper (ORM/ODM/OXM). En caso que la base de datos utilizada no tenga un mapper disponible para JavaScript se deberá implementar la persistencia utilizando un patron Repository.
 * Realizarse mediante capas.
 * Validar entrada de datos, manejar e informar apropiadamente los errores a través de la API.
 * Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
