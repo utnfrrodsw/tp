@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* 51380 - Escobar, Nicolas Roberto
+* 51380 - Escobar, Nicolás Roberto
 * 50743 - Maragliano, Vittorio
 * 51408 - Sanchez Machado, Tomas
 * 51378 - Sosa Bianciotto, Facundo
@@ -14,7 +14,7 @@
 
 ## Sistema para armar itinerario de viaje
 ### Descripción
-El sistema resuelve el problema de no saber qué actividades realizar en un destino turístico, proporcionando  recomendaciones personalizadas de actividades turísticas y generando itinerarios adaptados a las preferencias del usuario.
+El sistema resuelve el problema de no saber qué actividades realizar en un destino turístico, proporcionando recomendaciones personalizadas de actividades turísticas y generando itinerarios adaptados a las preferencias del usuario.
 
 ### Modelo
 ![imagen del modelo]()
