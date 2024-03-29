@@ -160,10 +160,7 @@ exports.getCancionesPorArtista = async (req, res) => {
 // };
 exports.getCancionesPorAlbum = async (req, res) => {
   try {
-    const cancionId = req.params.id;
-
-    const cancion = await Cancion.findById(cancionId);
-    const albumId = cancion.album._id;
+    const {albumId} = req.body.album._id;
     
     const canciones = await Cancion.find({ album: albumId });
 
