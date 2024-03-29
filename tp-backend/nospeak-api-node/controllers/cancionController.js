@@ -146,7 +146,7 @@ exports.getCancionesPorArtista = async (req, res) => {
 
 exports.getCancionesPorAlbum = async (req, res) => {
   try {
-    const { album_id } = req.params;
+    const { album_id } = req.params.album_id;
 
     const canciones = await Cancion.find({ album: album_id })
       .populate('artista') 
