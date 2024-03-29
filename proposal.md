@@ -8,7 +8,7 @@
 * 51378 - Sosa Bianciotto, Facundo
 
 ### Repositorios
-* frontend: 
+* frontend: https://github.com/facundososab/itinerarIA-Frontend.git
 * backend: https://github.com/TomasSanchezMachado/itinerarIA-Backend
 
 
