@@ -8,8 +8,8 @@
 * 51378 - Sosa Bianciotto, Facundo
 
 ### Repositorios
-[frontend]: https://github.com/TomasSanchezMachado/itinerarIA-Frontend
-[backend]: https://github.com/TomasSanchezMachado/itinerarIA-Backend
+* frontend: 
+* backend: https://github.com/TomasSanchezMachado/itinerarIA-Backend
 
 
 ## Sistema para armar itinerario de viaje
