@@ -2,21 +2,23 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51380 - Escobar, Nicolas Roberto
+* 50743 - Maragliano, Vittorio
+* 51408 - Sanchez Machado, Tomas
+* 51378 - Sosa Bianciotto, Facundo
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app]:
+* [backend app]:
 
-## Tema
+
+## Sistema para armar itinerario de viaje
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+El sistema resuelve el problema de no saber qué actividades realizar en un destino turístico, proporcionando  recomendaciones personalizadas de actividades turísticas y generando itinerarios adaptados a las preferencias del usuario.
 
 ### Modelo
 ![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
 
@@ -27,17 +29,17 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Usuario<br>2. <br> 3. |
+|CRUD dependiente|1. CRUD {depende de} CRUD <br>2. CRUD {depende de} CRUD |
+|Listado<br>+<br>detalle| 1. => <br> 2.  => 
+|CUU/Epic|1. <br>2. |
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD <br>2. CRUD<br>3. CRUD <br>4. CRUD <br>5. CRUD <br>6. CRUD <br>7. CRUD |
+|CUU/Epic|1. <br>2. <br> 3. |
 
 
 ### Alcance Adicional Voluntario
@@ -46,7 +48,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1.  <br> 2. |
+|CUU/Epic|1. <br>2.|
+|Otros|1. |
 
