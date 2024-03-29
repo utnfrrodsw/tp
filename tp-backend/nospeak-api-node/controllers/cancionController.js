@@ -1,5 +1,6 @@
 const Cancion = require('../models/cancion');
 const Usuario = require('../models/usuario');
+const Album = require('../models/album');
 exports.getCanciones = async (req, res) => {
   try {
     const canciones = await Cancion.find().populate('artista album');
@@ -144,16 +145,33 @@ exports.getCancionesPorArtista = async (req, res) => {
   }
 };
 
+// exports.getCancionesPorAlbum = async (req, res) => {
+//   try {
+//     const { album_id } = req.params.album_id;
+
+//     const canciones = await Cancion.find({ album: album_id })
+//       .populate('artista') 
+//       .populate('album');   
+
+//     res.json(canciones);
+//   } catch (error) {
+//     res.status(500).json({ error: 'Error interno del servidor' });
+//   }
+// };
 exports.getCancionesPorAlbum = async (req, res) => {
   try {
-    const { album_id } = req.params.album_id;
+    const albumId = req.params.album_id;
 
-    const canciones = await Cancion.find({ album: album_id })
-      .populate('artista') 
-      .populate('album');   
+    const album = await Album.findById(albumId);
 
-    res.json(canciones);
+    if (!album) {
+      return res.status(404).json({ mensaje: 'Álbum no encontrado' });
+    }
+
+    const canciones = await Song.find({ album: albumId });
+
+    return res.status(200).json(canciones);
   } catch (error) {
-    res.status(500).json({ error: 'Error interno del servidor' });
+    return res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 };
