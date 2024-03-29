@@ -164,12 +164,8 @@ exports.getCancionesPorAlbum = async (req, res) => {
 
     const cancion = await Cancion.findById(cancionId);
     const albumId = cancion.album._id;
+    
     const canciones = await Cancion.find({ album: albumId });
-
-    if (!album) {
-      return res.status(404).json({ mensaje: 'Álbum no encontrado' });
-    }
-
 
     return res.status(200).json(canciones);
   } catch (error) {
