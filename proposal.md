@@ -2,7 +2,8 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+50383 - Guastoni Belén
+48790 - Mestre Federico
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
