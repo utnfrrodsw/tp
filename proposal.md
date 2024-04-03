@@ -14,11 +14,11 @@
 
 ## Tema
 ### Descripción
-El sistema a desarrollar consiste en la presentaion de cursos online de programacion que permite el inicio de sesion y el registro de usuarios. Los usuarios podran inc=scribirse a un curso mediante formularios y un profesor podra postularse a dar clases virtuales en el curso. 
+El sistema a desarrollar consiste en la presentación de cursos online orientados al desarrollo de sistemas de información que permite el inicio de sesión y el registro de usuarios. Los usuarios podrán inscribirse a un curso mediante formularios y un profesor podrá postularse a dar clases virtuales en el curso. Los cursos tendrán un parcial y un trabajo práctico que deberán ser aprobados para poder conseguir la certificación del curso.
 
 ### Modelo
 ![imagen del modelo]()
-
+https://drive.google.com/drive/folders/17aejEDyp7ZbN4p7J21DdS0g-YX2c3g3c?usp=sharing
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
