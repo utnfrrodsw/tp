@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51454 - Arfuso, Maria de los Angeles
+* 51752 - Maurutto, Francesca
+* 50473 - Diodati, Regina
+* 50353 - Mansilla, Delfina
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
