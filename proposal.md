@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+47571- Gimenez franco
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
