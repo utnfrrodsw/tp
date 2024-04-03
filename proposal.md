@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51354 - Santilli, Maximo Gabriel (COM 301)
+* 50319 - Valle, Micaela (COM 301)
+* 51607 - Morales, Juan Pablo (COM 301)
+* 50549 - Stefanini, Agustin (COM 304)
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
