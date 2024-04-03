@@ -2,10 +2,10 @@
 
 ## **Integrantes:**  
 
--46166 - Borelli, Hernán Darío
--39715 - Coyle, Virginia Mariel
--49500 - Faulin, Eugenio Pandu
--49200 - Nuñez, Mateo Nicolás
+- 46166 - Borelli, Hernán Darío
+- 39715 - Coyle, Virginia Mariel
+- 49500 - Faulin, Eugenio Pandu
+- 49200 - Nuñez, Mateo Nicolás
 
 ## **Repositorio:**
 - [Link repositorio](agregar)
