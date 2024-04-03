@@ -14,7 +14,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+El sistema a desarrollar consiste en la presentaion de cursos online de programacion que permite el inicio de sesion y el registro de usuarios. Los usuarios podran inc=scribirse a un curso mediante formularios y un profesor podra postularse a dar clases virtuales en el curso. 
 
 ### Modelo
 ![imagen del modelo]()
