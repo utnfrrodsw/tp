@@ -2,7 +2,8 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 46754, Chaves Laureano Neyén
+* 50749, Coux Francisco Julián
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
