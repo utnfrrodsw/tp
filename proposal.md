@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 49822 - Sesana, Octavio
+* 50029 - Di Marco, Martin
+* 49373 - Salvía, Camila
+* 50002 - Vivas, Martin Ariel
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
