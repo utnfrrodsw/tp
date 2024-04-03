@@ -2,7 +2,11 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+* Legajo: 49498 - Boscarol Candela
+* Legajo: 51541 - Herrera Nicolás
+* Legajo: 51441 - Melgarejo Julia
+* Legajo: 46338 - Peresin Tomás Ignacio
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
