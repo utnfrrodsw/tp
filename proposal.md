@@ -13,8 +13,13 @@
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
+Gestion de torneos multidiciplinarios
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Una aplicacion web que esta pensada para 3 tipos de usuarios:
+- El usuario de tipo "espectador" solo podra ver las tablas de posiciones.
+- El usuriario de tipo "participante" ademas podra registrarse, iniciar sesion, inscribirse en un torneo de una diciplina.
+- EL usuario de tipo "administrador" podra iniciar sesion, ver y administrar las tablas de posiciones y los usuarios participantes.
 
 ### Modelo
 ![imagen del modelo]()
