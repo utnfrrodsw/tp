@@ -1,0 +1,78 @@
+<mat-card class="card-container">
+  <mat-card-header>
+    <mat-card-title>Portal de usuarios</mat-card-title>
+    <mat-card-subtitle
+      >En el podra actualizar el email de los usuarios</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-raised-button (click)="isOpenViewUsers()">
+      <div *ngIf="isOpen === false">Ver Usuarios</div>
+      <div *ngIf="isOpen === true">Cerrar</div>
+    </button>
+  </mat-card-actions>
+  <mat-card-content *ngIf="isOpen === true" class="card-content">
+    <mat-card *ngFor="let user of users" class="card-users">
+      <mat-card-header>
+        <mat-card-title
+          >Usuario: {{ user.FirstName }} {{ user.LastName }}</mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content *ngIf="user.Editing">
+        <mat-card-subtitle class="email-container">
+          Email Actual: <span class="actual-email">{{ user.Email }}</span>
+        </mat-card-subtitle>
+        <form
+          action=""
+          method="post"
+          [formGroup]="viewDataUsers"
+          (ngSubmit)="handlerUpdate(viewDataUsers, user)"
+        >
+          <mat-form-field class="field-flex">
+            <mat-label for="userUpdatedEmail">Nuevo Email:</mat-label>
+            <input
+              matInput
+              type="email"
+              [(ngModel)]="user.UpdatedEmail"
+              formControlName="userUpdatedEmail"
+              name="userUpdatedEmail"
+              id="userUpdatedEmail"
+              placeholder="Nuevo Email"
+            />
+            <mat-error *ngIf="viewDataUsers.get('userUpdatedEmail')?.invalid"
+              >Ingrese formato de email</mat-error
+            >
+          </mat-form-field>
+          <button mat-raised-button type="submit" color="accent">
+            Actualizar Email
+          </button>
+        </form>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" (click)="updateUser(user)">
+          <div *ngIf="!user.Editing">Actualizar</div>
+          <div *ngIf="user.Editing">No Actualizar</div>
+        </button>
+        <button mat-stroked-button color="warn" (click)="deleteUser(user)">
+          Borrar Usuario
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <div class="fail-message" *ngIf="deletionMessage">
+      {{ deletionMessage }}
+    </div>
+    <div class="succes-message" *ngIf="succesMessage">{{ succesMessage }}</div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions class="button-container">
+    <button
+      class="return-button"
+      mat-raised-button
+      type="button"
+      (click)="returnMoney()"
+    >
+      Volver
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,25 @@
+<div class="shared-container fix-header">
+  <div>Recomendador de inversiones</div>
+  <span class="user">{{ username }}</span>
+  <div class="button-container">
+    <button
+      *ngIf="username != 'Anonimo'"
+      mat-button
+      color="warn"
+      (click)="logout()"
+    >
+      LogOut
+    </button>
+  </div>
+  <div class="button-container" >
+    <button
+      *ngIf="username != 'Anonimo'"
+      class="return-button"
+      mat-raised-button
+      type="button"      
+      (click)="navigateViewUsers()"
+    >
+      Ver usuarios
+    </button>
+  </div>
+</div>
