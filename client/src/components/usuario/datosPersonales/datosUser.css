@@ -1,0 +1,171 @@
+/* datosUser.css */
+.datosPersonales {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
+  }
+  
+  .user-details {
+    margin: 1rem;
+    background-color: #4F709C;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .security-details {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    background-color: #4F709C;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardDatosPer {
+    background-color: #2135554d;
+    border-radius: 8px;
+    margin: 1rem;
+  }
+
+  .ion-avatar {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .vertical-items {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cardSegurity {
+    background-color: #2135554d;
+    border-radius: 8px;
+    margin: 1rem;
+  }
+  
+  .user-details h2,
+  .security-details h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: white; /* Cambia el color del texto según tus preferencias */
+  }
+  
+  .user-details label,
+  .security-details label {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: white; /* Cambia el color del texto según tus preferencias */
+  }
+  
+  .user-details input,
+  .security-details input,
+  .user-details select {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: #333;
+    padding: 10px;
+    margin: 5px 0;
+  }
+  
+  .user-details input[disabled],
+  .security-details input[disabled] {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    color: #777; /* Cambia el color del texto según tus preferencias */
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    margin: 1rem;
+    background-color: #325080;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .h2 {
+    color: white;
+  }
+
+  .ButtonCerrarSesion{
+    text-decoration: none;
+    margin: 1rem;
+    background-color: #325080;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .round-image {
+    margin: 0.25rem 0 0.8rem 0; 
+    border-radius: 50%;  
+    width: 100px;  
+    height: 100px; 
+    object-fit: cover; /* Asegura que la imagen cubra todo el espacio disponible sin distorsionarse */
+  }
+
+  .profesion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa; /* Un color de fondo suave */
+    padding: 10px; /* Espacio alrededor del contenido */
+    margin-bottom: 10px; /* Espacio entre los elementos de la lista */
+    border-radius: 5px; /* Bordes redondeados */
+  }
+
+.profesion-item p {
+  color: #333;
+  flex-grow: 1; /* Permite que el texto ocupe todo el espacio disponible */
+  margin-right: 10px; /* Espacio a la derecha del texto */
+}
+
+.profesion-item button {
+  margin-left: auto; /* Alinea el botón a la derecha */
+}
+
+.security-details input::placeholder {
+  color: rgb(71, 66, 66);
+}
+
+input::placeholder {
+  color: white;
+}
+
+  
+.input-wrapper {
+  position: relative;
+}
+
+.input-container {
+  display: flex;
+  position: relative;
+}
+
+input {
+  width: 100%;
+  /* Agrega otros estilos según sea necesario */
+}
+
+.mostrar-ocultar {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+}

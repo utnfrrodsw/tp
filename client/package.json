@@ -1,0 +1,57 @@
+{
+  "name": "client",
+  "version": "2.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "11.11.1",
+    "@emotion/styled": "11.11.0",
+    "@ionic/react": "^7.5.4",
+    "@mui/material": "5.14.8",
+    "@testing-library/user-event": "14.4.3",
+    "axios": "^1.5.1",
+    "bootstrap": "^5.3.2",
+    "react": "18.2.0",
+    "react-bootstrap": "^2.8.0",
+    "react-bootstrap-icons": "^1.10.3",
+    "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
+    "react-router-dom": "^6.17.0",
+    "react-scripts": "5.0.1",
+    "react-scroll": "1.8.9",
+    "reactstrap": "^9.2.0",
+    "serve": "^14.2.1",
+    "styled-components": "^6.0.7",
+    "web-vitals": "3.4.0"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build || true",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start": "serve build -s -n -L -p $PORT"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "jest": "^29.7.0",
+    "react-icon": "^1.0.0"
+  }
+}

@@ -1,0 +1,46 @@
+.card-presu {
+    font-family: 'Times New Roman', Times, serif;
+    width: 60%;
+    align-self: center;
+}
+
+.card-text p {
+    font-size: 15px;
+    margin: 5px;
+}
+
+.fecha-boton-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .card-presu {
+        width: 90%;
+        height: auto;
+    }
+
+    .card-body {
+        height: auto;
+        /* Consider adjusting padding or margins instead */
+    }
+    .fecha-boton-content Button {
+        width: 75%;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-presu {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .card-body {
+        height: fit-content;
+        /* Consider adjusting padding or margins instead */
+    }
+    .fecha-boton-content Button{
+        width: 75%;
+    }
+}

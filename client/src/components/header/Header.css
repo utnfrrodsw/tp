@@ -1,0 +1,128 @@
+/* Estilos para el encabezado */
+.header-content {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2a4063; /* Azul claro */
+    padding: 10px 20px;
+    color: white;
+}
+
+/* Estilos para el logo */
+.logo-content {
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+}
+
+.logo-content a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Estilos para el título */
+.title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilos para los enlaces en el encabezado */
+.header-links {
+    display: flex;
+    align-items: center;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+/* Estilos para los íconos de notificaciones y usuario */
+.notifylogo, .userlogo {
+    width: 30px;
+}
+
+div.offcanvas-header{
+    background-color: #314a74;
+}
+
+div.offcanvas-title{
+    color: white;
+}
+
+div.offcanvas-body{
+    background-color: #3e5e97;
+    display: flex;
+}
+
+.ul-offcavas{
+    display: flex;
+    flex-direction: column;
+}
+
+.ul-offcavas li{
+    margin: 5px;
+    font-weight: bold;
+}
+
+.ul-offcavas li a{
+    text-decoration: none;
+    color: white;
+    margin: 1%;
+    font-weight: bold;
+}
+
+button.button-cerrarSesion{
+    background-color: #1a5557;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    align-self: end;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color:#2a4063; /* Azul claro */
+        padding: 10px 20px;
+        color: white;
+    }
+    
+    /* Estilos para el logo */
+    .logo-content {
+        font-size: 15px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .logo-content a {
+        text-decoration: none;
+        color: white;
+    }
+    
+    /* Estilos para el título */
+    .title {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    /* Estilos para los enlaces en el encabezado */
+    .header-links {
+        display: flex;
+         
+
+    }
+    
+    .links a {
+        text-decoration: none;
+        color: white;
+        margin-right: 20px;
+        font-weight: bold;
+    }
+}

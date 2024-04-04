@@ -1,0 +1,307 @@
+.anuncioprincipal-card {
+  display: flex;
+  position: relative;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 20% 60% 10%;
+  gap: 00px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    " titulo fecha"
+    "nombre  ubicacion"
+    ".   boton";
+  height: 12rem;
+  width: 55%;
+  padding: 15px;
+  /* Aumenta el espacio interno para pantallas de PC */
+  background-color: #213555;
+  border-radius: 12px;
+  margin: 0 auto;
+  margin-top: 15vh;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+}
+
+.anuncioprincipal-card:hover {
+  background-color: #506f99;
+  border-radius: 10px;
+}
+
+.anuncioprincipal-fullcontent {
+  height: 21rem;
+  display: grid;
+  width: 60%;
+  padding: 15px;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 20% 60% 10%;
+  gap: 00px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    " titulo fecha"
+    "nombre  ubicacion"
+    "boton   boton";
+  /* Aumenta el espacio interno para pantallas de PC */
+  background-color: #213555;
+  border-radius: 12px;
+  margin: 0 auto;
+  /* Centra horizontalmente en la pantalla */
+  margin-top: 15vh;
+  /* Centra verticalmente en la mitad de la pantalla */
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+}
+
+.titulo-anuncio {
+  grid-area: titulo;
+  font-family: 'Times New Roman', serif;
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.fecha-anuncio {
+  grid-area: fecha;
+  color: #ffffff;
+  font-size: 0.9rem;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.ubicacion-anuncio {
+  color: #ffffff;
+  font-size: 0.9rem;
+  text-align: left;
+  grid-area: ubicacion;
+  margin-bottom: auto;
+}
+
+.foto-anuncio {
+  max-width: 100%;
+  /* Las imágenes se ajustarán al ancho de su contenedor */
+  height: auto;
+  /* Mantener la proporción original de la imagen */
+  margin: 5px;
+  /* Añadir un margen de 5px alrededor de cada imagen */
+}
+
+.nombre-anuncio {
+  grid-area: titulo;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: left;
+  /* Alinea el texto del título a la izquierda */
+  margin-left: 10px;
+  /* Agrega un margen a la izquierda del título */
+}
+
+.descripcion-anuncio {
+  color: #dee0f1d8;
+  grid-area: descripcion;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.botones button {
+  margin: 5px;
+}
+
+.botones .fotos {
+  background-color: #6ac26a;
+  border: 1px solid #ffffff;
+}
+
+.boton-anuncio {
+  background-color: #007bff;
+  width: 20%;
+  align-self: center;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.boton-anuncio:hover {
+  background-color: #0056b3;
+}
+
+.h1-heading {
+  color: white;
+  font-size: 16px;
+}
+
+.h2-heading {
+  color: white;
+  font-size: 16px;
+}
+
+.h3-heading {
+  color: white;
+  font-size: 16px;
+}
+
+.fotos-anuncio {
+  display: flex;
+  width: 600px;
+  height: 430px;
+}
+
+.fotos-anuncio img {
+  margin: 10px;
+}
+
+.estado-anuncio {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+}
+
+
+.anuncio-activa-filtrado-nuevas{
+  background-color: #369336;
+}
+
+.anuncio-activa-filtrado-presupuestadas{
+  background-color: #ceb545;
+}
+
+.anuncio-progreso-filtrado-presupuestadas{
+  background-color: #ff0000;
+}
+
+.anuncio-progreso-filtrado-aceptadas{
+  background-color: #066639;
+}
+
+.anuncio-terminado-filtrado-aceptadas{
+  background-color: #ff0000;
+}
+
+ul,
+li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+}
+
+img {
+  margin-top: -16px;
+}
+
+.main-container {
+  width: 500px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+.slider-container {
+  position: relative;
+  height: 100%;
+}
+
+.dots-container {
+  display: flex;
+  justify-content: center;
+}
+
+.dot-container-item {
+  margin: 8px 3px;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: center;
+}
+
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 32px;
+  font-size: 50px;
+  font-weight: 700;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 32px;
+  font-size: 50px;
+  font-weight: 700;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.container-images {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+/* En un archivo CSS externo o en un componente CSS-in-JS */
+.button-link {
+  align-self: center;
+  margin-bottom: 5px;
+  display: inline-block;
+  width: 20%;
+  padding: 5px 10px;
+  /* Ajusta el relleno según tus necesidades */
+  background-color: #007bff;
+  /* Color de fondo del botón */
+  color: #fff;
+  /* Color del texto */
+  text-decoration: none;
+  border: 2px solid #007bff;
+  /* Borde del botón */
+  border-radius: 8px;
+  /* Bordes redondeados */
+  text-align: center;
+  font-weight: bold;
+  /* Puedes ajustar el estilo de fuente según tus preferencias */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
+}
+
+.button-link:hover {
+  background-color: #0056b3;
+  /* Cambia el color de fondo al pasar el cursor por encima */
+  border: 2px solid #0056b3;
+}
+
+/* Estilos para pantallas medianas */
+@media (max-width: 768px) {
+
+  .anuncioprincipal-card,
+  .anuncioprincipal-fullcontent {
+    width: 90%;
+    height: auto;
+  }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 576px) {
+
+  .anuncioprincipal-card,
+  .button-link{
+    width: 75%
+  };
+  .boton-anuncio{
+    width: 80%;
+  }
+  .anuncioprincipal-fullcontent {
+    width: 100%;
+    height: auto;
+  }
+}

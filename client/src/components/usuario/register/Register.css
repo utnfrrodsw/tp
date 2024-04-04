@@ -1,0 +1,247 @@
+
+.fondoRegister {  
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  overflow: auto; /* Agrega una barra de desplazamiento cuando sea necesario */
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
+}
+
+.register-container {
+  width: 85%;
+  max-width: 400px;  
+  border: 2px solid rgba(255, 255, 255, 0.945);
+  background-color: #4F709C;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  margin: 1rem 0 1rem 0;
+  position: relative;
+}
+
+
+.register-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.name-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.labelCheckbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px; /* Espacio entre cada especialidad */
+}
+
+.name-inputs .input-box {
+  flex: 1;
+}
+
+.input-box input {
+  margin-bottom: 0.5rem;
+  width: 100%;
+  height: 1.5rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2rem;
+  font-size: 1rem;
+  color: #fff;
+  padding: 0.5rem;
+  margin-left: -0.5rem;
+}
+
+.input-box input::placeholder {
+  color: #fff;
+}
+
+.input-box i {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+}
+
+.switch-label {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+.especialidad-item {
+   
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+}	
+
+.nuevaEspecialidad h5{
+  color: white;
+  margin: 0.45rem 0.25rem;
+}
+
+.botonDireccion-btn-small {
+  margin: 0.5rem 0 0.8rem 0;
+  font-size: 14px; /* Tamaño de fuente más pequeño */
+  padding: 8px 16px; /* Ajusta el relleno */
+  margin: 0.5rem 0 0.8rem 0;
+  background-color: #213555;
+  border: white;
+  
+}
+
+.switch-label input {
+  display: none;
+}
+
+.switch {
+  width: 3rem;
+  height: 1.5rem;
+  background-color: #ccc;
+  border-radius: 1.5rem;
+  position: relative;
+  margin-right: 0.5rem;
+}
+
+.switch::before {
+  content: '';
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  transition: 0.3s;
+}
+
+.switch-label input:checked + .switch::before {
+  left: 1.5rem;
+  background-color: #081b3b;
+}
+
+/* Estilo para los mensajes de error */
+/* Estilo para los mensajes de error */
+.error-message {
+  background: #ff0000;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  display: block;
+  margin: 0.2rem; /* Ajusta el espacio entre el campo y el mensaje de error */
+}
+
+
+/* Estilos para el contenedor del mensaje de éxito */
+.success-message-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  transform: translateY(5px);
+  z-index: 1;
+}
+
+/* Estilos para el mensaje de éxito dentro del contenedor */
+.success-message {
+  display: block;
+  background: #50fc00;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.register-container .btn {
+  width: 100%;
+  height: 2.5rem;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 2.8125rem;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 1);
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+.register-container .btn:hover {
+  background-color: #213555;  
+  color: #fff;
+}
+
+.register-container p {
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 1rem 0 0 0;
+}
+
+.register-container p a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-container p a:hover {
+  text-decoration: underline;
+}
+
+.eliminarEspecialidad {
+  background-color: #213555;
+  margin: 0.15rem 0.25rem;
+}	
+
+.eliminarEspecialidad:hover {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.botonEspecialidad {
+  font-size: 14px; /* Tamaño de fuente más pequeño */
+  padding: 8px 16px; /* Ajusta el relleno */
+  margin: 0.5rem 0 0.8rem 0;
+  background-color: #081b3b;
+  border: white;
+}
+
+.input-box {
+  position: relative;
+}
+
+.input-box input {
+  padding-right: 30px;  
+}
+
+.input-box button {
+  position: absolute;
+  padding-bottom: 0.6rem;
+  top: 50%;
+  right: 8px;  
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;  
+  color: #ffffff; 
+}
