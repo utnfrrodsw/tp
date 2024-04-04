@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* ***** - Gigli, Tomás
+* ***** - Catalano, Daniela Andrea
+* 50734 - Oldani, Marcos Alberto
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
