@@ -15,7 +15,8 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Es una organización que se encarga de rescatar perros y gatos en situación de calle y les brinda refugio. Esta además para solventarse tiene una tienda donde todos los ingresos van para las distintas sucursales del refugio, cuentan con traslados para los animales y con veterinarios para curar las enfermedades de los mismos. Nos contactaron para crear un sistema para administrar y registrar los recursos económicos, traslados y visitas al veterinario de los distintos animales rescatados.
+
 
 ### Modelo
 ![imagen del modelo]()
