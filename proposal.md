@@ -19,7 +19,8 @@ Es una organización que se encarga de rescatar perros y gatos en situación de 
 
 
 ### Modelo
-https://drive.google.com/drive/folders/1iBbKqwC0eQuO3h4ot641vpO3vhYqkPm5?usp=drive_link
+https://drive.google.com/file/d/1sh5-fWmd39jOTqkQ5wR_qvaDndrg7uan/view?usp=sharing
+
 ## Alcance Funcional 
 
 ### Alcance Mínimo
