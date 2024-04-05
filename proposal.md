@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51466 - Alberti, Pedro
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
