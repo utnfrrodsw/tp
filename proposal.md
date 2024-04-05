@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51565 - Bonaroti, Francisco
+* 49539 - Salerno, Nicolás
+* 50708 - Vacs, Francisco
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
