@@ -8,7 +8,7 @@
 * 50360 - Maggi, Lucas Nahuel
 
 ### Repositorio
-* [Repositorio DSW-TP](https://github.com/starboyagus/DSW-TP)
+* [Repositorio DSW-TP](https://github.com/starboyagus/DSW-TP-24)
 
 ## Tema
 ### Descripción
