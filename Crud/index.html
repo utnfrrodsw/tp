@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taimaná Recetas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="./imgs/Icono Sushi Chibi.jpg" />
+  </head>
+
+  <body>
+    <header id="Inicio">
+      <a href="#" class="logo">
+          <img src="./imgs/Icono Sushi Chibi.jpg" alt="ICONO">
+          <h2 class="Titulo">Recetas NewJournal</h2>
+  
+      <div class="menu2" id="menu2">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+      </div>
+  
+      <nav class="Options-Nav" id="menu">
+          <a href="ejemplo">Inicio</a>
+          <a href="#catalogo">Categoria</a>
+          <a href="#AcercaDeNosotros">Acerca de Nosotros</a>
+          <a href="#Contacto">Contacto</a>
+      </nav>
+  </header>
+
+    <main>
+      <section class="sectionFormCon">
+        <div class="formularioYImagenContactos">
+          <div id="formulario" class="formulario">
+            <h3>Formulario de Ingreso</h3>
+            <h4>
+              -------------------------------------------------------------
+            </h4>
+            <input
+              id="usuarioIngresado"
+              type="text"
+              placeholder="Usuario"
+              class="itemForm"
+            />
+            <input
+              id="contraseñaIngresado"
+              type="text"
+              placeholder="Contraseña"
+              class="itemForm"
+            />
+            <!-- <select id="sexoIngresado" class="itemForm">
+              <option value="" selected>Seleccionar</option>
+              <option value="F">F</option>
+              <option value="M">M</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <input
+              id="emailIngresado"
+              type="text"
+              placeholder="Email"
+              class="itemForm"
+            />
+            <input
+              id="celularIngresado"
+              type="text"
+              placeholder="Celular"
+              class="itemForm"
+            />
+            <input
+              id="comentarioIngresado"
+              type="text"
+              placeholder="Comentario"
+              class="itemForm"
+            /> -->
+            <button id="guardar" onclick="guardar()" class="botonGuardar">
+              Guardar
+            </button>
+          </div>
+          <div>
+            <img class="imagenContactos" src="./imgs/cotizacion2.png" alt="" />
+          </div>
+        </div>
+      </section>
+      <div class="cartel">
+        <p>TODAS LAS RECETAS EN UN SOLO LUGAR</p>
+      </div>
+      <div class="fondo-principal">
+        <div class="text-img">
+            <h1 class="text">RECETAS</h1>
+            <!-- <p class="text-secundary">¡Bienvenido a Taimaná Joyas, donde la sofisticación encuentra su expresión perfecta! En nuestra boutique en línea, descubrirás joyas excepcionales que fusionan la elegancia con la artesanía de calidad. -->
+            </p>
+            <a href="#catalogo">
+                <button class="button-catalogo">Ir al Catálogo</button>
+            </a>
+        </div>
+    </div>
+    
+      
+
+      <section class="carrouselReseñasSec">
+        <div class="carrouselReseñasDiv">
+          <div
+            id="carouselExampleIndicators"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div id="reseñaCarrousel">
+                  <div class="imagenConNombre">
+                    <img src="./imgs/Guiso de fideos con carne.jpg" alt="./imgs/Ejemplo.png" />
+                    <h4 class="nombreReseña">Guiso de fideos con carne</h4>
+                  </div>
+                  <p class="textoReseña">
+                    "1 kg de cuadril o roast beef <br>
+                    2 cebollas<br>
+                    1 zanahoria<br>
+                    4 tomates perita<br>
+                    200 cc de puré de tomates<br>
+                    1 lata de arvejas<br>
+                    ½ pimiento morrón rojo<br>
+                    Aceite de oliva<br>
+                    Sal y pimienta<br>
+                    1 l de caldo<br>
+                    400 gr de fideos para guiso"
+                  </p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div id="reseñaCarrousel">
+                  <div class="imagenConNombre">
+                  <img src="./imgs/imagenDefaultMujer.png" alt="./imgs/Ejemplo.png" />
+                  <h4 class="nombreReseña">Receta 2</h4>
+                </div>
+                <p class="textoReseña">
+                  "Buena relación precio calidad, compré varias pulseras y cadenas,
+                   una cadena vino con el gancho semi abierto, tendria q ver como cambiarselo,
+                    y algunas medidas de largo no fueron muy correctas a las solicitadas, pero igual termino satisfecho."
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div id="reseñaCarrousel">
+                <div class="imagenConNombre">
+                  <img src="./imgs/imagenDefaultMujer.png" alt="./imgs/Ejemplo.png" />
+                  <h4 class="nombreReseña">Receta 3</h4>
+                </div>
+                <p class="textoReseña">
+                  "Mi esposo me sorprendió con el anillo de compromiso.
+                   Es absolutamente impresionante y ha marcado un momento inolvidable en
+                    nuestras vidas."
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="contadorSec">
+        <div class="b">
+          <div class="contadorDiv">
+            <div class="contador">
+              <h1>Solicitud de Cotización:</h1>
+              <div id="contadorVentas">0</div>
+            </div>
+            <div class="contador">
+              <h1>Ventas:</h1>
+              <div id="contadorCotizacion">12</div>
+            </div>
+            <div class="contador">
+              <h1>Clientes atendidos:</h1>
+              <div id="contadorClientes">20</div>
+            </div>
+            <div class="contador">
+              <h1>Reseñas Positivas:</h1>
+              <div id="contadorReseñas">8</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+   
+
+    <footer>
+      <div class="footerSec">
+        <div class="navegacion">
+          <h5>Explorar</h5>
+
+          <ul>
+            <li><a href="#Inicio">Inicio</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#formulario">Cotización</a></li>
+          </ul>
+        </div>
+    
+        <div class="Contacto">
+          <h5>Contacto</h5>
+
+          <ul>
+            <li>+54 9 3517575391</li>
+            <li>taimana.recetas@gmail.com</li>
+            <li>Río Ceballos, Córdoba.</li>
+          </ul>
+        </div>
+    
+        <div class="masInfo">
+          <h5>Redes Sociales</h5>
+
+          <ul>
+            <li><a href="#"><img class="Redes" src="./imgs/facebook.png" alt="Facebook">Facebook</a></li>
+            <li><a href="#"><img class="Redes" src="./imgs/instagram.png" alt="Instagram">Instagram</a></li>
+            <li><a href="#"><img class="Redes" src="./imgs/whatsapp.png" alt="WhatsApp">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,658 @@
+body {
+    /* background-color: rgb(61, 57, 57); */
+    margin: 0;
+}
+
+header {
+    background-color: rgb(165, 122, 105);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.Titulo {
+    color: #ffffff;
+    justify-content: center ;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Playfair Display', serif;
+}
+
+a {
+    text-decoration: none;
+    color: #75625b;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    margin-right: 10px;
+}
+
+nav a {
+    font-weight: 500;
+    padding-right: 30px;
+    font-family: 'Open Sans', sans-serif;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);   
+}
+
+.cartel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: rgb(100, 74, 63);
+    height: 30px;
+    /* border-top: 1px solid rgb(53, 52, 52); 
+    border-bottom: 1px solid rgb(53, 52, 52); */
+}
+
+.cartel p {
+    font-size: 18px;
+    margin: 0;
+    text-align: center; 
+    color: #f5f5f5;
+    font-style: italic;
+    font-weight: bolder;
+
+}
+
+.cartel-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(31, 22, 19, 0.2); 
+    width: 1600px;
+    height: 600px;
+    margin: 120px auto 0; 
+    text-align: center;
+    position: relative;
+    border: 2px solid #000000;
+    border-radius: 10px;
+   
+}
+
+.fondo-principal {
+    width: 100%;
+    height: 825px;
+    background-image: url(./imgs/Fondo\ principal\ Comida\ VegANA.jpg);
+   /* background-image: url(./imgs/Diseño\ sin\ título\ \(9\).png);*/
+    background-size: cover;
+    background-position: center; 
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
+}
+
+#fondo-responsive {
+    width: 100%;
+    background-image: url(./imgs/Fondo\ Inicio\(Responsive\).png);
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    display: none; 
+    height: 300px; 
+}
+
+.text-img{
+    margin-top: 200PX;
+}
+
+.text {
+    text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+    font-weight: lighter;
+    font-size: 150px;
+    color: #000000;
+    margin: 0; 
+}
+
+.text-secundary {
+    font-family: 'Playfair Display', serif;
+    color:black;
+    word-wrap:break-word;
+    font-size: 24px;
+    text-decoration:dashed;
+    font-weight: bold;
+
+}
+
+.button-catalogo {
+    margin-top: 40px;
+    color: black; 
+    border: 3px solid #e25e40; 
+    background-color: transparent; 
+    padding: 10px 20px; 
+    font-size: 40px; 
+    font-family: 'Playfair Display', serif; 
+    border-radius: 30px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+.button-catalogo:hover {
+    background-color: #e25e40; 
+    color: #fff; 
+}
+
+
+
+
+
+/* #botonCotizacion{
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    top: 250px;
+    left: 500px;
+    color: black;
+    background-color:#a67b6a ;
+    width: 120px;
+    height: 80px;
+    border:(15px, solid, #f59393)  
+} */
+
+    .BotonCotizar {
+        border: whitesmoke;
+        display: inline;
+        text-align: center;
+        flex-flow: row wrap;
+        justify-content: center;
+        background-color:#c59886 ;
+        align-items: center;
+    }
+    
+ .leyenda{
+    font-size: 40px;
+    position: relative;
+    top: 40px;
+    left: 200px;
+}
+
+.catalogo {
+    /* display: flex;
+    flex-wrap: wrap; */
+    padding: 20px;
+    justify-content: space-between;
+    background-color:#a78c82; 
+}
+
+.tituloCatalogo {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 20px;
+    align-items: center;
+    text-decoration: underline;
+}
+
+.carousel-inner{
+    display: flex;
+    justify-content: start;
+}
+
+.car0usel {
+    width: 900px;
+    height: 900px;
+}
+.fila {
+    display: flex;
+    justify-content: center;
+}
+
+.item {
+    width: (33.33% - 20px); /* Para que haya 3 fotos en una fila */
+    margin: 50px;
+    background-color:#c59886;
+    padding: 20px;
+    text-align: center;
+    /* margin-left: 120px; */
+
+}
+
+
+.item img {
+    width: 100%;
+    height: 240px;
+}
+
+.sobreNosotros{
+    border: whitesmoke;
+    display: flex;
+    padding: 20px;
+    background-color: white;
+    align-items: center;
+}
+
+.tituloSobreNosotros{
+    text-align: center; 
+    font-size: 24px;
+    margin-bottom: 20px;
+    align-items: center;
+    color: rgb(51, 49, 49);
+
+}
+.imagenYTextoSobreNosotros{
+    display: flex;
+    align-content: center;
+}
+
+.imagenSobreNosotros{
+    width: 300px;
+    height: auto;
+ }
+.textoSobreNosotros{
+    padding: 30px; 
+    margin-left: 20px; 
+    color: black;
+    background-color: white;
+    font-size: 16px;
+}
+
+/* .formularioYImagenContactos{
+    display: flex;
+     align-content: center; 
+    padding: 20px;
+    align-items: center;
+    border: whitesmoke;
+    background-color:#c59886 ;
+} */
+.formularioYImagenContactos{
+    border: whitesmoke;
+    justify-content: center;
+    display: flex;
+    /* align-content: center; */
+    padding: 60px;
+    align-items:center;
+    border: whitesmoke;
+    background-color:#c59886 ;
+}
+
+.formulario{
+
+    width: 700px;
+    height: 450px;
+    /* max-height:auto;
+    max-width: auto;  */
+    /* display: flex; */
+    background-color:rgb(243, 221, 188);
+    border: 1px solid black;
+    margin-left: 40px;
+}
+.formulario > h3 {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.itemForm{
+    margin: 20px;
+}
+
+#comentario{
+    width: 600px;
+    height: 120px;
+    margin-left: 50px;
+}
+
+
+
+.imagenContactos{
+    width: 400px;
+    height: 600px;
+    margin-left: 50px;
+    background-color: black;
+    
+}
+
+.carrouselReseñasDiv{
+border: rgb(0, 0, 0);
+display: flex;
+padding: 20px;
+background-color: white;
+align-items: center;
+display: flex;
+justify-content: center; 
+}
+
+.imagenConNombre{
+    display: flex;
+    align-content: center;
+    justify-content:baseline;
+}
+.imagenConNombre h4 {
+    align-content: baseline ;
+}
+.imagenConNombre img {
+    border: 5px solid rgb(189, 167, 167);
+    border-radius: 10px;
+    /* padding: 20px; */
+    width: 200px;
+    height: auto;
+    margin-left: 60px;
+    margin-top: 50px;
+}
+.reseñaCarrousel{
+    display: flex;
+    align-content: center;
+}
+
+.textoReseña{
+    align-items: end;
+    padding: 30px; 
+    margin-left: 20px; 
+    color: black;
+    background-color:#c59886;
+    font-size: 16px;
+    justify-content: flex-end;
+}
+.carousel-item{
+    width: 100%;
+    height: 500px;
+    text-align: center;
+    padding: 20px;
+    background-color:#a67b6a;
+
+}
+.textoReseña{
+    color: black;
+    padding: 5px;
+}
+/* .reseñaCarrousel{
+    display: flex;
+    align-content: center;
+    align-items: center;
+} */
+
+.contadorDiv{
+    display: flex;
+    /* padding: 20px; */
+    background-color: bisque;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    width: (33.33% - 20px);
+    margin: 10px;
+    text-align: center;
+}
+
+
+
+.contadorDiv > .contador{
+    width: 100%;
+    height: auto;
+}
+
+.contadorDiv{
+    justify-content: space-between;
+
+}
+.contador > h1 {
+    font-size: 16px;
+}
+.b {
+    background-color: white;
+}
+
+
+.footerDiv {
+    background-color: bisque;
+    color: #000000;
+    text-align: center;
+    height: 120px;
+    display: flex; 
+    justify-content:space-between; 
+    align-items: center;
+    border: 2px solid #f59393;
+    padding: 20px;
+}
+
+.navegacion{
+    color: black;
+    text-align: start;
+}
+.Contacto{
+    color: black;
+    text-align: start;  
+}
+
+.masInfo{
+    height: 5px;
+    width: 5px;
+}
+
+ .carousel-control-next, .carousel-control-prev {
+    position: absolute;
+    top: 25%;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    background: 0 0;
+    border: 0;
+    opacity: .5;
+    transition: opacity .15s ease;
+    height: 50%;
+} 
+
+/* ///////////////////////////////////////////////////////////////////////////Footer//////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+footer {
+    background-color: #333;
+    color: black;
+    padding: 20px;
+  }
+  
+  .footerSec {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .footerSec ul {
+    font-weight: 500;
+    color: #000;
+  }
+  
+  .navegacion, .Contacto, .masInfo {
+    text-align: center;
+    flex: 1;
+  }
+  
+  .navegacion h5, .Contacto h5, .masInfo h5 {
+    font-size: 23px;
+    font-weight: bold;
+    margin: 0;
+    color: black;
+  }
+  
+  .navegacion ul, .Contacto ul, .masInfo ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .navegacion a, .Contacto a, .masInfo a {
+    text-decoration: none;
+    color: black;
+    display: inline;
+    margin: 0 30px;
+    transition: color 0.6s ease;
+  }
+  
+  .navegacion a:hover, .Contacto a:hover, .masInfo a:hover {
+    color: white;
+  }
+  
+  .Redes {
+    width: 18px;
+    height: 18px;
+  }
+
+
+
+/* ///////////////////////////////////////////////////////////////////////////Menu Chico//////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+.menu2 {
+    display: none; 
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333; 
+    margin: 3px 0;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////Menu Grande//////////////////////////////////////////////////////////////////////////////////////////////////////// */
+#menu {
+    list-style: none;
+    display: flex;
+}
+
+#menu li {
+    margin: 10px 0; 
+}
+
+#menu a {
+    text-decoration: none;
+    color: #ffffff; 
+}
+
+#menu a:hover {
+     color: #000000;
+     transition: color 0.6s ease;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////@media//////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+  @media (max-width: 430px) {
+
+/* ///////////////////////////////////////////////////////////////////////////Footer @//////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+    .footerSec {
+      flex-direction: column; 
+    }
+  
+    .navegacion, .Contacto {
+      text-align: center;
+      flex: 1;
+    }
+  
+    .navegacion h5, .Contacto h5 {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  
+    .navegacion a, .Contacto a {
+      text-decoration: none;
+      color: black;
+      display: block; 
+      margin: 10px 0; 
+    }
+    
+    .masInfo {
+      display: none; 
+    }
+    
+    .footerSec {
+      width: 100%; 
+    }
+    
+    .Redes {
+      width: 15px; 
+      height: 15px; 
+    }
+
+   /* ///////////////////////////////////////////////////////////////////////////HEADER//////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+    header {
+        padding-right: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .Titulo {
+        padding-left: 15px;
+    }
+
+    .logo img {
+        display: none;
+    }
+    
+    .Options-Nav{
+        display: none;
+    }
+
+    #menu {
+        display: none; 
+    }
+
+    .menu2 {
+        display: flex; 
+    }
+
+    #menu.active {
+        display: flex;
+    }
+
+    /*Inicio*/
+
+    .fondo-principal {
+        background-color: none;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center; 
+        text-align: center; 
+        flex-direction: column; 
+        padding: 40px;
+        background-image: none;
+        background-image: url(./imgs/Fondo\ Inicio\(Responsive\).png);
+    }
+
+    
+    .text-img {
+        margin-top: 40px; 
+    }
+    
+    .text {
+        text-transform: uppercase;
+        font-family: 'Playfair Display', serif;
+        font-weight: lighter;
+        font-size: 80px; 
+        color: #000000;
+    }
+    
+    .button-catalogo {
+        margin-top: 60px; 
+        color: #fff;
+        border: 3px solid #e25e40;
+        background-color: #e25e40;
+        padding: 10px 20px;
+        font-size: 24px;
+        font-family: 'Playfair Display', serif;
+        border-radius: 30px;
+    }
+    
+    
+
+  }
+  
+  
+  
