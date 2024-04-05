@@ -3,8 +3,9 @@
 ## Grupo
 ### Integrantes
 * 50791 Cardone, Juan Ignacio
-* 51632 Tanchi, Candela
 * 51004 Donzilo, Yamila
+* 51632 Tanchi, Candela
+* 50925 Variego, Manuel
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
