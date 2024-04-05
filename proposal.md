@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Una ticketera virtual, la cual permita gestionar las entradas (codigos QR) para cada evento hosteado. Generando las mismas, para luego poder venderlas y distribuirlas a los consumidores. A su vez mantener un registro de las entradas utilizadas al momento del evento.
 
 ### Modelo
 ![imagen del modelo]()
