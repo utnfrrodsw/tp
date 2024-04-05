@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+Montini Agostino 50757
+Azul Gomez 48107
+Collaud Maria Victoria 51766
+Decima Ivan 48624
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -10,27 +13,30 @@
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
+Sistema de gestion de prestamos de biblioteca
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Es un sistema para gestionar los prestamos de una biblioteca, abarca el Alta y baja de socios, categorias, libros, editoriales, autores. 
+El sistema (con alcance de regularidad) esta pensado para ser usado solo por el bibliotecario, el socio no interactua con el sistema.
+Por ello no se hace uso de un usuario y contraseña. El sistema con alcance de AD puede contar con un FrontEnd en el que los socios puedan realizar consultas(prestamos,sanciones, libros disponibles).
 
 ### Modelo
-![imagen del modelo]()
+https://imgur.com/gB6MXtc
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+Nota: Todavia resta determinar atributos de informacion para editorial y autor, al lado del modelo hay aclaraciones en base a reglas de negocio inventadas.
+El sistema podria complejizarse agregando o modificando reglas de negocio.
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
-Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Categoria<br>2. CRUD Editorial<br>3. CRUD Autor<br>4.CRUD Socio|
+|CRUD dependiente|1. CRUD Prestamo {depende de} CRUD Libro y CRUD Socio<br>2. CRUD Libro {depende de} CRUD Editorial, CRUD Categoria y CRUD Autor|
+|Listado<br>+<br>detalle| 1. Listado de prestamos filtrado por libro(codigo).<br> 2. Listado de libros filtrado por autor|
+|CUU/Epic|1. Realizar un prestamo.<br>2. Realizar la devolucion de un prestamo|
+
+Nota: Obligatoriamente hay que hacer el CRUD de la clase PoliticasBiblioteca.
 
 
 Adicionales para Aprobación
