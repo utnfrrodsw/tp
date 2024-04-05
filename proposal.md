@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 50791 Cardone, Juan Ignacio
+* 51632 Tanchi, Candela
+* 51004 Donzilo, Yamila
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
