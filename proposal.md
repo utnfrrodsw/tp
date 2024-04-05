@@ -19,10 +19,7 @@ Es una organización que se encarga de rescatar perros y gatos en situación de 
 
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
-
+https://drive.google.com/drive/folders/1iBbKqwC0eQuO3h4ot641vpO3vhYqkPm5?usp=drive_link
 ## Alcance Funcional 
 
 ### Alcance Mínimo
