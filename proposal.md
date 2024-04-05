@@ -14,7 +14,8 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+A raiz de la necesidad de sintetizar la cantidad de vehículos en el microcentro que circulan
+buscando una cochera para estacionar, realizamos el análisis de una aplicación web que permita realizar reserva previa de lugar de estacionamiento. 
 
 ### Modelo
 ![imagen del modelo]()
