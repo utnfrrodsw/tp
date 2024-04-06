@@ -4,7 +4,7 @@
 ### Integrantes
 * 48028 Bertone Valentin
 * 47779 Lotar Baigorria
-* 48026 Ignacio Di Marco
+* 48026 Ignacio Di Martino
 
 ### Repositorios
 * [fullstack app](http://hyperlinkToGihubOrGitlab)
