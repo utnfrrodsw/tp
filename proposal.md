@@ -6,6 +6,8 @@
 
 49195- Brassart Selene
 
+48784- Cussitt Bruno
+
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
