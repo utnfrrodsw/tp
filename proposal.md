@@ -37,7 +37,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Adoptante<br>2. CRUD Cliente<br>3. CRUD Rescate<br>4. CRUD Refugio<br>5. CRUD Producto<br>6. CRUD Precio<br>7. CRUD Compra|
-|CUU/Epic|1. Rescatar un animal<br>2. Dar asistencia medica a un animal<br>3. Realizar un recuento de stock de productos<br>4.Dar de alta un nuevo producto|
+|CUU/Epic|1. Rescatar un animal<br>2. Dar asistencia medica a un animal<br>3. Realizar un recuento de stock de productos<br>4. Dar de alta un nuevo producto|
 
 
 ### Alcance Adicional Voluntario
