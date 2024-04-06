@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 48028 Bertone Valentin
+* xxx Lotar Baigorria
+* xxx Ignacio Di Marco
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
