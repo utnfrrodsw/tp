@@ -3,17 +3,16 @@
 ## Grupo
 ### Integrantes
 * 48028 Bertone Valentin
-* xxx Lotar Baigorria
-* xxx Ignacio Di Marco
+* 47779 Lotar Baigorria
+* 48026 Ignacio Di Marco
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [fullstack app](http://hyperlinkToGihubOrGitlab)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Representa una plataforma web de compra y venta de productos que se diseñó para facilitar a los usuarios ya sea para solicitar o publicar productos, además es una herramienta util para aquellos empleados de correos para llevar los productos a su destino de forma optima
 
 ### Modelo
 ![imagen del modelo]()
