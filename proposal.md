@@ -12,7 +12,17 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Nuestro grupo va a enfocar el Trabajo Practico en crear un Sistema de administracion Estudiantil (Sysacad) con todas las funciones que esto conlleva como: 
+Del lado del Alumno:
+- Inscripcion a cursado/finales (poder filtar por materias con las que se cumplen los requisitos para cursar)
+- Poder revisar informacion personal/Solicitar modificacion
+- Tener acceso a la libreta virtual con sus respectivas notas.
+- Solicitar turnos para realizar tramites de forma presencial
+- Acceso al calendario academico.
+  
+Del lado del Profesor/Admin:
+
+   
 
 ### Modelo
 ![imagen del modelo]()
