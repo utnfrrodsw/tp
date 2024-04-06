@@ -2,8 +2,8 @@
 
 ## Grupo
 ### Integrantes
-50383 - Guastoni Belén
-48790 - Mestre Federico
+- 50383 Guastoni Belén
+- 48790 Mestre Federico
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
