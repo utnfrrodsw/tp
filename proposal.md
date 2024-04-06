@@ -12,7 +12,7 @@
 
 ## Tema
 ### Descripción
-Representa una plataforma web de compra y venta de productos que se diseñó para facilitar a los usuarios ya sea para solicitar o publicar productos, además es una herramienta util para aquellos empleados de correos para llevar los productos a su destino de forma optima
+Representa una plataforma web de compra y venta de productos que se diseñó para facilitar a los usuarios ya sea para solicitar o publicar productos, además es una herramienta util para aquellos empleados de correos para llevar los productos a su destino de forma optima. Nuestra plataforma se esfuerza por brindar una eficiente y efectiva tanto para los solicitantes de productos como para los que proveen dichos productos.
 
 ### Modelo
 ![imagen del modelo]()
