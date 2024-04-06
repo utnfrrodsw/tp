@@ -36,8 +36,8 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Adoptante<br>2. CRUD Cliente<br>3. CRUD Rescate<br>4. CRUD Refugio<br>5. CRUD Producto<br>6. CRUD Precio<br>7. CRUD Compra|
+|CUU/Epic|1. Rescatar un animal<br>2. Dar asistencia medica a un animal<br>3. Realizar un recuento de stock de productos<br>4.Dar de alta un nuevo producto|
 
 
 ### Alcance Adicional Voluntario
