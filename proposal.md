@@ -15,7 +15,7 @@
 Una ticketera virtual que permite gestionar las entradas para diversos eventos hosteados. Al comprar cada entrada se genera un código QR que el cliente mostrará en puerta para asistir al evento. Se mantiene un registro de qué códigos generados ya se utilizaron y cuales no.
 
 ### Modelo
-![imagen del modelo](https://drive.google.com/file/d/134gKgj1ZUBvex4SPhjo2_WSseLS6nncj/view?usp=sharing )
+![imagen del modelo](https://github.com/phalanxeyes/DSW-2024-Bonaroti-Salerno-Vacs/blob/main/MDQRera.PNG?raw=true)
 
 
 ## Alcance Funcional 
