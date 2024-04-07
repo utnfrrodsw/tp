@@ -25,22 +25,20 @@ https://drive.google.com/drive/folders/17aejEDyp7ZbN4p7J21DdS0g-YX2c3g3c?usp=sha
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Alumno<br>2. CRUD Profesor<br>3. CRUD Curso<br>4. CRUD Parcial|
+|CRUD dependiente|1. CRUD Curso {depende de} CRUD Tipo <br>2. CRUD Curso {depende de} CRUD TP|
+|Listado<br>+<br>detalle| 1. Listado de Cursos filtrado por Tipo , muestra identificador, nombre, tipo y descripcion => detalle CRUD Curso<br> 2. Listado de Profesores filtrado por id, muestra nombre_y_apellido, mail, telefono e id => detalle muestra datos completos de Profesor|
+|CUU/Epic|1. Seleccionar un curso para la inscripcion<br>2. Ingresar entrega del parcial|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Alumno<br>2. CRUD Profesor<br>3. CRUD Curso<br>4. CRUD Parcial<br>5. CRUD Certificado<br>6. CRUD TP<br>7. CRUD Respuesta<br>8. CRUD Inscripcion<br>9. CRUD Tipo|
+|CUU/Epic|1. Seleccionar un curso para la inscripcion<br>2. Filtrar por profesor <br>3. Entregar TP<br>4.Ingresar entrega del parcial|
 
 
 ### Alcance Adicional Voluntario
