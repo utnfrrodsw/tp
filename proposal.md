@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-A raiz de la necesidad de sintetizar la cantidad de vehículos que circulan en el microcentro de la ciudad buscando una cochera para estacionar, nos vamos a enfocar en realizar una aplicación web que permita realizar reserva previa de lugar de estacionamiento. 
+A raiz de la necesidad de minimizar la cantidad de vehículos que circulan en el microcentro de la ciudad de Rosario buscando una cochera para estacionar, nos vamos a enfocar en realizar una aplicación web que permita reservar un lugar de estacionamiento. 
 
 ### Modelo
 ![(https://app.diagrams.net/#G1WzmEB14T3WE1MX64y5hkTwGVi79-o4oO#%7B%22pageId%22%3A%22s9Nc4J8RNfQUfUdQi-DX%22%7D)]
