@@ -7,8 +7,8 @@
 * 50708 - Vacs, Francisco
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app](https://github.com/FranciscoVacs/QRera_FE)
+* [backend app](https://github.com/FranciscoVacs/QRera_BE)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
