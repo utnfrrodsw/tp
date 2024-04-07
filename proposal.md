@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51458 - Ortiz, Valentino
+* 51643 - Sanchez, Enzo Ariel
+* 51753 - Spertino, Mateo
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
