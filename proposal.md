@@ -26,8 +26,8 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Tipo Cancha<br>2. CRUD Cliente<br>3. CRUD Reserva|
-|CRUD dependiente|1. CRUD Cancha {depende de} CRUD Tipo Cancha<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de canchas disponibles filtrado por tipo de cancha, muestra código y tipo => detalle CRUD Canchasn<br> 2. Listado de reservas filtrado por rango de fecha, muestra código de cancha, fecha, y hora de inicio y fin, nombre y dni del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD dependiente|1. CRUD Cancha {depende de} CRUD Tipo Cancha<br>2. CRUD Reserva {depende de} CRUD Tipo de cancha|
+|Listado<br>+<br>detalle| 1. Listado de canchas disponibles filtrado por tipo de cancha, muestra código y tipo => detalle CRUD Canchas<br> 2. Listado de reservas filtrado por rango de fecha, muestra código de cancha, fecha, y hora de inicio y fin, nombre y dni del cliente => detalle muestra datos completos de la reserva y del cliente|
+|CUU/Epic|1. Reservar una cancha para jugar<br>2. Cobrar alquiler de cancha|
 
 
