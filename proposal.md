@@ -15,7 +15,7 @@
 Una ticketera virtual que permite gestionar las entradas para diversos eventos hosteados. Al comprar cada entrada se genera un código QR que el cliente mostrará en puerta para asistir al evento. Se mantiene un registro de qué códigos generados ya se utilizaron y cuales no.
 
 ### Modelo
-![imagen del modelo](https://drive.google.com/file/d/1SdwSiYLLLJTMLrldGkm1_gGFyT5YYMt-/view?usp=sharing)
+![imagen del modelo]([https://drive.google.com/file/d/1SdwSiYLLLJTMLrldGkm1_gGFyT5YYMt-/view?usp=sharing](https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Untitled%20Diagram.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1SdwSiYLLLJTMLrldGkm1_gGFyT5YYMt-%26export%3Ddownload))
 
 
 ## Alcance Funcional 
