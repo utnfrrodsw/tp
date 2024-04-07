@@ -2,7 +2,6 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
 * 48072 - Picia, Facundo
 * 48083 - Tomas, Yasparra
 
