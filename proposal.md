@@ -9,16 +9,14 @@
 ### Repositorios
 * [frontend app](https://github.com/FranciscoVacs/QRera_FE)
 * [backend app](https://github.com/FranciscoVacs/QRera_BE)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
 Una ticketera virtual que permite gestionar las entradas para diversos eventos hosteados. Al comprar cada entrada se genera un código QR que el cliente mostrará en puerta para asistir al evento. Se mantiene un registro de qué códigos generados ya se utilizaron y cuales no.
 
 ### Modelo
-![imagen del modelo]()
+![imagen del modelo](https://drive.google.com/file/d/1SdwSiYLLLJTMLrldGkm1_gGFyT5YYMt-/view?usp=sharing)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
 
