@@ -34,7 +34,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo estadía<br>2. CRUD Vehículo<br>3. CRUD Localidad<br>4. CRUD Cliente<br>5. CRUD Reserva<br>6. CRUD Lugar<br>7. CRUD Cochera 8. CRUD Tipo vehiculo<br>9. CRUD Cochera-TipoVehiculo<br>|
+|CRUD |1. CRUD Tipo estadía<br>2. CRUD Vehículo<br>3. CRUD Localidad<br>4. CRUD Cliente<br>5. CRUD Reserva<br>6. CRUD Lugar<br>7. CRUD Cochera<br> 8. CRUD Tipo vehiculo<br>9. CRUD Cochera-TipoVehiculo<br>|
 |CUU/Epic|1. Reservar estadía<br>2. Registrar usuario<br>3. Cancelar reserva<br>4. Realizar pago|
 
 
