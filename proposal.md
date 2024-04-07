@@ -10,7 +10,7 @@
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/frankitook/tp-GimenezFranco-2024/tree/main/backend))
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
