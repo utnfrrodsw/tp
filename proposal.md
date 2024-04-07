@@ -35,7 +35,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo entrada<br>2. CRUD Usuario<br>3. CRUD Provincia<br>4. CRUD Entrada<br>5. CRUD Evento<br>6. Comprobante<br>7. Cliente<br>8. Productor|
+|CRUD |1. CRUD Tipo entrada<br>2. CRUD Usuario<br>3. CRUD Provincia<br>4. CRUD Entrada<br>5. CRUD Evento<br>6. CRUD Comprobante<br>7. CRUD Cliente<br>8. CRUD Productor|
 |CUU/Epic|1. Registrarse<br>2. Comprar entrada<br>3. Actualizar estado de entrada|
 
 
