@@ -32,11 +32,8 @@ Del lado del Profesor/Admin:
 - Ver calendario academico 2024
 
    
-
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![Diagrama de Clase](https://github.com/FedeeMest/TP-DSW-FB/assets/105808592/01c83677-a22f-418d-9172-4ffed3496f81)
 
 ## Alcance Funcional 
 
@@ -45,8 +42,8 @@ Del lado del Profesor/Admin:
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD estudiante<br>2. CRUD curso<br>
-|CRUD dependiente|1. CRUD clasificacion {depende de} CRUD estudiante<br>
+|CRUD simple|1. CRUD estudiante<br>2. CRUD profesor<br>3. CRUD curso<br>
+|CRUD dependiente|1. CRUD inscripcion {depende de} CRUD estudiante<br>
 |Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
