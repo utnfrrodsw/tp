@@ -14,7 +14,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Sistema de alquiler de canchas de dos tipos: Fútbol 5 y Fútbol 7.
 
 ### Modelo
 ![imagen del modelo]()
