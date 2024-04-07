@@ -2,10 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* 50791 Cardone, Juan Ignacio
-* 51004 Donzilo, Yamila
-* 51632 Tanchi, Candela
-* 50925 Variego, Manuel
+* 50791 Cardone, Juan Ignacio (COM 301)
+* 51004 Donzino, Yamila (COM 303)
+* 51632 Tanchi, Candela (COM 303)
+* 50925 Variego, Manuel (COM 302)
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -14,8 +14,7 @@
 
 ## Tema
 ### Descripción
-A raiz de la necesidad de sintetizar la cantidad de vehículos en el microcentro que circulan
-buscando una cochera para estacionar, realizamos el análisis de una aplicación web que permita realizar reserva previa de lugar de estacionamiento. 
+A raiz de la necesidad de sintetizar la cantidad de vehículos que circulan en el microcentro de la ciudad buscando una cochera para estacionar, nos vamos a enfocar en realizar una aplicación web que permita realizar reserva previa de lugar de estacionamiento. 
 
 ### Modelo
 ![imagen del modelo]()
@@ -31,10 +30,10 @@ buscando una cochera para estacionar, realizamos el análisis de una aplicación
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Tipo Reserva<br>2. CRUD Vehículo<br>3. CRUD Localidad<br>4. CRUD Cliente|
+|CRUD dependiente|1. CRUD Reserva {depende de} CRUD Tipo Reserva<br>2. CRUD Cochera {depende de} CRUD Localidad|
+|Listado<br>+<br>detalle| 1. Listado mensual de reservas filtrado por cochera, muestra datos de la cochera y cantidad de reversas, => detalle CRUD Reserva<br> 2. Listado de reservas filtrado por cliente y rango de fecha, muestra cuit cochera, datos de la reserva => detalle muestra datos completos de la reserva|
+|CUU/Epic|1. Reservar estadía<br>2. Registrar usuario|
 
 
 Adicionales para Aprobación
