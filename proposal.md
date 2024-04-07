@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-- 50383 Guastoni Belén
+- 50838 Guastoni Belén
 - 48790 Mestre Federico
 
 ### Repositorios
@@ -19,11 +19,17 @@ Del lado del Alumno:
 - Tener acceso a la libreta virtual con sus respectivas notas.
 - Solicitar turnos para realizar tramites de forma presencial
 - Acceso al calendario academico.
+- Poder solicitar acceso al certificado Regularidad
+- Poder ver el plan de estudio con las materias que el alumno puede cursar según cada caso
   
 Del lado del Profesor/Admin:
 - Subir notas ed alumnos a sus respectivos legajos
 - editar sus comisiones comisiones (agregar/borrar alumnos maunalmente)
-- 
+- Subir/modificar notas parciales/finales de alumnos
+- Subir regularidades/promocion
+- Ver listado de comisiones con alumnos
+- Cambiar contraseña
+- Ver calendario academico 2024
 
    
 
