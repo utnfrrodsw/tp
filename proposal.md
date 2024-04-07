@@ -12,7 +12,8 @@
 ## Tema
 ### Descripción
 Nuestro grupo va a enfocar el Trabajo Practico en crear un Sistema de administracion Estudiantil (Sysacad) con todas las funciones que esto conlleva como: 
-*Del lado del Alumno:
+
+Del lado del Alumno:
 - Inscripcion a cursado/finales (poder filtar por materias con las que se cumplen los requisitos para cursar)
 - Poder revisar informacion personal/Solicitar modificacion
 - Tener acceso a la libreta virtual con sus respectivas notas.
