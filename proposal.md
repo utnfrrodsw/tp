@@ -9,7 +9,7 @@
 48784- Cussitt Bruno
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app](https://github.com/frankitook/tp-GimenezFranco-2024/tree/main/frontend)
 * [backend app](https://github.com/frankitook/tp-GimenezFranco-2024/tree/main/backend)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
