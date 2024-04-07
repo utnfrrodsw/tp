@@ -3,6 +3,8 @@
 ## Grupo
 ### Integrantes
 * legajo - Apellido(s), Nombre(s)
+* 48072 - Picia, Facundo
+* 48083 - Tomas, Yasparra
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -10,8 +12,9 @@
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
-### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Nuestra página web "FitPlus" ofrece una plataforma intuitiva para gestionar los entrenamientos. Con un proceso de registro y autenticación, los usuarios pueden acceder a una variedad de horarios disponibles para reservar sus sesiones de entrenamiento. Además, la plataforma proporciona rutina de entrenamiento personalisada para cada cliente, con detalles claros sobre ejercicios, series y repeticiones.
+
 
 ### Modelo
 ![imagen del modelo]()
@@ -19,6 +22,20 @@
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
+
+Registro y Autenticación de Usuarios:
+-Permitir a los usuarios registrarse y autenticarse de manera segura.
+
+Gestión de Perfiles de Usuario:
+-Los usuarios pueden ver y editar su perfil, incluyendo información personal y preferencias de entrenamiento.
+
+Selección de Horarios:
+-Mostrar horarios disponibles para sesiones de entrenamiento.
+-Permitir a los usuarios reservar un horario para su entrenamiento.
+
+Visualización de Rutinas de Entrenamiento:
+-Presentar una variedad de rutinas de entrenamiento disponibles.
+-Proporcionar detalles claros sobre cada rutina, incluyendo ejercicios, series y repeticiones.
 
 ### Alcance Mínimo
 
