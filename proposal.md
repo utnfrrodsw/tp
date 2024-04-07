@@ -13,18 +13,17 @@
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
-Gestion de torneos multidiciplinarios
+Gestion de torneos para un predio de Futbol 5.
 
 ### Descripción
 Una aplicacion web que esta pensada para 3 tipos de usuarios:
-- El usuario de tipo "espectador" solo podra ver las tablas de posiciones.
-- El usuriario de tipo "participante" ademas podra registrarse, iniciar sesion, inscribirse en un torneo de una diciplina.
-- EL usuario de tipo "administrador" podra iniciar sesion, ver y administrar las tablas de posiciones y los usuarios participantes.
+- El "espectador" solo podra ver las tablas de posiciones de los diferentes torneos.
+- El usuriario de tipo "participante" ademas podra registrarse, iniciar sesion, inscribirse en un torneo de futbol 5.
+- EL usuario de tipo "admin" podra iniciar sesion, ver y administrar las tablas de posiciones y los usuarios participantes.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+https://drive.google.com/file/d/1crx1n02jI2IXG_3mSn7VQyo8sVDRmhAR/view?usp=sharing
 
 ## Alcance Funcional 
 
@@ -35,16 +34,16 @@ Una aplicacion web que esta pensada para 3 tipos de usuarios:
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Tipo_participante<br>2. CRUD Usuario<br>3. CRUD Localidad|
+|CRUD dependiente|1. CRUD Equipo {depende de} CRUD Inscripcion<br>2. CRUD Resultado_partido {depende de} CRUD Partido|
+|Listado<br>+<br>detalle| 1. Listado de posiciones filtrado por id_equipo, muestra id_equipo y puesto => detalle CRUD Puesto_equipo<br> 2. Listado de torneos filtrado por localidad, muestra nombre de torneo, estado del torneo y cantidad de equipos => detalle muestra datos completos del torneo|
+|CUU/Epic|1. Registrar inscripcion de un torneo<br>2. Actualizar resultado del partido|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
+|CRUD |1. CRUD Tipo_participante<br>2. CRUD Usuario<br>3. CRUD Localidad<br>4. CRUD Sucursal<br>5. CRUD Equipo<br>6. CRUD Partido<br>7. CRUD Torneo<br>8. CRUD Inscripcion<br>9. CRUD Resultado_partido<br>10. CRUD Participante<br>11. CRUD Admin|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
 
 
