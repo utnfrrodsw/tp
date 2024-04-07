@@ -17,7 +17,7 @@ Sistema de alquiler de canchas de fútbol de dos tipos: Fútbol 5 y Fútbol 7.
 
 ### Modelo
 
-Link Drive: 
+Link Drive: https://drive.google.com/drive/folders/1g4XSZLw1EMK_j2_iacZRRa556H-FS2Of?usp=drive_link
 
 
 ## Alcance Funcional 
