@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-Una ticketera virtual, la cual permita gestionar las entradas (codigos QR) para cada evento hosteado. Generando las mismas, para luego poder venderlas y distribuirlas a los consumidores. A su vez mantener un registro de las entradas utilizadas al momento del evento.
+Una ticketera virtual que permite gestionar las entradas para diversos eventos hosteados. Al comprar cada entrada se genera un código QR que el cliente mostrará en puerta para asistir al evento. Se mantiene un registro de qué códigos generados ya se utilizaron y cuales no.
 
 ### Modelo
 ![imagen del modelo]()
@@ -24,22 +24,21 @@ Una ticketera virtual, la cual permita gestionar las entradas (codigos QR) para 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Tipo entrada <br>2. CRUD Usuario<br>3. CRUD Provincia|
 |CRUD dependiente|1. CRUD Entrada {depende de} CRUD Tipo entrada <br>2. CRUD Evento {depende de} CRUD Provincia|
-|Listado<br>+<br>detalle| 1. Listado de eventos filtrado por provincia, muestra productor, fecha, descripción, dirección => detalle tbd<br> 2. Listado de eventos filtrado por rango de fecha, muestra productor, fecha específica, descripción, dirección => detalle tbd|
-|CUU/Epic|1. Crear evento<br>2. Comprar entrada<br>3. Actualizar estado de entrada|
+|Listado<br>+<br>detalle| 1. Listado de eventos filtrado por provincia, muestra nombre de provincia, nombre y descripción del evento=> detalle muestra datos completos del evento<br> 2. Listado de entradas filtrado por rango de fecha, muestra fecha de compra, nombre e e-mail del cliente => detalle muestra datos completos del comprobante y del cliente|
+|CUU/Epic|1. Registrarse<br>2. Comprar entrada|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Productor<br>2. CRUD Cliente<br>3. CRUD Comprobante<br>|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Tipo entrada<br>2. CRUD Usuario<br>3. CRUD Provincia<br>4. CRUD Entrada<br>5. CRUD Evento<br>6. Comprobante<br>7. Cliente<br>8. Productor|
+|CUU/Epic|1. Registrarse<br>2. Comprar entrada<br>3. Actualizar estado de entrada|
 
 
 ### Alcance Adicional Voluntario
@@ -48,7 +47,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados ||
+|CUU/Epic||
+|Otros||
 
