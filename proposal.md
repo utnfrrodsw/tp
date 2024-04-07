@@ -14,7 +14,7 @@
 
 ## Tema
 ### Descripción
-Sistema de alquiler de canchas de dos tipos: Fútbol 5 y Fútbol 7.
+Sistema de alquiler de canchas de fútbol de dos tipos: Fútbol 5 y Fútbol 7.
 
 ### Modelo
 ![imagen del modelo]()
