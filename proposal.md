@@ -18,4 +18,4 @@
 Constuiremos una pagina web donde un cliente reserve una habitacion en el hotel que quiera. Habra hoteles con distintos tipos de habitaciones y el cliente para reservar tendra que crearse una cuenta. La pagina que buscamos realizar es similar a booking.com
 
 ### Modelo
-![imagen del modelo]()
+*[Modelo](https://drive.google.com/file/d/1xh90SwdYn5h_SQ6cQF5Jfz4YrSXAauvz/view?usp=sharing)
