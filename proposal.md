@@ -32,8 +32,8 @@ Del lado del Profesor/Admin:
 - Ver calendario academico 2024
 
    
-### Modelo
-![Diagrama de Clase](https://github.com/FedeeMest/TP-DSW-FB/assets/105808592/01c83677-a22f-418d-9172-4ffed3496f81)
+### Diagrama de clase
+![Modelo de Clase - Sysacad drawio](https://github.com/FedeeMest/TP-DSW-FB/assets/166263224/c0d24bd8-d1d1-4e94-ae31-75424767660c)
 
 ## Alcance Funcional 
 
@@ -42,17 +42,17 @@ Del lado del Profesor/Admin:
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD estudiante<br>2. CRUD profesor<br>3. CRUD curso<br>
-|CRUD dependiente|1. CRUD inscripcion {depende de} CRUD estudiante<br>
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD alumno<br>2. CRUD profesor<br>
+|CRUD dependiente|1. CRUD final {depende de} CRUD alumno<br>
+|Listado<br>+<br>detalle| 1. Listado de finales realizador por un alumno => muestra todos los finales (con detalles) de la colección "calificaciones" de la clase alumno<br> 2. Listado de materias en las cuales se puede inscribir ele alumno dependiendo del estado academico en el que se encuentr, mostrando todas las materias, y en las cuales no se puede incribir mostrar el motivo|
+|CUU/Epic|1. Incribirse a materia<br>2. Ver calificaciones actuales|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Estado_acad<br>2. CRUD Inscripción<br>3. CRUD Horario<br>4. CRUD Plan<br>|
+|CUU/Epic|1. Update del estado academico del alumno<br>2. Realizar una inscripcion<br>3. Realizar el check-out y facturación de estadía y servicios|
 
 
 ### Alcance Adicional Voluntario
@@ -61,7 +61,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Inscripciones filtradas por alumno muestra a cuantos examenes finales se inscribio al alumno ingresando dos fechas|
+|CUU/Epic|1. Inscribirse a examen/cursado<br>2. Cancelación de inscripción|
+|Otros|1. Envío de recordatorio de examen por email al alumno 48hs. antes de la fecha|
 
