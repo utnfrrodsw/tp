@@ -19,12 +19,12 @@
 
 Se propone un sistema para la gestión de una veterinaria, cuyos objetos principales serán los clientes, animales, veterinarios, y las atenciones realizadas.
 De los animales se conocerán su raza, especie y el cliente al que pertenecen. De las atenciones se conocerán el veterinario que la realizó, el animal involucrado, los insumos usados (con tipos y precios que varían en el tiempo), y sus precios (que varía con el tiempo).
-Al calcular el costo de una atención se tendrá en cuenta también el margen de utilidad deseado, por lo que se utilizará un multiplicador que cambia con el tiempo y es necesario llevar cuenta de ello.
+Para calcular el costo de una atención se tiene en cuenta el valor base de esta y el valor de venta de los insumos utilizados.
 Los clientes podrán crear usuarios para ver los historiales de atenciones de sus animales.
 
 ### Modelo de Datos
 
-![Modelo](https://github.com/oldaniMarcos/tp/assets/139399407/f08ee335-d4a2-43e8-a95a-c49e7f345a82)
+![Modelo](https://github.com/oldaniMarcos/tp/assets/139399407/3b0f6059-1676-457d-aa03-097ded80e71d)
 
 ## Alcance Funcional
 
@@ -41,7 +41,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Cliente<br>2. CRUD Animal<br>3. CRUD Raza<br>4. CRUD Especie<br>5. CRUD Atencion<br>6. CRUD Veterinario<br>7. CRUD Insumo<br>8. CRUD TipoInsumo<br>9. CRUD PrecioInsumo<br>10. CRUD PrecioAtencion<br>11. CRUD MargenUtilidad<br>|
+|CRUD |1. CRUD Cliente<br>2. CRUD Animal<br>3. CRUD Raza<br>4. CRUD Especie<br>5. CRUD Atencion<br>6. CRUD Veterinario<br>7. CRUD Insumo<br>8. CRUD TipoInsumo<br>9. CRUD PrecioInsumo<br>10. CRUD PrecioAtencion<br>|
 |CUU/Epic|determinar|
 
 ### Alcance Adicional Voluntario
