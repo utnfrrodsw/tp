@@ -1,24 +1,25 @@
 # Propuesta TP DSW
 
-## Grupo
-### Integrantes
-* legajo - Apellido(s), Nombre(s)
+# /*titulo*/
 
-### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+## **Integrantes:**  
 
-## Tema
-### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+- 46166 - Borelli, Hernán Darío
+- 39715 - Coyle, Virginia Mariel
+- 49500 - Faulin, Eugenio Pandu
+- 49200 - Nuñez, Mateo Nicolás
 
-### Modelo
-![imagen del modelo]()
+## **Repositorio:**
+- [Link repositorio](https://github.com/hdborelli/TP_DSW_CBFN)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+Servicio de streaming de podcast y audiolibros online por suscripción, los usuarios podrán contratar el servicio, registrarse, consumir contenido y además poder dejar una reseña del mismo. El contenido se clasifica entre podcasts o audiolibros. Habrá diferentes categorías de suscripción (ej. gratuita, premium, estudiante, etc.). 
 
-## Alcance Funcional 
+## **Modelo:**
+![Diagrama Entidad-Relacion](https://github.com/hdborelli/TP_DSW_CBFN/blob/main/Assets/DER.jpg)
+
+- [Modelo](https://drive.google.com/file/d/11ACZJqwl76ydJ1UTIr_Lcnx58QASBCiV/view?usp=drive_link)
+
+## Alcance funcional
 
 ### Alcance Mínimo
 
