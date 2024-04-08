@@ -29,22 +29,20 @@ https://drive.google.com/file/d/1crx1n02jI2IXG_3mSn7VQyo8sVDRmhAR/view?usp=shari
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo_participante<br>2. CRUD Usuario<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Equipo {depende de} CRUD Inscripcion<br>2. CRUD Resultado_partido {depende de} CRUD Partido|
-|Listado<br>+<br>detalle| 1. Listado de posiciones filtrado por id_equipo, muestra id_equipo y puesto => detalle CRUD Puesto_equipo<br> 2. Listado de torneos filtrado por localidad, muestra nombre de torneo, estado del torneo y cantidad de equipos => detalle muestra datos completos del torneo|
-|CUU/Epic|1. Registrar inscripcion de un torneo<br>2. Actualizar resultado del partido|
+|CRUD simple|1. CRUD Tipo_participante<br>2. CRUD Usuario<br>3. CRUD Localidad<br>4. CRUD Formato_Torneo|
+|CRUD dependiente|1. CRUD Equipo {depende de} CRUD Inscripcion<br>2. CRUD Resultado_partido {depende de} CRUD Partido<br>3. CRUD Torneo {depende de} CRUD Formato_Torneo|
+|Listado<br>+<br>detalle| 1. Listado de posiciones filtrado por id_equipo, muestra id_equipo y puesto => detalle CRUD Equipo<br> 2. Listado de torneos filtrado por localidad, muestra nombre de torneo, estado del torneo y cantidad de equipos => detalle muestra datos completos del torneo|
+|CUU/Epic|1. Registrar inscripcion de un torneo<br>2. Ingresar resultado del partido|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo_participante<br>2. CRUD Usuario<br>3. CRUD Localidad<br>4. CRUD Sucursal<br>5. CRUD Equipo<br>6. CRUD Partido<br>7. CRUD Torneo<br>8. CRUD Inscripcion<br>9. CRUD Resultado_partido<br>10. CRUD Participante<br>11. CRUD Admin|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Tipo_participante<br>2. CRUD Usuario<br>3. CRUD Localidad<br>4. CRUD Sucursal<br>5. CRUD Equipo<br>6. CRUD Partido<br>7. CRUD Torneo<br>8. CRUD Inscripcion<br>9. CRUD Resultado_partido<br>10. CRUD Participante<br>11. CRUD Admin<br>12. CRUD Formato_Torneo<br>13. CRUD Arbrito|
+|CUU/Epic|1. Registrar inscripcion de un torneo<br>2. Realizar informe de resultado del partido<br>3. Ingresar resultado del partido<br>4. Solicitar la tabla de posiciones|
 
 
 ### Alcance Adicional Voluntario
@@ -53,7 +51,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Historial de partidos filtrado por Id_Torneo, muestra todos los equipos y los resultados de cada partido del torneo|
+|CUU/Epic|1. Actualizar estado del torneo<br>2. Cancelar de inscripción|
+|Otros|1. En caso de cancelación de un torneo, envío de estado del torneo por email| (En revisión)
 
