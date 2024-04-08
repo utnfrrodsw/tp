@@ -10,12 +10,8 @@
 
 ### Repositorios
 
-determinar
-
-<!---
-- [frontend app](http://hyperlinkToGihubOrGitlab)
-- [backend app](http://hyperlinkToGihubOrGitlab)
---->
+- [Frontend](https://github.com/oldaniMarcos/TP-DSW-Frontend)
+- [Backend](https://github.com/oldaniMarcos/TP-DSW-Backend)
 
 ## Tema
 
