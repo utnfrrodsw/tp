@@ -36,9 +36,9 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Usuario<br>2. CRUD Incidencia<br>3. CRUD Tipo Incidencia|
-|CRUD dependiente|1. CRUD Comentario {depende de} CRUD Incidencia<br>2. CRUD xxx {depende de} CRUD xxx |
+|CRUD dependiente|1. CRUD Comentario {depende de} CRUD Incidencia<br>2. CRUD Sprint {depende de} CRUD Proyecto |
 |Listado<br>+<br>detalle| 1. Listado de incidencias filtrado por tipo, muestra nro y tipo de incidencia => detalle CRUD Incidencia<br> 2. Listado de Incidencias filtrado por rango de fecha, muestra nro de incidencia, fecha inicio y fin fin, estado y nombre del usuario responsable => detalle muestra datos completos de las incidencias|
-|CUU/Epic|1. Usuario realiza una carga de una incidencia<br>2. Usuario hace un reporte de incidenciass <br>3. Usurio modifica un estado de una incidencia|
+|CUU/Epic|1. Usuario da de alta un proyecto y un sprint dentro del mismo.<br>2. Usuario realiza una carga de una incidencia. <br>3. Usurio modifica un estado de una incidencia.
 
 
 Adicionales para Aprobación
