@@ -23,6 +23,7 @@ Link Drive: https://drive.google.com/drive/folders/1g4XSZLw1EMK_j2_iacZRRa556H-F
 ## Alcance Funcional 
 
 ### Alcance Mínimo
+PROXIMA ENTREGA: se realizará la CRUD Cliente
 
 Regularidad:
 |Req|Detalle|
