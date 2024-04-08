@@ -6,9 +6,7 @@
 * 48833 - Leandro Soler
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
-
+* [frontend app](https://github.com/aguspach93/frontend)
+* [backend app](https://github.com/aguspach93/backend).
 ## Tema
   Sistema autogestion en supermercado
