@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+El sistema web propuesto está diseñado para satisfacer las necesidades operativas de "La Gallega", una cadena de supermercados con sucursales en Rosario. Con funcionalidades que abarcan desde la gestión de inventarios y pedidos hasta la administración de catálogos, promociones, proveedores, empleados y clientes, el sistema busca simplificar y optimizar las operaciones diarias de la empresa.
 
 ### Modelo
 ![imagen del modelo]()
