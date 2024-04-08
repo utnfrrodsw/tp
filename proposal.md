@@ -23,7 +23,7 @@ Servicio de streaming de podcast y audiolibros online por suscripción, los usua
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
+
 
 Regularidad:
 |Req|Detalle|
