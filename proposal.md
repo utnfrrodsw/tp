@@ -2,51 +2,29 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 50955 - Scarpecci, Tomás Agustín
+* 51434 - Vuelta, Tomás Manuel
+* 50462 - Aquilante, Jazmín
+* 51013 - Rodriguez, Maria Julieta
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/tomasscarpecci/frontend-app)
+* [backend app](https://github.com/tomasscarpecci/backend-app)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Nuestro Software se basa en una aplicación que funciona como un portal de noticias. Los usuarios podrán suscribirse a la plataforma aceptando un plan de pago, que puede variar de acuerdo al tipo de suscripcion (unipersonal, familiar, business). En la app se podrán visualizar noticias de diferentes editoriales asociadas a la plataforma y así poder tener diferentes puntos de vista sobre un mismo hecho. Lo innovador es que se podrán leer noticias completas de varios diarios (nacionales e internacionales) contratando una sola suscripcion, sin tener que registrarse en la pagina de cada editorial.
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+[Draw.io](https://app.diagrams.net/#G1vNt57zkz5b0-Ddx8Oxv6-CXo2ww_BEuQ#%7B%22pageId%22%3A%22BZU_zNHKANrZMkoOcO2Y%22%7D) 
 
 ## Alcance Funcional 
-
-### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
-Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Categoria<br>2. CRUD Usuario<br>3. CRUD Editorial<br>4. CRUD TipoSuscripcion|
+|CRUD dependiente|1. CRUD Noticia {depende de} CRUD Categoria<br>2. CRUD Suscripción {depende de} CRUD TipoSuscripcion<br>3. CRUD PrecioSuscripcion {depende de} CRUD TipoSuscripcion |
+|Listado<br>+<br>detalle| 1. Listado de noticias filtrado por categoría, muestra título, fecha y editorial => detalle muestra datos de la noticia y la editorial<br> 2. Listado de suscriptores filtrado por tipo suscripción, muestra nombre, usuario, mail, edad ⇒ detalle CRUD Suscriptor<br>3. Listado de noticias filtrado por suscriptor, muestra categoría de la noticia |
+|CUU/Epic|1. Realizar suscripción de categoría para poder ver la noticia completa.<br>2.Anular suscripción si desea no continuar con esa categoría.|
 
-
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
-
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+## WorkSpace
+[Notion](https://www.notion.so/Workspace-Desarrollo-de-SW-73c2ff5055bc4f3ea4d0dc12968b0895?pvs=4)
