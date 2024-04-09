@@ -21,6 +21,9 @@ Representa una plataforma web de compra y venta de productos que se diseñó par
 
 ## Alcance Funcional 
 
+##Primer CRUD a desarrollar
+1. CRUD Persona
+
 ### Alcance Mínimo
 
 *Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
