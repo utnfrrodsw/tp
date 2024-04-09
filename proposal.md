@@ -4,9 +4,9 @@
 
 ### Integrantes
 
-*47138 - Marcosano, Mauro Agustin
-*46860 - Ceballos, Ramiro
-\*46848 - Hoyos, Alex Nicolás
+47138 - Marcosano, Mauro Agustin
+46860 - Ceballos, Ramiro
+46848 - Hoyos, Alex Nicolás
 
 ### Repositorios
 
