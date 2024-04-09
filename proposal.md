@@ -20,8 +20,6 @@ El sistema de gestión web para locales de venta de productos en general optimiz
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
