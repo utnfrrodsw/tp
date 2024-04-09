@@ -1,8 +1,9 @@
-# Propuesta TP DSW
+# Propuesta TP DSW 2024 - COM 305 - Money Manager
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 43187 - Tisocco, Lucas
+* 42780 - Martinez, Santiago
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,7 +12,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+*Una aplicacion para logueo de expensas y administracion de finanzas personales*
 
 ### Modelo
 ![imagen del modelo]()
