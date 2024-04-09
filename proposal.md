@@ -14,7 +14,7 @@
 El sistema de gestión web para locales de venta de productos en general optimiza operaciones diarias. Desde control de inventario hasta ventas y atención al cliente, ofrece soluciones integrales. Facilita seguimiento de stock, registro de ventas y gestión de clientes. Asigna roles específicos a empleados para una operación eficiente. Mejora productividad y satisface demandas del mercado
 
 ### Modelo
-[![Mermaid][(https://www.mermaidchart.com/raw/141be040-305b-48e5-8d57-aeadefcfd581?theme=dark&version=v0.1&format=svg)]
+[![Mermaid](https://www.mermaidchart.com/raw/141be040-305b-48e5-8d57-aeadefcfd581?theme=dark&version=v0.1&format=svg)
 
 ## Alcance Funcional 
 
