@@ -2,7 +2,8 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51841 - Redaelli, Martín
+* 50553 - Riguetto, Fabricio
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,7 +12,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+El sistema de gestión web para locales de venta de productos en general optimiza operaciones diarias. Desde control de inventario hasta ventas y atención al cliente, ofrece soluciones integrales. Facilita seguimiento de stock, registro de ventas y gestión de clientes. Asigna roles específicos a empleados para una operación eficiente. Mejora productividad y satisface demandas del mercado
 
 ### Modelo
 ![imagen del modelo]()
