@@ -1,0 +1,61 @@
+body {
+    /* background-color: rgb(61, 57, 57); */
+    margin: 0;
+}
+
+header {
+    background-color: rgb(165, 122, 105);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.Titulo {
+    color: #ffffff;
+    justify-content: center ;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Playfair Display', serif;
+}
+
+a {
+    text-decoration: none;
+    color: #75625b;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    margin-right: 10px;
+}
+
+nav a {
+    font-weight: 500;
+    padding-right: 30px;
+    font-family: 'Open Sans', sans-serif;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);   
+}
+
+.formularioRegister{
+    display: flex;
+    background-color: orange;
+    border-color: yellow;
+    justify-items: baseline;
+    height: 20rem;
+    width: 24rem;
+}
+.itemRegister{
+    display: flex;
+    align-items: flex-start;
+    padding: 5%;
+    margin: 20px;
+}
