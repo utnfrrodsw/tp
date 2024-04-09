@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 47884 - Ramirez, Ignacio - (Com 305)
+* - Sarkissian, Milton - (Com 304)
+* - Dominio, Constanza - (Com 304)
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
