@@ -3,8 +3,8 @@
 ## Grupo
 ### Integrantes
 * 47884 - Ramirez, Ignacio - (Com 305)
-* - Sarkissian, Milton - (Com 304)
-* - Dominio, Constanza - (Com 304)
+* 48947 - Sarkissian, Milton - (Com 304)
+* 49687 - Dominio, Constanza - (Com 304)
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
