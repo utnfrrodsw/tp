@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51648 - Dowd Lucas
+* 50470 - Silpituca Lorenzo
+* 51357 - Rodriguez Martiniano
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
