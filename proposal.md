@@ -7,8 +7,8 @@
 * 49687 - Dominio, Constanza - (Com 304)
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app](https://github.com/Ignacioramirez98/Tp-Dsw-FrontEnd)
+* [backend app](https://github.com/Ignacioramirez98/Tp-Dsw-BackEnd)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
