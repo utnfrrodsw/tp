@@ -1,52 +1,140 @@
-# Propuesta TP DSW
-
-## Grupo
-### Integrantes
-* legajo - Apellido(s), Nombre(s)
-
-### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
-
-## Tema
-### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
-
-### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
-
-## Alcance Funcional 
-
-### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
-Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+<h1><strong>Propuesta TP DSW </strong></h1>
 
 
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+<br>
+
+<h3>Grupo</h3>
+
+Integrantes
 
 
-### Alcance Adicional Voluntario
+48177 - Vivas, Magali
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
 
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+49847 - Birchmeyer, Alex
 
+
+47286 - Battista, Jonatan
+
+
+49384 - Sacchini, Tomas
+
+
+
+
+<br>
+
+
+
+<h3>Repositorios</h3>
+
+
+<u>frontend app </u> Nota: aún no fue creado.
+
+
+<u>backend app </u> Nota: aún no fue creado.
+
+
+
+<hr>
+
+
+
+
+
+<h3>Tema:  “Sistema para pinturería” </h3>
+
+
+<strong>Descripción </strong>
+
+El sistema se encargará de proveer servicios para una pinturería familiar con múltiples sucursales. Servirá como un sistema de gestión interno para realizar el control de stock, actualización de precios y administración de los productos que se encuentren a la venta. También, le otorgará al cliente la posibilidad de acceder a un listado de los productos que se encuentran disponibles y si lo desea, realizar la compra desde la comodidad de su hogar.
+
+
+<br>
+<bold>
+ Modelo
+
+
+Alcance Funcional
+</bold>
+
+
+
+![TP DSW drawio](https://github.com/MaguiVivasDSW/TP-DSW-2024-/assets/166454023/ccefe73c-069a-4196-bed4-37946a9b6b15)
+
+
+
+
+
+
+
+<table>
+    <tbody>
+        <tr>
+            <th rowspan="4">CRUD SIMPLE</th>
+            <td>CRUD Sucursal</td>
+        </tr>
+        <tr>
+            <td>CRUD Persona</td>
+        </tr>
+        <tr>
+            <td>CRUD Localidad</td>
+        </tr>
+        <tr>
+            <td>CRUD Producto</td>
+        </tr>
+        <tr>
+            <th rowspan="7">CRUD DEPENDIENTE</th>
+            <td>CRUD Pedido {depende de} CRUD Producto</td>
+        </tr>
+        <tr>
+            <td>CRUD Ítem {depende de} CRUD pedido</td>
+        </tr>
+        <tr>      
+            <td>CRUD Envío {depende de} CRUD Pedido</td>
+        </tr>
+        <tr>
+            <td>CRUD Venta {depende de} CRUD Pedido</td>
+        </tr>
+        <tr>
+            <td>CRUD Cliente {depende de} CRUD Persona</td>
+        </tr>
+        <tr>
+            <td>CRUD Vendedor {depende de} CRUD Persona</td>
+        </tr>
+        <tr>
+            <td>CRUD Proveedor {depende de} CRUD Persona</td>
+        </tr>
+        <tr>
+            <th rowspan="3">LISTADO + DETALLE</th>
+            <td>Listado de productos filtrado por tipo de producto, muestra producto y precio => detalle CRUD Producto</td>
+        </tr>
+        <tr>
+            <td>Listado de ventas filtrado por rango de fecha, muestra venta, producto, cliente => detalle muestra datos completos del pedido, cliente y envío en caso de ser necesario.</td>
+        </tr>
+        <tr>
+            <td>Listado de productos filtrado por tipo de producto, muestra producto y cantidad disponible => detalle muestra CRUD Producto</td>
+        </tr>
+        <tr>
+            <th rowspan="4">CUU/EPIC</th>
+            <td>Realizar la compra de un producto.</td>
+        </tr>
+        <tr>
+            <td>Realizar la preparación de un pedido.</td>
+        </tr>
+        <tr>
+            <td>Actualización de stock de un producto.</td>
+        </tr>
+        <tr>
+            <td>Cancelación de un pedido realizado.</td>
+        </tr>
+        <tr>
+            <th>OTROS</th>
+            <td>Envío de correo al cliente cuando realiza la compra.</td>
+        </tr>
+    </tbody>
+</table>
+
+ 
+<strong>Primer CRUD a presentar:</strong>
+CRUD Sucursal
