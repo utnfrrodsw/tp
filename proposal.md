@@ -34,17 +34,5 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
-
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+|CRUD |CRUD Producto<br>CRUD Cliente<br>CRUD Ventas<br>CRUD Empleado<br>CRUD Sucursal|
+|CUU/Epic|CUU 1.1 Cargar Productos<br>CUU 1.2 Modificar Productos<br>CUU 2.1 Realizar nueva Venta<br>CUU 2.2 Informar detalles de un producto<br>CUU 2.3 Gestionar ABM Cliente<br>CUU 2.4 Ver historial de Ventas<br>CUU 3.1 Gestionar ABM Sucursales<br>CUU 4.1 Gestionar ABM Empleados<br>|
