@@ -4,7 +4,7 @@
 ### Integrantes
 * 26467 - Jiménez, Verónica
 * 37668 - Gonzalez, Alexis
-* 44105 - Arancibia. Alexis Alejandro
+* 44105 - Arancibia, Alexis Alejandro
 * 45282 - Altamirano, Edgar Gastón
 
 ### Repositorios
