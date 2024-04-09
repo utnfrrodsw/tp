@@ -6,9 +6,8 @@
 * 50553 - Riguetto, Fabricio
 
 ### Repositorios
-* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/Fabririguetto/Frontend-dsw.git))
-* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/Fabririguetto/Backend-dsw.git))
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app]((https://github.com/Fabririguetto/Frontend-dsw.git))
+* [backend app]((https://github.com/Fabririguetto/Backend-dsw.git))
 
 ## Tema
 ### Descripción
