@@ -1,9 +1,9 @@
-Propuesta TP DSW
+<h1><strong>Propuesta TP DSW </strong></h1>
 
 
+<br>
 
-
-Grupo
+<h3>Grupo</h3>
 
 Integrantes
 
@@ -22,47 +22,43 @@ Integrantes
 
 
 
+<br>
+
+
+
+<h3>Repositorios</h3>
+
+
+<u>frontend app </u> Nota: aún no fue creado.
+
+
+<u>backend app </u> Nota: aún no fue creado.
+
+
+
+<hr>
 
 
 
 
-Repositorios
+
+<h3>Tema:  “Sistema para pinturería” </h3>
 
 
-frontend app Nota: aún no fue creado.
-
-
-backend app Nota: aún no fue creado.
-
-
-
-
-
-
-
-
-
-Tema
-
-
-“Sistema para pinturería”
-
-
-Descripción
-
+<strong>Descripción </strong>
 
 El sistema se encargará de proveer servicios para una pinturería familiar con múltiples sucursales. Servirá como un sistema de gestión interno para realizar el control de stock, actualización de precios y administración de los productos que se encuentren a la venta. También, le otorgará al cliente la posibilidad de acceder a un listado de los productos que se encuentran disponibles y si lo desea, realizar la compra desde la comodidad de su hogar.
 
 
-
-
-
-
-
-Modelo
+<br>
+<bold>
+ Modelo
 
 
 Alcance Funcional
+</bold>
+
+
 
 ![TP DSW drawio](https://github.com/MaguiVivasDSW/TP-DSW-2024-/assets/166454023/ccefe73c-069a-4196-bed4-37946a9b6b15)
 
@@ -71,111 +67,74 @@ Alcance Funcional
 
 
 
-Req
-Detalle
 
-
-
-
-CRUD simple
-
-
-1 - CRUD Persona
-
-
-2 - CRUD Localidad
-
-
-3 - CRUD Producto
-
-
-4 - CRUD Sucursal
-
-
-
-
-
-CRUD dependiente
-
-
-1 - CRUD Pedido {depende de} CRUD Producto
-
-
-2 - CRUD Ítem {depende de} CRUD pedido
-
-
-3 - CRUD Envío {depende de} CRUD Pedido
-
-
-4 - CRUD Venta {depende de} CRUD Pedido
-
-
-5 - CRUD Cliente {depende de} CRUD Persona
-
-
-6 - CRUD Vendedor {depende de} CRUD Persona
-
-
-7 - CRUD Proveedor {depende de} CRUD Persona
-
-
-
-
-
-
-
-
-
-
-
-Listado + detalle
-
-
-1 - Listado de productos filtrado por tipo de producto, muestra producto y precio => detalle CRUD Producto
-
-
-2 - Listado de ventas filtrado por rango de fecha muestra venta, producto, cliente => detalle muestra datos completos del pedido, cliente y envío en caso de ser necesario.
-
-
-3 - Listado de productos filtrado por tipo de producto, muestra producto y cantidad disponible => detalle muestra CRUD Producto
-
-
-
-
-
-
-
-
-CUU/Epic
-
-
-1 - Realizar la compra de un producto.
-
-
-2 - Realizar la preparación de un pedido.
-
-
-3 - Actualización de stock de un producto.
-
-
-4 - Cancelación de un pedido realizado.
-
-
-
-
-
-
-Otros
-
-
-Envío de correo al cliente cuando realiza la compra
-
-
-
-
+<table>
+    <tbody>
+        <tr>
+            <th rowspan="4">CRUD SIMPLE</th>
+            <td>CRUD Sucursal</td>
+        </tr>
+        <tr>
+            <td>CRUD Persona</td>
+        </tr>
+        <tr>
+            <td>CRUD Localidad</td>
+        </tr>
+        <tr>
+            <td>CRUD Producto</td>
+        </tr>
+        <tr>
+            <th rowspan="7">CRUD DEPENDIENTE</th>
+            <td>CRUD Pedido {depende de} CRUD Producto</td>
+        </tr>
+        <tr>
+            <td>CRUD Ítem {depende de} CRUD pedido</td>
+        </tr>
+        <tr>      
+            <td>CRUD Envío {depende de} CRUD Pedido</td>
+        </tr>
+        <tr>
+            <td>CRUD Venta {depende de} CRUD Pedido</td>
+        </tr>
+        <tr>
+            <td>CRUD Cliente {depende de} CRUD Persona</td>
+        </tr>
+        <tr>
+            <td>CRUD Vendedor {depende de} CRUD Persona</td>
+        </tr>
+        <tr>
+            <td>CRUD Proveedor {depende de} CRUD Persona</td>
+        </tr>
+        <tr>
+            <th rowspan="3">LISTADO + DETALLE</th>
+            <td>Listado de productos filtrado por tipo de producto, muestra producto y precio => detalle CRUD Producto</td>
+        </tr>
+        <tr>
+            <td>Listado de ventas filtrado por rango de fecha, muestra venta, producto, cliente => detalle muestra datos completos del pedido, cliente y envío en caso de ser necesario.</td>
+        </tr>
+        <tr>
+            <td>Listado de productos filtrado por tipo de producto, muestra producto y cantidad disponible => detalle muestra CRUD Producto</td>
+        </tr>
+        <tr>
+            <th rowspan="4">CUU/EPIC</th>
+            <td>Realizar la compra de un producto.</td>
+        </tr>
+        <tr>
+            <td>Realizar la preparación de un pedido.</td>
+        </tr>
+        <tr>
+            <td>Actualización de stock de un producto.</td>
+        </tr>
+        <tr>
+            <td>Cancelación de un pedido realizado.</td>
+        </tr>
+        <tr>
+            <th>OTROS</th>
+            <td>Envío de correo al cliente cuando realiza la compra.</td>
+        </tr>
+    </tbody>
+</table>
 
  
-Primer CRUD a presentar
-
-
+<strong>Primer CRUD a presentar:</strong>
 CRUD Sucursal
