@@ -2,21 +2,21 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 49499 Condori Sosa, Juan Ignacio
+* 24919 Hernández, Fabrik
+* 41514 Contreras, Sebastian
+
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/condorijuan/TP_DSW_Frontend)
+* [backend app](https://github.com/condorijuan/TP_DSW_Backend)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Sistema para que un cliente saque cita para el odontólogo y a la vez habilita a un profesional a revisar/modificar el historial médico del paciente/cliente para agregar los tratamientos realizados en la cita.
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![imagen del modelo](Tp_Odontologia.png)
 
 ## Alcance Funcional 
 
@@ -27,17 +27,17 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Cliente<br>2. CRUD Profesional<br>3. CRUD Tratamiento<br>3. CRUD Estado_Cita<br>3. CRUD Tipo_Cita|
+|CRUD dependiente|1. CRUD Historia Clínica {depende de} CRUD Cliente<br>2. CRUD Cita {depende de} CRUD Cliente y Profesional<br>3. CRUD Costo_Tratamiento {depende de} CRUD|
+|Listado<br>+<br>detalle| 1.Listado de tratamientos recibidos del paciente => Historia Clinica<br> 2. Listado de Profesionales disponibles para un día determinado|
+|CUU/Epic|1. Realizar una cita en la clínica odontológica<br>2. Registro de tratamientos en el Historial clínico|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Inventario<br>2. CRUD Factura (Por definir)<br>3. CRUD Alergias<br>4. CRUD Antecedentes genético<br>5. CRUD Costo_Inventario|
+|CUU/Epic|1. Realizar una cita en la clínica odontológica<br>2. Registro de tratamientos en el Historial clínico<br>3. Generación y consulta de factura|
 
 
 ### Alcance Adicional Voluntario
@@ -46,7 +46,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Lista de todas las citas que tenga un profesional para un dia|
+|CUU/Epic|1. Administración de cantidad de inventario o establecimiento de horario de trabajo (por el profesionalidad)|
+|Otros|1. Envío de recordatorio de cita por gmail|
 
