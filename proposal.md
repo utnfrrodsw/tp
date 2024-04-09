@@ -6,8 +6,8 @@
 * 50553 - Riguetto, Fabricio
 
 ### Repositorios
-* [frontend app]((https://github.com/Fabririguetto/Frontend-dsw.git))
-* [backend app]((https://github.com/Fabririguetto/Backend-dsw.git))
+* [frontend app](https://github.com/Fabririguetto/Frontend-dsw.git)
+* [backend app](https://github.com/Fabririguetto/Backend-dsw.git)
 
 ## Tema
 ### Descripción
