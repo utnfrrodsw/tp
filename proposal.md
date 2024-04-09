@@ -6,8 +6,8 @@
 * 44830 - Piernas, Delfina
 
 ### Repositorios
-* [frontend app](http://link)
-* [backend app](http://link)
+* [frontend app](https://github.com/Bozio96/tp-dsw-front)
+* [backend app](https://github.com/Bozio96/tp-dsw-back)
 
 ## Tema
 ### Descripción
@@ -16,7 +16,9 @@ En la pantalla de admin: Podrá hacer un CRUD de los productos, y los clientes q
 El metodo de logueo será Google Auth.
 
 ### Modelo
-![imagen del modelo]()
+![imagen seccion de productos](https://res.cloudinary.com/dnfil5isx/image/upload/v1712679723/WhatsApp_Image_2024-04-09_at_10.37.46_x2pyn2.jpg)
+![imagen seccion de reservas](https://res.cloudinary.com/dnfil5isx/image/upload/v1712679723/WhatsApp_Image_2024-04-09_at_11.14.49_1_hfoyzl.jpg)
+![imagen seccion de carrito](https://res.cloudinary.com/dnfil5isx/image/upload/v1712679834/WhatsApp_Image_2024-04-09_at_12.25.22_mmbu1n.jpg)
 
 ## Alcance Funcional 
 
