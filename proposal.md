@@ -4,7 +4,7 @@
 ### Integrantes
 * 48706 - Feldkircher, Valentin
 * 51836 - Capiglioni, Bruno
-* 51462 - Forestello, García Joaquín
+* 51462 - García Forestello, Joaquín
 
 ### Repositorios
 * [frontend app](https://github.com/joaquingarciaf9/TP-DSW-Front.git)
