@@ -2,6 +2,7 @@
 
 ## Grupo
 ### Integrantes
+* 42062 - Lautaro Coria
 * 47787 - Agustin Pacheco
 * 48833 - Leandro Soler
 
