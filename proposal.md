@@ -2,19 +2,20 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 50984-Aimaretti, Renzo
+* 51848-Amelio Ortiz, Ignacio
+* 50379-de Elia, Juan Manuel
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [Monorepo]: https://github.com/RenzoAimaretti/Cinemateca
+
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Decidimos crear una web app donde los usuarios puedan consultar información relevante sobre las películas y/o series que deseen. Podrán filtrar por: Título, año, director, actor y más. Además contará con listas que se actualizarán diariamente, dichas listas contendrán películas y/o series según temáticas tales como más vistas del mes, mejor puntuadas, ideales para ver en familia, etc. También los usuarios registrados podrán crear sus propias listas.
 
 ### Modelo
-![imagen del modelo]()
+![imagen del modelo de dominio](./MD.png)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
