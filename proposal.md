@@ -2,21 +2,19 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 46627 - Nicolás, García
+* 47216 - Mateo, Rindello
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/nicogarcia98/muebleria-frontend)
+* [backend app](https://github.com/nicogarcia98/muebleria-frontend)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Vamos a realizar un sitio de para una mueblería. La propuesta es para ver las ventas de artículos (muebles) de cada vendedor. Cada articulo tiene un tipo de artículo. En la sección ventas se podrá ver los muebles vendidos por cada vendedor y tambien se van a calcular los tipos de artículos más vendidos. Las ventas se identifican con un código, además se registra el cliente y el vendedor que la realizó. Una vez registrada la venta se arma una "entrega" de los articulos de la venta. Las entregas están codificadas y poseen fecha de entrega y direccion de envío.
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![imagen del modelo](https://github.com/nicogarcia98/muebleria-frontend/blob/main/diagrams/DER.png)
 
 ## Alcance Funcional 
 
@@ -27,10 +25,10 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Tipo Mueble<br>2. CRUD Cliente<br>3. CRUD Vendedor<br>4. CRUD Entrega|
+|CRUD dependiente|1. CRUD Mueble depende de CRUD Tipo Mueble<br>2. CRUD Venta depende de CRUD Cliente,Vendedor<br>3. CRUD Venta_Mueble depende de CRUD Venta y Mueble|
+|Listado<br>+<br>detalle| 1. Listado de muebles filtrado por tipo de mueble, muestra codigo, descripcion tipo mueble, descripcion mueble, stock => detalle CRUD Mueble<br> 2. Ejemplo: //Listado de ventas filtrado por vendedor, muestra codigo venta, nombre y apellido cliente, fecha entrega, direccion entrega, celda clickeable que abra un pop up mostrando el detalle de los muebles que vendió el vendedor en dicha venta => detalle muestra datos completos de la venta y de la entrega|
+|CUU/Epic|1. Registrar una venta.<br>2. Agregar un mueble con su stock|
 
 
 Adicionales para Aprobación
