@@ -7,7 +7,7 @@
 
 ### Repositorios
 * [frontend app](https://github.com/nicogarcia98/muebleria-frontend)
-* [backend app](https://github.com/nicogarcia98/muebleria-frontend)
+* [backend app](https://github.com/nicogarcia98/muebleria-backend)
 
 ## Tema
 ### Descripción
