@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 45242 - Castelli, Juan Pablo
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,7 +11,8 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Juego de cartas por turnos, cada jugador deberá crease una cuenta y recibirá un mazo genérico y luego podrá conseguir cartas nuevas canjeandolas con códigos.
+Los jugadores podrán jugar partidas entre ellos de lo que se registrará el historial de los resultados de estas y también podrán intercambiar cartas.
 
 ### Modelo
 ![imagen del modelo]()
