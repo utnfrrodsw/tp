@@ -13,18 +13,16 @@
 
 ## Tema
 ### Descripción
-*Se pretende crear CRM para una empresa donde *
+*Se pretende crear CRM (Customer Relationship Management) para una empresa que vendedorea de amaquinarias agricolas y prestadoras de servicios en relacion a las mismas. Se intenta manejas desde el momento de la generacion de una lead u oportunidad de venta a traves de la pagina web hasta que se concrete de manera exitosa o no la misma.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![imagen del modelo](https://github.com/Ignacioramirez98/Tp-Dsw-Com304-305-Dominio-Ramirez-Sarkissian/blob/main/modeloFinal.jpg)
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
