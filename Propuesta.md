@@ -17,7 +17,7 @@ Las funcionalidades que van a tener fijas son las opciones de ingresar y sacar v
 
 ### Modelo
 
-![Imgur](https://imgur.com/a/zBFx7sQ)
+![Imgur](https://i.imgur.com/Cvsi2WT.png)
 
 ## Alcance Funcional 
 
