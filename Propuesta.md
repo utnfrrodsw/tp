@@ -35,7 +35,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD ||CRUD simple|1. CRUD categoría<br>2. CRUD modo de usuario<br>3. CRUD cierre_caja|
+|CRUD |1. CRUD categoría<br>2. CRUD modo de usuario<br>3. CRUD cierre_caja<br>
 4. CRUD Tarifa que depende de CRUD Categoria<br>5. CRUD ticket depende de CRUD usuario y CRUD tarifa|
 |CUU/Epic|1-Realizar cierre de caja<br>2-Actualizar tarifas (puede darse el caso de que hayas autos en el estacionamiento)<br>3-Crear una nueva categoria|
 
