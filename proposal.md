@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+*Se pretende crear CRM para una empresa donde *
 
 ### Modelo
 ![imagen del modelo]()
@@ -30,21 +30,19 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Cliente<br>2. CRUD Venta<br>3. CRUD Producto|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD dependiente|1. CRUD Venta {depende de} CRUD Cliente<br>2. CRUD Cliente {depende de} CRUD Localidad|
+|Listado<br>+<br>detalle| 1. Listado de Clientes, muestra idCliente, nombre, apellido, localidad, mail y telefono  => detalle CRUD Cliente<br> 2. Listado de Ventas filtrado por rango de fecha => detalle muestra datos completos de la Venta|
+|CUU/Epic|1. Solicitar un Servicio<br>2. Concretar Venta|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Cliente<br>2. CRUD Venta<br>3. CRUD Producto<br>4. CRUD Vendedor<br>5. CRUD Servicio<br>6. CRUD Operario|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CUU/Epic|1. Solicitar un Servicio<br>2. Concretar Venta<br>3. Realizar facturación de la Venta|
 
 
 ### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
 
 |Req|Detalle|
 |:-|:-|
