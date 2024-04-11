@@ -15,7 +15,7 @@ Juego de cartas por turnos, cada jugador deberá crease una cuenta y recibirá u
 Los jugadores podrán jugar partidas entre ellos de lo que se registrará el historial de los resultados de estas y también podrán intercambiar cartas.
 
 ### Modelo
-![imagen del modelo]()
+[Diagrama de clases.mmd](https://github.com/jpcastelli58/TP-DSW-Juego-Cartas/blob/main/Diagrama%20de%20clases.mmd)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
