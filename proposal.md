@@ -17,3 +17,12 @@
 |:-|:-|
 |CRUD simple|1. CRUD Tipo Pag<br>2. CRUD Usuario<br>3. CRUD Producto|
 |CRUD dependiente|1. CRUD Carrito {depende de} CRUD Producto<br>2. CRUD Pago {depende de} CRUD Usuario|
+### Alcance Adicional Voluntario
+
+*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
+
+|Req|Detalle|
+|:-|:-|
+|Listados ||
+|CUU/Epic||
+|Otros||
