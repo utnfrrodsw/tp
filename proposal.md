@@ -11,7 +11,7 @@
 * [backend app](https://github.com/aguspach93/backend).
 ## Tema
   Sistema autogestion en supermercado
-Regularidad:
+## Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
