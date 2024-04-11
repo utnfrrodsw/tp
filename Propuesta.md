@@ -1,21 +1,18 @@
 # Propuesta TP DSW
 
-## Grupo “Los tiburones”
 ### Integrantes
 * 44123-Milanesi Renzo
-* 49499-Condori Sosa Juan Ignacio
 * 46291-Gamba Emiliano Francisco
-* 48808-Facundo Manuel Ramírez 
 
 
 ### Repositorios
 *  [FRONTEND app](https://github.com/gitgamba/Frontend-DSW.git)
-* [BACKEND app](https://github.com/gitgamba/Backend-DSW.git)
+* [BACKEND app](https://github.com/gitgamba/DSW-TP-BE)
 
 ## Tema
 ### Descripción
-Vamos a crear un E-commerce que va a ser un simulacro de una página real.
-Las funcionalidades que van a tener fijas son las opciones de listar productos, mostrar detalles de los productos, crear carro de compras, eliminar producto del carrito de compras, manejar una base de usuarios en MYSQL, agregar productos nuevos a la página, administrar envíos (historial por usuario)
+Vamos a crear un Sistema de Gestion Web que va a permitir administrar estacionamientos.
+Las funcionalidades que van a tener fijas son las opciones de ingresar y sacar vehiculos emitiendo los respectivos tickets y calculando el importa, mostrar la ocupacion del estacionamientos, crear y administrar las categorias y sus respectivas tarifas, eliminar producto del carrito de compras, manejar una base de usuarios en MYSQL, agregar productos nuevos a la página, administrar envíos (historial por usuario)
 
 
 ### Modelo
