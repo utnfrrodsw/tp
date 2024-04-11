@@ -9,11 +9,10 @@
 ### Repositorios
 * [frontend app](https://github.com/Ignacioramirez98/Tp-Dsw-FrontEnd)
 * [backend app](https://github.com/Ignacioramirez98/Tp-Dsw-BackEnd)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*Se pretende crear CRM (Customer Relationship Management) para una empresa que vendedorea de amaquinarias agricolas y prestadoras de servicios en relacion a las mismas. Se intenta manejas desde el momento de la generacion de una lead u oportunidad de venta a traves de la pagina web hasta que se concrete de manera exitosa o no la misma.
+  Se pretende crear CRM (Customer Relationship Management) para una empresa que vendedora de maquinarias agricolas y prestadora de servicios en relación a las mismas. Se intenta manejar desde el momento de la generación de una lead u oportunidad de venta a través de la página web hasta que se concrete de manera exitosa o no la misma.
 
 ### Modelo
 
