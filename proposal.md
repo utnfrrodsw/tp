@@ -10,11 +10,10 @@
 * [frontend app](https://github.com/aguspach93/frontend)
 * [backend app](https://github.com/aguspach93/backend).
 ## Tema
-  Sistema autogestion en supermercado
+### Descripcion
+  Vamos a crear un sistema de autogestion para un supermecado que consta en que una persona pueda por ella misma imgresar al sistema con usuario propio y poder realizar una autogestion de los productos que va a comprar, eligiendo tambien las formas de pago y si quiere que su pedido sea enviado en otro momento o tambien poder realizar un pedido a futuro.
 ## Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Tipo Pag<br>2. CRUD Usuario<br>3. CRUD Producto|
+|CRUD dependiente|1. CRUD Carrito {depende de} CRUD Producto<br>2. CRUD Pago {depende de} CRUD Usuario|
