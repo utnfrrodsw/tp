@@ -46,7 +46,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Productos, muestra idProducto, descripcion, precio, stock <br>2. Servicio muestra idServicio, descripcion, precio|
+|CUU/Epic|1. Cancelación de la Venta<br>2. Envío de presupuesto|
+|Otros|1. Envío de recepción de solicitud de Servicio|
 
