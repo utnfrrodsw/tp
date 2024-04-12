@@ -3,6 +3,7 @@
 ## Grupo
 ### Integrantes
 * 51466 - Alberti, Pedro
+* 52049 - Consiglio, Micaela
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,7 +12,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+El sistema ofrece opciones para realizar sesiones de concentración con el método pomodoro, registra las horas diaras de concentración, tareas realizadas y lleva un registro. Con el mismo proporciona estadísticas acerca del progreso semanal y mensual.
 
 ### Modelo
 ![imagen del modelo]()
