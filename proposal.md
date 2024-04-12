@@ -2,51 +2,47 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51136 - Cano, Julián
+* 42795 - Delbianco, Emanuel Iván
+* 50275 - Panatti, Marina Andrea
+* 50429 - Spitale, Camila
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app]
+* [backend app]
 
 ## Tema
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+PetGuardian permite a sus usuarios reservar un servicio de cuidado de mascotas. Podrán elegir entre los cuidadores disponibles, reservar los días que sean necesarios y coordinar las visitas a su domicilio. Para asegurar la calidad del servicio los cuidadores serán evaluados y aprobados por un administrador. Al final de la experiencia los clientes podrán reseñar las visitas y asignar un puntaje.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+[Diagrama de Clases](https://drive.google.com/file/d/10Lp5SGvsbdNWY-dEyrsU1QMi-pRPHlO3/view?usp=sharing)
 
-## Alcance Funcional 
+## Alcance Funcional
 
 ### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD Cliente<br>3. CRUD Administrador<br>4. CRUD Cuidador|
+|CRUD dependiente|1. CRUD Reserva {depende de} CRUD Cliente y CRUD Cuidador<br>2. CRUD Mascota {depende de} CRUD Cliente|
+|Listado<br>+<br>detalle| 1. Listado de reservas por período de tiempo seleccionado.<br> 2. Listado de cuidadores que incluya el número total de reservas realizadas, así como la cantidad de reservas completadas y canceladas, junto con las puntuaciones promedio.|
+|CUU/Epic|1. Crear Usuario<br>2. Crear Reserva|
 
-
-Adicionales para Aprobación
+### Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
+|CRUD |1. CRUD Usuario<br>2. CRUD Cliente<br>3. CRUD Administrador<br>4. CRUD Cuidador<br>5. CRUD Reseña<br>6. CRUD Reserva<br>7. CRUD Mascota<br>8. CRUD Estado|
+|CUU/Epic|1. Crear Usuario<br>2. Crear Reserva <br>3. Crear Reseña<br>4. Habilitar Cuidador<br>5. Cancelar Reserva|
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+|Listados |-|
+|CUU/Epic|-|
+|Otros|1. Enviar notificación de solicitud de reserva a Cuidador. <br>2. Enviar notificación de aceptación de reserva a Cliente. <br>3. Enviar notificación de cancelación de reserva a Cuidador.|
