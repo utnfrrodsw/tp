@@ -42,8 +42,8 @@ Nota: Obligatoriamente hay que hacer el CRUD de la clase PoliticasBiblioteca.
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |Todos los CRUD ya mencionados, incluyendo PoliticasBiblioteca|
+|CUU/Epic|1.Realizar un prestamo.<br>2.Realizar la devolucion de un prestamo.<br>3.Consultar mis prestamos(perspectiva del cliente) este caso de uso requiere el frontend para cliente y un usuario y contraseña.<br>4.Notificar prestamo atrasado.|
 
 
 ### Alcance Adicional Voluntario
@@ -52,7 +52,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |Todos los listados posibles.<br> 1.Busqueda de libro por titulo o categoria.<br>2.Busqueda de libros de un autor.<br>3.Busqueda de libros de una editorial.<br>4.Otros como listado de libros sin devolver, prestamos atrasados, socios sancionados, socios dados de baja, socios activos, prestamos en un intervalo de fecha.|
+|CUU/Epic|En cuanto al negocio, parece no haber ningun caso de uso dejado de lado.|
+|Otros|1. Envío de sancion por mail y/o por whatsapp. <br> 2. Ranking de libros mas prestados en general y por categoria.|
 
