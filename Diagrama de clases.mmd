@@ -133,6 +133,7 @@ namespace Lógica_Partida {
         Jugador ganador
         String resultado
         List~Turno~ turnos
+        Campo campo
     }
 
     class Jugador{
@@ -171,8 +172,11 @@ namespace Lógica_Partida {
     Combate -- Jugador
     Combate -- Jugador
     Combate -- Turno
+    Combate -- Campo
     Turno -- Jugador
     Turno -- Jugador
+    Jugador -- Usuario
     Campo -- CombatienteEnJuego
     Campo -- CombatienteEnJuego
+
 
