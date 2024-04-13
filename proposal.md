@@ -39,7 +39,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Lugar<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Usuario<br>6. CRUD Evento<br>7. CRUD Tipo Evento|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CUU/Epic|1. Crear un nuevo evento<br>2. Agregar o sacar invitados<br>3. Cancelar evento|
 
 
 ### Alcance Adicional Voluntario
