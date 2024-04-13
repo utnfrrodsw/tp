@@ -14,9 +14,9 @@
 El sistema ofrece opciones para realizar sesiones de concentración con el método pomodoro, registra las horas diaras de concentración, tareas realizadas y lleva un registro. Con el mismo proporciona estadísticas acerca del progreso semanal y mensual.
 
 ### Modelo
-![imagen del modelo]()
+![Modelo del Dominio](https://github.com/p-alberti/tp-dsw/blob/main/imgs/Modelo%20del%20Dominio.png)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+Link al modelo: https://app.diagrams.net/#G1uw_iLKr0lDe7JdFsH4q5jJvmTuxUvr-2#%7B"pageId"%3A"C5RBs43oDa-KdzZeNtuy"%7D
 
 ## Alcance Funcional 
 
