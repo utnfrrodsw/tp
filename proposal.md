@@ -3,7 +3,7 @@
 ## Grupo
 ### Integrantes
 * 51638 - Berlanda, Octavio
-* 50608 - Tourne, Lautaro
+* 50956 - Tourne, Lautaro
 * 51308 - Tuccori, Renzo
 
 ### Repositorios
