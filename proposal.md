@@ -33,7 +33,11 @@ Regularidad:
 
 Adicionales para Aprobación:
  
- <Aún no disponible>
+|Req|Detalle|
+|:-|:-|
+|CRUD |1. CRUD Usuario<br>2. CRUD Tipo de Sesión<br>3. CRUD Sesiones<br>4. CRUD Categorías<br>5. CRUD Tareas<br>6. CRUD Estado<br>|
+|CUU/Epic|1. Realizar una Sesión<br>2. Registrar usuario<br>|
+
 
 
 ### Alcance Adicional Voluntario
