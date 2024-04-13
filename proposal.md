@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51638 - Berlanda, Octavio
+* 50608 - Tourne, Lautaro
+* 51308 - Tuccori, Renzo
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,7 +13,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Elegimos desarrollar una plataforma para gestionar la organización de eventos. Nuestra aplicación de planificación y organización de eventos tiene como objetivo simplificar el proceso de planificación y ejecución tanto de eventos sociales como corporativos. Ofreceremos una plataforma integral que abarca todas las etapas del proceso, desde la concepción del evento hasta su realización final, ofreciendo funciones como gestión de invitados, seguimiento de presupuesto, listados de eventos, seguimiento del estado del evento, seguimiento de las tareas necesarias para el evento y selección de proveedores. 
 
 ### Modelo
 ![imagen del modelo]()
