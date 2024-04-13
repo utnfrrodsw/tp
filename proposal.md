@@ -2,9 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* 51638 - Berlanda, Octavio
-* 50956 - Tourne, Lautaro
-* 51308 - Tuccori, Renzo
+* 51638 - Berlanda, Octavio (Comisión 304)
+* 50956 - Tourne, Lautaro (Comisión 304)
+* 51308 - Tuccori, Renzo (Comisión 302)
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
