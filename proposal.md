@@ -16,9 +16,7 @@
 Elegimos desarrollar una plataforma para gestionar la organización de eventos. Nuestra aplicación de planificación y organización de eventos tiene como objetivo simplificar el proceso de planificación y ejecución tanto de eventos sociales como corporativos. Ofreceremos una plataforma integral que abarca todas las etapas del proceso, desde la concepción del evento hasta su realización final, ofreciendo funciones como gestión de invitados, seguimiento de presupuesto, listados de eventos, seguimiento del estado del evento, seguimiento de las tareas necesarias para el evento y selección de proveedores. 
 
 ### Modelo
-![imagen del modelo](https://drive.google.com/file/d/1wY-0JDNo3SaRp6FMSnI9KMyycjABL7qq/view?usp=sharing)
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+Imágen del modelo: https://drive.google.com/file/d/1wY-0JDNo3SaRp6FMSnI9KMyycjABL7qq/view?usp=sharing
 
 ## Alcance Funcional 
 
