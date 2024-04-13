@@ -35,7 +35,7 @@ Adicionales para Aprobación:
  
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Usuario<br>2. CRUD Tipo de Sesión<br>3. CRUD Sesiones<br>4. CRUD Categorías<br>5. CRUD Tareas<br>6. CRUD Estado<br>|
+|CRUD |1. CRUD Usuario<br>2. CRUD Tipo de Sesión<br>3. CRUD Sesión<br>4. CRUD Categoría<br>5. CRUD Tarea<br>6. CRUD Estado<br>|
 |CUU/Epic|1. Realizar una Sesión<br>2. Registrar usuario<br>|
 
 
