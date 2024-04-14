@@ -12,7 +12,6 @@
 
 - [frontend app](https://github.com/AlexNHoyos/dmcoffers-client)
 - [backend app](https://github.com/AlexNHoyos/dmcoffers-server-main)
-  _Nota_: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 
