@@ -20,7 +20,7 @@ La idea de nuestro proyecto es realizar un sistema donde se pueda realizar tanto
 Alcance Mínimo Aprobación Directa
 |Req|Detalle|
 |:-|:-|
-|CRUD|1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Informe<br>4. CRUD Imagen<br>5. CRUD Historia Clínica|
+|CRUD|1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Informe<br>4. CRUD Imagen<br>5. CRUD Turno|
 |Listado<br>+<br>detalle| 1. Listado de pacientes => detalle muestra listado de pacientes registrados en el sanatorio<br> 2. Listado de Operadores Medicos=> detalle informa los medicos registrados <br> 3. Listado de informes de Historia clinica => detalle muestra los estudios realizados por paciente<br> 4. Listado de pacientes internados => detalle muestra los pacientes internados, con sus datos personales y fecha de ingreso|
 |CUU/Epic|1.Dar de alta paciente <br>2. Realizar la recepción de un paciente<br>3. Realizar el check-in y check-out de un paciente internado<br>4. Registrar informe de estudio medico|
 
@@ -30,7 +30,6 @@ Nota: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcional
 
 |Req|Detalle|
 |:-|:-|
-|CRUD|1. CRUD Turno|
 |Listados |1.Listado de turnos disponibles<br>2.Listado de turnos otorgados<br>3. Listado de medicos disponibles para turnos<br>4.Listado de tipo de especialidades de medicos|
-|CUU/Epic|1. Solicita Turno<br>2. Cancela turno<br>3.|
+|CUU/Epic|1. Solicita Turno<br>2. Cancela turno<br>|
 |Otros|1. Envío de recordatorio de turno por email|**
