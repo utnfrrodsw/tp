@@ -11,7 +11,6 @@
 
 - [frontend app](http://hyperlinkToGihubOrGitlab)
 - [backend app](http://hyperlinkToGihubOrGitlab)
-  _Nota_: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 
@@ -21,7 +20,7 @@ _Una aplicación para logueo de expensas y administración de finanzas personale
 
 ### Modelo
 
-![imagen del modelo](https://drive.google.com/file/d/1y-bcqGD1OsLHkULzMul8POQGeQC0jbD2/view?usp=sharing)
+![https://drive.google.com/file/d/1y-bcqGD1OsLHkULzMul8POQGeQC0jbD2/view]()
 
 ## Alcance Funcional
 
