@@ -20,7 +20,7 @@ _Una aplicación para logueo de expensas y administración de finanzas personale
 
 ### Modelo
 
-![https://drive.google.com/file/d/1y-bcqGD1OsLHkULzMul8POQGeQC0jbD2/view]()
+![imagen del modelo](https://drive.google.com/file/d/1y-bcqGD1OsLHkULzMul8POQGeQC0jbD2/view)
 
 ## Alcance Funcional
 
