@@ -12,7 +12,7 @@
 
 ## Tema
 ### Descripción
-*Sitio virtual, en donde se gestionará el comercio de diversos artículos, y poseerá diversas funciones como poder ver los artículos, tener un carrito de compras, la posibilidad de tener diferentes formas de pago, y el alta, baja y modificación de productos y usuarios*
+*Sitio virtual, en donde se gestionará el comercio de diversos artículos, y poseerá diversas funciones como poder ver los artículos, tener un carrito de compras, la posibilidad de tener diferentes formas de pago, y el alta, baja y modificación de productos y usuarios
 
 ### Modelo
 ![imagen del modelo]()
@@ -23,14 +23,12 @@
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD localidad<br>2. CRUD tipo producto<br>3. CRUD cliente|
 |CRUD dependiente|1. CRUD producto {depende de} CRUD tipo producto<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de prodcuto filtrado por tipo de producto, muestra nro y tipo de producto => detalle CRUD producto<br> 2. Listado de ventas filtrado por rango de fecha, muestra nro de producto, fecha compra => detalle muestra datos completos de la venta|
+|Listado<br>+<br>detalle| 1. Listado de producto filtrado por tipo de producto, muestra nro y tipo de producto => detalle CRUD producto<br> 2. Listado de ventas filtrado por rango de fecha, muestra nro de producto, fecha compra => detalle muestra datos completos de la venta|
 |CUU/Epic|1. Añadir productos a un carro de compras<br>2. Realizar el pago de una compra|
 
 
