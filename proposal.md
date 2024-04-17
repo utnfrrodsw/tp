@@ -8,8 +8,8 @@
 * 42775 - Reinoso, Alfredo
 
 ### Repositorios
-* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/BrunoMar99/frontend))
-* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/BrunoMar99/backend))
+* [frontend app]https://github.com/exe72418/DDS-FRONTEND
+* [backend app]https://github.com/exe72418/DDS-BACKEND
 
 ## Tema
 ### Descripción
