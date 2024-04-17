@@ -15,9 +15,7 @@
 *Sitio virtual, en donde se gestionará el comercio de diversos artículos, y poseerá diversas funciones como poder ver los artículos, tener un carrito de compras, la posibilidad de tener diferentes formas de pago, y el alta, baja y modificación de productos y usuarios
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+Link de draw.io: https://drive.google.com/file/d/1_P_jPA0Y0_qz-vjOBSoM8SY9cgfIt4Er/view?usp=sharing
 
 ## Alcance Funcional 
 
