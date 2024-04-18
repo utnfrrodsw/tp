@@ -1,0 +1,73 @@
+html {
+  /* Sacado de https://css-pattern.com/ */
+  --s: 200px; /* control the size */
+  --c: #fff; /* first color */
+  
+  --_g: #0000 8%,var(--c) 0 17%,#0000 0 58%;
+  background: 
+    linear-gradient(135deg,#0000 20.5%,var(--c) 0 29.5%,#0000 0) 0 calc(var(--s)/4),
+    linear-gradient( 45deg,var(--_g)) calc(var(--s)/2) 0,
+    linear-gradient(135deg,var(--_g),var(--c) 0 67%,#0000 0),        
+    linear-gradient( 45deg,var(--_g),var(--c) 0 67%,#0000 0 83%,var(--c) 0 92%,#0000 0),
+    #6494eda0; /* second color */
+  background-size: var(--s) var(--s);
+}
+
+body{
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+  font-size: larger;
+}
+
+.form-container{
+  width: 500px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 50px
+}
+
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form+p, form p {
+  text-align: center;
+}
+
+input, button{
+  border-radius: 4px;
+  border: unset;
+  padding: 15px 30px;
+  font-size: larger;
+}
+
+button{
+  background-color: #6495ed;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error{
+  color: rgb(255, 81, 81);
+}
+
+.escondido{
+  display: none;
+}
+
+.sr-only{
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
