@@ -18,3 +18,18 @@ Servicio de streaming de podcast y audiolibros online por suscripción, los usua
 ![Diagrama Entidad-Relacion](https://github.com/hdborelli/TP_DSW_CBFN/blob/main/Assets/Modelo%20de%20base%20de%20datos.drawio.png)
 
 - [Modelo](https://drive.google.com/file/d/11ACZJqwl76ydJ1UTIr_Lcnx58QASBCiV/view?usp=drive_link)
+
+## Alcance funcional
+### Alcance Mínimo
+Regularidad:
+|Req|Detalle|
+|:-|:-|
+|CRUD simple|1. CRUD <br>2. CRUD <br>3. CRUD |
+|CRUD dependiente|1. CRUD  {depende de} CRUD <br>2. CRUD  {depende de} CRUD |
+|Listado<br>+<br>detalle| 1. Listado de  => detalle CRUD <br> 2. Listado de  => detalle |
+|CUU/Epic|1.<br>2. |
+Adicionales para Aprobación
+|Req|Detalle|
+|:-|:-|
+|CRUD |1. CRUD <br>2. CRUD <br>3. CRUD <br>4. CRUD <br>5. CRUD <br>6. CRUD<br>7. CRUD |
+|CUU/Epic|1. <br>2. <br>3.|
