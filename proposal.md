@@ -15,7 +15,8 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Se trata de una empresa dedicada a la venta de productos de computación, ofreciendo a sus clientes una buena atención y variedad de productos.El cliente una vez que haya realizado el pedido, podrá elegir si quiere retirarlo o si desea que se le envíe, el cual tendrá un costo. Cuando realice el pago, contará con descuento si la compra es de un cliente mayorista o si se compra 5 artículos o más.Le llegará un mail cuando se confirme la compra realizada.
 
 ### Modelo
 ![imagen del modelo]()
