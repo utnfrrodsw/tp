@@ -20,16 +20,9 @@ Servicio de streaming de podcast y audiolibros online por suscripción, los usua
 - [Modelo](https://drive.google.com/file/d/11ACZJqwl76ydJ1UTIr_Lcnx58QASBCiV/view?usp=drive_link)
 
 ## Alcance funcional
-### Alcance Mínimo
-Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD <br>2. CRUD <br>3. CRUD |
-|CRUD dependiente|1. CRUD  {depende de} CRUD <br>2. CRUD  {depende de} CRUD |
-|Listado<br>+<br>detalle| 1. Listado de  => detalle CRUD <br> 2. Listado de  => detalle |
-|CUU/Epic|1.<br>2. |
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD <br>2. CRUD <br>3. CRUD <br>4. CRUD <br>5. CRUD <br>6. CRUD<br>7. CRUD |
-|CUU/Epic|1. <br>2. <br>3.|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD Suscripcion<br>3. CRUD Capitulo<br>4. CRUD Coleccion<br>5. CRUD Categoria|
+|CRUD dependiente|1. CRUD Precio {depende de} CRUD Suscripcion<br>2. CRUD Usuario_Suscripcion {depende de} CRUD Usuario CRUD Suscripcion <br>3. CRUD Coleccion_Categoria {depende de} CRUD Capitulo CRUD Coleccion<br>4. CRUD Reproduccion {depende de} CRUD Usuario CRUD Capitulo|
+|Listado<br>+<br>detalle| 1. Listado de historial de Suscripciones => detalle CRUD Suscripcion<br> 2. Listado de Colecciones por categorias => detalle CRUD Coleccion|
+|CUU/Epic|1. Escuchar un "Audiolibro/Podcast"<br>2. Subir un "Audiolibro/Podcast"<br>|
