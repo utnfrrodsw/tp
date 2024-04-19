@@ -61,7 +61,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Inscripciones filtradas por alumno muestra a cuantos examenes finales se inscribio al alumno ingresando dos fechas|
+|Listados |1. Inscripciones (a examenes) filtradas por alumno muestra a cuantos examenes finales se inscribio al alumno ingresando dos fechas|2. Inscripciones a cursado de un alumno dado un periodo de fehcas especificos.
 |CUU/Epic|1. Inscribirse a examen/cursado<br>2. Cancelación de inscripción|
 |Otros|1. Envío de recordatorio de examen por email al alumno 48hs. antes de la fecha|
 
