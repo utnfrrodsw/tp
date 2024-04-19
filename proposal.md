@@ -18,5 +18,3 @@ Servicio de streaming de podcast y audiolibros online por suscripción, los usua
 ![Diagrama Entidad-Relacion](https://github.com/hdborelli/TP_DSW_CBFN/blob/main/Assets/Modelo%20de%20base%20de%20datos.drawio.png)
 
 - [Modelo](https://drive.google.com/file/d/11ACZJqwl76ydJ1UTIr_Lcnx58QASBCiV/view?usp=drive_link)
-
-- 
