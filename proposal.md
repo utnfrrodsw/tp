@@ -2,7 +2,11 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* D'Alleva, Berenice (Leg. 48846)
+
+* Giannone, María Belen (Leg. 51349)
+
+* Calvi Alfie, María Laura (Leg. 51465)
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
