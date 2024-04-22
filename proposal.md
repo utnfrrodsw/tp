@@ -15,7 +15,7 @@ La aplicación se encargará de registrar rutinas de entrenamiento, y poder llev
 
 
 ### Modelo
-![imagen del modelo](https://drive.google.com/file/d/1CvWQCOFsQmFGEMB5W5I2u1GV7GiX4tc1/view)
+* [imagen del modelo](https://drive.google.com/file/d/1CvWQCOFsQmFGEMB5W5I2u1GV7GiX4tc1/view?usp=sharing)
 
 ## Alcance Funcional 
 
