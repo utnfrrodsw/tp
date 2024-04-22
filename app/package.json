@@ -2,6 +2,7 @@
   "name": "app",
   "scripts": {
     "dev": "vue-cli-service serve",
+    "cypress:open": "cypress open",
     "build": "vue-cli-service build"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "cypress": "^13.7.3",
     "standard": "^17.1.0",
     "vue-cli-plugin-vuetify": "~2.5.8",
     "vue-template-compiler": "^2.6.14"
