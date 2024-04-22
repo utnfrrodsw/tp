@@ -5,6 +5,7 @@
 * 51322 - Cilfone, Angel
 * 50306 - Bay, Victoria
 * 47658 - Bianchi, Ignacio
+* 47051 - Cabezas, Sarahis
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
