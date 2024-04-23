@@ -9,7 +9,7 @@
 
 ### Repositorios
 * [frontend app]
-https://github.com/OctavioSesana/backend
+* backend: https://github.com/OctavioSesana/backend
 
 ## Tema
 ### Descripción
