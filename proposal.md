@@ -23,6 +23,6 @@ Servicio de streaming de podcast y audiolibros online por suscripción, los usua
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Usuario<br>2. CRUD Suscripcion<br>3. CRUD Capitulo<br>4. CRUD Coleccion<br>5. CRUD Categoria|
-|CRUD dependiente|1. CRUD Precio {depende de} CRUD Suscripcion<br>2. CRUD Usuario_Suscripcion {depende de} CRUD Usuario CRUD Suscripcion <br>3. CRUD Coleccion_Categoria {depende de} CRUD Capitulo CRUD Coleccion<br>4. CRUD Reproduccion {depende de} CRUD Usuario CRUD Capitulo|
+|CRUD dependiente|1. CRUD Precio {depende de} CRUD Suscripcion<br>2. CRUD Usuario_Suscripcion {depende de} CRUD Usuario CRUD Suscripcion <br>3. CRUD Reproduccion {depende de} CRUD Usuario CRUD Capitulo|
 |Listado<br>+<br>detalle| 1. Listado de historial de Suscripciones => detalle CRUD Suscripcion<br> 2. Listado de Colecciones por categorias => detalle CRUD Coleccion|
 |CUU/Epic|1. Escuchar un "Audiolibro/Podcast"<br>2. Subir un "Audiolibro/Podcast"<br>|
