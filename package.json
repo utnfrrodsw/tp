@@ -1,0 +1,24 @@
+{
+  "name": "prometeo",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Sistema de streaming de podcast y audiolibros",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdborelli/DSW-2024-305-Borelli-Coyle-Faulin-Nunez.git#main"
+  },
+  "author": "Borelli, Hernán Darío; Coyle, Virginia Mariel; Faulin, Eugenio Pandu; Nuñez, Mateo Nicolás",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hdborelli/DSW-2024-305-Borelli-Coyle-Faulin-Nunez/issues"
+  },
+  "homepage": "https://github.com/hdborelli/DSW-2024-305-Borelli-Coyle-Faulin-Nunez/tree/main#readme",
+  "devDependencies": {
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.1.3"
+  }
+}
