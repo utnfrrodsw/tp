@@ -2,11 +2,11 @@
   <v-container fluid>
     <v-row align="center" class="list px-3 mx-auto">
       <v-col cols="12" sm="8">
-        <v-text-field v-model="searchName" label="Buscar por nombre"></v-text-field>
+        <v-text-field v-model="searchName" label="Buscar por nombre" data-cy="search-input"></v-text-field>
       </v-col>
 
       <v-col cols="12" sm="4">
-        <v-btn small @click="page = 1; retrieveTechnician();">
+        <v-btn small @click="page = 1; retrieveTechnician();" data-cy="search-button">
           Search
         </v-btn>
       </v-col>
