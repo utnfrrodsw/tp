@@ -1,21 +1,13 @@
 /// <reference types="cypress" />
-
+import { login, interceptQuery } from '../../support/utils'
 describe('Listar todos los técnicos que llegan desde BD', () => {
-  const login = () => {
-    Cypress.config('defaultCommandTimeout', 55000)
-    cy.login(Cypress.env('userEmail'), Cypress.env('userPassword'))
-  }
   beforeEach(() => {
     login()
-    cy.fixture('technicians.json').as('techniciansData').then((res) => {
-      cy.intercept('**/technicians*', (req) => {
-        req.reply(res)
-      }).as('getTechnicians')
-    })
+    interceptQuery('technicians', 'technicians')
     cy.visit('/list-technicians')
   })
   it('Comprobar que se listan todos los técnicos en la tabla', () => {
-    cy.wait('@getTechnicians', { timeout: 3000 })
+    cy.wait('@gettechnicians', { timeout: 3000 })
     cy.get('@techniciansData').then((technicians) => {
       cy.get('tbody > tr').should('have.length', technicians.items.length)
       technicians.items.forEach((technician, index) => {
@@ -34,5 +26,16 @@ describe('Listar todos los técnicos que llegan desde BD', () => {
     cy.get('[data-cy="search-input"]').type(searchTerm)
     cy.get('[data-cy="search-button"]').click()
     cy.intercept('GET', '**/technicians?name=' + searchTerm + '&*')
+  })
+  it('Hacer clic en el botón de editar técnico y validar la URL', () => {
+    cy.wait('@gettechnicians', { timeout: 3000 })
+    cy.get('@techniciansData').then((technician) => {
+      const firstTechnicianId = technician.items[0].id
+      const expectedUrl = `/edit-technician/${firstTechnicianId}`
+      cy.get('tbody > tr:first-child')
+        .find('td:nth-child(4) button')
+        .click()
+      cy.url().should('include', expectedUrl)
+    })
   })
 })
