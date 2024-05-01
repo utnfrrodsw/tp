@@ -19,7 +19,7 @@ Estos juegos utilizarán una moneda virtual (*Magg Coins*) completamente gratuit
 ### Modelo
 EN CONSTRUCCION
 
-![imagen del modelo](https://cdn.discordapp.com/attachments/1094440389991202958/1223336852048711891/SITIO-EN-CONSTRUCCION.png?ex=66197c3a&is=6607073a&hm=e947ae65254dc98e48d039267a50dc420133d8e031d1cd2acc9900854d18716c&)
+![imagen del modelo](https://cdn.discordapp.com/attachments/1214594461276049548/1235339404357144706/DER-Casino.drawio_1.png?ex=663402f9&is=6632b179&hm=548697008dcc288e946d4113fa6c40866b07a008d6f5bebe3d8678da67d1907b&)
 
 
 ## Alcance Funcional 
