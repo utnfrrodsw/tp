@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Luis",
+      "date_born": "1990-05-15T00:00:00.000Z",
+      "createdAt": null,
+      "updatedAt": null,
+      "groups": []
+    },
+    {
+      "id": 2,
+      "name": "Ana",
+      "date_born": "1985-08-20T00:00:00.000Z",
+      "createdAt": null,
+      "updatedAt": null,
+      "groups": []
+    },
+    {
+      "id": 3,
+      "name": "Carlos",
+      "date_born": "1992-03-10T00:00:00.000Z",
+      "createdAt": null,
+      "updatedAt": "2024-04-30T02:59:36.000Z",
+      "groups": []
+    }
+  ],
+  "totalItems": 4,
+  "totalPages": 1,
+  "currentPage": 0
+}
