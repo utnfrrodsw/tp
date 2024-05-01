@@ -39,7 +39,7 @@ const routes = [
     beforeEnter: auth
   },
   {
-    path: '/edit-group',
+    path: '/edit-group/:id',
     name: 'EditGroup',
     component: EditGroup,
     beforeEnter: auth
@@ -57,7 +57,7 @@ const routes = [
     beforeEnter: auth
   },
   {
-    path: '/edit-technician',
+    path: '/edit-technician/:id',
     name: 'EditTechnician',
     component: EditTechnician,
     beforeEnter: auth
@@ -75,7 +75,7 @@ const routes = [
     beforeEnter: auth
   },
   {
-    path: '/edit-task',
+    path: '/edit-task/:id',
     name: 'EditTask',
     component: EditTask,
     beforeEnter: auth
