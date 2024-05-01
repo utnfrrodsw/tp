@@ -1,0 +1,37 @@
+{
+  "id": 1,
+  "name": "Task 1333",
+  "createdAt": null,
+  "updatedAt": "2024-05-01T17:46:23.000Z",
+  "groups": [],
+  "prices": [
+    {
+      "id": 4,
+      "price": 1,
+      "createdAt": "2024-05-01T17:42:40.000Z",
+      "updatedAt": "2024-05-01T17:42:40.000Z",
+      "taskId": 1
+    },
+    {
+      "id": 5,
+      "price": 2,
+      "createdAt": "2024-05-01T17:42:47.000Z",
+      "updatedAt": "2024-05-01T17:42:47.000Z",
+      "taskId": 1
+    },
+    {
+      "id": 6,
+      "price": 3,
+      "createdAt": "2024-05-01T17:46:20.000Z",
+      "updatedAt": "2024-05-01T17:46:20.000Z",
+      "taskId": 1
+    },
+    {
+      "id": 7,
+      "price": 1,
+      "createdAt": "2024-05-01T17:46:23.000Z",
+      "updatedAt": "2024-05-01T17:46:23.000Z",
+      "taskId": 1
+    }
+  ]
+}
