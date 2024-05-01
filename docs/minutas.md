@@ -10,4 +10,14 @@ Integrantes: Mauricio Fioroni, Lucas Maggi, Agustin Gil y Nicolas Gallegos
 - Añadir CRUD y CUU para Aprobacion directa
 - Añadir Alcance Adicional<p style="font-size:10px"> idea listado: Porcentaje de cual lado del coinflip sale mas</p>
 - Push de proposal.md
-- Fin de Entrevista
+- Fin de Reunion
+
+1/5/24
+
+Integrantes: Mauricio Fioroni, Lucas Maggi, Agustin Gil y Nicolas Gallegos
+
+- Desarrollar el Diagrama Entidad-Relacion de el sistema
+- Ideas y diseño de logos
+- Debatir sobre los diferentes CRUD simple y CRUD dependientes
+- Boceto de Layout de Front-End
+- Fin de Reunion
