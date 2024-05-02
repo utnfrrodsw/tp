@@ -23,7 +23,7 @@ Del lado del Alumno:
 - Poder ver el plan de estudio con las materias que el alumno puede cursar según cada caso
   
 Del lado del Profesor/Admin:
-- Subir notas ed alumnos a sus respectivos legajos
+- Subir notas de alumnos a sus respectivos legajos
 - editar sus comisiones comisiones (agregar/borrar alumnos maunalmente)
 - Subir/modificar notas parciales/finales de alumnos
 - Subir regularidades/promocion
@@ -33,7 +33,7 @@ Del lado del Profesor/Admin:
 
    
 ### Diagrama de clase
-![Modelo de Clase - Sysacad drawio](https://github.com/FedeeMest/TP-DSW-FB/assets/166263224/c0d24bd8-d1d1-4e94-ae31-75424767660c)
+![Modelo de Clase - Sysacad drawio](https://github.com/FedeeMest/TP-DSW-FB/assets/166263224/f787a51c-9cf2-43db-a15c-79e7f1d56070)
 
 ## Alcance Funcional 
 
