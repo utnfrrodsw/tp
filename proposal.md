@@ -23,7 +23,8 @@ Los instructures podrán asignar rutinas y realizar un seguimiento a cada client
 
 ### Modelo
 
-![ModeloDominio drawio](https://github.com/Lumansito/DSW2024---Com-302-Luhmann-Mat-as-Martina-Alejo-Angelini-Agust-n.-/assets/139171817/a0dd77d0-a8c3-45b6-8795-0dadbaea4193)
+![ModeloDominio drawio (1)](https://github.com/Lumansito/DSW2024---Com-302-Luhmann-Mat-as-Martina-Alejo-Angelini-Agust-n.-/assets/139171817/1d0fc482-74bf-4197-80d3-1316bf8a404b)
+
 
 Requerimientos
 -
