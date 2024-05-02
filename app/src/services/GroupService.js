@@ -1,8 +1,8 @@
 import http from '../http-common'
 
 class GroupService {
-  getAll() {
-    return http.get('/groups')
+  getAll(params) {
+    return http.get('/groups', { params })
   }
 
   get(id) {

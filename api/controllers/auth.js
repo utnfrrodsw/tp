@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const register = async (req, res) => {
-  const { name, lastName, email, password, role } = req.body
+  var { name, lastName, email, password, role } = req.body
 
   if (!(name && lastName && email && password && role)) {
     return res.status(400).send('All input is required')
