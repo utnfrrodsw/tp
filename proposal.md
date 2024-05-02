@@ -13,7 +13,13 @@ __Integrantes:__
 
 Tema
 -
-Gestion de un Centro deportivo
+Gestión de un Centro deportivo:
+
+Este sistema permitirá la administración de los turnos de un gimnasio.  
+El gimnasio ofrece distintos planes para sus clientes.  
+Cada cliente tendrá la posibilidad de sacar un turno en el horario que desee asistir al establecimiento.   
+El gimnasio cuenta con distintos profesionales, por lo cual asignaremos distintos roles según se trate de un instructor o un nutricionista.  
+Los instructures podrán asignar rutinas y realizar un seguimiento a cada cliente según el plan que pague el mismo. De la misma manera funcionará con el nutricionista para la gestión de dietas y su seguimiento.
 
 ### Modelo
 
@@ -21,16 +27,16 @@ Gestion de un Centro deportivo
 
 Requerimientos
 -
-Gestion completa de usuarios por roles.
-  -  Miembro
-  -  Profesional
+Gestión completa de usuarios por roles.
+  -  Miembro.
+  -  Profesional.
   -  Administrativo.
     
-Gestion de diferentes membresias.
-  -  Standard
-  -  Gold
-  -  Platinum
+Gestión de diferentes membresías.
+  -  Standard.
+  -  Gold.
+  -  Platinum.
 
-Gestion de planes alimenticios personalizados.
+Gestión de planes alimenticios personalizados.
 
-Gestion de compras de productos.
+Gestión de compras de productos.
