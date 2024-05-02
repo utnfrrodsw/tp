@@ -21,6 +21,7 @@ import ListCertifications from '../views/ListCertifications.vue'
 import EditUser from '../views/EditUser.vue'
 import login from '../views/Login.vue'
 import logout from '../views/Logout.vue'
+import RegisterOperators from '../views/RegisterOperators.vue'
 import auth from '../middlewares/auth'
 
 Vue.use(VueRouter)
@@ -116,6 +117,12 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: logout
+  },
+  {
+    path: '/register-operators',
+    name: 'register-operators',
+    component: RegisterOperators,
+    beforeEnter: auth
   }
 ]
 

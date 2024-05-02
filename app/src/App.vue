@@ -174,6 +174,14 @@
           menu: false,
           subitems: [
             {
+              name: 'Registrar operadores',
+              route: '/register-operators',
+              icon: 'mdi-account',
+              grant: [
+                'admin'
+              ]
+            },
+            {
               name: 'Editar cuenta',
               route: '/edit-account',
               icon: 'mdi-account-edit',
