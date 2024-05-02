@@ -7,6 +7,7 @@
             v-model="technician.name" 
             :rules="validationRules.name"
             label="Nombre"
+            data-cy="technician-name"
           >
         </v-text-field>
         </v-col>
@@ -26,6 +27,7 @@
                 :rules="validationRules.date_born"
                 v-bind="attrs" 
                 v-on="on"
+                data-cy="technician-birthdate"
               >
               </v-text-field>
             </template>
@@ -40,7 +42,7 @@
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-btn color="primary" @click="submitForm">Guardar Cambios</v-btn>
+          <v-btn color="primary" @click="submitForm" data-cy="save-technician">Guardar Cambios</v-btn>
         </v-col>
       </v-row>
     </v-form>

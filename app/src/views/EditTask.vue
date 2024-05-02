@@ -2,15 +2,22 @@
   <v-container fluid>
     <v-row>
       <v-col cols="12" md="6">
-        <v-text-field v-model="task.name" label="Nombre"></v-text-field>
+        <v-text-field v-model="task.name" label="Nombre" data-cy="task-name"></v-text-field>
       </v-col>
       <v-col cols="12" md="6">
-        <v-text-field v-model="task.price" label="Precio"></v-text-field>
+        <v-text-field v-model="task.price" label="Precio" data-cy="task-price"></v-text-field>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-btn :disabled="task.price === task.prices.at(-1).price" color="primary" @click="updateTask">Guardar Cambios</v-btn>
+        <v-btn
+          :disabled="task.price === task.prices?.at(-1)?.price"
+          color="primary"
+          @click="updateTask"
+          data-cy="save-task"
+        >
+          Guardar Cambios
+        </v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -59,7 +66,7 @@
         try {
           const responseTask = await TaskService.get(this.task.id)
           this.task.name = responseTask.data.name
-          this.task.price = responseTask.data.prices.at(-1).price
+          this.task.price = responseTask.data.prices?.at(-1)?.price ?? null
           this.task.prices = responseTask.data.prices.map(price => ({
             price: price.price,
             createdAt: new Date(price.createdAt).toLocaleString()

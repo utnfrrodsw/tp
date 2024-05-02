@@ -8,7 +8,7 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     baseUrl: process.env.CYPRESS_BASE_URL,
-    "fixturesFolder": "./api-mocks/mocks"
+    "fixturesFolder": "./cypress/fixtures"
   },
 
   component: {
