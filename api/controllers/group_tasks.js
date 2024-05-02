@@ -2,8 +2,7 @@ const { Group, Task, GroupTask, Price, Technician } = require('../sequelize')
 const Sequelize = require("sequelize")
 
 const getGroupTasks = async (req, res) => {
-  const { date_from, date_to, time_from, time_to, technicianId } = req.body
-
+  const { date_from, date_to, time_from, time_to, technicianId } = req.query
   try {
     if (!date_from || !date_to || !time_from || !time_to || !technicianId) {
       const groupTasks = await GroupTask.findAll({
