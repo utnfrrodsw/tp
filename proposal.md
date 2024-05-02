@@ -33,7 +33,8 @@ Requerimientos
 | CRUD simple   | 1- CRUD Cliente. <br> 2- CRUD Instructor. <br> 3- CRUD Nutricionista.|
 | CRUD dependiente   | 1- CRUD rutina {depende de} Cliente e instructor. <br> 2- CRUD clase {depende de} Instructor. <br> 3- CRUD seguimiento entrenamiento {depende de} Cliente e instructor. <br> 4- CRUD seguimiento nutricionista {depende de} Cliente y nutricionista. <br> 5- CRUD dieta {depende de} Cliente y nutricionista. <br> 6- CRUD asistencia {depende de} Cliente y clase. <br> 7-|
 | Listado + detalle | 1- Listado de clientes filtrado por DNI; muestra nombre, apellido y membresia. <br> 2- Listado de instructores filtrado por DNI; muestra nombre, apellido y rutinas asignadas. <br> 3- Listado de seguimiento nutricionistas filtrado por DNI nutricionista; muestra dietas asignadas y cliente. <br> 4- Listado de seguimientos entrenamiento filtrado por DNI cliente; muestra rutinas asignadas y cliente. <br> |
-| CUU/Epic | 1- Reservar turno. <br> 2- Solicitar rutina. <br> 3- Solicitar dieta/visita a nutricionista. |
+| CUU/Epic | 1- Reservar turno. <br> 2- Solicitar rutina. <br> 3- Solicitar dieta/visita a nutricionista. |  
+
 Gestión completa de usuarios por roles.
   -  Miembro.
   -  Profesional.
