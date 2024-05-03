@@ -47,4 +47,3 @@ Gestión de diferentes membresías.
 
 Gestión de planes alimenticios personalizados.
 
-Gestión de compras de productos.
