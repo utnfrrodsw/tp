@@ -4,11 +4,11 @@ import './Header.css'
 export function Header() {
     return(
         <header className=''>
-            <div className='w-screen flex'>
+            <div className='w-100 flex'>
                 <video muted autoPlay loop playsInline className='w-screen abosulute'>
                     <source src='./src/assets/vid-bg/vid-bg-header.mp4'/>
                 </video>
-                <nav className='bg-[#fabc01]/10 py-6 absolute w-screen'>
+                <nav className='bg-[#fabc01]/10 py-6 absolute w-full'>
                     <div className='container mx-auto flex items-center justify-between'>
                             <Link to="/"><img className='max-h-10' src="./src/assets/images/boceto_logo.png" /></Link>
                             <div className='place-items-end space-x-10'>
