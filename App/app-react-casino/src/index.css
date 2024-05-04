@@ -7,6 +7,6 @@
 }
 
 body{
-  background-color: #0d0b16;
+  background-color: var(--negro);
 }
 
