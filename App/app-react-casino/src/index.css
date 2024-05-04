@@ -4,9 +4,9 @@
   --amarillo: #FABC01;
   --verde: #70AE6E;
   --rojo: #D81536;
+  font-family: Outfit, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 body{
   background-color: var(--negro);
 }
-

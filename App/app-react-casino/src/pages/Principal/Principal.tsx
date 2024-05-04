@@ -2,6 +2,6 @@ import './Principal.css'
 
 export function Principal() {
     return(
-            <p>Hello World</p>
+            <p className='lahsdkjahwlkjda'>Hello World</p>
     )
 }
