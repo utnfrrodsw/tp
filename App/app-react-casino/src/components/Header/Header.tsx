@@ -3,13 +3,9 @@ import './Header.css'
 
 export function Header() {
     return(
-        <header className=''>
-            <div className='w-100 flex'>
-                <video muted autoPlay loop playsInline className='w-screen abosulute'>
-                    <source src='./src/assets/vid-bg/vid-bg-header.mp4'/>
-                </video>
-                <nav className='bg-[#fabc01]/10 py-6 absolute w-full'>
-                    <div className='container mx-auto flex items-center justify-between'>
+        <header className='sticky top-0 z-10'>
+                <nav className='bg-[#fabc01]/10 py-6 w-full'>
+                    <div className='mx-10 flex items-center justify-between'>
                             <Link to="/"><img className='max-h-10' src="./src/assets/images/boceto_logo.png" /></Link>
                             <div className='place-items-end space-x-10'>
                                 <Link to="/chau">About Us</Link>
@@ -18,7 +14,6 @@ export function Header() {
                             </div>
                     </div>
                 </nav>
-            </div>
         </header>
     )
 }
