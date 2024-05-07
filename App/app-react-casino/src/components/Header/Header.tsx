@@ -9,7 +9,7 @@ export function Header() {
                 <div className='space-x-10'>
                     <Link to="/chau">About Us</Link>
                     <Link to="/chau">Daily Free</Link>
-                    <Link to="/hola" className='border border-white py-2 px-5'>LogIn</Link>
+                    <Link to="/log_in" className='gold-button'>LogIn</Link>
                 </div>
             </nav>
         </header>
