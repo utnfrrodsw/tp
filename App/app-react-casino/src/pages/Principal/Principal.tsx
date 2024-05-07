@@ -8,8 +8,10 @@ export function Principal() {
                     <source src='./src/assets/vid-bg/vid-bg-header.mp4'/>
                 </video>
                 {/* Se armo medio un quilombito que tuve que corregir con el tema de la posicion absoluta, Todavia no quedo completamente arreglado pero creo que quedo "decente" y era que el video seguia el scroll vertical y siempre quedaba pegado a la pantalla (por algun motivo), queda perfeccionarlo*/}
-                <img src="./src/assets/images/CASINO.png" alt="Casino"/>
-                <img src="./src/assets/images/UTIMBAN.png" alt="UtimbaN"/>
+                <div className='imagenes'> {/* Se puede mejorar, despues veo como lo hago. */}
+                    <img src="./src/assets/images/CASINO.png" alt="Casino"/>
+                    <img src="./src/assets/images/UTIMBAN.png" alt="UtimbaN"/>
+                </div>
             </section>
             <p>hola soy un texto escrito afuera del absolute</p>
 
