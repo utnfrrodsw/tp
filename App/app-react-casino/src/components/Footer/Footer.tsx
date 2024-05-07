@@ -2,6 +2,6 @@ import './Footer.css'
 
 export function Footer() {
     return(
-            <footer>hola</footer>
+        <footer>hola soy el footer</footer>
     )
 }
