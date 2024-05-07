@@ -14,10 +14,18 @@ Integrantes: Mauricio Fioroni, Lucas Maggi, Agustin Gil y Nicolas Gallegos
 
 1/5/24
 
-Integrantes: Mauricio Fioroni, Lucas Maggi, Agustin Gil y Nicolas Gallegos
+Integrantes: Mauricio Fiorini, Lucas Maggi, Agustin Gil y Nicolas Gallegos
 
 - Desarrollar el Diagrama Entidad-Relacion de el sistema
 - Ideas y diseño de logos
 - Debatir sobre los diferentes CRUD simple y CRUD dependientes
 - Boceto de Layout de Front-End
 - Fin de Reunion
+
+4/5/24 
+Integrantes: Mauricio Fiorini, Lucas Maggi, Agustin Gil y Nicolas Gallegos
+
+- Debatir sobre React, Tailwind o Boostrap.
+- Hacer bocetos de las paginas del front-end con la pagina Figma
+- Crear app-react-casino
+- Hacer la estructura principal
