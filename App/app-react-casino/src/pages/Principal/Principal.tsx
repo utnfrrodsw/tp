@@ -17,14 +17,14 @@ export function Principal() {
                 {/*QUIZAS ES MEJOR PONER LOS ESTILOS EN UN CSS*/}
                 <h1 className='pb-10 text-5xl text-[#70ae6e]'>Games</h1>
                 <div className='grid grid-cols-4 gap-10 pb-20 rounded-xl'>
+                    <div className='bg-red-500 border-2 text-white rounded-[50px]'></div>
+                    <div className='col-span-2 bg-red-500 border-2 text-white rounded-[50px]'></div>
+                    <div className='bg-red-500 p-20 border-2 text-white rounded-[50px]'></div>
+                    <div className='col-span-2 bg-red-500 border-2 text-white rounded-[50px]'></div>
+                    <div className='bg-red-500 border-2 text-white rounded-[50px]'></div>
                     <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
-                    <div className='col-span-2 bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
-                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
-                    <div className='col-span-2 bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
-                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
-                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
-                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
-                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
+                    <div className='bg-red-500 border-2 text-white rounded-[50px]'></div>
+                    <div className='bg-red-500 border-2 text-white rounded-[50px]'></div>
                     <div className='col-span-2 bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
                 </div>
                 
