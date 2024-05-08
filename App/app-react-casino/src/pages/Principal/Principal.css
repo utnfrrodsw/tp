@@ -14,9 +14,10 @@
     object-fit: cover;
 }
 
+
 .imagenes {
     margin: 2rem 2rem 10rem 2rem;
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 3rem;
 }
