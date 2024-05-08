@@ -13,19 +13,19 @@ export function Principal() {
                     <img src="./src/assets/images/utimban.gif" alt="UtimbaN"/>
                 </div>
             </section>
-            <section className='px-20'>
+            <section className='px-20 max-sm:px-3'>
                 {/*QUIZAS ES MEJOR PONER LOS ESTILOS EN UN CSS ??? que decis mauri*/}
                 <h1 className='pb-10 text-5xl text-[#70ae6e]'>Games</h1>
-                <div className='grid grid-cols-4 gap-10 pb-20 rounded-xl'>
-                    <div className='bg-red-500 border-2 text-white rounded-[40px]'></div>
-                    <div className='col-span-2 bg-red-500 border-2 text-white rounded-[40px]'></div>
-                    <div className='bg-red-500 p-20 border-2 text-white rounded-[40px]'></div>
-                    <div className='col-span-2 bg-red-500 border-2 text-white rounded-[40px]'></div>
-                    <div className='bg-red-500 p-20 border-2 text-white rounded-[40px]'></div>
-                    <div className='bg-red-500 p-24 border-2 text-white rounded-[40px]'></div>
-                    <div className='bg-red-500 border-2 text-white rounded-[40px]'></div>
-                    <div className='bg-red-500 border-2 text-white rounded-[40px]'></div>
-                    <div className='col-span-2 bg-red-500 p-24 border-2 text-white rounded-[40px]'></div>
+                <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-10 pb-20 rounded-xl max-sm:gap-3'>
+                    <div className='max-md:col-span-2 md:col-span-2 lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px]'>1</div>
+                    <div className='lg:col-span-2 p-20 bg-red-500 border-2 text-white rounded-[40px]'>2</div>
+                    <div className='lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px]'>3</div>
+                    <div className='max-md:col-span-2 md:col-span-2 lg:col-span-2 p-20 bg-red-500 border-2 text-white rounded-[40px]'>4</div>
+                    <div className='md:col-span-2 lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px]'>5</div>
+                    <div className='bg-red-500 p-20 border-2 text-white rounded-[40px]'>6</div>
+                    <div className='max-md:col-span-2 bg-red-500 p-20 border-2 text-white rounded-[40px]'>7</div>
+                    <div className='bg-red-500 p-20 border-2 text-white rounded-[40px]'>8</div>
+                    <div className='md:col-span-1 lg:col-span-2 p-20 bg-red-500 p-20 border-2 text-white rounded-[40px]'>9</div>
                 </div>
                 
             </section>
