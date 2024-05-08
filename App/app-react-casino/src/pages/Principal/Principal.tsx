@@ -13,8 +13,22 @@ export function Principal() {
                     <img src="./src/assets/images/UTIMBAN.png" alt="UtimbaN"/>
                 </div>
             </section>
-            <p>hola soy un texto escrito afuera del absolute</p>
-
+            <section className='px-20'>
+                {/*QUIZAS ES MEJOR PONER LOS ESTILOS EN UN CSS*/}
+                <h1 className='pb-10 text-5xl text-[#70ae6e]'>Games</h1>
+                <div className='grid grid-cols-4 gap-10 pb-20 rounded-xl'>
+                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
+                    <div className='col-span-2 bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
+                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
+                    <div className='col-span-2 bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
+                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
+                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
+                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
+                    <div className='bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
+                    <div className='col-span-2 bg-red-500 p-24 border-2 text-white rounded-[50px]'></div>
+                </div>
+                
+            </section>
             PRUEBA DE SCROLL VERTICAL 
 
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
