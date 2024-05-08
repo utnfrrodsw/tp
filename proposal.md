@@ -5,8 +5,8 @@
 ## **Integrantes:**  
 
 - 46166 - Borelli, Hernán Darío
-- 39715 - Coyle, Virginia Mariel
 - 51322 - Cilfone, Angel David Carlos
+- 39715 - Coyle, Virginia Mariel
 - 49500 - Faulin, Eugenio Pandu
 
 ## **Repositorio:**
