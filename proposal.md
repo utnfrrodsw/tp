@@ -6,8 +6,8 @@
 
 - 46166 - Borelli, Hernán Darío
 - 39715 - Coyle, Virginia Mariel
+- 51322 - Cilfone, Angel David Carlos
 - 49500 - Faulin, Eugenio Pandu
-- 49200 - Nuñez, Mateo Nicolás
 
 ## **Repositorio:**
 - [Link repositorio](https://github.com/hdborelli/TP_DSW_CBFN)
