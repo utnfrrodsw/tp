@@ -56,17 +56,20 @@ const getGroupTasks = async (req, res) => {
 }
 
 const createGroupTask = async (req, res) => {
-  const { groupId, tasksId, dateCompleted, hour } = req.body
-  console.log(`groupId: ${groupId}, taskId: ${tasksId}, dateCompleted: ${dateCompleted}, hour: ${hour}`)
+  const { groupId,conection, tasksId, dateCompleted,quantity, hour, observation } = req.body
+  console.log(`groupId: ${groupId},conection: ${conection} taskId: ${tasksId}, dateCompleted: ${dateCompleted},quantity:${quantity}, hour: ${hour},observation:${observation}`)
 
   try {
     groupTasks = []
-    tasksId.forEach(async (taskId) => {
+    taskId.forEach(async (taskId) => {
       groupTasks.push(await GroupTask.create({
         groupId,
-        taskId,
+        conection,
+        taskId: taskId.name,
         date_completed: dateCompleted,
-        hour
+        quantity:taskId.quantity,
+        hour,
+        observation
       }))
     })
     res.json(groupTasks)

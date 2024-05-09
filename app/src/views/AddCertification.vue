@@ -153,14 +153,14 @@
       async submitForm() {
         try {
           const data = {
-            groupId: this.description,
+            groupId: this.selectedGroup,
             conection: this.conection,
-            tasks: this.tasks,
-            date: this.date,
+            tasksId: this.tasks,
+            dateCompleted: this.date,
             time: this.time,
             observations: this.observations
           }
-
+          console.log(data)
           const response = await GroupTaskService.create(data)
           this.alert.message = 'Tarea agregada correctamente'
           this.alert.type = 'success'
