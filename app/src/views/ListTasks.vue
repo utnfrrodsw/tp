@@ -13,7 +13,7 @@
 
       <v-col cols="12" sm="12">
         <v-card class="mx-auto" tile>
-          <v-card-title>Técnicos</v-card-title>
+          <v-card-title>Tareas</v-card-title>
           <v-data-table :headers="headers" :items="items"
             @pagination="handlePageChange" :server-items-length="totalItems"
             :currentPage="page"
@@ -68,7 +68,6 @@
         TaskService.getAll(this.requestParams)
           .then((response) => {
             const { items: tasks, totalItems } = response.data
-            console.log(response.data)
             this.items = tasks.map(this.getDisplayTask)
             this.totalItems = totalItems
           })
@@ -90,7 +89,7 @@
         return {
           id: task.id,
           name: task.name,
-          price: task.prices.length > 0 ? task.prices[task.prices.length - 1].price : 0
+          price: task.prices.length > 0 ? task.prices[0].price : 0
         }
       }
     }

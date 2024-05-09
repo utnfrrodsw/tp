@@ -143,7 +143,7 @@
     methods: {
       addTask() {
         this.tasks.push({
-          description: '',
+          name: '',
           quantity: ''
         })
       },

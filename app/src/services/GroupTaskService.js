@@ -1,8 +1,8 @@
 import http from '../http-common'
 
 class GroupTaskService {
-  get(data) {
-    return http.get('/group_tasks', data )
+  get(params) {
+    return http.get('/group_tasks', { params })
   }
 
   create(data) {

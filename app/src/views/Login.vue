@@ -14,6 +14,7 @@
                 outlined
                 solo
                 prepend-icon="mdi-account"
+                data-cy="input-correo"
               ></v-text-field>
               <v-text-field
                 v-model="password"
@@ -22,8 +23,16 @@
                 outlined
                 solo
                 prepend-icon="mdi-lock"
+                data-cy="input-contrasena"
               ></v-text-field>
-              <v-btn block type="submit" color="primary">Iniciar Sesión</v-btn>
+              <v-btn
+                block
+                type="submit"
+                color="primary"
+                data-cy="login-button"
+              >
+                Iniciar Sesión
+              </v-btn>
             </v-form>
           </v-card-text>
         </v-card>

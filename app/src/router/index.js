@@ -21,6 +21,7 @@ import ListCertifications from '../views/ListCertifications.vue'
 import EditUser from '../views/EditUser.vue'
 import login from '../views/Login.vue'
 import logout from '../views/Logout.vue'
+import RegisterOperators from '../views/RegisterOperators.vue'
 import auth from '../middlewares/auth'
 
 Vue.use(VueRouter)
@@ -39,7 +40,7 @@ const routes = [
     beforeEnter: auth
   },
   {
-    path: '/edit-group',
+    path: '/edit-group/:id',
     name: 'EditGroup',
     component: EditGroup,
     beforeEnter: auth
@@ -57,7 +58,7 @@ const routes = [
     beforeEnter: auth
   },
   {
-    path: '/edit-technician',
+    path: '/edit-technician/:id',
     name: 'EditTechnician',
     component: EditTechnician,
     beforeEnter: auth
@@ -75,7 +76,7 @@ const routes = [
     beforeEnter: auth
   },
   {
-    path: '/edit-task',
+    path: '/edit-task/:id',
     name: 'EditTask',
     component: EditTask,
     beforeEnter: auth
@@ -116,6 +117,12 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: logout
+  },
+  {
+    path: '/register-operators',
+    name: 'register-operators',
+    component: RegisterOperators,
+    beforeEnter: auth
   }
 ]
 

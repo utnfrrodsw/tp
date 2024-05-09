@@ -3,7 +3,6 @@
     <v-row>
       <v-col cols="12" md="6">
         <v-menu
-          v-model="date_from_menu"
           :close-on-content-click="false"
           transition="scale-transition"
           offset-y
@@ -22,7 +21,6 @@
           <v-date-picker v-model="date_from" @input="date_from_menu = false"></v-date-picker>
         </v-menu>
         <v-menu
-          v-model="time_from_menu"
           :close-on-content-click="false"
           transition="scale-transition"
           offset-y
@@ -43,7 +41,6 @@
       </v-col>
       <v-col cols="12" md="6">
         <v-menu
-          v-model="date_to_menu"
           :close-on-content-click="false"
           transition="scale-transition"
           offset-y
@@ -62,7 +59,6 @@
           <v-date-picker v-model="date_to" @input="date_to_menu = false"></v-date-picker>
         </v-menu>
         <v-menu
-          v-model="time_to_menu"
           :close-on-content-click="false"
           transition="scale-transition"
           offset-y
@@ -100,11 +96,16 @@
     <v-row>
       <v-col cols="12">
         <v-data-table :headers="headers" :items="tasks" hide-default-footer>
-          <template v-slot:item.date_completed="{ item }">
-            {{ item.date_completed | formatDate }}
-          </template>
           <template v-slot:item.subtotal="{ item }">
-            {{ getSubtotal(item) }}
+            $ {{ getSubtotal(item) }}
+          </template>
+          <template
+            v-for="header in headers.filter((header) =>
+              header.hasOwnProperty('formatter')
+            )"
+            v-slot:[`item.${header.value}`]="{ header, value }"
+          >
+            {{ header.formatter(value) }}
           </template>
         </v-data-table>
       </v-col>
@@ -116,13 +117,14 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <p class="text-right"><strong>Total: {{ getTotal() }}</strong></p>
+        <p class="text-right"><strong>Total: $ {{ getTotal() }}</strong></p>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+  import moment from "moment-timezone";
   import TechnicianService from '../services/TechnicianService'
   import GroupTaskService from '../services/GroupTaskService'
   export default {
@@ -139,12 +141,12 @@
         headers: [
           { text: 'Grupo', value: 'group.description' },
           { text: 'Tarea', value: 'task.name' },
-          { text: 'Cumplimiento', value: 'date_completed' },
-          { text: 'Hora', value: 'hour' },
+          { text: 'Cumplimiento', value: 'date_completed', formatter: (x) => (x ? moment.tz(x, "YYYY-MM-DD HH:mm:ss", "America/Argentina/Buenos_Aires").format("DD-MM-YYYY") : null) },
+          { text: 'Hora', value: 'hour', formatter: (x) => (x ? x.slice(0, 5) : null) },
           { text: 'Conexión', value: 'conection' },
           { text: 'Observación', value: 'observation' },
           { text: 'Cantidad', value: 'quantity' },
-          { text: 'Precio', value: 'task.prices[0].price' },
+          { text: 'Precio', value: 'task.prices[0].price', formatter: (x) => (x ? `$ ${x}` : null) },
           { text: 'Subtotal', value: 'subtotal' }
         ]
       }
@@ -162,15 +164,14 @@
       },
       async fetchTechnicians() {
         const responseTechnicians = await TechnicianService.getAll()
-        console.log(responseTechnicians.data.items)
         this.technicians = responseTechnicians.data.items
       },
-      async fetchCertifications(data) {
-        const responseGroupTask = await GroupTaskService.get(data)
+      async fetchCertifications() {
+        const responseGroupTask = await GroupTaskService.get()
         this.tasks = responseGroupTask.data
       },
       async queryTasks() {
-        const data = {
+        const params = {
           date_from: this.date_from,
           date_to: this.date_to,
           time_from: this.time_from,
@@ -179,7 +180,7 @@
         }
 
         try {
-          const response = await GroupTaskService.get(data)
+          const response = await GroupTaskService.get(params)
           this.tasks = response.data
         } catch (error) {
           console.error(error)
