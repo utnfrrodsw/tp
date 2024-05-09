@@ -6,7 +6,7 @@ class GroupTaskService {
   }
 
   create(data) {
-    return http.post(`/group_tasks`,data)
+    return http.post(`/group_tasks`, data)
   }
 }
 

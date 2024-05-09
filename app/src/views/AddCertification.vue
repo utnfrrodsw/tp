@@ -27,7 +27,7 @@
       </v-col>
       <v-col cols="12" sm="6" md="3">
         <v-menu
-          v-model="timeMenu"
+          v-model="hourMenu"
           :close-on-content-click="false"
           :nudge-right="40"
           transition="scale-transition"
@@ -36,7 +36,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
-              v-model="time"
+              v-model="hour"
               label="Hora"
               append-icon="mdi-clock"
               readonly
@@ -46,7 +46,7 @@
               class="mt-2"
             ></v-text-field>
           </template>
-          <v-time-picker v-model="time" @input="timeMenu = false"></v-time-picker>
+          <v-time-picker v-model="hour" @input="hourMenu = false"></v-time-picker>
         </v-menu>
       </v-col>
       <v-col cols="12" sm="6" md="6">
@@ -62,7 +62,7 @@
         <v-text-field label="Conexión" v-model="conection"></v-text-field>
       </v-col>
       <v-col cols="12" sm="6" md="9">
-        <v-textarea label="Observaciones" v-model="observations"></v-textarea>
+        <v-textarea label="Observaciones" v-model="observation"></v-textarea>
       </v-col>
       <v-col cols="12">
         <v-btn color="primary" @click="addTask">Agregar tarea</v-btn>
@@ -70,7 +70,7 @@
       <v-col cols="12" v-for="(task, index) in tasks" :key="index">
         <v-row>
           <v-col cols="12" sm="6" md="6">
-            <v-select :items="availableTasks" label="Tarea" v-model="task.name"></v-select>
+            <v-select :items="availableTasks" label="Tarea" v-model="task.id"></v-select>
           </v-col>
           <v-col cols="12" sm="6" md="3">
             <v-text-field label="Cantidad" v-model.number="task.quantity"></v-text-field>
@@ -105,11 +105,13 @@
     data() {
       return {
         date: '',
+        dateMenu: '',
         hour: '',
+        hourMenu: '',
         selectedGroup: null,
         conection: '',
-        observations: '',
-        tasks: [{ name: '', quantity: '' }],
+        observation: '',
+        tasks: [{ id: '', name: '', quantity: '' }],
         availableTasks: [],
         groupOptions: [],
         url: process.env.VUE_APP_API_URL,
@@ -143,6 +145,7 @@
     methods: {
       addTask() {
         this.tasks.push({
+          id: '',
           name: '',
           quantity: ''
         })
@@ -155,25 +158,23 @@
           const data = {
             groupId: this.selectedGroup,
             conection: this.conection,
-            tasksId: this.tasks,
+            tasks: this.tasks,
             dateCompleted: this.date,
-            time: this.time,
-            observations: this.observations
+            hour: this.hour,
+            observation: this.observation
           }
-          console.log(data)
           const response = await GroupTaskService.create(data)
           this.alert.message = 'Tarea agregada correctamente'
           this.alert.type = 'success'
           this.alert.show = true
           this.date = ''
           this.dateMenu = ''
-          this.timeMenu = ''
-          this.time = ''
+          this.hourMenu = ''
+          this.hour = ''
           this.description = ''
           this.conection = ''
-          this.observaciones = ''
-
-          this.task = [{ name: '', quantity: '' }]
+          this.observations = ''
+          this.task = [{ id: '', name: '', quantity: '' }]
         } catch (error) {
           this.alert.message = 'No se pudo agregar la tarea'
           this.alert.type = 'Error'
