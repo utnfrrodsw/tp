@@ -7,7 +7,7 @@
 * 50379-de Elia, Juan Manuel
 
 ### Repositorios
-* [Backend]: (https://github.com/RenzoAimaretti/Backend)
+* Backend: (https://github.com/RenzoAimaretti/Backend)
 
 
 ## Tema
