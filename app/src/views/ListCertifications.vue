@@ -147,7 +147,7 @@
           { text: 'Conexión', value: 'conection' },
           { text: 'Observación', value: 'observation' },
           { text: 'Cantidad', value: 'quantity' },
-          { text: 'Precio', value: 'task.prices.at(-1).price', formatter: (x) => (x ? `$ ${x}` : null) },
+          { text: 'Precio', value: 'task.prices[0].price', formatter: (x) => (x ? `$ ${x}` : null) },
           { text: 'Subtotal', value: 'subtotal' }
         ]
       }
