@@ -10,7 +10,7 @@ export function Principal() {
                 {/* Se armo medio un quilombito que tuve que corregir con el tema de la posicion absoluta, Todavia no quedo completamente arreglado pero creo que quedo "decente" y era que el video seguia el scroll vertical y siempre quedaba pegado a la pantalla (por algun motivo), queda perfeccionarlo*/}
                 <div className='imagenes'> {/* Se puede mejorar, despues veo como lo hago. */}
                     <img src="./src/assets/images/casino.gif" alt="Casino"/>
-                    <img src="./src/assets/images/utimban.gif" alt="UtimbaN"/>
+                    <img src="./src/assets/images/utimban.png" alt="UtimbaN"/>
                 </div>
             </section>
             <section className='px-20 max-sm:px-3'>

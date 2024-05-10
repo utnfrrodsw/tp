@@ -58,7 +58,28 @@ export function Footer(){
         </div>
       </div>
 
-      
+      <div className='pt-5'><hr className=" border-none h-[2px] bg-slate-700 mr-6 ml-6 " /></div>
+
+      <div className='p-4'> 
+        <div className=" flex mb-2 text-lg font-bold text-yellow-500"> <p> Accepted Currencies </p></div>
+        <div className='mt-4 flex flex-wrap gap-3'> 
+          <div className=' flex items-center p-3  border border-slate-700 bg-slate-700 rounded-lg '> 
+            <img src='./src/assets/images/BTC.svg' className=' size-5' />
+            <p className=' text-white p-2 font-semibold'> Bitcoin (BTC) </p>
+          </div>
+
+          <div className=' flex items-center p-3  border border-slate-700 bg-slate-700 rounded-lg '> 
+            <img src='./src/assets/images/DOGE.svg' className=' size-5' />
+            <p className=' text-white p-2 font-semibold'> Dogecoin (DOGE) </p>
+          </div>
+
+          <div className=' flex items-center p-3 border border-slate-700 bg-slate-700 rounded-lg '> 
+            <img src='./src/assets/images/ETH.svg' className=' size-5' />
+            <p className=' text-white p-2 font-semibold'> Ethereum (ETH) </p>
+          </div>
+        </div>
+      </div>
+
       <div className='pt-5'><hr className=" border-none h-[2px] bg-slate-700 mr-6 ml-6 " /></div>
 
       <div> <p> minecraft </p></div>
