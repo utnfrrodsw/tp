@@ -127,6 +127,7 @@
   import moment from "moment-timezone";
   import TechnicianService from '../services/TechnicianService'
   import GroupTaskService from '../services/GroupTaskService'
+
   export default {
     data() {
       return {
@@ -146,7 +147,7 @@
           { text: 'Conexión', value: 'conection' },
           { text: 'Observación', value: 'observation' },
           { text: 'Cantidad', value: 'quantity' },
-          { text: 'Precio', value: 'task.prices[0].price', formatter: (x) => (x ? `$ ${x}` : null) },
+          { text: 'Precio', value: 'task.prices.at(-1).price', formatter: (x) => (x ? `$ ${x}` : null) },
           { text: 'Subtotal', value: 'subtotal' }
         ]
       }
@@ -157,7 +158,7 @@
     },
     methods: {
       getSubtotal(item) {
-        return item.quantity * item.task.prices[0].price
+        return item.quantity * item.task.prices.at(-1)?.price
       },
       getTotal() {
         return this.tasks.reduce((total, item) => total + this.getSubtotal(item), 0)

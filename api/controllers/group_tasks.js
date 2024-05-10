@@ -40,6 +40,11 @@ const getGroupTasks = async (req, res) => {
           model: Task,
           include: {
             model: Price,
+            where: {
+              createdAt: {
+                [Sequelize.Op.lte]: GroupTask.date_completed
+              }
+            },
             order: [['createdAt', 'DESC']],
             limit: 1
           }

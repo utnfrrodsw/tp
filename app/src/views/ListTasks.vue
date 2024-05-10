@@ -89,7 +89,7 @@
         return {
           id: task.id,
           name: task.name,
-          price: task.prices.length > 0 ? task.prices[0].price : 0
+          price: task.prices.length > 0 ? task.prices.at(-1).price : 0
         }
       }
     }
