@@ -2,6 +2,7 @@
 
 import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
+import { error } from 'node:console';
 
 const personas = [];
 
@@ -15,7 +16,7 @@ export class Persona {
     this.mail = mail;
   }
 }
-
+async function ingresarPersona() {
 try {
   const dni = await rl.question('Ingrese el dni: \n');
   const nombre = await rl.question('Ingrese el nombre: \n');
@@ -25,17 +26,12 @@ try {
 
   const persona = new Persona(dni, nombre, apellido, telefono, mail);
   console.log(persona);
-  personas.add(persona);
-} catch {
-  console.log('Error');
-} finally {
-  rl.close();
+  personas.push(persona);
+} catch(error) {
+  console.log('Error al ingresar la persona:',error);
 }
-
-function buscodni(personas, dnibuscado) {
-  return personas.find(persona => persona.dni === dnibuscado);
 }
-
+async function buscarPersona(){
 try{
 const dnibuscado = await rl.question('Ingrese el dni de la persona que desea buscar');
 const personaEncontrada = buscodni(personas, dnibuscado);
@@ -45,7 +41,18 @@ if (personaEncontrada) {
   console.log("No se encontró ninguna persona con ese DNI.");
 }
 }
-catch{
-  console.log('Dni INVALIDO');
+catch(error){
+  console.log('Error al buscar la persona:',error);
 }
-finally{rmSync.close();}
+}
+
+function buscodni(personas, dnibuscado) {
+  return personas.find(persona => persona.dni === dnibuscado);
+}
+
+async function main() {
+  await ingresarPersona();
+  await buscarPersona();
+  rl.close();
+}
+main();
