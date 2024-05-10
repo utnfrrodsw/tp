@@ -17,42 +17,69 @@ export class Persona {
   }
 }
 async function ingresarPersona() {
-try {
-  const dni = await rl.question('Ingrese el dni: \n');
-  const nombre = await rl.question('Ingrese el nombre: \n');
-  const apellido = await rl.question('Ingrese el apellido: \n');
-  const telefono = await rl.question('Ingrese el telefono: \n');
-  const mail = await rl.question('Ingrese el mail: \n');
+  try {
+    const dni = await rl.question('Ingrese el dni: \n');
+    const nombre = await rl.question('Ingrese el nombre: \n');
+    const apellido = await rl.question('Ingrese el apellido: \n');
+    const telefono = await rl.question('Ingrese el telefono: \n');
+    const mail = await rl.question('Ingrese el mail: \n');
 
-  const persona = new Persona(dni, nombre, apellido, telefono, mail);
-  console.log(persona);
-  personas.push(persona);
-} catch(error) {
-  console.log('Error al ingresar la persona:',error);
+    const persona = new Persona(dni, nombre, apellido, telefono, mail);
+    console.log(persona);
+    personas.push(persona);
+  } catch (error) {
+    console.log('Error al ingresar la persona:', error);
+  }
 }
-}
-async function buscarPersona(){
-try{
-const dnibuscado = await rl.question('Ingrese el dni de la persona que desea buscar');
-const personaEncontrada = buscodni(personas, dnibuscado);
-if (personaEncontrada) {
-  console.log("Persona encontrada:", personaEncontrada);
-} else {
-  console.log("No se encontró ninguna persona con ese DNI.");
-}
-}
-catch(error){
-  console.log('Error al buscar la persona:',error);
-}
+async function buscarPersona() {
+  try {
+    const dnibuscado = await rl.question(
+      'Ingrese el dni de la persona que desea buscar:\n'
+    );
+    const personaEncontrada = buscodni(personas, dnibuscado);
+    if (personaEncontrada) {
+      console.log('Persona encontrada:', personaEncontrada);
+    } else {
+      console.log('No se encontró ninguna persona con ese DNI.');
+    }
+  } catch (error) {
+    console.log('Error al buscar la persona:', error);
+  }
 }
 
 function buscodni(personas, dnibuscado) {
-  return personas.find(persona => persona.dni === dnibuscado);
+  return personas.find((persona) => persona.dni === dnibuscado);
 }
 
+const verTodos = () => {
+  console.log(JSON.stringify(personas, null, 2));
+};
+
 async function main() {
-  await ingresarPersona();
-  await buscarPersona();
+  let opcion;
+  do {
+    console.log(
+      '1-CREAR PERSONA\n2-BUSCAR PERSONA\n3-MODIFICAR PERSONA\n4-BORRAR PERSONA\n5-VER TODOS\n6-SALIR'
+    );
+    opcion = Number.parseInt(
+      await rl.question('\nIngrese la opción a la que quiere acceder: \n')
+    );
+    switch (opcion) {
+      case 1:
+        await ingresarPersona();
+        break;
+      case 2:
+        await buscarPersona();
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        verTodos();
+        break;
+    }
+  } while (opcion !== 6);
   rl.close();
 }
 main();
