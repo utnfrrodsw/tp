@@ -169,7 +169,16 @@
       },
       async fetchCertifications() {
         const responseGroupTask = await GroupTaskService.get()
-        this.tasks = responseGroupTask.data
+        this.tasks = responseGroupTask.data.map(gp => {
+          return {
+            ...gp,
+            task: {
+              ...gp.task,
+              prices: gp.task.prices.filter(p => p.createdAt <= gp.date_completed)
+            }
+          }
+        })
+        console.log(this.tasks)
       },
       async queryTasks() {
         const params = {
