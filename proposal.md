@@ -7,7 +7,7 @@
 * 50379-de Elia, Juan Manuel
 
 ### Repositorios
-* [Monorepo]: https://github.com/RenzoAimaretti/Cinemateca
+* [Backend]: (https://github.com/RenzoAimaretti/Backend)
 
 
 ## Tema
