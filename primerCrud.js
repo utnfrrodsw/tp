@@ -115,6 +115,7 @@ const modificarPersona = async () => {
     console.log(`Persona encontrada: ${JSON.stringify(persona)}`);
     const personaReemplazo = await crearPersona();
     personas.splice(indice, 1, personaReemplazo);
+    console.log('\nPersona modificada con éxito');
   } catch (error) {
     if (error instanceof TypeError) {
       console.log('\nLa persona ingresada no existe\n');
