@@ -38,17 +38,30 @@
         </v-card>
       </v-flex>
     </v-layout>
+        <v-row v-if="alert.show">
+      <v-col>
+        <alerts :type="alert.type" :message="alert.message" @quit="alert.show = false"></alerts>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
   import AuthService from '../services/AuthService'
-
+  import Alerts from '@/components/Alerts.vue'
   export default {
+    components:{
+      Alerts,
+    },
     data() {
       return {
         email: '',
-        password: ''
+        password: '',
+        alert:{
+          show:false,
+          message:'',
+          type:''
+        }
       }
     },
     methods: {
@@ -63,8 +76,14 @@
           localStorage.setItem('token', data.token)
           this.$router.push(redirectPath)
         } catch (error) {
+          this.alert.message = 'Usuario o contraseña incorrecto'
+          this.alert.type = 'error'
+          this.alert.show = true
           console.error(error)
         }
+      },
+            reset() {
+        this.$refs.form.reset()
       }
     }
   }

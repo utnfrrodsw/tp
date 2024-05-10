@@ -6,6 +6,7 @@ const auth = require('../middlewares/auth')
 // api/tasks
 router.get('/', tasksController.getTasks)
 router.get('/sum-tasks', tasksController.sumTasks)
+router.get('/actualTaskPrice', tasksController.ActualTaskPrice)
 router.get('/:id', tasksController.getTask)
 router.put('/:id', auth, tasksController.updateTask)
 router.post('/', auth, tasksController.createTask)

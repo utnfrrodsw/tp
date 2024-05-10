@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize')
+const { Op } = require('sequelize');
 const { Group, Task, Price, sequelize } = require('../sequelize')
 const { getPagination, getPaginationData } = require('../helpers/pagination')
 
@@ -111,11 +112,15 @@ const deleteTask = async (req, res) => {
 const sumTasks = async (req, res) => {
   try {
     const tasks = await sequelize.query(`
-      SELECT t.id, t.name, COUNT(*) AS count
-      FROM groups_tasks gt
-      INNER JOIN tasks t ON gt.taskId = t.id
-      WHERE gt.date_completed >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
-      GROUP BY t.id, t.name;
+    SELECT t.name, SUM(gt.quantity) AS total
+    FROM 
+      tasks t
+    INNER JOIN 
+      groups_tasks gt ON gt.taskId = t.id
+    WHERE 
+      gt.date_completed >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+    GROUP BY 
+      t.name
     `)
 
     res.status(200).json(tasks)
@@ -124,6 +129,35 @@ const sumTasks = async (req, res) => {
     res.status(400).send('Ups! Error')
   }
 }
+const ActualTaskPrice = async (req, res) => {
+  try {
+    // Eliminar tabla temporal si existe
+    await sequelize.query(`
+      DROP TEMPORARY TABLE IF EXISTS fecha;
+    `);
+
+    // Crear una tabla temporal para almacenar el ID de la tarea y su fecha de precio más reciente
+    await sequelize.query(`
+      CREATE TEMPORARY TABLE fecha AS
+      SELECT id, MAX(createdAt) AS fecha
+      FROM prices
+      GROUP BY id;
+    `);
+
+    // Obtener los nombres de las tareas y sus precios más recientes
+    const tasks = await sequelize.query(`
+      SELECT t.name, p.price
+      FROM tasks t
+      INNER JOIN fecha f ON t.id = f.id
+      INNER JOIN prices p ON f.id = p.id AND f.fecha = p.createdAt;
+    `);
+
+    res.status(200).json(tasks[0]); // Devolver el resultado de la consulta como JSON
+  } catch (error) {
+    console.error(error);
+    res.status(400).send('¡Ups! Ha ocurrido un error');
+  }
+};
 
 module.exports = {
   getTasks,
@@ -131,5 +165,6 @@ module.exports = {
   updateTask,
   createTask,
   deleteTask,
-  sumTasks
+  sumTasks,
+  ActualTaskPrice
 }

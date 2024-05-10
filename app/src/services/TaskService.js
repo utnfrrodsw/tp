@@ -24,6 +24,10 @@ class TaskService {
   sumTasks() {
     return http.get('/tasks/sum-tasks')
   }
+
+  actualTaskPrice(){
+    return http.get('/tasks/actualTaskPrice')
+  }
 }
 
 export default new TaskService()
