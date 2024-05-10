@@ -28,10 +28,10 @@ Decidimos crear una web app donde los usuarios puedan consultar información rel
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD Listas Diarias|
+|CRUD dependiente|1. CRUD Amigos {depende de} CRUD Usuario<br>2. CRUD Listas de usuario {depende de} CRUD Usuario<br>3. CRUD Reseña/Puntiacion {depende de} CRUD Usuario|
+|Listado<br>+<br>detalle| 1. Listado peliculas creadas por los usuarios => detalle CRUD Usuario<br> 2. Listado de peliculas listadas por caracteristicas como genero, populares, etc. Muestra info general de cada una|
+|CUU/Epic|1. Registrar un usuario<br>2. Registar una lista para un usuario<br>3. Registar una Reseña-Puntuación para un usuario<br>4. Registar una amistad para un usuario|
 
 
 Adicionales para Aprobación
