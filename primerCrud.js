@@ -3,6 +3,8 @@
 import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 
+const personas = [];
+
 const rl = readline.createInterface({ input, output });
 export class Persona {
   constructor(dni, nombre, apellido, telefono, mail) {
@@ -23,8 +25,27 @@ try {
 
   const persona = new Persona(dni, nombre, apellido, telefono, mail);
   console.log(persona);
+  personas.add(persona);
 } catch {
   console.log('Error');
 } finally {
   rl.close();
 }
+
+function buscodni(personas, dnibuscado) {
+  return personas.find(persona => persona.dni === dnibuscado);
+}
+
+try{
+const dnibuscado = await rl.question('Ingrese el dni de la persona que desea buscar');
+const personaEncontrada = buscodni(personas, dnibuscado);
+if (personaEncontrada) {
+  console.log("Persona encontrada:", personaEncontrada);
+} else {
+  console.log("No se encontró ninguna persona con ese DNI.");
+}
+}
+catch{
+  console.log('Dni INVALIDO');
+}
+finally{rmSync.close();}
