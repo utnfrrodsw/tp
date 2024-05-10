@@ -16,7 +16,7 @@ export function Principal() {
             <section className='px-20 max-sm:px-3'>
                 {/*QUIZAS ES MEJOR PONER LOS ESTILOS EN UN CSS ??? que decis mauri*/}
                 <h1 className='pb-10 text-5xl text-[#70ae6e]'>Games</h1>
-                <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-10 pb-20 rounded-xl max-sm:gap-3 text-center'>
+                <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-10 pb-20 rounded-xl max-sm:gap-2 text-center'>
                     <div className='max-md:col-span-2 md:col-span-2 lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px]'>1</div>
                     <div className='lg:col-span-2 p-20 bg-red-500 border-2 text-white rounded-[40px]'>2</div>
                     <div className='lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px]'>3</div>
