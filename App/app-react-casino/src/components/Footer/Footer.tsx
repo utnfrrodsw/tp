@@ -97,6 +97,10 @@ export function Footer(){
           <div className=' bg-[#181529] pl-8 pr-8 p-5  rounded-lg md:content-center'>
             <img src='./src/assets/images/rolex-logo.png' className='w-24 h-auto m-auto' />
           </div>
+
+          <div className=' bg-[#181529] pl-8 pr-8 p-5  rounded-lg md:content-center'>
+            <img src='./src/assets/images/premier-logo.png' className='w-16 h-auto m-auto' />
+          </div>
         </div>
       </div>
 
