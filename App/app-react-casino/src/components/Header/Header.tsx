@@ -3,7 +3,7 @@ import './Header.css'
 
 export function Header() {
     return(
-        <header className='sticky top-0 z-10'>
+        <header className='fixed top-0 z-10 w-full'>
             <nav className='bg-[#fabc01]/10 p-6 flex items-center justify-between'>
                 <Link to="/"><img className='max-h-12' src="./src/assets/images/boceto_logo.png" /></Link>
                 <div className='space-x-10'>

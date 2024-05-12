@@ -1,0 +1,62 @@
+.loginScreen {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.479);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginCuadro {
+    min-width: 320px;
+    padding: 2rem;
+    height: 50%;
+    background-color: var(--negro);
+    border-radius: 2rem;
+}
+
+.casinoLogo {
+    max-width: 2.5rem;
+}
+
+.svgCruz {
+    width: 2rem;
+}
+
+.svgCruz:hover {
+    cursor: pointer;
+}
+
+.bienvenida {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formulario {
+    margin: 2rem 0 2rem 0;
+}
+
+.formLogin {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.formularioUl {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2rem;
+}
+
+.formSubmit {
+    display: flex;
+    justify-content: center;
+}
+
+.ingresoForm {
+    padding: .5rem;
+}
