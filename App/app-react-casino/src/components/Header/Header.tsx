@@ -9,7 +9,7 @@ export function Header() {
                 <div className='space-x-10'>
                     <Link to="/chau">About Us</Link>
                     <Link to="/chau">Daily Free</Link>
-                    <Link to="/login" className='gold-button'>LogIn</Link>
+                    <button className='gold-button'>LogIn</button>
                 </div>
             </nav>
         </header>
