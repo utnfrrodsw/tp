@@ -17,13 +17,14 @@ export function LogIn() {
                             </li>
                             <li className='formLogin'>
                                 <label htmlFor="password">Contraseña:</label>
-                                <input type="text" id='password' className='ingresoForm' name='user_password'/>
+                                <input type="password" id='password' className='ingresoForm' name='user_password'/>
                             </li>
                             <li className='formSubmit'>
                                 <button type='submit' className='gold-button'>Iniciar Sesion</button>
                             </li>
                         </ul>
                     </form>
+                    <p>No tenes una cuenta? <span>Crea aca una</span> de forma gratuita!</p>
                 </div>
             </section>
         </>

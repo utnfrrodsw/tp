@@ -11,8 +11,7 @@
 
 .loginCuadro {
     min-width: 320px;
-    padding: 2rem;
-    height: 50%;
+    padding: 3rem 3rem;
     background-color: var(--negro);
     border-radius: 2rem;
 }
@@ -42,14 +41,13 @@
 .formLogin {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
 }
 
 .formularioUl {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.2rem;
+    gap: 1.5rem;
 }
 
 .formSubmit {
@@ -59,4 +57,17 @@
 
 .ingresoForm {
     padding: .5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+    border: none;
+    color: black;
+    border-radius: .5rem;
+}
+
+.ingresoForm:focus {
+    outline: 0;
+}
+
+span {
+    color: red;
+    cursor: pointer;
 }
