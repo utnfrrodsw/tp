@@ -13,6 +13,7 @@
 }
 
 .loginCuadro {
+    z-index: 100;
     min-width: 320px;
     padding: 3rem 3rem;
     background-color: var(--negro);
