@@ -1,15 +1,10 @@
 import './LogIn.css'
+import { useState, useEffect } from 'react';
 
 function clickLogin() {
     const login = document.querySelector('#login');
-    //const screen = document.querySelector('.loginCuadro');
     login?.classList.toggle('notShow');
 }
-
-//const handleClick = (e) => {
-//    e.preventDefault();
-//    console.log('Se clickeo afuera.');
-//  }
 
 export function LogIn() {
     return(
