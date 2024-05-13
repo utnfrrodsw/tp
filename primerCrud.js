@@ -113,9 +113,45 @@ const modificarPersona = async () => {
     const persona = buscodni(personas, dnibuscado);
     const indice = personas.findIndex((element) => element.dni === persona.dni);
     console.log(`Persona encontrada: ${JSON.stringify(persona)}`);
-    const personaReemplazo = await crearPersona();
-    personas.splice(indice, 1, personaReemplazo);
-    console.log('\nPersona modificada con éxito');
+    //const personaReemplazo = await crearPersona();
+    //personas.splice(indice, 1, personaReemplazo);
+    console.log(
+      '\n1-Nombre\n2-Apellido\n3-Mail\n4-Teléfono\n5-SALIR'
+    );
+    let opcion = Number.parseInt(
+      await rl.question('\nIngrese la opción que quiere modificar: \n')
+    );
+    do {switch(opcion){
+      case 1:
+        let new_name = await rl.question('Ingrese el nuevo nombre: \n');
+        persona.nombre = new_name;
+        console.log('\nPersona modificada con éxito');
+        console.log(`Persona con su nuevo nombre: ${JSON.stringify(persona)}`)
+        break;
+        
+        case 2:
+        let new_surname = await rl.question('Ingrese el nuevo apellido: \n');
+        persona.apellido = new_surname;
+        console.log('\nPersona modificada con éxito');
+        console.log(`Persona con su nuevo apellido: ${JSON.stringify(persona)}`);
+        break;
+        
+        case 3:
+        let new_email = await rl.question('Ingrese el nuevo mail: \n');
+        persona.mail = new_email;
+        console.log('\nPersona modificada con éxito');
+        console.log(`Persona con su nuevo mail: ${JSON.stringify(persona)}`);
+        break;
+        
+        case 4:
+        let new_phone = await rl.question('Ingrese el nuevo número de teléfono: \n');
+        persona.telefono = new_phone;
+        console.log('\nPersona modificada con éxito');
+        console.log(`Persona con su nuevo numero de teléfono: ${JSON.stringify(persona)}`);
+        break;
+        }
+      }while(opcion !== 5);
+      rl.close();
   } catch (error) {
     if (error instanceof TypeError) {
       console.log('\nLa persona ingresada no existe\n');
