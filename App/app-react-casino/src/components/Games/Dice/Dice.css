@@ -1,0 +1,20 @@
+.slider{
+    -webkit-appearance: none;
+    width: 60%;
+    height: 20px;
+    border-radius: 25px;
+    background: linear-gradient(90deg, var(--rojo) 60%, var(--blanco) 60%);
+    outline: none;
+    -webkit-transition: 0.2s;
+}
+
+.slider::-webkit-slider-thumb{
+    cursor: pointer;
+    appearance: none;
+    height: 35px;
+    width: 35px;
+    background-color: var(--rojo);
+    border-radius: 50%;
+    border: 7px solid var(--blanco);
+    
+}
