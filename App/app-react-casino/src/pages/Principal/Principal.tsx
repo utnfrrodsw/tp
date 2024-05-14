@@ -1,8 +1,17 @@
 import './Principal.css'
+import { useState } from 'react';
+import { LogIn } from '../../components/LogIn/LogIn';
 
 export function Principal() {
+
+    const [modalOpen, setModalOpen] = useState(true);
+
     return(
+
         <div>
+            {modalOpen && (
+                <LogIn/>
+            )}
             <section className='prueba'>
                 <video muted autoPlay loop disablePictureInPicture className='top-0 absolute -z-10 prueba2'> {/* use 2 clases de CSS, "prueba" y "prueba2", nose usar Tailwind y queria arreglarlo rapido, despues veo de pasarlas a tailwind */}
                     <source src='./src/assets/vid-bg/vid-bg-header.mp4'/>
@@ -27,9 +36,7 @@ export function Principal() {
                     <div className='bg-red-500 p-20 border-2 text-white rounded-[40px]'>8</div>
                     <div className='md:col-span-1 lg:col-span-2 p-20 bg-red-500 p-20 border-2 text-white rounded-[40px]'>9</div>
                 </div>
-                
             </section>
-            PRUEBA DE SCROLL VERTICAL 
 
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>

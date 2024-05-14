@@ -1,11 +1,6 @@
 import { NavLink as Link } from 'react-router-dom'
 import './Header.css'
 
-function clickLogin() {
-    const login = document.querySelector('#login');
-    login?.classList.toggle('notShow');
-}
-
 export function Header() {
     return(
         <header className='fixed top-0 z-10 w-full'>
@@ -14,7 +9,7 @@ export function Header() {
                 <div className='space-x-10'>
                     <Link to="/chau">About Us</Link>
                     <Link to="/chau">Daily Free</Link>
-                    <button className='gold-button' onClick={clickLogin}>LogIn</button>
+                    <button className='gold-button'>LogIn</button>
                 </div>
             </nav>
         </header>

@@ -1,6 +1,3 @@
-.notShow {
-    display: none;
-}
 .loginScreen {
     height: 100vh;
     width: 100%;
@@ -13,7 +10,6 @@
 }
 
 .loginCuadro {
-    transition: transform 2s;
     min-width: 320px;
     padding: 3rem 3rem;
     background-color: var(--negro);

@@ -9,7 +9,6 @@ export function App() {
     return(
         <>
             <Header/>
-            <LogIn/>
                 <Routes>
                     <Route path="/" element={<Principal />} />
                 </Routes>
