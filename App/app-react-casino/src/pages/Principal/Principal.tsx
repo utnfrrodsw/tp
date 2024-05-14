@@ -1,18 +1,10 @@
 import { Link } from 'react-router-dom'
 import './Principal.css'
-import { useState } from 'react';
-import { LogIn } from '../../components/LogIn/LogIn';
 
 export function Principal() {
 
-    const [modalOpen, setModalOpen] = useState(false);
-
     return(
-
         <div>
-            {modalOpen && (
-                <LogIn/>
-            )}
             <section className='prueba'>
                 <video muted autoPlay loop disablePictureInPicture className='top-0 absolute -z-10 prueba2'> {/* use 2 clases de CSS, "prueba" y "prueba2", nose usar Tailwind y queria arreglarlo rapido, despues veo de pasarlas a tailwind */}
                     <source src='./src/assets/vid-bg/vid-bg-header.mp4'/>
