@@ -73,5 +73,6 @@ export function Dice() {
                 </div>
             </section>
         </>
-    );
+    )
+    }
 }
