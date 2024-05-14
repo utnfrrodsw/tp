@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import './Dice.css';
-
 export function Dice() {
-    const [data, setData] = useState(0);
-    const [monto, setMonto] = useState(0);
-    const [multi, setMulti] = useState(0);
-    const [recibeAlGanar, setRecibeAlGanar] = useState(0);
+    
+    const [data, setData] = useState(0.0);
+    const [monto, setMonto] = useState(0.0);
+    const [multi, setMulti] = useState(0.0);
+    const [recibeAlGanar, setRecibeAlGanar] = useState(0.0);
 
     const calcularMulti = (data)=>{
         const multi = ((1/data)*100).toFixed(2);
@@ -40,7 +40,7 @@ export function Dice() {
         }else {
             alert("SALIO: " + random + ", NO FLACO PERDISTE LA HERENCIA DE LA NONA")
         }
-
+    }
     return (
         <>
             <section className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[200px] my-[100px] h-[500px] gap-0 grid grid-cols-3 grid-rows-2">
@@ -60,7 +60,7 @@ export function Dice() {
                 <div className="col-span-2 flex justify-between w-[90%] bg-[color:var(--violeta)] p-5">
                     <div>
                         <label><h1>Multiplicador</h1></label>
-                        <input className="bg-[color:var(--negro)]" type="number" step="0.01" min="1.0102" max="9990" value={multi} />
+                        <input className="bg-[color:var(--negro)]" type="number" step="0.01" min="1.0102" max="9990" value={multi} onChange={calcularMulti}/>
                     </div>
                     <div>
                         <label><h1>Menor</h1></label>
@@ -74,5 +74,4 @@ export function Dice() {
             </section>
         </>
     )
-    }
 }
