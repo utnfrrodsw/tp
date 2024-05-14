@@ -4,7 +4,7 @@ export function Dice(){
     const[data,setData]=useState(0)
     const[monto, setMonto]=useState(0)
     
-    const [numeroAleatorio, setNumeroAleatorio] = useState(null);
+    const [numeroAleatorio, setNumeroAleatorio] = useState(0);
 
     const montoApuesta = (event) => {
         setMonto(parseFloat(event.target.value)); // Convertir a float el valor ingresado
