@@ -29,16 +29,6 @@ export function Principal() {
                     <Link to={""} className='md:col-span-1 lg:col-span-2 p-20 bg-red-500 p-20 border-2 text-white rounded-[40px]'>9</Link>
                 </div>
             </section>
-
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, quis illum suscipit molestias architecto inventore exercitationem rerum, nulla, perferendis modi cumque iusto voluptas excepturi distinctio? Laborum quaerat placeat consectetur ducimus!</p>
         </div>
     
     )
