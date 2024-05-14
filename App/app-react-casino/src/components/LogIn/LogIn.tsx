@@ -3,9 +3,8 @@ import './LogIn.css'
 export const LogIn = ({onClose}: {onClose: Function}) => {
     return(
         <>
-            <div className='loginScreen' onClick={(e) => {
-                    console.log(e.currentTarget.className)
-                    if(e.currentTarget.className != "loginCuadro") {
+            <div className='loginScreen' onClick={e => {
+                    if((e.target as HTMLElement).className === "loginScreen") {
                     onClose()}
                     }}>
                 <div className='loginCuadro'>
