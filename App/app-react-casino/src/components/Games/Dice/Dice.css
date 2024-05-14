@@ -4,8 +4,6 @@
     height: 20px;
     border-radius: 25px;
     background: linear-gradient(90deg, var(--rojo) 60%, var(--blanco) 60%);
-    outline: none;
-    -webkit-transition: 0.2s;
 }
 
 .slider::-webkit-slider-thumb{
