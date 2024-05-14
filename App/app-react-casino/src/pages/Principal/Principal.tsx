@@ -4,7 +4,7 @@ import { LogIn } from '../../components/LogIn/LogIn';
 
 export function Principal() {
 
-    const [modalOpen, setModalOpen] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
 
     return(
 
