@@ -1,6 +1,6 @@
 import './LogIn.css'
 
-export function LogIn() {
+export const LogIn = () => {
     return(
         <>
             <div className='loginScreen'> {/* No se preocupen por lo de hacer el estilo en CSS, llegado el momento me pondre a pasarlo todo a Tailwind */}
