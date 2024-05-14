@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Dice.css';
 export function Dice() {
     
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     const [data, setData] = useState(0.0);
     const [monto, setMonto] = useState(0.0);
     const [multi, setMulti] = useState(0.0);

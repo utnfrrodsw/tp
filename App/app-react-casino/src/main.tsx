@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { App } from './App'
 import { BrowserRouter } from 'react-router-dom'
+
+
 //import { Principal } from './components/Principal/Principal.tsx'
 //import { Header } from './components/Header/Header.tsx'
 //import { Footer } from './components/Footer/Footer.tsx'
