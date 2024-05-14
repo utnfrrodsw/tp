@@ -20,15 +20,15 @@ export function Dice(){
                 </div>
                 <div className="col-span-2 flex justify-between w-[90%] bg-[color:var(--violeta)] p-5">
                     <div>
-                        <label>Multiplicador</label>
+                        <label><h1>Multiplicador</h1></label>
                         <input className="bg-[color:var(--negro)]" type="number" step="0.01" min="1.0102" max="9990" value={(1/data)*100}/>
                     </div>
                     <div>
-                        <label>Menor</label>
+                        <label><h1>Menor</h1>r</label>
                         <input className="bg-[color:var(--negro)]" type="number" min="1.0102" max="9990" value={data} />
                     </div>
                     <div>
-                        <label>Probabilidad</label>
+                        <label><h1>Probabilidad</h1></label>
                         <input className="bg-[color:var(--negro)]" type="number" min="1.0102" max="9990" value={data} />
                     </div>
                 </div>
