@@ -3,7 +3,7 @@
     width: 60%;
     height: 20px;
     border-radius: 25px;
-    background: linear-gradient(90deg, var(--rojo) 60%, var(--blanco) 60%);
+
 }
 
 .slider::-webkit-slider-thumb{
@@ -14,5 +14,4 @@
     background-color: var(--rojo);
     border-radius: 50%;
     border: 7px solid var(--blanco);
-    
 }
