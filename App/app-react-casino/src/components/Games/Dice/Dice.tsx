@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import './Dice.css';
 export function Dice() {
     
@@ -11,12 +11,12 @@ export function Dice() {
     const [multi, setMulti] = useState(0.0);
     const [recibeAlGanar, setRecibeAlGanar] = useState(0.0);
 
-    const calcularMulti = (data)=>{
+    const calcularMulti = (data:number)=>{
         const multi = ((1/data)*100).toFixed(2);
         setMulti(multi)
     }
 
-    const calcularRecibeAlGanar = (data, monto) => {
+    const calcularRecibeAlGanar = (data:number, monto:number) => {
         const recibeAlGanar = (((1 / data) * 100) * monto).toFixed(2);
         setRecibeAlGanar(recibeAlGanar);
     }
