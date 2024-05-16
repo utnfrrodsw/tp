@@ -3,7 +3,9 @@
 import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { Persona } from './clases.js';
-
+import { eliminarPersona } from './borrar.js';
+import { buscaIndice } from './busca_indice.js';
+import { buscodni } from './recuperar.js';
 const personas = [];
 const rl = readline.createInterface({ input, output });
 main();
@@ -97,9 +99,7 @@ async function buscarPersona() {
   }
 }
 
-function buscodni(personas, dnibuscado) {
-  return personas.find((persona) => persona.dni === dnibuscado);
-}
+
 
 const verTodos = () => {
   console.log(JSON.stringify(personas, null, 2));
@@ -111,71 +111,72 @@ const modificarPersona = async () => {
       'Ingrese el dni de la persona que desea buscar:\n'
     );
     const persona = buscodni(personas, dnibuscado);
-    const indice = personas.findIndex((element) => element.dni === persona.dni);
-    console.log(`Persona encontrada: ${JSON.stringify(persona)}`);
-    //const personaReemplazo = await crearPersona();
-    //personas.splice(indice, 1, personaReemplazo);
-    console.log(
-      '\n1-Nombre\n2-Apellido\n3-Mail\n4-Teléfono\n5-SALIR'
-    );
-    let opcion = Number.parseInt(
-      await rl.question('\nIngrese la opción que quiere modificar: \n')
-    );
-    do {switch(opcion){
-      case 1:
-        let new_name = await rl.question('Ingrese el nuevo nombre: \n');
-        persona.nombre = new_name;
-        console.log('\nPersona modificada con éxito');
-        console.log(`Persona con su nuevo nombre: ${JSON.stringify(persona)}`)
-        break;
-        
-        case 2:
-        let new_surname = await rl.question('Ingrese el nuevo apellido: \n');
-        persona.apellido = new_surname;
-        console.log('\nPersona modificada con éxito');
-        console.log(`Persona con su nuevo apellido: ${JSON.stringify(persona)}`);
-        break;
-        
-        case 3:
-        let new_email = await rl.question('Ingrese el nuevo mail: \n');
-        persona.mail = new_email;
-        console.log('\nPersona modificada con éxito');
-        console.log(`Persona con su nuevo mail: ${JSON.stringify(persona)}`);
-        break;
-        
-        case 4:
-        let new_phone = await rl.question('Ingrese el nuevo número de teléfono: \n');
-        persona.telefono = new_phone;
-        console.log('\nPersona modificada con éxito');
-        console.log(`Persona con su nuevo numero de teléfono: ${JSON.stringify(persona)}`);
-        break;
-        }
-      }while(opcion !== 5);
-      rl.close();
-  } catch (error) {
-    if (error instanceof TypeError) {
+    if (!persona) {
       console.log('\nLa persona ingresada no existe\n');
-    } else {
-      console.log('Error al modificar la persona: ', error);
+      return; // Salir de la función si la persona no existe
     }
+
+    console.log(`Persona encontrada: ${JSON.stringify(persona)}`);
+
+    let opcion;
+    do {
+      console.log(
+        '\n1-Nombre\n2-Apellido\n3-Mail\n4-Teléfono\n5-SALIR'
+      );
+      opcion = Number.parseInt(
+        await rl.question('\nIngrese la opción que quiere modificar: \n')
+      );
+
+      switch (opcion) {
+        case 1:
+          let new_name = await rl.question('Ingrese el nuevo nombre: \n');
+          persona.nombre = new_name;
+          console.log('\nPersona modificada con éxito');
+          console.log(`Persona con su nuevo nombre: ${JSON.stringify(persona)}`)
+          break;
+
+        case 2:
+          let new_surname = await rl.question('Ingrese el nuevo apellido: \n');
+          persona.apellido = new_surname;
+          console.log('\nPersona modificada con éxito');
+          console.log(`Persona con su nuevo apellido: ${JSON.stringify(persona)}`);
+          break;
+
+        case 3:
+          let new_email = await rl.question('Ingrese el nuevo mail: \n');
+          persona.mail = new_email;
+          console.log('\nPersona modificada con éxito');
+          console.log(`Persona con su nuevo mail: ${JSON.stringify(persona)}`);
+          break;
+
+        case 4:
+          let new_phone = await rl.question('Ingrese el nuevo número de teléfono: \n');
+          persona.telefono = new_phone;
+          console.log('\nPersona modificada con éxito');
+          console.log(`Persona con su nuevo numero de teléfono: ${JSON.stringify(persona)}`);
+          break;
+      }
+    } while (opcion !== 5);
+  } catch (error) {
+    console.log('Error al modificar la persona: ', error);
   }
 };
+
 
 const personasEstaVacio = () => {
   return personas.length === 0 ? true : false;
 };
-
+console.log(personas);
 const borrarPersona = async () => {
   try {
     const dnibuscado = await rl.question(
       'Ingrese el dni de la persona que desea borrar:\n'
     );
-    const indice = personas.findIndex((element) => element.dni === dnibuscado);
+    const indice = buscaIndice(personas,dnibuscado);
     if (indice === -1) {
       console.log('\nEl dni ingresado no existe\n');
     } else {
-      personas.splice(indice, 1);
-      console.log('\nPersona borrada con éxito');
+      eliminarPersona(personas,indice);
     }
   } catch (error) {
     console.log(error);
