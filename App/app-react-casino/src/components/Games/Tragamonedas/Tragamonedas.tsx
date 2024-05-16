@@ -8,9 +8,19 @@ export function Tragamonedas() {
     )
     
     // Columnas correspondientes a la tragamonedas
-    const Reels= [0,1,2,3,4,5,6,7,8,9];
+    const Reels = [0,1,2,3];
+
+    // Premios en linea
+    const PremiosLinea = [100, 200, 300, 400];
+
+    // Premios en diagonal
+    const PremiosDiagonal = [50, 100, 150, 200]
 
     // Los 3 numeros de cada columna
+    
+    // x,y,z COLUMNAS
+    // 0,1,2 FILAS
+
     // Columna 1
     const [x0, setx0] = useState(Reels[0]);
     const [x1, setx1] = useState(Reels[1]);
@@ -32,76 +42,93 @@ export function Tragamonedas() {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    //Sorteo de los 3 primeros numeros correspondientes a la primera columna
-    function sorteoColumna1() {
-        let pos = 0
-        for (let i = 0; i < getRandomInt(5,100); i++) {
+    function sortear() {
+
+        let pos;
+
+        //Sorteo de los 3 primeros numeros correspondientes a la primera columna
+        pos = 0;
+        var limiteX = getRandomInt(5,100)
+        for (let i = 0; i < limiteX; i++) {
             pos = pos + 1
             setx0(pos)
-            if(pos == 9) {
+            if(pos == 3) {
                 setx1(Reels[0])
                 setx2(Reels[1])
-            } else if (pos == 8) {
+            } else if (pos == 2) {
                 setx1(Reels[pos + 1])
                 setx2(Reels[0])
             } else {
                 setx1(Reels[pos + 1])
                 setx2(Reels[pos + 2])
             }
-            if (pos == 9) {
+            if (pos == 3) {
                 pos = 0;
             }
         }
-    }
 
-    //Sorteo de los 3 primeros numeros correspondientes a la segunda columna
-    function sorteoColumna2() {
-        let pos = 0
-        for (let i = 0; i < getRandomInt(5,100); i++) {
+        //Sorteo de los 3 primeros numeros correspondientes a la segunda columna
+        pos = 0
+        var limiteY = getRandomInt(5,100)
+        for (let i = 0; i < limiteY; i++) {
             pos = pos + 1
             sety0(pos)
-            if(pos == 9) {
+            if(pos == 3) {
                 sety1(Reels[0])
                 sety2(Reels[1])
-            } else if (pos == 8) {
+            } else if (pos == 2) {
                 sety1(Reels[pos + 1])
                 sety2(Reels[0])
             } else {
                 sety1(Reels[pos + 1])
                 sety2(Reels[pos + 2])
             }
-            if (pos == 9) {
+            if (pos == 3) {
                 pos = 0;
             }
         }
-    }
 
-    //Sorteo de los 3 primeros numeros correspondientes a la tercera columna
-    function sorteoColumna3() {
-        let pos = 0
-        for (let i = 0; i < getRandomInt(5,100); i++) {
+        //Sorteo de los 3 primeros numeros correspondientes a la tercera columna
+        pos = 0
+        var limiteZ = getRandomInt(5,100)
+        for (let i = 0; i < limiteZ; i++) {
             pos = pos + 1
             setz0(pos)
-            if(pos == 9) {
+            if(pos == 3) {
                 setz1(Reels[0])
                 setz2(Reels[1])
-            } else if (pos == 8) {
+            } else if (pos == 2) {
                 setz1(Reels[pos + 1])
                 setz2(Reels[0])
             } else {
                 setz1(Reels[pos + 1])
                 setz2(Reels[pos + 2])
             }
-            if (pos == 9) {
+            if (pos == 3) {
                 pos = 0;
             }
         }
+
+    }
+
+    function calcularPremio() {
+
+        // Calculo de premio
+        if((x1 == y1) && (y1 == z1)) {
+            console.log("Felicidades! ganaste: ", PremiosLinea[x1], " monedas", x1, y1, z1, " 1 ")
+        } else if ((x0 == y1) && (y1 == z2) && (z2 == x0)) {
+            console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 2 ")
+        } else if ((x2 == y1) && (y1 == z0) && (z0 == x2)) {
+            console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 3 ")
+        }
+
     }
 
     function play() {
-        sorteoColumna1()
-        sorteoColumna2()
-        sorteoColumna3()
+
+        sortear()
+        calcularPremio()
+
     }
 
     return(
