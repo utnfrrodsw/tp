@@ -65,10 +65,15 @@ export function Dice() {
         const min = 2;
         const max = 98;
         const random = Math.floor(Math.random() * (max - min + 1)) + min;
-        if (random <= data){
-            alert("SALIO: " + random + ", GANASTE FLACO SEGUI APOSTANDO QUE HACE BIEN AL CORAZON")
-        }else {
-            alert("SALIO: " + random + ", NO FLACO PERDISTE LA HERENCIA DE LA NONA")
+        if (textoBoton == "Menor" && random <= data){
+            alert("SALIO: " + random + ", WIN")
+        }if(textoBoton == "Menor" && random >= data){
+            alert("SALIO: " + random + ", LOSE")
+        }
+        if(textoBoton == "Mayor" && random >= data) {
+            alert("SALIO: " + random + ", WIN")
+        }if(textoBoton == "Mayor" && random <= data){
+            alert("SALIO: " + random + ", LOSE")
         }
     }
 
