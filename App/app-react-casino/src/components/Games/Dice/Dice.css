@@ -1,4 +1,5 @@
 .slider{
+    appearance: none;
     -webkit-appearance: none;
     width: 60%;
     height: 20px;

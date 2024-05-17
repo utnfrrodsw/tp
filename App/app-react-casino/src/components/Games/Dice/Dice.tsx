@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import './Dice.css';
 export function Dice() {
     
@@ -6,50 +6,51 @@ export function Dice() {
         window.scrollTo(0, 0)
       }, [])
 
-    const [data, setData] = useState(0.0);
-    const [monto, setMonto] = useState(0.0);
-    const [multi, setMulti] = useState(0.0);
-    const [recibeAlGanar, setRecibeAlGanar] = useState(0.0);
+    const [data, setData] = useState(0);
+    const [monto, setMonto] = useState(0);
+    const [multi, setMulti] = useState(0);
+    const [recibeAlGanar, setRecibeAlGanar] = useState(0);
     const [mayorMenor, setMayorMenor] = useState(true);
 
-    const calcularMulti = (data:number)=>{
+    const calcularMulti = ()=>{
+        let multi: number
         if(textoBoton == "Menor"){
-            const multi = ((1/(data))*100).toFixed(2);
-            setMulti(multi)
+            multi = parseFloat(((1/(data))*100).toFixed(3));
+            
         }else{
-            const multi = ((1/(100-data))*100).toFixed(2);
-            setMulti(multi)
+            multi = parseFloat(((1/(100-data))*100).toFixed(3));
         }
+        setMulti(multi)
     }
 
-    const calcularRecibeAlGanar = (data:number, monto:number) => {
-        const recibeAlGanar = (multi * monto).toFixed(2);
+    const calcularRecibeAlGanar = (monto:number) => {
+        const recibeAlGanar = parseFloat((multi * monto).toFixed(2));
         setRecibeAlGanar(recibeAlGanar);
     }
 
-    const montoApuesta = (event) => {
+    const montoApuesta = (event: ChangeEvent<HTMLInputElement>) => {
         const monto = parseFloat(event.target.value);
         setMonto(monto);
-        calcularRecibeAlGanar(data, monto);
+        calcularRecibeAlGanar(monto);
     }
     
-    const sliderData = (event) => {
+    const sliderData = (event: ChangeEvent<HTMLInputElement>) => {
+        let nuevaData: number;
         if(textoBoton == "Menor"){
-            const data = parseInt(event.target.value);
+            nuevaData = parseInt(event.target.value);
             setData(data);
         }else{
-            const data = 100 - parseInt(event.target.value);
-            setData(data);
+            nuevaData = 100 - parseInt(event.target.value);
         }
-        calcularRecibeAlGanar(data, monto);
-        calcularMulti(data);
-        setSliderColor();
+        setData(nuevaData);
+        calcularRecibeAlGanar(monto);
+        calcularMulti();
+        setSliderColor(nuevaData);
     }
 
-    const setSliderColor = () => {
-        const slider = document.querySelector('.slider');
-        const thumb = document.querySelector('.slider-thumb');
-        const percent = data;
+    const setSliderColor = (percent: number) => {
+        const slider = document.querySelector('.slider') as HTMLElement;
+        const thumb = document.querySelector('.slider-thumb') as HTMLElement;
         if(textoBoton == "Menor"){
             const color = `linear-gradient(90deg, var(--rojo) ${percent}%, var(--blanco) ${percent}%)`;
             slider.style.background = color;
@@ -67,6 +68,7 @@ export function Dice() {
         const random = Math.floor(Math.random() * (max - min + 1)) + min;
         if (textoBoton == "Menor" && random <= data){
             alert("SALIO: " + random + ", WIN")
+            console.log("hola")
         }if(textoBoton == "Menor" && random >= data){
             alert("SALIO: " + random + ", LOSE")
         }
