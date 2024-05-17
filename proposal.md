@@ -10,7 +10,7 @@
 - 49500 - Faulin, Eugenio Pandu
 
 ## **Repositorio:**
-- [Link repositorio](https://github.com/hdborelli/TP_DSW_CBFN)
+- [BackEnd](https://github.com/efaulin/tp-prometeo-back.git)
 
 Servicio de streaming de podcast y audiolibros online por suscripción, los usuarios podrán contratar el servicio, registrarse, consumir contenido y además poder dejar una reseña del mismo. El contenido se clasifica entre podcasts o audiolibros. Habrá diferentes categorías de suscripción (ej. gratuita, premium, estudiante, etc.). 
 
