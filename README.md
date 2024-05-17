@@ -5,13 +5,8 @@ El siguiente proyecto se basa en una aplicación web para la compra de entradas 
 
 ## Instalación y ejecución
 ### Frontend (Angular)
-1.
 
-Backend (API Express)
-1. Clonar este repositorio
-```javascript
-git clone 
-```
+### Backend (API Express)
 
 ## Contribuidores
 - Facundo Picia
