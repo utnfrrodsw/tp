@@ -114,9 +114,6 @@ export function Tragamonedas() {
     }
 
     function calcularPremio() {
-        let z = z1
-        let x = x1
-        let y = y1
         
         // Calculo de premio
         if((x1 == y1) && (y1 == z1)) {
