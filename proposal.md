@@ -45,7 +45,7 @@ Una vez que el usuario realize la selección y finalice la compra de la entrada,
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Cliente<br>2. CRUD Evento<br>3. CRUD Organizador|
+|CRUD simple|1. CRUD Cliente<br>2. CRUD Evento<br>3. CRUD Organizador|
 |CRUD dependiente|1. CRUD Evento {depende de} CRUD Organizador|
 |Listado<br>+<br>detalle| 1. Listado de eventos filtrados por fecha, hora y lugar => detalle CRUD Evento|
 |CUU/Epic|1. Comprar una entrada para un evento|
