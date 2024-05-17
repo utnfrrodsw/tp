@@ -13,7 +13,7 @@
 ## Tema
 
 La aplicación web ofrece un sistema de compra de entradas para eventos utilizando QR. Los usuarios ingresarán a la aplicación y deberán registrarse ingresando sus datos personales. En el caso de que ya estén registrados, se loguearán con su usuario ó email y su contraseña. Una vez dentro, deberán seleccionar el evento al que deseen asistir. Además contarán con distintos filtros para visualizar eventos por fecha, lugar o disponibilidad.<br>
-Los organizadores de los eventos realizarán las cargas de los mismos. Estos tendrán permisos especiales, como personalizar y editar los eventos. 
+Los organizadores de los eventos realizarán las cargas de los mismos. Estos tendrán permisos especiales, como personalizar y editar los eventos.<br> 
 Una vez que el usuario realize la selección y finalize la compra de la entrada, recibirá en su casilla de correo un mensaje de confirmación, junto con el QR.
 
 ### Modelo
