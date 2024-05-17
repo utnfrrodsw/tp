@@ -24,7 +24,7 @@ Link de draw.io: https://drive.google.com/file/d/1_P_jPA0Y0_qz-vjOBSoM8SY9cgfIt4
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD localidad<br>2. CRUD tipo producto<br>3. CRUD cliente|
+|CRUD simple|1. CRUD localidad<br>2. CRUD tipo producto<br>3. CRUD Forma de Pago|
 |CRUD dependiente|1. CRUD producto {depende de} CRUD tipo producto<br>2. CRUD Cliente {depende de} CRUD Localidad|
 |Listado<br>+<br>detalle| 1. Listado de producto filtrado por tipo de producto, muestra nro y tipo de producto => detalle CRUD producto<br> 2. Listado de ventas filtrado por rango de fecha, muestra nro de producto, fecha compra => detalle muestra datos completos de la venta|
 |CUU/Epic|1. Añadir productos a un carro de compras<br>2. Realizar el pago de una compra|
