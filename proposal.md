@@ -24,7 +24,7 @@ Una vez que el usuario realize la selección y finalice la compra de la entrada,
 ## Alcance Funcional 
 
 #### Registro y Autenticación:
--Permitir a los usuarios registrarse y autenticarse de manera segura.
+-Permitir a los usuarios registrarse y autenticarse de manera segura.<br>
 -Permitir a los organizadores crear un evento
 
 #### Gestión de Perfiles de Usuario:
@@ -34,11 +34,11 @@ Una vez que el usuario realize la selección y finalice la compra de la entrada,
 -Los organizadores pueden editar un evento.
 
 #### Selección de eventos:
--Mostrar a los usuarios los eventos disponibles.
+-Mostrar a los usuarios los eventos disponibles.<br>
 -Permitir a los usuarios reservar un evento.
 
 #### Visualización de eventos disponibles:
--Presentar una variedad de eventos.
+-Presentar una variedad de eventos.<br>
 -Proporcionar detalles claros sobre la fecha y lugar.
 
 ### Alcance Mínimo
