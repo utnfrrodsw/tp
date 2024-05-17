@@ -10,7 +10,7 @@
 ### Repositorios
 
 - [frontend app](http://hyperlinkToGihubOrGitlab)
-- [backend app](http://hyperlinkToGihubOrGitlab)
+- [backend app](https://github.com/lucastisocco/MoneyManager-Backend.git)
 
 ## Tema
 
