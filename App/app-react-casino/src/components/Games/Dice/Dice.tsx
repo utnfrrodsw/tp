@@ -6,19 +6,29 @@ export function Dice() {
         window.scrollTo(0, 0)
       }, [])
 
-    const [data, setData] = useState(0);
+    const [data, setData] = useState<number>(2);
     const [monto, setMonto] = useState(0);
     const [multi, setMulti] = useState(0);
     const [recibeAlGanar, setRecibeAlGanar] = useState(0);
     const [mayorMenor, setMayorMenor] = useState(true);
+    
+    const textoBoton = mayorMenor ? "Menor" : "Mayor";
+
+    useEffect(() => {
+        calcularMulti();
+    }, [data, mayorMenor])
+
+    useEffect(() => {
+        calcularRecibeAlGanar(monto);
+    }, [multi, monto])
 
     const calcularMulti = ()=>{
         let multi: number
         if(textoBoton == "Menor"){
-            multi = parseFloat(((1/(data))*100).toFixed(3));
+            multi = parseFloat(((100/(data))).toFixed(3));
             
         }else{
-            multi = parseFloat(((1/(100-data))*100).toFixed(3));
+            multi = parseFloat(((100/(100-data))).toFixed(3));
         }
         setMulti(multi)
     }
@@ -35,30 +45,25 @@ export function Dice() {
     }
     
     const sliderData = (event: ChangeEvent<HTMLInputElement>) => {
-        let nuevaData: number;
-        if(textoBoton == "Menor"){
-            nuevaData = parseInt(event.target.value);
-            setData(data);
-        }else{
-            nuevaData = 100 - parseInt(event.target.value);
+        const nuevaData = parseInt(event.target.value);
+        if(textoBoton === "Mayor"){
+            setData(100-nuevaData);
         }
-        setData(nuevaData);
-        calcularRecibeAlGanar(monto);
-        calcularMulti();
+        setData(nuevaData)
         setSliderColor(nuevaData);
     }
 
     const setSliderColor = (percent: number) => {
         const slider = document.querySelector('.slider') as HTMLElement;
         const thumb = document.querySelector('.slider-thumb') as HTMLElement;
-        if(textoBoton == "Menor"){
+        if (textoBoton === "Menor") {
             const color = `linear-gradient(90deg, var(--rojo) ${percent}%, var(--blanco) ${percent}%)`;
             slider.style.background = color;
             thumb.style.left = `calc(${percent}% - 12px)`;
         }else{
             const color = `linear-gradient(90deg, var(--blanco) ${percent}%, var(--rojo) ${percent}%)`;
             slider.style.background = color;
-            thumb.style.right = `calc(${100-percent}% - 12px)`;
+            thumb.style.left = `calc(% - 12px)`;  
         }
     }
 
@@ -82,7 +87,6 @@ export function Dice() {
     const cambiarTexto = () => {
         setMayorMenor(!mayorMenor);
     }
-    const textoBoton = mayorMenor ? "Menor" : "Mayor";
     return (
         <>
             <section className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[200px] mt-[150px] mb-[50px] h-[500px] gap-0 grid grid-cols-3 grid-rows-2 max-lg:mx-[20px] max-lg:grid-cols-1">
