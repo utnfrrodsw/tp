@@ -46,7 +46,10 @@ export function Dice() {
     
     const sliderData = (event: ChangeEvent<HTMLInputElement>) => {
         const nuevaData = parseInt(event.target.value);
-        setData(nuevaData);
+        if(textoBoton === "Mayor"){
+            setData(100-nuevaData);
+        }
+        setData(nuevaData)
         setSliderColor(nuevaData);
     }
 
@@ -60,7 +63,7 @@ export function Dice() {
         }else{
             const color = `linear-gradient(90deg, var(--blanco) ${percent}%, var(--rojo) ${percent}%)`;
             slider.style.background = color;
-            thumb.style.left = `calc(${percent}% - 12px)`;  
+            thumb.style.left = `calc(% - 12px)`;  
         }
     }
 
