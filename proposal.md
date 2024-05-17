@@ -9,7 +9,7 @@
 
 ### Repositorios
 
-- [frontend app](http://hyperlinkToGihubOrGitlab)
+- [frontend app](https://github.com/santi-m123/MoneyManager-Frontend.git)
 - [backend app](https://github.com/lucastisocco/MoneyManager-Backend.git)
 
 ## Tema
@@ -34,11 +34,13 @@ Regularidad:
 |Listado<br>+<br>detalle| 1. Listado de transacciones filtrado por categoría, muestra desc y monto de transacción => detalle CRUD Transacción|
 |CUU/Epic|1. Generar informe con graficos de gastos por categoria, moneda, etc.|
 
+
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Método Pago<br>2. CRUD Categoría<br>3. CRUD Transacción<br>4. CRUD Monedas<br>5. CRUD Tasa de Cambio|
 |CUU/Epic|1. Generar informe con graficos de gastos por categoria, moneda, etc.<br>2. Mostrar graficos de la evolucion de cambio de una moneda respecto a otra.|
+
 
 ### Alcance Adicional Voluntario
 
