@@ -3,8 +3,6 @@ import './Tragamonedas.css';
 
 export function Tragamonedas() {
 
-    console.log("hola")
-
     useEffect(() => {
         window.scrollTo(0, 0)}, []
     )
@@ -47,24 +45,24 @@ export function Tragamonedas() {
     function sortear() {
 
         let pos;
+        let max = Reels.length - 1
 
         //Sorteo de los 3 primeros numeros correspondientes a la primera columna
         pos = 0;
-        var limiteX = getRandomInt(5,100)
-        for (let i = 0; i < limiteX; i++) {
+        for (let i = 0; i < getRandomInt(5,100); i++) {
             pos = pos + 1
             setx0(pos)
-            if(pos == 3) {
+            if(pos == max) {
                 setx1(Reels[0])
                 setx2(Reels[1])
-            } else if (pos == 2) {
+            } else if (pos == max-1) {
                 setx1(Reels[pos + 1])
                 setx2(Reels[0])
             } else {
                 setx1(Reels[pos + 1])
                 setx2(Reels[pos + 2])
             }
-            if (pos == 3) {
+            if (pos == max) {
                 pos = 0;
             }
         }
@@ -75,17 +73,17 @@ export function Tragamonedas() {
         for (let i = 0; i < limiteY; i++) {
             pos = pos + 1
             sety0(pos)
-            if(pos == 3) {
+            if(pos == max) {
                 sety1(Reels[0])
                 sety2(Reels[1])
-            } else if (pos == 2) {
+            } else if (pos == max-1) {
                 sety1(Reels[pos + 1])
                 sety2(Reels[0])
             } else {
                 sety1(Reels[pos + 1])
                 sety2(Reels[pos + 2])
             }
-            if (pos == 3) {
+            if (pos == max) {
                 pos = 0;
             }
         }
@@ -96,42 +94,45 @@ export function Tragamonedas() {
         for (let i = 0; i < limiteZ; i++) {
             pos = pos + 1
             setz0(pos)
-            if(pos == 3) {
+            if(pos == max) {
                 setz1(Reels[0])
                 setz2(Reels[1])
-            } else if (pos == 2) {
+            } else if (pos == max-1) {
                 setz1(Reels[pos + 1])
                 setz2(Reels[0])
             } else {
                 setz1(Reels[pos + 1])
                 setz2(Reels[pos + 2])
             }
-            if (pos == 3) {
+            if (pos == max) {
                 pos = 0;
             }
         }
 
-        return true
+        setTimeout(calcularPremio, 2000)
 
     }
 
-    async function calcularPremio() {
-
-        let espera = await sortear()
-
-        if (espera) {
-            // Calculo de premio
-            if((x1 == y1) && (y1 == z1)) {
-                console.log("Felicidades! ganaste: ", PremiosLinea[x1], " monedas", x1, y1, z1, " 1 ")
-            } else if ((x0 == y1) && (y1 == z2) && (z2 == x0)) {
-                console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 2 ")
-            } else if ((x2 == y1) && (y1 == z0) && (z0 == x2)) {
-                console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 3 ")
-            }
+    function calcularPremio() {
+        let z = z1
+        let x = x1
+        let y = y1
+        
+        // Calculo de premio
+        if((x1 == y1) && (y1 == z1)) {
+            console.log("Felicidades! ganaste: ", PremiosLinea[x1], " monedas", x1, y1, z1, " 1 ")
+        } else if ((x0 == y1) && (y1 == z2) && (z2 == x0)) {
+            console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 2 ")
+        } else if ((x2 == y1) && (y1 == z0) && (z0 == x2)) {
+            console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 3 ")
         }
 
-    }
+        console.log("-------------")
+        console.log(x0,y0,z0)
+        console.log(x1,y1,z1)
+        console.log(x2,y2,z2)
 
+    }
 
     return(
 
@@ -157,7 +158,8 @@ export function Tragamonedas() {
                 </div>
             </div>
 
-            <button className="buttonTragamonedas" onClick={calcularPremio}>Click para jugar</button>
+            <button className="buttonTragamonedas" onClick={sortear}>Click para jugar</button>
+            <button className="buttonTragamonedas" onClick={calcularPremio}>Calcular premio</button>
         </div>
 
     )
