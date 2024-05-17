@@ -9,6 +9,7 @@ export function Tragamonedas() {
     
     // Columnas correspondientes a la tragamonedas
     const Reels = [0,1,2,3];
+    var max = Reels.length - 1
 
     // Premios en linea
     const PremiosLinea = [100, 200, 300, 400];
@@ -45,89 +46,103 @@ export function Tragamonedas() {
     function sortear() {
 
         let pos;
-        let max = Reels.length - 1
 
-        //Sorteo de los 3 primeros numeros correspondientes a la primera columna
+        // Sorteo de la primera columna
         pos = 0;
+        let x_0 = x0
+        let x_1 = x1
+        let x_2 = x2
         for (let i = 0; i < getRandomInt(5,100); i++) {
             pos = pos + 1
-            setx0(pos)
+            x_0 = pos
             if(pos == max) {
-                setx1(Reels[0])
-                setx2(Reels[1])
-            } else if (pos == max-1) {
-                setx1(Reels[pos + 1])
-                setx2(Reels[0])
+                x_1 = Reels[0]
+                x_2 = Reels[1]
+            } else if (pos == max-1) { 
+                x_1 = Reels[pos + 1]
+                x_2 = Reels[0]
             } else {
-                setx1(Reels[pos + 1])
-                setx2(Reels[pos + 2])
+                x_1 = Reels[pos + 1]
+                x_2 = Reels[pos + 2]
             }
             if (pos == max) {
                 pos = 0;
             }
         }
 
-        //Sorteo de los 3 primeros numeros correspondientes a la segunda columna
-        pos = 0
-        var limiteY = getRandomInt(5,100)
-        for (let i = 0; i < limiteY; i++) {
+        setx0(x_0)
+        setx1(x_1)
+        setx2(x_2)
+
+        // Sorteo de la segunda columna
+        pos = 0;
+        let y_0 = y0
+        let y_1 = y1
+        let y_2 = y2
+        for (let i = 0; i < getRandomInt(5,100); i++) {
             pos = pos + 1
-            sety0(pos)
+            y_0 = pos
             if(pos == max) {
-                sety1(Reels[0])
-                sety2(Reels[1])
+                y_1 = Reels[0]
+                y_2 = Reels[1]
             } else if (pos == max-1) {
-                sety1(Reels[pos + 1])
-                sety2(Reels[0])
+                y_1 = Reels[pos + 1]
+                y_2 = Reels[0]
             } else {
-                sety1(Reels[pos + 1])
-                sety2(Reels[pos + 2])
+                y_1 = Reels[pos + 1]
+                y_2 = Reels[pos + 2]
             }
             if (pos == max) {
                 pos = 0;
             }
         }
 
-        //Sorteo de los 3 primeros numeros correspondientes a la tercera columna
-        pos = 0
-        var limiteZ = getRandomInt(5,100)
-        for (let i = 0; i < limiteZ; i++) {
+        sety0(y_0)
+        sety1(y_1)
+        sety2(y_2)
+
+        // Sorteo de la tercera columna
+        pos = 0;
+        let z_0 = z0
+        let z_1 = z1
+        let z_2 = z2
+        for (let i = 0; i < getRandomInt(5,100); i++) {
             pos = pos + 1
-            setz0(pos)
+            z_0 = pos
             if(pos == max) {
-                setz1(Reels[0])
-                setz2(Reels[1])
+                z_1 = Reels[0]
+                z_2 = Reels[1]
             } else if (pos == max-1) {
-                setz1(Reels[pos + 1])
-                setz2(Reels[0])
+                z_1 = Reels[pos + 1]
+                z_2 = Reels[0]
             } else {
-                setz1(Reels[pos + 1])
-                setz2(Reels[pos + 2])
+                z_1 = Reels[pos + 1]
+                z_2 = Reels[pos + 2]
             }
             if (pos == max) {
                 pos = 0;
             }
         }
 
-        setTimeout(calcularPremio, 2000)
-
-    }
-
-    function calcularPremio() {
-        
-        // Calculo de premio
-        if((x1 == y1) && (y1 == z1)) {
-            console.log("Felicidades! ganaste: ", PremiosLinea[x1], " monedas", x1, y1, z1, " 1 ")
-        } else if ((x0 == y1) && (y1 == z2) && (z2 == x0)) {
-            console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 2 ")
-        } else if ((x2 == y1) && (y1 == z0) && (z0 == x2)) {
-            console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 3 ")
-        }
+        setz0(z_0)
+        setz1(z_1)
+        setz2(z_2)
 
         console.log("-------------")
-        console.log(x0,y0,z0)
-        console.log(x1,y1,z1)
-        console.log(x2,y2,z2)
+        console.log(x_0,y_0,z_0)
+        console.log(x_1,y_1,z_1)
+        console.log(x_2,y_2,z_2)
+
+        if((x_1 == y_1) && (y_1 == z_1)) {
+            console.log("Felicidades! ganaste: ", PremiosLinea[x1], " monedas", x_1, y_1, z_1, " 1 ")
+            alert("Felicidades! ganaste: " + PremiosLinea[x1] + " monedas")
+        } else if ((x_0 == y_1) && (y_1 == z_2) && (z_2 == x_0)) {
+            console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x_0, y_1, z_2, " 2 ")
+            alert("Felicidades! ganaste: " + PremiosDiagonal[x0] + " monedas")
+        } else if ((x_2 == y_1) && (y_1 == z_0) && (z_0 == x_2)) {
+            console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x_0, y_1, z_2, " 3 ")
+            alert("Felicidades! ganaste: " + PremiosDiagonal[x0] + " monedas")
+        }
 
     }
 
@@ -156,7 +171,6 @@ export function Tragamonedas() {
             </div>
 
             <button className="buttonTragamonedas" onClick={sortear}>Click para jugar</button>
-            <button className="buttonTragamonedas" onClick={calcularPremio}>Calcular premio</button>
         </div>
 
     )
