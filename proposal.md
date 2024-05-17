@@ -32,13 +32,13 @@ Regularidad:
 |CRUD simple|1. CRUD Método Pago<br>2. CRUD Categoría|
 |CRUD dependiente|1. CRUD Transacción {depende de} CRUD Categoría y Metodo Pago|
 |Listado<br>+<br>detalle| 1. Listado de transacciones filtrado por categoría, muestra desc y monto de transacción => detalle CRUD Transacción|
-|CUU/Epic|1. Registrar una Transacción|
+|CUU/Epic|1. Generar informe con graficos de gastos por categoria, moneda, etc.|
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Método Pago<br>2. CRUD Categoría<br>3. CRUD Transacción<br>4. CRUD Monedas<br>5. CRUD Tasa de Cambio|
-|CUU/Epic|1. Registrar una Transacción<br>2. Registrar un Intercambio de divisas|
+|CUU/Epic|1. Generar informe con graficos de gastos por categoria, moneda, etc.<br>2. Mostrar graficos de la evolucion de cambio de una moneda respecto a otra.|
 
 ### Alcance Adicional Voluntario
 
