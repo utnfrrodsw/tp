@@ -3,6 +3,8 @@ import './Tragamonedas.css';
 
 export function Tragamonedas() {
 
+    console.log("hola")
+
     useEffect(() => {
         window.scrollTo(0, 0)}, []
     )
@@ -109,27 +111,27 @@ export function Tragamonedas() {
             }
         }
 
+        return true
+
     }
 
-    function calcularPremio() {
+    async function calcularPremio() {
 
-        // Calculo de premio
-        if((x1 == y1) && (y1 == z1)) {
-            console.log("Felicidades! ganaste: ", PremiosLinea[x1], " monedas", x1, y1, z1, " 1 ")
-        } else if ((x0 == y1) && (y1 == z2) && (z2 == x0)) {
-            console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 2 ")
-        } else if ((x2 == y1) && (y1 == z0) && (z0 == x2)) {
-            console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 3 ")
+        let espera = await sortear()
+
+        if (espera) {
+            // Calculo de premio
+            if((x1 == y1) && (y1 == z1)) {
+                console.log("Felicidades! ganaste: ", PremiosLinea[x1], " monedas", x1, y1, z1, " 1 ")
+            } else if ((x0 == y1) && (y1 == z2) && (z2 == x0)) {
+                console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 2 ")
+            } else if ((x2 == y1) && (y1 == z0) && (z0 == x2)) {
+                console.log("Felicidades! ganaste: ", PremiosDiagonal[x0], " monedas", x0, y1, z2, " 3 ")
+            }
         }
 
     }
 
-    function play() {
-
-        sortear()
-        calcularPremio()
-
-    }
 
     return(
 
@@ -155,7 +157,7 @@ export function Tragamonedas() {
                 </div>
             </div>
 
-            <button className="buttonTragamonedas" onClick={play}>Click para jugar</button>
+            <button className="buttonTragamonedas" onClick={calcularPremio}>Click para jugar</button>
         </div>
 
     )
