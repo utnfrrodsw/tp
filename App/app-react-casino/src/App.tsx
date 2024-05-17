@@ -5,6 +5,7 @@ import { Footer } from './components/Footer/Footer.tsx'
 import { Dice } from './components/Games/Dice/Dice.tsx'
 import { Tragamonedas } from './components/Games/Tragamonedas/Tragamonedas.tsx'
 import { RouletteLive } from './pages/RouletteLive/RouletteLive.tsx'
+import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx'
 import './App.css'
 
 export function App() {
@@ -16,6 +17,7 @@ export function App() {
                     <Route path="/dice" element={<Dice />} />
                     <Route path="/tragamonedas" element={<Tragamonedas />} />
                     <Route path="/live_roulette" element={<RouletteLive />} />
+                    <Route path="*" element={<ErrorPage />} />
                 </Routes>
             <Footer/>
         </>
