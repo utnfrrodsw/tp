@@ -25,7 +25,7 @@ export function Principal() {
                     <Link to="/dice" className='max-md:col-span-2 md:col-span-2 lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px] bg-[url("./src/assets/images/dice.webp")] bg-center lg:hover:scale-110 transition ease-in-out bg-cover hover:scale-[1.05]'></Link>
                     <Link to="/tragamonedas" className='lg:col-span-2 p-20 bg-red-500 border-2 text-white rounded-[40px] bg-[url("./src/assets/images/slots.webp")] bg-center lg:hover:scale-110 transition ease-in-ou bg-cover hover:scale-[1.05]'></Link>
                     <Link to={""} className='lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px]'>3</Link>
-                    <Link to={""} className='max-md:col-span-2 md:col-span-2 lg:col-span-2 p-20 bg-red-500 border-2 text-white rounded-[40px]'>4</Link>
+                    <Link to="/live_roulette" className='max-md:col-span-2 md:col-span-2 lg:col-span-2 p-20 bg-red-500 border-2 text-white rounded-[40px] bg-[url("./src/assets/images/roulette.png")] bg-center lg:hover:scale-110 transition ease-in-ou bg-cover hover:scale-[1.05]'>RULETA</Link>
                     <Link to={""} className='md:col-span-2 lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px]'>5</Link>
                     <Link to={""} className='bg-red-500 p-20 border-2 text-white rounded-[40px]'>6</Link>
                     <Link to={""} className='max-md:col-span-2 bg-red-500 p-20 border-2 text-white rounded-[40px]'>7</Link>
