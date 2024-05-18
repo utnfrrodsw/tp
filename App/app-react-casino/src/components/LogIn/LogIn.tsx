@@ -33,6 +33,7 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                         </div>
                     </div>
                     <div className='login_rightside'>
+                        <button onClick={() => onClose()}><img src="./src/assets/images/close.svg" alt="close" className='anotherLogin'/></button>
                         <p className='loginText'>ALSO LOG WITH</p>
                         <img src="./src/assets/images/apple.svg" alt="apple" className='anotherLogin'/>
                         <img src="./src/assets/images/google.svg" alt="google" className='anotherLogin'/>
