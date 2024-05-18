@@ -1,0 +1,24 @@
+.wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.wheel {
+  width: 450px;
+  height: 450px;
+  transform: rotate(0deg);
+  transition-property: transform;
+  transition-duration: 4s;
+  transition-timing-function: cubic-bezier(.46,-0.12,.37,1);
+  pointer-events: none;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 50px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: var(--amarillo);
+}
