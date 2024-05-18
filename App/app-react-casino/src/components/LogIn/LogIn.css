@@ -42,13 +42,15 @@
     align-items: center;
     justify-content: center;
     display: flex;
+    gap: 1rem;
     flex-direction: column;
     width: 60%;
 }
 
 .login_rightside {
+    border-radius: 2rem;
     background-color: #181529;
-    margin-top: 1.2 rem;
+    padding-top: 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,4 +81,43 @@
 .loginSubTitle {
     font-weight: bold;
     font-size: 1.5rem;
+}
+
+.boton_submit {
+    font-size: 1.2rem;
+    width: 30%;
+    font-weight: bold;
+    color: black;
+    background-color: var(--amarillo);
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+}
+
+.boton_submit:hover {
+    background-color: #bd8e00;
+}
+
+.formFrase {
+    color: var(--amarillo);
+    font-size: 1.2rem;
+}
+
+.ingresoForm {
+    height: 2rem;
+    background-color: #181529;
+    width: 100%;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 80%;
+}
+
+.submitClass {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    width: 100%;
 }
