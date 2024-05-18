@@ -103,9 +103,15 @@
 }
 
 .ingresoForm {
+    padding: .5rem;
+    border: none;
     height: 2rem;
     background-color: #181529;
     width: 100%;
+}
+
+.ingresoForm:focus {
+    outline: none;
 }
 
 .formulario {
