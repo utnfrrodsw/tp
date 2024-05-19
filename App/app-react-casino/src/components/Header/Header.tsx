@@ -12,7 +12,7 @@ export function Header() {
     }
 
     return(
-        <header className='fixed top-0 z-10 w-full'>
+        <header className='fixed top-0 z-10 w-full z-20'>
             {modalOpen && (
                 <LogIn onClose={handleButtonClick}/>
             )}

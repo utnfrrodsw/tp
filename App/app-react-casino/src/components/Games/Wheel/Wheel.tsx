@@ -1,6 +1,7 @@
 import { useState, ChangeEvent} from 'react';
 import './Wheel.css';
 import WheelImage from '../../../assets/images/wheel.png';
+import WheelPointer from '../../../assets/images/wheelPointer.png';
 
 const colors = [
   'verde', 'gris', 'verde', 'gris', 'amarillo', 'gris', 'verde', 'gris',
@@ -84,8 +85,8 @@ const calcularNaranja = (monto:number) => {
           <button className="bg-[color:var(--amarillo)] hover:bg-yellow-600 text-[color:var(--negro)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px] " onClick={startSpin}>APOSTAR</button>
           <p className='py-5'>El color seleccionado es: {selectedColor}</p>
       </div>
-      <div className='col-span-2 pt-[300px] text-center'>
-        <p className='relative'>|||</p>
+      <div className='relative col-span-2 flex justify-center items-start pt-[300px]'>
+        <img className='absolute z-20 top-400 left-1/2 -translate-x-1/2' src={WheelPointer} alt="" />
         <img src={WheelImage} alt="Wheel" className='wheel'/>
       </div>
     </div>
