@@ -35,17 +35,17 @@ https://drive.google.com/file/d/1Miob85r-dn_M9zWg0FZaVY0_oawiB9GY/view?usp=drive
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD Incidencia<br>3. CRUD Tipo Incidencia|
-|CRUD dependiente|1. CRUD Comentario {depende de} CRUD Incidencia<br>2. CRUD Sprint {depende de} CRUD Proyecto |
+|CRUD simple|1. CRUD Usuario <br>2. CRUD Incidencia <br>3. CRUD Proyecto|
+|CRUD dependiente|1. CRUD Comentario {depende de} CRUD Incidencia<br>2. CRUD Incidencia {depende de} CRUD Proyecto |
 |Listado<br>+<br>detalle| 1. Listado de incidencias filtrado por tipo, muestra nro y tipo de incidencia => detalle CRUD Incidencia<br> 2. Listado de Incidencias filtrado por rango de fecha, muestra nro de incidencia, fecha inicio y fin fin, estado y nombre del usuario responsable => detalle muestra datos completos de las incidencias|
-|CUU/Epic|1. Usuario da de alta un proyecto y un sprint dentro del mismo.<br>2. Usuario realiza una carga de una incidencia. <br>3. Usurio modifica un estado de una incidencia.
+|CUU/Epic|1. Armar una Sprint. <br>2. Registro del avance de una Incidencia en donde se ve si se completó y que estado tienen las mismas.
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD simple|1. CRUD Usuario <br>2. CRUD Incidencia <br>3. CRUD Proyecto <br>4. CRUD Tipo de Incidencia  <br>5. CRUD Sprint|
+|CUU/Epic|1. Reporte con toda la información dentro de un Sprint|
 
 
 ### Alcance Adicional Voluntario
@@ -54,7 +54,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1.  <br>2. |
+|CUU/Epic|1. <br>2. |
+|Otros|1. |
 
