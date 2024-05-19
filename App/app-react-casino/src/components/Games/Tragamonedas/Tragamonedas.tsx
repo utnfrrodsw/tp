@@ -10,7 +10,6 @@ export function Tragamonedas() {
     // Columnas correspondientes a la tragamonedas
     const Reels = ["Siete", "Banana", "Sandia", "Limon", "BAR", "Campana", "Naranja", "Fruta Violeta", "Fresa"];
     const iconHeight = 79
-    var posicionOriginal = 1
 
     // Generador de un numero aleatorio mediante parametros, tiene un ERROR que necesita ser corregido y es que la generacion no incluye el minimo pero si el maximo
     function getRandomInt(min:number, max:number) {
@@ -19,20 +18,13 @@ export function Tragamonedas() {
 
     const Spin = () => {
         const Reel = document.querySelector(".reel") as HTMLElement
+        Reel.style.transition = `background-position-y 2500ms cubic-bezier(.41,-0.01,.63,1.09)`;
+        const ReelStyle = getComputedStyle(Reel)
         var numeroSorteo = getRandomInt(1,8)
-        var nuevaPosicion = posicionOriginal + numeroSorteo
-        posicionOriginal = nuevaPosicion
-        if (nuevaPosicion > 8) {
-            var resto = nuevaPosicion - 8
-            nuevaPosicion = 0 + --resto
-            posicionOriginal = nuevaPosicion
-        }
-        console.log(Reels[nuevaPosicion])
-        Reel.style.transition = `background-position-y 2000ms cubic-bezier(.41,-0.01,.63,1.09)`;
-        const style = getComputedStyle(Reel)
-        var bg = parseInt(style.backgroundPositionY)  
-        console.log(bg)
-        Reel.style.backgroundPositionY = `${(-iconHeight*(numeroSorteo)) + bg}px`;
+        var bgPos = parseInt(ReelStyle.backgroundPositionY)  
+        Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo) + bgPos)}px`;
+        var posicion = (-(3*(-iconHeight*numeroSorteo) + bgPos) / iconHeight) + 1
+        console.log(posicion)
       }
 
     return(
