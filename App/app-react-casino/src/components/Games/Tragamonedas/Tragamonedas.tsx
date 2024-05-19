@@ -22,8 +22,8 @@ export function Tragamonedas() {
         const ReelStyle = getComputedStyle(Reel)
         var numeroSorteo = getRandomInt(1,8)
         var bgPos = parseInt(ReelStyle.backgroundPositionY)  
-        Reel.style.backgroundPositionY = `${2*((-iconHeight*numeroSorteo) + bgPos)}px`;
-        var posicion = (-2*((-iconHeight*numeroSorteo) + bgPos) / iconHeight) + 1
+        Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo) + bgPos)}px`;
+        var posicion = (-(3*(-iconHeight*numeroSorteo) + bgPos) / iconHeight) + 1
         console.log(posicion)
       }
 
