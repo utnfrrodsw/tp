@@ -7,8 +7,7 @@
 * 51753 - Spertino, Mateo
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [fullstack app](https://github.com/enzosanchezariel/TpDsw-LaGallega)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
