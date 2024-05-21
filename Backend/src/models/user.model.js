@@ -1,26 +1,29 @@
 import mongoose from "mongoose";
 
 // Crea un esquema para el usuario
-const userSchema = new mongoose.Schema({
-    name: {
+const userSchema = new mongoose.Schema(
+  {
+    username: {
       type: String,
       required: true,
-      trim: true
-    },
-    password: {
-      type: String,
-      required: true
+      trim: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      match: [/.+\@.+\..+/, 'Por favor ingrese un email válido']
-    }
-  });
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 // Crea un modelo basado en el esquema
-const User = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);
 
-// Exporta el modelo
-module.exports = User;
+
