@@ -24,3 +24,7 @@
     background-repeat: repeat-y;
 }
 
+.slots {
+    display: flex;
+    gap: 2rem;
+}
