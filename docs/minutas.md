@@ -29,3 +29,11 @@ Integrantes: Mauricio Fiorini, Lucas Maggi, Agustin Gil y Nicolas Gallegos
 - Hacer bocetos de las paginas del front-end con la pagina Figma
 - Crear app-react-casino
 - Hacer la estructura principal
+
+21/5/24
+Integrantes: Mauricio Fiorini, Lucas Maggi, Agustin Gil y Nicolas Gallegos
+
+- Creacion de la primera Build
+- Designacion y distribucion de tareas
+- Correccion de errores
+- Buscar forma de generar dinamicamente una ruleta
