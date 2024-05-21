@@ -9,7 +9,7 @@
   pointer-events: none;
 }
 
-button {
+.button {
   margin-top: 20px;
   padding: 10px 50px;
   font-size: 16px;

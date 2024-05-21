@@ -82,7 +82,7 @@ const calcularNaranja = (monto:number) => {
           <input value={ganarVioleta} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
           <label className="">Naranja <span className='font-bold'>x4.00</span></label>
           <input value={ganarNaranja} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
-          <button className="bg-[color:var(--amarillo)] hover:bg-yellow-600 text-[color:var(--negro)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px] " onClick={startSpin}>APOSTAR</button>
+          <button className="button bg-[color:var(--amarillo)] hover:bg-yellow-600 text-[color:var(--negro)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px] " onClick={startSpin}>APOSTAR</button>
           <p className='py-5'>El color seleccionado es: {selectedColor}</p>
       </div>
       <div className='relative col-span-2 flex justify-center items-start pt-[300px]'>
