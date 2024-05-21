@@ -1,10 +1,10 @@
 # UTN FRRO - Desarrollo de Software
 ## Proyecto de gestión de compra de entradas para eventos
 
-El siguiente proyecto se basa en una aplicación web para la compra de entradas para diversos eventos. El mismo esta constituido por un backend desarrollado con Express.js y un frontend desarrollado con Angular.
+El siguiente proyecto se basa en una aplicación web para la compra de entradas para diversos eventos. El mismo esta constituido por un backend desarrollado con Express.js y un frontend desarrollado con React.
 
 ## Instalación y ejecución
-### Frontend (Angular)
+### Frontend (React)
 
 ### Backend (API Express)
 
