@@ -1,0 +1,15 @@
+###obtener todos los animales 
+GET http://localhost:3000/api/animal
+
+###obtener un animal 
+GET http://localhost:3000/api/animal/e2b14da6-2dab-41e2-8e5a-dbc323eaa457
+
+##crear un nuevo animal
+POST http://localhost:3000/api/animal
+
+Content-Type: application/json
+{
+    "nombre": "marta", 
+    "fechaRescate": 2013,
+    "fechaNacimientoEStimativa": 2522,
+}
