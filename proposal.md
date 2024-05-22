@@ -2,51 +2,34 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
-
-### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* 50556 Gutierrez, Ramiro (304)
+* 51857 Nicolás, Pedro (305)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Biblioteca virtual usando la función de marketing de afiliaciones de hotmart, con objetivo de que en un futuro obtengamos comisiones de los productos que se publiciten en nuestra página web.
 
-### Modelo
-![imagen del modelo]()
+## Modelo de dominio
+![Modelo de dominio TP DSW drawio](https://github.com/Gutilolo/TP-DSW-2024/assets/133457577/abe3fccb-7b74-4448-aa01-715f8d29ae69)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+## Alcance Funcional
 
-## Alcance Funcional 
+CRUD simple:          1. CRUD Usuario
+                      2. CRUD Libro
+                      3. CRUD Categoria
+                      4. CRUD Favorito
 
-### Alcance Mínimo
+CRUD dependiente:     1. CRUD Libro depende de CRUD Categoria. CRUD Favorito depende CRUD Libro y CRUD Usuario
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
-Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
-
-
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+Listado + detalle:   	1. Listado de libros publicados filtrado por codigo, categoria, autor y precio 
+                      2. Listado de favoritos por usuario filtrado por fecha de agregado
+                      3. Listado de categoria filtrado por nombre
+                    
+CUU:                  1. Registrar Usuario
+                      2. Seleccionar Libro
+                      3. Agregar favorito
+                      
 
 
-### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
 
