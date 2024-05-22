@@ -9,7 +9,7 @@
 
 ### Repositorios
 * frontend app [in progress..]
-* backend app [in progres..]
+* [backend app](https://github.com/valentttino/backend-tp-dsw-2024)
 ## Tema
 ### Descripción
 Se realizará un sitio para poder llevar a cabo una gestión de clientes, sus pedidos y sus pagos. A su vez, se podrá acceder a la información de los materiales y balances de pago.
