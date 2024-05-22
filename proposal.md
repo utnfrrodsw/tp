@@ -7,7 +7,6 @@
 * 51753 - Spertino, Mateo
 
 ### Repositorios
-* [fullstack app]()
 * [frontend app](https://github.com/enzosanchezariel/TpDsw-Frontend)
 * [backend app](https://github.com/enzosanchezariel/TpDsw-LaGallega)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
