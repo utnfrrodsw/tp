@@ -11,7 +11,7 @@
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](https://github.com/Bere167/DSW-backend)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+**Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
