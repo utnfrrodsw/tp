@@ -9,11 +9,12 @@
 - 39715 - Coyle, Virginia Mariel
 - 49500 - Faulin, Eugenio Pandu
 
+## Descripcion
+Servicio de streaming de podcast y audiolibros online por suscripción, los usuarios podrán contratar el servicio, registrarse, consumir contenido y además poder dejar una reseña del mismo. El contenido se clasifica entre podcasts o audiolibros. Habrá diferentes categorías de suscripción (ej. gratuita, premium, estudiante, etc.). 
+
 ## **Repositorio:**
 - [BackEnd](https://github.com/efaulin/tp-prometeo-back.git)
 - [FrontEnd](https://github.com/efaulin/tp-prometeo-front.git)
-
-Servicio de streaming de podcast y audiolibros online por suscripción, los usuarios podrán contratar el servicio, registrarse, consumir contenido y además poder dejar una reseña del mismo. El contenido se clasifica entre podcasts o audiolibros. Habrá diferentes categorías de suscripción (ej. gratuita, premium, estudiante, etc.). 
 
 ## **Modelo:**
 ![Diagrama Entidad-Relacion](https://github.com/hdborelli/TP_DSW_CBFN/blob/main/Assets/Modelo%20de%20base%20de%20datos.drawio.png)
