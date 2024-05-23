@@ -15,20 +15,19 @@ Alquiler de canchas de fútbol, el usuario ingresa el tipo de cancha, selecciona
 
 ## Alcance Funcional
 
-CRUD simple:          1. CRUD Usuario
-                      2. CRUD Libro
-                      3. CRUD Categoria
-                      4. CRUD Favorito
+CRUD simple:          1. CRUD Cliente
+                      2. CRUD Alquiler
+                      3. CRUD Cancha
+                      4. CRUD TipoCancha
+                      5. CRUD HorariosDisponibles
 
-CRUD dependiente:     1. CRUD Libro depende de CRUD Categoria. CRUD Favorito depende CRUD Libro y CRUD Usuario
+CRUD dependiente:     1. CRUD Cancha {depende de} CRUD TipoCancha. 
+                      2. CRUD Cancha {depende de} CRUD horariosDisponibles.
 
-Listado + detalle:   	1. Listado de libros publicados filtrado por codigo, categoria, autor y precio 
-                      2. Listado de favoritos por usuario filtrado por fecha de agregado
-                      3. Listado de categoria filtrado por nombre
+Listado + detalle:   	1. Listado de canchas disponibles filtrado por dia y hora 
+                      
                     
-CUU:                  1. Registrar Usuario
-                      2. Seleccionar Libro
-                      3. Agregar favorito
+CUU:                  1. Registrar cliente
                       
 
 
