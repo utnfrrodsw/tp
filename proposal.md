@@ -5,6 +5,10 @@
 * 50556 Gutierrez, Ramiro (304)
 * 51857 Nicolás, Pedro (305)
 
+### Repositorios
+* [frontend app] (https://github.com/Gutilolo/tp-dsw-frontend)
+* [backend app] (https://github.com/Gutilolo/tp-dsw-backend)
+
 ## Tema
 ### Descripción
 Alquiler de canchas de fútbol, el usuario ingresa el tipo de cancha, selecciona la fecha y un horario entre los disponibles y reserva un turno
