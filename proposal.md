@@ -28,10 +28,14 @@ CRUD simple:          1. CRUD Cliente
 CRUD dependiente:     1. CRUD Cancha {depende de} CRUD TipoCancha. 
                       2. CRUD Cancha {depende de} CRUD horariosDisponibles.
 
-Listado + detalle:   	1. Listado de canchas disponibles filtrado por dia y hora 
-                      
+Listado + detalle:   	1. Listado de horarios disponibles para una cancha
+                      2. Listado de alquileres ordenados desde una fecha inicial a otra final
+                      3. Listado de canchas ordenadas por codigo y tipo
                     
 CUU:                  1. Registrar cliente
+                      2. Consultar canchas y horarios disponibles 
+                      3. Seleccionar cancha 
+                      4. Registar alquiler
                       
 
 
