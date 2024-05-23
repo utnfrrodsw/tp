@@ -120,7 +120,7 @@ let estadias = [
 ];
 
 
-let tokensValidos = {};
+const tokensValidos = {};
 
 //---------------------------------------------------------------------------------------------------------------------------------
 // Verificar si el usuario esta logueado
@@ -153,7 +153,7 @@ app.post('/login', (req, res) => {
 });
 
 //---------------------------------------------------------------------------------------------------------------------------------
-// Rutas para  Cliente
+// Rutas para cliente
 //---------------------------------------------------------------------------------------------------------------------------------
 
 app.get('/clientes', (req, res) => {
@@ -190,7 +190,7 @@ app.put('/clientes/:dni', (req, res) => {
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
-// Rutas para  Localidad
+// Rutas para localidad
 //---------------------------------------------------------------------------------------------------------------------------------
 
 app.get('/localidades', (req, res) => {
@@ -253,7 +253,7 @@ app.get('/localidades/provincia/:idProvincia', (req, res) => {
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
-// Rutas para  Provincia
+// Rutas para provincia
 //---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -305,7 +305,7 @@ app.delete('/provincias/:id', (req, res) => {
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
-// Rutas para  Estadia
+// Rutas para estadia
 //---------------------------------------------------------------------------------------------------------------------------------
 
 app.get('/estadias', (req, res) => {
@@ -340,7 +340,7 @@ app.get('/estadias/cliente/:dni', (req, res) => {
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
-// Rutas para  Tipos de Habitacion
+// Rutas para tipos de habitacion
 //---------------------------------------------------------------------------------------------------------------------------------
 
 app.get('/tiposHabitacion', (req, res) => {
@@ -395,7 +395,7 @@ app.delete('/tiposHabitacion/:id', (req, res) => {
 });
 
 //---------------------------------------------------------------------------------------------------------------------------------
-// Rutas para Habitaciones
+// Rutas para habitaciones
 //---------------------------------------------------------------------------------------------------------------------------------
 
 app.get('/habitaciones', (req, res) => {
@@ -490,49 +490,58 @@ app.delete('/habitaciones/:nroHabitacion', (req, res) => {
 //---------------------------------------------------------------------------------------------------------------------------------
 
 
-app.get('/habitaciones/disponibles/:fechaIngreso/:fechaEgreso', (req, res) => {
-  const fechaIngresoParts = req.params.fechaIngreso.split('-').map(Number); // Convertir partes de fecha a números
-  const fechaEgresoParts = req.params.fechaEgreso.split('-').map(Number); // Convertir partes de fecha a números
+app.get('/habitaciones/disponibles/:fechaIngreso/:fechaEgreso/:capacidad', (req, res) => {
+  const { fechaIngreso, fechaEgreso, capacidad } = req.params;
 
-  // Crear fechas con el formato esperado (AAAA-MM-DD)
-  const fechaIngreso = new Date(fechaIngresoParts[2], fechaIngresoParts[1] - 1, fechaIngresoParts[0]);
-  const fechaEgreso = new Date(fechaEgresoParts[2], fechaEgresoParts[1] - 1, fechaEgresoParts[0]);
+ 
+  const parseDate = (fecha) => {
+    const day = parseInt(fecha.substring(0, 2), 10);
+    const month = parseInt(fecha.substring(2, 4), 10) - 1; 
+    const year = parseInt(fecha.substring(4, 8), 10);
+    return new Date(year, month, day);
+  };
 
-  // Filtrar las estancias que se superponen con el rango de fechas proporcionado
+  
+  const fechaIngresoDate = parseDate(fechaIngreso);
+  const fechaEgresoDate = parseDate(fechaEgreso);
+
+  if (isNaN(fechaIngresoDate) || isNaN(fechaEgresoDate)) {
+    return res.status(400).json({ error: 'Fechas inválidas' });
+  }
+
+  
   const estadiasSuperpuestas = estadias.filter(estadia => {
-    const estadiaInicio = new Date(estadia.fechaIngreso);
-    const estadiaFin = new Date(estadia.fechaEgreso);
+    const estadiaInicio = new Date(estadia.fechaIngreso.split('-').reverse().join('-'));
+    const estadiaFin = new Date(estadia.fechaEgreso.split('-').reverse().join('-'));
     return (
-      (fechaIngreso >= estadiaInicio && fechaIngreso < estadiaFin) ||
-      (fechaEgreso > estadiaInicio && fechaEgreso <= estadiaFin) ||
-      (fechaIngreso <= estadiaInicio && fechaEgreso >= estadiaFin)
+      estadia.estado !== 'Finalizado' &&
+      (
+        (fechaIngresoDate >= estadiaInicio && fechaIngresoDate < estadiaFin) ||
+        (fechaEgresoDate > estadiaInicio && fechaEgresoDate <= estadiaFin) ||
+        (fechaIngresoDate <= estadiaInicio && fechaEgresoDate >= estadiaFin)
+      )
     );
   });
 
-  // Obtener los números de habitación de las estancias superpuestas
+  
   const habitacionesOcupadas = estadiasSuperpuestas.map(estadia => estadia.nroHabitacion);
 
-  // Filtrar las habitaciones que no están en la lista de habitaciones ocupadas
-  const habitacionesDisponibles = habitaciones.filter(habitacion => !habitacionesOcupadas.includes(habitacion.nroHabitacion));
+  
+  const habitacionesDisponibles = habitaciones.filter(habitacion => 
+    !habitacionesOcupadas.includes(habitacion.nroHabitacion) && habitacion.capacidadPersonas >= parseInt(capacidad, 10)
+  );
 
   res.json(habitacionesDisponibles);
 });
 
 
-
-
-
-
-app.post('/estadias/reservar-habitacion/:nroHabitacion', verificarAutenticacion, (req, res) => {
-  const nroHabitacion = req.params.nroHabitacion;
-  const { fechaIngreso, fechaEgreso } = req.body;
+app.post('/estadias/reservar-habitacion', verificarAutenticacion, (req, res) => {
+  const { nroHabitacion, fechaIngreso, fechaEgreso } = req.body;
   const clienteId = req.cliente.id;
 
-  
   const habitacion = habitaciones.find(h => h.nroHabitacion === nroHabitacion);
   if (habitacion) {
     if (habitacion.estado === 'Disponible') {
-      
       const nuevaEstadia = {
         id: (estadias.length + 1).toString(),
         clienteId: clienteId,
@@ -541,9 +550,6 @@ app.post('/estadias/reservar-habitacion/:nroHabitacion', verificarAutenticacion,
         fechaEgreso: fechaEgreso,
         estado: 'Reservado'
       };
-
-      
-      habitacion.estado = 'Ocupado';
 
       
       estadias.push(nuevaEstadia);
@@ -558,34 +564,66 @@ app.post('/estadias/reservar-habitacion/:nroHabitacion', verificarAutenticacion,
 });
 
 //---------------------------------------------------------------------------------------------------------------------------------
-// Ruta para check in
+// Ruta para checkin
 //---------------------------------------------------------------------------------------------------------------------------------
 
 app.post('/checkin/:idReserva', (req, res) => {
   const idReserva = req.params.idReserva;
   
-  // Buscar la reserva por su ID
   const reserva = estadias.find(estadia => estadia.id === idReserva);
 
   if (!reserva) {
     return res.status(404).send('Reserva no encontrada');
   }
-
-  // Actualizar el estado de la reserva a "Activa"
+  
   reserva.estado = 'Activa';
-
-  // Buscar la habitación asociada a la reserva
+  
   const habitacion = habitaciones.find(habitacion => habitacion.nroHabitacion === reserva.nroHabitacion);
 
   if (!habitacion) {
     return res.status(404).send('Habitación no encontrada');
   }
 
-  // Actualizar el estado de la habitación a "Ocupado"
+  
   habitacion.estado = 'Ocupado';
 
   res.json({ mensaje: 'Check-in realizado exitosamente' });
 });
+
+
+//---------------------------------------------------------------------------------------------------------------------------------
+// Ruta para checkout
+//---------------------------------------------------------------------------------------------------------------------------------
+
+app.post('/checkout/:idReserva', (req, res) => {
+  const idReserva = req.params.idReserva;
+
+  const reserva = estadias.find(estadia => estadia.id === idReserva);
+
+  if (!reserva) {
+    return res.status(404).send('Reserva no encontrada');
+  }
+
+ 
+  if (reserva.estado === 'Finalizado') {
+    return res.status(400).send('La reserva ya ha sido finalizada anteriormente');
+  }
+
+ 
+  reserva.estado = 'Finalizado';
+
+  const habitacion = habitaciones.find(habitacion => habitacion.nroHabitacion === reserva.nroHabitacion);
+
+  if (!habitacion) {
+    return res.status(404).send('Habitación no encontrada');
+  }
+
+  
+  habitacion.estado = 'Disponible';
+
+  res.json({ mensaje: 'Check-out realizado exitosamente' });
+});
+
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
