@@ -10,7 +10,8 @@
 Alquiler de canchas de fútbol, el usuario ingresa el tipo de cancha, selecciona la fecha y un horario entre los disponibles y reserva un turno
 
 ## Modelo de dominio
-![Modelo de dominio TP DSW drawio](https://github.com/Gutilolo/TP-DSW-2024/assets/133457577/abe3fccb-7b74-4448-aa01-715f8d29ae69)
+![MD alquilercancha drawio](https://github.com/Gutilolo/TP---Gutierrez-Ramiro---Nicolas-Pedro/assets/133457577/c0c73c39-0f2b-49c8-9335-2f6fbf525ca1)
+
 
 ## Alcance Funcional
 
