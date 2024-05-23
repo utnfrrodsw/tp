@@ -1,0 +1,80 @@
+/* Estilos para el contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Estilos para el título */
+  .titulo {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Estilos para el contenedor de las habitaciones */
+  .habitaciones-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Estilos para cada tarjeta de habitación */
+  .habitacion-card {
+    width: calc(33.333% - 20px);
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para la tarjeta */
+  .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para la imagen de la habitación */
+  .card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Estilos para el cuerpo de la tarjeta */
+  .card-body {
+    display: flex;
+  flex-direction: column;
+  }
+  
+  /* Estilos para el título de la tarjeta */
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    margin-left: 20px;
+  }
+  
+  /* Estilos para el texto de la tarjeta */
+  .card-text {
+    margin-bottom: 5px;
+    margin-left: 20px;
+  }
+  
+  /* Estilos para el botón de reserva */
+  .btn-reservar {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    width: 350px; /* Modifica el ancho del botón */
+  height: 50px; /* Modifica la altura del botón */
+  }
+  
+  .btn-reservar:hover {
+    background-color: #218838;
+  }
+  

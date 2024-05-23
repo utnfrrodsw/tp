@@ -66,7 +66,8 @@ let habitaciones = [
     capacidadPersonas: 1,
     precioXdia: 100,
     tipoHabitacionId: '1',
-    estado: 'Disponible' 
+    estado: 'Disponible',
+    imagenUrl: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg'
   },
   { 
     nroHabitacion: '201',
@@ -74,7 +75,8 @@ let habitaciones = [
     capacidadPersonas: 2,
     precioXdia: 150,
     tipoHabitacionId: '2',
-    estado: 'Disponible' 
+    estado: 'Disponible',
+    imagenUrl: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg'
   },
   { 
     nroHabitacion: '301',
@@ -82,9 +84,11 @@ let habitaciones = [
     capacidadPersonas: 2,
     precioXdia: 300,
     tipoHabitacionId: '3',
-    estado: 'Disponible' 
+    estado: 'Disponible',
+    imagenUrl: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg'
   }
 ];
+
 
 let clientes = [
   { 
@@ -407,7 +411,8 @@ app.get('/habitaciones', (req, res) => {
       capacidadPersonas: habitacion.capacidadPersonas,
       precioXdia: habitacion.precioXdia,
       tipoHabitacion: tipoHabitacion ? tipoHabitacion.denominacion : 'Tipo de habitación no encontrado',
-      estado: habitacion.estado
+      estado: habitacion.estado,
+      imagenUrl:habitacion.imagenUrl
     };
   });
   res.json(habitacionesConDenominacion);
