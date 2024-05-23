@@ -13,6 +13,10 @@
 ### Descripción
 La idea de nuestro proyecto es realizar un sistema donde se pueda realizar tanto la atención ambulatoria como la de internados de un Sanatorio.
 
+### Repositorios
+*Frontend:
+*Backend: https://github.com/juanmacruzponce/back-end
+
 ### Modelo
 [Modelo de dominio](https://drive.google.com/file/d/1wBtKkQU4HKTCo5D8TnzRwU8Rvve_8nqg/view?usp=sharing)
 
