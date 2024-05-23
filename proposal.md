@@ -15,6 +15,7 @@ La idea de nuestro proyecto es realizar un sistema donde se pueda realizar tanto
 
 ### Repositorios
 *Frontend:
+
 *Backend: https://github.com/juanmacruzponce/back-end
 
 ### Modelo
