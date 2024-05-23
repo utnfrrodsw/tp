@@ -6,8 +6,8 @@
 * 52049 - Consiglio, Micaela
 
 ### Repositorios
-* [frontend app]
-* [backend app]
+* Frontend: https://github.com/p-alberti/tp-dsw-Frontend.git
+* Backend: https://github.com/p-alberti/tp-dsw-Backend.git
 
 ## Tema
 ### Descripción
