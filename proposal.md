@@ -7,18 +7,29 @@
 * 51705- PALMIERI, AUGUSTO (com 304)
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [fullstack app](https://github.com/RenCostamagna/DSW-fullstack).
+* [frontend app](https://github.com/RenCostamagna/DSW-frontend)
+* [backend app](https://github.com/RenCostamagna/DSW-backend)
+
 
 ## Tema
 ### Descripción
 Sistema de atención y gestión para una hamburguesería con el objetivo de  facilitar el manejo de los recursos ya sean empleados, ingredientes, infraestructura, contemplando pedidos  takeaway o vía delivery.
 
 ### Modelo
-![imagen del modelo]()
+![](https://github.com/AugustoPalmieri/DSW2024-DIAZ-COSTAMAGNA-PALMIERI/blob/main/DERDSW.drawio.png)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+## Reglas de Negocio(provisorias)
+
+* EL REGISTRO DE LOS CLIENTES ES UN NUMERO INCREMENTAL.
+
+* TAKE AWAY NO HAY LIMITE.
+
+* EL DELIVERY COMO MAXIMO PUEDE LLEVAR 15 HAMBURGUESAS COMO MAXIMO.
+ 
+* LOS PRECIOS NO CAMBIAN DE LAS HAMBURGUESAS AUNQUE SE QUITEN INGREDIENTES DE LA MISMA.
+
+* LOS DELIVERY SON CONTRATADOS EN BASE A SI CUENTAN CON MOVILIDAD PROPIA QUE SE AJUSTE A LO SOLICITADO POR LA EMPRESA.
 
 ## Alcance Funcional 
 
