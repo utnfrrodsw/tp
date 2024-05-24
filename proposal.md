@@ -29,17 +29,17 @@ El sistema resuelve el problema de no saber qué actividades realizar en un dest
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. <br> 3. |
-|CRUD dependiente|1. CRUD {depende de} CRUD <br>2. CRUD {depende de} CRUD |
+|CRUD simple|1. CRUD Usuario<br>2. lugar <br> 3. itinerario|
+|CRUD dependiente|1. CRUD actividad {depende de} CRUD itinerario <br>2. CRUD serviciosExternos {depende de} CRUD lugar |
 |Listado<br>+<br>detalle| 1. => <br> 2.  => 
-|CUU/Epic|1. <br>2. |
+|CUU/Epic|1.  Registrar opinión del usuario  <br>2. |
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD <br>2. CRUD<br>3. CRUD <br>4. CRUD <br>5. CRUD <br>6. CRUD <br>7. CRUD |
-|CUU/Epic|1. <br>2. <br> 3. |
+|CUU/Epic|1.<br>2.  <br> 3. |
 
 
 ### Alcance Adicional Voluntario
