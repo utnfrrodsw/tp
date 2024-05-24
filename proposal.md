@@ -29,7 +29,7 @@ El sistema resuelve el problema de no saber qué actividades realizar en un dest
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. lugar <br> 3. itinerario|
+|CRUD simple|1. Usuario<br>2. lugar <br> 3. itinerario|
 |CRUD dependiente|1. CRUD actividad {depende de} CRUD itinerario <br>2. CRUD serviciosExternos {depende de} CRUD lugar |
 |Listado<br>+<br>detalle| 1. => <br> 2.  => 
 |CUU/Epic|1.  Registrar opinión del usuario  <br>2. |
