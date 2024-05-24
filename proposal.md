@@ -1,12 +1,15 @@
 # Propuesta TP DSW
 
-link repositorio: https://github.com/JotaBame/TP-DSW-304
+
 ## Grupo
 ### Integrantes
 * 50970 Bouvier, Juan Adrián
 * 48711 Speranza Facundo
 * 50839 Tejedor Paloma
 * 42969 Zapata, Mayra Belen
+
+## Repositorios
+Back End: https://github.com/JotaBame/TP-DSW-304
 
 ## Tema
 ### Descripción
