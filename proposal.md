@@ -18,7 +18,8 @@ PetGuardian permite a sus usuarios reservar un servicio de cuidado de mascotas. 
 
 ### Modelo
 
-![PetGuardian_diagClases](https://github.com/Julian-Cano/TP-DSW-Cano-Delbianco-Panatti-Spitale/assets/96211175/51af1a9b-1270-48c3-8773-2f481ecd2430)
+![PetGuardian_diagClases](https://github.com/emadelbianco/TP-DSW-Delbianco-Panatti-Spitale/assets/96211175/c70f9660-b530-41cb-a7af-838c3a9e1d9a)
+
 
 ## Alcance Funcional
 
