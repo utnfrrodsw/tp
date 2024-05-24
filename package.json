@@ -1,0 +1,21 @@
+{
+  "name": "paloma-facu",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "startdev": "tsc-watch --- noClear -p ./tsconfig.json --onSuccess \"node /dist/app.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+   "@types/express": "4.17.17",
+    "@types/node": "20.5.0",
+    "tsc-watch": "6.0.4",
+    "typescript": "5.1.6"
+  }
+}
