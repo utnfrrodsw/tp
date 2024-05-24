@@ -16,7 +16,7 @@
 Sistema para una clinica odontologica en el cual es el profecional el que le proporciona los turnos a los paciente, estos solo pueden comunicarse y solicitar con los profesionales y consultar sobre sus turnos. El profecional puede acceder y escribir sobre el historial clinico del paciente.
 
 ### Modelo
-![imagen del modelo](Tp_Odontologiav2.png)
+![imagen del modelo](Tp_OdontologiaV2.png)
 
 ## Alcance Funcional 
 
