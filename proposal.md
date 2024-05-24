@@ -4,6 +4,8 @@
 ### Integrantes
 - 50838 Guastoni Belén
 - 48790 Mestre Federico
+- 51153 Abonizio Abril (Integrante Nuevo)
+- 51898 Mestre Marcos (Integrante Nuevo)
 
 ### Repositorios
 * [fullstack_app] = https://github.com/FedeeMest/fullstack_app_FB
