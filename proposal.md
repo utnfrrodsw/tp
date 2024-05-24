@@ -1,43 +1,77 @@
+# TP-DSW-2024
 # Propuesta TP DSW
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 50979 - María Clara Genovese
+* 50977 - Pennice Lucas Agustin
+* 50235 - Bruno Pacienzia
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/LucasPennice/TP-DSW-FRONT.git)
+* [backend app](https://github.com/LucasPennice/TP-DSW-BACK.git)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Servicio para calificar la experiencia con el docente en distintas asignaturas de la carrera de sistemas de la UTN Rosario. Ademas se permite la lectura de estas calificaciones a cualquier alumno inclusive sin estar registrado, para ayudarlo a tomar una mejor decision a la hora de inscribirse a las asignaturas de la carrera
 
 ### Modelo
-![imagen del modelo]()
+```mermaid
+classDiagram
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+    Catedra "1..*" -- "1..*" Profesor
+    Profesor "1..*" -- "1..*" Comision
+    Profesor "1" -- "1..*" Review
+    Usuario "1" -- "1..*" Review
+    Comision "1..*" -- "1" Turno
+    Comision "1..*" -- "1..*" Usuario
+
+    class Usuario{
+        nombre : String
+        legajo : Int
+    }
+
+    class Review{
+        puntuacion: Int
+        descripcion: String
+    }
+
+    class Profesor{
+        nombre: String
+    }
+
+    class Comision{
+        codigo: Int
+    }
+
+    class Turno{
+        nombre: String
+    }
+
+    class Catedra {
+        nombre: String
+        id: String      
+    }
+```
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Catedra<br>2. CRUD Usuario Administrador<br>3. CRUD Usuario|
+|CRUD dependiente|1. CRUD Review {depende de} CRUD Catedra <br>2. CRUD Profesor {depende de} CRUD Catedra y CRUD Turno|
+|Listado<br>+<br>detalle| 1. Listado de reviews filtrado por profesor, muestra calificacion y comentario => detalle de la review<br> 2. Listado de catedras filtrado por nombre de catedra y turno, muestra nombre profesor, profesor mejor calificado, calificacion promedio de profesor de la catedra  => detalle de la catedra|
+|CUU/Epic|1. Escribir una review<br>2. Dar de alta un profesor|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Catedra<br>2. CRUD Usuario Administrador<br>3. CRUD Usuario<br>4. CRUD Turno<br>5. CRUD Review<br>6. CRUD Profesor<br>7. CRUD Comision|
+|CUU/Epic|1. Escribir una review<br>2. Dar de alta un profesor<br>3. Dar de alta una catedra<br> 4. Consultar reviews de un profesor/catedra|
 
 
 ### Alcance Adicional Voluntario
@@ -46,7 +80,8 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Listado de todas las reviews ordenas/filtradas basandose en la calificacion (positivas - negativas)|
+|CUU/Epic|1. Eliminar reviews que contengan malas palabras <br>2. Solicitar aprobacion de una review por un moderador <br>3. Registrarse como nuevo usuario|
+|Otros|1. Verificar reviews automaticamente antes de enviarlas a un moderador <br> 2. Comprobar que el alumno pertenezca a la institucion <br> 3. Comprobar que el alumno haya cursado la materia de la que escribe la review |
+
 
