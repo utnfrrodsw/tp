@@ -19,7 +19,7 @@ backend/
 ## Instalacion y ejecucion
 
 
-1.  Clonar repositorio usando: `git clone [--depth=1 https://github.com/eoscostarica/backend-boilerplate.git <YOUR_PROJECT_NAME>](https://github.com/frankitook/tp-GimenezFranco-2024.git)](https://github.com/frankitook/tp-GimenezFranco-2024.git)`
+1.  Clonar repositorio usando: `git clone https://github.com/frankitook/tp-GimenezFranco-2024.git`
 2.  Ingresar a la carpeta backend: `cd backend`.
 3.  Para correr el backend: `node hotel.js`
 
