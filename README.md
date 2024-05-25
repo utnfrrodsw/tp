@@ -1,4 +1,4 @@
-#Backend Boilerplate
+## Backend Boilerplate
 
 
 ## Estructura de archivos
@@ -23,9 +23,8 @@ backend/
 2.  Ingresar a la carpeta backend: `cd backend`.
 3.  Para correr el backend: `node hotel.js`
 
-### Servidor de backend
+## Servidor de backend
 
-At this point you can execute `make run`, you can check the services runing on:
 
 - [http://localhost:3000](http://localhost:3000/)
 
