@@ -16,26 +16,26 @@ Se realizará un sitio para poder llevar a cabo una gestión de clientes, sus pe
 ### Modelo
 ```mermaid
 graph LR
-A[Cliente] --> B[Pedido]
-B --> D[Material] --> E[Costos Materiales]
-C[Empleado] --> B
-B --> F[Historico Pagos]
+A[Customer] --> B[Order]
+B --> D[Material] --> E[Material Cost]
+C[Employee] --> B
+B --> F[Payment History]
 ```
 ## Alcance Funcional
 ### Alcance Mínimo
 ***Regularidad***
 | Req | Detalle |
 |--|--|
-| CRUD simple | CRUD Cliente <br> CRUD Pedido <br> CRUD Material <br> CRUD Empleado |
-|CRUD dependiente|CRUD Costo_Material <br> CRUD Historico_Pagos |
+| CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Material <br> CRUD Employee |
+|CRUD dependiente|CRUD Material_Cost <br> CRUD Payment_History |
 |Listado + detalle|1. Listado de materiales. <br> 2. Listado de pedidos.|
 |CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado.|
 
 ***Aprobación***
 | Req | Detalle |
 |--|--|
-| CRUD simple | CRUD Cliente <br> CRUD Pedido <br> CRUD Material <br> CRUD Empleado |
-|CRUD dependiente|CRUD Costo_Material <br> CRUD Historico_Pagos |
+| CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Material <br> CRUD Employee |
+|CRUD dependiente|CRUD Material_Cost <br> CRUD Payment_History |
 |Listado + detalle|1. Listado de materiales. <br> 2. Listado de pedidos.|
 |CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado. <br> 3. Registrar el modo de pago del pedido. <br> 4. Registrar el histórico de pago del pedido. |
 

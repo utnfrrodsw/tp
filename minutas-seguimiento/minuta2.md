@@ -24,7 +24,7 @@
 - Fork del repositorio de la cátedra
 - Modificación de la proposal en base a la información de nuestro grupo y del proyecto que vamos a realizar
 - Planificación de las CRUD y creación de modelo de dominio simple. *Este avance esta sujeto a modificaciones*
-- Comienzo del backend con CRUD de Cliente
+- Comienzo del backend con CRUD de Customer
 ###  Backend
 - Creación del repositorio y vinculación con el fork
 - Instalación de las dependencias:
@@ -36,8 +36,8 @@
 	-  **tsconfig.json** → Configuración TypeScript
 	- **./dist** → Creación carpeta dist para compilados
 	-  **./src** → Creación carpeta src para archivos .ts
-	- **cliente.ts** → clase Cliente + constructor
-	- **app.ts** → GET ALL - GET ONE - POST - PUT - DELETE en '/api/clientes' 
+	- **customer.ts** → clase Customer + constructor
+	- **app.ts** → GET ALL - GET ONE - POST - PUT - DELETE en '/api/customers' 
 
 ###  Frontend
 - *Proximamente*
@@ -46,7 +46,7 @@
 
 - Definición de los atributos de cada clase del modelo
 - Investigación de la documentación de las Bases de Datos 
-- Modificación de la CRUD Cliente para que persista
+- Modificación de la CRUD Customers para que persista
 - Programación de las demás CRUDs usando BD
 
 ##  Comentarios Adicionales
