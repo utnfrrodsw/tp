@@ -7,7 +7,7 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                     if((e.target as HTMLElement).className === "loginScreen") {
                     onClose()}
                     }}>
-                <div className='loginCuadro'>
+                <div className='login'>
                     <div className='login_leftside'>
                         <div className='login_image'>
                             <img className='image' src="./src/assets/images/login_ruleta.jpg" alt="" />
@@ -17,23 +17,23 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                             <h3 className='loginSubTitle'>Login</h3>
                             <form action="" method="" className='formulario'>
                                 <div className='name'>
-                                    <p className='formFrase'>Username or Email</p>
+                                    <p className='formWord'>Username or Email</p>
                                     <input type="text" id='userId' className='ingresoForm' name='user_name'/>
                                 </div>
                                 <div className='password'>
-                                    <p className='formFrase'>Password</p>
+                                    <p className='formWord'>Password</p>
                                     <input type="password" id='password' className='ingresoForm' name='user_password'/>
-                                    <p>Forgot your password?</p>
+                                    <p className='forgotPassword'>Forgot your password?</p>
                                 </div>
                                 <div className='submitClass'>
                                     <button type='submit' className='boton_submit'>SUBMIT</button>
-                                    <p className='text-center'>REGISTRE FREE!</p>
+                                    <p className='registerButton'>REGISTER FREE!</p>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div className='login_rightside'>
-                        <button onClick={() => onClose()}><img src="./src/assets/images/close.svg" alt="close" className='anotherLogin'/></button>
+                        <button onClick={() => onClose()}><img src="./src/assets/images/close.svg" alt="close" className='anotherLogin exitButton'/></button>
                         <p className='loginText'>ALSO LOG WITH</p>
                         <img src="./src/assets/images/apple.svg" alt="apple" className='anotherLogin'/>
                         <img src="./src/assets/images/google.svg" alt="google" className='anotherLogin'/>

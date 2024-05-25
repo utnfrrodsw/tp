@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.loginCuadro {
+.login {
     min-height: 550px;
     width: 60%;
     margin: .5rem;
@@ -98,7 +98,7 @@
     background-color: #bd8e00;
 }
 
-.formFrase {
+.formWord {
     color: var(--amarillo);
     font-size: 1.2rem;
 }
@@ -127,4 +127,65 @@
     flex-direction: column;
     display: flex;
     width: 100%;
+}
+
+.registerButton {
+    text-align: center;
+}
+
+@media (max-width: 1200px) {
+    .login {
+        width: 80%;
+        min-height: 400px;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .login_leftside {
+        padding-top: 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+        padding-bottom: 2rem;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .boton_submit {
+        width: 150px;
+    }
+    .login_image {
+        display: none
+    }
+    .login_rightside {
+        padding: 1rem;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .exitButton {
+        display: none;
+    }
+    .anotherLogin {
+        width: 30px;
+    }
+    .loginTitle {
+        font-size: 2rem
+    }
+    .loginText {
+        font-size: .8rem;
+    }
+    .loginSubTitle {
+        font-size: 1.3rem;
+    }
+    .formWord {
+        font-size: 1rem;
+    }
+    .forgotPassword {
+        font-size: .9rem;
+    }
+    .registerButton {
+        font-size: .9rem;
+    }
+    .formulario {
+        width: 100%;
+    }
 }

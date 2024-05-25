@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import './Tragamonedas.css';
+import { GamesSlider } from "../../GamesSlider";
 
 export function Tragamonedas() {
 
@@ -55,6 +56,7 @@ export function Tragamonedas() {
     return(
 
         <div className="tragamonedas">
+            <GamesSlider/>
             <h1 className="textoTragamonedas">Simulador de maquina tragamonedas</h1>
             <p className="textoTragamonedas">Numeros:</p>
 
