@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import './Tragamonedas.css';
-import { GamesSlider } from "../../GamesSlider";
+import { GamesSideBar } from "../../GamesSideBar";
 
 export function Tragamonedas() {
 
@@ -11,6 +11,9 @@ export function Tragamonedas() {
     // Columnas correspondientes a la tragamonedas
     const Reels = ["Siete", "Banana", "Sandia", "Limon", "BAR", "Campana", "Naranja", "Fruta Violeta", "Fresa"];
     const iconHeight = 79
+    var posicion0:number;
+    var posicion1:number;
+    var posicion2:number;
 
     // Generador de un numero aleatorio mediante parametros, tiene un ERROR que necesita ser corregido y es que la generacion no incluye el minimo pero si el maximo
     function getRandomInt(min:number, max:number) {
@@ -24,7 +27,7 @@ export function Tragamonedas() {
         var numeroSorteo0 = getRandomInt(1,8)
         var bgPos0 = parseInt(ReelStyle.backgroundPositionY)  
         Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo0) + bgPos0)}px`;
-        var posicion0 = (-(3*(-iconHeight*numeroSorteo0) + bgPos0) % 9) + 1
+        posicion0 = (-(3*(-iconHeight*numeroSorteo0) + bgPos0) % 9) + 1
         console.log("0: ", Reels[posicion0])
         setTimeout(SpinY, 500)
     }
@@ -36,7 +39,7 @@ export function Tragamonedas() {
         var numeroSorteo1 = getRandomInt(1,8)
         var bgPos1 = parseInt(ReelStyle.backgroundPositionY)  
         Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo1) + bgPos1)}px`;
-        var posicion1 = (-(3*(-iconHeight*numeroSorteo1) + bgPos1) % 9) + 1
+        posicion1 = (-(3*(-iconHeight*numeroSorteo1) + bgPos1) % 9) + 1
         console.log("1: ", Reels[posicion1])
         setTimeout(SpinZ, 500)
     }
@@ -48,15 +51,21 @@ export function Tragamonedas() {
         var numeroSorteo2 = getRandomInt(1,8)
         var bgPos2 = parseInt(ReelStyle.backgroundPositionY)  
         Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo2) + bgPos2)}px`;
-        var posicion2 = (-(3*(-iconHeight*numeroSorteo2) + bgPos2) % 9) + 1
+        posicion2 = (-(3*(-iconHeight*numeroSorteo2) + bgPos2) % 9) + 1
         console.log("2: ", Reels[posicion2])
         console.log("--------")
+        setTimeout(Ganador, 2500)
+    }
+
+    const Ganador = () => {
+        console.log("Ganaste?")
+        console.log(posicion0,posicion1,posicion2)
     }
 
     return(
 
         <div className="tragamonedas">
-            <GamesSlider/>
+            <GamesSideBar/>
             <h1 className="textoTragamonedas">Simulador de maquina tragamonedas</h1>
             <p className="textoTragamonedas">Numeros:</p>
 

@@ -1,5 +1,6 @@
 import { useState, ChangeEvent} from 'react';
 import './Wheel.css';
+import { GamesSideBar } from '../../GamesSideBar';
 import WheelImage from '../../../assets/images/wheel.png';
 import WheelPointer from '../../../assets/images/wheelPointer.png';
 
@@ -67,6 +68,7 @@ const calcularNaranja = (monto:number) => {
 
   return (
     <div className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[100px] mt-[150px] mb-[50px] h-[700px] gap-0 grid grid-cols-3 grid-rows-2 max-lg:mx-[20px] max-lg:grid-cols-1">
+      <GamesSideBar/>
       <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
           <label className="">Monto de Apuesta</label>
           <input step="0.01" className="bg-[color:var(--blanco)] text-black rounded-[20px] p-2 w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta}/>

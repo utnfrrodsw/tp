@@ -1,11 +1,11 @@
-import "./GamesSlider.css"
+import "./GamesSideBar.css"
 import { NavLink as Link } from 'react-router-dom'
 
 
-export function GamesSlider() {
+export function GamesSideBar() {
 
     return(
-        <div className="gameSlide">
+        <div className="gameSideBar">
             <Link to="/live_roulette"><img src="./src/assets/images/boceto_logo.png" alt="Ruleta" className="game"/></Link>
             <Link to="/dice"><img src="./src/assets/images/dice.webp" alt="DICE" className="game"/></Link>
             <Link to="/tragamonedas"><img src="./src/assets/images/slots.webp" alt="Tragamonedas" className="game"/></Link>

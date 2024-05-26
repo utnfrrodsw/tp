@@ -1,18 +1,24 @@
-.gameSlide {
+.gameSideBar {
     position: fixed;
     padding: 1rem;
-    width: 17%;
+    width: 10%;
     gap: 1.5rem;
     margin-top: .5rem;
     height: 100vh;
     background-color: var(--violeta);
-    left: 0;
+    left: -9%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition-property: left;
+    transition-duration: .75s;
 }
 
 .game {
     width: 100%;
     height: 100px;
+}
+
+.gameSideBar:hover {
+    left: 0;
 }

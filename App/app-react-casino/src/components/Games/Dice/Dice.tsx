@@ -1,4 +1,5 @@
 import { useState, useEffect, ChangeEvent } from "react";
+import { GamesSideBar } from "../../GamesSideBar";
 import './Dice.css';
 export function Dice() {
     
@@ -89,6 +90,7 @@ export function Dice() {
     }
     return (
         <>
+            <GamesSideBar/>
             <section className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[200px] mt-[150px] mb-[50px] h-[500px] gap-0 grid grid-cols-3 grid-rows-2 max-lg:mx-[20px] max-lg:grid-cols-1">
                 <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
                     <label className="">Monto de Apuesta</label>
