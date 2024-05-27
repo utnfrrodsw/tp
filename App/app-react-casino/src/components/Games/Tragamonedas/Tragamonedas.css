@@ -28,3 +28,10 @@
     display: flex;
     gap: 2rem;
 }
+
+.buttonTragamonedas {
+    padding: 1rem;
+    background-color: var(--amarillo);
+    margin-top: 1rem;
+    border: 2px solid black;
+}

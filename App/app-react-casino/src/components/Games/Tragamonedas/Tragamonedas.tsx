@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import './Tragamonedas.css';
 import { GamesSideBar } from "../../GamesSideBar";
 
@@ -11,9 +11,17 @@ export function Tragamonedas() {
     // Columnas correspondientes a la tragamonedas
     const Reels = ["Siete", "Banana", "Sandia", "Limon", "BAR", "Campana", "Naranja", "Fruta Violeta", "Fresa"];
     const iconHeight = 79
-    var posicion0:number;
-    var posicion1:number;
-    var posicion2:number;
+    const [Win, setWin] = useState(false);
+    var x0:number;
+    var y0:number;
+    var z0:number;
+    var x1:number;
+    var y1:number;
+    var z1:number;
+    var x2:number;
+    var y2:number;
+    var z2:number;
+
 
     // Generador de un numero aleatorio mediante parametros, tiene un ERROR que necesita ser corregido y es que la generacion no incluye el minimo pero si el maximo
     function getRandomInt(min:number, max:number) {
@@ -21,14 +29,16 @@ export function Tragamonedas() {
     }
 
     const Spin = () => {
+        setWin(false)
         const Reel = document.querySelector("#reel1") as HTMLElement
         Reel.style.transition = `background-position-y 2500ms cubic-bezier(.41,-0.01,.63,1.09)`;
         const ReelStyle = getComputedStyle(Reel)
         var numeroSorteo0 = getRandomInt(1,8)
         var bgPos0 = parseInt(ReelStyle.backgroundPositionY)  
         Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo0) + bgPos0)}px`;
-        posicion0 = (-(3*(-iconHeight*numeroSorteo0) + bgPos0) % 9) + 1
-        console.log("0: ", Reels[posicion0])
+        x0 = (-(3*(-iconHeight*numeroSorteo0) + bgPos0) % 9)
+        x1 = (-(3*(-iconHeight*numeroSorteo0) + bgPos0) % 9) + 1
+        x2 = (-(3*(-iconHeight*numeroSorteo0) + bgPos0 + 79) % 9)
         setTimeout(SpinY, 500)
     }
 
@@ -39,8 +49,9 @@ export function Tragamonedas() {
         var numeroSorteo1 = getRandomInt(1,8)
         var bgPos1 = parseInt(ReelStyle.backgroundPositionY)  
         Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo1) + bgPos1)}px`;
-        posicion1 = (-(3*(-iconHeight*numeroSorteo1) + bgPos1) % 9) + 1
-        console.log("1: ", Reels[posicion1])
+        y0 = (-(3*(-iconHeight*numeroSorteo1) + bgPos1) % 9)
+        y1 = (-(3*(-iconHeight*numeroSorteo1) + bgPos1) % 9) + 1
+        y2 = (-(3*(-iconHeight*numeroSorteo1) + bgPos1 + 79) % 9)
         setTimeout(SpinZ, 500)
     }
 
@@ -51,15 +62,20 @@ export function Tragamonedas() {
         var numeroSorteo2 = getRandomInt(1,8)
         var bgPos2 = parseInt(ReelStyle.backgroundPositionY)  
         Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo2) + bgPos2)}px`;
-        posicion2 = (-(3*(-iconHeight*numeroSorteo2) + bgPos2) % 9) + 1
-        console.log("2: ", Reels[posicion2])
-        console.log("--------")
+        z0 = (-(3*(-iconHeight*numeroSorteo2) + bgPos2) % 9)
+        z1 = (-(3*(-iconHeight*numeroSorteo2) + bgPos2) % 9) + 1
+        z2 = (-(3*(-iconHeight*numeroSorteo2) + bgPos2 + 79) % 9)
         setTimeout(Ganador, 2500)
     }
 
     const Ganador = () => {
-        console.log("Ganaste?")
-        console.log(posicion0,posicion1,posicion2)
+        
+        console.log("Los sorteados son: ")
+        console.log(Reels[x0],Reels[y0],Reels[z0])
+        console.log(Reels[x1],Reels[y1],Reels[z1])
+        console.log(Reels[x2],Reels[y2],Reels[z2])
+        console.log("---------")
+
     }
 
     return(
@@ -75,6 +91,10 @@ export function Tragamonedas() {
                 <div className="reel" id="reel3"></div>
             </div>
 
+            {Win && (
+                <p>Ganaste!</p>
+            )}
+            
             <button className="buttonTragamonedas" onClick={Spin}>Click para jugar</button>
 
         </div>
