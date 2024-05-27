@@ -15,12 +15,38 @@
 Se realizará un sitio para poder llevar a cabo una gestión de clientes, sus pedidos y sus pagos. A su vez, se podrá acceder a la información de los materiales y balances de pago.
 ### Modelo
 ```mermaid
-graph LR
-A[Customer] --> B[Order]
-B --> D[Material] --> E[Material Cost]
-C[Employee] --> B
-B --> F[Payment History]
+erDiagram
+
+Customer{
+string id
+string dni
+string name
+string address
+string email
+string phone
+}
+
+Employee
+
+Order
+
+Material
+
+Material_Cost
+
+Payment_History
+
+
+Customer ||--|| Order:Customer_id
+Employee ||--|| Order:Employee_id
+Order }|--o| Material:Material_id
+Order ||--|| Payment_History:Order_id
+Material ||--|| Material_Cost:Material_id 
 ```
+
+*Resta definir atributos de las demás clases.* 
+
+*Además, se analizará crear nuevas clases según se vea conveniente.*
 ## Alcance Funcional
 ### Alcance Mínimo
 ***Regularidad***
