@@ -11,7 +11,9 @@
 
 ## Tema
 ### Descripción
-    Sistema en el que mediante una app se muestran las cocheras disponibles en una localidad y da la posibilidad de filtrar las cocher por los servicios extras que estas incluyen y por el tipo de vehículo, con un sistema de reseñas incluido en la app. Dando la opción a registrar nuevas cocheras a los usuarios permitidos
+Sistema en el que mediante una app se muestran las cocheras disponibles en una localidad y da la posibilidad de filtrar las cocher por los
+servicios extras que estas incluyen y por el tipo de vehículo, con un sistema de reseñas incluido en la app. Dando la opción a registrar
+nuevas cocheras a los usuarios permitidos
 
 
 
