@@ -5,6 +5,7 @@
 * legajo - Apellido(s), Nombre(s)
 * 49623 - Iglina, Bruno Nicolas
 * 51329 - Molina, Agustin José
+* 50220 - Garcia, Agustin
 * 50022 - Goya, Santiago
 
 ### Repositorios
