@@ -67,7 +67,7 @@ export default function Register() {
                                 <Text textAlign="center" marginTop={5}>
                                     Ya tenes una cuenta?
                                     <Link>
-                                        <NavLink to="/">Inicia sesión</NavLink>
+                                        <NavLink to="/"> Inicia sesión</NavLink>
                                     </Link>
                                 </Text>
                             </FormControl>
