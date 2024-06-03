@@ -3,22 +3,29 @@
 ## Grupo
 ### Integrantes
 * legajo - Apellido(s), Nombre(s)
+* 49623 - Iglina, Bruno Nicolas
+* 51329 - Molina, Agustin José
+* 50022 - Goya, Santiago
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* https://github.com/BrunoIglina/TP-MarketPlaceApuntes
 
 ## Tema
 ### Descripción
 *2 a 6 líneas describiendo el negocio (menos es más)*
+* Sistema de Ventas de apuntes, donde se pueden comprar apuntes y se libera un link de descarga, apuntes divididos en propiedad de alumno y catedra, con un sistema de reputacion para poder filtrar apuntes de una materia con mejor reputacion, alumno puede comprar apuntes o dar de alta apuntes para la venta.
 
 ### Modelo
 ![imagen del modelo]()
+* https://app.diagrams.net/#G13CUizdaE8i4Q9JTY018DBLUZk3CHlAbT#%7B%22pageId%22%3A%22LJzcoxC0tyBvRGHDO62-%22%7D
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
+//Queda por definir alcance funcional, lo veremos en la proxima clase con Docente
 
 ### Alcance Mínimo
 
