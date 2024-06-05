@@ -18,59 +18,72 @@ Se realizará un sitio para poder llevar a cabo una gestión de clientes, sus pe
 erDiagram
 
 Customer{
-string id
+string idCustomer PK
 string dni
 string name
 string address
 string email
 string phone
+string idOrder FK
 }
 
 Employee{
-string id
+string idEmployee PK
 string cuil
 string dni
 string name
 string address
 string email
 string phone
+string idOrder FK
 }
 
 Order{
-string orderNumber
+string orderNumber PK
+string idEmployee FK
+string idCustomer FK
+string idMaterial FK
 float totalCost
-date orderDate    
+date orderDate
 }
 
 Material{
-string id
+string idMaterial PK
 string description
 string name
 float stock
+date costDate FK
 }
 
-Material_Cost
+Material_Cost{
+string idMaterial FK
+date costDate PK
+float cost 
+}
 
-Payment_History
+Payments{
+string paymentNumber PK
+string orderNumber FK 
+date paymentDate
+float amount 
+}
 
 
-Customer ||--|| Order:Customer_id
-Employee ||--|| Order:Employee_id
-Order }|--o| Material:Material_id
-Order ||--|| Payment_History:Order_id
-Material ||--|| Material_Cost:Material_id 
+Customer ||--|| Order:idCustomer
+Employee ||--|| Order:idEmployee
+Order }|--o| Material:idMaterial
+Order ||--|| Payments:idOrder
+Material ||--|| Material_Cost:idMaterial 
 ```
 
-*Resta definir atributos de las demás clases.* 
-
-*Además, se analizará crear nuevas clases según se vea conveniente.*
+*Se analizará crear nuevas clases y/o atributos según se vea conveniente.*
 ## Alcance Funcional
 ### Alcance Mínimo
 ***Regularidad***
 | Req | Detalle |
 |--|--|
 | CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Material <br> CRUD Employee |
-|CRUD dependiente|CRUD Material_Cost <br> CRUD Payment_History |
+|CRUD dependiente|CRUD Material_Cost <br> CRUD Payments |
 |Listado + detalle|1. Listado de materiales. <br> 2. Listado de pedidos.|
 |CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado.|
 
@@ -78,7 +91,7 @@ Material ||--|| Material_Cost:Material_id
 | Req | Detalle |
 |--|--|
 | CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Material <br> CRUD Employee |
-|CRUD dependiente|CRUD Material_Cost <br> CRUD Payment_History |
+|CRUD dependiente|CRUD Material_Cost <br> CRUD Payments |
 |Listado + detalle|1. Listado de materiales. <br> 2. Listado de pedidos.|
 |CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado. <br> 3. Registrar el modo de pago del pedido. <br> 4. Registrar el histórico de pago del pedido. |
 
