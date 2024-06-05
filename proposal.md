@@ -26,11 +26,28 @@ string email
 string phone
 }
 
-Employee
+Employee{
+string id
+string cuil
+string dni
+string name
+string address
+string email
+string phone
+}
 
-Order
+Order{
+string orderNumber
+float totalCost
+date orderDate    
+}
 
-Material
+Material{
+string id
+string description
+string name
+float stock
+}
 
 Material_Cost
 
