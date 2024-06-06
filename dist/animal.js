@@ -1,6 +1,5 @@
-import crypto from 'node:crypto';
 export class animal {
-    constructor(nombre, fechaRescate, fechaNacimientoEStimativa, id = crypto.randomUUID()) {
+    constructor(nombre, fechaRescate, fechaNacimientoEStimativa, id) {
         this.nombre = nombre;
         this.fechaRescate = fechaRescate;
         this.fechaNacimientoEStimativa = fechaNacimientoEStimativa;
