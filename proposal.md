@@ -53,13 +53,9 @@ string description
 string name
 float stock
 date costDate FK
+float cost
 }
 
-Material_Cost{
-string idMaterial FK
-date costDate PK
-float cost 
-}
 
 Payments{
 string paymentNumber PK
@@ -73,7 +69,6 @@ Customer ||--|| Order:idCustomer
 Employee ||--|| Order:idEmployee
 Order }|--o| Material:idMaterial
 Order ||--|| Payments:idOrder
-Material ||--|| Material_Cost:idMaterial 
 ```
 
 *Se analizará crear nuevas clases y/o atributos según se vea conveniente.*
