@@ -20,36 +20,36 @@
 * Sistema de Ventas de apuntes, donde se pueden comprar apuntes y se libera un link de descarga, apuntes divididos en propiedad de alumno y catedra, con un sistema de reputacion para poder filtrar apuntes de una materia con mejor reputacion, alumno puede comprar apuntes o dar de alta apuntes para la venta.
 
 ### Modelo
-![imagen del modelo]()
+
 * https://app.diagrams.net/#G13CUizdaE8i4Q9JTY018DBLUZk3CHlAbT#%7B%22pageId%22%3A%22LJzcoxC0tyBvRGHDO62-%22%7D
+* ![image](https://github.com/BrunoIglina/tpDesarrolloDeSoftware/assets/129758494/9acd3391-5a23-4912-bb32-fe2ca0c64864)
+
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
-//Queda por definir alcance funcional, lo veremos en la proxima clase con Docente
+
 
 ### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Estudiante<br>2. CRUD Materia<br>3. CRUD Apunte <br>4. CRUD Multimedia|
+|CRUD dependiente|1. CRUD Precio {depende de} CRUD Apunte<br>2. CRUD Apunte {depende de} CRUD Materia 3. CRUD Multimedia {depende de} CRUD Apunte<br>|
+|Listado<br>+<br>detalle| 1. Listado de apuntes de una materia filtrado por calificacion de apuntes, muestra titulo y descripcion => detalle CRUD Apunte<br> 2. Listado de Estudiantes filtrado por calificacion de Estudiante, muestra legajo, nombre, apellido => detalle CRUD Estudiante|
+|CUU/Epic|1. Comprar apunte<br>2. Vender apunte.
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Estudiante<br>2. CRUD Materia<br>3. CRUD Apunte <br>4. CRUD Multimedia<br>5. CRUD Compra<br>6. CRUD Precio<br>|
+|CUU/Epic|1. Crear Usuario<br>2. Dar de baja apunte<br>3. Eliminar usuario.|
 
 
 ### Alcance Adicional Voluntario
-
+//Queda por definir.
 *Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
 
 |Req|Detalle|
