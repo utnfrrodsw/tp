@@ -33,8 +33,8 @@ https://drive.google.com/file/d/1MHuFxfHsdLoeFCHqA9ak14gNvdQMPk5E/view?usp=shari
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple| 1. CRUD Publicador <br>2. CRUD Categoría <br>3. CRUD Usuario <br>4. CRUD Ticket de soporte <br>5. Servicio de hosteo|
-|CRUD dependiente| 1. CRUD Lista de deseos <br>2. CRUD Oferta Juego <br>3. CRUD Comentario en publicacion <br>4. Publicacion de venta de juego|
+|CRUD simple| 1. CRUD Publicador <br>2. CRUD Categoría <br>3. CRUD Usuario <br>4. CRUD Ticket de soporte <br>5. CRUD Servicio de hosteo|
+|CRUD dependiente| 1. CRUD Lista de deseos <br>2. CRUD Oferta Juego <br>3. CRUD Comentario en publicacion <br>4. CRUD Publicacion de venta de juego|
 |Listado<br>+<br>detalle| 1. Listado de foros ordenado por relevancia o fecha de publicación, muestra multimedia de foro, título, comienzo del texto. => detalle CRUD Foro <br> 2. Listado de juegos deseados filtrado por categoría de juego, rango de precios, juego a la venta|
 |CUU/Epic| 1. Publicar una noticia reciente en el foro <br> 2. Agregar juego a lista de deseos|
 
