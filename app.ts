@@ -4,6 +4,7 @@ import { animal } from './animal.js';
 
 const app = express();
 app.use(express.json());
+
 //midleware--> pequeños fragmentos de codigo en express que podemos incluir en 
 //nuestra cadena de codigo para la resolucion de una request 
 //estos van de a parte agregando, quitando y modificando la info de acuerdo a lo que sea necessario
