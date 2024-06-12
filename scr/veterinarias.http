@@ -1,0 +1,37 @@
+###obtener todos los veterinariaes 
+GET http://localhost:3000/api/veterinaria
+
+###obtener un veterinaria 
+GET http://localhost:3000/api/veterinaria/2
+
+###crear un nuevo veterinaria
+POST http://localhost:3000/api/veterinaria
+Content-Type: application/json
+
+{
+    "nombre": "Veterinaria 2", 
+    "calle": "Sargento cabral 1923",
+    "id": "2"
+}
+
+### modificar un veterinaria (PUT)
+PUT http://localhost:3000/api/veterinaria/2
+Content-Type: application/json
+
+{
+    "nombre": "Veterina 3",
+    "calle": "San martin",
+    "id": "2"
+}
+
+### modificar un veterinaria (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/veterinaria/1
+Content-Type: application/json
+
+{
+    "name": "Veterina 4",
+    "calle": "San martin 1928",
+}
+
+### borrar un veterinaria
+DELETE http://localhost:3000/api/veterinaria/2

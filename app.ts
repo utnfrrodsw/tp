@@ -1,6 +1,8 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { animal } from './animal.js';
 import { refugio } from './Refugio.js';
+import { producto } from './producto.js';
+import { veterinaria } from './veterinaria.js';
 
 
 const app = express();
@@ -95,6 +97,165 @@ app.delete('/api/animal/:id',(req,res )=>{
   res.status(200).send({message: 'animal eliminado correctamente'})
 })
 
+//PRODUCTO --> /api/producto/
+
+const productos = [
+  new producto(
+    'Alimento',
+    'Alimento balanceado para perro',
+    100,
+    '01'
+  ),
+];
+
+function sanitizeProductoInput(req: Request, res: Response, next:NextFunction){
+  
+  req.body.sanitizedProducto = {
+    nombre: req.body.nombre,
+    descripcion: req.body.descripcion,
+    stock: req.body.stock
+  }
+
+  Object.keys(req.body.sanitizedProducto).forEach((key) => {
+    if (req.body.sanitizedProducto[key] === undefined) {
+      delete req.body.sanitizedProducto[key]
+//Veterinaria--> /api/Veterinaria/
+const veterinarias = [
+  new veterinaria(
+    'veterinaria 1',
+    'calle falsa 123',
+    '1'
+  )
+]
+
+function sanitizeveterinariaInput(req: Request, res: Response, next:NextFunction){
+  
+  req.body.sanitizedveterinaria = {
+    nombre: req.body.nombre,
+    direccion: req.body.direccion
+  }
+
+  Object.keys(req.body.sanitizedveterinaria).forEach((key) => {
+    if (req.body.sanitizedveterinaria[key] === undefined) {
+      delete req.body.sanitizedveterinaria[key]
+    }
+  })
+
+  next()
+}
+
+app.get('/api/producto',(req,res )=>{
+  res.json(productos);
+})
+
+
+app.get('/api/producto/:id',(req,res )=>{
+  const producto = productos.find((producto) => producto.id === req.params.id);
+  if(!producto){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun producto con ese ID' })
+  }
+  res.json(producto)
+})
+
+
+app.post('/api/producto', sanitizeProductoInput, (req,res) => {
+  const {nombre, descripcion, stock, id} = req.body
+
+  const productos2 = new producto (nombre, descripcion, stock, id ); 
+
+  productos.push(productos2)
+  return res.status(201).send({message: 'Producto agregado correctamente', data: producto })
+})
+
+
+app.put ('/api/producto/:id', sanitizeProductoInput, (req,res) => {
+  const productoIdx = productos.findIndex((producto) => producto.id === req.params.id);
+  if (productoIdx === -1) {
+    res.status(404).send({message:'ID incorrecto, no existe ningun producto con ese ID' })
+  }
+
+  productos[productoIdx]= {...productos[productoIdx], ...req.body.sanitizedProducto };
+
+  res.status(200).send({message: 'Producto modificado correctamente', data: productos[productoIdx] })
+})
+
+
+app.patch ('/api/producto/:id', sanitizeProductoInput, (req,res )=>{
+  const productoIdx = productos.findIndex((producto) => producto.id === req.params.id);
+  if (productoIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun producto con ese ID' })
+  }
+
+  productos[productoIdx]= {...productos[productoIdx], ...req.body.sanitizedProducto };
+
+  res.status(200).send({message: 'Producto modificado correctamente', data: productos[productoIdx]  })
+})
+
+
+app.delete('/api/producto/:id',(req,res )=> {
+  const productoIdx = productos.findIndex((producto) => producto.id === req.params.id);
+  if (productoIdx === -1) {
+    res.status(404).send({message:'ID incorrecto, no existe ningun producto con ese ID' })
+  }
+  productos.splice(productoIdx, 1);
+  res.status(200).send({message: 'Producto eliminado correctamente'})
+app.get('/api/veterinaria',(req,res )=>{
+  res.json(veterinarias);
+})
+
+
+app.get('/api/veterinaria/:id',(req,res )=>{
+  const veterinaria = veterinarias.find((veterinaria) => veterinaria.id === req.params.id);
+  if(!veterinaria){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
+  }
+  res.json(veterinaria)
+})
+
+
+app.post('/api/veterinaria', sanitizeveterinariaInput, (req,res )=>{
+  const {nombre, calle, id} = req.body
+
+  const veterinarias2 = new veterinaria (nombre, calle, id ); 
+
+  veterinarias.push(veterinarias2)
+  return res.status(201).send({message: 'veterinaria agregado correctamente', data: veterinaria })
+})
+
+
+app.put ('/api/veterinaria/:id', sanitizeveterinariaInput, (req,res )=>{
+  const veterinariaIdx = veterinarias.findIndex((veterinaria) => veterinaria.id === req.params.id);
+  if (veterinariaIdx === -1) {
+    res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
+  }
+
+  veterinarias[veterinariaIdx]= {...veterinarias[veterinariaIdx], ...req.body.sanitizedveterinaria };
+
+  res.status(200).send({message: 'veterinaria modificado correctamente', data:  veterinarias[veterinariaIdx] })
+})
+
+
+app.patch ('/api/veterinaria/:id', sanitizeveterinariaInput, (req,res )=>{
+  const veterinariaIdx = veterinarias.findIndex((veterinaria) => veterinaria.id === req.params.id);
+  if (veterinariaIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
+  }
+
+  veterinarias[veterinariaIdx]= {...veterinarias[veterinariaIdx], ...req.body.sanitizedveterinaria };
+
+  res.status(200).send({message: 'veterinaria modificado correctamente', data: veterinarias[veterinariaIdx] })
+})
+
+
+app.delete('/api/veterinaria/:id',(req,res )=>{
+  const veterinariaIdx = veterinarias.findIndex((veterinaria) => veterinaria.id === req.params.id);
+  if(veterinariaIdx === -1){
+    res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
+  }
+  veterinarias.splice(veterinariaIdx, 1);
+  res.status(200).send({message: 'veterinaria eliminado correctamente'})
+})
+
 app.listen(3000, ()=>{
 console.log('server running on http://localhost:3000/');
 })
@@ -168,3 +329,5 @@ app.delete('/api/refugio/:id',(req,res )=>{
   animales.splice(refugioIdx, 1);
   res.status(200).send({message: 'refugio eliminado correctamente'})
 })
+//put--> se utiliza para modificar el objeto entero
+// patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
