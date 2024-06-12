@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { animal } from './animal.js';
+import { refugio } from './Refugio.js';
 
 
 const app = express();
@@ -100,4 +101,70 @@ console.log('server running on http://localhost:3000/');
 
  //put--> se utiliza para modificar el objeto entero
    // patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
-   
+
+//Refugio--> /api/Refugio/
+
+const refugios = [
+  new refugio(
+    'patas alegres',
+    'avellaneda',
+    10,
+    '2'
+  ),
+];
+
+app.get('/api/refugio',(req,res )=>{
+  res.json(refugios);
+})
+
+app.get('/api/refugio/:id',(req,res )=>{
+  const Refugio = refugios.find((refugio) => refugio.id === req.params.id);
+  if(!refugio){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
+  }
+  res.json(refugios)
+})
+
+
+app.post('/api/refugio', sanitizeAnimalInput, (req,res )=>{
+  const {nombre, direccion, capacidadMaxima, id} = req.body
+
+  const refugio2 = new refugio (nombre, direccion, capacidadMaxima, id ); 
+
+  refugios.push(refugio2)
+  return res.status(201).send({message: 'Sucursal de refugio agregada correctamente', data: refugio2 })
+})
+
+
+app.put ('/api/refugio/:id', sanitizeAnimalInput, (req,res )=>{
+  const refugioIdx = refugios.findIndex((refugio) => refugio.id === req.params.id);
+  if (refugioIdx === -1) {
+    res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
+  }
+
+  refugios[refugioIdx]= {...refugios[refugioIdx], ...req.body.sanitizedAnimal };
+
+  res.status(200).send({message: 'refugio modificado correctamente', data:  refugios[refugioIdx] })
+})
+
+
+app.patch ('/api/refugio/:id', sanitizeAnimalInput, (req,res )=>{
+  const refugioIdx = refugios.findIndex((refugio) => refugio.id === req.params.id);
+  if (refugioIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
+  }
+
+  refugios[refugioIdx]= {...refugios[refugioIdx], ...req.body.sanitizedAnimal };
+
+  res.status(200).send({message: 'refugio modificado correctamente', data: animales[refugioIdx] })
+})
+
+
+app.delete('/api/refugio/:id',(req,res )=>{
+  const refugioIdx = refugios.findIndex((refugio) => refugio.id === req.params.id);
+  if(refugioIdx === -1){
+    res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
+  }
+  animales.splice(refugioIdx, 1);
+  res.status(200).send({message: 'refugio eliminado correctamente'})
+})
