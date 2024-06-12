@@ -100,3 +100,4 @@ console.log('server running on http://localhost:3000/');
 
  //put--> se utiliza para modificar el objeto entero
    // patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
+   
