@@ -38,7 +38,7 @@ const crearTipo = async (req, res) => {
 const actualizarTipo = async (req, res) => {
   try {
     const tipo = await TipoHabitacion.findOneAndUpdate(
-      { id: req.params.id }, // Buscar por ID
+      { id: req.params.id }, 
       req.body,
       { new: true }
     );
@@ -52,13 +52,13 @@ const actualizarTipo = async (req, res) => {
 
 const eliminarTipo = async (req, res) => {
   try {
-    // Verificar si alguna habitación utiliza este tipo de habitación
+    
     const habitacion = await Habitacion.findOne({ idTipo: req.params.id });
     if (habitacion) {
       return res.status(400).json({ message: "No se puede eliminar el tipo de habitación porque hay habitaciones que lo están utilizando" });
     }
 
-    // Si ninguna habitación está utilizando este tipo, procedemos a eliminarlo
+    
     const tipo = await TipoHabitacion.findOneAndDelete({ id: req.params.id });
     if (!tipo) return res.status(404).json({ message: "Tipo de habitación no encontrado" });
 

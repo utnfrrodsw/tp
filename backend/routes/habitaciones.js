@@ -7,5 +7,5 @@ router.get('/:id', habitacionController.obtenerHabitacionPorNroHabitacion); // C
 router.post('/', habitacionController.crearHabitacion);
 router.put('/:id', habitacionController.actualizarHabitacion);
 router.delete('/:id', habitacionController.eliminarHabitacion);
-
+router.get('/disponibles/:fechaIngreso/:fechaEgreso/:capacidad', habitacionController.obtenerHabitacionesDisponibles);
 module.exports = router;

@@ -1,17 +1,66 @@
 const Habitacion = require('../models/habitacion');
 const mongoose = require('mongoose');
 const TipoHabitacion = require('../models/tipoHabitacion');
+const Estadia = require('../models/estadia');
+
+
+const obtenerHabitacionesDisponibles = async (req, res) => {
+  try {
+    const { fechaIngreso, fechaEgreso, capacidad } = req.params;
+
+    // Parsear las fechas
+    const parseDate = (fecha) => {
+      const [day, month, year] = fecha.split('-').map(num => parseInt(num, 10));
+      return new Date(year, month - 1, day);
+    };
+
+    const fechaIngresoDate = parseDate(fechaIngreso);
+    const fechaEgresoDate = parseDate(fechaEgreso);
+
+    if (isNaN(fechaIngresoDate) || isNaN(fechaEgresoDate)) {
+      return res.status(400).json({ error: 'Fechas inválidas' });
+    }
+
+    // Obtener todas las estadias que se superponen con el rango de fechas
+    const estadiasSuperpuestas = await Estadia.find({
+      $or: [
+        {
+          fechaIngreso: { $lt: fechaEgresoDate },
+          fechaEgreso: { $gt: fechaIngresoDate }
+        },
+        {
+          fechaIngreso: { $gte: fechaIngresoDate, $lte: fechaEgresoDate }
+        }
+      ]
+    });
+
+    // Obtener los números de habitación ocupados
+    const habitacionesOcupadas = estadiasSuperpuestas.map(estadia => estadia.nroHabitacion);
+
+    // Obtener las habitaciones disponibles que cumplen con la capacidad requerida
+    const habitacionesDisponibles = await Habitacion.find({
+      nroHabitacion: { $nin: habitacionesOcupadas },
+      capacidadPersonas: { $gte: parseInt(capacidad, 10) }
+    });
+
+    res.json(habitacionesDisponibles);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al obtener las habitaciones disponibles.", error: error.message });
+  }
+};
+
 
 const obtenerTodasHabitaciones = async (req, res) => {
   try {
     const habitaciones = await Habitacion.find();
     const habitacionesConDenominacion = await Promise.all(habitaciones.map(async habitacion => {
-      // Buscar el tipo de habitación por su campo "id"
+      
       const tipoHabitacion = await TipoHabitacion.findOne({ id: habitacion.idTipo.toString() });
       return {
        
         nroHabitacion: habitacion.nroHabitacion,
-        tipo: tipoHabitacion ? tipoHabitacion.denominacion : null, // Utilizar la denominación en lugar del ID
+        tipo: tipoHabitacion ? tipoHabitacion.denominacion : null, 
         descripcion: habitacion.descripcion,
         estado: habitacion.estado,
         foto: habitacion.foto,
@@ -33,12 +82,12 @@ const obtenerHabitacionPorNroHabitacion = async (req, res) => {
     if (!habitacion) {
       return res.status(404).json({ message: "Habitación no encontrada" });
     }
-    // Buscar el tipo de habitación por su campo "id"
+    
     const tipoHabitacion = await TipoHabitacion.findOne({ id: habitacion.idTipo.toString() });
     const habitacionConDenominacion = {
     
       nroHabitacion: habitacion.nroHabitacion,
-      tipo: tipoHabitacion ? tipoHabitacion.denominacion : null, // Utilizar la denominación en lugar del ID
+      tipo: tipoHabitacion ? tipoHabitacion.denominacion : null, 
       descripcion: habitacion.descripcion,
       estado: habitacion.estado,
       foto: habitacion.foto,
@@ -67,7 +116,7 @@ const crearHabitacion = async (req, res) => {
 const actualizarHabitacion = async (req, res) => {
   try {
     const habitacion = await Habitacion.findOneAndUpdate(
-      { nroHabitacion: req.params.id.toString() }, // Convertir a cadena
+      { nroHabitacion: req.params.id.toString() }, 
       req.body,
       { new: true }
     );
@@ -95,7 +144,11 @@ const eliminarHabitacion = async (req, res) => {
   }
 };
 
+
+
+
 module.exports = {
+  obtenerHabitacionesDisponibles,
   obtenerTodasHabitaciones,
   obtenerHabitacionPorNroHabitacion,
   crearHabitacion,
