@@ -166,3 +166,9 @@ Durante la evaluación de cada entrega se considerarán:
 ## 6. FAQ
 
 En la sección de [FAQ](FAQ.md) podrán encontrar respuestas a las consultas más frecuentes que se van realizando.
+
+## 7. Proyecto
+
+1) Tirar comando para instalar dependencias: pnpm install
+
+2) El proyecto se inicia con el comando: pnpm start:dev
