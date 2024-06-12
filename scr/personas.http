@@ -1,0 +1,49 @@
+###obtener todos las personas 
+GET http://localhost:3000/api/persona
+
+###obtener una persona 
+GET http://localhost:3000/api/persona/02
+
+###crear una nueva persona
+POST http://localhost:3000/api/persona
+Content-Type: application/json
+
+{
+    "nombre": "Otra",
+    "apellido":"Persona",
+    "tipoDoc": "no tiene",
+    "nroDoc": 0,
+    "contacto": "123456789",
+    "fechaNacimiento": "01/01/2000",
+    "domicilio": "cualquiera",
+    "nroCuit": 0,
+    "id": "02"
+}
+
+### modificar una persona (PUT)
+PUT http://localhost:3000/api/persona/02
+Content-Type: application/json
+
+{
+    "nombre": "Otra",
+    "apellido":"Persona",
+    "tipoDoc": "ahora si tiene",
+    "nroDoc": 1,
+    "contacto": "123456789",
+    "fechaNacimiento": "01/01/2000",
+    "domicilio": "corrientes",
+    "nroCuit": 2019,
+    "id": "02"
+}
+
+### modificar una persona (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/persona/01
+Content-Type: application/json
+
+{
+    "nroCuit":0,
+    "contacto": "herreranico2703@gmail.com"
+}
+
+### borrar una persona
+DELETE http://localhost:3000/api/persona/02

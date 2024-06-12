@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { animal } from './animal.js';
+import { persona } from './persona.js';
 import { refugio } from './refugio.js';
 import { producto } from './producto.js';
 import { veterinaria } from './veterinaria.js';
@@ -332,10 +333,107 @@ app.delete('/api/refugio/:id',(req,res )=>{
   res.status(200).send({message: 'refugio eliminado correctamente'})
 })
 
+//persona --> /api/persona/
+
+const personas = [
+  new persona(
+    'Nicolas',
+    'Herrera',
+    'DNI',
+    44765286,
+    '3412280220',
+    '27/03/2003',
+    'dorrego',
+    20447652863,
+    '01'
+  ),
+];
+
+function sanitizePersonaInput(req: Request, res: Response, next:NextFunction){
+  
+  req.body.sanitizedPersona = {
+    nombre: req.body.nombre,
+    apellido: req.body.apellido,
+    tipoDoc: req.body.tipoDoc,
+    nroDoc: req.body.nroDoc,
+    contacto: req.body.contacto,
+    fechaNacimiento: req.body.fechaNacimiento,
+    domicilio: req.body.domicilio,
+    nroCuit: req.body.nroCuit
+  }
+
+  Object.keys(req.body.sanitizedPersona).forEach((key) => {
+    if (req.body.sanitizedPersona[key] === undefined) {
+      delete req.body.sanitizedPersona[key]
+    }
+  })
+
+  next()
+}
+
+
+app.get('/api/persona',(req,res )=>{
+  res.json(personas);
+})
+
+
+app.get('/api/persona/:id',(req,res )=>{
+  const persona = personas.find((persona) => persona.id === req.params.id);
+  if(!persona){
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+  }
+  res.json(persona)
+})
+
+
+app.post('/api/persona', sanitizePersonaInput, (req,res )=>{
+  const {nombre, apellido, tipoDoc, nroDoc, contacto, fechaNacimiento, domicilio, nroCuit, id } = req.body
+
+  const personas2 = new persona (nombre, apellido, tipoDoc, nroDoc, contacto, fechaNacimiento, domicilio, nroCuit, id ); 
+
+  personas.push(personas2)
+  return res.status(201).send({message: 'Persona agregada correctamente', data: persona })
+})
+
+
+app.put ('/api/persona/:id', sanitizePersonaInput, (req,res )=>{
+  const personaIdx = personas.findIndex((persona) => persona.id === req.params.id);
+  if (personaIdx === -1) {
+    res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+  }
+
+  personas[personaIdx]= {...personas[personaIdx], ...req.body.sanitizedPersona };
+
+  res.status(200).send({message: 'Persona modificada correctamente', data:  personas[personaIdx] })
+})
+
+
+app.patch ('/api/persona/:id', sanitizePersonaInput, (req,res )=>{
+  const personaIdx = personas.findIndex((persona) => persona.id === req.params.id);
+  if (personaIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+  }
+
+  personas[personaIdx]= {...personas[personaIdx], ...req.body.sanitizedPersona };
+
+  res.status(200).send({message: 'Persona modificada correctamente', data: personas[personaIdx] })
+})
+
+
+app.delete('/api/persona/:id',(req,res )=>{
+  const personaIdx = personas.findIndex((persona) => persona.id === req.params.id);
+  if(personaIdx === -1){
+    res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+  }
+  personas.splice(personaIdx, 1);
+  res.status(200).send({message: 'Persona eliminada correctamente'})
+})
+
+
 
 app.listen(3000, ()=>{
 console.log('server running on http://localhost:3000/');
 })
 
- //put--> se utiliza para modificar el objeto entero
-   // patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
+//put--> se utiliza para modificar el objeto entero
+// patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
