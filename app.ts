@@ -199,6 +199,8 @@ app.delete('/api/producto/:id',(req,res )=> {
   }
   productos.splice(productoIdx, 1);
   res.status(200).send({message: 'Producto eliminado correctamente'})
+
+
 app.get('/api/veterinaria',(req,res )=>{
   res.json(veterinarias);
 })
