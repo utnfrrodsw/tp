@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { animal } from './animal.js';
-import { refugio } from './Refugio.js';
+import { refugio } from './refugio.js';
 import { producto } from './producto.js';
 import { veterinaria } from './veterinaria.js';
 
@@ -119,30 +119,12 @@ function sanitizeProductoInput(req: Request, res: Response, next:NextFunction){
   Object.keys(req.body.sanitizedProducto).forEach((key) => {
     if (req.body.sanitizedProducto[key] === undefined) {
       delete req.body.sanitizedProducto[key]
-//Veterinaria--> /api/Veterinaria/
-const veterinarias = [
-  new veterinaria(
-    'veterinaria 1',
-    'calle falsa 123',
-    '1'
-  )
-]
-
-function sanitizeveterinariaInput(req: Request, res: Response, next:NextFunction){
-  
-  req.body.sanitizedveterinaria = {
-    nombre: req.body.nombre,
-    direccion: req.body.direccion
-  }
-
-  Object.keys(req.body.sanitizedveterinaria).forEach((key) => {
-    if (req.body.sanitizedveterinaria[key] === undefined) {
-      delete req.body.sanitizedveterinaria[key]
     }
   })
 
   next()
 }
+
 
 app.get('/api/producto',(req,res )=>{
   res.json(productos);
@@ -199,12 +181,37 @@ app.delete('/api/producto/:id',(req,res )=> {
   }
   productos.splice(productoIdx, 1);
   res.status(200).send({message: 'Producto eliminado correctamente'})
+})
 
+
+//Veterinaria--> /api/Veterinaria/
+const veterinarias = [
+  new veterinaria(
+    'veterinaria 1',
+    'calle falsa 123',
+    '1'
+  )
+]
+
+function sanitizeveterinariaInput(req: Request, res: Response, next:NextFunction){
+  
+  req.body.sanitizedveterinaria = {
+    nombre: req.body.nombre,
+    direccion: req.body.direccion
+  }
+
+  Object.keys(req.body.sanitizedveterinaria).forEach((key) => {
+    if (req.body.sanitizedveterinaria[key] === undefined) {
+      delete req.body.sanitizedveterinaria[key]
+    }
+  })
+
+  next()
+}
 
 app.get('/api/veterinaria',(req,res )=>{
   res.json(veterinarias);
 })
-
 
 app.get('/api/veterinaria/:id',(req,res )=>{
   const veterinaria = veterinarias.find((veterinaria) => veterinaria.id === req.params.id);
@@ -257,13 +264,6 @@ app.delete('/api/veterinaria/:id',(req,res )=>{
   veterinarias.splice(veterinariaIdx, 1);
   res.status(200).send({message: 'veterinaria eliminado correctamente'})
 })
-
-app.listen(3000, ()=>{
-console.log('server running on http://localhost:3000/');
-})
-
- //put--> se utiliza para modificar el objeto entero
-   // patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
 
 //Refugio--> /api/Refugio/
 
@@ -331,5 +331,11 @@ app.delete('/api/refugio/:id',(req,res )=>{
   animales.splice(refugioIdx, 1);
   res.status(200).send({message: 'refugio eliminado correctamente'})
 })
-//put--> se utiliza para modificar el objeto entero
-// patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
+
+
+app.listen(3000, ()=>{
+console.log('server running on http://localhost:3000/');
+})
+
+ //put--> se utiliza para modificar el objeto entero
+   // patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
