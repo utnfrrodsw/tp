@@ -1,0 +1,39 @@
+###obtener todos los producto
+GET http://localhost:3000/api/producto
+
+###obtener un producto 
+GET http://localhost:3000/api/producto/02
+
+###crear un nuevo producto
+POST http://localhost:3000/api/producto
+Content-Type: application/json
+
+{
+    "nombre": "Correa", 
+    "descripcion": "Correa para perro",
+    "stock": 50,
+    "id": "02"
+}
+
+### modificar un producto (PUT)
+PUT http://localhost:3000/api/producto/02
+Content-Type: application/json
+
+{
+    "nombre": "Correa", 
+    "descripcion": "Correa para gato",
+    "stock": 10,
+    "id": "02"
+}
+
+### modificar un producto (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/producto/01
+Content-Type: application/json
+
+{
+    "descripcion": "Alimento balanceado para gato",
+    "stock": 200
+}
+
+### borrar un producto
+DELETE http://localhost:3000/api/producto/02
