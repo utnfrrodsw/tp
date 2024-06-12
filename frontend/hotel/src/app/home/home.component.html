@@ -3,7 +3,7 @@
     <div class="habitaciones-container">
       <div class="habitacion-card" *ngFor="let item of data">
         <div class="card">
-          <img class="card-img-top" [src]="item.imagenUrl" alt="Imagen de la habitación" style="width: 100%;">
+          <img class="card-img-top" [src]="item.foto" alt="Imagen de la habitación" style="width: 100%;">
           <div class="card-body">
             <h3 class="card-title">Habitación {{ item.nroHabitacion }}</h3>
             <p class="card-text">{{ item.descripcion }}</p>

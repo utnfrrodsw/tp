@@ -1,5 +1,13 @@
 {
+  "name": "Hotel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hotel.js",
+  "scripts": {
+    "start": "node hotel.js"
+  },
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1"
   }
 }
