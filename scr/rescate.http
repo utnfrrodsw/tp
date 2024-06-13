@@ -1,0 +1,38 @@
+###obtener todos los rescates 
+GET http://localhost:3000/api/rescate
+
+###crear un nuevo rescate
+POST http://localhost:3000/api/rescate
+Content-Type: application/json
+
+{
+    "fechaRescate": "06-06-2024", 
+    "descripcion": "Gato solitario",
+    "comentario": "",
+    "id": "2"
+}
+
+###obtener un rescate 
+GET http://localhost:3000/api/rescate/2
+
+### modificar un rescate (PUT)
+PUT http://localhost:3000/api/rescate/2
+Content-Type: application/json
+
+{
+    "fechaRescate": "10-06-2024", 
+    "descripcion": "Gato solitario",
+    "comentario": "Tenia hijos!!!",
+    "id": "2"
+}
+
+### modificar un rescate (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/rescate/2
+Content-Type: application/json
+
+{
+    "descripcion": "Gato papá luchon"
+}
+
+### borrar un rescate
+DELETE http://localhost:3000/api/rescate/2
