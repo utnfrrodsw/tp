@@ -8,7 +8,7 @@ const obtenerHabitacionesDisponibles = async (req, res) => {
   try {
     const { fechaIngreso, fechaEgreso, capacidad } = req.params;
 
-    // Parsear las fechas
+    
     const parseDate = (fecha) => {
       const [day, month, year] = fecha.split('-').map(num => parseInt(num, 10));
       return new Date(year, month - 1, day);
@@ -21,7 +21,7 @@ const obtenerHabitacionesDisponibles = async (req, res) => {
       return res.status(400).json({ error: 'Fechas inválidas' });
     }
 
-    // Obtener todas las estadias que se superponen con el rango de fechas
+    
     const estadiasSuperpuestas = await Estadia.find({
       $or: [
         {
@@ -34,10 +34,10 @@ const obtenerHabitacionesDisponibles = async (req, res) => {
       ]
     });
 
-    // Obtener los números de habitación ocupados
+    
     const habitacionesOcupadas = estadiasSuperpuestas.map(estadia => estadia.nroHabitacion);
 
-    // Obtener las habitaciones disponibles que cumplen con la capacidad requerida
+    
     const habitacionesDisponibles = await Habitacion.find({
       nroHabitacion: { $nin: habitacionesOcupadas },
       capacidadPersonas: { $gte: parseInt(capacidad, 10) }

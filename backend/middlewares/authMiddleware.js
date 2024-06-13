@@ -8,7 +8,7 @@ function verificarAutenticacion(req, res, next) {
       if (err) {
         return res.status(401).send('Token inválido o expirado');
       } else {
-        req.cliente = decoded.cliente; // Asegurar que el cliente está presente en el token
+        req.cliente = decoded.cliente; 
         next();
       }
     });

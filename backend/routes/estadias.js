@@ -13,7 +13,7 @@ router.put('/:idEstadia/checkin', estadiaController.realizarCheckin);
 router.put('/:idEstadia/checkout', estadiaController.realizarCheckout);
 router.delete('/:id', estadiaController.eliminarEstadia);
 
-// Incluir el middleware de autenticación
+
 router.post('/reservar-habitacion', authMiddleware.verificarAutenticacion, estadiaController.reservarHabitacion);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const Servicio = require('../models/servicio');
 
-// Obtener todos los servicios
+
 const obtenerTodosServicios = async (req, res) => {
   try {
     const servicios = await Servicio.find();
@@ -29,13 +29,13 @@ const crearServicio = async (req, res) => {
     try {
       let idServ;
   
-      // Buscar el último servicio para determinar el idServ siguiente
+      
       const ultimoServicio = await Servicio.findOne().sort({ idServ: -1 });
   
       if (ultimoServicio) {
         idServ = ultimoServicio.idServ + 1;
       } else {
-        // Si no hay servicios en la base de datos, asignar idServ como 1
+        
         idServ = 1;
       }
   

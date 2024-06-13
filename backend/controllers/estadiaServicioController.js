@@ -1,6 +1,6 @@
 const EstadiaServicio = require('../models/estadiaServicio');
 
-// Crear un nuevo vínculo entre estadia y servicio
+
 const crearEstadiaServicio = async (req, res) => {
   const { idServicio, idEstadia } = req.body;
   try {

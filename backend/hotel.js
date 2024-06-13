@@ -8,19 +8,19 @@ require('dotenv').config();
 if (!process.env.JWT_SECRET) {
   const crypto = require('crypto');
   const jwtSecret = crypto.randomBytes(32).toString('hex');
-  console.log('JWT_SECRET generado automáticamente:', jwtSecret);
 
-  // Asignar el valor generado a la variable de entorno JWT_SECRET
+
+  
   process.env.JWT_SECRET = jwtSecret;
 }
 
-// Conectar a la base de datos
+
 connectDB();
 
-// Middleware para parsear JSON
+
 app.use(express.json());
 
-// Importar rutas
+
 const habitacionRoutes = require('./routes/habitaciones');
 const tipoHabitacionRoutes = require('./routes/tiposHabitacion');
 const clienteRoutes = require('./routes/clientes');
@@ -29,7 +29,7 @@ const authRoutes = require('./routes/auth');
 const servicioRoutes = require('./routes/servicios');
 const estadiaServicioRoutes = require('./routes/estadiaServicios');
 
-// Usar rutas
+
 app.use('/habitaciones', habitacionRoutes);
 app.use('/tiposHabitacion', tipoHabitacionRoutes);
 app.use('/clientes', clienteRoutes);
