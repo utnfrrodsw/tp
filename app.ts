@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { animal } from './animal.js';
+import { especie } from './especie.js';
 import { persona } from './persona.js';
 import { refugio } from './refugio.js';
 import { producto } from './producto.js';
@@ -428,6 +429,88 @@ app.delete('/api/persona/:id',(req,res )=>{
   personas.splice(personaIdx, 1);
   res.status(200).send({message: 'Persona eliminada correctamente'})
 })
+
+//epsecie--> /api/especie/
+const especies = [
+  new especie(
+    'Gato',
+    '01'
+  ),
+];
+
+function sanitizeEspecieInput(req: Request, res: Response, next:NextFunction){
+  
+  req.body.sanitizedEspecie = {
+    nombre: req.body.nombre,
+  }
+
+  Object.keys(req.body.sanitizedEspecie).forEach((key) => {
+    if (req.body.sanitizedEspecie[key] === undefined) {
+      delete req.body.sanitizedEspecie[key]
+    }
+  })
+
+  next()
+}
+
+
+app.get('/api/especie',(req,res )=>{
+  res.json(especies);
+})
+
+
+app.get('/api/especie/:id',(req,res )=>{
+  const especie = especies.find((especie) => especie.id === req.params.id);
+  if(!especie){
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
+  }
+  res.json(especie)
+})
+
+
+app.post('/api/especie', sanitizeEspecieInput, (req,res )=>{
+  const {nombre, id } = req.body
+
+  const especies2 = new especie (nombre, id); 
+
+  especies.push(especies2)
+  return res.status(201).send({message: 'Especie agregada correctamente', data: especie })
+})
+
+
+app.put ('/api/especie/:id', sanitizeEspecieInput, (req,res )=>{
+  const especieIdx = especies.findIndex((especie) => especie.id === req.params.id);
+  if (especieIdx === -1) {
+    res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
+  }
+
+  especies[especieIdx]= {...especies[especieIdx], ...req.body.sanitizedEspecie };
+
+  res.status(200).send({message: 'Especie modificada correctamente', data:  especies[especieIdx] })
+})
+
+
+app.patch ('/api/especie/:id', sanitizeEspecieInput, (req,res )=>{
+  const especieIdx = especies.findIndex((especie) => especie.id === req.params.id);
+  if (especieIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
+  }
+
+  especies[especieIdx]= {...especies[especieIdx], ...req.body.sanitizedEspecie };
+
+  res.status(200).send({message: 'Especie modificada correctamente', data: especies[especieIdx] })
+})
+
+
+app.delete('/api/especie/:id',(req,res )=>{
+  const especieIdx = especies.findIndex((especie) => especie.id === req.params.id);
+  if(especieIdx === -1){
+    res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
+  }
+  especies.splice(especieIdx, 1);
+  res.status(200).send({message: 'Especie eliminada correctamente'})
+})
+
 
 
 

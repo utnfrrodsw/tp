@@ -1,0 +1,34 @@
+###obtener todos las especies
+GET http://localhost:3000/api/especie
+
+###obtener una especie 
+GET http://localhost:3000/api/especie/02
+
+###crear una nueva especie
+POST http://localhost:3000/api/especie
+Content-Type: application/json
+
+{
+    "nombre": "Perro", 
+    "id": "02"
+}
+
+### modificar una especie (PUT)
+PUT http://localhost:3000/api/especie/02
+Content-Type: application/json
+
+{
+    "nombre": "Conejo",
+    "id": "02"
+}
+
+### modificar una especie (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/especie/01
+Content-Type: application/json
+
+{
+    "nombre": "Erizo"
+}
+
+### borrar una especie
+DELETE http://localhost:3000/api/especie/02
