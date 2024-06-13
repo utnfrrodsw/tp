@@ -2,9 +2,10 @@ import express, { NextFunction, Request, Response } from 'express';
 import { animal } from './animal.js';
 import { especie } from './especie.js';
 import { persona } from './persona.js';
-import { refugio } from './refugio.js';
+import { refugio } from './Refugio.js';
 import { producto } from './producto.js';
 import { veterinaria } from './veterinaria.js';
+import { compra } from './compra.js';
 
 
 const app = express();
@@ -520,3 +521,88 @@ console.log('server running on http://localhost:3000/');
 
 //put--> se utiliza para modificar el objeto entero
 // patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
+
+const compras = [
+  new compra(
+    10000,
+    12,
+    '12/12/2022',
+    '12',
+)];
+
+function sanitizeCompraInput(req: Request, res: Response, next:NextFunction){
+  
+  req.body.sanitizedCompra = {
+    total: req.body.total,
+    cantidad: req.body.cantidad,
+    fechaCompra: req.body.fechaCompra,
+    id: req.body.id,
+  }
+
+  Object.keys(req.body.sanitizedCompra).forEach((key) => {
+    if (req.body.sanitizedCompra[key] === undefined) {
+      delete req.body.sanitizedCompra[key]
+    }
+  })
+
+  next()
+}
+
+
+app.get('/api/compra',(req,res )=>{
+  res.json(compras);
+})
+
+
+app.get('/api/compra/:id',(req,res )=>{
+  const compra = compras.find((compra) => compra.id === req.params.id);
+  if(!compra){
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna compra con ese ID' })
+  }
+  res.json(compra)
+})
+
+
+app.post('/api/compra', sanitizeCompraInput, (req,res )=>{
+  const {total, cantidad, fechaCompra, id } = req.body
+
+  const compras2 = new compra (total, cantidad, fechaCompra, id ); 
+
+  compras.push(compras2)
+  return res.status(201).send({message: 'Nueva compra agregada correctamente', data: compra })
+})
+
+
+app.put ('/api/compra/:id', sanitizeCompraInput, (req,res )=>{
+  const compraIdx = compras.findIndex((compra) => compra.id === req.params.id);
+  if (compraIdx === -1) {
+    res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+  }
+
+  compras[compraIdx]= {...compras[compraIdx], ...req.body.sanitizedCompra };
+
+  res.status(200).send({message: 'Compra modificada correctamente', data:  compras[compraIdx] })
+})
+
+
+app.patch ('/api/compra/:id', sanitizeCompraInput, (req,res )=>{
+  const compraIdx = compras.findIndex((compra) => compra.id === req.params.id);
+  if (compraIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna compra con ese ID' })
+  }
+
+  compras[compraIdx]= {...compras[compraIdx], ...req.body.sanitizedCompra };
+
+  res.status(200).send({message: 'Compra modificada correctamente', data: compras[compraIdx] })
+})
+
+
+app.delete('/api/Compra/:id',(req,res )=>{
+  const compraIdx = compras.findIndex((compra) => compra.id === req.params.id);
+  if(compraIdx === -1){
+    res.status(404).send({message:'ID incorrecto, no existe ninguna compra con ese ID' })
+  }
+  personas.splice(compraIdx, 1);
+  res.status(200).send({message: 'compra eliminada correctamente'})
+})
+
