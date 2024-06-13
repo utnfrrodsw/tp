@@ -1,11 +1,13 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { animal } from './animal.js';
-import { especie } from './especie.js';
-import { persona } from './persona.js';
-import { refugio } from './Refugio.js';
-import { producto } from './producto.js';
-import { veterinaria } from './veterinaria.js';
-import { compra } from './compra.js';
+import { animal } from './clases/animal.js';
+import { especie } from './clases/especie.js';
+import { persona } from './clases/persona.js';
+import { refugio } from './clases/refugio.js';
+import { producto } from './clases/producto.js';
+import { veterinaria } from './clases/veterinaria.js';
+import { compra } from './clases/compra.js';
+import { zona } from './clases/zona.js';
+import { rescate } from './clases/rescate.js';
 
 
 const app = express();
@@ -431,7 +433,7 @@ app.delete('/api/persona/:id',(req,res )=>{
   res.status(200).send({message: 'Persona eliminada correctamente'})
 })
 
-//epsecie--> /api/especie/
+//especie--> /api/especie/
 const especies = [
   new especie(
     'Gato',
@@ -513,14 +515,85 @@ app.delete('/api/especie/:id',(req,res )=>{
 })
 
 
+// zona--> /api/zona/
+const zonas = [
+  new zona(
+    'Norte',
+    '1'
+  ),
+];
 
+function sanitizeZonaInput(req: Request, res: Response, next:NextFunction){
+  
+  req.body.sanitizedZona = {
+    nombre: req.body.nombre
+  }
 
-app.listen(3000, ()=>{
-console.log('server running on http://localhost:3000/');
+  Object.keys(req.body.sanitizedZona).forEach((key) => {
+    if (req.body.sanitizedZona[key] === undefined) {
+      delete req.body.sanitizedZona[key]
+    }
+  })
+
+  next()
+}
+
+app.get('/api/zona',(req,res )=>{
+  res.json(zonas);
 })
 
-//put--> se utiliza para modificar el objeto entero
-// patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
+
+app.get('/api/zona/:id',(req,res )=>{
+  const zona = zonas.find((zona) => zona.id === req.params.id);
+  if(!zona){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
+  }
+  res.json(zona)
+})
+
+
+app.post('/api/zona', sanitizeZonaInput, (req,res )=>{
+  const {nombre, id} = req.body
+
+  const zonas2 = new zona (nombre, id ); 
+
+  zonas.push(zonas2)
+  return res.status(201).send({message: 'zona agregado correctamente', data: zona })
+})
+
+
+app.put ('/api/zona/:id', sanitizeZonaInput, (req,res )=>{
+  const zonaIdx = zonas.findIndex((zona) => zona.id === req.params.id);
+  if (zonaIdx === -1) {
+    res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
+  }
+
+  zonas[zonaIdx]= {...zonas[zonaIdx], ...req.body.sanitizedZona };
+
+  res.status(200).send({message: 'zona modificado correctamente', data:  zonas[zonaIdx] })
+})
+
+
+app.patch ('/api/zona/:id', sanitizeZonaInput, (req,res )=>{
+  const zonaIdx = zonas.findIndex((zona) => zona.id === req.params.id);
+  if (zonaIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
+  }
+
+  zonas[zonaIdx]= {...zonas[zonaIdx], ...req.body.sanitizedZona };
+
+  res.status(200).send({message: 'zona modificado correctamente', data: zonas[zonaIdx] })
+})
+
+
+app.delete('/api/zona/:id',(req,res )=>{
+  const zonaIdx = zonas.findIndex((zona) => zona.id === req.params.id);
+  if(zonaIdx === -1){
+    res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
+  }
+  zonas.splice(zonaIdx, 1);
+  res.status(200).send({message: 'zona eliminado correctamente'})
+})
 
 const compras = [
   new compra(
@@ -606,3 +679,93 @@ app.delete('/api/Compra/:id',(req,res )=>{
   res.status(200).send({message: 'compra eliminada correctamente'})
 })
 
+
+//RESCATE --> /api/rescate/
+
+const rescates = [
+  new rescate(
+    '10-04-2024',
+    'Perro solitario',
+    'el carnicero de la esquina le daba comida',
+    '1'
+  ),
+];
+
+function sanitizeRescateInput(req: Request, res: Response, next:NextFunction){
+  
+  req.body.sanitizedRescate = {
+    fechaRescate: req.body.fechaRescate,
+    descripcion: req.body.descripcion,
+    comentario: req.body.comentario
+  }
+
+  Object.keys(req.body.sanitizedRescate).forEach((key) => {
+    if (req.body.sanitizedRescate[key] === undefined) {
+      delete req.body.sanitizedRescate[key]
+    }
+  })
+
+  next()
+}
+
+app.get('/api/rescate',(req,res )=>{
+  res.json(rescates);
+})
+
+
+app.get('/api/rescate/:id',(req,res )=>{
+  const rescate = rescates.find((rescate) => rescate.id === req.params.id);
+  if(!rescate){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
+  }
+  res.json(rescate)
+})
+
+
+app.post('/api/rescate', sanitizeRescateInput, (req,res )=>{
+  const rescates2 = { ...req.body.sanitizedRescate, id: req.body.id }; 
+  rescates.push(rescates2)
+  return res.status(201).send({message: 'rescate agregado correctamente', data: rescate })
+})
+
+
+app.put ('/api/rescate/:id', sanitizeRescateInput, (req,res )=>{
+  const rescateIdx = rescates.findIndex((rescate) => rescate.id === req.params.id);
+  if (rescateIdx === -1) {
+    res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
+  }
+
+  rescates[rescateIdx]= {...rescates[rescateIdx], ...req.body.sanitizedRescate };
+
+  res.status(200).send({message: 'rescate modificado correctamente', data:  rescates[rescateIdx] })
+})
+
+
+app.patch ('/api/rescate/:id', sanitizeRescateInput, (req,res )=>{
+  const rescateIdx = rescates.findIndex((rescate) => rescate.id === req.params.id);
+  if (rescateIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
+  }
+
+  rescates[rescateIdx]= {...rescates[rescateIdx], ...req.body.sanitizedRescate };
+
+  res.status(200).send({message: 'rescate modificado correctamente', data: rescates[rescateIdx] })
+})
+
+
+app.delete('/api/rescate/:id',(req,res )=>{
+  const rescateIdx = rescates.findIndex((rescate) => rescate.id === req.params.id);
+  if(rescateIdx === -1){
+    res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
+  }
+  rescates.splice(rescateIdx, 1);
+  res.status(200).send({message: 'rescate eliminado correctamente'})
+})
+
+
+app.listen(3000, ()=>{
+console.log('server running on http://localhost:3000/');
+})
+
+//put--> se utiliza para modificar el objeto entero
+// patch--> se utiliza para modificar parcialmente el objeto, osea algunos atributos "/*".
