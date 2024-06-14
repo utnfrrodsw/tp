@@ -46,3 +46,22 @@
 * Terminar de hacer API - Delete
 * Mejorar código de las distintas APIs
 * Realizar prueba
+
+
+## 12/06/2024 🚀 Refactorizando backend en capas 🚀
+### 👥Participantes: 
+* Lucía Portillo
+* Juan Manuel Tarrago
+### 📝Resumen: 
+* Revisión de errores al eliminar archivo .ts
+* Update del backend
+* Definición de tareas
+* Definición de CRUDS a desarrollar
+* Discución de ideas para el frontend
+
+### 📅Proximos pasos :
+* Terminar de ver los videos de API REST que faltan
+* Corregir errores de refactorización
+* Desarrollar los CRUDs que faltan para la próxima entrega
+* Hacer primer boilplate
+* Realizar pruebas
