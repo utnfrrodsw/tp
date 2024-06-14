@@ -87,6 +87,6 @@ Order ||--|| Payments:idOrder
 | CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Product <br> CRUD Employee |
 |CRUD dependiente|CRUD Product_Cost <br> CRUD Payments |
 |Listado + detalle|1. Listado de productos. <br> 2. Listado de pedidos.|
-|CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado. <br> 3. Registrar el modo de pago del pedido. <br> 4. Registrar el histórico de pago del pedido. |
+|CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado. <br> 3. Registrar el modo de pago del pedido. <br> 4. Actualizar stock o precio de los productos. |
 
 
