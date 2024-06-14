@@ -47,7 +47,7 @@ float totalCost
 date orderDate
 }
 
-Products{
+Product{
 string idProduct PK
 string description
 string name
