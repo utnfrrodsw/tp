@@ -228,9 +228,9 @@ app.get('/api/veterinaria/:id',(req,res )=>{
 
 
 app.post('/api/veterinaria', sanitizeveterinariaInput, (req,res )=>{
-  const {nombre, calle, id} = req.body
+  const {nombre, direccion, id} = req.body
 
-  const veterinarias2 = new veterinaria (nombre, calle, id ); 
+  const veterinarias2 = new veterinaria (nombre, direccion, id ); 
 
   veterinarias.push(veterinarias2)
   return res.status(201).send({message: 'veterinaria agregado correctamente', data: veterinaria })
@@ -281,20 +281,38 @@ const refugios = [
   ),
 ];
 
+
+function sanitizeRefugioInput(req: Request, res: Response, next:NextFunction){
+  
+  req.body.sanitizedRefugio = {
+    nombre: req.body.nombre,
+    direccion: req.body.direccion,
+    capacidadMaxima: req.body.capacidadMaxima
+  }
+
+  Object.keys(req.body.sanitizedRefugio).forEach((key) => {
+    if (req.body.sanitizedRefugio[key] === undefined) {
+      delete req.body.sanitizedRefugio[key]
+    }
+  })
+
+  next()
+}
+
 app.get('/api/refugio',(req,res )=>{
   res.json(refugios);
 })
 
 app.get('/api/refugio/:id',(req,res )=>{
-  const Refugio = refugios.find((refugio) => refugio.id === req.params.id);
+  const refugio = refugios.find((refugio) => refugio.id === req.params.id);
   if(!refugio){
     return res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
   }
-  res.json(refugios)
+  res.json(refugio)
 })
 
 
-app.post('/api/refugio', sanitizeAnimalInput, (req,res )=>{
+app.post('/api/refugio', sanitizeRefugioInput, (req,res )=>{
   const {nombre, direccion, capacidadMaxima, id} = req.body
 
   const refugio2 = new refugio (nombre, direccion, capacidadMaxima, id ); 
@@ -304,27 +322,27 @@ app.post('/api/refugio', sanitizeAnimalInput, (req,res )=>{
 })
 
 
-app.put ('/api/refugio/:id', sanitizeAnimalInput, (req,res )=>{
+app.put ('/api/refugio/:id', sanitizeRefugioInput, (req,res )=>{
   const refugioIdx = refugios.findIndex((refugio) => refugio.id === req.params.id);
   if (refugioIdx === -1) {
     res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
   }
 
-  refugios[refugioIdx]= {...refugios[refugioIdx], ...req.body.sanitizedAnimal };
+  refugios[refugioIdx]= {...refugios[refugioIdx], ...req.body.sanitizedRefugio };
 
   res.status(200).send({message: 'refugio modificado correctamente', data:  refugios[refugioIdx] })
 })
 
 
-app.patch ('/api/refugio/:id', sanitizeAnimalInput, (req,res )=>{
+app.patch ('/api/refugio/:id', sanitizeRefugioInput, (req,res )=>{
   const refugioIdx = refugios.findIndex((refugio) => refugio.id === req.params.id);
   if (refugioIdx === -1) {
     return res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
   }
 
-  refugios[refugioIdx]= {...refugios[refugioIdx], ...req.body.sanitizedAnimal };
+  refugios[refugioIdx]= {...refugios[refugioIdx], ...req.body.sanitizedRefugio };
 
-  res.status(200).send({message: 'refugio modificado correctamente', data: animales[refugioIdx] })
+  res.status(200).send({message: 'refugio modificado correctamente', data: refugios[refugioIdx] })
 })
 
 
@@ -333,7 +351,7 @@ app.delete('/api/refugio/:id',(req,res )=>{
   if(refugioIdx === -1){
     res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
   }
-  animales.splice(refugioIdx, 1);
+  refugios.splice(refugioIdx, 1);
   res.status(200).send({message: 'refugio eliminado correctamente'})
 })
 
@@ -341,14 +359,14 @@ app.delete('/api/refugio/:id',(req,res )=>{
 
 const personas = [
   new persona(
-    'Nicolas',
-    'Herrera',
+    'Persona',
+    'Falsa',
     'DNI',
-    44765286,
-    '3412280220',
-    '27/03/2003',
-    'dorrego',
-    20447652863,
+    23213213,
+    'telefono falso',
+    '01/02/2002',
+    'calle falsa',
+    23213213342,
     '01'
   ),
 ];
@@ -670,12 +688,12 @@ app.patch ('/api/compra/:id', sanitizeCompraInput, (req,res )=>{
 })
 
 
-app.delete('/api/Compra/:id',(req,res )=>{
+app.delete('/api/compra/:id',(req,res )=>{
   const compraIdx = compras.findIndex((compra) => compra.id === req.params.id);
   if(compraIdx === -1){
     res.status(404).send({message:'ID incorrecto, no existe ninguna compra con ese ID' })
   }
-  personas.splice(compraIdx, 1);
+  compras.splice(compraIdx, 1);
   res.status(200).send({message: 'compra eliminada correctamente'})
 })
 

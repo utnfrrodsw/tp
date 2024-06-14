@@ -10,7 +10,7 @@ Content-Type: application/json
 
 {
     "nombre": "Veterinaria 2", 
-    "calle": "Sargento cabral 1923",
+    "direccion": "Sargento cabral 1923",
     "id": "2"
 }
 
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 {
     "nombre": "Veterina 3",
-    "calle": "San martin",
+    "direccion": "San martin",
     "id": "2"
 }
 
@@ -29,8 +29,8 @@ PATCH http://localhost:3000/api/veterinaria/1
 Content-Type: application/json
 
 {
-    "name": "Veterina 4",
-    "calle": "San martin 1928",
+    "nombre": "Veterina 4",
+    "direccion": "San martin 1928"
 }
 
 ### borrar un veterinaria

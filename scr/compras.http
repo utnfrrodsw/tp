@@ -2,7 +2,7 @@
 GET http://localhost:3000/api/compra
 
 ###obtener una compra 
-GET http://localhost:3000/api/compra/12
+GET http://localhost:3000/api/compra/2
 
 ###crear una nuevo compra
 POST http://localhost:3000/api/compra
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### modificar un compra (PUT)
-PUT http://localhost:3000/api/compra/12
+PUT http://localhost:3000/api/compra/2
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ### modificar un compra (PATCH - recurso parcial)
-PATCH http://localhost:3000/api/compra/1
+PATCH http://localhost:3000/api/compra/12
 Content-Type: application/json
 
 {

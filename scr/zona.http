@@ -18,7 +18,8 @@ PUT http://localhost:3000/api/zona/2
 Content-Type: application/json
 
 {
-    "nombre": "Sur"
+    "nombre": "Sur",
+    "id":"2"
 }
 
 ### modificar una zona (PATCH - recurso parcial)
