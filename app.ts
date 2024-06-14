@@ -72,12 +72,12 @@ app.post('/api/animal', sanitizeAnimalInput, (req,res )=>{
 app.put ('/api/animal/:id', sanitizeAnimalInput, (req,res )=>{
   const animalIdx = animales.findIndex((animal) => animal.id === req.params.id);
   if (animalIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
   }
 
   animales[animalIdx]= {...animales[animalIdx], ...req.body.sanitizedAnimal };
 
-  res.status(200).send({message: 'animal modificado correctamente', data:  animales[animalIdx] })
+  return res.status(200).send({message: 'animal modificado correctamente', data:  animales[animalIdx] })
 })
 
 
@@ -96,10 +96,10 @@ app.patch ('/api/animal/:id', sanitizeAnimalInput, (req,res )=>{
 app.delete('/api/animal/:id',(req,res )=>{
   const animalIdx = animales.findIndex((animal) => animal.id === req.params.id);
   if(animalIdx === -1){
-    res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
   }
   animales.splice(animalIdx, 1);
-  res.status(200).send({message: 'animal eliminado correctamente'})
+  return res.status(200).send({message: 'animal eliminado correctamente'})
 })
 
 //PRODUCTO --> /api/producto/
@@ -182,10 +182,10 @@ app.patch ('/api/producto/:id', sanitizeProductoInput, (req,res )=>{
 app.delete('/api/producto/:id',(req,res )=> {
   const productoIdx = productos.findIndex((producto) => producto.id === req.params.id);
   if (productoIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ningun producto con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun producto con ese ID' })
   }
   productos.splice(productoIdx, 1);
-  res.status(200).send({message: 'Producto eliminado correctamente'})
+  return res.status(200).send({message: 'Producto eliminado correctamente'})
 })
 
 
@@ -240,12 +240,12 @@ app.post('/api/veterinaria', sanitizeveterinariaInput, (req,res )=>{
 app.put ('/api/veterinaria/:id', sanitizeveterinariaInput, (req,res )=>{
   const veterinariaIdx = veterinarias.findIndex((veterinaria) => veterinaria.id === req.params.id);
   if (veterinariaIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
   }
 
   veterinarias[veterinariaIdx]= {...veterinarias[veterinariaIdx], ...req.body.sanitizedveterinaria };
 
-  res.status(200).send({message: 'veterinaria modificado correctamente', data:  veterinarias[veterinariaIdx] })
+  return res.status(200).send({message: 'veterinaria modificado correctamente', data:  veterinarias[veterinariaIdx] })
 })
 
 
@@ -257,17 +257,17 @@ app.patch ('/api/veterinaria/:id', sanitizeveterinariaInput, (req,res )=>{
 
   veterinarias[veterinariaIdx]= {...veterinarias[veterinariaIdx], ...req.body.sanitizedveterinaria };
 
-  res.status(200).send({message: 'veterinaria modificado correctamente', data: veterinarias[veterinariaIdx] })
+  return res.status(200).send({message: 'veterinaria modificado correctamente', data: veterinarias[veterinariaIdx] })
 })
 
 
 app.delete('/api/veterinaria/:id',(req,res )=>{
   const veterinariaIdx = veterinarias.findIndex((veterinaria) => veterinaria.id === req.params.id);
   if(veterinariaIdx === -1){
-    res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
   }
   veterinarias.splice(veterinariaIdx, 1);
-  res.status(200).send({message: 'veterinaria eliminado correctamente'})
+  return res.status(200).send({message: 'veterinaria eliminado correctamente'})
 })
 
 //Refugio--> /api/Refugio/
@@ -325,12 +325,12 @@ app.post('/api/refugio', sanitizeRefugioInput, (req,res )=>{
 app.put ('/api/refugio/:id', sanitizeRefugioInput, (req,res )=>{
   const refugioIdx = refugios.findIndex((refugio) => refugio.id === req.params.id);
   if (refugioIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
   }
 
   refugios[refugioIdx]= {...refugios[refugioIdx], ...req.body.sanitizedRefugio };
 
-  res.status(200).send({message: 'refugio modificado correctamente', data:  refugios[refugioIdx] })
+  return res.status(200).send({message: 'refugio modificado correctamente', data:  refugios[refugioIdx] })
 })
 
 
@@ -342,17 +342,17 @@ app.patch ('/api/refugio/:id', sanitizeRefugioInput, (req,res )=>{
 
   refugios[refugioIdx]= {...refugios[refugioIdx], ...req.body.sanitizedRefugio };
 
-  res.status(200).send({message: 'refugio modificado correctamente', data: refugios[refugioIdx] })
+  return res.status(200).send({message: 'refugio modificado correctamente', data: refugios[refugioIdx] })
 })
 
 
 app.delete('/api/refugio/:id',(req,res )=>{
   const refugioIdx = refugios.findIndex((refugio) => refugio.id === req.params.id);
   if(refugioIdx === -1){
-    res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
   }
   refugios.splice(refugioIdx, 1);
-  res.status(200).send({message: 'refugio eliminado correctamente'})
+  return res.status(200).send({message: 'refugio eliminado correctamente'})
 })
 
 //persona --> /api/persona/
@@ -421,12 +421,12 @@ app.post('/api/persona', sanitizePersonaInput, (req,res )=>{
 app.put ('/api/persona/:id', sanitizePersonaInput, (req,res )=>{
   const personaIdx = personas.findIndex((persona) => persona.id === req.params.id);
   if (personaIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
   }
 
   personas[personaIdx]= {...personas[personaIdx], ...req.body.sanitizedPersona };
 
-  res.status(200).send({message: 'Persona modificada correctamente', data:  personas[personaIdx] })
+  return res.status(200).send({message: 'Persona modificada correctamente', data:  personas[personaIdx] })
 })
 
 
@@ -438,17 +438,17 @@ app.patch ('/api/persona/:id', sanitizePersonaInput, (req,res )=>{
 
   personas[personaIdx]= {...personas[personaIdx], ...req.body.sanitizedPersona };
 
-  res.status(200).send({message: 'Persona modificada correctamente', data: personas[personaIdx] })
+  return res.status(200).send({message: 'Persona modificada correctamente', data: personas[personaIdx] })
 })
 
 
 app.delete('/api/persona/:id',(req,res )=>{
   const personaIdx = personas.findIndex((persona) => persona.id === req.params.id);
   if(personaIdx === -1){
-    res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
   }
   personas.splice(personaIdx, 1);
-  res.status(200).send({message: 'Persona eliminada correctamente'})
+  return res.status(200).send({message: 'Persona eliminada correctamente'})
 })
 
 //especie--> /api/especie/
@@ -502,12 +502,12 @@ app.post('/api/especie', sanitizeEspecieInput, (req,res )=>{
 app.put ('/api/especie/:id', sanitizeEspecieInput, (req,res )=>{
   const especieIdx = especies.findIndex((especie) => especie.id === req.params.id);
   if (especieIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
   }
 
   especies[especieIdx]= {...especies[especieIdx], ...req.body.sanitizedEspecie };
 
-  res.status(200).send({message: 'Especie modificada correctamente', data:  especies[especieIdx] })
+  return res.status(200).send({message: 'Especie modificada correctamente', data:  especies[especieIdx] })
 })
 
 
@@ -519,17 +519,17 @@ app.patch ('/api/especie/:id', sanitizeEspecieInput, (req,res )=>{
 
   especies[especieIdx]= {...especies[especieIdx], ...req.body.sanitizedEspecie };
 
-  res.status(200).send({message: 'Especie modificada correctamente', data: especies[especieIdx] })
+  return res.status(200).send({message: 'Especie modificada correctamente', data: especies[especieIdx] })
 })
 
 
 app.delete('/api/especie/:id',(req,res )=>{
   const especieIdx = especies.findIndex((especie) => especie.id === req.params.id);
   if(especieIdx === -1){
-    res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
   }
   especies.splice(especieIdx, 1);
-  res.status(200).send({message: 'Especie eliminada correctamente'})
+  return res.status(200).send({message: 'Especie eliminada correctamente'})
 })
 
 
@@ -583,12 +583,12 @@ app.post('/api/zona', sanitizeZonaInput, (req,res )=>{
 app.put ('/api/zona/:id', sanitizeZonaInput, (req,res )=>{
   const zonaIdx = zonas.findIndex((zona) => zona.id === req.params.id);
   if (zonaIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
   }
 
   zonas[zonaIdx]= {...zonas[zonaIdx], ...req.body.sanitizedZona };
 
-  res.status(200).send({message: 'zona modificado correctamente', data:  zonas[zonaIdx] })
+  return res.status(200).send({message: 'zona modificado correctamente', data:  zonas[zonaIdx] })
 })
 
 
@@ -600,17 +600,17 @@ app.patch ('/api/zona/:id', sanitizeZonaInput, (req,res )=>{
 
   zonas[zonaIdx]= {...zonas[zonaIdx], ...req.body.sanitizedZona };
 
-  res.status(200).send({message: 'zona modificado correctamente', data: zonas[zonaIdx] })
+  return res.status(200).send({message: 'zona modificado correctamente', data: zonas[zonaIdx] })
 })
 
 
 app.delete('/api/zona/:id',(req,res )=>{
   const zonaIdx = zonas.findIndex((zona) => zona.id === req.params.id);
   if(zonaIdx === -1){
-    res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
   }
   zonas.splice(zonaIdx, 1);
-  res.status(200).send({message: 'zona eliminado correctamente'})
+  return res.status(200).send({message: 'zona eliminado correctamente'})
 })
 
 const compras = [
@@ -667,12 +667,12 @@ app.post('/api/compra', sanitizeCompraInput, (req,res )=>{
 app.put ('/api/compra/:id', sanitizeCompraInput, (req,res )=>{
   const compraIdx = compras.findIndex((compra) => compra.id === req.params.id);
   if (compraIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
   }
 
   compras[compraIdx]= {...compras[compraIdx], ...req.body.sanitizedCompra };
 
-  res.status(200).send({message: 'Compra modificada correctamente', data:  compras[compraIdx] })
+  return res.status(200).send({message: 'Compra modificada correctamente', data:  compras[compraIdx] })
 })
 
 
@@ -684,17 +684,17 @@ app.patch ('/api/compra/:id', sanitizeCompraInput, (req,res )=>{
 
   compras[compraIdx]= {...compras[compraIdx], ...req.body.sanitizedCompra };
 
-  res.status(200).send({message: 'Compra modificada correctamente', data: compras[compraIdx] })
+  return res.status(200).send({message: 'Compra modificada correctamente', data: compras[compraIdx] })
 })
 
 
 app.delete('/api/compra/:id',(req,res )=>{
   const compraIdx = compras.findIndex((compra) => compra.id === req.params.id);
   if(compraIdx === -1){
-    res.status(404).send({message:'ID incorrecto, no existe ninguna compra con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna compra con ese ID' })
   }
   compras.splice(compraIdx, 1);
-  res.status(200).send({message: 'compra eliminada correctamente'})
+  return res.status(200).send({message: 'compra eliminada correctamente'})
 })
 
 
@@ -750,12 +750,12 @@ app.post('/api/rescate', sanitizeRescateInput, (req,res )=>{
 app.put ('/api/rescate/:id', sanitizeRescateInput, (req,res )=>{
   const rescateIdx = rescates.findIndex((rescate) => rescate.id === req.params.id);
   if (rescateIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
   }
 
   rescates[rescateIdx]= {...rescates[rescateIdx], ...req.body.sanitizedRescate };
 
-  res.status(200).send({message: 'rescate modificado correctamente', data:  rescates[rescateIdx] })
+  return res.status(200).send({message: 'rescate modificado correctamente', data:  rescates[rescateIdx] })
 })
 
 
@@ -767,17 +767,17 @@ app.patch ('/api/rescate/:id', sanitizeRescateInput, (req,res )=>{
 
   rescates[rescateIdx]= {...rescates[rescateIdx], ...req.body.sanitizedRescate };
 
-  res.status(200).send({message: 'rescate modificado correctamente', data: rescates[rescateIdx] })
+  return res.status(200).send({message: 'rescate modificado correctamente', data: rescates[rescateIdx] })
 })
 
 
 app.delete('/api/rescate/:id',(req,res )=>{
   const rescateIdx = rescates.findIndex((rescate) => rescate.id === req.params.id);
   if(rescateIdx === -1){
-    res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
+    return res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
   }
   rescates.splice(rescateIdx, 1);
-  res.status(200).send({message: 'rescate eliminado correctamente'})
+  return res.status(200).send({message: 'rescate eliminado correctamente'})
 })
 
 
