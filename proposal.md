@@ -42,17 +42,16 @@ Order{
 string orderNumber PK
 string idEmployee FK
 string idCustomer FK
-string idMaterial FK
+string idProduct FK
 float totalCost
 date orderDate
 }
 
-Material{
-string idMaterial PK
+Products{
+string idProduct PK
 string description
 string name
 float stock
-date costDate FK
 float cost
 }
 
@@ -67,7 +66,7 @@ float amount
 
 Customer ||--|| Order:idCustomer
 Employee ||--|| Order:idEmployee
-Order }|--o| Material:idMaterial
+Order }|--o| Product:idProduct
 Order ||--|| Payments:idOrder
 ```
 
@@ -77,17 +76,17 @@ Order ||--|| Payments:idOrder
 ***Regularidad***
 | Req | Detalle |
 |--|--|
-| CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Material <br> CRUD Employee |
-|CRUD dependiente|CRUD Material_Cost <br> CRUD Payments |
-|Listado + detalle|1. Listado de materiales. <br> 2. Listado de pedidos.|
+| CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Product <br> CRUD Employee |
+|CRUD dependiente|CRUD Product_Cost <br> CRUD Payments |
+|Listado + detalle|1. Listado de productos. <br> 2. Listado de pedidos.|
 |CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado.|
 
 ***Aprobación***
 | Req | Detalle |
 |--|--|
-| CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Material <br> CRUD Employee |
-|CRUD dependiente|CRUD Material_Cost <br> CRUD Payments |
-|Listado + detalle|1. Listado de materiales. <br> 2. Listado de pedidos.|
+| CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Product <br> CRUD Employee |
+|CRUD dependiente|CRUD Product_Cost <br> CRUD Payments |
+|Listado + detalle|1. Listado de productos. <br> 2. Listado de pedidos.|
 |CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado. <br> 3. Registrar el modo de pago del pedido. <br> 4. Registrar el histórico de pago del pedido. |
 
 
