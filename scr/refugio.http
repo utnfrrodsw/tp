@@ -1,0 +1,39 @@
+###obtener todas las sucuersales de los refugios 
+GET http://localhost:3000/api/refugio
+
+### obtener una sucurdal de algun refugio
+GET http://localhost:3000/api/refugio/3
+
+###crear un nuevo refugio
+POST http://localhost:3000/api/refugio
+Content-Type: application/json
+
+{
+    "nombre": "patas alegres 2", 
+    "direccion": "calle falsa 2",
+    "capacidadMaxima": 11,
+    "id": "3"
+}
+
+### modificar un refugio(PUT)
+PUT http://localhost:3000/api/refugio/2
+Content-Type: application/json
+
+{
+    "nombre": "patas alegres 3", 
+    "direccion": "utn",
+    "capacidadMaxima": 100,
+    "id": "2"
+}
+
+### modificar un refugio (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/refugio/3
+Content-Type: application/json
+
+{
+    "nombre": "patitas",
+    "direccion": "calle"
+}
+
+### borrar un refugio
+DELETE http://localhost:3000/api/refugio/3

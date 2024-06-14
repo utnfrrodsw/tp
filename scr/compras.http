@@ -1,0 +1,39 @@
+###obtener todos los compras 
+GET http://localhost:3000/api/compra
+
+###obtener una compra 
+GET http://localhost:3000/api/compra/2
+
+###crear una nuevo compra
+POST http://localhost:3000/api/compra
+Content-Type: application/json
+
+{
+    "total": 2400, 
+    "cantidad": 13,
+    "fechaCompra": "10-10-2020",
+    "id": "2"
+}
+
+### modificar un compra (PUT)
+PUT http://localhost:3000/api/compra/2
+Content-Type: application/json
+
+{
+    "total": 13000, 
+    "cantidad": 20,
+    "fechaCompra": "25/12/2013",
+    "id": "2"
+}
+
+### modificar un compra (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/compra/12
+Content-Type: application/json
+
+{
+    "cantidad": 45,
+    "fechaCompra": "30/1/2016"
+}
+
+### borrar un compra
+DELETE http://localhost:3000/api/compra/2

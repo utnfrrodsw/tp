@@ -6,4 +6,4 @@ export class refugio {
         this.id = id;
     }
 }
-//# sourceMappingURL=refugio.js.map
+//# sourceMappingURL=Refugio.js.map

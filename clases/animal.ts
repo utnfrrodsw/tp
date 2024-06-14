@@ -1,5 +1,3 @@
-import crypto from 'node:crypto';
-
 export class animal{
   constructor(
     public nombre: string, 
