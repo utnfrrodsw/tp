@@ -1,6 +1,3 @@
-
-export class Specialty {
-  constructor(
-    public fdate: Date, 
-    public observations: string) {}
+export class FollowUp {
+  constructor(public fdate: Date, public observations: string) {}
 }
