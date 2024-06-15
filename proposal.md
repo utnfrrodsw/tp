@@ -4,11 +4,11 @@
 
 ### Integrantes
 
-47138 - Marcosano, Mauro Agustin
-46860 - Ceballos, Ramiro
-46848 - Hoyos, Alex Nicolás
-47412 - Tobajas Ramirez, Ignacio  
-44865 - Fernández, Mateo
+47138 - Marcosano, Mauro Agustin<br>
+46860 - Ceballos, Ramiro<br>
+46848 - Hoyos, Alex Nicolás<br>
+47412 - Tobajas Ramirez, Ignacio<br>
+44865 - Fernández, Mateo<br>
 
 ### Repositorios
 
