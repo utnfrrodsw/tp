@@ -44,7 +44,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD | 1. CRUD Publicador<br> 2. CRUD Categoría<br> 3. CRUD Usuario<br> 4. CRUD Juego<br> 5. CRUD Foro<br> 6. CRUD Perfil usuario<br> 7. CRUD Vincula perfil Steam<br> 8. CRUD Ticket de soporte<br> 9. CRUD Servicio de hosting|
-|CUU/Epic| 1. Publicar una noticia reciente en el foro<br> 2. Agregar juego a lista de deseos <br> 3. Recuperar contraseña/usuario <br> 3. Crear un ticket de soporte <br> 4. Contratar hosting para un juego|
+|CUU/Epic| 1. Publicar una noticia reciente en el foro<br> 2. Agregar juego a lista de deseos <br> 3. Recuperar contraseña/usuario <br> 4. Crear un ticket de soporte <br> 5. Contratar hosting para un juego|
 
 ### Alcance Adicional Voluntario
 
