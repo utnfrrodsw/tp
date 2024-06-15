@@ -1,6 +1,6 @@
 export class Appointment {
     constructor(
-        public appoNumber: number,
+        public appoNumber: string,
         public appoDate: Date,
         public assisted: boolean,
     ) {}

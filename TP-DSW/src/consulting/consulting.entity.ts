@@ -1,7 +1,7 @@
 export class Consulting {
     constructor(
-        public id: number,
+        public id: string,
         public street: string,
-        public alt_street: string,
+        public altStreet: string,
     ) {}
 }

@@ -1,0 +1,27 @@
+### Get all the specialties
+GET http://localhost:3000/api/consulting
+
+### Get one consulting
+GET http://localhost:3000/api/consulting/1
+
+### Create a consulting
+POST http://localhost:3000/api/consulting
+Content-Type: application/json
+
+{
+    "id": "2",
+    "street": "Skibidi",
+    "altStreet": "Toilet"
+}
+
+### Update a consulting
+PUT http://localhost:3000/api/consulting/2
+Content-Type: application/json
+
+{
+    "street": "Sigma",
+    "altStreet": "Rizz"
+}
+
+### Delete a consulting
+DELETE http://localhost:3000/api/consulting/2

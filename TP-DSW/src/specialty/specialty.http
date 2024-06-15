@@ -1,0 +1,25 @@
+### Get all the specialties
+GET http://localhost:3000/api/specialty
+
+### Get one specialty
+GET http://localhost:3000/api/specialty/1
+
+### Create a specialty
+POST http://localhost:3000/api/specialty
+Content-Type: application/json
+
+{
+    "id": "2",
+    "name": "Obstreta"
+}
+
+### Update a specialty
+PUT http://localhost:3000/api/specialty/2
+Content-Type: application/json
+
+{
+    "name": "Abortista"
+}
+
+### Delete a specialty
+DELETE http://localhost:3000/api/specialty/2
