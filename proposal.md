@@ -23,8 +23,6 @@ Consiste de un sistema web orientado a un usuario final que busca informarse dia
 
 ### Modelo DER
 
-![imagen del modelo DER](https://drive.google.com/file/d/1kRI9QUqNSeMxy929tgR4-McgSdp707CP/view?usp=sharing)
-
 Draw.io del modelo:
 https://drive.google.com/file/d/1MHuFxfHsdLoeFCHqA9ak14gNvdQMPk5E/view?usp=sharing
 
