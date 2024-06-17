@@ -24,7 +24,7 @@ Consiste de un sistema web orientado a un usuario final que busca informarse dia
 ### Modelo DER
 
 Draw.io del modelo:
-https://drive.google.com/file/d/1MHuFxfHsdLoeFCHqA9ak14gNvdQMPk5E/view?usp=sharing
+https://drive.google.com/file/d/1EbJG5Vs-aiFzjE_SjwhFArGhCrfMcI_z/view?usp=drive_link
 
 ## Alcance Funcional
 
