@@ -1,0 +1,27 @@
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #000;
+  /* Adds the horizontal line */
+}
+
+header {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  padding: 10px;
+  /* Adjust as necessary */
+}
+
+.logo {
+  width: 100px;
+  /* Adjust the size of the logo */
+  height: auto;
+  margin-right: 10px;
+  /* Adjust as necessary */
+}
+
+.burger-button {
+  margin-left: auto;
+}

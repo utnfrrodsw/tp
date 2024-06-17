@@ -1,0 +1,59 @@
+$burgerWidth: 40px;
+$burgerBarHeight: 1px;
+$burgerBarColor: #333;
+
+.burger-menu {
+  width: $burgerWidth;
+  height: $burgerWidth;
+  cursor: pointer;
+
+  .burger-container {
+    position: relative;
+
+    .burger-inner {
+      position: absolute;
+      width: $burgerWidth - 2 * $burgerBarHeight;
+      left: 0px;
+      top: 11px;
+      border: $burgerBarHeight solid $burgerBarColor;
+      transition: border-color .2s ease-in .2s;
+
+      &::before {
+        position: absolute;
+        content: '';
+        top: -6px;
+        left: -$burgerBarHeight;
+        width: $burgerWidth - 2 * $burgerBarHeight;
+        border: $burgerBarHeight solid $burgerBarColor;
+        transition: top .2s ease-in .3s, transform ease-in .2s;
+      }
+
+      &::after {
+        position: absolute;
+        content: '';
+        top: 4px;
+        left: -$burgerBarHeight;
+        width: $burgerWidth - 2 * $burgerBarHeight;
+        border: $burgerBarHeight solid $burgerBarColor;
+        transition: top .2s ease-in .3s, transform ease-in .2s;
+      }
+    }
+  }
+
+  &.active .burger-container .burger-inner {
+    border-color: transparent;
+    transition: border-color ease-in .1s;
+  }
+
+  &.active .burger-container .burger-inner::before {
+    top: -$burgerBarHeight;
+    transform: rotate(-45deg);
+    transition: top ease-out .2s, transform .2s ease-out .3s;
+  }
+
+  &.active .burger-container .burger-inner::after {
+    top: -$burgerBarHeight;
+    transform: rotate(45deg);
+    transition: top ease-out .2s, transform .2s ease-out .3s;
+  }
+}
