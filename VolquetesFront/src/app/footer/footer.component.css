@@ -1,0 +1,36 @@
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #000;
+  /* Adds the horizontal line at the top */
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  padding: 10px;
+  /* Adjust as necessary */
+}
+
+.footer {
+  background-color: #f0f0f0;
+  /* Example background color */
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+}
+
+.copyright {
+  margin-left: 10px;
+  /* Adjust as necessary */
+}

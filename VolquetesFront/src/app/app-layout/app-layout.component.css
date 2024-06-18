@@ -1,0 +1,13 @@
+.content-wrapper {
+  display: flex;
+  min-height: 100vh;
+  /* Ensure the wrapper fills the viewport height */
+}
+
+.main-content {
+  flex-grow: 1;
+  /* Allow main content to grow and fill remaining space */
+  padding: 20px;
+  overflow-y: auto;
+  /* Enable scrolling for main content if needed */
+}

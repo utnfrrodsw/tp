@@ -1,3 +1,13 @@
+Como ejecutar:
+1) Descarga el proyecto completo.
+2) Con Angular instalado, ejecutar "ng serve" en la carpeta del proyecto:
+
+    ...\tpDSW2024_front\VolquetesFront>t>
+
+3) Debería levantar en el localhost
+
+
+
 # VolquetesFront
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.

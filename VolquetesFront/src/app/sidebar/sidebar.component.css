@@ -1,0 +1,32 @@
+.sidebar {
+  width: 250px;
+  /* Adjust the width as needed */
+  background-color: #333;
+  /* Background color */
+  color: white;
+  /* Text color */
+  padding: 20px;
+  overflow-y: auto;
+  /* Enable vertical scrolling */
+  height: calc(100vh - 60px);
+  /* Full height minus header height */
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 20px 0;
+  /* Space between items */
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
