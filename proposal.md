@@ -8,6 +8,7 @@
 
 ### Repositorios
 * Backend: (https://github.com/RenzoAimaretti/Backend)
+* Frontend: (https://github.com/RenzoAimaretti/frontEndDWS)
 
 
 ## Tema
