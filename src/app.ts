@@ -44,10 +44,13 @@
 
   import express from 'express'
   import { tipo_participanteRouter } from './tipo_participante/tipo_participante.routes.js'
-  
+  import { formatoRouter } from './formatos_torneo/formatos_torneo.routes.js';
+
+
   const app = express()
   app.use(express.json())
-  
+
+  app.use('/api/formatos_torneo',formatoRouter)
   app.use('/api/tipo_participantes', tipo_participanteRouter)
   
   app.use((_, res) => {
