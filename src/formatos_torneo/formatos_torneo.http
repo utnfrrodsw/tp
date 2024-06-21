@@ -1,0 +1,33 @@
+### obtener todos los formatos_torneos
+GET http://localhost:3000/api/formatos_torneo
+
+
+### obtener un formato de torneo
+GET http://localhost:3000/api/formatos_torneo/asd
+
+
+### crear un nuevo formato de torneo
+POST http://localhost:3000/api/formatos_torneo
+Content-Type: application/json
+
+{
+  "cant_grupos": 16,
+  "cant_equipos_x_grupo": 8,
+  "cant_clasificados_x_grupo": 4,
+  "id": "asdasd"
+}
+
+### modificar un formato de torneo (PUT)
+PUT http://localhost:3000/api/formatos_torneo/asd
+Content-Type: application/json
+
+{
+  "cant_grupos": 1000,
+  "cant_equipos_x_grupo": 50,
+  "cant_clasificados_x_grupo": 10,
+  "id": "asd"
+}
+
+
+### eliminar un formato de torneo
+DELETE http://localhost:3000/api/formatos_torneo/asd
