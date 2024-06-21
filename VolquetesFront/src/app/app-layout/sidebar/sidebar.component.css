@@ -1,5 +1,6 @@
 .sidebar {
-  width: 250px;
+  display: flex;
+  width: 100px;
   /* Adjust the width as needed */
   background-color: #333;
   /* Background color */

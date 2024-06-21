@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BurgerMenuComponent } from '../burger-button/burger-button.component.js';
+import { BurgerMenuComponent } from './burger-button/burger-button.component.js';
 
 @Component({
   selector: 'app-header',

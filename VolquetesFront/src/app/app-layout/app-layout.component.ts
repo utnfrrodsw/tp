@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header.component.js';
+import { HeaderComponent } from './header/header.component.js';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from '../footer/footer.component.js';
-import { SidebarComponent } from '../sidebar/sidebar.component.js';
+import { FooterComponent } from './footer/footer.component.js';
+import { SidebarComponent } from './sidebar/sidebar.component.js';
 
 @Component({
   selector: 'app-app-layout',
