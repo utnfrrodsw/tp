@@ -18,10 +18,12 @@ header {
   width: 100px;
   /* Adjust the size of the logo */
   height: auto;
+  margin-top: 10px;
   margin-right: 10px;
   /* Adjust as necessary */
 }
 
 .burger-button {
   margin-left: 2%;
+  
 }

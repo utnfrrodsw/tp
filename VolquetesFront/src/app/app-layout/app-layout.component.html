@@ -5,4 +5,7 @@
     <!-- Your main content goes here -->
   </main>
 </div>
-<app-footer></app-footer>
+<app-footer *ngIf="showFooter" class="fade-in-out"></app-footer>
+
+<!--   <app-footer (scrollDirection)="onScrollDirection($event)" *ngIf="showFooter"></app-footer>
+-->

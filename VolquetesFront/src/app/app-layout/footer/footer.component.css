@@ -16,13 +16,19 @@ footer {
 }
 
 .footer {
-  background-color: #f0f0f0;
-  /* Example background color */
-  padding: 10px;
+  background-color: #313030;
+  color: #fff; 
+  text-align: center;
   position: fixed;
   bottom: 0;
   width: 100%;
-  text-align: center;
+  left: 0;
+  padding: 10px 0;
+  transition: transform 0.3s ease; /* Smooth transition for appearing/disappearing */
+}
+
+.hide {
+  transform: translateY(100%); /* Move footer off-screen */
 }
 
 .footer-content {

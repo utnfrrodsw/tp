@@ -11,3 +11,29 @@
   overflow-y: auto;
   /* Enable scrolling for main content if needed */
 }
+
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.fade-in-out {
+  opacity: 0;
+  transition: opacity 1 .8s ease;
+  animation-name: fade-out;
+  animation-duration: 1.8s; /* Adjust animation duration */
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.fade-in-out.show {
+  animation-name: fade-in;
+  transition: opacity 1.8s ease;
+  animation-duration: 1.8s; /* Adjust animation duration */
+}
