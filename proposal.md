@@ -7,7 +7,10 @@
 * 48026 Ignacio Di Martino
 
 ### Repositorios
-* [fullstack app](http://hyperlinkToGihubOrGitlab)
+* [Backend App](https://github.com/Lotar17/TPbackend)
+
+* [Frontend App]()
+
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
