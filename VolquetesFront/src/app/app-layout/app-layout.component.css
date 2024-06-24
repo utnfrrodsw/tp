@@ -25,15 +25,18 @@
 
 .fade-in-out {
   opacity: 0;
-  transition: opacity 1 .8s ease;
+  transition: opacity 5s ease;
   animation-name: fade-out;
-  animation-duration: 1.8s; /* Adjust animation duration */
+  animation-duration: 5s; /* Adjust animation duration */
   animation-timing-function: ease;
   animation-fill-mode: forwards;
 }
 
 .fade-in-out.show {
+  opacity: 1;
+  transition: opacity 5s ease;
   animation-name: fade-in;
-  transition: opacity 1.8s ease;
-  animation-duration: 1.8s; /* Adjust animation duration */
+  animation-duration: 5s; /* Adjust animation duration */
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }

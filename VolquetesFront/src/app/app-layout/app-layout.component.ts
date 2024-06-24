@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component.js';
 import { SidebarComponent } from './sidebar/sidebar.component.js';
 import { Subscription } from 'rxjs';
-import { ScrollService } from '../services/scroll.service.js';
+import { ScrollService } from '../services/scrollService/scroll.service.js';
 
 @Component({
   selector: 'app-app-layout',

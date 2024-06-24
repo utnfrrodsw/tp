@@ -10,7 +10,7 @@ header {
   display: flex;
   align-items: center;
   flex-grow: 1;
-  padding: 10px;
+  padding: 0px;
   /* Adjust as necessary */
 }
 
@@ -18,12 +18,13 @@ header {
   width: 100px;
   /* Adjust the size of the logo */
   height: auto;
-  margin-top: 10px;
-  margin-right: 10px;
+  margin-top: 0px;
+  margin-left: 10px;
   /* Adjust as necessary */
 }
 
 .burger-button {
-  margin-left: 2%;
+  
+  margin-left:2px;
   
 }
