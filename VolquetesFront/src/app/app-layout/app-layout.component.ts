@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from './header/header.component.js';
+import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { HeaderComponent } from './header/header.component.js';
 import { FooterComponent } from './footer/footer.component.js';
 import { SidebarComponent } from './sidebar/sidebar.component.js';
-import { Subscription } from 'rxjs';
 import { ScrollService } from '../services/scrollService/scroll.service.js';
 
 @Component({
@@ -13,27 +13,28 @@ import { ScrollService } from '../services/scrollService/scroll.service.js';
   templateUrl: './app-layout.component.html',
   styleUrl: './app-layout.component.css',
 })
-export class AppLayoutComponent {
+export class AppLayoutComponent implements OnDestroy {
   public showFooter = false;
   private scrollSubscription: Subscription;
 
   constructor(private scrollService: ScrollService) {
-    this.scrollSubscription = this.scrollService.scrollDirection$.subscribe(event => {
-      this.onScrollDirection(event);
-    });
+    this.scrollSubscription = this.scrollService.scrollDirection$.subscribe(
+      event => {
+        this.onScrollDirection(event);
+      });
   }
-
+  
   ngOnDestroy() {
     this.scrollSubscription.unsubscribe();
   }
 
   onScrollDirection(event: string) {
     // Handle scroll direction event here
+    console.log(`Scroll direction: ${event}`);
     if (event === 'down') {
       this.showFooter = true;
     } else if (event === 'up') {
       this.showFooter = false;
     }
-
-}
+  }
 }
