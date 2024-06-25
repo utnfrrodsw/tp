@@ -1,16 +1,14 @@
 .sidebar {
   display: flex;
-  width: 100px;
-  /* Adjust the width as needed */
-  background-color: #333;
-  /* Background color */
-  color: white;
-  /* Text color */
-  padding: 20px;
+  width: 100%;
+  background-color: rgb(198, 190, 190);
+  color: black;
+  
+  padding:0px;
+
   overflow-y: auto;
-  /* Enable vertical scrolling */
-  height: calc(100vh - 60px);
-  /* Full height minus header height */
+  height: 100vh;
+  border-right: 3px rgb(89, 67, 67);
 }
 
 .sidebar ul {
@@ -19,15 +17,16 @@
 }
 
 .sidebar li {
-  margin: 20px 0;
+
+  display: flex;
+  align-items: center;
+  padding: 20px;
   /* Space between items */
 }
 
-.sidebar a {
-  color: white;
-  text-decoration: none;
-}
-
-.sidebar a:hover {
-  text-decoration: underline;
+.sidebar li:hover {
+  background-color: gray;
+  color: aliceblue;
+  font-weight: bold;
+  border-left: 3px brown;
 }
