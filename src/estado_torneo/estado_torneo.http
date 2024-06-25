@@ -1,0 +1,39 @@
+### obtener todos los estados del torneo
+GET http://localhost:3000/api/estado_torneo
+
+
+### obtener un estado especifico del torneo
+GET http://localhost:3000/api/estado_torneo/2
+
+### crear un nuevo estado del torneo
+POST http://localhost:3000/api/tipo_participantes
+Content-Type: application/json
+
+{
+  "id_estado_torneo": 2,
+  "nombre_estado_torneo": "En curso"
+}
+
+### modificar un estado del torneo
+PUT http://localhost:3000/api/estado_torneo/2
+Content-Type: application/json
+
+{
+  "id_estado_torneo": 3,
+  "nombre_estado_torneo": "finalizado"
+
+
+}
+
+### modificar un estado del torneo
+PATCH http://localhost:3000/api/estado_torneo/2
+Content-Type: application/json
+
+{
+  "id_estado_torneo": 3,
+  "nombre_estado_torneo": "finalizado"
+}
+### borrar un estado del torneo
+DELETE http://localhost:3000/api/estado_torneo/3
+
+##### estados: 1- Creado 2- En curso 3- Finalizado 4- cancelado
