@@ -38,13 +38,15 @@ res.json({ data: estado_torneo })
 
 
 function add(req: Request, res: Response) {
+    const input = req.body.sanitizedInput
 
-const {id, nombre_estado} = req.body
-const nuevoEstado = new estado_torneo (id, nombre_estado)
+    const nuevoEstadoInput = new estado_torneo (
+    input.id,
+    input.nombre_estado
+    )
 
-repository.add(nuevoEstado)
-
-return res.status(201).send({ message: 'Se creo el estado del torneo', data: estado_torneo })
+    const nuevo_estado = repository.add(nuevoEstadoInput)
+    return res.status(201).send({ message: 'Se creo el estado del torneo', data: nuevo_estado })
 }
 
 
