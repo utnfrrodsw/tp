@@ -10,6 +10,7 @@ POST http://localhost:3000/api/estado_torneo
 Content-Type: application/json
 
 {
+  "id": "5"
   "nombre_estado": "En curso"
 }
 
