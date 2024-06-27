@@ -42,7 +42,7 @@ function add(req: Request,res: Response){
     const nuevoFormato = new formatos_torneo (cant_grupos, cant_equipos_x_grupo, cant_clasificados_x_grupo, id )
   
     repository.add(nuevoFormato)
-    res.status(201).send({message: 'Formato de torneo caragado correctamente', data: formatos_torneo })
+    res.status(201).send({message: 'Formato de torneo caragado correctamente', data: nuevoFormato })
   }
 
 function update(req: Request,res: Response){
@@ -54,7 +54,7 @@ function update(req: Request,res: Response){
     }
   
   
-    return res.status(200).send({ message: 'Formato de torneo actualizado correctamente', data: formatos_torneo})
+    return res.status(200).send({ message: 'Formato de torneo actualizado correctamente', data: formato})
 }
 
 function remove(req: Request,res: Response){
