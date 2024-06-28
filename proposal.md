@@ -8,7 +8,7 @@
 * 50925 Variego, Manuel (COM 302)
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app](https://github.com/manuvariego/DSW-Frontend)
 * [backend app](https://github.com/manuvariego/DSW-BackEnd)
 
 ## Tema
