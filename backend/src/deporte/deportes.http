@@ -1,0 +1,21 @@
+### obtener todos los deportes
+GET http://localhost:3000/api/deportes
+
+
+### obtener un deporte
+GET http://localhost:3000/api/deportes/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+
+### crear un nuevo deporte
+POST http://localhost:3000/api/deportes
+
+### modificar un deporte (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/deportes/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+ 
+
+### modificar un deporte (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/deportes/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+ 
+
+### borrar un deporte
+DELETE http://localhost:3000/api/deportes/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+

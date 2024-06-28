@@ -1,0 +1,21 @@
+### obtener todos los horarios
+GET http://localhost:3000/api/horarios
+
+
+### obtener un horario
+GET http://localhost:3000/api/horarios/:id
+
+### crear un nuevo horario
+POST http://localhost:3000/api/horarios
+
+### modificar un horario (PUT - recurso completo e idempotente) -- para modificar todo el objeto
+PUT http://localhost:3000/api/horarios/:id
+ 
+
+### modificar un horario (PATCH - recurso parcial) -- modifica solo un subconjunto de los atributos
+PATCH http://localhost:3000/api/horarios/ :id
+ 
+
+### borrar un horario
+DELETE http://localhost:3000/api/horarios/ :id
+
