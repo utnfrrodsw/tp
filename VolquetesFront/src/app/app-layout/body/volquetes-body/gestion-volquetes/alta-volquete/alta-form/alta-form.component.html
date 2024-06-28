@@ -1,0 +1,28 @@
+<h3>Alta</h3>
+<form id="formConsulta" #formConsulta="ngForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label value="Id">Id: </label>
+    <input type="text" name="id" [(ngModel)]="tipoVolquete.id" #id="ngModel" required>
+    <span *ngIf="id.touched && !id.valid">
+      Introduzca Codigo de Idioma
+    </span>
+  </p>
+
+  <p>
+    <label value="Descripcion">Descripcion: </label>
+    <input type="text" name="descripcion" [(ngModel)]="tipoVolquete.descripcion" #descripcion="ngModel" required>
+    <span *ngIf="descripcion.touched && !descripcion.valid">
+      Introduzca Descripcion de Idioma
+    </span>
+  </p>
+
+  <div>
+    <input type="submit" value="Insertar" [disabled]="!formConsulta.form.valid">
+  </div>
+</form>
+<div *ngIf="introducido==1">
+  <h3>Tipo de Volquete Introducido</h3>
+</div>
+<div *ngIf="introducido==0">
+  <h3>Error al Introducir Tipo de Volquete {{mensajeErr}}</h3>
+</div>
