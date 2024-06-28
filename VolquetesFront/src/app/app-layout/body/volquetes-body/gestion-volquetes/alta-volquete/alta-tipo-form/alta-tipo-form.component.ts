@@ -8,8 +8,8 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-alta-form',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './alta-form.component.html',
-  styleUrl: './alta-form.component.css',
+  templateUrl: './alta-tipo-form.component.html',
+  styleUrl: './alta-tipo-form.component.css',
 })
 export class AltaFormComponent implements OnInit {
   tipoVolquete: TipoVolqueteModel;

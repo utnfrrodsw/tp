@@ -1,0 +1,16 @@
+input[type="text"] {
+    border: solid 1px burlywood;
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 4px;
+    display: inline-block;
+    width: 30%;
+  }
+
+  button {
+    padding: 10px;
+    border: solid 1px var(--primary-color);
+    background: var(--primary-color);
+    color: black;
+    border-radius: 8px;
+  }

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AltaFormComponent } from './alta-form.component';
+import { AltaFormComponent } from './alta-tipo-form.component';
 
 describe('AltaFormComponent', () => {
   let component: AltaFormComponent;

@@ -9,4 +9,6 @@ import { BurgerMenuComponent } from './burger-button/burger-button.component.js'
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  headerUrl="/assets/logo.svg";
+}
