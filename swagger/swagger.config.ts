@@ -11,6 +11,14 @@ const definition = {
       name: "Pacientes",
       description: "Endpoints relacionados con los pacientes",
     },
+    // {
+    //   name: "Médicos",
+    //   description: "Endpoints relacionados con los médicos",
+    // },
+    // {
+    //   name: "Especialidades",
+    //   description: "Endpoints relacionados con las especialidades",
+    // },
   ],
   securityDefinitions: {
     BearerAuth: {
@@ -25,7 +33,7 @@ const definition = {
 
 const options = {
   definition,
-  apis: ["dist/swagger/pacientes.js"],
+  apis: ["dist/swagger/pacientes.js","dist/swagger/medicos.js","dist/swagger/especialidades.js"]
 };
 
 const swaggerSpec = swaggerJSDoc(options);

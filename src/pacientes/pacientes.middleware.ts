@@ -5,7 +5,7 @@ export default function sanitizePacientesInput(
   res: Response,
   next: NextFunction
 ) {
-  req.body.sanitizePacientesInput = {
+  req.body.sanitizedInput = {
     nombre: req.body.nombre,
     apellido: req.body.apellido,
     idRol: req.body.idRol,
@@ -16,9 +16,9 @@ export default function sanitizePacientesInput(
     dni: req.body.dni,
   };
 
-  Object.keys(req.body.sanitizePacientesInput).forEach((key) => {
-    if (req.body.sanitizePacientesInput[key] === undefined) {
-      delete req.body.sanitizePacientesInput[key];
+  Object.keys(req.body.sanitizedInput).forEach((key) => {
+    if (req.body.sanitizedInput[key] === undefined) {
+      delete req.body.sanitizedInput[key];
     }
   });
 

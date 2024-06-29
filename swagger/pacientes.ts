@@ -56,8 +56,6 @@
  *               type: string
  *             apellido:
  *               type: string
- *             idRol:
- *               type: string
  *             telefono:
  *               type: string
  *             direccion:
@@ -67,6 +65,8 @@
  *             tipoDni:
  *               type: string
  *             dni:
+ *               type: string
+ *             email:
  *               type: string
  *     responses:
  *       201:
@@ -100,8 +100,6 @@
  *               type: string
  *             apellido:
  *               type: string
- *             idRol:
- *               type: string
  *             telefono:
  *               type: string
  *             direccion:
@@ -111,6 +109,8 @@
  *             tipoDni:
  *               type: string
  *             dni:
+ *               type: string
+ *             email:
  *               type: string
  *     responses:
  *       201:

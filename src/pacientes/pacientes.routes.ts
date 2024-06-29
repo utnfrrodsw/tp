@@ -1,10 +1,10 @@
 import express from "express";
 import {
-  add,
   findAll,
   findOne,
-  remove,
+  add,
   update,
+  remove,
 } from "./pacientes.controller.js";
 import sanitizePacientesInput from "./pacientes.middleware.js";
 
