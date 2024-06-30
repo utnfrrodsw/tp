@@ -5,6 +5,14 @@ import { ObjectId } from 'mongodb'
 
 const deportes = db.collection<Deporte>('deportes')
 
+const Deportes = [
+  new Deporte(
+    "Futbol",
+    20,
+    ["Martes 15:30 a 16:30", "Jueves 16:00 a 17:00"],
+    2000,
+    ),
+];
 export class DeporteRepository implements Repository<Deporte> {
   public async findAll(): Promise<Deporte[] | undefined> {
     return await deportes.find().toArray()

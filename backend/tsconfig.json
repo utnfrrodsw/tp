@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
-      "module": "commonjs",
-      "esModuleInterop": true,
-      "noImplicitAny": false,
-      "removeComments": true,
-      "preserveConstEnums": true,
-      "sourceMap": true,
-      "moduleResolution": "node",
-      "strict": true,
-      "target": "es2019",
+    "incremental": true,
+    "target": "es2020",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
-  "files": [
-      "app.ts",
-  ]
+  "include": ["src/**/*", "**/*.ts"],
+  "exclude": ["node_modules"]
 }

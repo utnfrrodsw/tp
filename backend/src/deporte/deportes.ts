@@ -8,8 +8,7 @@ export const deportes = [
   new Deporte(
     " ",
     0,
-    " ",
-    0,
-    
+    [],
+    0,  
    ),
 ];
