@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Volquete } from '../../../../../../model/volquete.interface.js';
 
 @Component({
   selector: 'app-alta-volquete-form',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './alta-volquete-form.component.css'
 })
 export class AltaVolqueteFormComponent {
+  @Input() nuevoVolquete!: Volquete;
 
 }
