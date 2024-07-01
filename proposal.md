@@ -30,7 +30,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. Usuario<br>2. lugar <br> 3. itinerario|
-|CRUD dependiente|1. CRUD actividad {depende de} CRUD itinerario <br>2. CRUD serviciosExternos {depende de} CRUD lugar |
+|CRUD dependiente|1. CRUD actividad {depende de} CRUD lugar <br>2. CRUD servicioExterno {depende de} CRUD lugar <br>3. CRUD participante {depende de} CRUD itinerario |
 |Listado<br>+<br>detalle| 1. => <br> 2.  => 
 |CUU/Epic|1.  Registrar opinión del usuario  <br>2. |
 
@@ -38,7 +38,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD <br>2. CRUD<br>3. CRUD <br>4. CRUD <br>5. CRUD <br>6. CRUD <br>7. CRUD |
+|CRUD |1. CRUD lugar<br>2. CRUD actividad<br>3. CRUD itinerario<br>4. CRUD servicioExterno<br>5. CRUD participante<br>6. CRUD ususario<br>7. CRUD preferencia|
 |CUU/Epic|1.<br>2.  <br> 3. |
 
 
