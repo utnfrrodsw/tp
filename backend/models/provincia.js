@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const provinciaSchema = new mongoose.Schema({
-  idProvincia: { type: String, required: true },
+  idProvincia: { type: Number, required: true },
   nombre: { type: String, required: true }
 });
 
