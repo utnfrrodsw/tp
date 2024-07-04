@@ -4,6 +4,8 @@ const estadiaServicioController = require('../controllers/estadiaServicioControl
 
 
 router.post('/', estadiaServicioController.crearEstadiaServicio);
-
+router.get('/', estadiaServicioController.obtenerTodasEstadiaServicios);
+router.delete('/:idServicio/:idEstadia', estadiaServicioController.eliminarEstadiaServicio);
+router.get('/:idEstadia', estadiaServicioController.obtenerServiciosPorEstadia);
 
 module.exports = router;

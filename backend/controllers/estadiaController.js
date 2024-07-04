@@ -1,6 +1,8 @@
 const Estadia = require('../models/estadia');
 const Cliente = require('../models/cliente');
 const Habitacion = require('../models/habitacion');
+const EstadiaServicio = require('../models/estadiaServicio');
+const Servicio = require('../models/servicio');
 const moment = require('moment-timezone'); 
 
 
@@ -33,7 +35,7 @@ const realizarCheckout = async (req, res) => {
     
     const estadia = await Estadia.findOneAndUpdate(
       { idEst: idEstadia },
-      { estado: 'Finalizado' }, 
+      { estado: 'Finalizado' },
       { new: true }
     );
 
@@ -41,7 +43,30 @@ const realizarCheckout = async (req, res) => {
       return res.status(404).json({ message: "Estadia no encontrada" });
     }
 
-    res.json(estadia);
+    
+    const serviciosConsumidos = await EstadiaServicio.find({ idEstadia: idEstadia });
+
+    
+    let totalCost = 0;
+    for (const consumo of serviciosConsumidos) {
+      const servicio = await Servicio.findOne({ idServ: consumo.idServicio });
+      if (servicio) {
+        totalCost += servicio.precio;
+      }
+    }
+
+    
+    const cliente = await Cliente.findOne({ idCli: estadia.idCli });
+
+    
+    res.json({
+      estadia,
+      totalServicios: totalCost,
+      cliente: {
+        nroDni: cliente ? cliente.nroDni : null,
+        apellidoYnombre: cliente ? cliente.apellidoYnombre : null
+      }
+    });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

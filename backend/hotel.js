@@ -7,10 +7,7 @@ require('dotenv').config();
 
 if (!process.env.JWT_SECRET) {
   const crypto = require('crypto');
-  const jwtSecret = crypto.randomBytes(32).toString('hex');
-
-
-  
+  const jwtSecret = crypto.randomBytes(32).toString('hex'); 
   process.env.JWT_SECRET = jwtSecret;
 }
 
@@ -28,6 +25,9 @@ const estadiaRoutes = require('./routes/estadias');
 const authRoutes = require('./routes/auth');
 const servicioRoutes = require('./routes/servicios');
 const estadiaServicioRoutes = require('./routes/estadiaServicios');
+const provinciaRoutes=require('./routes/provincias');
+const localidadRoutes=require('./routes/localidades');
+const habitacionesLocalidadesRoutes=require('./routes/habitacionesLocalidades');
 
 
 app.use('/habitaciones', habitacionRoutes);
@@ -37,6 +37,9 @@ app.use('/estadias', estadiaRoutes);
 app.use('/auth', authRoutes);
 app.use('/servicios', servicioRoutes);
 app.use('/estadiaServicio', estadiaServicioRoutes);
+app.use('/provincias', provinciaRoutes);
+app.use('/localidades', localidadRoutes);
+app.use('/habitacionesLocalidad', habitacionesLocalidadesRoutes); 
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
