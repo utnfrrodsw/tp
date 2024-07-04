@@ -28,7 +28,7 @@ const estadiaServicioRoutes = require('./routes/estadiaServicios');
 const provinciaRoutes=require('./routes/provincias');
 const localidadRoutes=require('./routes/localidades');
 const habitacionesLocalidadesRoutes=require('./routes/habitacionesLocalidades');
-
+const empleadoRoutes=require('./routes/empleados');
 
 app.use('/habitaciones', habitacionRoutes);
 app.use('/tiposHabitacion', tipoHabitacionRoutes);
@@ -40,6 +40,7 @@ app.use('/estadiaServicio', estadiaServicioRoutes);
 app.use('/provincias', provinciaRoutes);
 app.use('/localidades', localidadRoutes);
 app.use('/habitacionesLocalidad', habitacionesLocalidadesRoutes); 
+app.use('/empleados',empleadoRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
