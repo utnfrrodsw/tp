@@ -1,8 +1,23 @@
 const express = require('express');
-const config = require('./config');
+const dotenv = require('dotenv');
+const cors = require('cors');
 
+dotenv.config();
 const app = express();
 
-app.set('port', config.app.port)
+const port = process.env.PORT || 3000;
 
-module.exports = app;
+const routerApi = require('./routes');
+
+app.use(cors());
+app.use(express.json());
+
+app.get("/", (req,res) => {
+    res.send("Backend")
+});
+
+routerApi(app);
+
+app.listen(port, () => {
+    console.log('Port =>> ', port);
+});
