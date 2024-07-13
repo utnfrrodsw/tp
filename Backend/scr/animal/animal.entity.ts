@@ -1,8 +1,8 @@
-export class animal{
+export class Animal{
   constructor(
-    public nombre: string, 
-    public fechaRescate: string,
-    public fechaNacimientoEStimativa: string,
+    public name: string, 
+    public rescueDate: string,
+    public birthdate: string,
     public id: string
   ){}
 }

@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { animal } from './scr/animal/animal.entity.js';
+import { Animal } from './scr/animal/animal.entity.js';
 import { Buy } from './scr/buy/buy.entity.js';
 import { person} from './scr/person/person.entity.js';
 import { shelter } from './scr/shelter/shelter.entity.js';
@@ -9,6 +9,8 @@ import { zone } from './scr/zone/zone.entity.js';
 import { rescue } from './scr/rescue/rescue.entity.js';
 import { specie } from './scr/specie/specie.entity.js';
 import { BuyRepository } from './scr/buy/buy.repository.js';
+import { AnimalRepository } from './scr/animal/animal.repository.js';
+
 
 const app = express();
 app.use(express.json());
@@ -21,22 +23,12 @@ const buyrepository = new BuyRepository();
 
 //animal--> /api/animal/
 
-
-const animales = [
-  new animal(
-    'juan',
-    '2020-12-03',
-    '2020-12-03',
-    '1'
-  ),
-];
-
 function sanitizeAnimalInput(req: Request, res: Response, next:NextFunction){
-  
   req.body.sanitizedAnimal = {
-    nombre: req.body.nombre,
-    fecharescue: req.body.fecharescue,
-    fechaNacimientoEStimativa: req.body.fechaNacimientoEStimativa
+    name: req.body.name,
+    rescueDate: req.body.rescueDate,
+    birthdate: req.body.birthdate,
+    id: req.body.id
   }
 
   Object.keys(req.body.sanitizedAnimal).forEach((key) => {
@@ -48,13 +40,16 @@ function sanitizeAnimalInput(req: Request, res: Response, next:NextFunction){
   next()
 }
 
+const animalRepository = new AnimalRepository()
+
 app.get('/api/animal',(req,res )=>{
-  res.json(animales);
+  res.json({ data : animalRepository.findAll() });
 })
 
 
 app.get('/api/animal/:id',(req,res )=>{
-  const animal = animales.find((animal) => animal.id === req.params.id);
+  const id = req.params.id
+  const animal = animalRepository.findOne({ id })
   if(!animal){
     return res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
   }
@@ -62,47 +57,49 @@ app.get('/api/animal/:id',(req,res )=>{
 })
 
 
-app.post('/api/animal', sanitizeAnimalInput, (req,res )=>{
-  const {nombre, fecharescue, fechaNacimientoEStimativa, id} = req.body
+app.post('/api/animal', sanitizeAnimalInput, (req, res)=>{
+  const input = req.body.sanitizedAnimal
 
-  const animales2 = new animal (nombre, fecharescue, fechaNacimientoEStimativa, id ); 
+  const animalInput = new Animal(input.name, input.rescueDate, input.birthdate, input.id ); 
 
-  animales.push(animales2)
+  const animal = animalRepository.add(animalInput)
   return res.status(201).send({message: 'animal agregado correctamente', data: animal })
 })
 
 
 app.put ('/api/animal/:id', sanitizeAnimalInput, (req,res )=>{
-  const animalIdx = animales.findIndex((animal) => animal.id === req.params.id);
-  if (animalIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
+  req.body.sanitizedAnimal.id = req.params.id
+  const animal = animalRepository.update(req.body.sanitizedAnimal)
+
+  if (!animal) {
+    return res.status(404).send({message:'Animal not found' })
   }
 
-  animales[animalIdx]= {...animales[animalIdx], ...req.body.sanitizedAnimal };
-
-  return res.status(200).send({message: 'animal modificado correctamente', data:  animales[animalIdx] })
+  return res.status(200).send({message: 'Animal updated successfully', data:  animal })
 })
 
 
 app.patch ('/api/animal/:id', sanitizeAnimalInput, (req,res )=>{
-  const animalIdx = animales.findIndex((animal) => animal.id === req.params.id);
-  if (animalIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
+  req.body.sanitizedAnimal.id = req.params.id
+  const animal = animalRepository.update(req.body.sanitizedAnimal)
+
+  if (!animal) {
+    return res.status(404).send({message:'Animal not found' })
   }
 
-  animales[animalIdx]= {...animales[animalIdx], ...req.body.sanitizedAnimal };
-
-  res.status(200).send({message: 'animal modificado correctamente', data: animales[animalIdx] })
+  return res.status(200).send({message: 'Animal updated successfully', data:  animal })
 })
 
 
-app.delete('/api/animal/:id',(req,res )=>{
-  const animalIdx = animales.findIndex((animal) => animal.id === req.params.id);
-  if(animalIdx === -1){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
+app.delete('/api/animal/:id', (req, res)=>{
+  const id = req.params.id
+  const animal = animalRepository.delete({ id })
+
+  if (!animal) {
+    return res.status(404).send({message:'Animal not found' })
+  } else {
+    return res.status(200).send({message: 'Animal deleted successfully'})
   }
-  animales.splice(animalIdx, 1);
-  return res.status(200).send({message: 'animal eliminado correctamente'})
 })
 
 //product --> /api/product/
