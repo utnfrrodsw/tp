@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { animal } from './scr/animal/animal.entity.js';
-import { buy } from './scr/buy/buy.entity.js';
+import { Buy } from './scr/buy/buy.entity.js';
 import { person} from './scr/person/person.entity.js';
 import { shelter } from './scr/shelter/shelter.entity.js';
 import { product } from './scr/products/product.entity.js';
@@ -8,10 +8,11 @@ import { vet } from './scr/vet/vet.entity.js';
 import { zone } from './scr/zone/zone.entity.js';
 import { rescue } from './scr/rescue/rescue.entity.js';
 import { specie } from './scr/specie/specie.entity.js';
-
+import { BuyRepository } from './scr/buy/buy.repository.js';
 
 const app = express();
 app.use(express.json());
+const buyrepository = new BuyRepository();
 
 //midleware--> pequeños fragmentos de codigo en express que podemos incluir en 
 //nuestra cadena de codigo para la resolucion de una request 
@@ -19,6 +20,8 @@ app.use(express.json());
 
 
 //animal--> /api/animal/
+
+
 const animales = [
   new animal(
     'juan',
@@ -613,14 +616,6 @@ app.delete('/api/zone/:id',(req,res )=>{
   return res.status(200).send({message: 'zone eliminado correctamente'})
 })
 
-const buys = [
-  new buy(
-    10000,
-    12,
-    '12/12/2022',
-    '12',
-)];
-
 function sanitizebuyInput(req: Request, res: Response, next:NextFunction){
   
   req.body.sanitizedbuy = {
@@ -641,12 +636,13 @@ function sanitizebuyInput(req: Request, res: Response, next:NextFunction){
 
 
 app.get('/api/buy',(req,res )=>{
-  res.json(buys);
+  res.json({data: buyrepository.findAll()});
 })
 
 
 app.get('/api/buy/:id',(req,res )=>{
-  const buy = buys.find((buy) => buy.id === req.params.id);
+  const id = req.params.id;
+  const buy = buyrepository.findOne({id});
   if(!buy){
     return res.status(404).send({message:'ID incorrecto, no existe ninguna buy con ese ID' })
   }
@@ -655,47 +651,42 @@ app.get('/api/buy/:id',(req,res )=>{
 
 
 app.post('/api/buy', sanitizebuyInput, (req,res )=>{
-  const {total, cantidad, fechabuy, id } = req.body
+  const input = req.body.sanitizedbuy
 
-  const buys2 = new buy (total, cantidad, fechabuy, id ); 
-
-  buys.push(buys2)
-  return res.status(201).send({message: 'Nueva buy agregada correctamente', data: buy })
+  const buysInput = new Buy (input.total,input.cantidad,input.fechabuy,input.id)
+  const buy = buyrepository.add(buysInput)
+  return res.status(201).send({message: 'new buy create', data: Buy })
 })
 
-
 app.put ('/api/buy/:id', sanitizebuyInput, (req,res )=>{
-  const buyIdx = buys.findIndex((buy) => buy.id === req.params.id);
-  if (buyIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna person con ese ID' })
+  req.body.sanitizebuyInput.id = req.params.id
+  const buy = buyrepository.update(req.body.sanitizedbuy) 
+  if (!buy) {
+    return res.status(404).send({message:'buy not found' })
   }
-
-  buys[buyIdx]= {...buys[buyIdx], ...req.body.sanitizedbuy };
-
-  return res.status(200).send({message: 'buy modificada correctamente', data:  buys[buyIdx] })
+  return res.status(200).send({message: 'buy modificada correctamente', data:  buy })
 })
 
 
 app.patch ('/api/buy/:id', sanitizebuyInput, (req,res )=>{
-  const buyIdx = buys.findIndex((buy) => buy.id === req.params.id);
-  if (buyIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna buy con ese ID' })
+  req.body.sanitizebuyInput.id = req.params.id
+  const buy = buyrepository.update(req.body.sanitizedbuy) 
+  if (!buy) {
+    return res.status(404).send({message:'buy not found' })
   }
-
-  buys[buyIdx]= {...buys[buyIdx], ...req.body.sanitizedbuy };
-
-  return res.status(200).send({message: 'buy modificada correctamente', data: buys[buyIdx] })
+  return res.status(200).send({message: 'buy modificada correctamente', data:  buy })
 })
 
 
 app.delete('/api/buy/:id',(req,res )=>{
-  const buyIdx = buys.findIndex((buy) => buy.id === req.params.id);
-  if(buyIdx === -1){
+  const id = req.params.id;
+  const buy = buyrepository.delete({id})
+  if(!buy){
     return res.status(404).send({message:'ID incorrecto, no existe ninguna buy con ese ID' })
   }
-  buys.splice(buyIdx, 1);
+  else{
   return res.status(200).send({message: 'buy eliminada correctamente'})
-})
+}})
 
 
 //rescue --> /api/rescue/
