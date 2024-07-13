@@ -48,7 +48,7 @@ function update(req: Request,res: Response ){
   if (!buy) {
     return res.status(404).send({message:'buy not found' })
   }
-  return res.status(200).send({message: 'buy modificada correctamente', data:  buy })
+  return res.status(200).send({message: 'buy modificada correctamente', data:  Buy })
 }
 
 

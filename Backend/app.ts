@@ -1,6 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { Animal } from './scr/animal/animal.entity.js';
-import { person} from './scr/person/person.entity.js';
 import { shelter } from './scr/shelter/shelter.entity.js';
 import { product } from './scr/products/product.entity.js';
 import { vet } from './scr/vet/vet.entity.js';
@@ -11,6 +10,7 @@ import { BuyRepository } from './scr/buy/buy.repository.js';
 import { AnimalRepository } from './scr/animal/animal.repository.js';
 
 import { buyRouter } from './scr/buy/buy.router.js';
+import { personRouter } from './scr/person/person.router.js';
 
 const app = express();
 app.use(express.json());
@@ -18,6 +18,8 @@ const buyrepository = new BuyRepository();
 
 //buy
 app.use('/api/buy', buyRouter)
+//person 
+app.use('/api/person', personRouter)
 
 //animal--> /api/animal/
 
@@ -353,103 +355,6 @@ app.delete('/api/shelter/:id',(req,res )=>{
   return res.status(200).send({message: 'shelter eliminado correctamente'})
 })
 
-//person --> /api/person/
-
-const people = [
-  new person(
-    'person',
-    'Falsa',
-    'DNI',
-    23213213,
-    'telefono falso',
-    '01/02/2002',
-    'calle falsa',
-    23213213342,
-    '01'
-  ),
-];
-
-function sanitizepersonInput(req: Request, res: Response, next:NextFunction){
-  
-  req.body.sanitizedperson = {
-    nombre: req.body.nombre,
-    apellido: req.body.apellido,
-    tipoDoc: req.body.tipoDoc,
-    nroDoc: req.body.nroDoc,
-    contacto: req.body.contacto,
-    fechaNacimiento: req.body.fechaNacimiento,
-    domicilio: req.body.domicilio,
-    nroCuit: req.body.nroCuit
-  }
-
-  Object.keys(req.body.sanitizedperson).forEach((key) => {
-    if (req.body.sanitizedperson[key] === undefined) {
-      delete req.body.sanitizedperson[key]
-    }
-  })
-
-  next()
-}
-
-
-app.get('/api/person',(req,res )=>{
-  res.json(people);
-})
-
-
-app.get('/api/person/:id',(req,res )=>{
-  const person = people.find((person) => person.id === req.params.id);
-  if(!person){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna person con ese ID' })
-  }
-  res.json(person)
-})
-
-
-app.post('/api/person', sanitizepersonInput, (req,res )=>{
-  const {nombre, apellido, tipoDoc, nroDoc, contacto, fechaNacimiento, domicilio, nroCuit, id } = req.body
-
-  const people2 = new person (nombre, apellido, tipoDoc, nroDoc, contacto, fechaNacimiento, domicilio, nroCuit, id ); 
-
-  people.push(people2)
-  return res.status(201).send({message: 'person agregada correctamente', data: person })
-})
-
-
-app.put ('/api/person/:id', sanitizepersonInput, (req,res )=>{
-  const personIdx = people.findIndex((person) => person.id === req.params.id);
-  if (personIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna person con ese ID' })
-  }
-
-  people[personIdx]= {...people[personIdx], ...req.body.sanitizedperson };
-
-  return res.status(200).send({message: 'person modificada correctamente', data:  people[personIdx] })
-})
-
-
-app.patch ('/api/person/:id', sanitizepersonInput, (req,res )=>{
-  const personIdx = people.findIndex((person) => person.id === req.params.id);
-  if (personIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna person con ese ID' })
-  }
-
-  people[personIdx]= {...people[personIdx], ...req.body.sanitizedperson };
-
-  return res.status(200).send({message: 'person modificada correctamente', data: people[personIdx] })
-})
-
-
-app.delete('/api/person/:id',(req,res )=>{
-  const personIdx = people.findIndex((person) => person.id === req.params.id);
-  if(personIdx === -1){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna person con ese ID' })
-  }
-  people.splice(personIdx, 1);
-  return res.status(200).send({message: 'person eliminada correctamente'})
-})
-
-//specie--> /api/specie/
 const species = [
   new specie(
     'Gato',
