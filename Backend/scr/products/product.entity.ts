@@ -1,5 +1,5 @@
 
-export class producto{
+export class product{
   constructor(
     public nombre: string, 
     public descripcion: string,

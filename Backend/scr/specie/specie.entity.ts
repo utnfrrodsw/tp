@@ -1,4 +1,4 @@
-export class especie{
+export class specie{
     constructor(
         public nombre: string,
         public id: string

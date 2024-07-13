@@ -1,4 +1,4 @@
-export class veterinaria{
+export class vet{
   constructor(
     public nombre: string, 
     public direccion: string,
