@@ -1,6 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { Animal } from './scr/animal/animal.entity.js';
-import { Buy } from './scr/buy/buy.entity.js';
 import { person} from './scr/person/person.entity.js';
 import { shelter } from './scr/shelter/shelter.entity.js';
 import { product } from './scr/products/product.entity.js';
@@ -11,15 +10,14 @@ import { specie } from './scr/specie/specie.entity.js';
 import { BuyRepository } from './scr/buy/buy.repository.js';
 import { AnimalRepository } from './scr/animal/animal.repository.js';
 
+import { buyRouter } from './scr/buy/buy.router.js';
 
 const app = express();
 app.use(express.json());
 const buyrepository = new BuyRepository();
 
-//midleware--> pequeños fragmentos de codigo en express que podemos incluir en 
-//nuestra cadena de codigo para la resolucion de una request 
-//estos van de a parte agregando, quitando y modificando la info de acuerdo a lo que sea necessario
-
+//buy
+app.use('/api/buy', buyRouter)
 
 //animal--> /api/animal/
 
@@ -613,77 +611,6 @@ app.delete('/api/zone/:id',(req,res )=>{
   return res.status(200).send({message: 'zone eliminado correctamente'})
 })
 
-function sanitizebuyInput(req: Request, res: Response, next:NextFunction){
-  
-  req.body.sanitizedbuy = {
-    total: req.body.total,
-    cantidad: req.body.cantidad,
-    fechabuy: req.body.fechabuy,
-    id: req.body.id,
-  }
-
-  Object.keys(req.body.sanitizedbuy).forEach((key) => {
-    if (req.body.sanitizedbuy[key] === undefined) {
-      delete req.body.sanitizedbuy[key]
-    }
-  })
-
-  next()
-}
-
-
-app.get('/api/buy',(req,res )=>{
-  res.json({data: buyrepository.findAll()});
-})
-
-
-app.get('/api/buy/:id',(req,res )=>{
-  const id = req.params.id;
-  const buy = buyrepository.findOne({id});
-  if(!buy){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna buy con ese ID' })
-  }
-  res.json(buy)
-})
-
-
-app.post('/api/buy', sanitizebuyInput, (req,res )=>{
-  const input = req.body.sanitizedbuy
-
-  const buysInput = new Buy (input.total,input.cantidad,input.fechabuy,input.id)
-  const buy = buyrepository.add(buysInput)
-  return res.status(201).send({message: 'new buy create', data: Buy })
-})
-
-app.put ('/api/buy/:id', sanitizebuyInput, (req,res )=>{
-  req.body.sanitizebuyInput.id = req.params.id
-  const buy = buyrepository.update(req.body.sanitizedbuy) 
-  if (!buy) {
-    return res.status(404).send({message:'buy not found' })
-  }
-  return res.status(200).send({message: 'buy modificada correctamente', data:  buy })
-})
-
-
-app.patch ('/api/buy/:id', sanitizebuyInput, (req,res )=>{
-  req.body.sanitizebuyInput.id = req.params.id
-  const buy = buyrepository.update(req.body.sanitizedbuy) 
-  if (!buy) {
-    return res.status(404).send({message:'buy not found' })
-  }
-  return res.status(200).send({message: 'buy modificada correctamente', data:  buy })
-})
-
-
-app.delete('/api/buy/:id',(req,res )=>{
-  const id = req.params.id;
-  const buy = buyrepository.delete({id})
-  if(!buy){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna buy con ese ID' })
-  }
-  else{
-  return res.status(200).send({message: 'buy eliminada correctamente'})
-}})
 
 
 //rescue --> /api/rescue/
