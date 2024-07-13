@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 
-export class refugio{
+export class shelter{
   static id: string;
   constructor(
     public nombre: string, 

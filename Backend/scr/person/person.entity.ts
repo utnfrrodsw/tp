@@ -1,4 +1,4 @@
-export class persona{
+export class person{
   constructor(
     public nombre: string,
     public apellido: string,

@@ -1,16 +1,16 @@
-###obtener todos las personas 
-GET http://localhost:3000/api/persona
+###obtener todos las persons 
+GET http://localhost:3000/api/person
 
-###obtener una persona 
-GET http://localhost:3000/api/persona/02
+###obtener una person 
+GET http://localhost:3000/api/person/02
 
-###crear una nueva persona
-POST http://localhost:3000/api/persona
+###crear una nueva person
+POST http://localhost:3000/api/person
 Content-Type: application/json
 
 {
     "nombre": "Otra",
-    "apellido":"Persona",
+    "apellido":"person",
     "tipoDoc": "no tiene",
     "nroDoc": 0,
     "contacto": "123456789",
@@ -20,13 +20,13 @@ Content-Type: application/json
     "id": "02"
 }
 
-### modificar una persona (PUT)
-PUT http://localhost:3000/api/persona/02
+### modificar una person (PUT)
+PUT http://localhost:3000/api/person/02
 Content-Type: application/json
 
 {
     "nombre": "Otra",
-    "apellido":"Persona",
+    "apellido":"person",
     "tipoDoc": "ahora si tiene",
     "nroDoc": 1,
     "contacto": "123456789",
@@ -36,8 +36,8 @@ Content-Type: application/json
     "id": "02"
 }
 
-### modificar una persona (PATCH - recurso parcial)
-PATCH http://localhost:3000/api/persona/01
+### modificar una person (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/person/01
 Content-Type: application/json
 
 {
@@ -45,5 +45,5 @@ Content-Type: application/json
     "contacto": "herreranico2703@gmail.com"
 }
 
-### borrar una persona
-DELETE http://localhost:3000/api/persona/02
+### borrar una person
+DELETE http://localhost:3000/api/person/02

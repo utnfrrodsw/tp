@@ -1,13 +1,13 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { animal } from './clases/animal.js';
-import { especie } from './clases/especie.js';
-import { persona } from './clases/persona.js';
-import { refugio } from './clases/refugio.js';
-import { producto } from './clases/producto.js';
-import { veterinaria } from './clases/veterinaria.js';
-import { compra } from './clases/compra.js';
-import { zona } from './clases/zona.js';
-import { rescate } from './clases/rescate.js';
+import { animal } from './scr/animal/animal.entity.js';
+import { buy } from './scr/buy/buy.entity.js';
+import { person} from './scr/person/person.entity.js';
+import { shelter } from './scr/shelter/shelter.entity.js';
+import { product } from './scr/products/product.entity.js';
+import { vet } from './scr/vet/vet.entity.js';
+import { zone } from './scr/zone/zone.entity.js';
+import { rescue } from './scr/rescue/rescue.entity.js';
+import { specie } from './scr/specie/specie.entity.js';
 
 
 const app = express();
@@ -32,7 +32,7 @@ function sanitizeAnimalInput(req: Request, res: Response, next:NextFunction){
   
   req.body.sanitizedAnimal = {
     nombre: req.body.nombre,
-    fechaRescate: req.body.fechaRescate,
+    fecharescue: req.body.fecharescue,
     fechaNacimientoEStimativa: req.body.fechaNacimientoEStimativa
   }
 
@@ -60,9 +60,9 @@ app.get('/api/animal/:id',(req,res )=>{
 
 
 app.post('/api/animal', sanitizeAnimalInput, (req,res )=>{
-  const {nombre, fechaRescate, fechaNacimientoEStimativa, id} = req.body
+  const {nombre, fecharescue, fechaNacimientoEStimativa, id} = req.body
 
-  const animales2 = new animal (nombre, fechaRescate, fechaNacimientoEStimativa, id ); 
+  const animales2 = new animal (nombre, fecharescue, fechaNacimientoEStimativa, id ); 
 
   animales.push(animales2)
   return res.status(201).send({message: 'animal agregado correctamente', data: animal })
@@ -102,10 +102,10 @@ app.delete('/api/animal/:id',(req,res )=>{
   return res.status(200).send({message: 'animal eliminado correctamente'})
 })
 
-//PRODUCTO --> /api/producto/
+//product --> /api/product/
 
-const productos = [
-  new producto(
+const products = [
+  new product(
     'Alimento',
     'Alimento balanceado para perro',
     100,
@@ -113,17 +113,17 @@ const productos = [
   ),
 ];
 
-function sanitizeProductoInput(req: Request, res: Response, next:NextFunction){
+function sanitizeproductInput(req: Request, res: Response, next:NextFunction){
   
-  req.body.sanitizedProducto = {
+  req.body.sanitizedproduct = {
     nombre: req.body.nombre,
     descripcion: req.body.descripcion,
     stock: req.body.stock
   }
 
-  Object.keys(req.body.sanitizedProducto).forEach((key) => {
-    if (req.body.sanitizedProducto[key] === undefined) {
-      delete req.body.sanitizedProducto[key]
+  Object.keys(req.body.sanitizedproduct).forEach((key) => {
+    if (req.body.sanitizedproduct[key] === undefined) {
+      delete req.body.sanitizedproduct[key]
     }
   })
 
@@ -131,149 +131,149 @@ function sanitizeProductoInput(req: Request, res: Response, next:NextFunction){
 }
 
 
-app.get('/api/producto',(req,res )=>{
-  res.json(productos);
+app.get('/api/product',(req,res )=>{
+  res.json(products);
 })
 
 
-app.get('/api/producto/:id',(req,res )=>{
-  const producto = productos.find((producto) => producto.id === req.params.id);
-  if(!producto){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun producto con ese ID' })
+app.get('/api/product/:id',(req,res )=>{
+  const product = products.find((product) => product.id === req.params.id);
+  if(!product){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun product con ese ID' })
   }
-  res.json(producto)
+  res.json(product)
 })
 
 
-app.post('/api/producto', sanitizeProductoInput, (req,res) => {
+app.post('/api/product', sanitizeproductInput, (req,res) => {
   const {nombre, descripcion, stock, id} = req.body
 
-  const productos2 = new producto (nombre, descripcion, stock, id ); 
+  const products2 = new product (nombre, descripcion, stock, id ); 
 
-  productos.push(productos2)
-  return res.status(201).send({message: 'Producto agregado correctamente', data: producto })
+  products.push(products2)
+  return res.status(201).send({message: 'product agregado correctamente', data: product })
 })
 
 
-app.put ('/api/producto/:id', sanitizeProductoInput, (req,res) => {
-  const productoIdx = productos.findIndex((producto) => producto.id === req.params.id);
-  if (productoIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ningun producto con ese ID' })
+app.put ('/api/product/:id', sanitizeproductInput, (req,res) => {
+  const productIdx = products.findIndex((product) => product.id === req.params.id);
+  if (productIdx === -1) {
+    res.status(404).send({message:'ID incorrecto, no existe ningun product con ese ID' })
   }
 
-  productos[productoIdx]= {...productos[productoIdx], ...req.body.sanitizedProducto };
+  products[productIdx]= {...products[productIdx], ...req.body.sanitizedproduct };
 
-  res.status(200).send({message: 'Producto modificado correctamente', data: productos[productoIdx] })
+  res.status(200).send({message: 'product modificado correctamente', data: products[productIdx] })
 })
 
 
-app.patch ('/api/producto/:id', sanitizeProductoInput, (req,res )=>{
-  const productoIdx = productos.findIndex((producto) => producto.id === req.params.id);
-  if (productoIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun producto con ese ID' })
+app.patch ('/api/product/:id', sanitizeproductInput, (req,res )=>{
+  const productIdx = products.findIndex((product) => product.id === req.params.id);
+  if (productIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun product con ese ID' })
   }
 
-  productos[productoIdx]= {...productos[productoIdx], ...req.body.sanitizedProducto };
+  products[productIdx]= {...products[productIdx], ...req.body.sanitizedproduct };
 
-  res.status(200).send({message: 'Producto modificado correctamente', data: productos[productoIdx]  })
+  res.status(200).send({message: 'product modificado correctamente', data: products[productIdx]  })
 })
 
 
-app.delete('/api/producto/:id',(req,res )=> {
-  const productoIdx = productos.findIndex((producto) => producto.id === req.params.id);
-  if (productoIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun producto con ese ID' })
+app.delete('/api/product/:id',(req,res )=> {
+  const productIdx = products.findIndex((product) => product.id === req.params.id);
+  if (productIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun product con ese ID' })
   }
-  productos.splice(productoIdx, 1);
-  return res.status(200).send({message: 'Producto eliminado correctamente'})
+  products.splice(productIdx, 1);
+  return res.status(200).send({message: 'product eliminado correctamente'})
 })
 
 
-//Veterinaria--> /api/Veterinaria/
-const veterinarias = [
-  new veterinaria(
-    'veterinaria 1',
+//vet--> /api/vet/
+const vets = [
+  new vet(
+    'vet 1',
     'calle falsa 123',
     '1'
   )
 ]
 
-function sanitizeveterinariaInput(req: Request, res: Response, next:NextFunction){
+function sanitizevetInput(req: Request, res: Response, next:NextFunction){
   
-  req.body.sanitizedveterinaria = {
+  req.body.sanitizedvet = {
     nombre: req.body.nombre,
     direccion: req.body.direccion
   }
 
-  Object.keys(req.body.sanitizedveterinaria).forEach((key) => {
-    if (req.body.sanitizedveterinaria[key] === undefined) {
-      delete req.body.sanitizedveterinaria[key]
+  Object.keys(req.body.sanitizedvet).forEach((key) => {
+    if (req.body.sanitizedvet[key] === undefined) {
+      delete req.body.sanitizedvet[key]
     }
   })
 
   next()
 }
 
-app.get('/api/veterinaria',(req,res )=>{
-  res.json(veterinarias);
+app.get('/api/vet',(req,res )=>{
+  res.json(vets);
 })
 
-app.get('/api/veterinaria/:id',(req,res )=>{
-  const veterinaria = veterinarias.find((veterinaria) => veterinaria.id === req.params.id);
-  if(!veterinaria){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
+app.get('/api/vet/:id',(req,res )=>{
+  const vet = vets.find((vet) => vet.id === req.params.id);
+  if(!vet){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun vet con ese ID' })
   }
-  res.json(veterinaria)
+  res.json(vet)
 })
 
 
-app.post('/api/veterinaria', sanitizeveterinariaInput, (req,res )=>{
+app.post('/api/vet', sanitizevetInput, (req,res )=>{
   const {nombre, direccion, id} = req.body
 
-  const veterinarias2 = new veterinaria (nombre, direccion, id ); 
+  const vets2 = new vet (nombre, direccion, id ); 
 
-  veterinarias.push(veterinarias2)
-  return res.status(201).send({message: 'veterinaria agregado correctamente', data: veterinaria })
+  vets.push(vets2)
+  return res.status(201).send({message: 'vet agregado correctamente', data: vet })
 })
 
 
-app.put ('/api/veterinaria/:id', sanitizeveterinariaInput, (req,res )=>{
-  const veterinariaIdx = veterinarias.findIndex((veterinaria) => veterinaria.id === req.params.id);
-  if (veterinariaIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
+app.put ('/api/vet/:id', sanitizevetInput, (req,res )=>{
+  const vetIdx = vets.findIndex((vet) => vet.id === req.params.id);
+  if (vetIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun vet con ese ID' })
   }
 
-  veterinarias[veterinariaIdx]= {...veterinarias[veterinariaIdx], ...req.body.sanitizedveterinaria };
+  vets[vetIdx]= {...vets[vetIdx], ...req.body.sanitizedvet };
 
-  return res.status(200).send({message: 'veterinaria modificado correctamente', data:  veterinarias[veterinariaIdx] })
+  return res.status(200).send({message: 'vet modificado correctamente', data:  vets[vetIdx] })
 })
 
 
-app.patch ('/api/veterinaria/:id', sanitizeveterinariaInput, (req,res )=>{
-  const veterinariaIdx = veterinarias.findIndex((veterinaria) => veterinaria.id === req.params.id);
-  if (veterinariaIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
+app.patch ('/api/vet/:id', sanitizevetInput, (req,res )=>{
+  const vetIdx = vets.findIndex((vet) => vet.id === req.params.id);
+  if (vetIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun vet con ese ID' })
   }
 
-  veterinarias[veterinariaIdx]= {...veterinarias[veterinariaIdx], ...req.body.sanitizedveterinaria };
+  vets[vetIdx]= {...vets[vetIdx], ...req.body.sanitizedvet };
 
-  return res.status(200).send({message: 'veterinaria modificado correctamente', data: veterinarias[veterinariaIdx] })
+  return res.status(200).send({message: 'vet modificado correctamente', data: vets[vetIdx] })
 })
 
 
-app.delete('/api/veterinaria/:id',(req,res )=>{
-  const veterinariaIdx = veterinarias.findIndex((veterinaria) => veterinaria.id === req.params.id);
-  if(veterinariaIdx === -1){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun veterinaria con ese ID' })
+app.delete('/api/vet/:id',(req,res )=>{
+  const vetIdx = vets.findIndex((vet) => vet.id === req.params.id);
+  if(vetIdx === -1){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun vet con ese ID' })
   }
-  veterinarias.splice(veterinariaIdx, 1);
-  return res.status(200).send({message: 'veterinaria eliminado correctamente'})
+  vets.splice(vetIdx, 1);
+  return res.status(200).send({message: 'vet eliminado correctamente'})
 })
 
-//Refugio--> /api/Refugio/
+//shelter--> /api/shelter/
 
-const refugios = [
-  new refugio(
+const shelters = [
+  new shelter(
     'patas alegres',
     'avellaneda',
     10,
@@ -282,84 +282,84 @@ const refugios = [
 ];
 
 
-function sanitizeRefugioInput(req: Request, res: Response, next:NextFunction){
+function sanitizeshelterInput(req: Request, res: Response, next:NextFunction){
   
-  req.body.sanitizedRefugio = {
+  req.body.sanitizedshelter = {
     nombre: req.body.nombre,
     direccion: req.body.direccion,
     capacidadMaxima: req.body.capacidadMaxima
   }
 
-  Object.keys(req.body.sanitizedRefugio).forEach((key) => {
-    if (req.body.sanitizedRefugio[key] === undefined) {
-      delete req.body.sanitizedRefugio[key]
+  Object.keys(req.body.sanitizedshelter).forEach((key) => {
+    if (req.body.sanitizedshelter[key] === undefined) {
+      delete req.body.sanitizedshelter[key]
     }
   })
 
   next()
 }
 
-app.get('/api/refugio',(req,res )=>{
-  res.json(refugios);
+app.get('/api/shelter',(req,res )=>{
+  res.json(shelters);
 })
 
-app.get('/api/refugio/:id',(req,res )=>{
-  const refugio = refugios.find((refugio) => refugio.id === req.params.id);
-  if(!refugio){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
+app.get('/api/shelter/:id',(req,res )=>{
+  const shelter = shelters.find((shelter) => shelter.id === req.params.id);
+  if(!shelter){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun shelter con ese ID' })
   }
-  res.json(refugio)
+  res.json(shelter)
 })
 
 
-app.post('/api/refugio', sanitizeRefugioInput, (req,res )=>{
+app.post('/api/shelter', sanitizeshelterInput, (req,res )=>{
   const {nombre, direccion, capacidadMaxima, id} = req.body
 
-  const refugio2 = new refugio (nombre, direccion, capacidadMaxima, id ); 
+  const shelter2 = new shelter (nombre, direccion, capacidadMaxima, id ); 
 
-  refugios.push(refugio2)
-  return res.status(201).send({message: 'Sucursal de refugio agregada correctamente', data: refugio2 })
+  shelters.push(shelter2)
+  return res.status(201).send({message: 'Sucursal de shelter agregada correctamente', data: shelter2 })
 })
 
 
-app.put ('/api/refugio/:id', sanitizeRefugioInput, (req,res )=>{
-  const refugioIdx = refugios.findIndex((refugio) => refugio.id === req.params.id);
-  if (refugioIdx === -1) {
+app.put ('/api/shelter/:id', sanitizeshelterInput, (req,res )=>{
+  const shelterIdx = shelters.findIndex((shelter) => shelter.id === req.params.id);
+  if (shelterIdx === -1) {
     return res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
   }
 
-  refugios[refugioIdx]= {...refugios[refugioIdx], ...req.body.sanitizedRefugio };
+  shelters[shelterIdx]= {...shelters[shelterIdx], ...req.body.sanitizedshelter };
 
-  return res.status(200).send({message: 'refugio modificado correctamente', data:  refugios[refugioIdx] })
+  return res.status(200).send({message: 'shelter modificado correctamente', data:  shelters[shelterIdx] })
 })
 
 
-app.patch ('/api/refugio/:id', sanitizeRefugioInput, (req,res )=>{
-  const refugioIdx = refugios.findIndex((refugio) => refugio.id === req.params.id);
-  if (refugioIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
+app.patch ('/api/shelter/:id', sanitizeshelterInput, (req,res )=>{
+  const shelterIdx = shelters.findIndex((shelter) => shelter.id === req.params.id);
+  if (shelterIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun shelter con ese ID' })
   }
 
-  refugios[refugioIdx]= {...refugios[refugioIdx], ...req.body.sanitizedRefugio };
+  shelters[shelterIdx]= {...shelters[shelterIdx], ...req.body.sanitizedshelter };
 
-  return res.status(200).send({message: 'refugio modificado correctamente', data: refugios[refugioIdx] })
+  return res.status(200).send({message: 'shelter modificado correctamente', data: shelters[shelterIdx] })
 })
 
 
-app.delete('/api/refugio/:id',(req,res )=>{
-  const refugioIdx = refugios.findIndex((refugio) => refugio.id === req.params.id);
-  if(refugioIdx === -1){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun refugio con ese ID' })
+app.delete('/api/shelter/:id',(req,res )=>{
+  const shelterIdx = shelters.findIndex((shelter) => shelter.id === req.params.id);
+  if(shelterIdx === -1){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun shelter con ese ID' })
   }
-  refugios.splice(refugioIdx, 1);
-  return res.status(200).send({message: 'refugio eliminado correctamente'})
+  shelters.splice(shelterIdx, 1);
+  return res.status(200).send({message: 'shelter eliminado correctamente'})
 })
 
-//persona --> /api/persona/
+//person --> /api/person/
 
-const personas = [
-  new persona(
-    'Persona',
+const people = [
+  new person(
+    'person',
     'Falsa',
     'DNI',
     23213213,
@@ -371,9 +371,9 @@ const personas = [
   ),
 ];
 
-function sanitizePersonaInput(req: Request, res: Response, next:NextFunction){
+function sanitizepersonInput(req: Request, res: Response, next:NextFunction){
   
-  req.body.sanitizedPersona = {
+  req.body.sanitizedperson = {
     nombre: req.body.nombre,
     apellido: req.body.apellido,
     tipoDoc: req.body.tipoDoc,
@@ -384,9 +384,9 @@ function sanitizePersonaInput(req: Request, res: Response, next:NextFunction){
     nroCuit: req.body.nroCuit
   }
 
-  Object.keys(req.body.sanitizedPersona).forEach((key) => {
-    if (req.body.sanitizedPersona[key] === undefined) {
-      delete req.body.sanitizedPersona[key]
+  Object.keys(req.body.sanitizedperson).forEach((key) => {
+    if (req.body.sanitizedperson[key] === undefined) {
+      delete req.body.sanitizedperson[key]
     }
   })
 
@@ -394,80 +394,80 @@ function sanitizePersonaInput(req: Request, res: Response, next:NextFunction){
 }
 
 
-app.get('/api/persona',(req,res )=>{
-  res.json(personas);
+app.get('/api/person',(req,res )=>{
+  res.json(people);
 })
 
 
-app.get('/api/persona/:id',(req,res )=>{
-  const persona = personas.find((persona) => persona.id === req.params.id);
-  if(!persona){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+app.get('/api/person/:id',(req,res )=>{
+  const person = people.find((person) => person.id === req.params.id);
+  if(!person){
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna person con ese ID' })
   }
-  res.json(persona)
+  res.json(person)
 })
 
 
-app.post('/api/persona', sanitizePersonaInput, (req,res )=>{
+app.post('/api/person', sanitizepersonInput, (req,res )=>{
   const {nombre, apellido, tipoDoc, nroDoc, contacto, fechaNacimiento, domicilio, nroCuit, id } = req.body
 
-  const personas2 = new persona (nombre, apellido, tipoDoc, nroDoc, contacto, fechaNacimiento, domicilio, nroCuit, id ); 
+  const people2 = new person (nombre, apellido, tipoDoc, nroDoc, contacto, fechaNacimiento, domicilio, nroCuit, id ); 
 
-  personas.push(personas2)
-  return res.status(201).send({message: 'Persona agregada correctamente', data: persona })
+  people.push(people2)
+  return res.status(201).send({message: 'person agregada correctamente', data: person })
 })
 
 
-app.put ('/api/persona/:id', sanitizePersonaInput, (req,res )=>{
-  const personaIdx = personas.findIndex((persona) => persona.id === req.params.id);
-  if (personaIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+app.put ('/api/person/:id', sanitizepersonInput, (req,res )=>{
+  const personIdx = people.findIndex((person) => person.id === req.params.id);
+  if (personIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna person con ese ID' })
   }
 
-  personas[personaIdx]= {...personas[personaIdx], ...req.body.sanitizedPersona };
+  people[personIdx]= {...people[personIdx], ...req.body.sanitizedperson };
 
-  return res.status(200).send({message: 'Persona modificada correctamente', data:  personas[personaIdx] })
+  return res.status(200).send({message: 'person modificada correctamente', data:  people[personIdx] })
 })
 
 
-app.patch ('/api/persona/:id', sanitizePersonaInput, (req,res )=>{
-  const personaIdx = personas.findIndex((persona) => persona.id === req.params.id);
-  if (personaIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+app.patch ('/api/person/:id', sanitizepersonInput, (req,res )=>{
+  const personIdx = people.findIndex((person) => person.id === req.params.id);
+  if (personIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna person con ese ID' })
   }
 
-  personas[personaIdx]= {...personas[personaIdx], ...req.body.sanitizedPersona };
+  people[personIdx]= {...people[personIdx], ...req.body.sanitizedperson };
 
-  return res.status(200).send({message: 'Persona modificada correctamente', data: personas[personaIdx] })
+  return res.status(200).send({message: 'person modificada correctamente', data: people[personIdx] })
 })
 
 
-app.delete('/api/persona/:id',(req,res )=>{
-  const personaIdx = personas.findIndex((persona) => persona.id === req.params.id);
-  if(personaIdx === -1){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
+app.delete('/api/person/:id',(req,res )=>{
+  const personIdx = people.findIndex((person) => person.id === req.params.id);
+  if(personIdx === -1){
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna person con ese ID' })
   }
-  personas.splice(personaIdx, 1);
-  return res.status(200).send({message: 'Persona eliminada correctamente'})
+  people.splice(personIdx, 1);
+  return res.status(200).send({message: 'person eliminada correctamente'})
 })
 
-//especie--> /api/especie/
-const especies = [
-  new especie(
+//specie--> /api/specie/
+const species = [
+  new specie(
     'Gato',
     '01'
   ),
 ];
 
-function sanitizeEspecieInput(req: Request, res: Response, next:NextFunction){
+function sanitizespecieInput(req: Request, res: Response, next:NextFunction){
   
-  req.body.sanitizedEspecie = {
+  req.body.sanitizedspecie = {
     nombre: req.body.nombre,
   }
 
-  Object.keys(req.body.sanitizedEspecie).forEach((key) => {
-    if (req.body.sanitizedEspecie[key] === undefined) {
-      delete req.body.sanitizedEspecie[key]
+  Object.keys(req.body.sanitizedspecie).forEach((key) => {
+    if (req.body.sanitizedspecie[key] === undefined) {
+      delete req.body.sanitizedspecie[key]
     }
   })
 
@@ -475,164 +475,164 @@ function sanitizeEspecieInput(req: Request, res: Response, next:NextFunction){
 }
 
 
-app.get('/api/especie',(req,res )=>{
-  res.json(especies);
+app.get('/api/specie',(req,res )=>{
+  res.json(species);
 })
 
 
-app.get('/api/especie/:id',(req,res )=>{
-  const especie = especies.find((especie) => especie.id === req.params.id);
-  if(!especie){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
+app.get('/api/specie/:id',(req,res )=>{
+  const specie = species.find((specie) => specie.id === req.params.id);
+  if(!specie){
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna specie con ese ID' })
   }
-  res.json(especie)
+  res.json(specie)
 })
 
 
-app.post('/api/especie', sanitizeEspecieInput, (req,res )=>{
+app.post('/api/specie', sanitizespecieInput, (req,res )=>{
   const {nombre, id } = req.body
 
-  const especies2 = new especie (nombre, id); 
+  const species2 = new specie (nombre, id); 
 
-  especies.push(especies2)
-  return res.status(201).send({message: 'Especie agregada correctamente', data: especie })
+  species.push(species2)
+  return res.status(201).send({message: 'specie agregada correctamente', data: specie })
 })
 
 
-app.put ('/api/especie/:id', sanitizeEspecieInput, (req,res )=>{
-  const especieIdx = especies.findIndex((especie) => especie.id === req.params.id);
-  if (especieIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
+app.put ('/api/specie/:id', sanitizespecieInput, (req,res )=>{
+  const specieIdx = species.findIndex((specie) => specie.id === req.params.id);
+  if (specieIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna specie con ese ID' })
   }
 
-  especies[especieIdx]= {...especies[especieIdx], ...req.body.sanitizedEspecie };
+  species[specieIdx]= {...species[specieIdx], ...req.body.sanitizedspecie };
 
-  return res.status(200).send({message: 'Especie modificada correctamente', data:  especies[especieIdx] })
+  return res.status(200).send({message: 'specie modificada correctamente', data:  species[specieIdx] })
 })
 
 
-app.patch ('/api/especie/:id', sanitizeEspecieInput, (req,res )=>{
-  const especieIdx = especies.findIndex((especie) => especie.id === req.params.id);
-  if (especieIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
+app.patch ('/api/specie/:id', sanitizespecieInput, (req,res )=>{
+  const specieIdx = species.findIndex((specie) => specie.id === req.params.id);
+  if (specieIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna specie con ese ID' })
   }
 
-  especies[especieIdx]= {...especies[especieIdx], ...req.body.sanitizedEspecie };
+  species[specieIdx]= {...species[specieIdx], ...req.body.sanitizedspecie };
 
-  return res.status(200).send({message: 'Especie modificada correctamente', data: especies[especieIdx] })
+  return res.status(200).send({message: 'specie modificada correctamente', data: species[specieIdx] })
 })
 
 
-app.delete('/api/especie/:id',(req,res )=>{
-  const especieIdx = especies.findIndex((especie) => especie.id === req.params.id);
-  if(especieIdx === -1){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna especie con ese ID' })
+app.delete('/api/specie/:id',(req,res )=>{
+  const specieIdx = species.findIndex((specie) => specie.id === req.params.id);
+  if(specieIdx === -1){
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna specie con ese ID' })
   }
-  especies.splice(especieIdx, 1);
-  return res.status(200).send({message: 'Especie eliminada correctamente'})
+  species.splice(specieIdx, 1);
+  return res.status(200).send({message: 'specie eliminada correctamente'})
 })
 
 
-// zona--> /api/zona/
-const zonas = [
-  new zona(
+// zone--> /api/zone/
+const zones = [
+  new zone(
     'Norte',
     '1'
   ),
 ];
 
-function sanitizeZonaInput(req: Request, res: Response, next:NextFunction){
+function sanitizezoneInput(req: Request, res: Response, next:NextFunction){
   
-  req.body.sanitizedZona = {
+  req.body.sanitizedzone = {
     nombre: req.body.nombre
   }
 
-  Object.keys(req.body.sanitizedZona).forEach((key) => {
-    if (req.body.sanitizedZona[key] === undefined) {
-      delete req.body.sanitizedZona[key]
+  Object.keys(req.body.sanitizedzone).forEach((key) => {
+    if (req.body.sanitizedzone[key] === undefined) {
+      delete req.body.sanitizedzone[key]
     }
   })
 
   next()
 }
 
-app.get('/api/zona',(req,res )=>{
-  res.json(zonas);
+app.get('/api/zone',(req,res )=>{
+  res.json(zones);
 })
 
 
-app.get('/api/zona/:id',(req,res )=>{
-  const zona = zonas.find((zona) => zona.id === req.params.id);
-  if(!zona){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
+app.get('/api/zone/:id',(req,res )=>{
+  const zone = zones.find((zone) => zone.id === req.params.id);
+  if(!zone){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun zone con ese ID' })
   }
-  res.json(zona)
+  res.json(zone)
 })
 
 
-app.post('/api/zona', sanitizeZonaInput, (req,res )=>{
+app.post('/api/zone', sanitizezoneInput, (req,res )=>{
   const {nombre, id} = req.body
 
-  const zonas2 = new zona (nombre, id ); 
+  const zones2 = new zone (nombre, id ); 
 
-  zonas.push(zonas2)
-  return res.status(201).send({message: 'zona agregado correctamente', data: zona })
+  zones.push(zones2)
+  return res.status(201).send({message: 'zone agregado correctamente', data: zone })
 })
 
 
-app.put ('/api/zona/:id', sanitizeZonaInput, (req,res )=>{
-  const zonaIdx = zonas.findIndex((zona) => zona.id === req.params.id);
-  if (zonaIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
+app.put ('/api/zone/:id', sanitizezoneInput, (req,res )=>{
+  const zoneIdx = zones.findIndex((zone) => zone.id === req.params.id);
+  if (zoneIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun zone con ese ID' })
   }
 
-  zonas[zonaIdx]= {...zonas[zonaIdx], ...req.body.sanitizedZona };
+  zones[zoneIdx]= {...zones[zoneIdx], ...req.body.sanitizedzone };
 
-  return res.status(200).send({message: 'zona modificado correctamente', data:  zonas[zonaIdx] })
+  return res.status(200).send({message: 'zone modificado correctamente', data:  zones[zoneIdx] })
 })
 
 
-app.patch ('/api/zona/:id', sanitizeZonaInput, (req,res )=>{
-  const zonaIdx = zonas.findIndex((zona) => zona.id === req.params.id);
-  if (zonaIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
+app.patch ('/api/zone/:id', sanitizezoneInput, (req,res )=>{
+  const zoneIdx = zones.findIndex((zone) => zone.id === req.params.id);
+  if (zoneIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun zone con ese ID' })
   }
 
-  zonas[zonaIdx]= {...zonas[zonaIdx], ...req.body.sanitizedZona };
+  zones[zoneIdx]= {...zones[zoneIdx], ...req.body.sanitizedzone };
 
-  return res.status(200).send({message: 'zona modificado correctamente', data: zonas[zonaIdx] })
+  return res.status(200).send({message: 'zone modificado correctamente', data: zones[zoneIdx] })
 })
 
 
-app.delete('/api/zona/:id',(req,res )=>{
-  const zonaIdx = zonas.findIndex((zona) => zona.id === req.params.id);
-  if(zonaIdx === -1){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun zona con ese ID' })
+app.delete('/api/zone/:id',(req,res )=>{
+  const zoneIdx = zones.findIndex((zone) => zone.id === req.params.id);
+  if(zoneIdx === -1){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun zone con ese ID' })
   }
-  zonas.splice(zonaIdx, 1);
-  return res.status(200).send({message: 'zona eliminado correctamente'})
+  zones.splice(zoneIdx, 1);
+  return res.status(200).send({message: 'zone eliminado correctamente'})
 })
 
-const compras = [
-  new compra(
+const buys = [
+  new buy(
     10000,
     12,
     '12/12/2022',
     '12',
 )];
 
-function sanitizeCompraInput(req: Request, res: Response, next:NextFunction){
+function sanitizebuyInput(req: Request, res: Response, next:NextFunction){
   
-  req.body.sanitizedCompra = {
+  req.body.sanitizedbuy = {
     total: req.body.total,
     cantidad: req.body.cantidad,
-    fechaCompra: req.body.fechaCompra,
+    fechabuy: req.body.fechabuy,
     id: req.body.id,
   }
 
-  Object.keys(req.body.sanitizedCompra).forEach((key) => {
-    if (req.body.sanitizedCompra[key] === undefined) {
-      delete req.body.sanitizedCompra[key]
+  Object.keys(req.body.sanitizedbuy).forEach((key) => {
+    if (req.body.sanitizedbuy[key] === undefined) {
+      delete req.body.sanitizedbuy[key]
     }
   })
 
@@ -640,68 +640,68 @@ function sanitizeCompraInput(req: Request, res: Response, next:NextFunction){
 }
 
 
-app.get('/api/compra',(req,res )=>{
-  res.json(compras);
+app.get('/api/buy',(req,res )=>{
+  res.json(buys);
 })
 
 
-app.get('/api/compra/:id',(req,res )=>{
-  const compra = compras.find((compra) => compra.id === req.params.id);
-  if(!compra){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna compra con ese ID' })
+app.get('/api/buy/:id',(req,res )=>{
+  const buy = buys.find((buy) => buy.id === req.params.id);
+  if(!buy){
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna buy con ese ID' })
   }
-  res.json(compra)
+  res.json(buy)
 })
 
 
-app.post('/api/compra', sanitizeCompraInput, (req,res )=>{
-  const {total, cantidad, fechaCompra, id } = req.body
+app.post('/api/buy', sanitizebuyInput, (req,res )=>{
+  const {total, cantidad, fechabuy, id } = req.body
 
-  const compras2 = new compra (total, cantidad, fechaCompra, id ); 
+  const buys2 = new buy (total, cantidad, fechabuy, id ); 
 
-  compras.push(compras2)
-  return res.status(201).send({message: 'Nueva compra agregada correctamente', data: compra })
+  buys.push(buys2)
+  return res.status(201).send({message: 'Nueva buy agregada correctamente', data: buy })
 })
 
 
-app.put ('/api/compra/:id', sanitizeCompraInput, (req,res )=>{
-  const compraIdx = compras.findIndex((compra) => compra.id === req.params.id);
-  if (compraIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna persona con ese ID' })
-  }
-
-  compras[compraIdx]= {...compras[compraIdx], ...req.body.sanitizedCompra };
-
-  return res.status(200).send({message: 'Compra modificada correctamente', data:  compras[compraIdx] })
-})
-
-
-app.patch ('/api/compra/:id', sanitizeCompraInput, (req,res )=>{
-  const compraIdx = compras.findIndex((compra) => compra.id === req.params.id);
-  if (compraIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna compra con ese ID' })
+app.put ('/api/buy/:id', sanitizebuyInput, (req,res )=>{
+  const buyIdx = buys.findIndex((buy) => buy.id === req.params.id);
+  if (buyIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna person con ese ID' })
   }
 
-  compras[compraIdx]= {...compras[compraIdx], ...req.body.sanitizedCompra };
+  buys[buyIdx]= {...buys[buyIdx], ...req.body.sanitizedbuy };
 
-  return res.status(200).send({message: 'Compra modificada correctamente', data: compras[compraIdx] })
+  return res.status(200).send({message: 'buy modificada correctamente', data:  buys[buyIdx] })
 })
 
 
-app.delete('/api/compra/:id',(req,res )=>{
-  const compraIdx = compras.findIndex((compra) => compra.id === req.params.id);
-  if(compraIdx === -1){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna compra con ese ID' })
+app.patch ('/api/buy/:id', sanitizebuyInput, (req,res )=>{
+  const buyIdx = buys.findIndex((buy) => buy.id === req.params.id);
+  if (buyIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna buy con ese ID' })
   }
-  compras.splice(compraIdx, 1);
-  return res.status(200).send({message: 'compra eliminada correctamente'})
+
+  buys[buyIdx]= {...buys[buyIdx], ...req.body.sanitizedbuy };
+
+  return res.status(200).send({message: 'buy modificada correctamente', data: buys[buyIdx] })
 })
 
 
-//RESCATE --> /api/rescate/
+app.delete('/api/buy/:id',(req,res )=>{
+  const buyIdx = buys.findIndex((buy) => buy.id === req.params.id);
+  if(buyIdx === -1){
+    return res.status(404).send({message:'ID incorrecto, no existe ninguna buy con ese ID' })
+  }
+  buys.splice(buyIdx, 1);
+  return res.status(200).send({message: 'buy eliminada correctamente'})
+})
 
-const rescates = [
-  new rescate(
+
+//rescue --> /api/rescue/
+
+const rescues = [
+  new rescue(
     '10-04-2024',
     'Perro solitario',
     'el carnicero de la esquina le daba comida',
@@ -709,75 +709,75 @@ const rescates = [
   ),
 ];
 
-function sanitizeRescateInput(req: Request, res: Response, next:NextFunction){
+function sanitizerescueInput(req: Request, res: Response, next:NextFunction){
   
-  req.body.sanitizedRescate = {
-    fechaRescate: req.body.fechaRescate,
+  req.body.sanitizedrescue = {
+    fecharescue: req.body.fecharescue,
     descripcion: req.body.descripcion,
     comentario: req.body.comentario
   }
 
-  Object.keys(req.body.sanitizedRescate).forEach((key) => {
-    if (req.body.sanitizedRescate[key] === undefined) {
-      delete req.body.sanitizedRescate[key]
+  Object.keys(req.body.sanitizedrescue).forEach((key) => {
+    if (req.body.sanitizedrescue[key] === undefined) {
+      delete req.body.sanitizedrescue[key]
     }
   })
 
   next()
 }
 
-app.get('/api/rescate',(req,res )=>{
-  res.json(rescates);
+app.get('/api/rescue',(req,res )=>{
+  res.json(rescues);
 })
 
 
-app.get('/api/rescate/:id',(req,res )=>{
-  const rescate = rescates.find((rescate) => rescate.id === req.params.id);
-  if(!rescate){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
+app.get('/api/rescue/:id',(req,res )=>{
+  const rescue = rescues.find((rescue) => rescue.id === req.params.id);
+  if(!rescue){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun rescue con ese ID' })
   }
-  res.json(rescate)
+  res.json(rescue)
 })
 
 
-app.post('/api/rescate', sanitizeRescateInput, (req,res )=>{
-  const rescates2 = { ...req.body.sanitizedRescate, id: req.body.id }; 
-  rescates.push(rescates2)
-  return res.status(201).send({message: 'rescate agregado correctamente', data: rescate })
+app.post('/api/rescue', sanitizerescueInput, (req,res )=>{
+  const rescues2 = { ...req.body.sanitizedrescue, id: req.body.id }; 
+  rescues.push(rescues2)
+  return res.status(201).send({message: 'rescue agregado correctamente', data: rescue })
 })
 
 
-app.put ('/api/rescate/:id', sanitizeRescateInput, (req,res )=>{
-  const rescateIdx = rescates.findIndex((rescate) => rescate.id === req.params.id);
-  if (rescateIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
-  }
-
-  rescates[rescateIdx]= {...rescates[rescateIdx], ...req.body.sanitizedRescate };
-
-  return res.status(200).send({message: 'rescate modificado correctamente', data:  rescates[rescateIdx] })
-})
-
-
-app.patch ('/api/rescate/:id', sanitizeRescateInput, (req,res )=>{
-  const rescateIdx = rescates.findIndex((rescate) => rescate.id === req.params.id);
-  if (rescateIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
+app.put ('/api/rescue/:id', sanitizerescueInput, (req,res )=>{
+  const rescueIdx = rescues.findIndex((rescue) => rescue.id === req.params.id);
+  if (rescueIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun rescue con ese ID' })
   }
 
-  rescates[rescateIdx]= {...rescates[rescateIdx], ...req.body.sanitizedRescate };
+  rescues[rescueIdx]= {...rescues[rescueIdx], ...req.body.sanitizedrescue };
 
-  return res.status(200).send({message: 'rescate modificado correctamente', data: rescates[rescateIdx] })
+  return res.status(200).send({message: 'rescue modificado correctamente', data:  rescues[rescueIdx] })
 })
 
 
-app.delete('/api/rescate/:id',(req,res )=>{
-  const rescateIdx = rescates.findIndex((rescate) => rescate.id === req.params.id);
-  if(rescateIdx === -1){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun rescate con ese ID' })
+app.patch ('/api/rescue/:id', sanitizerescueInput, (req,res )=>{
+  const rescueIdx = rescues.findIndex((rescue) => rescue.id === req.params.id);
+  if (rescueIdx === -1) {
+    return res.status(404).send({message:'ID incorrecto, no existe ningun rescue con ese ID' })
   }
-  rescates.splice(rescateIdx, 1);
-  return res.status(200).send({message: 'rescate eliminado correctamente'})
+
+  rescues[rescueIdx]= {...rescues[rescueIdx], ...req.body.sanitizedrescue };
+
+  return res.status(200).send({message: 'rescue modificado correctamente', data: rescues[rescueIdx] })
+})
+
+
+app.delete('/api/rescue/:id',(req,res )=>{
+  const rescueIdx = rescues.findIndex((rescue) => rescue.id === req.params.id);
+  if(rescueIdx === -1){
+    return res.status(404).send({message:'ID incorrecto, no existe ningun rescue con ese ID' })
+  }
+  rescues.splice(rescueIdx, 1);
+  return res.status(200).send({message: 'rescue eliminado correctamente'})
 })
 
 
