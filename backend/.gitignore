@@ -1,0 +1,24 @@
+# Dependencias
+node_modules/
+bower_components/
+
+# Archivos de configuración del entorno
+.env
+
+# Directorios de construcción y compilación
+dist/
+build/
+out/
+
+# Archivos de editores/IDE
+.vscode/
+.idea/
+
+# Archivos temporales y de sistema
+*.log
+*.tmp
+*.swp
+*.DS_Store
+
+# Archivos de configuración personal
+*.local
