@@ -1,0 +1,34 @@
+
+### Obtener todos los libros
+GET http://localhost:3000/api/libros
+
+### Subir libro
+
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+    "titulo": "TDon quijote",
+    "descripcion": "Un clásico de la literatura contemporanéa",
+    "isbn": "0-7645-2641-3",
+    "miAutor": 1, 
+    "misEditoriales": [2]
+
+}
+
+### Delete de un libro por ID
+
+DELETE  http://localhost:3000/api/libros/1
+
+
+## Actualizar libro por ID
+
+### Actualizar autor con PUT
+PUT http://localhost:3000/api/libros/3
+Content-Type: application/json
+
+{
+    "descripcion": "Un clásico entre clasicos",
+    "misEditoriales": [2,3]
+
+}

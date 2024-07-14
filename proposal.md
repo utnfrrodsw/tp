@@ -22,8 +22,8 @@ Por ello no se hace uso de un usuario y contraseña. El sistema con alcance de A
 ### Modelo
 https://imgur.com/gB6MXtc
 
-El modelo de dominio original es muy malo. En Diseño de Sistemas vimos uno mucho mejor en el cual nos basaremos para hacer la App. (No va a ser exactamente igual, se cambiaran varias cosas para adaptarlo a los objetivos originales). 
-https://drive.google.com/file/d/1_b_RMGLLRKwnxgg3Yus_9-aBtYgioXQM/view
+Nota: Todavia resta determinar atributos de informacion para editorial y autor, al lado del modelo hay aclaraciones en base a reglas de negocio inventadas.
+El sistema podria complejizarse agregando o modificando reglas de negocio.
 
 ## Alcance Funcional 
 

@@ -1,0 +1,38 @@
+### Obtener todos los autores
+GET http://localhost:3000/api/autores
+
+### Subir autor
+
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombre": "Jorge Luis",
+    "apellido": "Borges"
+
+}
+
+### Delete de un autor por ID
+DELETE  http://localhost:3000/api/autores/1
+
+### Subir autor
+
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombre": "Edgar",
+    "apellido": "Allan Poe"
+
+}
+
+### Actualizar autor con PATCH (parcialmente)
+
+PATCH http://localhost:3000/api/autores/ead
+Content-Type: application/json
+
+{
+    
+    "apellido": "Montini"
+
+}

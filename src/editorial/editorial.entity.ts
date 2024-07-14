@@ -1,23 +1,17 @@
 import {
   Entity,
   OneToMany,
+  ManyToMany,
   Property,
   Cascade,
   Collection,
 } from "@mikro-orm/core";
 
 import { BaseEntity } from "../shared/DB/baseEntity.entity.js";
-
 import { Libro } from "../libro/libro.entity.js";
 
 @Entity()
-export class Autor extends BaseEntity {
+export class Editorial extends BaseEntity {
   @Property()
   nombre!: string;
-
-  @Property()
-  apellido!: string;
-
-  @OneToMany(() => Libro, (libro) => libro.miAutor)
-  misLibros = new Collection<Libro>(this);
 }
