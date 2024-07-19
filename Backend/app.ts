@@ -1,16 +1,15 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { Animal } from './scr/animal/animal.entity.js';
 import { product } from './scr/products/product.entity.js';
 import { vet } from './scr/vet/vet.entity.js';
 import { zone } from './scr/zone/zone.entity.js';
 import { specie } from './scr/specie/specie.entity.js';
 import { BuyRepository } from './scr/buy/buy.repository.js';
-import { AnimalRepository } from './scr/animal/animal.repository.js';
 
 import { buyRouter } from './scr/buy/buy.router.js';
 import { personRouter } from './scr/person/person.router.js';
 import { rescueRouter } from './scr/rescue/rescue.router.js';
 import { shelterRouter } from './scr/shelter/shelter.router.js';
+import { animalRouter } from './scr/animal/animal.router.js';
 
 const app = express();
 app.use(express.json());
@@ -24,87 +23,8 @@ app.use('/api/person', personRouter)
 app.use('/api/rescue', rescueRouter)
 //shelter
 app.use('/api/shelter', shelterRouter)
-
-//animal--> /api/animal/
-
-function sanitizeAnimalInput(req: Request, res: Response, next:NextFunction){
-  req.body.sanitizedAnimal = {
-    name: req.body.name,
-    rescueDate: req.body.rescueDate,
-    birthdate: req.body.birthdate,
-    id: req.body.id
-  }
-
-  Object.keys(req.body.sanitizedAnimal).forEach((key) => {
-    if (req.body.sanitizedAnimal[key] === undefined) {
-      delete req.body.sanitizedAnimal[key]
-    }
-  })
-
-  next()
-}
-
-const animalRepository = new AnimalRepository()
-
-app.get('/api/animal',(req,res )=>{
-  res.json({ data : animalRepository.findAll() });
-})
-
-
-app.get('/api/animal/:id',(req,res )=>{
-  const id = req.params.id
-  const animal = animalRepository.findOne({ id })
-  if(!animal){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun animal con ese ID' })
-  }
-  res.json(animal)
-})
-
-
-app.post('/api/animal', sanitizeAnimalInput, (req, res)=>{
-  const input = req.body.sanitizedAnimal
-
-  const animalInput = new Animal(input.name, input.rescueDate, input.birthdate, input.id ); 
-
-  const animal = animalRepository.add(animalInput)
-  return res.status(201).send({message: 'animal agregado correctamente', data: animal })
-})
-
-
-app.put ('/api/animal/:id', sanitizeAnimalInput, (req,res )=>{
-  req.body.sanitizedAnimal.id = req.params.id
-  const animal = animalRepository.update(req.body.sanitizedAnimal)
-
-  if (!animal) {
-    return res.status(404).send({message:'Animal not found' })
-  }
-
-  return res.status(200).send({message: 'Animal updated successfully', data:  animal })
-})
-
-
-app.patch ('/api/animal/:id', sanitizeAnimalInput, (req,res )=>{
-  req.body.sanitizedAnimal.id = req.params.id
-  const animal = animalRepository.update(req.body.sanitizedAnimal)
-
-  if (!animal) {
-    return res.status(404).send({message:'Animal not found' })
-  }
-
-  return res.status(200).send({message: 'Animal updated successfully', data:  animal })
-})
-
-
-app.delete('/api/animal/:id', (req, res)=>{
-  const id = req.params.id
-  const animal = animalRepository.delete({ id })
-
-  if (!animal) {
-    return res.status(404).send({message:'Animal not found' })
-  } else {
-    return res.status(200).send({message: 'Animal deleted successfully'})
-  }
-})
+//animal
+app.use('/api/animal', animalRouter)
 
 //product --> /api/product/
 
