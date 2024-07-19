@@ -1,5 +1,4 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { product } from './scr/products/product.entity.js';
 import { vet } from './scr/vet/vet.entity.js';
 import { zone } from './scr/zone/zone.entity.js';
 import { specie } from './scr/specie/specie.entity.js';
@@ -10,6 +9,7 @@ import { personRouter } from './scr/person/person.router.js';
 import { rescueRouter } from './scr/rescue/rescue.router.js';
 import { shelterRouter } from './scr/shelter/shelter.router.js';
 import { animalRouter } from './scr/animal/animal.router.js';
+import { productRouter } from './scr/products/product.router.js';
 
 const app = express();
 app.use(express.json());
@@ -19,98 +19,14 @@ const buyrepository = new BuyRepository();
 app.use('/api/buy', buyRouter)
 //person 
 app.use('/api/person', personRouter)
+//product
+app.use('/api/product', productRouter)
 //rescue
 app.use('/api/rescue', rescueRouter)
 //shelter
 app.use('/api/shelter', shelterRouter)
 //animal
 app.use('/api/animal', animalRouter)
-
-//product --> /api/product/
-
-const products = [
-  new product(
-    'Alimento',
-    'Alimento balanceado para perro',
-    100,
-    '01'
-  ),
-];
-
-function sanitizeproductInput(req: Request, res: Response, next:NextFunction){
-  
-  req.body.sanitizedproduct = {
-    nombre: req.body.nombre,
-    descripcion: req.body.descripcion,
-    stock: req.body.stock
-  }
-
-  Object.keys(req.body.sanitizedproduct).forEach((key) => {
-    if (req.body.sanitizedproduct[key] === undefined) {
-      delete req.body.sanitizedproduct[key]
-    }
-  })
-
-  next()
-}
-
-
-app.get('/api/product',(req,res )=>{
-  res.json(products);
-})
-
-
-app.get('/api/product/:id',(req,res )=>{
-  const product = products.find((product) => product.id === req.params.id);
-  if(!product){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun product con ese ID' })
-  }
-  res.json(product)
-})
-
-
-app.post('/api/product', sanitizeproductInput, (req,res) => {
-  const {nombre, descripcion, stock, id} = req.body
-
-  const products2 = new product (nombre, descripcion, stock, id ); 
-
-  products.push(products2)
-  return res.status(201).send({message: 'product agregado correctamente', data: product })
-})
-
-
-app.put ('/api/product/:id', sanitizeproductInput, (req,res) => {
-  const productIdx = products.findIndex((product) => product.id === req.params.id);
-  if (productIdx === -1) {
-    res.status(404).send({message:'ID incorrecto, no existe ningun product con ese ID' })
-  }
-
-  products[productIdx]= {...products[productIdx], ...req.body.sanitizedproduct };
-
-  res.status(200).send({message: 'product modificado correctamente', data: products[productIdx] })
-})
-
-
-app.patch ('/api/product/:id', sanitizeproductInput, (req,res )=>{
-  const productIdx = products.findIndex((product) => product.id === req.params.id);
-  if (productIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun product con ese ID' })
-  }
-
-  products[productIdx]= {...products[productIdx], ...req.body.sanitizedproduct };
-
-  res.status(200).send({message: 'product modificado correctamente', data: products[productIdx]  })
-})
-
-
-app.delete('/api/product/:id',(req,res )=> {
-  const productIdx = products.findIndex((product) => product.id === req.params.id);
-  if (productIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun product con ese ID' })
-  }
-  products.splice(productIdx, 1);
-  return res.status(200).send({message: 'product eliminado correctamente'})
-})
 
 
 //vet--> /api/vet/
