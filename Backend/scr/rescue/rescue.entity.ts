@@ -1,8 +1,8 @@
-export class rescue{
+export class Rescue{
   constructor(
-    public fecharescue: string,
-    public descripcion: string,
-    public comentario: string,
+    public rescue_date: string,
+    public description: string,
+    public comments: string,
     public id: string
   ){}
 }

@@ -4,13 +4,13 @@ import { shelter } from './scr/shelter/shelter.entity.js';
 import { product } from './scr/products/product.entity.js';
 import { vet } from './scr/vet/vet.entity.js';
 import { zone } from './scr/zone/zone.entity.js';
-import { rescue } from './scr/rescue/rescue.entity.js';
 import { specie } from './scr/specie/specie.entity.js';
 import { BuyRepository } from './scr/buy/buy.repository.js';
 import { AnimalRepository } from './scr/animal/animal.repository.js';
 
 import { buyRouter } from './scr/buy/buy.router.js';
 import { personRouter } from './scr/person/person.router.js';
+import { rescueRouter } from './scr/rescue/rescue.router.js';
 
 const app = express();
 app.use(express.json());
@@ -20,6 +20,8 @@ const buyrepository = new BuyRepository();
 app.use('/api/buy', buyRouter)
 //person 
 app.use('/api/person', personRouter)
+//rescue
+app.use('/api/rescue', rescueRouter)
 
 //animal--> /api/animal/
 
@@ -519,86 +521,6 @@ app.delete('/api/zone/:id',(req,res )=>{
 
 
 //rescue --> /api/rescue/
-
-const rescues = [
-  new rescue(
-    '10-04-2024',
-    'Perro solitario',
-    'el carnicero de la esquina le daba comida',
-    '1'
-  ),
-];
-
-function sanitizerescueInput(req: Request, res: Response, next:NextFunction){
-  
-  req.body.sanitizedrescue = {
-    fecharescue: req.body.fecharescue,
-    descripcion: req.body.descripcion,
-    comentario: req.body.comentario
-  }
-
-  Object.keys(req.body.sanitizedrescue).forEach((key) => {
-    if (req.body.sanitizedrescue[key] === undefined) {
-      delete req.body.sanitizedrescue[key]
-    }
-  })
-
-  next()
-}
-
-app.get('/api/rescue',(req,res )=>{
-  res.json(rescues);
-})
-
-
-app.get('/api/rescue/:id',(req,res )=>{
-  const rescue = rescues.find((rescue) => rescue.id === req.params.id);
-  if(!rescue){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun rescue con ese ID' })
-  }
-  res.json(rescue)
-})
-
-
-app.post('/api/rescue', sanitizerescueInput, (req,res )=>{
-  const rescues2 = { ...req.body.sanitizedrescue, id: req.body.id }; 
-  rescues.push(rescues2)
-  return res.status(201).send({message: 'rescue agregado correctamente', data: rescue })
-})
-
-
-app.put ('/api/rescue/:id', sanitizerescueInput, (req,res )=>{
-  const rescueIdx = rescues.findIndex((rescue) => rescue.id === req.params.id);
-  if (rescueIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun rescue con ese ID' })
-  }
-
-  rescues[rescueIdx]= {...rescues[rescueIdx], ...req.body.sanitizedrescue };
-
-  return res.status(200).send({message: 'rescue modificado correctamente', data:  rescues[rescueIdx] })
-})
-
-
-app.patch ('/api/rescue/:id', sanitizerescueInput, (req,res )=>{
-  const rescueIdx = rescues.findIndex((rescue) => rescue.id === req.params.id);
-  if (rescueIdx === -1) {
-    return res.status(404).send({message:'ID incorrecto, no existe ningun rescue con ese ID' })
-  }
-
-  rescues[rescueIdx]= {...rescues[rescueIdx], ...req.body.sanitizedrescue };
-
-  return res.status(200).send({message: 'rescue modificado correctamente', data: rescues[rescueIdx] })
-})
-
-
-app.delete('/api/rescue/:id',(req,res )=>{
-  const rescueIdx = rescues.findIndex((rescue) => rescue.id === req.params.id);
-  if(rescueIdx === -1){
-    return res.status(404).send({message:'ID incorrecto, no existe ningun rescue con ese ID' })
-  }
-  rescues.splice(rescueIdx, 1);
-  return res.status(200).send({message: 'rescue eliminado correctamente'})
-})
 
 
 app.listen(3000, ()=>{

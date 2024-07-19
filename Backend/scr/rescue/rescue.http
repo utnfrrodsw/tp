@@ -6,9 +6,9 @@ POST http://localhost:3000/api/rescue
 Content-Type: application/json
 
 {
-    "fecharescue": "06-06-2024", 
-    "descripcion": "Gato solitario",
-    "comentario": "",
+    "rescue_date": "06-06-2024", 
+    "description": "Gato solitario",
+    "comments": "",
     "id": "2"
 }
 
@@ -20,9 +20,9 @@ PUT http://localhost:3000/api/rescue/2
 Content-Type: application/json
 
 {
-    "fecharescue": "10-06-2024", 
-    "descripcion": "Gato solitario",
-    "comentario": "Tenia hijos!!!",
+    "rescue_date": "10-06-2024", 
+    "description": "Gato solitario",
+    "comments": "Tenia hijos!!!",
     "id": "2"
 }
 
@@ -31,7 +31,7 @@ PATCH http://localhost:3000/api/rescue/2
 Content-Type: application/json
 
 {
-    "descripcion": "Gato papá luchon"
+    "description": "Gato papá luchon"
 }
 
 ### borrar un rescue
