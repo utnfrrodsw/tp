@@ -65,3 +65,25 @@
 * Desarrollar los CRUDs que faltan para la próxima entrega
 * Hacer primer boilplate
 * Realizar pruebas
+
+## 22/07/2024 🚀 Dockerización del back 🚀
+### 👥Participantes: 
+* Lucía Portillo
+* Juan Manuel Tarrago
+### 📝Resumen: 
+* Revisión de avances con el backend
+* Revisión de avances con el frontend
+* Definición de tareas
+* Propuestas de diferencias entre mysql y mongobd
+* Presentación del frontend con Luna
+
+
+### 📅Proximos pasos :
+* usuarios y tareas: la relación entre ambas 
+* ver el tema del log in 
+* ver el tema de capas por usuarios ósea que modifica 
+* armar el tema roles y dependiendo de eso cambia las cosas en pantalla 
+* logueo y general el token
+* Probar conexión de la bd en docker
+
+
