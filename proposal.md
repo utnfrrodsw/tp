@@ -9,7 +9,7 @@
 * Calvi Alfie, María Laura (Leg. 51465)
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app](https://github.com/Bere167/DSW-frontend)
 * [backend app](https://github.com/Bere167/DSW-backend)
 **Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
