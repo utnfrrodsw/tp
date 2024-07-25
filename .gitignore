@@ -11,8 +11,7 @@ node_modules
 .DS_Store
 Thumbs.db
 
-# ignore built ts files
-dist/**/*
+# ignore built ts files dist/**/* (hay que tabular dist luego)
 
 # vscode
 .vscode/*

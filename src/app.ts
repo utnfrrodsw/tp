@@ -1,8 +1,8 @@
 import express from 'express'
 import { tipo_participanteRouter } from './tipo_participante/tipo_participante.routes.js'
-import { formatoRouter } from './formatos_torneo/formatos_torneo.routes.js';
-import {estado_torneoRouter} from './estado_torneo/estado_torneo.routes.js' ;
-import { localidadesRouter } from './localidades/localidades.routes.js';
+import { formatoRouter } from './formatos_torneo/formatos_torneo.routes.js'
+import {estado_torneoRouter} from './estado_torneo/estado_torneo.routes.js'
+import { localidadesRouter } from './localidades/localidades.routes.js'
 
 const app = express()
 app.use(express.json())

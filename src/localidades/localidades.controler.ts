@@ -19,31 +19,31 @@ function sanitizarLocalidadInput(req: Request, res: Response, next: NextFunction
     next()
 }
 
-function findAll(req: Request,res: Response){
-    res.json({data: repository.findAll()})
+async function findAll(req: Request,res: Response){
+    res.json({data: await repository.findAll()})
 }
 
-function findOne(req: Request,res: Response){
+async function findOne(req: Request,res: Response){
     const id = req.params.id
-    const localidad = repository.findOne({id})
+    const localidad = await repository.findOne({id})
     if(!localidad){
         res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
     }else{
     res.json({data: localidad})
     }}
 
-function add(req: Request,res: Response){
+async function add(req: Request,res: Response){
     const input = req.body.sanitizarLoc
     
     const localidadInput = new Localidad (input.nombre_localidad)
     
-    const localidad = repository.add(localidadInput)
+    const localidad = await repository.add(localidadInput)
     res.status(201).send({message: 'Localidad caragada correctamente', data: localidad })
 }
 
-function update(req: Request,res: Response){
+async function update(req: Request,res: Response){
     req.body.sanitizarLoc.id = req.params.id
-    const localidad = repository.update(req.body.sanitizarLoc)
+    const localidad = await repository.update(req.body.sanitizarLoc)
 
     if(!localidad){
         res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
@@ -51,9 +51,9 @@ function update(req: Request,res: Response){
     res.status(200).send({message: 'Localidad modificada correctamente', data: localidad})
 }}
 
-function remove(req: Request,res: Response){
+async function remove(req: Request,res: Response){
     const id = req.params.id
-    const localidad = repository.delete({id})
+    const localidad = await repository.delete({id})
 
     if(!localidad){
         res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })

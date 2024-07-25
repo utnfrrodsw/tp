@@ -1,5 +1,7 @@
 import { Repository } from "../shared/repository.js"
 import { Tipo_participante } from "./tipo_participante.entity.js"
+import { db } from '../shared/db/conn.js'
+import { ObjectId } from 'mongodb'
 
 const tipo_participantes = [
     new Tipo_participante(
@@ -9,19 +11,19 @@ const tipo_participantes = [
   ]
 
 export class tipo_participanteRepository implements Repository<Tipo_participante> {
-  public findAll(): Tipo_participante[] | undefined {
+  public async findAll(): Promise<Tipo_participante[] | undefined> {
     return tipo_participantes
   }
-  public findOne(item: { id: string }): Tipo_participante | undefined {
+  public async findOne(item: { id: string }): Promise<Tipo_participante | undefined> {
     return tipo_participantes.find((tipo_participante) => tipo_participante.id === item.id)
   }
 
-  public add(item: Tipo_participante): Tipo_participante | undefined {
+  public async add(item: Tipo_participante): Promise<Tipo_participante | undefined> {
     tipo_participantes.push(item)
     return item
   }
 
-  public update(item: Tipo_participante): Tipo_participante| undefined {
+  public async update(item: Tipo_participante): Promise<Tipo_participante| undefined> {
     const tipo_participanteIdx = tipo_participantes.findIndex((tipo_participante) => tipo_participante.id === item.id)
 
     if (tipo_participanteIdx !== -1) {
@@ -30,7 +32,7 @@ export class tipo_participanteRepository implements Repository<Tipo_participante
     return tipo_participantes[tipo_participanteIdx]
   }
 
-  public delete(item: { id: string }): Tipo_participante | undefined {
+  public async delete(item: { id: string }): Promise<Tipo_participante | undefined> {
     const tipo_participanteIdx = tipo_participantes.findIndex((tipo_participante) => tipo_participante.id === item.id)
     if (tipo_participanteIdx !== -1) {
         const deletedTipo_participantes = tipo_participantes[tipo_participanteIdx]

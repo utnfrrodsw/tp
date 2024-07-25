@@ -1,42 +1,34 @@
 import { Repository } from "../shared/repository.js";
-import { Localidad } from "./localidades.entity.js";
+import { Localidad } from "./localidades.entity.js"
+import { db } from '../shared/db/conn.js'
+import { ObjectId } from 'mongodb'
 
-const localidades =[
-    new Localidad(
-        'Rosario',
-        '1b587da1-a2d0-4405-8381-850e35068ab9'
-    )
-]
+const localidades = db.collection<Localidad>('Localidades')
 
 export class LocalidadesRepository implements Repository<Localidad>{
 
-    public findAll(): Localidad[] | undefined {
-        return localidades
+    public async findAll(): Promise<Localidad[] | undefined> {
+        return await localidades.find().toArray()
     }
 
-    public findOne(item: { id: string; }): Localidad | undefined {
-        return localidades.find((localidad) => localidad.id === item.id)
+    public async findOne(item: { id: string }): Promise<Localidad | undefined> {
+        const _id = new ObjectId(item.id)
+        return (await localidades.findOne({_id})) || undefined
     }
 
-    public add(item: Localidad): Localidad | undefined {
-        localidades.push(item)
+    public async add(item: Localidad): Promise<Localidad | undefined> {
+        item._id = (await localidades.insertOne(item)).insertedId
         return item
     }
 
-    public update(item: Localidad): Localidad | undefined {
-        const localidadIdx = localidades.findIndex(localidad => localidad.id === item.id)
-        if(localidadIdx !== -1){
-        localidades[localidadIdx] = {...localidades[localidadIdx], ...item}
-        return item
-        }
+    public async update(item: Localidad): Promise<Localidad | undefined> {
+        const {id, ...localidadesInput} = item
+        const _id = new ObjectId(id)
+        return (await localidades.findOneAndUpdate({_id},{$set: item},{returnDocument: 'after'})) || undefined
     }
 
-    public delete(item: { id: string; }): Localidad | undefined {
-        const localidadIdx = localidades.findIndex(localidad => localidad.id === item.id)
-        if(localidadIdx !== -1){
-        const localidadBorrada = localidades[localidadIdx]
-        localidades.splice(localidadIdx,1)
-        return localidadBorrada
-        }
+    public async delete(item: { id: string; }): Promise<Localidad | undefined> {
+        const _id = new ObjectId(item.id)
+        return (await localidades.findOneAndDelete({_id})) || undefined
     }
 }
