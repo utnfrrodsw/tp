@@ -3,7 +3,7 @@
     "incremental": true,
     "target": "es2020",
     "module": "ES2022",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "./dist",
     "esModuleInterop": true,

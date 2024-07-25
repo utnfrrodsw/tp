@@ -10,8 +10,8 @@ POST http://localhost:3000/api/tipo_participantes
 Content-Type: application/json
 
 {
-  "id": "5",
-  "posicion": "central"
+  "posicion": "central",
+  "id": "5"
 }
 
 ### modificar un tipo_participante (PUT - recurso completo e idempotente)

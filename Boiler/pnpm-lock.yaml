@@ -62,7 +62,7 @@ devDependencies:
     specifier: ^4.17.17
     version: 4.17.21
   '@types/jasmine':
-    specifier: ~5.1.0
+    specifier: ~5.1.4
     version: 5.1.4
   '@types/node':
     specifier: ^18.18.0

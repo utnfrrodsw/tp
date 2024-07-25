@@ -1,5 +1,7 @@
-import { Repository } from "../shared/repository.js";
-import { formatos_torneo } from "./formatos_torneo.entity.js";
+import { Repository } from "../shared/repository.js"
+import { formatos_torneo } from "./formatos_torneo.entity.js"
+import { db } from '../shared/db/conn.js'
+import { ObjectId } from 'mongodb'
 
 const formato_torneo = [
     new formatos_torneo(
@@ -11,20 +13,20 @@ const formato_torneo = [
 ];
 
 export class Formatos_torneoRepository implements Repository<formatos_torneo> {
-    public findAll(): formatos_torneo[] | undefined {
+    public async findAll(): Promise<formatos_torneo[] | undefined> {
         return formato_torneo;
     }
 
-    public findOne(item: { id: string }): formatos_torneo | undefined {
+    public async findOne(item: { id: string }): Promise<formatos_torneo | undefined> {
         return formato_torneo.find((formato) => formato.id === item.id);
     }
 
-    public add(item: formatos_torneo): formatos_torneo | undefined {
+    public async add(item: formatos_torneo): Promise<formatos_torneo | undefined> {
         formato_torneo.push(item);
         return item;
     }
 
-    public update(item: formatos_torneo): formatos_torneo | undefined {
+    public async update(item: formatos_torneo): Promise<formatos_torneo | undefined> {
         const formatos_torneoIdx = formato_torneo.findIndex((formato_torneo) => formato_torneo.id === item.id)
 
     if (formatos_torneoIdx !== -1) {
@@ -34,7 +36,7 @@ export class Formatos_torneoRepository implements Repository<formatos_torneo> {
   }
 
 
-  public delete(item: { id: string }): formatos_torneo | undefined {
+  public async delete(item: { id: string }): Promise<formatos_torneo | undefined> {
     const formatos_torneoIdx = formato_torneo.findIndex((formatos_torneo) => formatos_torneo.id === item.id)
 
     if (formatos_torneoIdx !== -1) {

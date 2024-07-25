@@ -22,14 +22,14 @@ function sanitizeFormatoInput(req: Request, res: Response , next: NextFunction){
     next()
 }
 
-function findAll(req: Request ,res: Response){
-    res.json(repository.findAll());
+async function findAll(req: Request ,res: Response){
+    res.json({data: await repository.findAll()});
 }
 
 
-function findOne(req: Request,res: Response ){
+async function findOne(req: Request,res: Response ){
   const id = req.params.id
-  const formato_torneo = repository.findOne({id})
+  const formato_torneo = await repository.findOne({id})
   if (!formato_torneo) {
       res.status(404).send({message:'ID incorrecto, no existe ningun formato de torneo con el ID indicado' });
   } else {
@@ -37,29 +37,29 @@ function findOne(req: Request,res: Response ){
   }
 };
 
-function add(req: Request,res: Response){
+async function add(req: Request,res: Response){
     const {cant_grupos, cant_equipos_x_grupo, cant_clasificados_x_grupo, id } = req.body
+
     const nuevoFormato = new formatos_torneo (cant_grupos, cant_equipos_x_grupo, cant_clasificados_x_grupo, id )
   
-    repository.add(nuevoFormato)
-    res.status(201).send({message: 'Formato de torneo caragado correctamente', data: nuevoFormato })
+    const formato_nuevo = await repository.add(nuevoFormato)
+    res.status(201).send({message: 'Formato de torneo caragado correctamente', data: formato_nuevo })
   }
 
-function update(req: Request,res: Response){
+async function update(req: Request,res: Response){
   req.body.sanitizedInput.id = req.params.id
-    const formato = repository.update(req.body.sanitizedInput)
+    const formato = await repository.update(req.body.sanitizedInput)
   
     if (!formato) {
       return res.status(404).send({ message: 'Formato de torneo no encontrado' })
     }
-  
-  
+
     return res.status(200).send({ message: 'Formato de torneo actualizado correctamente', data: formato})
 }
 
-function remove(req: Request,res: Response){
+async function remove(req: Request,res: Response){
   const id = req.params.id
-  const formato_torneo = repository.delete({id})
+  const formato_torneo = await repository.delete({id})
 
 if (!formato_torneo) {
   res.status(404).send({ message: 'Formato de torneo no encontrado' })
