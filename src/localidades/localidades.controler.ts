@@ -20,17 +20,18 @@ function sanitizarLocalidadInput(req: Request, res: Response, next: NextFunction
 }
 
 async function findAll(req: Request,res: Response){
-    res.json({data: await repository.findAll()})
+    return res.json({data: await repository.findAll()})
 }
 
 async function findOne(req: Request,res: Response){
     const id = req.params.id
     const localidad = await repository.findOne({id})
     if(!localidad){
-        res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
+        return res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
     }else{
-    res.json({data: localidad})
-    }}
+    return res.json({data: localidad})
+    }
+}
 
 async function add(req: Request,res: Response){
     const input = req.body.sanitizarLoc
@@ -38,7 +39,7 @@ async function add(req: Request,res: Response){
     const localidadInput = new Localidad (input.nombre_localidad)
     
     const localidad = await repository.add(localidadInput)
-    res.status(201).send({message: 'Localidad caragada correctamente', data: localidad })
+    return res.status(201).send({message: 'Localidad caragada correctamente', data: localidad })
 }
 
 async function update(req: Request,res: Response){
@@ -46,9 +47,9 @@ async function update(req: Request,res: Response){
     const localidad = await repository.update(req.body.sanitizarLoc)
 
     if(!localidad){
-        res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
+        return res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
     }else{
-    res.status(200).send({message: 'Localidad modificada correctamente', data: localidad})
+    return res.status(200).send({message: 'Localidad modificada correctamente', data: localidad})
 }}
 
 async function remove(req: Request,res: Response){
@@ -56,9 +57,9 @@ async function remove(req: Request,res: Response){
     const localidad = await repository.delete({id})
 
     if(!localidad){
-        res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
+        return res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
     }else{
-    res.status(200).send({message: 'Localidad borrada correctamente'})
+    return res.status(200).send({message: 'Localidad borrada correctamente'})
 }}
 
 export {sanitizarLocalidadInput, findAll, findOne, add, update, remove}

@@ -1,32 +1,26 @@
-import { Tipo_participante } from "./tipo_participante.entity.js";
-const tipo_participantes = [
-    new Tipo_participante("lateral derecho", "3"),
-];
+import { db } from '../shared/db/conn.js';
+import { ObjectId } from 'mongodb';
+const tipos_participantes = db.collection('Tipos_participantes');
 export class tipo_participanteRepository {
     async findAll() {
-        return tipo_participantes;
+        return await tipos_participantes.find().toArray();
     }
     async findOne(item) {
-        return tipo_participantes.find((tipo_participante) => tipo_participante.id === item.id);
+        const _id = new ObjectId(item.id);
+        return (await tipos_participantes.findOne({ _id })) || undefined;
     }
     async add(item) {
-        tipo_participantes.push(item);
+        item._id = (await tipos_participantes.insertOne(item)).insertedId;
         return item;
     }
     async update(item) {
-        const tipo_participanteIdx = tipo_participantes.findIndex((tipo_participante) => tipo_participante.id === item.id);
-        if (tipo_participanteIdx !== -1) {
-            tipo_participantes[tipo_participanteIdx] = { ...tipo_participantes[tipo_participanteIdx], ...item };
-        }
-        return tipo_participantes[tipo_participanteIdx];
+        const { id, ...tipos_parInput } = item;
+        const _id = new ObjectId(id);
+        return (await tipos_participantes.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined;
     }
     async delete(item) {
-        const tipo_participanteIdx = tipo_participantes.findIndex((tipo_participante) => tipo_participante.id === item.id);
-        if (tipo_participanteIdx !== -1) {
-            const deletedTipo_participantes = tipo_participantes[tipo_participanteIdx];
-            tipo_participantes.splice(tipo_participanteIdx, 1);
-            return deletedTipo_participantes;
-        }
+        const _id = new ObjectId(item.id);
+        return (await tipos_participantes.findOneAndDelete({ _id })) || undefined;
     }
 }
 //# sourceMappingURL=tipo_participante.repository.js.map

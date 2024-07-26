@@ -1,32 +1,26 @@
-import { formatos_torneo } from "./formatos_torneo.entity.js";
-const formato_torneo = [
-    new formatos_torneo(8, 4, 2, "asd")
-];
+import { db } from '../shared/db/conn.js';
+import { ObjectId } from 'mongodb';
+const formatos_torneos = db.collection('Formatos_torneos');
 export class Formatos_torneoRepository {
     async findAll() {
-        return formato_torneo;
+        return await formatos_torneos.find().toArray();
     }
     async findOne(item) {
-        return formato_torneo.find((formato) => formato.id === item.id);
+        const _id = new ObjectId(item.id);
+        return (await formatos_torneos.findOne({ _id })) || undefined;
     }
     async add(item) {
-        formato_torneo.push(item);
+        item._id = (await formatos_torneos.insertOne(item)).insertedId;
         return item;
     }
     async update(item) {
-        const formatos_torneoIdx = formato_torneo.findIndex((formato_torneo) => formato_torneo.id === item.id);
-        if (formatos_torneoIdx !== -1) {
-            formato_torneo[formatos_torneoIdx] = { ...formato_torneo[formatos_torneoIdx], ...item };
-        }
-        return formato_torneo[formatos_torneoIdx];
+        const { id, ...formatosInput } = item;
+        const _id = new ObjectId(id);
+        return (await formatos_torneos.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined;
     }
     async delete(item) {
-        const formatos_torneoIdx = formato_torneo.findIndex((formatos_torneo) => formatos_torneo.id === item.id);
-        if (formatos_torneoIdx !== -1) {
-            const deletedCharacters = formato_torneo[formatos_torneoIdx];
-            formato_torneo.splice(formatos_torneoIdx, 1);
-            return deletedCharacters;
-        }
+        const _id = new ObjectId(item.id);
+        return (await formatos_torneos.findOneAndDelete({ _id })) || undefined;
     }
 }
 //# sourceMappingURL=formatos_torneo.Repository.js.map

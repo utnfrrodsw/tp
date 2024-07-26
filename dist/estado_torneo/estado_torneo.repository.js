@@ -1,32 +1,26 @@
-import { estado_torneo } from "./estado_torneo.entity.js";
-const estados_torneos = [
-    new estado_torneo("4", "Finalizado"),
-];
+import { db } from '../shared/db/conn.js';
+import { ObjectId } from 'mongodb';
+const estados_torneos = db.collection('Estados_torneos');
 export class estado_torneoRepository {
     async findAll() {
-        return estados_torneos;
+        return await estados_torneos.find().toArray();
     }
     async findOne(item) {
-        return estados_torneos.find((estado_torneo) => estado_torneo.id === item.id);
+        const _id = new ObjectId(item.id);
+        return (await estados_torneos.findOne({ _id })) || undefined;
     }
     async add(item) {
-        estados_torneos.push(item);
+        item._id = (await estados_torneos.insertOne(item)).insertedId;
         return item;
     }
     async update(item) {
-        const estado_torneoIdx = estados_torneos.findIndex((estado_torneo) => estado_torneo.id === item.id);
-        if (estado_torneoIdx !== -1) {
-            estados_torneos[estado_torneoIdx] = { ...estados_torneos[estado_torneoIdx], ...item };
-        }
-        return estados_torneos[estado_torneoIdx];
+        const { id, ...estado_torneoInput } = item;
+        const _id = new ObjectId(id);
+        return (await estados_torneos.findOneAndUpdate({ _id }, { $set: item }, { returnDocument: 'after' })) || undefined;
     }
     async delete(item) {
-        const estado_torneoIdx = estados_torneos.findIndex((estado_torneo) => estado_torneo.id === item.id);
-        if (estado_torneoIdx !== -1) {
-            const deletedestados_torneos = estados_torneos[estado_torneoIdx];
-            estados_torneos.splice(estado_torneoIdx, 1);
-            return deletedestados_torneos;
-        }
+        const _id = new ObjectId(item.id);
+        return (await estados_torneos.findOneAndDelete({ _id })) || undefined;
     }
 }
 //# sourceMappingURL=estado_torneo.repository.js.map
