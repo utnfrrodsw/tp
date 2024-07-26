@@ -3,41 +3,32 @@ import { Tipo_participante } from "./tipo_participante.entity.js"
 import { db } from '../shared/db/conn.js'
 import { ObjectId } from 'mongodb'
 
-const tipo_participantes = [
-    new Tipo_participante(
-     "lateral derecho",
-     "3"
-    ),
-  ]
+const tipos_participantes = db.collection<Tipo_participante>('Tipos_participantes')
 
 export class tipo_participanteRepository implements Repository<Tipo_participante> {
+  
   public async findAll(): Promise<Tipo_participante[] | undefined> {
-    return tipo_participantes
+    return await tipos_participantes.find().toArray()
   }
+
   public async findOne(item: { id: string }): Promise<Tipo_participante | undefined> {
-    return tipo_participantes.find((tipo_participante) => tipo_participante.id === item.id)
+    const _id = new ObjectId(item.id)
+    return (await tipos_participantes.findOne({_id})) || undefined
   }
 
   public async add(item: Tipo_participante): Promise<Tipo_participante | undefined> {
-    tipo_participantes.push(item)
+    item._id = (await tipos_participantes.insertOne(item)).insertedId
     return item
   }
 
   public async update(item: Tipo_participante): Promise<Tipo_participante| undefined> {
-    const tipo_participanteIdx = tipo_participantes.findIndex((tipo_participante) => tipo_participante.id === item.id)
-
-    if (tipo_participanteIdx !== -1) {
-      tipo_participantes[tipo_participanteIdx] = { ...tipo_participantes[tipo_participanteIdx], ...item }
-    }
-    return tipo_participantes[tipo_participanteIdx]
+    const {id, ...tipos_parInput} = item
+    const _id = new ObjectId(id)
+    return (await tipos_participantes.findOneAndUpdate({_id},{$set: item},{returnDocument: 'after'})) || undefined
   }
 
   public async delete(item: { id: string }): Promise<Tipo_participante | undefined> {
-    const tipo_participanteIdx = tipo_participantes.findIndex((tipo_participante) => tipo_participante.id === item.id)
-    if (tipo_participanteIdx !== -1) {
-        const deletedTipo_participantes = tipo_participantes[tipo_participanteIdx]
-        tipo_participantes.splice(tipo_participanteIdx, 1)
-        return deletedTipo_participantes
-      }
-    }
+    const _id = new ObjectId(item.id)
+        return (await tipos_participantes.findOneAndDelete({_id})) || undefined
   }
+}

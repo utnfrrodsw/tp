@@ -1,4 +1,4 @@
-import express, { Request, NextFunction, Response } from 'express'
+import { Request, NextFunction, Response } from 'express'
 import {Formatos_torneoRepository} from './formatos_torneo.Repository.js'
 import { formatos_torneo } from './formatos_torneo.entity.js'
 
