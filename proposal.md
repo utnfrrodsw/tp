@@ -7,7 +7,7 @@
 * 50429 - Spitale, Camila
 
 ### Repositorios
-* [frontend app]
+* [frontend app](https://github.com/Marina-Rookie/frontend-petguardian/tree/main)
 * [backend app](https://github.com/camilaspt/api-petguardian)
 
 ## Tema
