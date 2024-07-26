@@ -2,42 +2,48 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+* 49069 - Tarrago, Juan Manuel
+* 42710 - Portillo, Lucía
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/juanma414/dswFrontend)
+* [backend app](https://github.com/juanma414/dswBackend)
 
 ## Tema
+Aplicación para gestión de tareas estilo Trello o Jira
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+El objetivo principal de la aplicación es organizar y gestionar el trabajo de forma eficiente. Permitiendo a los usuarios crear, organizar y realizar un seguimiento de tareas, proyectos y objetivos, tanto individualmente como en equipo.
+
+Funciones principales:
+* Creación de tareas: Permite crear tareas con diferentes niveles de detalle, incluyendo título, descripción, etiquetas, prioridad, fecha límite y asignación a un responsable.
+* Organización de tareas: Las tareas se pueden organizar en diferentes tableros, listas o categorías, según el flujo de trabajo del proyecto.
+* Seguimiento del progreso: Permite realizar un seguimiento del progreso de las tareas, incluyendo su estado actual, avance y tiempo restante.
+* Colaboración: Facilita la colaboración entre equipos y usuarios, permitiendo la comunicación y el intercambio de información sobre las tareas.
+* Informes y análisis: Ofrece informes y análisis para ayudar a los equipos a mejorar su rendimiento.*
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+https://drive.google.com/file/d/1Miob85r-dn_M9zWg0FZaVY0_oawiB9GY/view?usp=drive_link
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Usuario <br>2. CRUD Incidencia <br>3. CRUD Proyecto|
+|CRUD dependiente|1. CRUD Comentario {depende de} CRUD Incidencia<br>2. CRUD Incidencia {depende de} CRUD Proyecto |
+|Listado<br>+<br>detalle| 1. Listado de incidencias filtrado por tipo, muestra nro y tipo de incidencia => detalle CRUD Incidencia<br> 2. Listado de Incidencias filtrado por rango de fecha, muestra nro de incidencia, fecha inicio y fin fin, estado y nombre del usuario responsable => detalle muestra datos completos de las incidencias|
+|CUU/Epic|1. Armar una Sprint. <br>2. Registro del avance de una Incidencia en donde se ve si se completó y que estado tienen las mismas.
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD simple|1. CRUD Usuario <br>2. CRUD Incidencia <br>3. CRUD Proyecto <br>4. CRUD Tipo de Incidencia  <br>5. CRUD Sprint|
+|CUU/Epic|1. Reporte con toda la información dentro de un Sprint|
 
 
 ### Alcance Adicional Voluntario
@@ -46,7 +52,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1.  <br>2. |
+|CUU/Epic|1. <br>2. |
+|Otros|1. |
 
