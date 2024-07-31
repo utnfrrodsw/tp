@@ -3,7 +3,7 @@ GET http://localhost:3000/api/formatos_torneo
 
 
 ### obtener un formato de torneo
-GET http://localhost:3000/api/formatos_torneo/asd
+GET http://localhost:3000/api/formatos_torneo/66a4274b20f637151e50a19d
 
 
 ### crear un nuevo formato de torneo
@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 
 ### modificar un formato de torneo (PUT)
-PUT http://localhost:3000/api/formatos_torneo/asd
+PUT http://localhost:3000/api/formatos_torneo/66a95856c203b8d5870c98c5
 Content-Type: application/json
 
 {
@@ -30,4 +30,4 @@ Content-Type: application/json
 
 
 ### eliminar un formato de torneo
-DELETE http://localhost:3000/api/formatos_torneo/asd
+DELETE http://localhost:3000/api/formatos_torneo/66a4274b20f637151e50a19d

@@ -33,7 +33,7 @@ async function findOne(req: Request,res: Response ){
   if (!formato_torneo) {
       res.status(404).send({message:'ID incorrecto, no existe ningun formato de torneo con el ID indicado' });
   } else {
-      res.json(formato_torneo);
+      res.json({data: formato_torneo});
   }
 };
 

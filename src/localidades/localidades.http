@@ -16,7 +16,7 @@ Content-Type: application/json
 
 
 ### Modificar una localidad (PUT - Recurso completo e idempotente)
-PUT http://localhost:3000/api/localidades/66a2e70a635cb7c43f138d8d
+PUT http://localhost:3000/api/localidades/66a2e7f2123c9672e5ada8c6
 Content-Type: application/json
 
 {
@@ -25,7 +25,8 @@ Content-Type: application/json
 
 
 ### Modificar una localidad (PATCH - Recurso parcial)
-PATCH http://localhost:3000/api/localidades/66a2e70a635cb7c43f138d8d
+PATCH http://localhost:3000/api/localidades/66a2e7f2123c9672e5ada8c6
+Content-Type: application/json
 
 {
     "nombre_localidad": "Bs As"
