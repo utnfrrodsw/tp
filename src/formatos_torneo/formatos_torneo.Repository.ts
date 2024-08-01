@@ -1,35 +1,54 @@
 import { Repository } from "../shared/repository.js"
 import { formatos_torneo } from "./formatos_torneo.entity.js"
-import { db } from '../shared/db/conn.js'
-import { ObjectId } from 'mongodb'
+import { pool } from '../shared/db/conn.mysql.js'
+import { ResultSetHeader, RowDataPacket } from 'mysql2'
 
-const formatos_torneos = db.collection<formatos_torneo>('Formatos_torneos')
 
 export class Formatos_torneoRepository implements Repository<formatos_torneo> {
     public async findAll(): Promise<formatos_torneo[] | undefined> {
-        return await formatos_torneos.find().toArray()
+        const [formatos_torneo] = await pool.query('Select * from formatos_torneo')
+        return formatos_torneo as formatos_torneo[]
     }
+
 
     public async findOne(item: { id: string }): Promise<formatos_torneo | undefined> {
-        const _id = new ObjectId(item.id)
-        return (await formatos_torneos.findOne({_id})) || undefined
+        const id = Number.parseInt(item.id)
+        const [formatos_torneos] = await pool.query<RowDataPacket[]>('select * from formatos_torneos where id = ?', [id])
+        if (formatos_torneos.length === 0) {
+            return undefined
+        }
+
+        const formato_torneo = formatos_torneos[0] as formatos_torneo
+            return formato_torneo
     }
 
-    public async add(item: formatos_torneo): Promise<formatos_torneo | undefined> {
-        item._id = (await formatos_torneos.insertOne(item)).insertedId
-        return item
-    }
 
-    public async update(item: formatos_torneo): Promise<formatos_torneo | undefined> {
-        const {id, ...formatosInput} = item
-        const _id = new ObjectId(id)
-        return (await formatos_torneos.findOneAndUpdate({_id},{$set: item},{returnDocument: 'after'})) || undefined
+    public async add(formatos_torneoInput: formatos_torneo): Promise<formatos_torneo | undefined> {
+        const { id, ...characterRow } = formatos_torneoInput
+        const [result] = await pool.query<ResultSetHeader>('insert into formatos_torneo set ?', [characterRow])
+        formatos_torneoInput.id = result.insertId
+
+    return formatos_torneoInput
   }
 
 
-  public async delete(item: { id: string }): Promise<formatos_torneo | undefined> {
-    const _id = new ObjectId(item.id)
-        return (await formatos_torneos.findOneAndDelete({_id})) || undefined
+    public async update(id:string, formatos_torneoInput: formatos_torneo): Promise<formatos_torneo | undefined> {
+        const formatos_torneoId = Number.parseInt(id)
+        const {...formatos_torneoRow } = formatos_torneoInput
+        await pool.query('update formatos_torneo set ? where id = ?', [formatos_torneoRow, formatos_torneoId])
+
+        return await this.findOne({id})
   }
-}
-   
+
+
+    public async delete(item: { id: string }): Promise<formatos_torneo | undefined> {
+    try {
+        const formatos_torneoToDelete = await this.findOne(item)
+        const formatos_torneoId = Number.parseInt(item.id)
+        await pool.query('delete from formatos_torneo where id = ?', formatos_torneoId)
+        return formatos_torneoToDelete
+      } catch (error: any) {
+        throw new Error('unable to delete formato_torneo')
+      }
+    }
+  }

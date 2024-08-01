@@ -1,35 +1,53 @@
 import { Repository } from "../shared/repository.js"
 import { estado_torneo } from "./estado_torneo.entity.js"
-import { db } from '../shared/db/conn.js'
-import { ObjectId } from 'mongodb'
+import { pool } from '../shared/db/conn.mysql.js'
+import { ResultSetHeader, RowDataPacket } from 'mysql2'
 
-const estados_torneos = db.collection<estado_torneo>('Estados_torneos')
 
 export class estado_torneoRepository implements Repository<estado_torneo> {
-  
+
   public async findAll(): Promise<estado_torneo[] | undefined> {
-    return await estados_torneos.find().toArray()
+    const [estados_torneos] = await pool.query('Select * from estados_torneos')
+    return estados_torneos as estado_torneo[]
   }
-  
+
+
   public async findOne(item: { id: string }): Promise<estado_torneo | undefined> {
-    const _id = new ObjectId(item.id)
-    return (await estados_torneos.findOne({_id})) || undefined
+    const id = Number.parseInt(item.id)
+        const [estados_torneos] = await pool.query<RowDataPacket[]>('select * from estados_torneos where id = ?', [id])
+        if (estados_torneos.length === 0) {
+            return undefined
+        }
+
+        const estado_torneos = estados_torneos[0] as estado_torneo
+            return estado_torneos
+    }
+public async add(estados_torneosImput: estado_torneo): Promise<estado_torneo | undefined> {
+    const { id, ...characterRow } = estados_torneosImput
+        const [result] = await pool.query<ResultSetHeader>('insert into estados_torneos set ?', [characterRow])
+        estados_torneosImput.id = result.insertId
+
+    return estados_torneosImput
   }
 
-  
-  public async add(item: estado_torneo): Promise<estado_torneo | undefined> {
-    item._id = (await estados_torneos.insertOne(item)).insertedId
-    return item
-  }
 
-  public async update(item: estado_torneo): Promise<estado_torneo| undefined> {
-    const {id, ...estado_torneoInput} = item
-        const _id = new ObjectId(id)
-        return (await estados_torneos.findOneAndUpdate({_id},{$set: item},{returnDocument: 'after'})) || undefined
-  }
+  public async update(id:string, estados_torneosInput: estado_torneo): Promise<estado_torneo| undefined> {
+    const estados_torneosId = Number.parseInt(id)
+        const {...estados_torneosRow } = estados_torneosInput
+        await pool.query('update estados_torneos set ? where id = ?', [estados_torneosRow, estados_torneosId])
+
+        return await this.findOne({id})
+      }
+
 
   public async delete(item: { id: string }): Promise<estado_torneo| undefined> {
-    const _id = new ObjectId(item.id)
-    return (await estados_torneos.findOneAndDelete({_id})) || undefined
+    try {
+      const estados_torneosToDelete = await this.findOne(item)
+      const estados_torneosId = Number.parseInt(item.id)
+      await pool.query('delete from estados_torneos where id = ?', estados_torneosId)
+      return estados_torneosToDelete
+    } catch (error: any) {
+      throw new Error('unable to delete estado_torneo')
+    }
   }
 }
