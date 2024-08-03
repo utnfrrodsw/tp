@@ -1,5 +1,5 @@
 const CountryService = require('../services/country.service');
-const service = new CountrySevice();
+const service = new CountryService();
 
 const create = async(req,res) => {
     try{
