@@ -7,7 +7,7 @@ class User extends Model{
         return{
             sequelize,
             tablename: USERS_TABLE,
-            modelname: 'user',
+            modelname: 'users',
             timestamp: true
         }
     }
