@@ -8,7 +8,7 @@ class Category extends Model{
             sequelize,
             tablename: CATEGORIES_TABLE,
             modelname: 'categories',
-            timestamp: false
+            timestamps: false
         }
     }
 }

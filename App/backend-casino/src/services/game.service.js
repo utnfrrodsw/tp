@@ -6,17 +6,17 @@ class GameService{
     }
 
     async find(){
-        const res = await models.User.findAll()
+        const res = await models.Game.findAll()
         return res;
     }
 
     async findOne(id){
-        const res = await models.User.findByPk(id);
+        const res = await models.Game.findByPk(id);
         return res;
     }
 
     async create(data){
-        const res = await models.User.create(data);
+        const res = await models.Game.create(data);
         return res;
     }
 
