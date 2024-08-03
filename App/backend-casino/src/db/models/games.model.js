@@ -8,7 +8,7 @@ class Game extends Model{
             sequelize,
             tablename: GAMES_TABLE,
             modelname: 'games',
-            timestamp: false
+            timestamps: false
         }
     }
 }
