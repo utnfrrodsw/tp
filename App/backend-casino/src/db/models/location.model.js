@@ -1,31 +1,31 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const COUNTRIES_TABLE  = 'countries';
+const LOCATIONS_TABLE  = 'locations';
 
-class Country extends Model{
+class Location extends Model{
     static config(sequelize) {
         return{
             sequelize,
-            tablename: COUNTRIES_TABLE,
-            modelname: 'countries',
+            tablename: LOCATIONS_TABLE,
+            modelname: 'locations',
             timestamps: false
         }
     }
 }
 
-const CountrySchema = {
-    id_country:{ 
+const LocationSchema = {
+    id_location:{ 
         allowNull:false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
     },
-    name_country:{
+    name_location:{
         allowNull: false,
         type: DataTypes.STRING,
-        field: "name_country"
+        field: "name_location"
     }
 
     }
 
-module.exports= { Country, CountrySchema };
+module.exports= { Location, LocationSchema };
