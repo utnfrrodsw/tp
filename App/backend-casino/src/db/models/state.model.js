@@ -8,7 +8,7 @@ class State extends Model{
             sequelize,
             tablename: STATES_TABLE,
             modelname: 'states',
-            timestamp: false
+            timestamps: false
         }
     }
 }
