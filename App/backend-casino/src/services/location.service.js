@@ -1,22 +1,22 @@
 const { models } = require('../libs/sequelize');
 
-class StateService{
+class LocationService{
     constructor(){
 
     }
 
     async find(){
-        const res = await models.State.findAll()
+        const res = await models.Location.findAll()
         return res;
     }
 
     async findOne(id){
-        const res = await models.State.findByPk(id);
+        const res = await models.Location.findByPk(id);
         return res;
     }
 
     async create(data){
-        const res = await models.State.create(data);
+        const res = await models.Location.create(data);
         return res;
     }
 
@@ -33,4 +33,4 @@ class StateService{
     }
 }
 
-module.exports = StateService;
+module.exports = LocationService;
