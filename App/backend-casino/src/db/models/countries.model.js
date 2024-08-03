@@ -8,7 +8,7 @@ class Country extends Model{
             sequelize,
             tablename: COUNTRIES_TABLE,
             modelname: 'countries',
-            timestamp: false
+            timestamps: false
         }
     }
 }
