@@ -11,10 +11,18 @@ class User extends Model{
             timestamps: true
         }
     }
+    static associate(models) {
+        this.belongsToMany(models.Game, {
+            through: models.UserGame,
+            foreignKey: 'id_user',
+            otherKey: 'id_game',
+        });
+        this.belongsTo(models.Location, { foreignKey: 'id_location' });
+    }
 }
 
 const UserSchema = {
-    id:{
+    id_user:{
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

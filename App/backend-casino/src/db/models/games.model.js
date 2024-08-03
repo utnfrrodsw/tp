@@ -11,6 +11,14 @@ class Game extends Model{
             timestamps: false
         }
     }
+    static associate(models) {
+        this.belongsToMany(models.User, {
+            through: models.UserGame,
+            foreignKey: 'id_game',
+            otherKey: 'id_user',
+            as: 'users'
+        })
+    }
 }
 
 const GameSchema = {
