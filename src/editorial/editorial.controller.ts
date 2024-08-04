@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { Editorial } from "./editorial.entity.js";
+import { errorDominio } from "../shared/DB/errors.js";
 
 function sanitizeInput(req: Request, res: Response, next: NextFunction) {
   req.body.inputOK = {
@@ -68,7 +69,9 @@ async function bajaEditorial(req: Request, res: Response) {
     await em.removeAndFlush(editorial);
     res.status(200).send({ message: "Editorial borrada" });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    if (error instanceof errorDominio) {
+      res.status(409).json({ message: error.message });
+    } else res.status(500).json({ message: error.message });
   }
 }
 export {

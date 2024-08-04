@@ -27,8 +27,10 @@ export class Libro extends BaseEntity {
   @ManyToOne(() => Autor)
   miAutor!: Rel<Autor>;
 
-  @ManyToMany(() => Editorial, undefined, {
+  @ManyToMany(() => Editorial, (editorial) => editorial.misLibros, {
     owner: true,
+    //deleteRule: "cascade",
+    //updateRule: "cascade",
   })
   misEditoriales = new Collection<Editorial>(this);
 }

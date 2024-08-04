@@ -8,17 +8,17 @@ POST http://localhost:3000/api/libros
 Content-Type: application/json
 
 {
-    "titulo": "TDon quijote",
+    "titulo": "Libro para borrar",
     "descripcion": "Un clásico de la literatura contemporanéa",
     "isbn": "0-7645-2641-3",
     "miAutor": 1, 
-    "misEditoriales": [2]
+    "misEditoriales": [4]
 
 }
 
 ### Delete de un libro por ID
 
-DELETE  http://localhost:3000/api/libros/1
+DELETE  http://localhost:3000/api/libros/6
 
 
 ## Actualizar libro por ID

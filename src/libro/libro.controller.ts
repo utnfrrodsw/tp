@@ -78,6 +78,8 @@ async function bajaLibro(req: Request, res: Response) {
     const id = Number.parseInt(req.params.id);
     const libro = em.getReference(Libro, id);
     await em.removeAndFlush(libro);
+    res.status(200).json({ message: "Libro eliminado" });
+    // Agregar 204
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { Autor } from "./autor.entity.js";
+import { MySqlDriver } from "@mikro-orm/mysql"; // O el driver que estés utilizando
 
 function sanitizeInput(req: Request, res: Response, next: NextFunction) {
   req.body.inputOK = {
@@ -70,7 +71,11 @@ async function bajaAutor(req: Request, res: Response) {
     await em.removeAndFlush(autor);
     res.status(200).send({ message: "Autor borrado" });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    if (error.code === "ER_ROW_IS_REFERENCED_2") {
+      res
+        .status(409)
+        .json({ message: "No se puede eliminar un autor que posea libros" });
+    } else res.status(500).json({ message: error.message });
   }
 }
 export {
