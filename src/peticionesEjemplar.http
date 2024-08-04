@@ -1,0 +1,13 @@
+### Obtener todos los ejemplares de un libro
+GET http://localhost:3000/api/libros/1/ejemplares
+
+
+### Subir editorial
+
+POST http://localhost:3000/api/libros/1/ejemplares
+Content-Type: application/json
+
+{
+    "idEjemplar": 1
+
+}

@@ -27,7 +27,7 @@ async function buscaLibros(req: Request, res: Response) {
     const autores = await em.find(
       Libro,
       {},
-      { populate: ["misAutores", "miEditorial"] }
+      { populate: ["misAutores", "miEditorial", "misEjemplares"] }
     );
     res.status(200).json({ message: "Libros encontrados: ", data: autores });
   } catch (error: any) {
@@ -41,7 +41,7 @@ async function buscaLibro(req: Request, res: Response) {
     const libro = await em.findOneOrFail(
       Libro,
       { id },
-      { populate: ["misAutores", "miEditorial"] }
+      { populate: ["misAutores", "miEditorial", "misEjemplares"] }
     );
     res.status(200).json({ message: "Libro encontrado", data: libro });
   } catch (error: any) {

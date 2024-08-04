@@ -5,7 +5,7 @@ import { orm, syncSchema } from "./shared/DB/orm.js";
 import { RequestContext } from "@mikro-orm/core";
 import { editorialRouter } from "./editorial/editorial.routes.js";
 import { libroRouter } from "./libro/libro.routes.js";
-
+import { ejemplarRouter } from "./ejemplar/ejemplar.routes.js";
 const app = express();
 
 app.use(express.json());
