@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { Autor } from "./autor.entity.js";
-import { MySqlDriver } from "@mikro-orm/mysql"; // O el driver que estés utilizando
+import { errorDominio } from "../shared/DB/errors.js";
 
 function sanitizeInput(req: Request, res: Response, next: NextFunction) {
   req.body.inputOK = {
@@ -35,7 +35,11 @@ async function buscaAutores(req: Request, res: Response) {
 async function buscaAutor(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const autor = await em.findOneOrFail(Autor, { id });
+    const autor = await em.findOneOrFail(
+      Autor,
+      { id },
+      { populate: ["misLibros"] }
+    );
     res.status(200).json({ message: "Autor encontrado", data: autor });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
@@ -71,13 +75,14 @@ async function bajaAutor(req: Request, res: Response) {
     await em.removeAndFlush(autor);
     res.status(200).send({ message: "Autor borrado" });
   } catch (error: any) {
-    if (error.code === "ER_ROW_IS_REFERENCED_2") {
-      res
-        .status(409)
-        .json({ message: "No se puede eliminar un autor que posea libros" });
-    } else res.status(500).json({ message: error.message });
+    if (error instanceof errorDominio) {
+      res.status(409).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: error.message });
+    }
   }
 }
+
 export {
   sanitizeInput,
   buscaAutores,

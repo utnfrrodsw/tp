@@ -1,13 +1,12 @@
 import {
   Entity,
-  OneToMany,
   ManyToMany,
   Property,
-  Cascade,
   Collection,
   ManyToOne,
+  Rel,
 } from "@mikro-orm/core";
-import { Rel } from "@mikro-orm/core";
+
 import { BaseEntity } from "../shared/DB/baseEntity.entity.js";
 
 import { Autor } from "../autor/autor.entity.js";
@@ -24,13 +23,9 @@ export class Libro extends BaseEntity {
   @Property()
   isbn!: string;
 
-  @ManyToOne(() => Autor)
-  miAutor!: Rel<Autor>;
+  @ManyToMany(() => Autor, (autor) => autor.misLibros, { owner: true })
+  misAutores = new Collection<Autor>(this);
 
-  @ManyToMany(() => Editorial, (editorial) => editorial.misLibros, {
-    owner: true,
-    //deleteRule: "cascade",
-    //updateRule: "cascade",
-  })
-  misEditoriales = new Collection<Editorial>(this);
+  @ManyToOne(() => Editorial)
+  miEditorial!: Rel<Editorial>;
 }

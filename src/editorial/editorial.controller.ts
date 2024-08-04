@@ -21,7 +21,11 @@ const em = orm.em;
 
 async function buscaEditoriales(req: Request, res: Response) {
   try {
-    const editoriales = await em.find(Editorial, {});
+    const editoriales = await em.find(
+      Editorial,
+      {},
+      { populate: ["misLibros"] }
+    );
     res
       .status(200)
       .json({ message: "Las editoriales encontradas son:", data: editoriales });
@@ -33,7 +37,11 @@ async function buscaEditoriales(req: Request, res: Response) {
 async function buscaEditorial(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const editorial = await em.findOneOrFail(Editorial, { id });
+    const editorial = await em.findOneOrFail(
+      Editorial,
+      { id },
+      { populate: ["misLibros"] }
+    );
     res.status(200).json({ message: "Editorial encontrada", data: editorial });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
@@ -69,8 +77,12 @@ async function bajaEditorial(req: Request, res: Response) {
     await em.removeAndFlush(editorial);
     res.status(200).send({ message: "Editorial borrada" });
   } catch (error: any) {
-    if (error instanceof errorDominio) {
-      res.status(409).json({ message: error.message });
+    if (error.code === "ER_ROW_IS_REFERENCED_2") {
+      res
+        .status(409)
+        .json({
+          message: "No se puede eliminar una editorial que posea libros",
+        });
     } else res.status(500).json({ message: error.message });
   }
 }

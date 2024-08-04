@@ -7,8 +7,8 @@ function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     titulo: req.body.titulo,
     descripcion: req.body.descripcion,
     isbn: req.body.isbn,
-    miAutor: req.body.miAutor, // Revisar
-    misEditoriales: req.body.misEditoriales, //Revisar
+    misAutores: req.body.misAutores, // Revisar
+    miEditorial: req.body.miEditorial, //Revisar
   };
 
   Object.keys(req.body.inputOK).forEach((key) => {
@@ -27,7 +27,7 @@ async function buscaLibros(req: Request, res: Response) {
     const autores = await em.find(
       Libro,
       {},
-      { populate: ["miAutor", "misEditoriales"] }
+      { populate: ["misAutores", "miEditorial"] }
     );
     res.status(200).json({ message: "Libros encontrados: ", data: autores });
   } catch (error: any) {
@@ -41,7 +41,7 @@ async function buscaLibro(req: Request, res: Response) {
     const libro = await em.findOneOrFail(
       Libro,
       { id },
-      { populate: ["miAutor", "misEditoriales"] }
+      { populate: ["misAutores", "miEditorial"] }
     );
     res.status(200).json({ message: "Libro encontrado", data: libro });
   } catch (error: any) {
@@ -79,7 +79,6 @@ async function bajaLibro(req: Request, res: Response) {
     const libro = em.getReference(Libro, id);
     await em.removeAndFlush(libro);
     res.status(200).json({ message: "Libro eliminado" });
-    // Agregar 204
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }

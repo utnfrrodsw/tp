@@ -11,8 +11,8 @@ Content-Type: application/json
     "titulo": "Libro para borrar",
     "descripcion": "Un clásico de la literatura contemporanéa",
     "isbn": "0-7645-2641-3",
-    "miAutor": 1, 
-    "misEditoriales": [4]
+    "misAutores": [1],
+    "miEditorial": 1
 
 }
 
