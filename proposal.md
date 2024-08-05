@@ -3,13 +3,10 @@
 ## Grupo
 ### Integrantes
 Montini Agostino 50757
-Azul Gomez 48107
-Collaud Maria Victoria 51766
-Decima Ivan 48624
+
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+--
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
