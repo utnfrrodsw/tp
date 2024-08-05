@@ -8,11 +8,11 @@ import {
   bajaAutor,
 } from "./autor.controller.js";
 
-export const aRouter = Router();
+export const autorRouter = Router();
 
-aRouter.get("/", buscaAutores);
-aRouter.get("/:id", buscaAutor);
-aRouter.post("/", sanitizeInput, altaAutor);
-aRouter.put("/:id", sanitizeInput, actualizarAutor);
-aRouter.patch("/:id", sanitizeInput, actualizarAutor);
-aRouter.delete("/:id", bajaAutor);
+autorRouter.get("/", buscaAutores);
+autorRouter.get("/:id", buscaAutor);
+autorRouter.post("/", sanitizeInput, altaAutor);
+autorRouter.put("/:id", sanitizeInput, actualizarAutor);
+autorRouter.patch("/:id", sanitizeInput, actualizarAutor);
+autorRouter.delete("/:id", bajaAutor);

@@ -12,13 +12,14 @@ Content-Type: application/json
     "descripcion": "Un clásico de la literatura contemporanéa",
     "isbn": "0-7645-2641-3",
     "misAutores": [1],
-    "miEditorial": 1
+    "miEditorial": 1,
+    "cantEjemplares": 3
 
 }
 
 ### Delete de un libro por ID
 
-DELETE  http://localhost:3000/api/libros/6
+DELETE  http://localhost:3000/api/libros/1
 
 
 ## Actualizar libro por ID

@@ -1,0 +1,40 @@
+### Obtener todaos los socios
+GET http://localhost:3000/api/socios
+
+
+### Subir editorial
+
+POST http://localhost:3000/api/socios
+Content-Type: application/json
+
+{
+    "nombre": "Agostino",
+    "apellido": "Lopez",
+    "email": "agosLopez@gmail.com",
+    "domicilio":"Las heras",
+    "telefono": "9991387"
+
+}
+
+### Obtener socio por ID
+GET http://localhost:3000/api/socios/1
+
+
+### Actualizar socio con PATCH (parcialmente)
+
+PATCH http://localhost:3000/api/socios/1
+Content-Type: application/json
+
+{
+    
+    "email": "zephyrPvP@gmail.com"
+
+}
+
+
+
+
+
+### Delete de un socio por ID
+
+DELETE  http://localhost:3000/api/socios/1

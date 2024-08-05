@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
-  buscaEditoriales,
-  buscaEditorial,
+  buscarEditoriales,
+  buscarEditorial,
   altaEditorial,
   sanitizeInput,
   actualizarEditorial,
@@ -10,8 +10,8 @@ import {
 
 export const editorialRouter = Router();
 
-editorialRouter.get("/", buscaEditoriales);
-editorialRouter.get("/:id", buscaEditorial);
+editorialRouter.get("/", buscarEditoriales);
+editorialRouter.get("/:id", buscarEditorial);
 editorialRouter.post("/", sanitizeInput, altaEditorial);
 editorialRouter.put("/:id", sanitizeInput, actualizarEditorial);
 editorialRouter.patch("/:id", sanitizeInput, actualizarEditorial);

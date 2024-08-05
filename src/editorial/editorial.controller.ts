@@ -19,7 +19,7 @@ function sanitizeInput(req: Request, res: Response, next: NextFunction) {
 
 const em = orm.em;
 
-async function buscaEditoriales(req: Request, res: Response) {
+async function buscarEditoriales(req: Request, res: Response) {
   try {
     const editoriales = await em.find(
       Editorial,
@@ -34,7 +34,7 @@ async function buscaEditoriales(req: Request, res: Response) {
   }
 }
 
-async function buscaEditorial(req: Request, res: Response) {
+async function buscarEditorial(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
     const editorial = await em.findOneOrFail(
@@ -78,18 +78,16 @@ async function bajaEditorial(req: Request, res: Response) {
     res.status(200).send({ message: "Editorial borrada" });
   } catch (error: any) {
     if (error.code === "ER_ROW_IS_REFERENCED_2") {
-      res
-        .status(409)
-        .json({
-          message: "No se puede eliminar una editorial que posea libros",
-        });
+      res.status(409).json({
+        message: "No se puede eliminar una editorial que posea libros",
+      });
     } else res.status(500).json({ message: error.message });
   }
 }
 export {
   sanitizeInput,
-  buscaEditoriales,
-  buscaEditorial,
+  buscarEditoriales,
+  buscarEditorial,
   altaEditorial,
   actualizarEditorial,
   bajaEditorial,

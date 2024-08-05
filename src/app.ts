@@ -1,11 +1,14 @@
 import "reflect-metadata";
 import express from "express";
-import { aRouter } from "./autor/autor.routes.js";
+import { autorRouter } from "./autor/autor.routes.js";
 import { orm, syncSchema } from "./shared/DB/orm.js";
 import { RequestContext } from "@mikro-orm/core";
 import { editorialRouter } from "./editorial/editorial.routes.js";
 import { libroRouter } from "./libro/libro.routes.js";
-import { ejemplarRouter } from "./ejemplar/ejemplar.routes.js";
+
+import { politicaBibliotecaRouter } from "./politicaBiblioteca/politicaBiblioteca.routes.js";
+import { politicaSancionRouter } from "./politicaSancion/politicaSancion.routes.js";
+import { socioRouter } from "./socio/socio.routes.js";
 const app = express();
 
 app.use(express.json());
@@ -16,10 +19,12 @@ app.use((req, res, next) => {
 });
 //antes de las rutas y middlewares de negocio
 
-app.use("/api/autores", aRouter);
+app.use("/api/autores", autorRouter);
 app.use("/api/editoriales", editorialRouter);
 app.use("/api/libros", libroRouter);
-
+app.use("/api/politicaBiblioteca", politicaBibliotecaRouter);
+app.use("/api/politicasSancion", politicaSancionRouter);
+app.use("/api/socios", socioRouter);
 app.use((_, res) => {
   return res.status(404).send({ message: "Recurso no encontrado" });
 });

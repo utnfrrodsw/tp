@@ -25,6 +25,9 @@ export class Libro extends BaseEntity {
   @Property()
   isbn!: string;
 
+  @Property({ hidden: true }) //Anotar
+  codigoEjemplarActual: number = 0;
+
   @ManyToMany(() => Autor, (autor) => autor.misLibros, { owner: true })
   misAutores = new Collection<Autor>(this);
 
@@ -33,4 +36,11 @@ export class Libro extends BaseEntity {
 
   @OneToMany(() => Ejemplar, (ejemplar) => ejemplar.miLibro, {})
   misEjemplares = new Collection<Ejemplar>(this);
+
+  // Metodos
+
+  getCodigoEjemplarActual(): number {
+    this.codigoEjemplarActual++;
+    return this.codigoEjemplarActual;
+  }
 }

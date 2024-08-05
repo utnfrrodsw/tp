@@ -11,7 +11,6 @@ import {
 
 import { BaseEntity } from "../shared/DB/baseEntity.entity.js";
 import { Libro } from "../libro/libro.entity.js";
-import { errorDominio } from "../shared/DB/errors.js";
 
 @Entity()
 export class Editorial extends BaseEntity {

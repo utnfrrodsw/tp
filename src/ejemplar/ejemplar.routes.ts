@@ -1,12 +1,16 @@
 import { Router } from "express";
 import {
-  buscaEjemplares,
-  altaEjemplar,
+  buscarEjemplares,
+  altaEjemplarManual,
   sanitizeInput,
+  buscarEjemplar,
+  bajaEjemplar,
+  bajaEjemplares,
 } from "./ejemplar.controller.js";
 export const ejemplarRouter = Router({ mergeParams: true });
 
-ejemplarRouter.get("/", buscaEjemplares);
-//ejemplarRouter.get("/:id", buscaEjemplar);
-ejemplarRouter.post("/", sanitizeInput, altaEjemplar);
-//ejemplarRouter.delete("/:id", bajaEjemplar);
+ejemplarRouter.get("/", buscarEjemplares);
+ejemplarRouter.get("/:idEjemplar", buscarEjemplar);
+ejemplarRouter.post("/", altaEjemplarManual);
+ejemplarRouter.delete("/", bajaEjemplares);
+ejemplarRouter.delete("/:idEjemplar", bajaEjemplar);

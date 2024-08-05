@@ -4,10 +4,7 @@ import { Ejemplar } from "./ejemplar.entity.js";
 import { Libro } from "../libro/libro.entity.js";
 
 function sanitizeInput(req: Request, res: Response, next: NextFunction) {
-  req.body.inputOK = {
-    idEjemplar: req.body.idEjemplar,
-    miLibro: req.params.id,
-  };
+  req.body.inputOK = {};
 
   Object.keys(req.body.inputOK).forEach((key) => {
     if (req.body.inputOK[key] === undefined) {
@@ -20,11 +17,10 @@ function sanitizeInput(req: Request, res: Response, next: NextFunction) {
 
 const em = orm.em;
 
-async function buscaEjemplares(req: Request, res: Response) {
+async function buscarEjemplares(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
     const libro = em.getReference(Libro, id);
-
     const ejemplares = await em.find(Ejemplar, { miLibro: libro });
     res.status(200).json({
       message: "Ejemplares del libro encontrados: ",
@@ -35,15 +31,36 @@ async function buscaEjemplares(req: Request, res: Response) {
   }
 }
 
-async function buscaEjemplar(req: Request, res: Response) {
-  res.status(500).json({ message: "Not implemented" });
+async function buscarEjemplar(req: Request, res: Response) {
+  try {
+    const idLibro = Number.parseInt(req.params.id);
+    const libro = em.getReference(Libro, idLibro);
+    const idEjemplarRecibida = Number.parseInt(req.params.idEjemplar);
+
+    const ejemplar = await em.findOneOrFail(Ejemplar, {
+      miLibro: libro,
+      id: idEjemplarRecibida,
+    });
+    res.status(200).json({
+      message: "Ejemplar encontrado",
+      data: ejemplar,
+    });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
-async function altaEjemplar(req: Request, res: Response) {
+async function altaEjemplarManual(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const libro = em.getReference(Libro, id);
-    const ejemplar = em.create(Ejemplar, req.body.inputOK);
+    const libro = await em.findOneOrFail(Libro, id);
+
+    const idEjemplar = libro.getCodigoEjemplarActual();
+
+    const ejemplar = em.create(Ejemplar, {
+      id: idEjemplar,
+      miLibro: libro,
+    });
     await em.flush();
     res.status(201).json({ message: "Ejemplar creado", data: ejemplar });
   } catch (error: any) {
@@ -51,12 +68,38 @@ async function altaEjemplar(req: Request, res: Response) {
   }
 }
 
-async function actualizarLibro(req: Request, res: Response) {
-  res.status(500).json({ message: "Not implemented" });
+// No tiene sentido un actualizarEjemplar, quizas la fecha pero no estoy seguro en el caso de un altaManual erronéa. Por revisar.
+
+async function bajaEjemplar(req: Request, res: Response) {
+  try {
+    const idLibro = Number.parseInt(req.params.id);
+    const idEjemplarRecibida = Number.parseInt(req.params.idEjemplar);
+    const ejemplar = em.getReference(Ejemplar, [idEjemplarRecibida, idLibro]);
+    await em.removeAndFlush(ejemplar);
+
+    res.status(200).send({ message: "Ejemplar borrado" });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
-async function bajaLibro(req: Request, res: Response) {
-  res.status(500).json({ message: "Not implemented" });
+async function bajaEjemplares(req: Request, res: Response) {
+  try {
+    const idLibro = Number.parseInt(req.params.id);
+    const libro = em.getReference(Libro, idLibro);
+    await em.nativeDelete(Ejemplar, { miLibro: libro });
+
+    res.status(200).send({ message: "Ejemplares borrados" });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
-export { buscaEjemplares, altaEjemplar, sanitizeInput };
+export {
+  buscarEjemplares,
+  altaEjemplarManual,
+  sanitizeInput,
+  buscarEjemplar,
+  bajaEjemplar,
+  bajaEjemplares,
+};
