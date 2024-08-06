@@ -14,19 +14,6 @@ function setupModels(sequelize){
     Game.init(GameSchema, Game.config(sequelize));
     User.init(UserSchema, User.config(sequelize));
     UserGame.init(UserGameSchema, UserGame.config(sequelize));
-
-    Category.hasMany(Game, {foreignKey: 'id_categories'});
-    Game.belongsTo(Category, { foreignKey: 'id_categories' });
-
-    Country.hasMany(State, {foreignKey: 'id_country'});
-    State.belongsTo(Country, {foreignKey: 'id_country'});
-
-    State.hasMany(Location, {foreignKey: 'id_state'});
-    Location.belongsTo(State, {foreignKey: 'id_state'});
-
-    Location.hasMany(User, {foreignKey: 'id_location'});
-    User.belongsTo(Location, {foreignKey: 'id_location'});
-
 }
 
 module.exports = setupModels

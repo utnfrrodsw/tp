@@ -16,8 +16,9 @@ class User extends Model{
             through: models.UserGame,
             foreignKey: 'id_user',
             otherKey: 'id_game',
+            as: 'games'
         });
-        this.belongsTo(models.Location, { foreignKey: 'id_location' });
+        this.belongsTo(models.Location, { foreignKey: 'id_location, id_state, id_country' });
     }
 }
 
@@ -27,6 +28,10 @@ const UserSchema = {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER 
+    },
+    username: {
+        allownull: false,
+        type: DataTypes.STRING
     },
     first_name:{
         allowNull: false,
@@ -82,8 +87,27 @@ const UserSchema = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        primaryKey: false
     },
+    id_state: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'locations',
+            key: 'id_state'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+    },
+    id_country: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'locations',
+            key: 'id_state'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+    }
 }
 
 module.exports= { User, UserSchema };

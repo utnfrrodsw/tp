@@ -12,12 +12,13 @@ class Game extends Model{
         }
     }
     static associate(models) {
+        this.belongsTo(models.Category, { foreignKey: 'id_category'});
         this.belongsToMany(models.User, {
             through: models.UserGame,
             foreignKey: 'id_game',
             otherKey: 'id_user',
             as: 'users'
-        })
+        });
     }
 }
 
@@ -28,10 +29,21 @@ const GameSchema = {
         primaryKey: true,
         type: DataTypes.INTEGER
     },
-    name_game:{
+    name:{
         allowNull: false,
         type: DataTypes.STRING,
         field: "name_game"
+    },
+    id_category:{
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        field: "id_category",
+        references: {
+            model: 'categories',
+            key: 'id_category'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     }
 
     }

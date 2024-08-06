@@ -11,6 +11,9 @@ class Country extends Model{
             timestamps: false
         }
     }
+    static associate(models) {
+        this.hasMany(models.State, { foreignKey: 'id_country', primaryKey: true  });
+    }
 }
 
 const CountrySchema = {
@@ -20,31 +23,31 @@ const CountrySchema = {
         primaryKey: true,
         type: DataTypes.INTEGER
     },
-    iso_country: {
+    iso: {
         allowNull: false,
         type: DataTypes.CHAR
     },
-    name_country:{
+    name:{
         allowNull: false,
         type: DataTypes.STRING,
         field: "name_country"
     },
-    niceName_country:{
+    nice_name:{
         allowNull: false,
         type: DataTypes.STRING,
         field: "nice_name"
     },
-    iso3_country: {
+    iso3: {
         allowNull: true,
         type: DataTypes.CHAR,
         field: "iso3"
     },
-    num_code_country: {
+    num_code: {
         allowNull: true,
         type: DataTypes.INTEGER,
         field: "numcode"
     },
-    phone_code_country: {
+    phone_code: {
         allowNull: true,
         type: DataTypes.INTEGER,
         field: "phone_code"

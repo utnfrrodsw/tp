@@ -13,7 +13,7 @@ class State extends Model{
     }
     static associate(models) {
         this.belongsTo(models.Country, { foreignKey: 'id_country', primaryKey: true });
-        this.hasMany(models.Location, { foreignKey: 'id_state', primaryKey: true  });
+        this.hasMany(models.Location, { foreignKey: 'id_state, id_country', primaryKey: true  });
     }
 }
 

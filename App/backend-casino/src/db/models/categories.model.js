@@ -11,19 +11,23 @@ class Category extends Model{
             timestamps: false
         }
     }
+    static associate(models) {
+        this.hasMany(models.Game, { foreignKey: 'id_category'});
+    }
+    
 }
 
 const CategorySchema = {
-    id_categories:{ 
+    id_category:{ 
         allowNull:false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
     },
-    name_category:{
+    description:{
         allowNull: false,
         type: DataTypes.STRING,
-        field: "description_category"
+        field: "description"
     }
 
     }
