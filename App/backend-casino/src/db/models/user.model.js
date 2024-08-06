@@ -72,9 +72,18 @@ const UserSchema = {
         allowNull: true,
         type: DataTypes.DECIMAL,
         field: 'balance'
-    }
-
-    // faltarian las FK de Localidad, Provincia y Pais
+    },
+    id_location: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'locations',
+            key: 'id_location'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        primaryKey: false
+    },
 }
 
 module.exports= { User, UserSchema };

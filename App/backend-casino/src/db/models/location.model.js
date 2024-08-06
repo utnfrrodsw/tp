@@ -11,6 +11,10 @@ class Location extends Model{
             timestamps: false
         }
     }
+     static associate(models) {
+        this.belongsTo(models.State, { foreignKey: 'id_state', primaryKey: true });
+        this.hasMany(models.User, { foreignKey: 'id_location', primaryKey: false });
+    }
 }
 
 const LocationSchema = {
@@ -20,6 +24,17 @@ const LocationSchema = {
         primaryKey: true,
         type: DataTypes.INTEGER
     },
+    /*id_state: { // HAY UN ERROR AL AÑADIR LA FK DE ID DE ESTADO
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'states',
+            key: 'id_state'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        primaryKey: true
+    },*/
     name_location:{
         allowNull: false,
         type: DataTypes.STRING,

@@ -7,12 +7,12 @@ const { Game, GameSchema } = require('./games.model');
 const { UserGame, UserGameSchema } = require('./userGame.model');
 
 function setupModels(sequelize){
-    User.init(UserSchema, User.config(sequelize));
     Country.init(CountrySchema, Country.config(sequelize));
     State.init(StateSchema, State.config(sequelize));
     Location.init(LocationSchema, Location.config(sequelize));
     Category.init(CategorySchema, Category.config(sequelize));
     Game.init(GameSchema, Game.config(sequelize));
+    User.init(UserSchema, User.config(sequelize));
     UserGame.init(UserGameSchema, UserGame.config(sequelize));
 
     Category.hasMany(Game, {foreignKey: 'id_categories'});

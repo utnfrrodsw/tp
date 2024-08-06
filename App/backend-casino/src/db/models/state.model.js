@@ -11,6 +11,10 @@ class State extends Model{
             timestamps: false
         }
     }
+    static associate(models) {
+        this.belongsTo(models.Country, { foreignKey: 'id_country', primaryKey: true });
+        this.hasMany(models.Location, { foreignKey: 'id_state', primaryKey: true  });
+    }
 }
 
 const StateSchema = {
@@ -19,6 +23,17 @@ const StateSchema = {
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
+    },
+    id_country: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'countries',
+            key: 'id_country'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        primaryKey: true
     },
     name_state:{
         allowNull: false,

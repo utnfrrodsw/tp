@@ -34,7 +34,6 @@ const UserGameSchema = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        primaryKey: true
     },
     datePlayed:{
         allowNull: false,
