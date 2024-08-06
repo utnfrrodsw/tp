@@ -1,5 +1,5 @@
-const LocationService = require('../services/location.service');
-const service = new LocationService();
+const ProvinceService = require('../services/province.service');
+const service = new ProvinceService();
 
 const create = async(req,res) => {
     try{
@@ -29,6 +29,16 @@ const getById = async(req,res) => {
     }
 }
 
+const getByCountry = async(req,res) => {
+    try{
+        const { id } = req.params;
+        const response = await service.findByCountry(id);
+        res.json(response) 
+        } catch(error){
+            res.status(500).send({ success: false, message: error.message});
+        }
+}
+
 const update = async(req,res) => {
     try{
         const { id } = req.params;
@@ -51,5 +61,5 @@ const _delete = async (req,res) => {
 }
 
 module.exports = {
-    create, get, getById, _delete, update
+    create, get, getById, _delete, update, getByCountry
 };

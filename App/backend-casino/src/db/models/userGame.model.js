@@ -45,6 +45,10 @@ const UserGameSchema = {
     bet: {
         type: DataTypes.FLOAT,
         allowNull: true
+    },
+    winning: {
+        type: DataTypes.FLOAT,
+        allowNull: true
     }
 
     }

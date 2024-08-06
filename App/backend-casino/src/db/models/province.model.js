@@ -1,24 +1,24 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const STATES_TABLE  = 'states';
+const PROVINCES_STABLE  = 'provinces';
 
-class State extends Model{
+class Province extends Model{
     static config(sequelize) {
         return{
             sequelize,
-            tablename: STATES_TABLE,
-            modelname: 'states',
+            tablename: PROVINCES_STABLE,
+            modelname: 'provinces',
             timestamps: false
         }
     }
     static associate(models) {
         this.belongsTo(models.Country, { foreignKey: 'id_country', primaryKey: true });
-        this.hasMany(models.Location, { foreignKey: 'id_state, id_country', primaryKey: true  });
+        this.hasMany(models.Cities, { foreignKey: 'id_province, id_country', primaryKey: true  });
     }
 }
 
-const StateSchema = {
-    id_state:{ 
+const ProvinceSchema = {
+    id_province:{ 
         allowNull:false,
         autoIncrement: true,
         primaryKey: true,
@@ -33,14 +33,15 @@ const StateSchema = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        primaryKey: true
+        primaryKey: true,
+        field: "id_country"
     },
-    name_state:{
+    name:{
         allowNull: false,
         type: DataTypes.STRING,
-        field: "name_state"
+        field: "name"
     }
 
     }
 
-module.exports= { State, StateSchema };
+module.exports= { Province, ProvinceSchema };

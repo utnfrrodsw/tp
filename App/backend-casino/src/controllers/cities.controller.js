@@ -1,5 +1,5 @@
-const StateService = require('../services/state.service');
-const service = new StateService();
+const CityService = require('../services/city.service');
+const service = new CityService();
 
 const create = async(req,res) => {
     try{
@@ -17,6 +17,26 @@ const get = async(req,res) => {
     } catch(error) {
         res.status(500).send({ success: false, message: error.message })
     }
+}
+
+const getByProvince = async(req,res) => {
+    try{
+        const { id } = req.params;
+        const response = await service.findByProvince(id);
+        res.json(response) 
+        } catch(error){
+            res.status(500).send({ success: false, message: error.message});
+        }
+}
+
+const getByCountry = async(req,res) => {
+    try{
+        const { id } = req.params;
+        const response = await service.findByCountry(id);
+        res.json(response) 
+        } catch(error){
+            res.status(500).send({ success: false, message: error.message});
+        }
 }
 
 const getById = async(req,res) => {
@@ -51,5 +71,5 @@ const _delete = async (req,res) => {
 }
 
 module.exports = {
-    create, get, getById, _delete, update
+    create, get, getById, _delete, update, getByProvince, getByCountry
 };

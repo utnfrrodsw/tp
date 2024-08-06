@@ -32,7 +32,7 @@ const GameSchema = {
     name:{
         allowNull: false,
         type: DataTypes.STRING,
-        field: "name_game"
+        field: "name"
     },
     id_category:{
         allowNull: false,
@@ -43,7 +43,13 @@ const GameSchema = {
             key: 'id_category'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
+        field: "id_category"
+    },
+    description: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        field: "description"
     }
 
     }

@@ -18,7 +18,7 @@ class User extends Model{
             otherKey: 'id_game',
             as: 'games'
         });
-        this.belongsTo(models.Location, { foreignKey: 'id_location, id_state, id_country' });
+        this.belongsTo(models.city, { foreignKey: 'id_city, id_province, id_country' });
     }
 }
 
@@ -31,12 +31,13 @@ const UserSchema = {
     },
     username: {
         allownull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        field: 'username'
     },
     first_name:{
         allowNull: false,
         type: DataTypes.STRING,
-        field:'first_name'
+        field: 'first_name'
     },
     last_name:{
         allowNull: false,
@@ -78,32 +79,34 @@ const UserSchema = {
         type: DataTypes.DECIMAL,
         field: 'balance'
     },
-    id_location: {
+    id_city: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'locations',
-            key: 'id_location'
+            model: 'cities',
+            key: 'id_city'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
+        field: 'id_city'
     },
-    id_state: {
+    id_province: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'locations',
-            key: 'id_state'
+            model: 'cities',
+            key: 'id_province'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
+        field: 'id_province'
     },
     id_country: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'locations',
-            key: 'id_state'
+            model: 'cities',
+            key: 'id_country'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

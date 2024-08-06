@@ -25,12 +25,13 @@ const CountrySchema = {
     },
     iso: {
         allowNull: false,
-        type: DataTypes.CHAR
+        type: DataTypes.CHAR,
+        field: "iso"
     },
     name:{
         allowNull: false,
         type: DataTypes.STRING,
-        field: "name_country"
+        field: "name"
     },
     nice_name:{
         allowNull: false,
@@ -45,7 +46,7 @@ const CountrySchema = {
     num_code: {
         allowNull: true,
         type: DataTypes.INTEGER,
-        field: "numcode"
+        field: "num_code"
     },
     phone_code: {
         allowNull: true,

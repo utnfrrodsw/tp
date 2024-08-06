@@ -1,29 +1,38 @@
 const { models } = require('../libs/sequelize');
 
-class GameService{
+class CityService{
     constructor(){
 
     }
 
     async find(){
-        const res = await models.Game.findAll()
+        const res = await models.City.findAll()
         return res;
     }
 
     async findOne(id){
-        const res = await models.Game.findByPk(id);
+        const res = await models.City.findByPk(id);
         return res;
     }
 
     async create(data){
-        const res = await models.Game.create(data);
+        const res = await models.City.create(data);
         return res;
     }
 
-    async findByCategory(id){
-        const res = await models.Game.findAll({
+    async findByProvince(id){
+        const res = await models.City.findAll({
             where: {
-                id_category : id,
+                id_province: id 
+            },
+        });
+        return res;
+    }
+
+    async findByCountry(id){
+        const res = await models.City.findAll({
+            where: {
+                id_country: id,
             },
         });
         return res;
@@ -42,4 +51,4 @@ class GameService{
     }
 }
 
-module.exports = GameService;
+module.exports = CityService;
