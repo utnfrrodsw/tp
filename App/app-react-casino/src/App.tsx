@@ -8,6 +8,7 @@ import { Wheel } from './components/Games/Wheel/Wheel.tsx'
 import { RouletteLive } from './pages/RouletteLive/RouletteLive.tsx'
 import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx'
 import './App.css'
+import { Listado } from './components/Axios/Listado.tsx'
 
 export function App() {
     return(
@@ -20,6 +21,7 @@ export function App() {
                     <Route path="/wheel" element={<Wheel />} />
                     <Route path="/live_roulette" element={<RouletteLive />} />
                     <Route path="*" element={<ErrorPage />} />
+                    <Route path="/listado" element={<Listado/>} />
                 </Routes>
             <Footer/>
         </>
