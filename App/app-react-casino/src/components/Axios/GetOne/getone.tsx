@@ -3,13 +3,12 @@ import { useEffect, useState } from 'react';
 import './getone.css';
 
 export function GetOne() {
-    const [lista, setLista] = useState([])
     const GetList = () => {
     axios({
         method: "get",
-        url: "http://localhost:3000/api/v1/countries/${this.id_country}",
+        url: "http://localhost:3000/api/v1/countries/1",
     }).then((response) =>
-        setLista(response.data)    
+        console.log(response.data) 
     )}
 
     useEffect(() => {
@@ -18,15 +17,9 @@ export function GetOne() {
 
     return (
         <>
-        <div className="hola">
-                <ul>
-                    {lista.map((item) => {
-                        return (
-                        <li key={item.id_country}> {item.name} </li>
-                        );
-                    })}
-                </ul>
-        </div>
+            <div className="hola">
+                <p>hola</p>
+            </div>
         </>
 
     )
