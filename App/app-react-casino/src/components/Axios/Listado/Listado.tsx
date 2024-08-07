@@ -9,7 +9,7 @@ export function Listado() {
     const [lista, setLista] = useState([])
     const GetList = () => {
     axios.get("http://localhost:3000/api/v1/countries").then((response) =>
-        setLista(response.data)    
+        setLista(response.data)
     )}
 
    useEffect(() => {
