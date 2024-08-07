@@ -1,32 +1,34 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react';
-import './Listado.css';
+import './getone.css';
 
-export function Listado() {
-
+export function GetOne() {
     const [lista, setLista] = useState([])
     const GetList = () => {
-        axios.get("http://localhost:3000/api/v1/countries").then((response) =>
+    axios({
+        method: "get",
+        url: "http://localhost:3000/api/v1/countries/${this.id_country}",
+    }).then((response) =>
         setLista(response.data)    
     )}
 
     useEffect(() => {
         GetList();
-    })
+    });
 
     return (
-
         <>
-            <div className='hola'>
+        <div className="hola">
                 <ul>
                     {lista.map((item) => {
-                        return <li key={item.id_country}>{item.name}</li>;
+                        return (
+                        <li key={item.id_country}> {item.name} </li>
+                        );
                     })}
                 </ul>
-            </div>
+        </div>
         </>
 
     )
-
 
 }

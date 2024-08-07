@@ -8,7 +8,7 @@ class User extends Model{
             sequelize,
             tablename: USERS_TABLE,
             modelname: 'users',
-            timestamps: true
+            timestamps: false
         }
     }
     static associate(models) {
@@ -76,7 +76,7 @@ const UserSchema = {
     },
     balance: {
         allowNull: true,
-        type: DataTypes.DECIMAL,
+        type: DataTypes.INTEGER,
         field: 'balance'
     },
     id_city: {
