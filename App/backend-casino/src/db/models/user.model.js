@@ -32,7 +32,8 @@ const UserSchema = {
     username: {
         allownull: false,
         type: DataTypes.STRING,
-        field: 'username'
+        field: 'username',
+        unique: true
     },
     first_name:{
         allowNull: false,
@@ -57,12 +58,14 @@ const UserSchema = {
     phone:{
         allowNull: false,
         type: DataTypes.STRING,
-        field: 'phone'  
+        field: 'phone',
+        unique: true
     },
     email:{
         allowNull: false,
         type: DataTypes.STRING,
-        field: 'email'
+        field: 'email',
+        unique: true
     },
     password:{
         allowNull: false,
