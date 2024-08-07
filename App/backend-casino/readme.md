@@ -11,6 +11,7 @@ Para inicializar el servidor y crear las tablas correspondientes.
 ### Comandos de Postman
 #### PUT - Users
 
+    "username": "",
     "first_name": "",
     "last_name": "",
     "birthday": "YYYY/DD/MM",
@@ -19,5 +20,7 @@ Para inicializar el servidor y crear las tablas correspondientes.
     "email": "",
     "password": "",
     "role": "",
-    "balance": ""
-
+    "balance": "",
+    "id_city": "",
+    "id_province": "",
+    "id_country": ""
