@@ -10,6 +10,49 @@ export function Listado() {
         setLista(response.data)    
     )}
 
+    axios.post('http://localhost:3000/api/v1/users', {
+        id_user: 1,
+        username: "mau",
+        first_name: "mauri",
+        last_name: "fiorin",
+        birthday: "2002/12/04",
+        street: "la maldita calle bro",
+        phone: 3424125,
+        email: "hola@gmail.com",
+        password: "agusgil",
+        role: "admin",
+        balance: 244444444444,
+        id_city: 1,
+        id_province: 1,
+        id_country: 1
+    })
+    .then(function (response) {
+        console.log(response);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+    /*axios({
+        method: 'post',
+        url: 'http://localhost:3000/api/v1/users',
+        data: {
+            username: "mau",
+            first_name: "mauri",
+            last_name: "fiorin",
+            birthday: "2002/12/04",
+            street: "la maldita calle bro",
+            phone: "3424125",
+            email: "hola@gmail.com",
+            password: "agusgil",
+            role: "admin",
+            balance: "244444444444",
+            id_city: "1",
+            id_province: "1",
+            id_country: "1"
+        }
+      });*/
+
     useEffect(() => {
         GetList();
     })
