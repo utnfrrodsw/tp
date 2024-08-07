@@ -1,0 +1,13 @@
+.second-header{
+    display: flex;
+    height: 40px;
+    align-items: center;
+    background-color: #5092f5;
+    border-top: 3px solid #29279f8a;
+    justify-content: center;
+    /*font-size: large;*/
+    font-family:  Arial, sans-serif;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    
+  }

@@ -10,5 +10,5 @@ import { BurgerMenuComponent } from './burger-button/burger-button.component.js'
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  headerUrl="/assets/logo.svg";
+  logoPath='/assets/logo.svg';
 }
