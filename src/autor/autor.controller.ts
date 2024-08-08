@@ -77,9 +77,8 @@ async function bajaAutor(req: Request, res: Response) {
   } catch (error: any) {
     if (error instanceof errorDominio) {
       res.status(409).json({ message: error.message });
-    } else {
-      res.status(500).json({ message: error.message });
     }
+    res.status(500).json({ message: error.message });
   }
 }
 

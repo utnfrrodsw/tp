@@ -81,7 +81,8 @@ async function bajaEditorial(req: Request, res: Response) {
       res.status(409).json({
         message: "No se puede eliminar una editorial que posea libros",
       });
-    } else res.status(500).json({ message: error.message });
+    }
+    res.status(500).json({ message: error.message });
   }
 }
 export {

@@ -21,6 +21,7 @@
     "@mikro-orm/core": "6.2.9",
     "@mikro-orm/mysql": "6.2.9",
     "@mikro-orm/sql-highlighter": "1.0.1",
+    "date-fns": "^3.6.0",
     "express": "4.19.2",
     "mysql2": "3.10.2",
     "reflect-metadata": "0.2.2"

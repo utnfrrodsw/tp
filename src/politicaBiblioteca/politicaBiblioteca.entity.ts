@@ -12,5 +12,16 @@ export class PoliticaBiblioteca extends BaseEntity {
   diasPrestamo!: number; // Dias por los que se presta un libro
 
   @Property()
-  cantPendientes!: number; // Cantidad de libros maximos pendientes
+  cantPendientesMaximo!: number; // Cantidad de libros maximos pendientes
+
+  getCantPendientesMaximo(): number {
+    return this.cantPendientesMaximo;
+  }
+  getDiasPrestamo(): number {
+    return this.diasPrestamo;
+  }
+
+  getDiasSancionMaxima(): number {
+    return this.diasSancionMaxima;
+  }
 }

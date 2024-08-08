@@ -9,4 +9,8 @@ export class PoliticaSancion {
 
   @Property()
   diasSancion!: number;
+
+  getDiasSancion(): number {
+    return this.diasSancion;
+  }
 }

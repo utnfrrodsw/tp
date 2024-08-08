@@ -26,7 +26,7 @@ export class Libro extends BaseEntity {
   isbn!: string;
 
   @Property({ hidden: true }) //Anotar
-  codigoEjemplarActual: number = 0;
+  codigoEjemplarActual = 0;
 
   @ManyToMany(() => Autor, (autor) => autor.misLibros, { owner: true })
   misAutores = new Collection<Autor>(this);

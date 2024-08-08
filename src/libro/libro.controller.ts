@@ -115,7 +115,8 @@ async function bajaLibro(req: Request, res: Response) {
       res.status(409).json({
         message: "No se puede eliminar un libro que posea ejemplares",
       });
-    } else res.status(500).json({ message: error.message });
+    }
+    res.status(500).json({ message: error.message });
   }
 }
 
