@@ -12,7 +12,7 @@ POST http://localhost:3000/api/eventos
 Content-Type: application/json
 
 {
-    "idEvento": 1233,
+    "idEvento": "1233",
     "nombre":"evento popcddddddddd",
     "cuposGral":99999,
     "descripcion":"prueba 1",
@@ -33,7 +33,7 @@ Content-Type: application/json
     "fecha":"ayer",
     "hora":1500
 }
-//NO ANDA SI PONGO EL ID EN LA API, SI LO PONGO EN EL JSON SI
+
 
 
 ### modificar un evento (PATCH - recurso parcial)
@@ -44,7 +44,6 @@ Content-Type: application/json
     "cuposGral": 100,
     "descripcion": "prueba 3"
 }
-//NO ANDA SI PONGO EL ID EN LA API, SI LO PONGO EN EL JSON SI
 
 
 ### Borrar un evento

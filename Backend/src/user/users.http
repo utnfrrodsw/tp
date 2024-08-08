@@ -7,7 +7,7 @@ GET http://localhost:3000/api/users
 GET http://localhost:3000/api/users/a02b91bc-3769-4221-beb1-d7a3aeba7dad    
 
 ### Crear un nuevo usuario
-//no anda el post no encuentra las propiedades
+
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
@@ -19,6 +19,7 @@ Content-Type: application/json
 }
 
 ### Modificar un usuario (PUT - recurso completo e idempotente)
+
 PUT http://localhost:3000/api/users/a02b91bc-3769-4221-beb1-d7a3aeba7dad
 Content-Type: application/json
 

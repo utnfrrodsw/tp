@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { EventoRepository } from "./repositorio";
-import { evento } from "./evento";
+import { EventoRepository } from "./repositorio.js";
+import { evento } from "./evento.js";
 
 const repository = new EventoRepository()
 
@@ -29,16 +29,17 @@ function findAll(req: Request,res: Response) {
 }
 
 function findOne(req: Request,res: Response) {
-    const nuevoEvento = repository.findOne({id:Number(req.params.id)}) 
+    const nuevoEvento = repository.findOne({id:req.params.id}) 
     if (!nuevoEvento) {
         return res.status(404).send({message: 'evento no encontrado'})
     }
-    return res.json(nuevoEvento)
+    return res.json({data: nuevoEvento})
 }
 
 
 function add(req: Request,res: Response) {
     const input = req.body.sanitizedInput
+
     const nuevoEventoInput = new evento(
         input.idEvento,
         input.nombre, 
@@ -61,11 +62,10 @@ function update(req: Request, res: Response){
     }
     return res.status(200).send({message:'Evento actualizado correctamente', data: nuevoEvento})
 }
-//NO ANDA SI PONGO EL ID EN LA API, SI LO PONGO EN EL JSON SI
 
 
 function remove(req: Request,res: Response) {
-    const id=Number(req.params.id)
+    const id = req.params.id
     const nuevoEvento = repository.delete({id})
 
     if(!nuevoEvento) {

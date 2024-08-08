@@ -1,20 +1,13 @@
-import { evento } from "./evento";
-
-interface Repository<T> {
-    findAll(): T[] | undefined
-    findOne(item: { id: number }): T | undefined
-    add(item: T): T | undefined
-    update(item: T): T | undefined
-    delete(item: {id: number}): T | undefined
-}
+import { Repository } from "../shared/repository.js";
+import { evento } from "./evento.js";
 
 const eventos = [
     new evento (
-        123123,
-        'Techno',
+        "123123",
+        'Fiesta de año nuevo',
         3000,
-        'asdasd',
-        'asdasd',
+        '¡Celebra el Año Nuevo con nosotros! Disfruta de música, comida y un brindis a la medianoche. ¡Vení y dá la bienvenida al 2024 con estilo!',
+        '31/12/2024',
         20,
     ),
 ]
@@ -24,8 +17,8 @@ export class EventoRepository implements Repository<evento>{
         return eventos
     }
 
-    public findOne(item: { id: number; }): evento | undefined {
-        return eventos.find((evento)=>evento.idEvento === item.id)
+    public findOne (item: { id: string; }): evento | undefined {
+        return eventos.find((evento)=> evento.idEvento === item.id)
     }
 
     public add(item: evento): evento | undefined {
@@ -41,7 +34,7 @@ export class EventoRepository implements Repository<evento>{
         return eventos[eventoIDx] 
     }
 
-    public delete(item: { id: number; }): evento | undefined {
+    public delete (item: { id: string; }): evento | undefined {
               const eventoIDx = eventos.findIndex((evento) => evento.idEvento === item.id)
     if(eventoIDx !== -1) {
         const deletedEventos = eventos[eventoIDx]

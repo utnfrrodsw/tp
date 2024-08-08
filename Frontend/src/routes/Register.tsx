@@ -2,6 +2,7 @@ import { Button, Card, CardBody, CardHeader, Center, ChakraProvider, FormControl
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '../auth/auhtProvider'
+import { URL_BASE } from '../config/constantes'
 
 export default function Register() {
 
@@ -18,7 +19,7 @@ export default function Register() {
         e.preventDefault();
     
         try {
-            const response = await fetch("http://localhost:3000/api/register", {
+            const response = await fetch(`${URL_BASE}/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

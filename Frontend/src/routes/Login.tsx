@@ -2,6 +2,7 @@ import { Button, Card, CardBody, CardHeader, Center, ChakraProvider, FormControl
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import { useAuth } from '../auth/auhtProvider'
+import { URL_BASE } from '../config/constantes'
 
 export default function Login() {
 
@@ -13,6 +14,29 @@ export default function Login() {
         return <NavLink to="/dashboard"/>
     }
 
+    async function handlesSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+    
+        try {
+            const response = await fetch(`${URL_BASE}/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            });
+            if (response.ok) {
+                console.log("usuario registrado");
+            } else {
+                const errorData = await response.json();
+                console.log("Error:", errorData);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <ChakraProvider>
             <Center>
@@ -21,7 +45,7 @@ export default function Login() {
                         <Heading>Iniciar sesión</Heading>
                     </CardHeader>
                     <CardBody>
-                        <form>
+                        <form onSubmit={handlesSubmit}>
                             <FormControl>
                                 <FormLabel>Ingrese su correo electónico</FormLabel>
                                 <Input type='email' value={email} onChange={(e)=> setEmail(e.target.value)}/>
