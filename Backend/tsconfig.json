@@ -16,8 +16,3 @@
   },
   "include": ["src/**/*", "**/*.ts"],
   "exclude": ["node_modules"]
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 51ca0df82096f2884a79d133881b281b261f2d56
