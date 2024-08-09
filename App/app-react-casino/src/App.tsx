@@ -10,7 +10,7 @@ import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx'
 import { Listado } from './components/Axios/Listado/Listado.tsx'
 import { PostUser } from './components/Axios/PostUser/PostUser.tsx'
 import { GetOne } from './components/Axios/GetOne/getone.tsx'
-import { User } from './components/Axios/Usuarios/User.tsx'
+import { User } from './components/Axios/User/User.tsx'
 
 export function App() {
     return(
