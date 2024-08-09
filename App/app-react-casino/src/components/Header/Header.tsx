@@ -16,7 +16,7 @@ export function Header() {
             {modalOpen && (
                 <LogIn onClose={handleButtonClick}/>
             )}
-            <nav className='bg-[#fabc01]/10 p-3 flex items-center justify-between'>
+            <nav className='bg-[#fabc01]/10 p-3 flex items-center justify-between nav'>
             <Link to="/"><img className='max-h-20' src="./src/assets/images/ruleta_v1.png" /></Link>
                 <div className='space-x-10'>
                     <Link to="/chau">About Us</Link>

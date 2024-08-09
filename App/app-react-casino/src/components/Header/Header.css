@@ -18,7 +18,7 @@
                 linear-gradient(to top, #FFD976, #D8751A) border-box;   
 }
 
-nav{
+.nav{
     backdrop-filter: blur(5px);
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
 }

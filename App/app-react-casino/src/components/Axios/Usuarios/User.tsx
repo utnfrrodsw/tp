@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react';
-import './Usuario.css';
+import './User.css';
 
 
 
-export function Usuario() {
+export function User() {
 
     const [user, setUser] = useState([])
     const GetUser = () => {
@@ -18,8 +18,8 @@ export function Usuario() {
 
     return (
         <div className="list-main">
-            <div className='titulo-'>
-                <h2 className='titulo-user'>Gestión de Usuarios</h2>
+            <div className='title-'>
+                <h2 className='title-user'>User management</h2>
             </div>
             <div className="header-name">
                 <div className="header-column">ID</div>

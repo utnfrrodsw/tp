@@ -1,4 +1,4 @@
-.titulo-main{
+.title-main{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,7 +6,7 @@
     margin-bottom: 20px;
 }
 
-.titulo-user{
+.title-user{
     font-size: 1.5rem;
     padding-bottom: 1rem;
 }

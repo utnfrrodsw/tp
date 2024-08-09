@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import './Tragamonedas.css';
+import './Slot.css';
 import { GamesSideBar } from "../../GamesSideBar";
 
-export function Tragamonedas() {
+export function Slot() {
 
     useEffect(() => {
         window.scrollTo(0, 0)}, []

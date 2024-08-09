@@ -1,6 +1,5 @@
 import { Roulette, Rotar } from "../../components/Games/RouletteGame/Roulette"
 import { BetBoard } from "../../components/Games/RouletteGame/BetBoard"
-import "./RouletteLive.css"
 
 export function RouletteLive() {
     return (
