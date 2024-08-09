@@ -52,4 +52,20 @@ export class Ejemplar {
     return lpPendiente;
     //En el contexto de uso de la función, esto deberia devolver una LP siempre. Contemplar crear un error especifico.
   }
+  toJSON(includeLp = true, includeLibro = true) {
+    const json: any = {
+      id: this.id,
+      fechaIncorporacion: this.fechaIncorporacion,
+    };
+
+    if (includeLp) {
+      json.misLp = this.misLp.getItems().map((lp) => lp.toJSON(false));
+    }
+
+    if (includeLibro) {
+      json.miLibro = this.miLibro.toJSON(false);
+    }
+
+    return json;
+  }
 }

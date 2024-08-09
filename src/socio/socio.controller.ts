@@ -24,7 +24,7 @@ const em = orm.em;
 
 async function buscarSocios(req: Request, res: Response) {
   try {
-    const socios = await em.find(Socio, {});
+    const socios = await em.find(Socio, {}, { populate: ["misPrestamos"] });
     res.status(200).json({
       message: "Socios encontrados: ",
       data: socios,

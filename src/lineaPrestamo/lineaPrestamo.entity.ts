@@ -53,4 +53,18 @@ export class LineaPrestamo {
   getFechaDevolucionTeorica(): Date {
     return this.fechaDevolucionTeorica;
   }
+  toJSON(includeEjemplar = true) {
+    const json: any = {
+      ordenLinea: this.ordenLinea,
+      fechaDevolucionTeorica: this.fechaDevolucionTeorica,
+      fechaDevolucionReal: this.fechaDevolucionReal,
+      // Puedes agregar más propiedades si es necesario
+    };
+
+    if (includeEjemplar) {
+      json.miEjemplar = this.miEjemplar.toJSON(false);
+    }
+
+    return json;
+  }
 }

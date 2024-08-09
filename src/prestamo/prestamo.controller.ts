@@ -16,6 +16,7 @@ import {
   instanceToPlain,
   serialize,
 } from "class-transformer";
+import { Libro } from "../libro/libro.entity.js";
 
 function sanitizeInput(req: Request, res: Response, next: NextFunction) {
   req.body.inputOK = {};
@@ -35,7 +36,7 @@ async function retirarLibrosPaso1(req: Request, res: Response) {
   // Se recibe idSocio
   try {
     const socio = await em.findOneOrFail(Socio, req.body.idSocio, {
-      populate: ["misSanciones"],
+      populate: ["misSanciones", "misPrestamos.misLpPrestamo.miEjemplar"],
     });
 
     if (!socio.estasHabilitado()) {
@@ -55,10 +56,21 @@ async function retirarLibrosPaso1(req: Request, res: Response) {
     const prestamoVacio = em.create(Prestamo, {
       fechaPrestamo: new Date(),
       ordenLinea: 0,
-      miSocio: socio,
+      miSocioPrestamo: socio,
     });
 
-    res.status(200).json({ prestamoActual: prestamoVacio });
+    /* const prestamoJson = instanceToPlain(prestamoVacio, {
+      enableCircularCheck: true,
+      excludeExtraneousValues: true,
+    });
+    console.log(prestamoJson);
+*/
+    const prestamoJson = prestamoVacio.toJSON(false);
+    const socioJson = socio.toJSON(true);
+
+    return res.status(200).json({
+      prestamoActual: { ...prestamoJson, miSocioPrestamo: socioJson },
+    });
   } catch (error: any) {
     if (error instanceof NotFoundError) {
       return res.status(404).json({ message: "Socio no encontrado" });
@@ -80,23 +92,18 @@ async function retirarLibrosPaso2(req: Request, res: Response) {
     );
     const libro = ejemplar.getLibro();
     const politicaBiblioteca = await em.findOneOrFail(PoliticaBiblioteca, 1);
-    const socio = await em.findOneOrFail(
-      Socio,
-      req.body.prestamoActual.miSocio,
-      { populate: ["misPrestamos.misLp"] }
-    );
-    console.log(socio);
+
     const prestamoActual = plainToClass(Prestamo, req.body.prestamoActual);
-    await em.populate(prestamoActual);
-    console.log(prestamoActual);
+
     if (
-      politicaBiblioteca.getCantPendientesMaximo() === socio.getCantPendientes()
+      politicaBiblioteca.getCantPendientesMaximo() ===
+      prestamoActual.miSocioPrestamo.getCantPendientes() // Crear un getSocio
     ) {
       res.status(409).json({
         message: "El socio ya saco la cantidad maxima de libros en prestámo",
       });
     }
-    if (socio.tenesPendiente(ejemplar.getLibro())) {
+    if (prestamoActual.miSocioPrestamo.tenesPendiente(ejemplar.getLibro())) {
       res
         .status(409)
         .json({ message: "El socio tiene pendiente un ejemplar de ese libro" });
@@ -113,13 +120,14 @@ async function retirarLibrosPaso2(req: Request, res: Response) {
       fechaDevolucionTeorica: fechaDevolucionTeorica,
       miEjemplar: ejemplar,
     });
-    console.log(lpNueva);
 
-    (prestamoActual.misLp as any).push(lpNueva);
-    console.log(prestamoActual);
+    prestamoActual.misLpPrestamo.add(lpNueva);
+
+    const prestamoJson = prestamoActual.toJSON(false);
+    const socioJson = prestamoActual.miSocioPrestamo.toJSON(true);
     return res.status(200).json({
       data: {
-        prestamoActual: prestamoActual,
+        prestamoActual: { ...prestamoJson, miSocioPrestamo: socioJson },
       },
     });
   } catch (error: any) {

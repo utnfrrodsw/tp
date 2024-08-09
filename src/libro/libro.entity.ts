@@ -25,7 +25,7 @@ export class Libro extends BaseEntity {
   @Property()
   isbn!: string;
 
-  @Property({ hidden: true }) //Anotar
+  @Property() //Contemplar hidden
   codigoEjemplarActual = 0;
 
   @ManyToMany(() => Autor, (autor) => autor.misLibros, { owner: true })
@@ -42,5 +42,22 @@ export class Libro extends BaseEntity {
   getCodigoEjemplarActual(): number {
     this.codigoEjemplarActual++;
     return this.codigoEjemplarActual;
+  }
+  toJSON(includeEjemplares = true) {
+    const json: any = {
+      titulo: this.titulo,
+      descripcion: this.descripcion,
+      isbn: this.isbn,
+      codigoEjemplarActual: this.codigoEjemplarActual,
+      // No incluimos codigoEjemplarActual ya que está marcado como hidden
+    };
+
+    if (includeEjemplares) {
+      json.misEjemplares = this.misEjemplares
+        .getItems()
+        .map((ejemplar) => ejemplar.toJSON(false));
+    }
+
+    return json;
   }
 }

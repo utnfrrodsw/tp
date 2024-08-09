@@ -1,7 +1,8 @@
 import { PrimaryKey } from "@mikro-orm/core";
-
+import { Expose } from "class-transformer";
 export abstract class BaseEntity {
   @PrimaryKey()
+  @Expose()
   id?: number;
 
   /*

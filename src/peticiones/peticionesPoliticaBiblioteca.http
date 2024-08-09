@@ -20,8 +20,8 @@ PUT http://localhost:3000/api/politicaBiblioteca
 Content-Type: application/json
 
 {
-    "diasSancionMaxima": 666,
+    "diasSancionMaxima": 130,
     "diasPrestamo": 30,
-    "cantPendientes": 3
+    "cantPendientesMaximo": 4
 
 }

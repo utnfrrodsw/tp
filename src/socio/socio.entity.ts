@@ -3,29 +3,37 @@ import { Prestamo } from "../prestamo/prestamo.entity.js";
 import { BaseEntity } from "../shared/DB/baseEntity.entity.js";
 import { Sancion } from "../sancion/sancion.entity.js";
 import { Libro } from "../libro/libro.entity.js";
-import { Type } from "class-transformer";
+import { Type, Expose } from "class-transformer";
 
 @Entity()
 export class Socio extends BaseEntity {
   @Property()
+  @Expose()
   nombre!: string;
   @Property()
+  @Expose()
   apellido!: string;
   @Property()
+  @Expose()
   email!: string;
   @Property()
+  @Expose()
   domicilio!: string;
   @Property()
+  @Expose()
   telefono!: string;
   @Property() // Analizar si deberia ser hidden
+  @Expose()
   estadoSocio?: string = "Habilitado";
 
-  @OneToMany(() => Prestamo, (prestamo) => prestamo.miSocio, {})
+  @OneToMany(() => Prestamo, (prestamo) => prestamo.miSocioPrestamo, {})
   @Type(() => Prestamo)
+  @Expose()
   misPrestamos = new Collection<Prestamo>(this);
 
-  @OneToMany(() => Sancion, (sancion) => sancion.miSocio, {})
+  @OneToMany(() => Sancion, (sancion) => sancion.miSocioSancion, {})
   @Type(() => Sancion)
+  @Expose()
   misSanciones = new Collection<Sancion>(this);
 
   //Metodos
@@ -73,5 +81,27 @@ export class Socio extends BaseEntity {
       acumulador += prestamo.getCantPendientes();
     }
     return acumulador;
+  }
+  toJSON(includePrestamosSanciones = true) {
+    const json: any = {
+      id: this.id,
+      nombre: this.nombre,
+      apellido: this.apellido,
+      email: this.email,
+      domicilio: this.domicilio,
+      telefono: this.telefono,
+      estadoSocio: this.estadoSocio,
+    };
+
+    if (includePrestamosSanciones) {
+      json.misPrestamos = this.misPrestamos.isInitialized()
+        ? this.misPrestamos.getItems().map((p) => p.toJSON(false))
+        : [];
+      json.misSanciones = this.misSanciones.isInitialized()
+        ? this.misSanciones.getItems().map((s) => s.toJSON())
+        : [];
+    }
+
+    return json;
   }
 }
