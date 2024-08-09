@@ -24,9 +24,6 @@ export class LineaPrestamo {
   [PrimaryKeyProp] = ["ordenLinea", "miPrestamo"];
 
   @Property({ type: DateType })
-  fechaPrestamo = new Date();
-
-  @Property({ type: DateType })
   fechaDevolucionTeorica!: Date;
 
   @Property({ nullable: true, type: DateType })

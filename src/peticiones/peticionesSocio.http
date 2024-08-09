@@ -2,7 +2,7 @@
 GET http://localhost:3000/api/socios
 
 
-### Subir editorial
+### Subir Socio
 
 POST http://localhost:3000/api/socios
 Content-Type: application/json

@@ -9,6 +9,14 @@ import { LineaPrestamo } from "../lineaPrestamo/lineaPrestamo.entity.js";
 import { differenceInDays } from "date-fns";
 import { PoliticaSancion } from "../politicaSancion/politicaSancion.entity.js";
 import { Sancion } from "../sancion/sancion.entity.js";
+
+import {
+  classToPlain,
+  plainToClass,
+  instanceToPlain,
+  serialize,
+} from "class-transformer";
+
 function sanitizeInput(req: Request, res: Response, next: NextFunction) {
   req.body.inputOK = {};
 
@@ -24,90 +32,124 @@ function sanitizeInput(req: Request, res: Response, next: NextFunction) {
 const em = orm.em;
 
 async function retirarLibrosPaso1(req: Request, res: Response) {
+  // Se recibe idSocio
   try {
-    const idSocio = Number.parseInt(req.body.idSocio);
-    const socio = await em.findOneOrFail(Socio, idSocio);
-// Preguntar sobre si respetar o no el encapsulamiento.
+    const socio = await em.findOneOrFail(Socio, req.body.idSocio, {
+      populate: ["misSanciones"],
+    });
+
     if (!socio.estasHabilitado()) {
-      res.status(409).json({ message: "Socio inhabilitado (no devolvio un prestámo)" }); .
+      //Revisar si calcularlo o actualización automatica.
+      return res
+        .status(409)
+        .json({ message: "Socio inhabilitado (no devolvio un prestámo)" });
     }
-    if (socio.estasSancionado()) { //Este es un cálculo
-        const diasSancionado = socio.getDiasSancion();
-      res.status(409).json({ message: "Socio sancionado", data: diasSancionado });
+    if (socio.estasSancionado()) {
+      //Este es un cálculo
+      const diasSancionado = socio.getDiasSancion();
+      return res
+        .status(409)
+        .json({ message: "Socio sancionado", data: diasSancionado });
     }
 
-    const prestamo = new Prestamo(); // Esto solo hacerlo si el paso 2 tendra multiples requests. 
+    const prestamoVacio = em.create(Prestamo, {
+      fechaPrestamo: new Date(),
+      ordenLinea: 0,
+      miSocio: socio,
+    });
 
-
-    res.status(200).json({ data: {socio: socio, prestamoActual:prestamo}});
-
+    res.status(200).json({ prestamoActual: prestamoVacio });
   } catch (error: any) {
-    if(error instanceof NotFoundError){
-        res.status(404).json({message: "Socio no encontrado"});
+    if (error instanceof NotFoundError) {
+      return res.status(404).json({ message: "Socio no encontrado" });
     }
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 }
 
-
 async function retirarLibrosPaso2(req: Request, res: Response) {
-try{
-    //Se recibe idLibro, idEjemplar, socio del paso 1 y opcionalmente un prestamo(lo recibe siempre que no sea el primer libro).
-   
-   const  idEjemplar = Number.parseInt(req.body.idEjemplar);
-   const  idLibro = Number.parseInt(req.body.idLibro);
+  try {
+    //Se recibe idLibro, idEjemplar, socio del paso 1, prestamo del paso 1.
 
-   const ejemplar = await em.findOneOrFail(Ejemplar,[idEjemplar,idLibro]);
-   const libro = ejemplar.getLibro();
-   const politicaBiblioteca= await em.findOneOrFail(PoliticaBiblioteca,1);
-   const socio = req.body.socio;
-   const prestamoActual = req.body.prestamoActual;
-
-   if(politicaBiblioteca.getCantPendientesMaximo()=== socio.getCantPendientes()){
-    res.status(409).json({message: "El socio ya saco la cantidad maxima de libros en prestámo"})
-   }
-   if(socio.tenesPendiente(ejemplar.getLibro())){
-    res.status(409).json({message: "El socio tiene pendiente un ejemplar de ese libro"})
-   }
-   if(prestamoActual.tenesPendiente(libro)){ //Se reutiliza el metodo. 
-    res.status(409).json({message: "Ya existe un ejemplar de ese libro en el prestámo actual"})
-   }
-
-   const lpNueva = new LineaPrestamo(prestamoActual.getOrdenLinea(),politicaBiblioteca.getDiasPrestamo(),ejemplar);
-
-   prestamoActual.misLp.push(lpNueva);
-
-
-   res.status(200).json({data:{prestamoActual: prestamoActual, socio:socio}}) 
-
-}catch(error:any){
-    if(error.message.includes('PoliticaBiblioteca')){
-      res.status(500).json({message: "Politica biblioteca  inaccesible"})
+    const ejemplar = await em.findOneOrFail(
+      Ejemplar,
+      [req.body.idEjemplar, req.body.idLibro],
+      {
+        populate: ["miLibro"],
+      }
+    );
+    const libro = ejemplar.getLibro();
+    const politicaBiblioteca = await em.findOneOrFail(PoliticaBiblioteca, 1);
+    const socio = await em.findOneOrFail(
+      Socio,
+      req.body.prestamoActual.miSocio,
+      { populate: ["misPrestamos.misLp"] }
+    );
+    console.log(socio);
+    const prestamoActual = plainToClass(Prestamo, req.body.prestamoActual);
+    await em.populate(prestamoActual);
+    console.log(prestamoActual);
+    if (
+      politicaBiblioteca.getCantPendientesMaximo() === socio.getCantPendientes()
+    ) {
+      res.status(409).json({
+        message: "El socio ya saco la cantidad maxima de libros en prestámo",
+      });
     }
-    if(error instanceof NotFoundError){
-        res.status(404).json({message: "Ejemplar o libro no encontrado"});
+    if (socio.tenesPendiente(ejemplar.getLibro())) {
+      res
+        .status(409)
+        .json({ message: "El socio tiene pendiente un ejemplar de ese libro" });
+    }
+    if (prestamoActual.tenesPendiente(libro)) {
+      //Se reutiliza el metodo.
+      res.status(409).json({
+        message: "Ya existe un ejemplar de ese libro en el prestámo actual",
+      });
+    }
+    const fechaDevolucionTeorica = new Date("2024-08-15"); //Falta el calculo
+    const lpNueva = em.create(LineaPrestamo, {
+      ordenLinea: prestamoActual.getOrdenLinea(),
+      fechaDevolucionTeorica: fechaDevolucionTeorica,
+      miEjemplar: ejemplar,
+    });
+    console.log(lpNueva);
+
+    (prestamoActual.misLp as any).push(lpNueva);
+    console.log(prestamoActual);
+    return res.status(200).json({
+      data: {
+        prestamoActual: prestamoActual,
+      },
+    });
+  } catch (error: any) {
+    if (error.message.includes("PoliticaBiblioteca")) {
+      return res
+        .status(500)
+        .json({ message: "Politica biblioteca  inaccesible" });
+    }
+    if (error instanceof NotFoundError) {
+      return res
+        .status(404)
+        .json({ message: "Ejemplar o libro no encontrado" });
     }
 
- res.status(500).json({message: error.message});
-}
-}
-
-async function retirarLibrosPaso3(req: Request, res: Response){
-try{
-  const prestamo = req.body.prestamoActual;
-  if(prestamo.estaCompleto()){  // No creo que deba validarlo el prestamo en el controlador.
-    em.create(Prestamo,prestamo);
-    await em.flush();}
-    res.status(201).json({message: "Prestámo creado"});
-  res.status(400).json({message: "Prestamo inválido"});
-}catch(error:any){
-  res.status(500).json({message: error.message});
-}
+    return res.status(500).json({ message: error.message });
+  }
 }
 
-
-
-
+async function retirarLibrosPaso3(req: Request, res: Response) {
+  try {
+    const prestamo = plainToClass(Prestamo, req.body.prestamoActual);
+    //Falta validar que este completo
+    await em.persistAndFlush(prestamo);
+    res.status(201).json({ message: "Prestámo creado" });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+}
+export { retirarLibrosPaso1, retirarLibrosPaso2 };
+/*
  // CU Devolver libro (Se repite por cada libro)
 
  async function devolverLibroPaso1(req: Request, res: Response){
@@ -154,4 +196,4 @@ try{
 
 
 
- }
+ }^*/

@@ -1,0 +1,53 @@
+### Paso 1 retirar libros
+
+GET http://localhost:3000/api/prestamos/retirarLibrosPaso1
+Content-Type: application/json
+
+{
+    "idSocio": 1
+
+}
+
+### Paso 2 retirar libros
+
+GET http://localhost:3000/api/prestamos/retirarLibrosPaso2
+Content-Type: application/json
+
+{
+    "idEjemplar": 1,
+    "idLibro": 2,
+    "prestamoActual":{
+      "misLp": [],
+      "fechaPrestamo": "2024-08-09T14:39:08.397Z",
+      "ordenLinea": 0,
+      "miSocio": 1
+    }
+
+}
+
+### Paso 2 retirar libros
+
+GET http://localhost:3000/api/prestamos/retirarLibrosPaso2
+Content-Type: application/json
+
+{
+    "idEjemplar": 1,
+    "idLibro": 2,
+    "prestamoActual":{
+      "misLp": [
+         {
+          "ordenLinea": 1,
+          "fechaDevolucionTeorica": "2024-08-15T00:00:00.000Z",
+          "miEjemplar": {
+            "id": 1,
+            "miLibro": 2
+          }
+        }
+      ],
+      "fechaPrestamo": "2024-08-09T14:39:08.397Z",
+      "ordenLinea": 0,
+      "miSocio": 1
+    }
+
+}
+

@@ -2,7 +2,7 @@ import { Entity, ManyToOne, Property, DateType, Rel } from "@mikro-orm/core";
 import { Socio } from "../socio/socio.entity.js";
 import { BaseEntity } from "../shared/DB/baseEntity.entity.js";
 import { addDays, isBefore } from "date-fns";
-
+import { Type } from "class-transformer";
 @Entity()
 export class Sancion extends BaseEntity {
   @Property({ type: DateType })
@@ -12,6 +12,7 @@ export class Sancion extends BaseEntity {
   diasSancion!: number;
 
   @ManyToOne(() => Socio)
+  @Type(() => Socio)
   miSocio!: Rel<Socio>;
 
   getFechaFinSancion(): Date {

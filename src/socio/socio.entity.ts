@@ -3,6 +3,7 @@ import { Prestamo } from "../prestamo/prestamo.entity.js";
 import { BaseEntity } from "../shared/DB/baseEntity.entity.js";
 import { Sancion } from "../sancion/sancion.entity.js";
 import { Libro } from "../libro/libro.entity.js";
+import { Type } from "class-transformer";
 
 @Entity()
 export class Socio extends BaseEntity {
@@ -20,9 +21,11 @@ export class Socio extends BaseEntity {
   estadoSocio?: string = "Habilitado";
 
   @OneToMany(() => Prestamo, (prestamo) => prestamo.miSocio, {})
+  @Type(() => Prestamo)
   misPrestamos = new Collection<Prestamo>(this);
 
   @OneToMany(() => Sancion, (sancion) => sancion.miSocio, {})
+  @Type(() => Sancion)
   misSanciones = new Collection<Sancion>(this);
 
   //Metodos

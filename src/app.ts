@@ -9,6 +9,7 @@ import { libroRouter } from "./libro/libro.routes.js";
 import { politicaBibliotecaRouter } from "./politicaBiblioteca/politicaBiblioteca.routes.js";
 import { politicaSancionRouter } from "./politicaSancion/politicaSancion.routes.js";
 import { socioRouter } from "./socio/socio.routes.js";
+import { prestamoRouter } from "./prestamo/prestamo.routes.js";
 const app = express();
 
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use("/api/libros", libroRouter);
 app.use("/api/politicaBiblioteca", politicaBibliotecaRouter);
 app.use("/api/politicasSancion", politicaSancionRouter);
 app.use("/api/socios", socioRouter);
+app.use("/api/prestamos", prestamoRouter);
 app.use((_, res) => {
   return res.status(404).send({ message: "Recurso no encontrado" });
 });

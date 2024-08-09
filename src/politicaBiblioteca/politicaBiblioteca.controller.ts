@@ -6,7 +6,7 @@ function sanitizeInput(req: Request, res: Response, next: NextFunction) {
   req.body.inputOK = {
     diasSancionMaxima: req.body.diasSancionMaxima,
     diasPrestamo: req.body.diasPrestamo,
-    cantPendientes: req.body.cantPendientes,
+    cantPendientesMaximo: req.body.cantPendientesMaximo,
   };
 
   Object.keys(req.body.inputOK).forEach((key) => {
