@@ -8,7 +8,7 @@ class User extends Model{
             sequelize,
             tablename: USERS_TABLE,
             modelname: 'users',
-            timestamps: false
+            timestamps: true
         }
     }
     static associate(models) {
