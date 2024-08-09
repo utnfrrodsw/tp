@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AltaFormComponent } from './alta-tipo-form.component';
+import { VolquetesBodyComponent } from './volquetes-body.component';
 
-describe('AltaFormComponent', () => {
-  let component: AltaFormComponent;
-  let fixture: ComponentFixture<AltaFormComponent>;
+describe('VolquetesBodyComponent', () => {
+  let component: VolquetesBodyComponent;
+  let fixture: ComponentFixture<VolquetesBodyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AltaFormComponent]
+      imports: [VolquetesBodyComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AltaFormComponent);
+    fixture = TestBed.createComponent(VolquetesBodyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
