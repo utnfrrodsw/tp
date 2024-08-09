@@ -1,0 +1,18 @@
+
+.wheel {
+  width: 500px;
+  height: 500px;
+  transform: rotate(0deg);
+  transition-property: transform;
+  transition-duration: 4s;
+  transition-timing-function: cubic-bezier(.46,-0.12,.37,1);
+  pointer-events: none;
+}
+
+.button {
+  margin-top: 20px;
+  padding: 10px 50px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: var(--amarillo);
+}
