@@ -25,10 +25,10 @@ A raiz de la necesidad de minimizar la cantidad de vehículos que circulan en el
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo estadía<br>2. CRUD Vehículo<br>3. CRUD Localidad<br>4. CRUD Cliente|
-|CRUD dependiente|1. CRUD Reserva {depende de} CRUD Tipo Reserva<br>2. CRUD Cochera {depende de} CRUD Localidad|
+|CRUD simple|1. CRUD Tipo estadía<br>2. CRUD Lugar<br>3. CRUD Localidad<br>4. CRUD Cliente|
+|CRUD dependiente|1. CRUD Vehiculo {depende de} CRUD Cliente<br>2. CRUD Cochera {depende de} CRUD Localidad|
 |Listado<br>+<br>detalle| 1. Listado mensual de reservas filtrado por cochera, muestra el cuit de la cochera, el mes al que corresponde y cantidad de reversas de ese mes, => detalle CRUD Reserva<br> 2. Listado de reservas filtrado por cliente en un rango de fecha, muestra cuit de las cocheras en las que se registró una reserva y datos de dicha reserva => detalle muestra datos completos de la reserva|
-|CUU/Epic|1. Reservar estadía<br>2. Registrar usuario|
+|CUU/Epic|1. Registrar reserva<br>2. Dar de baja reserva
 
 
 Adicionales para Aprobación
