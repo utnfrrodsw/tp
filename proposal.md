@@ -17,7 +17,7 @@ Cada evento contará con diferentes categorias (cumpleaños, casamientos, aniver
 Una vez que el usuario realize la selección y finalize la compra de la entrada, recibirá en su casilla de correo un mensaje de confirmación el cual será utilizado como entrada.
 
 ### Modelo
-![imagen del modelo de dominio](https://github.com/user-attachments/assets/fcd8d1d6-3e12-450b-904a-42e8009d1e27)
+![imagen del modelo de dominio](https://github.com/user-attachments/assets/1a8577ea-ba61-4c32-813a-dde1572c2460)
 
 ### Reglas de negocio
 
@@ -43,7 +43,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD usuario<br>2. CRUD evento<br>3. CRUD categoria|
-|CRUD dependiente|1. CRUD ubicacion {depende de} CRUD evento|
+|CRUD dependiente|1. CRUD ubicacion {depende de} CRUD evento<br>2. CRUD entrada {depende de} CRUD usuario|
 |Listado<br>+<br>detalle| 1. Listado de eventos filtrados por fecha, hora y lugar => detalle CRUD Evento|
 |CUU/Epic|1. Comprar una entrada para un evento|
 
