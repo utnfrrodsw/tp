@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './User.css';
+import { NavLink as Link } from 'react-router-dom'
 
 export function User() {
     const [user, setUser] = useState([]);
@@ -74,7 +75,7 @@ export function User() {
                         <div className="actions">
                             <button className="edit-btn">Edit</button>
                             <button className="delete-btn">Delete</button>
-                            <button className="read-btn">Read</button>
+                            <Link to="/details" className="read-btn">Read</Link>
                         </div>
                     </li>
                 ))}
