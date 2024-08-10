@@ -12,6 +12,7 @@ import { PostUser } from './components/Axios/PostUser/PostUser.tsx'
 import { GetOne } from './components/Axios/GetOne/getone.tsx'
 import { User } from './components/Axios/User/User.tsx'
 import { Details } from './components/Axios/Details/Details.tsx'
+import { EditUser } from './components/Axios/EditUser/EditUser.tsx'
 
 export function App() {
     return(
@@ -29,6 +30,7 @@ export function App() {
                     <Route path="/getone" element={<GetOne />} />
                     <Route path="/user" element={<User />} />
                     <Route path="/details" element={<Details />} />
+                    <Route path="/edituser" element={<EditUser />} />
                 </Routes>
             <Footer/>
         </>

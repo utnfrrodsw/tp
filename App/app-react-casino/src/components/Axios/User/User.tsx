@@ -15,6 +15,13 @@ export function User() {
         );
     };
 
+    function DeleteUser(id:number) {
+        axios.delete(`http://localhost:3000/api/v1/users/${id}`).then((responseDelete) =>
+            location.reload()
+        );
+    };
+
+
     useEffect(() => {
         GetUser();
     }, []);
@@ -73,8 +80,8 @@ export function User() {
                             <div className="column">{item.balance}</div>
                         </div>
                         <div className="actions">
-                            <button className="edit-btn">Edit</button>
-                            <button className="delete-btn">Delete</button>
+                            <Link to="/edituser" className="edit-btn" state={item}>Edit</Link>
+                            <button className="delete-btn" onClick={() => DeleteUser(item.id_user)}>Delete</button>
                             <Link to="/details" className="read-btn" state={item}>Read</Link>
                         </div>
                     </li>
