@@ -12,12 +12,12 @@ POST http://localhost:3000/api/evento
 Content-Type: application/json
 
 {
-    "idEvento": "345345",
+    "idEvento": "",
     "nombre":"Fiesta de cumpleaños",
     "cuposGral":40,
     "descripcion":"¡Es hora de festejar otro año de vida! Vení a la fiesta y hagamos de este cumpleaños algo inolvidable. ¡Diversión, amigos y sorpresas te esperan!",
     "fecha":"08/08/2025",
-    "hora":15
+    "hora":"15"
 }
 
 ### modificar un evento (PUT - recurso completo e inempotente)
