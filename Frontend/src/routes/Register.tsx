@@ -6,9 +6,11 @@ import { URL_BASE } from '../config/constantes'
 
 export default function Register() {
 
-    const [user, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+    const [name, setName] = useState("")
     const [email, setEmail] = useState("")
+    const [birthdate, setBirthdate] = useState("")
+    const [password, setPassword] = useState("")
+   
     const auht = useAuth()
 
     if (auht.isAuthenticated) {
@@ -19,12 +21,13 @@ export default function Register() {
         e.preventDefault();
     
         try {
-            const response = await fetch(`${URL_BASE}/register`, {
+            const response = await fetch(`${URL_BASE}/users`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
+                    name,
                     email,
-                    user,
+                    birthdate,
                     password
                 })
             });
@@ -50,11 +53,15 @@ export default function Register() {
                         <form onSubmit={handlesSubmit}>
                             <FormControl>
                                 <FormLabel>Ingrese su nombre</FormLabel>
-                                <Input type='text' value={user} onChange={(e) => setUsername(e.target.value)} />
+                                <Input type='text' value={name} onChange={(e) => setName(e.target.value)} />
                                 <FormErrorMessage>Error</FormErrorMessage>
 
                                 <FormLabel>Ingrese su correo electónico</FormLabel>
                                 <Input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <FormErrorMessage>Error</FormErrorMessage>
+
+                                <FormLabel>Ingrese su fecha de nacimiento</FormLabel>
+                                <Input type='text' value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
                                 <FormErrorMessage>Error</FormErrorMessage>
 
                                 <FormLabel>Ingrese su contraseña</FormLabel>
