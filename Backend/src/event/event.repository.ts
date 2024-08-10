@@ -3,7 +3,7 @@ import { evento } from "./event.entity.js";
 
 const eventos = [
     new evento (
-        "123123",
+        "a02f91bc-3769-4221-beb1-d7a3aeba7ads",
         'Fiesta de año nuevo',
         3000,
         '¡Celebra el Año Nuevo con nosotros! Disfruta de música, comida y un brindis a la medianoche. ¡Vení y dá la bienvenida al 2024 con estilo!',

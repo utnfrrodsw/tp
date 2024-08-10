@@ -7,7 +7,6 @@ const repository = new EventoRepository()
 function sanitizedEventoInput(req: Request, res: Response, next: NextFunction){
 
     req.body.sanitizedInput = { 
-        idEvento : req.body.idEvento,
         nombre : req.body.nombre,
         cuposGral : req.body.cuposGral,
         descripcion : req.body.descripcion,

@@ -4,7 +4,7 @@ GET http://localhost:3000/api/evento
 
 ### obtener un evento
 
-GET http://localhost:3000/api/evento/345345
+GET http://localhost:3000/api/evento/a02f91bc-3769-4221-beb1-d7a3aeba7ads
 
 ### crear un nuevo evento
 
@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ### modificar un evento (PUT - recurso completo e inempotente)
-PUT http://localhost:3000/api/evento/123123
+PUT http://localhost:3000/api/evento/a02f91bc-3769-4221-beb1-d7a3aeba7ads
 Content-Type: application/json
 
 {
