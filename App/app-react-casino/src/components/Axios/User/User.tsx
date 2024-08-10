@@ -75,7 +75,7 @@ export function User() {
                         <div className="actions">
                             <button className="edit-btn">Edit</button>
                             <button className="delete-btn">Delete</button>
-                            <Link to="/details" className="read-btn">Read</Link>
+                            <Link to="/details" className="read-btn" state={item}>Read</Link>
                         </div>
                     </li>
                 ))}
