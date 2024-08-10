@@ -8,10 +8,10 @@ import { NavLink as Link } from 'react-router-dom'
 export function EditUser() {
 
     const usuario = (useLocation().state)
-    console.log(usuario)
+    console.log(usuario.id_user)
 
     function patchUser() {
-        axios.patch(`http://localhost:3000/api/v1/users/${usuario.id_user}`, {
+        axios.put(`http://localhost:3000/api/v1/users/${usuario.id_user}`, {
             first_name: 'mauridd',
             last_name: 'fiorindd',
             street: 'la maldita ca',
@@ -20,10 +20,10 @@ export function EditUser() {
             password: 'a345',
             balance: '21',
         })
-        .then(function (response) {
+        .then((response) => {
             console.log(response);
         })
-        .catch(function (error) {
+        .catch((error) => {
             console.log(error);
         });
     }
@@ -39,8 +39,9 @@ export function EditUser() {
                     <input type="text" id='phone' className='formInput' placeholder={usuario.phone} name='phone'/>
                     <input type="text" id='email' className='formInput' placeholder={usuario.email} name='email'/>
                     <input type="text" id='password' className='formInput' placeholder={usuario.password} name='password'/>
-                    <button type='submit' className='formSubmit' onClick={() => patchUser()}>Actualizar</button>
                 </form>
+                <button type='submit' className='formSubmit' onClick={() => patchUser()}>Actualizar</button>
+                <Link to="/user" className="back">volver</Link>
             </div>
         </>
 

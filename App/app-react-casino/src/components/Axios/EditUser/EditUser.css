@@ -16,3 +16,9 @@
     background-color: black;
     margin: 0 auto;
 }
+
+.back {
+    background-color: red;
+    padding: 1rem;
+    margin: 2rem;
+}
