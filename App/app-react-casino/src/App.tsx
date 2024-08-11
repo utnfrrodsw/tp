@@ -16,10 +16,14 @@ import { Terms } from './pages/Terms/Terms.tsx'
 import { AboutUs } from './pages/AboutUs/AboutUs.tsx'
 import { PrivacyPolicy } from './pages/PrivacyPolicy/privacyPolicy.tsx'
 import { Help } from './pages/Help/help.tsx'
+import { Fair } from './pages/Fair/fair.tsx'
+import { GamePolicy } from './pages/GamePolicy/gamePolicy.tsx'
+import { Toaster } from 'sonner'
 
 export function App() {
     return(
         <>
+        
             <Header/>
                 <Routes>
                     <Route path="/" element={<Principal />} />
@@ -36,9 +40,13 @@ export function App() {
                     <Route path='/about-us' element={<AboutUs />} />
                     <Route path='/privacy-policy' element={<PrivacyPolicy />} />
                     <Route path='/help' element={<Help />} />
+                    <Route path='/fair' element={<Fair />} />
+                    <Route path='/game-policy' element={<GamePolicy />} />
 
                 </Routes>
             <Footer/>
+            <Toaster richColors position='top-right' closeButton/>
         </>
+        
     )
 }

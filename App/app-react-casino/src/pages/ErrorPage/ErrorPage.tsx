@@ -3,7 +3,6 @@ import { NavLink as Link } from 'react-router-dom'
 
 
 export function ErrorPage(){
-
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
