@@ -18,7 +18,7 @@ Estos juegos utilizarán una moneda virtual (*Magg Coins*) completamente gratuit
 
 ### Modelo
 
-![imagen del modelo](/docs/Diagrama_2.png)
+![imagen del modelo](/docs/Diagrama.png)
 
 #### Countries
 id_country, iso, name, nice_name, iso3, num_code, phone_code <br>

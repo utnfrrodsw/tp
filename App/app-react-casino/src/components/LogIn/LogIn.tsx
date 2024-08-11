@@ -15,18 +15,18 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                         <div className='login_form'>
                             <h2 className='loginTitle'>UTimbaN</h2>
                             <h3 className='loginSubTitle'>Login</h3>
-                            <form action="" method="" className='formulario'>
+                            <form action="" method="" className='form'>
                                 <div className='name'>
                                     <p className='formWord'>Username or Email</p>
-                                    <input type="text" id='userId' className='ingresoForm' name='user_name'/>
+                                    <input type="text" id='userId' className='loginForm' name='user_name'/>
                                 </div>
                                 <div className='password'>
                                     <p className='formWord'>Password</p>
-                                    <input type="password" id='password' className='ingresoForm' name='user_password'/>
+                                    <input type="password" id='password' className='loginForm' name='user_password'/>
                                     <p className='forgotPassword'>Forgot your password?</p>
                                 </div>
                                 <div className='submitClass'>
-                                    <button type='submit' className='boton_submit'>SUBMIT</button>
+                                    <button type='submit' className='submit'>SUBMIT</button>
                                     <p className='registerButton'>REGISTER FREE!</p>
                                 </div>
                             </form>

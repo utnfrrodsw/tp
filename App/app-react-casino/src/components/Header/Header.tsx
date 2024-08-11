@@ -12,11 +12,11 @@ export function Header() {
     }
 
     return(
-        <header className='fixed top-0 z-10 w-full z-20'>
+        <header className='fixed top-0 w-full z-20'>
             {modalOpen && (
                 <LogIn onClose={handleButtonClick}/>
             )}
-            <nav className='bg-[#fabc01]/10 p-3 flex items-center justify-between'>
+            <nav className='bg-[#fabc01]/10 p-3 flex items-center justify-between nav'>
             <Link to="/"><img className='max-h-20' src="./src/assets/images/ruleta_v1.png" /></Link>
                 <div className='space-x-10'>
                     <Link to="/about-us">About Us</Link>

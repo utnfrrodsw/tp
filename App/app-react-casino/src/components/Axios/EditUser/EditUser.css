@@ -1,0 +1,24 @@
+.edituser{
+    margin-top: 20rem;
+}
+
+.formEdit {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 1rem;
+    margin: 0 auto;
+}
+
+.formSubmit {
+    width: 100px;
+    height: 50px;
+    background-color: black;
+    margin: 0 auto;
+}
+
+.back {
+    background-color: red;
+    padding: 1rem;
+    margin: 2rem;
+}

@@ -84,7 +84,7 @@
     font-size: 1.5rem;
 }
 
-.boton_submit {
+.submit {
     font-size: 1.2rem;
     width: 30%;
     font-weight: bold;
@@ -94,7 +94,7 @@
     border-radius: 1rem;
 }
 
-.boton_submit:hover {
+.submit:hover {
     background-color: #bd8e00;
 }
 
@@ -103,7 +103,7 @@
     font-size: 1.2rem;
 }
 
-.ingresoForm {
+.loginForm {
     padding: .5rem;
     border: none;
     height: 2rem;
@@ -111,11 +111,11 @@
     width: 100%;
 }
 
-.ingresoForm:focus {
+.loginForm:focus {
     outline: none;
 }
 
-.formulario {
+.form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -149,7 +149,7 @@
         align-items: center;
         width: 100%;
     }
-    .boton_submit {
+    .submit {
         width: 150px;
     }
     .login_image {
@@ -185,7 +185,7 @@
     .registerButton {
         font-size: .9rem;
     }
-    .formulario {
+    .form{
         width: 100%;
     }
 }

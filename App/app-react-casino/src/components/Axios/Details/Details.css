@@ -1,0 +1,11 @@
+.details {
+    margin-top: 20rem;
+    margin-bottom: 10rem;
+    margin-left: 2rem;
+}
+
+.back {
+    background-color: red;
+    padding: 1rem;
+    margin: 2rem;
+}
