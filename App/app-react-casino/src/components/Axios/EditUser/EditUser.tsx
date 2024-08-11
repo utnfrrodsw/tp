@@ -34,12 +34,12 @@ export function EditUser() {
         <>
             <div className='edituser'>
                 <form action="" className='formEdit' ref={form}>
-                    <input type="text" id='firstname' className='formInput' placeholder={usuario.first_name} name='firstname'/>
-                    <input type="text" id='lastname' className='formInput' placeholder={usuario.last_name} name='lastname'/>
-                    <input type="text" id='street' className='formInput' placeholder={usuario.street} name='street'/>
-                    <input type="text" id='phone' className='formInput' placeholder={usuario.phone} name='phone'/>
-                    <input type="text" id='email' className='formInput' placeholder={usuario.email} name='email'/>
-                    <input type="text" id='password' className='formInput' placeholder={usuario.password} name='password'/>
+                    <input type="text" id='firstname' className='formInput text-gray-900' placeholder={usuario.first_name} name='firstname'/>
+                    <input type="text" id='lastname' className='formInput text-gray-900' placeholder={usuario.last_name} name='lastname'/>
+                    <input type="text" id='street' className='formInput text-gray-900' placeholder={usuario.street} name='street'/>
+                    <input type="text" id='phone' className='formInput text-gray-900' placeholder={usuario.phone} name='phone'/>
+                    <input type="text" id='email' className='formInput text-gray-900' placeholder={usuario.email} name='email'/>
+                    <input type="text" id='password' className='formInput text-gray-900' placeholder={usuario.password} name='password'/>
                 </form>
                 <button type='submit' className='formSubmit' onClick={() => patchUser(form.current)}>Actualizar</button>
                 <Link to="/user" className="back">volver</Link>

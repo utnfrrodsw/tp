@@ -19,6 +19,7 @@ export function Header() {
             <nav className='bg-[#fabc01]/10 p-3 flex items-center justify-between nav'>
             <Link to="/"><img className='max-h-20' src="./src/assets/images/ruleta_v1.png" /></Link>
                 <div className='space-x-10'>
+                    <Link to="/admin-uses">Admin Uses</Link>
                     <Link to="/about-us">About Us</Link>
                     <Link to="/chau">Daily Free</Link>
                     <button className='gold-button' onClick={() => setModalOpen(true)}>LogIn</button>

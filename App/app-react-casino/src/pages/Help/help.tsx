@@ -60,7 +60,7 @@ export function Help(){
             </div>
             <label className="block mb-1 text-sm font-medium pt-2"> Message </label>
             <textarea rows={4} className="block p-2.5 w-full text-gray-900 text-sm bg-[#ebe9fc] rounded-lg border border-gray-300 focus:ring-[#FABC01] focus:border-[#FABC01]" name="message" value={formData.message} onChange={handleChange} required />
-            <input type="submit" className="flex m-auto w-full items-center p-2 mt-2 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer" value="Send" />
+            <input type="submit" className="flex m-auto w-full items-center p-2 mt-2 focus:outline-none bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer" value="Send" />
         </form>
         </div>
         </>
