@@ -13,10 +13,19 @@ import { GetOne } from './components/Axios/GetOne/getone.tsx'
 import { User } from './components/Axios/User/User.tsx'
 import { Details } from './components/Axios/Details/Details.tsx'
 import { EditUser } from './components/Axios/EditUser/EditUser.tsx'
+import { Usuario } from './components/Axios/Usuarios/Usuario.tsx'
+import { Terms } from './pages/Terms/Terms.tsx'
+import { AboutUs } from './pages/AboutUs/AboutUs.tsx'
+import { PrivacyPolicy } from './pages/PrivacyPolicy/privacyPolicy.tsx'
+import { Help } from './pages/Help/help.tsx'
+import { Fair } from './pages/Fair/fair.tsx'
+import { GamePolicy } from './pages/GamePolicy/gamePolicy.tsx'
+import { Toaster } from 'sonner'
 
 export function App() {
     return(
         <>
+        
             <Header/>
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -31,8 +40,17 @@ export function App() {
                     <Route path="/user" element={<User />} />
                     <Route path="/details" element={<Details />} />
                     <Route path="/edituser" element={<EditUser />} />
+                    <Route path="/usuario" element={<Usuario />} />
+                    <Route path="/terms-and-conditions" element={<Terms />} />
+                    <Route path='/about-us' element={<AboutUs />} />
+                    <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+                    <Route path='/help' element={<Help />} />
+                    <Route path='/fair' element={<Fair />} />
+                    <Route path='/game-policy' element={<GamePolicy />} />
                 </Routes>
             <Footer/>
+            <Toaster richColors position='top-right' closeButton/>
         </>
+        
     )
 }

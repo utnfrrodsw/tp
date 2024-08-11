@@ -5,8 +5,9 @@
 - [ ] Completar juegos
 - [ ] Sistema Login-Register
 - [ ] Perfil del usuario
-- [ ] Completar las micropaginas
+- [x] Completar las micropaginas
 - [ ] Mejorar listado estatico
-- [ ] Completar pagina de error
+- [x] Completar pagina de error
 - [ ] Mejorar pagina de juegos
-- [ ] Completar sidebar
+- [x] Completar sidebar
+- [ ] Email Form

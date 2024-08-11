@@ -19,9 +19,10 @@ export function Footer(){
           <div className='mb-1'>
             <div className='flex mb-2 text-lg font-bold text-[#FABC01]'> <p> Policies </p></div>
             <div className='m-0 gap-2 flex flex-col text-[#F0F0D8] ' > 
-              <div className='hover:text-[#FABC01]'> <Link to='/terms'> Terms And Conditions </Link> </div>
-              <div className='hover:text-[#FABC01]'> <Link to='/privacypolicy'> Privacy Policy </Link> </div>
-              <div className='hover:text-[#FABC01]'> <Link to='/promotions'> Bonus and Promotions </Link> </div>
+              <div className='hover:text-[#FABC01]'> <Link to='/terms-and-conditions'> Terms And Conditions </Link> </div>
+              <div className='hover:text-[#FABC01]'> <Link to='/privacy-policy'> Privacy Policy </Link> </div>
+              <div className='hover:text-[#FABC01]'> <Link to='/fair'> Fair </Link> </div>
+              <div className='hover:text-[#FABC01]'> <Link to='/game-policy'> Game Policy </Link></div>
             </div>
           </div>
         </div>
@@ -30,7 +31,7 @@ export function Footer(){
           <div className='mb-1'>
             <div className='flex mb-2 text-lg font-bold text-[#FABC01]'> <p> Support </p></div>
             <div className='m-0 gap-2 flex flex-col text-[#F0F0D8] ' > 
-              <Link to='/aboutus' className=' hover:text-[#FABC01]'> About Us </Link> 
+              <Link to='/about-us' className=' hover:text-[#FABC01]'> About Us </Link> 
               <div className='hover:text-[#FABC01]'> <Link to='/help'> Help Center </Link> </div>
             </div>
           </div>
