@@ -76,14 +76,14 @@ async function bajaSocio(req: Request, res: Response) {
       populate: ["misPrestamos.misLpPrestamo"],
     });
     if (socio.getCantPendientes() > 0) {
-      res.status(409).json({
+      return res.status(409).json({
         message: "No se puede eliminar un socio que tenga libros sin devolver",
       });
     }
-    await em.removeAndFlush(Socio);
-    res.status(200).send({ message: "Socio borrado" });
+    await em.removeAndFlush(socio);
+    return res.status(200).send({ message: "Socio borrado" });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 }
 export {

@@ -11,15 +11,15 @@ Content-Type: application/json
     "titulo": "Libro para borrar",
     "descripcion": "Un clásico de la literatura contemporanéa",
     "isbn": "0-7645-2641-3",
-    "misAutores": [2],
-    "miEditorial": 2,
-    "cantEjemplares": 2
+    "misAutores": [1],
+    "miEditorial": 1,
+    "cantEjemplares": 3
 
 }
 
 ### Delete de un libro por ID
 
-DELETE  http://localhost:3000/api/libros/1
+DELETE  http://localhost:3000/api/libros/5
 
 
 ## Actualizar libro por ID

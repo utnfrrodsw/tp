@@ -11,7 +11,7 @@ export class Sancion extends BaseEntity {
   @Property()
   diasSancion!: number;
 
-  @ManyToOne(() => Socio)
+  @ManyToOne(() => Socio, { deleteRule: "cascade" })
   miSocioSancion!: Rel<Socio>;
 
   getFechaFinSancion(): Date {

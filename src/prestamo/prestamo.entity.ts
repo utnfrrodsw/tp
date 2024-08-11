@@ -6,6 +6,7 @@ import {
   Rel,
   OneToMany,
   Collection,
+  Cascade,
 } from "@mikro-orm/core";
 import { Socio } from "../socio/socio.entity.js";
 import { BaseEntity } from "../shared/DB/baseEntity.entity.js";
@@ -20,8 +21,10 @@ export class Prestamo extends BaseEntity {
   fechaPrestamo = new Date();
   @Property({ hidden: true })
   ordenLinea = 0;
+  @Property({ hidden: true })
+  estadoPrestamo? = "Pendiente";
 
-  @ManyToOne(() => Socio)
+  @ManyToOne(() => Socio, { deleteRule: "cascade" })
   miSocioPrestamo!: Rel<Socio>;
 
   @OneToMany(() => LineaPrestamo, (lp) => lp.miPrestamo, {})
@@ -67,5 +70,11 @@ export class Prestamo extends BaseEntity {
       }
     }
     return noDevueltos;
+  }
+  estasPendiente(): boolean {
+    return this.estadoPrestamo === "Pendiente";
+  }
+  setFinalizado(): void {
+    this.estadoPrestamo = "Finalizado";
   }
 }

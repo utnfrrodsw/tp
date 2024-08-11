@@ -18,7 +18,11 @@ export class LineaPrestamo {
   @PrimaryKey()
   ordenLinea!: number;
 
-  @ManyToOne(() => Prestamo, { primary: true, hidden: true })
+  @ManyToOne(() => Prestamo, {
+    primary: true,
+    hidden: true,
+    deleteRule: "cascade",
+  })
   miPrestamo!: Rel<Prestamo>;
 
   [PrimaryKeyProp] = ["ordenLinea", "miPrestamo"];
@@ -58,5 +62,8 @@ export class LineaPrestamo {
   }
   getEjemplar(): Ejemplar {
     return this.miEjemplar;
+  }
+  getPrestamo(): Prestamo {
+    return this.miPrestamo;
   }
 }

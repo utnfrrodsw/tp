@@ -8,6 +8,7 @@ import {
   buscarPrestamos,
   buscarPrestamosSocio,
   buscarPrestamosNoDevueltosSocio,
+  buscarPrestamosNoDevueltos,
 } from "./prestamo.controller.js";
 export const prestamoRouter = Router();
 
@@ -16,6 +17,7 @@ prestamoRouter.get("/retirarLibrosPaso2R", retirarLibrosPaso2R);
 prestamoRouter.post("/retirarLibrosPaso3R", retirarLibrosPaso3R);
 prestamoRouter.patch("/devolverLibro", devolverLibro);
 prestamoRouter.get("/", buscarPrestamos);
+prestamoRouter.get("/noDevueltos", buscarPrestamosNoDevueltos);
 prestamoRouter.get("/prestamosSocio", buscarPrestamosSocio);
 prestamoRouter.get(
   "/prestamosNoDevueltosSocio",

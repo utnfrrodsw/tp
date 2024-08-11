@@ -1,0 +1,22 @@
+### Obtener todos los prestamos
+GET http://localhost:3000/api/prestamos
+
+
+### Obtener todos los prestamos no devueltos
+GET http://localhost:3000/api/prestamos/noDevueltos
+
+### Obtener todos los prestamos de un socio
+GET http://localhost:3000/api/prestamos/prestamosSocio
+Content-Type: application/json
+
+{
+    "idSocio": 2
+}
+
+### Obtener todos los prestamos no devueltos de un socio
+GET http://localhost:3000/api/prestamos/prestamosNoDevueltosSocio
+Content-Type: application/json
+
+{
+    "idSocio": 2
+}

@@ -1,4 +1,10 @@
-import { Entity, Property, Collection, OneToMany } from "@mikro-orm/core";
+import {
+  Entity,
+  Property,
+  Collection,
+  OneToMany,
+  Cascade,
+} from "@mikro-orm/core";
 import { Prestamo } from "../prestamo/prestamo.entity.js";
 import { BaseEntity } from "../shared/DB/baseEntity.entity.js";
 import { Sancion } from "../sancion/sancion.entity.js";
@@ -19,20 +25,21 @@ export class Socio extends BaseEntity {
   @Property() // Analizar si deberia ser hidden
   estadoSocio?: string = "Habilitado";
 
-  @OneToMany(() => Prestamo, (prestamo) => prestamo.miSocioPrestamo, {})
+  @OneToMany(() => Prestamo, (prestamo) => prestamo.miSocioPrestamo)
   misPrestamos = new Collection<Prestamo>(this);
 
-  @OneToMany(() => Sancion, (sancion) => sancion.miSocioSancion, {})
+  @OneToMany(() => Sancion, (sancion) => sancion.miSocioSancion)
   misSanciones = new Collection<Sancion>(this);
 
   //Metodos
 
   estasInhabilitado(): boolean {
-    // Contemplar poner estadoPrestamo para facilitar cálculos.
     let i = 0;
     let rta = false;
     while (i < this.misPrestamos.length && rta != true) {
-      rta = this.misPrestamos[i].estasAtrasado();
+      if (this.misPrestamos[i].estasPendiente()) {
+        rta = this.misPrestamos[i].estasAtrasado();
+      }
       i++;
     }
     return rta;
@@ -64,7 +71,9 @@ export class Socio extends BaseEntity {
     let i = 0;
     let rta = false;
     while (i < this.misPrestamos.length && rta != true) {
-      rta = this.misPrestamos[i].tenesPendiente(libro);
+      if (this.misPrestamos[i].estasPendiente()) {
+        rta = this.misPrestamos[i].tenesPendiente(libro);
+      }
       i++;
     }
 
@@ -74,15 +83,19 @@ export class Socio extends BaseEntity {
   getCantPendientes(): number {
     let acumulador = 0;
     for (const prestamo of this.misPrestamos) {
-      acumulador += prestamo.getCantPendientes();
+      if (prestamo.estasPendiente()) {
+        acumulador += prestamo.getCantPendientes();
+      }
     }
     return acumulador;
   }
   getNoDevueltos(): Ejemplar[] {
     const noDevueltos = [];
     for (const prestamo of this.misPrestamos) {
-      const noDevueltosPrestamo = prestamo.getNoDevueltos();
-      noDevueltos.push(...noDevueltosPrestamo);
+      if (prestamo.estasPendiente()) {
+        const noDevueltosPrestamo = prestamo.getNoDevueltos();
+        noDevueltos.push(...noDevueltosPrestamo);
+      }
     }
     return noDevueltos;
   }
