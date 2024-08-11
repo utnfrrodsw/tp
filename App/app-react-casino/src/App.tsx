@@ -1,25 +1,29 @@
 import { Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home/Home.tsx'
+
 import { Header } from './components/Header/Header.tsx'
 import { Footer } from './components/Footer/Footer.tsx'
+
 import { Dice } from './components/Games/Dice/Dice.tsx'
 import { Slot } from './components/Games/Slots/Slot.tsx'
 import { Wheel } from './components/Games/Wheel/Wheel.tsx'
-import { RouletteLive } from './pages/RouletteLive/RouletteLive.tsx'
-import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx'
+
 import { Listado } from './components/Axios/Listado/Listado.tsx'
 import { PostUser } from './components/Axios/PostUser/PostUser.tsx'
 import { GetOne } from './components/Axios/GetOne/getone.tsx'
 import { User } from './components/Axios/User/User.tsx'
 import { Details } from './components/Axios/Details/Details.tsx'
 import { EditUser } from './components/Axios/EditUser/EditUser.tsx'
-import { Usuario } from './components/Axios/Usuarios/Usuario.tsx'
+
 import { Terms } from './pages/Terms/Terms.tsx'
 import { AboutUs } from './pages/AboutUs/AboutUs.tsx'
 import { PrivacyPolicy } from './pages/PrivacyPolicy/privacyPolicy.tsx'
 import { Help } from './pages/Help/help.tsx'
 import { Fair } from './pages/Fair/fair.tsx'
 import { GamePolicy } from './pages/GamePolicy/gamePolicy.tsx'
+import { RouletteLive } from './pages/RouletteLive/RouletteLive.tsx'
+import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx'
+
 import { Toaster } from 'sonner'
 
 export function App() {
@@ -40,7 +44,6 @@ export function App() {
                     <Route path="/user" element={<User />} />
                     <Route path="/details" element={<Details />} />
                     <Route path="/edituser" element={<EditUser />} />
-                    <Route path="/usuario" element={<Usuario />} />
                     <Route path="/terms-and-conditions" element={<Terms />} />
                     <Route path='/about-us' element={<AboutUs />} />
                     <Route path='/privacy-policy' element={<PrivacyPolicy />} />
