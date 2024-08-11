@@ -21,7 +21,8 @@ export function Footer(){
             <div className='m-0 gap-2 flex flex-col text-[#F0F0D8] ' > 
               <div className='hover:text-[#FABC01]'> <Link to='/terms-and-conditions'> Terms And Conditions </Link> </div>
               <div className='hover:text-[#FABC01]'> <Link to='/privacy-policy'> Privacy Policy </Link> </div>
-              <div className='hover:text-[#FABC01]'> <Link to='/promotions'> Bonus and Promotions </Link> </div>
+              <div className='hover:text-[#FABC01]'> <Link to='/fair'> Fair </Link> </div>
+              <div className='hover:text-[#FABC01]'> <Link to='/game-policy'> Game Policy </Link></div>
             </div>
           </div>
         </div>

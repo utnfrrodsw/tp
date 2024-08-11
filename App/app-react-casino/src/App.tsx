@@ -12,8 +12,10 @@ import { Listado } from './components/Axios/Listado/Listado.tsx'
 import { PostUser } from './components/Axios/PostUser/PostUser.tsx'
 import { GetOne } from './components/Axios/GetOne/getone.tsx'
 import { Usuario } from './components/Axios/Usuarios/Usuario.tsx'
-import { Terms } from './components/Terms/Terms.tsx'
-import { AboutUs } from './components/AboutUs/AboutUs.tsx'
+import { Terms } from './pages/Terms/Terms.tsx'
+import { AboutUs } from './pages/AboutUs/AboutUs.tsx'
+import { PrivacyPolicy } from './pages/PrivacyPolicy/privacyPolicy.tsx'
+import { Help } from './pages/Help/help.tsx'
 
 export function App() {
     return(
@@ -32,6 +34,9 @@ export function App() {
                     <Route path="/usuario" element={<Usuario />} />
                     <Route path="/terms-and-conditions" element={<Terms />} />
                     <Route path='/about-us' element={<AboutUs />} />
+                    <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+                    <Route path='/help' element={<Help />} />
+
                 </Routes>
             <Footer/>
         </>
