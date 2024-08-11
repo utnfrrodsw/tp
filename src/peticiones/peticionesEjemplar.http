@@ -4,12 +4,12 @@ GET http://localhost:3000/api/libros/1/ejemplares/
 
 ### Subir ejemplar
 
-POST http://localhost:3000/api/libros/2/ejemplares
+POST http://localhost:3000/api/libros/1/ejemplares
 Content-Type: application/json
 
 {
 
-
+    
 
 }
 

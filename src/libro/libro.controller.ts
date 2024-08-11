@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { Libro } from "./libro.entity.js";
 import { Ejemplar } from "../ejemplar/ejemplar.entity.js";
-import { DateType } from "@mikro-orm/core";
+import { DateType, NotFoundError } from "@mikro-orm/core";
 
 function sanitizeInput(req: Request, res: Response, next: NextFunction) {
   req.body.inputOK = {
@@ -93,12 +93,10 @@ async function altaLibro(req: Request, res: Response) {
 async function actualizarLibro(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const libroActualizar = await em.findOneOrFail(Libro, { id });
+    const libroActualizar = em.getReference(Libro, id);
     em.assign(libroActualizar, req.body.inputOK);
     await em.flush();
-    res
-      .status(200)
-      .json({ message: "Libro actualizado", data: libroActualizar });
+    res.status(200).json({ message: "Libro actualizado" });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
@@ -107,10 +105,24 @@ async function actualizarLibro(req: Request, res: Response) {
 async function bajaLibro(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const libro = em.getReference(Libro, id);
+    const libro = await em.findOneOrFail(Libro, id, {
+      populate: ["misEjemplares.misLp"],
+    });
+
+    //Validacion puede moverse a beforeDelete. (En ese caso, dejar un getReference aca)
+    if (libro.fuistePrestado()) {
+      res.status(409).json({
+        message:
+          "No puede borrarse un libro que haya sido prestado. (Testeo: Borrar el socio que lo haya pedido)",
+      });
+    }
+    // Fin validacion
     await em.removeAndFlush(libro);
     res.status(200).json({ message: "Libro eliminado" });
   } catch (error: any) {
+    if (error instanceof NotFoundError) {
+      return res.status(200).json({ message: "Libro eliminado" }); // Para mantener la consistencia.
+    }
     if (error.code === "ER_ROW_IS_REFERENCED_2") {
       res.status(409).json({
         message: "No se puede eliminar un libro que posea ejemplares",

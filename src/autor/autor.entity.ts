@@ -1,8 +1,6 @@
 import {
   Entity,
-  OneToMany,
   Property,
-  Cascade,
   Collection,
   ManyToMany,
   BeforeDelete,

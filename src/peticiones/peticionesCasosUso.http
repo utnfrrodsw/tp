@@ -1,6 +1,6 @@
-### Paso 1 retirar libros
+### Paso 1 retirar libros refactor
 
-GET http://localhost:3000/api/prestamos/retirarLibrosPaso1
+GET http://localhost:3000/api/prestamos/retirarLibrosPaso1R
 Content-Type: application/json
 
 {
@@ -8,105 +8,31 @@ Content-Type: application/json
 
 }
 
-### Paso 2 retirar libros version toJSON
 
-GET http://localhost:3000/api/prestamos/retirarLibrosPaso2
+### Retirar libros paso 2 refactor. 
+
+GET http://localhost:3000/api/prestamos/retirarLibrosPaso2R
 Content-Type: application/json
 
 {
-  "prestamoActual": {
-    "fechaPrestamo": "2024-08-09T21:20:44.821Z",
-    "ordenLinea": 0,
-    "misLpPrestamo": [],
-    "miSocioPrestamo": {
-      "id": 1,
-      "nombre": "Agostino",
-      "apellido": "Lopez",
-      "email": "agosLopez@gmail.com",
-      "domicilio": "Las heras",
-      "telefono": "9991387",
-      "estadoSocio": "Habilitado",
-      "misPrestamos": [
-        {
-          "fechaPrestamo": "2024-08-09T21:20:44.821Z",
-          "ordenLinea": 0,
-          "misLpPrestamo": []
-        }
-      ],
-      "misSanciones": []
-    }
-  }
-}
-### Paso 2 retirar libros version toJSON ite 2
-
-GET http://localhost:3000/api/prestamos/retirarLibrosPaso2
-Content-Type: application/json
-
-{
-  "data": {
-    "prestamoActual": {
-      "fechaPrestamo": "2024-08-09T21:20:44.821Z",
-      "ordenLinea": 1,
-      "misLpPrestamo": [
-        {
-          "ordenLinea": 1,
-          "fechaDevolucionTeorica": "2024-08-15T00:00:00.000Z"
-        }
-      ],
-      "miSocioPrestamo": {
-        "id": 1,
-        "nombre": "Agostino",
-        "apellido": "Lopez",
-        "email": "agosLopez@gmail.com",
-        "domicilio": "Las heras",
-        "telefono": "9991387",
-        "estadoSocio": "Habilitado"
-      }
-    }
-  }
-}
-
-
-### Paso 2 retirar libros
-
-GET http://localhost:3000/api/prestamos/retirarLibrosPaso2
-Content-Type: application/json
-
-{
-    "idEjemplar": 3,
-    "idLibro": 2,
-    "prestamoActual":{
-      "misLp": [],
-      "fechaPrestamo": "2024-08-09T14:39:08.397Z",
-      "ordenLinea": 0,
-      "miSocio": 1
-    }
-
-}
-
-### Paso 2 retirar libros
-
-GET http://localhost:3000/api/prestamos/retirarLibrosPaso2
-Content-Type: application/json
-
-{
+    "idSocio": 1,
     "idEjemplar": 1,
-    "idLibro": 2,
-    "prestamoActual":{
-      "misLp": [
-         {
-          "ordenLinea": 1,
-          "fechaDevolucionTeorica": "2024-08-15T00:00:00.000Z",
-          "miEjemplar": {
-            "id": 1,
-            "miLibro": 2
-          }
-        }
-      ],
-      "fechaPrestamo": "2024-08-09T14:39:08.397Z",
-      "ordenLinea": 0,
-      "miSocio": 1
-    }
+    "idLibro":1
 
 }
 
+### Retirar libros paso 3 refactor. 
+
+POST http://localhost:3000/api/prestamos/retirarLibrosPaso3R
+Content-Type: application/json
+
+{
+    "idSocio": 6,
+    "ejemplares":[
+      {
+        "id": 1,
+        "miLibro":7
+      }
+    ]
+
+}

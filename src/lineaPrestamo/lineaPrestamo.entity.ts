@@ -18,7 +18,7 @@ export class LineaPrestamo {
   @PrimaryKey()
   ordenLinea!: number;
 
-  @ManyToOne(() => Prestamo, { primary: true })
+  @ManyToOne(() => Prestamo, { primary: true, hidden: true })
   miPrestamo!: Rel<Prestamo>;
 
   [PrimaryKeyProp] = ["ordenLinea", "miPrestamo"];
@@ -33,7 +33,7 @@ export class LineaPrestamo {
   miEjemplar!: Rel<Ejemplar>;
 
   tenesPendiente(libro: Libro): boolean {
-    if (this.estasPendiente()) {
+    if (!this.estasPendiente()) {
       return false;
     }
     const rta = this.miEjemplar.esTuLibro(libro);
@@ -42,10 +42,13 @@ export class LineaPrestamo {
   estasPendiente(): boolean {
     return this.fechaDevolucionReal === null;
   }
-  seDevolvioATiempo(): boolean {
-    const hoy = new Date();
 
-    return isBefore(hoy, this.fechaDevolucionTeorica);
+  estasAtrasado(): boolean {
+    if (!this.fechaDevolucionReal) {
+      const hoy = new Date();
+      return !isBefore(hoy, this.fechaDevolucionTeorica);
+    }
+    return isBefore(this.fechaDevolucionReal, this.fechaDevolucionTeorica);
   }
   setFechaDevolucionReal(fecha: Date): void {
     this.fechaDevolucionReal = fecha;
@@ -53,18 +56,7 @@ export class LineaPrestamo {
   getFechaDevolucionTeorica(): Date {
     return this.fechaDevolucionTeorica;
   }
-  toJSON(includeEjemplar = true) {
-    const json: any = {
-      ordenLinea: this.ordenLinea,
-      fechaDevolucionTeorica: this.fechaDevolucionTeorica,
-      fechaDevolucionReal: this.fechaDevolucionReal,
-      // Puedes agregar más propiedades si es necesario
-    };
-
-    if (includeEjemplar) {
-      json.miEjemplar = this.miEjemplar.toJSON(false);
-    }
-
-    return json;
+  getEjemplar(): Ejemplar {
+    return this.miEjemplar;
   }
 }

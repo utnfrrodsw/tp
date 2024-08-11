@@ -1,4 +1,4 @@
-### Obtener todaos los socios
+### Obtener todos los socios
 GET http://localhost:3000/api/socios
 
 
@@ -8,7 +8,7 @@ POST http://localhost:3000/api/socios
 Content-Type: application/json
 
 {
-    "nombre": "Agostino",
+    "nombre": "Juan Pepe 5",
     "apellido": "Lopez",
     "email": "agosLopez@gmail.com",
     "domicilio":"Las heras",

@@ -1,13 +1,4 @@
-import {
-  Entity,
-  ManyToMany,
-  Property,
-  Cascade,
-  Collection,
-  BeforeDelete,
-  EventArgs,
-  OneToMany,
-} from "@mikro-orm/core";
+import { Entity, Property, Collection, OneToMany } from "@mikro-orm/core";
 
 import { BaseEntity } from "../shared/DB/baseEntity.entity.js";
 import { Libro } from "../libro/libro.entity.js";

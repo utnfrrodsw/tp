@@ -13,22 +13,22 @@ Content-Type: application/json
 }
 
 ### Delete de un autor por ID
-DELETE  http://localhost:3000/api/autores/1
+DELETE  http://localhost:3000/api/autores/2
 
-### Subir autor
+### Subir autor2
 
 POST http://localhost:3000/api/autores
 Content-Type: application/json
 
 {
-    "nombre": "Edgar",
+    "nombre": "EdgarBorrado",
     "apellido": "Allan Poe"
 
 }
 
 ### Actualizar autor con PATCH (parcialmente)
 
-PATCH http://localhost:3000/api/autores/ead
+PATCH http://localhost:3000/api/autores/5
 Content-Type: application/json
 
 {

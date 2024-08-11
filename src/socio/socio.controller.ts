@@ -70,10 +70,21 @@ async function actualizarSocio(req: Request, res: Response) {
 }
 
 async function bajaSocio(req: Request, res: Response) {
-  res.status(500).json({
-    message:
-      "No implementado hasta realizar CRUDS de prestamo, lineaPrestamo y sancion",
-  });
+  try {
+    const id = Number.parseInt(req.params.id);
+    const socio = await em.findOneOrFail(Socio, id, {
+      populate: ["misPrestamos.misLpPrestamo"],
+    });
+    if (socio.getCantPendientes() > 0) {
+      res.status(409).json({
+        message: "No se puede eliminar un socio que tenga libros sin devolver",
+      });
+    }
+    await em.removeAndFlush(Socio);
+    res.status(200).send({ message: "Socio borrado" });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 }
 export {
   sanitizeInput,

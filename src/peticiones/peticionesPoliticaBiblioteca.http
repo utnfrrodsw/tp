@@ -1,5 +1,5 @@
 
-### Obtener todos los libros
+### Obtener politica biblioteca actual
 GET http://localhost:3000/api/politicaBiblioteca
 
 

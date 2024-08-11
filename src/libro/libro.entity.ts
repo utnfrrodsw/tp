@@ -43,21 +43,16 @@ export class Libro extends BaseEntity {
     this.codigoEjemplarActual++;
     return this.codigoEjemplarActual;
   }
-  toJSON(includeEjemplares = true) {
-    const json: any = {
-      titulo: this.titulo,
-      descripcion: this.descripcion,
-      isbn: this.isbn,
-      codigoEjemplarActual: this.codigoEjemplarActual,
-      // No incluimos codigoEjemplarActual ya que está marcado como hidden
-    };
-
-    if (includeEjemplares) {
-      json.misEjemplares = this.misEjemplares
-        .getItems()
-        .map((ejemplar) => ejemplar.toJSON(false));
+  fuistePrestado(): boolean {
+    let i = 0;
+    let rta = false;
+    while (i < this.misEjemplares.length && rta != true) {
+      rta = this.misEjemplares[i].fuistePrestado();
+      i++;
     }
-
-    return json;
+    return rta;
+  }
+  getId(): number | undefined {
+    return this.id;
   }
 }

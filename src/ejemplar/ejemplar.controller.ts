@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { Ejemplar } from "./ejemplar.entity.js";
 import { Libro } from "../libro/libro.entity.js";
+import { NotFoundError } from "@mikro-orm/core";
 
 function sanitizeInput(req: Request, res: Response, next: NextFunction) {
   req.body.inputOK = {};
@@ -60,6 +61,7 @@ async function altaEjemplarManual(req: Request, res: Response) {
     const ejemplar = em.create(Ejemplar, {
       id: idEjemplar,
       miLibro: libro,
+      fechaIncorporacion: req.body.fechaIncorporacion,
     });
     await em.flush();
     res.status(201).json({ message: "Ejemplar creado", data: ejemplar });
@@ -68,17 +70,30 @@ async function altaEjemplarManual(req: Request, res: Response) {
   }
 }
 
-// No tiene sentido un actualizarEjemplar, quizas la fecha pero no estoy seguro en el caso de un altaManual erronéa. Por revisar.
-
 async function bajaEjemplar(req: Request, res: Response) {
   try {
     const idLibro = Number.parseInt(req.params.id);
     const idEjemplarRecibida = Number.parseInt(req.params.idEjemplar);
-    const ejemplar = em.getReference(Ejemplar, [idEjemplarRecibida, idLibro]);
+    const ejemplar = await em.findOneOrFail(Ejemplar, [
+      idEjemplarRecibida,
+      idLibro,
+    ]);
+    //Validacion puede moverse a beforeDelete. (En ese caso, dejar un getReference aca)
+    if (ejemplar.fuistePrestado()) {
+      res.status(409).json({
+        message:
+          "No puede borrarse un libro que haya sido prestado. (Testeo: Borrar el socio que lo haya pedido)",
+      });
+    }
+    // Fin validacion
+
     await em.removeAndFlush(ejemplar);
 
     res.status(200).send({ message: "Ejemplar borrado" });
   } catch (error: any) {
+    if (error instanceof NotFoundError) {
+      return res.status(200).send({ message: "Ejemplar borrado" });
+    }
     res.status(500).json({ message: error.message });
   }
 }

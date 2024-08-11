@@ -6,17 +6,9 @@ import { Prestamo } from "./prestamo.entity.js";
 import { Ejemplar } from "../ejemplar/ejemplar.entity.js";
 import { PoliticaBiblioteca } from "../politicaBiblioteca/politicaBiblioteca.entity.js";
 import { LineaPrestamo } from "../lineaPrestamo/lineaPrestamo.entity.js";
-import { differenceInDays } from "date-fns";
-import { PoliticaSancion } from "../politicaSancion/politicaSancion.entity.js";
 import { Sancion } from "../sancion/sancion.entity.js";
-
-import {
-  classToPlain,
-  plainToClass,
-  instanceToPlain,
-  serialize,
-} from "class-transformer";
-import { Libro } from "../libro/libro.entity.js";
+import { addDays, differenceInDays } from "date-fns";
+import { PoliticaSancion } from "../politicaSancion/politicaSancion.entity.js";
 
 function sanitizeInput(req: Request, res: Response, next: NextFunction) {
   req.body.inputOK = {};
@@ -32,109 +24,90 @@ function sanitizeInput(req: Request, res: Response, next: NextFunction) {
 
 const em = orm.em;
 
-async function retirarLibrosPaso1(req: Request, res: Response) {
+async function retirarLibrosPaso1R(req: Request, res: Response) {
   // Se recibe idSocio
   try {
     const socio = await em.findOneOrFail(Socio, req.body.idSocio, {
-      populate: ["misSanciones", "misPrestamos.misLpPrestamo.miEjemplar"],
+      populate: ["misSanciones", "misPrestamos"], // Falta .misLpPrestamo
     });
 
-    if (!socio.estasHabilitado()) {
-      //Revisar si calcularlo o actualización automatica.
-      return res
-        .status(409)
-        .json({ message: "Socio inhabilitado (no devolvio un prestámo)" });
+    if (socio.estasInhabilitado()) {
+      const noDevueltos = socio.getNoDevueltos();
+      return res.status(409).json({
+        message: "Socio inhabilitado (no devolvio un prestámo)",
+        ejemplares: noDevueltos,
+      });
     }
     if (socio.estasSancionado()) {
-      //Este es un cálculo
       const diasSancionado = socio.getDiasSancion();
-      return res
-        .status(409)
-        .json({ message: "Socio sancionado", data: diasSancionado });
+      return res.status(409).json({
+        message: "Socio sancionado",
+        diasSancionRestantes: diasSancionado,
+      });
     }
-
-    const prestamoVacio = em.create(Prestamo, {
-      fechaPrestamo: new Date(),
-      ordenLinea: 0,
-      miSocioPrestamo: socio,
-    });
-
-    /* const prestamoJson = instanceToPlain(prestamoVacio, {
-      enableCircularCheck: true,
-      excludeExtraneousValues: true,
-    });
-    console.log(prestamoJson);
-*/
-    const prestamoJson = prestamoVacio.toJSON(false);
-    const socioJson = socio.toJSON(true);
-
-    return res.status(200).json({
-      prestamoActual: { ...prestamoJson, miSocioPrestamo: socioJson },
-    });
-  } catch (error: any) {
-    if (error instanceof NotFoundError) {
-      return res.status(404).json({ message: "Socio no encontrado" });
-    }
-    return res.status(500).json({ message: error.message });
-  }
-}
-
-async function retirarLibrosPaso2(req: Request, res: Response) {
-  try {
-    //Se recibe idLibro, idEjemplar, socio del paso 1, prestamo del paso 1.
-
-    const ejemplar = await em.findOneOrFail(
-      Ejemplar,
-      [req.body.idEjemplar, req.body.idLibro],
-      {
-        populate: ["miLibro"],
-      }
-    );
-    const libro = ejemplar.getLibro();
     const politicaBiblioteca = await em.findOneOrFail(PoliticaBiblioteca, 1);
+    const disponibles =
+      politicaBiblioteca.getCantPendientesMaximo() - socio.getCantPendientes();
 
-    const prestamoActual = plainToClass(Prestamo, req.body.prestamoActual);
-
-    if (
-      politicaBiblioteca.getCantPendientesMaximo() ===
-      prestamoActual.miSocioPrestamo.getCantPendientes() // Crear un getSocio
-    ) {
-      res.status(409).json({
-        message: "El socio ya saco la cantidad maxima de libros en prestámo",
-      });
-    }
-    if (prestamoActual.miSocioPrestamo.tenesPendiente(ejemplar.getLibro())) {
-      res
-        .status(409)
-        .json({ message: "El socio tiene pendiente un ejemplar de ese libro" });
-    }
-    if (prestamoActual.tenesPendiente(libro)) {
-      //Se reutiliza el metodo.
-      res.status(409).json({
-        message: "Ya existe un ejemplar de ese libro en el prestámo actual",
-      });
-    }
-    const fechaDevolucionTeorica = new Date("2024-08-15"); //Falta el calculo
-    const lpNueva = em.create(LineaPrestamo, {
-      ordenLinea: prestamoActual.getOrdenLinea(),
-      fechaDevolucionTeorica: fechaDevolucionTeorica,
-      miEjemplar: ejemplar,
-    });
-
-    prestamoActual.misLpPrestamo.add(lpNueva);
-
-    const prestamoJson = prestamoActual.toJSON(false);
-    const socioJson = prestamoActual.miSocioPrestamo.toJSON(true);
     return res.status(200).json({
-      data: {
-        prestamoActual: { ...prestamoJson, miSocioPrestamo: socioJson },
-      },
+      message: "El socio esta habilitado",
+      disponibles: disponibles,
     });
   } catch (error: any) {
     if (error.message.includes("PoliticaBiblioteca")) {
       return res
         .status(500)
-        .json({ message: "Politica biblioteca  inaccesible" });
+        .json({ message: "Politica biblioteca inaccesible" });
+    }
+    if (error instanceof NotFoundError) {
+      return res.status(404).json({ message: "Socio no encontrado" });
+    }
+    return res.status(500).json({ message: error.message });
+  }
+  // Valida socio y devuelve cantidad disponibles para sacar en prestámo.
+}
+
+async function retirarLibrosPaso2R(req: Request, res: Response) {
+  try {
+    //Se recibe idLibro, idEjemplar, idSocio paso 1(no lo ingresa el usuario).
+
+    const ejemplar = await em.findOneOrFail(
+      Ejemplar,
+      [req.body.idEjemplar, req.body.idLibro],
+      {
+        populate: [
+          "miLibro",
+          "misLp",
+          "miLibro.miEditorial",
+          "miLibro.misAutores",
+        ],
+      }
+    );
+    const libro = ejemplar.getLibro();
+
+    if (ejemplar.estasPendiente()) {
+      //No sucede en condiciones normales. El libro se saca de una estanteria.
+      return res
+        .status(409)
+        .json({ message: "El ejemplar no esta disponible para ser prestado." });
+    }
+
+    const socio = await em.findOneOrFail(Socio, req.body.idSocio, {
+      populate: ["misPrestamos.misLpPrestamo.miEjemplar.miLibro"],
+    });
+
+    if (socio.tenesPendiente(libro)) {
+      res
+        .status(409)
+        .json({ message: "El socio tiene pendiente un ejemplar de ese libro" });
+    }
+
+    return res.status(200).json({
+      data: { ejemplar: ejemplar },
+    });
+  } catch (error: any) {
+    if (error.message.includes("Socio")) {
+      return res.status(400).json({ message: "Socio inexistente" }); // Desde aca no hay forma de validar que sea el mismo del paso 1. Pendiente en AD.
     }
     if (error instanceof NotFoundError) {
       return res
@@ -144,64 +117,262 @@ async function retirarLibrosPaso2(req: Request, res: Response) {
 
     return res.status(500).json({ message: error.message });
   }
+  //Retorna ejemplar para mostrar datos del libro.
 }
 
-async function retirarLibrosPaso3(req: Request, res: Response) {
+interface EjemplarRequest {
+  id: number;
+  miLibro: number;
+}
+
+async function retirarLibrosPaso3R(req: Request, res: Response) {
   try {
-    const prestamo = plainToClass(Prestamo, req.body.prestamoActual);
-    //Falta validar que este completo
-    await em.persistAndFlush(prestamo);
-    res.status(201).json({ message: "Prestámo creado" });
+    //Se recibe array de CP de ejemplar, e idSocio.
+
+    const ejemplares: EjemplarRequest[] = req.body.ejemplares;
+    const ejemplaresUnicos = Array.from(
+      new Map(
+        ejemplares.map((ejemplar) => [ejemplar.miLibro, ejemplar])
+      ).values()
+    );
+    const ejemplaresEncontrados = await em.find(
+      Ejemplar,
+      {
+        $or: ejemplaresUnicos,
+      },
+      { populate: ["miLibro", "misLp"] }
+    ); // miLibro necesario para validacion extra. De lo contrario no.
+
+    // -------  Validaciones "extra" fuera del contexto del CU de negocio (Cualquier validación fallida es un bad request)
+
+    if (ejemplares.length != ejemplaresEncontrados.length) {
+      return res.status(400).json({
+        message:
+          "Se recibió algún ejemplar inexistente o dos o más ejemplares del mismo libro",
+      });
+    }
+    const socio = await em.findOneOrFail(Socio, req.body.idSocio, {
+      populate: ["misPrestamos.misLpPrestamo.miEjemplar.miLibro"],
+    }); // Esto se necesita para el camino normal también.
+
+    for (const ejemplar of ejemplaresEncontrados) {
+      if (socio.tenesPendiente(ejemplar.getLibro())) {
+        return res.status(400).json({
+          message: "El socio tiene pendiente un ejemplar de ese libro",
+        });
+      }
+    }
+    for (const ejemplar of ejemplaresEncontrados) {
+      if (ejemplar.estasPendiente()) {
+        //No sucede en condiciones normales. El libro se saca de una estanteria.
+        return res.status(400).json({
+          message:
+            "Existe un ejemplar que no esta disponible para ser prestado.",
+        });
+      }
+    }
+    const politicaBiblioteca = await em.findOneOrFail(PoliticaBiblioteca, 1);
+    const disponibles =
+      politicaBiblioteca.getCantPendientesMaximo() - socio.getCantPendientes();
+    if (ejemplaresUnicos.length > disponibles) {
+      return res.status(400).json({
+        message:
+          "Se recibieron más ejemplares de los que el socio puede retirar",
+      });
+    }
+
+    //-------- Fin validaciones extra ---------
+
+    const prestamo = em.create(Prestamo, {
+      miSocioPrestamo: socio,
+      fechaPrestamo: new Date(),
+      ordenLinea: 0,
+    });
+    const hoy = new Date();
+    const diasPrestamo = politicaBiblioteca.getDiasPrestamo();
+    const fechaDevolucionTeorica = addDays(hoy, diasPrestamo);
+    for (const ejemplar of ejemplaresEncontrados) {
+      const lp = em.create(LineaPrestamo, {
+        miEjemplar: ejemplar,
+        ordenLinea: prestamo.getOrdenLinea(),
+        fechaDevolucionTeorica: fechaDevolucionTeorica,
+      });
+      prestamo.misLpPrestamo.add(lp);
+    }
+    await em.flush();
+
+    return res.status(201).json({
+      data: {
+        prestamoNuevo: prestamo,
+      },
+    });
+  } catch (error: any) {
+    if (error.message.includes("PoliticaBiblioteca")) {
+      return res
+        .status(500)
+        .json({ message: "Politica biblioteca  inaccesible" });
+    }
+    if (error.message.includes("Socio") && error instanceof NotFoundError) {
+      return res.status(400).json({ message: "Socio inexistente" });
+    }
+    return res.status(500).json({ message: error.message });
+  }
+}
+
+// CU Devolver libro (Se repite por cada libro)
+
+async function devolverLibro(req: Request, res: Response) {
+  // Se recibe idSocio, idEjemplar e idLibro.
+
+  try {
+    const ejemplar = await em.findOneOrFail(Ejemplar, [
+      req.body.idEjemplar,
+      req.body.idLibro,
+    ]);
+
+    const libro = ejemplar.getLibro();
+    const socio = await em.findOneOrFail(Socio, req.body.idSocio);
+
+    if (!ejemplar.estasPendiente()) {
+      res
+        .status(400)
+        .json({ message: "El ejemplar no esta pendiente de devolución" });
+    }
+    const hoy = new Date();
+    const lpPendiente = ejemplar.getLpPendiente();
+
+    if (lpPendiente.estasAtrasado()) {
+      let diasSancion = 0;
+      const diasAtraso = differenceInDays(
+        hoy,
+        lpPendiente.getFechaDevolucionTeorica()
+      );
+      const politicaSancion = await em
+        .createQueryBuilder(PoliticaSancion)
+        .orderBy({ diasHasta: "ASC" })
+        .where({ diasHasta: { $gt: diasAtraso } }) // quite el limit(1)
+        .getSingleResult();
+
+      if (politicaSancion) {
+        diasSancion = politicaSancion.getDiasSancion();
+      }
+      if (!politicaSancion) {
+        const politicaBiblioteca = await em.findOneOrFail(
+          PoliticaBiblioteca,
+          1
+        );
+        diasSancion = politicaBiblioteca.getDiasSancionMaxima();
+      }
+
+      em.create(Sancion, {
+        diasSancion: diasSancion,
+        miSocioSancion: socio,
+        fechaSancion: hoy,
+      });
+      lpPendiente.setFechaDevolucionReal(hoy);
+      await em.flush();
+
+      return res.status(200).json({
+        message: "Devolucion registrada y socio sancionado.",
+        data: {
+          socio: socio,
+          diasSancion: diasSancion,
+          ejemplar: ejemplar,
+          libro: libro,
+        },
+      });
+    }
+
+    lpPendiente.setFechaDevolucionReal(hoy);
+    await em.flush();
+
+    res.status(200).json({
+      message: "Se registro la devolución del libro",
+      data: {
+        libro: libro,
+        ejemplar: ejemplar,
+        socio: socio,
+      },
+    });
+  } catch (error: any) {
+    if (error.message.includes("PoliticaBiblioteca")) {
+      return res
+        .status(500)
+        .json({ message: "Politica biblioteca  inaccesible" });
+    }
+    if (error.message.includes("Socio")) {
+      return res.status(404).json({ message: "Socio inexistente" }); //Notar que es un 404 porque aca si lo ingresa el usuario
+    }
+    if (error instanceof NotFoundError) {
+      res.status(404).json({ message: "Ejemplar o libro no encontrado" });
+    }
+    res.status(500).json({ message: error.message });
+  }
+}
+
+async function buscarPrestamos(req: Request, res: Response) {
+  try {
+    const prestamos = await em.find(
+      Prestamo,
+      {},
+      { populate: ["misLpPrestamo.miEjemplar"] }
+    );
+    res
+      .status(200)
+      .json({ message: "Los prestámos encontrados son:", data: prestamos });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 }
-export { retirarLibrosPaso1, retirarLibrosPaso2 };
+async function buscarPrestamosSocio(req: Request, res: Response) {
+  try {
+    //No se valida el socio apropósito
+    const prestamos = await em.find(
+      Prestamo,
+      { miSocioPrestamo: req.body.idSocio },
+      { populate: ["misLpPrestamo.miEjemplar"] }
+    );
+    res.status(200).json({
+      message: "Los prestámos del socio encontrados son:",
+      data: prestamos,
+    });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+}
+async function buscarPrestamosNoDevueltosSocio(req: Request, res: Response) {
+  try {
+    const socio = await em.findOneOrFail(Socio, req.body.idSocio, {
+      populate: [
+        "misPrestamos.misLpPrestamo.miEjemplar.miLibro.misAutores",
+        "misPrestamos.misLpPrestamo.miEjemplar.miLibro.miEditorial",
+      ],
+    });
+    const noDevueltos = socio.getNoDevueltos();
+    res.status(200).json({
+      message: "Los ejemplares no devueltos del socio son",
+      ejemplares: noDevueltos,
+    });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+}
 /*
- // CU Devolver libro (Se repite por cada libro)
-
- async function devolverLibroPaso1(req: Request, res: Response){
-  try{
-  const  idEjemplar = Number.parseInt(req.body.idEjemplar);
-  const  idLibro = Number.parseInt(req.body.idLibro);
-  const ejemplar = await em.findOneOrFail(Ejemplar,[idEjemplar,idLibro]);
-  const libro = ejemplar.getLibro();
-  
-  if(!ejemplar.estasPendiente()){
-    res.status(400).json({message: "El ejemplar no esta pendiente de devolución"})
+async function buscarPrestamosNoDevueltos(req:Request,res:Response){
+  try {
+    const prestamosNoDevueltos = em.createQueryBuilder()
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
-  const lpPendiente = ejemplar.getLpPendiente();
-  if(!lpPendiente.seDevolvioATiempo()){
-    const hoy = new Date();
-    let diasSancion = 0;
-    const diasAtraso = differenceInDays(hoy,lpPendiente.getFechaDevolucionTeorica());
-    const politicaSancion = await em.createQueryBuilder(PoliticaSancion,'p').select(['*']).where({diasHasta: {$lt:'diasAtraso'}}).getSingleResult(); //Esta mal, pero iria aca.
-    if(!politicaSancion){
-      const politicaBiblioteca = await em.findOneOrFail(PoliticaBiblioteca,1);
-      diasSancion = politicaBiblioteca.getDiasSancionMaxima();
-    }
-    if(politicaSancion){
-      diasSancion = politicaSancion.getDiasSancion();
-    }
-    const socio = //obtener socio
-    const sancion  = em.create(Sancion,{diasSancion:diasSancion,miSocio:socio,fechaSancion:hoy});
-    await em.flush();
-    const libro = ejemplar.getLibro();
-    res.status(200).json({message: "Devolucion registrada y socio sancionado.",data:{socio:socio,diasSancion:diasSancion}})
-    // FALTA 
-  }
-  const hoy = new Date();
-  lpPendiente.setFechaDevolucionReal(hoy);
-  await em.persistAndFlush(lpPendiente);
-  const socio = //socio; 
-  res.status(200).json({message: "Se registro la devolución del libro", data: {fechaDevolucion : hoy, libro:libro, ejemplar:ejemplar, socio: socio}})
-  }catch(error:any){
-    if(error instanceof NotFoundError){
-      res.status(404).json({message: "Ejemplar o libro no encontrado"});
-    }
-  res.status(500).json({message: error.message});
-  }
+}
+*/
 
-
-
- }^*/
+export {
+  retirarLibrosPaso1R,
+  retirarLibrosPaso2R,
+  retirarLibrosPaso3R,
+  devolverLibro,
+  buscarPrestamos,
+  buscarPrestamosSocio,
+  buscarPrestamosNoDevueltosSocio,
+};

@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { Autor } from "./autor.entity.js";
 import { errorDominio } from "../shared/DB/errors.js";
+import { NotFoundError } from "@mikro-orm/core";
 
 function sanitizeInput(req: Request, res: Response, next: NextFunction) {
   req.body.inputOK = {
@@ -24,11 +25,11 @@ const em = orm.em;
 async function buscaAutores(req: Request, res: Response) {
   try {
     const autores = await em.find(Autor, {}, { populate: ["misLibros"] });
-    res
+    return res
       .status(200)
       .json({ message: "Los autores encontrados son:", data: autores });
   } catch (error: any) {
-    res.status(500).json({ message: error.message }); // Mensaje dejado para el desarollo.
+    return res.status(500).json({ message: error.message }); // Mensaje dejado para el desarollo.
   }
 }
 
@@ -40,9 +41,12 @@ async function buscaAutor(req: Request, res: Response) {
       { id },
       { populate: ["misLibros"] }
     );
-    res.status(200).json({ message: "Autor encontrado", data: autor });
+    return res.status(200).json({ message: "Autor encontrado", data: autor });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    if (error instanceof NotFoundError) {
+      return res.status(404).json({ message: "Autor inexistente" });
+    }
+    return res.status(500).json({ message: error.message });
   }
 }
 
@@ -50,9 +54,9 @@ async function altaAutor(req: Request, res: Response) {
   try {
     const autor = em.create(Autor, req.body.inputOK);
     await em.flush();
-    res.status(201).json({ message: "Autor creado", data: autor });
+    return res.status(201).json({ message: "Autor creado", data: autor });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 }
 
@@ -62,9 +66,9 @@ async function actualizarAutor(req: Request, res: Response) {
     const autor = em.getReference(Autor, id);
     em.assign(autor, req.body.inputOK);
     await em.flush();
-    res.status(200).json({ message: "Autor actualizado" });
+    return res.status(200).json({ message: "Autor actualizado" });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 }
 
@@ -73,12 +77,12 @@ async function bajaAutor(req: Request, res: Response) {
     const id = Number.parseInt(req.params.id);
     const autor = em.getReference(Autor, id);
     await em.removeAndFlush(autor);
-    res.status(200).send({ message: "Autor borrado" });
+    return res.status(200).send({ message: "Autor borrado" });
   } catch (error: any) {
     if (error instanceof errorDominio) {
-      res.status(409).json({ message: error.message });
+      return res.status(409).json({ message: error.message });
     }
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 }
 
