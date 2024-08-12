@@ -18,17 +18,17 @@ Content-Type: application/json
 
 ### Delete de un libro por ID
 
-DELETE  http://localhost:3000/api/libros/16
+DELETE  http://localhost:3000/api/libros/-123
 
 
 
 
 ### Actualizar autor con PUT
-PUT http://localhost:3000/api/libros/3
+PUT http://localhost:3000/api/libros/16
 Content-Type: application/json
 
 {
-    "titulo": "Libro para borrar",
+    "titulo": "Libro para borrar PUT",
     "descripcion": "Un clásico de la literatura contemporanéa",
     "isbn": "0-7645-2641-3",
     "misAutores": [1],
@@ -41,6 +41,6 @@ PATCH http://localhost:3000/api/libros/16
 Content-Type: application/json
 
 {
-    "titulo": "Libro PATCHE"
+    "titulo": "Libro PATCHEEE"
 
 }

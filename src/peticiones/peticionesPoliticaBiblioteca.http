@@ -9,7 +9,7 @@ POST http://localhost:3000/api/politicaBiblioteca
 Content-Type: application/json
 
 {
-    "diasSancionMaxima": 180,
+    "diasSancionMaxima": 190,
     "diasPrestamo": 15,
     "cantPendientesMaximo": 1
 
@@ -23,5 +23,14 @@ Content-Type: application/json
     "diasSancionMaxima": 130,
     "diasPrestamo": 30,
     "cantPendientesMaximo": 4
+
+}
+### Actualizar politica bilioteca con PATCH
+PATCH http://localhost:3000/api/politicaBiblioteca
+Content-Type: application/json
+
+{
+    "diasSancionMaxima": 120
+
 
 }

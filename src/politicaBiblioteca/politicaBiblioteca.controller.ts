@@ -1,70 +1,77 @@
 import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { PoliticaBiblioteca } from "./politicaBiblioteca.entity.js";
-
-function sanitizeInput(req: Request, res: Response, next: NextFunction) {
-  req.body.inputOK = {
-    diasSancionMaxima: req.body.diasSancionMaxima,
-    diasPrestamo: req.body.diasPrestamo,
-    cantPendientesMaximo: req.body.cantPendientesMaximo,
-  };
-
-  Object.keys(req.body.inputOK).forEach((key) => {
-    if (req.body.inputOK[key] === undefined) {
-      delete req.body.inputOK[key];
-    }
-  });
-
-  next();
-}
+import { NotFoundError } from "@mikro-orm/core";
 
 const em = orm.em;
 
-async function buscarPoliticaBiblioteca(req: Request, res: Response) {
+async function buscarPoliticaBiblioteca(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const politica = await em.findOneOrFail(PoliticaBiblioteca, {
       id: 1,
     });
-    res.status(200).json({
+    return res.status(200).json({
       message: "La politica de biblioteca actual es: ",
       data: politica,
     });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    if (error instanceof NotFoundError) {
+      return res
+        .status(500)
+        .json({ message: "Politica de biblioteca inaccesible" });
+    }
+    next(error);
   }
 }
 
-async function altaPoliticaBiblioteca(req: Request, res: Response) {
+async function altaPoliticaBiblioteca(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   //Funcion para desarrollo, migrar en producción.
   try {
-    const politica = em.create(PoliticaBiblioteca, req.body.inputOK);
+    const politica = em.create(PoliticaBiblioteca, req.body);
 
     await em.flush();
-    res
+    return res
       .status(201)
       .json({ message: "Politica de biblioteca creada", data: politica });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function actualizarPoliticaBiblioteca(req: Request, res: Response) {
+async function actualizarPoliticaBiblioteca(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const politica = em.getReference(PoliticaBiblioteca, 1);
-    em.assign(politica, req.body.inputOK);
+    em.assign(politica, req.body);
     await em.flush();
-    res.status(200).json({ message: "Politica de biblioteca actualizada" });
+    return res
+      .status(200)
+      .json({ message: "Politica de biblioteca actualizada" });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function bajaPoliticaBiblioteca(req: Request, res: Response) {
+async function bajaPoliticaBiblioteca(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   //Funcion para desarollo.
-  res.status(500).json({ message: "Not implemented" });
+  return res.status(500).json({ message: "Not implemented" });
 }
 export {
-  sanitizeInput,
   buscarPoliticaBiblioteca,
   altaPoliticaBiblioteca,
   actualizarPoliticaBiblioteca,

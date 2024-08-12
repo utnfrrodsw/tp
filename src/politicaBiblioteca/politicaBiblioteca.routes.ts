@@ -5,16 +5,28 @@ import {
   altaPoliticaBiblioteca,
   bajaPoliticaBiblioteca,
   buscarPoliticaBiblioteca,
-  sanitizeInput,
 } from "./politicaBiblioteca.controller.js";
+import { validateInput } from "../middlewares/middleware.validateInput.js";
+import {
+  politicaBibliotecaPutSchema,
+  politicaBibliotecaPatchSchema,
+} from "../schemas/schemas.politicaBiblioteca.js";
 export const politicaBibliotecaRouter = Router();
 
 politicaBibliotecaRouter.get("/", buscarPoliticaBiblioteca);
-politicaBibliotecaRouter.post("/", sanitizeInput, altaPoliticaBiblioteca);
-politicaBibliotecaRouter.put("/", sanitizeInput, actualizarPoliticaBiblioteca);
-politicaBibliotecaRouter.patch(
+politicaBibliotecaRouter.post(
   "/",
-  sanitizeInput,
+  validateInput(undefined, politicaBibliotecaPutSchema),
+  altaPoliticaBiblioteca
+); // Esto no deberia existir, se migra en producción.
+politicaBibliotecaRouter.put(
+  "/",
+  validateInput(undefined, politicaBibliotecaPutSchema),
   actualizarPoliticaBiblioteca
 );
-politicaBibliotecaRouter.delete("/", bajaPoliticaBiblioteca);
+politicaBibliotecaRouter.patch(
+  "/",
+  validateInput(undefined, politicaBibliotecaPatchSchema),
+  actualizarPoliticaBiblioteca
+);
+politicaBibliotecaRouter.delete("/", bajaPoliticaBiblioteca); // Esto no deberia existir, se migra en producción.
