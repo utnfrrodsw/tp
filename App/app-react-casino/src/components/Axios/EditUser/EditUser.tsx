@@ -1,9 +1,8 @@
 import axios from 'axios';
 import './EditUser.css';
 import { useLocation } from 'react-router-dom';
-import { useRef } from 'react';
 import { NavLink as Link } from 'react-router-dom'
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export function EditUser() {
 
@@ -42,19 +41,91 @@ export function EditUser() {
         setPhone(usuario.phone)
         setEmail(usuario.email)
         setPassword(usuario.password)
+
+        const inputName = document.querySelector("#firstname")
+        inputName?.classList.remove("modified")
+
+        const inputlastName = document.querySelector("#lastname")
+        inputlastName?.classList.remove("modified")
+
+        const inputStreet = document.querySelector("#street")
+        inputStreet?.classList.remove("modified")
+
+        const inputPhone = document.querySelector("#phone")
+        inputPhone?.classList.remove("modified")
+
+        const inputEmail = document.querySelector("#email")
+        inputEmail?.classList.remove("modified")
+
+        const inputPassword = document.querySelector("#password")
+        inputPassword?.classList.remove("modified")
+
     }
+
+    function checkName() {
+        const inputName = document.querySelector("#firstname")
+        if(form.current.firstname.value != usuario.first_name) {
+            inputName?.classList.add("modified")
+        } else {
+            inputName?.classList.remove("modified")
+        }
+    }
+    function checkLastName() {
+        const inputlastName = document.querySelector("#lastname")
+        if(form.current.lastname.value != usuario.last_name) {
+            inputlastName?.classList.add("modified")
+        } else {
+            inputlastName?.classList.remove("modified")
+        }
+    }
+    function checkStreet() {
+        const inputStreet = document.querySelector("#street")
+        if(form.current.street.value != usuario.street) {
+            inputStreet?.classList.add("modified")
+        } else {
+            inputStreet?.classList.remove("modified")
+        }
+    }
+    function checkPhone() {
+        const inputPhone = document.querySelector("#phone")
+        if(form.current.phone.value != usuario.phone) {
+            inputPhone?.classList.add("modified")
+        } else {
+            inputPhone?.classList.remove("modified")
+        }
+    }
+    function checkEmail() {
+        const inputEmail = document.querySelector("#email")
+        if(form.current.email.value != usuario.email) {
+            inputEmail?.classList.add("modified")
+        } else {
+            inputEmail?.classList.remove("modified")
+        }
+    }
+    function checkPassword() {
+        const inputPassword = document.querySelector("#password")
+        if(form.current.password.value != usuario.password) {
+            inputPassword?.classList.add("modified")
+        } else {
+            inputPassword?.classList.remove("modified")
+        }
+    }
+
+    useEffect(() => {
+        checkName()
+    }, []);
 
     return (
         
         <>
             <div className='edituser'>
                 <form action="" className='formEdit' ref={form}>
-                    <input type="text" id='firstname' className='formInput text-gray-900' value={firstName} onChange={e => setFirstName(e.target.value)} name='firstname'/>
-                    <input type="text" id='lastname' className='formInput text-gray-900' value={lastName} onChange={e => setlastName(e.target.value)} name='lastname'/>
-                    <input type="text" id='street' className='formInput text-gray-900' value={street} onChange={e => setStreet(e.target.value)} name='street'/>
-                    <input type="text" id='phone' className='formInput text-gray-900' value={phone} onChange={e => setPhone(e.target.value)} name='phone'/>
-                    <input type="text" id='email' className='formInput text-gray-900' value={email} onChange={e => setEmail(e.target.value)} name='email'/>
-                    <input type="text" id='password' className='formInput text-gray-900' value={password} onChange={e => setPassword(e.target.value)} name='password'/>
+                    <input type="text" id='firstname' className='formInput text-gray-900' value={firstName} onChange={e => setFirstName(e.target.value)} onInput={() => checkName()} name='firstname'/>
+                    <input type="text" id='lastname' className='formInput text-gray-900' value={lastName} onChange={e => setlastName(e.target.value)} onInput={() => checkLastName()} name='lastname'/>
+                    <input type="text" id='street' className='formInput text-gray-900' value={street} onChange={e => setStreet(e.target.value)} onInput={() => checkStreet()} name='street'/>
+                    <input type="text" id='phone' className='formInput text-gray-900' value={phone} onChange={e => setPhone(e.target.value)} onInput={() => checkPhone()} name='phone'/>
+                    <input type="text" id='email' className='formInput text-gray-900' value={email} onChange={e => setEmail(e.target.value)} onInput={() => checkEmail()} name='email'/>
+                    <input type="text" id='password' className='formInput text-gray-900' value={password} onChange={e => setPassword(e.target.value)} onInput={() => checkPassword()} name='password'/>
                 </form>
                 <button type='submit' className='formSubmit' onClick={() => patchUser(form.current)}>Actualizar</button>
                 <Link to="/user" className="back">volver</Link>

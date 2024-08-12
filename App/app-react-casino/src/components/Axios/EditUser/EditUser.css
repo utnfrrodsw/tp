@@ -22,3 +22,7 @@
     padding: 1rem;
     margin: 2rem;
 }
+
+.modified {
+    color: red;
+}
