@@ -1,5 +1,8 @@
 ### Obtener todos los autores
-GET http://localhost:3000/api/autores
+GET http://localhost:3000/api/autores/
+
+### Obtener un autor
+GET http://localhost:3000/api/autores/14
 
 ### Subir autor
 
@@ -7,17 +10,17 @@ POST http://localhost:3000/api/autores
 Content-Type: application/json
 
 {
-    "nombre": "Jorge Luis",
+    "nombre": "agostino",
     "apellido": "Borges"
 
 }
 
 ### Delete de un autor por ID
-DELETE  http://localhost:3000/api/autores/2
+DELETE  http://localhost:3000/api/autores/
 
 ### Subir autor2
 
-POST http://localhost:3000/api/autores
+POST http://localhost:3000/api/autores/
 Content-Type: application/json
 
 {
@@ -28,12 +31,14 @@ Content-Type: application/json
 
 ### Actualizar autor con PATCH (parcialmente)
 
-PATCH http://localhost:3000/api/autores/5
+PUT http://localhost:3000/api/autores/e
 Content-Type: application/json
 
 {
     
-    "apellido": "Montini"
+    "nombre": "Agostino",
+    "apellido": "Peña"
+
 
 }
 

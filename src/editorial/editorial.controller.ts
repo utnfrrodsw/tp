@@ -1,26 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { Editorial } from "./editorial.entity.js";
-import { errorDominio } from "../shared/DB/errors.js";
+
 import { NotFoundError } from "@mikro-orm/core";
-
-function sanitizeInput(req: Request, res: Response, next: NextFunction) {
-  req.body.inputOK = {
-    nombre: req.body.nombre,
-  };
-
-  Object.keys(req.body.inputOK).forEach((key) => {
-    if (req.body.inputOK[key] === undefined) {
-      delete req.body.inputOK[key];
-    }
-  });
-
-  next();
-}
 
 const em = orm.em;
 
-async function buscarEditoriales(req: Request, res: Response) {
+async function buscarEditoriales(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const editoriales = await em.find(
       Editorial,
@@ -31,11 +21,15 @@ async function buscarEditoriales(req: Request, res: Response) {
       .status(200)
       .json({ message: "Las editoriales encontradas son:", data: editoriales });
   } catch (error: any) {
-    return res.status(500).json({ message: error.message }); // Mensaje dejado para el desarollo.
+    next(error);
   }
 }
 
-async function buscarEditorial(req: Request, res: Response) {
+async function buscarEditorial(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const id = Number.parseInt(req.params.id);
     const editorial = await em.findOneOrFail(
@@ -43,40 +37,46 @@ async function buscarEditorial(req: Request, res: Response) {
       { id },
       { populate: ["misLibros"] }
     );
-    res.status(200).json({ message: "Editorial encontrada", data: editorial });
+    return res
+      .status(200)
+      .json({ message: "Editorial encontrada", data: editorial });
   } catch (error: any) {
     if (error instanceof NotFoundError) {
       return res.status(404).json({ message: "Editorial inexistente" });
     }
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function altaEditorial(req: Request, res: Response) {
+async function altaEditorial(req: Request, res: Response, next: NextFunction) {
   try {
-    const editorial = em.create(Editorial, req.body.inputOK);
+    const editorial = em.create(Editorial, req.body);
     await em.flush();
     return res
       .status(201)
       .json({ message: "Editorial creada", data: editorial });
   } catch (error: any) {
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function actualizarEditorial(req: Request, res: Response) {
+async function actualizarEditorial(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const id = Number.parseInt(req.params.id);
     const editorial = em.getReference(Editorial, id);
-    em.assign(editorial, req.body.inputOK);
+    em.assign(editorial, req.body);
     await em.flush();
     return res.status(200).json({ message: "Editorial actualizada" });
   } catch (error: any) {
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function bajaEditorial(req: Request, res: Response) {
+async function bajaEditorial(req: Request, res: Response, next: NextFunction) {
   try {
     const id = Number.parseInt(req.params.id);
     const editorial = em.getReference(Editorial, id);
@@ -88,11 +88,10 @@ async function bajaEditorial(req: Request, res: Response) {
         message: "No se puede eliminar una editorial que posea libros",
       });
     }
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 export {
-  sanitizeInput,
   buscarEditoriales,
   buscarEditorial,
   altaEditorial,

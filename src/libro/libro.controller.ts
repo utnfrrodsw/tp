@@ -2,28 +2,9 @@ import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { Libro } from "./libro.entity.js";
 import { Ejemplar } from "../ejemplar/ejemplar.entity.js";
-import { DateType, NotFoundError } from "@mikro-orm/core";
+import { NotFoundError } from "@mikro-orm/core";
 
-function sanitizeInput(req: Request, res: Response, next: NextFunction) {
-  req.body.inputOK = {
-    titulo: req.body.titulo,
-    descripcion: req.body.descripcion,
-    isbn: req.body.isbn,
-    misAutores: req.body.misAutores, // Revisar
-    miEditorial: req.body.miEditorial, //Revisar
-    cantEjemplares: req.body.cantEjemplares,
-  };
-
-  Object.keys(req.body.inputOK).forEach((key) => {
-    if (req.body.inputOK[key] === undefined) {
-      delete req.body.inputOK[key];
-    }
-  });
-
-  next();
-}
-
-function sanitizeLibro(libro: Libro) {
+function sanitizeResponseLibro(libro: Libro) {
   return {
     id: libro.id,
     titulo: libro.titulo,
@@ -39,20 +20,22 @@ function sanitizeLibro(libro: Libro) {
 
 const em = orm.em;
 
-async function buscaLibros(req: Request, res: Response) {
+async function buscaLibros(req: Request, res: Response, next: NextFunction) {
   try {
     const autores = await em.find(
       Libro,
       {},
       { populate: ["misAutores", "miEditorial", "misEjemplares"] }
     );
-    res.status(200).json({ message: "Libros encontrados: ", data: autores });
+    return res
+      .status(200)
+      .json({ message: "Libros encontrados: ", data: autores });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function buscaLibro(req: Request, res: Response) {
+async function buscaLibro(req: Request, res: Response, next: NextFunction) {
   try {
     const id = Number.parseInt(req.params.id);
     const libro = await em.findOneOrFail(
@@ -60,15 +43,15 @@ async function buscaLibro(req: Request, res: Response) {
       { id },
       { populate: ["misAutores", "miEditorial", "misEjemplares"] }
     );
-    res.status(200).json({ message: "Libro encontrado", data: libro });
+    return res.status(200).json({ message: "Libro encontrado", data: libro });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function altaLibro(req: Request, res: Response) {
+async function altaLibro(req: Request, res: Response, next: NextFunction) {
   try {
-    const { cantEjemplares, ...libroData } = req.body.inputOK;
+    const { cantEjemplares, ...libroData } = req.body;
     const libro = em.create(Libro, libroData);
 
     for (let i = 0; i < cantEjemplares; i++) {
@@ -81,62 +64,86 @@ async function altaLibro(req: Request, res: Response) {
 
     await em.flush();
 
-    const libroFiltrado = sanitizeLibro(libro);
+    const libroFiltrado = sanitizeResponseLibro(libro);
     // Evita que devuelva toda la informacion del ejemplar en el response,osea, evita que devuelva el libro del ejemplar (Debido a que estan completamente cargados en memoria).
 
-    res.status(201).json({ message: "Libro creado", data: libroFiltrado });
+    return res
+      .status(201)
+      .json({ message: "Libro creado", data: libroFiltrado });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    if (error.code === "ER_NO_REFERENCED_ROW_2") {
+      if (error.message.includes("libro_mis_autores_autor_id_foreign")) {
+        return res
+          .status(400)
+          .json({ message: "Se ingreso el id de algún autor que no existe" });
+      }
+      if (error.message.includes("libro_mi_editorial_id_foreign")) {
+        return res
+          .status(400)
+          .json({ message: "El id de editorial ingresado no existe" });
+      }
+    }
+
+    next(error);
   }
 }
 
-async function actualizarLibro(req: Request, res: Response) {
+async function actualizarLibro(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const id = Number.parseInt(req.params.id);
     const libroActualizar = em.getReference(Libro, id);
-    em.assign(libroActualizar, req.body.inputOK);
+    em.assign(libroActualizar, req.body);
     await em.flush();
-    res.status(200).json({ message: "Libro actualizado" });
+    return res.status(200).json({ message: "Libro actualizado" });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    if (error.code === "ER_NO_REFERENCED_ROW_2") {
+      if (error.message.includes("libro_mis_autores_autor_id_foreign")) {
+        return res
+          .status(400)
+          .json({ message: "Se ingreso el id de algún autor que no existe" });
+      }
+      if (error.message.includes("libro_mi_editorial_id_foreign")) {
+        return res
+          .status(400)
+          .json({ message: "El id de editorial ingresado no existe" });
+      }
+    }
+    next(error);
   }
 }
 
-async function bajaLibro(req: Request, res: Response) {
+async function bajaLibro(req: Request, res: Response, next: NextFunction) {
   try {
     const id = Number.parseInt(req.params.id);
     const libro = await em.findOneOrFail(Libro, id, {
       populate: ["misEjemplares.misLp"],
     });
 
-    //Validacion puede moverse a beforeDelete. (En ese caso, dejar un getReference aca)
+    //Validacion puede moverse a beforeDelete. (En ese caso, dejar un getReference aca). 12/8/2024 validacion innecesaria, previsto ser borrada o implementada en otro CU de borrado fisico.
     if (libro.fuistePrestado()) {
-      res.status(409).json({
+      return res.status(409).json({
         message:
           "No puede borrarse un libro que haya sido prestado. (Testeo: Borrar el socio que lo haya pedido)",
       });
     }
     // Fin validacion
     await em.removeAndFlush(libro);
-    res.status(200).json({ message: "Libro eliminado" });
+    return res.status(200).json({ message: "Libro eliminado" });
   } catch (error: any) {
     if (error instanceof NotFoundError) {
       return res.status(200).json({ message: "Libro eliminado" }); // Para mantener la consistencia.
     }
     if (error.code === "ER_ROW_IS_REFERENCED_2") {
-      res.status(409).json({
+      return res.status(409).json({
         message: "No se puede eliminar un libro que posea ejemplares",
       });
     }
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-export {
-  sanitizeInput,
-  buscaLibros,
-  buscaLibro,
-  altaLibro,
-  actualizarLibro,
-  bajaLibro,
-};
+export { buscaLibros, buscaLibro, altaLibro, actualizarLibro, bajaLibro };

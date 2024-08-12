@@ -4,21 +4,13 @@ import { Ejemplar } from "./ejemplar.entity.js";
 import { Libro } from "../libro/libro.entity.js";
 import { NotFoundError } from "@mikro-orm/core";
 
-function sanitizeInput(req: Request, res: Response, next: NextFunction) {
-  req.body.inputOK = {};
-
-  Object.keys(req.body.inputOK).forEach((key) => {
-    if (req.body.inputOK[key] === undefined) {
-      delete req.body.inputOK[key];
-    }
-  });
-
-  next();
-}
-
 const em = orm.em;
 
-async function buscarEjemplares(req: Request, res: Response) {
+async function buscarEjemplares(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const id = Number.parseInt(req.params.id);
     const libro = em.getReference(Libro, id);
@@ -28,11 +20,11 @@ async function buscarEjemplares(req: Request, res: Response) {
       data: ejemplares,
     });
   } catch (error: any) {
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function buscarEjemplar(req: Request, res: Response) {
+async function buscarEjemplar(req: Request, res: Response, next: NextFunction) {
   try {
     const idLibro = Number.parseInt(req.params.id);
     const libro = em.getReference(Libro, idLibro);
@@ -47,11 +39,20 @@ async function buscarEjemplar(req: Request, res: Response) {
       data: ejemplar,
     });
   } catch (error: any) {
-    return res.status(500).json({ message: error.message });
+    if (error instanceof NotFoundError) {
+      return res
+        .status(404)
+        .json({ message: "Ejemplar o libro no encontrado." });
+    }
+    next(error);
   }
 }
 
-async function altaEjemplarManual(req: Request, res: Response) {
+async function altaEjemplarManual(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const id = Number.parseInt(req.params.id);
     const libro = await em.findOneOrFail(Libro, id);
@@ -66,11 +67,33 @@ async function altaEjemplarManual(req: Request, res: Response) {
     await em.flush();
     return res.status(201).json({ message: "Ejemplar creado", data: ejemplar });
   } catch (error: any) {
-    return res.status(500).json({ message: error.message });
+    if (error instanceof NotFoundError) {
+      return res
+        .status(404)
+        .json({ message: "No existe el id del libro ingresado" });
+    }
+    next(error);
+  }
+}
+async function actualizarEjemplar(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const idLibro = Number.parseInt(req.params.id);
+    const idEjemplarRecibida = Number.parseInt(req.params.idEjemplar);
+    const ejemplar = em.getReference(Ejemplar, [idEjemplarRecibida, idLibro]);
+
+    em.assign(ejemplar, req.body);
+    await em.flush();
+    return res.status(200).json({ message: "Se ha actualizado el ejemplar" });
+  } catch (error: any) {
+    next(error);
   }
 }
 
-async function bajaEjemplar(req: Request, res: Response) {
+async function bajaEjemplar(req: Request, res: Response, next: NextFunction) {
   try {
     const idLibro = Number.parseInt(req.params.id);
     const idEjemplarRecibida = Number.parseInt(req.params.idEjemplar);
@@ -93,13 +116,13 @@ async function bajaEjemplar(req: Request, res: Response) {
     return res.status(200).send({ message: "Ejemplar borrado" });
   } catch (error: any) {
     if (error instanceof NotFoundError) {
-      return res.status(200).send({ message: "Ejemplar borrado" });
+      return res.status(200).send({ message: "Ejemplar borrado" }); // 200 para mantener consistencia.
     }
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function bajaEjemplares(req: Request, res: Response) {
+async function bajaEjemplares(req: Request, res: Response, next: NextFunction) {
   // Función optativa. Más que nada para un mal CREATE. (Por eso no está validada)
   try {
     const idLibro = Number.parseInt(req.params.id);
@@ -108,15 +131,15 @@ async function bajaEjemplares(req: Request, res: Response) {
 
     return res.status(200).send({ message: "Ejemplares borrados" });
   } catch (error: any) {
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
 export {
   buscarEjemplares,
   altaEjemplarManual,
-  sanitizeInput,
   buscarEjemplar,
   bajaEjemplar,
   bajaEjemplares,
+  actualizarEjemplar,
 };

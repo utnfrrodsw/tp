@@ -4,12 +4,35 @@ GET http://localhost:3000/api/libros/1/ejemplares/
 
 ### Subir ejemplar
 
-POST http://localhost:3000/api/libros/1/ejemplares
+POST http://localhost:3000/api/libros/1/ejemplares/
 Content-Type: application/json
 
 {
 
-    
+   "fechaIncorporacion": "2024-05-12"
+
+
+}
+### Actualizar ejemplar PUT
+
+PUT http://localhost:3000/api/libros/1/ejemplares/14
+Content-Type: application/json
+
+{
+
+   
+
+
+}
+### Actualizar ejemplar PATCH
+
+PATCH http://localhost:3000/api/libros/1/ejemplares/1
+Content-Type: application/json
+
+{
+
+   
+
 
 }
 
@@ -20,4 +43,4 @@ DELETE  http://localhost:3000/api/libros/5/ejemplares/1
 
 ### Delete de todos los ejemplares de un libro
 
-DELETE  http://localhost:3000/api/libros/1/ejemplares/
+DELETE  http://localhost:3000/api/libros/1/ejemplares/1

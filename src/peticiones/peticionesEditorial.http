@@ -7,9 +7,29 @@ POST http://localhost:3000/api/editoriales
 Content-Type: application/json
 
 {
-    "nombre": "San Luis"
+    "nombre": "Prueba"
+
+}
+### Actualizar editorial PUT
+
+PUT http://localhost:3000/api/editoriales/1
+Content-Type: application/json
+
+{
+    
+
+}
+### Actualizar editorial PATCH
+
+PATCH http://localhost:3000/api/editoriales/1
+Content-Type: application/json
+
+{
+   
 
 }
 
+
+
 ### Delete de una editorial por ID
-DELETE  http://localhost:3000/api/editoriales/5
+DELETE  http://localhost:3000/api/editoriales/-1

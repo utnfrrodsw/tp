@@ -2,7 +2,7 @@ import {
   Entity,
   Property,
   PrimaryKey,
-  DateType,
+  DateTimeType,
   ManyToOne,
   Rel,
   PrimaryKeyProp,
@@ -22,7 +22,7 @@ export class Ejemplar {
 
   [PrimaryKeyProp]?: ["id", "miLibro"]; // Indica a TS que esta es la CP.
 
-  @Property({ type: DateType })
+  @Property({ type: DateTimeType })
   fechaIncorporacion? = new Date();
 
   @OneToMany(() => LineaPrestamo, (lp) => lp.miEjemplar, { hidden: true })
