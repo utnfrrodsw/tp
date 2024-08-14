@@ -34,7 +34,9 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                     withCredentials: true
                 }
             );
-        console.log(username, password);
+        console.log(JSON.stringify(response?.data));
+        const roles = response?.data?.role;
+        setAuth({ username, password, roles});
         setUsername('');
         setPassword('');
         setSuccess(true);
@@ -78,11 +80,11 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                             <form action="" method="" className='form' onSubmit={handleSubmit}>
                                 <div className='name'>
                                     <p className='formWord'>Username or Email</p>
-                                    <input type="text" id='userId' className='loginForm' name='user_name' ref={userRef} autoComplete='off' onChange={(e) => setUsername(e.target.value)} value={username} required/>
+                                    <input type="text" id='userId' className='loginForm' name='username' ref={userRef} autoComplete='off' onChange={(e) => setUsername(e.target.value)} value={username} required/>
                                 </div>
                                 <div className='password'>
                                     <p className='formWord'>Password</p>
-                                    <input type="password" id='password' className='loginForm' name='user_password' onChange={(e) => setPassword(e.target.value)} value={password} required/>
+                                    <input type="password" id='password' className='loginForm' name='password' onChange={(e) => setPassword(e.target.value)} value={password} required/>
                                     <p className='forgotPassword'>Forgot your password?</p>
                                 </div>
                                 <div className='submitClass'>
