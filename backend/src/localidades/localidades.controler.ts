@@ -8,6 +8,7 @@ function sanitizarLocalidadInput(req: Request, res: Response, next: NextFunction
 
     req.body.sanitizarLoc = {
         nombre_localidad: req.body.nombre_localidad,
+        id: req.body.id
     }
 
     //Acá irían las validaciones de datos...
@@ -36,7 +37,7 @@ async function findOne(req: Request,res: Response){
 async function add(req: Request,res: Response){
     const input = req.body.sanitizarLoc
     
-    const localidadInput = new Localidad (input.nombre_localidad)
+    const localidadInput = new Localidad (input.nombre_localidad, input.id)
     
     const localidad = await repository.add(localidadInput)
     return res.status(201).send({message: 'Localidad caragada correctamente', data: localidad })
@@ -45,11 +46,11 @@ async function add(req: Request,res: Response){
 async function update(req: Request,res: Response){
     req.body.sanitizarLoc.id = req.params.id
     const localidad = await repository.update(req.params.id, req.body.sanitizarLoc)
-
+    
     if(!localidad){
         return res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
     }else{
-    return res.status(200).send({message: 'Localidad modificada correctamente', data: localidad})
+        return res.status(200).send({message: 'Localidad modificada correctamente', data: localidad})
 }}
 
 async function remove(req: Request,res: Response){

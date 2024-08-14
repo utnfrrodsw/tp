@@ -14,9 +14,9 @@ export class estado_torneoRepository {
         return estado_torneos;
     }
     async add(estados_torneosImput) {
-        const { id, ...characterRow } = estados_torneosImput;
+        const { ...characterRow } = estados_torneosImput;
         const [result] = await pool.query('insert into estados_torneos set ?', [characterRow]);
-        estados_torneosImput.id = result.insertId;
+        /*estados_torneosImput.id = result.insertId*/
         return estados_torneosImput;
     }
     async update(id, estados_torneosInput) {

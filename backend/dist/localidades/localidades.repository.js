@@ -14,15 +14,15 @@ export class LocalidadesRepository {
         return localidad;
     }
     async add(localidadInput) {
-        const { id, ...LocalidadRow } = localidadInput;
+        const { ...LocalidadRow } = localidadInput;
         const [result] = await pool.query('insert into localidades set ?', [LocalidadRow]);
-        localidadInput.id = result.insertId;
+        /*localidadInput.id = result.insertId*/
         return localidadInput;
     }
     async update(id, localidadInput) {
         const localidadId = Number.parseInt(id);
         const { ...localidadRow } = localidadInput;
-        await pool.query('update tipo_participantes set ? where id = ?', [localidadRow, localidadId]);
+        await pool.query('update localidades set ? where id = ?', [localidadRow, localidadId]);
         return await this.findOne({ id });
     }
     async delete(item) {

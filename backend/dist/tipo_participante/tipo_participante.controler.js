@@ -30,7 +30,7 @@ async function add(req, res) {
     const input = req.body.sanitizedInput;
     const tipo_participanteInput = new Tipo_participante(input.posicion, input.id);
     const tipo_participante = await repository.add(tipo_participanteInput);
-    res.status(201).send({ message: 'tipo_participante ha sido creado correctamente', data: tipo_participante });
+    return res.status(201).send({ message: 'tipo_participante ha sido creado correctamente', data: tipo_participante });
 }
 async function update(req, res) {
     req.body.sanitizedInput.id = req.params.id;

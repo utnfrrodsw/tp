@@ -14,9 +14,9 @@ export class tipo_participanteRepository {
         return tipo_participante;
     }
     async add(tipo_participanteInput) {
-        const { id, ...tipo_participanteRow } = tipo_participanteInput;
+        const { ...tipo_participanteRow } = tipo_participanteInput;
         const [result] = await pool.query('insert into tipo_participantes set ?', [tipo_participanteRow]);
-        tipo_participanteInput.id = result.insertId;
+        /*tipo_participanteInput.id = result.insertId*/
         return tipo_participanteInput;
     }
     async update(id, tipo_participanteInput) {

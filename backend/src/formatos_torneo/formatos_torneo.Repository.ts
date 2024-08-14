@@ -13,7 +13,7 @@ export class Formatos_torneoRepository implements Repository<formatos_torneo> {
 
     public async findOne(item: { id: string }): Promise<formatos_torneo | undefined> {
         const id = Number.parseInt(item.id)
-        const [formatos_torneos] = await pool.query<RowDataPacket[]>('select * from formatos_torneos where id = ?', [id])
+        const [formatos_torneos] = await pool.query<RowDataPacket[]>('select * from formatos_torneo where id = ?', [id])
         if (formatos_torneos.length === 0) {
             return undefined
         }
@@ -21,12 +21,10 @@ export class Formatos_torneoRepository implements Repository<formatos_torneo> {
         const formato_torneo = formatos_torneos[0] as formatos_torneo
             return formato_torneo
     }
-
-
-    public async add(formatos_torneoInput: formatos_torneo): Promise<formatos_torneo | undefined> {
-        const { id, ...characterRow } = formatos_torneoInput
+public async add(formatos_torneoInput: formatos_torneo): Promise<formatos_torneo | undefined> {
+        const { ...characterRow } = formatos_torneoInput
         const [result] = await pool.query<ResultSetHeader>('insert into formatos_torneo set ?', [characterRow])
-        formatos_torneoInput.id = result.insertId
+        /*formatos_torneoInput.id = result.insertId*/
 
     return formatos_torneoInput
   }

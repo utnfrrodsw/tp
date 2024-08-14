@@ -22,7 +22,7 @@ function sanitizedEstadoInput(req: Request, res: Response, next: NextFunction) {
 
 
 async function findAll(req: Request, res: Response) {
-    res.json({ data: await repository.findAll() })
+    return res.json({ data: await repository.findAll() })
 }
 
 
@@ -41,8 +41,8 @@ async function add(req: Request, res: Response) {
     const input = req.body.sanitizedInput
 
     const nuevoEstadoInput = new estado_torneo (
-    input.id,
-    input.nombre_estado
+    input.nombre_estado,
+    input.id
     )
 
     const nuevo_estado = await repository.add(nuevoEstadoInput)
@@ -55,9 +55,9 @@ async function update(req: Request, res: Response) {
     const estado = await repository.update(req.params.id, req.body.sanitizedInput)
 
     if (!estado) {
-    res.status(404).send({ message: 'no se encontro el estado indicado' })
+    return res.status(404).send({ message: 'no se encontro el estado indicado' })
     }else{
-    res.status(200).send({ message: 'el estado se actualizo correctamente', data: estado_torneo })
+    return res.status(200).send({ message: 'el estado se actualizo correctamente', data: estado_torneo })
     }
 }
 

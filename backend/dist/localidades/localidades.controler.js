@@ -4,6 +4,7 @@ const repository = new LocalidadesRepository();
 function sanitizarLocalidadInput(req, res, next) {
     req.body.sanitizarLoc = {
         nombre_localidad: req.body.nombre_localidad,
+        id: req.body.id
     };
     //Acá irían las validaciones de datos...
     Object.keys(req.body.sanitizarLoc).forEach(key => {
@@ -28,7 +29,7 @@ async function findOne(req, res) {
 }
 async function add(req, res) {
     const input = req.body.sanitizarLoc;
-    const localidadInput = new Localidad(input.nombre_localidad);
+    const localidadInput = new Localidad(input.nombre_localidad, input.id);
     const localidad = await repository.add(localidadInput);
     return res.status(201).send({ message: 'Localidad caragada correctamente', data: localidad });
 }

@@ -15,7 +15,7 @@ function sanitizedEstadoInput(req, res, next) {
     next();
 }
 async function findAll(req, res) {
-    res.json({ data: await repository.findAll() });
+    return res.json({ data: await repository.findAll() });
 }
 async function findOne(req, res) {
     const id = req.params.id;
@@ -29,7 +29,7 @@ async function findOne(req, res) {
 }
 async function add(req, res) {
     const input = req.body.sanitizedInput;
-    const nuevoEstadoInput = new estado_torneo(input.id, input.nombre_estado);
+    const nuevoEstadoInput = new estado_torneo(input.nombre_estado, input.id);
     const nuevo_estado = await repository.add(nuevoEstadoInput);
     res.status(201).send({ message: 'Se creo el estado del torneo', data: nuevo_estado });
 }
@@ -37,10 +37,10 @@ async function update(req, res) {
     req.body.sanitizedInput.id = req.params.id;
     const estado = await repository.update(req.params.id, req.body.sanitizedInput);
     if (!estado) {
-        res.status(404).send({ message: 'no se encontro el estado indicado' });
+        return res.status(404).send({ message: 'no se encontro el estado indicado' });
     }
     else {
-        res.status(200).send({ message: 'el estado se actualizo correctamente', data: estado_torneo });
+        return res.status(200).send({ message: 'el estado se actualizo correctamente', data: estado_torneo });
     }
 }
 async function remove(req, res) {

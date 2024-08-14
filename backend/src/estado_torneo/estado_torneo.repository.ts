@@ -23,9 +23,9 @@ export class estado_torneoRepository implements Repository<estado_torneo> {
             return estado_torneos
     }
 public async add(estados_torneosImput: estado_torneo): Promise<estado_torneo | undefined> {
-    const { id, ...characterRow } = estados_torneosImput
-        const [result] = await pool.query<ResultSetHeader>('insert into estados_torneos set ?', [characterRow])
-        estados_torneosImput.id = result.insertId
+    const { ...characterRow } = estados_torneosImput
+    const [result] = await pool.query<ResultSetHeader>('insert into estados_torneos set ?', [characterRow])
+    /*estados_torneosImput.id = result.insertId*/
 
     return estados_torneosImput
   }
@@ -33,7 +33,7 @@ public async add(estados_torneosImput: estado_torneo): Promise<estado_torneo | u
 
   public async update(id:string, estados_torneosInput: estado_torneo): Promise<estado_torneo| undefined> {
     const estados_torneosId = Number.parseInt(id)
-        const {...estados_torneosRow } = estados_torneosInput
+        const { ...estados_torneosRow } = estados_torneosInput
         await pool.query('update estados_torneos set ? where id = ?', [estados_torneosRow, estados_torneosId])
 
         return await this.findOne({id})

@@ -42,7 +42,7 @@ async function add(req: Request, res: Response) {
     )
 
     const tipo_participante = await repository.add(tipo_participanteInput)
-    res.status(201).send({ message: 'tipo_participante ha sido creado correctamente', data: tipo_participante })
+    return res.status(201).send({ message: 'tipo_participante ha sido creado correctamente', data: tipo_participante })
 }
 
 async function update(req: Request, res: Response) {

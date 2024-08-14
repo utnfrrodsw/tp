@@ -3,7 +3,7 @@ GET http://localhost:3000/api/localidades
 
 
 ### Obtener una localidad
-GET http://localhost:3000/api/localidades/66a2e70a635cb7c43f138d8d
+GET http://localhost:3000/api/localidades/2
 
 
 ### Crear una nueva localidad
@@ -11,12 +11,13 @@ POST http://localhost:3000/api/localidades
 Content-Type: application/json
 
 {
-    "nombre_localidad": "Pergamino"
+    "nombre_localidad": "Pergamino",
+    "id": 70
 }
 
 
 ### Modificar una localidad (PUT - Recurso completo e idempotente)
-PUT http://localhost:3000/api/localidades/66a2e7f2123c9672e5ada8c6
+PUT http://localhost:3000/api/localidades/9
 Content-Type: application/json
 
 {
@@ -34,4 +35,4 @@ Content-Type: application/json
 
 
 ### Borrar una localidad
-DELETE http://localhost:3000/api/localidades/66a2cfb9c1586a172681f48a
+DELETE http://localhost:3000/api/localidades/70

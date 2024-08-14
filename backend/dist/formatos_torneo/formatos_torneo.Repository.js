@@ -6,7 +6,7 @@ export class Formatos_torneoRepository {
     }
     async findOne(item) {
         const id = Number.parseInt(item.id);
-        const [formatos_torneos] = await pool.query('select * from formatos_torneos where id = ?', [id]);
+        const [formatos_torneos] = await pool.query('select * from formatos_torneo where id = ?', [id]);
         if (formatos_torneos.length === 0) {
             return undefined;
         }
@@ -14,9 +14,9 @@ export class Formatos_torneoRepository {
         return formato_torneo;
     }
     async add(formatos_torneoInput) {
-        const { id, ...characterRow } = formatos_torneoInput;
+        const { ...characterRow } = formatos_torneoInput;
         const [result] = await pool.query('insert into formatos_torneo set ?', [characterRow]);
-        formatos_torneoInput.id = result.insertId;
+        /*formatos_torneoInput.id = result.insertId*/
         return formatos_torneoInput;
     }
     async update(id, formatos_torneoInput) {
