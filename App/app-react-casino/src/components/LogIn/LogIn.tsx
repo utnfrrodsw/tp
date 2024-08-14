@@ -7,7 +7,7 @@ import axios from '../Axios/axios';
 const LOGIN_URL = 'users';
 
 export const LogIn = ({onClose}: {onClose: Function}) => {
-    const {setAuth} = useContext(AuthContext);
+    const setAuth = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -49,8 +49,7 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
             setErrMsg('Login Failed');
         }
         errRef.current.focus();
-    }
-}
+    }}
 
     return(
         <>
