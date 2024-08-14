@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { Specialty } from './specialty.entity.js';
-import { SpecialtyRepository } from './specialty.repository.js';
+import { orm } from '../shared/orm.js';
 
-const repository = new SpecialtyRepository();
+const em = orm.em;
 
 function sanitizeSpecialtyInput(
   req: Request,
@@ -23,52 +23,56 @@ function sanitizeSpecialtyInput(
   next();
 }
 
-function findAll(req: Request, res: Response) {
-  res.json({ data: repository.findAll() });
-}
-
-function findOne(req: Request, res: Response) {
-  const id = req.params.id
-  const specialty = repository.findOne({id})
-  if (!specialty){
-    return res.status(404).send({ message: 'Specialty not found' })
+async function findAll(req: Request, res: Response) {
+  try {
+    const specialties = await em.find(Specialty, {});
+    res.status(200).json({message : 'Found all specialties', data: specialties})
+  } catch (error: any) {
+    res.status(500).json({message: error.message})
   }
-  res.json ({data: specialty})
 }
 
-function add (req: Request, res: Response) {
-    const input = req.body.sanitizedInput;
-
-    const specialtyInput = new Specialty (
-        input.id,
-        input.name,
-    );
-
-    const specialty = repository.add(specialtyInput);
-    return res.status(201).send({ message: 'Specialty created successfully', data: specialty});
-}
-
-function update(req: Request, res: Response) {
-    req.body.sanitizedInput.id = req.params.id
-    const specialty = repository.update(req.body.sanitizedInput)
-  
-    if (!specialty) {
-      return res.status(404).send({ message: 'Specialty not found' })
-    }
-  
-    return res.status(200).send({ message: 'Specialty updated successfully', data: specialty })
+async function findOne(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id);
+    const speacialty = await em.find(Specialty, {id});
+    res.status(200).json({message : 'Found speacialty', data: speacialty})
+  } catch (error: any) {
+    res.status(500).json({message: error.message})
   }
+}
 
-  function remove (req: Request, res: Response) {
-    const id = req.params.id;
-    const specialty = repository.delete({ id });
+async function add (req: Request, res: Response) {
+  try {
+    const specialty = em.create(Specialty, req.body.sanitizedInput);
+    await em.flush();
+    res.status(201).json({ message: 'Specialty created', data: specialty });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+}
 
-    if (specialty === undefined) {
-        res.status(404).send({message : "Specialty not found"})
-    }
-    else {
-        res.status(200).send({message : "Specialty deleted"})
-    }
+async function update(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id);
+    const SpecialtyToUpdate = await em.findOneOrFail(Specialty, { id });
+    em.assign(SpecialtyToUpdate, req.body.sanitizedInput);
+    await em.flush();
+    res.status(200).json({ message: 'Specialty updated', data: SpecialtyToUpdate });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+async function remove (req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id);
+    const specialty = em.getReference(Specialty, id);
+    await em.removeAndFlush(specialty);
+    res.status(200).json({ message: 'Specialty deleted' });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
   }
 
 

@@ -1,3 +1,2 @@
-import { AppointmentRepository } from './appointment.repository.js';
-const respository = new AppointmentRepository();
+export {};
 //# sourceMappingURL=appointment.controller.js.map

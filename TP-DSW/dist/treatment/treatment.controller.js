@@ -1,6 +1,6 @@
 import { Treatment } from './treatment.entity.js';
-import { TreatmentRepository } from './treatment.repository.js';
-const repository = new TreatmentRepository();
+import { orm } from '../shared/orm.js';
+const em = orm.em;
 function sanitizeTreatmentInput(req, res, next) {
     req.body.sanitizedInput = {
         id: req.body.id,
@@ -14,39 +14,58 @@ function sanitizeTreatmentInput(req, res, next) {
     });
     next();
 }
-function findAll(req, res) {
-    res.json({ data: repository.findAll() });
-}
-function findOne(req, res) {
-    const id = req.params.id;
-    const treatment = repository.findOne({ id });
-    if (!treatment) {
-        return res.status(404).send({ message: 'Treatment not found' });
+async function findAll(req, res) {
+    try {
+        const treatments = await em.find(Treatment, {});
+        res.status(200).json({ message: 'found all treatments', data: treatments });
     }
-    res.json({ data: treatment });
-}
-function add(req, res) {
-    const input = req.body.sanitizedInput;
-    const specialtyInput = new Treatment(input.id, input.name, input.description);
-    const treatment = repository.add(specialtyInput);
-    return res.status(201).send({ message: 'Treatment created successfully', data: treatment });
-}
-function update(req, res) {
-    req.body.sanitizedInput.id = req.params.id;
-    const treatment = repository.update(req.body.sanitizedInput);
-    if (!treatment) {
-        return res.status(404).send({ message: 'Treatment not found' });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
-    return res.status(200).send({ message: 'Treatment updated successfully', data: treatment });
 }
-function remove(req, res) {
-    const id = req.params.id;
-    const treatment = repository.delete({ id });
-    if (treatment === undefined) {
-        res.status(404).send({ message: "Treatment not found" });
+async function findOne(req, res) {
+    try {
+        const id = Number.parseInt(req.params.id);
+        const treatment = await em.findOneOrFail(Treatment, { id });
+        res.status(200).json({ message: 'found treatment', data: treatment });
     }
-    else {
-        res.status(200).send({ message: "Treatment deleted" });
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+async function add(req, res) {
+    try {
+        const treatment = em.create(Treatment, req.body.sanitizedInput);
+        await em.flush();
+        res.status(201).json({ message: 'Treatment created', data: treatment });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+async function update(req, res) {
+    try {
+        const id = Number.parseInt(req.params.id);
+        const treatmentToUpdate = await em.findOneOrFail(Treatment, { id });
+        em.assign(treatmentToUpdate, req.body.sanitizedInput);
+        await em.flush();
+        res
+            .status(200)
+            .json({ message: 'treatment updated', data: treatmentToUpdate });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+async function remove(req, res) {
+    try {
+        const id = Number.parseInt(req.params.id);
+        const treatment = em.getReference(Treatment, id);
+        await em.removeAndFlush(treatment);
+        res.status(200).json({ message: 'Treatment deleted' });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 export { sanitizeTreatmentInput, findAll, findOne, add, update, remove };

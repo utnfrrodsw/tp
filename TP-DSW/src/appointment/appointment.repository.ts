@@ -1,4 +1,4 @@
-import { Repository } from '../shared/repository.js';
+/*import { Repository } from '../shared/repository.js';
 import { Appointment } from './appointment.entity.js';
 
 const appointments: Appointment[] = [
@@ -39,4 +39,4 @@ export class AppointmentRepository implements Repository<Appointment> {
       return delappointment;
     }
   }
-}
+}*/

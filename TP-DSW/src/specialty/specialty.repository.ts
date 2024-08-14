@@ -1,4 +1,4 @@
-import { Repository } from '../shared/repository.js';
+/*import { Repository } from '../shared/repository.js';
 import { Specialty } from './specialty.entity.js';
 
 const specialties: Specialty[] = [new Specialty('1', 'Clinico')];
@@ -38,4 +38,4 @@ export class SpecialtyRepository implements Repository<Specialty> {
       return delSpecialty;
     }
   }
-}
+}*/

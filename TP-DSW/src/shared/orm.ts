@@ -5,16 +5,16 @@ import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 export const orm = await MikroORM.init({
   entities: ['dist/**/*.entity.js'],
   entitiesTs: ['src/**/*.entity.ts'],
-  dbName: 'consultorio-dsw',
+  dbName: 'consultorios',
   driver: MySqlDriver,
   driverOptions: {
     host: 'localhost',
     port: 3306,
-    user: 'root',
-    password: 'Kimeyjeandrevin1',
-    dbName: 'consultorio-dsw',
+    user: 'dsw',
+    password: 'dsw',
+    dbName: 'consultorios',
   },
-  //clientUrl: 'mysql://dsw:dsw@localhost:3306/hc4gmo',
+  clientUrl: 'mysql://dsw:dsw@localhost:3306/consultorios',
   highlighter: new SqlHighlighter(),
   debug: true,
   schemaGenerator: {

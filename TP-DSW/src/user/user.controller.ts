@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+/*import { Request, Response, NextFunction } from 'express';
 import { UserRepository } from './user.repository.js';
 import { User } from './user.entity.js';
 
@@ -84,4 +84,4 @@ function remove(req: Request, res: Response) {
   }
 }
 
-export { sanitizeUserInput, findAll, findOne, add, update, remove };
+export { sanitizeUserInput, findAll, findOne, add, update, remove };*/

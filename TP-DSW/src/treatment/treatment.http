@@ -1,4 +1,6 @@
 ### Get all the treatments
+# @name createTreatment
+
 GET http://localhost:3000/api/treatment
 
 ### Get one treatment

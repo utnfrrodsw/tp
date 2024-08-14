@@ -1,4 +1,4 @@
-import { Repository } from '../shared/repository.js';
+/*import { Repository } from '../shared/repository.js';
 import { Treatment } from './treatment.entity.js';
 
 const treatments: Treatment[] = [new Treatment('001', 'Quimioterapia','interrumpir la formación de células cancerosas')];
@@ -38,5 +38,5 @@ export class TreatmentRepository implements Repository<Treatment> {
       return delTreatment;
     }
   }
-}
+}*/
 

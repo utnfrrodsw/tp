@@ -1,4 +1,4 @@
-import { Repository } from "../shared/repository.js";
+/*import { Repository } from "../shared/repository.js";
 import { Consulting } from "./consulting.entity.js";
 
 const consultings: Consulting[] = [
@@ -37,4 +37,4 @@ export class ConsultingRepository implements Repository<Consulting> {
             return delconsulting;
         }
     }
-}
+}*/

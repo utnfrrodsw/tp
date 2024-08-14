@@ -1,6 +1,6 @@
 import { Consulting } from './consulting.entity.js';
-import { ConsultingRepository } from './consulting.repository.js';
-const repository = new ConsultingRepository();
+import { orm } from '../shared/orm.js';
+const em = orm.em;
 function sanitizeConsultingInput(req, res, next) {
     req.body.sanitizedInput = {
         id: req.body.id,
@@ -14,43 +14,60 @@ function sanitizeConsultingInput(req, res, next) {
     });
     next();
 }
-function findAll(req, res) {
-    res.json({ data: repository.findAll() });
-}
-function findOne(req, res) {
-    const id = req.params.id;
-    const consulting = repository.findOne({ id });
-    if (!consulting) {
-        return res.status(404).send({ message: 'Consulting not found' });
+async function findAll(req, res) {
+    try {
+        const consultings = await em.find(Consulting, {});
+        res
+            .status(200)
+            .json({ message: 'Found all consultings', data: consultings });
     }
-    res.json({ data: consulting });
-}
-function add(req, res) {
-    const input = req.body.sanitizedInput;
-    const consultingInput = new Consulting(input.id, input.street, input.altStreet);
-    const consulting = repository.add(consultingInput);
-    return res
-        .status(201)
-        .send({ message: 'Consulting created successfully', data: consulting });
-}
-function update(req, res) {
-    req.body.sanitizedInput.id = req.params.id;
-    const consulting = repository.update(req.body.sanitizedInput);
-    if (!consulting) {
-        return res.status(404).send({ message: 'Consulting not found' });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
-    return res
-        .status(200)
-        .send({ message: 'Consulting updated successfully', data: consulting });
 }
-function remove(req, res) {
-    const id = req.params.id;
-    const consulting = repository.delete({ id });
-    if (consulting === undefined) {
-        res.status(404).send({ message: 'consulting not found' });
+async function findOne(req, res) {
+    try {
+        const id = Number.parseInt(req.params.id);
+        const consulting = await em.find(Consulting, { id });
+        res.status(200).json({ message: 'Found consulting', data: consulting });
     }
-    else {
-        res.status(200).send({ message: 'consulting deleted' });
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+async function add(req, res) {
+    try {
+        const consulting = em.create(Consulting, req.body.sanitizedInput);
+        await em.flush();
+        res.status(201).json({ message: 'Consulting created', data: consulting });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+async function update(req, res) {
+    try {
+        const id = Number.parseInt(req.params.id);
+        const ConsultingToUpdate = await em.findOneOrFail(Consulting, { id });
+        em.assign(ConsultingToUpdate, req.body.sanitizedInput);
+        await em.flush();
+        res
+            .status(200)
+            .json({ message: 'Consulting updated', data: ConsultingToUpdate });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+async function remove(req, res) {
+    try {
+        const id = Number.parseInt(req.params.id);
+        const consulting = em.getReference(Consulting, id);
+        await em.removeAndFlush(consulting);
+        res.status(200).json({ message: 'Consulting deleted' });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 export { sanitizeConsultingInput, findAll, findOne, add, update, remove };

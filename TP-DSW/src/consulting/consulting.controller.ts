@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { Consulting } from './consulting.entity.js';
-import { ConsultingRepository } from './consulting.repository.js';
+import { orm } from '../shared/orm.js';
 
-const repository = new ConsultingRepository();
+const em = orm.em;
 
 function sanitizeConsultingInput(
   req: Request,
@@ -24,55 +24,59 @@ function sanitizeConsultingInput(
   next();
 }
 
-function findAll(req: Request, res: Response) {
-  res.json({ data: repository.findAll() });
+async function findAll(req: Request, res: Response) {
+    try {
+      const consultings = await em.find(Consulting, {});
+      res
+        .status(200)
+        .json({ message: 'Found all consultings', data: consultings });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
 }
 
-function findOne(req: Request, res: Response) {
-  const id = req.params.id;
-  const consulting = repository.findOne({ id });
-  if (!consulting) {
-    return res.status(404).send({ message: 'Consulting not found' });
+async function findOne(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id);
+    const consulting = await em.find(Consulting, { id });
+    res.status(200).json({ message: 'Found consulting', data: consulting });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
-  res.json({ data: consulting });
 }
 
-function add(req: Request, res: Response) {
-  const input = req.body.sanitizedInput;
-
-  const consultingInput = new Consulting(
-    input.id,
-    input.street,
-    input.altStreet
-  );
-
-  const consulting = repository.add(consultingInput);
-  return res
-    .status(201)
-    .send({ message: 'Consulting created successfully', data: consulting });
+async function add(req: Request, res: Response) {
+    try {
+      const consulting = em.create(Consulting, req.body.sanitizedInput);
+      await em.flush();
+      res.status(201).json({ message: 'Consulting created', data: consulting });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
 }
 
-function update(req: Request, res: Response) {
-  req.body.sanitizedInput.id = req.params.id;
-  const consulting = repository.update(req.body.sanitizedInput);
-
-  if (!consulting) {
-    return res.status(404).send({ message: 'Consulting not found' });
-  }
-
-  return res
-    .status(200)
-    .send({ message: 'Consulting updated successfully', data: consulting });
+async function update(req: Request, res: Response) {
+    try {
+      const id = Number.parseInt(req.params.id);
+      const ConsultingToUpdate = await em.findOneOrFail(Consulting, { id });
+      em.assign(ConsultingToUpdate, req.body.sanitizedInput);
+      await em.flush();
+      res
+        .status(200)
+        .json({ message: 'Consulting updated', data: ConsultingToUpdate });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
 }
 
-function remove(req: Request, res: Response) {
-  const id = req.params.id;
-  const consulting = repository.delete({ id });
-
-  if (consulting === undefined) {
-    res.status(404).send({ message: 'consulting not found' });
-  } else {
-    res.status(200).send({ message: 'consulting deleted' });
+async function remove(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id);
+    const consulting = em.getReference(Consulting, id);
+    await em.removeAndFlush(consulting);
+    res.status(200).json({ message: 'Consulting deleted' });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
 }
 

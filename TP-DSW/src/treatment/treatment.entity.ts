@@ -1,8 +1,9 @@
 import { Cascade, Collection, Entity, Property,OneToMany, ManyToMany } from "@mikro-orm/core";
-import { BaseEntity } from "@mikro-orm/core";
 import { Treatment_price } from "../treatment_price/treatment_price.entity.js";
 import { Follow_up } from "../follow_up/follow_up.entity.js";
+import { BaseEntity } from "../shared/baseEntity.entity.js";
 
+@Entity()
 export class Treatment extends BaseEntity{
   //id: number,
   @Property({nullable: false, unique: true})

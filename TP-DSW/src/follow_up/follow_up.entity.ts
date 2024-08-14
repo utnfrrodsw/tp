@@ -1,8 +1,9 @@
 import { Entity, Property, ManyToMany, Cascade, ManyToOne, Rel,Collection} from '@mikro-orm/core'
 import { User } from '../user/user.entity.js'
-import { Treatment } from '../treatment /treatment.entity.js'
+import { Treatment } from '../treatment/treatment.entity.js'
+import { BaseEntity } from '../shared/baseEntity.entity.js'
 @Entity()
-export class Follow_up {
+export class Follow_up extends BaseEntity{
   @Property({ nullable: false })
   fdate!: Date
 

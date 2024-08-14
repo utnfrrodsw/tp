@@ -7,19 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Property } from "@mikro-orm/core";
-import { BaseEntity } from "../shared/baseEntity.entity.js";
-export let Appointment = class Appointment extends BaseEntity {
-};
+import { PrimaryKey } from '@mikro-orm/core';
+export class BaseEntity {
+}
 __decorate([
-    Property({ nullable: false, unique: false }),
-    __metadata("design:type", Date)
-], Appointment.prototype, "appoDate", void 0);
-__decorate([
-    Property({ nullable: true, unique: false }),
-    __metadata("design:type", Boolean)
-], Appointment.prototype, "assisted", void 0);
-Appointment = __decorate([
-    Entity()
-], Appointment);
-//# sourceMappingURL=appointment.entity.js.map
+    PrimaryKey(),
+    __metadata("design:type", Number)
+], BaseEntity.prototype, "id", void 0);
+//# sourceMappingURL=baseEntity.entity.js.map
