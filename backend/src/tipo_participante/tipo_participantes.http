@@ -1,0 +1,33 @@
+### obtener todos los tipo_participantes
+GET http://localhost:3000/api/tipo_participantes
+
+
+### obtener un tipo_participante
+GET http://localhost:3000/api/tipo_participantes/3
+
+### crear un nuevo tipo_participante
+POST http://localhost:3000/api/tipo_participantes
+Content-Type: application/json
+
+{
+  "posicion": "central",
+  "id": 5
+}
+
+### modificar un tipo_participante (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/tipo_participantes/3
+Content-Type: application/json
+
+{
+  "posicion": "lateral izquierdo"
+}
+
+### modificar un tipo_participante (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/tipo_participantes/3
+Content-Type: application/json
+
+{
+  "posicion": "lateral izquierdo"
+}
+### borrar un tipo_participante
+DELETE http://localhost:3000/api/tipo_participantes/3
