@@ -15,13 +15,13 @@ class loginService{
     }
 
     async compare(user, pass){
-        const res2 = await models.User.findOne({
+        const res = await models.User.findOne({
             where: {
                 username: user,
                 password: pass,
             }
         })
-        return res2
+        return res
     }
 }
 

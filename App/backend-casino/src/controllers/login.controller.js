@@ -1,5 +1,9 @@
 const loginService = require('../services/login.service')
 const service = new loginService();
+
+const userService = require('../services/user.service')
+const service2 = new userService();
+
 const jwt = require('jsonwebtoken')
 
 
