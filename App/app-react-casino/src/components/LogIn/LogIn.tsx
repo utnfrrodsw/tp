@@ -8,14 +8,16 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
     const [message, setMessage] = useState('');
 
     const handleSubmit = async () => {
+        try{
             const response = 
                 await axios.post('http://localhost:3000/api/v1/login',
                     {username, password});
             setMessage(response.data);
             console.log('Sesion iniciada')
-            setTimeout(() => {
-                
-            }, 5000);
+        } catch (error) {
+            setMessage('Ocurrio un error al iniciar sesion')
+            console.error(error)
+        }
     };
 
     return(
@@ -32,7 +34,7 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                         <div className='login_form'>
                             <h2 className='loginTitle'>UTimbaN</h2>
                             <h3 className='loginSubTitle'>Login</h3>
-                            <form action="" method="" className='form' onSubmit={handleSubmit}>
+                            <form className='form' onSubmit={handleSubmit}>
                                 <div className='name'>
                                     <p className='formWord'>Username or Email</p>
                                     <input type="text" id='userId' className='loginForm' name='username' value={username} onChange={(e) => setUsername(e.target.value)} required/>
@@ -43,7 +45,7 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                                     <p className='forgotPassword'>Forgot your password?</p>
                                 </div>
                                 <div className='submitClass'>
-                                    <button type='submit' className='submit' onClick={handleSubmit}> SUBMIT </button>
+                                    <button type='submit' className='submit'> SUBMIT </button>
                                     <p className='registerButton'> REGISTER FREE! </p>
                                 </div>
                                 {message && <p>{message}</p>}

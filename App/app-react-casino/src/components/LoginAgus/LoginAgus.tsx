@@ -15,7 +15,7 @@ export function LoginAgus(){
             const response = 
                 await axios.post('http://localhost:3000/api/v1/login',
                     {username, password});
-            setMessage(response.data);
+            setMessage('Sesion iniciada');
             console.log('Sesion iniciada')
         } catch (error) {
             setMessage('Ocurrio un error al iniciar sesion')
