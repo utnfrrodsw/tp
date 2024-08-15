@@ -8,8 +8,8 @@
 * 46478 - De Luca, Andres
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app](https://github.com/AndresDL/frontendDsw)
+* [backend app](https://github.com/KimeyJ/backendDsw)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
