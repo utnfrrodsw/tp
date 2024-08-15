@@ -11,6 +11,7 @@ import { socioRouter } from "./socio/socio.routes.js";
 import { prestamoRouter } from "./prestamo/prestamo.routes.js";
 import { handleJsonSyntaxError } from "./middlewares/middleware.handleJsonSyntaxError.js";
 import { handleInternalError } from "./middlewares/middleware.handleInternalError.js";
+import { sancionRouter } from "./sancion/sancion.routes.js";
 const app = express();
 
 app.use(express.json());
@@ -27,6 +28,7 @@ app.use("/api/politicaBiblioteca", politicaBibliotecaRouter);
 app.use("/api/politicasSancion", politicaSancionRouter);
 app.use("/api/socios", socioRouter);
 app.use("/api/prestamos", prestamoRouter);
+app.use("/api/sanciones", sancionRouter);
 
 app.use(handleInternalError);
 

@@ -1,0 +1,8 @@
+### Buscar todas las sanciones
+GET http://localhost:3000/api/sanciones
+
+### Buscar una sanción por id
+GET http://localhost:3000/api/sanciones/3
+
+### Buscar todas las sanciones de un socio
+GET http://localhost:3000/api/sanciones/socio

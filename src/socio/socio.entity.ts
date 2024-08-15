@@ -1,10 +1,4 @@
-import {
-  Entity,
-  Property,
-  Collection,
-  OneToMany,
-  Cascade,
-} from "@mikro-orm/core";
+import { Entity, Property, Collection, OneToMany } from "@mikro-orm/core";
 import { Prestamo } from "../prestamo/prestamo.entity.js";
 import { BaseEntity } from "../shared/DB/baseEntity.entity.js";
 import { Sancion } from "../sancion/sancion.entity.js";

@@ -1,90 +1,101 @@
 import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { PoliticaSancion } from "./politicaSancion.entity.js";
-
-function sanitizeInput(req: Request, res: Response, next: NextFunction) {
-  req.body.inputOK = {
-    diasHasta: req.body.diasHasta,
-    diasSancion: req.body.diasSancion,
-  };
-
-  Object.keys(req.body.inputOK).forEach((key) => {
-    if (req.body.inputOK[key] === undefined) {
-      delete req.body.inputOK[key];
-    }
-  });
-
-  next();
-}
+import { NotFoundError } from "@mikro-orm/core";
 
 const em = orm.em;
 
-async function buscarPoliticasSancion(req: Request, res: Response) {
+async function buscarPoliticasSancion(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const politicas = await em.find(PoliticaSancion, {});
-    res.status(200).json({
+    return res.status(200).json({
       message: "Las politicas de sanción encontradas son: ",
       data: politicas,
     });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function buscarPoliticaSancion(req: Request, res: Response) {
+async function buscarPoliticaSancion(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const id = Number.parseInt(req.params.id);
     const politica = await em.findOneOrFail(PoliticaSancion, id);
-    res.status(200).json({ message: "Politica encontrada", data: politica });
+    return res
+      .status(200)
+      .json({ message: "Politica encontrada", data: politica });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    if (error instanceof NotFoundError) {
+      return res
+        .status(404)
+        .json({ message: "Politica de sanción no encontrada" });
+    }
+    next(error);
   }
 }
 
-async function altaPoliticaSancion(req: Request, res: Response) {
+async function altaPoliticaSancion(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
-    const politica = em.create(PoliticaSancion, req.body.inputOK); //No se valida que diasHasta > diasDesde
+    const politica = em.create(PoliticaSancion, req.body);
     await em.flush();
-    res
+    return res
       .status(201)
       .json({ message: "Politica de sanción creada", data: politica });
   } catch (error: any) {
     if (error.code === "ER_DUP_ENTRY") {
-      res.status(409).json({
+      return res.status(409).json({
         message:
           "Ya existe una politica de sanción con esa cantidad de dias hasta",
       });
-    } else {
-      res.status(500).json({ message: error.message });
     }
+    next(error);
   }
 }
 
-async function actualizarPoliticaSancion(req: Request, res: Response) {
+async function actualizarPoliticaSancion(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const id = Number.parseInt(req.params.id);
     const politica = em.getReference(PoliticaSancion, id);
-    em.assign(politica, req.body.inputOK);
+    em.assign(politica, req.body);
     await em.flush();
-    res.status(200).json({ message: "Politica de sanción actualizada" });
+    return res.status(200).json({ message: "Politica de sanción actualizada" });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function bajaPoliticaSancion(req: Request, res: Response) {
+async function bajaPoliticaSancion(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const id = Number.parseInt(req.params.id);
     const politica = em.getReference(PoliticaSancion, id);
     await em.removeAndFlush(politica);
-    res.status(200).json({ message: "Libro eliminado" });
+    return res.status(200).json({ message: "Libro eliminado" });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
 export {
-  sanitizeInput,
   buscarPoliticasSancion,
   buscarPoliticaSancion,
   altaPoliticaSancion,

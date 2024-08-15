@@ -11,23 +11,23 @@ POST http://localhost:3000/api/politicasSancion
 Content-Type: application/json
 
 {
-    "diasHasta": 14,
-    "diasSancion": 10
+    "diasHasta":21,
+    "diasSancion": 15
 
 }
 
 
-### Actualizar autor con PATCH (parcialmente)
+### Actualizar autor con PUT(parcialmente)
 
-PATCH http://localhost:3000/api/politicasSancion/7
+PUT http://localhost:3000/api/politicasSancion/-12
 Content-Type: application/json
 
 {
     
-    "diasSancion": 8
+    "diasSancion": 21.3
 
 }
 
 ### Delete de una politica por ID
 
-DELETE  http://localhost:3000/api/politicaSancion/7
+DELETE  http://localhost:3000/api/politicasSancion/21
