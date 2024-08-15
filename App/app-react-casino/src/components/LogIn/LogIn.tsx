@@ -1,69 +1,25 @@
-import { useRef, useState, useEffect, useContext} from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import axios from 'axios';
 import './LogIn.css'
-import AuthContext from '../../context/AuthProvider';
-
-import axios from '../Axios/axios';
-const LOGIN_URL = 'users';
 
 export const LogIn = ({onClose}: {onClose: Function}) => {
-    const setAuth = useContext(AuthContext);
-    const userRef = useRef();
-    const errRef = useRef();
-
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('')
-    const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
 
-    useEffect(() => {
-        userRef.current.focus();
-    }, [])
-
-    useEffect(() => {
-        setErrMsg('');
-    }, [username, password])
-
-    const handleSubmit = async (e) =>{
-        e.preventDefault();
-        try {
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ username, password }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-        console.log(JSON.stringify(response?.data));
-        const roles = response?.data?.role;
-        setAuth({ username, password, roles});
-        setUsername('');
-        setPassword('');
-        setSuccess(true);
-    } catch (err) {
-        if (!err?.response) {
-            setErrMsg('No Server Response');
-        } else if (err.response?.status === 400) {
-            setErrMsg('Missing Username or Password');
-        } else if (err.response?.status === 401) {
-            setErrMsg('Unauthorized');
-        } else {
-            setErrMsg('Login Failed');
-        }
-        errRef.current.focus();
-    }}
+    const handleSubmit = async () => {
+            const response = 
+                await axios.post('http://localhost:3000/api/v1/login',
+                    {username, password});
+            setMessage(response.data);
+            console.log('Sesion iniciada')
+            setTimeout(() => {
+                
+            }, 5000);
+    };
 
     return(
         <>
-                {success ? (
-                    <section>
-                        <h1>You are logged in!</h1>
-                        <br />
-                        <p>
-                            <Link to='/'>Go to home</Link>
-                        </p>
-                    </section>
-                ): (
             <div className='loginScreen' onClick={e => {
                 if((e.target as HTMLElement).className === "loginScreen") {
                     onClose()}
@@ -79,17 +35,18 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                             <form action="" method="" className='form' onSubmit={handleSubmit}>
                                 <div className='name'>
                                     <p className='formWord'>Username or Email</p>
-                                    <input type="text" id='userId' className='loginForm' name='username' ref={userRef} autoComplete='off' onChange={(e) => setUsername(e.target.value)} value={username} required/>
+                                    <input type="text" id='userId' className='loginForm' name='username' value={username} onChange={(e) => setUsername(e.target.value)} required/>
                                 </div>
                                 <div className='password'>
                                     <p className='formWord'>Password</p>
-                                    <input type="password" id='password' className='loginForm' name='password' onChange={(e) => setPassword(e.target.value)} value={password} required/>
+                                    <input type="password" id='password' className='loginForm' name='password' value={password} onChange={(e) => setPassword(e.target.value)} required/>
                                     <p className='forgotPassword'>Forgot your password?</p>
                                 </div>
                                 <div className='submitClass'>
-                                    <button type='submit' className='submit'>SUBMIT</button>
-                                    <p className='registerButton'>REGISTER FREE!</p>
+                                    <button type='submit' className='submit' onClick={handleSubmit}> SUBMIT </button>
+                                    <p className='registerButton'> REGISTER FREE! </p>
                                 </div>
+                                {message && <p>{message}</p>}
                             </form>
                         </div>
                     </div>
@@ -102,7 +59,6 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                     </div>
                 </div>
             </div>
-            )}
         </>
     )
 }

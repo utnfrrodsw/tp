@@ -14,6 +14,7 @@ import { GetOne } from './components/Axios/GetOne/getone.tsx'
 import { User } from './components/Axios/User/User.tsx'
 import { Details } from './components/Axios/Details/Details.tsx'
 import { EditUser } from './components/Axios/EditUser/EditUser.tsx'
+import { LoginAgus } from './components/LoginAgus/LoginAgus.tsx'
 
 import { Terms } from './pages/Terms/Terms.tsx'
 import { AboutUs } from './pages/AboutUs/AboutUs.tsx'
@@ -52,6 +53,7 @@ export function App() {
                     <Route path='/fair' element={<Fair />} />
                     <Route path='/game-policy' element={<GamePolicy />} />
                     <Route path='/admin-uses' element={<AdminUses />} />
+                    <Route path='/login' element={<LoginAgus />} />
                 </Routes>
             <Footer/>
             <Toaster richColors position='top-right' closeButton/>

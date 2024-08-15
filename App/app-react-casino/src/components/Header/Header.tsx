@@ -22,6 +22,7 @@ export function Header() {
                     <Link to="/admin-uses">Admin Uses</Link>
                     <Link to="/about-us">About Us</Link>
                     <Link to="/chau">Daily Free</Link>
+                    <Link to="/login">LoginAgus</Link>
                     <button className='gold-button' onClick={() => setModalOpen(true)}>LogIn</button>
                 </div>
             </nav>

@@ -16,9 +16,14 @@ app.use(cors({
     credentials: true,
 }))
 
-app.get("/", (req,res) => {
-    res.send("Backend")
-});
+/*app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    if (username === 'admin' && password === 'password') {
+        res.status(200).json({ message: 'Login successful' });
+    } else {
+        res.json({ message: 'Invalid Credentials '});
+    }
+}) */
 
 routerApi(app);
 
