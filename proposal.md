@@ -4,8 +4,8 @@
 
 ### Integrantes
 
-- 30017 - Alonso, Laura
 - 48615 - Miño, Jeremias
+- 49805 - Frias, Josias
 
 ### Repositorios
 
