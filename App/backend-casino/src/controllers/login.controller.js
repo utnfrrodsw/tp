@@ -32,12 +32,7 @@ const signInUser = async (req, res) => {
         }); */
 
         //send status
-        res.status(200).send({
-            username: user.username,
-            first_name: user.first_name,
-            email: user.email,
-            accessToken: token
-        })
+        res.status(200).send("Succesfull sign in")
     } catch (err) {
         return res.status(500).send('Sign in error')
     }
