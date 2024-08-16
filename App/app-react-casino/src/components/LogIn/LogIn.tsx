@@ -46,9 +46,9 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                                 </div>
                             </form>
                             <div className='submitClass'>
-                                    <p className='registerButton'> REGISTER FREE! </p>
-                                    <button onClick={handleSubmit} className='submit'> SUBMIT </button>
-                                    {message && <p>{message}</p>}
+                                <p className='registerButton'> REGISTER FREE! </p>
+                                <button onClick={handleSubmit} className='submit'> SUBMIT </button>
+                                {message && <p>{message}</p>}
                             </div>
                         </div>
                     </div>
