@@ -27,6 +27,10 @@ const signInUser = async (req, res) => {
         //Autentificar con JWT
         const token = jwt.sign({ foo: 'bar' }, 'agus');
 
+        /* const token = jwt.sign({ id: user.id_user }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_REFRESH_EXPIRATION
+        }); */
+
         //send status
         res.status(200).send({
             username: user.username,
