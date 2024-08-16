@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink as Link } from 'react-router-dom'
 import axios from 'axios';
 import './LogIn.css'
 
@@ -23,7 +24,7 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
     return(
         <>
             <div className='loginScreen' onClick={e => {
-                if((e.target as HTMLElement).className === "loginScreen") {
+                if((e.target as HTMLElement).className === "loginScreen" || (e.target as HTMLElement).className === "registerButton") {
                     onClose()}
                     }}>
                 <div className='login'>
@@ -46,8 +47,8 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                                 </div>
                             </form>
                             <div className='submitClass'>
-                                <p className='registerButton'> REGISTER FREE! </p>
                                 <button onClick={handleSubmit} className='submit'> SUBMIT </button>
+                                <Link to="/register" className="registerButton">Register here!</Link>
                                 {message && <p>{message}</p>}
                             </div>
                         </div>
