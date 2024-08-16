@@ -13,8 +13,7 @@ export function Home() {
                     <source src='./src/assets/vid-bg/vid-bg-header.mp4'/>
                 </video>
                 <div className='flex mx-8 my-20 flex-col gap-12'>
-                    <img src="./src/assets/images/casino.gif" alt="Casino"/>
-                    <img src="./src/assets/images/utimban.png" alt="UtimbaN"/>
+                    <img src="./src/assets/images/casinofull.png" alt='Casino UTimbaN' />
                 </div>
             </section>
             <section className='px-20 max-sm:px-3'>

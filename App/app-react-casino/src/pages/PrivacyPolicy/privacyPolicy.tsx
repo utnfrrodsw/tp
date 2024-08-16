@@ -7,7 +7,7 @@ export function PrivacyPolicy(){
 
     return(
         <>
-        <div className="mt-[100px] p-5 flex flex-col gap-5">
+        <div className="mt-[100px] p-5 flex flex-col gap-5 text-[#ebe9fc]">
         <h1 className="text-2xl font-bold"> Privacy Policy </h1>
         <p> Last Updated: 08/10/2024 , Version 1.0.0 </p>
             <div className="bg-[#23222F] p-5 rounded-[10px]"> 
