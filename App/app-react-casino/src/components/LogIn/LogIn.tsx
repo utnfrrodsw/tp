@@ -34,7 +34,7 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                         <div className='login_form'>
                             <h2 className='loginTitle'>UTimbaN</h2>
                             <h3 className='loginSubTitle'>Login</h3>
-                            <form className='form' onSubmit={handleSubmit}>
+                            <form className='form'>
                                 <div className='name'>
                                     <p className='formWord'>Username or Email</p>
                                     <input type="text" id='userId' className='loginForm' name='username' value={username} onChange={(e) => setUsername(e.target.value)} required/>
@@ -44,12 +44,12 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
                                     <input type="password" id='password' className='loginForm' name='password' value={password} onChange={(e) => setPassword(e.target.value)} required/>
                                     <p className='forgotPassword'>Forgot your password?</p>
                                 </div>
-                                <div className='submitClass'>
-                                    <button type='submit' className='submit'> SUBMIT </button>
-                                    <p className='registerButton'> REGISTER FREE! </p>
-                                </div>
-                                {message && <p>{message}</p>}
                             </form>
+                            <div className='submitClass'>
+                                    <p className='registerButton'> REGISTER FREE! </p>
+                                    <button onClick={handleSubmit} className='submit'> SUBMIT </button>
+                                    {message && <p>{message}</p>}
+                            </div>
                         </div>
                     </div>
                     <div className='login_rightside'>
