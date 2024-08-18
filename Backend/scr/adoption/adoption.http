@@ -1,0 +1,44 @@
+###obtener todos los adoptiones 
+GET http://localhost:3000/api/adoption
+
+###obtener un adoption 
+GET http://localhost:3000/api/adoption/2
+
+###crear un nuevo adoption
+POST http://localhost:3000/api/adoption
+Content-Type: application/json
+
+{
+  "comments": "adoption 2", 
+  "id_animal": 2,
+  "id_person": 2,
+  "adoption_date": "2020-03-03",
+  "id": 2
+}
+
+### modificar un adoption (PUT)
+PUT http://localhost:3000/api/adoption/2
+Content-Type: application/json
+
+{
+  "comments": "adoption 2", 
+  "id_animal": 2,
+  "id_person": 2,
+  "adoption_date": "2024-03-03",
+  "id": 2
+}
+
+### modificar un adoption (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/adoption/1
+Content-Type: application/json
+
+{
+  "comments": "adoption 2", 
+  "id_animal": 2,
+  "id_person": 2,
+  "adoption_date": "2024-03-03",
+  "id": 2
+}
+
+### borrar un adoption
+DELETE http://localhost:3000/api/adoption/2
