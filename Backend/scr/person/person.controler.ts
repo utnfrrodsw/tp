@@ -36,18 +36,18 @@ function add (req: Request,res: Response){
   const input = req.body.sanitizedperson
 
   const peopleInput = new Person (input.nombre,input.apellido,input.tipoDoc,input.nroDoc,input.contacto,input.fechaNacimiento,input.domicilio, input.nroCuil, input.id)
-  const buy = personrepository.add(peopleInput)
-  return res.status(201).send({message: 'new buy create', data: Person })
+  const person = personrepository.add(peopleInput)
+  return res.status(201).send({message: 'new person create', data: Person })
 }
 
 
 function update (req: Request,res: Response ){
   req.body.sanitizedperson.id = req.params.id
-  const person = personrepository.update(req.body.sanitizedbuy) 
+  const person = personrepository.update('1', req.body.sanitizedperson) 
   if (!person) {
     return res.status(404).send({message:'person not found' })
   }
-  return res.status(200).send({message: 'buy changed suscessfully', data:  Person })
+  return res.status(200).send({message: 'person changed suscessfully', data:  Person })
 
 }
 

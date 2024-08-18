@@ -44,7 +44,7 @@ function add (req: Request,res: Response ){
 
 function update(req: Request,res: Response ){
   req.body.sanitizedbuy.id = req.params.id
-  const buy = buyrepository.update(req.body.sanitizedbuy) 
+  const buy = buyrepository.update('1', req.body.sanitizedbuy) 
   if (!buy) {
     return res.status(404).send({message:'buy not found' })
   }

@@ -10,31 +10,23 @@ const buys = [
 )];
 
 export class BuyRepository implements Repository<Buy> {
-  public findAll(): Buy[] | undefined{
-    return buys
+  public async findAll(): Promise <Buy[] | undefined> {
+    throw new Error('Not implemented');
   }
 
-  public findOne(item: {id: string}): Buy | undefined{
-    return buys.find(buy => buy.id === item.id)
-  }
-  public add(item: Buy): Buy | undefined{
-    buys.push(item)
-    return item
+  public async findOne(item: {id: string}): Promise <Buy | undefined> {
+    throw new Error('Not implemented');
   }
 
-  public update(item: Buy): Buy | undefined{
-     const buyIdx = buys.findIndex((buy) => buy.id === item.id);
-  if (buyIdx !== -1) {
-    buys[buyIdx]= {...buys[buyIdx], ...item };
+  public async add(item: Buy): Promise <Buy | undefined> {
+    throw new Error('Not implemented');
   }
-  return buys[buyIdx]}
 
-  public delete(item: {id: string}): Buy | undefined{
-    const buyIdx = buys.findIndex((buy) => buy.id === item.id);
-    if (buyIdx !== -1) {
-      const deletedbuys = buys[buyIdx];
-      buys.splice(buyIdx, 1);
-      return deletedbuys;
+  public async update(id: string, item: Buy): Promise <Buy | undefined> {
+    throw new Error('Not implemented');
   }
-}
+
+  public async delete(item: {id: string}): Promise <Buy | undefined> {
+    throw new Error('Not implemented');
+  }
 }

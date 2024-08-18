@@ -1,6 +1,6 @@
-export class zone{
+export class Zone{
   constructor(
-    public nombre: string,
-    public id: string
+    public name: string,
+    public id?: string
   ){}
 }

@@ -44,7 +44,7 @@ function add( req: Request, res: Response ){
 
 function update(req: Request, res: Response){
   req.body.sanitizedShelter.id = req.params.id
-  const shelter = shelterRepository.update(req.body.sanitizedShelter)
+  const shelter = shelterRepository.update('1', req.body.sanitizedShelter)
   if (!shelter) {
     return res.status(404).send({message:'shelter not found'})
   }

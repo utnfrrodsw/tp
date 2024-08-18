@@ -44,7 +44,7 @@ function add( req: Request, res: Response ){
 
 function update(req: Request, res: Response){
   req.body.sanitizedRescue.id = req.params.id
-  const rescue = rescueRepository.update(req.body.sanitizedRescue)
+  const rescue = rescueRepository.update('1', req.body.sanitizedRescue)
   if (!rescue) {
     return res.status(404).send({message:'rescue not found'})
   }

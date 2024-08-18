@@ -44,7 +44,7 @@ function add (req: Request,res: Response ){
 
 function update(req: Request,res: Response ){
   req.body.sanitizedproduct.id = req.params.id
-  const product = productrepository.update(req.body.sanitizedproduct) 
+  const product = productrepository.update('1', req.body.sanitizedproduct) 
   if (!product) {
     return res.status(404).send({message:'product not found' })
   }

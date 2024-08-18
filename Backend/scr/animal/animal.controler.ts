@@ -44,7 +44,7 @@ function add( req: Request, res: Response ){
 
 function update(req: Request, res: Response){
   req.body.sanitizedAnimal.id = req.params.id
-  const animal = animalRepository.update(req.body.sanitizedAnimal)
+  const animal = animalRepository.update('1', req.body.sanitizedAnimal)
   if (!animal) {
     return res.status(404).send({message:'animal not found'})
   }

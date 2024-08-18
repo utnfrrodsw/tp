@@ -1,8 +1,7 @@
-export class vet{
+export class Vet{
   constructor(
-    public nombre: string, 
-    public direccion: string,
-    public id: string
+    public name: string, 
+    public address: string,
+    public id?: number,
   ){}
 }
-
