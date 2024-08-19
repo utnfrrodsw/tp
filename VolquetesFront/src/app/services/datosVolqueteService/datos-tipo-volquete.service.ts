@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { TipoVolquete } from '../../model/tipo_volquete.interface.js';
+import { TipoVolquete } from '../../model/interfaces/tipo_volquete.interface.js';
 
 const httpOptions = {
   headers: new HttpHeaders({

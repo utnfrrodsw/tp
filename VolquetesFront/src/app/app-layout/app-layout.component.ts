@@ -1,16 +1,19 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { SecondHeaderComponent } from './second-header/second-header.component.js';
 import { HeaderComponent } from './header/header.component.js';
 import { FooterComponent } from './footer/footer.component.js';
 import { SidebarComponent } from './sidebar/sidebar.component.js';
+import { RouterModule } from '@angular/router';
 import { ScrollService } from '../services/scrollService/scroll.service.js';
 
 @Component({
   selector: 'app-app-layout',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent,SidebarComponent, SecondHeaderComponent],
+  imports: [CommonModule, 
+            HeaderComponent, FooterComponent,SidebarComponent, SecondHeaderComponent,
+            RouterModule],
   templateUrl: './app-layout.component.html',
   styleUrl: './app-layout.component.css',
 })

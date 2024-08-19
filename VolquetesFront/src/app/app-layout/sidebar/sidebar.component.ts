@@ -30,10 +30,10 @@ export class SidebarComponent {
 
   public sidebarOptions: SideBarOption[] = [
     {
-      name: 'Alquileres',
+      name: 'Volquetes',
       picture: 'assets/sidebar-icons/Alquileres.png',
-      route: '/alquileres',
-      tooltipText: 'Alquileres',
+      route: '/volquetes',
+      tooltipText: 'Volquetes',
     },
     {
       name: 'Gastos',

@@ -13,7 +13,14 @@ import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 })
 
 export class AltaFormComponent implements OnInit {
+  
   tipoVolquete: TipoVolqueteModel;
+  tiposVolquetes: TipoVolqueteModel[]=[];
+  
+  displayedColumns: string[]=['id_tipo_volquete','descripcion_tipo_volquete'];
+
+  tipoVolqueteService: DatosTipoVolqueteService= new DatosTipoVolqueteService(tipoVolquete);
+  
   introducido = -1;
   mensajeErr = '';
 
@@ -52,10 +59,11 @@ export class AltaFormComponent implements OnInit {
   }
 
 insertar(): void{
-  const tipoVolquete: TipoVolqueteModel = {
+  const newTipoVolquete: TipoVolqueteModel = {
     id: Number(this.tipoVolqueteForm.value.id ?? 0), // or generate a new ID
     descripcion: this.tipoVolqueteForm.value.descripcion ?? ''
   };
+  
   this.tipoVolqueteService.addTipo(newTipoVolquete).subscribe((tipoVolquete)=>{
     console.log('Proveedor agregado:' , tipoVolquete);
     this.resetForm();

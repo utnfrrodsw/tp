@@ -7,9 +7,10 @@
 </div>
 
 <div class="content-wrapper">
-  <div><app-sidebar></app-sidebar></div>
-  <div><main class="main-content">
-    <!-- Your main content goes here -->
-      </main>
+  <div>
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="main-content">
+    <router-outlet></router-outlet>
   </div>
 <app-footer *ngIf="showFooter" class="fade-in-out"></app-footer>
