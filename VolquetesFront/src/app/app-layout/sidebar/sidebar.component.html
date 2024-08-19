@@ -1,8 +1,24 @@
-<nav class="sidebar">
-  <ul>
-    <li><a>Configuraciones</a></li>
-    <li><a >Alquileres</a></li>
-    <li><a >Gastos</a></li>
-    <li><a >Otros</a></li>
+<div class="sidebar">
+  <ul class="sidebar-list">
+    <li *ngFor="let option of sidebarOptions" class="sidebar-item">
+      <div class="sidebar-option" (click)="option.subOptions ? toggleOptions(option) : null">
+        <img [src]="option.picture" [alt]="option.name" [matTooltip]="tooltipText(option)" matTooltipPosition="right"
+          [routerLink]="option.route" routerLinkActive="active" class="sidebar-image" />
+        <button class="sidebar-button" [routerLink]="option.route" routerLinkActive="active" *ngIf="!collapsed">{{
+          option.name }} </button>
+      </div>
+
+      <ul *ngIf="expandedOption === option.name"
+        [ngClass]="{'sub-options': true, 'show': expandedOption === option.name}">
+        <li *ngFor="let subOption of option.subOptions" class="sidebar-sub-item">
+          <button class="sidebar-sub-button" [routerLink]="subOption.route" routerLinkActive="active">
+            {{ subOption.name }}</button>
+        </li>
+      </ul>
+
+    </li>
   </ul>
-</nav>
+  <!-- Collapse Button -->
+  <button class="collapse-button" [ngClass]="{ 'collapsed-padding': collapsed }" (click)=" toggleCollapse() ">
+    {{ collapsed ? '>' : '<' }} </button>
+</div>
