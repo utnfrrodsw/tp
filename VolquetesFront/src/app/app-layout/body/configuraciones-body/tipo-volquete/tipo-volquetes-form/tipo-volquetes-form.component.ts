@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { TipoVolqueteModel } from '../../../../model/interfaces/tipo_volquete.interface.js';
-import { DatosTipoVolqueteService } from '../../../../services/datosVolqueteService/datos-tipo-volquete.service.js';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { TipoVolqueteModel } from '../../../../../model/interfaces/tipo_volquete.interface.js';
+import { DatosTipoVolqueteService } from '../../../../../services/datosVolqueteService/datos-tipo-volquete.service.js';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-alta-tipo-form',
@@ -12,14 +13,18 @@ import { FormControl, FormGroup, FormsModule } from '@angular/forms';
   styleUrl: './tipo-volquetes-form.component.css',
 })
 
-export class AltaFormComponent implements OnInit {
-  
+export class TipoVolqueteFormComponent implements OnInit {
+  @Input() selectedTipoVolquete: TipoVolqueteModel | null = null;
+  @Input() isAddingTipoVolquete = false;
+
+  isEditMode: boolean = false;
+
+  route: ActivatedRoute = inject(ActivatedRoute);
+
   tipoVolquete: TipoVolqueteModel;
   tiposVolquetes: TipoVolqueteModel[]=[];
   
   displayedColumns: string[]=['id_tipo_volquete','descripcion_tipo_volquete'];
-
-  tipoVolqueteService: DatosTipoVolqueteService= new DatosTipoVolqueteService(tipoVolquete);
   
   introducido = -1;
   mensajeErr = '';
@@ -29,12 +34,17 @@ export class AltaFormComponent implements OnInit {
     descripcion: new FormControl({ value:'', diabled:true})
   })
 
+  btnStateEditar:boolean = false;
+  btnStateAgregar:boolean = false;
+  btnStateEliminar:boolean = false;
+  btnStateCancelar:boolean = false;
 
   constructor(private _datos: DatosTipoVolqueteService) {
     this.tipoVolquete = new TipoVolqueteModel();
   }
 
   ngOnInit() {}
+
   onSubmit() {
     this._datos.introducirTipoVolquete(this.tipoVolquete).subscribe(
       (resp) => {
@@ -64,8 +74,8 @@ insertar(): void{
     descripcion: this.tipoVolqueteForm.value.descripcion ?? ''
   };
   
-  this.tipoVolqueteService.addTipo(newTipoVolquete).subscribe((tipoVolquete)=>{
-    console.log('Proveedor agregado:' , tipoVolquete);
+  this._datos.introducirTipoVolquete(newTipoVolquete).subscribe((tipoVolquete)=>{
+    console.log('Tipo agregado:' , tipoVolquete);
     this.resetForm();
   });
 
@@ -76,15 +86,21 @@ eliminar(): void{
 }
 
 
+private resetForm(): void {
+  this.tipoVolqueteForm.setValue({
+    id:'',
+    nombre:'',
+    anchoBobinas:''});
+  this.isAddingTipoVolquete = true;
+  this.deshabilitarEdicion();
+}
+
+private deshabilitarEdicion():void{
+  this.isEditMode = false;
+  this.tipoVolqueteForm.get('id')?.disable();
+  this.tipoVolqueteForm.get('descripcion')?.disable();
+}
 
 
-  private resetForm(): void {
-    this.tipoVolqueteForm.setValue({
-      id:'',
-      nombre:'',
-      anchoBobinas:''});
-    this.isAddingProveedor = true;
-    this.deshabilitarEdicion();
-  }
 
 }

@@ -51,7 +51,10 @@ export class SidebarComponent {
       picture: 'assets/sidebar-icons/Configuraciones.png',
       route: '/configuraciones',
       tooltipText: 'Configuraciones',
-      subOptions: [{ name: 'Usuarios', route: '/subopcion-usuarios' }],
+      subOptions: [
+        { name: 'Usuarios', route: '/subopcion-usuarios' },
+        { name: 'Tipos de Volquetes', route: 'config/tiposVolquetes' }
+      ],
     },
 
   ];

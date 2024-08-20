@@ -1,0 +1,32 @@
+<div class="tipos-volquete-list-container">
+    <h1 class="tipos-volquete-title">TIPOS DE VOLQUETE</h1>
+  
+    <div class="tipos-volquete-table-container">
+      
+      <table class="tipos-volquete-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descripcion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tipo of tipos"
+                        (click)="onSeleccionarTipo(tipo)" 
+                        [ngClass]="{'selected': tipo === tipoSeleccionado}">
+            <td>{{ tipo.id }}</td>
+            <td>{{ tipo.descripcion }}</td>
+            
+          </tr>
+          <tr (click)="onAdd()" class="add-row">
+            <td colspan="3" class="add-row-cell">
+              <button class="add-button">
+                <span class="add-icon">+</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>
