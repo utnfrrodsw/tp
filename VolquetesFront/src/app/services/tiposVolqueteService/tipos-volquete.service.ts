@@ -7,7 +7,7 @@ import { Observable, Subject, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class TiposVolqueteService {
-  private apiUrl = 'http://localhost:3000/api/tipoVolquetes';
+  private apiUrl = 'http://localhost:3000/api/tipovolquetes';
   constructor(private http: HttpClient) {}
 
   tiposVolquete: TipoVolquete[]=[];
