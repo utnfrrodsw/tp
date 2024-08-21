@@ -1,9 +1,9 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
-import { TipoVolqueteModel } from '../../../../../model/interfaces/tipo_volquete.interface.js';
-import { DatosTipoVolqueteService } from '../../../../../services/datosVolqueteService/datos-tipo-volquete.service.js';
+import { Component, OnDestroy, OnInit, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TipoVolqueteModel } from '../../../../../model/interfaces/tipo_volquete.interface.js';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { DatosTipoVolqueteService } from '../../../../../services/datosVolqueteService/datos-tipo-volquete.service.js';
 
 @Component({
   selector: 'app-alta-tipo-form',

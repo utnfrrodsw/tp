@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 import { TipoVolqueteModel } from '../../../../../model/interfaces/tipo_volquete.interface.js';
 import { TiposVolqueteService } from '../../../../../services/tiposVolqueteService/tipos-volquete.service.js';
 import { TiposVolqueteBodyService } from '../tipos-volquete-body.service.js';
-import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-tipo-volquetes-list',
@@ -14,7 +15,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './tipo-volquetes-list.component.html',
   styleUrl: './tipo-volquetes-list.component.css',
 })
-export class TipoVolquetesListComponent {
+export class TipoVolquetesListComponent implements OnInit, OnDestroy {
   tipos: TipoVolqueteModel[] = [];
   
   displayedColumns: string[] = [
@@ -24,8 +25,8 @@ export class TipoVolquetesListComponent {
 
   tipoSeleccionado: TipoVolqueteModel | null = null;
 
-  private tiposVolqueteServiceSuscription: Subscription | null = null;
-  private tiposVolqueteListServiceSuscription: Subscription | null = null;
+  private subscription = new Subscription();
+
 
   constructor(
     private tiposVolqueteService: TiposVolqueteService,
@@ -37,35 +38,37 @@ export class TipoVolquetesListComponent {
   }
 
   loadTiposVolquete(): void {
-    this.tiposVolqueteService.getAll().subscribe((data) => {
-      this.tipos = data;
-    });
+    this.subscription.add(
+      this.tiposVolqueteService.tiposVolquete$.subscribe((data) => {
+        this.tipos = data;
+      })
+    );
   }
 
   onSeleccionarTipo(tipo: TipoVolqueteModel): void {
-    this.tiposVolqueteFormListService.select(
-      tipo
-    ); /*Servicio para marcar al tipo como "Selected" */
+    this.tiposVolqueteFormListService.select(tipo); /*Servicio para marcar al tipo como "Selected" */
     console.log('Row clicked:', tipo);
   }
 
   onAdd(): void {
-    /* this.isAddingProveedor=true; */
-    /* this.addProveedor.emit();    */
     this.tiposVolqueteFormListService.startAdding();
     console.log('you pressed onAddProveedor in tiposVolquete-list.component');
   }
 
   addTipoVolquete(tipo: TipoVolqueteModel): void {
-    this.tiposVolqueteService.add(tipo).subscribe({
-      next: (newTipo) => {
-        this.tipos.push(newTipo);
-      },
-      error: (error) => {
-        console.error('Error adding TipoVolquete:', error);
-      },
-    });
+    this.subscription.add(
+      this.tiposVolqueteService.add(tipo).subscribe({
+        next: (newTipo) => {
+          this.tipos.push(newTipo);
+        },
+        error: (error) => {
+          console.error('Error adding TipoVolquete:', error);
+        },
+      })
+    );
   }
 
-  
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe(); // Clean up subscriptions
+  }  
 }
