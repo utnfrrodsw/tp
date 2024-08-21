@@ -7,12 +7,15 @@ import { Observable, Subject, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class TiposVolqueteService {
+  
   private apiUrl = 'http://localhost:3000/api/tipovolquetes';
+  
   constructor(private http: HttpClient) {}
 
   tiposVolquete: TipoVolquete[]=[];
   
   private tiposVolqueteSubject = new Subject<TipoVolquete[]>()
+  
   tiposVolquete$ = this.tiposVolqueteSubject.asObservable();
 
 getAll(): Observable<TipoVolquete[]> {
@@ -24,9 +27,12 @@ getTipo(id: number): Observable<TipoVolquete> {
 }
 
 add(tipo: TipoVolquete): Observable<TipoVolquete> {
-  console.log("COMENTARIO A BORRAR: (service. addProveedor)",tipo.descripcion)
-  if (!tipo.descripcion){
-    throw new Error("Falta indicar la descripcion");
+  console.log(
+    'COMENTARIO A BORRAR: (service. addProveedor)',
+    tipo.descripcion_tipo_volquete
+  );
+  if (!tipo.descripcion_tipo_volquete) {
+    throw new Error('Falta indicar la descripcion');
   }
   return this.http.post<TipoVolquete>(this.apiUrl, tipo).pipe(
     tap(() => this.emitirListadoActualizado())

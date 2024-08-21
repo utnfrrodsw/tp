@@ -5,18 +5,14 @@
       
       <table class="tipos-volquete-table">
         <thead>
-          <tr>
-            <th>ID</th>
-            <th>Descripcion</th>
-          </tr>
+          <th *ngFor="let column of displayedColumns">
+            {{ column | titlecase }}
+          </th>
         </thead>
         <tbody>
-          <tr *ngFor="let tipo of tipos"
-                        (click)="onSeleccionarTipo(tipo)" 
-                        [ngClass]="{'selected': tipo === tipoSeleccionado}">
-            <td>{{ tipo.id }}</td>
-            <td>{{ tipo.descripcion }}</td>
-            
+          <tr *ngFor="let tipo of tipos" (click)="onSeleccionarTipo(tipo)" [class.selected]="tipo === tipoSeleccionado">
+            <td>{{ tipo.id_tipo_volquete }}</td>
+            <td>{{ tipo.descripcion_tipo_volquete }}</td>
           </tr>
           <tr (click)="onAdd()" class="add-row">
             <td colspan="3" class="add-row-cell">

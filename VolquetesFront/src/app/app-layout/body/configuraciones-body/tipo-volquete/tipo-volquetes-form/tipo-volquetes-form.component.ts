@@ -50,8 +50,8 @@ export class TipoVolqueteFormComponent implements OnInit {
       (resp) => {
         this.mensajeErr = '';
         this.introducido = 1;
-        this.tipoVolquete.id = 0;
-        this.tipoVolquete.descripcion = '';
+        this.tipoVolquete.id_tipo_volquete = 0;
+        this.tipoVolquete.descripcion_tipo_volquete = '';
       },
       (error) => {
         this.introducido = 0;
@@ -70,8 +70,8 @@ export class TipoVolqueteFormComponent implements OnInit {
 
 insertar(): void{
   const newTipoVolquete: TipoVolqueteModel = {
-    id: Number(this.tipoVolqueteForm.value.id ?? 0), // or generate a new ID
-    descripcion: this.tipoVolqueteForm.value.descripcion ?? ''
+    id_tipo_volquete: Number(this.tipoVolqueteForm.value.id ?? 0), // or generate a new ID
+    descripcion_tipo_volquete: this.tipoVolqueteForm.value.descripcion ?? '',
   };
   
   this._datos.introducirTipoVolquete(newTipoVolquete).subscribe((tipoVolquete)=>{
@@ -97,8 +97,8 @@ private resetForm(): void {
 
 private deshabilitarEdicion():void{
   this.isEditMode = false;
-  this.tipoVolqueteForm.get('id')?.disable();
-  this.tipoVolqueteForm.get('descripcion')?.disable();
+  this.tipoVolqueteForm.get('id_tipo_volquete ')?.disable();
+  this.tipoVolqueteForm.get('descripcion_tipo_volquete ')?.disable();
 }
 
 

@@ -51,9 +51,13 @@ export class DatosTipoVolqueteService {
   
   editarTipoVolquete(tipoVolquete:TipoVolquete)
   {
-    console.log("-id: "+tipoVolquete.id);
-    console.log("*Codigo local: "+tipoVolquete.id);
-    return this._http.put(this.url+"/"+tipoVolquete.id,tipoVolquete,httpOptions);
+    console.log('-id: ' + tipoVolquete.id_tipo_volquete);
+    console.log('*Codigo local: ' + tipoVolquete.id_tipo_volquete);
+    return this._http.put(
+      this.url + '/' + tipoVolquete.id_tipo_volquete,
+      tipoVolquete,
+      httpOptions
+    );
   }
 }
 
