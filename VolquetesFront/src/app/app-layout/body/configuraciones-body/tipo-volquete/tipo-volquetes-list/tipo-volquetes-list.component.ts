@@ -34,12 +34,14 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    console.log('ngOnInit called');
     this.loadTiposVolquete();
   }
 
   loadTiposVolquete(): void {
     this.subscription.add(
       this.tiposVolqueteService.tiposVolquete$.subscribe((data) => {
+        console.log('Data received:', data);
         this.tipos = data;
       })
     );
@@ -69,6 +71,7 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('ngOnDestroy called');
     this.subscription.unsubscribe(); // Clean up subscriptions
   }  
 }
