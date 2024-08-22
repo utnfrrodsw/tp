@@ -52,13 +52,14 @@ add(tipo: TipoVolquete): Observable<TipoVolquete> {
   );
 }
 
-update(id: number, tipoVolquete: TipoVolquete): Observable<TipoVolquete> {
+update(tipoVolquete: TipoVolqueteModel): Observable<TipoVolqueteModel> {
+  const id = tipoVolquete.id_tipo_volquete;
   if (!id || isNaN(id)) {
     throw new Error("ID inválido para la actualización del tipo de volquete");
   }
-  return this.http.put<TipoVolquete>(`${this.apiUrl}/${id}`, tipoVolquete).pipe(
+  return this.http.put<TipoVolqueteModel>(`${this.apiUrl}/${id}`, tipoVolquete).pipe(
     tap(() => this.loadInitialData()), // Refresh list
-    catchError(this.handleError<TipoVolquete>('update'))
+    catchError(this.handleError<TipoVolqueteModel>('update'))
   );
 }
 

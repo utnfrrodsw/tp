@@ -1,29 +1,49 @@
+<!-- tipo-volquetes-list.component.html -->
 <div class="tipos-volquete-list-container">
-    <h1 class="tipos-volquete-title">TIPOS DE VOLQUETE</h1>
-  
-    <div class="tipos-volquete-table-container">
-      
-      <table class="tipos-volquete-table">
-        <thead>
+  <h1 class="tipos-volquete-title">Tipos de Volquete</h1>
+
+  <div class="tipos-volquete-table-container">
+
+    <table class="tipos-volquete-table">
+      <thead>
+        <tr>
           <th *ngFor="let column of displayedColumns">
-            {{ column | titlecase }}
+            {{ columnNames[column] }}
           </th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tipo of tipos" (click)="onSeleccionarTipo(tipo)" [class.selected]="tipo === tipoSeleccionado">
-            <td>{{ tipo.id_tipo_volquete }}</td>
-            <td>{{ tipo.descripcion_tipo_volquete }}</td>
-          </tr>
-          <tr (click)="onAdd()" class="add-row">
-            <td colspan="3" class="add-row-cell">
-              <button class="add-button">
-                <span class="add-icon">+</span>
-                <span>Add New</span>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let tipo of tipos" (click)="onSeleccionarTipo(tipo)">
+
+          <td>
+            <input *ngIf="editingRow === tipo" [(ngModel)]="editTemp.id_tipo_volquete" />
+            <span *ngIf="editingRow !== tipo">{{ tipo.id_tipo_volquete }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingRow === tipo" [(ngModel)]="editTemp.descripcion_tipo_volquete" />
+            <span *ngIf="editingRow !== tipo">{{ tipo.descripcion_tipo_volquete }}</span>
+          </td>
+          <td>
+            <button *ngIf="editingRow === tipo" (click)="saveEdit()">Guardar</button>
+            <button *ngIf="editingRow === tipo" (click)="cancelEdit()">Cancelar</button>
+            <button *ngIf="editingRow !== tipo" (click)="startEdit(tipo)">Editar</button>
+          </td>
+          
+        </tr>
+
+        <tr (click)="onAdd()" class="add-row">
+          <td colspan="3" class="add-row-cell">
+            <button class="add-button">
+              <span class="add-icon">+</span>
+              <span>Add New</span>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
   </div>
+</div>
