@@ -1,19 +1,21 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { TipoVolquete } from '../../model/interfaces/tipo_volquete.interface.js';
-import { Observable, BehaviorSubject, catchError, of, tap } from 'rxjs';
+import { Observable, BehaviorSubject, catchError, of, tap, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { TipoVolquete, TipoVolqueteModel } from '../../model/interfaces/tipo_volquete.interface.js';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class TiposVolqueteService {
   
-  private apiUrl = 'http://localhost:3000/api/tipovolquetes';
+  private tiposVolqueteSubject = new BehaviorSubject<TipoVolquete[]>([]);
+  public tiposVolquete$ : Observable<TipoVolquete[]> = this.tiposVolqueteSubject.asObservable();
+  
+  private apiUrl = 'http://localhost:3000/api/tipoVolquetes';
   
   private http = inject(HttpClient); // Use inject() to get HttpClient
   
-  private tiposVolqueteSubject = new BehaviorSubject<TipoVolquete[]>([]);
-  tiposVolquete$ = this.tiposVolqueteSubject.asObservable();
   // tiposVolquete: TipoVolquete[]=[];
   
   constructor() {
@@ -25,10 +27,14 @@ export class TiposVolqueteService {
   }
   
 getAll(): Observable<TipoVolquete[]> {
-  return this.http.get<TipoVolquete[]>(this.apiUrl).pipe(
-    catchError(this.handleError<TipoVolquete[]>('getAll', []))
-  );
-}
+  console.log('getAll called')
+  return this.http
+    .get<{data: TipoVolquete[]}>(this.apiUrl)
+    .pipe(
+      map(response=> response.data || [] ),
+      catchError(this.handleError<TipoVolquete[]>('getAll', []))
+    );
+  }
 
 getTipo(id: number): Observable<TipoVolquete> {
   return this.http.get<TipoVolquete>(`${this.apiUrl}/${id}`).pipe(

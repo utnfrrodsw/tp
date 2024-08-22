@@ -17,7 +17,7 @@ import { TiposVolqueteBodyService } from '../tipos-volquete-body.service.js';
 })
 export class TipoVolquetesListComponent implements OnInit, OnDestroy {
   tipos: TipoVolqueteModel[] = [];
-  
+
   displayedColumns: string[] = [
     'id_tipo_volquete',
     'descripcion_tipo_volquete',
@@ -26,7 +26,6 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
   tipoSeleccionado: TipoVolqueteModel | null = null;
 
   private subscription = new Subscription();
-
 
   constructor(
     private tiposVolqueteService: TiposVolqueteService,
@@ -42,14 +41,9 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.tiposVolqueteService.tiposVolquete$.subscribe((data) => {
         console.log('Data received:', data);
-        this.tipos = data;
+        this.tipos = Object.values(data);
       })
     );
-  }
-
-  onSeleccionarTipo(tipo: TipoVolqueteModel): void {
-    this.tiposVolqueteFormListService.select(tipo); /*Servicio para marcar al tipo como "Selected" */
-    console.log('Row clicked:', tipo);
   }
 
   onAdd(): void {
@@ -73,5 +67,12 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log('ngOnDestroy called');
     this.subscription.unsubscribe(); // Clean up subscriptions
-  }  
+  }
+
+  onSeleccionarTipo(tipo: TipoVolqueteModel): void {
+    this.tiposVolqueteFormListService.select(
+      tipo
+    ); /*Servicio para marcar al tipo como "Selected" */
+    console.log('Row clicked:', tipo);
+  }
 }
