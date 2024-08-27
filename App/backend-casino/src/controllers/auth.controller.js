@@ -1,5 +1,8 @@
 const authService = require('../services/auth.service')
 const service = new authService();
+const bcrypt = require('bcrypt')
+
+const saltRounds = 10;
 
 const registerUser = async(req,res) => {
     const { username, first_name, last_name, birthday, street, phone, email, password } = req.body;
@@ -22,6 +25,9 @@ const registerUser = async(req,res) => {
         return res.status(400).send('Phone is already associated with an account');
      }
 
+     //Hash password
+     const salt = bcrypt.genSaltSync(saltRounds);
+     const hash = bcrypt.hashSync(password, salt);
 
     //Register User; INSERT into BD
     try{
@@ -33,7 +39,7 @@ const registerUser = async(req,res) => {
             street,
             phone,
             email,
-            password,
+            password: hash,
             "role": "user",
 
             // Esto se va a cambiar para que el usuario eliga su pais, provincia y ciudad
@@ -43,8 +49,9 @@ const registerUser = async(req,res) => {
         }
         );
         res.status(200).send('Registrado Correctamente');
+        console.log('Registrado')
     } catch(err){
-        res.status(500).send('Ocurrio un error al registrarse')
+        res.status(500).json('Ocurrio un error al registrarse')
         console.log(err)
     }
 }

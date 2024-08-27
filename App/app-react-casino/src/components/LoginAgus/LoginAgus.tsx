@@ -18,7 +18,7 @@ export function LoginAgus(){
             setMessage(response.data);
             console.log('Sesion iniciada')
         } catch (error) {
-            setMessage('Ocurrio un error al iniciar sesion')
+            setMessage(error.response.data)
             console.error(error)
         }
     };

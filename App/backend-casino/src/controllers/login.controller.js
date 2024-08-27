@@ -2,8 +2,8 @@ const loginService = require('../services/login.service')
 const service = new loginService();
 
 const userService = require('../services/user.service')
-const service2 = new userService();
 
+const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 
@@ -18,11 +18,10 @@ const signInUser = async (req, res) => {
         }
 
         //Verificar Password
-        const passwordValid = await service.compare(username, password)
-        if (!passwordValid) {
+        const match = bcrypt.compareSync(password, user.password)
+        if (!match) {
             return res.status(404).json('Incorrect Username and Password combinations')
         }
-
 
         //Autentificar con JWT
         const token = jwt.sign({ foo: 'bar' }, 'agus');
@@ -34,7 +33,7 @@ const signInUser = async (req, res) => {
         //send status
         res.status(200).send("Succesfull sign in")
     } catch (err) {
-        return res.status(500).send('Sign in error')
+        return res.status(500).json('Sign in error')
     }
 }
 

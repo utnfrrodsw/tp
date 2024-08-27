@@ -21,11 +21,10 @@ export function RegisterAgus(){
             const response = 
                 await axios.post('http://localhost:3000/api/v1/register',
                     {username, first_name, last_name, birthday, street, phone, email, password});
-            setMessage('Registrado correctamente');
+            setMessage(response.data);
             console.log(response.data)
-            console.log('Registrado correctamente')
         } catch (error) {
-            setMessage('Ocurrio un error al registrarse')
+            setMessage(error.response.data)
             console.error(error)
         }
     };
