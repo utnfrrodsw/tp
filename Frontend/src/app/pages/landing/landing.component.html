@@ -1,0 +1,42 @@
+  
+  <app-header></app-header>
+  <main class="main-first">
+    <section class="section-firts">
+      <div class="container-first">
+
+        <div>
+          <h1 class="display-4 font-weight-bold">Bienvenido a EventLife</h1>
+          <p class="lead text-muted">
+            Crea eventos inolvidables o encuentra las mejores entradas para los eventos más emocionantes.
+          </p>
+        </div>
+
+        <div class="container-form">
+          <form class="form-main">
+            <input type="text" class="form-control mr-2" placeholder="Buscar eventos" />
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-search"></i> Buscar
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+
+    <app-popular-events></app-popular-events>
+
+    <section class="py-5 second">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <app-crear-event></app-crear-event>
+          </div>
+          <div class="col-lg-6">
+            <app-buy-ticket></app-buy-ticket>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <app-footer></app-footer>

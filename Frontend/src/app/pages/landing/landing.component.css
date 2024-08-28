@@ -1,0 +1,38 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-first{
+    
+}
+
+.section-firts{
+    height: 100vh;
+}
+
+
+.container-first{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.form-main{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.second{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
