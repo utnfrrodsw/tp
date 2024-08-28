@@ -1,12 +1,34 @@
-import crypto from "node:crypto"
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BaseEntity } from "typeorm"
 
-export class evento{
-    constructor(
-        public idEvento = crypto.randomUUID(),
-        public nombre:string,
-        public cuposGral:number,
-        public descripcion:string,
-        public fecha:string, 
-        public hora:number, 
-    ) {}
+@Entity()
+export class Event extends BaseEntity {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+
+    @Column()
+    cupo: number;
+
+    @Column({ type: 'date' })
+    fecha: Date;
+
+    @Column({ type: "time" })
+    hora: string;
+
+    @Column()
+    description: string;
+
+    @Column({
+        default: true
+    })
+    active: boolean;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updateAd: Date;
 }

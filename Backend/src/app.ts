@@ -1,19 +1,16 @@
 import express from "express";
-import { userRouter } from "./user/user.routes.js";
-import { eventoRouter } from "./event/event.routes.js";
-import cors from 'cors'
+import morgan from "morgan";
+import cors from "cors";
+import userRoute from "./routers/user.routes"
+import userEvent from "./routers/event.routes"
 
-const app = express()
-app.use(express.json())
+const app = express();
+
 app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
 
-app.use("/api/users", userRouter)
-app.use("/api/evento", eventoRouter)
+app.use("/api/user", userRoute)
+app.use("/api/event", userEvent)
 
-app.use((req, res) => {
-    res.status(404).send({ message: "Resource not found" })
-})
-
-app.listen(3000, () => {
-    console.log("Server running on http://localhost:3000/")
-})
+export default app;
