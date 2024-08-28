@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { RescueRepository } from './rescue.repository.js';
+/*import { RescueRepository } from './rescue.repository.js';*/
 import { Rescue } from './rescue.entity.js';
 
-const rescueRepository = new RescueRepository();
+/*const rescueRepository = new RescueRepository();*/
 function sanitizeRescueInput(req: Request, res: Response, next:NextFunction)
 {
   req.body.sanitizedRescue = {
@@ -21,6 +21,31 @@ function sanitizeRescueInput(req: Request, res: Response, next:NextFunction)
   next()
 }
 
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizeRescueInput }
+
+
+
+/*
 function findAll( req: Request, res: Response ){
   res.json({data: rescueRepository.findAll()});
 }
@@ -60,4 +85,4 @@ function remove( req: Request, res: Response ){
   return res.status(200).send({message: 'rescue deleted', data:  rescue})
 }
 
-export { findAll, findOne, add, update, remove, sanitizeRescueInput }
+export { findAll, findOne, add, update, remove, sanitizeRescueInput }*/

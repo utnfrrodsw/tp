@@ -1,4 +1,4 @@
-import { pool } from "../zshare/db/conn.mysql.js";
+/*import { pool } from "../zshare/db/conn.mysql.js";
 import { Repository } from "../zshare/repository.js";
 import { Vet } from "./vet.entity.js";
 
@@ -22,4 +22,4 @@ export class VetRepository implements Repository<Vet> {
   public async delete(item: {id: string}): Promise<Vet | undefined>{
     throw new Error('Not implemented');
   }
-}
+}*/

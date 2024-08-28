@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { AnimalRepository } from './animal.repository.js';
-import { Animal } from './animal.entity.js';
+/*import { AnimalRepository } from './animal.repository.js';*/
+//import { Animal } from './animal.entity.js';
 
-const animalRepository = new AnimalRepository();
+/*const animalRepository = new AnimalRepository();*/
 function sanitizeAnimalInput(req: Request, res: Response, next:NextFunction)
 {
   req.body.sanitizedAnimal = {
@@ -21,6 +21,28 @@ function sanitizeAnimalInput(req: Request, res: Response, next:NextFunction)
   next()
 }
 
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizeAnimalInput }
+/*
 function findAll( req: Request, res: Response ){
   res.json({data: animalRepository.findAll()});
 }
@@ -59,5 +81,5 @@ function remove( req: Request, res: Response ){
   }
   return res.status(200).send({message: 'animal deleted', data:  animal})
 }
+*/
 
-export { findAll, findOne, add, update, remove, sanitizeAnimalInput }

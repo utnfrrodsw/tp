@@ -1,3 +1,4 @@
+/*
 import { Repository } from "../zshare/repository.js";
 import { Buy } from "./buy.entity.js";
 
@@ -29,4 +30,4 @@ export class BuyRepository implements Repository<Buy> {
   public async delete(item: {id: string}): Promise <Buy | undefined> {
     throw new Error('Not implemented');
   }
-}
+}*/

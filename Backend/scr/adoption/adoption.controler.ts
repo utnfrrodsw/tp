@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { AdoptionRepository } from './adoption.repository.js';
+/*import { AdoptionRepository } from './adoption.repository.js';*/
 import { Adoption } from './adoption.entity.js';
 
-const adoptionrepository = new AdoptionRepository();
+/*const adoptionrepository = new AdoptionRepository();*/
 
 function sanitizeAdoptionInput(req: Request, res: Response, next:NextFunction){
   
@@ -12,8 +12,42 @@ function sanitizeAdoptionInput(req: Request, res: Response, next:NextFunction){
     id_person: req.body.id_person,
     adoption_date: req.body.adoption_date,
     id: req.body.id,
-  }}
+  }
+    Object.keys(req.body.sanitizedAnimal).forEach((key) => {
+    if (req.body.sanitizedAnimal[key] === undefined) {
+      delete req.body.sanitizedAnimal[key]
+    }
+  })
 
+  next()
+}
+
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizeAdoptionInput }
+
+  
+
+
+/*
 function findAll(req: Request,res: Response ){
   res.json({data: adoptionrepository.findAll()});
 }
@@ -59,4 +93,4 @@ function remove(req: Request,res: Response ){
   }
 }
 
-export {  sanitizeAdoptionInput, findOne, add, update, remove, findAll }
+export {  sanitizeAdoptionInput, findOne, add, update, remove, findAll }*/

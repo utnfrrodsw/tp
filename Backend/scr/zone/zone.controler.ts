@@ -1,16 +1,49 @@
 import { Request, Response, NextFunction } from 'express';
-import { ZoneRepository } from './zone.repository.js';
+/*import { ZoneRepository } from './zone.repository.js';*/
 import { Zone } from './zone.entity.js';
 
-const zonerepository = new ZoneRepository();
+/*const zonerepository = new ZoneRepository();*/
 
 function sanitizeZoneInput(req: Request, res: Response, next:NextFunction){
   
   req.body.sanitizedzone = {
     name: req.body.name,
     id: req.body.id
-  }}
+  }
+    Object.keys(req.body.sanitizedzoneInput).forEach((key) => {
+    if (req.body.sanitizedzoneInput[key] === undefined) {
+      delete req.body.sanitizedzoneInput[key]
+    }
+  })
 
+  next()
+}
+
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizeZoneInput }
+
+
+
+  /*
 function findAll(req: Request,res: Response ){
   res.json({data: zonerepository.findAll()});
 }
@@ -56,4 +89,4 @@ function remove(req: Request,res: Response ){
   }
 }
 
-export {  sanitizeZoneInput, findOne, add, update, remove, findAll }
+export {  sanitizeZoneInput, findOne, add, update, remove, findAll }*/

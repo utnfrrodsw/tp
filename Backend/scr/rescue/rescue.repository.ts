@@ -1,4 +1,4 @@
-import { Repository } from "../zshare/repository.js";
+/*import { Repository } from "../zshare/repository.js";
 import { Rescue } from "./rescue.entity.js";
 
 const rescues = [
@@ -42,4 +42,4 @@ export class RescueRepository implements Repository<Rescue>{
       return deletedRescue
     }
   }
-}
+}*/

@@ -1,15 +1,48 @@
 import { Request, Response, NextFunction } from 'express';
-import { BreedRepository } from './breed.repository.js';
+/*import { BreedRepository } from './breed.repository.js';*/
 import { Breed } from './breed.entity.js';
 
-const breedRepository = new BreedRepository();
+/*const breedRepository = new BreedRepository();*/
 
 function sanitizeBreedInput(req: Request, res: Response, next:NextFunction){
   req.body.sanitizedBreed = {
     name: req.body.name,
     description: req.body.description,
     id: req.body.id,
-  }}
+  }
+
+    Object.keys(req.body.sanitizedBreedInput).forEach((key) => {
+    if (req.body.sanitizedBreedInput[key] === undefined) {
+      delete req.body.sanitizedBreedInput[key]
+    }
+  })
+  next()
+}
+
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizeBreedInput }
+
+
+  /*
 
 function findAll(req: Request,res: Response ){
   res.json({data: breedRepository.findAll()});
@@ -56,4 +89,4 @@ function remove(req: Request,res: Response ){
   }
 }
 
-export {  sanitizeBreedInput, findOne, add, update, remove, findAll }
+export {  sanitizeBreedInput, findOne, add, update, remove, findAll }*/

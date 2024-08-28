@@ -15,8 +15,44 @@ function sanitizepersonInput(req: Request, res: Response, next:NextFunction){
     fechaNacimiento: req.body.fechaNacimiento,
     domicilio: req.body.domicilio,
     nroCuit: req.body.nroCuit
-  }}
+  }
+  Object.keys(req.body.sanitizedpersonInput).forEach((key) => {
+    if (req.body.sanitizedpersonInput[key] === undefined) {
+      delete req.body.sanitizedpersonInput[key]
+    }
+  })
 
+  next()
+}
+
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizepersonInput }
+
+
+
+
+
+
+/*
 function findAll(req: Request,res: Response ){
   res.json({data: personrepository.findAll()});
 }
@@ -62,4 +98,4 @@ function remove(req: Request,res: Response ){
   }
 }
 
-export {  sanitizepersonInput, findOne, add, update, remove, findAll }
+export {  sanitizepersonInput, findOne, add, update, remove, findAll }*/

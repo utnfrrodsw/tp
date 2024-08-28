@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { PriceRepository } from './price.repository.js';
+/*import { PriceRepository } from './price.repository.js';*/
 import { Price } from './price.entity.js';
 
-const pricerepository = new PriceRepository();
+/*const pricerepository = new PriceRepository();*/
 
 function sanitizePriceInput(req: Request, res: Response, next:NextFunction){
   
@@ -11,8 +11,40 @@ function sanitizePriceInput(req: Request, res: Response, next:NextFunction){
     date: req.body.date,
     id_product: req.body.id_product,
     id: req.body.id,
-  }}
+  }
+   Object.keys(req.body.sanitizePriceInput).forEach((key) => {
+    if (req.body.sanitizePriceInput[key] === undefined) {
+      delete req.body.sanitizePriceInput[key]
+    }
+  })
 
+  next()
+}
+
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizePriceInput }
+
+
+/*
 function findAll(req: Request,res: Response ){
   res.json({data: pricerepository.findAll()});
 }
@@ -58,4 +90,4 @@ function remove(req: Request,res: Response ){
   }
 }
 
-export {  sanitizePriceInput, findOne, add, update, remove, findAll }
+export {  sanitizePriceInput, findOne, add, update, remove, findAll }*/

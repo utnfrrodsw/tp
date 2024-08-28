@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { RecordRepository } from './record.repository.js';
+/*import { RecordRepository } from './record.repository.js';*/
 import { Record } from './record.entity.js';
 
-const recordrepository = new RecordRepository();
+/*const recordrepository = new RecordRepository();*/
 
 function sanitizeRecordInput(req: Request, res: Response, next:NextFunction){
   
@@ -10,8 +10,41 @@ function sanitizeRecordInput(req: Request, res: Response, next:NextFunction){
     name: req.body.name,
     address: req.body.address,
     id: req.body.id,
-  }}
+  }
+    Object.keys(req.body.sanitizedRecordInput).forEach((key) => {
+    if (req.body.sanitizedRecordInput[key] === undefined) {
+      delete req.body.sanitizedRecordInput[key]
+    }
+  })
 
+  next()
+}
+
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizeRecordInput }
+
+
+
+/*
 function findAll(req: Request,res: Response ){
   res.json({data: recordrepository.findAll()});
 }
@@ -57,4 +90,4 @@ function remove(req: Request,res: Response ){
   }
 }
 
-export {  sanitizeRecordInput, findOne, add, update, remove, findAll }
+export {  sanitizeRecordInput, findOne, add, update, remove, findAll }*/

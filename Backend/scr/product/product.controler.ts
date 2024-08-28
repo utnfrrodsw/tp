@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import { Product } from './product.entity.js';
+/*import { Product } from './product.entity.js';*/
 import { productRepository } from './product.repository.js';
 
 
-const productrepository = new productRepository();
+/*const productrepository = new productRepository();*/
 
 function sanitizeproductInput(req: Request, res: Response, next:NextFunction){
   
@@ -21,6 +21,34 @@ function sanitizeproductInput(req: Request, res: Response, next:NextFunction){
 
   next()
 }
+
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizeproductInput }
+
+
+
+
+
+/*
 function findAll(req: Request, res: Response ){
   res.json({data: productrepository.findAll()});
 }
@@ -64,8 +92,7 @@ function remove(req: Request,res: Response ){
 
 
 
-export { findAll, sanitizeproductInput, findOne, add, update, remove }
-
+export { findAll, sanitizeproductInput, findOne, add, update, remove }*/
 
 
 

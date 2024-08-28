@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { VetRepository } from './vet.repository.js';
+/*import { VetRepository } from './vet.repository.js';*/
 import { Vet } from './vet.entity.js';
 
-const vetrepository = new VetRepository();
+/*const vetrepository = new VetRepository();*/
 
 function sanitizeVetInput(req: Request, res: Response, next:NextFunction){
   
@@ -10,8 +10,41 @@ function sanitizeVetInput(req: Request, res: Response, next:NextFunction){
     name: req.body.name,
     address: req.body.address,
     id: req.body.id,
-  }}
+  }
+    Object.keys(req.body.sanitizedvetInput).forEach((key) => {
+    if (req.body.sanitizedvetInput[key] === undefined) {
+      delete req.body.sanitizedvetInput[key]
+    }
+  })
 
+  next()
+}
+
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizeVetInput }
+
+
+
+/*
 function findAll(req: Request,res: Response ){
   res.json({data: vetrepository.findAll()});
 }
@@ -57,4 +90,4 @@ function remove(req: Request,res: Response ){
   }
 }
 
-export {  sanitizeVetInput, findOne, add, update, remove, findAll }
+export {  sanitizeVetInput, findOne, add, update, remove, findAll }*/

@@ -1,4 +1,4 @@
-import { Repository } from "../zshare/repository.js";
+/*import { Repository } from "../zshare/repository.js";
 import { Shelter } from "./shelter.entity.js";
 
 const shelters = [
@@ -31,4 +31,4 @@ export class ShelterRepository implements Repository<Shelter>{
   public async delete(item: {id: string}): Promise <Shelter | undefined>{
     throw new Error('Not implemented');
   }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 import { Repository } from "../zshare/repository.js";
 import { Animal } from "./animal.entity.js";
 
@@ -31,4 +32,4 @@ export class AnimalRepository implements Repository<Animal>{
   public async delete(item: {id: string}): Promise<Animal | undefined> {
     throw new Error('Not implemented');
   }
-}
+}*/
