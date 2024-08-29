@@ -22,6 +22,7 @@
     "@angular/router": "^18.0.0",
     "@angular/ssr": "^18.0.1",
     "express": "^4.18.2",
+    "hotel": "file:",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

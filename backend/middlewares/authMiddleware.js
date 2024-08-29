@@ -17,4 +17,21 @@ function verificarAutenticacion(req, res, next) {
   }
 }
 
-module.exports = { verificarAutenticacion };
+function verificarAutenticacionEmpleado(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  if (authHeader) {
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(401).send('Token inválido o expirado');
+      } else {
+        req.empleado = decoded.empleado;
+        next();
+      }
+    });
+  } else {
+    res.status(401).send('Token de autenticación no proporcionado');
+  }
+}
+
+module.exports = { verificarAutenticacion ,verificarAutenticacionEmpleado};
