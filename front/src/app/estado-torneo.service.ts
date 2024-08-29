@@ -26,4 +26,16 @@ export class EstadoTorneoService {
     const url = this.baseUrl + 'estado_torneo/' + id;
     return this.http.delete<any>(url);
   }
+
+  add(nombre_estado: string, id: string) {
+    const url = this.baseUrl + 'estado_torneo';
+    const data = { nombre_estado, id };
+    return this.http.post<any>(url, data);
+  }
+
+  modEstado(nombre_estado: string, id: string){
+    const url = this.baseUrl + 'estado_torneo/' + id;
+    const data = { nombre_estado, id};
+    return this.http.put<any>(url, data);
+  }
 }

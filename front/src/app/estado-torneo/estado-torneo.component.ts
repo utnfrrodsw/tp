@@ -14,7 +14,8 @@ export class EstadoTorneoComponent {
   
   list:any = [];
   estado:any = Object;
-  @Input() id = '';
+  id= '';
+  nombre_estado = '';
 
   ngOnInit(): void{
 
@@ -30,5 +31,13 @@ export class EstadoTorneoComponent {
 
   removeEstado(id:string){
     return this.service.remove(id).subscribe(response => this.estado = response);
+  }
+
+  addEstado(nombre_estado:string, id:string){
+    return this.service.add(nombre_estado, id).subscribe(response => this.estado = response);
+  }
+
+  putEstado(nombre_estado:string, id:string){
+    return this.service.modEstado(nombre_estado, id).subscribe(response => this.estado = response);
   }
 }
