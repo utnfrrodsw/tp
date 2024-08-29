@@ -55,9 +55,9 @@ async function update(req: Request, res: Response) {
     const estado = await repository.update(req.params.id, req.body.sanitizedInput)
 
     if (!estado) {
-    return res.status(404).send({ message: 'no se encontro el estado indicado' })
-    }else{
-    return res.status(200).send({ message: 'el estado se actualizo correctamente', data: estado_torneo })
+        return res.status(404).send({ message: 'no se encontro el estado indicado' })
+    } else {
+        return res.status(200).send({ message: 'el estado se actualizo correctamente', data: estado })
     }
 }
 

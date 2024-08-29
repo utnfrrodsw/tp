@@ -10,8 +10,8 @@ POST http://localhost:3000/api/estado_torneo
 Content-Type: application/json
 
 {
-  "nombre_estado": "Cursando",
-  "id": 13
+  "nombre_estado": "En curso",
+  "id": 2
 }
 
 ### modificar un estado del torneo

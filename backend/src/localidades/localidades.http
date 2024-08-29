@@ -17,11 +17,11 @@ Content-Type: application/json
 
 
 ### Modificar una localidad (PUT - Recurso completo e idempotente)
-PUT http://localhost:3000/api/localidades/9
+PUT http://localhost:3000/api/localidades/5
 Content-Type: application/json
 
 {
-    "nombre_localidad": "Buenos Aires"
+    "nombre_localidad": "Perez"
 }
 
 
