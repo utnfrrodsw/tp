@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 /*import { BreedRepository } from './breed.repository.js';*/
-import { Breed } from './breed.entity.js';
+
 
 /*const breedRepository = new BreedRepository();*/
 
