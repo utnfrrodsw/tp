@@ -40,7 +40,7 @@ async function update(req, res) {
         return res.status(404).send({ message: 'no se encontro el estado indicado' });
     }
     else {
-        return res.status(200).send({ message: 'el estado se actualizo correctamente', data: estado_torneo });
+        return res.status(200).send({ message: 'el estado se actualizo correctamente', data: estado });
     }
 }
 async function remove(req, res) {

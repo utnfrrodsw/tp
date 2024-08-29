@@ -22,6 +22,8 @@
   "dependencies": {
     "@angular/platform-server": "^18.1.2",
     "@angular/ssr": "^18.1.2",
+    "@types/cors": "^2.8.17",
+    "cors": "^2.8.5",
     "express": "4.19.2",
     "mongodb": "6.8.0",
     "mysql2": "3.11.0"

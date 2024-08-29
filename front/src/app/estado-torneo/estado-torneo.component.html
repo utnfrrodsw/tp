@@ -1,0 +1,14 @@
+<p>estado-torneo works!</p>
+
+<pre>
+    {{list | json}}
+    {{estado | json}}
+</pre>
+
+<button (click)="loadEstados()">Cargar</button>
+
+<input type="text" #myInput id="myInput">
+<button (click)="loadOne(myInput.value)">Traer</button>
+
+<input type="text" #myInput id="myInput">
+<button (click)="removeEstado(myInput.value)">Borrar</button>
