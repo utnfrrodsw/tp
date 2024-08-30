@@ -180,7 +180,7 @@ const reservarHabitacion = async (req, res) => {
     }
 
     if (!req.cliente || !req.cliente.idCli) {
-      return res.status(401).json({ message: "Cliente no autenticado o falta idCli." });
+      return res.status(401).json({ message: "Cliente no autenticado." });
     }
 
     const clienteId = req.cliente.idCli;

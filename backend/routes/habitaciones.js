@@ -6,7 +6,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 // Rutas públicas
 router.get('/', habitacionController.obtenerTodasHabitaciones);
 router.get('/:id', habitacionController.obtenerHabitacionPorNroHabitacion);
-router.get('/disponibles/:fechaIngreso/:fechaEgreso/:capacidad', habitacionController.obtenerHabitacionesDisponibles);
+router.get('/disponibles/:fechaIngreso/:fechaEgreso/:capacidad/:idLoc', habitacionController.obtenerHabitacionesDisponibles);
 
 // Rutas protegidas para empleados
 router.post('/', authMiddleware.verificarAutenticacionEmpleado, habitacionController.crearHabitacion);
