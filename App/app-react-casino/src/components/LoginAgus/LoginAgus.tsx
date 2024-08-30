@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 export function LoginAgus(){
@@ -9,14 +10,19 @@ export function LoginAgus(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    let navigate = useNavigate();
 
     const handleSubmit = async () => {
+
         try{
             const response = 
                 await axios.post('http://localhost:3000/api/v1/login',
                     {username, password});
             setMessage(response.data);
+            navigate("/")
+            localStorage.setItem('jwt-token', response.data.accessToken)
             console.log('Sesion iniciada')
+            console.log(response.data.accessToken)
         } catch (error) {
             setMessage(error.response.data)
             console.error(error)

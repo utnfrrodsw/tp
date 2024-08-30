@@ -56,6 +56,7 @@ export function App() {
                     <Route path='/game-policy' element={<GamePolicy />} />
                     <Route path='/admin-uses' element={<AdminUses />} />
 
+    
                     <Route path='/login' element={<LoginAgus />} />
                     <Route path='/register' element={<RegisterAgus />} />
                     

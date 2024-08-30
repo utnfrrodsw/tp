@@ -21,7 +21,7 @@ export function RegisterAgus(){
             const response = 
                 await axios.post('http://localhost:3000/api/v1/register',
                     {username, first_name, last_name, birthday, street, phone, email, password});
-            setMessage(response.data);
+            setMessage(response.message);
             console.log(response.data)
         } catch (error) {
             setMessage(error.response.data)

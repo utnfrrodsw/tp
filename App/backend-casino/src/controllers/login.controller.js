@@ -13,6 +13,15 @@ const signInUser = async (req, res) => {
 
         //Verificar Usuario
         const user = await service.findUser(username)
+        const data = {
+        username: user.username,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        role: user.role,
+        balance: user.balance
+        }
+
         if (!user) {
             return res.status(404).json('Username not found');
         }
@@ -24,14 +33,10 @@ const signInUser = async (req, res) => {
         }
 
         //Autentificar con JWT
-        const token = jwt.sign({ foo: 'bar' }, 'agus');
+        const token = jwt.sign({data}, "UTimbaN", { expiresIn: '1h'});
 
-        /* const token = jwt.sign({ id: user.id_user }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_REFRESH_EXPIRATION
-        }); */
-
-        //send status
-        res.status(200).send("Succesfull sign in")
+        //Send status
+        res.status(200).send({ message: 'success', accessToken: token })
     } catch (err) {
         return res.status(500).json('Sign in error')
     }
