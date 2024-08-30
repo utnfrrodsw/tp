@@ -12,6 +12,18 @@
     }
 }
 
+@keyframes opacity {
+    0% {
+        color: var(--blanco);
+    }
+    50% {
+        color: #ccc578;
+    }
+    100%{
+        color: var(--blanco);
+    }
+}
+
 .spinner:hover {
     animation-name: spin;
     animation-duration: 2000ms;
@@ -37,4 +49,13 @@
 .nav{
     backdrop-filter: blur(5px);
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+.nav-item:hover{
+    animation-name: opacity;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.41,.54,.54,.41);
+    transition: 10ms;
+    transition-timing-function: ease-in-out;
 }
