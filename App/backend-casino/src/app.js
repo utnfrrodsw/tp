@@ -9,12 +9,21 @@ const port = process.env.PORT || 3000;
 
 const routerApi = require('./routes');
 
-app.use(cors());
 app.use(express.json());
 
-app.get("/", (req,res) => {
-    res.send("Backend")
-});
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+}))
+
+/*app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    if (username === 'admin' && password === 'password') {
+        res.status(200).json({ message: 'Login successful' });
+    } else {
+        res.json({ message: 'Invalid Credentials '});
+    }
+}) */
 
 routerApi(app);
 

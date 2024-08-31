@@ -6,19 +6,19 @@ export function Footer(){
     <>
       <div className='pt-3'>
       <div className='hidden md:block bg-[#d81536]'>
-        <p className='p-3 text-sm text-justify text-[#F0F0D8]'>If you or someone you know is suffering from a gambling problem, help is a phone call or text away. Call or text the National Problem Gambling Helpline at <strong>1-800-GAMBLER</strong> to connect with support at any time. Attentive, knowledgeable counselors are ready and waiting to provide confidential care and assistance, answer questions, and connect you with local support groups and treatment options.</p>
+        <p className='p-3 text-sm text-justify'>If you or someone you know is suffering from a gambling problem, help is a phone call or text away. Call or text the National Problem Gambling Helpline at <strong>1-800-GAMBLER</strong> to connect with support at any time. Attentive, knowledgeable counselors are ready and waiting to provide confidential care and assistance, answer questions, and connect you with local support groups and treatment options.</p>
       </div>
 
       <div className='block md:hidden bg-[#d81536] pt-3 pb-3'>
-        <p className='text-sm text-center text-[#F0F0D8]'> GAMBLE WITH RESPONSABILITY </p>
-        <p className='text-sm text-center text-[#F0F0D8]'> <strong> 1-800-GAMBLER </strong></p>
+        <p className='text-sm text-center'> GAMBLE WITH RESPONSABILITY </p>
+        <p className='text-sm text-center'> <strong> 1-800-GAMBLER </strong></p>
       </div>
 
       <div className='p-4 md:flex-nowrap md:flex gap-0 md:flex-row'>
         <div className='flex flex-grow flex-col md:grid md:grid-cols-2'>
           <div className='mb-1'>
             <div className='flex mb-2 text-lg font-bold text-[#FABC01]'> <p> Policies </p></div>
-            <div className='m-0 gap-2 flex flex-col text-[#F0F0D8] ' > 
+            <div className='m-0 gap-2 flex flex-col' > 
               <div className='hover:text-[#FABC01]'> <Link to='/terms-and-conditions'> Terms And Conditions </Link> </div>
               <div className='hover:text-[#FABC01]'> <Link to='/privacy-policy'> Privacy Policy </Link> </div>
               <div className='hover:text-[#FABC01]'> <Link to='/fair'> Fair </Link> </div>
@@ -30,7 +30,7 @@ export function Footer(){
         <div className='flex flex-grow flex-col md:grid md:grid-cols-2'>
           <div className='mb-1'>
             <div className='flex mb-2 text-lg font-bold text-[#FABC01]'> <p> Support </p></div>
-            <div className='m-0 gap-2 flex flex-col text-[#F0F0D8] ' > 
+            <div className='m-0 gap-2 flex flex-col' > 
               <Link to='/about-us' className=' hover:text-[#FABC01]'> About Us </Link> 
               <div className='hover:text-[#FABC01]'> <Link to='/help'> Help Center </Link> </div>
             </div>

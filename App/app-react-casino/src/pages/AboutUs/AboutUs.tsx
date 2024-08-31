@@ -9,8 +9,8 @@ export function AboutUs() {
     return(
         <>
         <div className="mt-[100px] p-5 flex flex-col gap-5">
-        <h1 className="text-2xl font-bold"> About UTimbaN </h1>
-            <div className="bg-[#23222F] p-5 rounded-[10px]"> 
+        <h1 className="text-2xl font-bold text-[#ebe9fc]"> About UTimbaN </h1>
+            <div className="bg-[#23222F] p-5 rounded-[10px] text-[#ebe9fc]"> 
             <p>Welcome to UTimbaN, the online entertainment destination where the excitement of gaming and fun meet. At UTimbaN, we believe that each visit should be a unique experience, full of adrenaline and great opportunities.
             Founded by a team of gaming enthusiasts, UTimbaN has been designed to offer you an attractive and accessible platform. Our goal is to provide players with a high-quality virtual casino experience, with a wide range of games, exciting promotions and a safe and reliable environment. </p>
             <h2 className="text-2xl md:text-3xl font-bold pt-5 pb-2 "> Our Mission </h2>
