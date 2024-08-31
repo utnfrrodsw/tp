@@ -1,4 +1,4 @@
-import { useState, ChangeEvent} from 'react';
+import { useState, ChangeEvent, useEffect} from 'react';
 import './Wheel.css';
 import { GamesSideBar } from '../../GamesSideBar';
 import WheelImage from '../../../assets/images/wheel.png';
@@ -15,6 +15,9 @@ let rotation: number = 0;
 let index: number = 0;
 
 export function Wheel() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [monto, setMonto] = useState(0);
   const [ganarVerde, setRecibeGanar] = useState(0);
