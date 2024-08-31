@@ -24,6 +24,7 @@ import { GamePolicy } from './pages/GamePolicy/gamePolicy.tsx'
 import { RouletteLive } from './pages/RouletteLive/RouletteLive.tsx'
 import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx'
 import { AdminUses } from './pages/AdminUses/adminUses.tsx'
+import { Profile } from './pages/Profile/Profile.tsx'
 
 import { Toaster } from 'sonner'
 
@@ -52,6 +53,10 @@ export function App() {
                     <Route path='/fair' element={<Fair />} />
                     <Route path='/game-policy' element={<GamePolicy />} />
                     <Route path='/admin-uses' element={<AdminUses />} />
+                    <Route path='/profile' element={<Profile />} />
+
+
+                    
                 </Routes>
             <Footer/>
             <Toaster richColors position='top-right' closeButton/>

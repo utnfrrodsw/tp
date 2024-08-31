@@ -23,6 +23,14 @@ export function Header() {
                     <Link to="/about-us">About Us</Link>
                     <Link to="/chau">Daily Free</Link>
                     <button className='gold-button' onClick={() => setModalOpen(true)}>LogIn</button>
+
+                    <Link to="/about-us" className="nav-item"> About Us </Link>
+                    <Link to="/chau" className="nav-item"> Daily Free </Link>
+                    <Link to="/profile" className="nav-item"> Profile </Link>
+
+
+
+                    <button className='gold-button' onClick={() => setModalOpen(true)}>SignUp</button>
                 </div>
             </nav>
         </header>

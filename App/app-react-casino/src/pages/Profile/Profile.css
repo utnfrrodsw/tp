@@ -1,0 +1,111 @@
+.profile-container {
+    display: flex;
+    margin: 100px 0 30px;
+    gap: 50px;
+}
+
+.left-side {
+    width: 25%;
+    background-color: var(--violeta);
+    padding: 20px 40px ;
+    margin-left: 50px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.profile-header {
+    text-align: center;
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+}
+
+.avatar {
+    border-radius: 20px;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.name{
+    font-size: 20px;
+}
+
+.id{
+    color: #999;
+    font-size: 13px;
+}
+
+.user-info {
+    margin-top: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+.menu {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.menu-item {
+    margin: 15px 0;
+    color: var(--blanco);
+    cursor: pointer;
+}
+
+.logout-button {
+    width: 100%;
+    background-color: var(--rojo);
+    border: none;
+    padding: 10px;
+    color: var(--blanco);
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.right-side {
+    width: 75%;
+    padding: 20px;
+    margin-right: 50px;
+    background-color: var(--violeta);
+    border-radius: 30px;
+}
+
+.section-title {
+    color: var(--blanco);
+    margin-bottom: 20px;
+}
+
+.user-details-label {
+    color: #999;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    background-color: var(--negro);
+    color: var(--blanco);
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.change-button {
+    background-color: var(--verde);
+    border: none;
+    padding: 10px;
+    color: var(--blanco);
+    cursor: pointer;
+}
