@@ -12,11 +12,11 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
         try{
             const response = 
                 await axios.post('http://localhost:3000/api/v1/login',
-                    {username, password});
-            setMessage(response.data);
+                    { username, password });
+            setMessage(response.data.message || 'Login successful');
             console.log('Sesion iniciada')
         } catch (error) {
-            setMessage(error.response.data)
+            setMessage(error.response?.data?.message || 'Login failed');
             console.error(error)
         }
     };
