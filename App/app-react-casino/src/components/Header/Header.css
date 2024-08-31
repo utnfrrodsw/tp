@@ -34,8 +34,8 @@
 .gold-button {
     color: #C2752E;
     padding: 5px 16px 7px 16px;
-    background: linear-gradient(to right, #D8751A, #FFB341 10%, #FFD076 30%, #F3B131 60%, #FFC961 80%, #D8751A 100%) padding-box,
-                linear-gradient(#FFD976, #D8751A) border-box;
+    background: linear-gradient(to right, #D8751A, #FFB341 10%, #FFD076 30%, #F3B131 60%, #FFC961 80%, #D8751A 100%) padding-box, 
+    linear-gradient(#FFD976, #D8751A) border-box;
     border: 2px solid transparent;
     border-radius: 5px;
     text-shadow: 0px 1px #814c19;
@@ -43,19 +43,53 @@
 
 .gold-button:hover {
     background: linear-gradient(to left, #D8751A, #FFB341 10%, #FFD076 30%, #F3B131 60%, #FFC961 80%, #D8751A 100%) padding-box,
-                linear-gradient(to top, #FFD976, #D8751A) border-box;   
+                linear-gradient(to top, #FFD976, #D8751A) border-box;
 }
 
 .nav{
     backdrop-filter: blur(5px);
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.nav-item:hover{
+.header-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.space-x-10 {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    margin-left: auto; 
+}
+
+.nav-item:hover {
     animation-name: opacity;
     animation-duration: 1000ms;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(.41,.54,.54,.41);
     transition: 10ms;
     transition-timing-function: ease-in-out;
+}
+
+.balance{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: auto;
+    border: 2px solid var(--verde); 
+    background-color: rgba(106, 13, 173, 0.3);
+    border-radius: 5px; 
+    padding: 5px;
+    width: 100px;
+}
+
+.balance-img{
+    margin-left: 5px;
+    height: 30px;
+    width: auto;
 }
