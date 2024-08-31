@@ -7,6 +7,10 @@ const cityRouter = require ('./city.router');
 const categoryRouter = require ('./category.router');
 const gameRouter = require ('./game.router');
 
+const loginRouter = require ('./login.router');
+
+const authRouter = require ('./auth.router');
+
 function routerApi(app) {
     const router = express.Router();
     app.use('/api/v1', router);
@@ -16,6 +20,11 @@ function routerApi(app) {
     router.use('/cities', cityRouter);
     router.use('/categories', categoryRouter);
     router.use('/games', gameRouter);
+
+
+    router.use('/login', loginRouter);
+    router.use('/register', authRouter);
+    
 }
 
 module.exports = routerApi;

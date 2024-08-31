@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
+import './Home.css'
 
 export function Home() {
     useEffect(() => {
@@ -13,22 +14,22 @@ export function Home() {
                     <source src='./src/assets/vid-bg/vid-bg-header.mp4'/>
                 </video>
                 <div className='flex mx-8 my-20 flex-col gap-12'>
-                    <img src="./src/assets/images/casino.gif" alt="Casino"/>
-                    <img src="./src/assets/images/utimban.png" alt="UtimbaN"/>
+                    <img src="./src/assets/images/casinofull.png" alt='Casino UTimbaN' />
                 </div>
             </section>
             <section className='px-20 max-sm:px-3'>
-                <h1 className='py-10 text-5xl text-[#70ae6e]'>Games</h1>
-                <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-10 pb-20 rounded-xl max-sm:gap-2 text-center'>
-                    <Link to="/dice" className='max-md:col-span-2 md:col-span-2 lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px] bg-[url("./src/assets/images/dice.webp")] bg-center lg:hover:scale-110 transition ease-in-out bg-cover hover:scale-[1.05]'></Link>
-                    <Link to="/slot" className='lg:col-span-2 p-20 bg-red-500 border-2 text-white rounded-[40px] bg-[url("./src/assets/images/slots.webp")] bg-center lg:hover:scale-110 transition ease-in-ou bg-cover hover:scale-[1.05]'></Link>
-                    <Link to="/wheel" className='lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px] bg-[url("./src/assets/images/wheel.webp")] bg-center lg:hover:scale-110 transition ease-in-ou bg-cover hover:scale-[1.05]'>3</Link>
-                    <Link to="/live_roulette" className='max-md:col-span-2 md:col-span-2 lg:col-span-2 p-20 bg-red-500 border-2 text-white rounded-[40px] bg-[url("./src/assets/images/roulette.png")] bg-center lg:hover:scale-110 transition ease-in-ou bg-cover hover:scale-[1.05]'>RULETA</Link>
-                    <Link to={""} className='md:col-span-2 lg:col-span-1 bg-red-500 p-20 border-2 text-white rounded-[40px]'>5</Link>
-                    <Link to={""} className='bg-red-500 p-20 border-2 text-white rounded-[40px]'>6</Link>
-                    <Link to={""} className='max-md:col-span-2 bg-red-500 p-20 border-2 text-white rounded-[40px]'>7</Link>
+                <h1 className='py-10 text-5xl font-semibold'>Games</h1>
+                <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-8 gap-y-4 pb-20 rounded-xl max-sm:gap-2 text-center'>
+                    <Link to="/dice" className='animated-hover max-md:col-span-2 md:col-span-2 lg:col-span-1 h-[175px] border-2 border-[#e19400] rounded-[20px] bg-[url("./src/assets/images/games-dice.png")] bg-center bg-cover bg-contain lg:hover:scale-110 transition ease-in-out hover:scale-[1.05] ' ></Link>
+                    <Link to="/slot" className='animated-hover lg:col-span-2 bg-white border-2 border-[#e19400] h-[175px] text-white rounded-[20px] bg-[url("./src/assets/images/games-slots.png")] bg-center bg-cover bg-contain lg:hover:scale-110 transition ease-in-out hover:scale-[1.05]'> </Link>
+                    <Link to="/wheel" className='animated-hover lg:col-span-1 w-full border-2 border-[#e19400] rounded-[20px] h-[175px] bg-[url("./src/assets/images/wheel.webp")] bg-center lg:hover:scale-110 transition ease-in-out bg-cover hover:scale-[1.05]'> </Link>
+                    <Link to="/live_roulette" className='animated-hover max-md:col-span-2 md:col-span-2 lg:col-span-2 bg-white border-2 border-[#e19400] h-[175px] rounded-[20px] bg-[url("./src/assets/images/roulette.png")] bg-center lg:hover:scale-110 transition ease-in-out bg-cover hover:scale-[1.05]'> </Link>
+                    <Link to={""} className='md:col-span-2 lg:col-span-1 h-[175px] border-1 rounded-[20px]'> </Link>
+                    <Link to={""} className='md:col-span-2 lg:col-span-1 h-[175px] border-1 rounded-[20px]'> </Link>
+                    {/*<Link to={""} className='max-md:col-span-2 bg-red-500 p-20 border-2 text-white rounded-[40px]'>7</Link>
                     <Link to={""} className='bg-red-500 p-20 border-2 text-white rounded-[40px]'>8</Link>
                     <Link to={""} className='md:col-span-1 lg:col-span-2 p-20 bg-red-500 p-20 border-2 text-white rounded-[40px]'>9</Link>
+                    */}
                 </div>
             </section>
         </div>

@@ -1,5 +1,6 @@
 :root {
-  --blanco: #ebe9fc;
+  /*--blanco: #ebe9fc;*/
+  --blanco : #F0F0D8 ; 
   --negro: #0D0B16;
   --amarillo: #FABC01;
   --verde: #70AE6E;

@@ -131,6 +131,8 @@
 
 .registerButton {
     text-align: center;
+    margin-top: 1rem;
+    font-size: 1.2rem;
 }
 
 @media (max-width: 1200px) {
@@ -183,7 +185,7 @@
         font-size: .9rem;
     }
     .registerButton {
-        font-size: .9rem;
+        font-size: 1.1rem;
     }
     .form{
         width: 100%;
