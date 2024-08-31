@@ -31,35 +31,37 @@ export function Profile() {
             <div className="right-side">
                 <div className="user-info-section">
                     <h2 className="section-title">Información del usuario</h2>
-                    <div className="user-details">
-                        <label className="user-details-label">Nombre de usuario</label>
-                        <div className="input-container">
-                            <input type="text" value="lukS" readOnly className="input-field" />
-                        </div>
+                    <form action="">
+                        <div className="user-details">
+                            <label className="user-details-label">Nombre de usuario</label>
+                            <div className="input-container">
+                                <input type="text" value="lukS" readOnly className="input-field" />
+                            </div>
 
-                        <label className="user-details-label">Correo electrónico</label>
-                        <div className="input-container">
-                            <input type="email" value="lucasmaggi03@gmail.com" readOnly className="input-field" />
-                            <button className="change-button">Cambiar</button>
-                        </div>
+                            <label className="user-details-label">Correo electrónico</label>
+                            <div className="input-container">
+                                <input type="email" value="lucasmaggi03@gmail.com" readOnly className="input-field" />
+                                <button className="change-button">Cambiar</button>
+                            </div>
 
-                        <label className="user-details-label">Número de teléfono</label>
-                        <div className="input-container">
-                            <input type="tel" value="3412710361" readOnly className="input-field" />
-                            <button className="change-button">Cambiar</button>
-                        </div>
+                            <label className="user-details-label">Número de teléfono</label>
+                            <div className="input-container">
+                                <input type="tel" value="3412710361" readOnly className="input-field" />
+                                <button className="change-button">Cambiar</button>
+                            </div>
 
-                        <label className="user-details-label">Password</label>
-                        <div className="input-container">
-                            <input type="password" value="121412412" readOnly className="input-field" />
-                        </div>
+                            <label className="user-details-label">Password</label>
+                            <div className="input-container">
+                                <input type="password" value="121412412" readOnly className="input-field" />
+                            </div>
 
-                        <label className="user-details-label">Confirm Password</label>
-                        <div className="input-container">
-                            <input type="password" value="121412412" readOnly className="input-field" />
-                            <button className="change-button">Cambiar</button>
+                            <label className="user-details-label">Confirm Password</label>
+                            <div className="input-container">
+                                <input type="password" value="121412412" readOnly className="input-field" />
+                                <button className="change-button">Cambiar</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </section>
