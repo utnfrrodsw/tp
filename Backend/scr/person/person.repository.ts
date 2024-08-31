@@ -1,3 +1,4 @@
+/*
 import { pool } from "../zshare/db/conn.mysql.js";
 import { Repository } from "../zshare/repository.js";
 import { Person } from "./person.entity.js";
@@ -23,3 +24,4 @@ export class PersonRepository implements Repository<Person> {
     throw new Error('Not implemented');
   }
 }
+*/

@@ -1,23 +1,25 @@
-import { MikroORM} from "@mikro-orm/core";
+import { MikroORM } from "@mikro-orm/core";
+import { MySqlDriver } from "@mikro-orm/mysql";
 import { SqlHighlighter } from "@mikro-orm/sql-highlighter";
+
 export const orm = await MikroORM.init({
-  entities: ['dist/**/*.entity.js}'],
-  entitiesTs: ['src/**/*.entity.ts}'],
-  dbName : 'patas-alegre',
-  clientUrl: 'mysql://dsw:dsw@localhost:3306/patasalegres',
+  entities: ['dist/**/*.entity.js'],
+  entitiesTs: ['src/**/*.entity.ts'],
+  dbName: 'patasalegres',
+  clientUrl: 'mysql://dsw:dsw@localhost:3307/patasalegres',
+  driver: MySqlDriver,
   highlighter: new SqlHighlighter(),
   debug: true,
-  schemaGenerator: { //never in production por que puede borrar la base de datos
+  schemaGenerator: {
     disableForeignKeys: true,
     createForeignKeyConstraints: true,
     ignoreSchema: [],
-  }
-})
+  },
+});
 
 export const syncSchema = async () => {
-  const generator = orm.getSchemaGenerator()
-  await generator.createSchema()
-  await generator.updateSchema()
-}
-
-//esto genera la base de datos si no existe y si existe la actualización
+  const generator = orm.getSchemaGenerator();
+  // await generator.dropSchema();
+  // await generator.createSchema();
+  await generator.updateSchema();
+};

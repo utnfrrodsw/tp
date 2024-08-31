@@ -1,4 +1,4 @@
-import { Repository } from "../zshare/repository.js"
+/* import { Repository } from "../zshare/repository.js"
 import { Product } from "./product.entity.js"
 
 
@@ -31,4 +31,4 @@ export class productRepository implements Repository<Product> {
   public async delete(item: {id: string}): Promise <Product | undefined>{
     throw new Error('Not implemented');
   }
-}
+} */
