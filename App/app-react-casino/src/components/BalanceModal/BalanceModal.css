@@ -1,0 +1,103 @@
+/* Fondo oscuro y centrado del modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente más oscuro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background: linear-gradient(135deg, #2a2a3e, #1c1c2b); /* Fondo degradado sutil */
+    color: #e5e5e5; /* Texto gris claro */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animación para el modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Botón de cierre del modal */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #e5e5e5;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #fabc01; /* Cambia a dorado al pasar el ratón */
+}
+
+/* Cuerpo del modal */
+.modal-body {
+    margin-top: 20px;
+}
+
+/* Título del modal */
+.modal-body h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #fabc01; /* Color dorado */
+}
+
+/* Contenedor de opciones de depósito */
+.tips {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Estilo de las opciones */
+.tip {
+    background-color: #33334d; /* Fondo gris oscuro */
+    color: #fabc01; /* Texto dorado */
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto al pasar el ratón sobre las opciones */
+.tip:hover {
+    background-color: #fabc01; /* Fondo dorado */
+    color: #1c1c2b; /* Texto oscuro */
+    transform: translateY(-3px); /* Levanta ligeramente la opción */
+}
+
+/* Texto adicional */
+.modal-body p {
+    font-size: 1rem;
+    color: #e5e5e5;
+    margin-top: 10px;
+}
