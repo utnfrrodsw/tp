@@ -1,0 +1,28 @@
+.header-menu-item{
+    box-shadow: inset 0 0 56px -30px var(--negro);
+}
+
+.headerMenu{
+    color: var(--blanco);
+    background-color:  var(--negro);
+    display: none;
+    transform: translateX(0%);
+    transition: transform .3s ease-in-out;
+    border-radius: 10px;
+
+    @starting-style{
+        transform:translateX(100%);
+    }
+    
+}
+
+.headerMenu-open{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+hr{
+    border-color: #3a3173;
+}
+

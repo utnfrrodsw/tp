@@ -14,13 +14,7 @@ const signInUser = async (req, res) => {
         //Verificar Usuario
         const user = await service.findUser(username)
         const data = {
-        id_user: user.id_user,
-        username: user.username,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
-        role: user.role,
-        balance: user.balance
+        id_user: user.id_user
         }
 
         if (!user) {

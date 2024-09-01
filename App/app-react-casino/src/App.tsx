@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home/Home.tsx'
+import { useEffect, useState } from 'react'
+import { jwtDecode } from 'jwt-decode'
 
 import { Header } from './components/Header/Header.tsx'
 import { Footer } from './components/Footer/Footer.tsx'
@@ -31,11 +33,54 @@ import { Profile } from './pages/Profile/Profile.tsx'
 
 import { Toaster } from 'sonner'
 
+interface User{
+    id_user: number
+    username: string
+    balance: number
+    role: string
+    email: string
+    phone: number
+    password: string
+}
+
 export function App() {
+    const [userData, setUserData] = useState<User | null>(null);
+
+    useEffect(() => {
+        fetchUserProfile();
+    }, []);
+
+    const fetchUserProfile = async () => {
+        const token = localStorage.getItem('jwt-token');
+        
+        if (!token) {
+            console.error('No se encontró la token.');
+            return;
+        }
+            
+        const decoded: any = jwtDecode(token);
+        console.log("Contenido del token decodificado:", decoded.data.id_user);
+
+        const userIdFromToken = decoded.data.id_user;
+        // console.log("ID del usuario desde la token:", userIdFromToken); NO ANDA NO SE PQ
+
+        const response = await fetch(`http://localhost:3000/api/v1/users/${userIdFromToken}`);
+
+        const authenticatedUser: User = await response.json();
+        console.log('Usuario autenticado:', authenticatedUser);
+
+        if (authenticatedUser) {
+            setUserData(authenticatedUser);
+        }
+        
+    };
+
+    let profile = '/profile/'+userData?.username
+
     return(
         <>
         
-            <Header/>
+            <Header balance={userData?.balance ?? 0} profile={profile} role={userData?.role ?? ''} username={userData?.username ?? ''}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dice" element={<Dice />} />
@@ -56,7 +101,7 @@ export function App() {
                     <Route path='/fair' element={<Fair />} />
                     <Route path='/game-policy' element={<GamePolicy />} />
                     <Route path='/admin-uses' element={<AdminUses />} />
-                    <Route path='/profile' element={<Profile />} />
+                    <Route path={profile} element={<Profile id={userData?.id_user} username={userData?.username} email={userData?.email} phone={userData?.phone} password={userData?.password} />} />
 
 
 

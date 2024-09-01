@@ -10,6 +10,7 @@ export function LoginAgus(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    
     let navigate = useNavigate();
 
     const handleSubmit = async () => {
@@ -20,6 +21,7 @@ export function LoginAgus(){
                     {username, password});
             setMessage(response.data);
             navigate("/")
+            window.location.reload()
             localStorage.setItem('jwt-token', response.data.accessToken)
             console.log('Sesion iniciada')
             console.log(response.data.accessToken)
