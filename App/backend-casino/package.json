@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "nodemon src/app.js"
   },
@@ -20,6 +19,7 @@
     "module-alias": "^2.2.3",
     "mysql2": "^3.10.2",
     "nodemon": "^3.1.4",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "uuid": "^10.0.0"
   }
 }
