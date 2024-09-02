@@ -25,7 +25,7 @@ La idea de nuestro proyecto es realizar un sistema donde se pueda realizar tanto
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD|1. CRUD Paciente<br>2. CRUD Medico<br>3.CRUD Ingreso<br>4.CRUD Especialidad<br>5. CRUD Turno|
+|CRUD|1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Ingreso<br>4. CRUD Especialidad<br>5. CRUD Turno|
 |CRUD dependiente|1.CRUD Agenda(depende de) Medico<br>2.CRUD Informe(depende de Consulta)<br>3.CRUD Internacion(depende de) Sala y Paciente|
 |Listado<br>+<br>detalle| 1. Listado de pacientes => detalle muestra listado de pacientes registrados en el sanatorio<br> 2. Listado de  Medicos=> detalle informa los medicos registrados <br> 3. Listado de informes de Historia clinica => detalle muestra los estudios realizados por paciente<br> 4. Listado de pacientes internados => detalle muestra los pacientes internados, con sus datos personales y fecha de ingreso<br> 5.Listado de turnos|
 |CUU/Epic|1.Dar de alta paciente <br>2. Realizar la recepción de un paciente<br>3. Realizar el check-in y check-out de un paciente internado<br>4. Registrar informe de estudio medico|
@@ -33,7 +33,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
+|CRUD |1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Ingreso<br>4. CRUD Especialidad<br>5. CRUD Turno<br>6. CRUD Agenda<br>7. CRUD Informe<br>8. CRUD Internacion|
 |CUU/Epic|1.Dar de alta paciente <br>2. Realizar la recepción de un paciente<br>3. Realizar el check-in y check-out de un paciente internado<br>4. Registrar informe de estudio medico|
 
 
