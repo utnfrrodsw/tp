@@ -25,9 +25,11 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
   };
 
   tipoSeleccionado: TipoVolqueteModel | null = null;
-
   editingRow: TipoVolqueteModel | null = null;
   editTemp: TipoVolqueteModel = { id_tipo_volquete: 0, descripcion_tipo_volquete: '' };
+
+  isAddingNew: boolean=false;
+  isEditing: boolean=false;
 
   private subscription = new Subscription();
 
@@ -54,32 +56,51 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
 
   startEdit(tipo: TipoVolqueteModel): void {
     console.log("StartEdit called");
-    this.editingRow = { ...tipo };
+
+    this.isAddingNew=false;
+    this.isEditing=true;
+
+    this.editingRow = tipo;
     this.editTemp = { ...tipo }; // Hago una copia de lo que estamos editando
   }
 
   saveEdit(): void {
     if (this.editTemp) {
-      this.subscription.add(
-        this.tiposVolqueteService.update(this.editTemp).subscribe({
-          next: () => {
-            this.loadTiposVolquete(); // Refresh the list
-            this.editingRow = null; // Exit edit mode
-          },
-          error: (error) => {
-            console.error('Error al actualizar el tipo de volquete', error);
-          }
-        })
-      );
-    }
-  }
+      if (this.isAddingNew) {
+        // Si estamos en modo "Agregar"
+        this.addTipoVolquete(this.editTemp);
+        this.isAddingNew = false; // Resetear el modo "Agregar"
+      } else {
+        if (this.isEditing) {// Modo "Editar"
+          this.subscription.add(
+            this.tiposVolqueteService.update(this.editTemp).subscribe({
+              next: () => {
+                this.loadTiposVolquete(); // Refresh the list
+                this.editingRow = null; // Exit edit mode
+              },
+              error: (error) => {
+                console.error('Error al actualizar el tipo de volquete', error);
+              }
+            })
+          );
+       }}
+  }}
 
   cancelEdit(): void {
+    this.isAddingNew = false;
+    this.isEditing=false;
     this.editingRow = null; // Exit edit mode
   }
 
   onAdd(): void {
+    const newTipo: TipoVolqueteModel = {
+      id_tipo_volquete: 0,
+      descripcion_tipo_volquete: '',
+    };
+    this.tipos.push(newTipo);
+    this.startEdit(newTipo);
     this.tiposVolqueteFormListService.startAdding();
+    this.isAddingNew=true;
     console.log('you pressed onAddProveedor in tiposVolquete-list.component');
   }
 
@@ -87,7 +108,7 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.tiposVolqueteService.add(tipo).subscribe({
         next: (newTipo) => {
-          this.tipos.push(newTipo);
+          this.loadTiposVolquete();
         },
         error: (error) => {
           console.error('Error adding TipoVolquete:', error);
