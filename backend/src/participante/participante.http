@@ -1,0 +1,45 @@
+### Obtener todas las participantes
+GET http://localhost:3000/api/participantes
+
+
+### Obtener una participante
+GET http://localhost:3000/api/participantes/1
+
+
+### Crear un nuevo participante
+POST http://localhost:3000/api/participantes
+Content-Type: application/json
+
+{
+    "nombre": "Agustin",
+    "contraseña": "4669877",
+    "apellido": "Stefanini",
+    "mail": "totostefanini@hotmail.com",
+    "fecha_nacimiento": "18/07/2003",
+    "tipo_par": 9,
+    "id": 1
+}
+
+
+### Modificar una participante (PUT - Recurso completo e idempotente)
+PUT http://localhost:3000/api/participantes/1
+Content-Type: application/json
+
+{
+    "nombre": "Agustin",
+    "apellido": "Stefanini",
+    "nacimiento": "18/07/2003"
+}
+
+
+### Modificar una participante (PATCH - Recurso parcial)
+PATCH http://localhost:3000/api/participantes/3
+Content-Type: application/json
+
+{
+    "nombre": "Maximo"
+}
+
+
+### Borrar una participante
+DELETE http://localhost:3000/api/participantes/1

@@ -15,4 +15,26 @@ export class TipoParticipanteService {
     const url = this.baseUrl + 'tipo_participantes';
     return this.http.get<any>(url);
   }
+
+  getOneTipo(id:string){
+    const url = this.baseUrl + 'tipo_participantes/' + id;
+    return this.http.get<any>(url);
+  }
+
+  remove(id:string){
+    const url = this.baseUrl + 'tipo_participantes/' + id;
+    return this.http.delete<any>(url);
+  }
+
+  add(posicion: string, id: string) {
+    const url = this.baseUrl + 'tipo_participantes';
+    const data = { posicion, id };
+    return this.http.post<any>(url, data);
+  }
+
+  modTipo(posicion: string, id: string){
+    const url = this.baseUrl + 'tipo_participantes/' + id;
+    const data = { posicion, id };
+    return this.http.put<any>(url, data);
+  }
 }

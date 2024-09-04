@@ -13,4 +13,26 @@ export class FormatosTorneoService {
     const url = this.baseUrl + 'formatos_torneo';
     return this.http.get<any>(url);
   }
+
+  getOneFormato(id:string){
+    const url = this.baseUrl + 'formatos_torneo/' + id;
+    return this.http.get<any>(url);
+  }
+
+  remove(id:string){
+    const url = this.baseUrl + 'formatos_torneo/' + id;
+    return this.http.delete<any>(url);
+  }
+
+  add(cant_grupos:number, cant_equipos_x_grupo:number, cant_clasificados_x_grupo:number, id:string) {
+    const url = this.baseUrl + 'formatos_torneo';
+    const data = { cant_grupos, cant_equipos_x_grupo, cant_clasificados_x_grupo, id };
+    return this.http.post<any>(url, data);
+  }
+
+  modFormato(cant_grupos:number, cant_equipos_x_grupo:number, cant_clasificados_x_grupo:number, id:string){
+    const url = this.baseUrl + 'formatos_torneo/' + id;
+    const data = { cant_grupos, cant_equipos_x_grupo, cant_clasificados_x_grupo, id };
+    return this.http.put<any>(url, data);
+  }
 }

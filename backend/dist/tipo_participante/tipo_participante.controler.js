@@ -24,7 +24,7 @@ async function findOne(req, res) {
     if (!tipo_participante) {
         return res.status(404).send({ message: 'Character not found' });
     }
-    res.json({ data: tipo_participante });
+    return res.json({ data: tipo_participante });
 }
 async function add(req, res) {
     const input = req.body.sanitizedInput;

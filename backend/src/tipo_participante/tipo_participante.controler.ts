@@ -30,7 +30,7 @@ const tipo_participante = await repository.findOne({ id })
 if (!tipo_participante) {
 return res.status(404).send({ message: 'Character not found' })
 }
-res.json({ data: tipo_participante })
+return res.json({ data: tipo_participante })
 }
 
 async function add(req: Request, res: Response) {

@@ -26,7 +26,7 @@ Content-Type: application/json
 
 
 ### Modificar una localidad (PATCH - Recurso parcial)
-PATCH http://localhost:3000/api/localidades/66a2e7f2123c9672e5ada8c6
+PATCH http://localhost:3000/api/localidades/3
 Content-Type: application/json
 
 {

@@ -1,0 +1,44 @@
+### Obtener todas las admins
+GET http://localhost:3000/api/admins
+
+
+### Obtener una admin
+GET http://localhost:3000/api/admins/1
+
+
+### Crear un nuevo admin
+POST http://localhost:3000/api/admins
+Content-Type: application/json
+
+{
+    "nombre": "Micaela",
+    "contraseña": "4669877",
+    "apellido": "Valle",
+    "mail": "micaelavalle46@gmail.com",
+    "fecha_nacimiento": "17/03/2001",
+    "id": 2
+}
+
+
+### Modificar una admin (PUT - Recurso completo e idempotente)
+PUT http://localhost:3000/api/admins/1
+Content-Type: application/json
+
+{
+    "nombre": "Agustin",
+    "apellido": "Stefanini",
+    "nacimiento": "18/07/2003"
+}
+
+
+### Modificar una admin (PATCH - Recurso parcial)
+PATCH http://localhost:3000/api/admins/3
+Content-Type: application/json
+
+{
+    "nombre": "Maximo"
+}
+
+
+### Borrar una admin
+DELETE http://localhost:3000/api/admins/1

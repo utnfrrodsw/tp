@@ -1,0 +1,56 @@
+### Obtener todas las torneos
+GET http://localhost:3000/api/torneos
+
+
+### Obtener una torneo
+GET http://localhost:3000/api/torneos/1
+
+
+### Crear una nueva torneo
+POST http://localhost:3000/api/torneos
+Content-Type: application/json
+
+{
+    "nombre_torneo": "F5 Torneo",
+    "fecha_inico_insc": ":(",
+    "fecha_fin_insc": ":)",
+    "fecha_inicio_torneo": "22/06/2024",
+    "fecha_fin_torneo": "27/07/2024",
+    "estado_tor": 1,
+    "ganador": "Yuliana",
+    "formato": 1,
+    "sucursal": 1,
+    "nro_adm": 2,
+    "id": 1
+}
+
+
+### Modificar una torneo (PUT - Recurso completo e idempotente)
+PUT http://localhost:3000/api/torneos/2
+Content-Type: application/json
+
+{
+    "nombre_torneo": "F5 Torneo Rosario",
+    "fecha_inico_insc": ":(",
+    "fecha_fin_insc": ":)",
+    "fecha_inicio_torneo": "22/06/2024",
+    "fecha_fin_torneo": "27/07/2024",
+    "estado_tor": 1,
+    "ganador": "Yuliana",
+    "formato": 1,
+    "admin": 2
+
+}
+
+
+### Modificar una torneo (PATCH - Recurso parcial)
+PATCH http://localhost:3000/api/torneos/2
+Content-Type: application/json
+
+{
+    "nombre_torneo": "F5 Torneo Buenos aires"
+}
+
+
+### Borrar una torneo
+DELETE http://localhost:3000/api/torneos/1

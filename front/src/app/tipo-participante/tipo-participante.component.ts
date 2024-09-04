@@ -11,6 +11,8 @@ export class TipoParticipanteComponent {
   }
   
   list:any = [];
+  tipo_par:any = Object;
+
 
   ngOnInit(): void{
 
@@ -18,5 +20,21 @@ export class TipoParticipanteComponent {
 
   loadTipo_Participante(){
     return this.service.getTipo_Participante().subscribe(response => this.list = response);
+  }
+
+  loadOne(id:string){
+    return this.service.getOneTipo(id).subscribe(response => this.tipo_par = response);
+  }
+
+  removeLocalidad(id:string){
+    return this.service.remove(id).subscribe(response => this.tipo_par = response);
+  }
+
+  addLocalidad(posicion:string, id:string){
+    return this.service.add(posicion, id).subscribe(response => this.tipo_par = response);
+  }
+
+  putLocalidad(posicion:string, id:string){
+    return this.service.modTipo(posicion, id).subscribe(response => this.tipo_par = response);
   }
 }

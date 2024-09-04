@@ -2,6 +2,47 @@
 
 <pre>
     {{list | json}}
+    {{localidad | json}}
 </pre>
 
 <button (click)="loadLocalidades()">Cargar</button>
+
+<div>
+    <input type="text" #myInput id="myInput" placeholder="ID">
+<button 
+(click)="loadOne(myInput.value)" 
+(click)="myInput.value = ''">
+Traer
+</button>
+</div>
+
+<div>
+    <input type="text" #idRemove idRemove="idRemove" placeholder="ID">
+    <button 
+    (click)="removeLocalidad(idRemove.value)" 
+    (click)="idRemove.value = ''" >
+    Borrar
+    </button>
+</div>
+
+<div>
+    <input type="text" #nombre_localidad nombre_localidad="nombre_localidad" placeholder="Nombre Localidad">
+    <input type="text" #id id="id" placeholder="ID">
+    <button 
+    (click)="addLocalidad(nombre_localidad.value, id.value)" 
+    (click)="nombre_localidad.value = ''" 
+    (click)="id.value = ''">
+    Crear una Localidad
+    </button>
+</div>
+
+<div>
+    <input type="text" #modNombre_Localidad modNombre_Localidad="modNombre_Localidad" placeholder="Mod Nombre Localidad">
+    <input type="text" #modID modID="modID" placeholder="Mod ID">
+    <button 
+    (click)="putLocalidad(modNombre_Localidad.value, modID.value)" 
+    (click)="modNombre_Localidad.value = ''" 
+    (click)="modID.value = ''">
+    Modificar una Localidad
+    </button>
+</div>
