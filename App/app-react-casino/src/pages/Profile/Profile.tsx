@@ -64,6 +64,8 @@ export function Profile({id, username, email, phone, password}) {
                                 <button className="change-button"> Change </button>
                             </div>
 
+                           //Cambiar esto a boton change password
+
                             <label className="user-details-label"> Password </label>
                             <div className="input-container">
                                 <input type="password" value={password || ''} readOnly className="input-field" />

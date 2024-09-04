@@ -53,7 +53,28 @@ export function Header({ balance, profile, role, username }: HeaderProps) {
                 {modalOpen && <BalanceModal onClose={handleModalClose} />}
             </>
         );
-    } else {
+    } if (role === 'admin'){
+        return (
+        <>
+        <div className='nav-item fixed top-[88px] z-50 w-[15%] right-0 h-2'>
+            <HeaderMenu open={open} username={username} profile={profile} />
+        </div>
+
+        <header className='fixed top-0 w-full z-20'>
+                <nav className='bg-[#fabc01]/10 p-3 flex items-center justify-between nav'>
+                    <Link to="/"><img className='max-h-16 spinner' src="./src/assets/images/min_icon3.png" alt='Imagen Ruleta' /></Link>
+                    <div className='header-content'>
+                        <div className='space-x-10'>
+                            <Link to="/admin-uses" className="nav-item">Admin Uses</Link>
+                            <div><HeaderToggle toggle={toggleMenu} open={open} /></div>
+                        </div>
+                    </div>
+                </nav>
+        </header>
+        </>
+        )
+    }
+    else {
         return (
             <header className='fixed top-0 w-full z-20'>
                 {modalOpen && <LogIn onClose={handleModalClose} />}
