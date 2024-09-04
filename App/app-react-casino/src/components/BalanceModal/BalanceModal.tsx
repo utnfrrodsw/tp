@@ -43,7 +43,7 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose }) => {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="close-button" onClick={onClose}>X</button>
                 <div className="modal-body">
-                    <h2>Opciones de depósito</h2>
+                    <h2>Deposit Options</h2>
                     <div className="tips">
                         <div onClick={handleBuy} className="tip">$1000</div>
                         <div onClick={handleBuy} className="tip">$2000</div>
