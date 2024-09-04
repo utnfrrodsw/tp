@@ -50,8 +50,8 @@ export function User() {
                 <h2 className='title-user'>User management</h2>
                 <div className="new-user-main">
                     <div className="new-user">
-                        <p className='subtitle-user'>Add new user</p>
-                        <button className='add-btn'>+ new user</button>
+                        <p className='subtitle-user'>Change to admin</p>
+                        <button className='add-btn'>New admin</button>
                     </div>
                     <div className="filter-balance">
                         <p>Filter by balance: </p>

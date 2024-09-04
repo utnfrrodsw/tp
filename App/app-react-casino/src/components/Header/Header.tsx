@@ -39,7 +39,7 @@ export function Header({balance, profile, role, username}) {
 
                 <div className='header-content'>
                     <div className='space-x-10'>
-                        <div className='balance'> {balance} <img className='balance-img' src="../../src/assets/images/mp-logo.svg" alt="" /> </div>
+                        <div className='balance'> $ {balance} <img className='balance-img' src="../../src/assets/images/mp-logo.svg" alt="" /> </div>
                         <Link to="/leaderboards" className="nav-item">Leaderboards</Link>
                         <Link to="/daily" className="nav-item">Daily Free</Link>
                         <div> <HeaderToggle toggle={toggleMenu} open={open} /> </div>
