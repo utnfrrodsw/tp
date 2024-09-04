@@ -1,0 +1,41 @@
+### Obtener todas las partidos
+GET http://localhost:3000/api/partidos
+
+
+### Obtener una partido
+GET http://localhost:3000/api/partidos/1
+
+
+### Crear un nuevo partido
+POST http://localhost:3000/api/partidos
+Content-Type: application/json
+
+{
+    "fecha": "22/06/2024",
+    "torneo": 1,
+    "equipo1": 1,
+    "equipo2": 2,
+    "id": 1
+}
+
+
+### Modificar una partido (PUT - Recurso completo e idempotente)
+PUT http://localhost:3000/api/partidos/1
+Content-Type: application/json
+
+{
+    "equipo2": 3
+}
+
+
+### Modificar una partido (PATCH - Recurso parcial)
+PATCH http://localhost:3000/api/partidos/3
+Content-Type: application/json
+
+{
+    "equipo2": 2
+}
+
+
+### Borrar una partido
+DELETE http://localhost:3000/api/partidos/1

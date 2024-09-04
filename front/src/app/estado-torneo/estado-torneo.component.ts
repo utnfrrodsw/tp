@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { response } from 'express';
 import { EstadoTorneoService } from '../estado-torneo.service';
 
 
@@ -14,8 +13,6 @@ export class EstadoTorneoComponent {
   
   list:any = [];
   estado:any = Object;
-  id= '';
-  nombre_estado = '';
 
   ngOnInit(): void{
 

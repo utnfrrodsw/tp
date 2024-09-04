@@ -15,4 +15,26 @@ export class LocalidadesService {
     const url = this.baseUrl + 'localidades';
     return this.http.get<any>(url);
   }
+
+  getOneLocalidad(id:string){
+    const url = this.baseUrl + 'localidades/' + id;
+    return this.http.get<any>(url);
+  }
+
+  remove(id:string){
+    const url = this.baseUrl + 'localidades/' + id;
+    return this.http.delete<any>(url);
+  }
+
+  add(nombre_localidad: string, id: string) {
+    const url = this.baseUrl + 'localidades';
+    const data = { nombre_localidad, id };
+    return this.http.post<any>(url, data);
+  }
+
+  modLocalidad(nombre_localidad: string, id: string){
+    const url = this.baseUrl + 'localidades/' + id;
+    const data = { nombre_localidad, id};
+    return this.http.put<any>(url, data);
+  }
 }

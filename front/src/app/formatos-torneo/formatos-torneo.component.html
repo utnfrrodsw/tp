@@ -2,6 +2,55 @@
 
 <pre>
     {{list | json}}
+    {{formato | json}}
 </pre>
 
 <button (click)="loadFormatos()">Cargar</button>
+
+<div>
+    <input type="text" #myInput id="myInput" placeholder="ID">
+<button 
+(click)="loadOne(myInput.value)" 
+(click)="myInput.value = ''">
+Traer
+</button>
+</div>
+
+<div>
+    <input type="text" #idRemove idRemove="idRemove" placeholder="ID">
+    <button 
+    (click)="removeFormato(idRemove.value)" 
+    (click)="idRemove.value = ''" >
+    Borrar
+    </button>
+</div>
+
+<div>
+    <input type="number" #cant_grupos cant_grupos="cant_grupos" placeholder="Cant. Grupos">
+    <input type="number" #cant_equipos_x_grupo cant_equipos_x_grupo="cant_equipos_x_grupo" placeholder="Cant. Equipos Por Grupo">
+    <input type="number" #cant_clasificados_x_grupo cant_clasificados_x_grupo="cant_clasificados_x_grupo" placeholder="Cant. Clas. Por Grupo">
+    <input type="text" #id id="id" placeholder="ID">
+    <button 
+    (click)="addFormato(+cant_grupos.value, +cant_equipos_x_grupo.value, +cant_clasificados_x_grupo.value, id.value)" 
+    (click)="cant_grupos.value = ''"
+    (click)="cant_equipos_x_grupo.value = ''"
+    (click)="cant_clasificados_x_grupo.value = ''" 
+    (click)="id.value = ''">
+    Crear un Formato
+    </button>
+</div>
+
+<div>
+    <input type="number" #modCant_Grupos modCant_Grupos="modCant_Grupos" placeholder="Mod Cant. Grupos">
+    <input type="number" #modCant_Equipos modCant_Equipos="modCant_Equipos" placeholder="Mod Cant. Equipos">
+    <input type="numer" #modCant_Clas modCant_Clas="modCant_Clas" placeholder="Mod Cant. Clas">
+    <input type="text" #modID modID="modID" placeholder="Mod ID">
+    <button 
+    (click)="putFormato(+modCant_Grupos.value, +modCant_Equipos.value, +modCant_Clas.value, modID.value)" 
+    (click)="modCant_Grupos.value = ''"
+    (click)="modCant_Equipos.value = ''"
+    (click)="modCant_Clas.value = ''"
+    (click)="modID.value = ''">
+    Modificar un Formato
+    </button>
+</div>

@@ -1,0 +1,45 @@
+### Obtener todas las equipos
+GET http://localhost:3000/api/equipos
+
+
+### Obtener una equipo
+GET http://localhost:3000/api/equipos/1
+
+
+### Crear un nuevo equipo
+POST http://localhost:3000/api/equipos
+Content-Type: application/json
+
+{
+    "jugador1": 1,
+    "jugador2": 2,
+    "jugador3": 3,
+    "jugador4": 4,
+    "jugador5": 5,
+    "torneo": 1,
+    "id": 1
+}
+
+
+### Modificar una equipo (PUT - Recurso completo e idempotente)
+PUT http://localhost:3000/api/equipos/1
+Content-Type: application/json
+
+{
+    "jugador2": 6,
+    "jugador3": 7,
+    "jugador5": 8
+}
+
+
+### Modificar una equipo (PATCH - Recurso parcial)
+PATCH http://localhost:3000/api/equipos/3
+Content-Type: application/json
+
+{
+    "jugador2": 2
+}
+
+
+### Borrar una equipo
+DELETE http://localhost:3000/api/equipos/1
