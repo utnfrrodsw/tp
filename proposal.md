@@ -4,6 +4,8 @@
 ### Integrantes
 * 48453 Mercado, Martin.
 * 49951 Higonet, Juan Ignacio
+* 50264 Ortiz, Daiana
+* 49620 Sola, Amparo
 
 ### Repositorios
 * [frontend app](https://github.com/JuaniHigo/TP-DSW-2024/tree/main/Proyecto%20DSW/FrontEND)
