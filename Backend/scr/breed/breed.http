@@ -1,0 +1,34 @@
+###obtener todos las breeds
+GET http://localhost:3000/api/breed
+
+###obtener una breed 
+GET http://localhost:3000/api/breed/02
+
+###crear una nueva breed
+POST http://localhost:3000/api/breed
+Content-Type: application/json
+
+{
+    "name": "Perro", 
+    "id": "02"
+}
+
+### modificar una breed (PUT)
+PUT http://localhost:3000/api/breed/02
+Content-Type: application/json
+
+{
+    "name": "Conejo",
+    "id": "02"
+}
+
+### modificar una breed (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/breed/01
+Content-Type: application/json
+
+{
+    "name": "Erizo"
+}
+
+### borrar una breed
+DELETE http://localhost:3000/api/breed/02

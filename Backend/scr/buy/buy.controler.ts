@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { BuyRepository } from './buy.repository.js';
+/*import { BuyRepository } from './buy.repository.js';*/
 import { Buy } from './buy.entity.js';
 
-const buyrepository = new BuyRepository();
+/*const buyrepository = new BuyRepository();*/
 function sanitizebuyInput(req: Request, res: Response, next:NextFunction){
   
   req.body.sanitizedbuy = {
@@ -20,7 +20,29 @@ function sanitizebuyInput(req: Request, res: Response, next:NextFunction){
   next()
 }
 
+async function findAll( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
 
+async function findOne( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function add( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function update( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+async function remove( req: Request, res: Response ){
+  res.status(500).json({message: 'Not implemented'});
+}
+
+export { findAll, findOne, add, update, remove, sanitizebuyInput }
+
+/*
 function findAll(req: Request, res: Response ){
   res.json({data: buyrepository.findAll()});
 }
@@ -44,7 +66,7 @@ function add (req: Request,res: Response ){
 
 function update(req: Request,res: Response ){
   req.body.sanitizedbuy.id = req.params.id
-  const buy = buyrepository.update(req.body.sanitizedbuy) 
+  const buy = buyrepository.update('1', req.body.sanitizedbuy) 
   if (!buy) {
     return res.status(404).send({message:'buy not found' })
   }
@@ -64,4 +86,4 @@ function remove(req: Request,res: Response ){
 
 
 
-export { findAll, sanitizebuyInput, findOne, add, update, remove }
+export { findAll, sanitizebuyInput, findOne, add, update, remove }*/

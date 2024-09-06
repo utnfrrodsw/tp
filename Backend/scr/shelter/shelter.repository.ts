@@ -1,4 +1,4 @@
-import { Repository } from "../zshare/repository.js";
+/*import { Repository } from "../zshare/repository.js";
 import { Shelter } from "./shelter.entity.js";
 
 const shelters = [
@@ -12,34 +12,23 @@ const shelters = [
 
 export class ShelterRepository implements Repository<Shelter>{
 
-  public findAll(): Shelter[] | undefined {
-    return shelters
+  public async findAll(): Promise <Shelter[] | undefined> {
+    throw new Error('Not implemented');
   }
 
-  public findOne(item: { id: string }): Shelter | undefined {
-    return shelters.find((shelter) => shelter.id === item.id);
+  public async findOne(item: { id: string }): Promise <Shelter | undefined> {
+    throw new Error('Not implemented');
   }
 
-  public add(item: Shelter): Shelter | undefined {
-    console.log('adding shelter', item)
-    shelters.push(item)
-    return item
+  public async add(item: Shelter): Promise <Shelter | undefined> {
+    throw new Error('Not implemented');
   }
 
-  public update(item: Shelter): Shelter | undefined{
-    const shelterIdx = shelters.findIndex((shelter) => shelter.id === item.id);
-    if (shelterIdx !== -1) {
-      shelters[shelterIdx]= {...shelters[shelterIdx], ...item };
-    }
-    return shelters[shelterIdx]
+  public async update(id: string, item: Shelter): Promise <Shelter | undefined>{
+    throw new Error('Not implemented');
   }
 
-  public delete(item: {id: string}): Shelter | undefined{
-    const shelterIdx = shelters.findIndex((shelter) => shelter.id === item.id);
-    if (shelterIdx !== -1) {
-      const deletedShelter = shelters[shelterIdx]
-      shelters.splice(shelterIdx, 1);
-      return deletedShelter
-    }
+  public async delete(item: {id: string}): Promise <Shelter | undefined>{
+    throw new Error('Not implemented');
   }
-}
+}*/

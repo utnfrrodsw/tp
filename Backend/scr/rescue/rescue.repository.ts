@@ -1,4 +1,4 @@
-import { Repository } from "../zshare/repository.js";
+/*import { Repository } from "../zshare/repository.js";
 import { Rescue } from "./rescue.entity.js";
 
 const rescues = [
@@ -12,21 +12,21 @@ const rescues = [
 
 export class RescueRepository implements Repository<Rescue>{
 
-  public findAll(): Rescue[] | undefined {
+  public async findAll(): Promise <Rescue[] | undefined> {
     return rescues
   }
 
-  public findOne(item: { id: string }): Rescue | undefined {
+  public async findOne(item: { id: string }): Promise <Rescue | undefined> {
     return rescues.find((rescue) => rescue.id === item.id);
   }
 
-  public add(item: Rescue): Rescue | undefined {
+  public async add(item: Rescue): Promise <Rescue | undefined> {
     console.log('adding rescue', item)
     rescues.push(item)
     return item
   }
 
-  public update(item: Rescue): Rescue | undefined{
+  public async update(id: string, item: Rescue): Promise <Rescue | undefined>{
     const rescueIdx = rescues.findIndex((rescue) => rescue.id === item.id);
     if (rescueIdx !== -1) {
       rescues[rescueIdx]= {...rescues[rescueIdx], ...item };
@@ -34,7 +34,7 @@ export class RescueRepository implements Repository<Rescue>{
     return rescues[rescueIdx]
   }
 
-  public delete(item: {id: string}): Rescue | undefined{
+  public async delete(item: {id: string}): Promise <Rescue | undefined>{
     const rescueIdx = rescues.findIndex((rescue) => rescue.id === item.id);
     if (rescueIdx !== -1) {
       const deletedRescue = rescues[rescueIdx]
@@ -42,4 +42,4 @@ export class RescueRepository implements Repository<Rescue>{
       return deletedRescue
     }
   }
-}
+}*/

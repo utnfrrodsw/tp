@@ -172,3 +172,7 @@ En la sección de [FAQ](FAQ.md) podrán encontrar respuestas a las consultas má
 1) Tirar comando para instalar dependencias: pnpm install
 
 2) El proyecto se inicia con el comando: pnpm start:dev
+
+3) docker run --name patas_alegre -v {URL}:/var/lib/mysql -e MYSQL_ROOT_HOST='%' -e MYSQL_ALLOW_EMPTY_PASSWORD="yes" -e MYSQL_PASSWORD="dsw" -e MYSQL_USER="dsw" -e MYSQL_DATABASE=‘patas_alegres’ -p 3307:3306 -d percona/percona-server
+
+4) CREATE DATABASE IF NOT EXISTS patas_alegres;
