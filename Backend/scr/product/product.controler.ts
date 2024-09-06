@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 /*import { productRepository } from './product.repository.js';
 
 
-/*const productrepository = new productRepository();*/
+const productrepository = new productRepository();
 
 function sanitizeproductInput(req: Request, res: Response, next:NextFunction){
   
@@ -44,60 +44,4 @@ async function remove( req: Request, res: Response ){
 
 export { findAll, findOne, add, update, remove, sanitizeproductInput }
 
-
-
-
-
-/*
-function findAll(req: Request, res: Response ){
-  res.json({data: productrepository.findAll()});
-}
-
-function findOne(req: Request,res: Response ){
-  const id = req.params.id;
-  const product = productrepository.findOne({id});
-  if(!product){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna product con ese ID' })
-  }
-  res.json(product)
-}
-
-function add (req: Request,res: Response ){
-  const input = req.body.sanitizedproduct
-
-  const productsInput = new Product (input.total,input.cantidad,input.fechaproduct,input.id)
-  const product = productrepository.add(productsInput)
-  return res.status(201).send({message: 'new product create', data: Product })
-}
-
-function update(req: Request,res: Response ){
-  req.body.sanitizedproduct.id = req.params.id
-  const product = productrepository.update('1', req.body.sanitizedproduct) 
-  if (!product) {
-    return res.status(404).send({message:'product not found' })
-  }
-  return res.status(200).send({message: 'product modificada correctamente', data:  Product })
-}
-
-
-function remove(req: Request,res: Response ){
-  const id = req.params.id;
-  const product = productrepository.delete({id})
-  if(!product){
-    return res.status(404).send({message:'ID incorrecto, no existe ninguna product con ese ID' })
-  }
-  else{
-  return res.status(200).send({message: 'product eliminada correctamente'})
-}}
-
-
-
-export { findAll, sanitizeproductInput, findOne, add, update, remove }*/
-
-
-
-
-
-
-
-
+*/
