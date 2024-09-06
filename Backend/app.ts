@@ -32,7 +32,7 @@ app.use('/api/shelter', shelterRouter)
 //animal
 app.use('/api/animal', animalRouter)
 
-await syncSchema() //never in production
+await syncSchema() //never in production*/
 
 app.listen(3000, ()=>{
 console.log('server running on http://localhost:3000/');

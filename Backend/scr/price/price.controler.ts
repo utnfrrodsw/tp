@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-/*import { PriceRepository } from './price.repository.js';*/
-import { Price } from './price.entity.js';
+/*import { PriceRepository } from './price.repository.js';
+import { Price } from './price.entity.js';*/
 
 /*const pricerepository = new PriceRepository();*/
 
