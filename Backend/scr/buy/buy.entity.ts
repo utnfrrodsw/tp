@@ -1,4 +1,4 @@
-export class buy{
+export class Buy{
   constructor(
     public total: number,  
     public cantidad: number, 

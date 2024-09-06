@@ -1,28 +1,28 @@
 ###obtener todos los animales 
 GET http://localhost:3000/api/animal
 
-###obtener un animal 
-GET http://localhost:3000/api/animal/2
-
 ###crear un nuevo animal
 POST http://localhost:3000/api/animal
 Content-Type: application/json
 
 {
-    "nombre": "marta", 
-    "fechaRescate": "10-10-2020",
-    "fechaNacimientoEStimativa": "10-10-2020",
+    "name": "marta", 
+    "rescue_date": "10-10-2020",
+    "birth_date": "10-10-2020",
     "id": "2"
 }
+
+###obtener un animal 
+GET http://localhost:3000/api/animal/1
 
 ### modificar un animal (PUT)
 PUT http://localhost:3000/api/animal/2
 Content-Type: application/json
 
 {
-    "nombre": "freya", 
-    "fechaRescate": "2004203",
-    "fechaNacimientoEStimativa": "25122013",
+    "name": "freya", 
+    "rescue_date": "2004203",
+    "birth_date": "25122013",
     "id": "2"
 }
 
@@ -31,8 +31,8 @@ PATCH http://localhost:3000/api/animal/1
 Content-Type: application/json
 
 {
-    "fechaRescate": "20 12 2020",
-    "fechaNacimientoEStimativa": "30 1 2016"
+    "rescue_date": "20 12 2020",
+    "birth_date": "30 1 2016"
 }
 
 ### borrar un animal

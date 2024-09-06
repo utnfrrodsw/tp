@@ -1,11 +1,11 @@
 import crypto from 'node:crypto';
 
-export class shelter{
+export class Shelter{
   static id: string;
   constructor(
-    public nombre: string, 
-    public direccion: string,
-    public capacidadMaxima: number,
+    public name: string, 
+    public address: string,
+    public max_capacity: number,
     public id: string
   ){}
 }

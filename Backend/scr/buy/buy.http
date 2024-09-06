@@ -2,7 +2,7 @@
 GET http://localhost:3000/api/buy
 
 ###obtener una buy 
-GET http://localhost:3000/api/buy/2
+GET http://localhost:3000/api/buy/12
 
 ###crear una nuevo buy
 POST http://localhost:3000/api/buy
