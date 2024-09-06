@@ -21,12 +21,8 @@ export const orm = await MikroORM.init({
 
 export const syncSchema = async () => {
   const generator = orm.getSchemaGenerator();
-  await generator.createSchema();
   await generator.updateSchema();
 };
-
-
-
 
 /*import { defineConfig } from '@mikro-orm/mysql';*/
 
@@ -44,4 +40,3 @@ export const syncSchema = async () => {
     path: './dist/seeders',  // Ajusta según la ubicación de tus seeders
   },
 });*/
-
