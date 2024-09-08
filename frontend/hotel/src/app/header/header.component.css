@@ -1,0 +1,97 @@
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    justify-content: space-between;
+}
+
+header .logo a {
+    text-decoration: none; /* Asegúrate de que el enlace no esté subrayado */
+}
+
+header .logo h2 {
+    margin: 0;
+    font-weight: 700;
+    color: #E0B973;
+    text-decoration: none; /* Asegúrate de que el h2 no esté subrayado */
+}
+
+header nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin: 0 30px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #2c3e50;
+    position: relative;
+    transition: color 0.3s, border-bottom 0.9s; /* Añade la transición aquí */
+}
+
+header nav ul li a:hover {
+    color: #E0B973;
+}
+
+header nav ul li a.active {
+    color: #E0B973;
+    border-bottom: 2px solid #E0B973;
+    transition: color 0.3s, border-bottom 0.9s; /* Añade la transición aquí también */
+}
+
+header .auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+header .login-button {
+    background-color: #E0B973;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+header .login-button:hover {
+    background-color: #d0a973;
+}
+
+header .register-button {
+    background-color: transparent;
+    color: #000000;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+}
+
+header .register-button:hover {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+}

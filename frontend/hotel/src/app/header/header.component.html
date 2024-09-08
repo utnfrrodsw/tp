@@ -1,0 +1,20 @@
+<header>
+    <div class="logo">
+        <a [routerLink]="['/']">
+            <h2>LUXURY HOTELS</h2>
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+            <li><a [routerLink]="['/habitaciones']" routerLinkActive="active">Rooms</a></li>
+            <li><a [routerLink]="['/services']" routerLinkActive="active">Services</a></li>
+            <li><a [routerLink]="['/about']" routerLinkActive="active">About</a></li>
+        </ul>
+    </nav>
+    
+    <div class="auth-buttons">
+        <a [routerLink]="['/login']" class="login-button">Iniciar sesión</a>
+        <a [routerLink]="['/registro']" class="register-button">Registrarse</a>
+    </div>
+</header>
