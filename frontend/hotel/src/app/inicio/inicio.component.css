@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Asegúrate de que el body ocupe todo el ancho de la pantalla y no tenga márgenes o rellenos */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal innecesario */
+}
+
+/* Asegúrate de que el header y el contenido principal ocupen todo el ancho de la pantalla */
+header, .hero-section, .search-bar, .content-section, footer {
+    width: 100%;
+    max-width: 100%; /* Asegura que el ancho no se restrinja */
+    margin: 0 auto; /* Centra el contenido si se usa un ancho fijo */
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    justify-content: space-between; /* Distribuye el espacio entre el logo, el menú y los botones */
+}
+
+header .logo h2 {
+    margin: 0;
+    font-weight: 700;
+    color: #E0B973;
+}
+
+header nav {
+    flex-grow: 1; /* Permite que el menú ocupe el espacio restante */
+    display: flex;
+    justify-content: center; /* Centra el menú dentro del contenedor de navegación */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin: 0 30px; /* Ajusta el margen entre los elementos del menú */
+}
+
+header nav ul li a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #2c3e50;
+    position: relative;
+    transition: color 0.3s; /* Transición para el cambio de color */
+}
+
+header nav ul li a:hover {
+    color: #E0B973; /* Color al pasar el mouse */
+}
+
+header nav ul li a.active {
+    color: #E0B973; /* Color del enlace activo */
+    border-bottom: 2px solid #E0B973; /* Subrayado para el enlace activo */
+}
+
+header .auth-buttons {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+header .login-button {
+    background-color: #E0B973; /* Color de fondo para el botón de iniciar sesión */
+    color: #fff; /* Color del texto del botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    border-radius: 5px; /* Esquinas redondeadas del botón */
+    font-weight: bold; /* Negrita en el texto del botón */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    display: inline-flex; /* Asegura que el contenido se ajuste */
+    align-items: center; /* Alinea el contenido verticalmente en el centro */
+    transition: background-color 0.3s; /* Efecto de transición para el color de fondo */
+}
+
+header .login-button:hover {
+    background-color: #d0a973; /* Color de fondo al pasar el mouse por encima del botón */
+}
+
+header .register-button {
+    background-color: transparent; /* Sin color de fondo */
+    color: #000000; /* Color del texto del botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    border: 2px solid #000; /* Borde negro */
+    border-radius: 5px; /* Esquinas redondeadas del botón */
+    font-weight: bold; /* Negrita en el texto del botón */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    display: inline-flex; /* Asegura que el contenido se ajuste */
+    align-items: center; /* Alinea el contenido verticalmente en el centro */
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s; /* Efectos de transición para color, fondo y borde */
+}
+
+header .register-button:hover {
+    color: #fff; /* Color del texto al pasar el mouse por encima del botón */
+    background-color: #000000; /* Color de fondo al pasar el mouse por encima del botón */
+    border-color: #000000; /* Color del borde al pasar el mouse por encima del botón */
+}
+
+.hero-section {
+    background-image: url('https://farm5.staticflickr.com/4519/37785963675_8e5f044eda_h.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 110px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding-left: 80px;
+    text-align: left;
+    max-width: none;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: white;
+    max-width: 900px;
+    margin: -50px auto 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 3;
+}
+
+.search-item {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.search-item label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.search-bar input, .search-bar button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: 'Poppins', sans-serif;
+}
+
+.search-bar input[name="personas"] {
+    width: 100px; /* Achica el campo de Personas */
+}
+
+.search-bar button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 5px 20px; /* Reduce el padding vertical */
+    font-size: 14px; /* Ajusta el tamaño de la fuente */
+    font-weight: bold;
+    height: 50px; /* Ajusta la altura del botón */
+    line-height: 20px; /* Ajusta la altura de línea para centrar el texto verticalmente */
+    display: inline-flex; /* Asegura que el contenido se ajuste */
+    align-items: center; /* Alinea el contenido verticalmente en el centro */
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+.content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.content-box {
+    display: flex;
+    margin-bottom: 30px;
+    max-width: 900px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.content-box img {
+    width: 50%;
+}
+
+.content-text {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-text h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.content-text p {
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.content-text button {
+    align-self: start;
+    padding: 10px 20px;
+    background-color: #FFD700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #000;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-content {
+    max-width: 300px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    font-weight: 400;
+}
+
+.social-media a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+.newsletter {
+    display: flex;
+    align-items: center;
+}
+
+.newsletter p {
+    margin-right: 10px;
+    font-weight: 400;
+}
+
+.newsletter input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.newsletter button {
+    padding: 10px 20px;
+    background-color: #FFD700;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hero-content h1 {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.hero-content .welcome {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+    display: block;
+    margin-bottom: 0;
+}
+
+.hero-content .luxury {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 150px; /* Ajusta el tamaño a 150px */
+    display: block;
+    margin-bottom: 0;
+}
+
+.hero-content .hotels {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 60px;
+    display: block;
+    margin-bottom: 0;
+}
+
