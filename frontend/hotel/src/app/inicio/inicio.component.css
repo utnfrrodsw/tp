@@ -15,7 +15,7 @@ body {
     background-image: url('https://farm5.staticflickr.com/4519/37785963675_8e5f044eda_h.jpg');
     background-size: cover;
     background-position: center;
-    padding: 110px 20px;
+    padding: 70px 20px;
     text-align: center;
     color: white;
     position: relative;
@@ -91,6 +91,7 @@ body {
 }
 
 .search-item label {
+    font-family: 'Poppins', sans-serif;
     margin-bottom: 5px;
     font-weight: bold;
 }

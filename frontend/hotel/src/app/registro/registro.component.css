@@ -1,0 +1,71 @@
+/* Estilos para centrar el contenido de registro */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #fafafa;
+  }
+  
+  .register-box {
+    width: 300px; /* Ajusta el ancho del box */
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px; /* Corner radius de 10px */
+    text-align: center;
+    padding: 30px; /* Ajusta el padding para hacer el box más compacto */
+  }
+  
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px; /* Ajusta el tamaño del texto */
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  input, select {
+    width: 100%; /* Asegura que todos los campos ocupen el mismo ancho */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #dbdbdb;
+    background-color: #fafafa;
+    font-size: 14px;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #3897f0;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #3181d4;
+  }
+  
+  /* Login link */
+  .login-link {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  
+  .login-link a {
+    color: #3897f0;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  

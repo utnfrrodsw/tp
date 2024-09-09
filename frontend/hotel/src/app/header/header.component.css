@@ -39,11 +39,12 @@ header nav ul li {
 }
 
 header nav ul li a {
+    font-family: 'Poppins', sans-serif;
     text-decoration: none;
     font-weight: 600;
     color: #2c3e50;
     position: relative;
-    transition: color 0.3s, border-bottom 0.9s; /* Añade la transición aquí */
+    transition: color 0.3s, border-bottom 0.9s; 
 }
 
 header nav ul li a:hover {
@@ -53,7 +54,7 @@ header nav ul li a:hover {
 header nav ul li a.active {
     color: #E0B973;
     border-bottom: 2px solid #E0B973;
-    transition: color 0.3s, border-bottom 0.9s; /* Añade la transición aquí también */
+    transition: color 0.3s, border-bottom 0.9s; 
 }
 
 header .auth-buttons {
@@ -62,9 +63,10 @@ header .auth-buttons {
 }
 
 header .login-button {
+    font-family: 'Poppins', sans-serif;
     background-color: #E0B973;
     color: #fff;
-    padding: 10px 20px;
+    padding: 5px 15px;
     border-radius: 5px;
     font-weight: bold;
     text-decoration: none;
@@ -78,9 +80,10 @@ header .login-button:hover {
 }
 
 header .register-button {
+    font-family: 'Poppins', sans-serif;
     background-color: transparent;
     color: #000000;
-    padding: 10px 20px;
+    padding: 5px 15px;
     border: 2px solid #000;
     border-radius: 5px;
     font-weight: bold;

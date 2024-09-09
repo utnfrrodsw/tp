@@ -1,2 +1,44 @@
 <app-header></app-header> 
-<p>registro works!</p>
+<div class="register-container">
+    <div class="register-box">
+      <h1>Regístrate</h1>
+  
+      <form>
+        <div class="input-group">
+          <input type="text" placeholder="Tipo de documento" required />
+        </div>
+        <div class="input-group">
+          <input type="text" placeholder="Número de documento" required />
+        </div>
+        <div class="input-group">
+          <input type="text" placeholder="Nombre" required />
+        </div>
+        <div class="input-group">
+          <input type="text" placeholder="Apellido" required />
+        </div>
+        <div class="input-group">
+          <select required>
+            <option value="" disabled selected>Sexo</option>
+            <option value="male">Masculino</option>
+            <option value="female">Femenino</option>
+            <option value="other">Otro</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <input type="date" placeholder="Fecha de nacimiento" required />
+        </div>
+        <div class="input-group">
+          <input type="email" placeholder="Correo electrónico" required />
+        </div>
+        <div class="input-group">
+          <input type="password" placeholder="Contraseña" required />
+        </div>
+  
+        <button type="submit">Regístrate</button>
+      </form>
+  
+      <p class="login-link">¿Ya tienes una cuenta? <a href="#">Inicia sesión</a></p>
+    </div>
+  </div>
+  
+  
