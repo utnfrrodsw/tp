@@ -3,13 +3,12 @@ import './Slot.css';
 import { GamesSideBar } from "../../GamesSideBar";
 import axios from 'axios';
 
-export function Slot(balance:number, id:number) {
+export function Slot(usuario) {
 
-    const boton = document.getElementById('boton')
-    var money = balance.balance
-    var id = balance.id
+    var money = usuario.balance
+    var id = usuario.id
 
-    console.log(money)
+    console.log(usuario)
 
     function patchUser(newMoney) {
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
