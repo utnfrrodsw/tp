@@ -75,10 +75,7 @@ export function App() {
 
         if (authenticatedUser) {
             setUserData(authenticatedUser);
-            setTimeout(() => {
-                setDinero(balanceFromToken);
-            }, 1500);
-            
+            setDinero(balanceFromToken);
         }
         
     };

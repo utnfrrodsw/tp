@@ -5,9 +5,7 @@ import axios from 'axios';
 
 export function Slot(usuario) {
 
-    var money = usuario.balance
     var id = usuario.id
-    usuario.onMoney(100)
 
     console.log(usuario)
 
@@ -52,10 +50,12 @@ export function Slot(usuario) {
     const Play = () => {
         setIsActive(false)
         setWin("")
-        if(money < 50) {
+        if(usuario.balance < 50) {
             setError("Falta saldo amigo")
             setIsActive(true)
         } else {
+            usuario.onMoney(usuario.balance - 50)
+            patchUser(usuario.balance - 50)
             SpinX()
         }
     }
@@ -109,8 +109,6 @@ export function Slot(usuario) {
         console.log("---------")
         boton?.classList.remove("buttonDisabled")
         setWin("Ganaste")
-        money = money - 50
-        patchUser(money)
         setIsActive(true)
     }
 
