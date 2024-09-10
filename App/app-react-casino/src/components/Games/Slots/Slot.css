@@ -35,3 +35,7 @@
     margin-top: 1rem;
     border: 2px solid black;
 }
+
+.buttonDisabled {
+    pointer-events: none;
+}

@@ -1,17 +1,38 @@
 import { useEffect, useState } from "react";
 import './Slot.css';
 import { GamesSideBar } from "../../GamesSideBar";
+import axios from 'axios';
 
-export function Slot() {
+export function Slot(balance:number, id:number) {
+
+    const boton = document.getElementById('boton')
+    var money = balance.balance
+    var id = balance.id
+
+    console.log(money)
+
+    function patchUser(newMoney) {
+        axios.put(`http://localhost:3000/api/v1/users/${id}`, {
+            balance: `${newMoney}`,
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0)}, []
     )
     
     // Columnas correspondientes a la tragamonedas
-    const Reels = ["Siete", "Banana", "Sandia", "Limon", "BAR", "Campana", "Naranja", "Fruta Violeta", "Fresa"];
+    const Reels = ["Siete", "Banana", "Sandia", "Limon", "BAR", "Campana", "Naranja", "Arandano", "Fresa"];
     const iconHeight = 79
-    const [Win, setWin] = useState(false);
+    const [isActive, setIsActive] = useState(true)
+    const [Win, setWin] = useState("");
+    const [error, setError] = useState("");
     var x0:number;
     var y0:number;
     var z0:number;
@@ -27,9 +48,20 @@ export function Slot() {
     function getRandomInt(min:number, max:number) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
+    
+    const Play = () => {
+        setIsActive(false)
+        setWin("")
+        if(money < 50) {
+            setError("Falta saldo amigo")
+            setIsActive(true)
+        } else {
+            SpinX()
+        }
+    }
 
-    const Spin = () => {
-        setWin(false)
+    const SpinX = () => {
+        boton?.classList.add("buttonDisabled")
         const Reel = document.querySelector("#reel1") as HTMLElement
         Reel.style.transition = `background-position-y 2500ms cubic-bezier(.41,-0.01,.63,1.09)`;
         const ReelStyle = getComputedStyle(Reel)
@@ -75,7 +107,11 @@ export function Slot() {
         console.log(Reels[x1],Reels[y1],Reels[z1])
         console.log(Reels[x2],Reels[y2],Reels[z2])
         console.log("---------")
-
+        boton?.classList.remove("buttonDisabled")
+        setWin("Ganaste")
+        money = money - 50
+        patchUser(money)
+        setIsActive(true)
     }
 
     return(
@@ -90,12 +126,11 @@ export function Slot() {
                 <div className="reel" id="reel2"></div>
                 <div className="reel" id="reel3"></div>
             </div>
-
-            {Win && (
-                <p>Ganaste!</p>
-            )}
             
-            <button className="buttonTragamonedas" onClick={Spin}>Click para jugar</button>
+            <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={Play} id="boton">Click para jugar</button>
+
+            <p>{Win}</p>
+            <p>{error}</p>
 
         </div>
     

@@ -84,7 +84,7 @@ export function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dice" element={<Dice />} />
-                    <Route path="/slot" element={<Slot />} />
+                    <Route path="/slot" element={<Slot id={userData?.id_user} balance={userData?.balance ?? 0} />} />
                     <Route path="/wheel" element={<Wheel />} />
                     <Route path="/live_roulette" element={<RouletteLive />} />
                     <Route path="*" element={<ErrorPage />} />
