@@ -45,7 +45,6 @@ interface User{
 
 export function App() {
     const [userData, setUserData] = useState<User | null>(null);
-    const [dinero, setDinero] = useState("");
 
     useEffect(() => {
         fetchUserProfile();
@@ -76,6 +75,12 @@ export function App() {
         
     };
 
+    const id = userData?.id_user
+    const [dinero, setDinero] = useState(userData?.balance);
+    console.log("El id del usuario es: ",id)
+    console.log("El balance del usuario es: ",userData?.balance)
+    console.log("El dinero (useState): ", dinero)
+
     let profile = '/profile/'+userData?.username
 
     return(
@@ -85,7 +90,7 @@ export function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dice" element={<Dice />} />
-                    <Route path="/slot" element={<Slot id={userData?.id_user} balance={userData?.balance} />} />
+                    <Route path="/slot" element={<Slot id={id} balance={dinero} onMoney={setDinero}/>} />
                     <Route path="/wheel" element={<Wheel/>} />
                     <Route path="/live_roulette" element={<RouletteLive />} />
                     <Route path="*" element={<ErrorPage />} />
