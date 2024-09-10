@@ -52,11 +52,10 @@ export class SidebarComponent {
       route: '/configuraciones',
       tooltipText: 'Configuraciones',
       subOptions: [
-        { name: 'Usuarios', route: '/subopcion-usuarios' },
-        { name: 'Tipos de Volquetes', route: 'config/tiposVolquetes' }
+        { name: 'Usuarios', route: 'config/usuarios' },
+        { name: 'Tipos de Volquetes', route: 'config/tiposVolquetes' },
       ],
     },
-
   ];
 
   @Output() opened = new EventEmitter<any>();
