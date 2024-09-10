@@ -14,7 +14,8 @@ const signInUser = async (req, res) => {
         //Verificar Usuario
         const user = await service.findUser(username)
         const data = {
-        id_user: user.id_user
+        id_user: user.id_user,
+        balance: user.balance
         }
 
         if (!user) {
