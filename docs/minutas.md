@@ -3,7 +3,6 @@
 <tbody>
 <tr valign="top">
     <td align="center" width=25%><a href="https://github.com/MauricioFiorini"><img src="https://avatars.githubusercontent.com/u/95772574?v=4" width=100 alt='agus'/><br/><sub><b>Mauricio Fiorini</b></sub></a>
-    <td align="center" width=25%><a href="https://github.com/NicoGabrielGallegos"><img src="https://avatars.githubusercontent.com/u/90269132?v=4" width=100 alt='agus'/><br/><sub><b>Nicolas Gallegos</b></sub></a>
     <td align="center" width=25%><a href="https://github.com/starboyagus"><img src="https://avatars.githubusercontent.com/u/164038346?v=4" width=100 alt='agus'/><br/><sub><b>Agustin Gil</b></sub></a>
     <td align="center" width=25%><a href="https://github.com/lucasmaggi03"><img src="https://avatars.githubusercontent.com/u/77739580?v=4" width=100 alt='agus'/><br/><sub><b>Lucas Maggi</b></sub></a>
 </tr>
@@ -58,3 +57,9 @@
 - Crear nuevo Back-End desde cero
 - Utilizando Node.js, Express, mySQL
 - Back-End y DB creadas
+
+## 9/8/24
+- Creacion de Checklist
+
+## 9/9/24
+- Explicacion Backend, jwt, localstorage
