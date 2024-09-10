@@ -45,10 +45,13 @@ interface User{
 
 export function App() {
     const [userData, setUserData] = useState<User | null>(null);
+    const [dinero, setDinero] = useState(0);
 
     useEffect(() => {
         fetchUserProfile();
     }, []);
+    
+    
 
     const fetchUserProfile = async () => {
         const token = localStorage.getItem('jwt-token');
@@ -71,22 +74,23 @@ export function App() {
 
         if (authenticatedUser) {
             setUserData(authenticatedUser);
+            setDinero(userData?.balance)
         }
         
     };
 
     const id = userData?.id_user
-    const [dinero, setDinero] = useState(0);
     console.log("El id del usuario es: ",id)
-    console.log("El balance del usuario es: ",userData?.balance)
+    console.log("El balance del usuario es: ", userData?.balance)
     console.log("El dinero (useState): ", dinero)
-
     let profile = '/profile/'+userData?.username
+
+
 
     return(
         <>
         
-            <Header balance={userData?.balance ?? 0} profile={profile} role={userData?.role ?? ''} username={userData?.username ?? ''}/>
+            <Header balance={dinero} profile={profile} role={userData?.role ?? ''} username={userData?.username ?? ''}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dice" element={<Dice />} />
