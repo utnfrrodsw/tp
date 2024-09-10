@@ -1,84 +1,104 @@
-/* Estilos para centrar el contenido de login */
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #fafafa;
-  }
-  
-  .login-box {
-    width: 350px;
-    background-color: white;
-    border: 1px solid #dbdbdb;
-    border-radius: 10px; /* Corner radius de 10px */
-    text-align: center;
-    padding: 40px;
-  }
-  
-  h1 {
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 30px;
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #dbdbdb;
-    background-color: #fafafa;
-    font-size: 14px;
-  }
-  
-  button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #3897f0;
-    border: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 15px;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #3181d4;
-  }
-  
-  /* Forgot password */
-  .forgot-password {
-    display: block;
-    font-size: 14px; /* Aumentar el tamaño de la letra */
-    color: #00376b;
-    text-decoration: none;
-    margin-top: 10px;
-  }
-  
-  .forgot-password:hover {
-    text-decoration: underline;
-  }
-  
-  /* Signup link */
-  .signup-link {
-    font-size: 14px;
-    margin-top: 15px;
-  }
-  
-  .signup-link a {
-    color: #3897f0;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .signup-link a:hover {
-    text-decoration: underline;
-  }
-  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  overflow: hidden; /* Evita el scroll horizontal y vertical */
+}
+
+.left-section {
+  flex: 0 0 65%; /* La imagen ocupará el 65% del ancho */
+  position: relative;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.right-section {
+  flex: 0 0 35%; /* El formulario ocupará el 35% del ancho */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra el contenido verticalmente */
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+  height: 100%; /* Asegura que la sección ocupe toda la altura disponible */
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+label {
+  text-align: left;
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+input[type="text"], input[type="password"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  width: 100%;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.remember-forgot a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.sign-in-btn {
+  padding: 10px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.sign-up {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.sign-up a {
+  color: #007BFF;
+  text-decoration: none;
+}
