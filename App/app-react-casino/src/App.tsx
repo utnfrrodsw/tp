@@ -76,7 +76,7 @@ export function App() {
     };
 
     const id = userData?.id_user
-    const [dinero, setDinero] = useState(userData?.balance);
+    const [dinero, setDinero] = useState(0);
     console.log("El id del usuario es: ",id)
     console.log("El balance del usuario es: ",userData?.balance)
     console.log("El dinero (useState): ", dinero)

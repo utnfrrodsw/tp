@@ -7,7 +7,7 @@ export function Slot(usuario) {
 
     var money = usuario.balance
     var id = usuario.id
-    usuario.onMoney(50)
+    usuario.onMoney(100)
 
     console.log(usuario)
 
