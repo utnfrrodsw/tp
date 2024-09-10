@@ -45,6 +45,7 @@ interface User{
 
 export function App() {
     const [userData, setUserData] = useState<User | null>(null);
+    const [dinero, setDinero] = useState("");
 
     useEffect(() => {
         fetchUserProfile();
