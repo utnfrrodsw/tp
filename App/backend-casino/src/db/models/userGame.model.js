@@ -8,7 +8,7 @@ class UserGame extends Model{
             sequelize,
             tablename: USERSGAMES_TABLE,
             modelname: 'usersgames',
-            timestamps: false
+            timestamps: true
         }
     }
 }
@@ -35,12 +35,6 @@ const UserGameSchema = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         primaryKey: true
-    },
-    datePlayed:{
-        allowNull: false,
-        type: DataTypes.DATE,
-        primaryKey: true,
-        modelname: 'date_played'
     },
     bet: {
         type: DataTypes.FLOAT,
