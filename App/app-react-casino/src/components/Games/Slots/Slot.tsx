@@ -4,6 +4,7 @@ import { GamesSideBar } from "../../GamesSideBar";
 import slotSpinSound from "../../../assets/sounds/slotSound.mp3"
 import slotSpinStart from "../../../assets/sounds/slotStart.mp3"
 import slotWinSound from "../../../assets/sounds/SlotWin.mp3"
+import mutedIcon from "../../../assets/images/mutedIcon.png"
 import axios from 'axios';
 
 export function Slot(usuario) {
@@ -35,6 +36,10 @@ export function Slot(usuario) {
     const Reels = ["Siete", "Banana", "Sandia", "Limon", "BAR", "Campana", "Naranja", "Arandano", "Fresa"];
     const iconHeight = 79
     const [isActive, setIsActive] = useState(true)
+    const [isMuted, setIsMuted] = useState(false)
+    const handleToggle = () => {
+        setIsMuted(!isMuted)
+    }
     const [Win, setWin] = useState("");
     const [error, setError] = useState("");
     var x0:number;
@@ -62,13 +67,17 @@ export function Slot(usuario) {
         } else {
             usuario.onMoney(usuario.balance - 50)
             patchUser(usuario.balance - 50)
-            slotStart.play()
+            if (isMuted == false) {
+                slotStart.play()
+            }
             SpinX()
         }
     }
 
     const SpinX = () => {
-        slotSpin.play()
+        if (isMuted == false) {
+            slotSpin.play()
+        }
         const Reel = document.querySelector("#reel1") as HTMLElement
         Reel.style.transition = `background-position-y 2500ms cubic-bezier(.41,-0.01,.63,1.09)`;
         const ReelStyle = getComputedStyle(Reel)
@@ -117,17 +126,23 @@ export function Slot(usuario) {
         console.log("---------")
         if((Reels[x1] == Reels[y1]) && (Reels[z1] == Reels[x1]) && (Reels[z1] == Reels[y1])) {
             setWin("Ganaste 500 monedas!")
-            slotWin.play()
+            if(isMuted == false) {
+                slotWin.play() 
+            }
             usuario.onMoney(usuario.balance + 500)
             patchUser(usuario.balance + 500)
         } else if ((Reels[x2] == Reels[y1]) && (Reels[z0] == Reels[y1]) && (Reels[x2] == Reels[z0])) {
             setWin("Ganaste 250 monedas!")
-            slotWin.play()
+            if(isMuted == false) {
+                slotWin.play() 
+            }
             usuario.onMoney(usuario.balance + 250)
             patchUser(usuario.balance + 250)
         } else if ((Reels[x0] == Reels[y1]) && (Reels[z2] == Reels[y1]) && (Reels[x0] == Reels[z2])) {
             setWin("Ganaste 250 monedas!")
-            slotWin.play()
+            if(isMuted == false) {
+                slotWin.play() 
+            }
             usuario.onMoney(usuario.balance + 250)
             patchUser(usuario.balance + 250)
         }
@@ -138,6 +153,7 @@ export function Slot(usuario) {
 
         <div className="tragamonedas">
             <GamesSideBar/>
+            <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
 
             <div className="slotsBG">
                 <h1 className="textoTragamonedas">SLOT MACHINE</h1>
