@@ -8,16 +8,14 @@ import clickSound from "../../../assets/sounds/click.mp3"
 import mutedIcon from "../../../assets/images/mutedIcon.png"
 import axios from 'axios';
 
-export function Slot(usuario) {
+export function Slot(user) {
 
-    var id = usuario.id
+    var id = user.id
     const slotSpin = new Audio(slotSpinSound)
     const slotStart = new Audio(slotSpinStart)
     const slotWin = new Audio(slotWinSound)
     const clickStop = new Audio(clickSound)
     const instructionRef = useRef(null);
-
-    console.log(usuario)
 
     function patchUser(newMoney) {
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
@@ -55,7 +53,7 @@ export function Slot(usuario) {
     )
     
     // Columnas correspondientes a la tragamonedas
-    const Reels = ["Siete", "Banana", "Sandia", "Limon", "BAR", "Campana", "Naranja", "Arandano", "Fresa"];
+    const Reels = ["Seven", "Banana", "Watermelon", "Lemon", "BAR", "Bell", "Orange", "Blueberry", "Strawberry"];
     const iconHeight = 79
     const [isActive, setIsActive] = useState(true)
     const [isMuted, setIsMuted] = useState(false)
@@ -101,12 +99,12 @@ export function Slot(usuario) {
     const Play = () => {
         setIsActive(false)
         setWin("")
-        if(usuario.balance < bet) {
-            setError("Saldo insuficiente")
+        if(user.balance < bet) {
+            setError("Insufficient Balance")
             setIsActive(true)
         } else {
-            usuario.onMoney(usuario.balance - bet)
-            patchUser(usuario.balance - bet)
+            user.onMoney(user.balance - bet)
+            patchUser(user.balance - bet)
             if (isMuted == false) {
                 slotStart.play()
             }
@@ -180,8 +178,8 @@ export function Slot(usuario) {
                 slotWin.play() 
             }
             postGame(bet, bet*4)
-            usuario.onMoney(usuario.balance + (bet * 4))
-            patchUser(usuario.balance + (bet * 4))
+            user.onMoney(user.balance + (bet * 4))
+            patchUser(user.balance + (bet * 4))
         } else if ((Reels[x2] == Reels[y1]) && (Reels[z0] == Reels[y1]) && (Reels[x2] == Reels[z0])) {
             if (bet == 50) {
                 setWin("You win 100 credits!")
@@ -194,8 +192,8 @@ export function Slot(usuario) {
                 slotWin.play() 
             }
             postGame(bet, bet*2)
-            usuario.onMoney(usuario.balance + (bet * 2))
-            patchUser(usuario.balance + (bet * 2))
+            user.onMoney(user.balance + (bet * 2))
+            patchUser(user.balance + (bet * 2))
         } else if ((Reels[x0] == Reels[y1]) && (Reels[z2] == Reels[y1]) && (Reels[x0] == Reels[z2])) {
             if (bet == 50) {
                 setWin("You win 100 credits!")
@@ -208,8 +206,8 @@ export function Slot(usuario) {
                 slotWin.play() 
             }
             postGame(bet, bet*2)
-            usuario.onMoney(usuario.balance + (bet * 2))
-            patchUser(usuario.balance + (bet * 2))
+            user.onMoney(user.balance + (bet * 2))
+            patchUser(user.balance + (bet * 2))
         } else {
             postGame(bet, 0)
         }
@@ -246,8 +244,8 @@ export function Slot(usuario) {
                 <h2 className="gameInstructionTitle">Game Instructions and Awards</h2>
                 <p className="gameInstructionText"> - You have to choose between 3 different betting options: 50, 150, 300 credits</p>
                 <p className="gameInstructionText"> - The only way to win is to get the same figures in LINE or DIAGONALLY.</p>
-                <p className="gameInstructionText"> - If the figures are IN LINE, the award is your bet multiplied with four</p>
-                <p className="gameInstructionText"> - If the figures are IN DIAGONALLY, the award is your bet multiplies with two</p>
+                <p className="gameInstructionText"> - If the figures are IN LINE, the award is your bet multiplied by four</p>
+                <p className="gameInstructionText"> - If the figures are IN DIAGONALLY, the award is your bet multiplied by two</p>
                 <p className="gameInstructionText"> - Enjoy the game and good luck!</p>
             </div>
         </>

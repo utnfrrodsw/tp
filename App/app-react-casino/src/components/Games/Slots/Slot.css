@@ -1,3 +1,15 @@
+@keyframes opacity{
+    0% {
+        background-color: var(--amarillo);
+    }
+    50%{
+        background-color: #C99B10;
+    }
+    100%{
+        background-color: var(--amarillo);
+    }
+}
+
 .tragamonedas {
     height: 90vh;
     display: flex;
@@ -39,7 +51,18 @@
     padding: 1rem;
     background-color: var(--amarillo);
     margin-top: 1rem;
-    border: 2px solid black;
+    border: 2px solid var(--negro);
+    color: var(--negro);
+    border-radius: .8rem;
+}
+
+.buttonTragamonedas:hover {
+    animation-name: opacity;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.41,.54,.54,.41);
+    transition: 10ms;
+    transition-timing-function: ease-in-out;
 }
 
 .buttonDisabled {
@@ -125,11 +148,21 @@
     left: 0;
     margin: 1rem;
     padding: 1rem;
-    background-color: #ffbf00;
+    background-color: var(--amarillo);
     border-radius: 10px;
-    color: black;
+    color: var(--negro);
     font-weight: bold;
     font-size: 1.2rem;
+    transition: .2s;
+    transition-timing-function: ease-in-out;
+    opacity: 85%;
+}
+
+.instructionsButtonRef:hover {
+    transition: .2s;
+    transition-timing-function: ease-in-out;
+    background-color: var(--amarillo);
+    opacity: 100%;
 }
 
 @media (min-width: 600px) {
