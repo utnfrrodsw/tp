@@ -113,18 +113,18 @@
 .buttonsBet {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 @media (min-width: 600px) {
     .buttonsBet {
         flex-direction: row;
+        gap: 2rem;
     }
 }
 
 .gameInstructions {
     width: 80%;
-    height: 20rem;
     margin: 2rem auto;
     padding: 2rem;
     background-color: #181529;
