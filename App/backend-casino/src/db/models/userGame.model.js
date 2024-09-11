@@ -8,7 +8,7 @@ class UserGame extends Model{
             sequelize,
             tablename: USERSGAMES_TABLE,
             modelname: 'usersgames',
-            timestamps: true
+            updatedAt: false
         }
     }
 }
@@ -43,6 +43,11 @@ const UserGameSchema = {
     winning: {
         type: DataTypes.FLOAT,
         allowNull: true
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        primaryKey: true
     }
 
     }

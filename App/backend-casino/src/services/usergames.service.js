@@ -6,12 +6,12 @@ class UsersGamesService{
     }
 
     async find(){
-        const res = await models.UsersGamesService.findAll()
+        const res = await models.UserGame.findAll()
         return res;
     }
 
     async create(data){
-        const res = await models.UsersGamesService.create(data)
+        const res = await models.UserGame.create(data)
         return res;
     }
 }

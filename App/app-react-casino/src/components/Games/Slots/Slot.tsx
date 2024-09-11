@@ -38,7 +38,7 @@ export function Slot(usuario) {
     function postGame(bet, win) {
         axios.post(`http://localhost:3000/api/v1/usergames`, {
             id_game: 2,
-            id_user: {id},
+            id_user: id,
             bet: bet,
             winning: win
         })
