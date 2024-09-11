@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import './Slot.css';
 import { GamesSideBar } from "../../GamesSideBar";
+import slotSpinSound from "../../../assets/sounds/slotSound.mp3"
+import slotSpinStart from "../../../assets/sounds/slotStart.mp3"
+import slotWinSound from "../../../assets/sounds/SlotWin.mp3"
 import axios from 'axios';
 
 export function Slot(usuario) {
 
     var id = usuario.id
+    const slotSpin = new Audio(slotSpinSound)
+    const slotStart = new Audio(slotSpinStart)
+    const slotWin = new Audio(slotWinSound)
 
     console.log(usuario)
 
@@ -51,21 +57,22 @@ export function Slot(usuario) {
         setIsActive(false)
         setWin("")
         if(usuario.balance < 50) {
-            setError("Falta saldo amigo")
+            setError("Saldo insuficiente")
             setIsActive(true)
         } else {
             usuario.onMoney(usuario.balance - 50)
             patchUser(usuario.balance - 50)
+            slotStart.play()
             SpinX()
         }
     }
 
     const SpinX = () => {
-        boton?.classList.add("buttonDisabled")
+        slotSpin.play()
         const Reel = document.querySelector("#reel1") as HTMLElement
         Reel.style.transition = `background-position-y 2500ms cubic-bezier(.41,-0.01,.63,1.09)`;
         const ReelStyle = getComputedStyle(Reel)
-        var numeroSorteo0 = getRandomInt(1,8)
+        var numeroSorteo0 = getRandomInt(4,7)
         var bgPos0 = parseInt(ReelStyle.backgroundPositionY)  
         Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo0) + bgPos0)}px`;
         x0 = (-(3*(-iconHeight*numeroSorteo0) + bgPos0) % 9)
@@ -78,7 +85,7 @@ export function Slot(usuario) {
         const Reel = document.querySelector("#reel2") as HTMLElement
         Reel.style.transition = `background-position-y 2500ms cubic-bezier(.41,-0.01,.63,1.09)`;
         const ReelStyle = getComputedStyle(Reel)
-        var numeroSorteo1 = getRandomInt(1,8)
+        var numeroSorteo1 = getRandomInt(4,7)
         var bgPos1 = parseInt(ReelStyle.backgroundPositionY)  
         Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo1) + bgPos1)}px`;
         y0 = (-(3*(-iconHeight*numeroSorteo1) + bgPos1) % 9)
@@ -91,7 +98,7 @@ export function Slot(usuario) {
         const Reel = document.querySelector("#reel3") as HTMLElement
         Reel.style.transition = `background-position-y 2500ms cubic-bezier(.41,-0.01,.63,1.09)`;
         const ReelStyle = getComputedStyle(Reel)
-        var numeroSorteo2 = getRandomInt(1,8)
+        var numeroSorteo2 = getRandomInt(4,7)
         var bgPos2 = parseInt(ReelStyle.backgroundPositionY)  
         Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo2) + bgPos2)}px`;
         z0 = (-(3*(-iconHeight*numeroSorteo2) + bgPos2) % 9)
@@ -101,14 +108,29 @@ export function Slot(usuario) {
     }
 
     const Ganador = () => {
-        
+        slotSpin.pause()
+        slotSpin.currentTime = 0
         console.log("Los sorteados son: ")
         console.log(Reels[x0],Reels[y0],Reels[z0])
         console.log(Reels[x1],Reels[y1],Reels[z1])
         console.log(Reels[x2],Reels[y2],Reels[z2])
         console.log("---------")
-        boton?.classList.remove("buttonDisabled")
-        setWin("Ganaste")
+        if((Reels[x1] == Reels[y1]) && (Reels[z1] == Reels[x1]) && (Reels[z1] == Reels[y1])) {
+            setWin("Ganaste 500 monedas!")
+            slotWin.play()
+            usuario.onMoney(usuario.balance + 500)
+            patchUser(usuario.balance + 500)
+        } else if ((Reels[x2] == Reels[y1]) && (Reels[z0] == Reels[y1]) && (Reels[x2] == Reels[z0])) {
+            setWin("Ganaste 250 monedas!")
+            slotWin.play()
+            usuario.onMoney(usuario.balance + 250)
+            patchUser(usuario.balance + 250)
+        } else if ((Reels[x0] == Reels[y1]) && (Reels[z2] == Reels[y1]) && (Reels[x0] == Reels[z2])) {
+            setWin("Ganaste 250 monedas!")
+            slotWin.play()
+            usuario.onMoney(usuario.balance + 250)
+            patchUser(usuario.balance + 250)
+        }
         setIsActive(true)
     }
 
@@ -116,19 +138,21 @@ export function Slot(usuario) {
 
         <div className="tragamonedas">
             <GamesSideBar/>
-            <h1 className="textoTragamonedas">Simulador de maquina tragamonedas</h1>
-            <p className="textoTragamonedas">Numeros:</p>
 
-            <div className="slots">
-                <div className="reel" id="reel1"></div>
-                <div className="reel" id="reel2"></div>
-                <div className="reel" id="reel3"></div>
+            <div className="slotsBG">
+                <h1 className="textoTragamonedas">SLOT MACHINE</h1>
+                <div className="slots">
+                    <div className="reel" id="reel1"></div>
+                    <div className="reel" id="reel2"></div>
+                    <div className="reel" id="reel3"></div>
+                </div>
+                <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={Play} id="boton">Click para jugar</button>
+                <div className="slotsMessages">
+                    <p className="message">{Win}</p>
+                    <p className="message">{error}</p>
+                </div>
             </div>
-            
-            <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={Play} id="boton">Click para jugar</button>
 
-            <p>{Win}</p>
-            <p>{error}</p>
 
         </div>
     

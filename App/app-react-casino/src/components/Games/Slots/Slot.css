@@ -1,8 +1,7 @@
 .tragamonedas {
     height: 100vh;
-    width: 50%;
-    margin: 6rem auto;
     display: flex;
+    margin: 5.5rem 0;
     justify-content: top;
     align-items: center;
     flex-direction: column;
@@ -12,6 +11,11 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
     text-align: center;
+    font-size: 2rem;
+    color: #facc01;
+    font-weight: bold;
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .reel {
@@ -27,6 +31,8 @@
 .slots {
     display: flex;
     gap: 2rem;
+    background-color: rgba(0, 0, 0, 0.541);
+    padding: 2rem;
 }
 
 .buttonTragamonedas {
@@ -38,4 +44,32 @@
 
 .buttonDisabled {
     pointer-events: none;
+    background-color: #be8f00;
+}
+
+.slotsBG {
+    width: 100%;
+    height: 100vh;
+    background-image: url("../../../assets/images/slotBG.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.slotsMessages {
+    height: 10%;
+    width: 100%;
+}
+
+.message {
+    text-align: center;
+    color: rgba(250, 0, 0, 0.952);
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
