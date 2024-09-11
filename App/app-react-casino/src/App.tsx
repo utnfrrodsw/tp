@@ -65,7 +65,6 @@ export function App() {
         console.log("Contenido del token decodificado:", decoded.data.id_user);
 
         const userIdFromToken = decoded.data.id_user;
-        const balanceFromToken = decoded.data.balance;
         // console.log("ID del usuario desde la token:", userIdFromToken); NO ANDA NO SE PQ
 
         const response = await fetch(`http://localhost:3000/api/v1/users/${userIdFromToken}`);
@@ -75,7 +74,7 @@ export function App() {
 
         if (authenticatedUser) {
             setUserData(authenticatedUser);
-            setDinero(balanceFromToken);
+            setDinero(authenticatedUser.balance);
         }
         
     };
