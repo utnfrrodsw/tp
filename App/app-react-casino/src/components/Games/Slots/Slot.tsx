@@ -34,6 +34,25 @@ export function Slot(usuario) {
     useEffect(() => {
         window.scrollTo(0, 0)}, []
     )
+
+    function postGame(bet, win) {
+        axios.post(`http://localhost:3000/api/v1/usergames`, {
+            id_game: 2,
+            id_user: {id},
+            bet: bet,
+            winning: win
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)}, []
+    )
     
     // Columnas correspondientes a la tragamonedas
     const Reels = ["Siete", "Banana", "Sandia", "Limon", "BAR", "Campana", "Naranja", "Arandano", "Fresa"];
@@ -160,6 +179,7 @@ export function Slot(usuario) {
             if(isMuted == false) {
                 slotWin.play() 
             }
+            postGame(bet, bet*4)
             usuario.onMoney(usuario.balance + (bet * 4))
             patchUser(usuario.balance + (bet * 4))
         } else if ((Reels[x2] == Reels[y1]) && (Reels[z0] == Reels[y1]) && (Reels[x2] == Reels[z0])) {
@@ -173,6 +193,7 @@ export function Slot(usuario) {
             if(isMuted == false) {
                 slotWin.play() 
             }
+            postGame(bet, bet*2)
             usuario.onMoney(usuario.balance + (bet * 2))
             patchUser(usuario.balance + (bet * 2))
         } else if ((Reels[x0] == Reels[y1]) && (Reels[z2] == Reels[y1]) && (Reels[x0] == Reels[z2])) {
@@ -186,8 +207,11 @@ export function Slot(usuario) {
             if(isMuted == false) {
                 slotWin.play() 
             }
+            postGame(bet, bet*2)
             usuario.onMoney(usuario.balance + (bet * 2))
             patchUser(usuario.balance + (bet * 2))
+        } else {
+            postGame(bet, 0)
         }
         setIsActive(true)
     }
