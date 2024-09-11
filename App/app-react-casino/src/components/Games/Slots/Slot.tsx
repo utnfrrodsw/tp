@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import './Slot.css';
 import { GamesSideBar } from "../../GamesSideBar";
 import slotSpinSound from "../../../assets/sounds/slotSound.mp3"
 import slotSpinStart from "../../../assets/sounds/slotStart.mp3"
 import slotWinSound from "../../../assets/sounds/SlotWin.mp3"
+import clickSound from "../../../assets/sounds/click.mp3"
 import mutedIcon from "../../../assets/images/mutedIcon.png"
 import axios from 'axios';
 
@@ -13,6 +14,8 @@ export function Slot(usuario) {
     const slotSpin = new Audio(slotSpinSound)
     const slotStart = new Audio(slotSpinStart)
     const slotWin = new Audio(slotWinSound)
+    const clickStop = new Audio(clickSound)
+    const instructionRef = useRef(null);
 
     console.log(usuario)
 
@@ -42,6 +45,9 @@ export function Slot(usuario) {
     }
     const [Win, setWin] = useState("");
     const [error, setError] = useState("");
+    const scrollToDiv = (ref) => window.scrollTo(0, ref.current.offsetTop)
+    const isScroll = () => scrollToDiv(instructionRef);
+    var bet = 50
     var x0:number;
     var y0:number;
     var z0:number;
@@ -58,15 +64,30 @@ export function Slot(usuario) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     
+    const bet50 = () => {
+        bet = 50
+        Play()
+    }
+
+    const bet150 = () => {
+        bet = 150
+        Play()
+    }
+
+    const bet300 = () => {
+        bet = 300
+        Play()
+    }
+
     const Play = () => {
         setIsActive(false)
         setWin("")
-        if(usuario.balance < 50) {
+        if(usuario.balance < bet) {
             setError("Saldo insuficiente")
             setIsActive(true)
         } else {
-            usuario.onMoney(usuario.balance - 50)
-            patchUser(usuario.balance - 50)
+            usuario.onMoney(usuario.balance - bet)
+            patchUser(usuario.balance - bet)
             if (isMuted == false) {
                 slotStart.play()
             }
@@ -75,6 +96,7 @@ export function Slot(usuario) {
     }
 
     const SpinX = () => {
+        setError("")
         if (isMuted == false) {
             slotSpin.play()
         }
@@ -117,6 +139,9 @@ export function Slot(usuario) {
     }
 
     const Ganador = () => {
+        if(isMuted == false) {
+            clickStop.play()
+        }
         slotSpin.pause()
         slotSpin.currentTime = 0
         console.log("Los sorteados son: ")
@@ -125,52 +150,83 @@ export function Slot(usuario) {
         console.log(Reels[x2],Reels[y2],Reels[z2])
         console.log("---------")
         if((Reels[x1] == Reels[y1]) && (Reels[z1] == Reels[x1]) && (Reels[z1] == Reels[y1])) {
-            setWin("Ganaste 500 monedas!")
+            if (bet == 50) {
+                setWin("You win 200 credits!")
+            } else if (bet == 150) {
+                setWin("You win 600 credits!")
+            } else if (bet == 300) {
+                setWin("You win 1200 credits!")
+            }
             if(isMuted == false) {
                 slotWin.play() 
             }
-            usuario.onMoney(usuario.balance + 500)
-            patchUser(usuario.balance + 500)
+            usuario.onMoney(usuario.balance + (bet * 4))
+            patchUser(usuario.balance + (bet * 4))
         } else if ((Reels[x2] == Reels[y1]) && (Reels[z0] == Reels[y1]) && (Reels[x2] == Reels[z0])) {
-            setWin("Ganaste 250 monedas!")
+            if (bet == 50) {
+                setWin("You win 100 credits!")
+            } else if (bet == 150) {
+                setWin("You win 300 credits!")
+            } else if (bet == 300) {
+                setWin("You win 600 credits!")
+            }
             if(isMuted == false) {
                 slotWin.play() 
             }
-            usuario.onMoney(usuario.balance + 250)
-            patchUser(usuario.balance + 250)
+            usuario.onMoney(usuario.balance + (bet * 2))
+            patchUser(usuario.balance + (bet * 2))
         } else if ((Reels[x0] == Reels[y1]) && (Reels[z2] == Reels[y1]) && (Reels[x0] == Reels[z2])) {
-            setWin("Ganaste 250 monedas!")
+            if (bet == 50) {
+                setWin("You win 100 credits!")
+            } else if (bet == 150) {
+                setWin("You win 300 credits!")
+            } else if (bet == 300) {
+                setWin("You win 600 credits!")
+            }
             if(isMuted == false) {
                 slotWin.play() 
             }
-            usuario.onMoney(usuario.balance + 250)
-            patchUser(usuario.balance + 250)
+            usuario.onMoney(usuario.balance + (bet * 2))
+            patchUser(usuario.balance + (bet * 2))
         }
         setIsActive(true)
     }
 
     return(
 
-        <div className="tragamonedas">
-            <GamesSideBar/>
-            <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
+        <>
+            <div className="tragamonedas">
+                <GamesSideBar/>
+                <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
+                <button className="instructionsButtonRef" onClick={isScroll}>Game Instructions</button>
 
-            <div className="slotsBG">
-                <h1 className="textoTragamonedas">SLOT MACHINE</h1>
-                <div className="slots">
-                    <div className="reel" id="reel1"></div>
-                    <div className="reel" id="reel2"></div>
-                    <div className="reel" id="reel3"></div>
-                </div>
-                <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={Play} id="boton">Click para jugar</button>
-                <div className="slotsMessages">
-                    <p className="message">{Win}</p>
-                    <p className="message">{error}</p>
+                <div className="slotsBG">
+                    <h1 className="textoTragamonedas">SLOT MACHINE</h1>
+                    <div className="slots">
+                        <div className="reel" id="reel1"></div>
+                        <div className="reel" id="reel2"></div>
+                        <div className="reel" id="reel3"></div>
+                    </div>
+                    <div className="buttonsBet">
+                        <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={bet50} id="boton">Bet 50 Credits</button>
+                        <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={bet150} id="boton">Bet 150 Credits</button>
+                        <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={bet300} id="boton">Bet 300 Credits</button>
+                    </div>
+                    <div className="slotsMessages" ref={instructionRef}>
+                        <p className="message">{Win}</p>
+                        <p className="message">{error}</p>
+                    </div>
                 </div>
             </div>
-
-
-        </div>
+            <div className="gameInstructions">
+                <h2 className="gameInstructionTitle">Game Instructions and Awards</h2>
+                <p className="gameInstructionText"> - You have to choose between 3 different betting options: 50, 150, 300 credits</p>
+                <p className="gameInstructionText"> - The only way to win is to get the same figures in LINE or DIAGONALLY.</p>
+                <p className="gameInstructionText"> - If the figures are IN LINE, the award is your bet multiplied with four</p>
+                <p className="gameInstructionText"> - If the figures are IN DIAGONALLY, the award is your bet multiplies with two</p>
+                <p className="gameInstructionText"> - Enjoy the game and good luck!</p>
+            </div>
+        </>
     
 
     )

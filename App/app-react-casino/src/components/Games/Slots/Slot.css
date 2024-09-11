@@ -1,7 +1,7 @@
 .tragamonedas {
-    height: 100vh;
+    height: 90vh;
     display: flex;
-    margin: 5.5rem 0;
+    margin-top: 5.5rem;
     justify-content: top;
     align-items: center;
     flex-direction: column;
@@ -49,7 +49,7 @@
 
 .slotsBG {
     width: 100%;
-    height: 100vh;
+    height: 90vh;
     background-image: url("../../../assets/images/slotBG.jpg");
     background-repeat: no-repeat;
     background-size:cover;
@@ -85,4 +85,55 @@
 
 .mutedEnabled {
     background-color: rgb(199, 199, 199);
+}
+
+.buttonsBet {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (min-width: 600px) {
+    .buttonsBet {
+        flex-direction: row;
+    }
+}
+
+.gameInstructions {
+    width: 80%;
+    height: 20rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #181529;
+    border-radius: 20px;
+}
+
+.gameInstructionTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.gameInstructionText {
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+}
+
+.instructionsButtonRef {
+    display: none;
+    position: absolute;
+    left: 0;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #ffbf00;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+@media (min-width: 600px) {
+    .instructionsButtonRef  {
+        display: block;
+    }
 }
