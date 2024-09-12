@@ -19,6 +19,15 @@ const get = async(req, res) => {
     }
 }
 
+const query1 = async(req, res) => {
+    try{
+        const response = await service.query1();
+        res.json(response);
+    } catch(error) {
+        res.status(500).send({ success: false, message: error.message })
+    }
+}
+
 module.exports = {
-    create, get
+    create, get, query1
 };
