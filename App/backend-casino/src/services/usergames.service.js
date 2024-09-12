@@ -17,7 +17,7 @@ class UsersGamesService{
     }
 
     async query1(){
-        const res = await models.UserGame.sequelize.query('select * from usergames', {
+        const res = await models.UserGame.sequelize.query('select usergames.id_user, usergames.id_game, usergames.bet, usergames.winning, usergames.createdAt, users.first_name, users.last_name, games.name from usergames inner join users on users.id_user = usergames.id_user inner join games on games.id_game = usergames.id_game', {
             type: QueryTypes.SELECT
         })
         return res;
