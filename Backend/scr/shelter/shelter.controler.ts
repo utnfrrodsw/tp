@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 /*import { ShelterRepository } from './shelter.repository.js';*/
-import { Shelter } from './shelter.entity.js';
+/*import { Shelter } from './shelter.entity.js';*/
 
 /*const shelterRepository = new ShelterRepository();*/
 function sanitizeShelterInput(req: Request, res: Response, next:NextFunction)
