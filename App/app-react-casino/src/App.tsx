@@ -80,9 +80,6 @@ export function App() {
     };
 
     const id = userData?.id_user
-    console.log("El id del usuario es: ",id)
-    console.log("El balance del usuario es: ", userData?.balance)
-    console.log("El dinero (useState): ", dinero)
     let profile = '/profile/'+userData?.username
 
 
@@ -95,7 +92,7 @@ export function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/dice" element={<Dice />} />
                     <Route path="/slot" element={<Slot id={id} balance={dinero} onMoney={setDinero}/>} />
-                    <Route path="/wheel" element={<Wheel/>} />
+                    <Route path="/wheel" element={<Wheel id={id} balance={dinero} onMoney={setDinero}/>} />
                     <Route path="/live_roulette" element={<RouletteLive />} />
                     <Route path="*" element={<ErrorPage />} />
                     <Route path="/listado" element={<Listado/>} />

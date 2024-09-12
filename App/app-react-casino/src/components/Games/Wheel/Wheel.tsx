@@ -3,6 +3,7 @@ import './Wheel.css';
 import { GamesSideBar } from '../../GamesSideBar';
 import WheelImage from '../../../assets/images/wheel.png';
 import WheelPointer from '../../../assets/images/wheelPointer.png';
+import axios from '../../Axios/axios';
 
 const colors = [
   'verde', 'gris', 'verde', 'gris', 'amarillo', 'gris', 'verde', 'gris',
@@ -14,10 +15,38 @@ const colors = [
 let rotation: number = 0;
 let index: number = 0;
 
-export function Wheel() {
+export function Wheel(user) {
+
+  function patchUser(newMoney) {
+    axios.put(`http://localhost:3000/api/v1/users/${user.id}`, {
+        balance: `${newMoney}`,
+    })
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+  }
+
+  function postGame(bet, win) {
+    axios.post(`http://localhost:3000/api/v1/usergames`, {
+        id_game: 3,
+        id_user: user.id,
+        bet: bet,
+        winning: win
+    })
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
-}, []);
+  }, []);
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [monto, setMonto] = useState(0);
   const [ganarVerde, setRecibeGanar] = useState(0);
@@ -28,7 +57,35 @@ export function Wheel() {
 
   const anglePerSection = 360 / 30;
 
+  const winning = (colour) => {
+    if (colour == "verde") {
+      user.onMoney(user.balance + ganarVerde - monto)
+      patchUser(user.balance + ganarVerde - monto)
+      postGame(monto, ganarVerde)
+    } else if (colour == "blanco") {
+      user.onMoney(user.balance + ganarBlanco - monto)
+      patchUser(user.balance + ganarBlanco - monto)
+      postGame(monto, ganarBlanco)
+    } else if (colour == "amarillo") {
+      user.onMoney(user.balance + ganarAmarillo - monto)
+      patchUser(user.balance + ganarAmarillo - monto)
+      postGame(monto, ganarAmarillo)
+    } else if (colour == "violeta") {
+      user.onMoney(user.balance + ganarVioleta - monto)
+      patchUser(user.balance + ganarVioleta - monto)
+      postGame(monto, ganarVioleta)
+    } else if (colour == "naranja") {
+      user.onMoney(user.balance + ganarNaranja- monto)
+      patchUser(user.balance + ganarNaranja - monto)
+      postGame(monto, ganarNaranja)
+    } else {
+      postGame(monto, 0)
+    }
+  }
+
   const startSpin = () => {
+    user.onMoney(user.balance - monto)
+    patchUser(user.balance - monto)
     const wheelStyle = document.querySelector(".wheel") as HTMLElement
     const randomIndex = Math.floor(Math.random() * 30);
     const selectedColor = colors[randomIndex];
@@ -36,6 +93,9 @@ export function Wheel() {
     rotation += 3 * 360 + anglePerSection * (index - randomIndex);
     wheelStyle.style.transform = `rotate(${rotation}deg)`;
     index = randomIndex;
+    setTimeout(function() {
+      winning(selectedColor);
+    }, 4000);
   }
 
   const montoApuesta = (event: ChangeEvent<HTMLInputElement>) => {
