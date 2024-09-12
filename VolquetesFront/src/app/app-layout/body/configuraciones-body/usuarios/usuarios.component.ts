@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { Usuario, UsuarioModel } from '../../../../model/interfaces/usuario.interface.js';
 import { Subscription } from 'rxjs';
 import { UsuariosService } from '../../../../services/usuariosService/usuarios.service.js';
-import { UsuariosBodyService } from './usuariosbody.service.js';
+import { UsuariosBodyService } from './usuariosBody.service.js';
 
 
 @Component({
