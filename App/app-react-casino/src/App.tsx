@@ -16,6 +16,7 @@ import { GetOne } from './components/Axios/GetOne/getone.tsx'
 import { User } from './components/Axios/User/User.tsx'
 import { Details } from './components/Axios/Details/Details.tsx'
 import { EditUser } from './components/Axios/EditUser/EditUser.tsx'
+import { Leaderboard } from './components/Axios/Leaderboard/Leaderboard.tsx'
 
 import { LoginAgus } from './components/LoginAgus/LoginAgus.tsx'
 import { RegisterAgus } from './components/RegisterAgus/RegisterAgus.tsx'
@@ -30,6 +31,7 @@ import { RouletteLive } from './pages/RouletteLive/RouletteLive.tsx'
 import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx'
 import { AdminUses } from './pages/AdminUses/adminUses.tsx'
 import { Profile } from './pages/Profile/Profile.tsx'
+import { BettingHistory } from './pages/Profile/BettingHistory/BettingHistory.tsx'
 
 import { Toaster } from 'sonner'
 
@@ -82,8 +84,6 @@ export function App() {
     const id = userData?.id_user
     let profile = '/profile/'+userData?.username
 
-
-
     return(
         <>
         
@@ -101,6 +101,7 @@ export function App() {
                     <Route path="/user" element={<User />} />
                     <Route path="/details" element={<Details />} />
                     <Route path="/edituser" element={<EditUser />} />
+                    <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/terms-and-conditions" element={<Terms />} />
                     <Route path='/about-us' element={<AboutUs />} />
                     <Route path='/privacy-policy' element={<PrivacyPolicy />} />
@@ -108,6 +109,7 @@ export function App() {
                     <Route path='/fair' element={<Fair />} />
                     <Route path='/game-policy' element={<GamePolicy />} />
                     <Route path='/admin-uses' element={<AdminUses />} />
+                    <Route path={'/bettinghistory'} element={<BettingHistory/>} />
                     <Route path={profile} element={<Profile id={userData?.id_user} username={userData?.username} email={userData?.email} phone={userData?.phone} password={userData?.password} />} />
 
 
