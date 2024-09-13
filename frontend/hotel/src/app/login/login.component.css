@@ -12,7 +12,7 @@ body, html {
 
 .container {
   display: flex;
-  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+  height: 93vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
   width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
   overflow: hidden; /* Evita el scroll horizontal y vertical */
 }

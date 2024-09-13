@@ -3,11 +3,11 @@ const Cliente = require('../models/cliente');
 const Empleado = require('../models/empleado');
 
 function generarTokenEmpleado(empleado) {
-  return jwt.sign({ empleado }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  return jwt.sign({ empleado }, process.env.JWT_SECRET, { expiresIn: '7d' });
 }
 
 function generarToken(cliente) {
-  return jwt.sign({ cliente }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  return jwt.sign({ cliente }, process.env.JWT_SECRET, { expiresIn: '7d' });
 }
 
 async function iniciarSesion(req, res) {
@@ -16,7 +16,7 @@ async function iniciarSesion(req, res) {
     const cliente = await Cliente.findOne({ mail, contrasena });
     if (cliente) {
       const token = generarToken(cliente);
-      res.json({ token });
+      res.json({ token , idCliente: cliente.idCli });
     } else {
       res.status(401).send('Credenciales incorrectas');
     }

@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="filters-card">
+      <div class="filters">
+        <h1>Filtros</h1>
+        <!-- Aquí irían los filtros si fueran necesarios -->
+      </div>
+    </div>
+  
+    <div class="cards">
+      <div class="card custom-card" *ngFor="let habitacion of habitaciones">
+        <img [src]="habitacion.foto" class="custom-card-img" alt="Foto de la habitación">
+        <div class="custom-card-body">
+          <h5 class="card-title">
+            Habitación N° {{ habitacion.nroHabitacion }} - {{ getTipoNombre(habitacion.idTipo) }}
+          </h5>
+          <p class="card-text">
+            Descripción: {{ habitacion.descripcion }} <br>
+            Capacidad: {{ habitacion.capacidadPersonas }} personas <br>
+            Precio por día: ${{ habitacion.precioXdia }} <br>
+          </p>
+          <button class="btn-reservar" (click)="reservarHabitacion(habitacion.nroHabitacion)">
+            Reservar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

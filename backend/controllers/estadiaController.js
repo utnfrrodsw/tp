@@ -63,10 +63,9 @@ const realizarCheckout = async (req, res) => {
   }
 };
 
-// Crear Estadia
 const crearEstadia = async (req, res) => {
   try {
-    const { idEst, fechaIngreso, fechaEgreso, estado, nroDni, nroHabitacion } = req.body;
+    const { idEst, fechaIngreso, fechaEgreso, estado, nroDni, nroHabitacion, idLocalidad } = req.body;
     const cliente = await Cliente.findOne({ nroDni });
     if (!cliente) {
       return res.status(404).json({ message: "Cliente no encontrado" });
@@ -81,7 +80,8 @@ const crearEstadia = async (req, res) => {
       fechaEgreso: new Date(fechaEgresoFormatted),
       estado,
       idCli: cliente.idCli,
-      nroHabitacion
+      nroHabitacion,
+      idLocalidad // Asegúrate de agregar este campo
     });
 
     await estadia.save();
@@ -168,38 +168,46 @@ const buscarClientePorID = async (req, res) => {
 // Reservar Habitación
 const reservarHabitacion = async (req, res) => {
   try {
-    const { nroHabitacion, fechaIngreso, fechaEgreso } = req.body;
+    const { nroHabitacion, fechaIngreso, fechaEgreso, idLocalidad } = req.body;
 
+    // Verificar si la habitación existe
     const habitacion = await Habitacion.findOne({ nroHabitacion });
     if (!habitacion) {
       return res.status(404).json({ message: "Habitación no encontrada." });
     }
 
+    // Verificar si la habitación está disponible
     if (habitacion.estado !== 'Disponible') {
       return res.status(400).json({ message: "La habitación ya está ocupada." });
     }
 
+    // Verificar si el cliente está autenticado
     if (!req.cliente || !req.cliente.idCli) {
       return res.status(401).json({ message: "Cliente no autenticado." });
     }
 
     const clienteId = req.cliente.idCli;
 
+    // Formatear fechas
     const fechaIngresoFormatted = moment(fechaIngreso, 'DD-MM-YYYY').toISOString();
     const fechaEgresoFormatted = moment(fechaEgreso, 'DD-MM-YYYY').toISOString();
 
+    // Obtener el último ID de estadía y calcular el nuevo ID
     const ultimaEstadia = await Estadia.findOne().sort({ idEst: -1 });
     const nuevoIdEst = ultimaEstadia ? ultimaEstadia.idEst + 1 : 1;
 
+    // Crear nueva estadía
     const nuevaEstadia = new Estadia({
       idEst: nuevoIdEst,
       idCli: clienteId,
       nroHabitacion,
       fechaIngreso: new Date(fechaIngresoFormatted),
       fechaEgreso: new Date(fechaEgresoFormatted),
-      estado: 'Reservado'
+      estado: 'Reservado',
+      idLocalidad // Asegúrate de incluir este campo
     });
 
+    // Guardar la estadía
     await nuevaEstadia.save();
     res.status(201).json(nuevaEstadia);
   } catch (error) {
@@ -207,6 +215,7 @@ const reservarHabitacion = async (req, res) => {
     res.status(500).json({ message: "Error al reservar la habitación.", error: error.message });
   }
 };
+
 
 module.exports = {
   reservarHabitacion,

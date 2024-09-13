@@ -1,34 +1,39 @@
 <header>
-    <div class="logo">
-        <a [routerLink]="['/']">
-            <h2>LUXURY HOTELS</h2>
-        </a>
-    </div>
-    <nav>
-        <ul>
-            <li><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a></li>
-            <li><a [routerLink]="['/habitaciones']" routerLinkActive="active">Habitaciones</a></li>
-            <li><a [routerLink]="['/services']" routerLinkActive="active">Servicios</a></li>
-            <li><a [routerLink]="['/about']" routerLinkActive="active">Nosotros</a></li>
-        </ul>
-    </nav>
+  <div class="logo">
+      <a [routerLink]="['/']">
+          <h2>LUXURY HOTELES</h2>
+      </a>
+  </div>
+  <nav>
+      <ul>
+          <li><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a></li>
 
-    <div class="auth-buttons" *ngIf="!isLoggedIn">
-        <a [routerLink]="['/login']" class="login-button">Iniciar sesión</a>
-        <a [routerLink]="['/registro']" class="register-button">Registrarse</a>
-    </div>
-    <div class="user-info" *ngIf="isLoggedIn">
-        <div class="user-info-container">
           
+          <li *ngIf="!isLoggedIn"><a [routerLink]="['/habitaciones']" routerLinkActive="active">Habitaciones</a></li>
+          <li ><a [routerLink]="['/servicios']" routerLinkActive="active">Servicios</a></li>
+          <li *ngIf="!isLoggedIn"><a [routerLink]="['/about']" routerLinkActive="active">Nosotros</a></li>
+
+         
+          <li *ngIf="isLoggedIn"><a [routerLink]="['/misreservas']" routerLinkActive="active">Mis reservas</a></li>
+          <li *ngIf="isLoggedIn"><a [routerLink]="['/miperfil']" routerLinkActive="active">Mi Perfil</a></li> 
+      </ul>
+  </nav>
+
+  <div class="auth-buttons" *ngIf="!isLoggedIn">
+      <a [routerLink]="['/login']" class="login-button">Iniciar sesión</a>
+      <a [routerLink]="['/registro']" class="register-button">Registrarse</a>
+  </div>
+  <div class="user-info" *ngIf="isLoggedIn">
+      <div class="user-info-container">
           <div class="dropdown">
-            <button class="dropbtn">
-              {{ userName }} <span class="arrow-down">&#9660;</span>
-            </button>
-            <div class="dropdown-content">
-              <a (click)="logout()">Cerrar sesión</a>
-            </div>
+              <button class="dropbtn">
+                  {{ userName }} <span class="arrow-down">&#9660;</span>
+              </button>
+              <div class="dropdown-content">
+                  
+                  <a (click)="logout()">Cerrar sesión</a>
+              </div>
           </div>
-        </div>
       </div>
-      
+  </div>
 </header>

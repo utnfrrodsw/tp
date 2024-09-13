@@ -1,0 +1,125 @@
+/* Estilo para el contenedor */
+.container {
+    display: flex; /* Usar flexbox para el contenedor */
+    padding: 0 15px; /* Espaciado lateral del contenedor */
+}
+
+/* Estilo para la card de filtros */
+.filters-card {
+    margin-top: 50px;
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #ddd; /* Borde sutil */
+    border-radius: 0.75rem; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    margin-right: 20px; /* Espacio a la derecha para separación */
+    width: 300px; /* Ancho fijo para la columna de filtros */
+    height: 350px;
+}
+
+/* Estilo para el encabezado de filtros */
+.filters-card h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem; /* Tamaño de fuente para el encabezado */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 20px; /* Espacio debajo del encabezado */
+}
+
+/* Estilo para los filtros */
+.filters {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* Disposición en columna */
+    gap: 20px; /* Espacio entre filtros */
+}
+
+/* Estilo para cada filtro individual */
+.filter {
+    display: flex;
+    flex-direction: column; /* Disposición vertical de etiqueta y campo de entrada */
+    gap: 5px; /* Espacio entre la etiqueta y el campo */
+    font-family: 'Poppins', sans-serif; /* Tipografía Poppins */
+}
+
+/* Estilo para las etiquetas de los filtros */
+.filter label {
+    font-weight: 600; /* Negrita */
+}
+
+/* Estilo para los campos de entrada y selección */
+.filter input, .filter select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+/* Estilo para las tarjetas */
+.cards {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column; /* Disposición vertical de las tarjetas */
+    flex: 1; /* Ocupa el espacio restante del contenedor */
+}
+
+.custom-card {
+    width: 70%; /* Ancho completo dentro del contenedor de tarjetas */
+    margin-bottom: 20px; /* Espacio entre tarjetas */
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 0.75rem; /* Bordes redondeados */
+    border: 1px solid #ddd; /* Borde sutil */
+    display: flex; /* Usar flexbox para la disposición horizontal */
+    flex-direction: row; /* Disposición horizontal de imagen y cuerpo */
+    overflow: hidden; /* Ocultar contenido que se desborde */
+}
+
+.custom-card-img {
+    width: 225px; /* Ancho fijo de la imagen */
+    height: 230px; /* Altura fija de la imagen */
+    object-fit: cover; /* Ajuste de imagen */
+    border-right: 1px solid #ddd; /* Borde derecho para separar la imagen del contenido */
+}
+
+.custom-card-body {
+    padding: 15px; /* Espaciado interno */
+    flex: 1; /* Ocupa el espacio restante */
+}
+
+.card-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem; 
+    font-weight: bold; 
+    margin-bottom: 1rem; 
+}
+
+.card-text {
+    font-size: 1rem; 
+    line-height: 1.5; 
+    color: #555; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-reservar {
+    font-family: 'Poppins', sans-serif;
+    display: inline-block; 
+    padding: 10px 20px; 
+    font-size: 1rem; 
+    font-weight: bold; 
+    color: #ffffff; 
+    background-color: #007bff; 
+    border: none; 
+    border-radius: 0.5rem; 
+    text-align: center; 
+    text-decoration: none; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    margin-top: 25px;
+}
+
+.btn-reservar:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); 
+}
+
+.btn-reservar:focus {
+    outline: none; 
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); 
+}

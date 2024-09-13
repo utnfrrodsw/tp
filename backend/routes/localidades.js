@@ -5,7 +5,10 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 // Rutas accesibles por todos los usuarios (solo `GET`)
 router.get('/', localidadController.obtenerTodasLocalidades);
+
 router.get('/:id', localidadController.obtenerLocalidadPorId);
+router.get('/nombre/:nombre', localidadController.obtenerLocalidadPorNombre);
+
 
 // Rutas accesibles solo por empleados
 router.post('/', authMiddleware.verificarAutenticacionEmpleado, localidadController.crearLocalidad);

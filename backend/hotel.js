@@ -5,9 +5,9 @@ const port = 3000;
 const cors = require('cors');
 
 app.use(cors({
-  origin: 'http://localhost:4200', 
-  methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type'
+  origin: 'http://localhost:4200', // Permite el origen de tu aplicación frontend
+  methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos
 }));
 
 require('dotenv').config();

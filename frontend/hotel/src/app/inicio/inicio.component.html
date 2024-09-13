@@ -1,11 +1,11 @@
-<app-header></app-header> 
+<app-header></app-header>
 
 <div class="hero-section">
     <div class="hero-content">
         <h1>
-            <span class="welcome">WELCOME TO</span><br>
+            <span class="welcome">BIENVENIDO A</span><br>
             <span class="luxury">LUXURY</span><br>
-            <span class="hotels">HOTELS</span>
+            <span class="hotels">HOTELES</span>
         </h1>
     </div>
 </div>
@@ -17,17 +17,17 @@
     </div>
     <div class="search-item">
         <label for="checkin">Fecha Desde</label>
-        <input type="date" id="checkin">
+        <input type="date" id="checkin" (change)="updateCheckoutMinDate($event)">
     </div>
     <div class="search-item">
         <label for="checkout">Fecha Hasta</label>
-        <input type="date" id="checkout">
+        <input type="date" id="checkout" [min]="minCheckoutDate">
     </div>
     <div class="search-item">
         <label for="people">Personas</label>
         <input type="number" id="people" min="1" value="1">
     </div>
-    <button>Buscar</button>
+    <button (click)="buscarHabitaciones()">Buscar</button>
 </div>
 
 <footer>
@@ -41,7 +41,7 @@
             <ul>
                 <li><a [routerLink]="['/']">Home</a></li>
                 <li><a [routerLink]="['/habitaciones']">Habitaciones</a></li>
-                <li><a [routerLink]="['/services']">Servicios</a></li>
+                <li><a [routerLink]="['/servicios']">Servicios</a></li>
                 <li><a [routerLink]="['/about']">Nosotros</a></li>
                 <li><a [routerLink]="['/contact']">Contacto</a></li>
             </ul>
@@ -65,5 +65,3 @@
         <p>&copy; 2024 Luxury Hotels. All rights reserved.</p>
     </div>
 </footer>
-
-

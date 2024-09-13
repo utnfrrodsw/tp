@@ -11,6 +11,9 @@ body {
     overflow-x: hidden; /* Evita el desplazamiento horizontal innecesario */
 }
 
+
+  
+
 .hero-section {
     background-image: url('https://farm5.staticflickr.com/4519/37785963675_8e5f044eda_h.jpg');
     background-size: cover;

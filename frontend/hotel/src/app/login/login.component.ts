@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+ // Ajusta la ruta según la estructura de tu proyecto
 import { Router } from '@angular/router';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,33 +12,24 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   onSubmit() {
-    const loginData = {
-      email: this.email,
-      contrasena: this.password
-    };
-
-    // Realiza la petición al backend con la URL correcta
-    this.http.post('http://localhost:3000/auth/login', loginData).subscribe({
-      next: (response: any) => {
-        // Si la autenticación es exitosa, recibirás un token
+    this.authService.login(this.email, this.password).subscribe({
+      next: (response) => {
         const token = response.token;
-
-        // Almacenar el token en localStorage o sessionStorage
-        localStorage.setItem('authToken', token);
-
-        this.router.navigate(['/']);
-
+        const idCliente = response.idCliente;
+        this.authService.storeToken(token, idCliente);
         
+        this.router.navigate(['/']);
       },
       error: (err) => {
-        // Manejar el error de autenticación
         alert('Error en el inicio de sesión. Verifique sus credenciales.');
       },
       complete: () => {
-        // Este bloque se ejecuta cuando el observable se completa
         console.log('Autenticación completada.');
       }
     });

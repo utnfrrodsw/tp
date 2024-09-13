@@ -9,8 +9,12 @@ import { MostrarServiciosComponent } from './mostrar-servicios/mostrar-servicios
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HeaderComponent } from './header/header.component';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http'; // Importa HttpClientModule
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http'; // Importa HttpClientModule y withFetch
 import { FormsModule } from '@angular/forms';
+import { MostrarHabitacionesDisponiblesComponent } from './mostrar-habitaciones-disponibles/mostrar-habitaciones-disponibles.component';
+import { ReservasClienteComponent } from './reservas-cliente/reservas-cliente.component';
+import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { FormsModule } from '@angular/forms';
     MostrarServiciosComponent,
     LoginComponent,
     RegistroComponent,
-    HeaderComponent
+    HeaderComponent,
+    MostrarHabitacionesDisponiblesComponent,
+    ReservasClienteComponent,
+    PerfilClienteComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -31,9 +39,8 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient() // Proporciona HttpClient con la nueva API
+    provideHttpClient(withFetch()) // Proporciona HttpClient con fetch habilitado
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-

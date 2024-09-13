@@ -19,8 +19,7 @@ export class HeaderComponent {
     const token = localStorage.getItem('authToken');
     this.isLoggedIn = !!token;
     if (this.isLoggedIn) {
-      // Suponiendo que tienes un método para obtener el nombre del usuario
-      // Aquí solo simulamos con un nombre de usuario fijo
+      
       this.userName = 'Usuario';
     }
   }

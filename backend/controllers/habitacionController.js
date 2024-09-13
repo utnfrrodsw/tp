@@ -167,7 +167,13 @@ const eliminarHabitacion = async (req, res) => {
 
 
 
+
+
+
+
+
 module.exports = {
+  
   obtenerHabitacionesDisponibles,
   obtenerTodasHabitaciones,
   obtenerHabitacionPorNroHabitacion,

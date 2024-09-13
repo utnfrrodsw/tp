@@ -69,8 +69,29 @@ const obtenerTodasLocalidades = async (req, res) => {
     }
   };
 
+  const obtenerLocalidadPorNombre = async (req, res) => {
+    try {
+      
+      const {nombre} = req.params;
+  
+      
+      const localidad = await Localidad.findOne({ nombre: { $regex: new RegExp(`^${nombre}$`, 'i') } });
+  
+      if (!localidad) {
+        return res.status(404).json({ error: 'Localidad no encontrada' });
+      }
+  
+      
+      res.json(localidad);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Error al obtener la localidad.", error: error.message });
+    }
+  };
+
+
 module.exports = { crearLocalidad,
                    actualizarLocalidad,
                    obtenerLocalidadPorId,
                    obtenerTodasLocalidades, 
-                   eliminarLocalidad};
+                   eliminarLocalidad,obtenerLocalidadPorNombre};

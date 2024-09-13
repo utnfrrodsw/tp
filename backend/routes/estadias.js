@@ -12,7 +12,7 @@ router.post('/reservar-habitacion', authMiddleware.verificarAutenticacion, estad
 router.post('/login/empleado', authController.iniciarSesionEmpleado);
 router.get('/', authMiddleware.verificarAutenticacionEmpleado, estadiaController.obtenerTodasEstadias); 
 router.get('/:id', authMiddleware.verificarAutenticacionEmpleado, estadiaController.obtenerEstadiaPorId);
-router.post('/', authMiddleware.verificarAutenticacionEmpleado, estadiaController.crearEstadia);
+router.post('/',  estadiaController.crearEstadia);
 router.put('/:id', authMiddleware.verificarAutenticacionEmpleado, estadiaController.actualizarEstadia);
 router.put('/:idEstadia/checkin', authMiddleware.verificarAutenticacionEmpleado, estadiaController.realizarCheckin);
 router.put('/:idEstadia/checkout', authMiddleware.verificarAutenticacionEmpleado, estadiaController.realizarCheckout);
