@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router'; // Importa Router
 import { RegistroService } from '../service/registro.service';
- // Ajusta la ruta según tu estructura
+// Ajusta la ruta según tu estructura
 
 @Component({
   selector: 'app-registro',
@@ -11,7 +12,11 @@ import { RegistroService } from '../service/registro.service';
 export class RegistroComponent {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private registroService: RegistroService) {
+  constructor(
+    private fb: FormBuilder, 
+    private registroService: RegistroService,
+    private router: Router // Inyecta Router
+  ) {
     this.registerForm = this.fb.group({
       docType: ['', Validators.required],
       docNumber: ['', Validators.required],
@@ -38,8 +43,7 @@ export class RegistroComponent {
 
       this.registroService.crearCliente(clienteData).subscribe(
         response => {
-          console.log('Cliente registrado exitosamente', response);
-          // Redirigir o mostrar un mensaje de éxito
+          this.router.navigate(['/login']); // Redirige a la página de inicio de sesión
         },
         error => {
           console.error('Error al registrar el cliente', error);
