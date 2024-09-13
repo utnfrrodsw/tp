@@ -86,7 +86,7 @@ const UserSchema = {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'cities',
+            model: 'Cities',
             key: 'id_city'
         },
         onUpdate: 'CASCADE',
@@ -97,7 +97,7 @@ const UserSchema = {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'cities',
+            model: 'Cities',
             key: 'id_province'
         },
         onUpdate: 'CASCADE',
@@ -108,7 +108,7 @@ const UserSchema = {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'cities',
+            model: 'Cities',
             key: 'id_country'
         },
         onUpdate: 'CASCADE',

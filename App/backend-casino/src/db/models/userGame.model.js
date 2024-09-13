@@ -18,7 +18,7 @@ const UserGameSchema = {
         allowNull:false,
         type: DataTypes.INTEGER,
         references:{
-            model: 'games',
+            model: 'Games',
             key: 'id_game'
         },
         onUpdate: 'CASCADE',
@@ -29,7 +29,7 @@ const UserGameSchema = {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'users',
+            model: 'Users',
             key: 'id_user'
         },
         onUpdate: 'CASCADE',

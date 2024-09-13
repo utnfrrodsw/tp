@@ -28,7 +28,7 @@ const ProvinceSchema = {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'countries',
+            model: 'Countries',
             key: 'id_country'
         },
         onUpdate: 'CASCADE',
