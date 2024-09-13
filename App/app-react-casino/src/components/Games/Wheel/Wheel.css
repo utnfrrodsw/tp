@@ -4,8 +4,8 @@
   height: 500px;
   transform: rotate(0deg);
   transition-property: transform;
-  transition-duration: 4s;
-  transition-timing-function: cubic-bezier(.46,-0.12,.37,1);
+  transition-duration: 5.5s;
+  transition-timing-function: cubic-bezier(.08,.33,0,1);
   pointer-events: none;
 }
 
@@ -15,4 +15,13 @@
   font-size: 16px;
   cursor: pointer;
   background-color: var(--amarillo);
+}
+
+.py-5{
+  color:var(--rojo);
+  font-size: 1.5rem;
+}
+
+.mutedButton{
+  margin-left: 10rem;
 }
