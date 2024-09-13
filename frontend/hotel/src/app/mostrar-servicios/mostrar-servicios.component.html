@@ -1,2 +1,13 @@
-<app-header></app-header> 
-<p>mostrar-servicios works!</p>
+<app-header></app-header>
+
+<h1 class="title">Nuestros servicios son:</h1>
+
+<div class="container">
+    <div class="card" *ngFor="let servicios of data">    
+        <h2>{{servicios.nombre}}</h2>
+        <ul>
+            <li>{{servicios.descripcion}}</li>
+            <li class="price">$ {{servicios.precio}}</li>
+        </ul>
+    </div>
+</div>

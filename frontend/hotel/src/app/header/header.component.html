@@ -12,9 +12,23 @@
             <li><a [routerLink]="['/about']" routerLinkActive="active">Nosotros</a></li>
         </ul>
     </nav>
-    
-    <div class="auth-buttons">
+
+    <div class="auth-buttons" *ngIf="!isLoggedIn">
         <a [routerLink]="['/login']" class="login-button">Iniciar sesión</a>
         <a [routerLink]="['/registro']" class="register-button">Registrarse</a>
     </div>
+    <div class="user-info" *ngIf="isLoggedIn">
+        <div class="user-info-container">
+          
+          <div class="dropdown">
+            <button class="dropbtn">
+              {{ userName }} <span class="arrow-down">&#9660;</span>
+            </button>
+            <div class="dropdown-content">
+              <a (click)="logout()">Cerrar sesión</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
 </header>

@@ -1,3 +1,78 @@
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Alinea al final de la barra de navegación */
+  }
+  
+  .user-info-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-name {
+    margin-right: 15px;
+    font-weight: bold;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropbtn:hover {
+    background-color: #0056b3;
+  }
+  
+  .arrow-down {
+    margin-left: 8px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #0056b3;
+  }
+  
+
 header {
     display: flex;
     align-items: center;
@@ -33,6 +108,9 @@ header nav ul {
     margin: 0;
     padding: 0;
 }
+
+
+
 
 header nav ul li {
     margin: 0 30px;

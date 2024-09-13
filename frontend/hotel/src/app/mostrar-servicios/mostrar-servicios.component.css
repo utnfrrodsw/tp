@@ -1,0 +1,54 @@
+.title {
+    font-family: 'Poppins', sans-serif;
+    text-align: center; /* Centra el texto horizontalmente */
+    margin-bottom: 20px; 
+    margin-top: 20px;/* Ajusta el margen inferior según sea necesario */
+}
+
+.container {
+    display: grid; /* Usa grid layout */
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual ancho */
+    gap: 0 10px; /* Separación horizontal de 10px y sin separación vertical */
+    justify-content: center; /* Centra el grid horizontalmente */
+    width: 100%; /* Asegura que el contenedor ocupe el ancho completo del contenedor padre */
+    max-width: 1200px; /* Ajusta el ancho máximo según sea necesario */
+    margin: 0 auto; /* Centra el contenedor en el contenedor padre */
+}
+
+.card { 
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%; /* Asegura que la tarjeta ocupe el ancho completo de la columna */
+    max-width: 400px; /* Máximo ancho para la tarjeta */
+    height: 200px; /* Altura fija para la tarjeta */
+    font-family: 'Poppins', sans-serif;
+    display: flex; /* Usa flexbox para centrar contenido */
+    flex-direction: column; /* Organiza los elementos en una columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+    text-align: center; /* Centra el texto dentro de la tarjeta */
+    margin-top: 10px;
+}
+
+.card ul {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Elimina el relleno predeterminado */
+    margin: 0; /* Elimina el margen predeterminado */
+}
+
+.card li {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px; /* Ajusta el margen inferior */
+}
+
+.card .price {
+    font-weight: bold; 
+    font-size: 25px;/* Hace que el precio esté en negrita */
+}
+
+.card h2 {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px; /* Ajusta el margen inferior */
+}

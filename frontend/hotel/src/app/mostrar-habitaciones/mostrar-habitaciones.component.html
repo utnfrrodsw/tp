@@ -1,2 +1,40 @@
-<app-header></app-header> 
-<p>mostrar-habitaciones works!</p>
+<app-header></app-header>
+<div class="container">
+    <div class="filters-card">
+        <div class="filters">
+            <h1>Filtros</h1>
+            <div class="filter">
+                <label for="price">Precio</label>
+                <input type="number" id="price" placeholder="Precio máximo">
+            </div>
+            <div class="filter">
+                <label for="type">Tipo</label>
+                <select id="type">
+                    <option value="">Todos</option>
+                    <option value="doble">Doble</option>
+                    <option value="simple">Simple</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label for="capacity">Capacidad</label>
+                <input type="number" id="capacity" placeholder="Capacidad mínima">
+            </div>
+        </div>
+    </div>
+  
+    <div class="cards">
+        <div class="card custom-card" *ngFor="let habitacion of data">
+            <img [src]="habitacion.foto" class="custom-card-img" alt="Foto de la habitación">
+            <div class="custom-card-body">
+                <h5 class="card-title">Habitación N° {{ habitacion.nroHabitacion }} - {{ habitacion.tipo }}</h5>
+                <p class="card-text">
+                    Descripción: {{ habitacion.descripcion }} <br>
+                    Capacidad: {{ habitacion.capacidadPersonas }} personas <br>
+                    Precio por día: ${{ habitacion.precioXdia }} <br>
+                    Estado: {{ habitacion.estado }}
+                </p>
+                <button class="btn-reservar">Reservar</button>
+            </div>
+        </div>
+    </div>
+</div>
