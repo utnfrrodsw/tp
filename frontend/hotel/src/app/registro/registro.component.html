@@ -1,44 +1,42 @@
-<app-header></app-header> 
+<app-header></app-header>
 <div class="register-container">
-    <div class="register-box">
-      <h1>Regístrate</h1>
-  
-      <form>
-        <div class="input-group">
-          <input type="text" placeholder="Tipo de documento" required />
-        </div>
-        <div class="input-group">
-          <input type="text" placeholder="Número de documento" required />
-        </div>
-        <div class="input-group">
-          <input type="text" placeholder="Nombre" required />
-        </div>
-        <div class="input-group">
-          <input type="text" placeholder="Apellido" required />
-        </div>
-        <div class="input-group">
-          <select required>
-            <option value="" disabled selected>Sexo</option>
-            <option value="male">Masculino</option>
-            <option value="female">Femenino</option>
-            <option value="other">Otro</option>
-          </select>
-        </div>
-        <div class="input-group">
-          <input type="date" placeholder="Fecha de nacimiento" required />
-        </div>
-        <div class="input-group">
-          <input type="email" placeholder="Correo electrónico" required />
-        </div>
-        <div class="input-group">
-          <input type="password" placeholder="Contraseña" required />
-        </div>
-  
-        <button type="submit">Regístrate</button>
-      </form>
-  
-      <p class="login-link">¿Ya tienes una cuenta? <a href="#">Inicia sesión</a></p>
-    </div>
+  <div class="register-box">
+    <h1>Regístrate</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <input formControlName="docType" type="text" placeholder="Tipo de documento" />
+      </div>
+      <div class="input-group">
+        <input formControlName="docNumber" type="text" placeholder="Número de documento" />
+      </div>
+      <div class="input-group">
+        <input formControlName="firstName" type="text" placeholder="Nombre" />
+      </div>
+      <div class="input-group">
+        <input formControlName="lastName" type="text" placeholder="Apellido" />
+      </div>
+      <div class="input-group">
+        <select formControlName="gender">
+          <option value="" disabled selected>Sexo</option>
+          <option value="male">Masculino</option>
+          <option value="female">Femenino</option>
+          <option value="other">Otro</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <input formControlName="birthdate" type="date" />
+      </div>
+      <div class="input-group">
+        <input formControlName="email" type="email" placeholder="Correo electrónico" />
+      </div>
+      <div class="input-group">
+        <input formControlName="password" type="password" placeholder="Contraseña" />
+      </div>
+
+      <button type="submit">Regístrate</button>
+    </form>
+
+    <p class="login-link">¿Ya tienes una cuenta? <a href="#">Inicia sesión</a></p>
   </div>
-  
-  
+</div>

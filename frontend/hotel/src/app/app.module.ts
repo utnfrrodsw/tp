@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http'; // Importa HttpClientModule y withFetch
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MostrarHabitacionesDisponiblesComponent } from './mostrar-habitaciones-disponibles/mostrar-habitaciones-disponibles.component';
 import { ReservasClienteComponent } from './reservas-cliente/reservas-cliente.component';
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
@@ -34,8 +34,11 @@ import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
-    HttpClientModule // Agrega HttpClientModule al imports
+  
+    HttpClientModule ,
+    // Agrega HttpClientModule al imports
   ],
   providers: [
     provideClientHydration(),
