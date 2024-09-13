@@ -18,9 +18,9 @@ class UsersGamesService{
 
     async query1(){
         const res = await models.UserGame.sequelize.query(`select ug.id_user, us.username, ug.bet, max(ug.winning) as winning, ga.name as game
-        from usergames ug
-        inner join users us on ug.id_user = us.id_user
-        inner join games ga on ug.id_game = ga.id_game
+        from UserGames ug
+        inner join Users us on ug.id_user = us.id_user
+        inner join Games ga on ug.id_game = ga.id_game
         where ug.winning > 0
         group by ug.id_user, us.username, ga.name, ug.bet`, {
             type: QueryTypes.SELECT

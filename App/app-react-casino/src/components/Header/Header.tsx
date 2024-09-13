@@ -40,10 +40,10 @@ export function Header({ balance, profile, role, username }: HeaderProps) {
                         <div className='header-content'>
                             <div className='space-x-10'>
                                 <a onClick={() => setModalOpen(true)} className='balance'>
-                                    $ {balance} <img className='balance-img' src="../../src/assets/images/mp-logo.svg" alt="" />
+                                    $ {balance} <img className='balance-img' src="../../src/assets/images/mp-logo-color.png" alt="" />
                                 </a>
                                 <Link to="/leaderboard" className="nav-item">Leaderboards</Link>
-                                <Link to="/daily" className="nav-item">Daily Free</Link>
+                                {/* <Link to="/daily" className="nav-item">Daily Free</Link> */}
                                 <div><HeaderToggle toggle={toggleMenu} open={open} /></div>
                             </div>
                         </div>

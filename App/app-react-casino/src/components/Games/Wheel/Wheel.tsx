@@ -150,6 +150,10 @@ export function Wheel(user) {
 
   const montoApuesta = (event: ChangeEvent<HTMLInputElement>) => {
     const monto = parseFloat(event.target.value);
+    const inputValue = event.target.value;
+    if (isNaN(monto) || inputValue === "") {
+      setMonto(0);
+    } else {
     setMonto(monto);
     calcularVerde(monto);
     calcularBlanco(monto);
@@ -157,6 +161,7 @@ export function Wheel(user) {
     calcularVioleta(monto);
     calcularNaranja(monto);
   }
+}
 
   const calcularVerde = (monto: number) => {
     const ganarVerde = parseFloat((1.5 * monto).toFixed(2));
@@ -189,7 +194,7 @@ export function Wheel(user) {
       <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
       <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
         <label className="">Stake amount</label>
-        <input step="0.01" className="bg-[color:var(--blanco)] text-black rounded-[20px] p-2 w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta}/>
+        <input step="0.01" className="bg-[color:var(--blanco)] text-black rounded-[20px] p-2 w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta} inputMode='numeric'/>
         <label className="">Gray <span className='font-bold'>x0.00</span></label>
         <input className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
         <label className="">Green <span className='font-bold'>x1.50</span></label>
