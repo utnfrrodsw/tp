@@ -6,7 +6,7 @@ const em = orm.em
 
 async function findAll( req: Request, res: Response ){
   try{
-    const shelter = await em.find(Shelter, {});
+    const shelter = await em.find(Shelter, {}, {populate:['rescues']});
     res.status(200).json({message: 'all shelters: ', data: shelter });
   } catch (error: any){
     res.status(500).json({message: error.message});

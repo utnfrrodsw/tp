@@ -7,9 +7,10 @@ POST http://localhost:3000/api/rescue
 Content-Type: application/json
 
 {
-    "rescue_date": "06-06-2024", 
+    "rescue_date": "08-10-2024", 
     "description": "Gato solitario",
-    "comments": ""
+    "comments": "prueba",
+    "shelters": [2]
 }
 
 ###ID
