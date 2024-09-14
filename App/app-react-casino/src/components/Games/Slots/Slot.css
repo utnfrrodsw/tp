@@ -3,7 +3,7 @@
         background-color: var(--amarillo);
     }
     50%{
-        background-color: #C99B10;
+        background-color: var(--amarilloHover);
     }
     100%{
         background-color: var(--amarillo);

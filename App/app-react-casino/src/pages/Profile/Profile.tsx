@@ -103,25 +103,22 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone, pa
             </div>
             <div className="right-side">
                 <div className="user-info-section">
-                    <h2 className="section-title">My Profile</h2>
+                    <h2 className="section-title font-extrabold">My Profile</h2>
                     <form>
                         <div className="user-details">
                             <label className="user-details-label">Username</label>
                             <input type="text" value={username || ''} readOnly className="input-field" />
-
                             <label className="user-details-label">Email</label>
                             <input type="email" value={email || ''} readOnly className="input-field" />
-
                             <label className="user-details-label">Phone</label>
                             <input type="tel" value={phone || ''} readOnly className="input-field" />
-
                             <label className="user-details-label">New Password</label>
                             <input
                                 type="password"
                                 placeholder='Enter your new password'
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
-                                className="input-field"
+                                className="input-field text-gray-900"
                             />
                             <label className="user-details-label">Confirm Password</label>
                             <input
@@ -129,7 +126,7 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone, pa
                                 placeholder='Enter your new password again'
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                className="input-field"
+                                className="input-field text-gray-900"
                             />
                             <button type="button" className="change-button" >Change Password</button>
                         </div>

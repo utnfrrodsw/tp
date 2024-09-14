@@ -7,7 +7,13 @@ class UsersGamesService{
     }
 
     async find(){
-        const res = await models.UserGame.findAll()
+        const res = await models.UserGame.sequelize.query(`select ug.bet, ug.winning as winning, ga.name as game
+            from UserGames ug
+            inner join Games ga on ug.id_game = ga.id_game
+            where ug.winning > 0
+            `, {
+                type: QueryTypes.SELECT
+            })
         return res;
     }
 

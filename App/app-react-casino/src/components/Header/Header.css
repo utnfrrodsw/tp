@@ -1,7 +1,4 @@
-.header {
-    color: red;
-    background-color: var(--verde);
-}
+
 
 @keyframes spin {
     from {
@@ -12,12 +9,12 @@
     }
 }
 
-@keyframes opacity {
+@keyframes select {
     0% {
         color: var(--blanco);
     }
     50% {
-        color: #ccc578;
+        color: var(--blancoHover);
     }
     100%{
         color: var(--blanco);
@@ -39,6 +36,15 @@
     border: 2px solid transparent;
     border-radius: 5px;
     text-shadow: 0px 1px #814c19;
+}
+
+.nav-item:hover {
+    animation-name: select;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.41,.54,.54,.41);
+    transition: 10ms;
+    transition-timing-function: ease-in-out;
 }
 
 .gold-button:hover {
@@ -72,13 +78,17 @@
     align-items: center;
     justify-content: space-between;
     margin-right: auto;
-    border: 2px solid var(--verde); 
+    border: 2px solid #e19400; 
     background-color: rgba(106, 13, 173, 0.3);
     border-radius: 5px; 
     padding: 5px;
     width: auto;
     min-width: 120px;
     height: 44px;
+}
+
+.balance:hover{
+    cursor: pointer;
 }
 
 .balance-img {

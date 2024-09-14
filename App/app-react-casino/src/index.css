@@ -1,10 +1,14 @@
 :root {
   /*--blanco: #ebe9fc;*/
-  --blanco : #F0F0D8 ; 
+  --blanco : #F0F0D8;
+  --blancoHover: #ccc578; 
   --negro: #0D0B16;
   --amarillo: #FABC01;
+  --amarilloHover: #C99B10;
   --verde: #70AE6E;
+  --verdeHover: #5A9D58;
   --rojo: #D81536;
+  --rojoHover: #A7112A;
   --violeta: #181529;
   font-family: Outfit, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }

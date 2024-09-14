@@ -1,3 +1,4 @@
+
 .profile-container {
     display: flex;
     margin: 100px 0 30px;
@@ -15,6 +16,15 @@
     align-items: center; 
 }
 
+.menu-item:hover{
+    animation-name: select;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.41,.54,.54,.41);
+    transition: 10ms;
+    transition-timing-function: ease-in-out;
+}
+
 .profile-header {
     text-align: center;
     width: 100%; 
@@ -25,7 +35,7 @@
 }
 
 .avatar {
-    border-radius: 20px;
+    border-radius: 100px;
     width: 120px;
     height: 120px;
     margin-bottom: 10px;
@@ -62,9 +72,18 @@
     background-color: var(--rojo);
     border: none;
     padding: 10px;
-    color: var(--blanco);
+    border-radius: .3rem;
+    color: var(--negro);
     cursor: pointer;
     margin-top: 20px;
+    transition-duration: 200ms;
+    transition-timing-function: 200ms;
+}
+
+.logout-button:hover{
+    background-color: var(--rojoHover);
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
 }
 
 .right-side {
@@ -80,10 +99,12 @@
     margin-bottom: 20px;
 }
 
+
 .user-details-label {
-    color: #999;
     display: block;
     margin-bottom: 5px;
+    margin-top: 6px;
+    
 }
 
 .input-container {
@@ -103,12 +124,21 @@
 }
 
 .change-button {
-    background-color: var(--verde);
+    background-color: var(--amarillo);
     border: none;
+    border-radius: .3rem;
     padding: 10px;
-    color: var(--blanco);
+    color: var(--negro);
     cursor: pointer;
     margin-top: 1rem;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+}
+
+.change-button:hover {
+    background-color: var(--amarilloHover);
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
 }
 
 .modal {
@@ -139,8 +169,57 @@
     padding: 20px;
     cursor: pointer;
     margin-bottom: 10px;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+}
+
+.dropzone:hover {
+    border: 2px solid var(--blancoHover);
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    animation: select;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
 }
 
 .upload-button {
     margin-right: 20px;
+    background-color: var(--amarillo);
+    border: none;
+    border-radius: .3rem;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: var(--negro);
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.upload-button:hover{
+    animation: opacity;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+}
+
+.cancel-button {
+    margin-right: 20px;
+    background-color: var(--rojo);
+    border: none;
+    border-radius: .3rem;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: var(--negro);
+    cursor: pointer;
+    margin-top: 1rem;
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+}
+
+.cancel-button:hover{
+    background-color: var(--rojoHover);
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
 }

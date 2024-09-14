@@ -18,7 +18,6 @@ import { Details } from './components/Axios/Details/Details.tsx'
 import { EditUser } from './components/Axios/EditUser/EditUser.tsx'
 import { Leaderboard } from './components/Axios/Leaderboard/Leaderboard.tsx'
 
-import { LoginAgus } from './components/LoginAgus/LoginAgus.tsx'
 import { RegisterAgus } from './components/RegisterAgus/RegisterAgus.tsx'
 
 import { Terms } from './pages/Terms/Terms.tsx'
@@ -112,10 +111,6 @@ export function App() {
                     <Route path={'/bettinghistory'} element={<BettingHistory/>} />
                     <Route path={profile} element={<Profile id={userData?.id_user} username={userData?.username} email={userData?.email} phone={userData?.phone} password={userData?.password} />} />
 
-
-
-    
-                    <Route path='/login' element={<LoginAgus />} />
                     <Route path='/register' element={<RegisterAgus />} />
                     
                 </Routes>
