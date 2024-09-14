@@ -14,34 +14,55 @@ async function findAll( req: Request, res: Response ){
 }
 
 async function findOne( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-async function add( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-async function update( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-async function remove( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-function sanitizeBreedInput(req: Request, res: Response, next:NextFunction){
-  req.body.sanitizedBreed = {
-    name: req.body.name,
-    description: req.body.description,
-    id: req.body.id,
+  try {
+    const id = Number.parseInt(req.params.id)
+    const breed = await em.findOneOrFail(Breed, { id })
+    res
+      .status(200)
+      .json({ message: 'found character class', data: breed })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
   }
-
-    Object.keys(req.body.sanitizedBreedInput).forEach((key) => {
-    if (req.body.sanitizedBreedInput[key] === undefined) {
-      delete req.body.sanitizedBreedInput[key]
-    }
-  })
-  next()
 }
 
-export { findAll, findOne, add, update, remove, sanitizeBreedInput }
+
+async function add(req: Request, res: Response) {
+  try {
+    const breed = em.create(Breed, req.body)
+    await em.flush()
+    res
+      .status(201)
+      .json({ message: 'character class created', data: breed })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+async function update(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id)
+    const breed = em.getReference(Breed, id)
+    em.assign(breed, req.body)
+    await em.flush()
+    res.status(200).json({ message: 'breed updated' })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+
+async function remove(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id)
+    const breed = em.getReference(Breed, id)
+    await em.removeAndFlush(breed)
+    res.status(200).send({ message: 'character class deleted' })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+
+
+
+export { findAll, findOne, add, update, remove}

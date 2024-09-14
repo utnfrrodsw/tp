@@ -1,7 +1,6 @@
 import { 
   Entity,
   OneToMany,
-  PrimaryKey,
   Property,
   Cascade,
   Collection

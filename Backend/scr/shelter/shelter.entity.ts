@@ -1,27 +1,30 @@
 import { 
   Entity,
-  OneToMany,
-  ManyToOne,
-  PrimaryKey,
   Property,
-  Cascade,
   Collection,
+  ManyToMany,
+  ManyToOne,
+  Cascade,
   Rel
 } from "@mikro-orm/core";
 import { BaseEntity } from "../zshare/db/baseEntity.entity.js";
-import { Zone } from "../zone/zone.entity.js"
-
+import { Rescue } from "../rescue/rescue.entity.js";
+import { Zone } from "../zone/zone.entity.js";
 @Entity()
 export class Shelter extends BaseEntity {
-  @Property({nullable: false})
+  [x: string]: any;
+  @Property({nullable: false, unique: true})
   name!: string
 
-  @Property({nullable: false})
+  @Property()
   address!: string
 
-  @Property({nullable: false})
+  @Property()
   max_capacity!: number
-  
+
   @ManyToOne(() => Zone, {nullable: false})
   zone!: Rel<Zone>;
+
+  @ManyToMany(() => Rescue, (rescue) => rescue.shelters, {  owner: true, nullable: true,   cascade: [Cascade.ALL] }, )
+  rescues = new Collection<Rescue>(this)
 }
