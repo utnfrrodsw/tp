@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { BuscaClienteService } from '../service/busca-cliente.service';
 
 @Component({
   selector: 'app-header',
@@ -10,23 +11,35 @@ export class HeaderComponent {
   isLoggedIn: boolean = false;
   userName: string = '';
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private buscaCliente: BuscaClienteService
+  ) {
     this.checkLoginStatus();
   }
 
   checkLoginStatus() {
-    // Verificar si hay un token en localStorage
+    const idCliente = localStorage.getItem('idCliente');
     const token = localStorage.getItem('authToken');
     this.isLoggedIn = !!token;
-    if (this.isLoggedIn) {
+    if (this.isLoggedIn && idCliente) {
       
-      this.userName = 'Usuario';
+      this.buscaCliente.getClienteById(Number(idCliente)).subscribe({
+        next: (cliente) => {
+          const apellidoYnombre = cliente.apellidoYnombre;
+          const [apellido, nombre] = apellidoYnombre.split(' '); 
+          this.userName = nombre; 
+        },
+        error: (err) => {
+          console.error('Error al obtener el cliente:', err);
+        }
+      });
     }
   }
 
   logout() {
-    // Eliminar el token y redirigir al inicio
+    
     localStorage.removeItem('authToken');
+    localStorage.removeItem('idCliente');
     this.isLoggedIn = false;
     this.router.navigate(['/']);
   }
