@@ -1,8 +1,19 @@
+@keyframes opacity{
+    0% {
+        background-color: var(--amarillo);
+    }
+    50%{
+        background-color: var(--amarilloHover);
+    }
+    100%{
+        background-color: var(--amarillo);
+    }
+}
+
 .tragamonedas {
-    height: 100vh;
-    width: 50%;
-    margin: 6rem auto;
+    height: 90vh;
     display: flex;
+    margin-top: 5.5rem;
     justify-content: top;
     align-items: center;
     flex-direction: column;
@@ -12,6 +23,11 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
     text-align: center;
+    font-size: 2rem;
+    color: #facc01;
+    font-weight: bold;
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .reel {
@@ -27,11 +43,130 @@
 .slots {
     display: flex;
     gap: 2rem;
+    background-color: rgba(0, 0, 0, 0.541);
+    padding: 2rem;
 }
 
 .buttonTragamonedas {
     padding: 1rem;
     background-color: var(--amarillo);
     margin-top: 1rem;
-    border: 2px solid black;
+    border: 2px solid var(--negro);
+    color: var(--negro);
+    border-radius: .8rem;
+}
+
+.buttonTragamonedas:hover {
+    animation-name: opacity;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.41,.54,.54,.41);
+    transition: 10ms;
+    transition-timing-function: ease-in-out;
+}
+
+.buttonDisabled {
+    pointer-events: none;
+    background-color: #be8f00;
+}
+
+.slotsBG {
+    width: 100%;
+    height: 90vh;
+    background-image: url("../../../assets/images/slotBG.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.slotsMessages {
+    height: 10%;
+    width: 100%;
+}
+
+.message {
+    text-align: center;
+    color: rgba(250, 0, 0, 0.952);
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.mutedButton {
+    position: absolute;
+    right: 0;
+    background-color: white;
+    border-radius: 10px;
+    padding: .5rem;
+    margin: .5rem;
+}
+
+.mutedEnabled {
+    background-color: rgb(199, 199, 199);
+}
+
+.buttonsBet {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 600px) {
+    .buttonsBet {
+        flex-direction: row;
+        gap: 2rem;
+    }
+}
+
+.gameInstructions {
+    width: 80%;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #181529;
+    border-radius: 20px;
+}
+
+.gameInstructionTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.gameInstructionText {
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+}
+
+.instructionsButtonRef {
+    display: none;
+    position: absolute;
+    left: 0;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: var(--amarillo);
+    border-radius: 10px;
+    color: var(--negro);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: .2s;
+    transition-timing-function: ease-in-out;
+    opacity: 85%;
+}
+
+.instructionsButtonRef:hover {
+    transition: .2s;
+    transition-timing-function: ease-in-out;
+    background-color: var(--amarillo);
+    opacity: 100%;
+}
+
+@media (min-width: 600px) {
+    .instructionsButtonRef  {
+        display: block;
+    }
 }

@@ -1,7 +1,4 @@
-.header {
-    color: red;
-    background-color: var(--verde);
-}
+
 
 @keyframes spin {
     from {
@@ -12,12 +9,12 @@
     }
 }
 
-@keyframes opacity {
+@keyframes select {
     0% {
         color: var(--blanco);
     }
     50% {
-        color: #ccc578;
+        color: var(--blancoHover);
     }
     100%{
         color: var(--blanco);
@@ -34,28 +31,68 @@
 .gold-button {
     color: #C2752E;
     padding: 5px 16px 7px 16px;
-    background: linear-gradient(to right, #D8751A, #FFB341 10%, #FFD076 30%, #F3B131 60%, #FFC961 80%, #D8751A 100%) padding-box,
-                linear-gradient(#FFD976, #D8751A) border-box;
+    background: linear-gradient(to right, #D8751A, #FFB341 10%, #FFD076 30%, #F3B131 60%, #FFC961 80%, #D8751A 100%) padding-box, 
+    linear-gradient(#FFD976, #D8751A) border-box;
     border: 2px solid transparent;
     border-radius: 5px;
     text-shadow: 0px 1px #814c19;
 }
 
-.gold-button:hover {
-    background: linear-gradient(to left, #D8751A, #FFB341 10%, #FFD076 30%, #F3B131 60%, #FFC961 80%, #D8751A 100%) padding-box,
-                linear-gradient(to top, #FFD976, #D8751A) border-box;   
-}
-
-.nav{
-    backdrop-filter: blur(5px);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
-}
-
-.nav-item:hover{
-    animation-name: opacity;
+.nav-item:hover {
+    animation-name: select;
     animation-duration: 1000ms;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(.41,.54,.54,.41);
     transition: 10ms;
     transition-timing-function: ease-in-out;
+}
+
+.gold-button:hover {
+    background: linear-gradient(to left, #D8751A, #FFB341 10%, #FFD076 30%, #F3B131 60%, #FFC961 80%, #D8751A 100%) padding-box,
+                linear-gradient(to top, #FFD976, #D8751A) border-box;
+}
+
+.nav{
+    backdrop-filter: blur(5px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.space-x-10 {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    margin-left: auto; 
+}
+
+.balance {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: auto;
+    border: 2px solid #e19400; 
+    background-color: rgba(106, 13, 173, 0.3);
+    border-radius: 5px; 
+    padding: 5px;
+    width: auto;
+    min-width: 120px;
+    height: 44px;
+}
+
+.balance:hover{
+    cursor: pointer;
+}
+
+.balance-img {
+    margin-left: 5px;
+    height: 25px;
+    width: auto;
 }

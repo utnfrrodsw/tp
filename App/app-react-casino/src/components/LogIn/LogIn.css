@@ -5,22 +5,36 @@
     top: 0;
     left: 0;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.479);
+    background-color: rgba(31, 31, 31, 0.479);
     z-index: 10;
     display: flex;
+    transition: backdrop-filter .2s ease-in;
     justify-content: center;
     align-items: center;
+
+    @starting-style{
+        backdrop-filter: blur(0px);
+    }
 }
+
+   
 
 .login {
     min-height: 550px;
+    transform: translateY(0px);
     width: 60%;
     margin: .5rem;
     z-index: 20;
     background-color: var(--negro);
     border-radius: 2rem;
     display: flex;
+    transition: transform .2s ease-in-out;
+
+    @starting-style {
+        transform: translateY(-1000px);
+    }
 }
+
 
 .login_leftside {
     display: flex;

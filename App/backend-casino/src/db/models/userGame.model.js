@@ -8,7 +8,7 @@ class UserGame extends Model{
             sequelize,
             tablename: USERSGAMES_TABLE,
             modelname: 'usersgames',
-            timestamps: false
+            updatedAt: false
         }
     }
 }
@@ -18,7 +18,7 @@ const UserGameSchema = {
         allowNull:false,
         type: DataTypes.INTEGER,
         references:{
-            model: 'games',
+            model: 'Games',
             key: 'id_game'
         },
         onUpdate: 'CASCADE',
@@ -29,18 +29,12 @@ const UserGameSchema = {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'users',
+            model: 'Users',
             key: 'id_user'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         primaryKey: true
-    },
-    datePlayed:{
-        allowNull: false,
-        type: DataTypes.DATE,
-        primaryKey: true,
-        modelname: 'date_played'
     },
     bet: {
         type: DataTypes.FLOAT,
@@ -49,6 +43,11 @@ const UserGameSchema = {
     winning: {
         type: DataTypes.FLOAT,
         allowNull: true
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        primaryKey: true
     }
 
     }

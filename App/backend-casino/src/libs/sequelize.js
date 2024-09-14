@@ -9,8 +9,10 @@ const sequelize = new Sequelize(
     config.dbPassword,
     {
         host: config.dbHost,
-        dialect: 'mysql'
+        dialect: 'mysql',
+        timezone: "-03:00"
     }
+    
 );
 
 sequelize.sync();

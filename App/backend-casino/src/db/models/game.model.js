@@ -39,7 +39,7 @@ const GameSchema = {
         type: DataTypes.INTEGER,
         field: "id_category",
         references: {
-            model: 'categories',
+            model: 'Categories',
             key: 'id_category'
         },
         onUpdate: 'CASCADE',

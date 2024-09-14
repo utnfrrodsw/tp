@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink as Link } from 'react-router-dom'
+import { NavLink as Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import './LogIn.css'
 
@@ -8,16 +8,19 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
 
+    let navigate = useNavigate()
+
     const handleSubmit = async () => {
         try{
             const response = 
                 await axios.post('http://localhost:3000/api/v1/login',
                     { username, password });
-            setMessage(response.data.message || 'Login successful');
-            console.log('Sesion iniciada')
+            setMessage(response.data);
+            navigate("/")
+            window.location.reload();
+            localStorage.setItem('jwt-token', response.data.accessToken)
         } catch (error) {
-            setMessage(error.response?.data?.message || 'Login failed');
-            console.error(error)
+            setMessage(error.response.data);
         }
     };
 

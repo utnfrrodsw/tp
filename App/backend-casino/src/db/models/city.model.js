@@ -28,7 +28,7 @@ const CitySchema = {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'provinces',
+            model: 'Provinces',
             key: 'id_province'
         },
         onUpdate: 'CASCADE',
@@ -40,7 +40,7 @@ const CitySchema = {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'provinces',
+            model: 'Provinces',
             key: 'id_country'
         },
         onUpdate: 'CASCADE',

@@ -1,13 +1,26 @@
 ### Checklist DSW 9/8/24
 
-- [ ] Completar los 2 listados con filtro
+- [X] Completar los 2 listados con filtro
 - [x] Portear la pagina a Mobile-First
-- [ ] Completar juegos
-- [ ] Sistema Login-Register
-- [ ] Perfil del usuario
+- [X] Completar juegos
+- [x] Sistema Login-Register
+- [X] Perfil del usuario
 - [x] Completar las micropaginas
 - [ ] Mejorar listado estatico
 - [x] Completar pagina de error
-- [ ] Mejorar pagina de juegos
+- [x] Mejorar pagina de juegos
 - [x] Completar sidebar
-- [ ] Email Form
+- [x] Email Form
+
+### Checklist DSW 14/9/24
+- [] Error: Cuando se desconecta un usuario la IMG se elimina
+- [] Mejorar Leaderboard Page (CSS, Quitar ID, ?Poner foto de perfil)
+- [] Mejorar Betting History Page (CSS, Menu para volver al profile)
+- [] Dice Funcional
+- [] Rutas Seguras (Admin-Uses)
+- [] Agus: Cuando se mutean los sonidos cambiar Icon
+- [] Bajarle el volumen a los sonidos
+- [] Big Wheel Responsive
+- [] Arreglar detalles Login
+- [] Mejorar Register Page (Agus)
+- [] Cambiar Accepted Currencies & Sponsors
