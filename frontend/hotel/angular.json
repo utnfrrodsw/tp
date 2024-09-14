@@ -9,6 +9,7 @@
         "@schematics/angular:component": {
           "standalone": false
         },
+        
         "@schematics/angular:directive": {
           "standalone": false
         },

@@ -29,29 +29,30 @@ export class RegistroComponent {
     });
   }
 
-  onSubmit() {
-    if (this.registerForm.valid) {
-      const clienteData = {
-        nroDni: this.registerForm.value.docNumber,
-        tipoDni: this.registerForm.value.docType,
-        apellidoYnombre: `${this.registerForm.value.lastName} ${this.registerForm.value.firstName}`,
-        sexo: this.registerForm.value.gender,
-        fechaNac: new Date(this.registerForm.value.birthdate).toISOString(),
-        email: this.registerForm.value.email,
-        contrasena: this.registerForm.value.password
-      };
+onSubmit() {
+  if (this.registerForm.valid) {
+    const clienteData = {
+      // No incluyas idCli si es generado por el backend
+      nroDni: this.registerForm.value.docNumber,
+      tipoDni: this.registerForm.value.docType,
+      apellidoYnombre: `${this.registerForm.value.lastName} ${this.registerForm.value.firstName}`,
+      sexo: this.registerForm.value.gender,
+      fechaNac: new Date(this.registerForm.value.birthdate).toISOString(),
+      email: this.registerForm.value.email,
+      contrasena: this.registerForm.value.password
+    };
 
-      this.registroService.crearCliente(clienteData).subscribe(
-        response => {
-          this.router.navigate(['/login']); // Redirige a la página de inicio de sesión
-        },
-        error => {
-          console.error('Error al registrar el cliente', error);
-          // Mostrar un mensaje de error
-        }
-      );
-    } else {
-      // Mostrar un mensaje de error si el formulario es inválido
-    }
+    this.registroService.crearCliente(clienteData).subscribe(
+      response => {
+        this.router.navigate(['/login']); // Redirige a la página de inicio de sesión
+      },
+      error => {
+        console.error('Error al registrar el cliente', error);
+        // Mostrar un mensaje de error
+      }
+    );
+  } else {
+    // Mostrar un mensaje de error si el formulario es inválido
   }
+}
 }

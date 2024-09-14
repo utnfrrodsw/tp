@@ -10,15 +10,36 @@ const obtenerTodosLosClientes = async (req, res) => {
     }
   };
 
-const crearCliente = async (req, res) => {
-  try {
-    const cliente = new Cliente(req.body);
-    await cliente.save();
-    res.status(201).json(cliente);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+  const crearCliente = async (req, res) => {
+    try {
+      
+      const ultimoCliente = await Cliente.findOne().sort({ idCli: -1 });
+  
+      
+      const clienteData = {
+        idCli: ultimoCliente ? ultimoCliente.idCli + 1 : 1, 
+        nroDni: req.body.nroDni,
+        tipoDni: req.body.tipoDni,
+        apellidoYnombre: req.body.apellidoYnombre,
+        sexo: req.body.sexo,
+        fechaNac: req.body.fechaNac,
+        email: req.body.email,
+        contrasena: req.body.contrasena
+      };
+  
+      
+      const cliente = new Cliente(clienteData);
+  
+      
+      await cliente.save();
+  
+      
+      res.status(201).json(cliente);
+    } catch (error) {
+      
+      res.status(400).json({ message: error.message });
+    }
+  };
 
 const buscarClientePorDNI = async (req, res) => {
   try {

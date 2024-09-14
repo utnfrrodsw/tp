@@ -1,42 +1,47 @@
 <app-header></app-header>
-<div class="register-container">
-  <div class="register-box">
-    <h1>Regístrate</h1>
+<div class="container">
+  <img src="https://media.revistaad.es/photos/620504651db9f1841aebdd55/3:2/w_4236,h_2824,c_limit/Stella_Maris_Exterior.jpg" alt="Imagen">
+
+  <div class="form-container">
+    <h1>Registrarse</h1>
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="input-group">
-        <input formControlName="docType" type="text" placeholder="Tipo de documento" />
+      <div class="field-container">
+        <input formControlName="firstName" type="text" placeholder="Nombre">
       </div>
-      <div class="input-group">
-        <input formControlName="docNumber" type="text" placeholder="Número de documento" />
+      <div class="field-container">
+        <input formControlName="lastName" type="text" placeholder="Apellido">
       </div>
-      <div class="input-group">
-        <input formControlName="firstName" type="text" placeholder="Nombre" />
+      <div class="field-container">
+        <input formControlName="email" type="email" placeholder="Correo electrónico">
       </div>
-      <div class="input-group">
-        <input formControlName="lastName" type="text" placeholder="Apellido" />
+      <div class="field-container">
+        <input formControlName="password" type="password" placeholder="Contraseña">
       </div>
-      <div class="input-group">
-        <select formControlName="gender">
-          <option value="" disabled selected>Sexo</option>
-          <option value="male">Masculino</option>
-          <option value="female">Femenino</option>
-          <option value="other">Otro</option>
+      <div class="field-container">
+        <input formControlName="docNumber" type="text" placeholder="Número DNI">
+      </div>
+      <div class="field-container">
+        <select formControlName="docType" class="type-dni">
+          <option value="" disabled selected>Tipo DNI</option>
+          <option value="DNI">DNI</option>
+          <option value="Pasaporte">Pasaporte</option>
         </select>
       </div>
-      <div class="input-group">
-        <input formControlName="birthdate" type="date" />
+      <div class="field-container">
+        <select formControlName="gender" class="gender">
+          <option value="" disabled selected>Sexo</option>
+          <option value="M">Masculino</option>
+          <option value="F">Femenino</option>
+          <option value="O">Otro</option>
+        </select>
       </div>
-      <div class="input-group">
-        <input formControlName="email" type="email" placeholder="Correo electrónico" />
+      <div class="field-container">
+        <input formControlName="birthdate" type="date" placeholder="Fecha de Nacimiento">
       </div>
-      <div class="input-group">
-        <input formControlName="password" type="password" placeholder="Contraseña" />
-      </div>
-
-      <button type="submit">Regístrate</button>
+      <button type="submit">Registrarse</button>
     </form>
 
-    <p class="login-link">¿Ya tienes una cuenta? <a href="#">Inicia sesión</a></p>
+    <p class="login-link">¿Ya tienes una cuenta? <a [routerLink]="['/login']">Inicia sesión</a></p>
   </div>
 </div>

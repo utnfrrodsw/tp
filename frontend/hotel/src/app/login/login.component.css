@@ -10,11 +10,20 @@ body, html {
   margin: 0;
 }
 
+app-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+    
+}
+
 .container {
   display: flex;
-  height: 93vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
-  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  height: calc(100vh - 52px); /* Ajusta la altura del contenedor para tener en cuenta el header */
+  width: 100%;
   overflow: hidden; /* Evita el scroll horizontal y vertical */
+  margin-top: 52px; /* Añade un margen superior para evitar que el contenido se solape con el header */
 }
 
 .left-section {
