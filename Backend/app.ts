@@ -5,6 +5,7 @@ import { RequestContext } from '@mikro-orm/core';
 
 import { animalRouter } from './scr/animal/animal.router.js';
 import { breedRouter } from './scr/breed/breed.router.js';
+import { rescueRouter } from './scr/rescue/rescue.router.js';
 
 const app = express();
 app.use(express.json());
@@ -18,6 +19,8 @@ app.use((req, res, next ) => {
 
 app.use('/api/breed', breedRouter)
 app.use('/api/animal', animalRouter)
+app.use('/api/rescue', rescueRouter)
+app.use('/api/shelter', rescueRouter)
 
 await syncSchema() //never in production*/
 

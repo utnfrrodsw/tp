@@ -1,85 +1,74 @@
 import { Request, Response, NextFunction } from 'express';
-/*import { AnimalRepository } from './animal.repository.js';*/
-//import { Animal } from './animal.entity.js';
+import { orm } from '../zshare/db/orm.js';
+import { Animal } from './animal.entity.js';
+import { t } from '@mikro-orm/core';
 
-/*const animalRepository = new AnimalRepository();*/
-function sanitizeAnimalInput(req: Request, res: Response, next:NextFunction)
-{
-  req.body.sanitizedAnimal = {
-    name: req.body.name,
-    rescue_date: req.body.rescue_date,
-    birth_date: req.body.birth_date,
-    id: req.body.id
-  }
 
-  Object.keys(req.body.sanitizedAnimal).forEach((key) => {
-    if (req.body.sanitizedAnimal[key] === undefined) {
-      delete req.body.sanitizedAnimal[key]
-    }
-  })
-
-  next()
-}
+const em = orm.em
 
 async function findAll( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
+  try {
+    const characterClasses = await em.find(Animal, {})
+    res
+      .status(200)
+      .json({ message: 'found all animal', data: Animal })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
+  }
 }
+
 
 async function findOne( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-async function add( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-async function update( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-async function remove( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-export { findAll, findOne, add, update, remove, sanitizeAnimalInput }
-/*
-function findAll( req: Request, res: Response ){
-  res.json({data: animalRepository.findAll()});
-}
-
-function findOne( req: Request, res: Response ){
-  const id = req.params.id;
-  const animal = animalRepository.findOne({id});
-  if(!animal){
-    return res.status(404).send({message:'Incorrect ID, no animal with that ID ', id })
+  try {
+    const id = Number.parseInt(req.params.id)
+    const animal = await em.findOneOrFail(Animal, { id })
+    res
+      .status(200)
+      .json({ message: 'found animal', data: animal })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
   }
-  res.json(animal)
 }
 
-function add( req: Request, res: Response ){
-  const input = req.body.sanitizedAnimal
 
-  const animalsInput = new Animal (input.name, input.rescue_date, input.birth_date, input.id)
-  const animal = animalRepository.add(animalsInput)
-  return res.status(201).send({message: 'new animal create', data: animal })
-}
-
-function update(req: Request, res: Response){
-  req.body.sanitizedAnimal.id = req.params.id
-  const animal = animalRepository.update('1', req.body.sanitizedAnimal)
-  if (!animal) {
-    return res.status(404).send({message:'animal not found'})
+async function add(req: Request, res: Response) {
+  try {
+    const characterClass = em.create(Animal, req.body)
+    await em.flush()
+    res
+      .status(201)
+      .json({ message: 'animal created', data: Animal })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
   }
-  return res.status(200).send({message: 'correct animal update', data:  animal})
 }
 
-function remove( req: Request, res: Response ){
-  const id = req.params.id;
-  const animal = animalRepository.delete({id})
-  if(!animal){
-    return res.status(404).send({message:'Incorrect remove, no animal with that ID ', id })
+async function update(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id)
+    const animal = em.getReference(Animal, id)
+    em.assign(animal, req.body)
+    await em.flush()
+    res.status(200).json({ message: 'animal updated' })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
   }
-  return res.status(200).send({message: 'animal deleted', data:  animal})
 }
-*/
+
+
+async function remove(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id)
+    const animal = em.getReference(Animal, id)
+    await em.removeAndFlush(animal)
+    res.status(200).send({ message: 'animal class deleted' })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+
+export { findAll, findOne, add, update, remove }
+
+
 

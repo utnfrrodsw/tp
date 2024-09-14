@@ -6,7 +6,7 @@ import { Shelter } from "../shelter/shelter.entity.js";
 @Entity()
 export class Rescue extends BaseEntity {
   @Property({ nullable: false, unique: true })
-  recue_date!: Date;
+  recue_date?: Date;
 
   @Property()
   description!: string;
@@ -17,9 +17,7 @@ export class Rescue extends BaseEntity {
   @OneToMany(() => Animal, animal => animal.rescueClass, { cascade: [Cascade.ALL] })
   animals = new Collection<Animal>(this);
 
-  @ManyToMany(() => Shelter, (shelter) => shelter.rescues, {
-  cascade: [Cascade.ALL],
-  owner: true,
-  })
-  shelters!: Shelter[]
+  @ManyToMany(() => Shelter, (shelter) => shelter.rescues, {nullable: true,
+  cascade: [Cascade.ALL],})
+  shelters = new Collection<Shelter>(this)
 }
