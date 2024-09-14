@@ -13,14 +13,14 @@
 - [x] Email Form
 
 ### Checklist DSW 14/9/24
-- [] Error: Cuando se desconecta un usuario la IMG se elimina
-- [] Mejorar Leaderboard Page (CSS, Quitar ID, ?Poner foto de perfil)
-- [] Mejorar Betting History Page (CSS, Menu para volver al profile)
-- [] Dice Funcional
-- [] Rutas Seguras (Admin-Uses)
-- [] Agus: Cuando se mutean los sonidos cambiar Icon
-- [] Bajarle el volumen a los sonidos
-- [] Big Wheel Responsive
-- [] Arreglar detalles Login
-- [] Mejorar Register Page (Agus)
-- [] Cambiar Accepted Currencies & Sponsors
+- [ ] Error: Cuando se desconecta un usuario la IMG se elimina
+- [ ] Mejorar Leaderboard Page (CSS, Quitar ID, ?Poner foto de perfil)
+- [ ] Mejorar Betting History Page (CSS, Menu para volver al profile)
+- [ ] Dice Funcional
+- [ ] Rutas Seguras (Admin-Uses)
+- [ ] Agus: Cuando se mutean los sonidos cambiar Icon
+- [ ] Bajarle el volumen a los sonidos
+- [ ] Big Wheel Responsive
+- [ ] Arreglar detalles Login
+- [ ] Mejorar Register Page (Agus)
+- [ ] Cambiar Accepted Currencies & Sponsors
