@@ -4,13 +4,14 @@ import {
   findOne,
   add,
   update,
-  remove 
+  remove,
+  sanitizePersonInput
 } from "./person.controler.js";
 
 export const personRouter = Router();
 
 personRouter.get('/', findAll)
 personRouter.get('/:id', findOne)
-personRouter.post('/', add)
-personRouter.put('/:id', update)
-personRouter.delete('/:id', remove)
+personRouter.post('/', sanitizePersonInput, add)
+personRouter.put('/:id', sanitizePersonInput, update)
+personRouter.delete('/:id', sanitizePersonInput, remove)

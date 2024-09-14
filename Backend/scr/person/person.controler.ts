@@ -25,7 +25,8 @@ async function findOne( req: Request, res: Response ){
 
 async function add( req: Request, res: Response ){
   try{
-    const person = em.create(Person, req.body);
+    const input = req.body.sanitizedPersonInput;
+    const person = em.create(Person, input);
     await em.flush();
     res.status(201).json({ message: 'person created', data: person });
   }catch (error: any) {
@@ -36,8 +37,9 @@ async function add( req: Request, res: Response ){
 async function update( req: Request, res: Response ){
   try{
     const id = Number.parseInt(req.params.id);
+    const input = req.body.sanitizedPersonInput;
     const person = em.getReference(Person, id);
-    em.assign(person, req.body);
+    em.assign(person, input);
     await em.flush();
     res.status(200).json({ message: 'person updated', data: person });
   }catch (error: any) {

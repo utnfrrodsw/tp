@@ -1,5 +1,12 @@
 import { Router } from "express";
-import { sanitizeShelterInput, findAll, findOne, add, update, remove } from "./shelter.controler.js";
+import { 
+  sanitizeShelterInput, 
+  findAll, 
+  findOne, 
+  add, 
+  update, 
+  remove 
+} from "./shelter.controler.js";
 
 export const shelterRouter = Router();
 
