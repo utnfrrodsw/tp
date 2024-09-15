@@ -19,7 +19,7 @@ La idea de nuestro proyecto es realizar un sistema donde se pueda realizar tanto
 [Backend](https://github.com/juanmacruzponce/back-end)
 
 ### Modelo
-[](https://drive.google.com/file/d/17lR84QYOC9XS5x3epaVJUF_O5KRTX0V0/view?usp=drive_link)
+![](https://github.com/olietchecopar/DSW-TP/blob/main/Diagrama%20Entidad%20Relacion.jpg)
 
 ## Alcance Funcional
 Regularidad:
