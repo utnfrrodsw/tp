@@ -19,21 +19,21 @@ La idea de nuestro proyecto es realizar un sistema donde se pueda realizar tanto
 [Backend](https://github.com/juanmacruzponce/back-end)
 
 ### Modelo
-[Modelo de dominio](https://drive.google.com/file/d/1wBtKkQU4HKTCo5D8TnzRwU8Rvve_8nqg/view?usp=sharing)
+[](https://drive.google.com/file/d/17lR84QYOC9XS5x3epaVJUF_O5KRTX0V0/view?usp=drive_link)
 
 ## Alcance Funcional
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD|1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Ingreso<br>4. CRUD Especialidad<br>5. CRUD Turno|
-|CRUD dependiente|1.CRUD Agenda(depende de) Medico<br>2.CRUD Informe(depende de Consulta)<br>3.CRUD Internacion(depende de) Sala y Paciente|
+|CRUD|1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Ingreso<br>4. CRUD Especialidad<br>5. CRUD Turno<br>6. CRUD Informe<br>7. CRUD Dia<br>8. CRUD Sala|
+|CRUD dependiente|1. CRUD Agenda(depende de) Medico<br>2. CRUD Paciente_Ingreso(depende de) Paciente e Ingreso<br>3. CRUD Internacion(depende de) Sala y Paciente<br>4. CRUD dia_agenda(depende de) Agenda y Dia|
 |Listado<br>+<br>detalle| 1. Listado de pacientes => detalle muestra listado de pacientes registrados en el sanatorio<br> 2. Listado de  Medicos=> detalle informa los medicos registrados <br> 3. Listado de informes de Historia clinica => detalle muestra los estudios realizados por paciente<br> 4. Listado de pacientes internados => detalle muestra los pacientes internados, con sus datos personales y fecha de ingreso<br> 5.Listado de turnos|
 |CUU/Epic|1.Dar de alta paciente <br>2. Realizar la recepción de un paciente<br>3. Realizar el check-in y check-out de un paciente internado<br>4. Registrar informe de estudio medico|
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Ingreso<br>4. CRUD Especialidad<br>5. CRUD Turno<br>6. CRUD Agenda<br>7. CRUD Informe<br>8. CRUD Internacion|
+|CRUD |1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Ingreso<br>4. CRUD Especialidad<br>5. CRUD Turno<br>6. CRUD Informe<br>7. CRUD Dia<br>8. CRUD Sala<br>9. CRUD Agenda<br>10. CRUD Paciente_Ingreso<br>11. CRUD Internacion<br>12. CRUD dia_agenda|
 |CUU/Epic|1.Dar de alta paciente <br>2. Realizar la recepción de un paciente<br>3. Realizar el check-in y check-out de un paciente internado<br>4. Registrar informe de estudio medico|
 
 
