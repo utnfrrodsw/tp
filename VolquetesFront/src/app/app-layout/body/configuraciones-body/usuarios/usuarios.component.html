@@ -19,11 +19,11 @@
 
           <td>
 
-            <span>{{ usuario.id_usuario }}</span>
+            <span>{{ usuario.nombre_usuario }}</span>
           </td>
           <td>
-            <input *ngIf="editingRow === usuario" [(ngModel)]="editTemp.nombre_usuario" />
-            <span *ngIf="editingRow !== usuario">{{ usuario.nombre_usuario }}</span>
+            <input *ngIf="editingRow === usuario" [(ngModel)]="editTemp.rol" />
+            <span *ngIf="editingRow !== usuario">{{ usuario.rol }}</span>
           </td>
           <td>
             <button *ngIf="editingRow === usuario" (click)="saveEdit()">Guardar</button>
