@@ -18,7 +18,6 @@ export class tipo_participanteRepository implements Repository<Tipo_participante
     return tipo_participante 
   }
 
-  
   public async add(tipo_participanteInput: Tipo_participante): Promise<Tipo_participante | undefined> {
     const { ...tipo_participanteRow } = tipo_participanteInput
     const [result] = await pool.query<ResultSetHeader>('insert into tipo_participantes set ?', [tipo_participanteRow])

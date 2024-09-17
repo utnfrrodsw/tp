@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -26,15 +25,15 @@ export class LocalidadesService {
     return this.http.delete<any>(url);
   }
 
-  add(nombre_localidad: string, id: string) {
+  add(nombre_localidad: string, id: number) {
     const url = this.baseUrl + 'localidades';
     const data = { nombre_localidad, id };
     return this.http.post<any>(url, data);
   }
 
-  modLocalidad(nombre_localidad: string, id: string){
+  modLocalidad(nombre_localidad: string, id: number){
     const url = this.baseUrl + 'localidades/' + id;
-    const data = { nombre_localidad, id};
+    const data = { nombre_localidad, id };
     return this.http.put<any>(url, data);
   }
 }

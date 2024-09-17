@@ -7,6 +7,12 @@ import { EstadoTorneoComponent } from './estado-torneo/estado-torneo.component';
 import { LocalidadesComponent } from './localidades/localidades.component';
 import { TipoParticipanteComponent } from './tipo-participante/tipo-participante.component';
 import { FormatosTorneoComponent } from './formatos-torneo/formatos-torneo.component';
+import { PartidoComponent } from './partido/partido.component';
+import { ParticipanteComponent } from './participante/participante.component';
+import { AdminComponent } from './admin/admin.component';
+import { SucursalComponent } from './sucursal/sucursal.component';
+import { EquipoComponent } from './equipo/equipo.component';
+import { TorneoComponent } from './torneo/torneo.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +20,13 @@ import { FormatosTorneoComponent } from './formatos-torneo/formatos-torneo.compo
     EstadoTorneoComponent,
     LocalidadesComponent,
     TipoParticipanteComponent,
-    FormatosTorneoComponent
+    FormatosTorneoComponent,
+    PartidoComponent,
+    ParticipanteComponent,
+    AdminComponent,
+    SucursalComponent,
+    EquipoComponent,
+    TorneoComponent
   ],
   imports: [
     BrowserModule,

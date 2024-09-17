@@ -11,8 +11,6 @@ import { equiposRouter } from './equipo/equipo.routes.js'
 import { partidosRouter } from './partido/partido.routes.js'
 import cors  from 'cors'
 
-
-
 const app = express()
 app.use(express.json())
 app.use(cors())
@@ -35,4 +33,3 @@ app.use((_, res) => {
 app.listen(3000, () => {
   console.log('Server runnning on http://localhost:3000/')
 })
-

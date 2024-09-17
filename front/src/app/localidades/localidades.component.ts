@@ -30,10 +30,10 @@ export class LocalidadesComponent {
   }
 
   addLocalidad(nombre_localidad:string, id:string){
-    return this.service.add(nombre_localidad, id).subscribe(response => this.localidad = response);
+    return this.service.add(nombre_localidad, parseInt(id)).subscribe(response => this.localidad = response);
   }
 
   putLocalidad(nombre_localidad:string, id:string){
-    return this.service.modLocalidad(nombre_localidad, id).subscribe(response => this.localidad = response);
+    return this.service.modLocalidad(nombre_localidad, parseInt(id)).subscribe(response => this.localidad = response);
   }
 }

@@ -1,0 +1,68 @@
+<p>equipo works!</p>
+
+<pre>
+    {{list | json}}
+    {{equipo | json}}
+</pre>
+
+<button (click)="loadEquipos()">Cargar</button>
+
+<div>
+    <input type="text" #myInput id="myInput" placeholder="ID">
+<button 
+(click)="loadOne(myInput.value)" 
+(click)="myInput.value = ''">
+Traer
+</button>
+</div>
+
+<div>
+    <input type="text" #idRemove idRemove="idRemove" placeholder="ID">
+    <button 
+    (click)="removeEquipo(idRemove.value)" 
+    (click)="idRemove.value = ''" >
+    Borrar
+    </button>
+</div>
+
+<div>
+    <input type="text" #jugador1 jugador1="jugador1" placeholder="Jugador 1">
+    <input type="text" #jugador2 jugador2="jugador2" placeholder="Jugador 2">
+    <input type="text" #jugador3 jugador3="jugador3" placeholder="Jugador 3">
+    <input type="text" #jugador4 jugador4="jugador4" placeholder="Jugador 4">
+    <input type="text" #jugador5 jugador5="jugador5" placeholder="Jugador 5">
+    <input type="text" #torneo torneo="torneo" placeholder="Torneo">
+    <input type="text" #id id="id" placeholder="ID">
+    <button 
+    (click)="addEquipo(jugador1.value, jugador2.value, jugador3.value, jugador4.value, jugador5.value, torneo.value, id.value)" 
+    (click)="jugador1.value = ''"
+    (click)="jugador2.value = ''"
+    (click)="jugador3.value = ''"
+    (click)="jugador4.value = ''"
+    (click)="jugador5.value = ''"
+    (click)="torneo.value = ''" 
+    (click)="id.value = ''">
+    Crear una Equipo
+    </button>
+</div>
+
+<div>
+    <input type="text" #modJ1 modJ1="modJ1" placeholder="Mod Jugador 1">
+    <input type="text" #modJ2 modJ1="modJ2" placeholder="Mod Jugador 2">
+    <input type="text" #modJ3 modJ1="modJ3" placeholder="Mod Jugador 3">
+    <input type="text" #modJ4 modJ1="modJ4" placeholder="Mod Jugador 4">
+    <input type="text" #modJ5 modJ5="modJ5" placeholder="Mod Jugador 5">
+    <input type="text" #modTorneo modTorneo="modTorneo" placeholder="Mod Torneo">
+    <input type="text" #modID modID="modID" placeholder="Mod ID">
+    <button 
+    (click)="putEquipo(modJ1.value, modJ2.value, modJ3.value, modJ4.value, modJ5.value, modTorneo.value, modID.value)" 
+    (click)="modJ1.value = ''" 
+    (click)="modJ2.value = ''"
+    (click)="modJ3.value = ''"
+    (click)="modJ4.value = ''"
+    (click)="modJ5.value = ''"
+    (click)="modTorneo.value = ''" 
+    (click)="modID.value = ''">
+    Modificar una Equipo
+    </button>
+</div>

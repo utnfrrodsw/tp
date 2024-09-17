@@ -13,7 +13,6 @@ export class TipoParticipanteComponent {
   list:any = [];
   tipo_par:any = Object;
 
-
   ngOnInit(): void{
 
   }
@@ -31,10 +30,10 @@ export class TipoParticipanteComponent {
   }
 
   addLocalidad(posicion:string, id:string){
-    return this.service.add(posicion, id).subscribe(response => this.tipo_par = response);
+    return this.service.add(posicion, parseInt(id)).subscribe(response => this.tipo_par = response);
   }
 
   putLocalidad(posicion:string, id:string){
-    return this.service.modTipo(posicion, id).subscribe(response => this.tipo_par = response);
+    return this.service.modTipo(posicion, parseInt(id)).subscribe(response => this.tipo_par = response);
   }
 }

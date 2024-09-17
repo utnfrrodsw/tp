@@ -1,6 +1,3 @@
-import crypto from 'node:crypto';
-
-
 export class Participante{
     constructor(
         public nombre:string,

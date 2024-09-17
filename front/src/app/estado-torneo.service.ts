@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { json } from 'stream/consumers';
-
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +25,13 @@ export class EstadoTorneoService {
     return this.http.delete<any>(url);
   }
 
-  add(nombre_estado: string, id: string) {
+  add(nombre_estado: string, id: number) {
     const url = this.baseUrl + 'estado_torneo';
     const data = { nombre_estado, id };
     return this.http.post<any>(url, data);
   }
 
-  modEstado(nombre_estado: string, id: string){
+  modEstado(nombre_estado: string, id: number){
     const url = this.baseUrl + 'estado_torneo/' + id;
     const data = { nombre_estado, id};
     return this.http.put<any>(url, data);

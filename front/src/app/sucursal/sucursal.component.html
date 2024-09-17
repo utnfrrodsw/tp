@@ -1,0 +1,52 @@
+<p>sucursal works!</p>
+
+<pre>
+    {{list | json}}
+    {{sucursal | json}}
+</pre>
+
+<button (click)="loadSucursales()">Cargar</button>
+
+<div>
+    <input type="text" #myInput id="myInput" placeholder="ID">
+<button 
+(click)="loadOne(myInput.value)" 
+(click)="myInput.value = ''">
+Traer
+</button>
+</div>
+
+<div>
+    <input type="text" #idRemove idRemove="idRemove" placeholder="ID">
+    <button 
+    (click)="removeSucursal(idRemove.value)" 
+    (click)="idRemove.value = ''" >
+    Borrar
+    </button>
+</div>
+
+<div>
+    <input type="text" #nombre_sucursal nombre_sucursal="nombre_sucursal" placeholder="Nombre Sucursal">
+    <input type="text" #localidad localidad="localidad" placeholder="Localidad">
+    <input type="text" #id id="id" placeholder="ID">
+    <button 
+    (click)="addSucursal(nombre_sucursal.value, localidad.value,  id.value)" 
+    (click)="nombre_sucursal.value = ''" 
+    (click)="localidad.value = ''"
+    (click)="id.value = ''">
+    Crear una Sucursal
+    </button>
+</div>
+
+<div>
+    <input type="text" #modNombre_Sucursal modNombre_Sucursal="modNombre_Sucursal" placeholder="Mod Nombre Sucursal">
+    <input type="text" #modLocalidad modLocalidad="modLocalidad" placeholder="Mod Localidad">
+    <input type="text" #modID modID="modID" placeholder="Mod ID">
+    <button 
+    (click)="putSucursal(modNombre_Sucursal.value, modLocalidad.value, modID.value)" 
+    (click)="modNombre_Sucursal.value = ''" 
+    (click)="modLocalidad.value = ''"
+    (click)="modID.value = ''">
+    Modificar una Sucursal
+    </button>
+</div>

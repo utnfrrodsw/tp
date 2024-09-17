@@ -1,0 +1,68 @@
+<p>participante works!</p>
+
+<pre>
+    {{list | json}}
+    {{participante | json}}
+</pre>
+
+<button (click)="loadParticipantes()">Cargar</button>
+
+<div>
+    <input type="text" #myInput id="myInput" placeholder="ID">
+<button 
+(click)="loadOne(myInput.value)" 
+(click)="myInput.value = ''">
+Traer
+</button>
+</div>
+
+<div>
+    <input type="text" #idRemove idRemove="idRemove" placeholder="ID">
+    <button 
+    (click)="removeParticipante(idRemove.value)" 
+    (click)="idRemove.value = ''" >
+    Borrar
+    </button>
+</div>
+
+<div>
+    <input type="text" #nombre nombre="nombre" placeholder="Nombre Participante">
+    <input type="text" #contrasenia contrasenia="contrasenia" placeholder="Contraseña">
+    <input type="text" #apellido apellido="apellido" placeholder="Apellido">
+    <input type="text" #mail mail="mail" placeholder="Mail">
+    <input type="text" #fecha_nacimiento fecha_nacimiento="fecha_nacimiento" placeholder="Fecha Nacimiento">
+    <input type="text" #tipo_par tipo_par="tipo_par" placeholder="Tipo Participante">
+    <input type="text" #id id="id" placeholder="ID">
+    <button 
+    (click)="addParticipante(nombre.value, contrasenia.value, apellido.value, mail.value, fecha_nacimiento.value, tipo_par.value, id.value)" 
+    (click)="nombre.value = ''" 
+    (click)="contrasenia.value = ''"
+    (click)="apellido.value = ''"
+    (click)="mail.value = ''"
+    (click)="fecha_nacimiento.value= ''"
+    (click)="tipo_par.value = ''"
+    (click)="id.value = ''">
+    Crear una Participante
+    </button>
+</div>
+
+<div>
+    <input type="text" #modNombre modNombre="modNombre" placeholder="Mod Nombre Participante">
+    <input type="text" #modContrasenia modContrasenia="modContrasenia" placeholder="Mod Contraseña">
+    <input type="text" #modApellido modApellido="modApellido" placeholder="Mod Apellido">
+    <input type="text" #modMail modMail="modMail" placeholder="Mod Mail">
+    <input type="text" #modFecha_Nacimiento modFecha_Nacimiento="modFecha_Nacimiento" placeholder="Mod Fecha Nacimiento">
+    <input type="text" #modTipo_par modTipo_par="modTipo_par" placeholder="Mod Tipo Participante">
+    <input type="text" #modID modID="modID" placeholder="Mod ID">
+    <button 
+    (click)="putParticipante(modNombre.value, modContrasenia.value, modApellido.value, modMail.value, modFecha_Nacimiento.value, modTipo_par.value, modID.value)" 
+    (click)="modNombre.value = ''" 
+    (click)="modContrasenia.value = ''"
+    (click)="modApellido.value = ''"
+    (click)="modMail.value = ''"
+    (click)="modFecha_Nacimiento.value= ''"
+    (click)="modTipo_par.value = ''"
+    (click)="modID.value = ''">
+    Modificar una Participante
+    </button>
+</div>

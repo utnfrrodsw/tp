@@ -3,14 +3,12 @@ import { estado_torneo } from "./estado_torneo.entity.js"
 import { pool } from '../shared/db/conn.mysql.js'
 import { ResultSetHeader, RowDataPacket } from 'mysql2'
 
-
 export class estado_torneoRepository implements Repository<estado_torneo> {
 
   public async findAll(): Promise<estado_torneo[] | undefined> {
     const [estados_torneos] = await pool.query('Select * from estados_torneos')
     return estados_torneos as estado_torneo[]
   }
-
 
   public async findOne(item: { id: string }): Promise<estado_torneo | undefined> {
     const id = Number.parseInt(item.id)
@@ -30,7 +28,6 @@ public async add(estados_torneosImput: estado_torneo): Promise<estado_torneo | u
     return estados_torneosImput
   }
 
-
   public async update(id:string, estados_torneosInput: estado_torneo): Promise<estado_torneo| undefined> {
     const estados_torneosId = Number.parseInt(id)
         const { ...estados_torneosRow } = estados_torneosInput
@@ -38,7 +35,6 @@ public async add(estados_torneosImput: estado_torneo): Promise<estado_torneo | u
 
         return await this.findOne({id})
       }
-
 
   public async delete(item: { id: string }): Promise<estado_torneo| undefined> {
     try {
