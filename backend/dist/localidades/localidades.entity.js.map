@@ -1,1 +1,1 @@
-{"version":3,"file":"localidades.entity.js","sourceRoot":"","sources":["../../src/localidades/localidades.entity.ts"],"names":[],"mappings":"AAIA,MAAM,OAAO,SAAS;IAClB,YACW,gBAAwB,EACxB,EAAY;QADZ,qBAAgB,GAAhB,gBAAgB,CAAQ;QACxB,OAAE,GAAF,EAAE,CAAU;IACpB,CAAC;CACP"}
+{"version":3,"file":"localidades.entity.js","sourceRoot":"","sources":["../../src/localidades/localidades.entity.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,SAAS;IAClB,YACW,gBAAwB,EACxB,EAAY;QADZ,qBAAgB,GAAhB,gBAAgB,CAAQ;QACxB,OAAE,GAAF,EAAE,CAAU;IACpB,CAAC;CACP"}

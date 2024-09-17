@@ -1,5 +1,3 @@
-import { ObjectId } from "mongodb";
-
 export class formatos_torneo{
     constructor(
         public cant_grupos:number,

@@ -21,16 +21,16 @@ Object.keys(req.body.sanitizedInput).forEach((key) => {
 }
 
 async function findAll(req: Request, res: Response) {
-res.json({ data: await repository.findAll() })
+    res.json({ data: await repository.findAll() })
 }
 
 async function findOne(req: Request, res: Response) {
-const id = req.params.id
-const tipo_participante = await repository.findOne({ id })
-if (!tipo_participante) {
-return res.status(404).send({ message: 'Character not found' })
-}
-return res.json({ data: tipo_participante })
+    const id = req.params.id
+    const tipo_participante = await repository.findOne({ id })
+    if (!tipo_participante) {
+        return res.status(404).send({ message: 'Character not found' })
+    }
+    return res.json({ data: tipo_participante })
 }
 
 async function add(req: Request, res: Response) {
@@ -46,25 +46,24 @@ async function add(req: Request, res: Response) {
 }
 
 async function update(req: Request, res: Response) {
-req.body.sanitizedInput.id = req.params.id
-const tipo_participante = await repository.update(req.params.id, req.body.sanitizedInput)
+    req.body.sanitizedInput.id = req.params.id
+    const tipo_participante = await repository.update(req.params.id, req.body.sanitizedInput)
 
-if (!tipo_participante) {
-return res.status(404).send({ message: 'tipo_participante not found' })
-}
-
-return res.status(200).send({ message: 'tipo_participante updated successfully', data: tipo_participante })
+    if (!tipo_participante) {
+        return res.status(404).send({ message: 'tipo_participante not found' })
+    }
+    return res.status(200).send({ message: 'tipo_participante updated successfully', data: tipo_participante })
 }
 
 async function remove(req: Request, res: Response) {
-const id = req.params.id
-const tipo_participante = await repository.delete({ id })
+    const id = req.params.id
+    const tipo_participante = await repository.delete({ id })
 
-if (!tipo_participante) {
-res.status(404).send({ message: 'tipo_participante not found' })
-} else {
-res.status(200).send({ message: 'tipo_participante deleted successfully' })
-}
+    if (!tipo_participante) {
+        res.status(404).send({ message: 'tipo_participante not found' })
+    } else {
+    res.status(200).send({ message: 'tipo_participante deleted successfully' })
+    }
 }
 
 export { sanitizeTipo_participanteInput, findAll, findOne, add, update, remove }

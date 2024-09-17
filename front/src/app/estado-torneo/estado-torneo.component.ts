@@ -31,10 +31,10 @@ export class EstadoTorneoComponent {
   }
 
   addEstado(nombre_estado:string, id:string){
-    return this.service.add(nombre_estado, id).subscribe(response => this.estado = response);
+    return this.service.add(nombre_estado, parseInt(id)).subscribe(response => this.estado = response);
   }
 
   putEstado(nombre_estado:string, id:string){
-    return this.service.modEstado(nombre_estado, id).subscribe(response => this.estado = response);
+    return this.service.modEstado(nombre_estado, parseInt(id)).subscribe(response => this.estado = response);
   }
 }

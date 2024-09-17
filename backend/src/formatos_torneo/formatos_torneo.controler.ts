@@ -25,7 +25,6 @@ async function findAll(req: Request ,res: Response){
   return res.json({data: await repository.findAll()});
 }
 
-
 async function findOne(req: Request,res: Response ){
   const id = req.params.id
   const formato_torneo = await repository.findOne({id})

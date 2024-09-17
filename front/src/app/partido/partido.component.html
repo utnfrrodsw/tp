@@ -1,0 +1,60 @@
+<p>partido works!</p>
+
+<pre>
+    {{list | json}}
+    {{partido | json}}
+</pre>
+
+<button (click)="loadPartidos()">Cargar</button>
+
+<div>
+    <input type="text" #myInput id="myInput" placeholder="ID">
+<button 
+(click)="loadOne(myInput.value)" 
+(click)="myInput.value = ''">
+Traer
+</button>
+</div>
+
+<div>
+    <input type="text" #idRemove idRemove="idRemove" placeholder="ID">
+    <button 
+    (click)="removePartido(idRemove.value)" 
+    (click)="idRemove.value = ''" >
+    Borrar
+    </button>
+</div>
+
+<div>
+    <input type="text" #fecha fecha="fecha" placeholder="Fecha Partido">
+    <input type="text" #torneo torneo="torneo" placeholder="Torneo">
+    <input type="text" #equipo1 equipo1="equipo1" placeholder="Equipo1">
+    <input type="text" #equipo2 equipo2="equipo2" placeholder="Equipo2">
+    <input type="text" #id id="id" placeholder="ID">
+    <button 
+    (click)="addPartido(fecha.value, torneo.value, equipo1.value, equipo2.value, id.value)" 
+    (click)="fecha.value = ''"
+    (click)="torneo.value = ''"
+    (click)="equipo1.value = ''"
+    (click)="equipo2.value = ''" 
+    (click)="id.value = ''">
+    Crear una Partido
+    </button>
+</div>
+
+<div>
+    <input type="text" #Modfecha Modfecha="Modfecha" placeholder="Mod_Fecha">
+    <input type="text" #Modtorneo Modtorneo="Modtorneo" placeholder="Torneo">
+    <input type="text" #Modequipo1 Modequipo1="Modequipo1" placeholder="Mod_Equipo1">
+    <input type="text" #Modequipo2 Modequipo2="Modequipo2" placeholder="Mod_Equipo2">
+    <input type="text" #modID modID="modID" placeholder="Mod ID">
+    <button 
+    (click)="putPartido(fecha.value, torneo.value, equipo1.value, equipo2.value, id.value)" 
+    (click)="fecha.value = ''"
+    (click)="torneo.value = ''"
+    (click)="equipo1.value = ''"
+    (click)="equipo2.value = ''" 
+    (click)="id.value = ''">
+    Modificar una Partido
+    </button>
+</div>

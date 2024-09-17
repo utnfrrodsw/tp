@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -26,13 +25,13 @@ export class TipoParticipanteService {
     return this.http.delete<any>(url);
   }
 
-  add(posicion: string, id: string) {
+  add(posicion: string, id: number) {
     const url = this.baseUrl + 'tipo_participantes';
     const data = { posicion, id };
     return this.http.post<any>(url, data);
   }
 
-  modTipo(posicion: string, id: string){
+  modTipo(posicion: string, id: number){
     const url = this.baseUrl + 'tipo_participantes/' + id;
     const data = { posicion, id };
     return this.http.put<any>(url, data);

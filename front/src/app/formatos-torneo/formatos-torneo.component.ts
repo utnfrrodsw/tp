@@ -30,10 +30,10 @@ export class FormatosTorneoComponent {
   }
 
   addFormato(cant_grupos:number, cant_equipos_x_grupo:number, cant_clasificados_x_grupo:number, id:string){
-    return this.service.add(cant_grupos, cant_equipos_x_grupo, cant_clasificados_x_grupo, id).subscribe(response => this.formato = response);
+    return this.service.add(cant_grupos, cant_equipos_x_grupo, cant_clasificados_x_grupo, parseInt(id)).subscribe(response => this.formato = response);
   }
 
   putFormato(cant_grupos:number, cant_equipos_x_grupo:number, cant_clasificados_x_grupo:number, id:string){
-    return this.service.modFormato(cant_grupos, cant_equipos_x_grupo, cant_clasificados_x_grupo, id).subscribe(response => this.formato = response);
+    return this.service.modFormato(cant_grupos, cant_equipos_x_grupo, cant_clasificados_x_grupo, parseInt(id)).subscribe(response => this.formato = response);
   }
 }

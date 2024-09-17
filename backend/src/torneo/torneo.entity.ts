@@ -1,7 +1,3 @@
-import { Db, ObjectId } from 'mongodb';
-import crypto from 'node:crypto';
-
-
 export class Torneo{
     constructor(
         public nombre_torneo: string,

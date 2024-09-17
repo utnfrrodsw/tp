@@ -19,12 +19,9 @@ function sanitizedEstadoInput(req: Request, res: Response, next: NextFunction) {
     next()
 }
 
-
-
 async function findAll(req: Request, res: Response) {
     return res.json({ data: await repository.findAll() })
 }
-
 
 async function findOne(req: Request, res: Response) {
     const id = req.params.id
@@ -35,7 +32,6 @@ async function findOne(req: Request, res: Response) {
     res.json({ data: estado_torneo })
     }
 }
-
 
 async function add(req: Request, res: Response) {
     const input = req.body.sanitizedInput
@@ -49,7 +45,6 @@ async function add(req: Request, res: Response) {
     res.status(201).send({ message: 'Se creo el estado del torneo', data: nuevo_estado })
 }
 
-
 async function update(req: Request, res: Response) {
     req.body.sanitizedInput.id = req.params.id
     const estado = await repository.update(req.params.id, req.body.sanitizedInput)
@@ -60,7 +55,6 @@ async function update(req: Request, res: Response) {
         return res.status(200).send({ message: 'el estado se actualizo correctamente', data: estado })
     }
 }
-
 
 async function remove(req: Request, res: Response) {
     const id = req.params.id
