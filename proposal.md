@@ -103,10 +103,10 @@ erDiagram
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Atleta<br>2. CRUD Agente<br>3. CRUD Club|
-|CRUD dependiente|1. CRUD Publicacion {depende de} CRUD Atleta/Reclutador<br>2. CRUD Solicitud {depende de} CRUD Atleta/Reclutador|
+|CRUD simple|1. CRUD User<br>2. CRUD Agente<br>3. CRUD Club|
+|CRUD dependiente|1. CRUD Publicacion {depende de} CRUD User<br>2. CRUD Atleta {depende de} CRUD User|
 |Listado<br>+<br>detalle| 1. Listado de Clubes filtrado por nombre, muestra perfil del club => detalle CRUD Club<br> 2. Listado de Atletas filtrado por deporte, categoria, posicion, estado => muestra perfiles de atletas que coincidan con la busqueda|
-|CUU/Epic|1. Crear un perfil<br>2. Realizar una publicación|
+|CUU/Epic|1. Realizar una solicitud de amistad<br>2. Realizar una publicación|
 
 
 Adicionales para Aprobación:
