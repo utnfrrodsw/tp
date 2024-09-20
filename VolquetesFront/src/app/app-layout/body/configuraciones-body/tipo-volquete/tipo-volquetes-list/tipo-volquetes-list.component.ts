@@ -124,18 +124,21 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
     this.isAddingNew = false;
     this.isEditing = false;
     this.editingRow = null; // Exit edit mode
+    this.loadTiposVolquete();
   }
 
   onAdd(): void {
-    const newTipo: TipoVolqueteModel = {
-      id_tipo_volquete: 0,
-      descripcion_tipo_volquete: '',
-    };
-    this.tipos.push(newTipo);
-    this.startEdit(newTipo);
-    this.tiposVolqueteFormListService.startAdding();
-    this.isAddingNew = true;
-    console.log('you pressed onAddProveedor in tiposVolquete-list.component');
+    if (!this.isAddingNew) {
+      const newTipo: TipoVolqueteModel = {
+        id_tipo_volquete: 0,
+        descripcion_tipo_volquete: '',
+      };
+      this.tipos.push(newTipo);
+      this.startEdit(newTipo);
+      this.isAddingNew = true;
+      this.tiposVolqueteFormListService.startAdding();
+      console.log('you pressed onAddProveedor in tiposVolquete-list.component');
+    }
   }
 
   addTipoVolquete(tipo: TipoVolqueteModel): void {

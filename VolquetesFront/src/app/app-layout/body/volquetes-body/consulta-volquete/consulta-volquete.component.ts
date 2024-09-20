@@ -12,46 +12,5 @@ import { Volquete } from '../../../../../../../VolquetesFront/src/app/model/inte
   styleUrl: './consulta-volquete.component.css',
 })
 export class ConsultaVolqueteComponent {
-  listaVolquetes: Volquete[] = [
-    {
-      nro: 0,
-      tipo_volquete: {
-        id_tipo_volquete: 1,
-        descripcion_tipo_volquete: 'Chico',
-      },
-      fecha_compra: new Date(),
-      fecha_fabricacion: new Date('2024-01-01'),
-      marca: 'Sarasa',
-    },
-    {
-      nro: 1,
-      tipo_volquete: {
-        id_tipo_volquete: 2,
-        descripcion_tipo_volquete: 'Mediano',
-      },
-      fecha_compra: new Date(),
-      fecha_fabricacion: new Date('2024-01-01'),
-      marca: 'Sarasa',
-    },
-    {
-      nro: 2,
-      tipo_volquete: {
-        id_tipo_volquete: 3,
-        descripcion_tipo_volquete: 'Grande',
-      },
-      fecha_compra: new Date(),
-      fecha_fabricacion: new Date('2024-01-01'),
-      marca: 'Sarasa',
-    },
-    {
-      nro: 3,
-      tipo_volquete: {
-        id_tipo_volquete: 1,
-        descripcion_tipo_volquete: 'Chico',
-      },
-      fecha_compra: new Date(),
-      fecha_fabricacion: new Date('2024-01-01'),
-      marca: 'Sarasa',
-    },
-  ];
+  
 }
