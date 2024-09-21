@@ -8,7 +8,7 @@ POST http://localhost:3000/api/breed
 Content-Type: application/json
 
 {
-    "name": "Perro22", 
+    "name": "Perro222", 
     "description": "02", 
     "animals": [1,2]
 
@@ -29,7 +29,7 @@ Content-Type: application/json
     "animals": [1,2]
 }
 
-+
+
 ### DELETE
 @idToDelete = {{createBreed.response.body.data.id}}
 DELETE http://localhost:3000/api/breed/8

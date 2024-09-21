@@ -58,22 +58,4 @@ async function remove(req: Request, res: Response) {
   }
 }
 
-/* function sanitizeRescueInput(req: Request, res: Response, next:NextFunction)
-{
-  req.body.sanitizedRescue = {
-    rescue_date: req.body.rescue_date,
-    description: req.body.description,
-    comments: req.body.comments,
-    id: req.body.id
-  }
-
-  Object.keys(req.body.sanitizedRescue).forEach((key) => {
-    if (req.body.sanitizedRescue[key] === undefined) {
-      delete req.body.sanitizedRescue[key]
-    }
-  })
-
-  next()
-} */
-
 export { findAll, findOne, add, update, remove}

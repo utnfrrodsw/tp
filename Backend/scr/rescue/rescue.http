@@ -7,19 +7,19 @@ POST http://localhost:3000/api/rescue
 Content-Type: application/json
 
 {
-    "rescue_date": "08-10-2024", 
+    "rescue_date": "01-10-2024", 
     "description": "Gato solitario",
     "comments": "prueba",
-    "shelters": [2]
+    "shelters": [3]
 }
 
 ###ID
  @id = {{createRescue.response.body.data.id}}
 ###obtener un rescue 
-GET http://localhost:3000/api/rescue/{{{id}}}
+GET http://localhost:3000/api/rescue/{{id}}
 
 ### modificar un rescue (PUT)
-PUT http://localhost:3000/api/rescue/2
+PUT http://localhost:3000/api/rescue/{{id}}
 Content-Type: application/json
 
 {

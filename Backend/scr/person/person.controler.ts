@@ -71,9 +71,9 @@ function sanitizePersonInput(req: Request, res: Response, next:NextFunction){
     address: req.body.address,
     nroCuit: req.body.nroCuit
     }  
-    Object.keys(req.body.sanitizedpersonInput).forEach((key) => {
-    if (req.body.sanitizedpersonInput[key] === undefined) {
-      delete req.body.sanitizedpersonInput[key]
+    Object.keys(req.body.sanitizedPersonInput).forEach((key) => {
+    if (req.body.sanitizedPersonInput[key] === undefined) {
+      delete req.body.sanitizedPersonInput[key]
     }
   })
 

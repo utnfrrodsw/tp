@@ -1,37 +1,34 @@
-###obtener todos los vetes 
+###obtener todos los vet 
 GET http://localhost:3000/api/vet
 
-###obtener un vet 
-GET http://localhost:3000/api/vet/2
 
 ###crear un nuevo vet
+#  @name createVet
 POST http://localhost:3000/api/vet
 Content-Type: application/json
 
 {
     "name": "vet 2", 
     "address": "Sargento cabral 1923",
-    "id": "2"
+    "shelters": [3]
 }
 
+###ID
+ @id = {{createVet.response.body.data.id}}
+###obtener una breed 
+GET http://localhost:3000/api/vet/{{id}}
+
 ### modificar un vet (PUT)
-PUT http://localhost:3000/api/vet/2
+PUT http://localhost:3000/api/vet/{{id}}
 Content-Type: application/json
 
 {
     "name": "Veterina 3",
     "address": "San martin",
-    "id": "2"
+    "shelter": [3]
 }
 
-### modificar un vet (PATCH - recurso parcial)
-PATCH http://localhost:3000/api/vet/1
-Content-Type: application/json
-
-{
-    "name": "Veterina 4",
-    "address": "San martin 1928"
-}
 
 ### borrar un vet
-DELETE http://localhost:3000/api/vet/2
+@idToDelete = {{createVet.response.body.data.id}}
+DELETE http://localhost:3000/api/vet/{{idToDelete}}
