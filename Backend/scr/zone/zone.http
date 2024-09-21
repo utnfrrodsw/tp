@@ -7,8 +7,8 @@ POST http://localhost:3000/api/zone
 Content-Type: application/json
 
 {
-    "name": "Este",
-    "shelters": [1, 2]
+    "name": "Este"
+    
 }
 
 ### ID

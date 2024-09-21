@@ -1,93 +1,77 @@
-import { Request, Response, NextFunction } from 'express';
-/*import { VetRepository } from './vet.repository.js';*/
+import { Request, Response, NextFunction} from 'express';
+import { orm } from '../zshare/db/orm.js';
 import { Vet } from './vet.entity.js';
 
-/*const vetrepository = new VetRepository();*/
+const em = orm.em
 
-function sanitizeVetInput(req: Request, res: Response, next:NextFunction){
-  
-  req.body.sanitizedvet = {
+async function findAll( req: Request, res: Response ){
+  try{
+    const vet = await em.find(Vet, {}, {populate:['shelters']});
+    res.status(200).json({message: 'all vets: ', data: vet});
+  } catch (error: any){
+    res.status(500).json({message: error.message});
+  }
+}
+
+async function findOne( req: Request, res: Response ){
+  try {
+    const id = Number.parseInt(req.params.id)
+    const vet = await em.findOneOrFail(Vet, { id })
+    res
+      .status(200)
+      .json({ message: 'found character class', data: vet })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+async function add(req: Request, res: Response) {
+  try {
+    const vet = em.create(Vet, req.body.sanitizedVet)
+    await em.flush()
+    res.status(201).json({ message: 'vet created', data: vet })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+async function update(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id)
+    const vet = em.getReference(Vet, id)
+    em.assign(vet, req.body.sanitizedVet)
+    await em.flush()
+    res.status(200).json({ message: 'vet updated' })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+async function remove(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id)
+    const vet = em.getReference(Vet, id)
+    await em.removeAndFlush(vet)
+    res.status(200).send({ message: 'vet deleted' })
+  } catch (error: any) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+function sanitizeVet(req: Request, res: Response, next:NextFunction){
+
+  req.body.sanitizedVet = {
     name: req.body.name,
     address: req.body.address,
-    id: req.body.id,
+    shlters: req.body.shelters
   }
-    Object.keys(req.body.sanitizedvetInput).forEach((key) => {
-    if (req.body.sanitizedvetInput[key] === undefined) {
-      delete req.body.sanitizedvetInput[key]
+    Object.keys(req.body.sanitizedVet).forEach((key) => {
+    if (req.body.sanitizedVet[key] === undefined) {
+      delete req.body.sanitizedVet[key]
     }
   })
 
   next()
 }
 
-async function findAll( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-async function findOne( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-async function add( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-async function update( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-async function remove( req: Request, res: Response ){
-  res.status(500).json({message: 'Not implemented'});
-}
-
-export { findAll, findOne, add, update, remove, sanitizeVetInput }
-
-
-
-/*
-function findAll(req: Request,res: Response ){
-  res.json({data: vetrepository.findAll()});
-}
-
-
-function findOne(req: Request,res: Response ){
-  const id = req.params.id;
-  const vet = vetrepository.findOne({id});
-  if(!vet){
-    return res.status(404).send({message:'ID non-existent' })
-  }
-  res.json(vet)
-}
-
-
-function add (req: Request,res: Response){
-  const input = req.body.sanitizedvet
-
-  const peopleInput = new Vet (input.name,input.address,input.id)
-  const vet = vetrepository.add(peopleInput)
-  return res.status(201).send({message: 'new vet create', data: Vet })
-}
-
-
-function update (req: Request,res: Response ){
-  req.body.sanitizedvet.id = req.params.id
-  const vet = vetrepository.update('1', req.body.sanitizedvet) 
-  if (!vet) {
-    return res.status(404).send({message:'vet not found' })
-  }
-  return res.status(200).send({message: 'vet changed suscessfully', data:  Vet })
-
-}
-
-function remove(req: Request,res: Response ){
-  const id = req.params.id;
-  const vet = vetrepository.delete({id})
-  if(!vet){
-    return res.status(404).send({message:'incorrect ID' })
-  }
-  else{
-  return res.status(200).send({message: 'vet deleted suscessfully' })
-  }
-}
-
-export {  sanitizeVetInput, findOne, add, update, remove, findAll }*/
+export {sanitizeVet, findAll, findOne, add, update, remove }
