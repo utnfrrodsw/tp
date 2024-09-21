@@ -1,34 +1,38 @@
 ###obtener todas las zone s
 GET http://localhost:3000/api/zone
 
-###obtener una zone 
-GET http://localhost:3000/api/zone/2
-
 ###crear una nueva zone
+# @name createZone
 POST http://localhost:3000/api/zone
 Content-Type: application/json
 
 {
-    "nombre": "Este",
-    "id": "2"
+    "name": "Este",
+    "shelters": [1, 2]
 }
 
+### ID
+@id = {{createZone.response.body.data.id}} 
+
+###obtener una zone 
+GET http://localhost:3000/api/zone/{{id}}
+
 ### modificar una zone (PUT)
-PUT http://localhost:3000/api/zone/2
+PUT http://localhost:3000/api/zone/{{id}}
 Content-Type: application/json
 
 {
-    "nombre": "Sur",
-    "id":"2"
+    "name": "Sur",
+    "shelters": [1]
 }
 
 ### modificar una zone (PATCH - recurso parcial)
-PATCH http://localhost:3000/api/zone/1
+PATCH http://localhost:3000/api/zone/{{id}}
 Content-Type: application/json
 
 {
-    "nombre": "Oeste"
+    "name": "Oeste"
 }
 
 ### borrar una zone
-DELETE http://localhost:3000/api/zone/2
+DELETE http://localhost:3000/api/zone/{{id}}

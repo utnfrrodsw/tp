@@ -1,39 +1,41 @@
 ###obtener todos las persons 
 GET http://localhost:3000/api/person
 
-###obtener una person 
-GET http://localhost:3000/api/person/02
-
 ###crear una nueva person
+# @name createPerson
 POST http://localhost:3000/api/person
 Content-Type: application/json
 
 {
-    "nombre": "Otra",
-    "apellido":"person",
-    "tipoDoc": "no tiene",
-    "nroDoc": 0,
-    "contacto": "123456789",
-    "fechaNacimiento": "01/01/2000",
-    "domicilio": "cualquiera",
-    "nroCuit": 0,
-    "id": "02"
+    "name": "Otra",
+    "surname":"person",
+    "doc_type": "no tiene",
+    "doc_nro": 0,
+    "phone": "123456789",
+    "birthdate": "01/01/2000",
+    "address": "cualquiera",
+    "nroCuit": 0
 }
 
+### ID
+@id = {{createPerson.response.body.data.id}}
+
+###obtener una person 
+GET http://localhost:3000/api/person/{{id}}
+
 ### modificar una person (PUT)
-PUT http://localhost:3000/api/person/02
+PUT http://localhost:3000/api/person/{{id}}
 Content-Type: application/json
 
 {
-    "nombre": "Otra",
-    "apellido":"person",
-    "tipoDoc": "ahora si tiene",
-    "nroDoc": 1,
-    "contacto": "123456789",
-    "fechaNacimiento": "01/01/2000",
-    "domicilio": "corrientes",
-    "nroCuit": 2019,
-    "id": "02"
+    "name": "Otra",
+    "surname":"person",
+    "doc_type": "ahora si tiene",
+    "doc_nro": "1",
+    "phone": "123456789",
+    "birthdate": "01/01/2000",
+    "address": "corrientes",
+    "nroCuit": 2019
 }
 
 ### modificar una person (PATCH - recurso parcial)
@@ -42,8 +44,8 @@ Content-Type: application/json
 
 {
     "nroCuit":0,
-    "contacto": "herreranico2703@gmail.com"
+    "address": "herreranico2703@gmail.com"
 }
 
 ### borrar una person
-DELETE http://localhost:3000/api/person/02
+DELETE http://localhost:3000/api/person/{{id}}

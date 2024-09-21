@@ -1,5 +1,12 @@
 import { Router } from "express";
-import { sanitizeZoneInput, findAll, findOne, add, update, remove } from "./zone.controler.js";
+import { 
+  sanitizeZoneInput, 
+  findAll, 
+  findOne, 
+  add, 
+  update, 
+  remove 
+} from "./zone.controler.js";
 
 export const zoneRouter = Router();
 

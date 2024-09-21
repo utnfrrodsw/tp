@@ -1,7 +1,6 @@
 import { 
   Entity,
   OneToMany,
-  PrimaryKey,
   Property,
   Cascade,
   Collection
@@ -14,7 +13,7 @@ export class Breed extends BaseEntity {
   name!: string
 
   @Property()
-  description!: Date
+  description!: string
 
   @OneToMany (() => Animal, (animal) => animal.breed, {cascade: [Cascade.ALL]})
   animals = new Collection<Animal>(this)
