@@ -1,0 +1,35 @@
+###obtener todos los rescues 
+GET http://localhost:3000/api/rescue
+
+###crear un nuevo rescue
+#  @name createRescue
+POST http://localhost:3000/api/rescue
+Content-Type: application/json
+
+{
+    "rescue_date": "01-10-2024", 
+    "description": "Gato solitario",
+    "comments": "prueba",
+    "shelters": [3]
+}
+
+###ID
+ @id = {{createRescue.response.body.data.id}}
+###obtener un rescue 
+GET http://localhost:3000/api/rescue/{{id}}
+
+### modificar un rescue (PUT)
+PUT http://localhost:3000/api/rescue/{{id}}
+Content-Type: application/json
+
+{
+    "rescue_date": "10-06-2024", 
+    "description": "Gato solitario",
+    "comments": "Tenia hijos!!!",
+    "id": "2"
+}
+
+
+### borrar un rescue
+@idToDelete = {{createRescue.response.body.data.id}}
+DELETE http://localhost:3000/api/rescue/{{idToDelete}}
