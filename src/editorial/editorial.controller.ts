@@ -12,11 +12,7 @@ async function buscarEditoriales(
   next: NextFunction
 ) {
   try {
-    const editoriales = await em.find(
-      Editorial,
-      {},
-      { populate: ["misLibros"] }
-    );
+    const editoriales = await em.find(Editorial, {});
     return res
       .status(200)
       .json({ message: "Las editoriales encontradas son:", data: editoriales });

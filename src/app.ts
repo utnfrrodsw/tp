@@ -1,5 +1,7 @@
 import "reflect-metadata";
 import express from "express";
+import cors from "cors";
+
 import { autorRouter } from "./autor/autor.routes.js";
 import { orm, syncSchema } from "./shared/DB/orm.js";
 import { RequestContext } from "@mikro-orm/core";
@@ -12,8 +14,10 @@ import { prestamoRouter } from "./prestamo/prestamo.routes.js";
 import { handleJsonSyntaxError } from "./middlewares/middleware.handleJsonSyntaxError.js";
 import { handleInternalError } from "./middlewares/middleware.handleInternalError.js";
 import { sancionRouter } from "./sancion/sancion.routes.js";
+
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(handleJsonSyntaxError);
 
