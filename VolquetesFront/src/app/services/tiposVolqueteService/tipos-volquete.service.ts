@@ -36,6 +36,22 @@ getAll(): Observable<TipoVolquete[]> {
     );
   }
 
+getMaxId(): Observable<TipoVolquete>{
+   console.log('getMaxId called');
+   return this.getAll().pipe(
+    map((tipos:TipoVolquete[])=>{
+        if (!tipos||tipos.length===0){
+          throw new Error('No hay elementos en la lista');
+        }
+
+        const maxTipoVolquete = tipos.reduce((prev,current)=>
+          prev.id_tipo_volquete > current.id_tipo_volquete ? prev:current );
+        return maxTipoVolquete;
+    }),
+    catchError(this.handleError<TipoVolquete>('getMaxId'))
+  );
+}
+
 getTipo(id: number): Observable<TipoVolquete> {
   return this.http.get<TipoVolquete>(`${this.apiUrl}/${id}`).pipe(
     catchError(this.handleError<TipoVolquete>('getTipo'))

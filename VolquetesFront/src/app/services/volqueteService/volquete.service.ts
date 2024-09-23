@@ -38,7 +38,7 @@ export class VolqueteService {
   }
 
   add(volquete: Volquete): Observable<Volquete> {
-    if (!volquete.nro) {
+    if (!volquete.nro_volquete) {
       throw new Error('Falta indicar nro');
     }
     return this.http.post<Volquete>(this.apiUrl, volquete).pipe(
@@ -48,7 +48,7 @@ export class VolqueteService {
   }
 
   update(volquete: VolqueteModel): Observable<VolqueteModel> {
-    const nro = volquete.nro;
+    const nro = volquete.nro_volquete;
     if (!nro || isNaN(nro)) {
       throw new Error('Nro inválido para la actualización del volquete');
     }

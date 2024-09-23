@@ -20,14 +20,18 @@ export class ListaVolquetesComponent {
   @Input() volquete!: Volquete;
 
   volquetes: VolqueteModel[] = [];
-  displayedColumns: string[] = ['nro_volquete'];
+  displayedColumns: string[] = [
+    'nro_volquete',
+    'id_tipo_volquete',
+    'marca',
+    'fecha_compra',
+  ];
 
   columnNames: { [key: string]: string } = {
     nro_volquete: 'Nro',
-  };
-
-  outsideColumns: { [key: string]: string } = {
-    descripcion_tipo_volquete: 'Tipo de Volquete',
+    id_tipo_volquete: 'Tipo',
+    marca: 'Marca',
+    fecha_compra: 'Fecha de Compra',
     estado_alquiler: 'Estado',
   };
 
@@ -71,7 +75,7 @@ export class ListaVolquetesComponent {
     this.deletingRow = volquete;
 
     this.subscription.add(
-      this.volqueteService.delete(this.deletingRow.nro).subscribe({
+      this.volqueteService.delete(this.deletingRow.nro_volquete).subscribe({
         next: () => {
           this.loadVolquetes(); // Refresh the list
         },
@@ -125,8 +129,8 @@ export class ListaVolquetesComponent {
 
   onAdd(): void {
     const newVolquete: VolqueteModel = {
-      nro: 0,
-      tipo_volquete: 0,
+      nro_volquete: 0,
+      id_tipo_volquete: 0,
       fecha_compra: new Date(),
       fecha_fabricacion: new Date(),
       marca: '',
@@ -158,7 +162,7 @@ export class ListaVolquetesComponent {
 
   onSeleccionarTipo(tipo: VolqueteModel): void {
     //this.tiposVolqueteFormListService.select(
-      tipo
+    tipo;
     // ); /*Servicio para marcar al tipo como "Selected" */
     console.log('Row clicked:', tipo);
   }

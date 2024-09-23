@@ -6,8 +6,8 @@ import { UsuariosComponent } from './app-layout/body/configuraciones-body/usuari
 
 
 export const routes: Routes = [
-  { path: 'volquetes', component: VolquetesBodyComponent },
-  { path: 'app-consulta-volquete', component: ConsultaVolqueteComponent },
+  { path: 'volquetes', component: ConsultaVolqueteComponent },
+  //{ path: 'app-consulta-volquete', component: VolquetesBodyComponent },
   { path: 'config/tiposVolquetes', component: TipoVolqueteComponent },
   { path: 'config/usuarios', component: UsuariosComponent },
 

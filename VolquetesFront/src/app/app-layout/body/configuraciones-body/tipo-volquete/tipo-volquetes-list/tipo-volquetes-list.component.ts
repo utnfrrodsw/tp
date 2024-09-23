@@ -73,16 +73,17 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
     this.deletingRow = tipo;
 
     this.subscription.add(
-      this.tiposVolqueteService.delete(this.deletingRow.id_tipo_volquete).subscribe({
-        next: () => {
-          this.loadTiposVolquete(); // Refresh the list
-        },
-        error: (error) => {
-          console.error('Error al eliminar el tipo de volquete', error);
-        },
-      })
+      this.tiposVolqueteService
+        .delete(this.deletingRow.id_tipo_volquete)
+        .subscribe({
+          next: () => {
+            this.loadTiposVolquete(); // Refresh the list
+          },
+          error: (error) => {
+            console.error('Error al eliminar el tipo de volquete', error);
+          },
+        })
     );
-    
   }
 
   startEdit(tipo: TipoVolqueteModel): void {
@@ -129,15 +130,30 @@ export class TipoVolquetesListComponent implements OnInit, OnDestroy {
 
   onAdd(): void {
     if (!this.isAddingNew) {
-      const newTipo: TipoVolqueteModel = {
-        id_tipo_volquete: 0,
-        descripcion_tipo_volquete: '',
-      };
-      this.tipos.push(newTipo);
-      this.startEdit(newTipo);
-      this.isAddingNew = true;
-      this.tiposVolqueteFormListService.startAdding();
-      console.log('you pressed onAddProveedor in tiposVolquete-list.component');
+      this.tiposVolqueteService.getMaxId().subscribe({
+        next: (maxTipoVolquete: TipoVolqueteModel) => {
+          // Crear un nuevo objeto basado en el maximo ID encontrado
+          const newTipo: TipoVolqueteModel = {
+            id_tipo_volquete: maxTipoVolquete.id_tipo_volquete+1,
+            descripcion_tipo_volquete: '',
+          };
+          // Agregar el nuevo objeto al array de tipos
+          this.tipos.push(newTipo);
+          // Iniciar la edición del nuevo objeto
+          this.startEdit(newTipo);
+          this.isAddingNew = true;
+          this.tiposVolqueteFormListService.startAdding();
+          console.log(
+            'you pressed onAddProveedor in tiposVolquete-list.component'
+          );
+        },
+        error: (err) => {
+          console.error(
+            'Error al obtener el TipoVolquete con el ID máximo',
+            err
+          );
+        },
+      });
     }
   }
 
