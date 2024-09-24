@@ -21,8 +21,8 @@
             <span>{{ volquete.nro_volquete }}</span>
           </td>
           <td>
-            <input *ngIf="editingRow === volquete" [(ngModel)]="editTemp!.id_tipo_volquete" />
-            <span *ngIf="editingRow !== volquete">{{ volquete.id_tipo_volquete }}</span>
+            <input *ngIf="editingRow === volquete" [(ngModel)]="editTemp!.tipo_volquete.descripcion_tipo_volquete" />
+            <span *ngIf="editingRow !== volquete">{{ volquete.tipo_volquete.descripcion_tipo_volquete }}</span>
           </td>
           <td>
             <input *ngIf="editingRow === volquete" [(ngModel)]="editTemp!.marca" />
