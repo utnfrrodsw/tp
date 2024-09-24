@@ -7,7 +7,9 @@ Montini Agostino 50757
 
 ### Repositorios
 --
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+Backend: Este mismo repositorio.
+FrontEnd: https://github.com/AgosUTN/TP-Front2
+
 
 ## Tema
 Sistema de gestion de prestamos de biblioteca
