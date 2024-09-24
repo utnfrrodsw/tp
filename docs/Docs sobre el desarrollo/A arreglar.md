@@ -33,4 +33,8 @@
 
     e. Ver agenda de alquileres de forma que se pueda saber rápidamente si tengo algún volquete libre en un día determinado y qué tipo de volquete tengo libre.
 
+    f. Ahora que el listado de volquetes muestra la DESCRIPCION DEL TIPO, a la hora de EDITAR el volquete tenemos que tener una lista desplegable del TIPO para editarlo, y vamos a tener que modificar el Update del servicio de VolqueteService para actualizar el id_tipo_volquete que tenemos guardado en la tabla de Volquetes si se cambia.
+
+    g. Quiero filtrar por tipo y por estado
+
     
