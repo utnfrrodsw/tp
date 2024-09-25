@@ -1,0 +1,39 @@
+###obtener todos los pricees 
+GET http://localhost:3000/api/price
+
+###obtener un price 
+GET http://localhost:3000/api/price/2
+
+###crear un nuevo price
+POST http://localhost:3000/api/price
+Content-Type: application/json
+
+{
+  "amount":120.3, 
+  "date": "2024-03-03",
+  "id_product": 1,
+  "id": 1
+}
+
+### modificar un price (PUT)
+PUT http://localhost:3000/api/price/2
+Content-Type: application/json
+
+{
+  "amount": 126.6, 
+  "date": "2024-03-03",
+  "id_product": 1,
+  "id": 1
+}
+
+### modificar un price (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/price/1
+Content-Type: application/json
+
+{
+  "amount": 127, 
+  "id": 1
+}
+
+### borrar un price
+DELETE http://localhost:3000/api/price/2

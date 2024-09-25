@@ -1,0 +1,39 @@
+###obtener todos los buys 
+GET http://localhost:3000/api/buy
+
+###obtener una buy 
+GET http://localhost:3000/api/buy/12
+
+###crear una nuevo buy
+POST http://localhost:3000/api/buy
+Content-Type: application/json
+
+{
+    "total": 2400, 
+    "cantidad": 13,
+    "fechabuy": "10-10-2020",
+    "id": "2"
+}
+
+### modificar un buy (PUT)
+PUT http://localhost:3000/api/buy/2
+Content-Type: application/json
+
+{
+    "total": 13000, 
+    "cantidad": 20,
+    "fechabuy": "25/12/2013",
+    "id": "2"
+}
+
+### modificar un buy (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/buy/12
+Content-Type: application/json
+
+{
+    "cantidad": 45,
+    "fechabuy": "30/1/2016"
+}
+
+### borrar un buy
+DELETE http://localhost:3000/api/buy/2

@@ -1,0 +1,35 @@
+###obtener todos las breeds
+GET http://localhost:3000/api/breed
+
+
+###crear una nueva breed
+#  @name createBreed
+POST http://localhost:3000/api/breed
+Content-Type: application/json
+
+{
+    "name": "Perro222", 
+    "description": "02", 
+    "animals": [1,2]
+
+}
+
+###ID
+ @id = {{createBreed.response.body.data.id}}
+###obtener una breed 
+GET http://localhost:3000/api/breed/{{id}}
+
+### modificar una breed (PUT)
+PUT http://localhost:3000/api/breed/02
+Content-Type: application/json
+
+{
+    "name": "Perro2", 
+    "description": "lindo", 
+    "animals": [1,2]
+}
+
+
+### DELETE
+@idToDelete = {{createBreed.response.body.data.id}}
+DELETE http://localhost:3000/api/breed/8
