@@ -13,7 +13,7 @@
   }
   
   .tipos-volquete-table {
-    width: 100%;
+    width: auto;
     border-collapse: collapse;
     border: 1px solid #ddd;
   }

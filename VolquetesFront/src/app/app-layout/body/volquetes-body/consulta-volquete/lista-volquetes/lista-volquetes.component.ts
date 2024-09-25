@@ -27,6 +27,10 @@ export class ListaVolquetesComponent {
     'fecha_compra',
   ];
 
+  getColspan(): number {
+    return this.displayedColumns.reduce((acc) => acc + 1, 0) + 1;
+  }
+
   columnNames: { [key: string]: string } = {
     nro_volquete: 'Nro',
     id_tipo_volquete: 'Tipo',
