@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { VolqueteService } from '../../../../../services/volqueteService/volquete.service.js';
+import { TipoVolqueteModel } from '../../../../../model/interfaces/tipo_volquete.interface.js';
 
 
 
@@ -22,14 +23,14 @@ export class ListaVolquetesComponent {
   volquetes: VolqueteModel[] = [];
   displayedColumns: string[] = [
     'nro_volquete',
-    'id_tipo_volquete',
+    'tipo_volquete.descripcion_tipo_volquete',
     'marca',
     'fecha_compra',
   ];
 
   columnNames: { [key: string]: string } = {
     nro_volquete: 'Nro',
-    id_tipo_volquete: 'Tipo',
+    'tipo_volquete.descripcion_tipo_volquete': 'Tipo',
     marca: 'Marca',
     fecha_compra: 'Fecha de Compra',
     estado_alquiler: 'Estado',
@@ -130,7 +131,7 @@ export class ListaVolquetesComponent {
   onAdd(): void {
     const newVolquete: VolqueteModel = {
       nro_volquete: 0,
-      id_tipo_volquete: 0,
+      tipo_volquete: new TipoVolqueteModel,
       fecha_compra: new Date(),
       fecha_fabricacion: new Date(),
       marca: '',
