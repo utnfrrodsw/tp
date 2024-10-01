@@ -139,7 +139,6 @@ export class ListaVolquetesComponent {
       fecha_compra: new Date(),
       fecha_fabricacion: new Date(),
       marca: '',
-      tipo_volquete: { id_tipo_volquete: 0, descripcion_tipo_volquete: '' }
     };
     this.volquetes.push(newVolquete);
     this.startEdit(newVolquete);
