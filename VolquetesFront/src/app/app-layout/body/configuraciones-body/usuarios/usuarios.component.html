@@ -35,7 +35,7 @@
         </tr>
 
         <tr>
-          <td colspan="3" class="add-row-cell">
+          <td [attr.colspan]="getColspan()" class="add-row-cell">
             <button (click)="onAdd()" class="add-button">
               <span class="add-icon">+</span>
               <span>Agregar</span>

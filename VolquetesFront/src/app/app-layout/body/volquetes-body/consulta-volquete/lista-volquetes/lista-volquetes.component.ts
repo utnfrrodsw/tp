@@ -28,6 +28,10 @@ export class ListaVolquetesComponent {
     'fecha_compra',
   ];
 
+  getColspan(): number {
+    return this.displayedColumns.reduce((acc) => acc + 1, 0) + 1;
+  }
+
   columnNames: { [key: string]: string } = {
     nro_volquete: 'Nro',
     'tipo_volquete.descripcion_tipo_volquete': 'Tipo',
@@ -135,6 +139,7 @@ export class ListaVolquetesComponent {
       fecha_compra: new Date(),
       fecha_fabricacion: new Date(),
       marca: '',
+      tipo_volquete: { id_tipo_volquete: 0, descripcion_tipo_volquete: '' }
     };
     this.volquetes.push(newVolquete);
     this.startEdit(newVolquete);

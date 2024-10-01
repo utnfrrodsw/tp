@@ -23,6 +23,10 @@ export class UsuariosComponent {
     rol: 'nivel de permisos',
   };
 
+  getColspan(): number {
+    return this.displayedColumns.reduce((acc) => acc + 1, 0) + 1;
+  }
+  
   usuarioSeleccionado: UsuarioModel | null = null;
   deletingRow: UsuarioModel | null = null;
   editingRow: UsuarioModel | null = null;
