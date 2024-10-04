@@ -130,7 +130,8 @@ async function retirarLibrosPaso3R(req: Request, res: Response) {
     //Se recibe array de CP de ejemplar, e idSocio.
 
     const ejemplares: EjemplarRequest[] = req.body.ejemplares;
-    if (ejemplares.length > 0) {
+    console.log(ejemplares);
+    if (ejemplares.length < 0) {
       // Revisar con Zodd.
       return res.status(400).json({ message: "No se recibió ninguna LP" });
     }

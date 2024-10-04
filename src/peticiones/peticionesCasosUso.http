@@ -4,7 +4,7 @@ GET http://localhost:3000/api/prestamos/retirarLibrosPaso1R
 Content-Type: application/json
 
 {
-    "idSocio": 1
+    "idSocio": 4
 
 }
 
@@ -15,7 +15,7 @@ GET http://localhost:3000/api/prestamos/retirarLibrosPaso2R
 Content-Type: application/json
 
 {
-    "idSocio": 1,
+    "idSocio": 4,
     "idEjemplar": 1,
     "idLibro":1
 
@@ -27,10 +27,10 @@ POST http://localhost:3000/api/prestamos/retirarLibrosPaso3R
 Content-Type: application/json
 
 {
-    "idSocio": 2,
+    "idSocio": 4,
     "ejemplares":[
       {
-        "id": 1,
+        "id": 4,
         "miLibro":1
       }
     ]
@@ -43,8 +43,8 @@ PATCH http://localhost:3000/api/prestamos/devolverLibro
 Content-Type: application/json
 
 {
-    "idSocio": 2,
-    "idEjemplar": 1,
+    "idSocio": 4,
+    "idEjemplar": 4,
     "idLibro":1
 
 }
