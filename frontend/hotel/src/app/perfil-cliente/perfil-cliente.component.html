@@ -1,6 +1,28 @@
 <app-header></app-header>
-<p>perfil-cliente works!</p>
 
-<p>hola</p>
+<div class="container">
+  <mat-card class="perfil-card">
+    <mat-card-header>
+      <mat-card-title>Perfil del Cliente</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="cliente">
+        <p><strong>Número de Cliente:</strong> {{ cliente.idCli }}</p>
+        <p><strong>Nro de {{ cliente.tipoDni }}:</strong> {{ cliente.nroDni }}</p>
+        <p><strong>Nombre y Apellido:</strong> {{ cliente.apellidoYnombre }}</p>
+        <p><strong>Fecha de nacimiento:</strong> {{ cliente.fechaNac }}</p>
+        <p><strong>Sexo:</strong> {{ cliente.sexo }}</p>
+        <p><strong>Email:</strong> {{ cliente.email }}</p>
+      </div>
+      
+      <div *ngIf="errorMessage">
+        <p class="error-message">{{ errorMessage }}</p>
+      </div>
+    </mat-card-content>
 
-
+    <mat-card-actions class="button-container">
+      <button mat-stroked-button color="primary">Actualizar los datos de mi cuenta</button>
+      <button mat-stroked-button color="warn" (click)="eliminarCuenta()">Eliminar mi cuenta</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

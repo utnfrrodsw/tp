@@ -1,10 +1,10 @@
-// mostrar-habitaciones-disponibles.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CrearReservaService } from '../service/crear-reserva.service';
 import { TiposHabitacionService } from '../service/tiposhabitacion.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-mostrar-habitaciones-disponibles',
@@ -19,15 +19,16 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
   checkout: string = '';
   people: string = '';
   idLocalidad: number = 0;
-  authToken: string | null = localStorage.getItem('authToken'); // Obtener el token del localStorage
+  authToken: string | null = localStorage.getItem('authToken'); 
   idCliente: string | null = localStorage.getItem('idCliente');
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private reservaService: CrearReservaService,
-    private tiposHabitacionService: TiposHabitacionService ,
-    private router: Router
+    private tiposHabitacionService: TiposHabitacionService,
+    private router: Router,
+    private dialog: MatDialog // Inyectar MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -75,13 +76,13 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
       this.router.navigate(['/login']); // Redirige al usuario a la página de inicio de sesión
       return;
     }
-  
+
     // Validar los datos necesarios
     if (!this.checkin || !this.checkout || !this.idLocalidad || !nroHabitacion) {
       alert('Datos incompletos para la reserva.');
       return;
     }
-  
+
     const reservaData = {
       nroHabitacion: nroHabitacion,
       fechaIngreso: this.checkin,
@@ -89,10 +90,18 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
       idLocalidad: this.idLocalidad,
       idCli: this.idCliente 
     };
-  
+
     this.reservaService.reservarHabitacion(reservaData).subscribe({
       next: (response) => {
-        this.router.navigate(['/misreservas']);
+        // Abre el diálogo de éxito con un mensaje
+        const dialogRef = this.dialog.open(SuccessDialogComponent, {
+          data: { message: 'Su reserva fue registrada con éxito.' }
+        });
+
+        // Después de cerrar el diálogo, redirigir a mis reservas
+        dialogRef.afterClosed().subscribe(() => {
+          this.router.navigate(['/misreservas']);
+        });
       },
       error: (err) => {
         // Mostrar mensaje de error

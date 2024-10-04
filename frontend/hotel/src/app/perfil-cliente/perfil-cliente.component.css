@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+.perfil-card {
+  max-width: 600px;
+  width: 100%; /* Asegúrate de que se ajuste en pantallas pequeñas */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+}
+
+.button-container {
+  display: flex; /* Usa flexbox para alinear los botones en fila */
+  justify-content: space-between; /* Distribuye espacio igual entre botones */
+  gap: 15px; /* Añade un espacio horizontal entre los botones */
+  margin-top: 20px; /* Margen superior para separar de otros elementos */
+}
+
+mat-stroked-button {
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  flex: 1; /* Hace que los botones se distribuyan uniformemente */
+}
+
+mat-stroked-button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Color de fondo al pasar el mouse */
+}

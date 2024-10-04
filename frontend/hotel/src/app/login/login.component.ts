@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
- // Ajusta la ruta según la estructura de tu proyecto
+
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 

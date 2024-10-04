@@ -1,0 +1,40 @@
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    padding: 20px; 
+    min-width: 150px; 
+    background-color: white; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+    text-align: center; 
+  }
+  
+  .dialog-title {
+    font-size: 24px; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+    color: #4CAF50; 
+  }
+  
+  .dialog-message {
+    font-size: 16px; 
+    margin-bottom: 20px; 
+    color: #333; 
+  }
+  
+  .dialog-button {
+    background-color: #4CAF50; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dialog-button:hover {
+    background-color: #45a049; 
+  }
+  

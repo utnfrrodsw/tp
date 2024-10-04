@@ -12,10 +12,10 @@ export class CrearReservaService {
   constructor(private http: HttpClient) {}
 
   reservarHabitacion(reservaData: any): Observable<any> {
-    // Obtener el token del localStorage
+    
     const token = localStorage.getItem('authToken');
 
-    // Configurar los headers para incluir el token
+    
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'

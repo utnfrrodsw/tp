@@ -1,7 +1,7 @@
 .user-info {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Alinea al final de la barra de navegación */
+    margin-left: auto; 
   }
   
   .user-info-container {
@@ -86,14 +86,15 @@ header {
 }
 
 header .logo a {
-    text-decoration: none; /* Asegúrate de que el enlace no esté subrayado */
+    text-decoration: none; 
 }
 
 header .logo h2 {
     margin: 0;
     font-weight: 700;
     color: #E0B973;
-    text-decoration: none; /* Asegúrate de que el h2 no esté subrayado */
+    text-decoration: none;
+    font-size: 35px;
 }
 
 header nav {

@@ -10,6 +10,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { MostrarHabitacionesDisponiblesComponent } from './mostrar-habitaciones-disponibles/mostrar-habitaciones-disponibles.component';
 import { ReservasClienteComponent } from './reservas-cliente/reservas-cliente.component';
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
+import { LoginEmpleadoComponent } from './login-empleado/login-empleado.component';
 
 const routes: Routes = [
 
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'registro',component:RegistroComponent},
   {path:'habitaciones/disponibles',component:MostrarHabitacionesDisponiblesComponent},
   {path:'misreservas',component:ReservasClienteComponent},
-  {path:'miperfil' , component:PerfilClienteComponent}
+  {path:'miperfil' , component:PerfilClienteComponent},
+  {path:'login/empleados' , component:LoginEmpleadoComponent}
 
 ];
 

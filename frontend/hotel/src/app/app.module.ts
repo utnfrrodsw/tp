@@ -9,13 +9,22 @@ import { MostrarServiciosComponent } from './mostrar-servicios/mostrar-servicios
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HeaderComponent } from './header/header.component';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http'; // Importa HttpClientModule y withFetch
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MostrarHabitacionesDisponiblesComponent } from './mostrar-habitaciones-disponibles/mostrar-habitaciones-disponibles.component';
 import { ReservasClienteComponent } from './reservas-cliente/reservas-cliente.component';
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
-
-
+import { LoginEmpleadoComponent } from './login-empleado/login-empleado.component';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'primeng/toast';
+import { AlertaComponent } from './alerta/alerta.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +38,9 @@ import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.componen
     MostrarHabitacionesDisponiblesComponent,
     ReservasClienteComponent,
     PerfilClienteComponent,
+    LoginEmpleadoComponent,
+    SuccessDialogComponent,
+    AlertaComponent,
    
   ],
   imports: [
@@ -36,13 +48,20 @@ import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.componen
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-  
+    MatDialogModule,
+    MatCardModule,
+    MatButtonModule,
     HttpClientModule ,
-    // Agrega HttpClientModule al imports
+    BrowserAnimationsModule,
+    ConfirmDialogModule,
+    ToastModule
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch()) // Proporciona HttpClient con fetch habilitado
+    provideHttpClient(withFetch()),
+    provideAnimationsAsync() ,
+    ConfirmationService
+
   ],
   bootstrap: [AppComponent]
 })

@@ -1,18 +1,18 @@
 .title {
     font-family: 'Poppins', sans-serif;
-    text-align: center; /* Centra el texto horizontalmente */
+    text-align: center; 
     margin-bottom: 20px; 
-    margin-top: 20px;/* Ajusta el margen inferior según sea necesario */
+    margin-top: 20px;
 }
 
 .container {
-    display: grid; /* Usa grid layout */
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual ancho */
-    gap: 0 10px; /* Separación horizontal de 10px y sin separación vertical */
-    justify-content: center; /* Centra el grid horizontalmente */
-    width: 100%; /* Asegura que el contenedor ocupe el ancho completo del contenedor padre */
-    max-width: 1200px; /* Ajusta el ancho máximo según sea necesario */
-    margin: 0 auto; /* Centra el contenedor en el contenedor padre */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 0 10px; 
+    justify-content: center;
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
 }
 
 .card { 
@@ -51,4 +51,5 @@
 .card h2 {
     font-family: 'Poppins', sans-serif;
     margin-bottom: 15px; /* Ajusta el margen inferior */
+    font-size: 30px;
 }
