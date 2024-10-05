@@ -37,4 +37,15 @@
 
     g. Quiero filtrar por tipo y por estado
 
-    
+6. Autorizacion (Login)
+Sigue un video, pero debe corregirse con:
+- Angular guards
+-Cookies
+- With-Credentials Headers
+
+A considerar en JWT: JWT should never be stored in storage accesible by javascript
+
+Falta ademas:
+- Error Handling
+- Separation of concerns (Components, Services)
+- State Management
