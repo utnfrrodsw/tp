@@ -1,13 +1,13 @@
 <app-header></app-header>
-
 <h1 class="title">Nuestros servicios son:</h1>
 
 <div class="container">
-    <div class="card" *ngFor="let servicios of data">    
-        <h2>{{servicios.nombre}}</h2>
+    <div class="card" *ngFor="let servicio of data">    
+        <h2>{{ servicio.nombre }}</h2>
         <ul>
-            <li>{{servicios.descripcion}}</li>
-            <li class="price">$ {{servicios.precio}}</li>
+            <li>{{ servicio.descripcion }}</li>
+            <li class="price">$ {{ servicio.precio }}</li>
         </ul>
+        <button class="inscribirme-button" (click)="inscribirme(servicio.idServ)" *ngIf="isLoggedIn && hasActiveStay">Inscribirme</button>
     </div>
 </div>

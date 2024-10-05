@@ -129,6 +129,30 @@ const actualizarEstadia = async (req, res) => {
   }
 };
 
+const actualizarEstadoEstadia = async (req, res) => {
+  try {
+    const { estado } = req.body; // Obtener el estado del cuerpo de la solicitud
+
+    if (!estado) {
+      return res.status(400).json({ message: "El estado es requerido" });
+    }
+
+    const estadia = await Estadia.findOneAndUpdate(
+      { idEst: req.params.id }, // Filtrar por idEst
+      { estado: estado }, // Actualizar el estado
+      { new: true } // Retornar el nuevo objeto
+    );
+
+    if (!estadia) {
+      return res.status(404).json({ message: "Estadia no encontrada" });
+    }
+
+    res.json(estadia); // Devolver la estadía actualizada
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 // Eliminar Estadia
 const eliminarEstadia = async (req, res) => {
   try {
@@ -204,7 +228,7 @@ const reservarHabitacion = async (req, res) => {
       fechaIngreso: new Date(fechaIngresoFormatted),
       fechaEgreso: new Date(fechaEgresoFormatted),
       estado: 'Reservado',
-      idLocalidad // Asegúrate de incluir este campo
+      idLocalidad 
     });
 
     // Guardar la estadía
@@ -213,6 +237,22 @@ const reservarHabitacion = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error al reservar la habitación.", error: error.message });
+  }
+};
+
+
+const obtenerEstadiasPorCliente = async (req, res) => {
+  try {
+    const idCli = req.params.idCli;
+    const estadias = await Estadia.find({ idCli: idCli });
+
+    if (!estadias || estadias.length === 0) {
+      return res.status(404).json({ message: "No se encontraron estadías para este cliente." });
+    }
+
+    res.status(200).json(estadias);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -226,5 +266,7 @@ module.exports = {
   crearEstadia,
   obtenerEstadiaPorId,
   actualizarEstadia,
-  eliminarEstadia
+  eliminarEstadia,
+  obtenerEstadiasPorCliente ,
+  actualizarEstadoEstadia
 };

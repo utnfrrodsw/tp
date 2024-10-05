@@ -1,2 +1,40 @@
 <app-header></app-header>
-<p>reservas-cliente works!</p>
+<div class="container">
+    <h2>Mis Reservas</h2>
+  
+    <table class="table table-bordered" *ngIf="estadias && estadias.length > 0">
+      <thead>
+        <tr>
+          <th>ID Estadia</th>
+          <th>ID Cliente</th>
+          <th>Número de Habitación</th>
+          <th>Fecha de Ingreso</th>
+          <th>Fecha de Egreso</th>
+          <th>Estado</th>
+          <th>ID Localidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estadia of estadias" 
+            [ngClass]="{
+                'finalizado': estadia.estado === 'Finalizado', 
+                'cancelado': estadia.estado === 'Cancelado', 
+                'reservado': estadia.estado === 'Reservado' 
+            }">
+            <td>{{ estadia.idEst }}</td>
+            <td>{{ estadia.idCli }}</td>
+            <td>{{ estadia.nroHabitacion }}</td>
+            <td>{{ estadia.fechaIngreso | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ estadia.fechaEgreso | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ estadia.estado }}</td>
+            <td>{{ estadia.idLocalidad }}</td>
+            <td>
+              <button *ngIf="estadia.estado === 'Reservado'" class="btn btn-danger" (click)="cancelarReserva(estadia.idEst)">Cancelar reserva</button>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  
+    <p *ngIf="estadias && estadias.length === 0">No tienes reservas activas.</p>
+  </div>

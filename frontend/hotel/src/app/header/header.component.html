@@ -1,39 +1,35 @@
 <header>
-  <div class="logo">
-      <a [routerLink]="['/']">
-          <h2>LUXURY HOTELES</h2>
+    <div class="logo">
+      <a (click)="navigateTo('/')">
+        <h2>LUXURY HOTELES</h2>
       </a>
-  </div>
-  <nav>
+    </div>
+    <nav>
       <ul>
-          <li><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a></li>
-
-          
-          <li *ngIf="!isLoggedIn"><a [routerLink]="['/habitaciones']" routerLinkActive="active">Habitaciones</a></li>
-          <li ><a [routerLink]="['/servicios']" routerLinkActive="active">Servicios</a></li>
-          <li *ngIf="!isLoggedIn"><a [routerLink]="['/about']" routerLinkActive="active">Nosotros</a></li>
-
-         
-          <li *ngIf="isLoggedIn"><a [routerLink]="['/misreservas']" routerLinkActive="active">Mis reservas</a></li>
-          <li *ngIf="isLoggedIn"><a [routerLink]="['/miperfil']" routerLinkActive="active">Mi Perfil</a></li> 
+        <li><a (click)="onHeaderClick($event)" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a></li>
+        <li *ngIf="!isLoggedIn"><a (click)="onHeaderClick($event)" [routerLink]="['/habitaciones']" routerLinkActive="active">Habitaciones</a></li>
+        <li><a (click)="onHeaderClick($event)" [routerLink]="['/servicios']" routerLinkActive="active">Servicios</a></li>
+        <li *ngIf="!isLoggedIn"><a (click)="onHeaderClick($event)" [routerLink]="['/about']" routerLinkActive="active">Nosotros</a></li>
+        <li *ngIf="isLoggedIn"><a (click)="onHeaderClick($event)" [routerLink]="['/misreservas']" routerLinkActive="active">Mis reservas</a></li>
+        <li *ngIf="isLoggedIn"><a (click)="onHeaderClick($event)" [routerLink]="['/miperfil']" routerLinkActive="active">Mi Perfil</a></li>
       </ul>
-  </nav>
-
-  <div class="auth-buttons" *ngIf="!isLoggedIn">
-      <a [routerLink]="['/login']" class="login-button">Iniciar sesión</a>
-      <a [routerLink]="['/registro']" class="register-button">Registrarse</a>
-  </div>
-  <div class="user-info" *ngIf="isLoggedIn">
+    </nav>
+  
+    <div class="auth-buttons" *ngIf="!isLoggedIn">
+      <a (click)="onHeaderClick($event)" [routerLink]="['/login']" class="login-button">Iniciar sesión</a>
+      <a (click)="onHeaderClick($event)" [routerLink]="['/registro']" class="register-button">Registrarse</a>
+    </div>
+    <div class="user-info" *ngIf="isLoggedIn">
       <div class="user-info-container">
-          <div class="dropdown">
-              <button class="dropbtn">
-                  {{ userName }} <span class="arrow-down">&#9660;</span>
-              </button>
-              <div class="dropdown-content">
-                  
-                  <a (click)="logout()">Cerrar sesión</a>
-              </div>
+        <div class="dropdown">
+          <button class="dropbtn">
+            {{ userName }} <span class="arrow-down">&#9660;</span>
+          </button>
+          <div class="dropdown-content">
+            <a (click)="logout()">Cerrar sesión</a>
           </div>
+        </div>
       </div>
-  </div>
-</header>
+    </div>
+  </header>
+  
