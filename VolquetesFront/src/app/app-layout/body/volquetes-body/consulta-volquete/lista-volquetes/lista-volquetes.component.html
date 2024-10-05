@@ -1,0 +1,58 @@
+<!-- tipo-volquetes-list.component.html -->
+<div class="tipos-volquete-list-container">
+  <h1 class="tipos-volquete-title">Volquetes</h1>
+
+  <div class="tipos-volquete-table-container">
+
+    <table class="tipos-volquete-table">
+      <thead>
+        <tr>
+          <th *ngFor="let column of displayedColumns">
+            {{ columnNames[column] }}
+          </th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let volquete of volquetes" (click)="onSeleccionarTipo(volquete)">
+
+          <td>
+            <span>{{ volquete.nro_volquete }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingRow === volquete" [(ngModel)]="editTemp!.tipo_volquete.descripcion_tipo_volquete" />
+            <span *ngIf="editingRow !== volquete">{{ volquete.tipo_volquete.descripcion_tipo_volquete }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingRow === volquete" [(ngModel)]="editTemp!.marca" />
+            <span *ngIf="editingRow !== volquete">{{ volquete.marca }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingRow === volquete" [(ngModel)]="editTemp!.fecha_compra" />
+            <span *ngIf="editingRow !== volquete">{{ volquete.fecha_compra | date: 'dd/MM/yyyy'}}</span>
+          </td>
+          
+          <td>
+            <button *ngIf="editingRow === volquete" (click)="saveEdit()">Guardar</button>
+            <button *ngIf="editingRow === volquete" (click)="cancelEdit()">Cancelar</button>
+            <button *ngIf="editingRow !== volquete" (click)="startEdit(volquete)">Editar</button>
+            <button *ngIf="editingRow !== volquete" (click)="delete(volquete)">Eliminar</button>
+          </td>
+
+        </tr>
+
+        <tr>
+          <td [attr.colspan]="getColspan()" class="add-row-cell">
+            <button (click)="onAdd()" class="add-button">
+              <span class="add-icon">+</span>
+              <span>Agregar</span>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>

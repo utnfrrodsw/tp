@@ -1,0 +1,42 @@
+.content-wrapper {
+  display: flex;
+  min-height: 100vh;
+  /* Ensure the wrapper fills the viewport height */
+}
+
+.main-content {
+  flex-grow: 1;
+  /* Allow main content to grow and fill remaining space */
+  padding: 20px;
+  overflow-y: auto;
+  /* Enable scrolling for main content if needed */
+}
+
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.fade-in-out {
+  opacity: 0;
+  transition: opacity 5s ease;
+  animation-name: fade-out;
+  animation-duration: 5s; /* Adjust animation duration */
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.fade-in-out.show {
+  opacity: 1;
+  transition: opacity 5s ease;
+  animation-name: fade-in;
+  animation-duration: 5s; /* Adjust animation duration */
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}

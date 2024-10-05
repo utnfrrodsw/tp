@@ -1,0 +1,161 @@
+.sidebar {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  /* border-left: 1px solid gray;*/
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 3px;
+}
+
+.sidebar-item {
+  display: flex;
+  /* Use flexbox for layout */
+  flex-direction: column;
+  align-items: flex-start;
+  /* Center items vertically */
+  margin-bottom: 8px;
+  /* Optional: Adjust spacing between items */
+  width: 100%;
+  line-height: 32px;
+  transition: margin 0.3s ease;
+  /* Smooth transition for margin */
+  /*height: 40px;*/
+}
+
+.sidebar-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.sidebar-button {
+  flex-grow: 1;
+  text-align: left;
+  background-color: white;
+  border: none;
+  width: 200px;
+  max-width: 200px;
+  cursor: pointer;
+  height: 40px;
+
+  padding-left: 40px;
+  padding-right: 40px;
+  font-family: Arial, sans-serif;
+  font-weight: lighter;
+  font-size: 16px;
+  color: rgba(0, 0, 0);
+  opacity: 1;
+  /* Ensure names are initially visible */
+  transition: opacity 0.8s ease;
+  /* Smooth transition for opacity */
+}
+
+.sidebar-image {
+  width: 40px;
+  /* Adjust image width as needed */
+  height: 40px;
+  /* Adjust image height as needed */
+  margin-right: 0;
+  /* Optional: Adjust spacing between image and text */
+  padding-right: 3px;
+}
+
+.collapse-button {
+  width: 100%;
+  padding: 10px;
+  text-align: right;
+  background-color: white;
+  cursor: pointer;
+  border: none;
+  transition: padding 0.8s ease;
+}
+
+.sidebar-item:hover .sidebar-button {
+  opacity: 0.8;
+  /* Example: Reduce opacity */
+  background-color: #cacacaf1;
+  /* border-left: 3px solid #0948e7;*/
+  color: rgba(0, 0, 0);
+  font-weight: bold;
+  cursor: pointer;
+  padding-right: 30px;
+}
+
+.sidebar-item:hover .sidebar-image {
+  /* Styles for image on hover */
+  opacity: 0.8;
+  /* Example: Reduce opacity */
+  background-color: #cacacaf1;
+  border-left: 3px solid #0948e7;
+  color: rgba(0, 0, 0);
+  font-weight: bold;
+  cursor: pointer;
+  padding-right: 3px;
+}
+
+.collapse-button:hover {
+  opacity: 0.8;
+  /* Example: Reduce opacity */
+  background-color: #cacacaf1;
+  /* border-left: 3px solid #0948e7;*/
+  color: rgba(0, 0, 0);
+  font-weight: bold;
+  cursor: pointer;
+  padding-right: 30px;
+}
+
+.collapsed-padding {
+  padding: 0;
+  /* Adjusted padding when collapsed */
+  text-align: center;
+}
+
+.collapsed-padding:hover {
+  padding: 0;
+  /* Adjusted padding when collapsed */
+}
+
+.sub-options {
+  height: fit-content;
+  /*    overflow: hidden;*/
+  transition: max-height 0.3s ease-out;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sub-options.show {
+  max-height: 300px;
+  /* Ajusta esto según la altura máxima que necesites */
+}
+
+.sidebar-sub-item {
+  width: 100%;
+}
+
+.sidebar-sub-button {
+  width: 100%;
+  text-align: left;
+  background-color: white;
+  cursor: pointer;
+  border: none;
+  padding: 10px 40px;
+  font-family: Arial, sans-serif;
+  font-weight: lighter;
+  font-size: 14px;
+  color: rgba(0, 0, 0);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-sub-button:hover {
+  background-color: #cacacaf1;
+  color: rgba(0, 0, 0);
+  font-weight: bold;
+}

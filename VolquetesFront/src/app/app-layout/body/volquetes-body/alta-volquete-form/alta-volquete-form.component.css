@@ -1,0 +1,20 @@
+:root{
+    --accent-color: cornflowerblue;
+    --primary-color:black;
+  }
+
+  input[type="text"] {
+    border: solid 1px cornflowerblue;
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 4px;
+    display: inline-block;
+    width: 30%;
+  }
+  button {
+    padding: 10px;
+    border-radius: 8px;
+    border: solid 1px cornflowerblue;
+    background: white;
+    color: black;
+  }

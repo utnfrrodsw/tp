@@ -1,0 +1,71 @@
+.tipos-volquete-list-container {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.tipos-volquete-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.tipos-volquete-table-container {
+  overflow-x: auto;
+  /* Permite el desplazamiento horizontal si es necesario */
+}
+
+.tipos-volquete-table {
+  width: auto;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+.tipos-volquete-table th,
+.tipos-volquete-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.tipos-volquete-table th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.tipos-volquete-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.tipos-volquete-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.tipos-volquete-table .selected {
+  background-color: #e0e0e0;
+}
+
+.add-row {
+  cursor: pointer;
+}
+
+.add-row-cell {
+  text-align: center;
+}
+
+.add-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+.add-icon {
+  font-size: 20px;
+  margin-right: 8px;
+}

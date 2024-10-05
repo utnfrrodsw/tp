@@ -1,0 +1,50 @@
+<!-- tipo-volquetes-list.component.html -->
+<div class="tipos-volquete-list-container">
+  <h1 class="tipos-volquete-title">Usuarios</h1>
+
+  <div class="tipos-volquete-table-container">
+
+    <table class="tipos-volquete-table">
+      <thead>
+        <tr>
+          <th *ngFor="let column of displayedColumns">
+            {{ columnNames[column] }}
+          </th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let usuario of usuarios" (click)="onSeleccionarTipo(usuario)">
+
+          <td>
+
+            <span>{{ usuario.nombre_usuario }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingRow === usuario" [(ngModel)]="editTemp.rol" />
+            <span *ngIf="editingRow !== usuario">{{ usuario.rol }}</span>
+          </td>
+          <td>
+            <button *ngIf="editingRow === usuario" (click)="saveEdit()">Guardar</button>
+            <button *ngIf="editingRow === usuario" (click)="cancelEdit()">Cancelar</button>
+            <button *ngIf="editingRow !== usuario" (click)="startEdit(usuario)">Editar</button>
+            <button *ngIf="editingRow !== usuario" (click)="delete(usuario)">Eliminar</button>
+          </td>
+
+        </tr>
+
+        <tr>
+          <td [attr.colspan]="getColspan()" class="add-row-cell">
+            <button (click)="onAdd()" class="add-button">
+              <span class="add-icon">+</span>
+              <span>Agregar</span>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>

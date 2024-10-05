@@ -1,0 +1,42 @@
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #000;
+  /* Adds the horizontal line at the top */
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  padding: 10px;
+  /* Adjust as necessary */
+}
+
+.footer {
+  background-color: #313030;
+  color: #fff; 
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  padding: 10px 0;
+  transition: transform 0.3s ease; /* Smooth transition for appearing/disappearing */
+}
+
+.hide {
+  transform: translateY(100%); /* Move footer off-screen */
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+}
+
+.copyright {
+  margin-left: 10px;
+  /* Adjust as necessary */
+}

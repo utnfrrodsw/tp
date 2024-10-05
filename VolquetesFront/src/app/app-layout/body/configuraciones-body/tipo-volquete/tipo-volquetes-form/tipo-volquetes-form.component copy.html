@@ -1,0 +1,35 @@
+<h3>TIPOS DE VOLQUETES</h3>
+<form id="formConsulta" #formConsulta="ngForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label value="Id">Id: </label>
+    <input type="text" name="id" [(ngModel)]="tipoVolquete.id" #id="ngModel" readonly>
+  
+  <!-- 
+    <span *ngIf="id.touched && !id.valid">
+      Introduzca Codigo
+    </span>
+  -->
+  </p>
+
+  <p>
+    <label value="Descripcion">Descripcion: </label>
+    <input type="text" name="descripcion" [(ngModel)]="tipoVolquete.descripcion" #descripcion="ngModel" required>
+    <!-- 
+    <span *ngIf="descripcion.touched && !descripcion.valid">
+      Introduzca Descripcion
+    </span>
+  -->
+  </p>
+
+  <div class="button-group">
+    <button type="button" value="Eliminar" (click)="eliminar()" [disabled]="!formConsulta.form.valid" >Eliminar</button>
+    <button type="button" value="Agregar" (click)="insertar()" [disabled]="!formConsulta.form.valid" >Agregar </button>
+  </div>
+</form>
+
+<div *ngIf="introducido==1">
+  <h3>Tipo de Volquete Introducido</h3>
+</div>
+<div *ngIf="introducido==0">
+  <h3>Error al Introducir Tipo de Volquete {{mensajeErr}}</h3>
+</div>
