@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container">
-    <h2>Mis Reservas</h2>
+    
   
     <table class="table table-bordered" *ngIf="estadias && estadias.length > 0">
       <thead>
@@ -20,7 +20,8 @@
             [ngClass]="{
                 'finalizado': estadia.estado === 'Finalizado', 
                 'cancelado': estadia.estado === 'Cancelado', 
-                'reservado': estadia.estado === 'Reservado' 
+                'reservado': estadia.estado === 'Reservado' ,
+                 'activo': estadia.estado === 'Activo'
             }">
             <td>{{ estadia.idEst }}</td>
             <td>{{ estadia.idCli }}</td>

@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-mostrar-habitaciones',
   templateUrl: './mostrar-habitaciones.component.html',
-  styleUrl: './mostrar-habitaciones.component.css'
+  styleUrl: './mostrar-habitaciones.component.css',
 })
 export class MostrarHabitacionesComponent implements OnInit {
 

@@ -8,6 +8,14 @@
             <li>{{ servicio.descripcion }}</li>
             <li class="price">$ {{ servicio.precio }}</li>
         </ul>
-        <button class="inscribirme-button" (click)="inscribirme(servicio.idServ)" *ngIf="isLoggedIn && hasActiveStay">Inscribirme</button>
+        
+        <!-- Si el cliente está inscrito, mostrar el botón gris y el de cancelar -->
+        <div *ngIf="isLoggedIn && hasActiveStay && servicio.inscripto">
+            <button class="inscripto-button" disabled>Inscripto</button>
+            <button class="cancelar-inscripcion-button" (click)="cancelarInscripcion(servicio.idServ)">Cancelar inscripción</button>
+        </div>
+        
+        <!-- Si no está inscrito, mostrar el botón de inscribirse -->
+        <button class="inscribirme-button" (click)="inscribirme(servicio.idServ)" *ngIf="isLoggedIn && hasActiveStay && !servicio.inscripto">Inscribirme</button>
     </div>
 </div>

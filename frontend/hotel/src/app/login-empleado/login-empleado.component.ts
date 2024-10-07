@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class LoginEmpleadoComponent {
 
+  email: string = '';
+  password: string = '';
+
+  onSubmit() {
+    // Lógica para manejar el inicio de sesión
+    console.log('Email:', this.email);
+    console.log('Contraseña:', this.password);
+    // Aquí puedes agregar la llamada a tu servicio de autenticación
+  }
+
 }

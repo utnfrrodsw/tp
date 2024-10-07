@@ -21,6 +21,10 @@ h2 {
     background-color: #f9f9f9; 
 }
 
+.activo {
+    background-color: #42c1e7; 
+}
+
 .table {
     width: 100%;
     border-collapse: collapse;

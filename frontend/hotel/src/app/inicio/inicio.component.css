@@ -8,14 +8,14 @@ body {
     padding: 0;
     box-sizing: border-box;
     width: 100%;
-    overflow-x: hidden; /* Evita el desplazamiento horizontal innecesario */
+    overflow-x: hidden; 
 }
 
 
   
 
 .hero-section {
-    background-image: url('https://farm5.staticflickr.com/4519/37785963675_8e5f044eda_h.jpg');
+    background-image: url('/assets/imagen_principal.jpg');
     background-size: cover;
     background-position: center;
     padding: 70px 20px;

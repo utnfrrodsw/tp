@@ -18,4 +18,10 @@ export class ConsumirServicioEstadiaService {
     };
     return this.http.post(this.apiUrl, body, { headers });
   }
+
+
+  getServiciosInscriptos(idEstadia: number): Observable<number[]> {
+    return this.http.get<number[]>(`${this.apiUrl}/${idEstadia}`);
+  }
+
 }

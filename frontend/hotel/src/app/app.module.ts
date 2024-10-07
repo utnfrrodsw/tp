@@ -25,6 +25,9 @@ import { ConfirmationService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { AlertaComponent } from './alerta/alerta.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +57,11 @@ import { AlertaComponent } from './alerta/alerta.component';
     HttpClientModule ,
     BrowserAnimationsModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    MatSliderModule,
+    MatFormFieldModule,
+    MatSelectModule,
+
   ],
   providers: [
     provideClientHydration(),
