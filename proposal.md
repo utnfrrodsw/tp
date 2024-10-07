@@ -16,7 +16,7 @@ La idea de nuestro proyecto es realizar un sistema donde se pueda realizar tanto
 ### Repositorios
 [Frontend]
 
-[Backend]((https://github.com/julianlentini4/Backend))
+[Backend](https://github.com/julianlentini4/Backend)
 
 ### Modelo
 ![](https://github.com/olietchecopar/DSW-TP/blob/main/Diagrama%20Entidad%20Relacion.jpg)
