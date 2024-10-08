@@ -9,9 +9,16 @@ export function Details() {
 
     console.log(useLocation().state)
     const usuario = (useLocation().state)
+    const [data, setData] = useState([])
     const [country, setCountry] = useState([]);
     const [city, setCity] = useState([]);
     const [province, setProvince] = useState([]);
+
+    const GetData = () => {
+        axios.get(`http://localhost:3000/api/v1/users/read/${usuario.id_user}`).then((response) =>
+            setData(response.data)
+        );
+    };
 
     const GetCountry = () => {
         axios.get(`http://localhost:3000/api/v1/countries/${usuario.id_country}`).then((responseCountry) =>

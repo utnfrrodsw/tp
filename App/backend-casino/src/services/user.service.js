@@ -1,3 +1,4 @@
+const { QueryTypes } = require('sequelize');
 const { models } = require('../libs/sequelize');
 
 class UserService{
@@ -30,6 +31,16 @@ class UserService{
         const model = await this.findOne(id);
         await model.destroy();
         return { deleted: true};
+    }
+
+    async read(id) {
+        const res = await models.User.sequelize.query(`select u.id_user, u.username, u.first_name, u.last_name, u.birthday, u.street, u.phone, u.balance, u.createdAt, p.name as "Provincia", c.name as "Ciudad", c.postal_code, co.nice_name as "Pais"
+                                                    from users u
+                                                    inner join provinces p on u.id_province = p.id_province
+                                                    inner join cities c on u.id_city = c.id_city
+                                                    inner join countries co on u.id_country = co.id_country
+                                                    where u.id_user = ` + id, {type: QueryTypes.SELECT})
+                                                    return res;
     }
 }
 

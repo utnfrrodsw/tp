@@ -50,6 +50,16 @@ const _delete = async (req,res) => {
     }
 }
 
+const read = async (req,res) => {
+    try{
+        const { id } = req.params;
+        const response = await service.read(id);
+        res.json(response)
+    } catch (error) {
+        res.status(500).send({ success: false, message: error.message });
+    }
+}
+
 module.exports = {
-    create, get, getById, _delete, update
+    create, get, getById, _delete, update, read
 };
