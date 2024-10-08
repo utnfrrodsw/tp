@@ -65,7 +65,7 @@ export function Header({ balance, profile, role, username }: HeaderProps) {
                     <Link to="/"><img className='max-h-16 spinner' src="./src/assets/images/min_icon3.png" alt='Imagen Ruleta' /></Link>
                     <div className='header-content'>
                         <div className='space-x-10'>
-                            <Link to="/admin-uses" className="nav-item">Admin Uses</Link>
+                            <Link to="/user" className="nav-item">Admin Uses</Link>
                             <div><HeaderToggle toggle={toggleMenu} open={open} /></div>
                         </div>
                     </div>
