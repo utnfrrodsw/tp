@@ -39,7 +39,7 @@ class UserService{
                                                     inner join provinces p on u.id_province = p.id_province
                                                     inner join cities c on u.id_city = c.id_city
                                                     inner join countries co on u.id_country = co.id_country
-                                                    where u.id_user = ` + id, {type: QueryTypes.SELECT})
+                                                    where u.id_user =` + id, {type: QueryTypes.SELECT})
                                                     return res;
     }
 }

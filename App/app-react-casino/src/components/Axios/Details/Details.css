@@ -1,11 +1,26 @@
 .details {
-    margin-top: 20rem;
-    margin-bottom: 10rem;
+    margin-top: 10rem;
     margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .9rem;
 }
 
 .back {
     background-color: red;
+    width: 7%;
+    display: block;
+    border-radius: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.detail_element {
+    font-size: 1.2rem;
+    background-color: #181529bb;
     padding: 1rem;
-    margin: 2rem;
+    border-radius: 1rem;
 }
