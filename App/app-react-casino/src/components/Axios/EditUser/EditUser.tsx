@@ -21,7 +21,13 @@ export function EditUser() {
     const GetData = () => {
         axios.get(`http://localhost:3000/api/v1/users/${id}`).then((response) => {
             setUsuario(response.data)
-            console.log(response.data)
+            setFirstName(response.data.first_name)
+            setlastName(response.data.last_name)
+            setStreet(response.data.street)
+            setPhone(response.data.phone)
+            setEmail(response.data.email)
+            setBalance(response.data.balance)
+            setPassword(response.data.password)
         });
     };
 
@@ -41,6 +47,7 @@ export function EditUser() {
         })
         .then((response) => {
             console.log(response);
+            location.reload()
         })
         .catch((error) => {
             console.log(error);

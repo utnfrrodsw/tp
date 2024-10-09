@@ -1,5 +1,5 @@
 .edituser{
-    margin-top: 8em;
+    margin-top: 7rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -73,12 +73,12 @@
         gap: 2rem;
     }
     .back {
-        width: 150px;
+        width: 80%;
         padding: 1rem;
         margin: 0;
     }
     .formSubmit {
-        width: 150px;
+        width: 80%;
         padding: 1rem;
         margin: 0;
     }
