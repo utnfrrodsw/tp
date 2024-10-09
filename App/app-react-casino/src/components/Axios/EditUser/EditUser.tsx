@@ -1,21 +1,42 @@
 import axios from 'axios';
 import './EditUser.css';
-import { useLocation } from 'react-router-dom';
 import { NavLink as Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react';
+import {useParams} from 'react-router-dom';
 
 export function EditUser() {
 
-    const usuario = (useLocation().state)
+    const {id} = useParams();
+    const [usuario, setUsuario] = useState([])
+    const form = useRef()
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setlastName] = useState("")
+    const [street, setStreet] = useState("")
+    const [phone, setPhone] = useState("")
+    const [email, setEmail] = useState("")
+    const [balance, setBalance] = useState("")
+    const [password, setPassword] = useState("")
+    console.log(id)
+
+    const GetData = () => {
+        axios.get(`http://localhost:3000/api/v1/users/${id}`).then((response) => {
+            setUsuario(response.data)
+            console.log(response.data)
+        });
+    };
+
+    useEffect(() => {
+        GetData();
+    }, []);
 
     function patchUser(datos) {
-        console.log(datos)
-        axios.put(`http://localhost:3000/api/v1/users/${usuario.id_user}`, {
+        axios.put(`http://localhost:3000/api/v1/users/${id}`, {
             first_name: `${datos.firstname.value}`,
             last_name: `${datos.lastname.value}`,
             street: `${datos.street.value}`,
             phone: `${datos.phone.value}`,
             email: `${datos.email.value}`,
+            balance: `${datos.balance.value}`,
             password: `${datos.password.value}`,
         })
         .then((response) => {
@@ -26,20 +47,13 @@ export function EditUser() {
         });
     }
 
-    const form = useRef()
-    const [firstName, setFirstName] = useState(usuario.first_name)
-    const [lastName, setlastName] = useState(usuario.last_name)
-    const [street, setStreet] = useState(usuario.street)
-    const [phone, setPhone] = useState(usuario.phone)
-    const [email, setEmail] = useState(usuario.email)
-    const [password, setPassword] = useState(usuario.password)
-
     function defaultValues() {
         setFirstName(usuario.first_name)
         setlastName(usuario.last_name)
         setStreet(usuario.street)
         setPhone(usuario.phone)
         setEmail(usuario.email)
+        setBalance(usuario.balance)
         setPassword(usuario.password)
 
         const inputName = document.querySelector("#firstname")
@@ -56,6 +70,9 @@ export function EditUser() {
 
         const inputEmail = document.querySelector("#email")
         inputEmail?.classList.remove("modified")
+
+        const inputBalance = document.querySelector("#balance")
+        inputBalance?.classList.remove("modified")
 
         const inputPassword = document.querySelector("#password")
         inputPassword?.classList.remove("modified")
@@ -102,6 +119,14 @@ export function EditUser() {
             inputEmail?.classList.remove("modified")
         }
     }
+    function checkBalance() {
+        const inputBalance = document.querySelector("#balance")
+        if(form.current.balance.value != usuario.balance) {
+            inputBalance?.classList.add("modified")
+        } else {
+            inputBalance?.classList.remove("modified")
+        }
+    }
     function checkPassword() {
         const inputPassword = document.querySelector("#password")
         if(form.current.password.value != usuario.password) {
@@ -110,10 +135,6 @@ export function EditUser() {
             inputPassword?.classList.remove("modified")
         }
     }
-
-    useEffect(() => {
-        checkName()
-    }, []);
 
     return (
         
@@ -125,6 +146,8 @@ export function EditUser() {
                     <label>Street</label><input type="text" id='street' className='formInput text-gray-900' value={street} onChange={e => setStreet(e.target.value)} onInput={() => checkStreet()} name='street'/>
                     <label>Phone Number</label><input type="text" id='phone' className='formInput text-gray-900' value={phone} onChange={e => setPhone(e.target.value)} onInput={() => checkPhone()} name='phone'/>
                     <label>Email</label><input type="text" id='email' className='formInput text-gray-900' value={email} onChange={e => setEmail(e.target.value)} onInput={() => checkEmail()} name='email'/>
+                    <label>Balance</label><input type="text" id='balance' className='formInput text-gray-900' value={balance} onChange={e => setBalance(e.target.value)} onInput={() => checkBalance()} name='balance'/>
+                    <label>Password</label><input type="text" id='password' className='formInput text-gray-900' value={password} onChange={e => setPassword(e.target.value)} onInput={() => checkPassword()} name='password'/>
                 </form>
                 <div className='formButtons'>
                     <button type='submit' className='formSubmit' onClick={() => patchUser(form.current)}>Update</button>

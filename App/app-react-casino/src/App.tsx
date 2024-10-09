@@ -98,8 +98,8 @@ export function App() {
                     <Route path="/postuser" element={<PostUser />} />
                     <Route path="/getone" element={<GetOne />} />
                     <Route path="/user" element={<User />} />
-                    <Route path="/details" element={<Details />} />
-                    <Route path="/edituser" element={<EditUser />} />
+                    <Route path="/details/:id" element={<Details />} />
+                    <Route path="/edituser/:id" element={<EditUser />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/terms-and-conditions" element={<Terms />} />
                     <Route path='/about-us' element={<AboutUs />} />

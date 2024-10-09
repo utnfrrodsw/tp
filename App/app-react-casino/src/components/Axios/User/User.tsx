@@ -89,9 +89,9 @@ export function User() {
                             <div className="column">{item.balance}</div>
                         </div>
                         <div className="actions">
-                            <Link to="/edituser" className="edit-btn" state={item}>Edit</Link>
+                            <Link to={`/edituser/${item.id_user}`} className="edit-btn">Edit</Link>
                             <button className="delete-btn" onClick={() => DeleteUser(item.id_user)}>Delete</button>
-                            <Link to="/details" className="read-btn" state={item}>Read</Link>
+                            <Link to={`/details/${item.id_user}`} className="read-btn">Read</Link>
                         </div>
                     </li>
                 ))}
