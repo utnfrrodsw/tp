@@ -41,7 +41,7 @@ export function Details() {
         
         <>
             <div className='details'>
-                <p className='detail_element'>ID Usuario: {data[0].id_user}</p>
+            <p className='detail_element'>ID Usuario: {data[0].id_user}</p>
                 <p className='detail_element'>Username: {data[0].username}</p>
                 <p className='detail_element'>First Name: {data[0].first_name}</p>
                 <p className='detail_element'>Last Name: {data[0].last_name}</p>
@@ -53,7 +53,7 @@ export function Details() {
                 <p className='detail_element'>City: {data[0].Ciudad}</p>
                 <p className='detail_element'>Postal Code: {data[0].postal_code}</p>
                 <p className='detail_element'>Country: {data[0].Pais}</p>
-                <Link to="/user" className="back">Back</Link>
+                <Link to="/user" className="backDetails">Back</Link>
             </div>
         </>
 

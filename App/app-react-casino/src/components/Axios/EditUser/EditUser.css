@@ -1,28 +1,92 @@
 .edituser{
-    margin-top: 20rem;
+    margin-top: 8em;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .formEdit {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    gap: 1rem;
-    margin: 0 auto;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1.2rem;
+    margin-left: 2rem;
 }
 
 .formSubmit {
-    width: 100px;
-    height: 50px;
-    background-color: black;
-    margin: 0 auto;
+    background-color: #ffbf00;
+    width: 120px;
+    padding: .5rem;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 2rem;
+    color: black;
+}
+
+.formSubmit:hover {
+    background-color: #ca9800;
 }
 
 .back {
     background-color: red;
-    padding: 1rem;
-    margin: 2rem;
+    width: 100px;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 2rem;
+}
+
+.back:hover {
+    background-color: rgb(179, 0, 0);
+}
+
+.formInput {
+    width: 35%;
+    padding: .5rem;
+    border-radius: .5rem;
+}
+
+.formInput:focus {
+    outline: none;
 }
 
 .modified {
     color: red;
+}
+
+.formButtons {
+    display: flex;
+}
+
+@media (max-width: 1000px) {
+    .formButtons  {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    .back {
+        width: 150px;
+        padding: 1rem;
+        margin: 0;
+    }
+    .formSubmit {
+        width: 150px;
+        padding: 1rem;
+        margin: 0;
+    }
+    .formEdit {
+        align-items: center;
+        margin: 0;
+    }
+    .formInput {
+        width: 80%;
+    }
 }

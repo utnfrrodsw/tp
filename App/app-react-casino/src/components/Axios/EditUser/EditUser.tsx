@@ -120,16 +120,17 @@ export function EditUser() {
         <>
             <div className='edituser'>
                 <form action="" className='formEdit' ref={form}>
-                    <input type="text" id='firstname' className='formInput text-gray-900' value={firstName} onChange={e => setFirstName(e.target.value)} onInput={() => checkName()} name='firstname'/>
-                    <input type="text" id='lastname' className='formInput text-gray-900' value={lastName} onChange={e => setlastName(e.target.value)} onInput={() => checkLastName()} name='lastname'/>
-                    <input type="text" id='street' className='formInput text-gray-900' value={street} onChange={e => setStreet(e.target.value)} onInput={() => checkStreet()} name='street'/>
-                    <input type="text" id='phone' className='formInput text-gray-900' value={phone} onChange={e => setPhone(e.target.value)} onInput={() => checkPhone()} name='phone'/>
-                    <input type="text" id='email' className='formInput text-gray-900' value={email} onChange={e => setEmail(e.target.value)} onInput={() => checkEmail()} name='email'/>
-                    <input type="text" id='password' className='formInput text-gray-900' value={password} onChange={e => setPassword(e.target.value)} onInput={() => checkPassword()} name='password'/>
+                    <label>First Name</label><input type="text" id='firstname' className='formInput text-gray-900' value={firstName} onChange={e => setFirstName(e.target.value)} onInput={() => checkName()} name='firstname'/>
+                    <label>Last Name</label><input type="text" id='lastname' className='formInput text-gray-900' value={lastName} onChange={e => setlastName(e.target.value)} onInput={() => checkLastName()} name='lastname'/>
+                    <label>Street</label><input type="text" id='street' className='formInput text-gray-900' value={street} onChange={e => setStreet(e.target.value)} onInput={() => checkStreet()} name='street'/>
+                    <label>Phone Number</label><input type="text" id='phone' className='formInput text-gray-900' value={phone} onChange={e => setPhone(e.target.value)} onInput={() => checkPhone()} name='phone'/>
+                    <label>Email</label><input type="text" id='email' className='formInput text-gray-900' value={email} onChange={e => setEmail(e.target.value)} onInput={() => checkEmail()} name='email'/>
                 </form>
-                <button type='submit' className='formSubmit' onClick={() => patchUser(form.current)}>Actualizar</button>
-                <Link to="/user" className="back">volver</Link>
-                <button onClick={() => defaultValues()} className='formSubmit'>Default Values</button>
+                <div className='formButtons'>
+                    <button type='submit' className='formSubmit' onClick={() => patchUser(form.current)}>Update</button>
+                    <button onClick={() => defaultValues()} className='formSubmit'>Default Values</button>
+                    <Link to="/user" className="back">Back</Link>
+                </div>
             </div>
         </>
 
