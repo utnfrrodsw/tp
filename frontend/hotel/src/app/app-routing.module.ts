@@ -11,6 +11,12 @@ import { MostrarHabitacionesDisponiblesComponent } from './mostrar-habitaciones-
 import { ReservasClienteComponent } from './reservas-cliente/reservas-cliente.component';
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
 import { LoginEmpleadoComponent } from './login-empleado/login-empleado.component';
+import { RegistroEmpleadoComponent } from './registro-empleado/registro-empleado.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { GestionarReservasComponent } from './gestionar-reservas/gestionar-reservas.component';
+import { GestionarServiciosComponent } from './gestionar-servicios/gestionar-servicios.component';
+import { GestionarClientesComponent } from './gestionar-clientes/gestionar-clientes.component';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
 
@@ -23,7 +29,13 @@ const routes: Routes = [
   {path:'habitaciones/disponibles',component:MostrarHabitacionesDisponiblesComponent},
   {path:'misreservas',component:ReservasClienteComponent},
   {path:'miperfil' , component:PerfilClienteComponent},
-  {path:'login/empleados' , component:LoginEmpleadoComponent}
+  {path:'login/empleados' , component:LoginEmpleadoComponent},
+  {path:'registro/empleados' , component:RegistroEmpleadoComponent},
+  {path:'dashboard/empleado',component:DashboardComponent},
+  {path:'gestionar-reservas',component: GestionarReservasComponent},
+  {path:'gestionar-servicios',component:GestionarServiciosComponent},
+  {path:'gestionar-clientes',component:GestionarClientesComponent}  
+
 
 ];
 

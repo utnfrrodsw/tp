@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchService } from '../service/search.service';
-// Ajusta la ruta según la estructura de tu proyecto
+import { EmpleadosService } from '../service/empleados.service'; // Asegúrate de importar el servicio
 
 @Component({
   selector: 'app-inicio',
@@ -14,7 +14,8 @@ export class InicioComponent {
 
   constructor(
     private router: Router,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private empleadosService: EmpleadosService // Inyectar el servicio aquí
   ) {}
 
   updateCheckoutMinDate(event: any) {
@@ -65,5 +66,9 @@ export class InicioComponent {
       alert('Error al obtener la localidad');
       console.error('Error en la solicitud de localidad:', error);
     });
+  }
+
+  isEmpleadoLoggedIn(): boolean {
+    return this.empleadosService.getTokenFromLocalStorage() !== null; // Verificar si el token existe
   }
 }

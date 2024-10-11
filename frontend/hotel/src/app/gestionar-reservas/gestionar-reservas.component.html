@@ -1,0 +1,35 @@
+<app-header></app-header>
+<h2>Reserva pendientes</h2>
+<div class="search-container">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input type="text" [(ngModel)]="searchId" placeholder="Buscar por ID de Estadia" (input)="searchReservas()" />
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID Estadia</th>
+            <th>ID Cliente</th>
+            <th>Nro Habitación</th>
+            <th>Fecha Ingreso</th>
+            <th>Fecha Egreso</th>
+            <th>Estado</th>
+            <th>ID Localidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let reserva of reservasPendientes">
+            <td>{{ reserva.idEst }}</td>
+            <td>{{ reserva.idCli }}</td>
+            <td>{{ reserva.nroHabitacion }}</td>
+            <td>{{ reserva.fechaIngreso | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ reserva.fechaEgreso | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ reserva.estado }}</td>
+            <td>{{ reserva.idLocalidad }}</td>
+            <td>
+                <button>Realizar Check-In</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -11,6 +11,7 @@ import { AuthService } from '../service/auth.service';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  
 
   constructor(
     private authService: AuthService,

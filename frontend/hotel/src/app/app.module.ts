@@ -28,6 +28,12 @@ import { AlertaComponent } from './alerta/alerta.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { RegistroEmpleadoComponent } from './registro-empleado/registro-empleado.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { GestionarReservasComponent } from './gestionar-reservas/gestionar-reservas.component';
+import { GestionarServiciosComponent } from './gestionar-servicios/gestionar-servicios.component';
+import { GestionarClientesComponent } from './gestionar-clientes/gestionar-clientes.component';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +50,11 @@ import { MatSelectModule } from '@angular/material/select';
     LoginEmpleadoComponent,
     SuccessDialogComponent,
     AlertaComponent,
+    RegistroEmpleadoComponent,
+    DashboardComponent,
+    GestionarReservasComponent,
+    GestionarServiciosComponent,
+    GestionarClientesComponent,
    
   ],
   imports: [
@@ -61,6 +72,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSliderModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatIconModule
 
   ],
   providers: [

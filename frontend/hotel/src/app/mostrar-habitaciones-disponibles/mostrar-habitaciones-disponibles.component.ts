@@ -28,7 +28,7 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
     private reservaService: CrearReservaService,
     private tiposHabitacionService: TiposHabitacionService,
     private router: Router,
-    private dialog: MatDialog // Inyectar MatDialog
+    private dialog: MatDialog 
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
       this.checkin = params['checkin'];
       this.checkout = params['checkout'];
       this.people = params['people'];
-      this.idLocalidad = Number(params['idLocalidad']); // Asegúrate de convertir a número
+      this.idLocalidad = Number(params['idLocalidad']); 
 
       if (this.checkin && this.checkout && this.people && this.idLocalidad) {
         const url = `http://localhost:3000/habitaciones/disponibles/${this.checkin}/${this.checkout}/${this.people}/${this.idLocalidad}`;
@@ -70,14 +70,14 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
   }
 
   reservarHabitacion(nroHabitacion: number): void {
-    // Verificar si el token de autenticación está presente
+    
     if (!this.authToken) {
       alert('No estás autenticado. Por favor, inicia sesión.');
-      this.router.navigate(['/login']); // Redirige al usuario a la página de inicio de sesión
+      this.router.navigate(['/login']); 
       return;
     }
 
-    // Validar los datos necesarios
+   
     if (!this.checkin || !this.checkout || !this.idLocalidad || !nroHabitacion) {
       alert('Datos incompletos para la reserva.');
       return;
@@ -93,18 +93,18 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
 
     this.reservaService.reservarHabitacion(reservaData).subscribe({
       next: (response) => {
-        // Abre el diálogo de éxito con un mensaje
+        
         const dialogRef = this.dialog.open(SuccessDialogComponent, {
           data: { message: 'Su reserva fue registrada con éxito.' }
         });
 
-        // Después de cerrar el diálogo, redirigir a mis reservas
+       
         dialogRef.afterClosed().subscribe(() => {
           this.router.navigate(['/misreservas']);
         });
       },
       error: (err) => {
-        // Mostrar mensaje de error
+      
         alert('Error al realizar la reserva. Intenta nuevamente.');
         console.error('Error en la reserva:', err);
       }

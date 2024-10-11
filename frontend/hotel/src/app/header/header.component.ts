@@ -11,18 +11,25 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class HeaderComponent {
   isLoggedIn: boolean = false;
+  isEmployee: boolean = false; // Nueva propiedad para verificar si es empleado
   userName: string = '';
 
-  constructor(private router: Router,
-              private buscaCliente: BuscaClienteService,
-              private cdr: ChangeDetectorRef) {
+  constructor(
+    private router: Router,
+    private buscaCliente: BuscaClienteService,
+    private cdr: ChangeDetectorRef
+  ) {
     this.checkLoginStatus();
   }
 
   checkLoginStatus() {
     const idCliente = localStorage.getItem('idCliente');
     const token = localStorage.getItem('authToken');
-    this.isLoggedIn = !!token;
+    const employeeToken = localStorage.getItem('empleadoToken'); // Obtener el token de empleado
+
+    this.isLoggedIn = !!token || !!employeeToken; // Verifica si hay un token de cliente o empleado
+    this.isEmployee = !!employeeToken; // Verifica si el usuario es un empleado
+
     if (this.isLoggedIn && idCliente) {
       this.buscaCliente.getClienteById(Number(idCliente)).subscribe({
         next: (cliente) => {
@@ -43,7 +50,9 @@ export class HeaderComponent {
   logout() {
     localStorage.removeItem('authToken');
     localStorage.removeItem('idCliente');
+    localStorage.removeItem('empleadoToken'); // Eliminar el token de empleado al cerrar sesión
     this.isLoggedIn = false;
+    this.isEmployee = false; // Reiniciar el estado de isEmployee
     this.router.navigate(['/']);
   }
 
