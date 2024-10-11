@@ -38,7 +38,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD lugar<br>2. CRUD actividad<br>3. CRUD itinerario<br>4. CRUD servicioExterno<br>5. CRUD participante<br>6. CRUD ususario<br>7. CRUD preferencia|
+|CRUD |1. CRUD lugar<br>2. CRUD actividad<br>3. CRUD itinerario<br>4. CRUD servicioExterno<br>5. CRUD participante<br>6. CRUD usuario<br>7. CRUD preferencia|
 |CUU/Epic|1.<br>2.  <br> 3. |
 
 
