@@ -29,10 +29,10 @@ Decidimos crear una web app donde los usuarios puedan consultar información rel
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD Listas Diarias|
-|CRUD dependiente|1. CRUD Amigos {depende de} CRUD Usuario<br>2. CRUD Listas de usuario {depende de} CRUD Usuario<br>3. CRUD Reseña/Puntiacion {depende de} CRUD Usuario|
-|Listado<br>+<br>detalle| 1. Listado peliculas creadas por los usuarios => detalle CRUD Usuario<br> 2. Listado de peliculas listadas por caracteristicas como genero, populares, etc. Muestra info general de cada una|
-|CUU/Epic|1. Registrar un usuario<br>2. Registar una lista para un usuario<br>3. Registar una Reseña-Puntuación para un usuario<br>4. Registar una amistad para un usuario|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD Tipos usuario<br>3. CRUD Rango de usuario|
+|CRUD dependiente|1. CRUD Listas de usuario {depende de} CRUD Usuario<br>2. CRUD Reseña/Puntiacion {depende de} CRUD Usuario|
+|Listado<br>+<br>detalle| 1. Listado peliculas creadas por los usuarios => detalle CRUD Usuario<br> 2. Listado de usuarios registrados|
+|CUU/Epic|1. Registrar un usuario<br>2. Registar una lista para un usuario|
 
 
 Adicionales para Aprobación
