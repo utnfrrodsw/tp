@@ -32,7 +32,7 @@ Regularidad:
 |CRUD simple|1. Usuario<br>2. lugar <br> 3. itinerario|
 |CRUD dependiente|1. CRUD actividad {depende de} CRUD lugar <br>2. CRUD servicioExterno {depende de} CRUD lugar <br>3. CRUD participante {depende de} CRUD itinerario |
 |Listado<br>+<br>detalle| 1. => <br> 2.  => 
-|CUU/Epic|1.  Registrar opinión del usuario  <br>2. |
+|CUU/Epic|1. Crear itinerario<br>2. Registrar opinión del usuario|
 
 
 Adicionales para Aprobación
