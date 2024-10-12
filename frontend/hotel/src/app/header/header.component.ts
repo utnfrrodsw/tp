@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { BuscaClienteService } from '../service/busca-cliente.service';
+import { EmpleadosService } from '../service/empleados.service'; // Importa el servicio de empleados
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
@@ -11,12 +12,13 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class HeaderComponent {
   isLoggedIn: boolean = false;
-  isEmployee: boolean = false; // Nueva propiedad para verificar si es empleado
+  isEmployee: boolean = false; // Propiedad para verificar si es empleado
   userName: string = '';
 
   constructor(
     private router: Router,
     private buscaCliente: BuscaClienteService,
+    private empleadosService: EmpleadosService, // Inyecta el servicio de empleados
     private cdr: ChangeDetectorRef
   ) {
     this.checkLoginStatus();
@@ -25,12 +27,14 @@ export class HeaderComponent {
   checkLoginStatus() {
     const idCliente = localStorage.getItem('idCliente');
     const token = localStorage.getItem('authToken');
-    const employeeToken = localStorage.getItem('empleadoToken'); // Obtener el token de empleado
+    const employeeToken = localStorage.getItem('empleadoToken'); 
+    const employeeDni = localStorage.getItem('empleadoDni'); // Obtener el DNI del empleado
 
-    this.isLoggedIn = !!token || !!employeeToken; // Verifica si hay un token de cliente o empleado
-    this.isEmployee = !!employeeToken; // Verifica si el usuario es un empleado
+    this.isLoggedIn = !!token || !!employeeToken; 
+    this.isEmployee = !!employeeToken; 
 
-    if (this.isLoggedIn && idCliente) {
+    if (this.isLoggedIn && idCliente && !this.isEmployee) {
+      // Si está logueado como cliente, obtener datos del cliente
       this.buscaCliente.getClienteById(Number(idCliente)).subscribe({
         next: (cliente) => {
           const apellidoYnombre = cliente.apellidoYnombre;
@@ -44,6 +48,21 @@ export class HeaderComponent {
           console.error('Error al obtener el cliente:', err);
         }
       });
+    } else if (this.isEmployee && employeeDni) {
+      // Si está logueado como empleado, obtener datos del empleado
+      this.empleadosService.getEmpleadoByDni(Number(employeeDni)).subscribe({
+        next: (empleado) => {
+          const apellidoYnombre = empleado.apellidoYnombre;
+          const [apellido, nombre] = apellidoYnombre.split(' ');
+          this.userName = nombre;
+
+          // Forzar la detección de cambios
+          this.cdr.markForCheck();
+        },
+        error: (err) => {
+          console.error('Error al obtener los datos del empleado:', err);
+        }
+      });
     }
   }
 
@@ -51,6 +70,7 @@ export class HeaderComponent {
     localStorage.removeItem('authToken');
     localStorage.removeItem('idCliente');
     localStorage.removeItem('empleadoToken'); // Eliminar el token de empleado al cerrar sesión
+    localStorage.removeItem('empleadoDni'); // Eliminar el DNI del empleado
     this.isLoggedIn = false;
     this.isEmployee = false; // Reiniciar el estado de isEmployee
     this.router.navigate(['/']);

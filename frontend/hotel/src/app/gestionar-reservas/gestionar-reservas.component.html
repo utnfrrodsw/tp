@@ -1,20 +1,23 @@
 <app-header></app-header>
-<h2>Reserva pendientes</h2>
+
 <div class="search-container">
     <mat-icon class="search-icon">search</mat-icon>
-    <input type="text" [(ngModel)]="searchId" placeholder="Buscar por ID de Estadia" (input)="searchReservas()" />
+    <input type="text" [(ngModel)]="searchId" placeholder="Buscar por nro de DNI" (input)="searchReservas()" />
 </div>
 
+<h4>Reservas Pendientes</h4>
 <table>
-    <thead>
+    <thead class="header-reservas">  
         <tr>
             <th>ID Estadia</th>
             <th>ID Cliente</th>
+            <th>Nro DNI</th>
+            <th>Apellido y Nombre</th>
             <th>Nro Habitación</th>
             <th>Fecha Ingreso</th>
             <th>Fecha Egreso</th>
             <th>Estado</th>
-            <th>ID Localidad</th>
+            <th>Localidad</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -22,14 +25,86 @@
         <tr *ngFor="let reserva of reservasPendientes">
             <td>{{ reserva.idEst }}</td>
             <td>{{ reserva.idCli }}</td>
+            <td>{{ reserva.nroDni }}</td>
+            <td>{{ reserva.apellidoYnombre }}</td>
             <td>{{ reserva.nroHabitacion }}</td>
             <td>{{ reserva.fechaIngreso | date: 'dd-MM-yyyy' }}</td>
             <td>{{ reserva.fechaEgreso | date: 'dd-MM-yyyy' }}</td>
             <td>{{ reserva.estado }}</td>
-            <td>{{ reserva.idLocalidad }}</td>
+            <td>{{ reserva.nombre }}</td>
             <td>
                 <button>Realizar Check-In</button>
             </td>
         </tr>
     </tbody>
 </table>
+
+<h4>Reservas Activas</h4>
+<table>
+    <thead class="header-reservas-activas">  
+        <tr>
+            <th>ID Estadia</th>
+            <th>ID Cliente</th>
+            <th>Nro DNI</th>
+            <th>Apellido y Nombre</th>
+            <th>Nro Habitación</th>
+            <th>Fecha Ingreso</th>
+            <th>Fecha Egreso</th>
+            <th>Estado</th>
+            <th>Localidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let reserva of reservasActivas">
+            <td>{{ reserva.idEst }}</td>
+            <td>{{ reserva.idCli }}</td>
+            <td>{{ reserva.nroDni }}</td>
+            <td>{{ reserva.apellidoYnombre }}</td>
+            <td>{{ reserva.nroHabitacion }}</td>
+            <td>{{ reserva.fechaIngreso | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ reserva.fechaEgreso | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ reserva.estado }}</td>
+            <td>{{ reserva.nombre }}</td>
+            <td>
+                <button>Realizar Check-Out</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Reservas Canceladas</h4>
+
+<table>
+    <thead class="header-reservas-canceladas">  
+        <tr>
+            <th>ID Estadia</th>
+            <th>ID Cliente</th>
+            <th>Nro DNI</th>
+            <th>Apellido y Nombre</th>
+            <th>Nro Habitación</th>
+            <th>Fecha Ingreso</th>
+            <th>Fecha Egreso</th>
+            <th>Estado</th>
+            <th>Localidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let reserva of reservasCanceladas">
+            <td>{{ reserva.idEst }}</td>
+            <td>{{ reserva.idCli }}</td>
+            <td>{{ reserva.nroDni }}</td>
+            <td>{{ reserva.apellidoYnombre }}</td>
+            <td>{{ reserva.nroHabitacion }}</td>
+            <td>{{ reserva.fechaIngreso | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ reserva.fechaEgreso | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ reserva.estado }}</td>
+            <td>{{ reserva.nombre }}</td>
+            <td>
+                <button>Ver Detalles</button> <!-- Cambia esto según la acción que necesites -->
+            </td>
+        </tr>
+    </tbody>
+</table>
+

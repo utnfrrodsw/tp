@@ -32,7 +32,7 @@ async function iniciarSesionEmpleado(req, res) {
     const empleado = await Empleado.findOne({ mail, contrasena });
     if (empleado) {
       const token = generarToken(empleado);
-      res.json({ token });
+      res.json({ token, dni: empleado.dni});
     } else {
       res.status(401).send('Credenciales incorrectas');
     }

@@ -1,6 +1,7 @@
 const Estadia = require('../models/estadia');
 const Cliente = require('../models/cliente');
 const Habitacion = require('../models/habitacion');
+const Localidad = require('../models/localidad');
 const EstadiaServicio = require('../models/estadiaServicio');
 const Servicio = require('../models/servicio');
 const moment = require('moment-timezone');
@@ -168,13 +169,33 @@ const eliminarEstadia = async (req, res) => {
 
 const obtenerTodasEstadias = async (req, res) => {
   try {
-    const estadias = await Estadia.find(); // Obtener todas las estadías
-    res.status(200).json(estadias);
+    const estadias = await Estadia.find();
+
+    const estadiasConClientes = await Promise.all(
+      estadias.map(async (estadia) => {
+        const cliente = await Cliente.findOne({ idCli: estadia.idCli });
+
+        
+        const localidad = await Localidad.findOne({ idLocalidad: estadia.idLocalidad });
+
+        return {
+          ...estadia.toObject(),
+          nroDni: cliente ? cliente.nroDni : null,
+          apellidoYnombre: cliente ? cliente.apellidoYnombre : null,
+          nombre: localidad ? localidad.nombre : null,
+        };
+      })
+    );
+
+    res.status(200).json(estadiasConClientes);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error al obtener las estadías.", error: error.message });
   }
 };
+
+
+
 
 // Buscar Cliente por ID
 const buscarClientePorID = async (req, res) => {

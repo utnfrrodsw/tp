@@ -13,24 +13,24 @@ body {
     display: flex;
     align-items: center;
     margin-top: 20px;
-    margin-bottom: 5px; /* Separación entre el input y el header de la tabla */
-    margin-left: 100px; /* Desplazar el buscador hacia la derecha */
+    margin-bottom: 30px;
+    margin-left: 100px; 
 }
 
 .search-icon {
-    margin-right: 10px; /* Espacio entre el icono y el input */
+    margin-right: 10px; 
     color: #888;
 }
 
 input[type="text"] {
-    width: 300px; /* Ajustar el ancho del input */
+    width: 300px; 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 table {
-    width: 90%; /* Ajustar el ancho de la tabla */
+    width: 90%; 
     border-collapse: collapse;
     margin: 20px auto;
     background-color: white;
@@ -39,9 +39,28 @@ table {
     overflow: hidden;
 }
 
-th {
-    background-color: #4CAF50;
+.header-reservas {
+    background-color: rgb(70, 93, 224);
     color: white;
+}
+
+.header-reservas-activas th {  
+    background-color: rgb(69, 167, 69);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.header-reservas-canceladas th {  /* Nueva clase para reservas canceladas */
+    background-color: red;        /* Color de fondo rojo */
+    color: white;                 /* Color del texto blanco */
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+th {
     padding: 12px;
     text-align: left;
     font-weight: bold;
@@ -68,4 +87,8 @@ button {
 
 button:hover {
     background-color: #005f73;
+}
+
+h4 {
+    margin-left: 70px;
 }
