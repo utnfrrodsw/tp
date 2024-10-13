@@ -27,10 +27,10 @@ POST http://localhost:3000/api/prestamos/retirarLibrosPaso3R
 Content-Type: application/json
 
 {
-    "idSocio": 4,
+    "idSocio": 1,
     "ejemplares":[
       {
-        "id": 4,
+        "id": 1,
         "miLibro":1
       }
     ]

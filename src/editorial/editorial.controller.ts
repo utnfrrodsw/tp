@@ -2,7 +2,12 @@ import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { Editorial } from "./editorial.entity.js";
 
-import { NotFoundError } from "@mikro-orm/core";
+import {
+  NotFoundError,
+  sql,
+  UniqueConstraintViolationException,
+} from "@mikro-orm/core";
+import { editorialCount } from "./editorialCount.entity.js";
 
 const em = orm.em;
 
@@ -12,7 +17,7 @@ async function buscarEditoriales(
   next: NextFunction
 ) {
   try {
-    const editoriales = await em.find(Editorial, {});
+    const editoriales = await em.findAll(editorialCount, {});
     return res
       .status(200)
       .json({ message: "Las editoriales encontradas son:", data: editoriales });
@@ -48,7 +53,12 @@ async function altaEditorial(req: Request, res: Response, next: NextFunction) {
       .status(201)
       .json({ message: "Editorial creada", data: editorial });
   } catch (error: any) {
-    next(error);
+    if (error instanceof UniqueConstraintViolationException) {
+      return res.status(409).json({
+        message: "El nombre de la editorial ya existe",
+      });
+      next(error);
+    }
   }
 }
 

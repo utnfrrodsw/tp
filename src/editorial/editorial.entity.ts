@@ -5,7 +5,7 @@ import { Libro } from "../libro/libro.entity.js";
 
 @Entity()
 export class Editorial extends BaseEntity {
-  @Property()
+  @Property({ unique: true })
   nombre!: string;
 
   @OneToMany(() => Libro, (libro) => libro.miEditorial)
