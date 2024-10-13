@@ -8,7 +8,7 @@ header {
   top: 0;
   z-index: 10;
   justify-content: space-between;
-  flex-wrap: wrap; /* Permitir que los elementos se envuelvan en pantallas pequeñas */
+  flex-wrap: wrap; 
 }
 
 .logo a {

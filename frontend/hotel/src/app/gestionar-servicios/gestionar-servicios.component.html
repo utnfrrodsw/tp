@@ -1,2 +1,31 @@
 <app-header></app-header>
-<p>gestionar-servicios works!</p>
+<div class="gestionar-servicios">
+    
+    <h4>Servicios de los clientes</h4>
+  
+    <div *ngIf="loading">Cargando servicios...</div>
+    <div *ngIf="error">{{ error }}</div>
+  
+    <table *ngIf="!loading && servicios.length > 0">
+      <thead>
+        <tr>
+          <th>ID Servicio</th>
+          <th>ID Estadia</th>
+          <th class="actions-column">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let servicio of servicios">
+          <td>{{ servicio.idServicio }}</td>
+          <td>{{ servicio.idEstadia }}</td>
+          <td class="actions-column">
+            <button class="button-modificar" (click)="modificarServicio(servicio.idEstadia)">Modificar</button>
+            <button class="button-cancelar" (click)="cancelarServicio(servicio.idEstadia)">Cancelar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="!loading && servicios.length === 0">No hay servicios disponibles.</div>
+  </div>
+  
+  

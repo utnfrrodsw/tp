@@ -1,0 +1,59 @@
+.gestionar-servicios {
+    padding: 20px;
+  }
+  
+  h1, h4 {
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 10px; /* Borde redondeado para la tabla */
+    overflow: hidden; /* Evita que el contenido se desborde del borde redondeado */
+  }
+  
+  thead {
+    background-color: #f2f2f2;
+  }
+  
+  th, td {
+    border: 1px solid #dddddd; /* Bordes para las celdas */
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #007bff;
+    color: white;
+    border-bottom: none; /* Eliminar línea divisoria en el encabezado */
+  }
+  
+  td {
+    border-top: none; /* Eliminar línea divisoria entre celdas de encabezado y contenido */
+  }
+  
+  button {
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .button-modificar {
+    background-color: #56c946; /* Color verde para modificar */
+  }
+  
+  .button-cancelar {
+    background-color: #fe7070; /* Color rojo claro para cancelar */
+  }
+  
+  .actions-column {
+    width: 250px; 
+    text-align: center;
+  }
+  

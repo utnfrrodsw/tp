@@ -60,9 +60,9 @@ table {
     font-weight: bold;
 }
 
-/* Nueva clase para el header de reservas finalizadas */
+
 .header-reservas-finalizadas th {
-    background-color: #ffb716;  /* Color #ffb716 para reservas finalizadas */
+    background-color: #ffb716;  
     color: white;
     padding: 12px;
     text-align: left;
