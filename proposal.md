@@ -7,7 +7,9 @@ Montini Agostino 50757
 
 ### Repositorios
 --
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+Backend: Este mismo repositorio.
+FrontEnd: https://github.com/AgosUTN/TP-Front2
+
 
 ## Tema
 Sistema de gestion de prestamos de biblioteca
@@ -17,10 +19,7 @@ El sistema (con alcance de regularidad) esta pensado para ser usado solo por el 
 Por ello no se hace uso de un usuario y contraseña. El sistema con alcance de AD puede contar con un FrontEnd en el que los socios puedan realizar consultas(prestamos,sanciones, libros disponibles).
 
 ### Modelo
-https://imgur.com/gB6MXtc
-
-Nota: Todavia resta determinar atributos de informacion para editorial y autor, al lado del modelo hay aclaraciones en base a reglas de negocio inventadas.
-El sistema podria complejizarse agregando o modificando reglas de negocio.
+Ver docs
 
 ## Alcance Funcional 
 
