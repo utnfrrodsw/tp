@@ -28,16 +28,18 @@ export class AuthService {
     );
   }
 
-  storeToken(token: string, idCliente: string): void {
+  storeToken(token: string, idCliente: string, nombre: string): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('authToken', token);
       localStorage.setItem('idCliente', idCliente);
+      localStorage.setItem('nombreCliente', nombre); // Almacenar el nombre del cliente
     }
   }
 
   logout(): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('authToken');
+      localStorage.removeItem('nombreCliente'); // Eliminar el nombre del cliente
     }
     this.router.navigate(['/']);
   }

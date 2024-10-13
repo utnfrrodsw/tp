@@ -52,9 +52,18 @@ table {
     font-weight: bold;
 }
 
-.header-reservas-canceladas th {  /* Nueva clase para reservas canceladas */
-    background-color: red;        /* Color de fondo rojo */
-    color: white;                 /* Color del texto blanco */
+.header-reservas-canceladas th {
+    background-color: red;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Nueva clase para el header de reservas finalizadas */
+.header-reservas-finalizadas th {
+    background-color: #ffb716;  /* Color #ffb716 para reservas finalizadas */
+    color: white;
     padding: 12px;
     text-align: left;
     font-weight: bold;

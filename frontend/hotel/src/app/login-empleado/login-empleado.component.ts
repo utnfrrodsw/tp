@@ -20,11 +20,13 @@ export class LoginEmpleadoComponent {
     this.empleadosService.login(this.email, this.password).subscribe({
       next: (response) => {
         const token = response.token;
-        const dni = response.dni; // Asegúrate de que el backend devuelva el DNI en la respuesta
+        const dni = response.dni;
+        const nombre = response.nombre; // Captura el nombre del empleado desde la respuesta
 
-        // Almacenar el token y el DNI en localStorage
-        this.empleadosService.storeTokenAndDniInLocalStorage(token, dni);
+        // Almacenar el token, DNI y el nombre en localStorage
+        this.empleadosService.storeTokenAndDniInLocalStorage(token, dni, nombre);
 
+        // Redirigir al dashboard del empleado
         this.router.navigate(['/dashboard/empleado']);
       },
       error: (error) => {

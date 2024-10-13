@@ -21,14 +21,12 @@
       <li *ngIf="!isLoggedIn && !isEmployee">
         <a (click)="onHeaderClick($event)" [routerLink]="['/about']" routerLinkActive="active">Nosotros</a>
       </li>
-     
       <li *ngIf="isLoggedIn && !isEmployee">
         <a (click)="onHeaderClick($event)" [routerLink]="['/misreservas']" routerLinkActive="active">Mis reservas</a>
       </li>
       <li *ngIf="isLoggedIn && !isEmployee">
         <a (click)="onHeaderClick($event)" [routerLink]="['/miperfil']" routerLinkActive="active">Mi Perfil</a>
       </li>
-      
       <li *ngIf="isLoggedIn && isEmployee">
         <a (click)="onHeaderClick($event)" [routerLink]="['/gestionar-reservas']" routerLinkActive="active">Gestionar Reservas</a>
       </li>

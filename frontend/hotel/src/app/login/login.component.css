@@ -8,6 +8,7 @@
 body, html {
   height: 100%;
   margin: 0;
+  overflow: hidden; 
 }
 
 app-header {
@@ -15,44 +16,42 @@ app-header {
   width: 100%;
   top: 0;
   left: 0;
-    
+  z-index: 1000; 
 }
 
 .container {
   display: flex;
-  height: calc(100vh - 52px);
+  height: 100vh; 
   width: 100%;
-  overflow: hidden; 
-  margin-top: 52px; 
 }
 
 .left-section {
-  flex: 0 0 65%; /* La imagen ocupará el 65% del ancho */
+  flex: 0 0 70%;
   position: relative;
 }
 
 .background-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; 
 }
 
 .right-section {
-  flex: 0 0 35%; /* El formulario ocupará el 35% del ancho */
+  flex: 0 0 30%;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra el contenido verticalmente */
+  justify-content: center; 
   align-items: center;
   background-color: #ffffff;
   padding: 20px;
-  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
-  height: 100%; /* Asegura que la sección ocupe toda la altura disponible */
+  box-sizing: border-box; 
+  height: calc(100vh - 50px);
 }
 
 h1 {
   font-size: 24px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 20px; 
 }
 
 form {
@@ -60,7 +59,7 @@ form {
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  max-width: 400px;
+  max-width: 400px; 
 }
 
 label {

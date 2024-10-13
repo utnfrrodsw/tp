@@ -16,7 +16,7 @@ async function iniciarSesion(req, res) {
     const cliente = await Cliente.findOne({ mail, contrasena });
     if (cliente) {
       const token = generarToken(cliente);
-      res.json({ token , idCliente: cliente.idCli });
+      res.json({ token , idCliente: cliente.idCli ,nombre: cliente.apellidoYnombre});
     } else {
       res.status(401).send('Credenciales incorrectas');
     }
@@ -32,7 +32,7 @@ async function iniciarSesionEmpleado(req, res) {
     const empleado = await Empleado.findOne({ mail, contrasena });
     if (empleado) {
       const token = generarToken(empleado);
-      res.json({ token, dni: empleado.dni});
+      res.json({ token, dni: empleado.dni, nombre:empleado.apellidoYnombre});
     } else {
       res.status(401).send('Credenciales incorrectas');
     }

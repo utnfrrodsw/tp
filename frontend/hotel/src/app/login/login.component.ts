@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 
@@ -12,7 +11,6 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
   
-
   constructor(
     private authService: AuthService,
     private router: Router
@@ -23,7 +21,10 @@ export class LoginComponent {
       next: (response) => {
         const token = response.token;
         const idCliente = response.idCliente;
-        this.authService.storeToken(token, idCliente);
+        const nombreCliente = response.nombre; 
+
+        // Ahora se llama a storeToken con los 3 argumentos
+        this.authService.storeToken(token, idCliente, nombreCliente);
         
         this.router.navigate(['/']);
       },

@@ -10,10 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 export class GestionarReservasComponent implements OnInit {
   reservasPendientes: any[] = []; 
   reservasActivas: any[] = []; 
-  reservasCanceladas: any[] = []; // Agregar array para reservas canceladas
+  reservasCanceladas: any[] = []; 
+  reservasFinalizadas: any[] = []; 
   originalReservasPendientes: any[] = []; 
   originalReservasActivas: any[] = []; 
-  originalReservasCanceladas: any[] = []; // Agregar array original para reservas canceladas
+  originalReservasCanceladas: any[] = []; 
+  originalReservasFinalizadas: any[] = []; 
   searchId: string = ''; 
 
   constructor(private estadiasClienteService: EstadiasClienteService) {}
@@ -42,16 +44,22 @@ export class GestionarReservasComponent implements OnInit {
             this.reservasCanceladas.sort((a, b) => new Date(a.fechaIngreso).getTime() - new Date(b.fechaIngreso).getTime());
         }
 
-        // Guardar las reservas originales para realizar busquedas
+        // Filtrar reservas finalizadas
+        this.reservasFinalizadas = data.filter(reserva => reserva.estado === 'Finalizado'); 
+        if (this.reservasFinalizadas.length > 1) {
+            this.reservasFinalizadas.sort((a, b) => new Date(a.fechaIngreso).getTime() - new Date(b.fechaIngreso).getTime());
+        }
+
+        // Guardar las reservas originales para realizar búsquedas
         this.originalReservasPendientes = [...this.reservasPendientes];
         this.originalReservasActivas = [...this.reservasActivas];
-        this.originalReservasCanceladas = [...this.reservasCanceladas]; // Guardar reservas canceladas originales
+        this.originalReservasCanceladas = [...this.reservasCanceladas]; 
+        this.originalReservasFinalizadas = [...this.reservasFinalizadas]; // Guardar finalizadas originales
 
     }, (error) => {
         console.error('Error al cargar las reservas:', error);
     });
-}
-
+  }
 
   searchReservas() {
     if (this.searchId) {
@@ -70,6 +78,11 @@ export class GestionarReservasComponent implements OnInit {
         reserva.nroDni !== undefined && 
         reserva.nroDni.toString().includes(searchIdLower) 
       );
+
+      this.reservasFinalizadas = this.originalReservasFinalizadas.filter(reserva => 
+        reserva.nroDni !== undefined && 
+        reserva.nroDni.toString().includes(searchIdLower) 
+      );
     } else {
       this.loadReservas(); 
     }
@@ -81,6 +94,5 @@ export class GestionarReservasComponent implements OnInit {
 
   reestablecerReserva(idEstadia: number) {
     console.log('Reestablecer Reserva para ID Estadia:', idEstadia);
-    
   }
 }

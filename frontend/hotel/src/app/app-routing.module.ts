@@ -16,11 +16,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { GestionarReservasComponent } from './gestionar-reservas/gestionar-reservas.component';
 import { GestionarServiciosComponent } from './gestionar-servicios/gestionar-servicios.component';
 import { GestionarClientesComponent } from './gestionar-clientes/gestionar-clientes.component';
-import { MatIconModule } from '@angular/material/icon';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
 
-  {path: '', component: InicioComponent},
+  {path: '', component: InicioComponent, canActivate: [authGuard]},
   { path: 'habitaciones', component: MostrarHabitacionesComponent },
   { path: 'about', component: AboutComponent },
   {path: 'servicios', component:MostrarServiciosComponent},

@@ -10,25 +10,21 @@ export class BuscaClienteService {
 
   constructor(private http: HttpClient) {}
 
- 
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('authToken');
     if (!token) {
-        console.error('Token no encontrado en localStorage');
+      console.error('Token no encontrado en localStorage');
     }
     return new HttpHeaders({
-        'Authorization': `Bearer ${token}` 
+      'Authorization': `Bearer ${token}`
     });
-}
+  }
 
+  eliminarCliente(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }); 
+  }
 
-
-eliminarCliente(id: number): Observable<any> {
-  return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }); 
-}
-
-
- 
+  
   getClienteById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/id=${id}`, { headers: this.getHeaders() });
   }
