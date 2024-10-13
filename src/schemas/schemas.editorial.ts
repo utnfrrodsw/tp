@@ -8,7 +8,7 @@ const editorialAltaSchema = z
 
 const editorialPatchSchema = z
   .object({
-    nombre: z.string().optional(),
+    nombre: z.string().max(15),
   })
   .strict();
 

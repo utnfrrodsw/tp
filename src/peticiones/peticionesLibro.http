@@ -1,6 +1,6 @@
 
 ### Obtener todos los libros
-GET http://localhost:3000/api/libros/16
+GET http://localhost:3000/api/libros/
 
 ### Subir libro
 
@@ -12,7 +12,8 @@ Content-Type: application/json
     "descripcion": "Un clásico de la literatura contemporanéa",
     "isbn": "0-7645-2641-3",
     "misAutores": [1],
-    "miEditorial": 1
+    "miEditorial": 1,
+    "cantEjemplares": 2
 
 }
 

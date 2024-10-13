@@ -4,7 +4,8 @@ import { Libro } from "./libro.entity.js";
 import { Ejemplar } from "../ejemplar/ejemplar.entity.js";
 import { NotFoundError } from "@mikro-orm/core";
 
-function sanitizeResponseLibro(libro: Libro) {
+export function sanitizeResponseLibro(libro: Libro) {
+  //Sacar el export luego, es para testeo.
   return {
     id: libro.id,
     titulo: libro.titulo,
@@ -45,6 +46,9 @@ async function buscaLibro(req: Request, res: Response, next: NextFunction) {
     );
     return res.status(200).json({ message: "Libro encontrado", data: libro });
   } catch (error: any) {
+    if (error instanceof NotFoundError) {
+      return res.status(404).json({ message: "Libro inexistente" });
+    }
     next(error);
   }
 }
@@ -130,6 +134,7 @@ async function bajaLibro(req: Request, res: Response, next: NextFunction) {
           "No puede borrarse un libro que haya sido prestado. (Testeo: Borrar el socio que lo haya pedido)",
       });
     }
+
     // Fin validacion
     await em.removeAndFlush(libro);
     return res.status(200).json({ message: "Libro eliminado" });

@@ -55,8 +55,8 @@ PATCH http://localhost:3000/api/prestamos/devolverLibro
 Content-Type: application/json
 
 {
-    "idSocio": 5,
-    "idEjemplar": 3,
-    "idLibro":2
+    "idSocio": 4,
+    "idEjemplar": 4,
+    "idLibro":1
 
 }

@@ -10,7 +10,7 @@ Content-Type: application/json
 
 {
     "diasSancionMaxima": 190,
-    "diasPrestamo": 15,
+    "diasPrestamo": 5,
     "cantPendientesMaximo": 1
 
 }
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 {
     "diasSancionMaxima": 130,
-    "diasPrestamo": 30,
+    "diasPrestamo": 5,
     "cantPendientesMaximo": 2
 
 }

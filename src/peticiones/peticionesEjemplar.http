@@ -1,5 +1,5 @@
 ### Obtener todos los ejemplares de un libro
-GET http://localhost:3000/api/libros/1/ejemplares/
+GET http://localhost:3000/api/libros/22/ejemplares/
 
 
 ### Subir ejemplar

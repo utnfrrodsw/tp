@@ -1,5 +1,5 @@
 ### Obtener todos los editoriales
-GET http://localhost:3000/api/editoriales/
+GET http://localhost:3000/api/editoriales/40
 
 ### Subir editorial
 
@@ -31,4 +31,4 @@ Content-Type: application/json
 
 
 ### Delete de una editorial por ID
-DELETE  http://localhost:3000/api/editoriales/-4
+DELETE  http://localhost:3000/api/editoriales/103

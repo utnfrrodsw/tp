@@ -28,11 +28,7 @@ async function buscarEditorial(
 ) {
   try {
     const id = Number.parseInt(req.params.id);
-    const editorial = await em.findOneOrFail(
-      Editorial,
-      { id },
-      { populate: ["misLibros"] }
-    );
+    const editorial = await em.findOneOrFail(Editorial, { id });
     return res
       .status(200)
       .json({ message: "Editorial encontrada", data: editorial });

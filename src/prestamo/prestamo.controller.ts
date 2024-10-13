@@ -255,7 +255,13 @@ async function devolverLibro(req: Request, res: Response) {
       let diasSancion = 0;
       const diasAtraso = differenceInDays(
         hoy,
-        "2024-08-05" //lpPendiente.getFechaDevolucionTeorica()
+        lpPendiente.getFechaDevolucionTeorica() //lpPendiente.getFechaDevolucionTeorica() "2024-08-05"
+      );
+      console.log(
+        diasAtraso,
+        "Hola",
+        hoy,
+        lpPendiente.getFechaDevolucionTeorica()
       );
       const politicaSancion = await em
         .createQueryBuilder(PoliticaSancion)
