@@ -34,15 +34,15 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple| 1. CRUD Publicador <br>2. CRUD Desarrollador <br>3. CRUD Categoría <br>4. CRUD Usuario <br>5. CRUD Ticket de soporte <br>6. CRUD Servicio de hosting|
-|CRUD dependiente| 1. CRUD Lista de deseos <br>2. CRUD Comentario en publicacion <br>3. CRUD Publicacion de venta de juego|
-|Listado<br>+<br>detalle| 1. Listado de foros ordenado por relevancia o fecha de publicación, muestra multimedia de foro, título, comienzo del texto. => detalle CRUD Foro <br> 2. Listado de juegos deseados filtrado por categoría de juego, rango de precios, juego a la venta <br> 3. Listado de tickets de soporte generadors por usuarios indicando su estado y datos de categorizacion|
-|CUU/Epic| 1. Publicar una noticia reciente en el foro <br> 2. Agregar juego a lista de deseos <br> 3. Crear un ticket de soporte|
+|CRUD dependiente| 1. CRUD Lista de deseos <br>2. CRUD Actualizar precio de juego <br>3. CRUD Publicacion de juego|
+|Listado<br>+<br>detalle| 1. Listado de servicios de hosting solicitados, filtrando por categoria de juego, fecha de solicitud, recursos de hardware solicitados <br> 2. Listado de juegos deseados filtrado por categoría de juego, rango de precios, juego a la venta <br> 3. Listado de tickets de soporte generadors por usuarios indicando su estado y datos de categorizacion|
+|CUU/Epic| 1. Crear publicacion de venta de juego <br> 2. Agregar juego a lista de deseos <br> 3. Crear un ticket de soporte|
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD | 1. CRUD Publicador<br> 2. CRUD Categoría<br> 3. CRUD Usuario<br> 4. CRUD Juego<br> 5. CRUD Foro<br> 6. CRUD Perfil usuario<br> 7. CRUD Vincula perfil Steam<br> 8. CRUD Ticket de soporte<br> 9. CRUD Servicio de hosting|
-|CUU/Epic| 1. Publicar una noticia reciente en el foro<br> 2. Agregar juego a lista de deseos <br> 3. Recuperar contraseña/usuario <br> 4. Crear un ticket de soporte <br> 5. Contratar hosting para un juego|
+|CRUD | 1. CRUD Publicador<br> 2. CRUD Desarrollador<br> 3. CRUD Precio de juego<br> 4. CRUD Oferta de juego<br> 5. CRUD Categoría<br> 6. CRUD Usuario<br> 7. CRUD Juego<br> 8. CRUD Perfil usuario<br> 9. CRUD Ticket de soporte<br> 10. CRUD Servicio de hosting|
+|CUU/Epic| 1. Crear publicacion de juego<br> 2. Agregar juego a lista de deseos (Relacionado con CUU - Crear publicacion de juego)<br> 3. Recuperar contraseña/usuario <br> 4. Crear un ticket de soporte <br> 5. Contratar hosting para un juego|
 
 ### Alcance Adicional Voluntario
 
