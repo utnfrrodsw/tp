@@ -19,7 +19,7 @@
 
 ### Descripción
 
-Consiste de un sistema web orientado a un usuario final que busca informarse diariamente de las ofertas y nuevos lanzamientos de videojuegos y/o software en diversas plataformas de renombre (Steam, Epic Games, Ubisoft Store) además de la posibilidad de consumir noticias en un formato de foro que permita interacciones como comentarios, reacciones (likes / votos).
+DMCOffers es un WebService orientado al usuario final, donde este podra informarse sobre las fechas de salida, precios y ofertas de diversos videojuegos y software disponibles en el mercado. Existe tambien la posibilidad de contratar un servicio de WebHosting de juegos desarrollados por la comunidad para publicadores o desarrolladores indies que busquen encontrar financiamiento en el mercado. 
 
 ### Modelo DER
 
