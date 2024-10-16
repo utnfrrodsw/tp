@@ -62,7 +62,7 @@
 }
 
 .menu-item {
-    margin: 15px 0;
+    margin: 20px 0;
     color: var(--blanco);
     cursor: pointer;
 }
@@ -75,7 +75,7 @@
     border-radius: .3rem;
     color: var(--negro);
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 40px;
     transition-duration: 200ms;
     transition-timing-function: 200ms;
 }

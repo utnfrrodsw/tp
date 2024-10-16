@@ -86,7 +86,7 @@ export function App() {
     return(
         <>
         
-            <Header balance={dinero} profile={profile} role={userData?.role ?? ''} username={userData?.username ?? ''}/>
+            <Header balance={dinero} profile={profile} role={userData?.role ?? ''} username={userData?.username ?? ''} onMoney={setDinero} idUser={userData?.id_user ?? ''}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dice" element={<Dice />} />

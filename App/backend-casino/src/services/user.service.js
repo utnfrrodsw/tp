@@ -34,7 +34,7 @@ class UserService{
     }
 
     async read(id) {
-        const res = await models.User.sequelize.query(`select u.id_user, u.username, u.first_name, u.last_name, u.birthday, u.street, u.phone, u.balance, u.createdAt, p.name as "Provincia", c.name as "Ciudad", c.postal_code, co.nice_name as "Pais"
+        const res = await models.User.sequelize.query(`select u.id_user, u.username, u.first_name, u.last_name, u.birthday, u.phone, u.balance, u.createdAt, co.nice_name as "Country"
                                                     from users u
                                                     inner join countries co on u.id_country = co.id_country
                                                     where u.id_user =` + id, {type: QueryTypes.SELECT})

@@ -12,9 +12,11 @@ interface HeaderProps {
     profile: string;
     role: string;
     username: string;
+    onMoney: Function;
+    idUser: string;
 }
 
-export function Header({ balance, profile, role, username }: HeaderProps) {
+export function Header({ balance, profile, role, username, onMoney, idUser }: HeaderProps) {
     const [modalOpen, setModalOpen] = useState(false);
     const [open, setMenuOpen] = useState(false);
 
@@ -50,7 +52,7 @@ export function Header({ balance, profile, role, username }: HeaderProps) {
                     </nav>
                 </header>
 
-                {modalOpen && <BalanceModal onClose={handleModalClose} />}
+                {modalOpen && <BalanceModal onClose={handleModalClose} onMoney={onMoney} idUser={idUser} balance={balance}/>}
             </>
         );
     } if (role === 'admin'){

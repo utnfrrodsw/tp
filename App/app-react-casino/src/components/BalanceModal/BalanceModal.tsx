@@ -5,9 +5,12 @@ import { useState, useEffect } from 'react';
 
 interface BalanceModalProps {
     onClose: () => void;
+    onMoney: () => Function;
+    idUser: String;
+    balance: number;
 }
 
-export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose }) => {
+export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, onMoney, idUser, balance }) => {
     const [preferenceId, setPreferenceId] = useState<string | null>(null);
 
     useEffect(() => {
@@ -15,6 +18,8 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose }) => {
             locale: "es-AR",
         });
     }, []);
+
+    const [mensajeCarga, setMensajeCarga] = useState("")
 
     const createPreference = async () => {
         try {
@@ -38,8 +43,46 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose }) => {
         }
     };
 
-    function addMoney() {
-        console.log("hola")
+    function addMoney1000() {
+        onMoney(balance + 1000);
+        patchUser(balance + 1000);
+        setMensajeCarga("Se cargaron 1000 pesos con exito!")
+    }
+
+    function addMoney2000() {
+        onMoney(balance + 2000);
+        patchUser(balance + 2000);
+        setMensajeCarga("Se cargaron 2000 pesos con exito!")
+    }
+
+    function addMoney5000() {
+        onMoney(balance + 5000);
+        patchUser(balance + 5000);
+        setMensajeCarga("Se cargaron 5000 pesos con exito!")
+    }
+
+    function addMoney10000() {
+        onMoney(balance + 10000);
+        patchUser(balance + 10000);
+        setMensajeCarga("Se cargaron 10000 pesos con exito!")
+    }
+
+    function addMoney25000() {
+        onMoney(balance + 25000);
+        patchUser(balance + 25000);
+        setMensajeCarga("Se cargaron 25000 pesos con exito!")
+    }
+
+    function patchUser(newMoney) {
+        axios.put(`http://localhost:3000/api/v1/users/${idUser}`, {
+            balance: `${newMoney}`,
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
     return (
@@ -49,12 +92,13 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose }) => {
                 <div className="modal-body">
                     <h2>Deposit Options</h2>
                     <div className="tips">
-                        <button onClick={handleBuy} className="tip">$1000</button>
-                        <button onClick={handleBuy} className="tip">$2000</button>
-                        <button onClick={handleBuy} className="tip">$5000</button>
-                        <button onClick={handleBuy} className="tip">$10.000</button>
-                        <button onClick={handleBuy} className="tip">$25.000</button>
+                        <button onClick={addMoney1000} className="tip">$1000</button>
+                        <button onClick={addMoney2000} className="tip">$2000</button>
+                        <button onClick={addMoney5000} className="tip">$5000</button>
+                        <button onClick={addMoney10000} className="tip">$10.000</button>
+                        <button onClick={addMoney25000} className="tip">$25.000</button>
                         {preferenceId && <Wallet initialization={{ preferenceId }} />}
+                        <p className='tipAdvertise'>{mensajeCarga}</p>
                     </div>
                 </div>
             </div>

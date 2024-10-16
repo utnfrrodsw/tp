@@ -93,8 +93,6 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone, pa
                     <ul>
                         <li className="menu-item">Profile</li>
                         <Link to='/bettinghistory' className="menu-item">Betting history</Link>
-                        <li className="menu-item">Transactions</li>
-                        <li className="menu-item">Connections</li>
                     </ul>
                 </nav>
                 <button className="logout-button" onClick={handleLogout}>
