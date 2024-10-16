@@ -5,20 +5,17 @@ class authService{
 
     }
 
-    async create(user, first, last, birth, str, pho, mail, pass, role, country, province, city){
+    async create(user, first, last, birth, pho, mail, pass, role, country){
         const res = await models.User.create(
             user, 
             first, 
             last, 
             birth, 
-            str, 
             pho, 
             mail, 
             pass,
             role,
-            country,
-            province,
-            city
+            country
         );
         return res;
     }

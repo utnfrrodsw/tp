@@ -11,9 +11,6 @@ class Country extends Model{
             timestamps: false
         }
     }
-    static associate(models) {
-        this.hasMany(models.State, { foreignKey: 'id_country', primaryKey: true  });
-    }
 }
 
 const CountrySchema = {

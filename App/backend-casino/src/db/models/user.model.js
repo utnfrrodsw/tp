@@ -18,7 +18,7 @@ class User extends Model{
             otherKey: 'id_game',
             as: 'games'
         });
-        this.belongsTo(models.city, { foreignKey: 'id_city, id_province, id_country' });
+        this.belongsTo(models.country, { foreignKey: 'id_country' });
     }
 }
 
@@ -50,11 +50,6 @@ const UserSchema = {
         type: DataTypes.DATEONLY,
         field: 'birthday'
     },
-    street:{
-        allowNull: false,
-        type: DataTypes.STRING,
-        field: 'street'
-    },
     phone:{
         allowNull: false,
         type: DataTypes.STRING,
@@ -82,33 +77,11 @@ const UserSchema = {
         type: DataTypes.INTEGER,
         field: 'balance'
     },
-    id_city: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'Cities',
-            key: 'id_city'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        field: 'id_city'
-    },
-    id_province: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'Cities',
-            key: 'id_province'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        field: 'id_province'
-    },
     id_country: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'Cities',
+            model: 'Countries',
             key: 'id_country'
         },
         onUpdate: 'CASCADE',

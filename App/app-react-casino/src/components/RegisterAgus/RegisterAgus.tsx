@@ -58,7 +58,6 @@ export function RegisterAgus(){
                 <input type="date" name="birthday" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] text-[#41376D] p-2 mb-2 rounded-xl col-span-2" placeholder="Birthday" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
                 <input type="email" name="email" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <input type="text" name="phone" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                <input type="text" name="street" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Street" value={street} onChange={(e) => setStreet(e.target.value)} />
 
                 <p className="font-medium lg:col-span-2 mb-1 text-[#F6EDED]"> Select your country: </p>
                 <select name="country" className="border border-[#41376D] bg-[#0D0B16] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" value={id_country} onChange={handleCountryChange}>
