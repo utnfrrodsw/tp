@@ -83,7 +83,7 @@ export function Header({ balance, profile, role, username }: HeaderProps) {
                     <div className='header-content'>
                         <div className='space-x-10'>
                             <Link to="/about-us" className="nav-item">About Us</Link>
-                            <button className='gold-button' onClick={() => setModalOpen(true)}>SignUp</button>
+                            <button className='gold-button' onClick={() => setModalOpen(true)}>LogIn</button>
                         </div>
                     </div>
                 </nav>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { NavLink as Link } from 'react-router-dom';
 import axios from 'axios';
+import './Register.css';
 
 export function RegisterAgus(){
     useEffect(() => {
@@ -40,44 +42,73 @@ export function RegisterAgus(){
     }
 
     return(
-        <div className="mt-[100px]">
-            <h1> Create an account </h1>
-            <div className="flex flex-col lg:grid-cols-2 lg:w-[50%] p-2">
-                <input type="text" className="border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <div className="mt-[88px] lg:relative">
+            <div className="imgpreview">
+            <img src="../../src/assets/images/Porsche.jpg" className="hidden lg:block lg:ms-auto "></img>
+            </div>
+
+            <div className="lg:absolute lg:top-0 lg:w-full">
+            <h1 className="ps-2 text-[#F6EDED] font-bold text-2xl"> Create an account </h1>
+            <div className="flex flex-col lg:grid lg:grid-cols-2 lg:w-[50%] p-2">
+                <input type="text" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
                 
-                <input type="text" className="border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-1" placeholder="First name" value={first_name} onChange={(e) => setFirstName(e.target.value)} />
-                <input type="text" name="lastname" className="border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-1" placeholder="Last name" value={last_name} onChange={(e) => setLastName(e.target.value)} />
+                <input type="text" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-1" placeholder="First name" value={first_name} onChange={(e) => setFirstName(e.target.value)} />
+                <input type="text" name="lastname" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-1" placeholder="Last name" value={last_name} onChange={(e) => setLastName(e.target.value)} />
                 
-                <input type="date" name="birthday" className="border border-[#41376D] bg-[#0D0B16] text-[#41376D] p-2 mb-2 rounded-xl col-span-2" placeholder="Birthday" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
-                <input type="email" name="email" className="border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <input type="text" name="phone" className="border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                <input type="text" name="street" className="border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Street" value={street} onChange={(e) => setStreet(e.target.value)} />
+                <input type="date" name="birthday" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] text-[#41376D] p-2 mb-2 rounded-xl col-span-2" placeholder="Birthday" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
+                <input type="email" name="email" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="text" name="phone" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                <input type="text" name="street" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Street" value={street} onChange={(e) => setStreet(e.target.value)} />
 
                 <p className="font-medium lg:col-span-2 mb-1 text-[#F6EDED]"> Select your country: </p>
-                <select name="country" className="border border-[#41376D] bg-[#0D0B16] text-[#41376D] p-2 mb-2 rounded-xl col-span-2" value={id_country} onChange={handleCountryChange}>
+                <select name="country" className="border border-[#41376D] bg-[#0D0B16] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" value={id_country} onChange={handleCountryChange}>
                     <option value='1' className="text-[#F6EDED]"> Argentina </option>
                     <option value='2' className="text-[#F6EDED]"> Colombia </option>
                     <option value='3' className="text-[#F6EDED]"> Chile </option>
                     <option value='4' className="text-[#F6EDED]"> Brasil </option>
                     <option value='5' className="text-[#F6EDED]"> Uruguay </option>
                 </select>
+                <input type="password" name="password" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" name="confirmpass" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Confirm Password" value={confirmpass} onChange={(e) => setConfirmPassword(e.target.value)} />
 
-
-                <input type="password" name="password" className="border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <input type="password" name="confirmpass" className="border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Confirm Password" value={confirmpass} onChange={(e) => setConfirmPassword(e.target.value)} />
-
-                <p className="col-span-2"> * you must be 18 years or older </p>
-
-                <div className="col-span-2">
-                <input type="checkbox" required />
-                <label> i agree bro </label>
+                <div className="flex col-span-2 text-[#F6EDED]">
+                    <p className="font-bold mr-1">*</p>
+                    <p>you must be 18 years or older </p>
                 </div>
 
+                <div className="flex-inline col-span-2 text-[#F6EDED]">
+                <input type="checkbox" className="mr-1" required />
+                <label> i have read the </label>
+                <Link to="/terms-and-conditions" className="underline hover:text-[#9085C1] duration-100 ease-in-out">Terms and conditions</Link>
+                <label> and all associated policies </label>
+                </div>
 
-
-
-                <button className="me-2 items-center p-2 mt-2 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer" onClick={handleSubmit}>Submit</button>
+                <button className="col-span-2 me-2 p-2 mt-2 focus:outline-none text-[#F6EDED] bg-[#41376D] hover:bg-[#9085C1] focus:ring-4 focus:ring-[#41376D] font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer duration-75 ease-in-out" onClick={handleSubmit}>Submit</button>
             </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
     )
 }
