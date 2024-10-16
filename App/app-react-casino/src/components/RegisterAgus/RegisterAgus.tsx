@@ -48,7 +48,7 @@ export function RegisterAgus(){
             </div>
 
             <div className="lg:absolute lg:top-0 lg:w-full">
-            <h1 className="ps-2 text-[#F6EDED] font-bold text-2xl"> Create an account </h1>
+            <h1 className="ps-2 text-[#F6EDED] font-bold text-2xl mt-[30px]"> Create an account </h1>
             <div className="flex flex-col lg:grid lg:grid-cols-2 lg:w-[50%] p-2">
                 <input type="text" className="focus:outline-none focus:ring-2 focus:ring-[#9085C1] border border-[#41376D] bg-[#0D0B16] placeholder-[#41376D] text-[#F6EDED] p-2 mb-2 rounded-xl col-span-2" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
                 
