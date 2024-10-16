@@ -26,7 +26,7 @@ export function RegisterAgus(){
         try{
             const response = 
                 await axios.post('http://localhost:3000/api/v1/register',
-                    {username, first_name, last_name, birthday, street, phone, email, password, id_country});
+                    {username, first_name, last_name, birthday, phone, email, password, id_country});
             toast.success(response.data, {
                 description: 'Redirecting to home page',
             });

@@ -38,6 +38,10 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose }) => {
         }
     };
 
+    function addMoney() {
+        console.log("hola")
+    }
+
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -45,10 +49,10 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose }) => {
                 <div className="modal-body">
                     <h2>Deposit Options</h2>
                     <div className="tips">
-                        <div onClick={handleBuy} className="tip">$1000</div>
-                        <div onClick={handleBuy} className="tip">$2000</div>
-                        <div onClick={handleBuy} className="tip">$5000</div>
-                        <div onClick={handleBuy} className="tip">$10.000</div>
+                        <button onClick={handleBuy} className="tip">$1000</button>
+                        <button onClick={handleBuy} className="tip">$2000</button>
+                        <button onClick={handleBuy} className="tip">$5000</button>
+                        <button onClick={handleBuy} className="tip">$10.000</button>
                         <button onClick={handleBuy} className="tip">$25.000</button>
                         {preferenceId && <Wallet initialization={{ preferenceId }} />}
                     </div>
