@@ -7,7 +7,7 @@ class authService{
 
     async create(user, first, last, birth, str, pho, mail, pass, role, country, province, city){
         const res = await models.User.create(
-           user, 
+            user, 
             first, 
             last, 
             birth, 
@@ -15,7 +15,7 @@ class authService{
             pho, 
             mail, 
             pass,
-            role ,
+            role,
             country,
             province,
             city

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 const saltRounds = 10;
 
 const registerUser = async(req,res) => {
-    const { username, first_name, last_name, birthday, street, phone, email, password } = req.body;
+    const { username, first_name, last_name, birthday, street, phone, email, password, id_country } = req.body;
 
      //Check if email exists
      const emailExist = await service.findMail(email)
@@ -40,12 +40,12 @@ const registerUser = async(req,res) => {
             phone,
             email,
             password: hash,
+            id_country,
             "role": "user",
 
             // Esto se va a cambiar para que el usuario eliga su pais, provincia y ciudad
-            "id_country": "1",
-            "id_province": "1",
-            "id_city": "1"
+            "id_province": "6",
+            "id_city": "13"
         }
         );
         res.status(200).send('Registrado Correctamente');
