@@ -32,7 +32,7 @@ Regularidad:
 |CRUD simple|1. CRUD Usuario<br>2. CRUD Tipos usuario<br>3. CRUD Rango de usuario|
 |CRUD dependiente|1. CRUD Listas de usuario {depende de} CRUD Usuario<br>2. CRUD Reseña/Puntiacion {depende de} CRUD Usuario|
 |Listado<br>+<br>detalle| 1. Listado peliculas creadas por los usuarios => detalle CRUD Usuario<br> 2. Listado de usuarios registrados|
-|CUU/Epic|1. Registrar un usuario<br>2. Registar una lista para un usuario|
+|CUU/Epic|1. Registrar un usuario<br>2. Registar una reseña para un contenido|
 
 
 Adicionales para Aprobación
