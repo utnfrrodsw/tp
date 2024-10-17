@@ -63,3 +63,7 @@
 
 ## 9/9/24
 - Explicacion Backend, jwt, localstorage
+
+## 17/10/24 
+- Consulta sobre JWT
+- Nueva Checklist
