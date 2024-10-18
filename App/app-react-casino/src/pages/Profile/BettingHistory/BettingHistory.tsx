@@ -10,19 +10,20 @@ interface UserType {
     game: string;
 }
 
-export function BettingHistory() {
+interface BettingHistoryProps {
+    idUser: string;
+}
+
+export function BettingHistory({idUser}: BettingHistoryProps) {
     const [user, setUser] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);
-    const [search, setSearch] = useState('');
     
-    console.log(search);
     const GetUser = () => {
         axios.get(`http://localhost:3000/api/v1/usergames`).then((response) =>
             setUser(response.data)
         );
     };
-
 
     useEffect(() => {
         GetUser();
@@ -64,6 +65,7 @@ export function BettingHistory() {
                     </li>
                 ))}
             </ul>
+            <link rel="stylesheet" href="" />
         </div>
     );
 }

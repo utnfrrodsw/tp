@@ -20,18 +20,6 @@ export enum CellType {
     NONE
 }
 
-enum Color {
-    RED_CELL,
-    BLACK_CELL
-}
-
-interface CellData {
-    type?: CellType;
-    value?: number;
-    color?: Color;
-    valueSplit?: number[];
-}
-
 export function BetBoard() {
     return (
         <>

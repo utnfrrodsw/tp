@@ -19,8 +19,13 @@ const colors = [
 let rotation: number = 0;
 let index: number = 0;
 
-export function Wheel(user) {
-  const [selectedColor, setSelectedColor] = useState<string>("");
+interface User{
+  id: string
+  balance: number
+  onMoney: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export function Wheel(user:User) {
   const [monto, setMonto] = useState(0);
   const [ganarVerde, setRecibeGanar] = useState(0);
   const [ganarBlanco, setRecibeGanarB] = useState(0);
@@ -29,7 +34,6 @@ export function Wheel(user) {
   const [ganarNaranja, setRecibeGanarN] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const [error, setError] = useState("");
-  const [isActive, setIsActive] = useState(true)
   const [isMuted, setIsMuted] = useState(false)
 
   const handleToggle = () => {
@@ -42,7 +46,7 @@ export function Wheel(user) {
   const wheelWin = new Audio(wheelWinSound);
   const wheelLose = new Audio(wheelLoseSound);
 
-  function patchUser(newMoney) {
+  function patchUser(newMoney:number) {
     axios.put(`http://localhost:3000/api/v1/users/${user.id}`, {
         balance: `${newMoney}`,
     })
@@ -54,7 +58,7 @@ export function Wheel(user) {
     });
   }
 
-  function postGame(bet, win) {
+  function postGame(bet:number, win:number) {
     axios.post(`http://localhost:3000/api/v1/usergames`, {
         id_game: 3,
         id_user: user.id,
@@ -80,7 +84,7 @@ export function Wheel(user) {
   }
   }
 
-  const winning = (colour) => {
+  const winning = (colour:string) => {
     if (colour === "verde") {
       user.onMoney(user.balance + ganarVerde - monto);
       patchUser(user.balance + ganarVerde - monto);
@@ -135,7 +139,6 @@ export function Wheel(user) {
     const wheelStyle = document.querySelector(".wheel") as HTMLElement;
     const randomIndex = Math.floor(Math.random() * 30);
     const selectedColor = colors[randomIndex];
-    setSelectedColor(selectedColor);
     rotation += 3 * 360 + anglePerSection * (index - randomIndex);
     wheelStyle.style.transform = `rotate(${rotation}deg)`;
     index = randomIndex;

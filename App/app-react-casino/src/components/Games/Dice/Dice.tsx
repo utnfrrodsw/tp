@@ -74,7 +74,6 @@ export function Dice() {
         const random = Math.floor(Math.random() * (max - min + 1)) + min;
         if (textoBoton == "Menor" && random <= data){
             alert("SALIO: " + random + ", WIN")
-            console.log("hola")
         }if(textoBoton == "Menor" && random >= data){
             alert("SALIO: " + random + ", LOSE")
         }

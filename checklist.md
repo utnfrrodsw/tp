@@ -24,3 +24,4 @@
 - [ ] Arreglar detalles Login
 - [ ] Mejorar Register Page (Agus)
 - [ ] Cambiar Accepted Currencies & Sponsors
+- [ ] Hacer el profile responsive

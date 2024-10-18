@@ -35,12 +35,12 @@ import { BettingHistory } from './pages/Profile/BettingHistory/BettingHistory.ts
 import { Toaster } from 'sonner'
 
 interface User{
-    id_user: number
+    id_user: string
     username: string
     balance: number
     role: string
     email: string
-    phone: number
+    phone: string
     password: string
 }
 
@@ -108,9 +108,8 @@ export function App() {
                     <Route path='/fair' element={<Fair />} />
                     <Route path='/game-policy' element={<GamePolicy />} />
                     <Route path='/admin-uses' element={<AdminUses />} />
-                    <Route path={'/bettinghistory'} element={<BettingHistory/>} />
+                    <Route path={'/bettinghistory'} element={<BettingHistory idUser={userData?.id_user}/>} />
                     <Route path={profile} element={<Profile id={userData?.id_user} username={userData?.username} email={userData?.email} phone={userData?.phone} password={userData?.password} />} />
-
                     <Route path='/register' element={<RegisterAgus />} />
                     
                 </Routes>
