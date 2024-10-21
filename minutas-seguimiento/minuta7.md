@@ -15,15 +15,23 @@
 
 | Fase                  | Descripción                                                               | Fecha de Inicio | Fecha de Fin   |
 |-----------------------|---------------------------------------------------------------------------|-----------------|----------------|
-| Finalización de Servicios | Completar la creación e integración de los servicios en todas las clases restantes.   | 02/09/2024      | 04/09/2024      |
-
+| Desarrollo de componentes | Creación del componente Materials como práctica   | 02/09/2024      | 04/09/2024      |
+| Implementación de librería | Implementación de la librería Bootstrap en el proyecto.   | 02/09/2024      | 04/09/2024      |
+| Estilización de componentes | Refinamiento del código del componente Materials para mejorar su lectura y mantenimiento.   | 02/09/2024      | 04/09/2024      |
+| Desarrollo de componentes | Creación del componente Navigation aprovechando la implementación de Bootstrap.   | 02/09/2024      | 04/09/2024      |
 ## Avances
 ### Backend
 
 ### Frontend
-- Finalización e integración de servicios en todas las clases del sistema.
+- Creación del componente Materials.
+- Implementación de Bootstrap.
+- Creación del componente Navigation.
 
 ## Próximos Pasos
-- Comenzar la implementación de React y la creación de los componentes necesarios.
+- Finalización de los Servicios restantes.
+- Implementación de Imágenes.
+- Nuevos atributos en el Modelo de Dominio.
+- Instalación de nuevas dependencias.
+
 
 ##  Comentarios Adicionales
