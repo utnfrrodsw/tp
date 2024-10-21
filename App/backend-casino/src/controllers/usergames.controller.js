@@ -28,6 +28,16 @@ const query1 = async(req, res) => {
     }
 }
 
+const history = async(req, res) => {
+    try{
+        const { id } = req.params;
+        const response = await service.history(id);
+        res.json(response);
+    } catch(error) {
+        res.status(500).send({ success: false, message: error.message })
+    }
+}
+
 module.exports = {
-    create, get, query1
+    create, get, query1, history
 };

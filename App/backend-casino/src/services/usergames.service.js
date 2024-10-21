@@ -33,6 +33,14 @@ class UsersGamesService{
         })
         return res;
     }
+
+    async history(id) {
+        const res = await models.UserGame.sequelize.query(`select ug.bet, ug.winning, g.name, ug.createdAt
+                                                    from usergames ug
+                                                    inner join games g on ug.id_game = g.id_game
+                                                    where ug.id_user =` + id, {type: QueryTypes.SELECT})
+                                                    return res;
+    }
 }
 
 module.exports = UsersGamesService;

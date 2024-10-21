@@ -18,7 +18,7 @@
 - [x] Mejorar Betting History Page (CSS, Menu para volver al profile)
 - [x] Dice Funcional
 - [ ] Agus: Cuando se mutean los sonidos cambiar Icon
-- [ ] Bajarle el volumen a los sonidos
+- [x] Bajarle el volumen a los sonidos
 - [x] Arreglar detalles Login
 - [x] Mejorar Register Page (Agus)
 - [x] Cambiar Accepted Currencies & Sponsors
@@ -28,7 +28,7 @@
 - [ ] Agregarle Mensaje de error a Login (Agus)
 - [ ] Poder cambiar la password (AD?)
 - [ ] Terminar Betting history
-- [ ] Boton para volver atras en el betting history
+- [x] Boton para volver atras en el betting history
 - [ ] Mercado Pago (AD?)
 - [ ] ARREGLAR ERRORES TS (Parcialmente solucionado)
 - [X] Limpiar la consola 
@@ -43,7 +43,7 @@
 - [ ] hacer video
 - [ ] links pr/mr
 - [ ] actualizar proposal
-- [ ] el "Cooming Soon" de la pagina principal desaparece cuando estas en mobile
+- [x] el "Cooming Soon" de la pagina principal desaparece cuando estas en mobile
 - [X] Listados responsivos
 - [ ] Header responsivo
 - [ ] Forgot your password (AD)

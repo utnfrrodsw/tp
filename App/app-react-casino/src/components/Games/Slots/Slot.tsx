@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import './Slot.css';
 import { GamesSideBar } from "../../GamesSideBar";
-import slotSpinSound from "../../../assets/sounds/slotSound.mp3"
+import slotSpinSound from "../../../assets/sounds/slotSsound.mp3"
 import slotSpinStart from "../../../assets/sounds/slotStart.mp3"
 import slotWinSound from "../../../assets/sounds/SlotWin.mp3"
 import clickSound from "../../../assets/sounds/click.mp3"

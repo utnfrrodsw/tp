@@ -108,7 +108,7 @@ export function App() {
                     <Route path='/fair' element={<Fair />} />
                     <Route path='/game-policy' element={<GamePolicy />} />
                     <Route path='/admin-uses' element={<AdminUses />} />
-                    <Route path={'/bettinghistory'} element={<BettingHistory idUser={userData?.id_user}/>} />
+                    <Route path={'/bettinghistory'} element={<BettingHistory idUser={userData?.id_user} username={userData?.username}/>} />
                     <Route path={profile} element={<Profile id={userData?.id_user} username={userData?.username} email={userData?.email} phone={userData?.phone} />} />
                     <Route path='/register' element={<RegisterAgus />} />
                     
