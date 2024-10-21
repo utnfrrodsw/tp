@@ -16,3 +16,11 @@
     border-radius: 50%;
     border: 7px solid var(--blanco);
 }
+
+.winningMessage {
+    margin-top: 1rem;
+    display: hidden;
+    width: 100%;
+    height: 20px;
+    text-align: center;
+}

@@ -192,32 +192,40 @@ export function Wheel(user:User) {
   }
 
   return (
-    <div className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[100px] mt-[150px] mb-[50px] h-[700px] gap-0 grid grid-cols-3 grid-rows-2 max-lg:mx-[20px] max-lg:grid-cols-1">
-      <GamesSideBar/>
-      <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
-      <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
-        <label className="">Stake amount</label>
-        <input step="0.01" className="bg-[color:var(--blanco)] text-black rounded-[20px] p-2 w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta} inputMode='numeric'/>
-        <label className="">Gray <span className='font-bold'>x0.00</span></label>
-        <input className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
-        <label className="">Green <span className='font-bold'>x1.50</span></label>
-        <input className="text-black rounded-[20px] p-2 w-[80%]" value={ganarVerde} type="number" inputMode="decimal" placeholder="0.00" disabled/>
-        <label className="">White <span className='font-bold'>x1.70</span></label>
-        <input value={ganarBlanco} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
-        <label className="">Yellow <span className='font-bold'>x2.00</span></label>
-        <input value={ganarAmarillo} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
-        <label className="">Purple <span className='font-bold'>x3.00</span></label>
-        <input value={ganarVioleta} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
-        <label className="">Orange <span className='font-bold'>x4.00</span></label>
-        <input value={ganarNaranja} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
-        <button 
-          className="button bg-[color:var(--amarillo)] hover:bg-yellow-600 text-[color:var(--negro)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]" onClick={startSpin} disabled={isSpinning}>BET</button>
-        <p className='py-5'>{error}</p>
+    <>
+      <div className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[100px] mt-[150px] mb-[50px] h-[700px] gap-0 grid grid-cols-3 grid-rows-2 max-lg:mx-[20px] max-lg:grid-cols-1">
+        <GamesSideBar/>
+        <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
+        <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
+          <label className="">Stake amount</label>
+          <input step="0.01" className="bg-[color:var(--blanco)] text-black rounded-[20px] p-2 w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta} inputMode='numeric'/>
+          <label className="">Gray <span className='font-bold'>x0.00</span></label>
+          <input className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
+          <label className="">Green <span className='font-bold'>x1.50</span></label>
+          <input className="text-black rounded-[20px] p-2 w-[80%]" value={ganarVerde} type="number" inputMode="decimal" placeholder="0.00" disabled/>
+          <label className="">White <span className='font-bold'>x1.70</span></label>
+          <input value={ganarBlanco} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
+          <label className="">Yellow <span className='font-bold'>x2.00</span></label>
+          <input value={ganarAmarillo} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
+          <label className="">Purple <span className='font-bold'>x3.00</span></label>
+          <input value={ganarVioleta} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
+          <label className="">Orange <span className='font-bold'>x4.00</span></label>
+          <input value={ganarNaranja} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
+          <button 
+            className="button bg-[color:var(--amarillo)] hover:bg-yellow-600 text-[color:var(--negro)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]" onClick={startSpin} disabled={isSpinning}>BET</button>
+          <p className='py-5'>{error}</p>
+        </div>
+        <div className='relative col-span-2 flex justify-center items-start pt-[300px]'>
+          <img className='absolute z-20 top-400 left-1/2 -translate-x-1/2' src={WheelPointer} alt="" />
+          <img src={WheelImage} alt="Wheel" className='wheel'/>
+        </div>
       </div>
-      <div className='relative col-span-2 flex justify-center items-start pt-[300px]'>
-        <img className='absolute z-20 top-400 left-1/2 -translate-x-1/2' src={WheelPointer} alt="" />
-        <img src={WheelImage} alt="Wheel" className='wheel'/>
+      <div className="gameInstructions">
+        <h2 className="gameInstructionTitle">Game Instructions</h2>
+        <p className="gameInstructionText"> - You have to enter a bet amount</p>
+        <p className="gameInstructionText"> - Certain colors pay more, and others don't pay</p>
+        <p className="gameInstructionText"> - Enjoy the game and good luck!</p>
       </div>
-    </div>
+    </>
   );
 }

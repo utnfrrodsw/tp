@@ -103,14 +103,21 @@
 .mutedButton {
     position: absolute;
     right: 0;
+    top: 90px;
     background-color: white;
     border-radius: 10px;
-    padding: .5rem;
+    padding: .2rem;
     margin: .5rem;
 }
 
 .mutedEnabled {
     background-color: rgb(199, 199, 199);
+}
+
+@media (min-width: 600px) {
+    .mutedButton {
+        padding: .5rem;
+    }
 }
 
 .buttonsBet {

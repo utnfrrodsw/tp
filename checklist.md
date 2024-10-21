@@ -17,10 +17,8 @@
 - [x] Mejorar Leaderboard Page (CSS, Quitar ID, ?Poner foto de perfil)
 - [x] Mejorar Betting History Page (CSS, Menu para volver al profile)
 - [x] Dice Funcional
-- [ ] Rutas Seguras (Admin-Uses)
 - [ ] Agus: Cuando se mutean los sonidos cambiar Icon
 - [ ] Bajarle el volumen a los sonidos
-- [ ] Big Wheel Responsive
 - [x] Arreglar detalles Login
 - [x] Mejorar Register Page (Agus)
 - [x] Cambiar Accepted Currencies & Sponsors
@@ -32,10 +30,11 @@
 - [ ] Terminar Betting history
 - [ ] Boton para volver atras en el betting history
 - [ ] Mercado Pago (AD?)
-- [ ] ARREGLAR ERRORES TS
-- [ ] Limpiar la consola
+- [ ] ARREGLAR ERRORES TS (Parcialmente solucionado)
+- [X] Limpiar la consola 
 - [ ] ARREGLAR ERROR QUE SALEN 2 COSAS EN LA CONSOLA
-- [ ] ARREGLAR DETALLES AL DICE
+- [X] ARREGLAR DETALLES AL DICE
+- [ ] AGREGAR TIMER AL BOTON DEL DICE
 - [ ] HACER RUTA DE ACCESOS MIDDLEWARE
 - [ ] AGREGAR BD EMBEBIDA GOOGLE CLOUD
 - [ ] TERMINAR DOCUMENTACION
@@ -44,3 +43,6 @@
 - [ ] hacer video
 - [ ] links pr/mr
 - [ ] actualizar proposal
+- [ ] el "Cooming Soon" de la pagina principal desaparece cuando estas en mobile
+- [ ] Listados responsivos
+- [ ] Header responsivo

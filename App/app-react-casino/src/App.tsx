@@ -89,7 +89,7 @@ export function App() {
             <Header balance={dinero} profile={profile} role={userData?.role ?? ''} username={userData?.username ?? ''} onMoney={setDinero} idUser={userData?.id_user ?? ''}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/dice" element={<Dice />} />
+                    <Route path="/dice" element={<Dice id={id} balance={dinero} onMoney={setDinero}/>} />
                     <Route path="/slot" element={<Slot id={id} balance={dinero} onMoney={setDinero}/>} />
                     <Route path="/wheel" element={<Wheel id={id} balance={dinero} onMoney={setDinero}/>} />
                     <Route path="/live_roulette" element={<RouletteLive />} />
@@ -109,7 +109,7 @@ export function App() {
                     <Route path='/game-policy' element={<GamePolicy />} />
                     <Route path='/admin-uses' element={<AdminUses />} />
                     <Route path={'/bettinghistory'} element={<BettingHistory idUser={userData?.id_user}/>} />
-                    <Route path={profile} element={<Profile id={userData?.id_user} username={userData?.username} email={userData?.email} phone={userData?.phone} password={userData?.password} />} />
+                    <Route path={profile} element={<Profile id={userData?.id_user} username={userData?.username} email={userData?.email} phone={userData?.phone} />} />
                     <Route path='/register' element={<RegisterAgus />} />
                     
                 </Routes>

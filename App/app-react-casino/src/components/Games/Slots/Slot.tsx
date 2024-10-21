@@ -243,7 +243,7 @@ export function Slot(user:User) {
                 </div>
             </div>
             <div className="gameInstructions">
-                <h2 className="gameInstructionTitle">Game Instructions and Awards</h2>
+                <h2 className="gameInstructionTitle">Game Instructions</h2>
                 <p className="gameInstructionText"> - You have to choose between 3 different betting options: 50, 150, 300 credits</p>
                 <p className="gameInstructionText"> - The only way to win is to get the same figures in LINE or DIAGONALLY.</p>
                 <p className="gameInstructionText"> - If the figures are IN LINE, the award is your bet multiplied by four</p>
