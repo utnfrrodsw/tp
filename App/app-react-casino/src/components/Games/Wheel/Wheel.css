@@ -1,7 +1,7 @@
-
 .wheel {
-  width: 500px;
-  height: 500px;
+  max-width: 500px; 
+  width: 100%;    
+  height: auto;
   transform: rotate(0deg);
   transition-property: transform;
   transition-duration: 5.5s;
@@ -15,13 +15,16 @@
   font-size: 16px;
   cursor: pointer;
   background-color: var(--amarillo);
+  width: 100%;
+  max-width: 300px;
 }
 
-.py-5{
-  color:var(--rojo);
+.mutedButton {
+  margin-left: 2rem;
+}
+
+.py-5 {
+  color: var(--rojo);
   font-size: 1.5rem;
 }
 
-.mutedButton{
-  margin-left: 10rem;
-}

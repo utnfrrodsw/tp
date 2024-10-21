@@ -64,11 +64,6 @@
     font-size: 1.1rem;
 }
 
-.list-main {
-    width: 100%;
-    padding: 10rem 5rem 5rem 5rem;
-}
-
 .header-name3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

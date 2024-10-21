@@ -1,14 +1,21 @@
 import { useEffect, useState, useRef } from "react";
 import './Slot.css';
 import { GamesSideBar } from "../../GamesSideBar";
-import slotSpinSound from "../../../assets/sounds/slotSound.mp3"
+import slotSpinSound from "../../../assets/sounds/slotSsound.mp3"
 import slotSpinStart from "../../../assets/sounds/slotStart.mp3"
 import slotWinSound from "../../../assets/sounds/SlotWin.mp3"
 import clickSound from "../../../assets/sounds/click.mp3"
 import mutedIcon from "../../../assets/images/mutedIcon.png"
 import axios from 'axios';
 
-export function Slot(user) {
+
+interface User{
+    id: string
+    balance: number
+    onMoney: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export function Slot(user:User) {
 
     var id = user.id
     const slotSpin = new Audio(slotSpinSound)
@@ -17,7 +24,7 @@ export function Slot(user) {
     const clickStop = new Audio(clickSound)
     const instructionRef = useRef(null);
 
-    function patchUser(newMoney) {
+    function patchUser(newMoney:number) {
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
             balance: `${newMoney}`,
         })
@@ -33,7 +40,7 @@ export function Slot(user) {
         window.scrollTo(0, 0)}, []
     )
 
-    function postGame(bet, win) {
+    function postGame(bet:number, win:number) {
         axios.post(`http://localhost:3000/api/v1/usergames`, {
             id_game: 2,
             id_user: id,
@@ -161,11 +168,6 @@ export function Slot(user) {
         }
         slotSpin.pause()
         slotSpin.currentTime = 0
-        console.log("Los sorteados son: ")
-        console.log(Reels[x0],Reels[y0],Reels[z0])
-        console.log(Reels[x1],Reels[y1],Reels[z1])
-        console.log(Reels[x2],Reels[y2],Reels[z2])
-        console.log("---------")
         if((Reels[x1] == Reels[y1]) && (Reels[z1] == Reels[x1]) && (Reels[z1] == Reels[y1])) {
             if (bet == 50) {
                 setWin("You win 200 credits!")
@@ -241,7 +243,7 @@ export function Slot(user) {
                 </div>
             </div>
             <div className="gameInstructions">
-                <h2 className="gameInstructionTitle">Game Instructions and Awards</h2>
+                <h2 className="gameInstructionTitle">Game Instructions</h2>
                 <p className="gameInstructionText"> - You have to choose between 3 different betting options: 50, 150, 300 credits</p>
                 <p className="gameInstructionText"> - The only way to win is to get the same figures in LINE or DIAGONALLY.</p>
                 <p className="gameInstructionText"> - If the figures are IN LINE, the award is your bet multiplied by four</p>

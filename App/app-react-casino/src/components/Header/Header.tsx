@@ -8,11 +8,11 @@ import HeaderMenu from './HeaderMenu/HeaderMenu';
 import './Header.css';
 
 interface HeaderProps {
-    balance: string;
+    balance: number;
     profile: string;
     role: string;
     username: string;
-    onMoney: Function;
+    onMoney: React.Dispatch<React.SetStateAction<number>>;
     idUser: string;
 }
 

@@ -1,28 +1,34 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './BettingHistory.css';
+import { NavLink as Link } from 'react-router-dom';
+import '../Profile.css';
 
 interface UserType {
     id_user: number;
     username: string;
     bet: number;
     winning: number;
-    game: string;
+    createdAt: string;
+    name: string;
 }
 
-export function BettingHistory() {
+interface BettingHistoryProps {
+    idUser: string;
+    username: string;
+}
+
+export function BettingHistory({idUser, username}: BettingHistoryProps) {
     const [user, setUser] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);
-    const [search, setSearch] = useState('');
     
-    console.log(search);
     const GetUser = () => {
-        axios.get(`http://localhost:3000/api/v1/usergames`).then((response) =>
+        console.log(idUser)
+        axios.get(`http://localhost:3000/api/v1/userGames/history/${idUser}`).then((response) =>
             setUser(response.data)
         );
     };
-
 
     useEffect(() => {
         GetUser();
@@ -36,8 +42,11 @@ export function BettingHistory() {
         setIsRotated(!isRotated);
         setIsAscending(!isAscending);
     };
+    
+    let profile = '/profile/'+ username
 
     return (
+        <>
         <div className="list-main">
             <div className='title'>
                 <h2 className='title-user font-bold '>Betting History</h2>
@@ -59,11 +68,14 @@ export function BettingHistory() {
                         <div className="user-info">
                             <div className="column">{item.bet}</div>
                             <div className="column">{item.winning}</div>
-                            <div className="column">{item.game}</div>
+                            <div className="column">{item.name}</div>
                         </div>
                     </li>
                 ))}
             </ul>
+            <link rel="stylesheet" href="" />
         </div>
+        <Link to={profile} className="m-auto change-button">VOLVER</Link>
+        </>
     );
 }

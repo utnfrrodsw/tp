@@ -22,8 +22,6 @@ export function Rotar() {
     Math.random()
     let winningNumber: number = randInt(37);
     let rotations: number = randInt(5, 8) * 360;
-    console.log("Indice: " + winningNumber);
-    console.log("Ganador: " + rouletteWheelNumbers[winningNumber]);
     const rouletteSpinningPart: HTMLElement | null = document.getElementById("spinning-part");
     if (rouletteSpinningPart != null) {
         currentRotation -= rotations + singleShift*(winningNumber - currentNumber);

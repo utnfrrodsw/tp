@@ -10,10 +10,9 @@ interface ProfileProps {
     username: string;
     email: string;
     phone: string;
-    password: string;
 }
 
-export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone, password }) => {
+export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) => {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [file, setFile] = useState<File | null>(null);
@@ -64,8 +63,6 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone, pa
                 const imageUrl = response.data.secure_url;
                 setImageUrl(imageUrl);
                 localStorage.setItem('profile-image-url', imageUrl);
-
-                console.log('Imagen subida correctamente:', imageUrl);
 
                 closeModal();
             } catch (error) {

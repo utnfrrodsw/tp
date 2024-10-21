@@ -1,19 +1,65 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { GamesSideBar } from "../../GamesSideBar";
+import axios from 'axios';
+import mutedIcon from "../../../assets/images/mutedIcon.png";
+import diceSound from "../../../assets/sounds/dice.mp3";
 import './Dice.css';
-export function Dice() {
+
+interface User{
+    id: string
+    balance: number
+    onMoney: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export function Dice(user:User) {
     
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
 
+    var id = user.id
     const [data, setData] = useState<number>(2);
     const [monto, setMonto] = useState(0);
     const [multi, setMulti] = useState(0);
     const [recibeAlGanar, setRecibeAlGanar] = useState(0);
     const [mayorMenor, setMayorMenor] = useState(true);
+    const [playMessage, setPlayMessage] = useState("")
+    const [isMuted, setIsMuted] = useState(false)
+
+    const dice = new Audio(diceSound);
+
+    const handleToggle = () => {
+      setIsMuted(!isMuted)
+    }
+
+    function patchUser(newMoney:number) {
+        axios.put(`http://localhost:3000/api/v1/users/${id}`, {
+            balance: `${newMoney}`,
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
+    function postGame(bet:number, win:number) {
+        axios.post(`http://localhost:3000/api/v1/usergames`, {
+            id_game: 1,
+            id_user: id,
+            bet: bet,
+            winning: win
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
     
-    const textoBoton = mayorMenor ? "Menor" : "Mayor";
+    const textoBoton = mayorMenor ? "Less" : "More";
 
     useEffect(() => {
         calcularMulti();
@@ -25,7 +71,7 @@ export function Dice() {
 
     const calcularMulti = ()=>{
         let multi: number
-        if(textoBoton == "Menor"){
+        if(textoBoton == "Less"){
             multi = parseFloat(((100/(data))).toFixed(3));
             
         }else{
@@ -47,7 +93,7 @@ export function Dice() {
     
     const sliderData = (event: ChangeEvent<HTMLInputElement>) => {
         const nuevaData = parseInt(event.target.value);
-        if(textoBoton === "Mayor"){
+        if(textoBoton === "More"){
             setData(100-nuevaData);
         }
         setData(nuevaData)
@@ -57,7 +103,7 @@ export function Dice() {
     const setSliderColor = (percent: number) => {
         const slider = document.querySelector('.slider') as HTMLElement;
         const thumb = document.querySelector('.slider-thumb') as HTMLElement;
-        if (textoBoton === "Menor") {
+        if (textoBoton === "Less") {
             const color = `linear-gradient(90deg, var(--rojo) ${percent}%, var(--blanco) ${percent}%)`;
             slider.style.background = color;
             thumb.style.left = `calc(${percent}% - 12px)`;
@@ -68,20 +114,43 @@ export function Dice() {
         }
     }
 
+    const playSound = (sound) => {
+        sound.currentTime = 0;
+        if (isMuted == false) {
+          sound.play();
+      }
+    }
+
     const generarNumero = () => {
         const min = 2;
         const max = 98;
         const random = Math.floor(Math.random() * (max - min + 1)) + min;
-        if (textoBoton == "Menor" && random <= data){
-            alert("SALIO: " + random + ", WIN")
-            console.log("hola")
-        }if(textoBoton == "Menor" && random >= data){
-            alert("SALIO: " + random + ", LOSE")
-        }
-        if(textoBoton == "Mayor" && random >= data) {
-            alert("SALIO: " + random + ", WIN")
-        }if(textoBoton == "Mayor" && random <= data){
-            alert("SALIO: " + random + ", LOSE")
+        if (user.balance > monto && monto != 0) {
+            playSound(dice)
+            if (textoBoton == "Less" && random <= data){
+                setPlayMessage(`The number is: ${random}, You Win ${recibeAlGanar}`)
+                patchUser(user.balance - monto + Math.round(recibeAlGanar))
+                user.onMoney(user.balance - monto + Math.round(recibeAlGanar))
+                postGame(monto, Math.round(recibeAlGanar))
+            }if(textoBoton == "Less" && random >= data){
+                setPlayMessage(`The number is: ${random}, You Lose ${monto}`)
+                patchUser(user.balance - monto)
+                user.onMoney(user.balance - monto)
+                postGame(monto, 0)
+            }
+            if(textoBoton == "More" && random >= data) {
+                setPlayMessage(`The number is: ${random}, You Win ${recibeAlGanar}`)
+                patchUser(user.balance - monto + Math.round(recibeAlGanar))
+                user.onMoney(user.balance - monto + Math.round(recibeAlGanar))
+                postGame(monto, Math.round(recibeAlGanar))
+            }if(textoBoton == "More" && random <= data){
+                setPlayMessage(`The number is: ${random}, You Lose ${monto}`)
+                patchUser(user.balance - monto)
+                user.onMoney(user.balance - monto)
+                postGame(monto, 0)
+            }
+        } else {
+            setPlayMessage(`Fail bet.`)
         }
     }
 
@@ -91,21 +160,23 @@ export function Dice() {
     return (
         <>
             <GamesSideBar/>
-            <section className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[200px] mt-[150px] mb-[50px] h-[500px] gap-0 grid grid-cols-3 grid-rows-2 max-lg:mx-[20px] max-lg:grid-cols-1">
+            <section className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[200px] mt-[150px] mb-[50px] h-[500px] gap-0 grid grid-cols-3 grid-rows-2 max-lg:mx-[20px] max-lg:grid-cols-1 max-lg:mx-[10px] max-lg:h-auto">
                 <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
-                    <label className="">Monto de Apuesta</label>
+                    <label className="">Bet amount</label>
                     <input step="0.01" className="bg-[color:var(--blanco)] text-black rounded-[20px] p-2 w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta}/>
-                    <label className="">Recibe al Ganar</label>
+                    <label className="">Win amount</label>
                     <input className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" value={recibeAlGanar} disabled/>
-                    <button onClick={generarNumero} className="bg-[color:var(--amarillo)] hover:bg-yellow-600 text-[color:var(--negro)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]">APOSTAR</button>
+                    <button onClick={generarNumero} className="bg-[color:var(--amarillo)] hover:bg-yellow-600 text-[color:var(--negro)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]">PLAY</button>
+                    <p className="winningMessage">{playMessage}</p>
+                    <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
                 </div>
-                <div className="col-span-2 text-center w-full mt-20">
+                <div className="col-span-2 text-center w-full mt-20 max-lg:mb-10">
                     <input className="w-[90%] slider" type="range" min="2" max="98" value={data} step="1" onChange={sliderData}/>
                     <h1 className="text-[30px] font-bold" id="demo">{data}</h1>
                 </div>
                 <div className="col-span-2 flex justify-center gap-10 flex-row w-[90%] bg-[color:var(--violeta)] p-5 max-lg:block max-lg:justify-center max-lg:w-full max-lg:flex-col max-lg:justify-center max-lg:items-center ">
                     <div>
-                        <label><h1>Multiplicador</h1></label>
+                        <label><h1>Multiplier</h1></label>
                         <input className="bg-[color:var(--negro)] bg-[color:var(--negro)] text-[color:var(--blanco)] rounded-[20px] p-2 w-[80%]" type="number" step="0.01" min="1.0102" max="9990" value={multi} onChange={calcularMulti}/>
                     </div>
                     <div>
@@ -116,11 +187,19 @@ export function Dice() {
                         <input className="bg-[color:var(--negro)] text-[color:var(--blanco)] rounded-[20px] p-2 w-[80%]" type="number" min="1.0102" max="9990" value={data} />
                     </div>
                     <div>
-                        <label><h1>Probabilidad</h1></label>
+                        <label><h1>Probability</h1></label>
                         <input className="bg-[color:var(--negro)] text-[color:var(--blanco)] rounded-[20px] p-2 w-[80%]" type="number" min="1.0102" max="9990" value={data} />
                     </div>
                 </div>
             </section>
+            <div className="gameInstructions">
+                <h2 className="gameInstructionTitle">Game Instructions</h2>
+                <p className="gameInstructionText"> - You have to enter a bet amount</p>
+                <p className="gameInstructionText"> - You need to choose which side of the "Less or More" dice and what percentage you want to play with</p>
+                <p className="gameInstructionText"> - The RED side is your betting side</p>
+                <p className="gameInstructionText"> - With low percentage the reward will be bigger.</p>
+                <p className="gameInstructionText"> - Enjoy the game and good luck!</p>
+            </div>
         </>
     )
 }

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 interface BalanceModalProps {
     onClose: () => void;
-    onMoney: () => Function;
+    onMoney: React.Dispatch<React.SetStateAction<number>>;
     idUser: String;
     balance: number;
 }
@@ -73,7 +73,7 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, onMoney, id
         setMensajeCarga("Se cargaron 25000 pesos con exito!")
     }
 
-    function patchUser(newMoney) {
+    function patchUser(newMoney:number) {
         axios.put(`http://localhost:3000/api/v1/users/${idUser}`, {
             balance: `${newMoney}`,
         })

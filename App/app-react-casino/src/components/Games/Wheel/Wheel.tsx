@@ -19,8 +19,13 @@ const colors = [
 let rotation: number = 0;
 let index: number = 0;
 
-export function Wheel(user) {
-  const [selectedColor, setSelectedColor] = useState<string>("");
+interface User{
+  id: string
+  balance: number
+  onMoney: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export function Wheel(user:User) {
   const [monto, setMonto] = useState(0);
   const [ganarVerde, setRecibeGanar] = useState(0);
   const [ganarBlanco, setRecibeGanarB] = useState(0);
@@ -29,7 +34,6 @@ export function Wheel(user) {
   const [ganarNaranja, setRecibeGanarN] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const [error, setError] = useState("");
-  const [isActive, setIsActive] = useState(true)
   const [isMuted, setIsMuted] = useState(false)
 
   const handleToggle = () => {
@@ -42,7 +46,7 @@ export function Wheel(user) {
   const wheelWin = new Audio(wheelWinSound);
   const wheelLose = new Audio(wheelLoseSound);
 
-  function patchUser(newMoney) {
+  function patchUser(newMoney:number) {
     axios.put(`http://localhost:3000/api/v1/users/${user.id}`, {
         balance: `${newMoney}`,
     })
@@ -54,7 +58,7 @@ export function Wheel(user) {
     });
   }
 
-  function postGame(bet, win) {
+  function postGame(bet:number, win:number) {
     axios.post(`http://localhost:3000/api/v1/usergames`, {
         id_game: 3,
         id_user: user.id,
@@ -80,7 +84,7 @@ export function Wheel(user) {
   }
   }
 
-  const winning = (colour) => {
+  const winning = (colour:string) => {
     if (colour === "verde") {
       user.onMoney(user.balance + ganarVerde - monto);
       patchUser(user.balance + ganarVerde - monto);
@@ -135,7 +139,6 @@ export function Wheel(user) {
     const wheelStyle = document.querySelector(".wheel") as HTMLElement;
     const randomIndex = Math.floor(Math.random() * 30);
     const selectedColor = colors[randomIndex];
-    setSelectedColor(selectedColor);
     rotation += 3 * 360 + anglePerSection * (index - randomIndex);
     wheelStyle.style.transform = `rotate(${rotation}deg)`;
     index = randomIndex;
@@ -189,14 +192,14 @@ export function Wheel(user) {
   }
 
   return (
-    <div className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[100px] mt-[150px] mb-[50px] h-[700px] gap-0 grid grid-cols-3 grid-rows-2 max-lg:mx-[20px] max-lg:grid-cols-1">
-      <GamesSideBar/>
-      <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
-      <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
-        <label className="">Stake amount</label>
-        <input step="0.01" className="bg-[color:var(--blanco)] text-black rounded-[20px] p-2 w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta} inputMode='numeric'/>
-        <label className="">Gray <span className='font-bold'>x0.00</span></label>
-        <input className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
+<div className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[100px] mt-[150px] mb-[50px] h-auto grid grid-cols-3 grid-rows-1 gap-0 max-lg:mx-[20px] max-lg:grid-cols-1">
+  <GamesSideBar/>
+  <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
+    <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
+    <label>Stake amount</label>
+    <input step="0.01" className="bg-[color:var(--blanco)] text-black rounded-[20px] p-2 w-full max-w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta} inputMode='numeric'/>
+    <label>Gray <span className='font-bold'>x0.00</span></label>
+    <input className="text-black rounded-[20px] p-2 w-full max-w-[80%]" type="number" inputMode="decimal" disabled/>
         <label className="">Green <span className='font-bold'>x1.50</span></label>
         <input className="text-black rounded-[20px] p-2 w-[80%]" value={ganarVerde} type="number" inputMode="decimal" placeholder="0.00" disabled/>
         <label className="">White <span className='font-bold'>x1.70</span></label>
@@ -211,7 +214,7 @@ export function Wheel(user) {
           className="button bg-[color:var(--amarillo)] hover:bg-yellow-600 text-[color:var(--negro)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]" onClick={startSpin} disabled={isSpinning}>BET</button>
         <p className='py-5'>{error}</p>
       </div>
-      <div className='relative col-span-2 flex justify-center items-start pt-[300px]'>
+      <div className='relative col-span-2 flex justify-center items-start pt-[30px]'>
         <img className='absolute z-20 top-400 left-1/2 -translate-x-1/2' src={WheelPointer} alt="" />
         <img src={WheelImage} alt="Wheel" className='wheel'/>
       </div>
