@@ -44,5 +44,5 @@
 - [ ] links pr/mr
 - [ ] actualizar proposal
 - [ ] el "Cooming Soon" de la pagina principal desaparece cuando estas en mobile
-- [ ] Listados responsivos
+- [X] Listados responsivos
 - [ ] Header responsivo

@@ -1,19 +1,36 @@
 
 .profile-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 100px 0 30px;
     gap: 50px;
 }
 
+@media (min-width: 600px) {
+    .profile-container{
+        flex-direction: row;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 10rem;
+    }
+}
+
 .left-side {
-    width: 25%;
+    width: 90%;
     background-color: var(--violeta);
-    padding: 20px 40px ;
-    margin-left: 50px;
+    padding: 40px 40px ;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center; 
+}
+
+@media (min-width: 600px) {
+    .left-side{
+        width: 25%;
+    }
 }
 
 .menu-item:hover{
@@ -87,11 +104,16 @@
 }
 
 .right-side {
-    width: 75%;
+    width: 90%;
     padding: 20px;
-    margin-right: 50px;
     background-color: var(--violeta);
     border-radius: 30px;
+}
+
+@media (min-width: 600px) {
+    .right-side {
+        width: 75%;
+    }
 }
 
 .section-title {
@@ -128,11 +150,18 @@
     border: none;
     border-radius: .3rem;
     padding: 10px;
+    width: 100%;
     color: var(--negro);
     cursor: pointer;
     margin-top: 1rem;
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
+}
+
+@media (min-width: 600px) {
+    .change-button {
+        width: auto;
+    }
 }
 
 .change-button:hover {

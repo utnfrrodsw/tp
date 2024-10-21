@@ -1,26 +1,41 @@
-.title-main{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    margin-bottom: 20px;
-}
 
 .title-user{
     font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
     padding-bottom: 1rem;
+}
+
+@media (min-width: 600px) {
+    .title-user{
+        text-align: left;
+    }
 }
 
 .new-user-main{
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+}
+
+@media (min-width: 600px) {
+    .new-user-main{
+        flex-direction: row;
+    }
 }
 
 .new-user, .search-box, .filter-balance{
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 10px;
     padding-bottom: 1rem;
+}
+
+@media (min-width: 600px) {
+    .search-box{
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 .filter-balance {
@@ -66,7 +81,8 @@
 
 .list-main {
     width: 100%;
-    padding: 10rem 5rem 5rem 5rem;
+    padding: 10rem 1rem 5rem 1rem;
+    margin: 0;
 }
 
 .header-name2 {
