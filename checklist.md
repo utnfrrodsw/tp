@@ -38,7 +38,7 @@
 - [ ] HACER RUTA DE ACCESOS MIDDLEWARE
 - [ ] AGREGAR BD EMBEBIDA GOOGLE CLOUD
 - [ ] TERMINAR DOCUMENTACION
-- [ ] Hacer responsive el profile
+- [X] Hacer responsive el profile
 - [ ] tracking de features and issues
 - [ ] hacer video
 - [ ] links pr/mr
@@ -46,3 +46,4 @@
 - [ ] el "Cooming Soon" de la pagina principal desaparece cuando estas en mobile
 - [X] Listados responsivos
 - [ ] Header responsivo
+- [ ] Forgot your password (AD)
