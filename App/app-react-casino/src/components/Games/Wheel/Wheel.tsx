@@ -218,6 +218,6 @@ export function Wheel(user:User) {
         <img className='absolute z-20 top-400 left-1/2 -translate-x-1/2' src={WheelPointer} alt="" />
         <img src={WheelImage} alt="Wheel" className='wheel'/>
       </div>
-    </div>
+      </div>
   );
 }
