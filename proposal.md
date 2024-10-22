@@ -59,7 +59,7 @@ IOrderDetail[] Details
 string id
 }
 
-IOrderDetails[]{
+IOrderDetails{
 string idProduct FK
 number quantity
 number price
@@ -85,7 +85,7 @@ number numberOfInstallments
 IInstallmentsDetails[] installmentsDetails
 }
 
-IInstalmentsDetails[]{
+IInstalmentsDetails{
 string _id
 number installmentN
 date paymentDate
@@ -95,8 +95,8 @@ string paid
 
 Customer ||--|| Order:idCustomer
 Employee ||--|| Order:idEmployee
-Payments ||--|| IInstalmentsDetails[]:idPayment
-Order ||--|| IOrderDetails[]:idOrder
+Payments ||--|| IInstalmentsDetails:idPayment
+Order ||--|| IOrderDetails:idOrder
 Order }|--o| Product:idProduct
 Order ||--|| Payments:idOrder
 ```
