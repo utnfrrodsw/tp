@@ -43,37 +43,60 @@ string name
 string address
 string email
 string phone
+string role
+string password
 string idOrder FK
 }
 
 Order{
-string orderNumber PK
+string idOrder PK
 string idEmployee FK
 string idCustomer FK
-string idProduct FK
 float totalCost
 date orderDate
+string paymentMethod
+IOrderDetail[] Details
+string id
 }
 
-Product{
-string idProduct PK
+IOrderDetails[]{
+string idProduct FK
+number quantity
+number price
+}
+
+Material{
+string idMaterial PK
 string description
 string name
-float stock
-float cost
+string brand
+string category
+number stock
+number cost
+string image
 }
 
 
 Payments{
-string paymentNumber PK
-string orderNumber FK
-date paymentDate
-float amount
+string idPayment PK
+string idOrder FK
+string paid
+number numberOfInstallments
+IInstallmentsDetails[] installmentsDetails
 }
 
+IInstalmentsDetails[]{
+string _id
+number installmentN
+date paymentDate
+number amount
+string paid
+}
 
 Customer ||--|| Order:idCustomer
 Employee ||--|| Order:idEmployee
+Payments ||--|| IInstalmentsDetails[]:idPayment
+Order ||--|| IOrderDetails[]:idOrder
 Order }|--o| Product:idProduct
 Order ||--|| Payments:idOrder
 ```
