@@ -192,9 +192,10 @@ export function Wheel(user:User) {
   }
 
   return (
-<div className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[100px] mt-[150px] mb-[50px] h-auto grid grid-cols-3 grid-rows-1 gap-0 max-lg:mx-[20px] max-lg:grid-cols-1">
-  <GamesSideBar/>
-  <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
+    <>
+    <div className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[100px] mt-[150px] mb-[50px] h-auto grid grid-cols-3 grid-rows-1 gap-0 max-lg:mx-[20px] max-lg:grid-cols-1">
+      <GamesSideBar/>
+      <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
     <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
     <label>Stake amount</label>
     <input step="0.01" className="bg-[color:var(--blanco)] text-black rounded-[20px] p-2 w-full max-w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta} inputMode='numeric'/>
@@ -219,5 +220,12 @@ export function Wheel(user:User) {
         <img src={WheelImage} alt="Wheel" className='wheel'/>
       </div>
       </div>
+            <div className="gameInstructions">
+            <h2 className="gameInstructionTitle">Game Instructions</h2>
+            <p className="gameInstructionText"> - You have to enter a bet amount</p>
+            <p className="gameInstructionText"> - Certain colors pay more, and others don't pay</p>
+            <p className="gameInstructionText"> - Enjoy the game and good luck!</p>
+      </div>
+      </>
   );
 }
