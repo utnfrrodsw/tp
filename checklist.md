@@ -27,7 +27,7 @@
 - [ ] Hacer responsive Dice y Wheel
 - [ ] Agregarle Mensaje de error a Login (Agus)
 - [ ] Poder cambiar la password (AD?)
-- [ ] Terminar Betting history
+- [X] Terminar Betting history
 - [x] Boton para volver atras en el betting history
 - [ ] Mercado Pago (AD?)
 - [ ] ARREGLAR ERRORES TS (Parcialmente solucionado)

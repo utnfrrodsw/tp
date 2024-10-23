@@ -25,7 +25,7 @@
 
 .filter-balance {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     gap: 10px; 
 }
 
@@ -52,6 +52,19 @@
     font-size: 14px;
 }
 
+.backButton {
+    margin: 0rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+@media (min-width: 1200px) {
+    .backButton {
+        width: 7%;
+    }
+}
+
 .search-box input {
     padding: 5px 10px;
     border: 1px solid #ddd;
@@ -66,7 +79,7 @@
 
 .header-name3 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     background-color: var(--violeta);
     padding: 10px;
@@ -91,7 +104,7 @@
 
 .items3 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     align-items: center;
     padding: 10px;
