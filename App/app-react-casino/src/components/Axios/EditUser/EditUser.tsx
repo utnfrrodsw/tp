@@ -4,10 +4,18 @@ import { NavLink as Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react';
 import {useParams} from 'react-router-dom';
 
+interface UserType {
+    first_name: string;
+    last_name: string;
+    phone: string;
+    email: string;
+    balance: string;
+}
+
 export function EditUser() {
 
     const {id} = useParams();
-    const [usuario, setUsuario] = useState([])
+    const [user, setUser] = useState([])
     const form = useRef()
     const [firstName, setFirstName] = useState("")
     const [lastName, setlastName] = useState("")
@@ -18,7 +26,7 @@ export function EditUser() {
 
     const GetData = () => {
         axios.get(`http://localhost:3000/api/v1/users/${id}`).then((response) => {
-            setUsuario(response.data)
+            setUser(response.data)
             setFirstName(response.data.first_name)
             setlastName(response.data.last_name)
             setPhone(response.data.phone)
@@ -49,11 +57,11 @@ export function EditUser() {
     }
 
     function defaultValues() {
-        setFirstName(usuario.first_name)
-        setlastName(usuario.last_name)
-        setPhone(usuario.phone)
-        setEmail(usuario.email)
-        setBalance(usuario.balance)
+        setFirstName(user.first_name)
+        setlastName(user.last_name)
+        setPhone(user.phone)
+        setEmail(user.email)
+        setBalance(user.balance)
 
         const inputName = document.querySelector("#firstname")
         inputName?.classList.remove("modified")
@@ -74,7 +82,7 @@ export function EditUser() {
 
     function checkName() {
         const inputName = document.querySelector("#firstname")
-        if(form.current.firstname.value != usuario.first_name) {
+        if(form.current.firstname.value != user.first_name) {
             inputName?.classList.add("modified")
         } else {
             inputName?.classList.remove("modified")
@@ -82,7 +90,7 @@ export function EditUser() {
     }
     function checkLastName() {
         const inputlastName = document.querySelector("#lastname")
-        if(form.current.lastname.value != usuario.last_name) {
+        if(form.current.lastname.value != user.last_name) {
             inputlastName?.classList.add("modified")
         } else {
             inputlastName?.classList.remove("modified")
@@ -90,7 +98,7 @@ export function EditUser() {
     }
     function checkPhone() {
         const inputPhone = document.querySelector("#phone")
-        if(form.current.phone.value != usuario.phone) {
+        if(form.current.phone.value != user.phone) {
             inputPhone?.classList.add("modified")
         } else {
             inputPhone?.classList.remove("modified")
@@ -98,7 +106,7 @@ export function EditUser() {
     }
     function checkEmail() {
         const inputEmail = document.querySelector("#email")
-        if(form.current.email.value != usuario.email) {
+        if(form.current.email.value != user.email) {
             inputEmail?.classList.add("modified")
         } else {
             inputEmail?.classList.remove("modified")
@@ -106,7 +114,7 @@ export function EditUser() {
     }
     function checkBalance() {
         const inputBalance = document.querySelector("#balance")
-        if(form.current.balance.value != usuario.balance) {
+        if(form.current.balance.value != user.balance) {
             inputBalance?.classList.add("modified")
         } else {
             inputBalance?.classList.remove("modified")

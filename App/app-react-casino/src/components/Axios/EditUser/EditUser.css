@@ -16,7 +16,7 @@
 }
 
 .formSubmit {
-    background-color: #ffbf00;
+    background-color: var(--yellow);
     width: 120px;
     padding: .5rem;
     border-radius: 1.2rem;
@@ -28,11 +28,11 @@
 }
 
 .formSubmit:hover {
-    background-color: #ca9800;
+    background-color: var(--yellow-hover);
 }
 
 .back {
-    background-color: red;
+    background-color: var(--red);
     width: 100px;
     padding: 1.5rem;
     border-radius: 1.2rem;
@@ -44,7 +44,7 @@
 }
 
 .back:hover {
-    background-color: rgb(179, 0, 0);
+    background-color: var(--red-hover);
 }
 
 .formInput {
@@ -58,7 +58,7 @@
 }
 
 .modified {
-    color: red;
+    color: var(--red);
 }
 
 .formButtons {

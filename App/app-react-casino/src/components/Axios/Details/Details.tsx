@@ -37,7 +37,7 @@ export function Details() {
         
         <>
             <div className='details'>
-                <p className='detail_element'>ID Usuario: {id}</p>
+                <p className='detail_element'>ID User: {id}</p>
                 <p className='detail_element'>Username: {username}</p>
                 <p className='detail_element'>First Name: {firstName}</p>
                 <p className='detail_element'>Last Name: {lastName}</p>

@@ -9,10 +9,6 @@
     transform: translateX(0%);
     transition: transform .3s ease-in-out;
     border-radius: 10px;
-
-    @starting-style{
-        transform:translateX(100%);
-    }
     
 }
 

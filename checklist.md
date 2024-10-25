@@ -51,4 +51,4 @@
 - [ ] Portear todo lo que queda a CSS
 - [ ] Arreglar listado de juegos (se rompio al portearlo a CSS normal)
 - [ ] Utilizar variables globales para los colores
-- [ ] Portear todo el codigo a ingles
+- [X] Portear todo el codigo a ingles

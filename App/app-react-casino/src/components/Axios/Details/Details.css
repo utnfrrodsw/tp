@@ -10,7 +10,7 @@
 
 .detail_element {
     font-size: 1.2rem;
-    background-color: #181529bb;
+    background-color: var(--purple-light);
     padding: 1rem;
     width: 90%;
     text-align: center;
@@ -31,7 +31,7 @@
 }
 
 .backDetails:hover {
-    background-color: rgb(172, 0, 0);
+    background-color: var(--red-hover);
 }
 
 @media (min-width: 1200px) {

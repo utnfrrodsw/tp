@@ -56,7 +56,7 @@
 
 .login_rightside {
     border-radius: 2rem;
-    background-color: #181529;
+    background-color: var(--purple);
     padding-top: 1.2rem;
     display: flex;
     flex-direction: column;
@@ -101,7 +101,7 @@
 }
 
 .submit:hover {
-    background-color: #bd8e00;
+    background-color: var(--yellow-hover);
 }
 
 .formWord {
@@ -113,7 +113,7 @@
     padding: .5rem;
     border: none;
     height: 2rem;
-    background-color: #181529;
+    background-color: var(--purple);
     width: 100%;
 }
 

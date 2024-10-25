@@ -16,6 +16,7 @@ export function Listado() {
         GetList();
     });
 
+    // ESTO NO SE USA
     return (
         <>
         <div className="hola">
@@ -30,5 +31,6 @@ export function Listado() {
         </>
 
     )
+    // ESTO NO SE USA
 
 }

@@ -2,7 +2,7 @@ import axios from 'axios'
 import './PostUser.css';
 
 
-
+// ESTO NO SE USA
 export function PostUser() {
 
     axios.post('http://localhost:3000/api/v1/users', {
@@ -42,5 +42,6 @@ export function PostUser() {
         </>
 
     )
+    // ESTO NO SE USA
 
 }

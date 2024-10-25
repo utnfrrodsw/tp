@@ -78,7 +78,7 @@
     align-items: center;
     justify-content: space-between;
     margin-right: auto;
-    border: 2px solid #e19400; 
+    border: 2px solid var(--yellow); 
     background-color: rgba(106, 13, 173, 0.3);
     border-radius: 5px; 
     padding: 5px;

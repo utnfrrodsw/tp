@@ -12,7 +12,7 @@ import axios from 'axios';
 interface User{
     id: string
     balance: number
-    onMoney: React.Dispatch<React.SetStateAction<number>>;
+    setMoney: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export function Slot(user:User) {
@@ -73,13 +73,11 @@ export function Slot(user:User) {
     const isScroll = () => scrollToDiv(instructionRef);
     var bet = 50
     var x0:number;
-    var y0:number;
     var z0:number;
     var x1:number;
     var y1:number;
     var z1:number;
     var x2:number;
-    var y2:number;
     var z2:number;
 
 
@@ -110,7 +108,7 @@ export function Slot(user:User) {
             setError("Insufficient Balance")
             setIsActive(true)
         } else {
-            user.onMoney(user.balance - bet)
+            user.setMoney(user.balance - bet)
             patchUser(user.balance - bet)
             if (isMuted == false) {
                 slotStart.play()
@@ -143,9 +141,7 @@ export function Slot(user:User) {
         var numeroSorteo1 = getRandomInt(4,7)
         var bgPos1 = parseInt(ReelStyle.backgroundPositionY)  
         Reel.style.backgroundPositionY = `${(3*(-iconHeight*numeroSorteo1) + bgPos1)}px`;
-        y0 = (-(3*(-iconHeight*numeroSorteo1) + bgPos1) % 9)
         y1 = (-(3*(-iconHeight*numeroSorteo1) + bgPos1) % 9) + 1
-        y2 = (-(3*(-iconHeight*numeroSorteo1) + bgPos1 + 79) % 9)
         setTimeout(SpinZ, 500)
     }
 
@@ -180,7 +176,7 @@ export function Slot(user:User) {
                 slotWin.play() 
             }
             postGame(bet, bet*4)
-            user.onMoney(user.balance + (bet * 4))
+            user.setMoney(user.balance + (bet * 4))
             patchUser(user.balance + (bet * 4))
         } else if ((Reels[x2] == Reels[y1]) && (Reels[z0] == Reels[y1]) && (Reels[x2] == Reels[z0])) {
             if (bet == 50) {
@@ -194,7 +190,7 @@ export function Slot(user:User) {
                 slotWin.play() 
             }
             postGame(bet, bet*2)
-            user.onMoney(user.balance + (bet * 2))
+            user.setMoney(user.balance + (bet * 2))
             patchUser(user.balance + (bet * 2))
         } else if ((Reels[x0] == Reels[y1]) && (Reels[z2] == Reels[y1]) && (Reels[x0] == Reels[z2])) {
             if (bet == 50) {
@@ -208,7 +204,7 @@ export function Slot(user:User) {
                 slotWin.play() 
             }
             postGame(bet, bet*2)
-            user.onMoney(user.balance + (bet * 2))
+            user.setMoney(user.balance + (bet * 2))
             patchUser(user.balance + (bet * 2))
         } else {
             postGame(bet, 0)

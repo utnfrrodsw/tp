@@ -10,6 +10,7 @@ export function GetOne() {
         console.log(response.data) 
     )
 
+    // ESTO NO SE USA
     return (
         <>
             <div className="hola">
@@ -18,5 +19,6 @@ export function GetOne() {
         </>
 
     )
+    // ESTO NO SE USA
 
 }

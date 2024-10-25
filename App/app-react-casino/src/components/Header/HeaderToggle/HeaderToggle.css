@@ -10,9 +10,6 @@
     rotate: 0deg;
     transition: rotate .3s ease-in-out;
 
-    @starting-style{
-        rotate: -90deg
-    }
 }
 
 .icon-open{

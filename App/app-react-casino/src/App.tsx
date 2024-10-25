@@ -89,9 +89,9 @@ export function App() {
             <Header balance={money} profile={profile} role={userData?.role ?? ''} username={userData?.username ?? ''} onMoney={setMoney} idUser={userData?.id_user ?? ''}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/dice" element={<Dice id={id} balance={money} onMoney={setMoney}/>} />
-                    <Route path="/slot" element={<Slot id={id} balance={money} onMoney={setMoney}/>} />
-                    <Route path="/wheel" element={<Wheel id={id} balance={money} onMoney={setMoney}/>} />
+                    <Route path="/dice" element={<Dice id={id} balance={money} setMoney={setMoney}/>} />
+                    <Route path="/slot" element={<Slot id={id} balance={money} setMoney={setMoney}/>} />
+                    <Route path="/wheel" element={<Wheel id={id} balance={money} setMoney={setMoney}/>} />
                     <Route path="/live_roulette" element={<RouletteLive />} />
                     <Route path="*" element={<ErrorPage />} />
                     <Route path="/listado" element={<Listado/>} />

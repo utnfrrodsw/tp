@@ -10,10 +10,10 @@ import wheelLoseSound from "../../../assets/sounds/wheelLose.mp3";
 import mutedIcon from "../../../assets/images/mutedIcon.png";
 
 const colors = [
-  'verde', 'gris', 'verde', 'gris', 'amarillo', 'gris', 'verde', 'gris',
-  'amarillo', 'gris', 'amarillo', 'gris', 'verde', 'gris', 'violeta', 'gris',
-  'verde', 'gris', 'amarillo', 'gris', 'amarillo', 'gris', 'blanco', 'gris',
-  'naranja', 'gris', 'verde', 'gris', 'amarillo', 'gris'
+  'green', 'gray', 'green', 'gray', 'yellow', 'gray', 'green', 'gray',
+  'yellow', 'gray', 'yellow', 'gray', 'green', 'gray', 'purple', 'gray',
+  'green', 'gray', 'yellow', 'gray', 'yellow', 'gray', 'white', 'gray',
+  'orange', 'gray', 'green', 'gray', 'yellow', 'gray'
 ];
 
 let rotation: number = 0;
@@ -22,16 +22,16 @@ let index: number = 0;
 interface User{
   id: string
   balance: number
-  onMoney: React.Dispatch<React.SetStateAction<number>>;
+  setMoney: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export function Wheel(user:User) {
-  const [monto, setMonto] = useState(0);
-  const [ganarVerde, setRecibeGanar] = useState(0);
-  const [ganarBlanco, setRecibeGanarB] = useState(0);
-  const [ganarAmarillo, setRecibeGanarA] = useState(0);
-  const [ganarVioleta, setRecibeGanarV] = useState(0);
-  const [ganarNaranja, setRecibeGanarN] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [winAmountGreen, setWinAmountGreen] = useState(0);
+  const [winAmountWhite, setWinAmountWhite] = useState(0);
+  const [winAmountYellow, setWinAmountYellow] = useState(0);
+  const [winAmountPurple, setWinAmountPurple] = useState(0);
+  const [winAmountOrange, setWinAmountOrange] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const [error, setError] = useState("");
   const [isMuted, setIsMuted] = useState(false)
@@ -85,36 +85,36 @@ export function Wheel(user:User) {
   }
 
   const winning = (colour:string) => {
-    if (colour === "verde") {
-      user.onMoney(user.balance + ganarVerde - monto);
-      patchUser(user.balance + ganarVerde - monto);
-      postGame(monto, ganarVerde);
+    if (colour === "green") {
+      user.setMoney(user.balance + winAmountGreen - amount);
+      patchUser(user.balance + winAmountGreen - amount);
+      postGame(amount, winAmountGreen);
       playSound(wheelWin);
-    } else if (colour === "blanco") {
-      user.onMoney(user.balance + ganarBlanco - monto);
-      patchUser(user.balance + ganarBlanco - monto);
-      postGame(monto, ganarBlanco);
+    } else if (colour === "white") {
+      user.setMoney(user.balance + winAmountWhite - amount);
+      patchUser(user.balance + winAmountWhite - amount);
+      postGame(amount, winAmountWhite);
       playSound(wheelWin);
-    } else if (colour === "amarillo") {
-      user.onMoney(user.balance + ganarAmarillo - monto);
-      patchUser(user.balance + ganarAmarillo - monto);
-      postGame(monto, ganarAmarillo);
+    } else if (colour === "yellow") {
+      user.setMoney(user.balance + winAmountYellow - amount);
+      patchUser(user.balance + winAmountYellow - amount);
+      postGame(amount, winAmountYellow);
       playSound(wheelWin);
-    } else if (colour === "violeta") {
-      user.onMoney(user.balance + ganarVioleta - monto);
-      patchUser(user.balance + ganarVioleta - monto);
-      postGame(monto, ganarVioleta);
+    } else if (colour === "purple") {
+      user.setMoney(user.balance + winAmountPurple - amount);
+      patchUser(user.balance + winAmountPurple - amount);
+      postGame(amount, winAmountPurple);
       playSound(wheelWin);
-    } else if (colour === "naranja") {
-      user.onMoney(user.balance + ganarNaranja - monto);
-      patchUser(user.balance + ganarNaranja - monto);
-      postGame(monto, ganarNaranja);
+    } else if (colour === "orange") {
+      user.setMoney(user.balance + winAmountOrange - amount);
+      patchUser(user.balance + winAmountOrange - amount);
+      postGame(amount, winAmountOrange);
       playSound(wheelWin);
-    } else if (colour === "gris") {
-      postGame(monto, 0);
+    } else if (colour === "gray") {
+      postGame(amount, 0);
       playSound(wheelLose);
     } else {
-      postGame(monto, 0);
+      postGame(amount, 0);
     }
   }
 
@@ -123,7 +123,7 @@ export function Wheel(user:User) {
       setError("Insufficient Balance");
       return;
     }
-    if (monto <= 0 || monto > user.balance) {
+    if (amount <= 0 || amount > user.balance) {
       setError("Invalid amount");
       return;
     }else{
@@ -133,8 +133,8 @@ export function Wheel(user:User) {
     if (isSpinning) return;
 
     setIsSpinning(true);
-    user.onMoney(user.balance - monto);
-    patchUser(user.balance - monto);
+    user.setMoney(user.balance - amount);
+    patchUser(user.balance - amount);
     
     const wheelStyle = document.querySelector(".wheel") as HTMLElement;
     const randomIndex = Math.floor(Math.random() * 30);
@@ -151,44 +151,44 @@ export function Wheel(user:User) {
     }, 6000);
   }
 
-  const montoApuesta = (event: ChangeEvent<HTMLInputElement>) => {
-    const monto = parseFloat(event.target.value);
+  const amountApuesta = (event: ChangeEvent<HTMLInputElement>) => {
+    const amount = parseFloat(event.target.value);
     const inputValue = event.target.value;
-    if (isNaN(monto) || inputValue === "") {
-      setMonto(0);
+    if (isNaN(amount) || inputValue === "") {
+      setAmount(0);
     } else {
-    setMonto(monto);
-    calcularVerde(monto);
-    calcularBlanco(monto);
-    calcularAmarillo(monto);
-    calcularVioleta(monto);
-    calcularNaranja(monto);
+    setAmount(amount);
+    calculateGreenAmount(amount);
+    calculateWhiteAmount(amount);
+    calculateYellowAmount(amount);
+    calculatePurpleAmount(amount);
+    calculateOrangeAmount(amount);
   }
 }
 
-  const calcularVerde = (monto: number) => {
-    const ganarVerde = parseFloat((1.5 * monto).toFixed(2));
-    setRecibeGanar(ganarVerde);
+  const calculateGreenAmount = (amount: number) => {
+    const winAmountGreen = parseFloat((1.5 * amount).toFixed(2));
+    setWinAmountGreen(winAmountGreen);
   }
   
-  const calcularBlanco = (monto: number) => {
-    const ganarBlancoB = parseFloat((1.7 * monto).toFixed(2));
-    setRecibeGanarB(ganarBlancoB);
+  const calculateWhiteAmount = (amount: number) => {
+    const winAmountWhiteB = parseFloat((1.7 * amount).toFixed(2));
+    setWinAmountWhite(winAmountWhiteB);
   }
   
-  const calcularAmarillo = (monto: number) => {
-    const ganarAmarillo = parseFloat((2 * monto).toFixed(2));
-    setRecibeGanarA(ganarAmarillo);
+  const calculateYellowAmount = (amount: number) => {
+    const winAmountYellow = parseFloat((2 * amount).toFixed(2));
+    setWinAmountYellow(winAmountYellow);
   }
   
-  const calcularVioleta = (monto: number) => {
-    const ganarVioleta = parseFloat((3 * monto).toFixed(2));
-    setRecibeGanarV(ganarVioleta);
+  const calculatePurpleAmount = (amount: number) => {
+    const winAmountPurple = parseFloat((3 * amount).toFixed(2));
+    setWinAmountPurple(winAmountPurple);
   }
   
-  const calcularNaranja = (monto: number) => {
-    const ganarNaranja = parseFloat((4 * monto).toFixed(2));
-    setRecibeGanarN(ganarNaranja);
+  const calculateOrangeAmount = (amount: number) => {
+    const winAmountOrange = parseFloat((4 * amount).toFixed(2));
+    setWinAmountOrange(winAmountOrange);
   }
 
   return (
@@ -198,19 +198,19 @@ export function Wheel(user:User) {
       <div className="col-span-1 row-span-2 bg-[color:var(--purple)] w-full h-full p-2 flex flex-col justify-center items-center">
     <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
     <label>Stake amount</label>
-    <input step="0.01" className="bg-[color:var(--white)] text-black rounded-[20px] p-2 w-full max-w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta} inputMode='numeric'/>
+    <input step="0.01" className="bg-[color:var(--white)] text-black rounded-[20px] p-2 w-full max-w-[80%] mb-2" min="0" value={amount} onChange={amountApuesta} inputMode='numeric'/>
     <label>Gray <span className='font-bold'>x0.00</span></label>
     <input className="text-black rounded-[20px] p-2 w-full max-w-[80%]" type="number" inputMode="decimal" disabled/>
         <label className="">Green <span className='font-bold'>x1.50</span></label>
-        <input className="text-black rounded-[20px] p-2 w-[80%]" value={ganarVerde} type="number" inputMode="decimal" placeholder="0.00" disabled/>
+        <input className="text-black rounded-[20px] p-2 w-[80%]" value={winAmountGreen} type="number" inputMode="decimal" placeholder="0.00" disabled/>
         <label className="">White <span className='font-bold'>x1.70</span></label>
-        <input value={ganarBlanco} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
+        <input value={winAmountWhite} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
         <label className="">Yellow <span className='font-bold'>x2.00</span></label>
-        <input value={ganarAmarillo} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
+        <input value={winAmountYellow} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
         <label className="">Purple <span className='font-bold'>x3.00</span></label>
-        <input value={ganarVioleta} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
+        <input value={winAmountPurple} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
         <label className="">Orange <span className='font-bold'>x4.00</span></label>
-        <input value={ganarNaranja} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
+        <input value={winAmountOrange} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
         <button 
           className="button bg-[color:var(--yellow)] hover:bg-yellow-600 text-[color:var(--black)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]" onClick={startSpin} disabled={isSpinning}>BET</button>
         <p className='py-5'>{error}</p>

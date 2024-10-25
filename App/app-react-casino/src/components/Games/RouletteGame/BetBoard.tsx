@@ -20,6 +20,7 @@ export enum CellType {
     NONE
 }
 
+// NO SE USA
 export function BetBoard() {
     return (
         <>
@@ -284,4 +285,5 @@ export function BetBoard() {
             <img src="./src/assets/roulette/BetBoard.png" className="bet-board-image" />
         </>
     )
+// NO SE USA
 }

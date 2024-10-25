@@ -32,7 +32,7 @@
 .filter-btn {
     display: flex;
     align-items: center;
-    background-color: #710991;
+    background-color: var(--purple-strong);
     color: #fff;
     padding: 5px 10px;
     border: none;
@@ -54,10 +54,10 @@
 
 .search-box input {
     padding: 5px 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--white);
     border-radius: 4px;
     font-size: 14px;
-    color: #000;
+    color: var(--black);
 }
 
 .subtitle-user{
@@ -75,17 +75,17 @@
     gap: 10px;
     background-color: var(--purple);
     padding: 10px;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid var(--white);
     font-weight: bold;
 }
 
 .header-column, .column {
     text-align: center;
-    color: #fff;
+    color: var(--white);
 }
 
 .header-column {
-    color: #fff;
+    color: var(--white);
 }
 
 .list {
@@ -100,7 +100,7 @@
     gap: 10px;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--white);
 }
 
 .user-info {
@@ -118,11 +118,11 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    color: #ffffff;
+    color: var(--white);
 }
 
 .add-btn, .filter-btn {
-    background-color: #710991;
+    background-color: var(--purple-strong);
 }
 
 .edit-btn {
@@ -137,19 +137,19 @@
 }
 
 .read-btn {
-    background-color: #daa711;
+    background-color: var(--yellow);
 }
 
 .edit-btn:hover {
-    background-color: #45a049;
+    background-color: var(--green-hover);
 }
 
 .delete-btn:hover {
-    background-color: #e60000;
+    background-color: var(--red-hover);
 }
 
 .read-btn:hover {
-    background-color: var(--yellow);
+    background-color: var(--yellow-hover);
 }
 
 .rotate-90 {

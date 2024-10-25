@@ -17,7 +17,7 @@ function randInt(n: number, m: number | null = null) {
         return Math.floor(Math.random() * n);
     }
 }
-
+// NO SE USA
 export function Rotar() {
     Math.random()
     let winningNumber: number = randInt(37);
@@ -40,4 +40,5 @@ export function Roulette() {
         </>
 
     );
+// NO SE USA
 };
