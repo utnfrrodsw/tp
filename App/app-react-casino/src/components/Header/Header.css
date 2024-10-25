@@ -11,13 +11,13 @@
 
 @keyframes select {
     0% {
-        color: var(--blanco);
+        color: var(--white);
     }
     50% {
-        color: var(--blancoHover);
+        color: var(--white-hover);
     }
     100%{
-        color: var(--blanco);
+        color: var(--white);
     }
 }
 

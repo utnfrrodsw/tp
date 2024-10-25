@@ -193,12 +193,12 @@ export function Wheel(user:User) {
 
   return (
     <>
-    <div className="place-items-center border-[color:var(--violeta)] border-[20px] rounded-[30px] mx-[100px] mt-[150px] mb-[50px] h-auto grid grid-cols-3 grid-rows-1 gap-0 max-lg:mx-[20px] max-lg:grid-cols-1">
+    <div className="place-items-center border-[color:var(--purple)] border-[20px] rounded-[30px] mx-[100px] mt-[150px] mb-[50px] h-auto grid grid-cols-3 grid-rows-1 gap-0 max-lg:mx-[20px] max-lg:grid-cols-1">
       <GamesSideBar/>
-      <div className="col-span-1 row-span-2 bg-[color:var(--violeta)] w-full h-full p-2 flex flex-col justify-center items-center">
+      <div className="col-span-1 row-span-2 bg-[color:var(--purple)] w-full h-full p-2 flex flex-col justify-center items-center">
     <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
     <label>Stake amount</label>
-    <input step="0.01" className="bg-[color:var(--blanco)] text-black rounded-[20px] p-2 w-full max-w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta} inputMode='numeric'/>
+    <input step="0.01" className="bg-[color:var(--white)] text-black rounded-[20px] p-2 w-full max-w-[80%] mb-2" min="0" value={monto} onChange={montoApuesta} inputMode='numeric'/>
     <label>Gray <span className='font-bold'>x0.00</span></label>
     <input className="text-black rounded-[20px] p-2 w-full max-w-[80%]" type="number" inputMode="decimal" disabled/>
         <label className="">Green <span className='font-bold'>x1.50</span></label>
@@ -212,7 +212,7 @@ export function Wheel(user:User) {
         <label className="">Orange <span className='font-bold'>x4.00</span></label>
         <input value={ganarNaranja} className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" disabled/>
         <button 
-          className="button bg-[color:var(--amarillo)] hover:bg-yellow-600 text-[color:var(--negro)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]" onClick={startSpin} disabled={isSpinning}>BET</button>
+          className="button bg-[color:var(--yellow)] hover:bg-yellow-600 text-[color:var(--black)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]" onClick={startSpin} disabled={isSpinning}>BET</button>
         <p className='py-5'>{error}</p>
       </div>
       <div className='relative col-span-2 flex justify-center items-start pt-[30px]'>

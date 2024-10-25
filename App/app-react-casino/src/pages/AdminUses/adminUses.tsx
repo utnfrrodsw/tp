@@ -6,6 +6,7 @@ export function AdminUses() {
         window.scrollTo(0, 0)
       }, [])
 
+    // ESTO ACTUALMENTE NO SE USA
     return(
         <>
         <div className="p-5 px-2 mt-[100px]"> 
@@ -17,14 +18,8 @@ export function AdminUses() {
         Listado </Link> 
         <Link to="/postuser" className="ne-2 items-center p-2 mt-2 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer">
         PostUser </Link> 
-
-        
-
-            
-            
-            
-            
         </div>
         </>
     )
+    // ESTO ACTUALMENTE NO SE USA
 }

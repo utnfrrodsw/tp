@@ -11,10 +11,6 @@
     transition: backdrop-filter .2s ease-in;
     justify-content: center;
     align-items: center;
-
-    @starting-style{
-        backdrop-filter: blur(0px);
-    }
 }
 
    
@@ -25,14 +21,10 @@
     width: 60%;
     margin: .5rem;
     z-index: 20;
-    background-color: var(--negro);
+    background-color: var(--black);
     border-radius: 2rem;
     display: flex;
     transition: transform .2s ease-in-out;
-
-    @starting-style {
-        transform: translateY(-1000px);
-    }
 }
 
 
@@ -84,11 +76,11 @@
 .loginText {
     text-align: center;
     font-size: 1rem;
-    color: var(--amarillo);
+    color: var(--yellow);
 }
 
 .loginTitle {
-    color: var(--amarillo);
+    color: var(--yellow);
     font-size: 3rem;
     font-weight: bold;
 }
@@ -103,7 +95,7 @@
     width: 30%;
     font-weight: bold;
     color: black;
-    background-color: var(--amarillo);
+    background-color: var(--yellow);
     padding: .5rem 1rem;
     border-radius: 1rem;
 }
@@ -113,7 +105,7 @@
 }
 
 .formWord {
-    color: var(--amarillo);
+    color: var(--yellow);
     font-size: 1.2rem;
 }
 

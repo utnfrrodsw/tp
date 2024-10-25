@@ -5,7 +5,7 @@
     width: 50%;
     gap: 1.5rem;
     height: 100vh;
-    background-color: #181529bb;
+    background-color: var(--purple-transparent);
     left: -49%;
     top: 0;
     display: flex;
@@ -46,4 +46,43 @@
     .SideBarMobileButton {
         display: none;
     }
+}
+
+.dice-sidebar {
+    padding: 1.5rem; 
+    background-position: center; 
+    background-size: cover; 
+    background-size: contain; 
+    height: 160px;
+    width: 160px;
+    background: url("./src/assets/images/games-dice.png");
+    background-position: center center;
+    background-size: cover;
+    border-radius: 1rem;
+}
+
+.wheel-sidebar {
+    padding: 1.5rem; 
+    background-position: center; 
+    background-size: cover; 
+    background-size: contain; 
+    height: 160px;
+    width: 160px;
+    background: url("./src/assets/images/games-wheel.png");
+    background-position: center center;
+    background-size: cover;
+    border-radius: 1rem;
+}
+
+.slot-sidebar {
+    padding: 1.5rem; 
+    background-position: center; 
+    background-size: cover; 
+    background-size: contain; 
+    height: 160px;
+    width: 160px;
+    background: url("./src/assets/images/games-slots.png");
+    background-position: center center;
+    background-size: cover;
+    border-radius: 1rem;
 }

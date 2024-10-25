@@ -3,8 +3,8 @@
 }
 
 .headerMenu{
-    color: var(--blanco);
-    background-color:  var(--negro);
+    color: var(--white);
+    background-color:  var(--black);
     display: none;
     transform: translateX(0%);
     transition: transform .3s ease-in-out;

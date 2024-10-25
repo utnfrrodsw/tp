@@ -12,9 +12,9 @@
     appearance: none;
     height: 35px;
     width: 35px;
-    background-color: var(--rojo);
+    background-color: var(--red);
     border-radius: 50%;
-    border: 7px solid var(--blanco);
+    border: 7px solid var(--white);
 }
 
 .winningMessage {

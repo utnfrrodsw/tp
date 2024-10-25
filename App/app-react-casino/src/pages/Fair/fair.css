@@ -1,0 +1,21 @@
+.fair-container {
+    display: flex; 
+    padding: 1.25rem; 
+    flex-direction: column; 
+    gap: 1.25rem; 
+    margin-top: 100px;
+    color: var(--white-light);
+}
+
+.fair-title {
+    font-size: 1.5rem;
+    line-height: 2rem; 
+    font-weight: 700; 
+}
+
+.fair-data {
+    padding: 1.25rem; 
+    background: #23222F;
+    color: var(--white-light);
+    border-radius: 1rem;
+}

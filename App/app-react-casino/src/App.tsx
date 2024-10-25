@@ -46,7 +46,7 @@ interface User{
 
 export function App() {
     const [userData, setUserData] = useState<User | null>(null);
-    const [dinero, setDinero] = useState(0);
+    const [money, setMoney] = useState(0);
 
     useEffect(() => {
         fetchUserProfile();
@@ -58,12 +58,12 @@ export function App() {
         const token = localStorage.getItem('jwt-token');
         
         if (!token) {
-            console.error('No se encontró la token.');
+            console.error('Token not found.');
             return;
         }
             
         const decoded: any = jwtDecode(token);
-        console.log("Contenido del token decodificado:", decoded.data.id_user);
+        console.log("Decoded token content: ", decoded.data.id_user);
 
         const userIdFromToken = decoded.data.id_user;
         // console.log("ID del usuario desde la token:", userIdFromToken); NO ANDA NO SE PQ
@@ -71,11 +71,11 @@ export function App() {
         const response = await fetch(`http://localhost:3000/api/v1/users/${userIdFromToken}`);
 
         const authenticatedUser: User = await response.json();
-        console.log('Usuario autenticado:', authenticatedUser);
+        console.log('Autenthicated User:', authenticatedUser);
 
         if (authenticatedUser) {
             setUserData(authenticatedUser);
-            setDinero(authenticatedUser.balance);
+            setMoney(authenticatedUser.balance);
         }
         
     };
@@ -86,12 +86,12 @@ export function App() {
     return(
         <>
         
-            <Header balance={dinero} profile={profile} role={userData?.role ?? ''} username={userData?.username ?? ''} onMoney={setDinero} idUser={userData?.id_user ?? ''}/>
+            <Header balance={money} profile={profile} role={userData?.role ?? ''} username={userData?.username ?? ''} onMoney={setMoney} idUser={userData?.id_user ?? ''}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/dice" element={<Dice id={id} balance={dinero} onMoney={setDinero}/>} />
-                    <Route path="/slot" element={<Slot id={id} balance={dinero} onMoney={setDinero}/>} />
-                    <Route path="/wheel" element={<Wheel id={id} balance={dinero} onMoney={setDinero}/>} />
+                    <Route path="/dice" element={<Dice id={id} balance={money} onMoney={setMoney}/>} />
+                    <Route path="/slot" element={<Slot id={id} balance={money} onMoney={setMoney}/>} />
+                    <Route path="/wheel" element={<Wheel id={id} balance={money} onMoney={setMoney}/>} />
                     <Route path="/live_roulette" element={<RouletteLive />} />
                     <Route path="*" element={<ErrorPage />} />
                     <Route path="/listado" element={<Listado/>} />

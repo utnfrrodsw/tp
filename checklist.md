@@ -47,3 +47,5 @@
 - [X] Listados responsivos
 - [ ] Header responsivo
 - [ ] Forgot your password (AD)
+- [ ] Portear HELP a CSS normal
+- [ ] Arreglar listado de juegos (se rompio al portearlo a CSS normal)

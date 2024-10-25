@@ -5,12 +5,14 @@ import { GamesSideBar } from "../../components/GamesSideBar"
 
 export function RouletteLive() {
     return (
-        <>
-            <div className="p-20"> </div>
+        // ESTO NO ESTA IMPLEMENTADO
+        <> 
+            <div> </div>
             <GamesSideBar/>
-            <Roulette></Roulette>
-            <BetBoard></BetBoard>
-            <button onClick={Rotar} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Girar</button>
-        </>
+            <Roulette></Roulette> 
+            <BetBoard></BetBoard> 
+            <button onClick={Rotar}>Girar</button>
+        </> 
+        // ESTO NO ESTA IMPLEMENTADO
     )
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import emailjs, { send } from '@emailjs/browser'
+import emailjs from '@emailjs/browser'
 import { toast } from 'sonner'
 
 export function Help(){

@@ -89,7 +89,7 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-    background-color: var(--violeta);
+    background-color: var(--purple);
     padding: 10px;
     border-bottom: 2px solid #ddd;
     font-weight: bold;
@@ -142,14 +142,14 @@
 }
 
 .edit-btn {
-    background-color: var(--verde);
+    background-color: var(--green);
 }
 .edit-btn {
-    background-color: var(--verde);
+    background-color: var(--green);
 }
 
 .delete-btn {
-    background-color: var(--rojo);
+    background-color: var(--red);
 }
 
 .read-btn {
@@ -165,7 +165,7 @@
 }
 
 .read-btn:hover {
-    background-color: var(--amarillo);
+    background-color: var(--yellow);
 }
 
 .rotate-90 {

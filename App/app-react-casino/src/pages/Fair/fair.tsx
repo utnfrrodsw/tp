@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import './fair.css';
 
 export function Fair(){
     useEffect(() => {
@@ -7,9 +8,9 @@ export function Fair(){
 
     return(
         <>
-        <div className="mt-[100px] p-5 flex flex-col gap-5 text-[#ebe9fc]">
-        <h1 className="text-2xl font-bold"> How UTimbaN is Provably Fair </h1>
-            <div className="bg-[#23222F] p-5 rounded-[10px] text-[#ebe9fc]"> 
+        <div className="fair-container">
+            <h1 className="fair-title"> How UTimbaN is Provably Fair </h1>
+            <div className="fair-data"> 
                 <p> UTimbaN prides itself on being an honest casino, so it seems fitting that we have taken measures to ensure our games are provably fair. <br/>
                 Provably fair means you do not need to “trust” us to be fair; it means you can prove our fairness. <br/>
                 Each bet made on UTimbaN can be verified so that you know with certainty the house could have in no way “chosen” the outcome. <br/>

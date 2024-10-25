@@ -19,7 +19,7 @@
 }
 
 .backDetails {
-    background-color: red;
+    background-color: var(--red);
     width: 90%;
     margin: 0 auto;
     padding: 1.5rem;

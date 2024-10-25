@@ -19,7 +19,7 @@
 
 .left-side {
     width: 90%;
-    background-color: var(--violeta);
+    background-color: var(--purple);
     padding: 40px 40px ;
     border-radius: 30px;
     display: flex;
@@ -80,17 +80,17 @@
 
 .menu-item {
     margin: 20px 0;
-    color: var(--blanco);
+    color: var(--white);
     cursor: pointer;
 }
 
 .logout-button {
     width: 100%;
-    background-color: var(--rojo);
+    background-color: var(--red);
     border: none;
     padding: 10px;
     border-radius: .3rem;
-    color: var(--negro);
+    color: var(--black);
     cursor: pointer;
     margin-top: 40px;
     transition-duration: 200ms;
@@ -98,7 +98,7 @@
 }
 
 .logout-button:hover{
-    background-color: var(--rojoHover);
+    background-color: var(--red-hover);
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
 }
@@ -106,7 +106,7 @@
 .right-side {
     width: 90%;
     padding: 20px;
-    background-color: var(--violeta);
+    background-color: var(--purple);
     border-radius: 30px;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .section-title {
-    color: var(--blanco);
+    color: var(--white);
     margin-bottom: 20px;
 }
 
@@ -138,20 +138,20 @@
 .input-field {
     width: 100%;
     padding: 8px;
-    background-color: var(--negro);
-    color: var(--blanco);
+    background-color: var(--black);
+    color: var(--white);
     border: none;
     border-radius: 5px;
     margin-right: 10px;
 }
 
 .change-button {
-    background-color: var(--amarillo);
+    background-color: var(--yellow);
     border: none;
     border-radius: .3rem;
     padding: 10px;
     width: 100%;
-    color: var(--negro);
+    color: var(--black);
     cursor: pointer;
     margin-top: 1rem;
     transition-duration: 200ms;
@@ -165,7 +165,7 @@
 }
 
 .change-button:hover {
-    background-color: var(--amarilloHover);
+    background-color: var(--yellow-hover);
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
 }
@@ -183,7 +183,7 @@
 }
 
 .modal-content {
-    background: var(--violeta);
+    background: var(--purple);
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -194,7 +194,7 @@
 }
 
 .dropzone {
-    border: 2px solid var(--blanco);
+    border: 2px solid var(--white);
     padding: 20px;
     cursor: pointer;
     margin-bottom: 10px;
@@ -203,7 +203,7 @@
 }
 
 .dropzone:hover {
-    border: 2px solid var(--blancoHover);
+    border: 2px solid var(--white-hover);
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
     animation: select;
@@ -213,14 +213,14 @@
 
 .upload-button {
     margin-right: 20px;
-    background-color: var(--amarillo);
+    background-color: var(--yellow);
     border: none;
     border-radius: .3rem;
     padding-right: 10px;
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    color: var(--negro);
+    color: var(--black);
     cursor: pointer;
     margin-top: 1rem;
 }
@@ -233,14 +233,14 @@
 
 .cancel-button {
     margin-right: 20px;
-    background-color: var(--rojo);
+    background-color: var(--red);
     border: none;
     border-radius: .3rem;
     padding-right: 10px;
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    color: var(--negro);
+    color: var(--black);
     cursor: pointer;
     margin-top: 1rem;
     transition-duration: 150ms;
@@ -248,7 +248,7 @@
 }
 
 .cancel-button:hover{
-    background-color: var(--rojoHover);
+    background-color: var(--red-hover);
     transition-duration: 150ms;
     transition-timing-function: ease-in-out;
 }

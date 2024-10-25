@@ -1,19 +1,21 @@
 :root {
-  /*--blanco: #ebe9fc;*/
-  --blanco : #F6EDED;
-  --blancoHover: #ccc578; 
-  --negro: #0D0B16;
-  --amarillo: #FABC01;
-  --amarilloHover: #C99B10;
-  --verde: #70AE6E;
-  --verdeHover: #5A9D58;
-  --rojo: #D81536;
-  --rojoHover: #A7112A;
-  --violeta: #181529;
+  --white : #F6EDED;
+  --white-light : #ebe9fc;
+  --black-hover: #ccc578; 
+  --black: #0D0B16;
+  --yellow: #FABC01;
+  --yellow-hover: #C99B10;
+  --green: #70AE6E;
+  --green-hover: #5A9D58;
+  --red: #D81536;
+  --red-hover: #A7112A;
+  --purple: #181529;
+  --purple-light: #23222F;
+  --purple-transparent: #23222f21;
   font-family: Outfit, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 body{
-  background-color: var(--negro);
-  color: var(--blanco)
+  background-color: var(--black);
+  color: var(--white)
 }

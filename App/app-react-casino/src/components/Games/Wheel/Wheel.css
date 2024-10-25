@@ -14,7 +14,7 @@
   padding: 10px 50px;
   font-size: 16px;
   cursor: pointer;
-  background-color: var(--amarillo);
+  background-color: var(--yellow);
   width: 100%;
   max-width: 300px;
 }
@@ -24,7 +24,7 @@
 }
 
 .py-5 {
-  color: var(--rojo);
+  color: var(--red);
   font-size: 1.5rem;
 }
 

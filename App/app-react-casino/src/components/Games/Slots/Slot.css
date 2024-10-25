@@ -1,12 +1,12 @@
 @keyframes opacity{
     0% {
-        background-color: var(--amarillo);
+        background-color: var(--yellow);
     }
     50%{
-        background-color: var(--amarilloHover);
+        background-color: var(--yellow-hover);
     }
     100%{
-        background-color: var(--amarillo);
+        background-color: var(--yellow);
     }
 }
 
@@ -46,16 +46,16 @@
 .slots {
     display: flex;
     gap: 2rem;
-    background-color: rgba(0, 0, 0, 0.541);
+    background: rgba(0, 0, 0, 0.541);
     padding: 2rem;
 }
 
 .buttonTragamonedas {
     padding: 1rem;
-    background-color: var(--amarillo);
+    background-color: var(--yellow);
     margin-top: 1rem;
-    border: 2px solid var(--negro);
-    color: var(--negro);
+    border: 2px solid var(--black);
+    color: var(--black);
     border-radius: .8rem;
 }
 
@@ -158,9 +158,9 @@
     left: 0;
     margin: 1rem;
     padding: 1rem;
-    background-color: var(--amarillo);
+    background-color: var(--yellow);
     border-radius: 10px;
-    color: var(--negro);
+    color: var(--black);
     font-weight: bold;
     font-size: 1.2rem;
     transition: .2s;
@@ -171,7 +171,7 @@
 .instructionsButtonRef:hover {
     transition: .2s;
     transition-timing-function: ease-in-out;
-    background-color: var(--amarillo);
+    background-color: var(--yellow);
     opacity: 100%;
 }
 
