@@ -10,19 +10,18 @@ const loginRouter = require ('./login.router');
 
 const authRouter = require ('./auth.router');
 
+const RequireAuth = require ('../middleware/authMiddleware.js');
+
 function routerApi(app) {
     const router = express.Router();
     app.use('/api/v1', router);
     router.use('/countries', countryRouter);
-    router.use('/users', userRouter);
+    router.use('/users', RequireAuth, userRouter);
     router.use('/categories', categoryRouter);
     router.use('/games', gameRouter);
-    
     router.use('/userGames', userGamesRouter);
-
     router.use('/login', loginRouter);
     router.use('/register', authRouter);
-    
 }
 
 module.exports = routerApi;

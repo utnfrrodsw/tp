@@ -17,9 +17,12 @@ export function User() {
     const [isAscending, setIsAscending] = useState(false);
     const [search, setSearch] = useState('');
     
+    const token = localStorage.getItem('jwt-token');
+    console.log(token);
+
     console.log(search);
     const GetUser = () => {
-        axios.get("http://localhost:3000/api/v1/users").then((response) =>
+        axios.get("http://localhost:3000/api/v1/users", token).then((response) =>
             setUser(response.data)
         );
     };

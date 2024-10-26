@@ -66,8 +66,8 @@
 
 .game2 {
     border-width: 2px; 
-    color: #ffffff; 
-    background-color: #ffffff; 
+    color: var(--blanco); 
+    background-color: var(--blanco); 
     background-position: center; 
     background-size: cover; 
     background-size: contain; 
@@ -81,7 +81,7 @@
 }
 
 .slots-img {
-    background: url("../../../src/assets/images/slots.webp");
+    background: url("../../../src/assets/images/games-slots.png");
     background-position: center center;
     background-size: cover;
 }
@@ -93,7 +93,7 @@
 }
 
 .dice-img {
-    background: url("../../../src/assets/images/dice.webp");
+    background: url("../../../src/assets/images/games-dice.png");
     background-position: center center;
     background-size: cover;
 }

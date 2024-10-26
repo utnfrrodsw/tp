@@ -14,7 +14,7 @@ const client = new MercadoPagoConfig({
     accessToken: 'APP_USR-5360684163294216-090101-42085ff60bdfb7cf05a92b2ad223624e-237551322',
 });
 
-// Middleware
+// Credentials
 app.use(express.json());
 app.use(cors({
     origin: "http://localhost:5173",
@@ -23,6 +23,7 @@ app.use(cors({
 
 // Rutas de tu aplicación
 const routerApi = require('./routes');
+const requireAuth = require('./middleware/authMiddleware.js');
 routerApi(app);
 
 // Ruta para crear una preferencia de pago en MercadoPago
@@ -59,6 +60,9 @@ app.post('/create_preference', async (req, res) => {
         });
     }
 });
+
+// Middleware
+
 
 // Iniciar el servidor
 app.listen(port, () => {
