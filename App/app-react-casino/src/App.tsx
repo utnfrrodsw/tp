@@ -80,6 +80,7 @@ export function App() {
         
     };
 
+    const role = userData?.role
     const id = userData?.id_user
     let profile = '/profile/'+userData?.username
 
@@ -97,7 +98,7 @@ export function App() {
                     <Route path="/listado" element={<Listado/>} />
                     <Route path="/postuser" element={<PostUser />} />
                     <Route path="/getone" element={<GetOne />} />
-                    <Route path="/user" element={<User />} />
+                    <Route path="/user" element={<User role={role} />} />
                     <Route path="/details/:id" element={<Details />} />
                     <Route path="/edituser/:id" element={<EditUser />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
