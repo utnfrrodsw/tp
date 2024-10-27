@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { NavLink as Link } from 'react-router-dom'
 import {useParams} from 'react-router-dom'
 
-export function Details() {
+export function Details(role) {
 
     const [username, setUsername] = useState("")
     const [firstName, setFirstName] = useState("")
@@ -16,8 +16,10 @@ export function Details() {
     const [country, setCountry] = useState("")
     const {id} = useParams();
 
+    const token = localStorage.getItem('jwt-token');
+
     const GetData = () => {
-        axios.get(`http://localhost:3000/api/v1/users/read/${id}`).then((response) => {
+        axios.get(`http://localhost:3000/api/v1/users/read/${id}`, { params: { token, role } }).then((response) => {
             setUsername(response.data[0].username)
             setFirstName(response.data[0].first_name)
             setLastName(response.data[0].last_name)

@@ -21,7 +21,7 @@ export function Home() {
                 <h1 className='games-title'>Games</h1>
                 <div className='games-container'>
                     <Link to="/dice" className='animated-hover game dice-img' ></Link>
-                    <Link to="/slot" className='animated-hover game2 slots-img'> </Link>
+                    <Link to="/slot" className='animated-hover game slots-img'> </Link>
                     <Link to="/wheel" className='animated-hover game wheel-img'> </Link>
                     <Link to="" className='cooming-soon'> </Link>
                 </div>

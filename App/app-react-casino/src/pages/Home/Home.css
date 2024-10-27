@@ -38,8 +38,15 @@
 }
 
 .games-section {
-    padding-left: 5rem;
-    padding-right: 5rem; 
+    padding-left: 1rem;
+    padding-right: 1rem; 
+}
+
+@media (min-width: 1024px) { 
+    .games-section {
+        padding-left: 5rem;
+        padding-right: 5rem; 
+    }
 }
 
 .games-title {
@@ -64,22 +71,6 @@
     border-radius: 1rem;
 }
 
-.game2 {
-    border-width: 2px; 
-    color: var(--blanco); 
-    background-color: var(--blanco); 
-    background-position: center; 
-    background-size: cover; 
-    background-size: contain; 
-    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms; 
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
-    border-color: var(--yellow);
-    height: 175px;
-    border-radius: 1rem;
-}
-
 .slots-img {
     background: url("../../../src/assets/images/games-slots.png");
     background-position: center center;
@@ -98,18 +89,6 @@
     background-size: cover;
 }
 
-@media (min-width: 768px) { 
-    .game {
-        grid-column: span 2 / span 2; 
-    }
-}
-
-@media (min-width: 1024px) { 
-    .game2 {
-        grid-column: span 2 / span 2; 
-    }
-}
-
 @media (min-width: 1024px) { 
     .game {
         grid-column: span 1 / span 1; 
@@ -120,10 +99,6 @@
     transform: scale(1.03)
 }
 
-.game2:hover {
-    transform: scale(1.03)
-}
-
 .games-container {
     display: grid;
     padding-bottom: 5rem; 
@@ -131,23 +106,12 @@
     row-gap: 1rem; 
     border-radius: 0.75rem; 
     text-align: center; 
-}
-
-@media (min-width: 640px) { 
-    .games-container {
-        grid-template-columns: repeat(3, minmax(0, 1fr)); 
-    }
-}
-
-@media (min-width: 768px) { 
-    .games-container {
-        grid-template-columns: repeat(3, minmax(0, 1fr)); 
-    }
+    grid-template-columns: repeat(1, minmax(0, 1fr)); 
 }
 
 @media (min-width: 1024px) { 
     .games-container {
-        grid-template-columns: repeat(3, minmax(0, 1fr)); 
+        grid-template-columns: repeat(2, minmax(0, 1fr)); 
     }
 }
 
@@ -161,7 +125,6 @@
 }
 
 .cooming-soon {
-    grid-column: span 2 / span 2; 
     border-width: 2px; 
     color: #ffffff; 
     background-color: #ffffff; 
@@ -182,6 +145,6 @@
 
 @media (min-width: 1024px) { 
     .cooming-soon {
-        grid-column: span 2 / span 2; 
+        grid-column: span 1 / span 1;
     }
 }

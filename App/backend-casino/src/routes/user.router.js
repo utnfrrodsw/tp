@@ -7,7 +7,7 @@ router
     .get("/", authMiddleware , userController.get)
     .get("/:id", userController.getById)
     .post("/", userController.create)
-    .put("/:id", userController.update)
+    .put("/:id" ,userController.update)
     .delete("/:id", userController._delete)
     .get("/read/:id", userController.read);
 

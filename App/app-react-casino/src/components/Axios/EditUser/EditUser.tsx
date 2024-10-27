@@ -12,7 +12,7 @@ interface UserType {
     balance: string;
 }
 
-export function EditUser() {
+export function EditUser(role) {
 
     const {id} = useParams();
     const [user, setUser] = useState([])
@@ -24,8 +24,10 @@ export function EditUser() {
     const [balance, setBalance] = useState("")
     console.log(id)
 
+    const token = localStorage.getItem('jwt-token');
+
     const GetData = () => {
-        axios.get(`http://localhost:3000/api/v1/users/${id}`).then((response) => {
+        axios.get(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then((response) => {
             setUser(response.data)
             setFirstName(response.data.first_name)
             setlastName(response.data.last_name)
