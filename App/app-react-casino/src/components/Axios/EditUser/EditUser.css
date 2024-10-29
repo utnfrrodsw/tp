@@ -51,6 +51,7 @@
     width: 35%;
     padding: .5rem;
     border-radius: .5rem;
+    color: #111827;
 }
 
 .formInput:focus {

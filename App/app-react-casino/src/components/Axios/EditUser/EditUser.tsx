@@ -86,15 +86,15 @@ export function EditUser() {
         <div className='edituser'>
             <form className='formEdit' ref={form}>
                 <label>First Name</label>
-                <input type="text" id='firstname' className='formInput text-gray-900' value={firstName} onChange={e => setFirstName(e.target.value)} onInput={() => checkField("first_name")} name='firstname' />
+                <input type="text" id='firstname' className='formInput' value={firstName} onChange={e => setFirstName(e.target.value)} onInput={() => checkField("first_name")} name='firstname' />
                 <label>Last Name</label>
-                <input type="text" id='lastname' className='formInput text-gray-900' value={lastName} onChange={e => setLastName(e.target.value)} onInput={() => checkField("last_name")} name='lastname' />
+                <input type="text" id='lastname' className='formInput' value={lastName} onChange={e => setLastName(e.target.value)} onInput={() => checkField("last_name")} name='lastname' />
                 <label>Phone Number</label>
-                <input type="text" id='phone' className='formInput text-gray-900' value={phone} onChange={e => setPhone(e.target.value)} onInput={() => checkField("phone")} name='phone' />
+                <input type="text" id='phone' className='formInput' value={phone} onChange={e => setPhone(e.target.value)} onInput={() => checkField("phone")} name='phone' />
                 <label>Email</label>
-                <input type="text" id='email' className='formInput text-gray-900' value={email} onChange={e => setEmail(e.target.value)} onInput={() => checkField("email")} name='email' />
+                <input type="text" id='email' className='formInput' value={email} onChange={e => setEmail(e.target.value)} onInput={() => checkField("email")} name='email' />
                 <label>Balance</label>
-                <input type="text" id='balance' className='formInput text-gray-900' value={balance} onChange={e => setBalance(e.target.value)} onInput={() => checkField("balance")} name='balance' />
+                <input type="text" id='balance' className='formInput' value={balance} onChange={e => setBalance(e.target.value)} onInput={() => checkField("balance")} name='balance' />
             </form>
             <div className='formButtons'>
                 <button type='button' className='formSubmit' onClick={patchUser}>Update</button>

@@ -20,7 +20,8 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, onMoney, id
     }, []);
 
     const [mensajeCarga, setMensajeCarga] = useState("")
-
+    
+    /* Mercado pago
     const createPreference = async () => {
         try {
             const response = await axios.post("http://localhost:3000/create_preference", {
