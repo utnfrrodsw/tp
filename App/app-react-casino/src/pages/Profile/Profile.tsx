@@ -18,7 +18,7 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
     const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string | null>(() => {
-        return localStorage.getItem('profile-image-url') || null; // SE GUARDA TODO EN CLOUDINARY PERO SIN ESTO NO SE GUARDA AL ACTUALIZAR PAGINA!
+        return localStorage.getItem('profile-image-url') || null;
     });
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -31,7 +31,10 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
         setFile(acceptedFiles[0]);
     };
 
-    const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: 'image/*' });
+    const { getRootProps, getInputProps } = useDropzone({ 
+        onDrop, 
+        accept: { 'image/*': [] } // Corregido aquí
+    });
 
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
@@ -123,7 +126,7 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 className="input-field text-gray-900"
                             />
-                            <button type="button" className="change-button" >Change Password</button>
+                            <button type="button" className="change-button">Change Password</button>
                         </div>
                     </form>
                 </div>

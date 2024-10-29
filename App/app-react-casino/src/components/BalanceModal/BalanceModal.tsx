@@ -35,13 +35,14 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, onMoney, id
             console.log(error);
         }
     };
-
+    /*
     const handleBuy = async () => {
         const id = await createPreference();
         if (id) {
             setPreferenceId(id);
         }
     };
+    */
 
     function addMoney1000() {
         onMoney(balance + 1000);

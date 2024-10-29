@@ -114,11 +114,11 @@ export function Dice(user:User) {
         }
     }
 
-    const playSound = (sound) => {
+    const playSound = (sound: HTMLAudioElement) => {
         sound.currentTime = 0;
-        if (isMuted == false) {
-          sound.play();
-      }
+        if (!isMuted) {
+            sound.play();
+        }
     }
 
     const GenerateNumber = () => {

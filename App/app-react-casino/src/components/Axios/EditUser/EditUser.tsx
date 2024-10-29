@@ -1,8 +1,8 @@
 import axios from 'axios';
 import './EditUser.css';
-import { NavLink as Link } from 'react-router-dom'
+import { NavLink as Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 interface UserType {
     first_name: string;
@@ -13,43 +13,43 @@ interface UserType {
 }
 
 export function EditUser() {
-
-    const {id} = useParams();
-    const [user, setUser] = useState([])
-    const form = useRef()
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setlastName] = useState("")
-    const [phone, setPhone] = useState("")
-    const [email, setEmail] = useState("")
-    const [balance, setBalance] = useState("")
-    console.log(id)
+    const { id } = useParams<{ id: string }>();
+    const [user, setUser] = useState<UserType | null>(null);
+    const form = useRef<HTMLFormElement | null>(null);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [balance, setBalance] = useState("");
 
     const GetData = () => {
         axios.get(`http://localhost:3000/api/v1/users/${id}`).then((response) => {
-            setUser(response.data)
-            setFirstName(response.data.first_name)
-            setlastName(response.data.last_name)
-            setPhone(response.data.phone)
-            setEmail(response.data.email)
-            setBalance(response.data.balance)
+            const fetchedUser: UserType = response.data;
+            setUser(fetchedUser);
+            setFirstName(fetchedUser.first_name);
+            setLastName(fetchedUser.last_name);
+            setPhone(fetchedUser.phone);
+            setEmail(fetchedUser.email);
+            setBalance(fetchedUser.balance);
         });
     };
 
     useEffect(() => {
         GetData();
-    }, []);
+    }, [id]);
 
-    function patchUser(datos) {
+    function patchUser() {
+        if (!form.current) return; 
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
-            first_name: `${datos.firstname.value}`,
-            last_name: `${datos.lastname.value}`,
-            phone: `${datos.phone.value}`,
-            email: `${datos.email.value}`,
-            balance: `${datos.balance.value}`,
+            first_name: form.current.firstname.value,
+            last_name: form.current.lastname.value,
+            phone: form.current.phone.value,
+            email: form.current.email.value,
+            balance: form.current.balance.value,
         })
         .then((response) => {
             console.log(response);
-            location.reload()
+            location.reload();
         })
         .catch((error) => {
             console.log(error);
@@ -57,88 +57,50 @@ export function EditUser() {
     }
 
     function defaultValues() {
-        setFirstName(user.first_name)
-        setlastName(user.last_name)
-        setPhone(user.phone)
-        setEmail(user.email)
-        setBalance(user.balance)
+        if (!user) return; 
+        setFirstName(user.first_name);
+        setLastName(user.last_name);
+        setPhone(user.phone);
+        setEmail(user.email);
+        setBalance(user.balance);
 
-        const inputName = document.querySelector("#firstname")
-        inputName?.classList.remove("modified")
-
-        const inputlastName = document.querySelector("#lastname")
-        inputlastName?.classList.remove("modified")
-
-        const inputPhone = document.querySelector("#phone")
-        inputPhone?.classList.remove("modified")
-
-        const inputEmail = document.querySelector("#email")
-        inputEmail?.classList.remove("modified")
-
-        const inputBalance = document.querySelector("#balance")
-        inputBalance?.classList.remove("modified")
-
+        const inputs = ["firstname", "lastname", "phone", "email", "balance"];
+        inputs.forEach(id => {
+            const input = document.querySelector(`#${id}`);
+            input?.classList.remove("modified");
+        });
     }
 
-    function checkName() {
-        const inputName = document.querySelector("#firstname")
-        if(form.current.firstname.value != user.first_name) {
-            inputName?.classList.add("modified")
+    function checkField(field: keyof UserType) {
+        if (!form.current || !user) return; 
+        const input = form.current[field].value;
+        const inputElement = document.querySelector(`#${field}`);
+        if (input !== user[field]) {
+            inputElement?.classList.add("modified");
         } else {
-            inputName?.classList.remove("modified")
-        }
-    }
-    function checkLastName() {
-        const inputlastName = document.querySelector("#lastname")
-        if(form.current.lastname.value != user.last_name) {
-            inputlastName?.classList.add("modified")
-        } else {
-            inputlastName?.classList.remove("modified")
-        }
-    }
-    function checkPhone() {
-        const inputPhone = document.querySelector("#phone")
-        if(form.current.phone.value != user.phone) {
-            inputPhone?.classList.add("modified")
-        } else {
-            inputPhone?.classList.remove("modified")
-        }
-    }
-    function checkEmail() {
-        const inputEmail = document.querySelector("#email")
-        if(form.current.email.value != user.email) {
-            inputEmail?.classList.add("modified")
-        } else {
-            inputEmail?.classList.remove("modified")
-        }
-    }
-    function checkBalance() {
-        const inputBalance = document.querySelector("#balance")
-        if(form.current.balance.value != user.balance) {
-            inputBalance?.classList.add("modified")
-        } else {
-            inputBalance?.classList.remove("modified")
+            inputElement?.classList.remove("modified");
         }
     }
 
     return (
-        
-        <>
-            <div className='edituser'>
-                <form action="" className='formEdit' ref={form}>
-                    <label>First Name</label><input type="text" id='firstname' className='formInput text-gray-900' value={firstName} onChange={e => setFirstName(e.target.value)} onInput={() => checkName()} name='firstname'/>
-                    <label>Last Name</label><input type="text" id='lastname' className='formInput text-gray-900' value={lastName} onChange={e => setlastName(e.target.value)} onInput={() => checkLastName()} name='lastname'/>
-                    <label>Phone Number</label><input type="text" id='phone' className='formInput text-gray-900' value={phone} onChange={e => setPhone(e.target.value)} onInput={() => checkPhone()} name='phone'/>
-                    <label>Email</label><input type="text" id='email' className='formInput text-gray-900' value={email} onChange={e => setEmail(e.target.value)} onInput={() => checkEmail()} name='email'/>
-                    <label>Balance</label><input type="text" id='balance' className='formInput text-gray-900' value={balance} onChange={e => setBalance(e.target.value)} onInput={() => checkBalance()} name='balance'/>
-                </form>
-                <div className='formButtons'>
-                    <button type='submit' className='formSubmit' onClick={() => patchUser(form.current)}>Update</button>
-                    <button onClick={() => defaultValues()} className='formSubmit'>Default Values</button>
-                    <Link to="/user" className="back">Back</Link>
-                </div>
+        <div className='edituser'>
+            <form className='formEdit' ref={form}>
+                <label>First Name</label>
+                <input type="text" id='firstname' className='formInput text-gray-900' value={firstName} onChange={e => setFirstName(e.target.value)} onInput={() => checkField("first_name")} name='firstname' />
+                <label>Last Name</label>
+                <input type="text" id='lastname' className='formInput text-gray-900' value={lastName} onChange={e => setLastName(e.target.value)} onInput={() => checkField("last_name")} name='lastname' />
+                <label>Phone Number</label>
+                <input type="text" id='phone' className='formInput text-gray-900' value={phone} onChange={e => setPhone(e.target.value)} onInput={() => checkField("phone")} name='phone' />
+                <label>Email</label>
+                <input type="text" id='email' className='formInput text-gray-900' value={email} onChange={e => setEmail(e.target.value)} onInput={() => checkField("email")} name='email' />
+                <label>Balance</label>
+                <input type="text" id='balance' className='formInput text-gray-900' value={balance} onChange={e => setBalance(e.target.value)} onInput={() => checkField("balance")} name='balance' />
+            </form>
+            <div className='formButtons'>
+                <button type='button' className='formSubmit' onClick={patchUser}>Update</button>
+                <button type='button' onClick={defaultValues} className='formSubmit'>Default Values</button>
+                <Link to="/user" className="back">Back</Link>
             </div>
-        </>
-
+        </div>
     );
 }

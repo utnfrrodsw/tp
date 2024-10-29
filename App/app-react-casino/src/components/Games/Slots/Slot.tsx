@@ -22,7 +22,7 @@ export function Slot(user:User) {
     const slotStart = new Audio(slotSpinStart)
     const slotWin = new Audio(slotWinSound)
     const clickStop = new Audio(clickSound)
-    const instructionRef = useRef(null);
+    const instructionRef = useRef<HTMLDivElement>(null);
 
     function patchUser(newMoney:number) {
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
@@ -69,7 +69,11 @@ export function Slot(user:User) {
     }
     const [Win, setWin] = useState("");
     const [error, setError] = useState("");
-    const scrollToDiv = (ref) => window.scrollTo(0, ref.current.offsetTop)
+    const scrollToDiv = (ref: React.RefObject<HTMLDivElement>) => {
+        if (ref.current) {
+            window.scrollTo(0, ref.current.offsetTop);
+        }
+    };
     const isScroll = () => scrollToDiv(instructionRef);
     var bet = 50
     var x0:number;
