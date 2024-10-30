@@ -29,8 +29,8 @@ El sistema resuelve el problema de no saber qué actividades realizar en un dest
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. Usuario<br>2. lugar <br> 3. itinerario|
-|CRUD dependiente|1. CRUD actividad {depende de} CRUD lugar <br>2. CRUD servicioExterno {depende de} CRUD lugar <br>3. CRUD participante {depende de} CRUD itinerario |
+|CRUD simple|1. Usuario<br>2. Lugar <br> 3. Preferencia|
+|CRUD dependiente|1. CRUD actividad {depende de} CRUD lugar <br>2. CRUD servicioExterno {depende de} CRUD lugar <br>3. CRUD participante {depende de} CRUD itinerario y/o de CRUD de usuario <br>CRUD de opinión {depende de} CRUD usuario|
 |Listado<br>+<br>detalle| 1. => <br> 2.  => 
 |CUU/Epic|1. Crear itinerario<br>2. Registrar opinión del usuario|
 
@@ -39,7 +39,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD lugar<br>2. CRUD actividad<br>3. CRUD itinerario<br>4. CRUD servicioExterno<br>5. CRUD participante<br>6. CRUD usuario<br>7. CRUD preferencia|
-|CUU/Epic|1.<br>2.  <br> 3. |
+|CUU/Epic|1. Publicitar un servicio externo<br>2. Generar un itinerario con IA (usando Gemini)|
 
 
 ### Alcance Adicional Voluntario
