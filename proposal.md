@@ -18,7 +18,7 @@ El sistema resuelve el problema de no saber qué actividades realizar en un dest
 
 ### Modelo
 
-![Modelo de dominio](MD_ItinearIA.drawio.png)
+![Modelo de dominio](MD_ItinerarIA.drawio.png)
 
 ## Alcance Funcional 
 
