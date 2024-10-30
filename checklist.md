@@ -24,17 +24,17 @@
 - [x] Cambiar Accepted Currencies & Sponsors
 
 ### Checklist DSW 17/10/24
-- [ ] Hacer responsive Dice y Wheel
+- [X] Hacer responsive Dice y Wheel
 - [ ] Agregarle Mensaje de error a Login (Agus)
 - [ ] Poder cambiar la password (AD?)
 - [X] Terminar Betting history
-- [x] Boton para volver atras en el betting history
+- [X] Boton para volver atras en el betting history
 - [ ] Mercado Pago (AD?)
-- [ ] ARREGLAR ERRORES TS (Parcialmente solucionado)
+- [X] ARREGLAR ERRORES TS (Parcialmente solucionado)
 - [X] Limpiar la consola 
 - [ ] ARREGLAR ERROR QUE SALEN 2 COSAS EN LA CONSOLA
 - [X] ARREGLAR DETALLES AL DICE
-- [ ] AGREGAR TIMER AL BOTON DEL DICE
+- [X] AGREGAR TIMER AL BOTON DEL DICE
 - [ ] HACER RUTA DE ACCESOS MIDDLEWARE
 - [ ] AGREGAR BD EMBEBIDA GOOGLE CLOUD
 - [ ] TERMINAR DOCUMENTACION
@@ -43,12 +43,12 @@
 - [ ] hacer video
 - [ ] links pr/mr
 - [ ] actualizar proposal
-- [x] el "Cooming Soon" de la pagina principal desaparece cuando estas en mobile
+- [X] el "Cooming Soon" de la pagina principal desaparece cuando estas en mobile
 - [X] Listados responsivos
 - [ ] Header responsivo
 - [ ] Forgot your password (AD)
-- [ ] Portear HELP a CSS normal
-- [ ] Portear todo lo que queda a CSS
+- [X] Portear HELP a CSS normal
+- [-] Portear todo lo que queda a CSS (Queda header, dice & wheel)
 - [ ] Arreglar listado de juegos (se rompio al portearlo a CSS normal)
-- [ ] Utilizar variables globales para los colores
+- [X] Utilizar variables globales para los colores
 - [X] Portear todo el codigo a ingles
