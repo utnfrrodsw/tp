@@ -17,7 +17,97 @@
 El sistema resuelve el problema de no saber qué actividades realizar en un destino turístico, proporcionando recomendaciones personalizadas de actividades turísticas y generando itinerarios adaptados a las preferencias del usuario.
 
 ### Modelo
-![imagen del modelo]()
+classDiagram
+    %% Entidades
+    class Actividad {
+      +ObjectId id
+      +string name
+      +string description
+      +boolean outdoor
+      +boolean transport
+      +string schedule
+    }
+
+    class ExternalService {
+      +ObjectId id
+      +string serviceType
+      +string name
+      +string description
+      +string address
+      +string schedule
+      +string website
+      +string phoneNumber
+    }
+
+    class Itinerary {
+      +ObjectId id
+      +string title
+      +string description
+      +number duration
+    }
+
+    class Opinion {
+      +ObjectId id
+      +int calificacion
+      +string comentario
+    }
+
+    class Lugar {
+      +ObjectId id
+      +string nombre
+      +number ubicacion_latitud
+      +number ubicacion_longitud
+      +string codigoPostal
+      +string provincia
+      +string pais
+    }
+
+    class Usuario {
+      +ObjectId id
+      +string username
+      +string password
+      +string nombres
+      +string apellidos
+      +Date fechaNacimiento
+      +string mail
+      +string nroTelefono
+    }
+
+    class Participant {
+      +ObjectId id
+      +string name
+      +int age
+      +boolean disability
+    }
+
+    class Preference {
+      +ObjectId id
+      +string name
+      +string description
+    }
+
+    %% Relaciones
+    Actividad --> Lugar : place
+    Actividad --> Itinerary : itinerary
+    Actividad --> Opinion : opinions
+    Opinion --> Usuario : usuario
+    Opinion --> Actividad : actividad
+    ExternalService --> Lugar : lugar
+    Itinerary --> Actividad : activities
+    Itinerary --> Usuario : user
+    Itinerary --> Participant : participants
+    Itinerary --> Lugar : place
+    Lugar --> Actividad : actividades
+    Lugar --> Itinerary : itinerarios
+    Lugar --> ExternalService : externalServices
+    Participant --> Itinerary : itineraries
+    Participant --> Preference : preferences
+    Preference --> Participant : participants
+    Usuario --> Itinerary : itineraries
+    Usuario --> Participant : participants
+    Usuario --> Opinion : opiniones
+
+
 
 
 ## Alcance Funcional 
