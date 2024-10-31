@@ -10,14 +10,16 @@ interface UserType {
     game: string;
 }
 
-export function Leaderboard() {
+export function Leaderboard({role}) {
     const [users, setLeaderboard] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);
     const [search, setSearch] = useState('');
 
+    const token = localStorage.getItem('jwt-token');
+
     const GetLeaderboard = () => {
-        axios.get("http://localhost:3000/api/v1/usergames/query1").then((response) =>
+        axios.get("http://localhost:3000/api/v1/usergames/leaderboard", { params: { token, role }}).then((response) =>
             setLeaderboard(response.data)
         );
     };

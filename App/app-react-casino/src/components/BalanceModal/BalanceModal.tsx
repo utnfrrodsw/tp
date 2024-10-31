@@ -8,10 +8,13 @@ interface BalanceModalProps {
     onMoney: React.Dispatch<React.SetStateAction<number>>;
     idUser: String;
     balance: number;
+    role: string;
 }
 
-export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, onMoney, idUser, balance }) => {
+export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, onMoney, idUser, balance, role }) => {
     const [preferenceId, setPreferenceId] = useState<string | null>(null);
+
+    const token = localStorage.getItem('jwt-token');
 
     useEffect(() => {
         initMercadoPago('APP_USR-03fdd897-d911-496d-8c09-61802b128fa3', {
@@ -77,6 +80,8 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, onMoney, id
 
     function patchUser(newMoney:number) {
         axios.put(`http://localhost:3000/api/v1/users/${idUser}`, {
+            token,
+            role,
             balance: `${newMoney}`,
         })
         .then((response) => {

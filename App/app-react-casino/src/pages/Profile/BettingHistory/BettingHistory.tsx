@@ -16,15 +16,17 @@ interface UserType {
 interface BettingHistoryProps {
     idUser: string;
     username: string;
+    role: string;
 }
 
-export function BettingHistory({idUser, username}: BettingHistoryProps) {
+export function BettingHistory({idUser, username, role}: BettingHistoryProps) {
     const [user, setUser] = useState<UserType[]>([]);
 
-    
+    const token = localStorage.getItem('jwt-token');
+
     const GetUser = () => {
         console.log(idUser)
-        axios.get(`http://localhost:3000/api/v1/userGames/history/${idUser}`).then((response) =>
+        axios.get(`http://localhost:3000/api/v1/userGames/history/${idUser}`, {params: {token, role}}).then((response) =>
             setUser(response.data)
         );
     };

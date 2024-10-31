@@ -17,12 +17,9 @@ function routerApi(app) {
     router.use('/users', userRouter);
     router.use('/categories', categoryRouter);
     router.use('/games', gameRouter);
-    
     router.use('/userGames', userGamesRouter);
-
     router.use('/login', loginRouter);
     router.use('/register', authRouter);
-    
 }
 
 module.exports = routerApi;

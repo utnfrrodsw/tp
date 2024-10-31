@@ -11,9 +11,12 @@ interface UserType {
     email: string;
     balance: string;
 }
+export function EditUser({role}) {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
-export function EditUser() {
-    const { id } = useParams<{ id: string }>();
+    const {id} = useParams<{ id: string }>();;
     const [user, setUser] = useState<UserType | null>(null);
     const form = useRef<HTMLFormElement | null>(null);
     const [firstName, setFirstName] = useState("");
@@ -21,9 +24,12 @@ export function EditUser() {
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [balance, setBalance] = useState("");
+    console.log(id)
+
+    const token = localStorage.getItem('jwt-token');
 
     const GetData = () => {
-        axios.get(`http://localhost:3000/api/v1/users/${id}`).then((response) => {
+        axios.get(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then((response) => {
             const fetchedUser: UserType = response.data;
             setUser(fetchedUser);
             setFirstName(fetchedUser.first_name);
@@ -41,6 +47,8 @@ export function EditUser() {
     function patchUser() {
         if (!form.current) return; 
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
+            token,
+            role,
             first_name: form.current.firstname.value,
             last_name: form.current.lastname.value,
             phone: form.current.phone.value,

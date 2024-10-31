@@ -15,7 +15,12 @@ const signInUser = async (req, res) => {
         const user = await service.findUser(username)
         const data = {
         id_user: user.id_user,
-        balance: user.balance
+        role: user.role,
+        username: user.username,
+        balance: user.balance,
+        email: user.email,
+        phone: user.phone,
+
         }
 
         if (!user) {

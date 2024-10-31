@@ -11,21 +11,27 @@ interface UserType {
     balance: number;
 }
 
-export function User() {
+
+export function User({role}) {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+      
     const [user, setUser] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);
     const [search, setSearch] = useState('');
     
-    console.log(search);
+    const token = localStorage.getItem('jwt-token');
+
     const GetUser = () => {
-        axios.get("http://localhost:3000/api/v1/users").then((response) =>
+        axios.get("http://localhost:3000/api/v1/users", { params: { token, role } }).then((response) =>
             setUser(response.data)
         );
     };
 
     function DeleteUser(id:number) {
-        axios.delete(`http://localhost:3000/api/v1/users/${id}`).then((responseDelete) =>
+        axios.delete(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then((responseDelete) =>
             location.reload()
         );
     };

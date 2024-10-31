@@ -23,9 +23,14 @@ interface User{
   id: string
   balance: number
   setMoney: React.Dispatch<React.SetStateAction<number>>;
+  role: string
 }
 
 export function Wheel(user:User) {
+
+  const token = localStorage.getItem('jwt-token');
+  const role = user.role
+
   const [amount, setAmount] = useState(0);
   const [winAmountGreen, setWinAmountGreen] = useState(0);
   const [winAmountWhite, setWinAmountWhite] = useState(0);
@@ -48,6 +53,8 @@ export function Wheel(user:User) {
 
   function patchUser(newMoney:number) {
     axios.put(`http://localhost:3000/api/v1/users/${user.id}`, {
+        token,
+        role,
         balance: `${newMoney}`,
     })
     .then((response) => {
@@ -60,6 +67,8 @@ export function Wheel(user:User) {
 
   function postGame(bet:number, win:number) {
     axios.post(`http://localhost:3000/api/v1/usergames`, {
+        token,
+        role,
         id_game: 3,
         id_user: user.id,
         bet: bet,

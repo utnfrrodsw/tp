@@ -22,7 +22,7 @@ class UsersGamesService{
         return res;
     }
 
-    async query1(){
+    async leaderboard(){
         const res = await models.UserGame.sequelize.query(`select ug.id_user, us.username, ug.bet, max(ug.winning) as winning, ga.name as game
         from UserGames ug
         inner join Users us on ug.id_user = us.id_user

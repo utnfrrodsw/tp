@@ -10,9 +10,6 @@ import { Dice } from './components/Games/Dice/Dice.tsx'
 import { Slot } from './components/Games/Slots/Slot.tsx'
 import { Wheel } from './components/Games/Wheel/Wheel.tsx'
 
-import { Listado } from './components/Axios/Listado/Listado.tsx'
-import { PostUser } from './components/Axios/PostUser/PostUser.tsx'
-import { GetOne } from './components/Axios/GetOne/getone.tsx'
 import { User } from './components/Axios/User/User.tsx'
 import { Details } from './components/Axios/Details/Details.tsx'
 import { EditUser } from './components/Axios/EditUser/EditUser.tsx'
@@ -34,19 +31,16 @@ import { BettingHistory } from './pages/Profile/BettingHistory/BettingHistory.ts
 
 import { Toaster } from 'sonner'
 
-interface User{
-    id_user: string
-    username: string
-    balance: number
-    role: string
-    email: string
-    phone: string
-    password: string
-}
 
 export function App() {
-    const [userData, setUserData] = useState<User | null>(null);
+
     const [money, setMoney] = useState(0);
+    const [id, setUserId] = useState('');
+    const [role, setUserRole] = useState('');
+    const [username, setUserName] = useState('');
+    const [email, setUserEmail] = useState('');
+    const [phone, setUserPhone] = useState('');
+    
 
     useEffect(() => {
         fetchUserProfile();
@@ -63,53 +57,55 @@ export function App() {
         }
             
         const decoded: any = jwtDecode(token);
-        console.log("Decoded token content: ", decoded.data.id_user);
+        //const userPass = decoded.data.password;
 
-        const userIdFromToken = decoded.data.id_user;
-        // console.log("ID del usuario desde la token:", userIdFromToken); NO ANDA NO SE PQ
+        //const response = await fetch(`http://localhost:3000/api/v1/users/${userIdFromToken}`);
 
-        const response = await fetch(`http://localhost:3000/api/v1/users/${userIdFromToken}`);
+        //const authenticatedUser: User = await response.json();
+        //console.log('Autenthicated User:', authenticatedUser);
 
-        const authenticatedUser: User = await response.json();
-        console.log('Autenthicated User:', authenticatedUser);
-
-        if (authenticatedUser) {
-            setUserData(authenticatedUser);
-            setMoney(authenticatedUser.balance);
+        if (decoded) {
+            setUserId(decoded.data.id_user)
+            setUserRole(decoded.data.role)
+            setUserName(decoded.data.username)
+            setUserEmail(decoded.data.email)
+            setUserPhone(decoded.data.phone)
+            setMoney(decoded.data.balance);
         }
         
     };
 
-    const id = userData?.id_user
-    let profile = '/profile/'+userData?.username
+    let profile = '/profile/'+ username
 
     return(
         <>
         
-            <Header balance={money} profile={profile} role={userData?.role ?? ''} username={userData?.username ?? ''} onMoney={setMoney} idUser={userData?.id_user ?? ''}/>
+            <Header balance={money} profile={profile} role={role ?? ''} username={username ?? ''} onMoney={setMoney} idUser={id ?? ''}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/dice" element={<Dice id={id} balance={money} setMoney={setMoney}/>} />
-                    <Route path="/slot" element={<Slot id={id} balance={money} setMoney={setMoney}/>} />
-                    <Route path="/wheel" element={<Wheel id={id} balance={money} setMoney={setMoney}/>} />
+                    <Route path="/dice" element={<Dice id={id} balance={money} setMoney={setMoney} role={role} />} />
+                    <Route path="/slot" element={<Slot id={id} balance={money} setMoney={setMoney} role={role} />} />
+                    <Route path="/wheel" element={<Wheel id={id} balance={money} setMoney={setMoney} role={role} />} />
                     <Route path="/live_roulette" element={<RouletteLive />} />
                     <Route path="*" element={<ErrorPage />} />
-                    <Route path="/listado" element={<Listado/>} />
-                    <Route path="/postuser" element={<PostUser />} />
-                    <Route path="/getone" element={<GetOne />} />
-                    <Route path="/user" element={<User />} />
-                    <Route path="/details/:id" element={<Details />} />
-                    <Route path="/edituser/:id" element={<EditUser />} />
-                    <Route path="/leaderboard" element={<Leaderboard />} />
+                    <Route path="/user" element={<User role={role} />} />
+
+                    <Route path="/details/:id" element={<Details role={role} />} />
+                    <Route path="/edituser/:id" element={<EditUser role={role}  />} />
+
+                    <Route path="/leaderboard" element={<Leaderboard role={role} />} />
+                    
                     <Route path="/terms-and-conditions" element={<Terms />} />
                     <Route path='/about-us' element={<AboutUs />} />
                     <Route path='/privacy-policy' element={<PrivacyPolicy />} />
                     <Route path='/help' element={<Help />} />
                     <Route path='/fair' element={<Fair />} />
                     <Route path='/game-policy' element={<GamePolicy />} />
+
                     <Route path='/admin-uses' element={<AdminUses />} />
-                    <Route path={'/bettinghistory'} element={<BettingHistory idUser={userData?.id_user} username={userData?.username}/>} />
-                    <Route path={profile} element={<Profile id={userData?.id_user} username={userData?.username} email={userData?.email} phone={userData?.phone} />} />
+
+                    <Route path={'/bettinghistory'} element={<BettingHistory idUser={id} username={username} role={role}/>} />
+                    <Route path={profile} element={<Profile id={id} username={username} email={email} phone={phone} />} />
                     <Route path='/register' element={<RegisterAgus />} />
                     
                 </Routes>

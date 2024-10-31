@@ -13,9 +13,13 @@ interface User{
     id: string
     balance: number
     setMoney: React.Dispatch<React.SetStateAction<number>>;
+    role: string
 }
 
 export function Slot(user:User) {
+    
+    const token = localStorage.getItem('jwt-token');
+    const role = user.role
 
     var id = user.id
     const slotSpin = new Audio(slotSpinSound)
@@ -26,6 +30,8 @@ export function Slot(user:User) {
 
     function patchUser(newMoney:number) {
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
+            token,
+            role,
             balance: `${newMoney}`,
         })
         .then((response) => {
@@ -42,6 +48,8 @@ export function Slot(user:User) {
 
     function postGame(bet:number, win:number) {
         axios.post(`http://localhost:3000/api/v1/usergames`, {
+            token,
+            role,
             id_game: 2,
             id_user: id,
             bet: bet,

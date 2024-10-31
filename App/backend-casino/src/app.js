@@ -14,7 +14,7 @@ const client = new MercadoPagoConfig({
     accessToken: 'APP_USR-5360684163294216-090101-42085ff60bdfb7cf05a92b2ad223624e-237551322',
 });
 
-// Middleware
+// Credentials
 app.use(express.json());
 app.use(cors({
     origin: "http://localhost:5173",
@@ -59,6 +59,9 @@ app.post('/create_preference', async (req, res) => {
         });
     }
 });
+
+// Middleware
+
 
 // Iniciar el servidor
 app.listen(port, () => {
