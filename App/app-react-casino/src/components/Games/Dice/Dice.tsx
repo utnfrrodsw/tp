@@ -27,8 +27,9 @@ export function Dice(user:User) {
     const [multi, setMulti] = useState(0);
     const [winAmount, setWinAmount] = useState(0);
     const [moreLess, setMoreLess] = useState(true);
-    const [playMessage, setPlayMessage] = useState("")
-    const [isMuted, setIsMuted] = useState(false)
+    const [playMessage, setPlayMessage] = useState("");
+    const [isMuted, setIsMuted] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const dice = new Audio(diceSound);
 
@@ -122,14 +123,16 @@ export function Dice(user:User) {
         }
     }
 
-    const playSound = (sound) => {
+    const playSound = (sound: HTMLAudioElement) => {
         sound.currentTime = 0;
-        if (isMuted == false) {
-          sound.play();
-      }
+        if (!isMuted) {
+            sound.play();
+        }
     }
 
     const GenerateNumber = () => {
+        setIsButtonDisabled(true);
+        setTimeout(() => setIsButtonDisabled(false), 500);
         const min = 2;
         const max = 98;
         const random = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -176,7 +179,7 @@ export function Dice(user:User) {
                     <input step="0.01" className="bg-[color:var(--white)] text-black rounded-[20px] p-2 w-[80%] mb-2" min="0" value={amount} onChange={betAmount}/>
                     <label className="">Win amount</label>
                     <input className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" value={winAmount} disabled/>
-                    <button onClick={GenerateNumber} className="bg-[color:var(--yellow)] hover:bg-yellow-600 text-[color:var(--black)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]">PLAY</button>
+                    <button onClick={GenerateNumber} className="bg-[color:var(--yellow)] hover:bg-yellow-600 text-[color:var(--black)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]" disabled={isButtonDisabled}>PLAY</button>
                     <p className="winningMessage">{playMessage}</p>
                     <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
                 </div>

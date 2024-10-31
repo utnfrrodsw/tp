@@ -3,8 +3,13 @@ import { NavLink as Link, useNavigate } from 'react-router-dom'
 import { IoPersonSharp } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 
+interface HeaderMenuProps {
+    open: boolean; 
+    username: string; 
+    profile: string; 
+}
 
-const HeaderMenu = ({open, username, profile}) => {
+const HeaderMenu: React.FC<HeaderMenuProps> = ({ open, username, profile }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {

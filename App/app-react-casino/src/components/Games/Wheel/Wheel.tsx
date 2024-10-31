@@ -86,12 +86,12 @@ export function Wheel(user:User) {
     window.scrollTo(0, 0);
   }, []);
 
-  const playSound = (sound) => {
+  const playSound = (sound: HTMLAudioElement) => {
     sound.currentTime = 0;
-    if (isMuted == false) {
-      sound.play();
-  }
-  }
+    if (!isMuted) {
+        sound.play();
+    }
+}
 
   const winning = (colour:string) => {
     if (colour === "green") {

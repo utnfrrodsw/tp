@@ -1,0 +1,29 @@
+.admin-uses-container {
+    padding: 1.25rem;
+    padding-left: 0.5rem;
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.admin-link {
+    margin-right: 0.5rem; 
+    margin-top: 0.5rem; 
+    padding: 0.5rem 1.25rem; 
+    color: white; 
+    background-color: #FBBF24; 
+    border-radius: 0.375rem; 
+    font-size: 0.875rem; 
+    font-weight: 500; 
+    text-decoration: none; 
+    transition: background-color 0.2s, transform 0.1s; 
+}
+
+.admin-link:hover {
+    background-color: #F59E0B; 
+}
+
+.admin-link:focus {
+    outline: none; 
+    box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.5); 
+}
