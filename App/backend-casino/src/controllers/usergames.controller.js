@@ -19,9 +19,9 @@ const get = async(req, res) => {
     }
 }
 
-const query1 = async(req, res) => {
+const leaderboard = async(req, res) => {
     try{
-        const response = await service.query1();
+        const response = await service.leaderboard();
         res.json(response);
     } catch(error) {
         res.status(500).send({ success: false, message: error.message })
@@ -39,5 +39,5 @@ const history = async(req, res) => {
 }
 
 module.exports = {
-    create, get, query1, history
+    create, get, leaderboard, history
 };

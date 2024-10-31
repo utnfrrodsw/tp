@@ -1,4 +1,4 @@
-import { Routes, Route, useResolvedPath } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home/Home.tsx'
 import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
@@ -10,7 +10,6 @@ import { Dice } from './components/Games/Dice/Dice.tsx'
 import { Slot } from './components/Games/Slots/Slot.tsx'
 import { Wheel } from './components/Games/Wheel/Wheel.tsx'
 
-import { Listado } from './components/Axios/Listado/Listado.tsx'
 import { User } from './components/Axios/User/User.tsx'
 import { Details } from './components/Axios/Details/Details.tsx'
 import { EditUser } from './components/Axios/EditUser/EditUser.tsx'
@@ -84,18 +83,18 @@ export function App() {
             <Header balance={money} profile={profile} role={role ?? ''} username={username ?? ''} onMoney={setMoney} idUser={id ?? ''}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/dice" element={<Dice id={id} balance={money} setMoney={setMoney}/>} />
-                    <Route path="/slot" element={<Slot id={id} balance={money} setMoney={setMoney}/>} />
-                    <Route path="/wheel" element={<Wheel id={id} balance={money} setMoney={setMoney}/>} />
+                    <Route path="/dice" element={<Dice id={id} balance={money} setMoney={setMoney} role={role} />} />
+                    <Route path="/slot" element={<Slot id={id} balance={money} setMoney={setMoney} role={role} />} />
+                    <Route path="/wheel" element={<Wheel id={id} balance={money} setMoney={setMoney} role={role} />} />
                     <Route path="/live_roulette" element={<RouletteLive />} />
                     <Route path="*" element={<ErrorPage />} />
-                    <Route path="/listado" element={<Listado/>} />
                     <Route path="/user" element={<User role={role} />} />
 
-                    <Route path="/details/:id" element={<Details role={role}/>} />
-                    <Route path="/edituser/:id" element={<EditUser role={role}/>} />
+                    <Route path="/details/:id" element={<Details role={role} />} />
+                    <Route path="/edituser/:id" element={<EditUser role={role}  />} />
 
-                    <Route path="/leaderboard" element={<Leaderboard />} />
+                    <Route path="/leaderboard" element={<Leaderboard role={role} />} />
+                    
                     <Route path="/terms-and-conditions" element={<Terms />} />
                     <Route path='/about-us' element={<AboutUs />} />
                     <Route path='/privacy-policy' element={<PrivacyPolicy />} />
@@ -105,7 +104,7 @@ export function App() {
 
                     <Route path='/admin-uses' element={<AdminUses />} />
 
-                    <Route path={'/bettinghistory'} element={<BettingHistory idUser={id} username={username}/>} />
+                    <Route path={'/bettinghistory'} element={<BettingHistory idUser={id} username={username} role={role}/>} />
                     <Route path={profile} element={<Profile id={id} username={username} email={email} phone={phone} />} />
                     <Route path='/register' element={<RegisterAgus />} />
                     

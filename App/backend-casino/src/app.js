@@ -23,7 +23,6 @@ app.use(cors({
 
 // Rutas de tu aplicación
 const routerApi = require('./routes');
-const requireAuth = require('./middleware/authMiddleware.js');
 routerApi(app);
 
 // Ruta para crear una preferencia de pago en MercadoPago

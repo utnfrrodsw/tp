@@ -8,10 +8,14 @@ import './Dice.css';
 interface User{
     id: string
     balance: number
-    setMoney: React.Dispatch<React.SetStateAction<number>>;
+    setMoney: React.Dispatch<React.SetStateAction<number>>
+    role: string
 }
 
 export function Dice(user:User) {
+
+    const token = localStorage.getItem('jwt-token');
+    const role = user.role
     
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -34,6 +38,8 @@ export function Dice(user:User) {
 
     function patchUser(newMoney:number) {
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
+            token,
+            role,
             balance: `${newMoney}`,
         })
         .then((response) => {
@@ -46,6 +52,8 @@ export function Dice(user:User) {
 
     function postGame(bet:number, win:number) {
         axios.post(`http://localhost:3000/api/v1/usergames`, {
+            token,
+            role,
             id_game: 1,
             id_user: id,
             bet: bet,
