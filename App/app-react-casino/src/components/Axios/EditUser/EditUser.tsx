@@ -12,7 +12,10 @@ interface UserType {
     balance: string;
 }
 
-export function EditUser(role) {
+export function EditUser({role}) {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
     const {id} = useParams();
     const [user, setUser] = useState([])
@@ -43,11 +46,13 @@ export function EditUser(role) {
 
     function patchUser(datos) {
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
+            token,
+            role,
             first_name: `${datos.firstname.value}`,
             last_name: `${datos.lastname.value}`,
             phone: `${datos.phone.value}`,
             email: `${datos.email.value}`,
-            balance: `${datos.balance.value}`,
+            balance: `${datos.balance.value}`
         })
         .then((response) => {
             console.log(response);

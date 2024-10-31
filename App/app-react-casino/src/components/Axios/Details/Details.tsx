@@ -5,7 +5,10 @@ import { useEffect } from 'react';
 import { NavLink as Link } from 'react-router-dom'
 import {useParams} from 'react-router-dom'
 
-export function Details(role) {
+export function Details({role}) {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
     const [username, setUsername] = useState("")
     const [firstName, setFirstName] = useState("")

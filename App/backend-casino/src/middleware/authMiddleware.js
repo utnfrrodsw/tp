@@ -10,15 +10,15 @@ const requireAuth = (req, res, next) => {
     if (token) {
         jwt.verify(token, 'UTimbaN', (err) => {
             if (err) {
-                console.log('error');
+                console.log('');
             } else {
-                console.log('token verificado');
+                console.log('');
                 if (role == 'admin'){
-                    console.log('admin')
+                    console.log('')
                     next()
                 }
                 else {
-                    console.log('no sos admin jaja xd')
+                    console.log('')
                 }
             }
         })

@@ -13,6 +13,10 @@ interface UserType {
 
 
 export function User({role}) {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+      
     const [user, setUser] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);
@@ -27,7 +31,7 @@ export function User({role}) {
     };
 
     function DeleteUser(id:number) {
-        axios.delete(`http://localhost:3000/api/v1/users/${id}`).then((responseDelete) =>
+        axios.delete(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then((responseDelete) =>
             location.reload()
         );
     };
