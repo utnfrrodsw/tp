@@ -6,7 +6,7 @@ const EstadiaServicio = require('../models/estadiaServicio');
 const Servicio = require('../models/servicio');
 const moment = require('moment-timezone');
 
-// Realizar Check-in
+
 const realizarCheckin = async (req, res) => {
   try {
     const idEstadia = req.params.idEstadia;
@@ -26,7 +26,7 @@ const realizarCheckin = async (req, res) => {
   }
 };
 
-// Realizar Check-out
+
 const realizarCheckout = async (req, res) => {
   try {
     const idEstadia = req.params.idEstadia;
@@ -82,7 +82,7 @@ const crearEstadia = async (req, res) => {
       estado,
       idCli: cliente.idCli,
       nroHabitacion,
-      idLocalidad // Asegúrate de agregar este campo
+      idLocalidad 
     });
 
     await estadia.save();
@@ -92,7 +92,7 @@ const crearEstadia = async (req, res) => {
   }
 };
 
-// Obtener Estadia por ID
+
 const obtenerEstadiaPorId = async (req, res) => {
   try {
     const estadia = await Estadia.findOne({ idEst: req.params.id });
@@ -110,7 +110,7 @@ const obtenerEstadiaPorId = async (req, res) => {
   }
 };
 
-// Actualizar Estadia
+
 const actualizarEstadia = async (req, res) => {
   try {
     const fechaEgreso = moment(req.body.fechaEgreso, 'DD-MM-YYYY').toISOString();
@@ -132,29 +132,29 @@ const actualizarEstadia = async (req, res) => {
 
 const actualizarEstadoEstadia = async (req, res) => {
   try {
-    const { estado } = req.body; // Obtener el estado del cuerpo de la solicitud
+    const { estado } = req.body; 
 
     if (!estado) {
       return res.status(400).json({ message: "El estado es requerido" });
     }
 
     const estadia = await Estadia.findOneAndUpdate(
-      { idEst: req.params.id }, // Filtrar por idEst
-      { estado: estado }, // Actualizar el estado
-      { new: true } // Retornar el nuevo objeto
+      { idEst: req.params.id }, 
+      { estado: estado }, 
+      { new: true } 
     );
 
     if (!estadia) {
       return res.status(404).json({ message: "Estadia no encontrada" });
     }
 
-    res.json(estadia); // Devolver la estadía actualizada
+    res.json(estadia); 
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-// Eliminar Estadia
+
 const eliminarEstadia = async (req, res) => {
   try {
     const estadia = await Estadia.findOneAndDelete({ idEst: req.params.id });
@@ -197,7 +197,7 @@ const obtenerTodasEstadias = async (req, res) => {
 
 
 
-// Buscar Cliente por ID
+
 const buscarClientePorID = async (req, res) => {
   try {
     const cliente = await Cliente.findOne({ idCli: req.params.id });
@@ -210,38 +210,38 @@ const buscarClientePorID = async (req, res) => {
   }
 };
 
-// Reservar Habitación
+
 const reservarHabitacion = async (req, res) => {
   try {
     const { nroHabitacion, fechaIngreso, fechaEgreso, idLocalidad } = req.body;
 
-    // Verificar si la habitación existe
+   
     const habitacion = await Habitacion.findOne({ nroHabitacion });
     if (!habitacion) {
       return res.status(404).json({ message: "Habitación no encontrada." });
     }
 
-    // Verificar si la habitación está disponible
+   
     if (habitacion.estado !== 'Disponible') {
       return res.status(400).json({ message: "La habitación ya está ocupada." });
     }
 
-    // Verificar si el cliente está autenticado
+    
     if (!req.cliente || !req.cliente.idCli) {
       return res.status(401).json({ message: "Cliente no autenticado." });
     }
 
     const clienteId = req.cliente.idCli;
 
-    // Formatear fechas
+   
     const fechaIngresoFormatted = moment(fechaIngreso, 'DD-MM-YYYY').toISOString();
     const fechaEgresoFormatted = moment(fechaEgreso, 'DD-MM-YYYY').toISOString();
 
-    // Obtener el último ID de estadía y calcular el nuevo ID
+    
     const ultimaEstadia = await Estadia.findOne().sort({ idEst: -1 });
     const nuevoIdEst = ultimaEstadia ? ultimaEstadia.idEst + 1 : 1;
 
-    // Crear nueva estadía
+    
     const nuevaEstadia = new Estadia({
       idEst: nuevoIdEst,
       idCli: clienteId,
@@ -252,7 +252,7 @@ const reservarHabitacion = async (req, res) => {
       idLocalidad 
     });
 
-    // Guardar la estadía
+    
     await nuevaEstadia.save();
     res.status(201).json(nuevaEstadia);
   } catch (error) {

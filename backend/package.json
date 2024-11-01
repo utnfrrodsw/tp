@@ -4,7 +4,7 @@
   "description": "",
   "main": "hotel.js",
   "scripts": {
-    "start": "node hotel.js"
+    "start": "nodemon hotel.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -15,6 +15,7 @@
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.45",
     "mongoose": "^8.4.1",
+    "nodemon": "^3.1.7",
     "uuid": "^9.0.1"
   }
 }

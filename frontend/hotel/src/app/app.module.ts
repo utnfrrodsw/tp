@@ -34,6 +34,7 @@ import { GestionarReservasComponent } from './gestionar-reservas/gestionar-reser
 import { GestionarServiciosComponent } from './gestionar-servicios/gestionar-servicios.component';
 import { GestionarClientesComponent } from './gestionar-clientes/gestionar-clientes.component';
 import { MatIconModule } from '@angular/material/icon';
+import { AlertaCheckinComponent } from './alerta-checkin/alerta-checkin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { MatIconModule } from '@angular/material/icon';
     GestionarReservasComponent,
     GestionarServiciosComponent,
     GestionarClientesComponent,
+    AlertaCheckinComponent,
    
   ],
   imports: [

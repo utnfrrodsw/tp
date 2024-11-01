@@ -12,21 +12,32 @@ body {
 .search-container {
     display: flex;
     align-items: center;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    margin-left: 100px; 
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    width: 350px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 90px; 
 }
 
 .search-icon {
-    margin-right: 10px; 
+    font-size: 24px;
     color: #888;
+    margin-right: 10px;
 }
 
 input[type="text"] {
-    width: 300px; 
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 8px;
+}
+
+input[type="text"]::placeholder {
+    color: #aaa;
+    font-style: italic;
 }
 
 table {

@@ -2,7 +2,7 @@ const HabitacionLocalidad = require('../models/habitacionLocalidad');
 const Habitacion = require('../models/habitacion');
 
 const crearHabitacionLocalidad = async (req, res) => {
-  const { nroHabitacion, idLocalidad } = req.body; // Cambiado a idLocalidad
+  const { nroHabitacion, idLocalidad } = req.body; 
   try {
     const nuevaRelacion = new HabitacionLocalidad({ nroHabitacion, idLocalidad });
     await nuevaRelacion.save();
@@ -36,7 +36,7 @@ const eliminarHabitacionLocalidad = async (req, res) => {
 
 const actualizarHabitacionLocalidad = async (req, res) => {
   const { id } = req.params;
-  const { nroHabitacion, idLocalidad } = req.body; // Cambiado a idLocalidad
+  const { nroHabitacion, idLocalidad } = req.body; 
   try {
     const nuevaRelacion = { nroHabitacion, idLocalidad };
     const relacionActualizada = await HabitacionLocalidad.findOneAndUpdate({ _id: id }, nuevaRelacion, { new: true });
@@ -50,7 +50,7 @@ const actualizarHabitacionLocalidad = async (req, res) => {
 };
 
 const obtenerHabitacionesPorLocalidad = async (req, res) => {
-  const { idLocalidad } = req.params; // Cambiado a idLocalidad
+  const { idLocalidad } = req.params; 
   try {
     const habitaciones = await HabitacionLocalidad.find({ idLocalidad });
     res.json(habitaciones);

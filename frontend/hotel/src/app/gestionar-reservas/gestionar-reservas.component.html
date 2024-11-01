@@ -37,7 +37,7 @@
             <td>{{ reserva.estado }}</td>
             <td>{{ reserva.nombre }}</td>
             <td>
-                <button>Realizar Check-Out</button>
+                <button (click)="realizarCheckout(reserva.idEst)">Realizar Check-Out</button>
             </td>
         </tr>
     </tbody>
@@ -74,7 +74,7 @@
             <td>{{ reserva.estado }}</td>
             <td>{{ reserva.nombre }}</td>
             <td>
-                <button>Realizar Check-In</button>
+                <button (click)="realizarCheckin(reserva.idEst, reserva)">Realizar Check-In</button>
             </td>
         </tr>
     </tbody>

@@ -57,4 +57,22 @@ export class EstadiasClienteService {
         })
       );
   }
+
+  checkinEstadia(idEstadia: number): Observable<any> {
+    const token = localStorage.getItem('empleadoToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`${this.api}/${idEstadia}/checkin`, {}, { headers }) 
+      .pipe(
+        catchError((error: any) => {
+          console.error('Error al realizar check-in', error);
+          return throwError(error);
+        })
+      );
+}
+
+
+
 }

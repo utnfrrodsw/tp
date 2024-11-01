@@ -28,7 +28,7 @@ export class EmpleadosService {
   storeTokenAndDniInLocalStorage(token: string, dni: number, nombre: string) {
     localStorage.setItem('empleadoToken', token);
     localStorage.setItem('empleadoDni', dni.toString());
-    localStorage.setItem('empleadoNombre', nombre); // Almacenar nombre completo
+    localStorage.setItem('empleadoNombre', nombre); 
     console.log('Token, DNI y nombre almacenados en localStorage');
   }
 
@@ -61,7 +61,7 @@ export class EmpleadosService {
     const token = this.getTokenFromLocalStorage();
     const dni = this.getDniFromLocalStorage();
 
-    // Si el token y el DNI están disponibles, consideramos que el empleado está logueado
+   
     return !!token && !!dni;
   }
 }

@@ -1,25 +1,15 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const app = express();
-const port = 3000;
-const cors = require('cors');
-
-app.use(cors({
-  origin: 'http://localhost:4200', 
-  methods: 'GET,POST,PUT,DELETE', 
-  allowedHeaders: ['Content-Type', 'Authorization'] 
-}));
-
 require('dotenv').config();
 
-if (!process.env.JWT_SECRET) {
-  const crypto = require('crypto');
-  const jwtSecret = crypto.randomBytes(32).toString('hex'); 
-  process.env.JWT_SECRET = jwtSecret;
-}
+const express = require('express');
+const conectar = require('./config/db');
+const app = express();
+const port = process.env.PORT;
+const cors = require('cors');
+
+app.use(cors());
 
 
-connectDB();
+conectar();
 
 
 app.use(express.json());

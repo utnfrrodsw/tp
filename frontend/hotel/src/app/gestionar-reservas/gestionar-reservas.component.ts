@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EstadiasClienteService } from '../service/estadias-cliente.service'; 
-import { MatIconModule } from '@angular/material/icon';
+import { AlertaCheckinComponent } from '../alerta-checkin/alerta-checkin.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-gestionar-reservas',
@@ -18,7 +19,7 @@ export class GestionarReservasComponent implements OnInit {
   originalReservasFinalizadas: any[] = []; 
   searchId: string = ''; 
 
-  constructor(private estadiasClienteService: EstadiasClienteService) {}
+  constructor(private estadiasClienteService: EstadiasClienteService,private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadReservas();
@@ -54,7 +55,7 @@ export class GestionarReservasComponent implements OnInit {
         this.originalReservasPendientes = [...this.reservasPendientes];
         this.originalReservasActivas = [...this.reservasActivas];
         this.originalReservasCanceladas = [...this.reservasCanceladas]; 
-        this.originalReservasFinalizadas = [...this.reservasFinalizadas]; // Guardar finalizadas originales
+        this.originalReservasFinalizadas = [...this.reservasFinalizadas]; 
 
     }, (error) => {
         console.error('Error al cargar las reservas:', error);
@@ -91,6 +92,48 @@ export class GestionarReservasComponent implements OnInit {
   realizarCheckout(idEstadia: number) {
     console.log('Realizar Check-Out para ID Estadia:', idEstadia);
   }
+
+  realizarCheckin(idEstadia: number, reserva: any): void {
+    const fechaIngresoFormateada = this.formatearFecha(reserva.fechaIngreso);
+    const fechaEgresoFormateada = this.formatearFecha(reserva.fechaEgreso);
+    
+    const mensaje = `¿Estás seguro que deseas realizar el check-in para ${reserva.apellidoYnombre}? <br><br>
+    La habitación del huésped es: ${reserva.nroHabitacion} <br><br>
+    Ingresa el día: ${fechaIngresoFormateada} y se retira el día: ${fechaEgresoFormateada}.`;
+
+    const dialogRef = this.dialog.open(AlertaCheckinComponent, {
+        width: '400px',
+        data: { mensaje }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+            this.realizarCheckinEstadia(idEstadia);
+        }
+    });
+}
+
+
+  private formatearFecha(fecha: string): string {
+    const fechaObj = new Date(fecha);
+    const dia = String(fechaObj.getDate()).padStart(2, '0');
+    const mes = String(fechaObj.getMonth() + 1).padStart(2, '0'); 
+    const anio = fechaObj.getFullYear();
+    return `${dia}-${mes}-${anio}`;
+  }
+
+  realizarCheckinEstadia(idEstadia: number) {
+    this.estadiasClienteService.checkinEstadia(idEstadia).subscribe(
+      response => {
+        console.log('Check-in realizado exitosamente:', response);
+        this.loadReservas(); 
+      },
+      error => {
+        console.error('Error al realizar check-in:', error);
+      }
+    );
+  }
+
 
   reestablecerReserva(idEstadia: number) {
     console.log('Reestablecer Reserva para ID Estadia:', idEstadia);

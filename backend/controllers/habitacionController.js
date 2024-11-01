@@ -7,58 +7,58 @@ const HabitacionLocalidad = require('../models/habitacionLocalidad');
 
 const obtenerHabitacionesDisponibles = async (req, res) => {
   try {
-    // Desestructuramos los parámetros que vienen de la ruta
+    
     const { fechaIngreso, fechaEgreso, capacidad, idLoc } = req.params;
 
-    // Verificamos que idLoc es un número entero
+   
     const idLocalidad =idLoc;
     
     if (isNaN(idLocalidad)) {
       return res.status(400).json({ error: 'ID de localidad inválido' });
     }
 
-    // Función para convertir fechas del formato DD-MM-AAAA a un objeto Date en JavaScript
+    
     const parseDate = (fecha) => {
       const [day, month, year] = fecha.split('-').map(num => parseInt(num, 10));
-      return new Date(Date.UTC(year, month - 1, day));  // Usamos Date.UTC para manejar la fecha en UTC
+      return new Date(Date.UTC(year, month - 1, day));  
     };
 
-    // Convertimos las fechas de ingreso y egreso usando parseDate
+    
     const fechaIngresoDate = parseDate(fechaIngreso);
     const fechaEgresoDate = parseDate(fechaEgreso);
 
-    // Validamos si las fechas se han convertido correctamente
+    
     if (isNaN(fechaIngresoDate.getTime()) || isNaN(fechaEgresoDate.getTime())) {
       return res.status(400).json({ error: 'Fechas inválidas' });
     }
 
-    // Obtenemos todas las estadías que se superponen con el rango de fechas dado
+    
     const estadiasSuperpuestas = await Estadia.find({
       $or: [
         {
-          fechaIngreso: { $lt: fechaEgresoDate },  // fechaIngreso de la estadía es antes de la fechaEgreso solicitada
-          fechaEgreso: { $gt: fechaIngresoDate }   // fechaEgreso de la estadía es después de la fechaIngreso solicitada
+          fechaIngreso: { $lt: fechaEgresoDate },  
+          fechaEgreso: { $gt: fechaIngresoDate }   
         },
         {
-          fechaIngreso: { $gte: fechaIngresoDate, $lte: fechaEgresoDate }  // fechaIngreso de la estadía está dentro del rango solicitado
+          fechaIngreso: { $gte: fechaIngresoDate, $lte: fechaEgresoDate }  
         }
       ]
     });
 
-    // Obtenemos los números de habitaciones ocupadas
+    
     const habitacionesOcupadas = estadiasSuperpuestas.map(estadia => estadia.nroHabitacion);
 
-    // Obtenemos todas las habitaciones en la localidad específica
+    
     const habitacionesEnLocalidad = await HabitacionLocalidad.find({ idLocalidad: idLocalidad });
     const habitacionesEnLocalidadIds = habitacionesEnLocalidad.map(habitacionLocalidad => habitacionLocalidad.nroHabitacion);
 
-    // Buscamos habitaciones disponibles que coincidan con la capacidad, no estén ocupadas y pertenezcan a la localidad especificada
+    
     const habitacionesDisponibles = await Habitacion.find({
-      nroHabitacion: { $nin: habitacionesOcupadas, $in: habitacionesEnLocalidadIds },  // Filtramos por localidad y que no estén ocupadas
+      nroHabitacion: { $nin: habitacionesOcupadas, $in: habitacionesEnLocalidadIds },  
       capacidadPersonas: { $gte: parseInt(capacidad, 10) }
     });
 
-    // Respondemos con las habitaciones disponibles
+    
     res.json(habitacionesDisponibles);
   } catch (error) {
     console.error(error);

@@ -20,6 +20,16 @@ export class BuscaClienteService {
     });
   }
 
+  private getHeadersEmpleado(): HttpHeaders {
+    const token = localStorage.getItem('empleadoToken');
+    if (!token) {
+      console.error('Token no encontrado en localStorage');
+    }
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
+
   eliminarCliente(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }); 
   }
@@ -28,4 +38,9 @@ export class BuscaClienteService {
   getClienteById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/id=${id}`, { headers: this.getHeaders() });
   }
+
+  obtenerClientes(): Observable<any> { 
+    return this.http.get<any>(this.apiUrl,{ headers: this.getHeadersEmpleado() }); 
+  }
+
 }

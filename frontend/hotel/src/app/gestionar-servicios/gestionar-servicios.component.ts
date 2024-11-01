@@ -9,7 +9,7 @@ import { ServiciosClientesService } from '../service/servicios-clientes.service'
 export class GestionarServiciosComponent implements OnInit {
   loading: boolean = true;
   error: string = '';
-  servicios: any[] = []; // Arreglo para almacenar servicios sin declarar tipo
+  servicios: any[] = []; 
 
   constructor(private serviciosClientesService: ServiciosClientesService) { }
 
@@ -20,7 +20,7 @@ export class GestionarServiciosComponent implements OnInit {
   cargarServicios(): void {
     this.serviciosClientesService.obtenerServicios().subscribe({
       next: (data) => {
-        // Suponiendo que data es un array de servicios
+        
         this.servicios = data.map((item: any) => ({
           idServicio: item.idServicio,
           idEstadia: item.idEstadia
@@ -36,12 +36,12 @@ export class GestionarServiciosComponent implements OnInit {
   }
 
   cancelarServicio(idEstadia: number) {
-    // Lógica para cancelar el servicio
+    
     console.log(`Cancelando servicio con idEstadia: ${idEstadia}`);
   }
 
   modificarServicio(idEstadia: number) {
-    // Lógica para modificar el servicio
+    
     console.log(`Modificando servicio con idEstadia: ${idEstadia}`);
   }
 }
