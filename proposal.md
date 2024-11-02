@@ -29,7 +29,7 @@ Regularidad:
 |:-|:-|
 |CRUD simple|1. Usuario<br>2. Lugar <br> 3. Actividad<br> 4. Itinerario|
 |CRUD dependiente|1. CRUD actividad {depende de} CRUD lugar<br>2. CRUD servicioExterno {depende de} CRUD lugar<br>3. CRUD participante {depende de} CRUD itinerario y/o de CRUD de usuario <br>CRUD de opinión {depende de} CRUD usuario|
-|Listado<br>+<br>detalle| 1. Listado de itinerarios filtrado por lugares: Muestra lugar, duracion y usuario creador => Detalle: Muestra servicioes externos del lugar y sus participantes<br>2. Listado de actividades filtrado por lugar, tipo de actividad y transporte => Detalle: CRUD de actividad |
+|Listado<br>+<br>detalle| 1. Listado de itinerarios filtrado por lugares: Muestra lugar, duracion y usuario creador => Detalle: Muestra servicios externos del lugar y sus participantes<br>2. Listado de actividades filtrado por lugar, tipo de actividad y transporte => Detalle: CRUD de actividad |
 |CUU/Epic|1. Crear itinerario<br>2. Registrar opinión del usuario|
 
 
