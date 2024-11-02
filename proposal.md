@@ -44,7 +44,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1.Listado de opiniones por actividad => Detalle: CRUD opiniones<br>2. Listado de lugares filtrados por atributos<br>3. Listado de servicios externos filtrados por atributos<br>4. Listado de preferencias filtradas por atributos<br>6. Listado de participantes filtrados por atributos|
+|Listados |1. Listado de opiniones por actividad => Detalle: CRUD opiniones<br>2. Listado de lugares filtrados por atributos<br>3. Listado de servicios externos filtrados por atributos<br>4. Listado de preferencias filtradas por atributos<br>5. Listado de participantes filtrados por atributos|
 |CUU/Epic|1. <br>2.|
 |Otros|1. |
 
