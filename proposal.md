@@ -3,7 +3,6 @@
 ## Grupo
 ### Integrantes
 * 50475 - Fiorini, Mauricio Mateo
-* 51367 - Gallegos, Nicolás Gabriel
 * 50412 - Gil, Agustín
 * 50360 - Maggi, Lucas Nahuel
 

@@ -26,6 +26,8 @@
 ### Checklist DSW 17/10/24
 - [X] Hacer responsive Dice y Wheel
 - [ ] Agregarle Mensaje de error a Login (Agus)
+- [ ] Agregar para ingresar plata con mercado pago (AD)
+- [ ] Agregar alguna forma de retirar dinero (Simulado, obviamente) (AD)
 - [ ] Poder cambiar la password (AD?)
 - [X] Terminar Betting history
 - [X] Boton para volver atras en el betting history
@@ -35,11 +37,10 @@
 - [ ] ARREGLAR ERROR QUE SALEN 2 COSAS EN LA CONSOLA
 - [X] ARREGLAR DETALLES AL DICE
 - [X] AGREGAR TIMER AL BOTON DEL DICE
-- [ ] HACER RUTA DE ACCESOS MIDDLEWARE
-- [ ] AGREGAR BD EMBEBIDA GOOGLE CLOUD
+- [X] HACER RUTA DE ACCESOS MIDDLEWARE
+- [ ] AGREGAR BD EN GOOGLE CLOUD
 - [ ] TERMINAR DOCUMENTACION
 - [X] Hacer responsive el profile
-- [ ] tracking de features and issues
 - [ ] hacer video
 - [ ] links pr/mr
 - [ ] actualizar proposal
@@ -49,6 +50,6 @@
 - [ ] Forgot your password (AD)
 - [X] Portear HELP a CSS normal
 - [-] Portear todo lo que queda a CSS (Queda header, dice & wheel)
-- [ ] Arreglar listado de juegos (se rompio al portearlo a CSS normal)
+- [X] Arreglar listado de juegos (se rompio al portearlo a CSS normal)
 - [X] Utilizar variables globales para los colores
 - [X] Portear todo el codigo a ingles
