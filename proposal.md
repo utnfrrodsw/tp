@@ -24,31 +24,27 @@ El sistema resuelve el problema de no saber qué actividades realizar en un dest
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. Usuario<br>2. Lugar <br> 3. Preferencia|
-|CRUD dependiente|1. CRUD actividad {depende de} CRUD lugar <br>2. CRUD servicioExterno {depende de} CRUD lugar <br>3. CRUD participante {depende de} CRUD itinerario y/o de CRUD de usuario <br>CRUD de opinión {depende de} CRUD usuario|
-|Listado<br>+<br>detalle| 1. => <br> 2.  => 
+|CRUD simple|1. Usuario<br>2. Lugar <br> 3. Actividad<br> 4. Itinerario|
+|CRUD dependiente|1. CRUD actividad {depende de} CRUD lugar<br>2. CRUD servicioExterno {depende de} CRUD lugar<br>3. CRUD participante {depende de} CRUD itinerario y/o de CRUD de usuario <br>CRUD de opinión {depende de} CRUD usuario|
+|Listado<br>+<br>detalle| 1. Listado de itinerarios filtrado por lugares: Muestra lugar, duracion y usuario creador => Detalle: Muestra servicioes externos del lugar y sus participantes<br>2. Listado de actividades filtrado por lugar, tipo de actividad y transporte => Detalle: CRUD de actividad |
 |CUU/Epic|1. Crear itinerario<br>2. Registrar opinión del usuario|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD lugar<br>2. CRUD actividad<br>3. CRUD itinerario<br>4. CRUD servicioExterno<br>5. CRUD participante<br>6. CRUD usuario<br>7. CRUD preferencia|
-|CUU/Epic|1. Publicitar un servicio externo<br>2. Generar un itinerario con IA (usando Gemini)|
+|CRUD |1. Servicio Externo<br>2. Participante<br>3. Preferencia|
+|CUU/Epic|1. Publicitar un servicio externo<br>2. Generar un itinerario con IA (usando API de Gemini)|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1.  <br> 2. |
+|Listados |1.Listado de opiniones por actividad => Detalle: CRUD opiniones<br>2. Listado de lugares filtrados por atributos<br>3. Listado de servicios externos filtrados por atributos<br>4. Listado de preferencias filtradas por atributos<br>6. Listado de participantes filtrados por atributos|
 |CUU/Epic|1. <br>2.|
 |Otros|1. |
 
