@@ -29,17 +29,17 @@ Decidimos crear una web app donde los usuarios puedan consultar información rel
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD Tipos usuario<br>3. CRUD Rango de usuario|
-|CRUD dependiente|1. CRUD Listas de usuario {depende de} CRUD Usuario<br>2. CRUD Reseña/Puntiacion {depende de} CRUD Usuario|
-|Listado<br>+<br>detalle| 1. Listado peliculas creadas por los usuarios => detalle CRUD Usuario<br> 2. Listado de usuarios registrados|
-|CUU/Epic|1. Registrar un usuario<br>2. Registar una reseña para un contenido|
+|CRUD simple|1. CRUD Sugerencias<br>2. CRUD Subscripcion de usuario<br>3. CRUD Rango cinefilo|
+|CRUD dependiente|1. CRUD Listas de usuario {depende de} CRUD Usuario<br>2. CRUD Reseña {depende de} CRUD Usuario|
+|Listado<br>+<br>detalle| 1. Listado de reseñas por contenido <br> 2. Listado de usuarios registrados|
+|CUU/Epic|1. Registrar una lista para un usuario<br>2. Registar una reseña para un contenido|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Comentario<br>2. CRUD Admin<br>|
+|CUU/Epic|1. Realizar un comentario<br>2. Reagistrar un nuevo rango <br>3. Aumentar rango de un usuario|
 
 
 ### Alcance Adicional Voluntario
@@ -48,7 +48,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. |
+|CUU/Epic|1. <br>2. |
+|Otros|1.|
 
