@@ -12,11 +12,11 @@ interface HeaderProps {
     profile: string;
     role: string;
     username: string;
-    onMoney: React.Dispatch<React.SetStateAction<number>>;
+    setMoney: React.Dispatch<React.SetStateAction<number>>;
     idUser: string;
 }
 
-export function Header({ balance, profile, role, username, onMoney, idUser }: HeaderProps) {
+export function Header({ balance, profile, role, username, setMoney, idUser }: HeaderProps) {
     const [modalOpen, setModalOpen] = useState(false);
     const [open, setMenuOpen] = useState(false);
 
@@ -52,7 +52,7 @@ export function Header({ balance, profile, role, username, onMoney, idUser }: He
                     </nav>
                 </header>
 
-                {modalOpen && <BalanceModal onClose={handleModalClose} onMoney={onMoney} idUser={idUser} balance={balance} role={role}/>}
+                {modalOpen && <BalanceModal onClose={handleModalClose} setMoney={setMoney} idUser={idUser} balance={balance} role={role}/>}
             </>
         );
     } if (role === 'admin'){

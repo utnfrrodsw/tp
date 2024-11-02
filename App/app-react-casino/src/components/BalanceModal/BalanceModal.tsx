@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react';
 
 interface BalanceModalProps {
     onClose: () => void;
-    onMoney: React.Dispatch<React.SetStateAction<number>>;
+    setMoney: React.Dispatch<React.SetStateAction<number>>;
     idUser: String;
     balance: number;
     role: string;
 }
 
-export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, onMoney, idUser, balance, role }) => {
+export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, idUser, balance, role }) => {
     const [preferenceId, setPreferenceId] = useState<string | null>(null);
 
     const token = localStorage.getItem('jwt-token');
@@ -49,31 +49,31 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, onMoney, id
     */
 
     function addMoney1000() {
-        onMoney(balance + 1000);
+        setMoney(balance + 1000);
         patchUser(balance + 1000);
         setMensajeCarga("Se cargaron 1000 pesos con exito!")
     }
 
     function addMoney2000() {
-        onMoney(balance + 2000);
+        setMoney(balance + 2000);
         patchUser(balance + 2000);
         setMensajeCarga("Se cargaron 2000 pesos con exito!")
     }
 
     function addMoney5000() {
-        onMoney(balance + 5000);
+        setMoney(balance + 5000);
         patchUser(balance + 5000);
         setMensajeCarga("Se cargaron 5000 pesos con exito!")
     }
 
     function addMoney10000() {
-        onMoney(balance + 10000);
+        setMoney(balance + 10000);
         patchUser(balance + 10000);
         setMensajeCarga("Se cargaron 10000 pesos con exito!")
     }
 
     function addMoney25000() {
-        onMoney(balance + 25000);
+        setMoney(balance + 25000);
         patchUser(balance + 25000);
         setMensajeCarga("Se cargaron 25000 pesos con exito!")
     }

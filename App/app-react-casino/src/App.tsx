@@ -80,7 +80,7 @@ export function App() {
     return(
         <>
         
-            <Header balance={money} profile={profile} role={role ?? ''} username={username ?? ''} onMoney={setMoney} idUser={id ?? ''}/>
+            <Header balance={money} profile={profile} role={role ?? ''} username={username ?? ''} setMoney={setMoney} idUser={id ?? ''}/>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dice" element={<Dice id={id} balance={money} setMoney={setMoney} role={role} />} />
