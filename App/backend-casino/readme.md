@@ -1,12 +1,6 @@
-[1] npm i
+[1] Simplemente ejecutar "npm i" adentro de la carpeta raiz del backend (DSW-TP-24\App\backend-casino)
 
-[2] Poner los datos de nuestra conexion a la base de datos en ".env" <br>
-Lo mas probable es que se necesite cambiar DB_USER, DB_PASSWORD, DB_HOST
-
-[3] Crear una base de datos llamada "casino_test" si no esta creada antes
-
-[4] npm run dev <br>
-Para inicializar el servidor y crear las tablas correspondientes. 
+[2] Seguido de la instalacion, correr el backend con los comandos "npm run dev".
 
 ### Comandos de Postman
 #### PUT - Users
