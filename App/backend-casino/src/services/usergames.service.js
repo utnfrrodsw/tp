@@ -29,9 +29,8 @@ class UsersGamesService{
         inner join games ga on ug.id_game = ga.id_game
         where ug.winning > 0 and ga.id_game in (1, 3)
         group by ug.id_user, us.username, ga.name, ug.bet
-        limit 10;`, {
-            type: QueryTypes.SELECT
-        })
+        order by winning desc
+        limit 10;`, {type: QueryTypes.SELECT})
         return res;
     }
 

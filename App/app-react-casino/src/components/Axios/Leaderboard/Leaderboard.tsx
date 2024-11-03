@@ -12,24 +12,24 @@ interface UserType {
 }
 
 export function Leaderboard({role}:UserType) {
-    const [users, setLeaderboard] = useState<UserType[]>([]);
+    const [user, setUser] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);
     const [search, setSearch] = useState('');
 
     const token = localStorage.getItem('jwt-token');
 
-    const GetLeaderboard = () => {
-        axios.get("http://localhost:3000/api/v1/usergames/leaderboard", { params: { token, role }}).then((response) =>
-            setLeaderboard(response.data)
+    const GetUser = () => {
+        axios.get("http://localhost:3000/api/v1/userGames/leaderboards", { params: { token, role }}).then((response) =>
+            setUser(response.data)
         );
     };
 
     useEffect(() => {
-        GetLeaderboard();
+        GetUser();
     }, []);
 
-    const sortedUsers = users.sort((a, b) => {
+    const sortedUsers = user.sort((a, b) => {
         return isAscending ? a.winning - b.winning : b.winning - a.winning;
     });
 
@@ -60,21 +60,20 @@ export function Leaderboard({role}:UserType) {
                 <div className="header-column">Game</div>
             </div>
             <ul className="list">
-                {sortedUsers
-                    .filter((item) => {
-                        if (search === '') {
-                            return true;
-                        } else {
-                            return item.username.toLowerCase().includes(search);
-                        }
-                    })
+            {sortedUsers.filter((item) => {
+                    if (search === '') {
+                        return true;
+                    } else {
+                    return item.username.toLowerCase().includes(search);
+                    }
+                })
                     .map((item) => (
-                        <li className="items2" key={item.username}>
+                        <li className="items2" key={item.id_user}>
                             <div className="user-info">
-                                <div className="column">{item.username}</div>
-                                <div className="column">{item.bet}</div>
-                                <div className="column">{item.winning}</div>
-                                <div className="column">{item.game}</div>
+                                <p className="column">{item.username}</p>
+                                <p className="column">{item.bet}</p>
+                                <p className="column">{item.winning}</p>
+                                <p className="column">{item.game}</p>
                             </div>
                         </li>
                     ))}
