@@ -24,9 +24,9 @@ class UsersGamesService{
 
     async leaderboard(){
         const res = await models.UserGame.sequelize.query(`select row_number() over (order by max(ug.winning) desc) as "number", ug.id_user, us.username, ug.bet, max(ug.winning) as winning, ga.name as game
-from usergames ug
-inner join users us on ug.id_user = us.id_user
-inner join games ga on ug.id_game = ga.id_game
+from UserGames ug
+inner join Users us on ug.id_user = us.id_user
+inner join Games ga on ug.id_game = ga.id_game
 where ug.winning > 0 and ga.id_game in (1, 3)
 group by ug.id_user, us.username, ga.name, ug.bet
 order by winning desc
@@ -36,8 +36,8 @@ limit 10;`, {type: QueryTypes.SELECT})
 
     async history(id) {
         const res = await models.UserGame.sequelize.query(`select ug.bet, ug.winning, g.name, ug.createdAt
-                                                    from usergames ug
-                                                    inner join games g on ug.id_game = g.id_game
+                                                    from UserGames ug
+                                                    inner join Games g on ug.id_game = g.id_game
                                                     where ug.id_user = ` + id + ` order by ug.createdAt DESC`, {type: QueryTypes.SELECT})
                                                     return res;
     }
