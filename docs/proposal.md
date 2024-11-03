@@ -23,20 +23,10 @@ Estos juegos utilizarán una moneda virtual (*Magg Coins*) completamente gratuit
 id_country, iso, name, nice_name, iso3, num_code, phone_code <br>
 <strong>id_country</strong> -> PK NN
 
-#### Provinces
-id_province, id_country, name <br>
-<strong> id_province, id_country </strong> -> PK NN <br>
-<strong> id_country </strong> -> FK (Countries) NN
-
-#### Cities
-id_city, id_province, id_country, name, postal_code <br>
-<strong> id_city, id_province, id_country </strong> -> PK NN <br>
-<strong> id_province, id_country </strong> -> FK (Provinces) NN
-
 #### Users
 id_user, username, first_name, last_name, birthday, street, phone, email, password, role, balance, id_city, id_province, id_country, time_created, time_updated <br>
 <strong> id_user </strong> -> PK NN <br>
-<strong> id_city, id_province, id_country </strong> -> FK (Cities) NN
+<strong>id_country </strong> -> FK (COuntries) NN
 
 #### Categories
 id_category, description <br>
@@ -48,8 +38,8 @@ id_game, id_category, name, description <br>
 <strong> id_category </strong> -> FK (Categories) NN
 
 #### Users-Games
-id_game, id_user, datePlayed, bet, winning <br>
-<strong> id_game, id_user, datePlayed </strong> -> PK NN <br>
+id_game, id_user, createdAt, bet, winning <br>
+<strong> id_game, id_user, createdAt </strong> -> PK NN <br>
 <strong> id_game </strong> -> FK (Games) NN <br>
 <strong> id_user </strong> -> FK (Users) NN
 
