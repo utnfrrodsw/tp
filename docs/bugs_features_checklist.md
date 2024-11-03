@@ -53,3 +53,4 @@
 
 - [ ] Organizar carpetas
 - [-] Portear todo lo que queda a CSS (Queda header, dice, wheel y headertoogle)
+- [ ] Arreglar cuadro de perfil en mobile
