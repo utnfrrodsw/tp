@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import { Toaster } from 'sonner'
 
-import { Header, Footer, HomePage, Register, Profile, ErrorPage, BettingHistory, Leaderboard } from "./c";
-import { Terms, AboutUs, PrivacyPolicy, Help, Fair, GamePolicy } from './c/InfoPages'
-import { Dice, Slots, Wheel } from './c/Games'
-import { UserList, Details, EditUser } from './c/AdminPages'
+import { Header, Footer, HomePage, Register, Profile, ErrorPage, BettingHistory, Leaderboard } from "./components";
+import { Terms, AboutUs, PrivacyPolicy, Help, Fair, GamePolicy } from './components/InfoPages'
+import { Dice, Slots, Wheel } from './components/Games'
+import { UserList, Details, EditUser } from './components/AdminPages'
 
 
 export function App() {

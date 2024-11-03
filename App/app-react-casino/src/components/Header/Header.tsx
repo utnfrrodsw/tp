@@ -4,8 +4,8 @@ import { LogIn } from '../index.js'
 import { BalanceModal } from './BalanceModal/BalanceModal.js';
 
 import { useState } from 'react';
-import HeaderToggle from './HeaderToggle/HeaderToggle';
-import HeaderMenu from './HeaderMenu/HeaderMenu';
+import HeaderToggle from './HeaderToggle/HeaderToggle.js';
+import HeaderMenu from './HeaderMenu/HeaderMenu.js';
 
 import './Header.css';
 

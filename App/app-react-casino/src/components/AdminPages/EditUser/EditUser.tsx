@@ -10,8 +10,9 @@ interface UserType {
     phone: string;
     email: string;
     balance: string;
+    role:string;
 }
-export function EditUser({role}) {
+export function EditUser({role}:UserType) {
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])

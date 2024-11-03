@@ -42,16 +42,16 @@
 - [X] Hacer responsive el profile
 - [ ] hacer video
 - [X] links pr/mr
-- [ ] actualizar proposal (hacer diagrama)
+- [X] actualizar proposal (hacer diagrama)
 - [X] el "Cooming Soon" de la pagina principal desaparece cuando estas en mobile
 - [X] Listados responsivos
 - [X] Portear HELP a CSS normal
 - [X] Arreglar listado de juegos (se rompio al portearlo a CSS normal)
 - [X] Utilizar variables globales para los colores
 - [X] Portear todo el codigo a ingles
-- [ ] Arreglar error de ANY en leaderboard.tsx
+- [X] Arreglar error de ANY en leaderboard.tsx
 - [ ] Cuando se recarga la pagina en los listados se bugea
 
-- [ ] Organizar carpetas
+- [X] Organizar carpetas
 - [-] Portear todo lo que queda a CSS (Queda header, dice, wheel y headertoogle)
 - [ ] Arreglar cuadro de perfil en mobile

@@ -1,5 +1,5 @@
-import { Roulette, Rotar } from "../../components/Games/RouletteGame/Roulette"
-import { BetBoard } from "../../components/Games/RouletteGame/BetBoard"
+import { Roulette, Rotar } from "../../components/Games/RouletteGame/Roulette.ts"
+import { BetBoard } from "../../components/Games/RouletteGame/BetBoard.ts"
 import { GamesSideBar } from '../SideBar/GamesSideBar.tsx';
 
 
