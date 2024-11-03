@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './User.css';
-import { NavLink as Link } from 'react-router-dom'
+import { NavLink as Link, useNavigate } from 'react-router-dom'
+import { toast } from 'sonner';
 
 interface UserType {
     id_user: number;
@@ -12,11 +13,14 @@ interface UserType {
 }
 
 
+
 export function User({role}: UserType) {
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
       
+    let navigate = useNavigate()
+
     const [user, setUser] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);
@@ -24,14 +28,23 @@ export function User({role}: UserType) {
     
     const token = localStorage.getItem('jwt-token');
 
-    const GetUser = () => {
-        axios.get("http://localhost:3000/api/v1/users", { params: { token, role } }).then((response) =>
+    const GetUser = async () => {
+        try{
+            const response = 
+            await axios.get('http://localhost:3000/api/v1/users', { params: { token, role } } )
             setUser(response.data)
-        );
-    };
+        } catch(error) {
+            toast.error(error.response.data, {
+                description: 'Redirecting to homepage'
+            })
+            setTimeout(() => {
+                navigate("/")
+            }, 1000);
+        }
+    }
 
     function DeleteUser(id:number) {
-        axios.delete(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then((responseDelete) =>
+        axios.delete(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then(() =>
             location.reload()
         );
     };

@@ -14,12 +14,12 @@ const adminAuth = (req, res, next) => {
                     next()
                 }
                 else {
-                    console.log('error al verificar admin')
+                    return res.status(400).send("Error al verificar Admin")
                 }
             }
         })
     } else {
-        console.log('error al verificar token');
+        return res.status(400).send("Error al verificar Admin")
     }
 }
 
@@ -35,12 +35,12 @@ const adminPost = (req, res, next) => {
                 if (role == 'admin'){
                     next()
                 } else {
-                    console.log('error al verificar admin')
+                    return res.status(400).send("Error al verificar Admin")
                 }
             }
         })
     } else {
-        console.log('error al verificar token')
+        return res.status(400).send("Error al verificar Admin")
     }
 }
 

@@ -1,6 +1,11 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { GamesSideBar } from "../../GamesSideBar";
 import axios from 'axios';
+import { toast } from 'sonner';
+import { useNavigate } from "react-router-dom";
+
+
+
 import mutedIcon from "../../../assets/images/mutedIcon.png";
 import diceSound from "../../../assets/sounds/dice.mp3";
 import './Dice.css';
@@ -14,6 +19,7 @@ interface User{
 
 export function Dice(user:User) {
 
+    let navigate = useNavigate()
     const token = localStorage.getItem('jwt-token');
     const role = user.role
     
@@ -64,10 +70,13 @@ export function Dice(user:User) {
             console.log(response);
         })
         .catch((error) => {
-            console.log(error);
+            toast.error(error.reponse.data, { description: 'Redirecting to home page' })
+                setTimeout(() => {
+                navigate("/")
+                }, 1000);
         });
     }
-    
+
     const textButton = moreLess ? "Less" : "More";
 
     useEffect(() => {

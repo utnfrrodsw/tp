@@ -1,13 +1,17 @@
 import { useState, ChangeEvent, useEffect } from 'react';
+import axios from 'axios'
+import { toast } from 'sonner'
+
 import './Wheel.css';
 import { GamesSideBar } from '../../GamesSideBar';
 import WheelImage from '../../../assets/images/wheel.png';
 import WheelPointer from '../../../assets/images/wheelPointer.png';
-import axios from '../../Axios/axios';
+
 import wheelSpinSound from "../../../assets/sounds/wheelSpin.mp3";
 import wheelWinSound from "../../../assets/sounds/wheelWin.mp3";
 import wheelLoseSound from "../../../assets/sounds/wheelLose.mp3";
 import mutedIcon from "../../../assets/images/mutedIcon.png";
+
 
 const colors = [
   'green', 'gray', 'green', 'gray', 'yellow', 'gray', 'green', 'gray',
@@ -57,8 +61,8 @@ export function Wheel(user:User) {
         role,
         balance: `${newMoney}`,
     })
-    .then((response) => {
-        console.log(response);
+    .then(() => {
+      console.log(response);
     })
     .catch((error) => {
         console.log(error);

@@ -13,12 +13,12 @@ const userAuth = (req, res, next) => {
                     next()
                 }
                 else {
-                console.log('error al verificar usuario')
+                return res.status(400).send("Register to access")
                 }
             }
         })
     } else {
-        console.log('error al verificar token')
+        return res.status(400).send("Register to access")
     }
 }
 
@@ -31,15 +31,15 @@ const postAuth = (req, res, next) => {
             if (err){
                 console.log(err)
             } else {
-                if (role == 'user'){
+                if (role === 'user'){
                     next()
                 } else {
-                    console.log('error al verificar usuario')
+                    return res.status(400).send("Error al verificar Usuario")
                 }
             }
         })
     } else {
-        console.log('error al verificar token')
+        return res.status(400).send("Error al verificar Usuario")
     }
 }
 

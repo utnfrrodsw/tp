@@ -23,11 +23,11 @@ const HeaderMenu: React.FC<HeaderMenuProps> = ({ open, username, profile }) => {
 
 
     return(
-        <section className= {`headerMenu ${open ? "headerMenu-open" : "HeaderMenu-closed"}`}>
-            <div className='p-2 text-center'> {username} </div>
+        <section className= {`header-menu ${open ? "header-menu-open" : "Header-menu-closed"}`}>
+            <div className='header-menu-name'> {username} </div>
             <hr />
-            <Link to={profile} className='flex p-2 items-center gap-2 object-center text-center header-menu-item hover:bg-[#3a3173]'><IoPersonSharp /> My Profile</Link>
-            <button className="flex p-2 items-center gap-2 object-center text-center header-menu-item hover:bg-[#D81536]" onClick={handleLogout}><FiLogOut /> Log Out </button>
+            <Link to={profile} className='header-menu-item'><IoPersonSharp /> My Profile</Link>
+            <button className='header-menu-item' onClick={handleLogout}><FiLogOut /> Log Out </button>
         </section>
         
     )

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './Register.css';
 import { toast } from 'sonner';
@@ -19,7 +19,7 @@ export function RegisterAgus(){
       const[confirmpass, setConfirmPassword] = useState('');
       const[id_country, setCountry] = useState(1);
 
-
+      let navigate = useNavigate()
 
       const handleSubmit = async () => {
         if (password === confirmpass){
@@ -30,6 +30,9 @@ export function RegisterAgus(){
             toast.success(response.data, {
                 description: 'Redirecting to home page',
             });
+            setTimeout(() => {
+                navigate("/")
+            }, 1000);
         } catch (error) {
             toast.error(error.response.data);
         }
