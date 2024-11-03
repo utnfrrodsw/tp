@@ -12,7 +12,7 @@ interface UserType {
 }
 
 
-export function User({role}) {
+export function User({role}: UserType) {
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])

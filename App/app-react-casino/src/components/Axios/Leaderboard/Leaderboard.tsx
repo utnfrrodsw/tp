@@ -8,9 +8,10 @@ interface UserType {
     bet: number;
     winning: number;
     game: string;
+    role:string;
 }
 
-export function Leaderboard({role}) {
+export function Leaderboard({role}:UserType) {
     const [users, setLeaderboard] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);
