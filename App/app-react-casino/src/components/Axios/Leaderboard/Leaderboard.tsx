@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import './Leaderboard.css';
 
 interface UserType {
+    number: number;
     id_user: number;
     username: string;
     bet: number;
@@ -68,7 +69,7 @@ export function Leaderboard({role}:UserType) {
                     }
                 })
                     .map((item) => (
-                        <li className="items2" key={item.id_user}>
+                        <li className="items2" key={item.number}>
                             <div className="user-info">
                                 <p className="column">{item.username}</p>
                                 <p className="column">{item.bet}</p>

@@ -23,14 +23,14 @@ class UsersGamesService{
     }
 
     async leaderboard(){
-        const res = await models.UserGame.sequelize.query(`select ug.id_user, us.username, ug.bet, max(ug.winning) as winning, ga.name as game
-        from usergames ug
-        inner join users us on ug.id_user = us.id_user
-        inner join games ga on ug.id_game = ga.id_game
-        where ug.winning > 0 and ga.id_game in (1, 3)
-        group by ug.id_user, us.username, ga.name, ug.bet
-        order by winning desc
-        limit 10;`, {type: QueryTypes.SELECT})
+        const res = await models.UserGame.sequelize.query(`select row_number() over (order by max(ug.winning) desc) as "number", ug.id_user, us.username, ug.bet, max(ug.winning) as winning, ga.name as game
+from usergames ug
+inner join users us on ug.id_user = us.id_user
+inner join games ga on ug.id_game = ga.id_game
+where ug.winning > 0 and ga.id_game in (1, 3)
+group by ug.id_user, us.username, ga.name, ug.bet
+order by winning desc
+limit 10;`, {type: QueryTypes.SELECT})
         return res;
     }
 
