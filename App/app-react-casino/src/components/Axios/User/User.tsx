@@ -66,12 +66,9 @@ export function User({role}) {
                 </div>
             </div>
             <div className="header-name">
-                <div className="header-column">ID</div>
                 <div className="header-column">Username</div>
                 <div className="header-column">Role</div>
-                <div className="header-column">Email</div>
                 <div className="header-column">Balance</div>
-                <div className="header-column">Actions</div>
             </div>
             <ul className='list'>
                 {sortedUsers.filter((item) => {
@@ -83,17 +80,15 @@ export function User({role}) {
                 })
                 .map((item) => (
                     <li className='items' key={item.id_user}>
-                        <div className="user-info">
-                            <div className="column">{item.id_user}</div>
-                            <div className="column">{item.username}</div>
-                            <div className="column">{item.role}</div>
-                            <div className="column">{item.email}</div>
-                            <div className="column">{item.balance}</div>
+                        <div className="admin_list">
+                            <p className='column'>{item.username}</p>
+                            <p className='column'>{item.role}</p>
+                            <p className='column'>{item.balance}</p>
                         </div>
                         <div className="actions">
-                            <Link to={`/edituser/${item.id_user}`} className="edit-btn">Edit</Link>
-                            <button className="delete-btn" onClick={() => DeleteUser(item.id_user)}>Delete</button>
-                            <Link to={`/details/${item.id_user}`} className="read-btn">Read</Link>
+                            <Link to={`/edituser/${item.id_user}`} className="edit-btn actionbtn">Edit</Link>
+                            <button className="delete-btn actionbtn" onClick={() => DeleteUser(item.id_user)}>Delete</button>
+                            <Link to={`/details/${item.id_user}`} className="read-btn actionbtn">Read</Link>
                         </div>
                     </li>
                 ))}

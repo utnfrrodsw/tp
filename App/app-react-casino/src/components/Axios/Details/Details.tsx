@@ -11,6 +11,7 @@ export function Details({role}) {
       }, [])
 
     const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [birthday, setBirthday] = useState("")
@@ -24,6 +25,7 @@ export function Details({role}) {
     const GetData = () => {
         axios.get(`http://localhost:3000/api/v1/users/read/${id}`, { params: { token, role } }).then((response) => {
             setUsername(response.data[0].username)
+            setEmail(response.data[0].email)
             setFirstName(response.data[0].first_name)
             setLastName(response.data[0].last_name)
             setBirthday(response.data[0].birthday)
@@ -44,6 +46,7 @@ export function Details({role}) {
             <div className='details'>
                 <p className='detail_element'>ID User: {id}</p>
                 <p className='detail_element'>Username: {username}</p>
+                <p className='detail_element'>Email: {email}</p>
                 <p className='detail_element'>First Name: {firstName}</p>
                 <p className='detail_element'>Last Name: {lastName}</p>
                 <p className='detail_element'>Birthday: {birthday}</p>

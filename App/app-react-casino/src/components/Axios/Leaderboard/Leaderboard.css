@@ -87,7 +87,7 @@
 
 .header-name2 {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     background-color: var(--purple);
     padding: 10px;
@@ -112,7 +112,7 @@
 
 .items2 {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     align-items: center;
     padding: 10px;

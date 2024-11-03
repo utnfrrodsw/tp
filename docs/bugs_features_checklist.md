@@ -25,13 +25,12 @@
 
 ### Checklist DSW 17/10/24
 - [X] Hacer responsive Dice y Wheel
-- [ ] Agregarle Mensaje de error a Login (Agus)
+- [X] Agregarle Mensaje de error a Login (Agus)
 - [ ] Agregar para ingresar plata con mercado pago (AD)
 - [ ] Agregar alguna forma de retirar dinero (Simulado, obviamente) (AD)
 - [ ] Poder cambiar la password (AD?)
 - [X] Terminar Betting history
 - [X] Boton para volver atras en el betting history
-- [ ] Mercado Pago (AD?)
 - [X] ARREGLAR ERRORES TS (Parcialmente solucionado)
 - [X] Limpiar la consola 
 - [ ] ARREGLAR ERROR QUE SALEN 2 COSAS EN LA CONSOLA
@@ -42,14 +41,15 @@
 - [ ] TERMINAR DOCUMENTACION
 - [X] Hacer responsive el profile
 - [ ] hacer video
-- [ ] links pr/mr
-- [ ] actualizar proposal
+- [X] links pr/mr
+- [ ] actualizar proposal (hacer diagrama)
 - [X] el "Cooming Soon" de la pagina principal desaparece cuando estas en mobile
 - [X] Listados responsivos
-- [ ] Header responsivo
-- [ ] Forgot your password (AD)
 - [X] Portear HELP a CSS normal
-- [-] Portear todo lo que queda a CSS (Queda header, dice & wheel)
 - [X] Arreglar listado de juegos (se rompio al portearlo a CSS normal)
 - [X] Utilizar variables globales para los colores
 - [X] Portear todo el codigo a ingles
+- [ ] Arreglar error de ANY en leaderboard.tsx
+
+- [ ] Organizar carpetas
+- [-] Portear todo lo que queda a CSS (Queda header, dice, wheel y headertoogle)
