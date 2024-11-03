@@ -50,6 +50,7 @@
 - [X] Utilizar variables globales para los colores
 - [X] Portear todo el codigo a ingles
 - [ ] Arreglar error de ANY en leaderboard.tsx
+- [ ] Cuando se recarga la pagina en los listados se bugea
 
 - [ ] Organizar carpetas
 - [-] Portear todo lo que queda a CSS (Queda header, dice, wheel y headertoogle)
