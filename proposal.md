@@ -8,7 +8,7 @@
 * 50353 - Mansilla, Delfina
 
 ### Repositorios
-* [frontend app](https://github.com/franmaurutto/frontend_dsw)
+* [frontend app](https://github.com/franmaurutto/frontend_dsw.git)
 * [backend app](https://github.com/franmaurutto/backend_dsw)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
