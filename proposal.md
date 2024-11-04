@@ -7,7 +7,7 @@
 * 51705- PALMIERI, AUGUSTO (com 304)
 
 ### Repositorios
-* [fullstack app](https://github.com/RenCostamagna/DSW-fullstack).
+*
 * [frontend app](https://github.com/RenCostamagna/DSW-frontend)
 * [backend app](https://github.com/RenCostamagna/DSW-backend)
 
@@ -25,11 +25,9 @@ Sistema de atención y gestión para una hamburguesería con el objetivo de  fac
 
 * TAKE AWAY NO HAY LIMITE.
 
-* EL DELIVERY COMO MAXIMO PUEDE LLEVAR 15 HAMBURGUESAS COMO MAXIMO.
  
 * LOS PRECIOS NO CAMBIAN DE LAS HAMBURGUESAS AUNQUE SE QUITEN INGREDIENTES DE LA MISMA.
 
-* LOS DELIVERY SON CONTRATADOS EN BASE A SI CUENTAN CON MOVILIDAD PROPIA QUE SE AJUSTE A LO SOLICITADO POR LA EMPRESA.
 
 ## Alcance Funcional 
 
