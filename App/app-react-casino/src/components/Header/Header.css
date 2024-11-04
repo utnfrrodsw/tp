@@ -1,5 +1,3 @@
-
-
 @keyframes spin {
     from {
         transform:rotate(0deg);
@@ -21,12 +19,24 @@
     }
 }
 
+.spinner{
+    max-height: 4rem;
+}
+
 .spinner:hover {
     animation-name: spin;
     animation-duration: 2000ms;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(.13,.46,.85,.6);
 }
+
+.header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+}
+
 
 .gold-button {
     color: #C2752E;
@@ -53,12 +63,23 @@
 }
 
 .nav{
+    padding: .75rem;
     backdrop-filter: blur(5px);
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
+.menu-open {
+    position: fixed; 
+    right: 0; 
+    z-index: 50; 
+    height: 0.5rem; 
+    top: 88px;
+    width: 15%;
+}
+
 
 .header-content {
     display: flex;
@@ -97,8 +118,84 @@
     width: auto;
 }
 
+.header-responsive {
+    height: 100vh;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: inline-block;
+    background-color: rgba(43, 43, 43, 0.3);
+    z-index: 10;
+    transition: backdrop-filter .2s ease-in-out;
+
+    @starting-style{
+        backdrop-filter: blur(0px)
+    }
+}
+
+.spinner-responsive {
+    margin: auto;
+}
+
+.nav-responsive {
+    margin-top: 20px;
+}
+
+.balance-responsive{
+    padding: 20px;
+    margin: 20px 5px 20px 5px
+}
+
+.items-responsive{
+    display: grid;
+    grid-row: 3;
+
+}
+
+.items2-responsive{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    gap: .5rem;
+}
+
+.icon-text{
+        display: flex;
+        padding: 0.5rem;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+}
+
+
+.nav-item-responsive{
+    background-color: rgba(209, 209, 209, 0.3);
+    color: var(--white);
+    padding: 10px;
+    border-radius: .5rem;
+    gap: .5rem;
+    transition: 100ms ease-in-out
+}
+
+.nav-item-responsive:hover{
+    background-color: rgba(35, 19, 56, 0.3);
+    transition: 100ms ease-in-out;
+}
+
+.header-responsive-close{
+    display: none;
+}
+
 @media only screen and (max-width: 500px) {
     .nav{
     display: none;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .header-responsive{
+        display: none;
     }
 }

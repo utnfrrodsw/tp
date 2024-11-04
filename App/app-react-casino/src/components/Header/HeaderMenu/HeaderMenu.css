@@ -21,8 +21,6 @@
     color: var(--white);
     background-color:  var(--black);
     display: none;
-    transform: translateX(0%);
-    transition: transform .3s ease-in-out;
     border-radius: 10px;
     
 }
@@ -31,15 +29,29 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+    transform: translateX(0px);
+    transition: transform .2s ease-in-out;
+
+    @starting-style{
+        transform: translateX(205px);
+    }
 }
 
 hr{
     border-color: #3a3173;
 }
 
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 500px){
     .header-menu{
         display: none;
     }
 }
 
+@media only screen and (max-width: 800px){
+    .text{
+        display: none;
+    }
+    .icon{
+        margin: auto;
+    }
+}
