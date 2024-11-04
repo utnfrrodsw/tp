@@ -108,7 +108,7 @@ export function EditUser({role}:UserType) {
             <div className='formButtons'>
                 <button type='button' className='formSubmit' onClick={patchUser}>Update</button>
                 <button type='button' onClick={defaultValues} className='formSubmit'>Default Values</button>
-                <Link to="/user" className="back">Back</Link>
+                <Link to="/" className="back">Back</Link>
             </div>
         </div>
     );

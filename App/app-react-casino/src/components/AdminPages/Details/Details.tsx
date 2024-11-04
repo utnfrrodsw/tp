@@ -57,7 +57,7 @@ export function Details({role}:UserType) {
                 <p className='detail_element'>Phone: {phone}</p>
                 <p className='detail_element'>Balance: {balance}</p>
                 <p className='detail_element'>Country: {country}</p>
-                <Link to="/user" className="backDetails">Back</Link>
+                <Link to="/" className="backDetails">Back</Link>
             </div>
         </>
 
