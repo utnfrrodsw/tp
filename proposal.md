@@ -4,8 +4,6 @@
 ### Integrantes
 - 50838 Guastoni Belén
 - 48790 Mestre Federico
-- 51153 Abonizio Abril (Integrante Nuevo)
-- 51898 Mestre Marcos (Integrante Nuevo)
 
 ### Repositorios
 * [fullstack_app] = https://github.com/FedeeMest/fullstack_app_FB
@@ -15,46 +13,43 @@
 ### Descripción
 Nuestro grupo va a enfocar el Trabajo Practico en crear un Sistema de administracion Estudiantil (Sysacad) con todas las funciones que esto conlleva como: 
 
-Del lado del Alumno:
-- Inscripcion a cursado/finales (poder filtar por materias con las que se cumplen los requisitos para cursar)
-- Poder revisar informacion personal/Solicitar modificacion
-- Tener acceso a la libreta virtual con sus respectivas notas.
-- Solicitar turnos para realizar tramites de forma presencial
-- Acceso al calendario academico.
-- Poder solicitar acceso al certificado Regularidad
-- Poder ver el plan de estudio con las materias que el alumno puede cursar según cada caso
-  
-Del lado del Profesor/Admin:
-- Subir notas de alumnos a sus respectivos legajos
-- editar sus comisiones comisiones (agregar/borrar alumnos maunalmente)
-- Subir/modificar notas parciales/finales de alumnos
-- Subir regularidades/promocion
-- Ver listado de comisiones con alumnos
-- Cambiar contraseña
-- Ver calendario academico 2024
+- Poder ver un listado de alumnos.
+- Poder ver un listado de materias.
+- Poder revisar información personal y modificarla.
+- Poder ver un listado de las inscripciones de cada alumno.
+- Poder modificar la información de la materia.
+- Poder agregar/eliminar un alumno.
+- Poder agregar/eliminar una materia.
+- Poder agregar/eliminar una inscripción, con un alumno y una materia.
+- Poder modificar información de la inscripción. 
+- Poder ver el plan de estudio con las materias que el alumno puede cursar según cada caso.
+- Poder ver un listado de alumnos filtrados por plan.
+- Poder ver un listado de materias filtrado por modalidad.
+- Poder buscar un alumno por legajo.
 
    
 ### Diagrama de clase
-![Modelo de Clase - Sysacad drawio](https://github.com/FedeeMest/TP-DSW-FB/assets/166263224/f787a51c-9cf2-43db-a15c-79e7f1d56070)
+![Modelo de Clase - Sysacad drawio](https://github.com/user-attachments/assets/06dc6243-bf84-40a5-bb41-3ac78a15446a)
 
-## Alcance Funcional 
+## Alcance Funcional
+
 
 ### Alcance Mínimo
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD alumno<br>2. CRUD profesor<br>
-|CRUD dependiente|1. CRUD final {depende de} CRUD alumno<br>
-|Listado<br>+<br>detalle| 1. Listado de finales realizador por un alumno => muestra todos los finales (con detalles) de la colección "calificaciones" de la clase alumno<br> 2. Listado de materias en las cuales se puede inscribir ele alumno dependiendo del estado academico en el que se encuentr, mostrando todas las materias, y en las cuales no se puede incribir mostrar el motivo|
-|CUU/Epic|1. Incribirse a materia<br>2. Ver calificaciones actuales|
+|CRUD simple|1. CRUD Alumno<br>2. CRUD Materia<br>
+|CRUD dependiente|1. CRUD Inscripcion {depende de} CRUD Alumno y CRUD Materia<br>
+|Listado<br>+<br>detalle| 1. Listado general de alumnos con la opcion de filtar por plan=> muestra todos los alumnos con la posibilidad de realizar estas acciones Editar, Eliminar, Ver Info<br> 2. Listado de materias en las cuales se puede inscribir el alumno<br> 3. Listado general de materias con la opcion de filtar por modalidad => muestra todos las materias con la posibilidad de realizar estas acciones Editar, Eliminar|
+|CUU/Epic|1. Incribirse a materia<br>2. Ver inscripciones actuales|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Estado_acad<br>2. CRUD Inscripción<br>3. CRUD Horario<br>4. CRUD Plan<br>|
-|CUU/Epic|1. Update del estado academico del alumno<br>2. Realizar una inscripcion<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1.<br>|
+|CUU/Epic|1.|
 
 
 ### Alcance Adicional Voluntario
@@ -63,7 +58,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Inscripciones (a examenes) filtradas por alumno muestra a cuantos examenes finales se inscribio al alumno ingresando dos fechas|2. Inscripciones a cursado de un alumno dado un periodo de fehcas especificos.
-|CUU/Epic|1. Inscribirse a examen/cursado<br>2. Cancelación de inscripción|
-|Otros|1. Envío de recordatorio de examen por email al alumno 48hs. antes de la fecha|
+|Listados |1.|2.|
+|CUU/Epic|1.|
+|Otros|1.|
 
