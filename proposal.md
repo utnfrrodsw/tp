@@ -16,7 +16,7 @@
 Servicio para calificar la experiencia con el docente en distintas asignaturas de la carrera de sistemas de la UTN Rosario. Ademas se permite la lectura de estas calificaciones a cualquier alumno inclusive sin estar registrado, para ayudarlo a tomar una mejor decision a la hora de inscribirse a las asignaturas de la carrera
 
 ### Modelo
-https://imgur.com/a/oNQGs1a
+https://drive.google.com/file/d/1UcI-ij5VLGGac8pcb68SJeKOiIXGjUic/view
 
 ## Alcance Funcional 
 
