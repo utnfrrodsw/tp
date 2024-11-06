@@ -13,4 +13,10 @@ export class ProvinciasService {
   getProvincias(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  getProvinciaById(idProvincia: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${idProvincia}`);
+  }
+
+
 }

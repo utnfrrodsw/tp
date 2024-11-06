@@ -11,7 +11,7 @@ router.get('/disponibles/:fechaIngreso/:fechaEgreso/:capacidad/:idLoc', habitaci
 
 
 // Rutas protegidas para empleados
-router.post('/', authMiddleware.verificarAutenticacionEmpleado, habitacionController.crearHabitacion);
+router.post('/', habitacionController.crearHabitacion);
 router.put('/:id', authMiddleware.verificarAutenticacionEmpleado, habitacionController.actualizarHabitacion);
 router.delete('/:id', authMiddleware.verificarAutenticacionEmpleado, habitacionController.eliminarHabitacion);
 

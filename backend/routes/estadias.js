@@ -14,7 +14,7 @@ router.get('/', authMiddleware.verificarAutenticacionEmpleado, estadiaController
 router.get('/:id', authMiddleware.verificarAutenticacionEmpleado, estadiaController.obtenerEstadiaPorId);
 router.post('/',  estadiaController.crearEstadia);
 router.put('/:idEstadia/checkin', authMiddleware.verificarAutenticacionEmpleado, estadiaController.realizarCheckin);
-router.put('/:idEstadia/checkout', authMiddleware.verificarAutenticacionEmpleado, estadiaController.realizarCheckout);
+router.put('/:idEstadia/checkout', estadiaController.realizarCheckout);
 router.delete('/:id', authMiddleware.verificarAutenticacionEmpleado, estadiaController.eliminarEstadia);
 
 module.exports = router;

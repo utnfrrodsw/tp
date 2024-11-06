@@ -1,4 +1,5 @@
 const Localidad = require('../models/localidad');
+const Provincia = require('../models/provincia');
 
 const crearLocalidad = async (req, res) => {
     const { idLocalidad, nombre, idProvincia } = req.body;
@@ -28,7 +29,7 @@ const obtenerTodasLocalidades = async (req, res) => {
   };
 
   const obtenerLocalidadPorId = async (req, res) => {
-    const { idLocalidad } = req.params;
+    const idLocalidad = parseInt(req.params.id, 10);
     try {
       const localidad = await Localidad.findOne({ idLocalidad });
       if (!localidad) {
@@ -39,6 +40,7 @@ const obtenerTodasLocalidades = async (req, res) => {
       res.status(500).json({ message: error.message });
     }
   };
+  
   
 
   const actualizarLocalidad = async (req, res) => {
@@ -90,8 +92,33 @@ const obtenerTodasLocalidades = async (req, res) => {
   };
 
 
+  const obtenerLocalidadYProvincia = async (req, res) => {
+    const { nombreLocalidad, nombreProvincia } = req.params;
+
+    try {
+        const localidad = await Localidad.findOne({ nombre: { $regex: new RegExp(`^${nombreLocalidad}$`, 'i') } });
+        if (!localidad) {
+            return res.status(404).json({ message: 'Localidad no encontrada.' });
+        }
+
+        const provincia = await Provincia.findOne({ nombre: { $regex: new RegExp(`^${nombreProvincia}$`, 'i') } });
+        if (!provincia) {
+            return res.status(404).json({ message: 'Provincia no encontrada.' });
+        }
+
+        res.json({
+            localidad,
+            provincia
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al obtener los datos.", error: error.message });
+    }
+};
+
+
 module.exports = { crearLocalidad,
                    actualizarLocalidad,
                    obtenerLocalidadPorId,
                    obtenerTodasLocalidades, 
-                   eliminarLocalidad,obtenerLocalidadPorNombre};
+                   eliminarLocalidad,obtenerLocalidadPorNombre,obtenerLocalidadYProvincia};

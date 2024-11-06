@@ -17,4 +17,12 @@ export class LocalidadesService {
   searchLocalidades(nombre: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}?nombre_like=${nombre}`);
   }
+
+  getLocalidadByNameAndProvincia(nombreLocalidad: string, nombreProvincia: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${nombreLocalidad}/${nombreProvincia}`);
+  }
+
+  getLocalidadById(idLocalidad: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${idLocalidad}`);
+  }
 }

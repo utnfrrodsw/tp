@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchService } from '../service/search.service';
-import { EmpleadosService } from '../service/empleados.service'; // Asegúrate de importar el servicio
+import { LocalidadesService } from '../service/localidades.service'; 
+import { EmpleadosService } from '../service/empleados.service'; 
 
 @Component({
   selector: 'app-inicio',
@@ -14,8 +14,8 @@ export class InicioComponent {
 
   constructor(
     private router: Router,
-    private searchService: SearchService,
-    private empleadosService: EmpleadosService // Inyectar el servicio aquí
+    private localidadesService: LocalidadesService, 
+    private empleadosService: EmpleadosService
   ) {}
 
   updateCheckoutMinDate(event: any) {
@@ -45,21 +45,35 @@ export class InicioComponent {
     const checkinFormatted = convertDateToDDMMYYYY(checkin);
     const checkoutFormatted = convertDateToDDMMYYYY(checkout);
 
-    this.searchService.getLocalidadByName(destination).subscribe((localidad: any) => {
-      const idLocalidad = localidad.idLocalidad;
+    // Separar la localidad y la provincia
+    const [nombreLocalidad, nombreProvincia] = destination.split(',').map(part => part.trim());
 
-      if (!idLocalidad) {
+    if (!nombreLocalidad || !nombreProvincia) {
+      alert('Formato de destino incorrecto. Debe ser "Localidad, Provincia".');
+      return;
+    }
+
+    // Llamar al servicio para obtener la localidad y la provincia
+    this.localidadesService.getLocalidadByNameAndProvincia(nombreLocalidad, nombreProvincia).subscribe((response: any) => {
+      const localidad = response.localidad;
+      const provincia = response.provincia;
+
+      if (!localidad || !localidad.idLocalidad) {
         alert('Localidad no encontrada');
         return;
       }
 
-      // Navegar al componente mostrar habitaciones con los datos necesarios
+      const idLocalidad = localidad.idLocalidad;
+      const idProvincia = provincia ? Number(provincia.idProvincia) : null;
+
+      // Navegar a la página de habitaciones disponibles
       this.router.navigate(['/habitaciones/disponibles'], {
         queryParams: {
           checkin: checkinFormatted,
           checkout: checkoutFormatted,
           people: people,
-          idLocalidad: idLocalidad
+          idLocalidad: idLocalidad,
+          idProvincia: idProvincia
         }
       });
     }, error => {
@@ -69,6 +83,6 @@ export class InicioComponent {
   }
 
   isEmpleadoLoggedIn(): boolean {
-    return this.empleadosService.getTokenFromLocalStorage() !== null; // Verificar si el token existe
+    return this.empleadosService.getTokenFromLocalStorage() !== null;
   }
 }

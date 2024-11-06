@@ -6,7 +6,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 
 
-router.post('/', authMiddleware.verificarAutenticacionEmpleado, empleadoController.crearEmpleado);
+router.post('/', empleadoController.crearEmpleado);
 router.get('/', authMiddleware.verificarAutenticacionEmpleado, empleadoController.obtenerTodosEmpleados);
 router.get('/:dni', authMiddleware.verificarAutenticacionEmpleado, empleadoController.obtenerEmpleadoPorDni);
 router.put('/:dni', authMiddleware.verificarAutenticacionEmpleado, empleadoController.actualizarEmpleadoPorDni);

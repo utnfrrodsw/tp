@@ -13,13 +13,13 @@ export class AlertaCheckinComponent {
     @Inject(MAT_DIALOG_DATA) public data: { mensaje: string }
   ) {}
 
-  // Si el usuario confirma
+  
   confirmar(): void {
-    this.dialogRef.close(true); // Retorna true si se confirma
+    this.dialogRef.close(true); 
   }
 
-  // Si el usuario cancela
+  
   cancelar(): void {
-    this.dialogRef.close(false); // Retorna false si se cancela
+    this.dialogRef.close(false);
   }
 }
