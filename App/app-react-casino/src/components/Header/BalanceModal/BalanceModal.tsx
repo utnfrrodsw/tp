@@ -51,31 +51,31 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
     function addMoney1000() {
         setMoney(balance + 1000);
         patchUser(balance + 1000);
-        setMensajeCarga("Se cargaron 1000 pesos con exito!")
+        setMensajeCarga("1000 coins recharge!")
     }
 
     function addMoney2000() {
         setMoney(balance + 2000);
         patchUser(balance + 2000);
-        setMensajeCarga("Se cargaron 2000 pesos con exito!")
+        setMensajeCarga("2000 coins recharge!")
     }
 
     function addMoney5000() {
         setMoney(balance + 5000);
         patchUser(balance + 5000);
-        setMensajeCarga("Se cargaron 5000 pesos con exito!")
+        setMensajeCarga("5000 coins recharge!")
     }
 
     function addMoney10000() {
         setMoney(balance + 10000);
         patchUser(balance + 10000);
-        setMensajeCarga("Se cargaron 10000 pesos con exito!")
+        setMensajeCarga("10000 coins recharge!")
     }
 
     function addMoney25000() {
         setMoney(balance + 25000);
         patchUser(balance + 25000);
-        setMensajeCarga("Se cargaron 25000 pesos con exito!")
+        setMensajeCarga("25000 coins recharge!")
     }
 
     function patchUser(newMoney:number) {
