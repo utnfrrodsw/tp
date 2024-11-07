@@ -32,6 +32,7 @@ export function EditUser({role}:UserType) {
     const GetData = () => {
         axios.get(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then((response) => {
             const fetchedUser: UserType = response.data;
+            console.log(response.data)
             setUser(fetchedUser);
             setFirstName(fetchedUser.first_name);
             setLastName(fetchedUser.last_name);
@@ -48,10 +49,8 @@ export function EditUser({role}:UserType) {
     function patchUser() {
         if (!form.current) return; 
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
-            token,
-            role,
-            first_name: form.current.firstname.value,
-            last_name: form.current.lastname.value,
+            first_name: form.current.first_name.value,
+            last_name: form.current.last_name.value,
             phone: form.current.phone.value,
             email: form.current.email.value,
             balance: form.current.balance.value,
@@ -73,7 +72,7 @@ export function EditUser({role}:UserType) {
         setEmail(user.email);
         setBalance(user.balance);
 
-        const inputs = ["firstname", "lastname", "phone", "email", "balance"];
+        const inputs = ["first_name", "last_name", "phone", "email", "balance"];
         inputs.forEach(id => {
             const input = document.querySelector(`#${id}`);
             input?.classList.remove("modified");
@@ -95,9 +94,9 @@ export function EditUser({role}:UserType) {
         <div className='edituser'>
             <form className='formEdit' ref={form}>
                 <label>First Name</label>
-                <input type="text" id='firstname' className='formInput' value={firstName} onChange={e => setFirstName(e.target.value)} onInput={() => checkField("first_name")} name='firstname' />
+                <input type="text" id='first_name' className='formInput' value={firstName} onChange={e => setFirstName(e.target.value)} onInput={() => checkField("first_name")} name='first_name' />
                 <label>Last Name</label>
-                <input type="text" id='lastname' className='formInput' value={lastName} onChange={e => setLastName(e.target.value)} onInput={() => checkField("last_name")} name='lastname' />
+                <input type="text" id='last_name' className='formInput' value={lastName} onChange={e => setLastName(e.target.value)} onInput={() => checkField("last_name")} name='last_name' />
                 <label>Phone Number</label>
                 <input type="text" id='phone' className='formInput' value={phone} onChange={e => setPhone(e.target.value)} onInput={() => checkField("phone")} name='phone' />
                 <label>Email</label>
