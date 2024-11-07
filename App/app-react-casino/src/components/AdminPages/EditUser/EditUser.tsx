@@ -1,6 +1,6 @@
 import axios from 'axios';
 import './EditUser.css';
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -17,6 +17,7 @@ export function EditUser({role}:UserType) {
         window.scrollTo(0, 0)
       }, [])
 
+      let navigate = useNavigate()
     const {id} = useParams<{ id: string }>();;
     const [user, setUser] = useState<UserType | null>(null);
     const form = useRef<HTMLFormElement | null>(null);
@@ -59,7 +60,7 @@ export function EditUser({role}:UserType) {
         })
         .then((response) => {
             console.log(response);
-            location.reload();
+            navigate("/userlist")
         })
         .catch((error) => {
             console.log(error);

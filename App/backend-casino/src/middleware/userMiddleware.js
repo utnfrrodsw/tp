@@ -31,7 +31,7 @@ const postAuth = (req, res, next) => {
             if (err){
                 console.log(err)
             } else {
-                if (role === 'user'){
+                if (role === 'user' || role === 'admin'){
                     next()
                 } else {
                     return res.status(400).send("Error al verificar Usuario")
