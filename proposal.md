@@ -8,7 +8,7 @@
 * 50026 - Vivas, Martin Ariel
 
 ### Repositorios
-* [frontend app]
+* frontend: https://github.com/camila-salvia/frontend-tp-dws2024/tree/master
 * backend: https://github.com/OctavioSesana/backend
 
 ## Tema
