@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { PartidosRepository } from "./partido.repository.js";
 import { Partido } from "./partido.entity.js";
+import { orm } from "../shared/db/orm.js";
 
-const repository = new PartidosRepository()
+const em = orm.em
 
 function sanitizarPartidoInput(req: Request, res: Response, next: NextFunction){
 
@@ -10,8 +10,7 @@ function sanitizarPartidoInput(req: Request, res: Response, next: NextFunction){
 
         fecha: req.body.fecha,
         torneo: req.body.torneo,
-        equipo1: req.body.equipo1,
-        equipo2: req.body.equipo2,
+        equipos: req.body.equipos,
         id: req.body.id
 
     }
@@ -26,51 +25,55 @@ function sanitizarPartidoInput(req: Request, res: Response, next: NextFunction){
 }
 
 async function findAll(req: Request,res: Response){
-    return res.json({data: await repository.findAll()})
+    try{
+        const partidos = await em.find(Partido, {}, {populate: ['torneo','equipos']})
+        res.status(200).json({message: 'found all partidos', data: partidos})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function findOne(req: Request,res: Response){
-    const id = req.params.id
-    const partido = await repository.findOne({id})
-    if(!partido){
-        return res.status(404).send({message:'ID incorrecto, no existe ninguna partido con el ID indicado' })
-    }else{
-    return res.json({data: partido})
+    try{
+        const id = Number.parseInt(req.params.id)
+        const partido = await em.findOneOrFail(Partido, {id},{populate: ['torneo','equipos']})
+        res.status(200).json({message: 'found partido', data: partido})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
     }
 }
 
 async function add(req: Request,res: Response){
-    const input = req.body.sanitizarEq
-    
-    const partidoInput = new Partido ( 
-        input.fecha, 
-        input.torneo, 
-        input.equipo1, 
-        input.equipo2, 
-        input.id)
-    
-    const partido = await repository.add(partidoInput)
-    return res.status(201).send({message: 'Partido caragado correctamente', data: partido })
+    try{
+        const partido = em.create(Partido, req.body)
+        await em.flush()
+        res.status(200).json({message: 'partido created', data: partido})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function update(req: Request,res: Response){
-    req.body.sanitizarEq.id = req.params.id
-    const partido = await repository.update(req.params.id, req.body.sanitizarEq)
-    
-    if(!partido){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún partido con el ID indicado' })
-    }else{
-        return res.status(200).send({message: 'Partido modificado correctamente', data: partido})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const partido = em.findOneOrFail(Partido, id)
+        em.assign(Partido, req.body)
+        await em.flush()
+        res.status(200).json({message: 'partido updated', data: partido})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 async function remove(req: Request,res: Response){
-    const id = req.params.id
-    const partido = await repository.delete({id})
-
-    if(!partido){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún partido con el ID indicado' })
-    }else{
-    return res.status(200).send({message: 'Partido borrado correctamente'})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const partido = em.getReference(Partido, id)
+        await em.removeAndFlush(partido)
+        res.status(200).json({message: 'partido removed'})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 export {sanitizarPartidoInput, findAll, findOne, add, update, remove}

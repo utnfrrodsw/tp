@@ -1,14 +1,15 @@
 import { Request, Response, NextFunction } from "express";
-import { LocalidadesRepository } from "./localidades.repository.js";
 import { Localidad } from "./localidades.entity.js";
+import { orm } from "../shared/db/orm.js";
 
-const repository = new LocalidadesRepository()
+const em = orm.em
 
 function sanitizarLocalidadInput(req: Request, res: Response, next: NextFunction){
 
     req.body.sanitizarLoc = {
         nombre_localidad: req.body.nombre_localidad,
-        id: req.body.id
+        id: req.body.id,
+        sucursales: req.body.sucursales
     }
 
     //Acá irían las validaciones de datos...
@@ -21,46 +22,56 @@ function sanitizarLocalidadInput(req: Request, res: Response, next: NextFunction
 }
 
 async function findAll(req: Request,res: Response){
-    return res.json({data: await repository.findAll()})
+    try{
+        const localidades = await em.find(Localidad, {}, {populate: ['sucursales']})
+        res.status(200).json({message: 'found all localidades', data: localidades})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function findOne(req: Request,res: Response){
-    const id = req.params.id
-    const localidad = await repository.findOne({id})
-    if(!localidad){
-        return res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
-    }else{
-    return res.json({data: localidad})
+    try{
+        const id = Number.parseInt(req.params.id)
+        const localidad = await em.findOneOrFail(Localidad, {id},{populate: ['sucursales']})
+        res.status(200).json({message: 'found localidad', data: localidad})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
     }
 }
 
 async function add(req: Request,res: Response){
-    const input = req.body.sanitizarLoc
-    
-    const localidadInput = new Localidad (input.nombre_localidad, input.id)
-    
-    const localidad = await repository.add(localidadInput)
-    return res.status(201).send({message: 'Localidad caragada correctamente', data: localidad })
+    try{
+        const localidad = em.create(Localidad, req.body)
+        await em.flush()
+        res.status(200).json({message: 'localidad created', data: localidad})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function update(req: Request,res: Response){
-    req.body.sanitizarLoc.id = req.params.id
-    const localidad = await repository.update(req.params.id, req.body.sanitizarLoc)
-    
-    if(!localidad){
-        return res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
-    }else{
-        return res.status(200).send({message: 'Localidad modificada correctamente', data: localidad})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const localidad = em.findOneOrFail(Localidad, id)
+        em.assign(Localidad, req.body)
+        await em.flush()
+        res.status(200).json({message: 'localidad updated', data: localidad})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 async function remove(req: Request,res: Response){
-    const id = req.params.id
-    const localidad = await repository.delete({id})
+    try{
+        const id = Number.parseInt(req.params.id)
+        const localidad = em.getReference(Localidad, id)
+        await em.removeAndFlush(localidad)
+        res.status(200).json({message: 'localidad removed'})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
-    if(!localidad){
-        return res.status(404).send({message:'ID incorrecto, no existe ninguna localidad con el ID indicado' })
-    }else{
-    return res.status(200).send({message: 'Localidad borrada correctamente'})
-}}
 
 export {sanitizarLocalidadInput, findAll, findOne, add, update, remove}

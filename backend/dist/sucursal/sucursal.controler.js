@@ -1,10 +1,11 @@
-import { SucursalesRepository } from "./sucursal.repository.js";
 import { Sucursal } from "./sucursal.entity.js";
-const repository = new SucursalesRepository();
+import { orm } from "../shared/db/orm.js";
+const em = orm.em;
 function sanitizarSucursalInput(req, res, next) {
     req.body.sanitizarSuc = {
         nombre_sucursal: req.body.nombre_sucursal,
         localidad: req.body.localidad,
+        torneos: req.body.torneos,
         id: req.body.id
     };
     //Acá irían las validaciones de datos...
@@ -16,42 +17,55 @@ function sanitizarSucursalInput(req, res, next) {
     next();
 }
 async function findAll(req, res) {
-    return res.json({ data: await repository.findAll() });
+    try {
+        const sucursales = await em.find(Sucursal, {}, { populate: ['localidad', 'torneos'] });
+        res.status(200).json({ message: 'found all sucursales', data: sucursales });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function findOne(req, res) {
-    const id = req.params.id;
-    const sucursal = await repository.findOne({ id });
-    if (!sucursal) {
-        return res.status(404).send({ message: 'ID incorrecto, no existe ninguna sucursal con el ID indicado' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const sucursal = await em.findOneOrFail(Sucursal, { id }, { populate: ['localidad', 'torneos'] });
+        res.status(200).json({ message: 'found sucursal', data: sucursal });
     }
-    else {
-        return res.json({ data: sucursal });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 async function add(req, res) {
-    const input = req.body.sanitizarSuc;
-    const sucursalInput = new Sucursal(input.nombre_sucursal, input.localidad, input.id);
-    const sucursal = await repository.add(sucursalInput);
-    return res.status(201).send({ message: 'Sucursal caragada correctamente', data: sucursal });
+    try {
+        const sucursal = em.create(Sucursal, req.body);
+        await em.flush();
+        res.status(200).json({ message: 'sucursal created', data: sucursal });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function update(req, res) {
-    req.body.sanitizarSuc.id = req.params.id;
-    const sucursal = await repository.update(req.params.id, req.body.sanitizarSuc);
-    if (!sucursal) {
-        return res.status(404).send({ message: 'ID incorrecto, no existe ninguna sucursal con el ID indicado' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const sucursal = em.findOneOrFail(Sucursal, id);
+        em.assign(Sucursal, req.body);
+        await em.flush();
+        res.status(200).json({ message: 'sucursal updated', data: sucursal });
     }
-    else {
-        return res.status(200).send({ message: 'Sucursal modificada correctamente', data: sucursal });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 async function remove(req, res) {
-    const id = req.params.id;
-    const sucursal = await repository.delete({ id });
-    if (!sucursal) {
-        return res.status(404).send({ message: 'ID incorrecto, no existe ninguna sucursal con el ID indicado' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const sucursal = em.getReference(Sucursal, id);
+        await em.removeAndFlush(sucursal);
+        res.status(200).json({ message: 'sucursal removed' });
     }
-    else {
-        return res.status(200).send({ message: 'Sucursal borrada correctamente' });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 export { sanitizarSucursalInput, findAll, findOne, add, update, remove };

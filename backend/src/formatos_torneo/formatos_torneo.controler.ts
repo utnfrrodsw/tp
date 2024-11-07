@@ -1,15 +1,16 @@
 import { Request, NextFunction, Response } from 'express';
-import {Formatos_torneoRepository} from './formatos_torneo.Repository.js';
-import { formatos_torneo } from './formatos_torneo.entity.js';
+import { Formatos_torneo } from './formatos_torneo.entity.js';
+import { orm } from '../shared/db/orm.js';
 
-const repository = new Formatos_torneoRepository()
+const em = orm.em
 
 function sanitizeFormatoInput(req: Request, res: Response , next: NextFunction){
     req.body.sanitizedInput = {
         cant_grupos: req.body.cant_grupos,
         cant_equipos_x_grupo: req.body.cant_equipos_x_grupo,
         cant_clasificados_x_grupo: req.body.cant_clasificados_x_grupo,
-        id: req.body.id
+        id: req.body.id,
+        torneos: req.body.torneos
 
       }
 
@@ -22,46 +23,55 @@ function sanitizeFormatoInput(req: Request, res: Response , next: NextFunction){
 }
 
 async function findAll(req: Request ,res: Response){
-  return res.json({data: await repository.findAll()});
+  try{
+    const formatos_torneo = await em.find(Formatos_torneo, {}, {populate: ['torneos']})
+    res.status(200).json({message: 'found all formatos_torneo', data: formatos_torneo})
+  }catch (error: any){
+      res.status(500).json({message: error.message})
+  }
 }
 
 async function findOne(req: Request,res: Response ){
-  const id = req.params.id
-  const formato_torneo = await repository.findOne({id})
-  if (!formato_torneo) {
-      res.status(404).send({message:'ID incorrecto, no existe ningun formato de torneo con el ID indicado' });
-  } else {
-  return res.json({data: formato_torneo})
-  }
+  try{
+    const id = Number.parseInt(req.params.id)
+    const formato_torneo = await em.findOneOrFail(Formatos_torneo, {id},{populate: ['torneos']})
+    res.status(200).json({message: 'found formato_torneo', data: formato_torneo})
+}catch (error: any){
+    res.status(500).json({message: error.message})
+}
 }
 
 async function add(req: Request,res: Response){
-    const input = req.body.sanitizedInput
-
-    const nuevoFormato = new formatos_torneo (input.cant_grupos, input.cant_equipos_x_grupo, input.cant_clasificados_x_grupo, input.id)
-    const formato_nuevo = await repository.add(nuevoFormato)
-    return res.status(201).send({message: 'Formato de torneo caragado correctamente', data: formato_nuevo })
+  try{
+    const formato_torneo = em.create(Formatos_torneo, req.body)
+    await em.flush()
+    res.status(200).json({message: 'formato_torneo created', data: formato_torneo})
+}catch (error: any){
+    res.status(500).json({message: error.message})
+}
   }
 
 async function update(req: Request,res: Response){
-  req.body.sanitizedInput.id = req.params.id
-  const formato = await repository.update(req.body.sanitizedInput.id, req.body.sanitizedInput)
-
-    if (!formato) {
-      return res.status(404).send({ message: 'Formato de torneo no encontrado' })
-    }else{
-
-    return res.status(200).send({ message: 'Formato de torneo actualizado correctamente', data: formato})
-}}
+  try{
+    const id = Number.parseInt(req.params.id)
+    const formato_torneo = em.findOneOrFail(Formatos_torneo, id)
+    em.assign(Formatos_torneo, req.body)
+    await em.flush()
+    res.status(200).json({message: 'formato_torneo updated', data: formato_torneo})
+}catch (error: any){
+    res.status(500).json({message: error.message})
+}
+}
 
 async function remove(req: Request,res: Response){
-  const id = req.params.id
-  const formato_torneo = await repository.delete({id})
-
-if (!formato_torneo) {
-  return res.status(404).send({ message: 'Formato de torneo no encontrado' })
-} else {
-  return res.status(200).send({ message: 'Formato de torneo eliminado correctamente' })
-}}
+  try{
+    const id = Number.parseInt(req.params.id)
+    const formato_torneo = em.getReference(Formatos_torneo, id)
+    await em.removeAndFlush(formato_torneo)
+    res.status(200).json({message: 'formato_torneo removed'})
+}catch (error: any){
+    res.status(500).json({message: error.message})
+}
+}
 
 export {sanitizeFormatoInput, findAll, findOne, add, remove, update}

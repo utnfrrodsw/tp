@@ -1,9 +1,21 @@
+import { Collection, Entity, ManyToMany, ManyToOne, PrimaryKey, Property, Rel, } from "@mikro-orm/core"
+import { Torneo } from "../torneo/torneo.entity.js"
+import { Equipo } from "../equipo/equipo.entity.js"
+
+@Entity()
 export class Partido{
-    constructor(
-        public fecha: string,
-        public torneo: string,
-        public equipo1: string,
-        public equipo2: string,
-        public id: string
-    ){}
+
+    @Property({nullable: false})
+    fecha!: string
+
+    @PrimaryKey({unique: true})
+    id!: number
+    
+    @ManyToOne(() => Torneo)
+    torneo!: Rel<Torneo>;
+
+    @ManyToMany(() => Equipo, equipo => equipo.partidos)
+    equipos = new Collection<Equipo>(this)
+    
 }
+

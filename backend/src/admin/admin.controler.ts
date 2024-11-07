@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { AdminsRepository } from "./admin.repository.js";
 import { Admin } from "./admin.entity.js";
+import { orm } from "../shared/db/orm.js";
 
-const repository = new AdminsRepository()
+const em = orm.em
 
 function sanitizarAdminInput(req: Request, res: Response, next: NextFunction){
 
@@ -13,7 +13,8 @@ function sanitizarAdminInput(req: Request, res: Response, next: NextFunction){
         apellido: req.body.apellido,
         mail: req.body.mail,
         fecha_nacimiento: req.body.fecha_nacimiento,
-        id: req.body.id
+        id: req.body.id,
+        torneos: req.body.torneos
 
     }
 
@@ -27,52 +28,55 @@ function sanitizarAdminInput(req: Request, res: Response, next: NextFunction){
 }
 
 async function findAll(req: Request,res: Response){
-    return res.json({data: await repository.findAll()})
+    try{
+        const admins = await em.find(Admin, {}, {populate: ['torneos']})
+        res.status(200).json({message: 'found all admins', data: admins})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function findOne(req: Request,res: Response){
-    const id = req.params.id
-    const admin = await repository.findOne({id})
-    if(!admin){
-        return res.status(404).send({message:'ID incorrecto, no existe ninguna admin con el ID indicado' })
-    }else{
-    return res.json({data: admin})
+    try{
+        const id = Number.parseInt(req.params.id)
+        const admin = await em.findOneOrFail(Admin, {id},{populate: ['torneos']})
+        res.status(200).json({message: 'found admin', data: admin})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
     }
 }
 
 async function add(req: Request,res: Response){
-    const input = req.body.sanitizarAdm
-    
-    const adminInput = new Admin ( 
-        input.nombre, 
-        input.contraseña, 
-        input.apellido, 
-        input.mail, 
-        input.fecha_nacimiento, 
-        input.id)
-    
-    const admin = await repository.add(adminInput)
-    return res.status(201).send({message: 'Admin caragado correctamente', data: admin })
+    try{
+        const admin = em.create(Admin, req.body)
+        await em.flush()
+        res.status(200).json({message: 'admin created', data: admin})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function update(req: Request,res: Response){
-    req.body.sanitizarAdm.id = req.params.id
-    const admin = await repository.update(req.params.id, req.body.sanitizarAdm)
-    
-    if(!admin){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún admin con el ID indicado' })
-    }else{
-        return res.status(200).send({message: 'Admin modificado correctamente', data: admin})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const admin = em.findOneOrFail(Admin, id)
+        em.assign(Admin, req.body)
+        await em.flush()
+        res.status(200).json({message: 'admin updated', data: admin})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 async function remove(req: Request,res: Response){
-    const id = req.params.id
-    const admin = await repository.delete({id})
-
-    if(!admin){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún admin con el ID indicado' })
-    }else{
-    return res.status(200).send({message: 'Admin borrado correctamente'})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const admin = em.getReference(Admin, id)
+        await em.removeAndFlush(admin)
+        res.status(200).json({message: 'admin removed'})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 export {sanitizarAdminInput, findAll, findOne, add, update, remove}

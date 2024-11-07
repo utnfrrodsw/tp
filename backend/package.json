@@ -22,10 +22,12 @@
   "dependencies": {
     "@angular/platform-server": "^18.1.2",
     "@angular/ssr": "^18.1.2",
+    "@mikro-orm/core": "6.3.13",
+    "@mikro-orm/mysql": "6.3.13",
+    "@mikro-orm/sql-highlighter": "1.0.1",
     "@types/cors": "^2.8.17",
     "cors": "^2.8.5",
     "express": "4.19.2",
-    "mongodb": "6.8.0",
-    "mysql2": "3.11.0"
+    "reflect-metadata": "0.2.2"
   }
 }

@@ -12,16 +12,17 @@ Content-Type: application/json
 
 {
     "nombre_torneo": "F5 Torneo",
-    "fecha_inico_insc": ":(",
-    "fecha_fin_insc": ":)",
-    "fecha_inicio_torneo": "22/06/2024",
-    "fecha_fin_torneo": "27/07/2024",
-    "estado_tor": 1,
-    "ganador": "Yuliana",
-    "formato": 1,
+    "fecha_inico_insc": "18/03/2024",
+    "fecha_fin_insc": "28/03/2024",
+    "fecha_inicio_torneo": "22/04/2024",
+    "fecha_fin_torneo": "27/05/2024",
+    "ganador": "",
+    "equipos": [],
+    "partidos": [],
+    "estado_torneo": 1,
+    "formato_torneo": 1,
     "sucursal": 1,
-    "nro_adm": 2,
-    "id": 1
+    "admin": 2
 }
 
 

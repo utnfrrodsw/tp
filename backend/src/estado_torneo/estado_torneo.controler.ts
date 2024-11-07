@@ -1,13 +1,14 @@
 import { Request, Response, NextFunction } from 'express'
-import { estado_torneoRepository } from './estado_torneo.repository.js'
-import { estado_torneo} from './estado_torneo.entity.js'
+import { Estado_torneo} from './estado_torneo.entity.js'
+import { orm } from '../shared/db/orm.js'
 
-const repository = new estado_torneoRepository()
+const em = orm.em
 
 function sanitizedEstadoInput(req: Request, res: Response, next: NextFunction) {
     req.body.sanitizedInput = {
         id: req.body.id,
         nombre_estado: req.body.nombre_estado,
+        torneos: req.body.torneos
     }
 
     //Acá irían las validaciones de datos...
@@ -20,50 +21,54 @@ function sanitizedEstadoInput(req: Request, res: Response, next: NextFunction) {
 }
 
 async function findAll(req: Request, res: Response) {
-    return res.json({ data: await repository.findAll() })
+    try{
+        const estados_torneo = await em.find(Estado_torneo, {}, {populate: ['torneos']})
+        res.status(200).json({message: 'found all estados_torneo', data: estados_torneo})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function findOne(req: Request, res: Response) {
-    const id = req.params.id
-    const estado_torneo = await repository.findOne({ id })
-    if (!estado_torneo) {
-        res.status(404).send({ message: 'No se encontro el estado' })
-    }else{
-    res.json({ data: estado_torneo })
+    try{
+        const id = Number.parseInt(req.params.id)
+        const estado_torneo = await em.findOneOrFail(Estado_torneo, {id},{populate: ['torneos']})
+        res.status(200).json({message: 'found estado_torneo', data: estado_torneo})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
     }
 }
 
 async function add(req: Request, res: Response) {
-    const input = req.body.sanitizedInput
-
-    const nuevoEstadoInput = new estado_torneo (
-    input.nombre_estado,
-    input.id
-    )
-
-    const nuevo_estado = await repository.add(nuevoEstadoInput)
-    res.status(201).send({ message: 'Se creo el estado del torneo', data: nuevo_estado })
+    try{
+        const estado_torneo = em.create(Estado_torneo, req.body)
+        await em.flush()
+        res.status(200).json({message: 'estado_torneo created', data: estado_torneo})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function update(req: Request, res: Response) {
-    req.body.sanitizedInput.id = req.params.id
-    const estado = await repository.update(req.params.id, req.body.sanitizedInput)
-
-    if (!estado) {
-        return res.status(404).send({ message: 'no se encontro el estado indicado' })
-    } else {
-        return res.status(200).send({ message: 'el estado se actualizo correctamente', data: estado })
+    try{
+        const id = Number.parseInt(req.params.id)
+        const estado_torneo = em.findOneOrFail(Estado_torneo, id)
+        em.assign(Estado_torneo, req.body)
+        await em.flush()
+        res.status(200).json({message: 'estado_torneo updated', data: estado_torneo})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
     }
 }
 
 async function remove(req: Request, res: Response) {
-    const id = req.params.id
-    const estado_torneo = await repository.delete({ id })
-
-    if (!estado_torneo) {
-        res.status(404).send({ message: 'no se encontro el estado indicado' })
-    } else {
-    res.status(200).send({ message: 'el estado se borro correctamente' })
+    try{
+        const id = Number.parseInt(req.params.id)
+        const estado_torneo = em.getReference(Estado_torneo, id)
+        await em.removeAndFlush(estado_torneo)
+        res.status(200).json({message: 'estado_torneo removed'})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
     }
 }
 

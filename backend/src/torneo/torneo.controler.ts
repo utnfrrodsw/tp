@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { TorneosRepository } from "./torneo.repository.js";
 import { Torneo } from "./torneo.entity.js";
+import { orm } from "../shared/db/orm.js";
 
-const repository = new TorneosRepository()
+const em = orm.em
 
 function sanitizarTorneoInput(req: Request, res: Response, next: NextFunction){
 
@@ -14,10 +14,13 @@ function sanitizarTorneoInput(req: Request, res: Response, next: NextFunction){
         fecha_fin_torneo: req.body.fecha_fin_torneo,
         estado_tor: req.body.estado_tor,
         ganador: req.body.ganador,
-        formato: req.body.formato,
-        sucursal: req.body.sucursal,
-        nro_adm: req.body.nro_adm,
-        id: req.body.id
+        id: req.body.id,
+        equipos: req.body.equipos,
+        partidos: req.body.partidos,
+        admin: req.body.admin,
+        torneo: req.body.torneo,
+        estado_torneo: req.body.estado_torneo,
+        formato_torneo: req.body.formato_torneo
     }
 
     //Acá irían las validaciones de datos...
@@ -30,57 +33,55 @@ function sanitizarTorneoInput(req: Request, res: Response, next: NextFunction){
 }
 
 async function findAll(req: Request,res: Response){
-    return res.json({data: await repository.findAll()})
+    try{
+        const torneos = await em.find(Torneo, {}, {populate: ['equipos', 'partidos','admin','sucursal','estado_torneo','formato_torneo']})
+        res.status(200).json({message: 'found all torneos', data: torneos})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function findOne(req: Request,res: Response){
-    const id = req.params.id
-    const torneo = await repository.findOne({id})
-    if(!torneo){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún torneo con el ID indicado' })
-    }else{
-    return res.json({data: torneo})
+    try{
+        const id = Number.parseInt(req.params.id)
+        const torneo = await em.findOneOrFail(Torneo, {id},{populate: ['equipos', 'partidos','admin','sucursal','estado_torneo','formato_torneo']})
+        res.status(200).json({message: 'found torneo', data: torneo})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
     }
 }
 
 async function add(req: Request,res: Response){
-    const input = req.body.sanitizarTor
-    
-    const torneoInput = new Torneo (
-        input.nombre_torneo, 
-        input.fecha_inico_insc, 
-        input.fecha_fin_insc, 
-        input.fecha_inicio_torneo, 
-        input.fecha_fin_torneo, 
-        input.estado_tor, 
-        input.ganador, 
-        input.formato, 
-        input.sucursal,
-        input.nro_adm,
-        input.id)
-    
-    const torneo = await repository.add(torneoInput)
-    return res.status(201).send({message: 'Torneo caragado correctamente', data: torneo })
+    try{
+        const torneo = em.create(Torneo, req.body)
+        await em.flush()
+        res.status(200).json({message: 'torneo created', data: torneo})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function update(req: Request,res: Response){
-    req.body.sanitizarTor.id = req.params.id
-    const torneo = await repository.update(req.params.id, req.body.sanitizarTor)
-    
-    if(!torneo){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún torneo con el ID indicado' })
-    }else{
-        return res.status(200).send({message: 'Torneo modificado correctamente', data: torneo})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const torneo = em.findOneOrFail(Torneo, id)
+        em.assign(Torneo, req.body)
+        await em.flush()
+        res.status(200).json({message: 'torneo updated', data: torneo})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 async function remove(req: Request,res: Response){
-    const id = req.params.id
-    const torneo = await repository.delete({id})
-
-    if(!torneo){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún torneo con el ID indicado' })
-    }else{
-    return res.status(200).send({message: 'Torneo borrado correctamente'})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const torneo = em.getReference(Torneo, id)
+        await em.removeAndFlush(torneo)
+        res.status(200).json({message: 'torneo removed'})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 export {sanitizarTorneoInput, findAll, findOne, add, update, remove}

@@ -11,13 +11,9 @@ POST http://localhost:3000/api/equipos
 Content-Type: application/json
 
 {
-    "jugador1": 1,
-    "jugador2": 2,
-    "jugador3": 3,
-    "jugador4": 4,
-    "jugador5": 5,
-    "torneo": 1,
-    "id": 1
+    "participantes": [],
+    "partidos": [],
+    "torneo": 2
 }
 
 
@@ -26,9 +22,9 @@ PUT http://localhost:3000/api/equipos/1
 Content-Type: application/json
 
 {
-    "jugador2": 6,
-    "jugador3": 7,
-    "jugador5": 8
+    "participantes": [],
+    "partidos": [],
+    "torneo": 1
 }
 
 

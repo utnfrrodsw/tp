@@ -1,10 +1,10 @@
-import { tipo_participanteRepository } from './tipo_participante.repository.js';
 import { Tipo_participante } from './tipo_participante.entity.js';
-const repository = new tipo_participanteRepository();
+import { orm } from '../shared/db/orm.js';
+const em = orm.em;
 function sanitizeTipo_participanteInput(req, res, next) {
     req.body.sanitizedInput = {
         posicion: req.body.posicion,
-        tipo_participanteClass: req.body.tipo_participanteClass,
+        participantes: req.body.participantes,
         id: req.body.id
     };
     //Acá irían las validaciones de datos...
@@ -16,38 +16,55 @@ function sanitizeTipo_participanteInput(req, res, next) {
     next();
 }
 async function findAll(req, res) {
-    res.json({ data: await repository.findAll() });
+    try {
+        const tipos_participante = await em.find(Tipo_participante, {}, { populate: ['participantes'] });
+        res.status(200).json({ message: 'found all tipos_participante', data: tipos_participante });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function findOne(req, res) {
-    const id = req.params.id;
-    const tipo_participante = await repository.findOne({ id });
-    if (!tipo_participante) {
-        return res.status(404).send({ message: 'Character not found' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const tipo_participante = await em.findOneOrFail(Tipo_participante, { id }, { populate: ['participantes'] });
+        res.status(200).json({ message: 'found tipo_participante', data: tipo_participante });
     }
-    return res.json({ data: tipo_participante });
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function add(req, res) {
-    const input = req.body.sanitizedInput;
-    const tipo_participanteInput = new Tipo_participante(input.posicion, input.id);
-    const tipo_participante = await repository.add(tipo_participanteInput);
-    return res.status(201).send({ message: 'tipo_participante ha sido creado correctamente', data: tipo_participante });
+    try {
+        const tipo_participante = em.create(Tipo_participante, req.body);
+        await em.flush();
+        res.status(200).json({ message: 'tipo_participante created', data: tipo_participante });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function update(req, res) {
-    req.body.sanitizedInput.id = req.params.id;
-    const tipo_participante = await repository.update(req.params.id, req.body.sanitizedInput);
-    if (!tipo_participante) {
-        return res.status(404).send({ message: 'tipo_participante not found' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const tipo_participante = em.findOneOrFail(Tipo_participante, id);
+        em.assign(Tipo_participante, req.body);
+        await em.flush();
+        res.status(200).json({ message: 'tipo_participante updated', data: tipo_participante });
     }
-    return res.status(200).send({ message: 'tipo_participante updated successfully', data: tipo_participante });
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function remove(req, res) {
-    const id = req.params.id;
-    const tipo_participante = await repository.delete({ id });
-    if (!tipo_participante) {
-        res.status(404).send({ message: 'tipo_participante not found' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const tipo_participante = em.getReference(Tipo_participante, id);
+        await em.removeAndFlush(tipo_participante);
+        res.status(200).json({ message: 'tipo_participante removed' });
     }
-    else {
-        res.status(200).send({ message: 'tipo_participante deleted successfully' });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 export { sanitizeTipo_participanteInput, findAll, findOne, add, update, remove };

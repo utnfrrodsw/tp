@@ -1,0 +1,63 @@
+.barraNavegacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: #000; 
+}
+
+.linksBarra {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.linksBarra a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.linksBarra a:hover {
+    color: #bbbbbb; 
+}
+
+.btnBarra {
+    display: flex;
+    gap: 1rem;
+}
+
+.login,
+.registro {
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.login {
+    background-color: white;
+    color: black;
+    border-radius: 4px;
+}
+
+.login a{
+    text-decoration: black;
+    color: black;
+}
+
+.registro a{
+    text-decoration: black;
+    color: black;
+}
+
+.registro {
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 4px;
+}
+
+.login:hover,
+.registro:hover {
+    opacity: 0.8;
+}
