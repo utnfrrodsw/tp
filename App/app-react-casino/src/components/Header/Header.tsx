@@ -1,11 +1,11 @@
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as Link, useNavigate } from 'react-router-dom';
 
 import { LogIn } from '../index.js'
 import { BalanceModal } from './BalanceModal/BalanceModal.js';
 
-//import { IoPersonSharp } from "react-icons/io5";
-//import { FiLogOut } from "react-icons/fi";
-//import { MdLeaderboard } from "react-icons/md";
+import { IoPersonSharp } from "react-icons/io5";
+import { FiLogOut } from "react-icons/fi";
+import { MdLeaderboard } from "react-icons/md";
 
 import { useState } from 'react';
 import HeaderToggle from './HeaderToggle/HeaderToggle.js';
@@ -25,9 +25,8 @@ interface HeaderProps {
 export function Header({ balance, profile, role, username, setMoney, idUser }: HeaderProps) {
     const [modalOpen, setModalOpen] = useState(false);
     const [open, setMenuOpen] = useState(false);
-    //let navigate = useNavigate()
-
-
+    let navigate = useNavigate()
+    const [isActive, setIsActive] = useState(true)
 
     const toggleMenu = () => {
         setMenuOpen(!open);
@@ -37,14 +36,14 @@ export function Header({ balance, profile, role, username, setMoney, idUser }: H
         setModalOpen(false);
     };
     
-    /* const handleLogout = () => {
+    const handleLogout = () => {
         const tokenLogout = localStorage.getItem('jwt-token');
         if(tokenLogout){
             localStorage.removeItem('jwt-token'); 
             navigate('/'); 
             window.location.reload();
         }
-    }; */
+    };
 
     if (role === 'user') {
         return (
@@ -98,26 +97,11 @@ export function Header({ balance, profile, role, username, setMoney, idUser }: H
     }
     else {
         return (
-            <header className='header'>
-                {modalOpen && <LogIn onClose={handleModalClose} />}
-                <nav className='nav'>
-                    <Link to="/"><img className='spinner' src="./src/assets/images/min_icon3.png" alt='Imagen Ruleta' /></Link>
-                    <div className='header-content'>
-                        <div className='space-x-10'>
-                            <Link to="/about-us" className="nav-item">About Us</Link>
-                            <button className='gold-button' onClick={() => setModalOpen(true)}>LogIn</button>
-                        </div>
-                    </div>
-                </nav>
-            </header>
-        );
-    }
-}
-
-
-/* 
-<header className='header-responsive'>            
+            <>
+            <button onClick={() => setIsActive(!isActive)} className={isActive ? "invisible mobile-button" : "mobile-button"}>soy el boton del header</button>
+            <header className={isActive ? "header-responsive" : "header-responsive invisible"}>            
                     <div className='nav-responsive'>
+                    <button onClick={() => setIsActive(!isActive)}>hola</button>
                     <Link to="/"><img className='spinner spinner-responsive' src="./src/assets/images/min_icon3.png" alt='Imagen Ruleta' /></Link>
                             <a onClick={() => setModalOpen(true)} className='balance balance-responsive'>
                                     $ {balance} <img className='balance-img' src="../../src/assets/images/mp-logo-color.png" alt="" />
@@ -144,4 +128,20 @@ export function Header({ balance, profile, role, username, setMoney, idUser }: H
                             </div>
                     </div>
                 </header>
-*/
+                <header className='header'>
+                {modalOpen && <LogIn onClose={handleModalClose} />}
+                <nav className='nav'>
+                    <Link to="/"><img className='spinner' src="./src/assets/images/min_icon3.png" alt='Imagen Ruleta' /></Link>
+                    <div className='header-content'>
+                        <div className='space-x-10'>
+                            <Link to="/about-us" className="nav-item">About Us</Link>
+                            <button className='gold-button' onClick={() => setModalOpen(true)}>LogIn</button>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            </>
+        );
+    }
+}
+
