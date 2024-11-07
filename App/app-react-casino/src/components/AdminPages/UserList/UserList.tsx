@@ -49,7 +49,7 @@ export function UserList({role}: parameters) {
 
     function DeleteUser(id:number) {
         axios.delete(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then(() =>
-            location.href = '/userlist'
+            navigate("/")
         );
     };
 
