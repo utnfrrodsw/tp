@@ -49,6 +49,8 @@ export function EditUser({role}:UserType) {
     function patchUser() {
         if (!form.current) return; 
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
+            token,
+            role,
             first_name: form.current.first_name.value,
             last_name: form.current.last_name.value,
             phone: form.current.phone.value,
