@@ -7,14 +7,18 @@ import { toast } from 'sonner';
 interface UserType {
     id_user: number;
     username: string;
-    role: string;
     email: string;
+    role: string;
     balance: number;
+}
+
+interface parameters {
+    role: string;
 }
 
 
 
-export function UserList({role}: UserType) {
+export function UserList({role}: parameters) {
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
@@ -45,7 +49,7 @@ export function UserList({role}: UserType) {
 
     function DeleteUser(id:number) {
         axios.delete(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then(() =>
-            location.reload()
+            location.href = '/userlist'
         );
     };
 

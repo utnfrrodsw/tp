@@ -14,7 +14,11 @@ interface UserType {
     role: string;
 }
 
-export function Leaderboard({role}:UserType) {
+interface parameters {
+    role: string;
+}
+
+export function Leaderboard({role}:parameters) {
     const [user, setUser] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);

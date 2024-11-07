@@ -12,7 +12,12 @@ interface UserType {
     balance: string;
     role:string;
 }
-export function EditUser({role}:UserType) {
+
+interface parameters {
+    role: string;
+}
+
+export function EditUser({role}:parameters) {
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
@@ -67,6 +72,10 @@ export function EditUser({role}:UserType) {
         });
     }
 
+    function back() {
+        navigate("/userlist")
+    }
+
     function defaultValues() {
         if (!user) return; 
         setFirstName(user.first_name);
@@ -110,7 +119,7 @@ export function EditUser({role}:UserType) {
             <div className='formButtons'>
                 <button type='button' className='formSubmit' onClick={patchUser}>Update</button>
                 <button type='button' onClick={defaultValues} className='formSubmit'>Default Values</button>
-                <Link to="/" className="back">Back</Link>
+                <button type='button' className='back' onClick={back}>Back</button>
             </div>
         </div>
     );

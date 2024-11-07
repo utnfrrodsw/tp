@@ -60,7 +60,7 @@ export function Wheel(user:User) {
         role,
         balance: `${newMoney}`,
     })
-    .then(() => {
+    .then((response) => {
       console.log(response);
     })
     .catch((error) => {

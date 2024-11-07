@@ -2,7 +2,7 @@ import axios from 'axios';
 import './Details.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { NavLink as Link } from 'react-router-dom'
+import { NavLink as Link, useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router-dom'
 
 interface UserType {
@@ -13,6 +13,8 @@ export function Details({role}:UserType) {
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
+
+    let navigate = useNavigate()
 
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
@@ -44,6 +46,10 @@ export function Details({role}:UserType) {
         GetData();
     }, []);
 
+    function back() {
+        navigate("/userlist")
+    }
+
     return (
         
         <>
@@ -57,7 +63,7 @@ export function Details({role}:UserType) {
                 <p className='detail_element'>Phone: {phone}</p>
                 <p className='detail_element'>Balance: {balance}</p>
                 <p className='detail_element'>Country: {country}</p>
-                <Link to="/" className="backDetails">Back</Link>
+                <button type='button' className='backDetails' onClick={back}>Back</button>
             </div>
         </>
 
