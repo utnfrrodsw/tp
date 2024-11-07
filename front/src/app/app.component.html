@@ -1,39 +1,24 @@
-<div>
-    <app-estado-torneo></app-estado-torneo>
-</div>
-
-<div>
-    <app-localidades></app-localidades>
-</div>
-
-<div>
-    <app-formatos-torneo></app-formatos-torneo>
-</div>
-
-<div>
-    <app-tipo-participante></app-tipo-participante>
-</div>
-
-<div>
-    <app-partido></app-partido>
-</div>
-
-<div>
-    <app-participante></app-participante>
-</div>
-
-<div>
-    <app-admin></app-admin>
-</div>
-
-<div>
-    <app-sucursal></app-sucursal>
-</div>
-
-<div>
-    <app-equipo></app-equipo>
-</div>
-
-<div>
-    <app-torneo></app-torneo>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=}, initial-scale=1.0">
+</head>
+<body>
+    <div>
+        <nav class="barraNavegacion">
+            <ul class="linksBarra">
+                <li><a routerLink="inicio">Inicio</a></li>
+                <li><a routerLink="partidos">Partidos</a></li>
+                <li><a routerLink="torneos">Torneos</a></li>
+            </ul>
+            <div class="btnBarra">
+                <button class="login"><a routerLink="/login">Inicia Sesión</a></button>
+                <button class="registro"><a routerLink="/login">Registrarse</a></button>
+            </div>
+        </nav>
+    </div>
+    <router-outlet></router-outlet>
+</body>
+</html>

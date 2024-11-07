@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white; 
+}
+
+.container {
+    display: grid;
+    gap: 20px;
+}
+  
+.finalTorneo {
+    display: flex;
+    gap: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.main-image {
+    width: 50%;
+    border-radius: 10px;
+}
+  
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+  
+.main-content .tag {
+    background-color: #ff007f;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+  
+h2 {
+    margin: 10px 0;
+    font-size: 24px;
+    color: #333;
+}
+  
+p {
+    font-size: 14px;
+    color: #666;
+}
+  
+.source {
+    font-size: 12px;
+    color: #999;
+}
+  
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+  
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+  
+.card img {
+    width: 100%;
+    height: auto;
+}
+  
+.card-content {
+    padding: 15px;
+}
+  
+.card-content .tag {
+    background-color: #ff007f;
+    color: white;
+    padding: 3px 7px;
+    border-radius: 3px;
+    font-size: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+  
+.card p {
+    font-size: 14px;
+    color: #333;
+    margin: 10px 0;
+}
+  
+.card .source {
+    font-size: 12px;
+    color: #999;
+}
+
+.footer {
+    background-color: #f0f1f5;
+    padding: 40px 20px;
+    color: #333;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo img {
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.footer-columns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 180px;
+    margin: 0 10px;
+}
+
+.footer-column h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
+}

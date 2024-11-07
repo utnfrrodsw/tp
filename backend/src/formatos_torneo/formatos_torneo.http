@@ -14,7 +14,7 @@ Content-Type: application/json
   "cant_grupos": 16,
   "cant_equipos_x_grupo": 8,
   "cant_clasificados_x_grupo": 4,
-  "id": 29
+  "torneos": []
 }
 
 ### modificar un formato de torneo (PUT)
@@ -29,4 +29,4 @@ Content-Type: application/json
 
 
 ### eliminar un formato de torneo
-DELETE http://localhost:3000/api/formatos_torneo/23
+DELETE http://localhost:3000/api/formatos_torneo/29

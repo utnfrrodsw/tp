@@ -1,10 +1,37 @@
-export class Partido {
-    constructor(fecha, torneo, equipo1, equipo2, id) {
-        this.fecha = fecha;
-        this.torneo = torneo;
-        this.equipo1 = equipo1;
-        this.equipo2 = equipo2;
-        this.id = id;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+import { Collection, Entity, ManyToMany, ManyToOne, PrimaryKey, Property, } from "@mikro-orm/core";
+import { Torneo } from "../torneo/torneo.entity.js";
+import { Equipo } from "../equipo/equipo.entity.js";
+export let Partido = class Partido {
+    constructor() {
+        this.equipos = new Collection(this);
     }
-}
+};
+__decorate([
+    Property({ nullable: false }),
+    __metadata("design:type", String)
+], Partido.prototype, "fecha", void 0);
+__decorate([
+    PrimaryKey({ unique: true }),
+    __metadata("design:type", Number)
+], Partido.prototype, "id", void 0);
+__decorate([
+    ManyToOne(() => Torneo),
+    __metadata("design:type", Object)
+], Partido.prototype, "torneo", void 0);
+__decorate([
+    ManyToMany(() => Equipo, equipo => equipo.partidos),
+    __metadata("design:type", Object)
+], Partido.prototype, "equipos", void 0);
+Partido = __decorate([
+    Entity()
+], Partido);
 //# sourceMappingURL=partido.entity.js.map

@@ -11,13 +11,13 @@ POST http://localhost:3000/api/participantes
 Content-Type: application/json
 
 {
-    "nombre": "Agustin",
+    "nombre": "Maximo",
     "contraseña": "4669877",
-    "apellido": "Stefanini",
-    "mail": "totostefanini@hotmail.com",
-    "fecha_nacimiento": "18/07/2003",
-    "tipo_par": 9,
-    "id": 1
+    "apellido": "Santilli",
+    "mail": "maxsantilli@gmail.com",
+    "fecha_nacimiento": "dd/mm/yyyy",
+    "equipos": [2],
+    "tipos_par": 1
 }
 
 

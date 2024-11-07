@@ -11,12 +11,12 @@ POST http://localhost:3000/api/admins
 Content-Type: application/json
 
 {
-    "nombre": "Micaela",
-    "contraseña": "4669877",
-    "apellido": "Valle",
-    "mail": "micaelavalle46@gmail.com",
-    "fecha_nacimiento": "17/03/2001",
-    "id": 2
+    "nombre": "Agustin",
+    "contraseña": "44931351",
+    "apellido": "Stefanini",
+    "mail": "agustinstefaninianglia@gmail.com",
+    "fecha_nacimiento": "18/07/2003",
+    "torneo": []
 }
 
 

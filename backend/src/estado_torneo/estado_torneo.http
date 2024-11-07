@@ -11,7 +11,8 @@ Content-Type: application/json
 
 {
   "nombre_estado": "En curso",
-  "id": 2
+  "torneos": [],
+  "id": 1
 }
 
 ### modificar un estado del torneo

@@ -13,6 +13,8 @@ import { AdminComponent } from './admin/admin.component';
 import { SucursalComponent } from './sucursal/sucursal.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { TorneoComponent } from './torneo/torneo.component';
+import { LoginComponent } from './login/login.component';
+import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { TorneoComponent } from './torneo/torneo.component';
     AdminComponent,
     SucursalComponent,
     EquipoComponent,
-    TorneoComponent
+    TorneoComponent,
+    LoginComponent,
+    PaginaInicioComponent
   ],
   imports: [
     BrowserModule,

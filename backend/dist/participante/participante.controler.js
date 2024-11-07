@@ -1,6 +1,6 @@
-import { ParticipantesRepository } from "./participante.repository.js";
 import { Participante } from "./participante.entity.js";
-const repository = new ParticipantesRepository();
+import { orm } from "../shared/db/orm.js";
+const em = orm.em;
 function sanitizarParticipanteInput(req, res, next) {
     req.body.sanitizarPar = {
         nombre: req.body.nombre,
@@ -8,7 +8,8 @@ function sanitizarParticipanteInput(req, res, next) {
         apellido: req.body.apellido,
         mail: req.body.mail,
         fecha_nacimiento: req.body.fecha_nacimiento,
-        tipo_par: req.body.tipo_par,
+        tipos_par: req.body.tipos_par,
+        equipos: req.body.equipos,
         id: req.body.id
     };
     //Acá irían las validaciones de datos...
@@ -20,42 +21,55 @@ function sanitizarParticipanteInput(req, res, next) {
     next();
 }
 async function findAll(req, res) {
-    return res.json({ data: await repository.findAll() });
+    try {
+        const participantes = await em.find(Participante, {}, { populate: ['tipos_par', 'equipos'] });
+        res.status(200).json({ message: 'found all participantes', data: participantes });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function findOne(req, res) {
-    const id = req.params.id;
-    const participante = await repository.findOne({ id });
-    if (!participante) {
-        return res.status(404).send({ message: 'ID incorrecto, no existe ninguna participante con el ID indicado' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const participante = await em.findOneOrFail(Participante, { id }, { populate: ['tipos_par', 'equipos'] });
+        res.status(200).json({ message: 'found participante', data: participante });
     }
-    else {
-        return res.json({ data: participante });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 async function add(req, res) {
-    const input = req.body.sanitizarPar;
-    const participanteInput = new Participante(input.nombre, input.contraseña, input.apellido, input.mail, input.fecha_nacimiento, input.tipo_par, input.id);
-    const participante = await repository.add(participanteInput);
-    return res.status(201).send({ message: 'Participante caragado correctamente', data: participante });
+    try {
+        const participante = em.create(Participante, req.body);
+        await em.flush();
+        res.status(200).json({ message: 'participante created', data: participante });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function update(req, res) {
-    req.body.sanitizarPar.id = req.params.id;
-    const participante = await repository.update(req.params.id, req.body.sanitizarPar);
-    if (!participante) {
-        return res.status(404).send({ message: 'ID incorrecto, no existe ningún participante con el ID indicado' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const participante = em.findOneOrFail(Participante, id);
+        em.assign(Participante, req.body);
+        await em.flush();
+        res.status(200).json({ message: 'participante updated', data: participante });
     }
-    else {
-        return res.status(200).send({ message: 'Participante modificado correctamente', data: participante });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 async function remove(req, res) {
-    const id = req.params.id;
-    const participante = await repository.delete({ id });
-    if (!participante) {
-        return res.status(404).send({ message: 'ID incorrecto, no existe ningún participante con el ID indicado' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const participante = em.getReference(Participante, id);
+        await em.removeAndFlush(participante);
+        res.status(200).json({ message: 'participante removed' });
     }
-    else {
-        return res.status(200).send({ message: 'Participante borrado correctamente' });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 export { sanitizarParticipanteInput, findAll, findOne, add, update, remove };

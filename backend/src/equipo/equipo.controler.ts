@@ -1,18 +1,15 @@
 import { Request, Response, NextFunction } from "express";
-import { EquiposRepository } from "./equipo.repository.js";
 import { Equipo } from "./equipo.entity.js";
+import { orm } from "../shared/db/orm.js";
 
-const repository = new EquiposRepository()
+const em = orm.em
 
 function sanitizarEquipoInput(req: Request, res: Response, next: NextFunction){
 
     req.body.sanitizarEq = {
 
-        jugador1: req.body.jugador1,
-        jugador2: req.body.jugador2,
-        jugador3: req.body.jugador3,
-        jugador4: req.body.jugador4,
-        jugador5: req.body.jugador5,
+        participantes: req.body.participantes,
+        partidos: req.body.partidos,
         torneo: req.body.torneo,
         id: req.body.id
 
@@ -28,53 +25,55 @@ function sanitizarEquipoInput(req: Request, res: Response, next: NextFunction){
 }
 
 async function findAll(req: Request,res: Response){
-    return res.json({data: await repository.findAll()})
+    try{
+        const equipos = await em.find(Equipo, {}, {populate: ['participantes','partidos','torneo']})
+        res.status(200).json({message: 'found all equipos', data: equipos})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function findOne(req: Request,res: Response){
-    const id = req.params.id
-    const equipo = await repository.findOne({id})
-    if(!equipo){
-        return res.status(404).send({message:'ID incorrecto, no existe ninguna equipo con el ID indicado' })
-    }else{
-    return res.json({data: equipo})
+    try{
+        const id = Number.parseInt(req.params.id)
+        const equipo = await em.findOneOrFail(Equipo, {id},{populate: ['participantes','partidos','torneo']})
+        res.status(200).json({message: 'found equipo', data: equipo})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
     }
 }
 
 async function add(req: Request,res: Response){
-    const input = req.body.sanitizarEq
-    
-    const equipoInput = new Equipo ( 
-        input.jugador1, 
-        input.jugador2, 
-        input.jugador3, 
-        input.jugador4, 
-        input.jugador5, 
-        input.torneo,
-        input.id)
-    
-    const equipo = await repository.add(equipoInput)
-    return res.status(201).send({message: 'Equipo caragado correctamente', data: equipo })
+    try{
+        const equipo = em.create(Equipo, req.body)
+        await em.flush()
+        res.status(200).json({message: 'equipo created', data: equipo})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function update(req: Request,res: Response){
-    req.body.sanitizarEq.id = req.params.id
-    const equipo = await repository.update(req.params.id, req.body.sanitizarEq)
-    
-    if(!equipo){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún equipo con el ID indicado' })
-    }else{
-        return res.status(200).send({message: 'Equipo modificado correctamente', data: equipo})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const equipo = em.findOneOrFail(Equipo, id)
+        em.assign(Equipo, req.body)
+        await em.flush()
+        res.status(200).json({message: 'equipo updated', data: equipo})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 async function remove(req: Request,res: Response){
-    const id = req.params.id
-    const equipo = await repository.delete({id})
-
-    if(!equipo){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún equipo con el ID indicado' })
-    }else{
-    return res.status(200).send({message: 'Equipo borrado correctamente'})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const equipo = em.getReference(Equipo, id)
+        await em.removeAndFlush(equipo)
+        res.status(200).json({message: 'equipo removed'})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 export {sanitizarEquipoInput, findAll, findOne, add, update, remove}

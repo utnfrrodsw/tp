@@ -1,12 +1,11 @@
-import { PartidosRepository } from "./partido.repository.js";
 import { Partido } from "./partido.entity.js";
-const repository = new PartidosRepository();
+import { orm } from "../shared/db/orm.js";
+const em = orm.em;
 function sanitizarPartidoInput(req, res, next) {
     req.body.sanitizarEq = {
         fecha: req.body.fecha,
         torneo: req.body.torneo,
-        equipo1: req.body.equipo1,
-        equipo2: req.body.equipo2,
+        equipos: req.body.equipos,
         id: req.body.id
     };
     //Acá irían las validaciones de datos...
@@ -18,42 +17,55 @@ function sanitizarPartidoInput(req, res, next) {
     next();
 }
 async function findAll(req, res) {
-    return res.json({ data: await repository.findAll() });
+    try {
+        const partidos = await em.find(Partido, {}, { populate: ['torneo', 'equipos'] });
+        res.status(200).json({ message: 'found all partidos', data: partidos });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function findOne(req, res) {
-    const id = req.params.id;
-    const partido = await repository.findOne({ id });
-    if (!partido) {
-        return res.status(404).send({ message: 'ID incorrecto, no existe ninguna partido con el ID indicado' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const partido = await em.findOneOrFail(Partido, { id }, { populate: ['torneo', 'equipos'] });
+        res.status(200).json({ message: 'found partido', data: partido });
     }
-    else {
-        return res.json({ data: partido });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 async function add(req, res) {
-    const input = req.body.sanitizarEq;
-    const partidoInput = new Partido(input.fecha, input.torneo, input.equipo1, input.equipo2, input.id);
-    const partido = await repository.add(partidoInput);
-    return res.status(201).send({ message: 'Partido caragado correctamente', data: partido });
+    try {
+        const partido = em.create(Partido, req.body);
+        await em.flush();
+        res.status(200).json({ message: 'partido created', data: partido });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function update(req, res) {
-    req.body.sanitizarEq.id = req.params.id;
-    const partido = await repository.update(req.params.id, req.body.sanitizarEq);
-    if (!partido) {
-        return res.status(404).send({ message: 'ID incorrecto, no existe ningún partido con el ID indicado' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const partido = em.findOneOrFail(Partido, id);
+        em.assign(Partido, req.body);
+        await em.flush();
+        res.status(200).json({ message: 'partido updated', data: partido });
     }
-    else {
-        return res.status(200).send({ message: 'Partido modificado correctamente', data: partido });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 async function remove(req, res) {
-    const id = req.params.id;
-    const partido = await repository.delete({ id });
-    if (!partido) {
-        return res.status(404).send({ message: 'ID incorrecto, no existe ningún partido con el ID indicado' });
+    try {
+        const id = Number.parseInt(req.params.id);
+        const partido = em.getReference(Partido, id);
+        await em.removeAndFlush(partido);
+        res.status(200).json({ message: 'partido removed' });
     }
-    else {
-        return res.status(200).send({ message: 'Partido borrado correctamente' });
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
 export { sanitizarPartidoInput, findAll, findOne, add, update, remove };

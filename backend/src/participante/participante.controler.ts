@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { ParticipantesRepository } from "./participante.repository.js";
 import { Participante } from "./participante.entity.js";
+import { orm } from "../shared/db/orm.js";
 
-const repository = new ParticipantesRepository()
+const em = orm.em
 
 function sanitizarParticipanteInput(req: Request, res: Response, next: NextFunction){
 
@@ -13,7 +13,8 @@ function sanitizarParticipanteInput(req: Request, res: Response, next: NextFunct
         apellido: req.body.apellido,
         mail: req.body.mail,
         fecha_nacimiento: req.body.fecha_nacimiento,
-        tipo_par: req.body.tipo_par,
+        tipos_par: req.body.tipos_par,
+        equipos: req.body.equipos,
         id: req.body.id
 
     }
@@ -28,53 +29,55 @@ function sanitizarParticipanteInput(req: Request, res: Response, next: NextFunct
 }
 
 async function findAll(req: Request,res: Response){
-    return res.json({data: await repository.findAll()})
+    try{
+        const participantes = await em.find(Participante, {}, {populate: ['tipos_par','equipos']})
+        res.status(200).json({message: 'found all participantes', data: participantes})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function findOne(req: Request,res: Response){
-    const id = req.params.id
-    const participante = await repository.findOne({id})
-    if(!participante){
-        return res.status(404).send({message:'ID incorrecto, no existe ninguna participante con el ID indicado' })
-    }else{
-    return res.json({data: participante})
+    try{
+        const id = Number.parseInt(req.params.id)
+        const participante = await em.findOneOrFail(Participante, {id},{populate: ['tipos_par','equipos']})
+        res.status(200).json({message: 'found participante', data: participante})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
     }
 }
 
 async function add(req: Request,res: Response){
-    const input = req.body.sanitizarPar
-    
-    const participanteInput = new Participante ( 
-        input.nombre, 
-        input.contraseña, 
-        input.apellido, 
-        input.mail, 
-        input.fecha_nacimiento, 
-        input.tipo_par,
-        input.id)
-    
-    const participante = await repository.add(participanteInput)
-    return res.status(201).send({message: 'Participante caragado correctamente', data: participante })
+    try{
+        const participante = em.create(Participante, req.body)
+        await em.flush()
+        res.status(200).json({message: 'participante created', data: participante})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
 }
 
 async function update(req: Request,res: Response){
-    req.body.sanitizarPar.id = req.params.id
-    const participante = await repository.update(req.params.id, req.body.sanitizarPar)
-    
-    if(!participante){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún participante con el ID indicado' })
-    }else{
-        return res.status(200).send({message: 'Participante modificado correctamente', data: participante})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const participante = em.findOneOrFail(Participante, id)
+        em.assign(Participante, req.body)
+        await em.flush()
+        res.status(200).json({message: 'participante updated', data: participante})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 async function remove(req: Request,res: Response){
-    const id = req.params.id
-    const participante = await repository.delete({id})
-
-    if(!participante){
-        return res.status(404).send({message:'ID incorrecto, no existe ningún participante con el ID indicado' })
-    }else{
-    return res.status(200).send({message: 'Participante borrado correctamente'})
-}}
+    try{
+        const id = Number.parseInt(req.params.id)
+        const participante = em.getReference(Participante, id)
+        await em.removeAndFlush(participante)
+        res.status(200).json({message: 'participante removed'})
+    }catch (error: any){
+        res.status(500).json({message: error.message})
+    }
+}
 
 export {sanitizarParticipanteInput, findAll, findOne, add, update, remove}
