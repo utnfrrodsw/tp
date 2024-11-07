@@ -151,7 +151,8 @@
 .items-responsive{
     display: grid;
     grid-row: 3;
-
+    margin-top: 10px;
+    gap: 5px;
 }
 
 .items2-responsive{
@@ -162,11 +163,11 @@
 }
 
 .icon-text{
-        display: flex;
-        padding: 0.5rem;
-        align-items: center;
-        text-align: center;
-        gap: 0.5rem;
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
 }
 
 
@@ -184,12 +185,53 @@
     transition: 100ms ease-in-out;
 }
 
-.header-responsive-close{
+.header-responsive-hide {
     display: none;
 }
 
-.invisible {
-    display: none;
+.mobile-button {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    background-color: #F8F8F8;
+    color: var(--black);
+    border-radius: 3px;
+    transform: scale(3);
+    z-index: 10;
+    transition: 100ms ease-in-out;
+}
+
+.mobile-button:hover{
+    transform: scale(3.2);
+    transition: 100ms ease-in-out;
+}
+
+.mobile-button-hide{
+    transform: translateX(100px);
+    display: block;
+    transition: 100ms ease-in-out;
+
+    @starting-style{
+        transform: translateX(0px);
+        display: none;
+        transition: 100ms ease-in-out;
+    }
+}
+
+.close-button-responsive{
+    position: fixed;
+    right: 5%;
+    color: var(--white);
+    background-color: #e6e6be2f;
+    border-radius: 20px;
+    transform: scale(3);
+    z-index: 10;
+    transition: 100ms ease-in-out;
+}
+
+.gold-button-responsive{
+    padding: 10px;
+    margin: 20px 5px 10px 5px
 }
 
 @media only screen and (max-width: 500px) {
@@ -202,4 +244,8 @@
     .header-responsive{
         display: none;
     }
+    .mobile-button{
+        display: none;
+    }
 }
+
