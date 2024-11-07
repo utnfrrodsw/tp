@@ -16,7 +16,7 @@
 La empresa de nuestro trabajo es un supermercado "FAST" que quiere desarrollar una página web para que los clientes puedan realizar pedidos de forma online.
 
 ### Modelo
-![MODELO drawio](https://github.com/user-attachments/assets/02736185-525f-454a-827a-dcd07a5516a6)
+![MODELO FINAL](https://github.com/user-attachments/assets/e054de90-d9a7-47eb-b482-72d6071ff2bd)
 
 ## Alcance Funcional 
 
@@ -35,7 +35,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD TipoProducto<br>2. CRUD Cliente<br>3. CRUD Repartidor<br>4. CRUD Producto<br>5. CRUD Pago<br>6. CRUD Precio<br>7. CRUD LineaProducto<br>8. CRUD Entrega<br>9. CRUD Pedido|
+|CRUD |1. CRUD TipoProducto<br>2. CRUD Cliente<br>3. CRUD Repartidor<br>4. CRUD Producto<br>5. CRUD Pago<br>6. CRUD Precio<br>7. CRUD LineaProducto<br>8. CRUD Entrega<br>9. CRUD Pedido<br>10. CRUD tipoPago|
 |CUU/Epic|1. Modificar Pedido<br>2. Dar de baja productos<br>3. Modificar productos|
 
 
