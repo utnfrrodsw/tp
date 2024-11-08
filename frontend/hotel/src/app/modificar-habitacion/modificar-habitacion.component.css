@@ -1,0 +1,111 @@
+form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+h4 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+div {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #3f51b5;
+  outline: none;
+}
+
+input[readonly] {
+  background-color: #f5f5f5;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 10px 5px;
+  transition: all 0.3s ease;
+}
+
+button:focus {
+  outline: none;
+}
+
+button[type="submit"] {
+  background-color: #ffb300;
+  color: #fff;
+}
+
+button[type="submit"]:hover {
+  background-color: #ffa000;
+}
+
+button[type="button"] {
+  background-color: #d32f2f;
+  color: #fff;
+}
+
+button[type="button"]:hover {
+  background-color: #c62828;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+form .btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Estilos del botón "+ Nueva Habitación" */
+.new-habitacion-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end; /* Alinea el botón a la derecha */
+  width: 100%;
+}
+
+.btn-nueva-habitacion {
+  background-color: #4CAF50; /* Color verde */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-nueva-habitacion:hover {
+  background-color: #45a049;
+}

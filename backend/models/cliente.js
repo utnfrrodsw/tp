@@ -9,7 +9,8 @@ const clienteSchema = new mongoose.Schema({
   sexo: {type: String,required: true},
   fechaNac: {type: Date,required: true},
   email: {type: String,required: true},
-  contrasena: {type: String,required: true}
+  contrasena: {type: String,required: true},
+  estado:{type:String , required: true}
 
 });
 

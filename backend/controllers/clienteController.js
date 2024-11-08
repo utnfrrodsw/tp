@@ -24,7 +24,8 @@ const obtenerTodosLosClientes = async (req, res) => {
         sexo: req.body.sexo,
         fechaNac: req.body.fechaNac,
         email: req.body.email,
-        contrasena: req.body.contrasena
+        contrasena: req.body.contrasena,
+        estado:"Activo"
       };
   
       
@@ -97,9 +98,8 @@ const buscarClientePorID = async (req, res) => {
   const eliminarCliente = async (req, res) => {
     try {
       
-      const id = req.params.id.split('=')[1]; 
-  
-      const cliente = await Cliente.findOneAndDelete({ idCli: Number(id) }); 
+       
+      const cliente = await Cliente.findOneAndDelete({ idCli: req.params.id }); 
       if (!cliente) {
         return res.status(404).json({ message: "Cliente no encontrado" });
       }

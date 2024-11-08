@@ -44,15 +44,15 @@ onSubmit() {
 
     this.registroService.crearCliente(clienteData).subscribe(
       response => {
-        this.router.navigate(['/login']); // Redirige a la página de inicio de sesión
+        this.router.navigate(['/login']); 
       },
       error => {
         console.error('Error al registrar el cliente', error);
-        // Mostrar un mensaje de error
+        
       }
     );
   } else {
-    // Mostrar un mensaje de error si el formulario es inválido
+   
   }
 }
 }

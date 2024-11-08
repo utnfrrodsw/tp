@@ -36,6 +36,10 @@
       <li *ngIf="isLoggedIn && isEmployee">
         <a (click)="onHeaderClick($event)" [routerLink]="['/gestionar-clientes']" routerLinkActive="active">Gestionar Clientes</a>
       </li>
+
+      <li *ngIf="isLoggedIn && isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/gestionar-habitaciones']" routerLinkActive="active">Gestionar Habitaciones</a>
+      </li>
     </ul>
   </nav>
 

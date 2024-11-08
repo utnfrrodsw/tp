@@ -45,7 +45,7 @@ export class InicioComponent {
     const checkinFormatted = convertDateToDDMMYYYY(checkin);
     const checkoutFormatted = convertDateToDDMMYYYY(checkout);
 
-    // Separar la localidad y la provincia
+    
     const [nombreLocalidad, nombreProvincia] = destination.split(',').map(part => part.trim());
 
     if (!nombreLocalidad || !nombreProvincia) {

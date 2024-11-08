@@ -35,6 +35,13 @@ import { GestionarServiciosComponent } from './gestionar-servicios/gestionar-ser
 import { GestionarClientesComponent } from './gestionar-clientes/gestionar-clientes.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AlertaCheckinComponent } from './alerta-checkin/alerta-checkin.component';
+import { GestionarHabitacionesComponent } from './gestionar-habitaciones/gestionar-habitaciones.component';
+import { ModificarHabitacionComponent } from './modificar-habitacion/modificar-habitacion.component';
+import { NuevaHabitacionComponent } from './nueva-habitacion/nueva-habitacion.component';
+import { ConfirmarEliminacionComponent } from './confirmar-eliminacion/confirmar-eliminacion.component';
+import { AlertadosComponent } from './alertados/alertados.component';
+import { ActualizarPerfilComponent } from './actualizar-perfil/actualizar-perfil.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +64,13 @@ import { AlertaCheckinComponent } from './alerta-checkin/alerta-checkin.componen
     GestionarServiciosComponent,
     GestionarClientesComponent,
     AlertaCheckinComponent,
+    GestionarHabitacionesComponent,
+    ModificarHabitacionComponent,
+    NuevaHabitacionComponent,
+    ConfirmarEliminacionComponent,
+    AlertadosComponent,
+    ActualizarPerfilComponent,
+   
    
   ],
   imports: [

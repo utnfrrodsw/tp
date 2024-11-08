@@ -15,6 +15,7 @@ conectar();
 app.use(express.json());
 
 
+
 const habitacionRoutes = require('./routes/habitaciones');
 const tipoHabitacionRoutes = require('./routes/tiposHabitacion');
 const clienteRoutes = require('./routes/clientes');

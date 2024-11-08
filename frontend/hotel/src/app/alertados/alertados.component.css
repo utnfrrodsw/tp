@@ -1,0 +1,15 @@
+mat-dialog-content {
+  padding: 20px;
+}
+
+button {
+  
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #3981c9;
+}

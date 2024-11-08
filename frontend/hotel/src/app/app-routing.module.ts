@@ -17,7 +17,10 @@ import { GestionarReservasComponent } from './gestionar-reservas/gestionar-reser
 import { GestionarServiciosComponent } from './gestionar-servicios/gestionar-servicios.component';
 import { GestionarClientesComponent } from './gestionar-clientes/gestionar-clientes.component';
 import { authGuard } from './guards/auth.guard';
-
+import { GestionarHabitacionesComponent } from './gestionar-habitaciones/gestionar-habitaciones.component';
+import { ModificarHabitacionComponent } from './modificar-habitacion/modificar-habitacion.component';
+import { NuevaHabitacionComponent } from './nueva-habitacion/nueva-habitacion.component';
+import { ActualizarPerfilComponent } from './actualizar-perfil/actualizar-perfil.component';
 const routes: Routes = [
 
   {path: '', component: InicioComponent, canActivate: [authGuard]},
@@ -34,7 +37,11 @@ const routes: Routes = [
   {path:'dashboard/empleado',component:DashboardComponent},
   {path:'gestionar-reservas',component: GestionarReservasComponent},
   {path:'gestionar-servicios',component:GestionarServiciosComponent},
-  {path:'gestionar-clientes',component:GestionarClientesComponent}  
+  {path:'gestionar-clientes',component:GestionarClientesComponent} ,
+  {path:'gestionar-habitaciones',component:GestionarHabitacionesComponent} ,
+  {path:'modificar-habitacion', component: ModificarHabitacionComponent},
+  {path:'nueva-habitacion',component: NuevaHabitacionComponent},
+  {path:'actualizar-perfil',component: ActualizarPerfilComponent},
 
 
 ];

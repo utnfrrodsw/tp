@@ -66,7 +66,7 @@ const realizarCheckout = async (req, res) => {
 
 const crearEstadia = async (req, res) => {
   try {
-    const { idEst, fechaIngreso, fechaEgreso, estado, nroDni, nroHabitacion, idLocalidad } = req.body;
+    const { idEst, fechaIngreso, fechaEgreso, estado, nroDni, nroHabitacion, idLocalidad ,cantDias} = req.body;
     const cliente = await Cliente.findOne({ nroDni });
     if (!cliente) {
       return res.status(404).json({ message: "Cliente no encontrado" });
@@ -75,18 +75,28 @@ const crearEstadia = async (req, res) => {
     const fechaIngresoFormatted = moment(fechaIngreso, 'DD-MM-YYYY').format('YYYY-MM-DD');
     const fechaEgresoFormatted = moment(fechaEgreso, 'DD-MM-YYYY').format('YYYY-MM-DD');
 
+    const fechaIng= new Date(fechaIngresoFormatted);
+    const fechaEgr= new Date(fechaEgresoFormatted);
+
+
+    const diferenciaMillis = fechaEgr - fechaIng;
+    const diferenciaDias = diferenciaMillis / (1000 * 60 * 60 * 24);
+    console.log(diferenciaDias);
+
     const estadia = new Estadia({
       idEst,
-      fechaIngreso: new Date(fechaIngresoFormatted),
-      fechaEgreso: new Date(fechaEgresoFormatted),
+      fechaIngreso: fechaIng,
+      fechaEgreso: fechaEgr,
       estado,
       idCli: cliente.idCli,
       nroHabitacion,
-      idLocalidad 
+      cantDias,
+      idLocalidad,
+       
     });
 
     await estadia.save();
-    res.status(201).json(estadia);
+    res.status(201).json(estadia );
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -213,7 +223,7 @@ const buscarClientePorID = async (req, res) => {
 
 const reservarHabitacion = async (req, res) => {
   try {
-    const { nroHabitacion, fechaIngreso, fechaEgreso, idLocalidad } = req.body;
+    const { nroHabitacion, fechaIngreso, fechaEgreso, idLocalidad, cantDias } = req.body;
 
    
     const habitacion = await Habitacion.findOne({ nroHabitacion });
@@ -249,7 +259,9 @@ const reservarHabitacion = async (req, res) => {
       fechaIngreso: new Date(fechaIngresoFormatted),
       fechaEgreso: new Date(fechaEgresoFormatted),
       estado: 'Reservado',
-      idLocalidad 
+      cantDias,
+      idLocalidad ,
+      
     });
 
     

@@ -21,7 +21,7 @@
     </mat-card-content>
 
     <mat-card-actions class="button-container">
-      <button mat-stroked-button color="primary">Actualizar los datos de mi cuenta</button>
+      <button mat-stroked-button color="primary" [routerLink]="['/actualizar-perfil']">Actualizar los datos de mi cuenta</button>
       <button mat-stroked-button color="warn" (click)="eliminarCuenta()">Eliminar mi cuenta</button>
     </mat-card-actions>
   </mat-card>

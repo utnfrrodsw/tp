@@ -9,6 +9,8 @@ import { ProvinciasService } from '../service/provincias.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
 
+
+
 @Component({
   selector: 'app-mostrar-habitaciones-disponibles',
   templateUrl: './mostrar-habitaciones-disponibles.component.html',
@@ -29,6 +31,7 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
   idCliente: string | null = localStorage.getItem('idCliente');
   precioMin: number = 0;
   precioMax: number = 0;
+  tipoSeleccionado: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -99,12 +102,16 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
       return;
     }
 
+    const dias = this.calculaDias(this.checkin, this.checkout);
+   
+
     const reservaData = {
       nroHabitacion: nroHabitacion,
-      fechaIngreso: this.checkin,
+      fechaIngreso:this.checkin,
       fechaEgreso: this.checkout,
       idLocalidad: this.idLocalidad,
-      idCli: this.idCliente 
+      idCli: this.idCliente ,
+      cantDias:dias,
     };
 
     this.reservaService.reservarHabitacion(reservaData).subscribe({
@@ -119,19 +126,17 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
       },
       error: (err) => {
         alert('Error al realizar la reserva. Intenta nuevamente.');
-        console.error('Error en la reserva:', err);
+        console.error('Error en la reserva:'+ err +" "+dias);
       }
     });
   }
 
   obtenerLocalidadYProvincia(): void {
-    
     this.localidadesService.getLocalidadById(this.idLocalidad).subscribe({
       next: (localidad) => {
         this.localidad = localidad;  
         console.log('Localidad obtenida:', this.localidad);
 
-        
         this.provinciasService.getProvinciaById(this.idProvincia).subscribe({
           next: (provincia) => {
             this.provincia = provincia;  
@@ -148,6 +153,23 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
     });
   }
 
+  calculaDias(fechaIngreso: string, fechaEgreso: string): number {
+   
+    const [diaIngreso, mesIngreso, anioIngreso] = fechaIngreso.split('-');
+    const [diaEgreso, mesEgreso, anioEgreso] = fechaEgreso.split('-');
+  
+    
+    const fechaIng = new Date(Number(anioIngreso), Number(mesIngreso) - 1, Number(diaIngreso));
+    const fechaEgr = new Date(Number(anioEgreso), Number(mesEgreso) - 1, Number(diaEgreso));
+  
+    
+    const diferenciaMillis = fechaEgr.getTime() - fechaIng.getTime();
+  
+    
+    return Math.floor(diferenciaMillis / (1000 * 60 * 60 * 24));
+  }
+  
+
   aplicarFiltro(): void {
     let habitacionesFiltradas = this.habitaciones;
   
@@ -155,36 +177,39 @@ export class MostrarHabitacionesDisponiblesComponent implements OnInit {
     console.log('Precio Máximo:', this.precioMax);
     console.log('Habitaciones iniciales:', this.habitaciones);
   
-    if (this.precioMin) {
+    if (this.precioMin && this.precioMin > 0) {
       habitacionesFiltradas = habitacionesFiltradas.filter(habitacion => {
         console.log('Precio habitación:', habitacion.precioXdia);
         return habitacion.precioXdia >= this.precioMin;
       });
     }
   
-    if (this.precioMax) {
+    if (this.precioMax && this.precioMax > 0) {
       habitacionesFiltradas = habitacionesFiltradas.filter(habitacion => {
         console.log('Precio habitación:', habitacion.precioXdia);
         return habitacion.precioXdia <= this.precioMax;
       });
     }
-  
-    this.habitaciones = habitacionesFiltradas;
-  
-    if (this.habitaciones.length === 0) {
-      this.errorMessage = 'No se encontraron habitaciones que coincidan con los criterios de precio.';
-    } else {
-      this.errorMessage = '';
+
+    if (this.tipoSeleccionado !== null) {
+      habitacionesFiltradas = habitacionesFiltradas.filter(habitacion => {
+        console.log('Tipo habitación:', this.getTipoNombre(habitacion.idTipo));
+        console.log('Seleccion:', this.getTipoNombre(this.tipoSeleccionado));
+        return this.getTipoNombre(habitacion.idTipo) === this.getTipoNombre(Number(this.tipoSeleccionado));
+      });
     }
-  
-    console.log('Habitaciones filtradas:', this.habitaciones);
+    
+
+    console.log('Habitaciones filtradas:', habitacionesFiltradas);
+    this.habitaciones = habitacionesFiltradas;
   }
 
   
+
   borrarFiltros(): void {
     this.precioMin = 0;
     this.precioMax = 0;
-    this.obtenerHabitacionesDisponibles();  }
-  
-
+    this.tipoSeleccionado = 0;
+    this.obtenerHabitacionesDisponibles();
+  }
 }

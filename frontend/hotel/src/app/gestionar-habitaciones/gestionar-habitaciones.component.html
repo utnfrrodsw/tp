@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<h4>Habitaciones</h4>
+
+<div class="search-and-add-container">
+  <div class="search-container">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input type="text" [(ngModel)]="searchId" placeholder="Buscar por nro de habitacion" (input)="filtrarHabitaciones()" />
+  </div>
+  <button class="add-button" (click)="nuevaHabitacion()">+ Nueva Habitación</button>
+</div>
+
+
+
+<table class="tabla">
+  <thead class="cabeza">
+    <tr>
+      <th>Numero Habitacion</th>
+      <th>Tipo</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th>Capacidad Maxima</th>
+      <th>Precio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody class="cuerpo">
+    <tr *ngIf="habitFiltradas.length === 0">
+      <td colspan="10">No se encontró ese nro de Habitacion</td> 
+    </tr>
+    <tr *ngFor="let habitacion of habitFiltradas">
+      <th>{{habitacion.nroHabitacion}}</th>
+      <th>{{habitacion.tipo}}</th>
+      <th>{{habitacion.descripcion}}</th>
+      <th>{{habitacion.estado}}</th>
+      <th>{{habitacion.capacidadPersonas}}</th>
+      <th>{{habitacion.precioXdia}}</th>
+      <th>
+        <button (click)="modificarHabitacion(habitacion)">Modificar</button>
+        <button (click)="eliminarHabitacion(habitacion.nroHabitacion)" class="btn btn-danger">Eliminar</button>
+      </th>
+    </tr>
+  </tbody>
+</table>

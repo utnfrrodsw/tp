@@ -154,15 +154,30 @@ const actualizarHabitacion = async (req, res) => {
 
 const eliminarHabitacion = async (req, res) => {
   try {
-    const habitacion = await Habitacion.findOneAndDelete({ nroHabitacion: req.params.id });
+    const nroHabitacion = req.params.id;
+
+    
+    const estadiaExistente = await Estadia.findOne({ nroHabitacion: nroHabitacion });
+
+    if (estadiaExistente) {
+      
+      return res.status(400).json({ message: "No se puede eliminar la habitación porque está asociada a una estadía activa." });
+    }
+
+   
+    const habitacion = await Habitacion.findOneAndDelete({ nroHabitacion: nroHabitacion });
+
     if (!habitacion) {
       return res.status(404).json({ message: "Habitación no encontrada" });
     }
-    res.status(204).send();
+
+    
+    res.status(200).json({ message: "Habitación eliminada correctamente" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 
 

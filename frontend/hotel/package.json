@@ -25,6 +25,7 @@
     "@angular/ssr": "^18.0.1",
     "express": "^4.18.2",
     "hotel": "file:",
+    "moment": "^2.30.1",
     "primeicons": "^7.0.0",
     "primeng": "^17.18.11",
     "rxjs": "~7.8.0",

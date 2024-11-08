@@ -7,6 +7,7 @@ const estadiaSchema = new mongoose.Schema({
   fechaIngreso: { type: Date, required: true },
   fechaEgreso: { type: Date, required: true },
   estado: { type: String, enum: ['Reservado', 'Activo', 'Cancelado', 'Finalizado'], required: true },
+  cantDias:{type:Number, required: true},
   idLocalidad: { type: Number, required: true } 
 });
 

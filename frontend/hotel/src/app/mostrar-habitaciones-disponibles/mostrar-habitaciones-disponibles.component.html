@@ -16,6 +16,15 @@
       </div>
 
       <div class="filter-item">
+        <label for="tipoHabitacion">Tipo de Habitación:</label>
+        <select id="tipoHabitacion" name="tipoHabitacion" [(ngModel)]="tipoSeleccionado">
+          <option *ngFor="let tipo of tiposHabitacion" [value]="tipo.id">
+            {{ tipo.denominacion }}
+          </option>
+        </select>
+      </div>
+
+      <div class="filter-item">
         <button (click)="aplicarFiltro()" class="btn-aplicar-filtro">
           Aplicar Filtro
         </button>

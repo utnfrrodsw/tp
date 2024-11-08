@@ -17,7 +17,7 @@ export class PerfilClienteComponent implements OnInit {
   constructor(
     private clienteService: BuscaClienteService,
     private router: Router,
-    private dialog: MatDialog // Inyecta MatDialog para abrir el diálogo
+    private dialog: MatDialog 
   ) {}
 
   ngOnInit(): void {
@@ -47,13 +47,13 @@ export class PerfilClienteComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const idCliente = localStorage.getItem('idCliente');
-        console.log(idCliente);
+        
         this.clienteService.eliminarCliente(Number(idCliente)).subscribe({
           next: (response) => {
-            alert('Tu cuenta ha sido eliminada.');
+            
             localStorage.removeItem('idCliente');
             localStorage.removeItem('token');
-            this.router.navigate(['/inicio']);
+            this.router.navigate(['']);
           },
           error: (err) => {
             const idCliente = localStorage.getItem('idCliente');

@@ -14,9 +14,15 @@ async function iniciarSesion(req, res) {
   const { mail, contrasena } = req.body;
   try {
     const cliente = await Cliente.findOne({ mail, contrasena });
+
+    
     if (cliente) {
+      if (cliente.estado === "Bloqueado") {
+        return res.status(403).send('Usuario Bloqueado');
+      }
+
       const token = generarToken(cliente);
-      res.json({ token , idCliente: cliente.idCli ,nombre: cliente.apellidoYnombre});
+      res.json({ token, idCliente: cliente.idCli, nombre: cliente.apellidoYnombre });
     } else {
       res.status(401).send('Credenciales incorrectas');
     }
@@ -24,6 +30,7 @@ async function iniciarSesion(req, res) {
     res.status(500).json({ message: error.message });
   }
 }
+
 
 
 async function iniciarSesionEmpleado(req, res) {
