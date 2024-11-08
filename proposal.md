@@ -28,7 +28,7 @@ Regularidad:
 |:-|:-|
 |CRUD simple|1. CRUD TipoProducto<br>2. CRUD Cliente<br>3. CRUD Repartidor<br>4. CRUD Producto|
 |CRUD dependiente|1. CRUD Pedido<br>2. CRUD Entrega|
-|Listado<br>+<br>detalle| 1. Listado de productos filtrado por tipo de producto, nro de producto y precio<br> 2. Listado de pedidos filtrado por rango de fecha, por nro de pedido|
+|Listado<br>+<br>detalle| 1. Listado de productos filtrado por tipo de producto, nombre de producto y precio<br> 2. Listado de pedidos filtrado por rango de fecha, por nro de pedido|
 |CUU/Epic|1. Dar de alta Cliente<br>2. Realizar un pedido<br>2. Generar entregas |
 
 
