@@ -20,8 +20,8 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
     const [imageUrl, setImageUrl] = useState<string | null>(() => {
         return localStorage.getItem('profile-image-url') || null;
     });
-    const [newPassword, setNewPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    {/*const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');*/}
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -43,7 +43,6 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
         const tokenLogout = localStorage.getItem('jwt-token');
         if (tokenLogout) {
             localStorage.removeItem('jwt-token');
-            localStorage.removeItem('profile-image-url');
             navigate('/');
             window.location.reload();
         }
@@ -110,7 +109,7 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
                             <input type="email" value={email || ''} readOnly className="input-field" />
                             <label className="user-details-label">Phone</label>
                             <input type="tel" value={phone || ''} readOnly className="input-field" />
-                            <label className="user-details-label">New Password</label>
+                            {/*<label className="user-details-label">New Password</label>
                             <input
                                 type="password"
                                 placeholder='Enter your new password'
@@ -126,7 +125,7 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 className="input-field text-gray-900"
                             />
-                            <button type="button" className="change-button">Change Password</button>
+                            <button type="button" className="change-button">Change Password</button>*/}
                         </div>
                     </form>
                 </div>

@@ -18,7 +18,7 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
             setMessage(response.data);
             navigate("/")
             window.location.reload();
-            localStorage.clear();
+            localStorage.removeItem('jwt-token');
             localStorage.setItem('jwt-token', response.data.accessToken)
         } catch (error) {
             setMessage(error.response.data);
