@@ -33,7 +33,7 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
 
     const { getRootProps, getInputProps } = useDropzone({ 
         onDrop, 
-        accept: { 'image/*': [] } // Corregido aquí
+        accept: { 'image/*': [] }
     });
 
     const openModal = () => setShowModal(true);
