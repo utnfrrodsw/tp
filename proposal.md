@@ -14,11 +14,14 @@
 
 ### Descripción
 
-PetGuardian permite a sus usuarios reservar un servicio de cuidado de mascotas. Podrán elegir entre los cuidadores disponibles, reservar los días que sean necesarios y coordinar las visitas a su domicilio. Para asegurar la calidad del servicio los cuidadores serán evaluados y aprobados por un administrador. Al final de la experiencia los clientes podrán reseñar las visitas y asignar un puntaje.
+PetGuardian es una aplicación diseñada para facilitar la conexión entre dueños de mascotas y cuidadores de confianza. Los usuarios pueden registrarse como clientes o cuidadores de mascotas. 
+Los clientes tienen la posibilidad de registrar a sus mascotas en la plataforma y buscar cuidadores que se adapten a sus necesidades específicas. Una vez que encuentran un cuidador adecuado, pueden reservar los días necesarios y coordinar las visitas a su domicilio.
+Para asegurar la calidad del servicio, todos los cuidadores son evaluados y aprobados por un administrador. Al final de la experiencia, los clientes pueden reseñar las visitas y asignar un puntaje al cuidador. PetGuardian es la solución ideal para aquellos que necesitan reservar cuidadores de mascotas cuando están fuera de casa.
 
 ### Modelo
 
-![PetGuardian_diagClases](https://github.com/emadelbianco/TP-DSW-Delbianco-Panatti-Spitale/assets/96211175/c70f9660-b530-41cb-a7af-838c3a9e1d9a)
+![Diagrama](https://github.com/user-attachments/assets/251a403c-29c4-4349-9606-81cd90392039)
+
 
 
 ## Alcance Funcional
@@ -28,16 +31,18 @@ PetGuardian permite a sus usuarios reservar un servicio de cuidado de mascotas. 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD Cliente<br>3. CRUD Administrador<br>4. CRUD Cuidador|
-|CRUD dependiente|1. CRUD Reserva {depende de} CRUD Cliente y CRUD Cuidador<br>2. CRUD Mascota {depende de} CRUD Cliente|
-|Listado<br>+<br>detalle| 1. Listado de reservas por período de tiempo seleccionado.<br> 2. Listado de cuidadores que incluya el número total de reservas realizadas, así como la cantidad de reservas completadas y canceladas, junto con las puntuaciones promedio.|
-|CUU/Epic|1. Crear Usuario<br>2. Crear Reserva|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD EtapaVida<br>3. CRUD TipoMascota<br>4. CRUD Estado|
+|CRUD dependiente|1. CRUD Mascota {depende de} CRUD EtapaVida,  CRUD TipoMascota y CRUD Usuario<br>2. CRUD DisponibilidadCuidador  {depende de} CRUD Usuario<br>3. CRUD Reserva {depende de} CRUD Usuario, CRUD Estado y  CRUD Mascota<br>4. CRUD Resenia {depende de} CRUD Reserva <br>5. CRUD Turno {depende de} CRUD Reserva  |
+|Listado<br>+<br>detalle| 1. Listado de mascotas. Detalles: nombre, tipo de mascota, etapa de vida, observaciones de comida, observaciones de enfermedades, otras observaciones y foto. <br> 2. Listado de cuidador. Detalles: puntuación y comentarios de las reseñas|
+|CUU/Epic|1. Gestión de Usuario<br>2. Gestión de Masctotas<br>3. Consultar Cuidadores <br>4. Reservar Cuidador <br>5. Aprobar Reserva <br>6. Cancelar Reserva <br>7. Carga de Reseña <br>8. Aprobar Cuidador <br>9. Gestionar disponibilidad horaria del cuidador|
 
 ### Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Usuario<br>2. CRUD Cliente<br>3. CRUD Administrador<br>4. CRUD Cuidador<br>5. CRUD Reseña<br>6. CRUD Reserva<br>7. CRUD Mascota<br>8. CRUD Estado|
-|CUU/Epic|1. Crear Usuario<br>2. Crear Reserva <br>3. Crear Reseña<br>4. Habilitar Cuidador<br>5. Cancelar Reserva|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD EtapaVida<br>3. CRUD TipoMascota<br>4. CRUD Estado|
+|CRUD dependiente|1. CRUD Mascota {depende de} CRUD EtapaVida,  CRUD TipoMascota y CRUD Usuario<br>2. CRUD DisponibilidadCuidador  {depende de} CRUD Usuario<br>3. CRUD Reserva {depende de} CRUD Usuario, CRUD Estado y  CRUD Mascota<br>4. CRUD Resenia {depende de} CRUD Reserva <br>5. CRUD Turno {depende de} CRUD Reserva  |
+|Listado<br>+<br>detalle| 1. Listado de mascotas. Detalles: nombre, tipo de mascota, etapa de vida, observaciones de comida, observaciones de enfermedades, otras observaciones y foto.<br> 2. Listado de cuidador.  Detalles: puntuación y comentarios de las reseñas|
+|CUU/Epic|1. Gestión de Usuario<br>2. Gestión de Masctotas<br>3. Consultar Cuidadores <br>4. Reservar Cuidador <br>5. Aprobar Reserva <br>6. Cancelar Reserva <br>7. Carga de Reseña <br>8. Aprobar Cuidador <br>9. Gestionar disponibilidad horaria|
 
 ### Alcance Adicional Voluntario
 
@@ -45,4 +50,10 @@ Regularidad:
 |:-|:-|
 |Listados |-|
 |CUU/Epic|-|
-|Otros|1. Enviar notificación de solicitud de reserva a Cuidador. <br>2. Enviar notificación de aceptación de reserva a Cliente. <br>3. Enviar notificación de cancelación de reserva a Cuidador.|
+|Otros|1. Enviar notificación vía mail al crear un usuario.<br>2. Enviar notificación vía mail al cambiar los estados de la reserva.|
+
+### Links Trello
+[BackEnd](https://trello.com/invite/b/66020281ce119294245a4d9d/ATTId3162f8357137cdeb5c80ad67782ce17DD695109/back-pet-guardian)
+[FrontEnd](https://trello.com/invite/b/66fc93a33e1bfe0d5b04d09e/ATTI12aac7cb3a06942ae62109240ce7602f91157EDD/front-pet-guardian)
+
+
