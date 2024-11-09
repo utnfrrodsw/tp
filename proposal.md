@@ -24,7 +24,7 @@ DMCOffers es un WebService orientado al usuario final, donde este podra informar
 ### Modelo DER
 
 Draw.io del modelo:
-https://drive.google.com/file/d/1EbJG5Vs-aiFzjE_SjwhFArGhCrfMcI_z/view?usp=drive_link
+https://drive.google.com/file/d/1tck3RD6nlFP1pz9xcckBYNq8MNagbDFf/view?usp=sharing
 
 ## Alcance Funcional
 
