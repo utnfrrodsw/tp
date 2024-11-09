@@ -14,7 +14,7 @@
 La idea de nuestro proyecto es realizar un sistema donde se pueda realizar tanto la atención ambulatoria como la de internados de un Sanatorio.
 
 ### Repositorios
-[Frontend]
+[Frontend](https://github.com/julianlentini4/Frontend)
 
 [Backend](https://github.com/julianlentini4/Backend)
 
