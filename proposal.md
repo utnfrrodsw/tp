@@ -34,7 +34,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple| 1. CRUD Publicador <br>2. CRUD Desarrollador <br>3. CRUD Categoría <br>4. CRUD Usuario <br>5. CRUD Ticket de soporte <br>6. CRUD Servicio de hosting|
-|CRUD dependiente| 1. CRUD Lista de deseos <br>2. CRUD Actualizar precio de juego <br>3. CRUD Publicacion de juego|
+|CRUD dependiente| 1. CRUD Lista de deseos <br>2. CRUD ticket de soporte <br>3. CRUD Publicacion de juego|
 |Listado<br>+<br>detalle| 1. Listado de servicios de hosting solicitados, filtrando por categoria de juego, fecha de solicitud, recursos de hardware solicitados <br> 2. Listado de juegos deseados filtrado por categoría de juego, rango de precios, juego a la venta <br> 3. Listado de tickets de soporte generadors por usuarios indicando su estado y datos de categorizacion|
 |CUU/Epic| 1. Crear publicacion de venta de juego <br> 2. Agregar juego a lista de deseos <br> 3. Crear un ticket de soporte|
 
