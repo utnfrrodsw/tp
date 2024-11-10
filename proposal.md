@@ -25,10 +25,10 @@ La idea de nuestro proyecto es realizar un sistema donde se pueda realizar tanto
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD|1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Ingreso<br>4. CRUD Especialidad<br>5. CRUD Turno<br>6. CRUD Informe<br>7. CRUD Dia<br>8. CRUD Sala|
+|CRUD|1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Ingreso<br>4. CRUD Especialidad<br>6. CRUD Informe<br>6. CRUD Sala|
 |CRUD dependiente|1. CRUD Agenda(depende de) Medico<br>2. CRUD Paciente_Ingreso(depende de) Paciente e Ingreso<br>3. CRUD Internacion(depende de) Sala y Paciente<br>4. CRUD dia_agenda(depende de) Agenda y Dia<br>5. CRUD medico_especialidad(depende de) Medico y Especialidad|
 |Listado<br>+<br>detalle| 1. Listado de pacientes => detalle muestra listado de pacientes registrados en el sanatorio<br> 2. Listado de  Medicos=> detalle informa los medicos registrados <br> 3. Listado de informes de Historia clinica => detalle muestra los estudios realizados por paciente|
-|CUU/Epic|1.Dar de alta paciente<br>2. Realizar la recepción de un paciente<br>3. Realizar el check-in y check-out de un paciente internado<br>4. Registrar informe de estudio medico|
+|CUU/Epic|1.Dar de alta paciente<br>2. Realizar el check-in y check-out de un paciente internado<br>3. Registrar informe de estudio medico|
 
 Adicionales para Aprobación
 |Req|Detalle|
