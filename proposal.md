@@ -20,7 +20,7 @@ Para asegurar la calidad del servicio, todos los cuidadores son evaluados y apro
 
 ### Modelo
 
-![Diagrama](https://github.com/user-attachments/assets/251a403c-29c4-4349-9606-81cd90392039)
+![DSW_modelodatos](https://github.com/user-attachments/assets/dc59d74b-1914-40e3-a018-c3eab0d1331c)
 
 
 
