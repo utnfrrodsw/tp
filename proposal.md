@@ -20,7 +20,8 @@ Para asegurar la calidad del servicio, todos los cuidadores son evaluados y apro
 
 ### Modelo
 
-![DSW_modelodatos](https://github.com/user-attachments/assets/dc59d74b-1914-40e3-a018-c3eab0d1331c)
+![Modelo_de_Dominio_PetGuardian](https://github.com/user-attachments/assets/ae7b91ff-384a-460e-b106-99515413952e)
+
 
 
 
