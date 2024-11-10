@@ -24,7 +24,7 @@ Los clientes podrán crear usuarios para ver los historiales de atenciones de su
 
 ### Modelo de Datos
 
-![Modelo](https://github.com/oldaniMarcos/tp/assets/139399407/3b0f6059-1676-457d-aa03-097ded80e71d)
+![Modelo drawio](https://github.com/user-attachments/assets/41c4b8f2-23be-48ce-99de-d29f7ebccbdc)
 
 ## Alcance Funcional
 
