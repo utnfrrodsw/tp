@@ -26,7 +26,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD|1. CRUD Paciente<br>2. CRUD Medico<br>3. CRUD Ingreso<br>4. CRUD Especialidad<br>5. CRUD Informe<br>6. CRUD Sala|
-|CRUD dependiente|1. CRUD Agenda(depende de) Medico<br>2. CRUD Paciente_Ingreso(depende de) Paciente e Ingreso<br>3. CRUD Internacion(depende de) Sala y Paciente|
+|CRUD dependiente|1. CRUD Paciente_Ingreso(depende de) Paciente e Ingreso<br>2. CRUD Internacion(depende de) Sala y Paciente|
 |Listado<br>+<br>detalle| 1. Listado de pacientes => detalle muestra listado de pacientes registrados en el sanatorio<br> 2. Listado de  Medicos=> detalle informa los medicos registrados <br> 3. Listado de informes de Historia clinica => detalle muestra los estudios realizados por paciente|
 |CUU/Epic|1.Dar de alta paciente<br>2. Realizar el check-in y check-out de un paciente internado<br>3. Registrar informe de estudio medico|
 
