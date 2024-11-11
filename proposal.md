@@ -44,5 +44,5 @@ Nota: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcional
 |Req|Detalle|
 |:-|:-|
 |Listados |1.Listado de turnos de guardia|
-|CUU/Epic|1. Solicita sobreTurno<br>|
+|CUU/Epic|1. Solicitar Turno de medico en guardia<br>|
 |Otros|1. Envío de recordatorio de turno por email|**
