@@ -5,7 +5,6 @@
 ## Grupo
 ### Integrantes
 * 50691 - Lentini, Julian Pablo
-* 51185 - Giampani, Ciro Sebastián
 * 51120 - Etchecopar, Olivia Martina	
 * 51181 - Cruz Ponce, Juan Manuel
 
