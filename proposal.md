@@ -30,16 +30,16 @@ nuevas cocheras a los usuarios permitidos
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Vehículos<br>2. CRUD Tipo vehiculos<br>3. CRUD Localidad|
+|CRUD simple|1. CRUD Vehículos<br>2. CRUD Tipo vehiculos<br>3. CRUD Alquiler|
 |CRUD dependiente|1. CRUD vehículo {depende de} CRUD tipo vehículo<br>|
-|Listado<br>+<br>detalle| 1. Listado de cocheras filtrado por localidad, tipo de vehículo, tipo de servicio.<br>|
+|Listado<br>+<br>detalle| 1. Listado de cocheras filtrado por precio de garge<br>|
 |CUU/Epic|1. Alquilar cochera<br>|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Cochera<br>2. CRUD Localidad<br>3. CRUD Usuario<br>4. CRUD Vehículo<br>5. CRUD Tipo Vehículo<br>6. CRUD Servicio<br>|
+|CRUD |1. CRUD Cochera<br>2. CRUD Alquiler<br>3. CRUD Usuario<br>4. CRUD Vehículo<br>5. CRUD Tipo Vehículo<br>6. CRUD Servicio<br>|
 |CUU/Epic|1. Alquilar cochera<br>2. Dar de baja cochera<br>|
 
 
