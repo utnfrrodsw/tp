@@ -18,10 +18,9 @@ Sistema de atención y gestión para una hamburguesería con el objetivo de  fac
 ### Modelo
 ![](https://github.com/AugustoPalmieri/DSW2024-DIAZ-COSTAMAGNA-PALMIERI/blob/main/DERDSW.drawio.png)
 
-## Reglas de Negocio(provisorias)
+## Reglas de Negocio
 
 * EL REGISTRO DE LOS CLIENTES ES UN NUMERO INCREMENTAL.
-
 * montoTotal es el calculo de la suma de los precios de hamburguesas.
 *El Stock no puede ser un valor negativo, stock 0 no se puede agregar la hamburguesa al pedido.
 *Si el cliente se equivoco en el pedido, la modificación solo la puede realizar el administrador a traves del sistema.
