@@ -43,7 +43,7 @@ Regularidad:
 |CRUD simple|1. CRUD Hamburguesa(primer CRUD propuesta)<br>2. CRUD Cliente<br>3. CRUD Ingrediente |
 |CRUD dependiente|1. CRUD Precio {depende de} CRUD Hamburguesa <br>2. CRUD Pedido {depende de} CRUD Hamburguesa |
 |Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar un pedido|
 
 
 Adicionales para Aprobación
