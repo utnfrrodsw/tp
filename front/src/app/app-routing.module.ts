@@ -4,6 +4,7 @@ import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { LoginComponent } from './login/login.component';
 import { PartidoComponent } from './partido/partido.component';
 import { TorneoComponent } from './torneo/torneo.component';
+import { RegistroComponent } from './registro/registro.component';
 
 
 
@@ -12,7 +13,9 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'partidos', component: PartidoComponent},
     { path: 'torneos', component: TorneoComponent},
+    { path: 'registro', component: RegistroComponent},
     { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+
 ];
 
 @NgModule({

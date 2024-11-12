@@ -1,104 +1,52 @@
-<p>torneo works!</p>torneo
+<!DOCTYPE html>
 
-<pre>
-    {{list | json}}
-    {{torneo | json}}
-</pre>
+<html lang="es">
 
-<button (click)="loadTorneos()">Cargar</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Información del Torneo de Fútbol</title>
+  <link rel="stylesheet" href="torneo.component.scss">
+</head>
 
-<!--<div>
-    <input type="text" #myInput id="myInput" placeholder="ID">
-<button 
-(click)="loadOne(myInput.value)" 
-(click)="myInput.value = ''">
-Traer
-</button>
-</div>
+<body>
+  <!-- Encabezado -->
+  <header class="header">
+    <h1>Torneo de Verano</h1>
+    <p class="subtitle">Este torneo de Verano 2024 se realizará de noche entre las 20:00 hs y las 00:00 hs debido a los altos golpes de calor. </p>
+    <p class="subtitle">El torneo cuenta con una cantidad limitada de jugadores por posición. </p>
+  </header>
 
-<div>
-    <input type="text" #idRemove idRemove="idRemove" placeholder="ID">
-    <button 
-    (click)="removeTorneo(idRemove.value)" 
-    (click)="idRemove.value = ''" >
-    Borrar
-    </button>
-</div>
+  <!-- Información General del Torneo -->
+  <section class="section-container">
+    <h2>Detalles del Torneo</h2>
+    <div class="info-block">
+      <p><strong>Nombre del Torneo:</strong> Torneo de Verano</p>
+      <p><strong>Fecha de Inicio:</strong>20 de Diciembre 20:00 hs </p>
+      <p><strong>Fecha de Fin:</strong> 25 de diciembre 00:00 hs</p>
+      <p><strong>Lugar:</strong> Rosario, Corrientes 1867</p>
+    </div>
+  </section>
 
-<div>
-    <input type="text" #nombre_torneo nombre_torneo="nombre_torneo" placeholder="Nombre Torneo">
-    <input type="text" #fecha_ini_insc fecha_ini_insc="fecha_ini_insc" placeholder="Fecha Inicio Inscripcion">
-    <input type="text" #fecha_fin_insc fecha_fin_insc="fecha_fin_insc" placeholder="Fecha Fin Inscripcion">
-    <input type="text" #fecha_ini_torneo fecha_ini_torneo="fecha_ini_torneo" placeholder="Fecha Inicio Torneo">
-    <input type="text" #fecha_fin_torneo fecha_fin_torneo="fecha_fin_torneo" placeholder="Fecha Fin Torneo">
-    <input type="text" #estado_tor estado_tor="estado_tor" placeholder="Estado Torneo">
-    <input type="text" #ganador ganador="ganador" placeholder="Ganador">
-    <input type="text" #formato formato="formato" placeholder="Formato">
-    <input type="text" #sucursal sucursal="sucursal" placeholder="Sucursal">
-    <input type="text" #nro_adm nro_adm="nro_adm" placeholder="Numero De Admin">
-    <input type="text" #id id="id" placeholder="ID">
-    <button 
-    (click)="addTorneo(nombre_torneo.value,
-    fecha_ini_insc.value,
-    fecha_fin_insc.value,
-    fecha_ini_torneo.value,
-    fecha_fin_torneo.value,
-    estado_tor.value,
-    ganador.value,
-    formato.value,
-    sucursal.value,
-    nro_adm.value,
-    id.value)" 
-    (click)="nombre_torneo.value = ''" 
-    (click)="fecha_ini_insc.value = ''"
-    (click)="fecha_fin_insc.value = ''"
-    (click)="fecha_ini_torneo.value = ''"
-    (click)="fecha_fin_torneo.value = ''"
-    (click)="estado_tor.value = ''"
-    (click)="ganador.value = ''"
-    (click)="formato.value = ''"
-    (click)="sucursal.value = ''"
-    (click)="nro_adm.value = ''"
-    (click)="id.value = ''">
-    Crear una Torneo
-    </button>
-</div>
+  <!-- Equipos Participantes -->
+  <section class="section-container">
+    <h2>Formato del torneo</h2>
+    <div class="info-block">
+      <ul class="team-list">
+        <li>Cantidad de equipos: 32 </li>
+        <li>Cantidad de equipos por grupos: 4 </li>
+        <li>Cantidad de clasificados por grupo: 2 </li>
+      </ul>
+    </div>
+  </section>
 
-<div>
-    <input type="text" #modNombre_Torneo modNombre_Torneo="modNombre_Torneo" placeholder="Mod Nombre Torneo">
-    <input type="text" #modfecha_ini_insc modfecha_ini_insc="modfecha_ini_insc" placeholder="Mod Fecha Inicio Inscripcion">
-    <input type="text" #modfecha_fin_insc modfecha_fin_insc="modfecha_fin_insc" placeholder="Mod Fecha Fin Inscripcion">
-    <input type="text" #modfecha_ini_torneo modfecha_ini_torneo="modfecha_ini_torneo" placeholder="Mod Fecha Inicio Torneo">
-    <input type="text" #modfecha_fin_torneo modfecha_fin_torneo="modfecha_fin_torneo" placeholder="Mod Fecha Fin Torneo">
-    <input type="text" #modestado_tor modestado_tor="modestado_tor" placeholder="Mod Estado Torneo">
-    <input type="text" #modganador modganador="modganador" placeholder="Mod Ganador">
-    <input type="text" #modformato modformato="modformato" placeholder="Mod Formato">
-    <input type="text" #modsucursal modsucursal="modsucursal" placeholder="Mod Sucursal">
-    <input type="text" #modnro_adm modnro_adm="modnro_adm" placeholder="Mod Numero De Admin">
-    <input type="text" #modID modID="modID" placeholder="Mod ID">
-    <button 
-    (click)="putTorneo(modNombre_Torneo.value,
-    modfecha_ini_insc.value,
-    modfecha_fin_insc.value,
-    modfecha_ini_torneo.value,
-    modfecha_fin_torneo.value,
-    modestado_tor.value,
-    modganador.value,
-    modformato.value,
-    modsucursal.value,
-    modnro_adm.value,
-    modID.value)" 
-    (click)="modNombre_Torneo.value = ''"
-    (click)="modfecha_ini_insc.value = ''"
-    (click)="modfecha_fin_insc.value = ''"
-    (click)="modfecha_ini_torneo.value = ''" 
-    (click)="modfecha_fin_torneo.value = ''" 
-    (click)="modestado_tor.value = ''" 
-    (click)="modganador.value = ''" 
-    (click)="modformato.value = ''" 
-    (click)="modsucursal.value = ''" 
-    (click)="modnro_adm.value = ''"  
-    (click)="modID.value = ''">
-    Modificar una Torneo
-    </button>
-</div>-->
+  <!-- Reglas del Torneo -->
+  <section class="section-container">
+    <h2>Formato de eliminación directa</h2>
+    <div class="info-block">
+      <img src="../../assets/images/formato-de-torneo1.png" alt="Formato de eliminación directa" style="max-width: 100%; height: auto;">
+    </div>
+  </section>
+
+</body>
+</html>

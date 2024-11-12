@@ -1,0 +1,67 @@
+.match-result {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para los equipos */
+.teams {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+}
+
+
+.team-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Estilo para el marcador */
+.score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.score-home,
+.score-away {
+    margin: 0 10px;
+}
+
+/* Estilo para los detalles del partido */
+.detalles-partido {
+    font-size: 14px;
+    color: #777;
+    text-align: center;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 600px) {
+    .match-result {
+    padding: 15px;
+    width: 100%;
+    }
+
+    .teams {
+    flex-direction: column;
+    align-items: center;
+    }
+
+    .score {
+    margin: 10px 0;
+    }
+}
