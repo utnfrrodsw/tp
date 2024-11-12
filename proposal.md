@@ -18,7 +18,7 @@ En la compra de entradas hay diferentes métodos de pago y la opción de ingresa
 
 
 ### Modelo
-![imagen del modelo]([https://github.com/phalanxeyes/DSW-2024-Bonaroti-Salerno-Vacs/blob/main/MDQRera.PNG?raw=true](https://drive.google.com/file/d/1suECr165TqPRWk9N4bYlmyNx3mmdsXqV/view?usp=sharing))
+![imagen del modelo](https://drive.google.com/file/d/1suECr165TqPRWk9N4bYlmyNx3mmdsXqV/view?usp=sharing)
 
 
 ## Alcance Funcional 
