@@ -3,7 +3,7 @@ GET http://localhost:3000/api/equipos
 
 
 ### Obtener una equipo
-GET http://localhost:3000/api/equipos/1
+GET http://localhost:3000/api/equipos/2
 
 
 ### Crear un nuevo equipo

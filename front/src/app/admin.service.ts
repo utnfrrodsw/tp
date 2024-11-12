@@ -24,9 +24,15 @@ export class AdminService {
     return this.http.delete<any>(url);
   }
 
-  add(nombre:string, contraseña:string, apellido:string, mail:string, fecha_nacimiento:string, id: number) {
-    const url = this.baseUrl + 'admins';
-    const data = { nombre, contraseña, apellido, mail, fecha_nacimiento, id };
+  add(nombre_torneo:string, fecha_inicio_torneo:string, fecha_fin_torneo:string, admin:number, sucursal:number, estado_torneo: number, formato_torneo: number, id: number) {
+    const url = this.baseUrl + 'torneos';
+    const data = { nombre_torneo, fecha_inicio_torneo, fecha_fin_torneo, admin, sucursal, estado_torneo, formato_torneo, id };
+    return this.http.post<any>(url, data);
+  }
+
+  addEquipos(torneo: number){
+    const url = this.baseUrl + 'equipos';
+    const data = { torneo };
     return this.http.post<any>(url, data);
   }
 

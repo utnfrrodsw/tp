@@ -5,7 +5,7 @@
     {{admin | json}}
 </pre>
 
-<button (click)="loadAdmins()">Cargar</button>
+<!--<button (click)="loadAdmins()">Cargar</button>
 
 <div>
     <input type="text" #myInput id="myInput" placeholder="ID">
@@ -23,28 +23,32 @@ Traer
     (click)="idRemove.value = ''" >
     Borrar
     </button>
-</div>
+</div>-->
 
-<div>
-    <input type="text" #nombre nombre="nombre" placeholder="Nombre Admin">
-    <input type="text" #contrasenia contrasenia="contrasenia" placeholder="Contraseña">
-    <input type="text" #apellido apellido="apellido" placeholder="Apellido">
-    <input type="text" #mail mail="mail" placeholder="Mail">
-    <input type="text" #fecha_nacimiento fecha_nacimiento="fecha_nacimiento" placeholder="Fecha Nacimiento">
+<div class="addTorneo">
+    <input type="text" #nombre_torneo nombre_torneo="nombre_torneo" placeholder="Nombre Torneo">
+    <input type="text" #fecha_inicio_torneo fecha_inicio_torneo="fecha_inicio_torneo" placeholder="Fecha Inicio Torneo">
+    <input type="text" #fecha_fin_torneo fecha_fin_torneo="fecha_fin_torneo" placeholder="Fecha Fin Torneo">
+    <input type="text" #admin admin="admin" placeholder="Admin a cargo">
+    <input type="text" #sucursal sucursal="sucursal" placeholder="Sucursal">
+    <input type="text" #estado_torneo estado_torneo="estado_torneo" placeholder="Estado del torneo">
+    <input type="text" #formato_torneo formato_torneo="formato_torneo" placeholder="Formato del torneo">
     <input type="text" #id id="id" placeholder="ID">
     <button 
-    (click)="addAdmin(nombre.value, contrasenia.value, apellido.value, mail.value, fecha_nacimiento.value, id.value)" 
-    (click)="nombre.value = ''" 
-    (click)="contrasenia.value = ''"
-    (click)="apellido.value = ''"
-    (click)="mail.value = ''"
-    (click)="fecha_nacimiento.value= ''"
+    (click)="addTorneo(nombre_torneo.value, fecha_inicio_torneo.value, fecha_fin_torneo.value, admin.value, sucursal.value, estado_torneo.value, formato_torneo.value, id.value)" 
+    (click)="nombre_torneo.value = ''" 
+    (click)="fecha_inicio_torneo.value = ''"
+    (click)="fecha_fin_torneo.value= ''"
+    (click)="admin.value= ''"
+    (click)="sucursal.value= ''"
+    (click)="estado_torneo.value= ''"
+    (click)="formato_torneo.value= ''"
     (click)="id.value = ''">
-    Crear una Admin
+    Crear Torneos
     </button>
 </div>
 
-<div>
+<!--<div>
     <input type="text" #modNombre modNombre="modNombre" placeholder="Mod Nombre Admin">
     <input type="text" #modContrasenia modContrasenia="modContrasenia" placeholder="Mod Contraseña">
     <input type="text" #modApellido modApellido="modApellido" placeholder="Mod Apellido">
@@ -61,4 +65,4 @@ Traer
     (click)="modID.value = ''">
     Modificar una Admin
     </button>
-</div>
+</div>-->
