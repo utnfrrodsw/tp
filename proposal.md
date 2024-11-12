@@ -7,15 +7,18 @@
 * 50708 - Vacs, Francisco
 
 ### Repositorios
-* [frontend app](https://github.com/FranciscoVacs/QRera_FE)
-* [backend app](https://github.com/FranciscoVacs/QRera_BE)
+* [frontend app](https://github.com/FranciscoVacs/Bohemia_FE)
+* [backend app](https://github.com/FranciscoVacs/Bohemia_BE)
 
 ## Tema
 ### Descripción
-Una ticketera virtual que permite gestionar las entradas para diversos eventos hosteados. Al comprar cada entrada se genera un código QR que el cliente mostrará en puerta para asistir al evento. Se mantiene un registro de qué códigos generados ya se utilizaron y cuales no.
+Es una página de una fiesta la cual tiene publicadas todas las fechas/eventos que se van a realizar en el futuro.Puede haber eventos en distintas ciudades de Argentina. Cada evento se realiza en una locación y una locación puede utilizarse para varios eventos a lo largo del tiempo.
+Ingresando a uno de estos eventos se puede ver una breve descripción junto con la fecha y hora de inicio y la fecha y hora de finalización, si el usuario/cliente quiere ir al evento debe comprar una entrada, para comprar una entrada debe estar registrado. 
+En la compra de entradas hay diferentes métodos de pago y la opción de ingresar un código de descuento por cada entrada  a comprar. A medida que pasa el tiempo las entradas aumentan su precio estando divididas en tandas, la preventa, la primera tanda, la segunda tanda, etc. Una vez que el usuario realiza la compra le llega un recibode la misma al correo junto con todas las entradas con su respectivo código qr.
+
 
 ### Modelo
-![imagen del modelo](https://github.com/phalanxeyes/DSW-2024-Bonaroti-Salerno-Vacs/blob/main/MDQRera.PNG?raw=true)
+![imagen del modelo]([https://github.com/phalanxeyes/DSW-2024-Bonaroti-Salerno-Vacs/blob/main/MDQRera.PNG?raw=true](https://drive.google.com/file/d/1suECr165TqPRWk9N4bYlmyNx3mmdsXqV/view?usp=sharing))
 
 
 ## Alcance Funcional 
