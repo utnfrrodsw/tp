@@ -22,13 +22,13 @@ Sistema de atención y gestión para una hamburguesería con el objetivo de  fac
 
 * EL REGISTRO DE LOS CLIENTES ES UN NUMERO INCREMENTAL.
 * montoTotal es el calculo de la suma de los precios de hamburguesas.
-*El Stock no puede ser un valor negativo, stock 0 no se puede agregar la hamburguesa al pedido.
-*Si el cliente se equivoco en el pedido, la modificación solo la puede realizar el administrador a traves del sistema.
-*La modalidad que figura en el pedido es TAKEAWAY O DELIVERY.
-*El estado del pedido puede ser EN PROCESO O TERMINADO.
-*Un pedido puede ser eliminado unicamente si se encuentra en estado ENTREGADO.
-*Un ingrediente puede ser eliminado unicamente si antes se elimina la hamburguesa que lo utiliza.
-*Una hamburguesa puede ser eliminada unicamente si no se encuentra en un pedido en estado EN PROCESO.
+* El Stock no puede ser un valor negativo, stock 0 no se puede agregar la hamburguesa al pedido.
+* Si el cliente se equivoco en el pedido, la modificación solo la puede realizar el administrador a traves del sistema.
+* La modalidad que figura en el pedido es TAKEAWAY O DELIVERY.
+* El estado del pedido puede ser EN PROCESO O TERMINADO.
+* Un pedido puede ser eliminado unicamente si se encuentra en estado ENTREGADO.
+* Un ingrediente puede ser eliminado unicamente si antes se elimina la hamburguesa que lo utiliza.
+* Una hamburguesa puede ser eliminada unicamente si no se encuentra en un pedido en estado EN PROCESO.
 
 
 ## Alcance Funcional 
