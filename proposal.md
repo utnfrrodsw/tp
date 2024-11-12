@@ -31,8 +31,8 @@ https://drive.google.com/file/d/1--fxWd_k9DCDaxtSA4Sk3r7iDb1ZUgSz/view?usp=shari
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Turno <br>2. CRUD Paciente <br>3. CRUD Secretaria<br>4. CRUD Especialidad|
-|CRUD dependiente|1. CRUD Kinesiologo {depende de} CRUD Turno <br>2. CRUD Paciente {depende de} CRUD Turno|
+|CRUD simple|1. CRUD Kinesiologo <br>2. CRUD Paciente <br>3. CRUD Secretaria<br>4. CRUD Especialidad|
+|CRUD dependiente|1. CRUD Disponibilidad {depende de} CRUD Kinesiologo <br>2. CRUD Turno {depende de} CRUD Kinesiologo|
 |Listado<br>+<br>detalle| 1. Listado de turnos filtrado por kinesiologo y estado, muestra fecha, hora, paciente e importeTotal => detalle muestra datos paciente y observaciones <br> 2. Listado de pacientes filtrado por obra social, muestra nombre y apellido del paciente, edad => detalle muestra datos completo del turno|
 |CUU/Epic|1. Solicitar turno<br>2. Dar de baja turno|
 
