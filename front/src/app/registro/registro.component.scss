@@ -1,0 +1,49 @@
+.Contenedor_Registro {
+max-width: 400px;
+margin: auto;
+padding: 20px;
+background-color: black;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+text-align: center;
+}
+
+
+.Contenedor_Registro h2 {
+font-size: 25px;
+font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+color: white;
+margin: 0 0 20px 0;
+}
+
+
+.Contenedor_Registro input[type="text"],
+.Contenedor_Registro input[type="password"],
+.Contenedor_Registro input[type="date"],
+.Contenedor_Registro input[type="email"] {
+width: 85%;
+margin: 10px 0;
+padding: 10px;
+border: none;
+border-radius: 5px;
+background-color: #f2f2f2;
+font-size: 14px;
+outline: none;
+}
+
+
+.Contenedor_Registro button {
+width: 90%;
+padding: 12px;
+margin-top: 20px;
+border: none;
+font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+font-size: 18px;
+background-color: white;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.Contenedor_Registro button:hover {
+background-color: #70b456;
+}
