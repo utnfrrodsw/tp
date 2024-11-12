@@ -30,17 +30,17 @@ En la compra de entradas hay diferentes métodos de pago y la opción de ingresa
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo entrada <br>2. CRUD Usuario<br>3. CRUD Provincia|
-|CRUD dependiente|1. CRUD Entrada {depende de} CRUD Tipo entrada <br>2. CRUD Evento {depende de} CRUD Provincia|
-|Listado<br>+<br>detalle| 1. Listado de eventos filtrado por provincia, muestra nombre de provincia, nombre y descripción del evento=> detalle muestra datos completos del evento<br> 2. Listado de entradas filtrado por rango de fecha, muestra fecha de compra, nombre e e-mail del cliente => detalle muestra datos completos del comprobante y del cliente|
-|CUU/Epic|1. Registrarse<br>2. Comprar entrada|
+|CRUD simple|1. CRUD Ciudad <br>2. CRUD Usuario<br>3. CRUD Djs|
+|CRUD dependiente|1. CRUD Tipo de Entrada {depende de} CRUD Evento <br>2. CRUD Locacion {depende de} CRUD Ciudad|
+|Listado<br>+<br>detalle| 1. Listado de eventos filtrado por ciudad, muestra nombre de ciudad, nombre y descripción del evento=> detalle muestra datos completos del evento<br> 2. Listado de tipos de entrada filtrado por stock, muestra disponibilidad, precio => detalle muestra cantidad disponible para comprar|
+|CUU/Epic|1. Registrarse <br>2. Comprar entrada|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo entrada<br>2. CRUD Usuario<br>3. CRUD Provincia<br>4. CRUD Entrada<br>5. CRUD Evento<br>6. CRUD Comprobante<br>7. CRUD Cliente<br>8. CRUD Productor|
-|CUU/Epic|1. Registrarse<br>2. Comprar entrada<br>3. Actualizar estado de entrada|
+|CRUD |1. CRUD Tipo entrada<br>2. CRUD Usuario<br>3. CRUD Ciudad<br>4. CRUD Entrada<br>5. CRUD Evento<br>6. CRUD Compra<br>7. CRUD Codigo Descuento<br>8. CRUD Djs<br>9. CRUD Locacion
+|CUU/Epic|1. Registrarse<br>2. Comprar entrada<br>3. Crear evento con tipo de entrada|
 
 
 ### Alcance Adicional Voluntario
