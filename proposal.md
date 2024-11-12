@@ -19,7 +19,6 @@ El sistema constara de una interfaz facil de utilizar, la cual dependiendo del r
 
 
 ### Modelo de dominio 
-[![Consultorio-Kinesiologia.png](https://i.postimg.cc/W39v18Lj/Consultorio-Kinesiologia.png)](https://postimg.cc/8Jr3yhzn)
 
 https://drive.google.com/file/d/1--fxWd_k9DCDaxtSA4Sk3r7iDb1ZUgSz/view?usp=sharing
 
