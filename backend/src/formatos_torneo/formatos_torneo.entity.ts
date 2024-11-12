@@ -8,13 +8,7 @@ export class Formatos_torneo{
     id!:number
 
     @Property({nullable: false})
-    cant_grupos!:number
-
-    @Property({nullable: false})
-    cant_equipos_x_grupo!:number
-
-    @Property({nullable: false})
-    cant_clasificados_x_grupo!:number
+    cant_equipos!:number
 
     @OneToMany(() => Torneo, torneo => torneo.formato_torneo, {cascade: [Cascade.ALL]})
     torneos = new Collection<Torneo>(this)

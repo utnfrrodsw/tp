@@ -21,15 +21,7 @@ __decorate([
 __decorate([
     Property({ nullable: false }),
     __metadata("design:type", Number)
-], Formatos_torneo.prototype, "cant_grupos", void 0);
-__decorate([
-    Property({ nullable: false }),
-    __metadata("design:type", Number)
-], Formatos_torneo.prototype, "cant_equipos_x_grupo", void 0);
-__decorate([
-    Property({ nullable: false }),
-    __metadata("design:type", Number)
-], Formatos_torneo.prototype, "cant_clasificados_x_grupo", void 0);
+], Formatos_torneo.prototype, "cant_equipos", void 0);
 __decorate([
     OneToMany(() => Torneo, torneo => torneo.formato_torneo, { cascade: [Cascade.ALL] }),
     __metadata("design:type", Object)

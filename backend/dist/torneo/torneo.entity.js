@@ -27,14 +27,6 @@ __decorate([
 __decorate([
     Property({ nullable: false }),
     __metadata("design:type", String)
-], Torneo.prototype, "fecha_inico_insc", void 0);
-__decorate([
-    Property({ nullable: false }),
-    __metadata("design:type", String)
-], Torneo.prototype, "fecha_fin_insc", void 0);
-__decorate([
-    Property({ nullable: false }),
-    __metadata("design:type", String)
 ], Torneo.prototype, "fecha_inicio_torneo", void 0);
 __decorate([
     Property({ nullable: false }),

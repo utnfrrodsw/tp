@@ -13,12 +13,6 @@ export class Torneo{
     nombre_torneo!: string
 
     @Property({nullable: false})
-    fecha_inico_insc!: string
-
-    @Property({nullable: false})
-    fecha_fin_insc!: string
-
-    @Property({nullable: false})
     fecha_inicio_torneo!: string
 
     @Property({nullable: false})
