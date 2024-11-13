@@ -104,12 +104,13 @@
 }
 
 .footer-column {
-    flex: 1;
+    display: block;
     min-width: 180px;
     margin: 0 10px;
 }
 
 .footer-column h3 {
+    margin-left: 38px;
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 10px;

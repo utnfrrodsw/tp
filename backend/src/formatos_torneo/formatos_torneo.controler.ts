@@ -11,7 +11,6 @@ function sanitizeFormatoInput(req: Request, res: Response , next: NextFunction){
         cant_clasificados_x_grupo: req.body.cant_clasificados_x_grupo,
         id: req.body.id,
         torneos: req.body.torneos
-
       }
 
       Object.keys(req.body.sanitizedInput).forEach(key => {

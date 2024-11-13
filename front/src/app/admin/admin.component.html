@@ -25,6 +25,7 @@ Traer
     </button>
 </div>-->
 
+
 <div class="addTorneo">
     <input type="text" #nombre_torneo nombre_torneo="nombre_torneo" placeholder="Nombre Torneo">
     <input type="text" #fecha_inicio_torneo fecha_inicio_torneo="fecha_inicio_torneo" placeholder="Fecha Inicio Torneo">
@@ -35,7 +36,7 @@ Traer
     <input type="text" #formato_torneo formato_torneo="formato_torneo" placeholder="Formato del torneo">
     <input type="text" #id id="id" placeholder="ID">
     <button 
-    (click)="addTorneo(nombre_torneo.value, fecha_inicio_torneo.value, fecha_fin_torneo.value, admin.value, sucursal.value, estado_torneo.value, formato_torneo.value, id.value)" 
+    (click)="addTorneo(nombre_torneo.value, fecha_inicio_torneo.value, fecha_fin_torneo.value, admin.value, sucursal.value, estado_torneo.value, formato_torneo.value, id.value)"
     (click)="nombre_torneo.value = ''" 
     (click)="fecha_inicio_torneo.value = ''"
     (click)="fecha_fin_torneo.value= ''"
