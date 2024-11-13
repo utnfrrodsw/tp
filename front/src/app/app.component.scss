@@ -4,6 +4,7 @@
     justify-content: space-between;
     padding: 1rem 2rem;
     background-color: #000; 
+    border-radius: 5px;
 }
 
 .linksBarra {
@@ -13,9 +14,10 @@
 }
 
 .linksBarra a {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     color: #ffffff;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .linksBarra a:hover {
@@ -23,6 +25,8 @@
 }
 
 .btnBarra {
+    
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     display: flex;
     gap: 1rem;
 }
@@ -32,7 +36,7 @@
     padding: 0.5rem 1rem;
     border: none;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .login a{
@@ -51,7 +55,7 @@
 }
 
 .login {
-    background-color: white;
+    background-color: rgb(165, 214, 91);
     color: black;
     border-radius: 4px;
 }
@@ -63,7 +67,7 @@
 }
 
 .registro {
-    background-color: #ffffff;
+    background-color: rgb(126, 204, 230);
     color: #000000;
     border-radius: 4px;
 }

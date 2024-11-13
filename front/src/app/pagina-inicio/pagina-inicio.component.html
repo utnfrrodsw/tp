@@ -9,6 +9,20 @@
 
 <body>
 
+    <div class="video-container">
+        <video #videoElement autoplay muted loop playsinline preload="auto">
+          <source src="../../assets/Video/Background.mp4" type="video/mp4" />
+        </video>
+        <div class="content">
+          <h1>LIGA VIRTUAL</h1>
+          <p>GESTION DE TORNEOS LOCALES</p>
+        </div>
+        <!-- Button to manually play the video if autoplay fails -->
+        <button (click)="playVideo()" *ngIf="videoPaused">Play Video</button>
+        <p *ngIf="errorMessage">{{ errorMessage }}</p> <!-- Error message display -->
+      </div>
+
+
     <div class="container">
         <div class="finalTorneo">
             <img src="../../assets/images/Final del Torneo.jpg" alt="Final del Torneo" class="main-image">
