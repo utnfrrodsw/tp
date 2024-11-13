@@ -26,6 +26,8 @@ Los profesionales podrán asignar rutinas y realizar un seguimiento a cada clien
 
 ### Modelo
 
+![Descripción de la imagen](https://drive.google.com/uc?export=view&id=1oZyXeEUxBYH1kvBBXEotZEnvuJDN905k)
+
 
 ## Alcance Funcional 
 
