@@ -32,7 +32,7 @@ import { RegistroComponent } from './registro/registro.component';
     TorneoComponent,
     LoginComponent,
     PaginaInicioComponent,
-    RegistroComponent
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
