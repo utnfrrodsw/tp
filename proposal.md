@@ -24,9 +24,16 @@ El Sistema cuenta con  profesionales, administradores y clientes como los roles 
 Los profesionales podrán asignar rutinas y realizar un seguimiento a cada cliente según el plan que pague el mismo.
 
 
-### Modelo
+### DER
 
 ![Descripción de la imagen](https://drive.google.com/uc?export=view&id=1oZyXeEUxBYH1kvBBXEotZEnvuJDN905k)
+
+### Base De Datos
+
+![Descripción de la imagen](https://drive.google.com/uc?export=view&id=16duJtlFEp8YerjxEWIXp7Jt89RJLQhmj)
+
+### Video Muestra
+<a href="https://drive.google.com/file/d/1ZERvdEL2x_RqnIU9R_DPp-wK5avlYZxv/view">Video</a>
 
 
 ## Alcance Funcional 
