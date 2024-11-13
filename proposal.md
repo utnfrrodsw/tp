@@ -18,7 +18,8 @@ En la compra de entradas hay diferentes métodos de pago y la opción de ingresa
 
 
 ### Modelo
-![imagen del modelo]![BohemiaPage](https://github.com/user-attachments/assets/983ffd80-6a99-4f5a-b5cd-38fb421c9416)
+[imagen del modelo]![BohemiaPageff drawio](https://github.com/user-attachments/assets/d1fd689b-5ab3-47cc-82b8-a56debcc64e0)
+
 
 
 
