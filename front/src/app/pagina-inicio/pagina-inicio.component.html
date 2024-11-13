@@ -14,11 +14,12 @@
           <source src="../../assets/Video/Background.mp4" type="video/mp4" />
         </video>
         <div class="content">
+            <div class="logo_inicio">
+                <img src="../../assets/images/football.jpg" alt="LigaVirtual Logo">
+            </div>
           <h1>LIGA VIRTUAL</h1>
           <p>GESTION DE TORNEOS LOCALES</p>
         </div>
-        <!-- Button to manually play the video if autoplay fails -->
-        <button (click)="playVideo()" *ngIf="videoPaused">Play Video</button>
         <p *ngIf="errorMessage">{{ errorMessage }}</p> <!-- Error message display -->
       </div>
 
