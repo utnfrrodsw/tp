@@ -5,10 +5,13 @@ import { Torneo } from "../torneo/torneo.entity.js"
 export class Formatos_torneo{
 
     @PrimaryKey({unique: true})
-    id!:number
+    id!: number
 
     @Property({nullable: false})
-    cant_equipos!:number
+    cant_equipos!: number
+
+    @Property({nullable: false})
+    cant_partidos!: number
 
     @OneToMany(() => Torneo, torneo => torneo.formato_torneo, {cascade: [Cascade.ALL]})
     torneos = new Collection<Torneo>(this)

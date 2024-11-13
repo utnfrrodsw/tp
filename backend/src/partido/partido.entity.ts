@@ -5,7 +5,7 @@ import { Equipo } from "../equipo/equipo.entity.js"
 @Entity()
 export class Partido{
 
-    @Property({nullable: false})
+    @Property({nullable: true})
     fecha!: string
 
     @PrimaryKey({unique: true})
@@ -18,4 +18,3 @@ export class Partido{
     equipos = new Collection<Equipo>(this)
     
 }
-

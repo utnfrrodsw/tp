@@ -23,6 +23,10 @@ __decorate([
     __metadata("design:type", Number)
 ], Formatos_torneo.prototype, "cant_equipos", void 0);
 __decorate([
+    Property({ nullable: false }),
+    __metadata("design:type", Number)
+], Formatos_torneo.prototype, "cant_partidos", void 0);
+__decorate([
     OneToMany(() => Torneo, torneo => torneo.formato_torneo, { cascade: [Cascade.ALL] }),
     __metadata("design:type", Object)
 ], Formatos_torneo.prototype, "torneos", void 0);

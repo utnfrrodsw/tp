@@ -38,4 +38,4 @@ Content-Type: application/json
 
 
 ### Borrar una equipo
-DELETE http://localhost:3000/api/equipos/1
+DELETE http://localhost:3000/api/equipos/14

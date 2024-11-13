@@ -11,9 +11,8 @@ POST http://localhost:3000/api/formatos_torneo
 Content-Type: application/json
 
 {
-  "cant_grupos": 16,
-  "cant_equipos_x_grupo": 8,
-  "cant_clasificados_x_grupo": 4,
+  "cant_equipos": 16,
+  "cant_partidos":15,
   "torneos": []
 }
 
@@ -29,4 +28,4 @@ Content-Type: application/json
 
 
 ### eliminar un formato de torneo
-DELETE http://localhost:3000/api/formatos_torneo/29
+DELETE http://localhost:3000/api/formatos_torneo/35

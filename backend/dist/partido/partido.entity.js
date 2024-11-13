@@ -16,7 +16,7 @@ export let Partido = class Partido {
     }
 };
 __decorate([
-    Property({ nullable: false }),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Partido.prototype, "fecha", void 0);
 __decorate([
