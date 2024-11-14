@@ -4,12 +4,12 @@ const { isISBN } = validator;
 
 const libroAltaSchema = z
   .object({
-    titulo: z.string(),
-    descripcion: z.string(),
+    titulo: z.string().max(100),
+    descripcion: z.string().max(500),
     isbn: z.string().refine((isbn) => isISBN(isbn)), // ISBN 10 y 13.
     misAutores: z.array(z.number().int().gt(0)),
     miEditorial: z.number().int().gt(0),
-    cantEjemplares: z.number().int().gt(0).optional(),
+    cantEjemplares: z.number().int().gt(-1).optional(),
   })
   .strict();
 

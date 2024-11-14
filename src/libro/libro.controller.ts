@@ -2,7 +2,11 @@ import { Request, Response, NextFunction } from "express";
 import { orm } from "../shared/DB/orm.js";
 import { Libro } from "./libro.entity.js";
 import { Ejemplar } from "../ejemplar/ejemplar.entity.js";
-import { NotFoundError } from "@mikro-orm/core";
+import {
+  NotFoundError,
+  UniqueConstraintViolationException,
+} from "@mikro-orm/core";
+import errorMap from "zod/locales/en.js";
 
 export function sanitizeResponseLibro(libro: Libro) {
   //Sacar el export luego, es para testeo.
@@ -87,11 +91,23 @@ async function altaLibro(req: Request, res: Response, next: NextFunction) {
           .json({ message: "El id de editorial ingresado no existe" });
       }
     }
-
+    if (error instanceof UniqueConstraintViolationException) {
+      if (error.message.includes("libro.libro_isbn_unique")) {
+        return res.status(409).json({
+          message: "El ISBN del Libro ya existe",
+        });
+      }
+      if (error.message.includes("libro.libro_titulo_unique")) {
+        return res.status(409).json({
+          message: "El Titulo del Libro ya existe",
+        });
+      }
+      // Si el Titulo y el ISBN estan repetidos, va a requerir un doble envio en el front, molestando a la usabilidad.
+      // Para AD: Hacer una consulta previa del ISBN.
+    }
     next(error);
   }
 }
-
 async function actualizarLibro(
   req: Request,
   res: Response,
@@ -128,6 +144,7 @@ async function bajaLibro(req: Request, res: Response, next: NextFunction) {
     });
 
     //Validacion puede moverse a beforeDelete. (En ese caso, dejar un getReference aca). 12/8/2024 validacion innecesaria, previsto ser borrada o implementada en otro CU de borrado fisico.
+    // Es innecesaria porque si un libro fue prestado, entonces es porque tiene un ejemplar prestado. Lo que no se puede borrar es el ejemplar (si fue prestado).
     if (libro.fuistePrestado()) {
       return res.status(409).json({
         message:

@@ -22,7 +22,7 @@ DELETE  http://localhost:3000/api/autores/1
 
 ### Actualizar autor con PUT 
 
-PUT http://localhost:3000/api/autores/1
+PUT http://localhost:3000/api/autores/2
 Content-Type: application/json
 
 {

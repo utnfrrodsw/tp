@@ -16,13 +16,13 @@ import { Ejemplar } from "../ejemplar/ejemplar.entity.js";
 
 @Entity()
 export class Libro extends BaseEntity {
-  @Property()
+  @Property({ unique: true })
   titulo!: string;
 
   @Property()
   descripcion!: string;
 
-  @Property()
+  @Property({ unique: true })
   isbn!: string;
 
   @Property() //Contemplar hidden
