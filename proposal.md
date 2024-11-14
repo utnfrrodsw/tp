@@ -1,6 +1,6 @@
 # Propuesta TP DSW
 
-# Grupo
+## Grupo
 
 ### Integrantes
 
@@ -26,7 +26,7 @@ Se realizará un sitio para poder llevar a cabo una gestión de clientes, sus pe
 erDiagram
 
 Customer{
-string idCustomer PK
+string id PK
 string dni
 string name
 string address
@@ -36,7 +36,7 @@ string idOrder FK
 }
 
 Employee{
-string idEmployee PK
+string id PK
 string cuil
 string dni
 string name
@@ -66,7 +66,7 @@ number price
 }
 
 Material{
-string idMaterial PK
+string id PK
 string description
 string name
 string brand
@@ -76,16 +76,27 @@ number cost
 string image
 }
 
+MaterialCosts{
+  string id PK
+  string idMaterial FK
+  costHistory[] costHistory
+}
+
+CostHistory{
+  string _id PK
+  date updateDate
+  number cost
+}
 
 Payments{
-string idPayment PK
+string id PK
 string idOrder FK
 string paid
 number numberOfInstallments
-IInstallmentsDetails[] installmentsDetails
+InstallmentsDetails[] installmentsDetails
 }
 
-IInstalmentsDetails{
+InstalmentsDetails{
 string _id
 number installmentN
 date paymentDate
@@ -95,9 +106,11 @@ string paid
 
 Customer ||--|| Order:idCustomer
 Employee ||--|| Order:idEmployee
-Payments ||--|| IInstalmentsDetails:idPayment
+Payments ||--|| InstalmentsDetails:i
+Material ||--|| MaterialCosts:idMaterial
+MaterialCosts ||--|| CostHistory:i
 Order ||--|| IOrderDetails:idOrder
-Order }|--o| Product:idProduct
+Order ||--|| Material:idMaterial
 Order ||--|| Payments:idOrder
 ```
 
@@ -108,6 +121,7 @@ _Se analizará crear nuevas clases y/o atributos según se vea conveniente._
 ### Alcance Mínimo
 
 **_Regularidad_**
+
 | Req | Detalle |
 |--|--|
 | CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Product <br> CRUD Employee |
@@ -116,6 +130,7 @@ _Se analizará crear nuevas clases y/o atributos según se vea conveniente._
 |CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado.|
 
 **_Aprobación_**
+
 | Req | Detalle |
 |--|--|
 | CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Product <br> CRUD Employee |
