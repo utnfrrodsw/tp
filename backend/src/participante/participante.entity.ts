@@ -14,7 +14,7 @@ export class Participante{
     @Property({nullable: false})
     apellido!:string
 
-    @Property({nullable: false})
+    @Property({nullable: false, unique: true})
     mail!:string
 
     @Property({nullable: false})

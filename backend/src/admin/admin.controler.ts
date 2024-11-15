@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { Admin } from "./admin.entity.js";
 import { orm } from "../shared/db/orm.js";
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const em = orm.em
 
@@ -46,14 +48,36 @@ async function findOne(req: Request,res: Response){
     }
 }
 
-async function add(req: Request,res: Response){
-    try{
-        const admin = em.create(Admin, req.body)
-        await em.flush()
-        res.status(200).json({message: 'admin created', data: admin})
-    }catch (error: any){
-        res.status(500).json({message: error.message})
+async function registroAdmin(req: Request,res: Response){
+    const { mail } = req.body
+    const user = await em.findOne(Admin, {mail})
+    
+    if(!user){
+        const admin = await em.create(Admin, req.body)
+        admin.contraseña = await bcrypt.hash(admin.contraseña, 10)
+        await em.flush();
+        return res.status(201).json({ message: 'Admin registrado exitosamente' })
     }
+    return res.status(500).json({ message: 'Ya existe un admin con ese mail asociado' })
+}
+
+async function loginAdmin(req: Request, res: Response){
+    const { mail, contraseña } = req.body
+    const user = await em.findOne(Admin, {mail: mail}) 
+    
+    if(!user){
+        return res.status(400).json({message: 'No se encontró un admin con ese mail'})
+    }
+
+    const validacionContraseña = await bcrypt.compare(contraseña, user.contraseña)
+
+    if(!validacionContraseña){
+        return res.status(400).json({message: 'Contraseña incorrecta'})
+    }
+    
+    const token = jwt.sign({mail: mail}, process.env.SECRET_KEY || 'pepitos123')
+
+    return res.json({token})
 }
 
 async function update(req: Request,res: Response){
@@ -79,4 +103,4 @@ async function remove(req: Request,res: Response){
     }
 }
 
-export {sanitizarAdminInput, findAll, findOne, add, update, remove}
+export {sanitizarAdminInput, findAll, findOne, registroAdmin, loginAdmin, update, remove}

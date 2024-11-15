@@ -24,9 +24,15 @@ export class ParticipanteService {
     return this.http.delete<any>(url);
   }
 
-  add(nombre:string, contraseña:string, apellido:string, mail:string, fecha_nacimiento:string, tipo_par: string, id: number) {
-    const url = this.baseUrl + 'participantes';
+  registroParticipante(nombre:string, contraseña:string, apellido:string, mail:string, fecha_nacimiento:string, tipo_par: string, id: number) {
+    const url = this.baseUrl + 'participantes/registro';
     const data = { nombre, contraseña, apellido, mail, fecha_nacimiento, tipo_par, id };
+    return this.http.post<any>(url, data);
+  }
+
+  loginParticipante(mail:string, contraseña:string){
+    const url = this.baseUrl + 'participantes/login';
+    const data = { mail, contraseña };
     return this.http.post<any>(url, data);
   }
 
@@ -35,4 +41,6 @@ export class ParticipanteService {
     const data = { nombre, contraseña, apellido, mail, fecha_nacimiento, tipo_par, id };
     return this.http.put<any>(url, data);
   }
+
+
 }

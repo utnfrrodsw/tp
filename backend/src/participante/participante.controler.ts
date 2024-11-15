@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { Participante } from "./participante.entity.js";
 import { orm } from "../shared/db/orm.js";
+import bcrypt from 'bcrypt'
+import jwt, { TokenExpiredError } from 'jsonwebtoken'
 
 const em = orm.em
 
@@ -47,14 +49,38 @@ async function findOne(req: Request,res: Response){
     }
 }
 
-async function add(req: Request,res: Response){
-    try{
-        const participante = em.create(Participante, req.body)
-        await em.flush()
-        res.status(200).json({message: 'participante created', data: participante})
-    }catch (error: any){
-        res.status(500).json({message: error.message})
+async function registroParticipante(req: Request,res: Response){    
+    const { mail } = req.body
+    const user = await em.findOne(Participante, {mail});
+    
+    if(!user){
+        const participante = await em.create(Participante, req.body)
+        participante.contraseña = await bcrypt.hash(participante.contraseña, 10);
+        await em.flush();
+        return res.status(201).json({ message: 'Participante registrado exitosamente' });
     }
+    return res.status(500).json({ message: 'Ya existe un participante con ese mail asociado' })
+    
+}
+
+async function loginParticipante(req: Request, res: Response) {
+    const { mail, contraseña } = req.body
+    const user = await em.findOne(Participante, {mail: mail}) 
+    
+    if(!user){
+        return res.status(400).json({message: 'No se encontró un participante con ese mail'})
+    }
+
+    const validacionContraseña = await bcrypt.compare(contraseña, user.contraseña)
+
+    if(!validacionContraseña){
+        return res.status(400).json({message: 'Contraseña incorrecta'})
+    }
+
+    const token = jwt.sign({mail: mail}, process.env.SECRET_KEY || 'pepitos123')
+
+
+    return res.json({token})
 }
 
 async function update(req: Request,res: Response){
@@ -80,4 +106,4 @@ async function remove(req: Request,res: Response){
     }
 }
 
-export {sanitizarParticipanteInput, findAll, findOne, add, update, remove}
+export {sanitizarParticipanteInput, findAll, findOne, registroParticipante, update, remove, loginParticipante}

@@ -1,5 +1,7 @@
 import { Admin } from "./admin.entity.js";
 import { orm } from "../shared/db/orm.js";
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 const em = orm.em;
 function sanitizarAdminInput(req, res, next) {
     req.body.sanitizarAdm = {
@@ -38,15 +40,29 @@ async function findOne(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-async function add(req, res) {
-    try {
-        const admin = em.create(Admin, req.body);
+async function registroAdmin(req, res) {
+    const { mail } = req.body;
+    const user = await em.findOne(Admin, { mail });
+    if (!user) {
+        const admin = await em.create(Admin, req.body);
+        admin.contraseña = await bcrypt.hash(admin.contraseña, 10);
         await em.flush();
-        res.status(200).json({ message: 'admin created', data: admin });
+        return res.status(201).json({ message: 'Admin registrado exitosamente' });
     }
-    catch (error) {
-        res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: 'Ya existe un admin con ese mail asociado' });
+}
+async function loginAdmin(req, res) {
+    const { mail, contraseña } = req.body;
+    const user = await em.findOne(Admin, { mail: mail });
+    if (!user) {
+        return res.status(400).json({ message: 'No se encontró un admin con ese mail' });
     }
+    const validacionContraseña = await bcrypt.compare(contraseña, user.contraseña);
+    if (!validacionContraseña) {
+        return res.status(400).json({ message: 'Contraseña incorrecta' });
+    }
+    const token = jwt.sign({ mail: mail }, process.env.SECRET_KEY || 'pepitos123');
+    return res.json({ token });
 }
 async function update(req, res) {
     try {
@@ -71,5 +87,5 @@ async function remove(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-export { sanitizarAdminInput, findAll, findOne, add, update, remove };
+export { sanitizarAdminInput, findAll, findOne, registroAdmin, loginAdmin, update, remove };
 //# sourceMappingURL=admin.controler.js.map
