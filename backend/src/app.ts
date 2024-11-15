@@ -10,9 +10,9 @@ import { adminsRouter } from './admin/admin.routes.js'
 import { participantesRouter } from './participante/participante.routes.js'
 import { equiposRouter } from './equipo/equipo.routes.js'
 import { partidosRouter } from './partido/partido.routes.js'
-import cors  from 'cors'
 import { orm, syncSchema } from './shared/db/orm.js'
 import { RequestContext } from '@mikro-orm/core'
+import cors  from 'cors'
 
 const app = express()
 app.use(express.json())

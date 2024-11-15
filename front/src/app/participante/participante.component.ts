@@ -30,7 +30,7 @@ export class ParticipanteComponent {
   }
 
   addParticipante(nombre:string, contraseña:string, apellido:string, mail:string, fecha_nacimiento:string, tipo_par: string, id: string){
-    return this.service.add(nombre, contraseña, apellido, mail, fecha_nacimiento, tipo_par, parseInt(id)).subscribe(response => this.participante = response);
+    return this.service.registroParticipante(nombre, contraseña, apellido, mail, fecha_nacimiento, tipo_par, parseInt(id)).subscribe(response => this.participante = response);
   }
 
   putParticipante(nombre:string, contraseña:string, apellido:string, mail:string, fecha_nacimiento:string, tipo_par: string, id: string){

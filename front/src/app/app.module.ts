@@ -46,4 +46,5 @@ import { InscripcionComponent } from './inscripcion/inscripcion.component';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

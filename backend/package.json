@@ -12,8 +12,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "4.17.21",
     "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/mocha": "^10.0.7",
     "@types/node": "20.12.12",
     "tsc-watch": "6.0.4",
@@ -26,8 +28,9 @@
     "@mikro-orm/mysql": "6.3.13",
     "@mikro-orm/sql-highlighter": "1.0.1",
     "@types/cors": "^2.8.17",
-    "@types/jsonwebtoken": "^9.0.7",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "4.19.2",
     "jsonwebtoken": "^9.0.2",
     "reflect-metadata": "0.2.2"

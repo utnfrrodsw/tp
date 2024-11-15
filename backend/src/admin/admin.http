@@ -7,14 +7,14 @@ GET http://localhost:3000/api/admins/1
 
 
 ### Crear un nuevo admin
-POST http://localhost:3000/api/admins
+POST http://localhost:3000/api/admins/registro
 Content-Type: application/json
 
 {
     "nombre": "Agustin",
     "contraseña": "44931351",
     "apellido": "Stefanini",
-    "mail": "agustinstefaninianglia@gmail.com",
+    "mail": "agustinstefaniniangla@gmail.com",
     "fecha_nacimiento": "18/07/2003",
     "torneo": []
 }
@@ -41,4 +41,4 @@ Content-Type: application/json
 
 
 ### Borrar una admin
-DELETE http://localhost:3000/api/admins/1
+DELETE http://localhost:3000/api/admins/18

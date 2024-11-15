@@ -16,7 +16,7 @@ export class AdminService {
     return this.http.get<any>(url);
   }
 
-  getOne(id:string){
+  getFormato(id:string){
     const url = this.baseUrl + 'formatos_torneo/' + id;
     return this.http.get<any>(url);
   }

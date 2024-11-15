@@ -1,5 +1,7 @@
 import { Participante } from "./participante.entity.js";
 import { orm } from "../shared/db/orm.js";
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 const em = orm.em;
 function sanitizarParticipanteInput(req, res, next) {
     req.body.sanitizarPar = {
@@ -39,15 +41,29 @@ async function findOne(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-async function add(req, res) {
-    try {
-        const participante = em.create(Participante, req.body);
+async function registroParticipante(req, res) {
+    const { mail } = req.body;
+    const user = await em.findOne(Participante, { mail });
+    if (!user) {
+        const participante = await em.create(Participante, req.body);
+        participante.contraseña = await bcrypt.hash(participante.contraseña, 10);
         await em.flush();
-        res.status(200).json({ message: 'participante created', data: participante });
+        return res.status(201).json({ message: 'Participante registrado exitosamente' });
     }
-    catch (error) {
-        res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: 'Ya existe un participante con ese mail asociado' });
+}
+async function loginParticipante(req, res) {
+    const { mail, contraseña } = req.body;
+    const user = await em.findOne(Participante, { mail: mail });
+    if (!user) {
+        return res.status(400).json({ message: 'No se encontró un participante con ese mail' });
     }
+    const validacionContraseña = await bcrypt.compare(contraseña, user.contraseña);
+    if (!validacionContraseña) {
+        return res.status(400).json({ message: 'Contraseña incorrecta' });
+    }
+    const token = jwt.sign({ mail: mail }, process.env.SECRET_KEY || 'pepitos123');
+    return res.json({ token });
 }
 async function update(req, res) {
     try {
@@ -72,5 +88,5 @@ async function remove(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-export { sanitizarParticipanteInput, findAll, findOne, add, update, remove };
+export { sanitizarParticipanteInput, findAll, findOne, registroParticipante, update, remove, loginParticipante };
 //# sourceMappingURL=participante.controler.js.map
