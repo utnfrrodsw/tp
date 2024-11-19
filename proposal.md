@@ -43,6 +43,7 @@ Adicionales del backend:
 - Búsqueda de prestamos de un socio, filtrando por estado con query params (PENDIENTE, por ahora son 2 funciones distintas y con endpoints malos) 
 - Búsqueda de prestamos filtrando por estado con query params.
 - Búsqueda de sanciones de un socio. (PENDIENTE DE MEJORAR EL ENDPOINT).
+- Búsqueda de ejemplares pendientes de un socio.(PENDIENTE DE MEJORAR EL ENDPOINT).
 - Testeos de los CU con Jest.
 - Validación de req.params junto a la validacion del body de cada petición, usando una funcion de orden superior que recibe el schema de zod y devuelve la funcion validadora.
 - Clases débiles con CP compuesta como Ejemplar y Linea de préstamo, gestionando el número secuencial en memoria.
