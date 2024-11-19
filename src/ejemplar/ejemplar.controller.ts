@@ -135,6 +135,33 @@ async function bajaEjemplares(req: Request, res: Response, next: NextFunction) {
   }
 }
 
+async function validarEjemplarPendiente(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const idLibro = Number.parseInt(req.params.id);
+    const idEjemplar = Number.parseInt(req.params.idEjemplar);
+    const ejemplar = await em.findOneOrFail(Ejemplar, [idEjemplar, idLibro], {
+      populate: ["misLp.miPrestamo.misLpPrestamo"],
+    });
+    if (!ejemplar.estasPendiente()) {
+      return res
+        .status(400)
+        .json({ message: "El ejemplar no esta pendiente de devolución" });
+    }
+    return res
+      .status(200)
+      .send({ message: "El ejemplar está pendiente de devolución" });
+  } catch (error: any) {
+    if (error instanceof NotFoundError) {
+      return res.status(404).send({ message: "Ejemplar no encontrado" });
+    }
+    next(error);
+  }
+}
+
 export {
   buscarEjemplares,
   altaEjemplarManual,
@@ -142,4 +169,5 @@ export {
   bajaEjemplar,
   bajaEjemplares,
   actualizarEjemplar,
+  validarEjemplarPendiente,
 };

@@ -1,6 +1,8 @@
 ### Obtener todos los ejemplares de un libro
-GET http://localhost:3000/api/libros/22/ejemplares/
+GET http://localhost:3000/api/libros/1/ejemplares/1
 
+### Validar ejemplar pendiente
+GET http://localhost:3000/api/libros/1/ejemplares/1/pendiente
 
 ### Subir ejemplar
 

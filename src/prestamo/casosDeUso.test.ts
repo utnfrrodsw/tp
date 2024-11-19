@@ -2,6 +2,9 @@ import request from "supertest";
 
 const baseURL = "http://localhost:3000";
 
+// TESTEO DE CASOS DE USO INUTILIZADOS POR LA INCORPORACIÓN DE UNIQUE EN TITULO Y NOMBRE EDITORIAL. (A menos que sea la primera vez)
+// RECORDAR INSTANCIAR LA POLITICA BIBLIOTECA PRIMERO, EN CASO DE USAR EL TESTEO LUEGO DE UN DROP SCHEMA.
+
 describe("Testeo completo pedir un ejemplar y devolverlo", () => {
   let idAutor: number;
   let idEditorial: number;

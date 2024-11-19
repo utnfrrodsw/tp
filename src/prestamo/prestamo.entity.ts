@@ -19,9 +19,9 @@ import { Ejemplar } from "../ejemplar/ejemplar.entity.js";
 export class Prestamo extends BaseEntity {
   @Property({ type: DateType })
   fechaPrestamo = new Date();
-  @Property({ hidden: true })
+  @Property()
   ordenLinea = 0;
-  @Property({ hidden: true })
+  @Property() // 14/11 le saco hidden a estado y ordenLinea para facilitar el manejo en el front. No recuerdo si era por "seguridad" o por algo importante que agregue hidden. Tener cuidado.
   estadoPrestamo? = "Pendiente";
 
   @ManyToOne(() => Socio, { deleteRule: "cascade" })
@@ -76,5 +76,8 @@ export class Prestamo extends BaseEntity {
   }
   setFinalizado(): void {
     this.estadoPrestamo = "Finalizado";
+  }
+  getLinea(id: number): LineaPrestamo | undefined {
+    return this.misLpPrestamo.find((lp) => lp.ordenLinea === id);
   }
 }

@@ -54,9 +54,9 @@ describe("CRUD /api/libros", () => {
 
   it("should create a libro sin ejemplares", async () => {
     const newBook = {
-      titulo: "Libro para borrar",
+      titulo: "Libro para borrar 2",
       descripcion: "Un clásico de la literatura contemporanéa",
-      isbn: "0-7645-2641-3",
+      isbn: "978-0-262-03384-8",
       misAutores: [1],
       miEditorial: 1,
     };
@@ -146,4 +146,3 @@ describe("CRUD /api/libros", () => {
     jest.restoreAllMocks();
   });
 });
-

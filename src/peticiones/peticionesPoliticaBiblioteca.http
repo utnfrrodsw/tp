@@ -22,7 +22,7 @@ Content-Type: application/json
 {
     "diasSancionMaxima": 130,
     "diasPrestamo": 5,
-    "cantPendientesMaximo": 2
+    "cantPendientesMaximo": 4
 
 }
 ### Actualizar politica bilioteca con PATCH

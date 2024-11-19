@@ -7,24 +7,17 @@ import { Ejemplar } from "../ejemplar/ejemplar.entity.js";
 import { PoliticaBiblioteca } from "../politicaBiblioteca/politicaBiblioteca.entity.js";
 import { LineaPrestamo } from "../lineaPrestamo/lineaPrestamo.entity.js";
 import { Sancion } from "../sancion/sancion.entity.js";
-import { addDays, differenceInDays } from "date-fns";
+import { addDays, differenceInDays, startOfDay } from "date-fns";
 import { PoliticaSancion } from "../politicaSancion/politicaSancion.entity.js";
-
-function sanitizeInput(req: Request, res: Response, next: NextFunction) {
-  req.body.inputOK = {};
-
-  Object.keys(req.body.inputOK).forEach((key) => {
-    if (req.body.inputOK[key] === undefined) {
-      delete req.body.inputOK[key];
-    }
-  });
-
-  next();
-}
+import { error } from "console";
 
 const em = orm.em;
 
-async function retirarLibrosPaso1R(req: Request, res: Response) {
+async function retirarLibrosPaso1R(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   // Se recibe idSocio
   try {
     const socio = await em.findOneOrFail(Socio, req.body.idSocio, {
@@ -62,12 +55,16 @@ async function retirarLibrosPaso1R(req: Request, res: Response) {
     if (error instanceof NotFoundError) {
       return res.status(404).json({ message: "Socio no encontrado" });
     }
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
   // Valida socio y devuelve cantidad disponibles para sacar en prestámo.
 }
 
-async function retirarLibrosPaso2R(req: Request, res: Response) {
+async function retirarLibrosPaso2R(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     //Se recibe idLibro, idEjemplar, idSocio paso 1(no lo ingresa el usuario).
 
@@ -115,7 +112,7 @@ async function retirarLibrosPaso2R(req: Request, res: Response) {
         .json({ message: "Ejemplar o libro no encontrado" });
     }
 
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
   //Retorna ejemplar para mostrar datos del libro.
 }
@@ -125,7 +122,11 @@ interface EjemplarRequest {
   miLibro: number;
 }
 
-async function retirarLibrosPaso3R(req: Request, res: Response) {
+async function retirarLibrosPaso3R(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     //Se recibe array de CP de ejemplar, e idSocio.
 
@@ -220,13 +221,13 @@ async function retirarLibrosPaso3R(req: Request, res: Response) {
     if (error.message.includes("Socio") && error instanceof NotFoundError) {
       return res.status(400).json({ message: "Socio inexistente" });
     }
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
 // CU Devolver libro (Se repite por cada libro)
 
-async function devolverLibro(req: Request, res: Response) {
+async function devolverLibro(req: Request, res: Response, next: NextFunction) {
   // Se recibe idSocio, idEjemplar e idLibro.
 
   try {
@@ -244,25 +245,19 @@ async function devolverLibro(req: Request, res: Response) {
         .status(400)
         .json({ message: "El ejemplar no esta pendiente de devolución" });
     }
+
     const hoy = new Date();
     const lpPendiente = ejemplar.getLpPendiente();
     const prestamo = lpPendiente.getPrestamo();
 
-    //Poner lo comentado para testear camino basico.
-    if (true) {
+    if (false) {
       // lpPendiente.estasAtrasado()
-
       let diasSancion = 0;
       const diasAtraso = differenceInDays(
         hoy,
-        lpPendiente.getFechaDevolucionTeorica() //lpPendiente.getFechaDevolucionTeorica() "2024-08-05"
-      );
-      console.log(
-        diasAtraso,
-        "Hola",
-        hoy,
         lpPendiente.getFechaDevolucionTeorica()
       );
+
       const politicaSancion = await em
         .createQueryBuilder(PoliticaSancion)
         .orderBy({ diasHasta: "ASC" })
@@ -270,7 +265,7 @@ async function devolverLibro(req: Request, res: Response) {
         .getSingleResult();
 
       if (politicaSancion) {
-        diasSancion = politicaSancion.getDiasSancion();
+        // quitar comentario diasSancion = politicaSancion.getDiasSancion();
       }
       if (!politicaSancion) {
         const politicaBiblioteca = await em.findOneOrFail(
@@ -285,6 +280,7 @@ async function devolverLibro(req: Request, res: Response) {
         miSocioSancion: socio,
         fechaSancion: hoy,
       });
+      console.log(hoy);
       lpPendiente.setFechaDevolucionReal(hoy);
 
       // Logica ultima LP
@@ -334,25 +330,36 @@ async function devolverLibro(req: Request, res: Response) {
         .status(404)
         .json({ message: "Ejemplar o libro no encontrado" });
     }
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
-async function buscarPrestamos(req: Request, res: Response) {
+async function buscarPrestamos(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  // Nota: Si se envia un valor de parámetro inexistente, devuelve un 200 con el array vacío.
   try {
+    const estadoPrestamo = req.query.estadoPrestamo as string | undefined;
+
     const prestamos = await em.find(
       Prestamo,
-      {},
-      { populate: ["misLpPrestamo.miEjemplar"] }
+      estadoPrestamo ? { estadoPrestamo } : {},
+      { populate: ["misLpPrestamo.miEjemplar.miLibro"] }
     );
     res
       .status(200)
       .json({ message: "Los prestámos encontrados son:", data: prestamos });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 }
-async function buscarPrestamosSocio(req: Request, res: Response) {
+async function buscarPrestamosSocio(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     //No se valida el socio apropósito
     const prestamos = await em.find(
@@ -365,10 +372,14 @@ async function buscarPrestamosSocio(req: Request, res: Response) {
       data: prestamos,
     });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 }
-async function buscarPrestamosNoDevueltosSocio(req: Request, res: Response) {
+async function buscarPrestamosNoDevueltosSocio(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const socio = await em.findOneOrFail(Socio, req.body.idSocio, {
       populate: [
@@ -382,21 +393,7 @@ async function buscarPrestamosNoDevueltosSocio(req: Request, res: Response) {
       ejemplares: noDevueltos,
     });
   } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-}
-
-async function buscarPrestamosNoDevueltos(req: Request, res: Response) {
-  try {
-    const prestamosNoDevueltos = await em.find(Prestamo, {
-      estadoPrestamo: "Pendiente",
-    });
-    return res.status(200).json({
-      message: "Los prestámos no devueltos son",
-      prestamos: prestamosNoDevueltos,
-    });
-  } catch (error: any) {
-    return res.status(500).json({ message: error.message });
+    next(error);
   }
 }
 
@@ -408,5 +405,125 @@ export {
   buscarPrestamos,
   buscarPrestamosSocio,
   buscarPrestamosNoDevueltosSocio,
-  buscarPrestamosNoDevueltos,
+  devolverLibroD,
 };
+
+/* 
+Desacoplamiento del CU - Devolver un Libro
+Funcion 1 Buscar Ejemplar | Bad Request EN EL FRONT 
+Funcion 2 Buscar Socio | Bad Request EN EL FRONT
+Funcion 3 Validar si el ejemplar esta pendiente o que el Buscar Ejemplar además devuelva el estado | Bad Request en el FRONT si no está pendiente
+
+
+Función 1 Validar que el ejemplar este pendiente y exista. 
+Funcion 2 Validar socio exista
+
+Si estas dos salieron bien, modal de confirmación. Si no, error y muestro el porque.
+
+Funcion 4 Mando id prestamo + numero de linea + IDSOCIO para sancionar,
+y actualizo fechaDevolucionReal. Aca está la sanción. Que el ORM traiga el prestamo, y en memoria busco la LP.
+
+
+*/
+
+// Devolver libro desacoplado
+
+async function devolverLibroD(req: Request, res: Response, next: NextFunction) {
+  // Se recibe idPrestamo, idLinea e idSocio.
+
+  try {
+    const idPrestamo = Number.parseInt(req.params.id);
+    const idLP = Number.parseInt(req.params.idLP);
+    const idSocio = req.body.idSocio; // Asumo que está bien porque acaba de ser validado en el Front
+    const prestamo = await em.findOneOrFail(
+      Prestamo,
+      { id: idPrestamo },
+      { populate: ["misLpPrestamo"] }
+    );
+
+    const hoy = new Date();
+    const lpPendiente = prestamo.getLinea(idLP);
+    if (!lpPendiente) {
+      throw new Error("La linea de préstamo seleccionada no existe");
+    }
+    // Poner true aca para testear camino alternativo
+    if (lpPendiente.estasAtrasado()) {
+      let diasSancion = 0;
+      const diasAtraso = differenceInDays(
+        hoy,
+        lpPendiente.getFechaDevolucionTeorica()
+      );
+
+      const politicaSancion = await em
+        .createQueryBuilder(PoliticaSancion)
+        .orderBy({ diasHasta: "ASC" })
+        .where({ diasHasta: { $gt: diasAtraso } })
+        .getSingleResult();
+
+      if (politicaSancion) {
+        diasSancion = politicaSancion.getDiasSancion();
+      }
+      if (!politicaSancion) {
+        const politicaBiblioteca = await em.findOneOrFail(
+          PoliticaBiblioteca,
+          1
+        );
+        diasSancion = politicaBiblioteca.getDiasSancionMaxima();
+      }
+
+      em.create(Sancion, {
+        diasSancion: diasSancion,
+        miSocioSancion: idSocio,
+        fechaSancion: hoy,
+      });
+
+      lpPendiente.setFechaDevolucionReal(hoy);
+
+      // Logica ultima LP
+      // A pesar de no hacer em.await() la LP de adentro del prestamo esta sincronizada con la lpPendiente, por eso = 0 y no = 1.
+      if (prestamo.getCantPendientes() === 0) {
+        prestamo.setFinalizado();
+      }
+      // Fin logica
+
+      // diasSancion = 10; Hardcodear esto para testear camino alternativo.
+      await em.flush();
+      return res.status(200).json({
+        message: "Devolucion registrada y socio sancionado.",
+        data: {
+          socio: idSocio,
+          diasSancion: diasSancion,
+        },
+      });
+    }
+    // Comentar de aca hasta antes del catch para testear camino alternativo.
+    lpPendiente.setFechaDevolucionReal(hoy);
+
+    if (prestamo.getCantPendientes() === 0) {
+      prestamo.setFinalizado();
+    }
+    await em.flush();
+
+    return res.status(200).json({
+      message: "Se registro la devolución del libro",
+      data: {
+        socio: idSocio,
+      },
+    });
+  } catch (error: any) {
+    if (error.message.includes("PoliticaBiblioteca")) {
+      return res
+        .status(500)
+        .json({ message: "Politica biblioteca  inaccesible" });
+    }
+    if (error instanceof NotFoundError) {
+      return res.status(404).json({ message: "Préstamo no encontrado" });
+    }
+    if (error.message.includes("La linea de préstamo seleccionada no existe")) {
+      return res
+        .status(404)
+        .json({ message: "Línea de Préstamo no encontrada" });
+    }
+    next(error);
+  }
+}

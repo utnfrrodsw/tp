@@ -6,6 +6,7 @@ import {
   bajaEjemplar,
   bajaEjemplares,
   actualizarEjemplar,
+  validarEjemplarPendiente,
 } from "./ejemplar.controller.js";
 import {
   ejemplarAltaSchema,
@@ -41,4 +42,9 @@ ejemplarRouter.delete(
   "/:idEjemplar",
   validateInput(schemaParamsIdEjemplar, undefined),
   bajaEjemplar
+);
+ejemplarRouter.get(
+  "/:idEjemplar/pendiente",
+  validateInput(schemaParamsIdEjemplar, undefined),
+  validarEjemplarPendiente
 );

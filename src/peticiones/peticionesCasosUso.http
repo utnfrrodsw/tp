@@ -4,7 +4,7 @@ GET http://localhost:3000/api/prestamos/retirarLibrosPaso1R
 Content-Type: application/json
 
 {
-    "idSocio": 4
+    "idSocio": 1
 
 }
 
@@ -15,7 +15,7 @@ GET http://localhost:3000/api/prestamos/retirarLibrosPaso2R
 Content-Type: application/json
 
 {
-    "idSocio": 4,
+    "idSocio": 1,
     "idEjemplar": 1,
     "idLibro":1
 
@@ -31,7 +31,7 @@ Content-Type: application/json
     "ejemplares":[
       {
         "id": 1,
-        "miLibro":1
+        "miLibro":4
       }
     ]
 
@@ -55,8 +55,18 @@ PATCH http://localhost:3000/api/prestamos/devolverLibro
 Content-Type: application/json
 
 {
-    "idSocio": 4,
-    "idEjemplar": 4,
-    "idLibro":1
+    "idSocio": 1,
+    "idEjemplar": 1,
+    "idLibro":4
+
+}
+
+### Devolver un libro socio atrasado. Hacer modificaciones comentadas en el controlador.
+
+PATCH http://localhost:3000/api/prestamos/6/lineas/10/devolver
+Content-Type: application/json
+
+{
+    "idSocio": 1
 
 }

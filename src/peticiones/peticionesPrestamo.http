@@ -1,9 +1,12 @@
 ### Obtener todos los prestamos
 GET http://localhost:3000/api/prestamos
 
+### Obtener todos los prestamos pendientes
+GET http://localhost:3000/api/prestamos?estadoPrestamo=Pendiente
+### Obtener todos los prestamos finalizados
+GET http://localhost:3000/api/prestamos?estadoPrestamo=Finalizado
 
-### Obtener todos los prestamos no devueltos
-GET http://localhost:3000/api/prestamos/noDevueltos
+
 
 ### Obtener todos los prestamos de un socio
 GET http://localhost:3000/api/prestamos/prestamosSocio
