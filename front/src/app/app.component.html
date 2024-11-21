@@ -3,79 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=}, initial-scale=1.0">
+    <meta name="viewport" content="width=, initial-scale=1.0">
 </head>
 <body>
-    <div>
-        <nav class="barraNavegacion">
-            <ul class="linksBarra">
-                <li><a routerLink="inicio">INICIO</a></li>
-                <li><a routerLink="partidos">PARTIDOS</a></li>
-                <li><a routerLink="torneos">TORNEOS</a></li>
-                <li><a routerLink="inscripcion">INSCRIPCION</a></li>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active fs-4" aria-current="page" routerLink="inicio">INICIO</a> 
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active fs-4" routerLink="partidos">PARTIDOS</a> 
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active fs-4" routerLink="torneos">TORNEOS</a> 
+              </li>
             </ul>
-            <div class="btnBarra">
-                <button class="logOut" (click)="logOut()">LogOut</button>
-                <button class="admin"><a routerLink="/admin">ADMIN</a></button>
-                <button class="login"><a routerLink="/login">INICIAR SESION</a></button>
-                <button class="registro"><a routerLink="/registro">REGISTRARSE</a></button>
-            </div>
-        </nav>
-    </div>
+          </div>
+        </div>
+      
+        <div class="container-fluid d-flex justify-content-end align-items-center gap-2">
+            <button class="btn btn-primary" (click)="logOut()">LogOut</button>
+          <button class="btn btn-light"><a class="nav-link active " routerLink="admin">ADMIN</a></button>
+          <button class="btn btn-success"><a class="nav-link active" routerLink="login">INICIAR SESIÓN</a></button>
+
+        </div>
+      </nav>
+      
+
 
     <router-outlet></router-outlet>
-
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="../../assets/images/football.jpg" alt="LigaVirtual Logo">
-            </div>
-            <div class="footer-columns">
-                <div class="footer-column">
-                    <h3>ENLACES RÁPIDOS</h3>
-                    <ul>
-                        <li><a routerLink="../partidos">Todos los partidos</a></li>
-                        <li><a routerLink="../torneos">Todos los torneos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>NOSOTROS</h3>
-                    <ul>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Centro de ayuda</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>ASOCIARSE CON NOSOTROS</h3>
-                    <ul>
-                        <li><a href="#">Publicaciones</a></li>
-                        <li><a href="#">Asocia Tu Marca</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>LEGAL</h3>
-                    <ul>
-                        <li><a href="#">Aviso Legal</a></li>
-                        <li><a href="#">Política de privacidad</a></li>
-                        <li><a href="#">Términos y Condiciones</a></li>
-                        <li><a href="#">Licencias</a></li>
-                        <li><a href="#">Configuración de privacidad</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>MÁS LigaVirtual</h3>
-                    <ul>
-                        <li><a href="#">App Store</a></li>
-                        <li><a href="#">Google Play</a></li>
-                    </ul>
+    <footer class="footer bg-dark text-white py-3">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Footer Links Columns -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <!-- Quick Links Column -->
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>ENLACES RÁPIDOS</h5>
+                            <ul class="list-unstyled">
+                                <li><a class="text-white" routerLink="../partidos">Todos los partidos</a></li>
+                                <li><a class="text-white" routerLink="../torneos">Todos los torneos</a></li>
+                            </ul>
+                        </div>
+                        <!-- About Us Column -->
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>NOSOTROS</h5>
+                            <ul class="list-unstyled">
+                                <li><a class="text-white" href="#">Contacto</a></li>
+                            </ul>
+                        </div>
+                        <!-- Partner With Us Column -->
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>ASOCIARSE CON NOSOTROS</h5>
+                            <ul class="list-unstyled">
+                                <li><a class="text-white" href="#">Publicaciones</a></li>
+                                <li><a class="text-white" href="#">Asocia Tu Marca</a></li>
+                            </ul>
+                        </div>
+                        <!-- Legal Column -->
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>LEGAL</h5>
+                            <ul class="list-unstyled">
+                                <li><a class="text-white" href="#">Aviso Legal</a></li>
+                                <li><a class="text-white" href="#">Política de privacidad</a></li>
+                                <li><a class="text-white" href="#">Términos y Condiciones</a></li>
+                                <li><a class="text-white" href="#">Licencias</a></li>
+                                <li><a class="text-white" href="#">Configuración de privacidad</a></li>
+                            </ul>
+                        </div>
+                        <!-- More LigaVirtual Column -->
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>MÁS LigaVirtual</h5>
+                            <ul class="list-unstyled">
+                                <li><a class="text-white" href="#">App Store</a></li>
+                                <li><a class="text-white" href="#">Google Play</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>AYUDA</h5>
+                            <ul class="list-unstyled">
+                            <li><a class="text-white" href="#">Centro de ayuda</a></li>
+                             </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2024 LigaVirtual</p>
+    
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom text-center py-3 bg-dark">
+            <p class="mb-0">© 2024 LigaVirtual</p>
         </div>
     </footer>
+    
+
+    
 
 </body>
 </html>
