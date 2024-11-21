@@ -1,145 +1,38 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    font-family: Arial, sans-serif;
-
-}
-
-.container {
-    display: grid;
-    gap: 20px;
-}
-  
-.finalTorneo {
-    display: flex;
-    gap: 20px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-  
-.main-image {
-    width: 50%;
-    border-radius: 10px;
-}
-  
-.main-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-  
-.main-content .tag {
-    background-color: #ff007f;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-}
-  
-h2 {
-    margin: 10px 0;
-    font-size: 24px;
-    color: #333;
-}
-  
-p {
-    font-size: 14px;
-    color: #666;
-}
-  
-.source {
-    font-size: 12px;
-    color: #999;
-}
-  
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-  
-.card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-  
-.card img {
-    width: 100%;
-    height: auto;
-}
-  
-.card-content {
-    padding: 15px;
-}
-  
-.card-content .tag {
-    background-color: #ff007f;
-    color: white;
-    padding: 3px 7px;
-    border-radius: 3px;
-    font-size: 10px;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-  
-.card p {
-    font-size: 14px;
-    color: #333;
-    margin: 10px 0;
-}
-  
-.card .source {
-    font-size: 12px;
-    color: #999;
-}
-
+/* Style for the video container */
 .video-container {
     position: relative;
     width: 100%;
-    height: 80vh;
+    height: auto;
     overflow: hidden;
-  }
-  
-  video {
+}
+
+/* Style for the video */
+.video-container video {
+    width: 100%;
+    height: auto;
+    transform: scale(2); /* Default scale (no zoom) */
+    transition: transform 5s ease-in-out; /* Smooth zoom effect */
+}
+
+/* Style for the content */
+.video-container .content {
+    position: absolute; /* Position the text relative to the video container */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust to ensure perfect centering */
+    z-index: 2; /* Place the text above the video */
+    color: white; /* Ensure the text is readable on the video */
+}
+
+/* Optional: Add background overlay for readability */
+.video-container::before {
+    content: '';
     position: absolute;
-    top: 47%;
-    left: 50%;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-  }
-  
-      .content {
-        color: white;
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      
-  .content h1 {
-   font-size: 80px;
-  }
-  .content p {
-    color: white;
-    font-size: 20px;
-  }
-.logo_inicio img {
-    color: white;
-    width: 80px;
-    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+    z-index: 1; /* Place it between the video and the text */
 }
