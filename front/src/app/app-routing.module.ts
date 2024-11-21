@@ -8,6 +8,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { AdminComponent } from './admin/admin.component';
 import { ParticipanteComponent } from './participante/participante.component';
 import { InscripcionComponent } from './inscripcion/inscripcion.component';
+import { authGuard } from './utils/auth.guard';
 
 
 
@@ -17,10 +18,11 @@ const routes: Routes = [
     { path: 'partidos', component: PartidoComponent},
     { path: 'torneos', component: TorneoComponent},
     { path: 'registro', component: RegistroComponent},
-    { path: 'admin', component: AdminComponent},
+    { path: 'admin', component: AdminComponent, canActivate: [authGuard]},
     { path: 'participante', component: ParticipanteComponent},
     { path: 'inscripcion', component: InscripcionComponent},
-    { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+    { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+    { path: '**', redirectTo:'inicio', pathMatch: 'full'}
 
 ];
 

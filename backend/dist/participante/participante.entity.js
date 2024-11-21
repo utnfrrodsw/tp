@@ -32,7 +32,7 @@ __decorate([
     __metadata("design:type", String)
 ], Participante.prototype, "mail", void 0);
 __decorate([
-    Property({ nullable: false }),
+    Property({ nullable: false, type: Date }),
     __metadata("design:type", String)
 ], Participante.prototype, "fecha_nacimiento", void 0);
 __decorate([

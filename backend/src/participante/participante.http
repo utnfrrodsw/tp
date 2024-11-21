@@ -7,7 +7,7 @@ GET http://localhost:3000/api/participantes/1
 
 
 ### Crear un nuevo participante
-POST http://localhost:3000/api/participantes/login
+POST http://localhost:3000/api/participantes/registro
 Content-Type: application/json
 
 {
@@ -42,4 +42,4 @@ Content-Type: application/json
 
 
 ### Borrar una participante
-DELETE http://localhost:3000/api/participantes/10
+DELETE http://localhost:3000/api/participantes/17

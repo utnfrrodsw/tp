@@ -56,7 +56,7 @@ async function loginParticipante(req, res) {
     const { mail, contraseña } = req.body;
     const user = await em.findOne(Participante, { mail: mail });
     if (!user) {
-        return res.status(400).json({ message: 'No se encontró un participante con ese mail' });
+        return res.status(400).json({ message: 'No se encontró un usuario con ese mail en la base de datos' });
     }
     const validacionContraseña = await bcrypt.compare(contraseña, user.contraseña);
     if (!validacionContraseña) {
