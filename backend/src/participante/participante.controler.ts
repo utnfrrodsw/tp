@@ -68,7 +68,7 @@ async function loginParticipante(req: Request, res: Response) {
     const user = await em.findOne(Participante, {mail: mail}) 
     
     if(!user){
-        return res.status(400).json({message: 'No se encontró un participante con ese mail'})
+        return res.status(400).json({message: 'No se encontró un usuario con ese mail en la base de datos'})
     }
 
     const validacionContraseña = await bcrypt.compare(contraseña, user.contraseña)
@@ -78,7 +78,6 @@ async function loginParticipante(req: Request, res: Response) {
     }
 
     const token = jwt.sign({mail: mail}, process.env.SECRET_KEY || 'pepitos123')
-
 
     return res.json({token})
 }

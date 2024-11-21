@@ -39,6 +39,11 @@
     font-size: 15px;
 }
 
+.logOut a{
+    text-decoration: black;
+    color: black;
+}
+
 .login a{
     text-decoration: black;
     color: black;
@@ -54,6 +59,12 @@
     color: black;
 }
 
+.logOut{
+    background-color: rgb(143, 3, 174);
+    color: black;
+    border-radius: 4px;
+}
+
 .login {
     background-color: rgb(165, 214, 91);
     color: black;
@@ -61,7 +72,7 @@
 }
 
 .admin{
-    background-color: #ffffff;
+    background-color: #cd0303;
     color: #000000;
     border-radius: 4px;
 }

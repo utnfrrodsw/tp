@@ -9,8 +9,7 @@ import { AdminService } from '../admin.service';
 
 export class AdminComponent {
 
-  constructor (private service: AdminService) {
-  }
+  constructor (private service: AdminService) {}
   
   list:any = [];
   objetos:any = Object;

@@ -4,7 +4,7 @@ import { Equipo } from "../equipo/equipo.entity.js"
 
 @Entity()
 export class Participante{
-    
+
     @Property({nullable: false})
     nombre!:string
 
@@ -17,7 +17,7 @@ export class Participante{
     @Property({nullable: false, unique: true})
     mail!:string
 
-    @Property({nullable: false})
+    @Property({nullable: false, type: Date})
     fecha_nacimiento!:string
 
     @PrimaryKey({unique: true})

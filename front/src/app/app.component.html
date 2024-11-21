@@ -15,9 +15,10 @@
                 <li><a routerLink="inscripcion">INSCRIPCION</a></li>
             </ul>
             <div class="btnBarra">
-                <button class="admin"><a routerLink="admin">Admin</a></button>
-                <button class="login"><a routerLink="login">INICIAR SESION</a></button>
-                <button class="registro"><a routerLink="registro">REGISTRARSE</a></button>
+                <button class="logOut" (click)="logOut()">LogOut</button>
+                <button class="admin"><a routerLink="/admin">ADMIN</a></button>
+                <button class="login"><a routerLink="/login">INICIAR SESION</a></button>
+                <button class="registro"><a routerLink="/registro">REGISTRARSE</a></button>
             </div>
         </nav>
     </div>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EstadoTorneoComponent } from './estado-torneo/estado-torneo.component';
@@ -17,6 +17,9 @@ import { LoginComponent } from './login/login.component';
 import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { RegistroComponent } from './registro/registro.component';
 import { InscripcionComponent } from './inscripcion/inscripcion.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ToastrModule } from 'ngx-toastr'
+import { addTokenInterceptor } from './utils/add-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,10 +42,19 @@ import { InscripcionComponent } from './inscripcion/inscripcion.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,  
+    }),
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    { provide: HTTP_INTERCEPTORS, 
+      useClass: addTokenInterceptor, 
+      multi:true },
   ],
   bootstrap: [AppComponent]
 })

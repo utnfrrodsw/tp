@@ -31,9 +31,9 @@
             <div class="contenedor_logueo_registro">
                 <form action="" class="Login">
                     <h2>Iniciar Sesion</h2>
-                    <input type="text" placeholder="Correo Electrónico">
-                    <input type="password" placeholder="Contraseña">
-                    <button>Ingresar</button>
+                    <input type="text" #mail mail="mail" placeholder="Correo Electrónico">
+                    <input type="password" #contrasenia contrasenia="contrasenia" placeholder="Contraseña">
+                    <button (click)="logUser($event, mail.value, contrasenia.value);mail.value='';contrasenia.value=''">Ingresar</button>
                 </form>
 
                 <form action="" class="Registro">

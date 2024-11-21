@@ -12,13 +12,15 @@
         <div class="Contenedor_Registro"> 
           <form action="" class="Registro">
             <h2>FORMULARIO</h2>
-            <input type="text" placeholder="Nombre de Usuario">
-            <input type="password" placeholder="Contraseña">
-            <input type="text" placeholder="Nombre">
-            <input type="text" placeholder="Apellido">
-            <input type="date" placeholder="dd/mm/yyyy">
-            <input type="email" placeholder="Correo Electrónico">
-            <button>REGISTRATE</button>
+            <input type="text" #nombre nombre="nombre" placeholder="Nombre">
+            <input type="password" #contrasenia contrasenia="contrasenia" placeholder="Contraseña">
+            <input type="password" #confirmPass confirmPass="confirmPass" placeholder="Repita su contraseña">
+            <input type="text" #apellido apellido="apellido" placeholder="Apellido">
+            <input type="date" #fecha_nacimiento fecha_nacimiento="fecha_nacimiento" placeholder="dd/mm/yyyy">
+            <input type="email" #mail mail="mail" placeholder="Correo Electrónico">
+            <input type="number" #tipos_par tipos_par="tipos_par" placeholder="Tipo de participante">
+            <button (click)="regUser($event, nombre.value, contrasenia.value, confirmPass.value, apellido.value, fecha_nacimiento.value, mail.value, tipos_par.value);nombre.value='';contrasenia.value='';confirmPass.value='';apellido.value='';fecha_nacimiento.value='';mail.value='';tipos_par.value=''">
+            REGISTRATE</button>
           </form>
         </div>
       </main>
