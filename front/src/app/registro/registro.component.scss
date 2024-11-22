@@ -1,21 +1,10 @@
-.container{
-    align-items: center;
-    justify-items: center;
-    height: 100%;
-   
-}
+
 .custom-form    {
-    display: grid;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    align-items: center;
     justify-items: center;
     border-radius: 15px;
     width: 500px;
-    background-color: #F0F1F5 ;
-    padding: 30px 0px;
-    
-
+    margin-top: -32px;
+    background-color: transparent;
 }
 
 .form-group{
@@ -31,10 +20,6 @@
     margin-bottom: 15px;
     margin-top: 15px;
 }
-.titulo{
-    color: black;
-}
-
 .form-select{
     margin-top: 15px;
     border-radius: 10px;
