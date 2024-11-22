@@ -1,27 +1,57 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LigaVirtual</title>
+    <title>Formulario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="registro.component.scss">
 </head>
-
 <body>
-    <main>
-        <div class="Contenedor_Registro"> 
-          <form action="" class="Registro">
-            <h2>FORMULARIO</h2>
-            <input type="text" #nombre nombre="nombre" placeholder="Nombre">
-            <input type="password" #contrasenia contrasenia="contrasenia" placeholder="Contraseña">
-            <input type="password" #confirmPass confirmPass="confirmPass" placeholder="Repita su contraseña">
-            <input type="text" #apellido apellido="apellido" placeholder="Apellido">
-            <input type="date" #fecha_nacimiento fecha_nacimiento="fecha_nacimiento" placeholder="dd/mm/yyyy">
-            <input type="email" #mail mail="mail" placeholder="Correo Electrónico">
-            <input type="number" #tipos_par tipos_par="tipos_par" placeholder="Tipo de participante">
-            <button (click)="regUser($event, nombre.value, contrasenia.value, confirmPass.value, apellido.value, fecha_nacimiento.value, mail.value, tipos_par.value);nombre.value='';contrasenia.value='';confirmPass.value='';apellido.value='';fecha_nacimiento.value='';mail.value='';tipos_par.value=''">
-            REGISTRATE</button>
-          </form>
+    <div class="container">
+    <form class="custom-form ">
+        <h1 class="titulo">FORMULARIO</h1>
+        <div class="form-group">
+          <input type="text" class="form-control" id="nombre"
+          placeholder="Nombre"
+          >
+            </div>
+      <div class="form-group">
+          <input type="text" class="form-control" id="apellido"
+          placeholder="Apellido"
+          >
+      </div>   
+        <div class="form-group">
+            <input type="password" class="form-control" id="contraseña1"
+            placeholder="Contraseña"
+            >
+        </div> 
+        <div class="form-group">
+            <input type="password" class="form-control" id="contraseña2"
+            placeholder="Repetir contraseña"
+                >
         </div>
-      </main>
+        <div class="form-group">
+            <input type="date" class="form-control" id="fecha-nacimiento"
+            placeholder="dd/mm/yyyy"
+            >
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" id="email"
+            placeholder="Correo Electrónico"
+            >
+        </div>
+        <div class="form_input">
+            <select class=" form-select form-select-lg mb-3" aria-label="Large select example" name= "tipo_participante" #tipos_par tipos_par="tipos_par">
+                <option value="">Tipo de participante</option>
+                <option value=1>Delantero</option>
+                <option value=2>Defensor</option>
+                <option value=3>Arquero</option>
+              </select>
+        </div>
+        <button type="submit" class="btn btn-dark btn-lg">REGISTRATE</button>
+    </form>
+</div>
 </body>
+</html>
