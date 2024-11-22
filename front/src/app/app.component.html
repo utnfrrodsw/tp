@@ -15,13 +15,16 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active fs-4" aria-current="page" routerLink="inicio">INICIO</a> 
+                <a class="nav-link active fs-4" aria-current="page" routerLink="/inicio">INICIO</a> 
               </li>
               <li class="nav-item">
-                <a class="nav-link active fs-4" routerLink="partidos">PARTIDOS</a> 
+                <a class="nav-link active fs-4" routerLink="/partidos">PARTIDOS</a> 
               </li>
               <li class="nav-item">
-                <a class="nav-link active fs-4" routerLink="torneos">TORNEOS</a> 
+                <a class="nav-link active fs-4" routerLink="/torneos">TORNEOS</a> 
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active fs-4" routerLink="/inscripcion">INSCRIPCION</a> 
               </li>
             </ul>
           </div>
@@ -29,8 +32,8 @@
       
         <div class="container-fluid d-flex justify-content-end align-items-center gap-2">
             <button class="btn btn-primary" (click)="logOut()">LogOut</button>
-          <button class="btn btn-light"><a class="nav-link active " routerLink="admin">ADMIN</a></button>
-          <button class="btn btn-success"><a class="nav-link active" routerLink="login">INICIAR SESIÓN</a></button>
+          <button class="btn btn-light"><a class="nav-link active " routerLink="/admin">ADMIN</a></button>
+          <button class="btn btn-success"><a class="nav-link active" routerLink="/login">INICIAR SESIÓN</a></button>
 
         </div>
       </nav>
@@ -41,10 +44,8 @@
     <footer class="footer bg-dark text-white py-3">
         <div class="container-fluid">
             <div class="row">
-                <!-- Footer Links Columns -->
                 <div class="col-md-12">
                     <div class="row">
-                        <!-- Quick Links Column -->
                         <div class="col-6 col-md-2 mb-4">
                             <h5>ENLACES RÁPIDOS</h5>
                             <ul class="list-unstyled">
@@ -52,14 +53,12 @@
                                 <li><a class="text-white" routerLink="../torneos">Todos los torneos</a></li>
                             </ul>
                         </div>
-                        <!-- About Us Column -->
                         <div class="col-6 col-md-2 mb-4">
                             <h5>NOSOTROS</h5>
                             <ul class="list-unstyled">
                                 <li><a class="text-white" href="#">Contacto</a></li>
                             </ul>
                         </div>
-                        <!-- Partner With Us Column -->
                         <div class="col-6 col-md-2 mb-4">
                             <h5>ASOCIARSE CON NOSOTROS</h5>
                             <ul class="list-unstyled">
@@ -67,7 +66,6 @@
                                 <li><a class="text-white" href="#">Asocia Tu Marca</a></li>
                             </ul>
                         </div>
-                        <!-- Legal Column -->
                         <div class="col-6 col-md-2 mb-4">
                             <h5>LEGAL</h5>
                             <ul class="list-unstyled">
@@ -78,7 +76,6 @@
                                 <li><a class="text-white" href="#">Configuración de privacidad</a></li>
                             </ul>
                         </div>
-                        <!-- More LigaVirtual Column -->
                         <div class="col-6 col-md-2 mb-4">
                             <h5>MÁS LigaVirtual</h5>
                             <ul class="list-unstyled">
@@ -95,16 +92,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-    
-        <!-- Footer Bottom Section -->
+        </div>    
         <div class="footer-bottom text-center py-3 bg-dark">
             <p class="mb-0">© 2024 LigaVirtual</p>
         </div>
     </footer>
-    
-
-    
-
 </body>
 </html>
