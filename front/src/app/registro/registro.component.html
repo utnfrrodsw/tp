@@ -1,63 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="registro.component.scss">
-</head>
-<body>
-    <div class="container">
-    <form class="custom-form ">
-        <h1 class="titulo">FORMULARIO</h1>
-        <div class="form-group">
-          <input type="text" class="form-control" id="nombre"
-          placeholder="Nombre"
-          #nombre nombre="nombre"
-          >
+<section class="vh-100 bg-light" >
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="../../assets/images/Login.png"
+                  alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+                    <form class="custom-form ">
+                        <h1 class="titulo">REGISTRO</h1>
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="nombre"
+                          placeholder="Nombre"
+                          #nombre nombre="nombre"
+                          >
+                            </div>
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="apellido"
+                          placeholder="Apellido"
+                          #apellido apellido="apellido"
+                          >
+                        </div>   
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="contraseña1"
+                            placeholder="Contraseña"
+                            #contrasenia contrasenia="contrasenia"
+                            >
+                        </div> 
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="contraseña2"
+                            placeholder="Repetir contraseña"
+                            #confirmPass confirmPass="confirmPass"
+                                >
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" id="fecha-nacimiento"
+                            placeholder="dd/mm/yyyy"
+                            #fecha_nacimiento fecha_nacimiento="fecha_nacimiento"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email"
+                            placeholder="Correo Electrónico"
+                            #mail mail="mail"
+                            >
+                        </div>
+                        <div class="form_input">
+                            <select class=" form-select form-select-lg mb-3" aria-label="Large select example" name= "tipo_participante" #tipos_par tipos_par="tipos_par">
+                                <option value="">Tipo de participante</option>
+                                <option value=1>Delantero</option>
+                                <option value=2>Defensor</option>
+                                <option value=3>Arquero</option>
+                              </select>
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-lg" (click)="regUser($event, nombre.value, apellido.value, contrasenia.value, confirmPass.value, fecha_nacimiento.value, mail.value, tipos_par.value)">REGISTRATE</button>
+                        </form>
+                        
+                </div>
+              </div>
             </div>
-      <div class="form-group">
-          <input type="text" class="form-control" id="apellido"
-          placeholder="Apellido"
-          #apellido apellido="apellido"
-          >
-      </div>   
-        <div class="form-group">
-            <input type="password" class="form-control" id="contraseña1"
-            placeholder="Contraseña"
-            #contrasenia contrasenia="contrasenia"
-            >
-        </div> 
-        <div class="form-group">
-            <input type="password" class="form-control" id="contraseña2"
-            placeholder="Repetir contraseña"
-            #confirmPass confirmPass="confirmPass"
-                >
+          </div>
         </div>
-        <div class="form-group">
-            <input type="date" class="form-control" id="fecha-nacimiento"
-            placeholder="dd/mm/yyyy"
-            #fecha_nacimiento fecha_nacimiento="fecha_nacimiento"
-            >
-        </div>
-        <div class="form-group">
-            <input type="email" class="form-control" id="email"
-            placeholder="Correo Electrónico"
-            #mail mail="mail"
-            >
-        </div>
-        <div class="form_input">
-            <select class=" form-select form-select-lg mb-3" aria-label="Large select example" name= "tipo_participante" #tipos_par tipos_par="tipos_par">
-                <option value="">Tipo de participante</option>
-                <option value=1>Delantero</option>
-                <option value=2>Defensor</option>
-                <option value=3>Arquero</option>
-              </select>
-        </div>
-        <button type="submit" class="btn btn-dark btn-lg" (click)="regUser($event, nombre.value, apellido.value, contrasenia.value, confirmPass.value, fecha_nacimiento.value, mail.value, tipos_par.value)">REGISTRATE</button>
-    </form>
-</div>
-</body>
-</html>
+      </div>
+    </div>
+  </section>
