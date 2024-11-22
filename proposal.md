@@ -23,32 +23,36 @@ Ver docs
 
 ## Alcance Funcional 
 
+## IMPORTANTE --> El BackEnd tiene todos los CRUD, en el Front hay 2, 1 dependiente y 1 independiente y el CU.
+
 ### Alcance Mínimo
 
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Categoria<br>2. CRUD Editorial<br>3. CRUD Autor<br>4.CRUD Socio|
-|CRUD dependiente|1. CRUD Prestamo {depende de} CRUD Libro y CRUD Socio<br>2. CRUD Libro {depende de} CRUD Editorial, CRUD Categoria y CRUD Autor|
-|Listado<br>+<br>detalle| 1. Listado de prestamos filtrado por libro(codigo).<br> 2. Listado de libros filtrado por autor|
-|CUU/Epic|1. Realizar un prestamo.<br>2. Realizar la devolucion de un prestamo|
-
-Nota: Obligatoriamente hay que hacer el CRUD de la clase PoliticasBiblioteca.
-
+|CRUD simple|1. CRUD Editorial<br>|
+|CRUD dependiente|1. CRUD Libro {depende de} CRUD Editorial y CRUD Autor (SOLO EN BACK)<br>|
+|Listado<br>+<br>detalle| 1. Listado de prestamos filtrado por ID (LADO DEL CLIENTE).<br> 2. Listado de prestamos filtrado por estado (LADO DEL SERVIDOR)|
+|CUU/Epic|1. Devolver un Libro (Front y Back).<br>2. Retirar varios Libros (Solo back y sin separar en endpoints adecuados)|
 
 Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |Todos los CRUD ya mencionados, incluyendo PoliticasBiblioteca|
-|CUU/Epic|1.Realizar un prestamo.<br>2.Realizar la devolucion de un prestamo.<br>3.Consultar mis prestamos(perspectiva del cliente) este caso de uso requiere el frontend para cliente y un usuario y contraseña.<br>4.Notificar prestamo atrasado.|
+
+Adicionales del backend:
+
+- Validación con zod.
+- Middlewares que capturan error 500 y error en el envio del JSON.
+- Búsqueda de prestamos de un socio, filtrando por estado con query params (PENDIENTE, por ahora son 2 funciones distintas y con endpoints malos) 
+- Búsqueda de prestamos filtrando por estado con query params.
+- Búsqueda de sanciones de un socio. (PENDIENTE DE MEJORAR EL ENDPOINT).
+- Búsqueda de ejemplares pendientes de un socio.(PENDIENTE DE MEJORAR EL ENDPOINT).
+- Testeos de los CU con Jest.
+- Validación de req.params junto a la validacion del body de cada petición, usando una funcion de orden superior que recibe el schema de zod y devuelve la funcion validadora.
+- Clases débiles con CP compuesta como Ejemplar y Linea de préstamo, gestionando el número secuencial en memoria.
+- Manejo de TODOS los posibles errores, aprovechando la integridad referencial del uso de MySQL. Y los errores que no tira la BD, también están contemplados y manejados.
+- Uso de entidades virtuales para utilizar querys especificos. (Editoriales con conteo de libros)
+- Manejo correcto de todos los posibles borrados fisicos. 
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |Todos los listados posibles.<br> 1.Busqueda de libro por titulo o categoria.<br>2.Busqueda de libros de un autor.<br>3.Busqueda de libros de una editorial.<br>4.Otros como listado de libros sin devolver, prestamos atrasados, socios sancionados, socios dados de baja, socios activos, prestamos en un intervalo de fecha.|
-|CUU/Epic|En cuanto al negocio, parece no haber ningun caso de uso dejado de lado.|
-|Otros|1. Envío de sancion por mail y/o por whatsapp. <br> 2. Ranking de libros mas prestados en general y por categoria.|
+-- 
 
