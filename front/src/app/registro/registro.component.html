@@ -15,31 +15,37 @@
         <div class="form-group">
           <input type="text" class="form-control" id="nombre"
           placeholder="Nombre"
+          #nombre nombre="nombre"
           >
             </div>
       <div class="form-group">
           <input type="text" class="form-control" id="apellido"
           placeholder="Apellido"
+          #apellido apellido="apellido"
           >
       </div>   
         <div class="form-group">
             <input type="password" class="form-control" id="contraseña1"
             placeholder="Contraseña"
+            #contrasenia contrasenia="contrasenia"
             >
         </div> 
         <div class="form-group">
             <input type="password" class="form-control" id="contraseña2"
             placeholder="Repetir contraseña"
+            #confirmPass confirmPass="confirmPass"
                 >
         </div>
         <div class="form-group">
             <input type="date" class="form-control" id="fecha-nacimiento"
             placeholder="dd/mm/yyyy"
+            #fecha_nacimiento fecha_nacimiento="fecha_nacimiento"
             >
         </div>
         <div class="form-group">
             <input type="email" class="form-control" id="email"
             placeholder="Correo Electrónico"
+            #mail mail="mail"
             >
         </div>
         <div class="form_input">
@@ -50,7 +56,7 @@
                 <option value=3>Arquero</option>
               </select>
         </div>
-        <button type="submit" class="btn btn-dark btn-lg">REGISTRATE</button>
+        <button type="submit" class="btn btn-dark btn-lg" (click)="regUser($event, nombre.value, apellido.value, contrasenia.value, confirmPass.value, fecha_nacimiento.value, mail.value, tipos_par.value)">REGISTRATE</button>
     </form>
 </div>
 </body>
