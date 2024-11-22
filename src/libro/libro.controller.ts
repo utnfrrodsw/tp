@@ -116,6 +116,9 @@ async function actualizarLibro(
   try {
     const id = Number.parseInt(req.params.id);
     const libroActualizar = em.getReference(Libro, id);
+
+    //  throw new Error("ASDASDSAD"); USAR EN LA DEFENSA
+
     em.assign(libroActualizar, req.body);
     await em.flush();
     return res.status(200).json({ message: "Libro actualizado" });

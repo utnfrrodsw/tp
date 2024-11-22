@@ -8,14 +8,21 @@ import {
 import { validateInput } from "../middlewares/middleware.validateInput.js";
 import { schemaParamsId } from "../schemas/schema.paramsId.js";
 import { buscarSancionesSocioSchema } from "../schemas/schemas.sancion.js";
-export const sancionRouter = Router();
+export const sancionRouter = Router({ mergeParams: true });
 
+/* En lugar de esto (indiferenciable)
 sancionRouter.get("/", buscarSanciones);
-sancionRouter.get(
-  "/socio",
-  validateInput(undefined, buscarSancionesSocioSchema),
-  buscarSancionesSocio
-); //No idSocio en el params para respetar que sea el de sancion.
+sancionRouter.get("/", buscarSancionesSocio);
+Usar esto: */
+sancionRouter.get("/", (req, res, next) => {
+  // Valido el req.params.id en el router anterior para evitar problemas.
+  const { id } = req.params as { id?: string }; // Si esta el campo id, activa la funcion de buscar sanciones socio (que viene del param de la ruta de socios)
+  if (id) {
+    return buscarSancionesSocio(req, res, next);
+  }
+  return buscarSanciones(req, res, next);
+});
+
 sancionRouter.get(
   "/:id",
   validateInput(schemaParamsId, undefined),

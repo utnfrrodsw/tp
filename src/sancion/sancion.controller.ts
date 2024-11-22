@@ -44,8 +44,9 @@ async function buscarSancionesSocio(
 ) {
   try {
     //No se valida el socio apropósito, podría revisarse más adelante para mantener consistencia.
+    const idSocio = Number.parseInt(req.params.id);
     const sanciones = await em.find(Sancion, {
-      miSocioSancion: req.body.idSocio,
+      miSocioSancion: idSocio,
     });
     return res.status(200).json({
       message: "Las sanciones del socio encontradas son: ",

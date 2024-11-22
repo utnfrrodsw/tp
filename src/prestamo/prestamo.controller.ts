@@ -83,7 +83,7 @@ async function retirarLibrosPaso2R(
     const libro = ejemplar.getLibro();
 
     if (ejemplar.estasPendiente()) {
-      //No sucede en condiciones normales. El libro se saca de una estanteria.
+      //No sucede en filtros normales. El libro se saca de una estanteria.
       return res
         .status(409)
         .json({ message: "El ejemplar no esta disponible para ser prestado." });
@@ -170,7 +170,7 @@ async function retirarLibrosPaso3R(
     }
     for (const ejemplar of ejemplaresEncontrados) {
       if (ejemplar.estasPendiente()) {
-        //No sucede en condiciones normales. El libro se saca de una estanteria.
+        //No sucede en filtros normales. El libro se saca de una estanteria.
         return res.status(400).json({
           message:
             "Existe un ejemplar que no esta disponible para ser prestado.",
@@ -362,11 +362,17 @@ async function buscarPrestamosSocio(
 ) {
   try {
     //No se valida el socio apropósito
-    const prestamos = await em.find(
-      Prestamo,
-      { miSocioPrestamo: req.body.idSocio },
-      { populate: ["misLpPrestamo.miEjemplar"] }
-    );
+    const estadoPrestamo = req.query.estadoPrestamo as string | undefined;
+    const idSocio = Number.parseInt(req.params.id);
+
+    const filtros: any = { miSocioPrestamo: idSocio };
+    if (estadoPrestamo) {
+      filtros.estadoPrestamo = estadoPrestamo;
+    }
+
+    const prestamos = await em.find(Prestamo, filtros, {
+      populate: ["misLpPrestamo.miEjemplar"],
+    });
     res.status(200).json({
       message: "Los prestámos del socio encontrados son:",
       data: prestamos,
@@ -375,13 +381,14 @@ async function buscarPrestamosSocio(
     next(error);
   }
 }
-async function buscarPrestamosNoDevueltosSocio(
+async function buscarEjemplaresPendientesSocio(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const socio = await em.findOneOrFail(Socio, req.body.idSocio, {
+    const idSocio = Number.parseInt(req.params.id);
+    const socio = await em.findOneOrFail(Socio, idSocio, {
       populate: [
         "misPrestamos.misLpPrestamo.miEjemplar.miLibro.misAutores",
         "misPrestamos.misLpPrestamo.miEjemplar.miLibro.miEditorial",
@@ -404,7 +411,7 @@ export {
   devolverLibro,
   buscarPrestamos,
   buscarPrestamosSocio,
-  buscarPrestamosNoDevueltosSocio,
+  buscarEjemplaresPendientesSocio,
   devolverLibroD,
 };
 
@@ -430,7 +437,7 @@ y actualizo fechaDevolucionReal. Aca está la sanción. Que el ORM traiga el pre
 
 async function devolverLibroD(req: Request, res: Response, next: NextFunction) {
   // Se recibe idPrestamo, idLinea e idSocio.
-
+  // No válido que el ejemplar este pendiente porque eso se hace con una funcion aparte en el controlador de ejemplar.
   try {
     const idPrestamo = Number.parseInt(req.params.id);
     const idLP = Number.parseInt(req.params.idLP);

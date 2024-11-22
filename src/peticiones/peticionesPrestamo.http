@@ -8,18 +8,8 @@ GET http://localhost:3000/api/prestamos?estadoPrestamo=Finalizado
 
 
 
-### Obtener todos los prestamos de un socio
-GET http://localhost:3000/api/prestamos/prestamosSocio
-Content-Type: application/json
-
-{
-    "idSocio": 2
-}
+### Obtener todos los prestamos de un socio ACEPTA QUERY PARAMS.
+GET http://localhost:3000/api/socios/1/prestamos?estadoPrestamo=Finalizado
 
 ### Obtener todos los prestamos no devueltos de un socio
-GET http://localhost:3000/api/prestamos/prestamosNoDevueltosSocio
-Content-Type: application/json
-
-{
-    "idSocio": 2
-}
+GET http://localhost:3000/api/socios/1/prestamos/listarEjemplaresPendientes

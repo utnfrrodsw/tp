@@ -32,4 +32,4 @@ libroRouter.patch(
 );
 libroRouter.delete("/:id", validateInput(schemaParamsId, undefined), bajaLibro);
 
-libroRouter.use("/:id/ejemplares", ejemplarRouter); //La validación se hace en ejemplarRouter.
+libroRouter.use("/:id/ejemplares", ejemplarRouter); //La validación se hace en ejemplarRouter. IMPORTANTE EL USE.
