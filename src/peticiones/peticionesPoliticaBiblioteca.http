@@ -1,0 +1,36 @@
+
+### Obtener politica biblioteca actual
+GET http://localhost:3000/api/politicaBiblioteca
+
+
+### Crear politica de biblioteca SOLO UNA VEZ USAR.
+
+POST http://localhost:3000/api/politicaBiblioteca
+Content-Type: application/json
+
+{
+    "diasSancionMaxima": 190,
+    "diasPrestamo": 5,
+    "cantPendientesMaximo": 1
+
+}
+
+### Actualizar politica bilioteca con PUT
+PUT http://localhost:3000/api/politicaBiblioteca
+Content-Type: application/json
+
+{
+    "diasSancionMaxima": 130,
+    "diasPrestamo": 5,
+    "cantPendientesMaximo": 4
+
+}
+### Actualizar politica bilioteca con PATCH
+PATCH http://localhost:3000/api/politicaBiblioteca
+Content-Type: application/json
+
+{
+    "cantPendientesMaximo": 2
+
+
+}

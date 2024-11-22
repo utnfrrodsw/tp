@@ -1,0 +1,33 @@
+### Obtener todas las politicas de sanción
+GET http://localhost:3000/api/politicasSancion
+
+
+
+
+
+### Subir politica de sanción
+
+POST http://localhost:3000/api/politicasSancion
+Content-Type: application/json
+
+{
+    "diasHasta":21,
+    "diasSancion": 15
+
+}
+
+
+### Actualizar autor con PUT(parcialmente)
+
+PUT http://localhost:3000/api/politicasSancion/-12
+Content-Type: application/json
+
+{
+    
+    "diasSancion": 21.3
+
+}
+
+### Delete de una politica por ID
+
+DELETE  http://localhost:3000/api/politicasSancion/21

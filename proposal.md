@@ -2,51 +2,57 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+Montini Agostino 50757
+
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+--
+Backend: Este mismo repositorio.
+FrontEnd: https://github.com/AgosUTN/TP-Front2
+
 
 ## Tema
+Sistema de gestion de prestamos de biblioteca
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Es un sistema para gestionar los prestamos de una biblioteca, abarca el Alta y baja de socios, categorias, libros, editoriales, autores. 
+El sistema (con alcance de regularidad) esta pensado para ser usado solo por el bibliotecario, el socio no interactua con el sistema.
+Por ello no se hace uso de un usuario y contraseña. El sistema con alcance de AD puede contar con un FrontEnd en el que los socios puedan realizar consultas(prestamos,sanciones, libros disponibles).
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+Ver docs
 
 ## Alcance Funcional 
 
+## IMPORTANTE --> El BackEnd tiene todos los CRUD, en el Front hay 2, 1 dependiente y 1 independiente y el CU.
+
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
-Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
-
+|CRUD simple|1. CRUD Editorial<br>|
+|CRUD dependiente|1. CRUD Libro {depende de} CRUD Editorial y CRUD Autor (SOLO EN BACK)<br>|
+|Listado<br>+<br>detalle| 1. Listado de préstamos filtrado por ID (LADO DEL CLIENTE).<br> 2. Listado de préstamos filtrado por estado (LADO DEL SERVIDOR)|
+|CUU/Epic|1. Devolver un Libro (Front y Back).<br>2. Retirar varios Libros (Solo back y sin separar en endpoints adecuados)|
 
 Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+
+Adicionales del backend:
+
+- Validación con zod.
+- Middlewares que capturan error 500 y error en el envio del JSON.
+- Búsqueda de préstamos de un socio, filtrando por estado con query params.
+- Búsqueda de préstamos filtrando por estado con query params.
+- Búsqueda de sanciones de un socio. 
+- Búsqueda de ejemplares pendientes de un socio.
+- Testeos de los CU con Jest.
+- Validación de req.params junto a la validación del body de cada petición, usando una funcion de orden superior que recibe el schema de zod y devuelve la funcion validadora.
+- Clases débiles con CP compuesta como Ejemplar y Linea de préstamo, gestionando el número secuencial en memoria.
+- Manejo de TODOS los posibles errores, aprovechando la integridad referencial del uso de MySQL. Y los errores que no tira la BD, también están contemplados y manejados.
+- Uso de entidades virtuales para utilizar querys especificos. (Editoriales con conteo de libros)
+- Manejo correcto de todos los posibles borrados fisicos. 
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+-- 
 

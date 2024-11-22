@@ -1,0 +1,52 @@
+### Paso 1 retirar libros refactor
+
+GET http://localhost:3000/api/prestamos/retirarLibrosPaso1R
+Content-Type: application/json
+
+{
+    "idSocio": 1
+
+}
+
+
+### Retirar libros paso 2 refactor. 
+
+GET http://localhost:3000/api/prestamos/retirarLibrosPaso2R
+Content-Type: application/json
+
+{
+    "idSocio": 1,
+    "idEjemplar": 1,
+    "idLibro":1
+
+}
+
+### Retirar libros paso 3 refactor. 
+
+POST http://localhost:3000/api/prestamos/retirarLibrosPaso3R
+Content-Type: application/json
+
+{
+    "idSocio": 1,
+    "ejemplares":[
+      {
+        "id": 1,
+        "miLibro":4
+      }
+    ]
+
+}
+
+
+
+
+
+### Devolver un libro. 
+
+PATCH http://localhost:3000/api/prestamos/1/lineas/1/devolver
+Content-Type: application/json
+
+{
+    "idSocio": 1
+
+}

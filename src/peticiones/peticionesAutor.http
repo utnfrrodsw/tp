@@ -1,0 +1,47 @@
+### Obtener todos los autores
+GET http://localhost:3000/api/autores/
+
+### Obtener un autor
+GET http://localhost:3000/api/autores/14
+
+### Subir autor
+
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombre": "agostino"
+    "apellido": "Borges"
+
+}
+
+### Delete de un autor por ID
+DELETE  http://localhost:3000/api/autores/1
+
+
+
+### Actualizar autor con PUT 
+
+PUT http://localhost:3000/api/autores/2
+Content-Type: application/json
+
+{
+    
+    "nombre": "Agostino",
+    "apellido": "Peña"
+
+
+}
+
+### Actualizar autor con PATCH 
+
+PATCH http://localhost:3000/api/autores/1
+Content-Type: application/json
+
+{
+    
+    "nombre": "PEPE"
+
+
+}
+

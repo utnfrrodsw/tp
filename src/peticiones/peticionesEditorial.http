@@ -1,0 +1,34 @@
+### Obtener todos los editoriales
+GET http://localhost:3000/api/editoriales
+
+### Subir editorial
+
+POST http://localhost:3000/api/editoriales
+Content-Type: application/json
+
+{
+    "nombre": "Prueba niqe"
+
+}
+### Actualizar editorial PUT
+
+PUT http://localhost:3000/api/editoriales/1
+Content-Type: application/json
+
+{
+    "nombre": "PruebaPUT"
+
+}
+### Actualizar editorial PATCH
+
+PATCH http://localhost:3000/api/editoriales/1
+Content-Type: application/json
+
+{
+   
+
+}
+
+
+### Delete de una editorial por ID
+DELETE  http://localhost:3000/api/editoriales/103

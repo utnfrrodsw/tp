@@ -1,0 +1,40 @@
+{
+  "name": "crud-con-mvc",
+  "version": "1.0.0",
+  "description": "CRUD con MVC sin persistencia",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start:dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/app.js\"",
+    "build": "tsc -p ./tsconfig.json",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "4.17.21",
+    "@types/jest": "^29.5.13",
+    "@types/node": "20.12.12",
+    "@types/supertest": "^6.0.2",
+    "@types/validator": "^13.12.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "tsc-watch": "6.2.0",
+    "typescript": "5.4.5"
+  },
+  "dependencies": {
+    "@mikro-orm/core": "6.2.9",
+    "@mikro-orm/mysql": "6.2.9",
+    "@mikro-orm/sql-highlighter": "1.0.1",
+    "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
+    "express": "4.19.2",
+    "mysql2": "3.10.2",
+    "reflect-metadata": "0.2.2",
+    "validator": "^13.12.0",
+    "zod": "^3.23.8"
+  }
+}
