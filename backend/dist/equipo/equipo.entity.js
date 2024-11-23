@@ -11,7 +11,7 @@ import { Cascade, Collection, Entity, ManyToMany, ManyToOne, PrimaryKey, } from 
 import { Participante } from "../participante/participante.entity.js";
 import { Partido } from "../partido/partido.entity.js";
 import { Torneo } from "../torneo/torneo.entity.js";
-let Equipo = class Equipo {
+export let Equipo = class Equipo {
     constructor() {
         this.participantes = new Collection(this);
         this.partidos = new Collection(this);
@@ -42,5 +42,4 @@ __decorate([
 Equipo = __decorate([
     Entity()
 ], Equipo);
-export { Equipo };
 //# sourceMappingURL=equipo.entity.js.map
