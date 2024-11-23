@@ -14,7 +14,7 @@ export class FormatosTorneoService {
     return this.http.get<any>(url);
   }
 
-  getOneFormato(id:string){
+  getFormato(id:string){
     const url = this.baseUrl + 'formatos_torneo/' + id;
     return this.http.get<any>(url);
   }

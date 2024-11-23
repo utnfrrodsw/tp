@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,16 @@ export class PartidoService {
     const url = this.baseUrl + 'partidos/' + id;
     const data = { fecha, torneo, equipo1, equipo2, id };
     return this.http.put<any>(url, data);
+  }
+
+  addPartidosTorneo(id_torneo: number, E_formato_torneo: any){
+    const cant_partidos = E_formato_torneo.data.cant_partidos;
+    const requests = [];
+    for (let i=0; i < cant_partidos; i++){
+      const url = this.baseUrl + 'partidos';
+      const data = { torneo: id_torneo };
+      requests.push(this.http.post<any>(url, data));
+    }
+    return forkJoin (requests)
   }
 }
