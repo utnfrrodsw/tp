@@ -36,3 +36,12 @@
     background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
     z-index: 1; /* Place it between the video and the text */
 }
+
+#juan {
+    max-width: 700px; /* Set the maximum width */
+    margin: 0 auto;   /* Center the carousel */
+  }
+#juan img {
+    height: 500px;    /* Set the height of the images */
+    object-fit: cover; /* Ensure the images fit nicely */
+  }
