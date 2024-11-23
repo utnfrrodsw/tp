@@ -1,7 +1,6 @@
 import { Participante } from "./participante.entity.js";
 import { orm } from "../shared/db/orm.js";
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 const em = orm.em;
 function sanitizarParticipanteInput(req, res, next) {
     req.body.sanitizarPar = {
@@ -52,19 +51,6 @@ async function registroParticipante(req, res) {
     }
     return res.status(500).json({ message: 'Ya existe un participante con ese mail asociado' });
 }
-async function loginParticipante(req, res) {
-    const { mail, contraseña } = req.body;
-    const user = await em.findOne(Participante, { mail: mail });
-    if (!user) {
-        return res.status(400).json({ message: 'No se encontró un usuario con ese mail en la base de datos' });
-    }
-    const validacionContraseña = await bcrypt.compare(contraseña, user.contraseña);
-    if (!validacionContraseña) {
-        return res.status(400).json({ message: 'Contraseña incorrecta' });
-    }
-    const token = jwt.sign({ mail: mail }, process.env.SECRET_KEY || 'pepitos123');
-    return res.json({ token });
-}
 async function update(req, res) {
     try {
         const id = Number.parseInt(req.params.id);
@@ -88,5 +74,5 @@ async function remove(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-export { sanitizarParticipanteInput, findAll, findOne, registroParticipante, update, remove, loginParticipante };
+export { sanitizarParticipanteInput, findAll, findOne, registroParticipante, update, remove };
 //# sourceMappingURL=participante.controler.js.map

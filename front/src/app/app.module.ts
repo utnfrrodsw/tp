@@ -51,7 +51,6 @@ import { addTokenInterceptor } from './utils/add-token.interceptor';
     }),
   ],
   providers: [
-    provideClientHydration(),
     { provide: HTTP_INTERCEPTORS, 
       useClass: addTokenInterceptor, 
       multi:true },

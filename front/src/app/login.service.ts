@@ -10,7 +10,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(mail: string, contraseña:string){
-    const url = this.baseUrl + 'participantes/login';
+    const url = this.baseUrl + 'login';
     const data = {mail, contraseña}
     return this.http.post<any>(url, data)
   }
