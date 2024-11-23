@@ -13,6 +13,7 @@ import { partidosRouter } from './partido/partido.routes.js';
 import { orm, syncSchema } from './shared/db/orm.js';
 import { RequestContext } from '@mikro-orm/core';
 import cors from 'cors';
+import { loginRouter } from './login/login.routes.js';
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -29,6 +30,7 @@ app.use('/api/admins', adminsRouter);
 app.use('/api/participantes', participantesRouter);
 app.use('/api/equipos', equiposRouter);
 app.use('/api/partidos', partidosRouter);
+app.use('/api/login', loginRouter);
 app.use((_, res) => {
     return res.status(404).send({ message: 'Resource not found' });
 });

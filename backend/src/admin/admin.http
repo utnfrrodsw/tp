@@ -11,11 +11,12 @@ POST http://localhost:3000/api/admins/registro
 Content-Type: application/json
 
 {
-    "nombre": "Agustin",
-    "contraseña": "44931351",
-    "apellido": "Stefanini",
-    "mail": "agustinstefaniniangla@gmail.com",
-    "fecha_nacimiento": "18/07/2003",
+    "nombre": "Micaela",
+    "contraseña": "123",
+    "apellido": "Valle",
+    "mail": "micaelavalle46@gmail.com",
+    "fecha_nacimiento": "17/03/2001",
+    "rol": "admin",
     "torneo": []
 }
 
@@ -41,4 +42,4 @@ Content-Type: application/json
 
 
 ### Borrar una admin
-DELETE http://localhost:3000/api/admins/18
+DELETE http://localhost:3000/api/admins/2

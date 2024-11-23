@@ -36,6 +36,10 @@ __decorate([
     __metadata("design:type", String)
 ], Participante.prototype, "fecha_nacimiento", void 0);
 __decorate([
+    Property({ nullable: false }),
+    __metadata("design:type", String)
+], Participante.prototype, "rol", void 0);
+__decorate([
     PrimaryKey({ unique: true }),
     __metadata("design:type", Number)
 ], Participante.prototype, "id", void 0);

@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import { Admin } from "./admin.entity.js";
 import { orm } from "../shared/db/orm.js";
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 
 const em = orm.em
 
@@ -61,25 +60,6 @@ async function registroAdmin(req: Request,res: Response){
     return res.status(500).json({ message: 'Ya existe un admin con ese mail asociado' })
 }
 
-async function loginAdmin(req: Request, res: Response){
-    const { mail, contraseña } = req.body
-    const user = await em.findOne(Admin, {mail: mail}) 
-    
-    if(!user){
-        return res.status(400).json({message: 'No se encontró un admin con ese mail'})
-    }
-
-    const validacionContraseña = await bcrypt.compare(contraseña, user.contraseña)
-
-    if(!validacionContraseña){
-        return res.status(400).json({message: 'Contraseña incorrecta'})
-    }
-    
-    const token = jwt.sign({mail: mail}, process.env.SECRET_KEY || 'pepitos123')
-
-    return res.json({token})
-}
-
 async function update(req: Request,res: Response){
     try{
         const id = Number.parseInt(req.params.id)
@@ -103,4 +83,4 @@ async function remove(req: Request,res: Response){
     }
 }
 
-export {sanitizarAdminInput, findAll, findOne, registroAdmin, loginAdmin, update, remove}
+export {sanitizarAdminInput, findAll, findOne, registroAdmin, update, remove}

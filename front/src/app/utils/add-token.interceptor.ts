@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from "@angular/common/http";
-import { catchError, Observable, throwError } from "rxjs";
+import { Observable } from "rxjs";
 import { Router } from "@angular/router";
 
 @Injectable()
@@ -16,5 +16,4 @@ export class addTokenInterceptor implements HttpInterceptor{
 
     return next.handle(req)
   }
-  
 }

@@ -13,16 +13,16 @@ import { authGuard } from './utils/auth.guard';
 
 
 const routes: Routes = [
-    { path: 'inicio', component: PaginaInicioComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'partidos', component: PartidoComponent},
-    { path: 'torneos', component: TorneoComponent},
+    { path: 'inicio', component: PaginaInicioComponent,canActivate: [authGuard]},
+    { path: 'login', component: LoginComponent},
+    { path: 'partidos', component: PartidoComponent,canActivate: [authGuard]},
+    { path: 'torneos', component: TorneoComponent,canActivate: [authGuard]},
     { path: 'registro', component: RegistroComponent},
     { path: 'admin', component: AdminComponent, canActivate: [authGuard]},
-    { path: 'participante', component: ParticipanteComponent},
-    { path: 'inscripcion', component: InscripcionComponent},
-    { path: '', redirectTo: 'inicio', pathMatch: 'full' },
-    { path: '**', redirectTo:'inicio', pathMatch: 'full'}
+    { path: 'participante', component: ParticipanteComponent,canActivate: [authGuard]},
+    { path: 'inscripcion', component: InscripcionComponent,canActivate: [authGuard]},
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '**', redirectTo:'login', pathMatch: 'full'}
 
 ];
 

@@ -7,14 +7,14 @@ GET http://localhost:3000/api/participantes/1
 
 
 ### Crear un nuevo participante
-POST http://localhost:3000/api/participantes/registro
+POST http://localhost:3000/api/participantes/login
 Content-Type: application/json
 
 {
     "nombre": "Agustin",
-    "contraseña": "44931351",
+    "contraseña": "123",
     "apellido": "Stefanini",
-    "mail": "totostefanini@hotmail.com",
+    "mail": "mica@gmail.com",
     "fecha_nacimiento": "dd/mm/yyyy",
     "equipos": [],
     "tipos_par": 1
@@ -42,4 +42,4 @@ Content-Type: application/json
 
 
 ### Borrar una participante
-DELETE http://localhost:3000/api/participantes/17
+DELETE http://localhost:3000/api/participantes/18

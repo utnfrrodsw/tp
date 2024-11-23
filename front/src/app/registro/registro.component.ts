@@ -20,7 +20,7 @@ export class RegistroComponent {
 
   regUser(event: Event, nombre: string, apellido: string, contraseña: string, confimPass: string, fecha_nac: string, mail: string, tipos_par: string){
     event.preventDefault()
-    
+    const rol = 'participante'
     if(nombre == '' || apellido == '' || contraseña == '' || fecha_nac == '' || mail == '' || tipos_par == ''){
       this.toastr.error('Todos los campos son obligatorios', 'Error')
       return
@@ -32,7 +32,7 @@ export class RegistroComponent {
     }
 
     const fecha_nacimiento = new Date(fecha_nac)
-    this.service.registro(nombre, apellido, contraseña, fecha_nacimiento, mail, parseInt(tipos_par)).subscribe(response => {this.objetos = response
+    this.service.registro(nombre, apellido, contraseña, fecha_nacimiento, mail, rol, parseInt(tipos_par)).subscribe(response => {this.objetos = response
     this.toastr.success('El usuario fue registrado con éxito', 'Usuario registrado')
     this.router.navigate(['/inicio'])},(error)=>{
       if(error.error.message){

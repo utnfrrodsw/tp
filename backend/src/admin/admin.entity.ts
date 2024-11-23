@@ -19,6 +19,9 @@ export class Admin{
     @Property({nullable: false})
     fecha_nacimiento!:string
 
+    @Property({nullable: false})
+    rol!: string
+
     @PrimaryKey({unique: true})
     id!: number
 

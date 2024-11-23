@@ -20,6 +20,9 @@ export class Participante{
     @Property({nullable: false, type: Date})
     fecha_nacimiento!:string
 
+    @Property({nullable: false})
+    rol!: string
+
     @PrimaryKey({unique: true})
     id!: number
 

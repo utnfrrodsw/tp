@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="app.component.scss">
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav *ngIf="rol === 'participante' || rol === 'admin'" class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,12 +31,10 @@
         </div>
       
         <div class="container-fluid d-flex justify-content-end align-items-center gap-2">
-            <button class="btn btn-primary" (click)="logOut()">LogOut</button>
-          <button class="btn btn-light"><a class="nav-link active " routerLink="/admin">ADMIN</a></button>
-          <button class="btn btn-success"><a class="nav-link active" routerLink="/login">INICIAR SESIÓN</a></button>
-
+          <button class="btn btn-primary" (click)="logOut()">LogOut</button>
+          <button *ngIf="rol === 'admin'" class="btn btn-light"><a class="nav-link active " routerLink="/admin">ADMIN</a></button>
         </div>
-      </nav>
+    </nav>
       
     <router-outlet></router-outlet>
     
