@@ -12,7 +12,6 @@ export class AppComponent implements OnInit{
   title = 'front'
   rol: string | null = null
   
-
   constructor(private router: Router, private toastr: ToastrService, private authService: AuthService) {}
 
   ngOnInit(): void {

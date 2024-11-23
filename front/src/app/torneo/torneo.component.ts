@@ -17,7 +17,9 @@ export class TorneoComponent {
 
   }
 
-  loadTorneos(){
+}
+
+  /*loadTorneos(){
     return this.service.getTorneos().subscribe(response => this.list = response);
   }
 
@@ -75,5 +77,4 @@ export class TorneoComponent {
       sucursal,
       nro_adm,
       parseInt(id)).subscribe(response => this.torneo = response);
-  }
-}
+  }*/

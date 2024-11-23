@@ -24,30 +24,9 @@ export class TorneoService {
     return this.http.delete<any>(url);
   }
 
-  add(nombre_torneo: string,
-    fecha_inico_insc: string,
-    fecha_fin_insc: string,
-    fecha_inicio_torneo: string,
-    fecha_fin_torneo: string,
-    estado_tor: string,
-    ganador: string,
-    formato: string,
-    sucursal: string,
-    nro_adm: string,
-    id: number) {
+  addTorneo(nombre_torneo:string, fecha_inicio_torneo:string, fecha_fin_torneo:string, admin:number, sucursal:number, estado_torneo: number, formato_torneo: number, id: number) {
     const url = this.baseUrl + 'torneos';
-    const data = { 
-      nombre_torneo,
-      fecha_inico_insc,
-      fecha_fin_insc,
-      fecha_inicio_torneo,
-      fecha_fin_torneo,
-      estado_tor,
-      ganador,
-      formato,
-      sucursal,
-      nro_adm,
-      id};
+    const data = { nombre_torneo, fecha_inicio_torneo, fecha_fin_torneo, admin, sucursal, estado_torneo, formato_torneo, id };
     return this.http.post<any>(url, data);
   }
 
