@@ -1,69 +1,160 @@
-<p>admin works!</p>
-
-<pre>
-    {{list | json}}
-    {{admin | json}}
-</pre>
-
-<!--<button (click)="loadAdmins()">Cargar</button>
-
-<div>
-    <input type="text" #myInput id="myInput" placeholder="ID">
-<button 
-(click)="loadOne(myInput.value)" 
-(click)="myInput.value = ''">
-Traer
-</button>
-</div>
-
-<div>
-    <input type="text" #idRemove idRemove="idRemove" placeholder="ID">
-    <button 
-    (click)="removeAdmin(idRemove.value)" 
-    (click)="idRemove.value = ''" >
-    Borrar
-    </button>
-</div>-->
-
 
 <div class="addTorneo">
-    <input type="text" #nombre_torneo nombre_torneo="nombre_torneo" placeholder="Nombre Torneo">
-    <input type="text" #fecha_inicio_torneo fecha_inicio_torneo="fecha_inicio_torneo" placeholder="Fecha Inicio Torneo">
-    <input type="text" #fecha_fin_torneo fecha_fin_torneo="fecha_fin_torneo" placeholder="Fecha Fin Torneo">
-    <input type="text" #admin admin="admin" placeholder="Admin a cargo">
-    <input type="text" #sucursal sucursal="sucursal" placeholder="Sucursal">
-    <input type="text" #estado_torneo estado_torneo="estado_torneo" placeholder="Estado del torneo">
-    <input type="text" #formato_torneo formato_torneo="formato_torneo" placeholder="Formato del torneo">
-    <input type="text" #id id="id" placeholder="ID">
-    <button 
-    (click)="addTorneo(nombre_torneo.value, fecha_inicio_torneo.value, fecha_fin_torneo.value, admin.value, sucursal.value, estado_torneo.value, formato_torneo.value, id.value)"
-    (click)="nombre_torneo.value = ''" 
-    (click)="fecha_inicio_torneo.value = ''"
-    (click)="fecha_fin_torneo.value= ''"
-    (click)="admin.value= ''"
-    (click)="sucursal.value= ''"
-    (click)="estado_torneo.value= ''"
-    (click)="formato_torneo.value= ''"
-    (click)="id.value = ''">
-    Crear Torneos
-    </button>
+    <h1 class="titulo">Crear nuevo torneo</h1>
+        <form class="custom-form">
+            <div class="form-group">
+                <input type="text" #nombre_torneo nombre_torneo="nombre_torneo" placeholder="Nombre Torneo">
+            </div> 
+            <div class="form-group"> 
+                <input type="text" #fecha_inicio_torneo fecha_inicio_torneo="fecha_inicio_torneo" placeholder="Fecha Inicio Torneo">
+            </div>
+            <div class="form-group">
+                <input type="text" #fecha_fin_torneo fecha_fin_torneo="fecha_fin_torneo" placeholder="Fecha Fin Torneo">
+            </div>
+            <div class="form-group">
+                <input type="text" #admin admin="admin" placeholder="Admin a cargo">
+            </div>
+            <div class="form-group">
+                <input type="text" #sucursal sucursal="sucursal" placeholder="Sucursal">
+            </div>
+            <div class="form-group">
+                <input type="text" #estado_torneo estado_torneo="estado_torneo" placeholder="Estado del torneo">
+            </div>
+            <div class="form-group">
+                <input type="text" #formato_torneo formato_torneo="formato_torneo" placeholder="Formato del torneo">
+            </div>
+            <div class="form-group">
+                <input type="text" #id id="id" placeholder="ID">
+            </div>
+            <button type="submit" class="btn btn-success btn-lg" 
+                (click)="addTorneo(nombre_torneo.value, fecha_inicio_torneo.value, fecha_fin_torneo.value, admin.value, sucursal.value, estado_torneo.value, formato_torneo.value, id.value)"
+                (click)="nombre_torneo.value = ''" 
+                (click)="fecha_inicio_torneo.value = ''"
+                (click)="fecha_fin_torneo.value= ''"
+                (click)="admin.value= ''"
+                (click)="sucursal.value= ''"
+                (click)="estado_torneo.value= ''"
+                (click)="formato_torneo.value= ''"
+                (click)="id.value = ''">
+                Crear Torneos
+            </button>
+        </form>
 </div>
 
-<!--<div>
-    <input type="text" #modNombre modNombre="modNombre" placeholder="Mod Nombre Admin">
-    <input type="text" #modContrasenia modContrasenia="modContrasenia" placeholder="Mod Contraseña">
-    <input type="text" #modApellido modApellido="modApellido" placeholder="Mod Apellido">
-    <input type="text" #modMail modMail="modMail" placeholder="Mod Mail">
-    <input type="text" #modFecha_Nacimiento modFecha_Nacimiento="modFecha_Nacimiento" placeholder="Mod Fecha Nacimiento">
-    <input type="text" #modID modID="modID" placeholder="Mod ID">
-    <button 
-    (click)="putAdmin(modNombre.value, modContrasenia.value, modApellido.value, modMail.value, modFecha_Nacimiento.value, modID.value)" 
-    (click)="modNombre.value = ''" 
-    (click)="modContrasenia.value = ''"
-    (click)="modApellido.value = ''"
-    (click)="modMail.value = ''"
-    (click)="modFecha_Nacimiento.value= ''"
-    (click)="modID.value = ''">
-    Modificar una Admin
-    </button>
-</div>-->
+<table class="table">
+    <tbody>
+        <h1 class="titulo">Lista de Torneos</h1>
+      <tr>
+        <td >Torneo 1</td>
+        <td>En curso</td>
+        <td><div class="dropdown d-md-flex justify-content-md-end">
+            <button class="btn btn-success dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Actualizar Estado del Torneo
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Creado</a></li>
+              <li><a class="dropdown-item" href="#">En curso</a></li>
+              <li><a class="dropdown-item" href="#">Finalizado</a></li>
+              <li><a class="dropdown-item" href="#">Cancelado</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Torneo 2</td>
+        <td>Finalizado</td>
+        <div class="dropdown d-md-flex justify-content-md-end">
+            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Actualizar Estado del Torneo
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Creado</a></li>
+                <li><a class="dropdown-item" href="#">En curso</a></li>
+                <li><a class="dropdown-item" href="#">Finalizado</a></li>
+                <li><a class="dropdown-item" href="#">Cancelado</a></li>
+            </ul>
+          </div>
+        </tr>
+    </tbody>
+  </table>
+
+  <h1 class="titulo">Lista de Usuarios</h1>
+  <table class="table">
+    <tbody>
+    <tr >
+        <td class="atributo" >Nombre</td>
+        <td class="atributo">Apellido</td>
+        <td class="atributo">Contraseña</td>
+        <td class="atributo">Mail</td>
+        <td class="atributo">Fecha de Nacimiento</td>
+        <td class="d-md-flex justify-content-md-end">
+            <button typetton typetton type="button" class="btn btn-danger">Eliminar Usuario</button>
+        </td>
+    </tr>
+    </tbody>
+  </table>
+
+    <h1 class="titulo">Partidos</h1>
+    <table class="table">
+        <tbody>
+          <tr>
+            <td><div class="dropdown">
+                <button class="btn bg-white text-dark dropdown-toggle border-success " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Torneos
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">torneo1</a></li>
+                  <li><a class="dropdown-item" href="#">t2</a></li>
+                  <li><a class="dropdown-item" href="#">t3</a></li>
+                </ul>
+              </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="atributo">Partido
+            </td>
+            <td class="atributo">Equipo 1
+            </td>
+            <td class="atributo">Equipo 2
+            </td>
+            <td class="atributo">Fecha
+            </td>
+            <td class="atributo">Equipo ganador 
+            </td>
+            <td>
+                <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                    Actualizar Partido
+                  </button>
+                  <form class="dropdown-menu p-4">
+                    <div class="mb-3">
+                      <label class="form-label">Equipo 1 </label>
+                      <input  class="form-control" placeholder="ID">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Equipo 2</label>
+                        <input  class="form-control" placeholder="ID">
+                    </div>
+                    <div class="mb-3 ">
+                        <label for="exampleDropdownFormDate2" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="exampleDropdownFormDate2" placeholder="dd/mm/yyyy">
+                    </div>
+                    <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Actualizar</button>
+                    </div>
+                  </form>
+            </td>
+            <td>
+                <div class="btn-group w-100">
+                    <button type="button" class="btn btn-success dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+                      Equipo ganador
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Equipo 1</a></li>
+                        <li><a class="dropdown-item" href="#">Equipo 2</a></li>
+                      </ul>
+                  </div>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
