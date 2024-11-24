@@ -10,11 +10,10 @@ export class TorneoComponent {
   constructor (private service: TorneoService) {
   }
   
-  list:any = [];
-  torneo:any = Object;
+  torneos:any = [];
 
   ngOnInit(): void{
-
+    this.service.getTorneos().subscribe(response => this.torneos = response)
   }
 
 }

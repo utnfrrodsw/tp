@@ -10,39 +10,37 @@
 </head>
 
 <body>
-  <header class="header">
-    <h1>Torneo de Verano</h1>
-    <p class="subtitle">Este torneo de Verano 2024 se realizará de noche entre las 20:00 hs y las 00:00 hs debido a los altos golpes de calor. </p>
-    <p class="subtitle">El torneo cuenta con una cantidad limitada de jugadores por posición. </p>
-  </header>
-
-  <section class="section-container">
-    <h2>Detalles del Torneo</h2>
-    <div class="info-block">
-      <p><strong>Nombre del Torneo:</strong> Torneo de Verano</p>
-      <p><strong>Fecha de Inicio:</strong>20 de Diciembre 20:00 hs </p>
-      <p><strong>Fecha de Fin:</strong> 25 de diciembre 00:00 hs</p>
-      <p><strong>Lugar:</strong> Rosario, Corrientes 1867</p>
+  
+  <div class="container text-center w-50 mx-auto d-block">
+    <div class="row align-items-start">
+        <div *ngFor="let torneo of torneos" class="col mb-5 ">
+          <div class="bg-primary text-black">
+            <h1>Nombre del torneo: {{torneo.nombre_torneo}}</h1>
+          </div>
+          <div>
+            <h4 class="bg-secondary text-black">Detalles del torneo</h4>
+            <h5>Fecha de inicio: {{torneo.fecha_inicio_torneo}}</h5>
+            <h5>Fecha fin: {{torneo.fecha_fin_torneo}}</h5>
+            <h5>Lugar: {{torneo.sucursal.nombre_sucursal}}</h5>
+          </div>
+          <div>
+            <h4 class="bg-secondary text-black">Formato del torneo</h4>
+            <h5>Cantidad de equipos: {{torneo.formato_torneo.cant_equipos}}</h5>
+            <h5>Cantidad de partidos: {{torneo.formato_torneo.cant_partidos}}</h5>
+          </div>
+          <div>
+            <h4 class="bg-secondary text-black">Estado del torneo</h4>
+            <h5>{{torneo.estado_torneo.nombre_estado}}</h5>
+          </div>
+          <div class="card w-50 mx-auto">
+            <img src="../../assets/images/Torneos.jpg" >
+          </div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary text-black fs-3" type="button">Inscribite</button>
+          </div>
+        </div>
     </div>
-  </section>
-
-  <section class="section-container">
-    <h2>Formato del torneo</h2>
-    <div class="info-block">
-      <ul class="team-list">
-        <li>Cantidad de equipos: 32 </li>
-        <li>Cantidad de equipos por grupos: 4 </li>
-        <li>Cantidad de clasificados por grupo: 2 </li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section-container">
-    <h2>Formato de eliminación directa</h2>
-    <div class="info-block">
-      <img src="../../assets/images/formato-de-torneo1.png" alt="Formato de eliminación directa" style="max-width: 100%; height: auto;">
-    </div>
-  </section>
-
+  </div>
+  
 </body>
 </html>
