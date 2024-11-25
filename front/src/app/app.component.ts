@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {  Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { AuthService } from './auth.service';
+import { Component, OnInit } from '@angular/core'
+import {  Router } from '@angular/router'
+import { ToastrService } from 'ngx-toastr'
+import { AuthService } from './auth.service'
 
 @Component({
   selector: 'app-root',

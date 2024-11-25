@@ -10,24 +10,24 @@ export class TorneoService {
   constructor(private http: HttpClient) { }
 
   getTorneos() {
-    const url = this.baseUrl + 'torneos';
-    return this.http.get<any>(url);
+    const url = this.baseUrl + 'torneos'
+    return this.http.get<any>(url)
   }
 
   getOneTorneo(id:string){
-    const url = this.baseUrl + 'torneos/' + id;
-    return this.http.get<any>(url);
+    const url = this.baseUrl + 'torneos/' + id
+    return this.http.get<any>(url)
   }
 
   remove(id:string){
-    const url = this.baseUrl + 'torneos/' + id;
-    return this.http.delete<any>(url);
+    const url = this.baseUrl + 'torneos/' + id
+    return this.http.delete<any>(url)
   }
 
   addTorneo(nombre_torneo:string, fecha_inicio_torneo:string, fecha_fin_torneo:string, admin:number, sucursal:number, estado_torneo: number, formato_torneo: number, id: number) {
-    const url = this.baseUrl + 'torneos';
-    const data = { nombre_torneo, fecha_inicio_torneo, fecha_fin_torneo, admin, sucursal, estado_torneo, formato_torneo, id };
-    return this.http.post<any>(url, data);
+    const url = this.baseUrl + 'torneos'
+    const data = { nombre_torneo, fecha_inicio_torneo, fecha_fin_torneo, admin, sucursal, estado_torneo, formato_torneo, id }
+    return this.http.post<any>(url, data)
   }
 
   modTorneo(id_estado: number, id: number){
