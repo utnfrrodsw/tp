@@ -14,7 +14,7 @@ import { Admin } from "../admin/admin.entity.js";
 import { Sucursal } from "../sucursal/sucursal.entity.js";
 import { Estado_torneo } from "../estado_torneo/estado_torneo.entity.js";
 import { Formatos_torneo } from "../formatos_torneo/formatos_torneo.entity.js";
-let Torneo = class Torneo {
+export let Torneo = class Torneo {
     constructor() {
         this.equipos = new Collection(this);
         this.partidos = new Collection(this);
@@ -67,5 +67,4 @@ __decorate([
 Torneo = __decorate([
     Entity()
 ], Torneo);
-export { Torneo };
 //# sourceMappingURL=torneo.entity.js.map

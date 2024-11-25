@@ -11,7 +11,7 @@ POST http://localhost:3000/api/localidades
 Content-Type: application/json
 
 {
-    "nombre_localidad": "Armstron",
+    "nombre_localidad": "Armstrong",
     "sucursales": [1,2],
     "id": 3
     
