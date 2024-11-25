@@ -53,8 +53,8 @@ async function add(req: Request,res: Response){
 async function update(req: Request,res: Response){
     try{
         const id = Number.parseInt(req.params.id)
-        const localidad = em.findOneOrFail(Localidad, id)
-        em.assign(Localidad, req.body)
+        const localidad = await em.findOneOrFail(Localidad, id)
+        em.assign(localidad, req.body)
         await em.flush()
         res.status(200).json({message: 'localidad updated', data: localidad})
     }catch (error: any){

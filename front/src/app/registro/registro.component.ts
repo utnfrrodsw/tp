@@ -31,8 +31,7 @@ export class RegistroComponent {
       return
     }
 
-    const fecha_nacimiento = new Date(fecha_nac)
-    this.service.registro(nombre, apellido, contraseña, fecha_nacimiento, mail, rol, parseInt(tipos_par)).subscribe(response => {this.objetos = response
+    this.service.registro(nombre, apellido, contraseña, fecha_nac, mail, rol, parseInt(tipos_par)).subscribe(response => {this.objetos = response
     this.toastr.success('El usuario fue registrado con éxito', 'Usuario registrado')
     this.router.navigate(['/inicio'])},(error)=>{
       if(error.error.message){

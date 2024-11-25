@@ -63,8 +63,8 @@ async function registroAdmin(req: Request,res: Response){
 async function update(req: Request,res: Response){
     try{
         const id = Number.parseInt(req.params.id)
-        const admin = em.findOneOrFail(Admin, id)
-        em.assign(Admin, req.body)
+        const admin = await em.findOneOrFail(Admin, id)
+        em.assign(admin, req.body)
         await em.flush()
         res.status(200).json({message: 'admin updated', data: admin})
     }catch (error: any){

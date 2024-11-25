@@ -66,8 +66,8 @@ async function registroParticipante(req: Request,res: Response){
 async function update(req: Request,res: Response){
     try{
         const id = Number.parseInt(req.params.id)
-        const participante = em.findOneOrFail(Participante, id)
-        em.assign(Participante, req.body)
+        const participante = await em.findOneOrFail(Participante, id)
+        em.assign(participante, req.body)
         await em.flush()
         res.status(200).json({message: 'participante updated', data: participante})
     }catch (error: any){

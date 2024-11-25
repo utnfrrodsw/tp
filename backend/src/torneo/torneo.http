@@ -20,7 +20,7 @@ Content-Type: application/json
     "equipos": [],
     "partidos": [],
     "estado_torneo": 1,
-    "formato_torneo": 1,
+    "formato_torneo": 36,
     "sucursal": 1,
     "admin": 2
 }

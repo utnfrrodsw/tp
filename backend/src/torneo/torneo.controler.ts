@@ -64,8 +64,8 @@ async function add(req: Request,res: Response){
 async function update(req: Request,res: Response){
     try{
         const id = Number.parseInt(req.params.id)
-        const torneo = em.findOneOrFail(Torneo, id)
-        em.assign(Torneo, req.body)
+        const torneo = await em.findOneOrFail(Torneo, id)
+        em.assign(torneo, req.body)
         await em.flush()
         res.status(200).json({message: 'torneo updated', data: torneo})
     }catch (error: any){
