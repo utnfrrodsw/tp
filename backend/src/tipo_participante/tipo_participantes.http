@@ -10,7 +10,7 @@ POST http://localhost:3000/api/tipo_participantes
 Content-Type: application/json
 
 {
-  "posicion": "delantero",
+  "posicion": "arquero",
   "participantes": []
   
 }
