@@ -47,8 +47,8 @@ async function add(req, res) {
 async function update(req, res) {
     try {
         const id = Number.parseInt(req.params.id);
-        const estado_torneo = em.findOneOrFail(Estado_torneo, id);
-        em.assign(Estado_torneo, req.body);
+        const estado_torneo = await em.findOneOrFail(Estado_torneo, id);
+        em.assign(estado_torneo, req.body);
         await em.flush();
         res.status(200).json({ message: 'estado_torneo updated', data: estado_torneo });
     }

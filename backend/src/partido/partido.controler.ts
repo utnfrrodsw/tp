@@ -56,8 +56,8 @@ async function add(req: Request,res: Response){
 async function update(req: Request,res: Response){
     try{
         const id = Number.parseInt(req.params.id)
-        const partido = em.findOneOrFail(Partido, id)
-        em.assign(Partido, req.body)
+        const partido = await em.findOneOrFail(Partido, id)
+        em.assign(partido, req.body)
         await em.flush()
         res.status(200).json({message: 'partido updated', data: partido})
     }catch (error: any){

@@ -30,29 +30,24 @@ export class TorneoService {
     return this.http.post<any>(url, data);
   }
 
-  modTorneo(nombre_torneo: string,
-    fecha_inico_insc: string,
-    fecha_fin_insc: string,
-    fecha_inicio_torneo: string,
-    fecha_fin_torneo: string,
-    estado_tor: string,
-    ganador: string,
-    formato: string,
-    sucursal: string,
-    nro_adm: string,
-    id: number){
-    const url = this.baseUrl + 'torneos/' + id;
-    const data = {nombre_torneo,
-      fecha_inico_insc,
-      fecha_fin_insc,
-      fecha_inicio_torneo,
-      fecha_fin_torneo,
-      estado_tor,
-      ganador,
-      formato,
-      sucursal,
-      nro_adm,
-      id};
-    return this.http.put<any>(url, data);
+  modTorneo(id_estado: number, id: number){
+    const url = this.baseUrl + 'torneos/' + id
+    const estado_torneo = id_estado
+    const data = {estado_torneo};
+    return this.http.patch<any>(url, data)
+  }
+
+  modTorneoFechaIni(fecha_inicio:string, torneo_id:number){
+    const url = this.baseUrl + 'torneos/' + torneo_id
+    const fecha_inicio_torneo = fecha_inicio
+    const data = {fecha_inicio_torneo}
+    return this.http.patch<any>(url, data)
+  }
+
+  modTorneoFechaFin(fecha_fin:string, torneo_id:number){
+    const url = this.baseUrl + 'torneos/' + torneo_id
+    const fecha_fin_torneo = fecha_fin
+    const data = {fecha_fin_torneo}
+    return this.http.patch<any>(url, data)
   }
 }

@@ -33,7 +33,7 @@ Content-Type: application/json
 
 
 ### Modificar una admin (PATCH - Recurso parcial)
-PATCH http://localhost:3000/api/admins/3
+PATCH http://localhost:3000/api/admins/78
 Content-Type: application/json
 
 {

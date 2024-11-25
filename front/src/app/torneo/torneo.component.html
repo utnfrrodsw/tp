@@ -10,9 +10,10 @@
 </head>
 
 <body>
-  
-  <div class="container text-center w-50 mx-auto d-block">
-    <div class="row align-items-start">
+  <div class="row">
+    <div class="col bg-primary-subtle">
+    </div>
+    <div class="container text-center w-50 mx-auto d-block">
         <div *ngFor="let torneo of torneos" class="col mb-5 ">
           <div class="bg-primary text-black">
             <h1>Nombre del torneo: {{torneo.nombre_torneo}}</h1>
@@ -40,7 +41,8 @@
           </div>
         </div>
     </div>
+    <div class="col bg-primary-subtle">
+    </div>
   </div>
-  
 </body>
 </html>

@@ -52,8 +52,8 @@ async function add(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
     try{
         const id = Number.parseInt(req.params.id)
-        const tipo_participante = em.findOneOrFail(Tipo_participante, id)
-        em.assign(Tipo_participante, req.body)
+        const tipo_participante = await em.findOneOrFail(Tipo_participante, id)
+        em.assign(tipo_participante, req.body)
         await em.flush()
         res.status(200).json({message: 'tipo_participante updated', data: tipo_participante})
     }catch (error: any){

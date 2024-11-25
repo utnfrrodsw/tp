@@ -25,7 +25,7 @@ export class ParticipanteComponent {
     return this.service.getOneParticipante(id).subscribe(response => this.participante = response);
   }
 
-  removeParticipante(id:string){
+  removeParticipante(id:number){
     return this.service.remove(id).subscribe(response => this.participante = response);
   }
 

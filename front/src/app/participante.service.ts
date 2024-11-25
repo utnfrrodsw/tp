@@ -19,9 +19,9 @@ export class ParticipanteService {
     return this.http.get<any>(url);
   }
 
-  remove(id:string){
-    const url = this.baseUrl + 'participantes/' + id;
-    return this.http.delete<any>(url);
+  remove(id:number){
+    const url = this.baseUrl + 'participantes/' + id
+    return this.http.delete<any>(url)
   }
 
   registroParticipante(nombre:string, contraseña:string, apellido:string, mail:string, fecha_nacimiento:string, tipo_par: string, id: number) {

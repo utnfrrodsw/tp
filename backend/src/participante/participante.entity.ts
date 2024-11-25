@@ -17,7 +17,7 @@ export class Participante{
     @Property({nullable: false, unique: true})
     mail!:string
 
-    @Property({nullable: false, type: Date})
+    @Property({nullable: false})
     fecha_nacimiento!:string
 
     @Property({nullable: false})

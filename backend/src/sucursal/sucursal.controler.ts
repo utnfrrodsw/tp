@@ -54,8 +54,8 @@ async function add(req: Request,res: Response){
 async function update(req: Request,res: Response){
     try{
         const id = Number.parseInt(req.params.id)
-        const sucursal = em.findOneOrFail(Sucursal, id)
-        em.assign(Sucursal, req.body)
+        const sucursal = await em.findOneOrFail(Sucursal, id)
+        em.assign(sucursal, req.body)
         await em.flush()
         res.status(200).json({message: 'sucursal updated', data: sucursal})
     }catch (error: any){
