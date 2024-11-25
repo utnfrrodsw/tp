@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
@@ -10,38 +9,48 @@
 </head>
 
 <body>
-  <div class="row">
-    <div class="col bg-primary-subtle">
-    </div>
-    <div class="container text-center w-50 mx-auto d-block">
-        <div *ngFor="let torneo of torneos" class="col mb-5 ">
-          <div class="bg-primary text-black">
-            <h1>Nombre del torneo: {{torneo.nombre_torneo}}</h1>
+  <div class="container mb-4 mt-4">
+    <div class="row row-cols-1 row-cols-md-2 g-9">
+      <div *ngFor="let torneo of torneos" class="col-12 col-md-6 mb-5"> 
+        <div class="card">
+          <div class="card-body text-center bg-light ">
+            <div>
+              <img src="../../assets/images/Torneos_header.jpg" class="card-img-top" style="height: 200px; object-fit: cover;">
+              <div class="content text-center">
+                <h1 class="text-dark mb-3  rounded-4 mt-2">{{torneo.nombre_torneo}} </h1>
+            </div>
           </div>
-          <div>
-            <h4 class="bg-secondary text-black">Detalles del torneo</h4>
-            <h5>Fecha de inicio: {{torneo.fecha_inicio_torneo}}</h5>
-            <h5>Fecha fin: {{torneo.fecha_fin_torneo}}</h5>
-            <h5>Lugar: {{torneo.sucursal.nombre_sucursal}}</h5>
-          </div>
-          <div>
-            <h4 class="bg-secondary text-black">Formato del torneo</h4>
-            <h5>Cantidad de equipos: {{torneo.formato_torneo.cant_equipos}}</h5>
-            <h5>Cantidad de partidos: {{torneo.formato_torneo.cant_partidos}}</h5>
-          </div>
-          <div>
-            <h4 class="bg-secondary text-black">Estado del torneo</h4>
-            <h5>{{torneo.estado_torneo.nombre_estado}}</h5>
-          </div>
-          <div class="card w-50 mx-auto">
-            <img src="../../assets/images/Torneos.jpg" >
-          </div>
-          <div class="d-grid gap-2">
-            <button class="btn btn-primary text-black fs-3" type="button">Inscribite</button>
+            <div class="mb-3  ">
+              <h4 class="bg-success-subtle text-dark p-2 rounded-5 ">DETALLES DEL TORNEO</h4>
+              <div class="text-start mx-3 uppercase">
+              <h5  ><strong>FECHA DE INICIO:</strong> {{ torneo.fecha_inicio_torneo }}</h5>
+              <h5><strong>FECHA DE FIN:</strong> {{ torneo.fecha_fin_torneo }}</h5>
+              <h5><strong>LUGAR:</strong> {{ torneo.sucursal.nombre_sucursal }}</h5>
+            </div>
+            </div>
+
+            <div class="mb-3">
+              <h4 class="bg-success-subtle text-dark p-2 rounded-5">FORMATO DEL TORNEO</h4>
+              <div class="text-start mx-3 uppercase">
+              <h5><strong>CANTIDAD DE EQUIPOS:</strong> {{ torneo.formato_torneo.cant_equipos }}</h5>
+              <h5><strong>CANTIDAD DE PARTIDOS:</strong> {{ torneo.formato_torneo.cant_partidos }}</h5>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <h4 class="bg-success-subtle text-dark p-2 rounded-5">ESTADO DEL TORNEO</h4>
+              <div class="text-start mx-3 uppercase">
+              <h5><strong>ESTADO:</strong> {{ torneo.estado_torneo.nombre_estado }}</h5>
+              </div>
+            </div>
+
+            <div class="d-grid g-2">
+              <button class="btn btn-light btn-outline-success text-darl fs-4 fw-bold rounded-pill" type="button">INSCRIBITE</button>
+            </div>
           </div>
         </div>
-    </div>
-    <div class="col bg-primary-subtle">
+      </div>
     </div>
   </div>
 </body>

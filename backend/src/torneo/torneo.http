@@ -54,8 +54,6 @@ Content-Type: application/json
 
 
 ### Borrar una torneo
-<<<<<<< HEAD
-DELETE http://localhost:3000/api/torneos/11
-=======
-DELETE http://localhost:3000/api/torneos/2
->>>>>>> 14654a37f3f314fed79c05ad0800af04743084cd
+
+DELETE http://localhost:3000/api/torneos/90
+

@@ -11,40 +11,40 @@ export class PartidoService {
   constructor(private http: HttpClient) { }
 
   getPartidos() {
-    const url = this.baseUrl + 'partidos';
-    return this.http.get<any>(url);
+    const url = this.baseUrl + 'partidos'
+    return this.http.get<any>(url)
   }
 
   getOnePartido(id:string){
-    const url = this.baseUrl + 'partidos/' + id;
-    return this.http.get<any>(url);
+    const url = this.baseUrl + 'partidos/' + id
+    return this.http.get<any>(url)
   }
 
   remove(id:string){
-    const url = this.baseUrl + 'partidos/' + id;
-    return this.http.delete<any>(url);
+    const url = this.baseUrl + 'partidos/' + id
+    return this.http.delete<any>(url)
   }
 
   add(fecha: string, torneo: string, equipo1: string, equipo2: string, id: number) {
-    const url = this.baseUrl + 'partidos';
-    const data = { fecha, torneo, equipo1, equipo2, id };
-    return this.http.post<any>(url, data);
+    const url = this.baseUrl + 'partidos'
+    const data = { fecha, torneo, equipo1, equipo2, id }
+    return this.http.post<any>(url, data)
   }
 
   modPartido(fecha: string, torneo: string, equipo1: string, equipo2: string, id: number){
-    const url = this.baseUrl + 'partidos/' + id;
-    const data = { fecha, torneo, equipo1, equipo2, id };
-    return this.http.put<any>(url, data);
+    const url = this.baseUrl + 'partidos/' + id
+    const data = { fecha, torneo, equipo1, equipo2, id }
+    return this.http.put<any>(url, data)
   }
 
   addPartidosTorneo(id_torneo: number, E_formato_torneo: any){
-    const cant_partidos = E_formato_torneo.data.cant_partidos;
-    const requests = [];
+    const cant_partidos = E_formato_torneo.data.cant_partidos
+    const requests = []
     for (let i=0; i < cant_partidos; i++){
-      const url = this.baseUrl + 'partidos';
-      const data = { torneo: id_torneo };
-      requests.push(this.http.post<any>(url, data));
+      const url = this.baseUrl + 'partidos'
+      const data = { torneo: id_torneo }
+      requests.push(this.http.post<any>(url, data))
     }
-    return forkJoin (requests)
+    return forkJoin(requests)
   }
 }

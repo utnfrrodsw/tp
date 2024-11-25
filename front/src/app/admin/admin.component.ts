@@ -6,7 +6,6 @@ import { EquipoService } from '../equipo.service';
 import { PartidoService } from '../partido.service';
 import { ToastrService } from 'ngx-toastr';
 import { ParticipanteService } from '../participante.service';
-import { response } from 'express';
 
 
 
@@ -36,10 +35,11 @@ export class AdminComponent {
     }
     this.torneoService.addTorneo(nombre_torneo, fecha_inicio_torneo, fecha_fin_torneo, parseInt(admin), parseInt(sucursal), parseInt(estado_torneo), parseInt(formato_torneo), parseInt(id)).subscribe(response => this.objetos = response)
     this.formatoService.getFormato(formato_torneo).subscribe(E_formato_torneo => {
-    this.equipoService.addEquiposTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response);
-    this.partidoService.addPartidosTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response);
-    })
+    this.equipoService.addEquiposTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response)
+    this.partidoService.addPartidosTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response)
     location.reload()
+    })
+    this.toastr.success('Torneo Creado Correctamente', 'Torneo Creado')
   }
 
   cambiarEstado(id_estado: number, torneo_id: number){
