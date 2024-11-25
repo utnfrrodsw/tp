@@ -12,8 +12,9 @@ Content-Type: application/json
 
 {
     "nombre_sucursal": "Loyal Corrientes",
-    "localidad": 1,
+    "localidad": 3,
     "torneos": [],
+    "id": 1
 
 }
 

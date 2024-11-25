@@ -39,6 +39,7 @@ export class AdminComponent {
     this.equipoService.addEquiposTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response);
     this.partidoService.addPartidosTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response);
     })
+    location.reload()
   }
 
   cambiarEstado(id_estado: number, torneo_id: number){

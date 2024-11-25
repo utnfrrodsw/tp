@@ -1,166 +1,188 @@
 <div class="addTorneo">
-    <h1 class="titulo">Crear nuevo torneo</h1>
-        <form class="custom-form">
-            <div class="form-group">
-                <input type="text" #nombre_torneo nombre_torneo="nombre_torneo" placeholder="Nombre Torneo">
-            </div> 
-            <div class="form-group"> 
-                <input type="text" #fecha_inicio_torneo fecha_inicio_torneo="fecha_inicio_torneo" placeholder="Fecha Inicio Torneo">
-            </div>
-            <div class="form-group">
-                <input type="text" #fecha_fin_torneo fecha_fin_torneo="fecha_fin_torneo" placeholder="Fecha Fin Torneo">
-            </div>
-            <div class="form-group">
-                <input type="text" #admin admin="admin" placeholder="Admin a cargo">
-            </div>
-            <div class="form-group">
-                <input type="text" #sucursal sucursal="sucursal" placeholder="Sucursal">
-            </div>
-            <div class="form-group">
-                <input type="text" #estado_torneo estado_torneo="estado_torneo" placeholder="Estado del torneo">
-            </div>
-            <div class="form-group">
-                <input type="text" #formato_torneo formato_torneo="formato_torneo" placeholder="Formato del torneo">
-            </div>
-            <div class="form-group">
-                <input type="text" #id id="id" placeholder="ID">
-            </div>
-            <button type="button" class="btn btn-success btn-lg" 
-              (click)="addTorneo(nombre_torneo.value, fecha_inicio_torneo.value, fecha_fin_torneo.value, admin.value, sucursal.value, estado_torneo.value, formato_torneo.value, id.value);nombre_torneo.value='';fecha_inicio_torneo.value='';fecha_fin_torneo.value='';admin.value='';sucursal.value='';estado_torneo.value='';formato_torneo.value='';id.value=''"> 
-              Crear Torneos
-            </button>
-        </form>
+  <h1 class="titulo">Crear nuevo torneo</h1>
+      <form class="custom-form">
+          <div class="form-group">
+              <input type="text" #nombre_torneo nombre_torneo="nombre_torneo" placeholder="Nombre Torneo">
+          </div> 
+          <div class="form-group"> 
+              <input type="text" #fecha_inicio_torneo fecha_inicio_torneo="fecha_inicio_torneo" placeholder="Fecha Inicio Torneo" onfocus="this.type='date'" onblur="this.type='text'">
+          </div>
+          <div class="form-group">
+              <input type="date" #fecha_fin_torneo fecha_fin_torneo="fecha_fin_torneo" placeholder="Fecha Fin Torneo" onfocus="this.type='date'" onblur="this.type='text'">
+          </div>
+          <div class="form-group">
+              <input type="text" #admin admin="admin" placeholder="Admin a cargo">
+          </div>
+          <div class="form-group">
+              <input type="text" #sucursal sucursal="sucursal" placeholder="Sucursal">
+          </div>
+          <div class="form-group">
+              <input type="text" #estado_torneo estado_torneo="estado_torneo" placeholder="Estado del torneo">
+          </div>
+          <div class="form-group">
+              <input type="text" #formato_torneo formato_torneo="formato_torneo" placeholder="Formato del torneo">
+          </div>
+          <div class="form-group">
+              <input type="text" #id id="id" placeholder="ID">
+          </div>
+          <button type="button" class="btn btn-success btn-lg" 
+            (click)="addTorneo(nombre_torneo.value, fecha_inicio_torneo.value, fecha_fin_torneo.value, admin.value, sucursal.value, estado_torneo.value, formato_torneo.value, id.value);nombre_torneo.value='';fecha_inicio_torneo.value='';fecha_fin_torneo.value='';admin.value='';sucursal.value='';estado_torneo.value='';formato_torneo.value='';id.value=''"> 
+            Crear Torneos
+          </button>
+      </form>
 </div>
 
 <table class="table">
-    <tbody>
-        <h1 class="titulo">Lista de Torneos</h1>
-      <tr *ngFor="let torneo of torneos">
-        <td >{{torneo.nombre_torneo}}</td>
-        <td>{{torneo.estado_torneo.nombre_estado}}</td>
-        <td>{{torneo.fecha_inicio_torneo}}</td>
-        <td>{{torneo.fecha_fin_torneo}}</td>
-        <div class="justify-content-end d-flex">
-          <td>
-            <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                Actualizar Fecha inicio
+  <tbody>
+      <h1 class="titulo">Lista de Torneos</h1>
+    <tr *ngFor="let torneo of torneos">
+      <td >{{torneo.nombre_torneo}}</td>
+      <td>{{torneo.estado_torneo.nombre_estado}}</td>
+      <td>{{torneo.fecha_inicio_torneo}}</td>
+      <td>{{torneo.fecha_fin_torneo}}</td>
+      <div class="justify-content-end d-flex">
+        <td>
+          <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+              Actualizar Fecha inicio
+          </button>
+          <form class="dropdown-menu p-4">
+            <div class="mb-3 ">
+                <label for="exampleDropdownFormDate2" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="exampleDropdownFormDate2" placeholder="dd/mm/yyyy" #fecha_ini fecha_ini="fecha_ini">
+            </div>
+            <div class="d-grid">
+            <button type="button" class="btn btn-success" (click)="actualizarFechaIni(fecha_ini.value, torneo.id)">Actualizar</button>
+            </div>
+          </form>
+        </td>
+        <td>
+          <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" >
+              Actualizar Fecha fin
+          </button>
+          <form class="dropdown-menu p-4">
+            <div class="mb-3 ">
+                <label for="exampleDropdownFormDate2" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="exampleDropdownFormDate2" placeholder="dd/mm/yyyy" #fecha_fin fecha_fin="fecha_fin">
+            </div>
+            <div class="d-grid">
+            <button type="button" class="btn btn-success" (click)="actualizarFechaFin(fecha_fin.value, torneo.id)">Actualizar</button>
+            </div>
+          </form>
+        </td>
+        <td>
+            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Actualizar Estado del Torneo
             </button>
-            <form class="dropdown-menu p-4">
-              <div class="mb-3 ">
-                  <label for="exampleDropdownFormDate2" class="form-label">Fecha</label>
-                  <input type="date" class="form-control" id="exampleDropdownFormDate2" placeholder="dd/mm/yyyy" #fecha_ini fecha_ini="fecha_ini">
-              </div>
-              <div class="d-grid">
-              <button type="button" class="btn btn-success" (click)="actualizarFechaIni(fecha_ini.value, torneo.id)">Actualizar</button>
-              </div>
-            </form>
-          </td>
-          <td>
-            <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" >
-                Actualizar Fecha fin
-            </button>
-            <form class="dropdown-menu p-4">
-              <div class="mb-3 ">
-                  <label for="exampleDropdownFormDate2" class="form-label">Fecha</label>
-                  <input type="date" class="form-control" id="exampleDropdownFormDate2" placeholder="dd/mm/yyyy" #fecha_fin fecha_fin="fecha_fin">
-              </div>
-              <div class="d-grid">
-              <button type="button" class="btn btn-success" (click)="actualizarFechaFin(fecha_fin.value, torneo.id)">Actualizar</button>
-              </div>
-            </form>
-          </td>
-          <td>
-              <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Actualizar Estado del Torneo
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" (click)="cambiarEstado(1,torneo.id)">Creado</a></li>
+              <li><a class="dropdown-item" (click)="cambiarEstado(2,torneo.id)">En curso</a></li>
+              <li><a class="dropdown-item" (click)="cambiarEstado(3,torneo.id)">Finalizado</a></li>
+              <li><a class="dropdown-item" (click)="cambiarEstado(4,torneo.id)">Cancelado</a></li>
+            </ul>
+        </td>
+      </div>
+    </tr>
+  </tbody>
+</table>
+
+<h1 class="titulo">Lista de Usuarios</h1>
+<table class="table">
+  <tbody>
+  <tr *ngFor="let participante of participantes">
+      <td class="atributo" >{{participante.nombre}}</td>
+      <td class="atributo">{{participante.apellido}}</td>
+      <td class="atributo">{{participante.mail}}</td>
+      <td class="atributo">{{participante.fecha_nacimiento}}</td>
+      <td class="d-md-flex justify-content-md-end">
+          <button typetton typetton type="button" class="btn btn-danger" (click)="eliminarParticipante(participante.id)">Eliminar Usuario</button>
+      </td>
+  </tr>
+  </tbody>
+</table>
+
+  <h1 class="titulo">Partidos</h1>
+  <table class="table">
+      <tbody>
+        <tr>
+          <td><div class="dropdown">
+              <button class="btn bg-white text-dark dropdown-toggle border-success " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Torneos
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" (click)="cambiarEstado(1,torneo.id)">Creado</a></li>
-                <li><a class="dropdown-item" (click)="cambiarEstado(2,torneo.id)">En curso</a></li>
-                <li><a class="dropdown-item" (click)="cambiarEstado(3,torneo.id)">Finalizado</a></li>
-                <li><a class="dropdown-item" (click)="cambiarEstado(4,torneo.id)">Cancelado</a></li>
+                <li><a class="dropdown-item" href="#">torneo1</a></li>
+                <li><a class="dropdown-item" href="#">t2</a></li>
+                <li><a class="dropdown-item" href="#">t3</a></li>
               </ul>
+            </div>
           </td>
-        </div>
       </tr>
-    </tbody>
-  </table>
-
-  <h1 class="titulo">Lista de Usuarios</h1>
-  <table class="table">
-    <tbody>
-    <tr *ngFor="let participante of participantes">
-        <td class="atributo" >{{participante.nombre}}</td>
-        <td class="atributo">{{participante.apellido}}</td>
-        <td class="atributo">{{participante.mail}}</td>
-        <td class="atributo">{{participante.fecha_nacimiento}}</td>
-        <td class="d-md-flex justify-content-md-end">
-            <button typetton typetton type="button" class="btn btn-danger" (click)="eliminarParticipante(participante.id)">Eliminar Usuario</button>
-        </td>
-    </tr>
-    </tbody>
-  </table>
-
-    <h1 class="titulo">Partidos</h1>
-    <table class="table">
-        <tbody>
-          <tr>
-            <td><div class="dropdown">
-                <button class="btn bg-white text-dark dropdown-toggle border-success " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Torneos
+      <tr>
+          <td class="atributo">Partido
+          </td>
+          <td class="atributo">Equipo 1
+          </td>
+          <td class="atributo">Equipo 2
+          </td>
+          <td class="atributo">Fecha
+          </td>
+          <td class="atributo">Equipo ganador 
+          </td>
+          <td>
+              <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                  Actualizar Partido
                 </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">torneo1</a></li>
-                  <li><a class="dropdown-item" href="#">t2</a></li>
-                  <li><a class="dropdown-item" href="#">t3</a></li>
-                </ul>
-              </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="atributo">Partido
-            </td>
-            <td class="atributo">Equipo 1
-            </td>
-            <td class="atributo">Equipo 2
-            </td>
-            <td class="atributo">Fecha
-            </td>
-            <td class="atributo">Equipo ganador 
-            </td>
-            <td>
-                <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                    Actualizar Partido
-                  </button>
-                  <form class="dropdown-menu p-4">
-                    <div class="mb-3">
-                      <label class="form-label">Equipo 1 </label>
-                      <input  class="form-control" placeholder="ID">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Equipo 2</label>
-                        <input  class="form-control" placeholder="ID">
-                    </div>
-                    <div class="mb-3 ">
-                        <label for="exampleDropdownFormDate2" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="exampleDropdownFormDate2" placeholder="dd/mm/yyyy">
-                    </div>
-                    <div class="d-grid">
-                    <button type="submit" class="btn btn-success">Actualizar</button>
-                    </div>
-                  </form>
-            </td>
-            <td>
-                <div class="btn-group w-100">
-                    <button type="button" class="btn btn-success dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
-                      Equipo ganador
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Equipo 1</a></li>
-                        <li><a class="dropdown-item" href="#">Equipo 2</a></li>
-                      </ul>
+                <form class="dropdown-menu p-4">
+                  <div class="mb-3">
+                    <label class="form-label">Equipo 1 </label>
+                    <input  class="form-control" placeholder="ID">
                   </div>
-            </td>
-          </tr>
-          
-        </tbody>
+                  <div class="mb-3">
+                      <label class="form-label">Equipo 2</label>
+                      <input  class="form-control" placeholder="ID">
+                  </div>
+                  <div class="mb-3 ">
+                      <label for="exampleDropdownFormDate2" class="form-label">Fecha</label>
+                      <input type="date" class="form-control" id="exampleDropdownFormDate2" placeholder="dd/mm/yyyy">
+                  </div>
+                  <div class="d-grid">
+                  <button type="submit" class="btn btn-success">Actualizar</button>
+                  </div>
+                </form>
+          </td>
+          <td>
+              <div class="btn-group w-100">
+                  <button type="button" class="btn btn-success dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+                    Equipo ganador
+                  </button>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Equipo 1</a></li>
+                      <li><a class="dropdown-item" href="#">Equipo 2</a></li>
+                    </ul>
+                </div>
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <h1 class="titulo">Equipos</h1>
+    <table class="table">
+      <tbody>
+        <tr>
+        <div class="dropdown">
+              <button class="btn bg-white text-dark dropdown-toggle border-success " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Torneos
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">torneo1</a></li>
+                <li><a class="dropdown-item" href="#">t2</a></li>
+                <li><a class="dropdown-item" href="#">t3</a></li>
+              </ul>
+          </div>
+        </tr>
+      <tr class="d-flex">
+        <td class="atributo">Equipo
+        </td>
+        <td class="atributo mx-5">ID
+        </td>
+      </tr>
       </table>

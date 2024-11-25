@@ -20,7 +20,7 @@ Content-Type: application/json
     "equipos": [],
     "partidos": [],
     "estado_torneo": 1,
-    "formato_torneo": 36,
+    "formato_torneo": 30,
     "sucursal": 1,
     "admin": 2
 }
@@ -54,4 +54,4 @@ Content-Type: application/json
 
 
 ### Borrar una torneo
-DELETE http://localhost:3000/api/torneos/3
+DELETE http://localhost:3000/api/torneos/2

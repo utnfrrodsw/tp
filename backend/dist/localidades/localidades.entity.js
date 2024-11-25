@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Cascade, Collection, Entity, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
 import { Sucursal } from "../sucursal/sucursal.entity.js";
-let Localidad = class Localidad {
+export let Localidad = class Localidad {
     constructor() {
         this.sucursales = new Collection(this);
     }
@@ -29,5 +29,4 @@ __decorate([
 Localidad = __decorate([
     Entity()
 ], Localidad);
-export { Localidad };
 //# sourceMappingURL=localidades.entity.js.map
