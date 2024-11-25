@@ -27,10 +27,10 @@ https://drive.google.com/drive/folders/17aejEDyp7ZbN4p7J21DdS0g-YX2c3g3c?usp=sha
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Alumno<br>2. CRUD Profesor<br>3. CRUD Curso<br>4. CRUD Inscripcion|
-|CRUD dependiente|1. CRUD Inscripcion {depende de} CRUD Curso y CRUD Alumno <br>2. CRUD RtaTp {depende de} CRUD Inscripcion y CRUD Tp|
-|Listado<br>+<br>detalle| 1. Listado de Cursos, muestra nombre y descripcion => detalle CRUD Curso<br> 2. Listado de Certificados filtrado por Inscripcion, muestra nombreCompleto Alumno, nombre de Curso, descripcion Certificado, fechaEmision Certificado => detalle muestra datos completos de Certificado
-|CUU/Epic|1. Seleccionar un curso para la inscripcion<br>2. Crear cuenta en el programa|
+|CRUD simple|1. CRUD Alumno<br>2. CRUD Profesor<br>3. CRUD Curso<br>4. CRUD Material|
+|CRUD dependiente|1. CRUD Inscripcion {depende de} CRUD Curso y CRUD Alumno <br>2. CRUD RtaTp {depende de} CRUD Inscripcion y CRUD Tp <br>3. CRUD RtaParcial {depende de} CRUD Inscripcion y CRUD Parcial <br>4. CRUD Certificado {depende de} CRUD Inscripcion <br>5. CRUD Tp {depende de} CRUD Curso <br>6. CRUD Parcial {depende de} CRUD Curso|
+|Listado<br>+<br>detalle| 1. Listado de Cursos, muestra nombre y descripcion => detalle CRUD Curso<br> 2. Listado de Materiales, muestra descripcion y titulo => detalle CRUD Material|
+|CUU/Epic|1. Inscribirse a un Curso como Alumno<br>2. Dar de alta un Curso como Profesor|
 
 
 Adicionales para Aprobación
