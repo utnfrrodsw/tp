@@ -23,7 +23,7 @@ Es una aplicacion web que administra Torneo de Fulbol 5 que esta pensada para 2 
 ### Modelo
 ![Imagen del modelo] (/docs/DER.png)
 
-###Pasaje a tabla
+#### Pasaje a tabla
 
 Tipo_Participante(id_posicion, nombre_posicion)
 
