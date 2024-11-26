@@ -96,8 +96,14 @@ export class AdminComponent {
     this.torneoService.actualizarGanadorTorneo(id_torneo,id_ganador.toString()).subscribe(torneo_e => this.objetos = torneo_e)
     location.reload()
   }
+  addSucursal(nombre_sucursal:string , localidad:string , id:string){
+    null
+  }
+  addLocalidad(nombre_localidad: string , id:string){
+    null
+  }
+  
 }
-    
  /*loadAdmins(){
     return this.service.getAdmins().subscribe(response => this.list = response);
   }
@@ -110,6 +116,7 @@ export class AdminComponent {
     return this.service.remove(id).subscribe(response => this.admin = response);
   }*/
 
-  /*putAdmin(nombre:string, contraseña:string, apellido:string, mail:string, fecha_nacimiento:string, id: string){
-    return this.service.modAdmin(nombre, contraseña, apellido, mail, fecha_nacimiento, parseInt(id)).subscribe(response => this.admin = response);
-  }*/
+    /*putAdmin(nombre:string, contraseña:string, apellido:string, mail:string, fecha_nacimiento:string, id: string){
+      return this.service.modAdmin(nombre, contraseña, apellido, mail, fecha_nacimiento, parseInt(id)).subscribe(response => this.admin = response);
+    }*/
+  

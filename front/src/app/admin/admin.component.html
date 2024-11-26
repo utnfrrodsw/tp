@@ -212,3 +212,42 @@
         </td>
       </tr>
       </table>
+      <table class="table">
+        <tbody>
+            <tr>
+              <td>
+                <h1 class="titulo">Crear Sucursal</h1>
+                  <form class="custom-form">
+                      <div class="form-group">
+                        <input type="text" #id_sucursal id_sucursal="id_sucursal" placeholder="ID Sucursal">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" #nombre_sucursal nombre_sucursal="nombre_sucursal" placeholder="Nombre Sucursal">
+                      </div> 
+                      <div class="form-group">
+                        <input type="text" #id_localidad id_localidad="id_localidad" placeholder="ID Localidad">
+                      </div>
+                      <button type="button" class="btn btn-success btn-md mt-2" 
+                        (click)="addSucursal(nombre_sucursal.value,id_localidad.value,id_sucursal.value);nombre_sucursal.value='';id_localidad.value;id_sucursal.value=''"> 
+                        Crear Sucursal
+                      </button>
+                  </form>
+              </td>
+              <td>
+                    <h1 class="titulo">Crear Localidad</h1>
+                    <form class="custom-form">
+                        <div class="form-group">
+                          <input type="text" #id_localidad id_localidad="id_localodad" placeholder="ID Localidad">
+                        </div>
+                        <div class="form-group">
+                          <input type="text" #nombre_localidad nombre_localidad="nombre_localidad" placeholder="Nombre Localidad">
+                        </div>
+                        <button type="button" class="btn btn-success btn-md mt-5" 
+                          (click)="addLocalidad(nombre_localidad.value,id_localidad.value);nombre_localidad.value='';id_localidad.value=''"> 
+                          Crear Localidad
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+      </table>
