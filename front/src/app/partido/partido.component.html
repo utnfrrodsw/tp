@@ -1,17 +1,33 @@
-<div class="match-result">
-    <div class="teams">
-      <div class="team home-team">
-        <span class="team-name">Equipo Local</span>
+<div class="dropdown">
+  <div class="dropdown">
+    <button class="btn bg-white text-dark dropdown-toggle border-success " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Torneos
+    </button>
+    <ul class="dropdown-menu" >
+      <li><a class="dropdown-item" *ngFor="let torneo of torneos"><a (click)="mostrarPartidos(torneo.id)">{{torneo.nombre_torneo}}</a></a></li>
+    </ul>
+  </div>
+  <div class="container mb-4 mt-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div *ngFor="let partido of partidos" class="col-12 col-md-6 mb-5"> 
+        <div class="col" *ngIf="partido.equipos[0] != undefined">
+          <div class="card shadow-">
+            <div class="card-body text-center">
+              <div class="teams mb-2">
+                <div class="team home-team fw-bold"> {{partido.equipos[0].id}}</div>
+                <div class="score fs-4 fw-bold my-2">
+                  <span *ngIf="partido.ganador != null" class="fs-5"> Ganador: {{partido.ganador}}</span>
+                  <span *ngIf="partido.ganador == null" class="fs-5"> Ganador no definido</span>
+                </div>
+                <div class="team away-team fw-bold"> {{partido.equipos[1].id}} </div>
+              </div>
+              <div class="detalles-partido text-muted">
+                <span class="Fecha">{{partido.fecha}}</span> 
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="score">
-        <span class="score-home">2</span> - <span class="score-away">1</span>
-      </div>
-      <div class="team away-team">
-        <span class="team-name">Equipo Visitante</span>
-      </div>
-    </div>
-    <div class="detalles-partido">
-      <span class="Fecha">Numero de fecha</span> |
-      <span class="Torneo">Nombre de torneo</span>
     </div>
   </div>
+</div>

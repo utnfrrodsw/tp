@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Collection, Entity, ManyToMany, ManyToOne, PrimaryKey, Property, } from "@mikro-orm/core";
 import { Torneo } from "../torneo/torneo.entity.js";
 import { Equipo } from "../equipo/equipo.entity.js";
-export let Partido = class Partido {
+let Partido = class Partido {
     constructor() {
         this.equipos = new Collection(this);
     }
@@ -19,6 +19,10 @@ __decorate([
     Property({ nullable: true }),
     __metadata("design:type", String)
 ], Partido.prototype, "fecha", void 0);
+__decorate([
+    Property({ nullable: true }),
+    __metadata("design:type", Number)
+], Partido.prototype, "ganador", void 0);
 __decorate([
     PrimaryKey({ unique: true }),
     __metadata("design:type", Number)
@@ -34,4 +38,5 @@ __decorate([
 Partido = __decorate([
     Entity()
 ], Partido);
+export { Partido };
 //# sourceMappingURL=partido.entity.js.map

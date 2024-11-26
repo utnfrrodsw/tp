@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { PartidoService } from '../partido.service';
+import { TorneoService } from '../torneo.service';
+
 
 @Component({
   selector: 'app-partido',
@@ -7,14 +9,27 @@ import { PartidoService } from '../partido.service';
   styleUrl: './partido.component.scss'
 })
 export class PartidoComponent {
-  constructor (private service: PartidoService) {
+  constructor (private service: PartidoService, private torneoService: TorneoService) {
   }
   
-  list:any = [];
-  partido:any = Object;
+  torneos:any[] = []
+  partidos:any[] = []
 
   ngOnInit(): void{
+    this.torneoService.getTorneos().subscribe(response => this.torneos = response.data)
+  }
 
+  mostrarPartidos(id_torneo: string){
+    this.partidos = []
+    this.torneoService.getOneTorneo(id_torneo).subscribe(torneo_e => {
+      const cont = torneo_e.data.partidos.length
+      for(let i=0;i<cont;i++){
+        const id_partido = torneo_e.data.partidos[i].id
+        this.service.getOnePartido(id_partido).subscribe(response => {
+          this.partidos.push(response.data)
+        })
+      }
+    })
   }
 
 }

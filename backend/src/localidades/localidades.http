@@ -38,4 +38,4 @@ Content-Type: application/json
 
 
 ### Borrar una localidad
-DELETE http://localhost:3000/api/localidades/9
+DELETE http://localhost:3000/api/localidades/1

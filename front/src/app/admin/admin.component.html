@@ -128,7 +128,8 @@
   <table class="table">
       <tbody>
         <tr>
-          <td><div class="dropdown">
+          <td>
+            <div class="dropdown">
               <button class="btn bg-white text-dark dropdown-toggle border-success " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Torneos
               </button>
@@ -153,27 +154,47 @@
           </td>
           <td class="atributo" *ngIf="partido.fecha == null">Fecha no definida aun
           </td>
-          <td class="atributo">Equipo Ganador
+          <td class="atributo" *ngIf="partido.ganador == null">Equipo ganador no definido
+          </td>
+          <td class="atributo" *ngIf="partido.ganador != null">Equipo ganador: {{partido.ganador}}
           </td>
           <td>
-              <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+              <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" (click)="botoncito(''); botoncito2('')">
                   Actualizar Partido
                 </button>
                 <form class="dropdown-menu p-4">
-                  <div class="mb-3">
-                    <label class="form-label">Equipo 1 </label>
-                    <input  class="form-control" placeholder="ID">
+                  <div class="mb-3 d-grid">
+                    <div class="mb-2">
+                      <label class="form-label">Equipo 1</label>
+                    </div>
+                    <div class="d-grid">
+                      <button class="btn bg-white text-dark dropdown-toggle border-success" type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="mostrarEquipos(partido.torneo.id)">
+                        Equipo: {{equipo}}
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" *ngFor="let equipo of equipos"><a (click)="botoncito(equipo.id)">Equipo: {{equipo.id}}</a></a></li>
+                      </ul>
+                    </div>
                   </div>
-                  <div class="mb-3">
+                  <div class="mb-3 d-grid">
+                    <div class="mb-2">
                       <label class="form-label">Equipo 2</label>
-                      <input  class="form-control" placeholder="ID">
+                    </div>
+                    <div class="d-grid">
+                      <button class="btn bg-white text-dark dropdown-toggle border-success" type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="mostrarEquipos(partido.torneo.id)">
+                        Equipo: {{equipo2}}
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" *ngFor="let equipo of equipos"><a (click)="botoncito2(equipo.id)">Equipo: {{equipo.id}}</a></a></li>
+                      </ul>
+                    </div>
                   </div>
                   <div class="mb-3 ">
                       <label for="exampleDropdownFormDate2" class="form-label">Fecha</label>
-                      <input type="date" class="form-control" id="exampleDropdownFormDate2" placeholder="dd/mm/yyyy">
+                      <input type="date" class="form-control" #fecha_partidos fecha_partidos="fecha_partidos" placeholder="dd/mm/yyyy">
                   </div>
                   <div class="d-grid">
-                  <button type="submit" class="btn btn-success">Actualizar</button>
+                  <button type="button" class="btn btn-success" (click)="actualizarPartido(partido.id, equipo, equipo2, fecha_partidos.value)">Actualizar</button>
                   </div>
                 </form>
           </td>
@@ -183,71 +204,53 @@
                     Equipo ganador
                   </button>
                   <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Equipo 1</a></li>
-                      <li><a class="dropdown-item" href="#">Equipo 2</a></li>
-                    </ul>
-                </div>
+                    <li *ngIf="partido.equipos[1] == undefined"><a class="dropdown-item">N/C</a></li>
+                    <li *ngIf="partido.equipos[0] == undefined"><a class="dropdown-item">N/C</a></li>
+                    <li *ngIf="partido.equipos[0] != undefined"><a class="dropdown-item" (click)="ganadorPartido(partido.id, partido.equipos[0].id)">{{partido.equipos[0].id}}</a></li>
+                    <li *ngIf="partido.equipos[1] != undefined"><a class="dropdown-item" (click)="ganadorPartido(partido.id, partido.equipos[1].id)">{{partido.equipos[1].id}}</a></li>
+                  </ul>
+              </div>
           </td>
         </tr>
         
       </tbody>
     </table>
-    <h1 class="titulo">Equipos</h1>
     <table class="table">
       <tbody>
-        <tr>
-          <div class="dropdown">
-              <button class="btn bg-white text-dark dropdown-toggle border-success " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Torneos
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" *ngFor="let torneo of torneos"><a (click)="mostrarEquipos(torneo.id)">{{torneo.nombre_torneo}}</a></a></li>
-              </ul>
-          </div>
-        </tr>
-      <tr class="d-flex" *ngFor="let equipo of equipos">
-        <td class="atributo">Equipo:
-        </td>
-        <td class="atributo mx-5">{{equipo.id}}
-        </td>
-      </tr>
-      </table>
-      <table class="table">
-        <tbody>
-            <tr>
-              <td>
-                <h1 class="titulo">Crear Sucursal</h1>
+          <tr>
+            <td>
+              <h1 class="titulo">Crear Sucursal</h1>
+                <form class="custom-form">
+                    <div class="form-group">
+                      <input type="text" #id_sucursal id_sucursal="id_sucursal" placeholder="ID Sucursal">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" #nombre_sucursal nombre_sucursal="nombre_sucursal" placeholder="Nombre Sucursal">
+                    </div> 
+                    <div class="form-group">
+                      <input type="text" #id_localidad id_localidad="id_localidad" placeholder="ID Localidad">
+                    </div>
+                    <button type="button" class="btn btn-success btn-md mt-2" 
+                      (click)="addSucursal(id_sucursal.value, nombre_sucursal.value, id_localidad.value);nombre_sucursal.value='';id_localidad.value = '';id_sucursal.value=''"> 
+                      Crear Sucursal
+                    </button>
+                </form>
+            </td>
+            <td>
+                  <h1 class="titulo">Crear Localidad</h1>
                   <form class="custom-form">
                       <div class="form-group">
-                        <input type="text" #id_sucursal id_sucursal="id_sucursal" placeholder="ID Sucursal">
+                        <input type="text" #id_loc id_loc="id_loc" placeholder="ID Localidad">
                       </div>
-                      <div class="form-group">
-                        <input type="text" #nombre_sucursal nombre_sucursal="nombre_sucursal" placeholder="Nombre Sucursal">
-                      </div> 
-                      <div class="form-group">
-                        <input type="text" #id_localidad id_localidad="id_localidad" placeholder="ID Localidad">
+                      <div class="form-group mb-3">
+                        <input type="text" #nombre_localidad nombre_localidad="nombre_localidad" placeholder="Nombre Localidad">
                       </div>
-                      <button type="button" class="btn btn-success btn-md mt-2" 
-                        (click)="addSucursal(nombre_sucursal.value,id_localidad.value,id_sucursal.value);nombre_sucursal.value='';id_localidad.value;id_sucursal.value=''"> 
-                        Crear Sucursal
+                      <button type="button" class="btn btn-success btn-md mt-4" 
+                        (click)="addLocalidad(nombre_localidad.value, id_loc.value);nombre_localidad.value='';id_loc.value = ''"> 
+                        Crear Localidad
                       </button>
                   </form>
               </td>
-              <td>
-                    <h1 class="titulo">Crear Localidad</h1>
-                    <form class="custom-form">
-                        <div class="form-group">
-                          <input type="text" #id_localidad id_localidad="id_localodad" placeholder="ID Localidad">
-                        </div>
-                        <div class="form-group">
-                          <input type="text" #nombre_localidad nombre_localidad="nombre_localidad" placeholder="Nombre Localidad">
-                        </div>
-                        <button type="button" class="btn btn-success btn-md mt-5" 
-                          (click)="addLocalidad(nombre_localidad.value,id_localidad.value);nombre_localidad.value='';id_localidad.value=''"> 
-                          Crear Localidad
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-      </table>
+          </tr>
+      </tbody>
+    </table>

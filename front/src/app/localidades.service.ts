@@ -25,7 +25,7 @@ export class LocalidadesService {
     return this.http.delete<any>(url)
   }
 
-  add(nombre_localidad: string, id: number) {
+  addLocalidad(nombre_localidad: string, id: number) {
     const url = this.baseUrl + 'localidades'
     const data = { nombre_localidad, id }
     return this.http.post<any>(url, data)
