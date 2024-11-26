@@ -8,6 +8,9 @@ export class Partido{
     @Property({nullable: true})
     fecha!: string
 
+    @Property({nullable: true})
+    ganador!: number
+
     @PrimaryKey({unique: true})
     id!: number
     

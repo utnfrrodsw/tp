@@ -24,7 +24,7 @@ export class SucursalService {
     return this.http.delete<any>(url)
   }
 
-  add(nombre_sucursal: string, localidad: string, id: number) {
+  addSucursal(nombre_sucursal: string, localidad: number, id: number) {
     const url = this.baseUrl + 'sucursales'
     const data = { nombre_sucursal, localidad, id }
     return this.http.post<any>(url, data)

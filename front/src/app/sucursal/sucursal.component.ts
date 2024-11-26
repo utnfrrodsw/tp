@@ -17,23 +17,23 @@ export class SucursalComponent {
 
   }
 
-  loadSucursales(){
-    return this.service.getSucursales().subscribe(response => this.list = response);
-  }
-
-  loadOne(id:string){
-    return this.service.getOneSucursal(id).subscribe(response => this.sucursal = response);
-  }
-
-  removeSucursal(id:string){
-    return this.service.remove(id).subscribe(response => this.sucursal = response);
-  }
-
-  addSucursal(nombre_sucursal:string, localidad:string, id:string){
-    return this.service.add(nombre_sucursal, localidad, parseInt(id)).subscribe(response => this.sucursal = response);
-  }
-
-  putSucursal(nombre_sucursal:string, localidad:string, id:string){
-    return this.service.modSucursal(nombre_sucursal, localidad, parseInt(id)).subscribe(response => this.sucursal = response);
-  }
 }
+/*loadSucursales(){
+  return this.service.getSucursales().subscribe(response => this.list = response);
+}
+
+loadOne(id:string){
+  return this.service.getOneSucursal(id).subscribe(response => this.sucursal = response);
+}
+
+removeSucursal(id:string){
+  return this.service.remove(id).subscribe(response => this.sucursal = response);
+}
+
+addSucursal(nombre_sucursal:string, localidad:string, id:string){
+  return this.service.addSucursal(nombre_sucursal, parseInt(localidad), parseInt(id)).subscribe(response => this.sucursal = response);
+}
+
+putSucursal(nombre_sucursal:string, localidad:string, id:string){
+  return this.service.modSucursal(nombre_sucursal, localidad, parseInt(id)).subscribe(response => this.sucursal = response);
+}*/

@@ -47,5 +47,17 @@ export class PartidoService {
     }
     return forkJoin(requests)
   }
+
+  modPartidoEquipos(id_partido:string, id_equipo1:number, id_equipo2:number, fecha_partidos:string){
+    const url = this.baseUrl + 'partidos/' + id_partido
+    const data = { equipos: [id_equipo1, id_equipo2], fecha: fecha_partidos }
+    return this.http.patch<any>(url, data)
+  }
+
+  actualizarGanador(id_partido:string, equipoGanador:string){
+    const url = this.baseUrl + 'partidos/' + id_partido
+    const data = { ganador: equipoGanador}
+    return this.http.patch<any>(url, data)
+  }
 }
 

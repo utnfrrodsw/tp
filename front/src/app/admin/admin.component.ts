@@ -6,7 +6,8 @@ import { EquipoService } from '../equipo.service';
 import { PartidoService } from '../partido.service';
 import { ToastrService } from 'ngx-toastr';
 import { ParticipanteService } from '../participante.service';
-import { response } from 'express';
+import { SucursalService } from '../sucursal.service';
+import { LocalidadesService } from '../localidades.service';
 
 
 
@@ -18,13 +19,15 @@ import { response } from 'express';
 
 export class AdminComponent {
 
-  constructor (private service: AdminService, private torneoService: TorneoService, private formatoService: FormatosTorneoService, private equipoService: EquipoService, private partidoService: PartidoService, private toastr: ToastrService, private participanteService: ParticipanteService) {}
+  constructor (private service: AdminService, private torneoService: TorneoService, private formatoService: FormatosTorneoService, private equipoService: EquipoService, private partidoService: PartidoService, private toastr: ToastrService, private participanteService: ParticipanteService, private sucursalService: SucursalService, private localidadService: LocalidadesService) {}
   
   torneos:any[] = []
   participantes:any[] = []
   objetos:any = Object
   partidos:any[] = []
   equipos:any[] = []
+  equipo:string = ""
+  equipo2:string= ""
 
   ngOnInit(): void{
     this.torneoService.getTorneos().subscribe(response => this.torneos = response.data)
@@ -33,7 +36,7 @@ export class AdminComponent {
   }
 
   addTorneo(nombre_torneo:string, fecha_inicio_torneo:string, fecha_fin_torneo:string, admin:string, sucursal:string, estado_torneo: string, formato_torneo: string, id: string){
-    if(nombre_torneo == '' || admin == '' || sucursal == '' || estado_torneo == '' || formato_torneo == '' || id == ''){
+    if(nombre_torneo == '' || admin == '' || sucursal == '' || estado_torneo == '' || formato_torneo == ''){
       this.toastr.error('Todos los campos son obligatorios', 'Error')
       return
     }
@@ -96,14 +99,72 @@ export class AdminComponent {
     this.torneoService.actualizarGanadorTorneo(id_torneo,id_ganador.toString()).subscribe(torneo_e => this.objetos = torneo_e)
     location.reload()
   }
-  addSucursal(nombre_sucursal:string , localidad:string , id:string){
-    null
+  addSucursal(id_sucursal:string, nombre_sucursal:string, id_localidad:string){
+    if(nombre_sucursal == '' || id_localidad == ''){
+      this.toastr.error('Todos los campos deben estar completos')
+      return
+    }
+    try{
+      this.sucursalService.addSucursal(nombre_sucursal, parseInt(id_localidad), parseInt(id_sucursal)).subscribe(response => this.objetos = response)
+      this.toastr.success('Sucursal cargada correctamente', 'Sucursal Cargada')
+    }catch{
+      this.toastr.error('No se pudo cargar la sucursal, intente nuevamente', 'Error')
+    }
   }
   addLocalidad(nombre_localidad: string , id:string){
-    null
+    if(nombre_localidad == ''){
+      this.toastr.error('El nombre de la localidad debe estar completo')
+      return 
+    }
+    try{
+      this.localidadService.addLocalidad(nombre_localidad, parseInt(id)).subscribe(response => this.objetos = response)
+      this.toastr.success('Localidad cargada correctamente', 'Localidad Cargada')
+    }catch{
+      this.toastr.error('No se pudo cargar la localidad, intente nuevamente', 'Error')
+    }
   }
   
+  botoncito(id_del_equipo: string){
+    this.equipo = id_del_equipo
+  }
+
+  botoncito2(id_del_equipo: string){
+    this.equipo2 = id_del_equipo
+  }
+
+  actualizarPartido(id_partido:string, id_equipo1:string, id_equipo2:string, fecha_partidos:string){
+    if(id_equipo1 == '' || id_equipo2 == '' || fecha_partidos == ''){
+      this.toastr.error('Todos lo campos son obligatorios', 'Error')
+      return
+    }
+    if(id_equipo1 == id_equipo2){
+      this.toastr.error('Un mismo equipo no puede estar registrado 2 veces en un mismo partido', 'Error')
+      return
+    }
+    if(this.validarFecha(fecha_partidos) == false){
+      this.toastr.error('La feche debe ser mayor a la actual', 'Error')
+      return
+    } 
+    this.partidoService.modPartidoEquipos(id_partido, parseInt(id_equipo1), parseInt(id_equipo2), fecha_partidos).subscribe(response => this.objetos = response)
+    location.reload()
+  }
+
+  validarFecha(fechas:string){
+    const fecha = new Date(fechas)
+    const fecha_actual = new Date()
+    if(fecha < fecha_actual){
+      return false
+    }
+    return true
+  }
+
+  ganadorPartido(id_partido:string, equipoGanador:string){
+    this.partidoService.actualizarGanador(id_partido, equipoGanador).subscribe(response => this.objetos = response)
+    location.reload()
+  }
+
 }
+
  /*loadAdmins(){
     return this.service.getAdmins().subscribe(response => this.list = response);
   }
