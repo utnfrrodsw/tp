@@ -1,4 +1,4 @@
-<h3 align="center">UTimbaN Minutas</h3>
+<h3 align="center">LigaVirtual Minutas</h3>
 <table align="center">
 <tbody>
 <tr valign="top">
