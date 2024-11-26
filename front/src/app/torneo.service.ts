@@ -50,4 +50,11 @@ export class TorneoService {
     const data = {fecha_fin_torneo}
     return this.http.patch<any>(url, data)
   }
+
+  actualizarGanadorTorneo(id_torneo:string, ganador_id:string){
+    const url = this.baseUrl + 'torneos/' + id_torneo
+    const ganador = ganador_id
+    const data = { ganador }
+    return this.http.patch<any>(url, data)
+  }
 }

@@ -14,7 +14,7 @@ export class Partido{
     @ManyToOne(() => Torneo)
     torneo!: Rel<Torneo>;
 
-    @ManyToMany(() => Equipo, equipo => equipo.partidos)
+    @ManyToMany(() => Equipo, equipo => equipo.partidos, {nullable:true})
     equipos = new Collection<Equipo>(this)
     
 }

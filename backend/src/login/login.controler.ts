@@ -17,7 +17,7 @@ async function login(req: Request, res: Response){
     if(!user){
         user = await em.findOne(Participante, {mail: mail})
         if(!user){
-            return res.status(400).json({message: 'No se encontró un admin con ese mail en la base de datos'})
+            return res.status(400).json({message: 'No se encontró un Usuario con ese mail en la base de datos'})
         }
     }
 

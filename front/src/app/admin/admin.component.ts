@@ -6,6 +6,7 @@ import { EquipoService } from '../equipo.service';
 import { PartidoService } from '../partido.service';
 import { ToastrService } from 'ngx-toastr';
 import { ParticipanteService } from '../participante.service';
+import { response } from 'express';
 
 
 
@@ -22,14 +23,17 @@ export class AdminComponent {
   torneos:any[] = []
   participantes:any[] = []
   objetos:any = Object
+  partidos:any[] = []
+  equipos:any[] = []
 
   ngOnInit(): void{
     this.torneoService.getTorneos().subscribe(response => this.torneos = response.data)
     this.participanteService.getParticipantes().subscribe(response => this.participantes = response.data)
+
   }
 
   addTorneo(nombre_torneo:string, fecha_inicio_torneo:string, fecha_fin_torneo:string, admin:string, sucursal:string, estado_torneo: string, formato_torneo: string, id: string){
-    if(nombre_torneo == '' || fecha_inicio_torneo == '' || fecha_fin_torneo == '' || admin == '' || sucursal == '' || estado_torneo == '' || formato_torneo == '' || id == ''){
+    if(nombre_torneo == '' || admin == '' || sucursal == '' || estado_torneo == '' || formato_torneo == '' || id == ''){
       this.toastr.error('Todos los campos son obligatorios', 'Error')
       return
     }
@@ -59,6 +63,37 @@ export class AdminComponent {
   
   eliminarParticipante(participante_id: number){
     this.participanteService.remove(participante_id).subscribe(response => this.objetos = response)
+    location.reload()
+  }
+
+  mostrarPartidos(id_torneo: string){
+    this.partidos = []
+    this.torneoService.getOneTorneo(id_torneo).subscribe(torneo_e => {
+      const cont = torneo_e.data.partidos.length
+      for(let i=0;i<cont;i++){
+        const id_partido = torneo_e.data.partidos[i].id
+        this.partidoService.getOnePartido(id_partido).subscribe(response => {
+          this.partidos.push(response.data)
+        })
+      }
+    })
+  }
+
+  mostrarEquipos(id_torneo: string){
+    this.equipos = []
+    this.torneoService.getOneTorneo(id_torneo).subscribe(torneo_e => {
+      const cont = torneo_e.data.equipos.length
+      for(let i=0;i < cont; i++){
+        const id_equipo = torneo_e.data.equipos[i].id
+        this.equipoService.getOneEquipo(id_equipo).subscribe(response => {
+          this.equipos.push(response.data)
+        })
+      }
+    })
+  }
+
+  actualizarGanador(id_torneo: string, id_ganador: string){
+    this.torneoService.actualizarGanadorTorneo(id_torneo,id_ganador.toString()).subscribe(torneo_e => this.objetos = torneo_e)
     location.reload()
   }
 }

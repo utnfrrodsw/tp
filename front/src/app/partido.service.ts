@@ -48,3 +48,4 @@ export class PartidoService {
     return forkJoin(requests)
   }
 }
+

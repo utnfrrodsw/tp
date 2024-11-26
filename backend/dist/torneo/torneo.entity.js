@@ -14,7 +14,7 @@ import { Admin } from "../admin/admin.entity.js";
 import { Sucursal } from "../sucursal/sucursal.entity.js";
 import { Estado_torneo } from "../estado_torneo/estado_torneo.entity.js";
 import { Formatos_torneo } from "../formatos_torneo/formatos_torneo.entity.js";
-export let Torneo = class Torneo {
+let Torneo = class Torneo {
     constructor() {
         this.equipos = new Collection(this);
         this.partidos = new Collection(this);
@@ -25,11 +25,11 @@ __decorate([
     __metadata("design:type", String)
 ], Torneo.prototype, "nombre_torneo", void 0);
 __decorate([
-    Property({ nullable: false }),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Torneo.prototype, "fecha_inicio_torneo", void 0);
 __decorate([
-    Property({ nullable: false }),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Torneo.prototype, "fecha_fin_torneo", void 0);
 __decorate([
@@ -67,4 +67,5 @@ __decorate([
 Torneo = __decorate([
     Entity()
 ], Torneo);
+export { Torneo };
 //# sourceMappingURL=torneo.entity.js.map
