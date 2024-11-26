@@ -38,9 +38,33 @@
     <tr *ngFor="let torneo of torneos">
       <td >{{torneo.nombre_torneo}}</td>
       <td>{{torneo.estado_torneo.nombre_estado}}</td>
-      <td>{{torneo.fecha_inicio_torneo}}</td>
-      <td>{{torneo.fecha_fin_torneo}}</td>
+      <td *ngIf="torneo.fecha_inicio_torneo == null"> Fecha Inicio del torneo aun no definida</td>
+      <td *ngIf="torneo.fecha_inicio_torneo != null">{{torneo.fecha_inicio_torneo}}</td>
+      <td *ngIf="torneo.fecha_fin_torneo == null"> Fecha Inicio del torneo aun no definida</td>
+      <td *ngIf="torneo.fecha_inicio_torneo != null">{{torneo.fecha_fin_torneo}}</td>
+      <td *ngIf="torneo.ganador != null">Ganador del torneo: Equipo {{torneo.ganador}}</td>
+      <td *ngIf="torneo.ganador == null">Ganador del torneo no definido</td>
       <div class="justify-content-end d-flex">
+        <td>
+          <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+            Asignar Ganador
+          </button>
+          <form class="dropdown-menu p-4">
+            <div class="mb-3 d-grid">
+              <div class="mb-2">
+              <label class="form-label">Equipo ganador</label>
+              </div>
+              <div>
+                <button class="btn bg-white text-dark dropdown-toggle border-success " type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="mostrarEquipos(torneo.id)">
+                  Equipos
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" *ngFor="let equipo of equipos"><a (click)="actualizarGanador(torneo.id, equipo.id)">Equipo: {{equipo.id}}</a></a></li>
+                </ul>
+              </div>
+            </div>
+          </form>
+       </td>
         <td>
           <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
               Actualizar Fecha inicio
@@ -108,24 +132,28 @@
               <button class="btn bg-white text-dark dropdown-toggle border-success " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Torneos
               </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">torneo1</a></li>
-                <li><a class="dropdown-item" href="#">t2</a></li>
-                <li><a class="dropdown-item" href="#">t3</a></li>
+              <ul class="dropdown-menu" >
+                <li><a class="dropdown-item" *ngFor="let torneo of torneos"><a (click)="mostrarPartidos(torneo.id)">{{torneo.nombre_torneo}}</a></a></li>
               </ul>
             </div>
           </td>
       </tr>
-      <tr>
-          <td class="atributo">Partido
+      <tr *ngFor="let partido of partidos">
+          <td class="atributo">Partido: {{partido.id}}
           </td>
-          <td class="atributo">Equipo 1
+          <td class="atributo" *ngIf="partido.equipos[0] != undefined">Equipo: {{partido.equipos[0].id}}
           </td>
-          <td class="atributo">Equipo 2
+          <td class="atributo" *ngIf="partido.equipos[0] == undefined">Equipo: No definido aun
           </td>
-          <td class="atributo">Fecha
+          <td class="atributo" *ngIf="partido.equipos[1] != undefined">Equipo: {{partido.equipos[1].id}}
           </td>
-          <td class="atributo">Equipo ganador 
+          <td class="atributo" *ngIf="partido.equipos[1] == undefined">Equipo: No definido aun
+          </td>
+          <td class="atributo" *ngIf="partido.fecha != null">Fecha: {{partido.fecha}}
+          </td>
+          <td class="atributo" *ngIf="partido.fecha == null">Fecha no definida aun
+          </td>
+          <td class="atributo">Equipo Ganador
           </td>
           <td>
               <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
@@ -168,21 +196,19 @@
     <table class="table">
       <tbody>
         <tr>
-        <div class="dropdown">
+          <div class="dropdown">
               <button class="btn bg-white text-dark dropdown-toggle border-success " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Torneos
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">torneo1</a></li>
-                <li><a class="dropdown-item" href="#">t2</a></li>
-                <li><a class="dropdown-item" href="#">t3</a></li>
+                <li><a class="dropdown-item" *ngFor="let torneo of torneos"><a (click)="mostrarEquipos(torneo.id)">{{torneo.nombre_torneo}}</a></a></li>
               </ul>
           </div>
         </tr>
-      <tr class="d-flex">
-        <td class="atributo">Equipo
+      <tr class="d-flex" *ngFor="let equipo of equipos">
+        <td class="atributo">Equipo:
         </td>
-        <td class="atributo mx-5">ID
+        <td class="atributo mx-5">{{equipo.id}}
         </td>
       </tr>
       </table>

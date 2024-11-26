@@ -12,8 +12,8 @@ Content-Type: application/json
 
 {
     "participantes": [],
-    "partidos": [],
-    "torneo": 2
+    "partidos": [4],
+    "torneo": 3
 }
 
 

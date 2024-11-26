@@ -34,7 +34,7 @@ function sanitizarTorneoInput(req: Request, res: Response, next: NextFunction){
 
 async function findAll(req: Request,res: Response){
     try{
-        const torneos = await em.find(Torneo, {}, {populate: ['equipos', 'partidos','admin','sucursal','estado_torneo','formato_torneo']})
+        const torneos = await em.find(Torneo, {}, {populate: ['equipos','partidos','admin','sucursal','estado_torneo','formato_torneo']})
         res.status(200).json({message: 'found all torneos', data: torneos})
     }catch (error: any){
         res.status(500).json({message: error.message})

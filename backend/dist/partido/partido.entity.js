@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Collection, Entity, ManyToMany, ManyToOne, PrimaryKey, Property, } from "@mikro-orm/core";
 import { Torneo } from "../torneo/torneo.entity.js";
 import { Equipo } from "../equipo/equipo.entity.js";
-export let Partido = class Partido {
+let Partido = class Partido {
     constructor() {
         this.equipos = new Collection(this);
     }
@@ -28,10 +28,11 @@ __decorate([
     __metadata("design:type", Object)
 ], Partido.prototype, "torneo", void 0);
 __decorate([
-    ManyToMany(() => Equipo, equipo => equipo.partidos),
+    ManyToMany(() => Equipo, equipo => equipo.partidos, { nullable: true }),
     __metadata("design:type", Object)
 ], Partido.prototype, "equipos", void 0);
 Partido = __decorate([
     Entity()
 ], Partido);
+export { Partido };
 //# sourceMappingURL=partido.entity.js.map
