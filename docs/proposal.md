@@ -21,7 +21,7 @@ Es una aplicacion web que administra Torneo de Fulbol 5 que esta pensada para 2 
 - EL usuario de tipo "admin" que ademas de poder iniciar sesion, Crear torneos, sucursales, localidades, modificar torneos y partidos y eliminar participantes podrá acceder a listados de torneos, partidos y equipos.
 
 ### Modelo
-![Imagen del modelo] (/docs/DER.png)
+![Imagen del modelo](/docs/DER.png)
 
 #### Pasaje a tabla
 
