@@ -41,6 +41,7 @@ export class PartidoService {
     const cant_partidos = E_formato_torneo.data.cant_partidos
     const requests = []
     for (let i=0; i < cant_partidos; i++){
+      console.log('entra al for')
       const url = this.baseUrl + 'partidos'
       const data = { torneo: id_torneo }
       requests.push(this.http.post<any>(url, data))

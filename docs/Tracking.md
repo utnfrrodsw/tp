@@ -23,3 +23,6 @@ La solución es mostrarlo en formato JSON si no nos mostraba [OBJECT OBJECT].
 [4] Problema:La forma en la que se conecta el backend con el frontend en angular, en la documentación de angular 17 con standalone false, y la forma en la que se escribe Ng Modules es diferente.
 [4.a] Solucion: Agregando las rutas en el path de app routing modules
 y la utilización de router outlet.
+
+[5] Problema: Al asignar un participante a un equipo, nos encotramos con el problema de que al enviar la data, se sobreescribian los datos. Validando el tipo de participante y la cantidad que hay de cada uno de ellos en los equipos.
+[5.a] Solucion: Creamos un arreglo, el cual va guardando los participantes que ya estan en el equipo, validando que se ingresen en cada equipo solo 2 delanteros, 2 defensas y 1 arquero. Enviando como data, dicho arreglo que se va cargando con los participantes que ya estaban en un equipo y el nuevo ingresante.

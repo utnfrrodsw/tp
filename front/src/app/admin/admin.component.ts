@@ -41,6 +41,13 @@ export class AdminComponent {
   formato_torneos:any[] = []
   formato_torneo:string = ""
 
+  admin_boton:string = ''
+  sucursal_boton:string = ''
+  estado_boton:string = ''
+  formato_boton:string = ''
+  localidad_boton:string = ''
+
+
   ngOnInit(): void{
     this.torneoService.getTorneos().subscribe(response => this.torneos = response.data)
     this.participanteService.getParticipantes().subscribe(response => this.participantes = response.data)
@@ -55,17 +62,30 @@ export class AdminComponent {
   }
 
   addTorneo(nombre_torneo:string, fecha_inicio_torneo:string, fecha_fin_torneo:string, admin:string, sucursal:string, estado_torneo: string, formato_torneo: string, id: string){
-  /*  if(nombre_torneo == '' || admin == ''|| sucursal == '' || estado_torneo == '' || formato_torneo == ''){
+    if(nombre_torneo == '' || admin == ''|| sucursal == '' || estado_torneo == '' || formato_torneo == '' || id == ''){
       this.toastr.error('Todos los campos son obligatorios', 'Error')
       return
-    }*/
+    }
+    if(this.validarFecha(fecha_inicio_torneo) == false){
+      this.toastr.error('La fecha de inicio debe ser mayor a la actual', 'Error')
+      return
+    } 
+    const fecha1 = new Date(fecha_inicio_torneo)
+    const fecha2 = new Date(fecha_fin_torneo)
+    if(this.validarFecha(fecha_fin_torneo) == false){
+      this.toastr.error('La fecha fin debe ser mayor a la actual', 'Error')
+      return
+    }else if(fecha1 > fecha2){
+      this.toastr.error('La fecha fin debe ser mayor a la del incio del torneo', 'Error')
+      return
+    }
     this.torneoService.addTorneo(nombre_torneo, fecha_inicio_torneo, fecha_fin_torneo, parseInt(admin), parseInt(sucursal), parseInt(estado_torneo), parseInt(formato_torneo), parseInt(id)).subscribe(response => this.objetos = response)
     this.formatoService.getFormato(formato_torneo).subscribe(E_formato_torneo => {
     this.equipoService.addEquiposTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response)
     this.partidoService.addPartidosTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response)
-    location.reload()
     })
-    /*this.toastr.success('Torneo Creado Correctamente', 'Torneo Creado')*/
+    location.reload()
+    this.toastr.success('Torneo Creado Correctamente', 'Torneo Creado')
   }
 
   cambiarEstado(id_estado: number, torneo_id: number){
@@ -119,17 +139,18 @@ export class AdminComponent {
     location.reload()
   }
   addSucursal(id_sucursal:string, nombre_sucursal:string, id_localidad:string){
-    /*if(id_localidad == '' || nombre_sucursal == '' ){
+    if(id_localidad == '' || nombre_sucursal == '' ){
       this.toastr.error('Todos los campos deben estar completos')
       return
     }
-    try{*/
+    try{
       this.sucursalService.addSucursal(nombre_sucursal, parseInt(id_localidad), parseInt(id_sucursal)).subscribe(response => this.objetos = response)
       this.toastr.success('Sucursal cargada correctamente', 'Sucursal Cargada')
-    /*}catch{
-      this.toastr.error('No se pudo cargar la sucursal, intente nuevamente', 'Error')*/
-    
+    }catch{
+      this.toastr.error('No se pudo cargar la sucursal, intente nuevamente', 'Error')
+    }
   }
+
   addLocalidad(nombre_localidad: string , id:string){
     if(nombre_localidad == ''){
       this.toastr.error('El nombre de la localidad debe estar completo')
@@ -182,29 +203,31 @@ export class AdminComponent {
     location.reload()
   }
 
-  mostrarLocalidades(id: string){
+  mostrarLocalidades(nombre_localidad:string, id: string){
     this.localidadService.getLocalidades().subscribe(response => this.localidades = response.data)
-    this.localidad = id.toString()
-    
-}
-mostrarAdmins(id: string){
-  this.service.getAdmins().subscribe(response => this.admins = response.data)
-  this.admin = id.toString()
-}
-mostrarSucursales(id: string){
-  this.sucursalService.getSucursales().subscribe(response => this.sucursales = response.data)
-  this.sucursal = id.toString()
-}
-mostrarEstadoTorneos(id: string){
-  this.estadoTorneoService.getEstados().subscribe(response => this.estado_torneos = response.data)
-  this.estado_torneo = id.toString()
-}
-mostrarFormatoTorneos(id: string){
-  this.formatoService.getFormatos().subscribe(response => this.formato_torneos = response.data)
-  this.formato_torneo = id.toString()
-
-
-}
+    this.localidad = id
+    this.localidad_boton = nombre_localidad
+  }
+  mostrarAdmins(nombre_admin:string, id: string){
+    this.service.getAdmins().subscribe(response => this.admins = response.data)
+    this.admin = id
+    this.admin_boton = nombre_admin
+  }
+  mostrarSucursales(nombre_sucursal:string, id: string){
+    this.sucursalService.getSucursales().subscribe(response => this.sucursales = response.data)
+    this.sucursal = id
+    this.sucursal_boton = nombre_sucursal
+  }
+  mostrarEstadoTorneos(nombre_estado:string, id: string){
+    this.estadoTorneoService.getEstados().subscribe(response => this.estado_torneos = response.data)
+    this.estado_torneo = id
+    this.estado_boton = nombre_estado
+  }
+  mostrarFormatoTorneos(formato:any, id: string){
+    this.formatoService.getFormatos().subscribe(response => this.formato_torneos = response.data)
+    this.formato_torneo = id
+    this.formato_boton = 'C.E : ' + formato.cant_equipos + ' -- C.P : ' + formato.cant_partidos
+  }
 }
  /*loadAdmins(){
     return this.service.getAdmins().subscribe(response => this.list = response);

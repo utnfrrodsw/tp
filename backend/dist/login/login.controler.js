@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 const em = orm.em;
 async function login(req, res) {
-    const { mail, contraseña } = req.body;
+    const { mail, contraseña, id } = req.body;
     let user = null;
     user = await em.findOne(Admin, { mail: mail });
     if (!user) {
@@ -18,7 +18,7 @@ async function login(req, res) {
     if (!validacionContraseña) {
         return res.status(400).json({ message: 'Contraseña incorrecta' });
     }
-    const token = jwt.sign({ mail: mail }, process.env.SECRET_KEY || 'pepitos123');
+    const token = jwt.sign({ mail: mail, id: id }, process.env.SECRET_KEY || 'pepitos123');
     const rol = user.rol;
     const data = { token, rol };
     return res.json({ data });

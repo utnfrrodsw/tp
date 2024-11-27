@@ -41,6 +41,4 @@ export class ParticipanteService {
     const data = { nombre, contraseña, apellido, mail, fecha_nacimiento, tipo_par, id }
     return this.http.put<any>(url, data)
   }
-
-
 }
