@@ -16,6 +16,8 @@ export class LocalidadesComponent {
   ngOnInit(): void{
 
   }
+  
+
 
 }
 /*loadLocalidades(){

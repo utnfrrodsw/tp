@@ -1,6 +1,6 @@
 <div class="addTorneo">
   <h1 class="titulo">Crear nuevo torneo</h1>
-      <form class="custom-form">
+      <form class="custom-form w-50 p-3">
           <div class="form-group">
               <input type="text" #nombre_torneo nombre_torneo="nombre_torneo" placeholder="Nombre Torneo">
           </div> 
@@ -8,25 +8,49 @@
               <input type="text" #fecha_inicio_torneo fecha_inicio_torneo="fecha_inicio_torneo" placeholder="Fecha Inicio Torneo" onfocus="this.type='date'" onblur="this.type='text'">
           </div>
           <div class="form-group">
-              <input type="date" #fecha_fin_torneo fecha_fin_torneo="fecha_fin_torneo" placeholder="Fecha Fin Torneo" onfocus="this.type='date'" onblur="this.type='text'">
+              <input type="text" #fecha_fin_torneo fecha_fin_torneo="fecha_fin_torneo" placeholder="Fecha Fin Torneo" onfocus="this.type='date'" onblur="this.type='text'">
           </div>
           <div class="form-group">
-              <input type="text" #admin admin="admin" placeholder="Admin a cargo">
+            <button class="btn bg-white text-dark dropdown-toggle border-dark text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Administrador a cargo</button>
+            <div>
+            <ul class="dropdown-menu" >
+              <li ><a class="dropdown-item" *ngFor="let admin of admins"><a (click)="mostrarAdmins(admin.id)" >{{admin.nombre}}  {{admin.apellido}}</a></a></li>
+            </ul>
+            </div>
           </div>
           <div class="form-group">
-              <input type="text" #sucursal sucursal="sucursal" placeholder="Sucursal">
+            <button class="btn bg-white text-dark dropdown-toggle border-dark text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Sucursal</button>
+            <div>
+            <ul class="dropdown-menu" >
+              <li ><a class="dropdown-item" *ngFor="let sucursal of sucursales"><a (click)="mostrarSucursales(sucursal.id)" >{{sucursal.nombre_sucursal}}</a></a></li>
+            </ul>
+            </div>
           </div>
           <div class="form-group">
-              <input type="text" #estado_torneo estado_torneo="estado_torneo" placeholder="Estado del torneo">
+            <button class="btn bg-white text-dark dropdown-toggle border-dark text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Estado del Torneo</button>
+            <div>
+            <ul class="dropdown-menu" >
+              <li ><a class="dropdown-item" *ngFor="let estado_torneo of estado_torneos"><a (click)="mostrarEstadoTorneos(estado_torneo.id)" >{{estado_torneo.nombre_estado}}</a></a></li>
+            </ul>
+            </div>
           </div>
           <div class="form-group">
-              <input type="text" #formato_torneo formato_torneo="formato_torneo" placeholder="Formato del torneo">
+            <button class="btn bg-white text-dark dropdown-toggle border-dark text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Formato del Torneo</button>
+            <div>
+            <ul class="dropdown-menu" >
+              <li ><a class="dropdown-item" *ngFor="let formato_torneo of formato_torneos"><a (click)="mostrarFormatoTorneos(formato_torneo.id)" > Cantidad de equipos {{formato_torneo.cant_equipos}}   Cantidad de partidos: {{formato_torneo.cant_partidos}}</a></a></li>
+            </ul>
+            </div>
           </div>
           <div class="form-group">
               <input type="text" #id id="id" placeholder="ID">
           </div>
-          <button type="button" class="btn btn-success btn-lg" 
-            (click)="addTorneo(nombre_torneo.value, fecha_inicio_torneo.value, fecha_fin_torneo.value, admin.value, sucursal.value, estado_torneo.value, formato_torneo.value, id.value);nombre_torneo.value='';fecha_inicio_torneo.value='';fecha_fin_torneo.value='';admin.value='';sucursal.value='';estado_torneo.value='';formato_torneo.value='';id.value=''"> 
+          <button type="button" class="btn btn-success btn-lg mt-3 w-100" 
+            (click)="addTorneo(nombre_torneo.value, fecha_inicio_torneo.value, fecha_fin_torneo.value, admin, sucursal, estado_torneo, formato_torneo, id.value);nombre_torneo.value='';fecha_inicio_torneo.value='';fecha_fin_torneo.value='';admin='';sucursal='';estado_torneo='';formato_torneo=''; id.value =''"> 
             Crear Torneos
           </button>
       </form>
@@ -228,10 +252,17 @@
                       <input type="text" #nombre_sucursal nombre_sucursal="nombre_sucursal" placeholder="Nombre Sucursal">
                     </div> 
                     <div class="form-group">
-                      <input type="text" #id_localidad id_localidad="id_localidad" placeholder="ID Localidad">
+                      <button class="btn bg-white text-dark dropdown-toggle border-dark text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Localidad
+                      </button>
+                      <div>
+                      <ul class="dropdown-menu" >
+                        <li ><a class="dropdown-item" *ngFor="let localidad of localidades"><a (click)="mostrarLocalidades(localidad.id)" >{{localidad.nombre_localidad}}</a></a></li>
+                      </ul>
+                      </div>
                     </div>
-                    <button type="button" class="btn btn-success btn-md mt-2" 
-                      (click)="addSucursal(id_sucursal.value, nombre_sucursal.value, id_localidad.value);nombre_sucursal.value='';id_localidad.value = '';id_sucursal.value=''"> 
+                    <button type="button" class="btn btn-success btn-md mt-2 " 
+                      (click)="addSucursal(id_sucursal.value, nombre_sucursal.value, localidad );nombre_sucursal.value=''; localidad ='';id_sucursal.value=''"> 
                       Crear Sucursal
                     </button>
                 </form>

@@ -8,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ParticipanteService } from '../participante.service';
 import { SucursalService } from '../sucursal.service';
 import { LocalidadesService } from '../localidades.service';
+import { EstadoTorneoService } from '../estado-torneo.service.js';
+
 
 
 
@@ -19,7 +21,7 @@ import { LocalidadesService } from '../localidades.service';
 
 export class AdminComponent {
 
-  constructor (private service: AdminService, private torneoService: TorneoService, private formatoService: FormatosTorneoService, private equipoService: EquipoService, private partidoService: PartidoService, private toastr: ToastrService, private participanteService: ParticipanteService, private sucursalService: SucursalService, private localidadService: LocalidadesService) {}
+  constructor (private service: AdminService, private torneoService: TorneoService, private formatoService: FormatosTorneoService, private equipoService: EquipoService, private partidoService: PartidoService, private toastr: ToastrService, private participanteService: ParticipanteService, private sucursalService: SucursalService, private localidadService: LocalidadesService, private estadoTorneoService: EstadoTorneoService) {}
   
   torneos:any[] = []
   participantes:any[] = []
@@ -28,25 +30,42 @@ export class AdminComponent {
   equipos:any[] = []
   equipo:string = ""
   equipo2:string= ""
+  localidades:any[] = []
+  localidad:string = ""
+  admins:any[] = []
+  admin:string = ""
+  sucursales:any[] = []
+  sucursal:string = ""
+  estado_torneos:any[] = []
+  estado_torneo:string = ""
+  formato_torneos:any[] = []
+  formato_torneo:string = ""
 
   ngOnInit(): void{
     this.torneoService.getTorneos().subscribe(response => this.torneos = response.data)
     this.participanteService.getParticipantes().subscribe(response => this.participantes = response.data)
+    this.localidadService.getLocalidades().subscribe(response => this.localidades = response.data)
+    this.service.getAdmins().subscribe(response => this.admins = response.data)
+    this.sucursalService.getSucursales().subscribe(response => this.sucursales = response.data)
+    this.estadoTorneoService.getEstados().subscribe(response => this.estado_torneos = response.data)
+    this.formatoService.getFormatos().subscribe(response => this.formato_torneos = response.data)
+    
+
 
   }
 
   addTorneo(nombre_torneo:string, fecha_inicio_torneo:string, fecha_fin_torneo:string, admin:string, sucursal:string, estado_torneo: string, formato_torneo: string, id: string){
-    if(nombre_torneo == '' || admin == '' || sucursal == '' || estado_torneo == '' || formato_torneo == ''){
+  /*  if(nombre_torneo == '' || admin == ''|| sucursal == '' || estado_torneo == '' || formato_torneo == ''){
       this.toastr.error('Todos los campos son obligatorios', 'Error')
       return
-    }
+    }*/
     this.torneoService.addTorneo(nombre_torneo, fecha_inicio_torneo, fecha_fin_torneo, parseInt(admin), parseInt(sucursal), parseInt(estado_torneo), parseInt(formato_torneo), parseInt(id)).subscribe(response => this.objetos = response)
     this.formatoService.getFormato(formato_torneo).subscribe(E_formato_torneo => {
     this.equipoService.addEquiposTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response)
     this.partidoService.addPartidosTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response)
     location.reload()
     })
-    this.toastr.success('Torneo Creado Correctamente', 'Torneo Creado')
+    /*this.toastr.success('Torneo Creado Correctamente', 'Torneo Creado')*/
   }
 
   cambiarEstado(id_estado: number, torneo_id: number){
@@ -100,16 +119,16 @@ export class AdminComponent {
     location.reload()
   }
   addSucursal(id_sucursal:string, nombre_sucursal:string, id_localidad:string){
-    if(nombre_sucursal == '' || id_localidad == ''){
+    /*if(id_localidad == '' || nombre_sucursal == '' ){
       this.toastr.error('Todos los campos deben estar completos')
       return
     }
-    try{
+    try{*/
       this.sucursalService.addSucursal(nombre_sucursal, parseInt(id_localidad), parseInt(id_sucursal)).subscribe(response => this.objetos = response)
       this.toastr.success('Sucursal cargada correctamente', 'Sucursal Cargada')
-    }catch{
-      this.toastr.error('No se pudo cargar la sucursal, intente nuevamente', 'Error')
-    }
+    /*}catch{
+      this.toastr.error('No se pudo cargar la sucursal, intente nuevamente', 'Error')*/
+    
   }
   addLocalidad(nombre_localidad: string , id:string){
     if(nombre_localidad == ''){
@@ -163,8 +182,30 @@ export class AdminComponent {
     location.reload()
   }
 
+  mostrarLocalidades(id: string){
+    this.localidadService.getLocalidades().subscribe(response => this.localidades = response.data)
+    this.localidad = id.toString()
+    
 }
+mostrarAdmins(id: string){
+  this.service.getAdmins().subscribe(response => this.admins = response.data)
+  this.admin = id.toString()
+}
+mostrarSucursales(id: string){
+  this.sucursalService.getSucursales().subscribe(response => this.sucursales = response.data)
+  this.sucursal = id.toString()
+}
+mostrarEstadoTorneos(id: string){
+  this.estadoTorneoService.getEstados().subscribe(response => this.estado_torneos = response.data)
+  this.estado_torneo = id.toString()
+}
+mostrarFormatoTorneos(id: string){
+  this.formatoService.getFormatos().subscribe(response => this.formato_torneos = response.data)
+  this.formato_torneo = id.toString()
 
+
+}
+}
  /*loadAdmins(){
     return this.service.getAdmins().subscribe(response => this.list = response);
   }
