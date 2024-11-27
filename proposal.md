@@ -17,8 +17,9 @@ Ingresando a uno de estos eventos se puede ver una breve descripción junto con 
 En la compra de entradas hay diferentes métodos de pago y la opción de ingresar un código de descuento por cada entrada  a comprar. A medida que pasa el tiempo las entradas aumentan su precio estando divididas en tandas, la preventa, la primera tanda, la segunda tanda, etc. Una vez que el usuario realiza la compra le llega un recibode la misma al correo junto con todas las entradas con su respectivo código qr.
 
 
-### Modelo
-[imagen del modelo]![BohemiaPageff drawio](https://github.com/user-attachments/assets/d1fd689b-5ab3-47cc-82b8-a56debcc64e0)
+### Modelo![BohemiaPageDER](https://github.com/user-attachments/assets/9e5c26c1-59d9-47f8-b360-f31b5da2419f)
+
+
 
 
 
