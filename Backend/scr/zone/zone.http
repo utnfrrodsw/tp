@@ -1,0 +1,34 @@
+###obtener todas las zone s
+GET http://localhost:3000/api/zone
+
+###obtener una zone 
+GET http://localhost:3000/api/zone/2
+
+###crear una nueva zone
+POST http://localhost:3000/api/zone
+Content-Type: application/json
+
+{
+    "nombre": "Este",
+    "id": "2"
+}
+
+### modificar una zone (PUT)
+PUT http://localhost:3000/api/zone/2
+Content-Type: application/json
+
+{
+    "nombre": "Sur",
+    "id":"2"
+}
+
+### modificar una zone (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/zone/1
+Content-Type: application/json
+
+{
+    "nombre": "Oeste"
+}
+
+### borrar una zone
+DELETE http://localhost:3000/api/zone/2

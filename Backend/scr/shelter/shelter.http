@@ -1,0 +1,39 @@
+###obtener todas las sucuersales de los shelters 
+GET http://localhost:3000/api/shelter
+
+###crear un nuevo shelter
+POST http://localhost:3000/api/shelter
+Content-Type: application/json
+
+{
+    "name": "patas alegres 2", 
+    "address": "calle falsa 2",
+    "max_capacity": 11,
+    "id": "2"
+}
+
+### obtener una sucurdal de algun shelter
+GET http://localhost:3000/api/shelter/2
+
+### modificar un shelter(PUT)
+PUT http://localhost:3000/api/shelter/2
+Content-Type: application/json
+
+{
+    "name": "patas alegres 3", 
+    "address": "utn",
+    "max_capacity": 100,
+    "id": "2"
+}
+
+### modificar un shelter (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/shelter/2
+Content-Type: application/json
+
+{
+    "name": "patitas",
+    "address": "calle"
+}
+
+### borrar un shelter
+DELETE http://localhost:3000/api/shelter/2
