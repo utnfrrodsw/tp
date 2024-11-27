@@ -1,0 +1,41 @@
+### Obtener todas las sucursales
+GET http://localhost:3000/api/sucursales
+
+
+### Obtener una sucursal
+GET http://localhost:3000/api/sucursales/1
+
+
+### Crear una nueva sucursal
+POST http://localhost:3000/api/sucursales
+Content-Type: application/json
+
+{
+    "nombre_sucursal": "Loyal Corrientes",
+    "localidad": 3,
+    "torneos": [],
+    "id": 1
+
+}
+
+
+### Modificar una sucursal (PUT - Recurso completo e idempotente)
+PUT http://localhost:3000/api/sucursales/2
+Content-Type: application/json
+
+{
+    "nombre_sucursal": "F5 Rosario"
+}
+
+
+### Modificar una sucursal (PATCH - Recurso parcial)
+PATCH http://localhost:3000/api/sucursales/2
+Content-Type: application/json
+
+{
+    "nombre_sucursal": "F5 Funes"
+}
+
+
+### Borrar una sucursal
+DELETE http://localhost:3000/api/sucursales/1

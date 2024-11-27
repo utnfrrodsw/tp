@@ -1,0 +1,41 @@
+### Obtener todas las localidades
+GET http://localhost:3000/api/localidades
+
+
+### Obtener una localidad
+GET http://localhost:3000/api/localidades/1
+
+
+### Crear una nueva localidad
+POST http://localhost:3000/api/localidades
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Armstrong",
+    "sucursales": [1,2],
+    "id": 3
+    
+}
+
+
+### Modificar una localidad (PUT - Recurso completo e idempotente)
+PUT http://localhost:3000/api/localidades/1
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Bariloche",
+    "sucursales": ""
+}
+
+
+### Modificar una localidad (PATCH - Recurso parcial)
+PATCH http://localhost:3000/api/localidades/3
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Bs As"
+}
+
+
+### Borrar una localidad
+DELETE http://localhost:3000/api/localidades/1

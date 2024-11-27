@@ -1,0 +1,31 @@
+### obtener todos los formatos_torneos
+GET http://localhost:3000/api/formatos_torneo
+
+
+### obtener un formato de torneo
+GET http://localhost:3000/api/formatos_torneo/2
+
+
+### crear un nuevo formato de torneo
+POST http://localhost:3000/api/formatos_torneo
+Content-Type: application/json
+
+{
+  "cant_equipos": 16,
+  "cant_partidos":15,
+  "torneos": []
+}
+
+### modificar un formato de torneo (PUT)
+PUT http://localhost:3000/api/formatos_torneo/2
+Content-Type: application/json
+
+{
+  "cant_grupos": 1000,
+  "cant_equipos_x_grupo": 50,
+  "cant_clasificados_x_grupo": 10,
+}
+
+
+### eliminar un formato de torneo
+DELETE http://localhost:3000/api/formatos_torneo/38

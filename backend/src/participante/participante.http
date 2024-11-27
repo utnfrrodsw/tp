@@ -1,0 +1,45 @@
+### Obtener todas las participantes
+GET http://localhost:3000/api/participantes
+
+
+### Obtener una participante
+GET http://localhost:3000/api/participantes/1
+
+
+### Crear un nuevo participante
+POST http://localhost:3000/api/participantes/login
+Content-Type: application/json
+
+{
+    "nombre": "Agustin",
+    "contraseña": "123",
+    "apellido": "Stefanini",
+    "mail": "mica@gmail.com",
+    "fecha_nacimiento": "dd/mm/yyyy",
+    "equipos": [],
+    "tipos_par": 1
+}
+
+
+### Modificar una participante (PUT - Recurso completo e idempotente)
+PUT http://localhost:3000/api/participantes/1
+Content-Type: application/json
+
+{
+    "nombre": "Agustin",
+    "apellido": "Stefanini",
+    "nacimiento": "18/07/2003"
+}
+
+
+### Modificar una participante (PATCH - Recurso parcial)
+PATCH http://localhost:3000/api/participantes/26
+Content-Type: application/json
+
+{
+    "equipos": [15]
+}
+
+
+### Borrar una participante
+DELETE http://localhost:3000/api/participantes/18

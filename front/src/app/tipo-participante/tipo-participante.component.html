@@ -1,0 +1,48 @@
+<p>tipo-participante works!</p>
+
+<pre>
+    {{list | json}}
+    {{tipo_par | json}}
+</pre>
+
+<button (click)="loadTipo_Participante()">Cargar</button>
+
+<div>
+    <input type="text" #myInput id="myInput" placeholder="ID">
+<button 
+(click)="loadOne(myInput.value)" 
+(click)="myInput.value = ''">
+Traer
+</button>
+</div>
+
+<div>
+    <input type="text" #idRemove idRemove="idRemove" placeholder="ID">
+    <button 
+    (click)="removeLocalidad(idRemove.value)" 
+    (click)="idRemove.value = ''" >
+    Borrar
+    </button>
+</div>
+
+<div>
+    <input type="text" #posicion posicion="posicion" placeholder="Posicion">
+    <input type="text" #id id="id" placeholder="ID">
+    <button 
+    (click)="addLocalidad(posicion.value, id.value)" 
+    (click)="posicion.value = ''" 
+    (click)="id.value = ''">
+    Crear un Tipo Participante
+    </button>
+</div>
+
+<div>
+    <input type="text" #modPosicon modPosicon="modPosicon" placeholder="Mod Posicion">
+    <input type="text" #modID modID="modID" placeholder="Mod ID">
+    <button 
+    (click)="putLocalidad(modPosicon.value, modID.value)" 
+    (click)="modPosicon.value = ''" 
+    (click)="modID.value = ''">
+    Modificar un Tipo Participante
+    </button>
+</div>

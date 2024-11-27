@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="app.component.scss">
+</head>
+<body>
+    <nav *ngIf="rol === 'participante' || rol === 'admin'" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active fs-4" aria-current="page" routerLink="/inicio">INICIO</a> 
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active fs-4" routerLink="/partidos">PARTIDOS</a> 
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active fs-4" routerLink="/torneos">TORNEOS</a> 
+              </li>
+            </ul>
+          </div>
+        </div>
+      
+        <div class="container-fluid d-flex justify-content-end align-items-center gap-2">
+          <button class="btn btn-primary" (click)="logOut()">LogOut</button>
+          <button *ngIf="rol === 'admin'" class="btn btn-light"><a class="nav-link active " routerLink="/admin">ADMIN</a></button>
+        </div>
+    </nav>
+      
+    <router-outlet></router-outlet>
+    <footer class="footer bg-dark text-white py-3">
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>ENLACES RÁPIDOS</h5>
+                            <ul class="list-unstyled">
+                                <li><a class="text-white" routerLink="../partidos">Todos los partidos</a></li>
+                                <li><a class="text-white" routerLink="../torneos">Todos los torneos</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>NOSOTROS</h5>
+                            <ul class="list-unstyled">
+                                <li><a class="text-white" href="#">Contacto</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>ASOCIARSE CON NOSOTROS</h5>
+                            <ul class="list-unstyled">
+                                <li><a class="text-white" href="#">Publicaciones</a></li>
+                                <li><a class="text-white" href="#">Asocia Tu Marca</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>LEGAL</h5>
+                            <ul class="list-unstyled">
+                                <li><a class="text-white" href="#">Aviso Legal</a></li>
+                                <li><a class="text-white" href="#">Política de privacidad</a></li>
+                                <li><a class="text-white" href="#">Términos y Condiciones</a></li>
+                                <li><a class="text-white" href="#">Licencias</a></li>
+                                <li><a class="text-white" href="#">Configuración de privacidad</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>MÁS LigaVirtual</h5>
+                            <ul class="list-unstyled">
+                                <li><a class="text-white" href="#">App Store</a></li>
+                                <li><a class="text-white" href="#">Google Play</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-2 mb-4">
+                            <h5>AYUDA</h5>
+                            <ul class="list-unstyled">
+                            <li><a class="text-white" href="#">Centro de ayuda</a></li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="footer-bottom text-center py-3 bg-dark">
+            <p class="mb-0">© 2024 LigaVirtual</p>
+        </div>
+    </footer>
+</body>
+</html>

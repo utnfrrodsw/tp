@@ -1,0 +1,48 @@
+<p>estado-torneo works!</p>
+
+<pre>
+    {{list | json}}
+    {{estado | json}}
+</pre>
+
+<button (click)="loadEstados()">Cargar</button>
+
+<div>
+    <input type="text" #myInput id="myInput" placeholder="ID">
+<button 
+(click)="loadOne(myInput.value)" 
+(click)="myInput.value = ''">
+Traer
+</button>
+</div>
+
+<div>
+    <input type="text" #idRemove idRemove="idRemove" placeholder="ID">
+    <button 
+    (click)="removeEstado(idRemove.value)" 
+    (click)="idRemove.value = ''" >
+    Borrar
+    </button>
+</div>
+
+<div>
+    <input type="text" #nombre_estado nombre_estado="nombre_estado" placeholder="Nombre Estado">
+    <input type="text" #id id="id" placeholder="ID">
+    <button 
+    (click)="addEstado(nombre_estado.value, id.value)" 
+    (click)="nombre_estado.value = ''" 
+    (click)="id.value = ''">
+    Crear un Estado
+    </button>
+</div>
+
+<div>
+    <input type="text" #modNombre_Estado modNombre_Estado="modNombre_Estado" placeholder="Mod Nombre Estado">
+    <input type="text" #modID modID="modID" placeholder="Mod ID">
+    <button 
+    (click)="putEstado(modNombre_Estado.value, modID.value)" 
+    (click)="modNombre_Estado.value = ''" 
+    (click)="modID.value = ''">
+    Modificar un Estado
+    </button>
+</div>

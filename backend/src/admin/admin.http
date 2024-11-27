@@ -1,0 +1,45 @@
+### Obtener todas las admins
+GET http://localhost:3000/api/admins
+
+
+### Obtener una admin
+GET http://localhost:3000/api/admins/1
+
+
+### Crear un nuevo admin
+POST http://localhost:3000/api/admins/registro
+Content-Type: application/json
+
+{
+    "nombre": "Maximo",
+    "contraseña": "1234",
+    "apellido": "Santilli",
+    "mail": "maximosantilli42@gmail.com",
+    "fecha_nacimiento": "01/08/2003",
+    "rol": "admin",
+    "torneo": []
+}
+
+
+### Modificar una admin (PUT - Recurso completo e idempotente)
+PUT http://localhost:3000/api/admins/1
+Content-Type: application/json
+
+{
+    "nombre": "Agustin",
+    "apellido": "Stefanini",
+    "nacimiento": "18/07/2003"
+}
+
+
+### Modificar una admin (PATCH - Recurso parcial)
+PATCH http://localhost:3000/api/admins/78
+Content-Type: application/json
+
+{
+    "nombre": "Maximo"
+}
+
+
+### Borrar una admin
+DELETE http://localhost:3000/api/admins/2
