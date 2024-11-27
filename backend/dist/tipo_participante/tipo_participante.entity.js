@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Cascade, Collection, Entity, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
 import { Participante } from "../participante/participante.entity.js";
-export let Tipo_participante = class Tipo_participante {
+let Tipo_participante = class Tipo_participante {
     constructor() {
         this.participantes = new Collection(this);
     }
@@ -29,4 +29,5 @@ __decorate([
 Tipo_participante = __decorate([
     Entity()
 ], Tipo_participante);
+export { Tipo_participante };
 //# sourceMappingURL=tipo_participante.entity.js.map

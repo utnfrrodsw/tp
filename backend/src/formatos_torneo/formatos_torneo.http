@@ -28,4 +28,4 @@ Content-Type: application/json
 
 
 ### eliminar un formato de torneo
-DELETE http://localhost:3000/api/formatos_torneo/29
+DELETE http://localhost:3000/api/formatos_torneo/38

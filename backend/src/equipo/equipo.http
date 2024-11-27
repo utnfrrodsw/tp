@@ -29,13 +29,13 @@ Content-Type: application/json
 
 
 ### Modificar una equipo (PATCH - Recurso parcial)
-PATCH http://localhost:3000/api/equipos/78
+PATCH http://localhost:3000/api/equipos/15
 Content-Type: application/json
 
 {
-    "jugador2": 2
+    "participantes": [26, 27]
 }
 
 
 ### Borrar una equipo
-DELETE http://localhost:3000/api/equipos/14
+DELETE http://localhost:3000/api/equipos/56

@@ -37,4 +37,4 @@ Content-Type: application/json
 
 
 ### Borrar una partido
-DELETE http://localhost:3000/api/partidos/1
+DELETE http://localhost:3000/api/partidos/16

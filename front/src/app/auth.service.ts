@@ -22,4 +22,5 @@ export class AuthService {
     localStorage.removeItem('token')
     this.setRol(null)
   }
+
 }

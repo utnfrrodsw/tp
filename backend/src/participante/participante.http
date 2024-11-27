@@ -33,11 +33,11 @@ Content-Type: application/json
 
 
 ### Modificar una participante (PATCH - Recurso parcial)
-PATCH http://localhost:3000/api/participantes/3
+PATCH http://localhost:3000/api/participantes/26
 Content-Type: application/json
 
 {
-    "nombre": "Maximo"
+    "equipos": [15]
 }
 
 

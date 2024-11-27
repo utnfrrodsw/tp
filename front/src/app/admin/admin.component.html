@@ -12,37 +12,37 @@
           </div>
           <div class="form-group">
             <button class="btn bg-white text-dark dropdown-toggle border-dark text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Administrador a cargo</button>
+              Administrador a cargo: {{admin_boton}}</button>
             <div>
             <ul class="dropdown-menu" >
-              <li ><a class="dropdown-item" *ngFor="let admin of admins"><a (click)="mostrarAdmins(admin.id)" >{{admin.nombre}}  {{admin.apellido}}</a></a></li>
+              <li ><a class="dropdown-item" *ngFor="let admin of admins"><a (click)="mostrarAdmins(admin.nombre,admin.id)" >{{admin.nombre}}  {{admin.apellido}}</a></a></li>
             </ul>
             </div>
           </div>
           <div class="form-group">
             <button class="btn bg-white text-dark dropdown-toggle border-dark text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Sucursal</button>
+              Sucursal: {{sucursal_boton}} </button>
             <div>
             <ul class="dropdown-menu" >
-              <li ><a class="dropdown-item" *ngFor="let sucursal of sucursales"><a (click)="mostrarSucursales(sucursal.id)" >{{sucursal.nombre_sucursal}}</a></a></li>
+              <li ><a class="dropdown-item" *ngFor="let sucursal of sucursales"><a (click)="mostrarSucursales(sucursal.nombre_sucursal, sucursal.id)" >{{sucursal.nombre_sucursal}}</a></a></li>
             </ul>
             </div>
           </div>
           <div class="form-group">
             <button class="btn bg-white text-dark dropdown-toggle border-dark text-start " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Estado del Torneo</button>
+              Estado del Torneo: {{estado_boton}}</button>
             <div>
             <ul class="dropdown-menu" >
-              <li ><a class="dropdown-item" *ngFor="let estado_torneo of estado_torneos"><a (click)="mostrarEstadoTorneos(estado_torneo.id)" >{{estado_torneo.nombre_estado}}</a></a></li>
+              <li ><a class="dropdown-item" *ngFor="let estado_torneo of estado_torneos"><a (click)="mostrarEstadoTorneos(estado_torneo.nombre_estado, estado_torneo.id)" >{{estado_torneo.nombre_estado}}</a></a></li>
             </ul>
             </div>
           </div>
           <div class="form-group">
             <button class="btn bg-white text-dark dropdown-toggle border-dark text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Formato del Torneo</button>
+              Formato del Torneo: {{formato_boton}}</button>
             <div>
             <ul class="dropdown-menu" >
-              <li ><a class="dropdown-item" *ngFor="let formato_torneo of formato_torneos"><a (click)="mostrarFormatoTorneos(formato_torneo.id)" > Cantidad de equipos {{formato_torneo.cant_equipos}}   Cantidad de partidos: {{formato_torneo.cant_partidos}}</a></a></li>
+              <li ><a class="dropdown-item" *ngFor="let formato_torneo of formato_torneos"><a (click)="mostrarFormatoTorneos(formato_torneo, formato_torneo.id)" > Cantidad de equipos: {{formato_torneo.cant_equipos}}   Cantidad de partidos: {{formato_torneo.cant_partidos}}</a></a></li>
             </ul>
             </div>
           </div>
@@ -246,18 +246,18 @@
               <h1 class="titulo">Crear Sucursal</h1>
                 <form class="custom-form">
                     <div class="form-group">
-                      <input type="text" #id_sucursal id_sucursal="id_sucursal" placeholder="ID Sucursal">
+                      <input type="text" #id_sucursal id_sucursal="id_sucursal" placeholder="ID Sucursal (Opcional)">
                     </div>
                     <div class="form-group">
                       <input type="text" #nombre_sucursal nombre_sucursal="nombre_sucursal" placeholder="Nombre Sucursal">
                     </div> 
                     <div class="form-group">
                       <button class="btn bg-white text-dark dropdown-toggle border-dark text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Localidad
+                        Localidad: {{localidad_boton}}
                       </button>
                       <div>
                       <ul class="dropdown-menu" >
-                        <li ><a class="dropdown-item" *ngFor="let localidad of localidades"><a (click)="mostrarLocalidades(localidad.id)" >{{localidad.nombre_localidad}}</a></a></li>
+                        <li ><a class="dropdown-item" *ngFor="let localidad of localidades"><a (click)="mostrarLocalidades(localidad.nombre_localidad, localidad.id)" >{{localidad.nombre_localidad}}</a></a></li>
                       </ul>
                       </div>
                     </div>
@@ -271,7 +271,7 @@
                   <h1 class="titulo">Crear Localidad</h1>
                   <form class="custom-form">
                       <div class="form-group">
-                        <input type="text" #id_loc id_loc="id_loc" placeholder="ID Localidad">
+                        <input type="text" #id_loc id_loc="id_loc" placeholder="ID Localidad (Opcional)">
                       </div>
                       <div class="form-group mb-3">
                         <input type="text" #nombre_localidad nombre_localidad="nombre_localidad" placeholder="Nombre Localidad">
