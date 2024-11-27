@@ -79,13 +79,18 @@ export class AdminComponent {
       this.toastr.error('La fecha fin debe ser mayor a la del incio del torneo', 'Error')
       return
     }
-    this.torneoService.addTorneo(nombre_torneo, fecha_inicio_torneo, fecha_fin_torneo, parseInt(admin), parseInt(sucursal), parseInt(estado_torneo), parseInt(formato_torneo), parseInt(id)).subscribe(response => this.objetos = response)
-    this.formatoService.getFormato(formato_torneo).subscribe(E_formato_torneo => {
-    this.equipoService.addEquiposTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response)
-    this.partidoService.addPartidosTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response)
-    })
-    location.reload()
-    this.toastr.success('Torneo Creado Correctamente', 'Torneo Creado')
+    this.torneoService.addTorneo(nombre_torneo, fecha_inicio_torneo, fecha_fin_torneo, parseInt(admin), parseInt(sucursal), parseInt(estado_torneo), parseInt(formato_torneo), parseInt(id)).subscribe(response => {this.objetos = response
+      this.formatoService.getFormato(formato_torneo).subscribe(E_formato_torneo => {
+      this.equipoService.addEquiposTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response)
+      this.partidoService.addPartidosTorneo(parseInt(id), E_formato_torneo).subscribe(response => this.objetos = response)
+      this.toastr.success('Torneo Creado Correctamente', 'Torneo Creado')})},(error)=>{
+      if(error.error.message){
+        this.toastr.error('No pueden existir 2 torneos con el mismo ID', 'Error')
+        return
+      }else{
+        this.toastr.error('Upps ocurrió un error, comuniquese con el administrador', 'Error')
+        return
+      }})
   }
 
   cambiarEstado(id_estado: number, torneo_id: number){
@@ -143,12 +148,14 @@ export class AdminComponent {
       this.toastr.error('Todos los campos deben estar completos')
       return
     }
-    try{
-      this.sucursalService.addSucursal(nombre_sucursal, parseInt(id_localidad), parseInt(id_sucursal)).subscribe(response => this.objetos = response)
+    
+    this.sucursalService.addSucursal(nombre_sucursal, parseInt(id_localidad), parseInt(id_sucursal)).subscribe(response => {
+      this.objetos = response
       this.toastr.success('Sucursal cargada correctamente', 'Sucursal Cargada')
-    }catch{
-      this.toastr.error('No se pudo cargar la sucursal, intente nuevamente', 'Error')
-    }
+    },(error) =>{
+      this.toastr.error('No puede haber 2 sucursales con el mismo ID', 'Error')
+    })
+    
   }
 
   addLocalidad(nombre_localidad: string , id:string){
@@ -156,12 +163,15 @@ export class AdminComponent {
       this.toastr.error('El nombre de la localidad debe estar completo')
       return 
     }
-    try{
-      this.localidadService.addLocalidad(nombre_localidad, parseInt(id)).subscribe(response => this.objetos = response)
+
+    this.localidadService.addLocalidad(nombre_localidad, parseInt(id)).subscribe(response => {
+      this.objetos = response
       this.toastr.success('Localidad cargada correctamente', 'Localidad Cargada')
-    }catch{
-      this.toastr.error('No se pudo cargar la localidad, intente nuevamente', 'Error')
-    }
+    },(error) => {
+      this.toastr.error('No puede haber 2 localidades con el mismo ID', 'Error')
+    })
+
+    
   }
   
   botoncito(id_del_equipo: string){
