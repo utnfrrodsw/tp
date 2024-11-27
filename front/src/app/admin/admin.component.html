@@ -61,6 +61,7 @@
       <h1 class="titulo">Lista de Torneos</h1>
     <tr *ngFor="let torneo of torneos">
       <td >{{torneo.nombre_torneo}}</td>
+      <td>ID: {{torneo.id}}</td>
       <td>{{torneo.estado_torneo.nombre_estado}}</td>
       <td *ngIf="torneo.fecha_inicio_torneo == null"> Fecha Inicio del torneo aun no definida</td>
       <td *ngIf="torneo.fecha_inicio_torneo != null">{{torneo.fecha_inicio_torneo}}</td>
