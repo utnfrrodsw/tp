@@ -16,7 +16,14 @@
 Sistema para una clinica odontologica en el cual es el profecional el que le proporciona los turnos a los paciente, estos solo pueden comunicarse y solicitar con los profesionales y consultar sobre sus turnos. El profecional puede acceder y escribir sobre el historial clinico del paciente.
 
 ### Modelo
-![imagen del modelo](Tp_OdontologiaV2.png)
+
+Modelo de Datos:
+
+![imagen del modelo de datos](modelodeDatos.jpg)
+
+Modelo de Dominio:
+
+![imagen del modelo de dominio](modelodeDominio.jpg)
 
 ## Alcance Funcional 
 
@@ -25,17 +32,17 @@ Sistema para una clinica odontologica en el cual es el profecional el que le pro
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Cliente<br>2. CRUD Profesional<br>3. CRUD Tratamiento<br>3. CRUD Estado_Cita<br>3. CRUD Tipo_Cita|
-|CRUD dependiente|1. CRUD Cita {depende de} CRUD Cliente y Profesional<br>2. CRUD Costo_Tratamiento {depende de} CRUD Tratamiento|
+|CRUD simple|1. CRUD Paciente<br>2. CRUD Profesional<br>3. CRUD Odontograma<br>4. CRUD Turno<br>5. CRUD imagen|
+|CRUD dependiente|1. CRUD Tipo Imagen {depende de} CRUD Imagen<br>2. CRUD Diente {depende de} CRUD Odontograma|
 |Listado<br>+<br>detalle| 1.Listado de tratamientos recibidos del paciente<br> 2. Listado de Profesionales disponibles para un día determinado|
-|CUU/Epic|1. Realizar una cita en la clínica odontológica<br>2. Registro de antecendentes medicos y tratamientos de la cita|
+|CUU/Epic|1. Realizar una turno en la clínica odontológica<br>2. Registro tratamientos hechos en el turno|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Inventario<br>2. CRUD Alergias<br>3. CRUD Antecedentes genético<br>4. CRUD Costo_Inventario|
-|CUU/Epic|1. Realizar una cita en la clínica odontológica<br>2. Registro de antecendentes medicos y tratamientos de la cita<br>3. Pedido de restablecimiento de fecha de turno|
+|CRUD |1. CRUD Abono<br>2. CRUD Alergias<br>3. CRUD Antecedentes genético<br>4. CRUD tipo Antecedente|
+|CUU/Epic|1. Realizar una turno en la clínica odontológica<br>2. Registro de antecendentes medicos<br>3. Pedido de restablecimiento de fecha de turno|
 
 
 ### Alcance Adicional Voluntario
@@ -44,6 +51,6 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |Listados |1. Lista de todas las citas que tenga un profesional para un dia|
-|CUU/Epic|1. Administración de cantidad de inventario o establecimiento de horario de trabajo (por el profesionalidad)|
+|CUU/Epic|1. Establecimiento de horario de trabajo (por el profesional)|
 |Otros|1. Envío de recordatorio de cita por gmail|
 
