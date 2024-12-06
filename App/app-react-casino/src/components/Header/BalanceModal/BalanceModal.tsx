@@ -9,6 +9,7 @@ interface BalanceModalProps {
     idUser: String;
     balance: number;
     role: string;
+    addMoney: () => void
 }
 
 export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, idUser, balance, role }) => {
@@ -22,7 +23,7 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
         });
     }, []);
 
-    const [mensajeCarga, setMensajeCarga] = useState("")
+    const [LoadMsg, setLoadMsg] = useState("")
     
     /* Mercado pago
     const createPreference = async () => {
@@ -48,34 +49,10 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
     };
     */
 
-    function addMoney1000() {
-        setMoney(balance + 1000);
-        patchUser(balance + 1000);
-        setMensajeCarga("1000 coins recharge!")
-    }
-
-    function addMoney2000() {
-        setMoney(balance + 2000);
-        patchUser(balance + 2000);
-        setMensajeCarga("2000 coins recharge!")
-    }
-
-    function addMoney5000() {
-        setMoney(balance + 5000);
-        patchUser(balance + 5000);
-        setMensajeCarga("5000 coins recharge!")
-    }
-
-    function addMoney10000() {
-        setMoney(balance + 10000);
-        patchUser(balance + 10000);
-        setMensajeCarga("10000 coins recharge!")
-    }
-
-    function addMoney25000() {
-        setMoney(balance + 25000);
-        patchUser(balance + 25000);
-        setMensajeCarga("25000 coins recharge!")
+    function addMoney(adding: number) {
+        setMoney(balance + adding);
+        patchUser(balance + adding);
+        setLoadMsg( adding + " coins recharge!")
     }
 
     function patchUser(newMoney:number) {
@@ -84,12 +61,6 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
             role,
             balance: `${newMoney}`,
         })
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
     }
 
     return (
@@ -99,13 +70,13 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
                 <div className="modal-body">
                     <h2>Deposit Options</h2>
                     <div className="tips">
-                        <button onClick={addMoney1000} className="tip">$1000</button>
-                        <button onClick={addMoney2000} className="tip">$2000</button>
-                        <button onClick={addMoney5000} className="tip">$5000</button>
-                        <button onClick={addMoney10000} className="tip">$10.000</button>
-                        <button onClick={addMoney25000} className="tip">$25.000</button>
+                        <button onClick={() => addMoney(1000)} className="tip">$1000</button>
+                        <button onClick={() => addMoney(2000)} className="tip">$2000</button>
+                        <button onClick={() => addMoney(5000)} className="tip">$5000</button>
+                        <button onClick={() => addMoney(10000)} className="tip">$10.000</button>
+                        <button onClick={() => addMoney(25000)} className="tip">$25.000</button>
                         {preferenceId && <Wallet initialization={{ preferenceId }} />}
-                        <p className='tipAdvertise'>{mensajeCarga}</p>
+                        <p className='tipAdvertise'>{LoadMsg}</p>
                     </div>
                 </div>
             </div>

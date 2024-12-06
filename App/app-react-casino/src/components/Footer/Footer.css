@@ -1,0 +1,12 @@
+.social{
+    height: 24px;
+    width: 24px;
+    transition-duration: 100ms;
+    transition-timing-function: ease-in-out;
+}
+
+.social:hover{
+    opacity: 50%;
+    transition-duration: 100ms;
+    transition-timing-function: ease-in-out;
+}

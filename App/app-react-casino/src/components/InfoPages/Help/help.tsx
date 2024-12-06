@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 import emailjs from '@emailjs/browser';
 import { toast } from 'sonner';
 import './Help.css';
 
 export function Help() {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    defaultScroll()
+    
 
     const form = useRef<HTMLFormElement | null>(null);
     const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {

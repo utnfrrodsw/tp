@@ -7,7 +7,7 @@ import slotWinSound from "../../../assets/sounds/SlotWin.mp3"
 import clickSound from "../../../assets/sounds/click.mp3"
 import mutedIcon from "../../../assets/images/mutedIcon.png"
 import axios from 'axios';
-
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 interface User{
     id: string
@@ -17,6 +17,7 @@ interface User{
 }
 
 export function Slots(user:User) {
+    defaultScroll()
     
     const token = localStorage.getItem('jwt-token');
     const role = user.role
@@ -41,10 +42,6 @@ export function Slots(user:User) {
             console.log(error);
         });
     }
-
-    useEffect(() => {
-        window.scrollTo(0, 0)}, []
-    )
 
     function postGame(bet:number, win:number) {
         axios.post(`http://localhost:3000/api/v1/usergames`, {

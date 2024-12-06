@@ -2,20 +2,18 @@ import axios from 'axios';
 import './Details.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { NavLink as Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router-dom'
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 interface UserType {
     role: string;
 }
 
 export function Details({role}:UserType) {
-    useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
+    defaultScroll()
 
-    let navigate = useNavigate()
-
+    const navigate = useNavigate()
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [firstName, setFirstName] = useState("")

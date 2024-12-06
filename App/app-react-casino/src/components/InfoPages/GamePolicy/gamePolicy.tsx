@@ -1,10 +1,8 @@
-import { useEffect } from "react";
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 import './gamePolicy.css';
 
 export function GamePolicy() {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    defaultScroll()
       
     return (
         <div className="gp-container"> 

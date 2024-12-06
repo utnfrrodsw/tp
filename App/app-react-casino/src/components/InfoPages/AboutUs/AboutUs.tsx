@@ -1,10 +1,9 @@
-import { useEffect } from "react";
+
 import './AboutUs.css';
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 export function AboutUs() {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    defaultScroll()
 
     return (
         <div className="au-container">

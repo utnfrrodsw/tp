@@ -22,7 +22,6 @@ export function App() {
         fetchUserProfile();
     }, []);
     
-    
 
     const fetchUserProfile = async () => {
         const token = localStorage.getItem('jwt-token');
@@ -33,12 +32,6 @@ export function App() {
         }
             
         const decoded: any = jwtDecode(token);
-        //const userPass = decoded.data.password;
-
-        //const response = await fetch(`http://localhost:3000/api/v1/users/${userIdFromToken}`);
-
-        //const authenticatedUser: User = await response.json();
-        //console.log('Autenthicated User:', authenticatedUser);
 
         if (decoded) {
             setUserId(decoded.data.id_user)
@@ -51,7 +44,7 @@ export function App() {
         
     };
 
-    let profile = '/profile/'+ username
+    const profile = '/profile/'+ username
 
     return(
         <>

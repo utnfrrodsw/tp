@@ -24,7 +24,7 @@ export function Leaderboard({role}:parameters) {
     const [isAscending, setIsAscending] = useState(false);
     const [search, setSearch] = useState('');
 
-    let navigate = useNavigate()
+    const navigate = useNavigate()
     const token = localStorage.getItem('jwt-token');
 
     const GetUser = async () => {
@@ -43,6 +43,7 @@ export function Leaderboard({role}:parameters) {
         }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         GetUser();
     }, []);
 

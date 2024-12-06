@@ -16,7 +16,6 @@ import { useState } from 'react';
 import HeaderToggle from './HeaderToggle/HeaderToggle.js';
 import HeaderMenu from './HeaderMenu/HeaderMenu.js';
 
-
 import './Header.css';
 
 interface HeaderProps {
@@ -31,7 +30,7 @@ interface HeaderProps {
 export function Header({ balance, profile, role, username, setMoney, idUser }: HeaderProps) {
     const [modalOpen, setModalOpen] = useState(false);
     const [open, setMenuOpen] = useState(false);
-    let navigate = useNavigate()
+    const navigate = useNavigate()
     const [isActive, setIsActive] = useState(false)
 
     const toggleMenu = () => {

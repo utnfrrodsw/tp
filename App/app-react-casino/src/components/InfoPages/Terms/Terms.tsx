@@ -1,12 +1,8 @@
-import { useEffect } from "react"
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 import './Terms.css';
 
 export function Terms() {
-    useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
-
-
+    defaultScroll()
     return(
         <>
         <div className="terms-container">

@@ -1,8 +1,9 @@
 import axios from 'axios';
 import './EditUser.css';
-import { NavLink as Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 interface UserType {
     first_name: string;
@@ -18,11 +19,10 @@ interface parameters {
 }
 
 export function EditUser({role}:parameters) {
-    useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
+    defaultScroll()
 
-      let navigate = useNavigate()
+
+    const navigate = useNavigate()
     const {id} = useParams<{ id: string }>();;
     const [user, setUser] = useState<UserType | null>(null);
     const form = useRef<HTMLFormElement | null>(null);
@@ -31,14 +31,12 @@ export function EditUser({role}:parameters) {
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [balance, setBalance] = useState("");
-    console.log(id)
 
     const token = localStorage.getItem('jwt-token');
 
     const GetData = () => {
         axios.get(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then((response) => {
             const fetchedUser: UserType = response.data;
-            console.log(response.data)
             setUser(fetchedUser);
             setFirstName(fetchedUser.first_name);
             setLastName(fetchedUser.last_name);

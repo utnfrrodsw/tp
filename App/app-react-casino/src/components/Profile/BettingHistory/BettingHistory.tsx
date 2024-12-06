@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import './BettingHistory.css';
 import { NavLink as Link } from 'react-router-dom';
 import '../Profile.css';
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 interface UserType {
     id_user: number;
@@ -20,16 +21,13 @@ interface BettingHistoryProps {
 }
 
 export function BettingHistory({idUser, username, role}: BettingHistoryProps) {
-    useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
+    defaultScroll()
 
     const [user, setUser] = useState<UserType[]>([]);
 
     const token = localStorage.getItem('jwt-token');
 
     const GetUser = () => {
-        console.log(idUser)
         axios.get(`http://localhost:3000/api/v1/userGames/history/${idUser}`, {params: {token, role}}).then((response) =>
             setUser(response.data)
         );
@@ -41,7 +39,7 @@ export function BettingHistory({idUser, username, role}: BettingHistoryProps) {
 
 
     
-    let profile = '/profile/'+ username
+    const profile = '/profile/'+ username
 
     return (
         <>

@@ -8,7 +8,7 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
 
-    let navigate = useNavigate()
+    const navigate = useNavigate()
 
     const handleSubmit = async () => {
         try{

@@ -1,10 +1,8 @@
-import { useEffect } from "react"
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 import './fair.css';
 
 export function Fair(){
-    useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
+    defaultScroll()
 
     return(
         <>

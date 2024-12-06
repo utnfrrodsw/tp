@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { defaultScroll } from "../../libs/globalFunctions.tsx";
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { NavLink as Link } from 'react-router-dom';
 import './Profile.css';
+import { toast } from 'sonner';
 
 interface ProfileProps {
     id: string;
@@ -13,6 +15,7 @@ interface ProfileProps {
 }
 
 export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) => {
+    defaultScroll()
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [file, setFile] = useState<File | null>(null);
@@ -20,12 +23,6 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
     const [imageUrl, setImageUrl] = useState<string | null>(() => {
         return localStorage.getItem('profile-image-url') || null;
     });
-    {/*const [newPassword, setNewPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');*/}
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
 
     const onDrop = (acceptedFiles: File[]) => {
         setFile(acceptedFiles[0]);
@@ -68,7 +65,8 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
 
                 closeModal();
             } catch (error) {
-                console.error('Error al subir la imagen a Cloudinary:', error);
+                toast.error('There was an error uploading the image')
+
             } finally {
                 setUploading(false);
             }
@@ -109,23 +107,6 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
                             <input type="email" value={email || ''} readOnly className="input-field" />
                             <label className="user-details-label">Phone</label>
                             <input type="tel" value={phone || ''} readOnly className="input-field" />
-                            {/*<label className="user-details-label">New Password</label>
-                            <input
-                                type="password"
-                                placeholder='Enter your new password'
-                                value={newPassword}
-                                onChange={(e) => setNewPassword(e.target.value)}
-                                className="input-field text-gray-900"
-                            />
-                            <label className="user-details-label">Confirm Password</label>
-                            <input
-                                type="password"
-                                placeholder='Enter your new password again'
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                className="input-field text-gray-900"
-                            />
-                            <button type="button" className="change-button">Change Password</button>*/}
                         </div>
                     </form>
                 </div>
@@ -137,7 +118,7 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
                         <h2>Upload New Profile Picture</h2>
                         <div {...getRootProps({ className: 'dropzone' })}>
                             <input {...getInputProps()} />
-                            <p>Drag 'n' drop an image here, or click to select one</p>
+                            <p>Drag and drop an image here, or click to select one</p>
                         </div>
                         {file && <p>Selected file: {file.name}</p>}
                         <div className="button-container">

@@ -3,6 +3,7 @@ import { GamesSideBar } from '../SideBar/GamesSideBar.tsx';
 import axios from 'axios';
 import { toast } from 'sonner';
 import { useNavigate } from "react-router-dom";
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 
 
@@ -18,15 +19,11 @@ interface User{
 }
 
 export function Dice(user:User) {
+    defaultScroll()
 
-    let navigate = useNavigate()
+    const navigate = useNavigate()
     const token = localStorage.getItem('jwt-token');
     const role = user.role
-    
-    useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
-
     var id = user.id
     const [data, setData] = useState<number>(2);
     const [amount, setAmount] = useState(0);
@@ -49,11 +46,11 @@ export function Dice(user:User) {
             role,
             balance: `${newMoney}`,
         })
-        .then((response) => {
-            console.log(response);
-        })
         .catch((error) => {
-            console.log(error);
+            toast.error(error.reponse.data, { description: 'Redirecting to home page' })
+                setTimeout(() => {
+                navigate("/")
+                }, 1000);
         });
     }
 
@@ -65,9 +62,6 @@ export function Dice(user:User) {
             id_user: id,
             bet: bet,
             winning: win
-        })
-        .then((response) => {
-            console.log(response);
         })
         .catch((error) => {
             toast.error(error.reponse.data, { description: 'Redirecting to home page' })

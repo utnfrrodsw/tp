@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink as Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './Register.css';
 import { toast } from 'sonner';
+import { defaultScroll } from "../../libs/globalFunctions.tsx";
 
 export function Register(){
-    useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
+    defaultScroll()
 
       const[username, setUsername] = useState('');
       const[first_name, setFirstName] = useState('');
@@ -19,7 +18,7 @@ export function Register(){
       const[confirmpass, setConfirmPassword] = useState('');
       const[id_country, setCountry] = useState(1);
 
-      let navigate = useNavigate()
+      const navigate = useNavigate()
 
       const handleSubmit = async () => {
         if (password === confirmpass){
@@ -91,29 +90,6 @@ export function Register(){
 
             </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
     )
 };

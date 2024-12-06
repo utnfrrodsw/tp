@@ -1,5 +1,6 @@
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useState, ChangeEvent } from 'react';
 import axios from 'axios'
+import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 import './Wheel.css';
 import { GamesSideBar } from '../SideBar/GamesSideBar.tsx';
@@ -30,6 +31,7 @@ interface User{
 }
 
 export function Wheel(user:User) {
+  defaultScroll()
 
   const token = localStorage.getItem('jwt-token');
   const role = user.role
@@ -60,12 +62,6 @@ export function Wheel(user:User) {
         role,
         balance: `${newMoney}`,
     })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
   }
 
   function postGame(bet:number, win:number) {
@@ -77,17 +73,7 @@ export function Wheel(user:User) {
         bet: bet,
         winning: win
     })
-    .then((response) => {
-        console.log(response);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
   }
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const playSound = (sound: HTMLAudioElement) => {
     sound.currentTime = 0;
