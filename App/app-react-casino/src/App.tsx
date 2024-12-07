@@ -3,11 +3,29 @@ import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import { Toaster } from 'sonner'
 
-import { Header, Footer, HomePage, Register, Profile, ErrorPage, BettingHistory, Leaderboard } from "./components";
-import { Terms, AboutUs, PrivacyPolicy, Help, Fair, GamePolicy } from './components/InfoPages'
-import { Dice, Slots, Wheel } from './components/Games'
-import { UserList, Details, EditUser } from './components/AdminPages'
+import { UserList } from './components/AdminPages/UserList/UserList.tsx'
+import { Details } from './components/AdminPages/Details/Details.tsx'
+import { EditUser } from './components/AdminPages/EditUser/EditUser.tsx'
 
+import { Dice } from './components/Games/Dice/Dice.tsx'
+import { Slots } from './components/Games/Slots/Slots.tsx'
+import { Wheel } from './components/Games/Wheel/Wheel.tsx'
+
+import { Terms } from './components/InfoPages/Terms/Terms.tsx'
+import { AboutUs } from './components/InfoPages/AboutUs/AboutUs.tsx'
+import { PrivacyPolicy } from './components/InfoPages/PrivacyPolicy/privacyPolicy.tsx'
+import { Help } from './components/InfoPages/Help/help.tsx'
+import { Fair } from './components/InfoPages/Fair/fair.tsx'
+import { GamePolicy } from './components/InfoPages/GamePolicy/gamePolicy.tsx'
+
+import { Header } from './components/Header/Header.tsx'
+import { Footer } from './components/Footer/Footer.tsx'
+import { HomePage } from './components/HomePage/HomePage.tsx'
+import { Register } from './components/Register/Register.tsx'
+import { Profile } from './components/Profile/Profile.tsx'
+import { ErrorPage } from './components/ErrorPage/ErrorPage.tsx'
+import { BettingHistory } from './components/Profile/BettingHistory/BettingHistory.tsx'
+import { Leaderboard } from './components/Leaderboard/Leaderboard.tsx'
 
 export function App() {
     const [money, setMoney] = useState(0);

@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    margin-bottom: 20px;
+    padding: 0 1.25rem;
+    margin-bottom: 1.25rem;
 }
 
 .title-user{
@@ -19,44 +19,44 @@
 .new-user, .search-box, .filter-balance{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
     padding-bottom: 1rem;
 }
 
 .filter-balance {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 0.625rem; 
 }
 
 .filter-btn {
     display: flex;
     align-items: center;
     background-color: var(--purple-strong);
-    color: #fff;
-    padding: 5px 10px;
+    color: var(--white);
+    padding: 0.313rem 0.625rem;
     border: none;
-    border-radius: 4px; 
+    border-radius: 0.25rem; 
     cursor: pointer;
-    font-size: 14px; 
+    font-size: 0.938rem; 
 }
 
 .filter-btn svg {
-    margin-left: 8px; 
-    width: 16px; 
-    height: 16px; 
+    margin-left: 0.5rem; 
+    width: 1rem; 
+    height: 1rem; 
 }
 
 .filter-balance p {
     margin: 0;
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 .search-box input {
-    padding: 5px 10px;
-    border: 1px solid var(--white);
-    border-radius: 4px;
-    font-size: 14px;
+    padding: 0.313rem 0.625rem;
+    border: 0.063rem solid var(--white);
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
     color: var(--black);
 }
 
@@ -64,18 +64,18 @@
     font-size: 1.1rem;
 }
 
-.list-main {
-    width: 100%;
+.users-list-main {
     padding: 10rem 1rem 5rem 1rem;
+    width: 100%;
 }
 
 .header-name {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 0.625rem;
     background-color: var(--purple);
-    padding: 10px;
-    border-bottom: 2px solid var(--white);
+    padding: 0.625rem;
+    border-bottom: 0.125rem solid var(--white);
     font-weight: bold;
 }
 
@@ -97,8 +97,8 @@
 .admin_list{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    padding: 10px;
+    gap: 0.625rem;
+    padding: 0.625rem;
 }
 
 .column {
@@ -107,7 +107,7 @@
 
 .items {
     padding-bottom: 1rem;
-    border-bottom: 2px white solid;
+    border-bottom: 0.125rem var(--white) solid;
 }
 
 .actions {
@@ -115,13 +115,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .edit-btn, .delete-btn, .read-btn, .add-btn {
-    padding: 5px 10px;
+    padding: 0.313rem 0.625rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     cursor: pointer;
     color: var(--white);
 }

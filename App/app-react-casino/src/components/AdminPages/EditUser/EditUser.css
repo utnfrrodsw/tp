@@ -1,9 +1,8 @@
 .edituser{
-    margin-top: 7rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-bottom: 2rem;
+    margin: 7rem 0rem 2rem 0rem;
 }
 
 .formEdit {
@@ -12,19 +11,19 @@
     align-items: flex-start;
     width: 100%;
     gap: 1.2rem;
-    margin-left: 2rem;
+    margin: 0rem 0rem 0rem 2rem;
 }
 
 .formSubmit {
     background-color: var(--yellow);
-    width: 120px;
+    width: 7.5rem;
     padding: .5rem;
     border-radius: 1.2rem;
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
-    margin-left: 2rem;
-    color: black;
+    color: var(--black);
+    margin: 0 0 0 2rem;
 }
 
 .formSubmit:hover {
@@ -33,14 +32,14 @@
 
 .back {
     background-color: var(--red);
-    width: 100px;
+    width: 6.25rem;
     padding: 1.5rem;
     border-radius: 1.2rem;
     font-size: 1rem;
     color: black;
     font-weight: bold;
     text-align: center;
-    margin-left: 2rem;
+    margin: 0 0 0 2rem;
 }
 
 .back:hover {
@@ -51,7 +50,7 @@
     width: 35%;
     padding: .5rem;
     border-radius: .5rem;
-    color: #111827;
+    color: var(--black);
 }
 
 .formInput:focus {
@@ -66,7 +65,7 @@
     display: flex;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 62.5rem) {
     .formButtons  {
         flex-direction: column;
         justify-content: center;

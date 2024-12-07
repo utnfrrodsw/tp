@@ -1,6 +1,6 @@
 .social{
-    height: 24px;
-    width: 24px;
+    height: 1.5rem;
+    width: 1.5rem;
     transition-duration: 100ms;
     transition-timing-function: ease-in-out;
 }

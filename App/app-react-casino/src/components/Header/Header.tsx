@@ -1,6 +1,6 @@
 import { NavLink as Link, useNavigate } from 'react-router-dom';
 
-import { LogIn } from '../index.js'
+import { LogIn } from '../LogIn/LogIn.js'
 import { BalanceModal } from './BalanceModal/BalanceModal.js';
 
 

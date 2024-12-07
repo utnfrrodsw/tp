@@ -1,5 +1,5 @@
 .wheel {
-  max-width: 500px; 
+  max-width: 31.25rem; 
   width: 100%;    
   height: auto;
   transform: rotate(0deg);
@@ -10,13 +10,13 @@
 }
 
 .button {
-  margin-top: 20px;
-  padding: 10px 50px;
-  font-size: 16px;
+  margin: 1.25rem 0 0 0;
+  padding: 0.625rem 3.125rem;
+  font-size: 1rem;
   cursor: pointer;
   background-color: var(--yellow);
   width: 100%;
-  max-width: 300px;
+  max-width: 18.75rem;
 }
 
 .mutedButton {

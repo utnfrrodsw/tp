@@ -36,6 +36,7 @@ export function Wheel(user:User) {
   const token = localStorage.getItem('jwt-token');
   const role = user.role
 
+  const gameNumber = 3
   const [amount, setAmount] = useState(0);
   const [winAmountGreen, setWinAmountGreen] = useState(0);
   const [winAmountWhite, setWinAmountWhite] = useState(0);
@@ -68,7 +69,7 @@ export function Wheel(user:User) {
     axios.post(`http://localhost:3000/api/v1/usergames`, {
         token,
         role,
-        id_game: 3,
+        id_game: gameNumber,
         id_user: user.id,
         bet: bet,
         winning: win

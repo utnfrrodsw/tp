@@ -21,6 +21,7 @@ interface User{
 export function Dice(user:User) {
     defaultScroll()
 
+    const gameNumber = 1
     const navigate = useNavigate()
     const token = localStorage.getItem('jwt-token');
     const role = user.role
@@ -58,7 +59,7 @@ export function Dice(user:User) {
         axios.post(`http://localhost:3000/api/v1/usergames`, {
             token,
             role,
-            id_game: 1,
+            id_game: gameNumber,
             id_user: id,
             bet: bet,
             winning: win

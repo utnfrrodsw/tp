@@ -66,7 +66,7 @@ export function UserList({role}: parameters) {
     };
 
     return (
-        <div className="list-main">
+        <div className="users-list-main">
             <div className='title'>
                 <h2 className='title-user'>User management</h2>
                 <div className="new-user-main">

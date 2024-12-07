@@ -13,20 +13,19 @@
 .tragamonedas {
     height: 90vh;
     display: flex;
-    margin-top: 5.5rem;
+    margin: 5.5rem 0 0 0;
     justify-content: top;
     align-items: center;
     flex-direction: column;
 }
 
 .textoTragamonedas {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0 2rem 0;
     text-align: center;
     font-size: 2rem;
     color: var(--yellow);
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.39);
+    background-color: var(--black);
     padding: 1rem;
     border-radius: 1rem;
     text-shadow: rgb(0, 0, 0) 1px 0 10px;
@@ -37,8 +36,8 @@
     position: relative;
     overflow: hidden;
     background-position: 0 0;
-    width: 79px;
-    height: 237px;
+    width: 4.938rem;
+    height: 14.813rem;
     background-image: url(https://assets.codepen.io/439000/slotreel.webp);
     background-repeat: repeat-y;
 }
@@ -54,7 +53,7 @@
     padding: 1rem;
     background-color: var(--yellow);
     margin-top: 1rem;
-    border: 2px solid var(--black);
+    border: 0.125rem solid var(--black);
     color: var(--black);
     border-radius: .8rem;
 }
@@ -105,7 +104,7 @@
     right: 0;
     top: 90px;
     background-color: var(--white);
-    border-radius: 10px;
+    border-radius: 0.625rem;
     padding: .2rem;
     margin: .5rem;
 }
@@ -114,7 +113,7 @@
     background-color: var(--white-dark);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 37.5rem) {
     .mutedButton {
         padding: .5rem;
     }
@@ -126,7 +125,7 @@
     gap: 1rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 37.5rem) {
     .buttonsBet {
         flex-direction: row;
         gap: 2rem;
@@ -138,7 +137,7 @@
     margin: 2rem auto;
     padding: 2rem;
     background-color: var(--purple);
-    border-radius: 20px;
+    border-radius: 1.25rem;
 }
 
 .gameInstructionTitle {
@@ -159,7 +158,7 @@
     margin: 1rem;
     padding: 1rem;
     background-color: var(--yellow);
-    border-radius: 10px;
+    border-radius: 0.625rem;
     color: var(--black);
     font-weight: bold;
     font-size: 1.2rem;
@@ -175,7 +174,7 @@
     opacity: 100%;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 37.5rem) {
     .instructionsButtonRef  {
         display: block;
     }

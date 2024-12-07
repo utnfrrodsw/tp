@@ -2,25 +2,25 @@
     appearance: none;
     -webkit-appearance: none;
     width: 60%;
-    height: 20px;
-    border-radius: 25px;
+    height: 1.25rem;
+    border-radius: 1.563rem;
 
 }
 
 .slider::-webkit-slider-thumb{
     cursor: pointer;
     appearance: none;
-    height: 35px;
-    width: 35px;
+    height: 2.188rem;
+    width: 2.188rem;
     background-color: var(--red);
     border-radius: 50%;
-    border: 7px solid var(--white);
+    border: 0.438rem solid var(--white);
 }
 
 .winningMessage {
     margin-top: 1rem;
     display: hidden;
     width: 100%;
-    height: 20px;
+    height: 1.25rem;
     text-align: center;
 }

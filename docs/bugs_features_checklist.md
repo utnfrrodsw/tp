@@ -47,40 +47,41 @@
 - [X] Listados responsivos
 - [X] Portear HELP a CSS normal
 - [X] Arreglar listado de juegos (se rompio al portearlo a CSS normal)
-- [X] Utilizar variables globales para los colores
-- [X] Portear todo el codigo a ingles
-- [X] Arreglar error de ANY en leaderboard.tsx
+- [x] Utilizar variables globales para los colores
+- [x] Portear todo el codigo a ingles
+- [x] Arreglar error de ANY en leaderboard.tsx
 - [ ] Cuando se recarga la pagina en los listados se bugea
-
-- [X] Organizar carpetas
-- [-] Portear todo lo que queda a CSS (Queda header, dice, wheel y headertoogle)
+- [x] Organizar carpetas
+- [x] Portear todo lo que queda a CSS (Queda header, dice, wheel y headertoogle)
 - [ ] Arreglar cuadro de perfil en mobile
 
 ### Correcciones AD 6/12/24
 - [x] Toda la APP en Ingles
 - [x] Sacar todos los SVG y dejarlos como imagenes
 - [x] Borrar todos los Console Log
-- [] Agregar Constantes (en Dice: id_game )
-- [] Funcion para redirijir a la pagina principal
-- [] Nombres de las funciones en minuscula
-- [] Utilizar CSS en Dice
+- [x] Agregar Constantes (en Dice: id_game )
+- [ ] Funcion para redirijir a la pagina principal
+- [ ] Nombres de las funciones en minuscula
+- [ ] Utilizar CSS en Dice
 - [x] Eliminar las cosas que no se utilizan/comentadas
 - [x] BalanceModal texto en ingles
 - [x] Utilizar parametros para agregar balances
-- [] handleLogout como una funcion
+- [ ] handleLogout como una funcion
 - [x] funcion ScrollToTop como una global""
-- [] Utilizar padding con ShortHand
+- [ ] Utilizar padding con ShortHand
 - [x] Espacio en blanco en el Register
-- [] Utilizar variables para clases en Register
-- [] Eliminar todos los index
-
-- [] La firma del jwtToken deberia estar en un ENV
-- [] El URL de el origen no deberia estar Hardocde en el backend
-- [] Borrar los services y utilizar solamente los Controladores?
+- [ ] Utilizar variables para clases en Register
+- [x] Eliminar todos los index
+- [ ] utilizar rem en vez de px (FALTAN DESDE HEADERMENU)
+- [ ] usar variables para colores
+- [ ] nombre de las clases css con guion medio
 - [x] usar const en vez de let
-- [] nombre de las clases css con guion medio
-- [] utilizar rem en vez de px
-- [] usar variables para colores
+
+- [ ] La firma del jwtToken deberia estar en un ENV
+- [ ] El URL de el origen no deberia estar Hardocde en el backend
+- [ ] Borrar los services y utilizar solamente los Controladores?
+
+
 
 ### Correcciones que no se explicar con palabras
 <img src='./correcciones/1.png'>

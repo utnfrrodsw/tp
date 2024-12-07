@@ -3,7 +3,6 @@ import './EditUser.css';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 interface UserType {
     first_name: string;
@@ -19,9 +18,6 @@ interface parameters {
 }
 
 export function EditUser({role}:parameters) {
-    defaultScroll()
-
-
     const navigate = useNavigate()
     const {id} = useParams<{ id: string }>();;
     const [user, setUser] = useState<UserType | null>(null);
@@ -47,6 +43,7 @@ export function EditUser({role}:parameters) {
     };
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         GetData();
     }, [id]);
 

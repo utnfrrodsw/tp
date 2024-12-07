@@ -22,6 +22,7 @@ export function Slots(user:User) {
     const token = localStorage.getItem('jwt-token');
     const role = user.role
 
+    const gameNumber = 2
     var id = user.id
     const slotSpin = new Audio(slotSpinSound)
     const slotStart = new Audio(slotSpinStart)
@@ -47,7 +48,7 @@ export function Slots(user:User) {
         axios.post(`http://localhost:3000/api/v1/usergames`, {
             token,
             role,
-            id_game: 2,
+            id_game: gameNumber,
             id_user: id,
             bet: bet,
             winning: win

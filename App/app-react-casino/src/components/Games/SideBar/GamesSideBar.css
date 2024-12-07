@@ -1,7 +1,6 @@
 .gameSideBar {
     position: fixed;
-    padding: 0.5rem;
-    padding-top: 7.2rem;
+    padding: 7.2rem 0.5rem 0.5rem 0.5rem;
     width: 50%;
     gap: 1.5rem;
     height: 100vh;
@@ -14,7 +13,7 @@
     transition-property: left;
     transition-duration: .75s;
     z-index: 10;
-    min-width: 100px;
+    min-width: 6.25rem;
 }
 
 
@@ -23,12 +22,12 @@
 }
 
 .SideBarMobileButton {
-    width: 50px;
-    height: 50px;
-    background-color: #181529bb;
+    width: 3.125rem;
+    height: 3.125rem;
+    background-color: var(--purple-transparent);
     position: fixed;
     bottom: 0;
-    left: 0px;
+    left: 0rem;
 }
 
 @media (min-width: 600px) {
@@ -53,8 +52,8 @@
     background-position: center; 
     background-size: cover; 
     background-size: contain; 
-    height: 160px;
-    width: 160px;
+    height: 10rem;
+    width: 10rem;
     background: url("./src/assets/images/games-dice.png");
     background-position: center center;
     background-size: cover;
@@ -66,8 +65,8 @@
     background-position: center; 
     background-size: cover; 
     background-size: contain; 
-    height: 160px;
-    width: 160px;
+    height: 10rem;
+    width: 10rem;
     background: url("./src/assets/images/games-wheel.png");
     background-position: center center;
     background-size: cover;
@@ -79,8 +78,8 @@
     background-position: center; 
     background-size: cover; 
     background-size: contain; 
-    height: 160px;
-    width: 160px;
+    height: 10rem;
+    width: 10rem;
     background: url("./src/assets/images/games-slots.png");
     background-position: center center;
     background-size: cover;
