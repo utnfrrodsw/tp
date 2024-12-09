@@ -34,6 +34,7 @@ export const userContext = createContext({
     phone: "",
     email: "",
     role: "",
+    balance: 0
 });
 
 export function App() {
@@ -43,6 +44,7 @@ export function App() {
         phone: "",
         email: "",
         role: "",
+        balance: 0
     });
     const [money, setMoney] = useState(0);
 
