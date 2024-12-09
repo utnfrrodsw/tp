@@ -27,14 +27,16 @@ import { ErrorPage } from './components/ErrorPage/ErrorPage.tsx'
 import { BettingHistory } from './components/Profile/BettingHistory/BettingHistory.tsx'
 import { Leaderboard } from './components/Leaderboard/Leaderboard.tsx'
 
+
 export function App() {
+    const [user, setUser] = useState({
+        id_user: "",
+        username: "",
+        phone: "",
+        email: "",
+        role: ""
+    });
     const [money, setMoney] = useState(0);
-    const [id, setUserId] = useState('');
-    const [role, setUserRole] = useState('');
-    const [username, setUserName] = useState('');
-    const [email, setUserEmail] = useState('');
-    const [phone, setUserPhone] = useState('');
-    
 
     useEffect(() => {
         fetchUserProfile();
@@ -52,39 +54,35 @@ export function App() {
         const decoded: any = jwtDecode(token);
 
         if (decoded) {
-            setUserId(decoded.data.id_user)
-            setUserRole(decoded.data.role)
-            setUserName(decoded.data.username)
-            setUserEmail(decoded.data.email)
-            setUserPhone(decoded.data.phone)
+            setUser(decoded.data)
             setMoney(decoded.data.balance);
         }
         
     };
 
-    const profile = '/profile/'+ username
+    const profile = '/profile/'+ user.username
 
     return(
         <>
         
-            <Header balance={money} profile={profile} role={role ?? ''} username={username ?? ''} setMoney={setMoney} idUser={id ?? ''}/>
+            <Header balance={money} profile={profile} role={user.role ?? ''} username={user.username ?? ''} setMoney={setMoney} idUser={user.id_user ?? ''}/>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path='/register' element={<Register />} />
                     <Route path="*" element={<ErrorPage />} />
 
-                    <Route path={'/bettinghistory'} element={<BettingHistory idUser={id} username={username} role={role}/>} />
-                    <Route path={profile} element={<Profile id={id} username={username} email={email} phone={phone} />} />
+                    <Route path={'/bettinghistory'} element={<BettingHistory idUser={user.id_user} username={user.username} role={user.role}/>} />
+                    <Route path={profile} element={<Profile id={user.id_user} username={user.username} email={user.email} phone={user.phone} />} />
 
-                    <Route path="/leaderboard" element={<Leaderboard role={role} />} />
-                    <Route path="/dice" element={<Dice id={id} balance={money} setMoney={setMoney} role={role} />} />
-                    <Route path="/slot" element={<Slots id={id} balance={money} setMoney={setMoney} role={role} />} />
-                    <Route path="/wheel" element={<Wheel id={id} balance={money} setMoney={setMoney} role={role} />} />
+                    <Route path="/leaderboard" element={<Leaderboard role={user.role} />} />
+                    <Route path="/dice" element={<Dice id={user.id_user} balance={money} setMoney={setMoney} role={user.role} />} />
+                    <Route path="/slot" element={<Slots id={user.id_user} balance={money} setMoney={setMoney} role={user.role} />} />
+                    <Route path="/wheel" element={<Wheel id={user.id_user} balance={money} setMoney={setMoney} role={user.role} />} />
                     
-                    <Route path="/userlist" element={<UserList role={role} />} />
+                    <Route path="/userlist" element={<UserList role={user.role} />} />
 
-                    <Route path="/userlist/details/:id" element={<Details role={role} />} />
-                    <Route path="/userlist/edituser/:id" element={<EditUser role={role}  />} />
+                    <Route path="/userlist/details/:id" element={<Details role={user.role} />} />
+                    <Route path="/userlist/edituser/:id" element={<EditUser role={user.role}  />} />
 
                     <Route path="/terms-and-conditions" element={<Terms />} />
                     <Route path='/about-us' element={<AboutUs />} />
