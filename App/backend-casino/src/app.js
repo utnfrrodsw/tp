@@ -17,7 +17,7 @@ const client = new MercadoPagoConfig({
 // Credentials
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.URL_CORS,
     credentials: true,
 }));
 
@@ -38,12 +38,12 @@ app.post('/create_preference', async (req, res) => {
                 },
             ],
             back_urls: {
-                success: 'http://localhost:5173/',
-                failure: 'http://localhost:5173/',
-                pending: 'http://localhost:5173',
+                success: process.env.URL_CORS2,
+                failure: process.env.URL_CORS2,
+                pending: process.env.URL_CORS,
             },
             auto_return: 'approved',
-            notification_url: 'http://localhost:5173/', // Reemplaza con tu URL de webhook
+            notification_url: process.env.URL_CORS2, // Reemplaza con tu URL de webhook
         };
 
         const preference = new Preference(client);

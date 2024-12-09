@@ -36,12 +36,6 @@ export function Slots(user:User) {
             role,
             balance: `${newMoney}`,
         })
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
     }
 
     function postGame(bet:number, win:number) {
@@ -53,12 +47,6 @@ export function Slots(user:User) {
             bet: bet,
             winning: win
         })
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
     }
 
     useEffect(() => {

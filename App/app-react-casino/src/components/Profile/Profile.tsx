@@ -56,7 +56,7 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
 
             try {
                 const response = await axios.post(
-                    'https://api.cloudinary.com/v1_1/dgv9jbhzm/image/upload', 
+                    import.meta.env.VITE_PROFILE_IMAGE_URL, 
                     formData
                 );
                 const imageUrl = response.data.secure_url;

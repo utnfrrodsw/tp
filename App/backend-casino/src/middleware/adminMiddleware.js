@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const adminAuth = (req, res, next) => {
     const token = req.query.token
@@ -28,7 +29,7 @@ const adminPost = (req, res, next) => {
     const role = req.body.role
 
     if(token){
-        jwt.verify(token, 'UTimbaN', (err) => {
+        jwt.verify(token, process.env.TOKEN_KEY, (err) => {
             if (err){
                 console.log(err)
             } else {
