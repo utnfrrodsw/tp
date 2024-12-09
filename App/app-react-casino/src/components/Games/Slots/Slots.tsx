@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import './Slots.css';
+import { useContext } from "react";
+import { userContext } from "../../../App.tsx";
 import { GamesSideBar } from '../SideBar/GamesSideBar.tsx';
 import slotSpinSound from "../../../assets/sounds/slotSsound.mp3"
 import slotSpinStart from "../../../assets/sounds/slotStart.mp3"
@@ -21,6 +23,7 @@ export function Slots(user:User) {
     
     const token = localStorage.getItem('jwt-token');
     const role = user.role
+    const contextData = useContext(userContext);
 
     const gameNumber = 2
     var id = user.id
@@ -229,6 +232,7 @@ export function Slots(user:User) {
                 <p className="gameInstructionText"> - If the figures are IN LINE, the award is your bet multiplied by four</p>
                 <p className="gameInstructionText"> - If the figures are IN DIAGONALLY, the award is your bet multiplied by two</p>
                 <p className="gameInstructionText"> - Enjoy the game and good luck!</p>
+                <p>{contextData.email}</p>
             </div>
         </>
     

@@ -1,8 +1,8 @@
 import { NavLink as Link, useNavigate } from 'react-router-dom';
-
+import { useContext } from 'react';
+import { userContext } from '../../App.js';
 import { LogIn } from '../LogIn/LogIn.js'
 import { BalanceModal } from './BalanceModal/BalanceModal.js';
-
 
 import { IoPersonSharp } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";

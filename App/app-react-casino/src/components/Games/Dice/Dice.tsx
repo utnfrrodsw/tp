@@ -5,8 +5,6 @@ import { toast } from 'sonner';
 import { useNavigate } from "react-router-dom";
 import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
-
-
 import mutedIcon from "../../../assets/images/mutedIcon.png";
 import diceSound from "../../../assets/sounds/dice.mp3";
 import './Dice.css';
