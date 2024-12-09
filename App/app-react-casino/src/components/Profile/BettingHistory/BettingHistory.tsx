@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useContext } from "react";
+import { userContext } from "../../../App.tsx";
 import './BettingHistory.css';
 import { NavLink as Link } from 'react-router-dom';
 import '../Profile.css';
@@ -14,13 +16,10 @@ interface UserType {
     name: string;
 }
 
-interface BettingHistoryProps {
-    idUser: string;
-    username: string;
-    role: string;
-}
 
-export function BettingHistory({idUser, username, role}: BettingHistoryProps) {
+export function BettingHistory() {
+    const contextData = useContext(userContext);
+    const role = contextData.role
     defaultScroll()
 
     const [user, setUser] = useState<UserType[]>([]);
@@ -28,7 +27,7 @@ export function BettingHistory({idUser, username, role}: BettingHistoryProps) {
     const token = localStorage.getItem('jwt-token');
 
     const GetUser = () => {
-        axios.get(`http://localhost:3000/api/v1/userGames/history/${idUser}`, {params: {token, role}}).then((response) =>
+        axios.get(`http://localhost:3000/api/v1/userGames/history/${contextData.id_user}`, {params: {token, role}}).then((response) =>
             setUser(response.data)
         );
     };
@@ -39,7 +38,7 @@ export function BettingHistory({idUser, username, role}: BettingHistoryProps) {
 
 
     
-    const profile = '/profile/'+ username
+    const profile = '/profile/'+ contextData.username
 
     return (
         <>

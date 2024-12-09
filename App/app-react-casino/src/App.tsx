@@ -33,7 +33,7 @@ export const userContext = createContext({
     username: "",
     phone: "",
     email: "",
-    role: ""
+    role: "",
 });
 
 export function App() {
@@ -42,7 +42,7 @@ export function App() {
         username: "",
         phone: "",
         email: "",
-        role: ""
+        role: "",
     });
     const [money, setMoney] = useState(0);
 
@@ -73,24 +73,24 @@ export function App() {
     return(
         <>
             <userContext.Provider value={user}>
-                <Header balance={money} profile={profile} role={user.role ?? ''} username={user.username ?? ''} setMoney={setMoney} idUser={user.id_user ?? ''}/>
+                <Header balance={money} profile={profile} setMoney={setMoney}/>
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path='/register' element={<Register />} />
                         <Route path="*" element={<ErrorPage />} />
 
-                        <Route path={'/bettinghistory'} element={<BettingHistory idUser={user.id_user} username={user.username} role={user.role}/>} />
-                        <Route path={profile} element={<Profile id={user.id_user} username={user.username} email={user.email} phone={user.phone} />} />
+                        <Route path={'/bettinghistory'} element={<BettingHistory/>} />
+                        <Route path={profile} element={<Profile/>} />
 
-                        <Route path="/leaderboard" element={<Leaderboard role={user.role} />} />
-                        <Route path="/dice" element={<Dice id={user.id_user} balance={money} setMoney={setMoney} role={user.role} />} />
-                        <Route path="/slot" element={<Slots id={user.id_user} balance={money} setMoney={setMoney} role={user.role} />} />
-                        <Route path="/wheel" element={<Wheel id={user.id_user} balance={money} setMoney={setMoney} role={user.role} />} />
+                        <Route path="/leaderboard" element={<Leaderboard/>} />
+                        <Route path="/dice" element={<Dice balance={money} setMoney={setMoney}/>} />
+                        <Route path="/slot" element={<Slots balance={money} setMoney={setMoney}/>} />
+                        <Route path="/wheel" element={<Wheel balance={money} setMoney={setMoney}/>} />
                         
-                        <Route path="/userlist" element={<UserList role={user.role} />} />
+                        <Route path="/userlist" element={<UserList/>} />
 
-                        <Route path="/userlist/details/:id" element={<Details role={user.role} />} />
-                        <Route path="/userlist/edituser/:id" element={<EditUser role={user.role}  />} />
+                        <Route path="/userlist/details/:id" element={<Details/>} />
+                        <Route path="/userlist/edituser/:id" element={<EditUser/>} />
 
                         <Route path="/terms-and-conditions" element={<Terms />} />
                         <Route path='/about-us' element={<AboutUs />} />

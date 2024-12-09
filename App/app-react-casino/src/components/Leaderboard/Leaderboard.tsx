@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { useContext } from "react";
+import { userContext } from '../../App';
 import { useEffect, useState } from 'react';
 import './Leaderboard.css';
 import { toast } from 'sonner'
@@ -14,11 +16,10 @@ interface UserType {
     role: string;
 }
 
-interface parameters {
-    role: string;
-}
 
-export function Leaderboard({role}:parameters) {
+export function Leaderboard() {
+    const contextData = useContext(userContext);
+    const role = contextData.role
     const [user, setUser] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);

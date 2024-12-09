@@ -5,14 +5,13 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router-dom'
 import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useContext } from "react";
+import { userContext } from "../../../App.tsx";
 
-interface UserType {
-    role: string;
-}
-
-export function Details({role}:UserType) {
+export function Details() {
     defaultScroll()
 
+    const contextData = useContext(userContext);
     const navigate = useNavigate()
     const [user, setUser] = useState({
         username: "",
@@ -25,6 +24,7 @@ export function Details({role}:UserType) {
         Country: ""
     });
     const {id} = useParams();
+    const role = contextData.role
 
     const token = localStorage.getItem('jwt-token');
 

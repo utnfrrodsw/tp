@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { defaultScroll } from "../../libs/globalFunctions.tsx";
 import { useDropzone } from 'react-dropzone';
+import { useContext } from "react";
+import { userContext } from '../../App.tsx';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { NavLink as Link } from 'react-router-dom';
 import './Profile.css';
 import { toast } from 'sonner';
 
-interface ProfileProps {
-    id: string;
-    username: string;
-    email: string;
-    phone: string;
-}
-
-export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) => {
+export const Profile = () => {
+    const contextData = useContext(userContext);
     defaultScroll()
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
@@ -79,8 +75,8 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
                 <div className="profile-header">
                     <img src={imageUrl || "../src/assets/images/avatar-deafault.webp"} alt="User Avatar" className="avatar" />
                     <div className="user-info">
-                        <h1 className="name">{username}</h1>
-                        <p className="id">ID: {id}</p>
+                        <h1 className="name">{contextData.username}</h1>
+                        <p className="id">ID: {contextData.id_user}</p>
                     </div>
                     <button className="change-button" onClick={openModal}>
                         Change Profile Picture
@@ -102,11 +98,11 @@ export const Profile: React.FC<ProfileProps> = ({ id, username, email, phone }) 
                     <form>
                         <div className="user-details">
                             <label className="user-details-label">Username</label>
-                            <input type="text" value={username || ''} readOnly className="input-field" />
+                            <input type="text" value={contextData.username || ''} readOnly className="input-field" />
                             <label className="user-details-label">Email</label>
-                            <input type="email" value={email || ''} readOnly className="input-field" />
+                            <input type="email" value={contextData.email || ''} readOnly className="input-field" />
                             <label className="user-details-label">Phone</label>
-                            <input type="tel" value={phone || ''} readOnly className="input-field" />
+                            <input type="tel" value={contextData.phone || ''} readOnly className="input-field" />
                         </div>
                     </form>
                 </div>

@@ -4,6 +4,8 @@ import './UserList.css';
 import { NavLink as Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner';
 import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useContext } from "react";
+import { userContext } from "../../../App.tsx";
 
 interface UserType {
     id_user: number;
@@ -13,20 +15,17 @@ interface UserType {
     balance: number;
 }
 
-interface parameters {
-    role: string;
-}
 
-
-
-export function UserList({role}: parameters) {
+export function UserList() {
     defaultScroll()
     const navigate = useNavigate()
 
+    const contextData = useContext(userContext);
     const [user, setUser] = useState<UserType[]>([]);
     const [isRotated, setIsRotated] = useState(false);
     const [isAscending, setIsAscending] = useState(false);
     const [search, setSearch] = useState('');
+    const role = contextData.role
     
     const token = localStorage.getItem('jwt-token');
 

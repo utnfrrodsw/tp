@@ -1,5 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import axios from 'axios'
+import { useContext } from "react";
+import { userContext } from "../../../App.tsx";
 import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 import './Wheel.css';
@@ -24,17 +26,16 @@ let rotation: number = 0;
 let index: number = 0;
 
 interface User{
-  id: string
   balance: number
   setMoney: React.Dispatch<React.SetStateAction<number>>;
-  role: string
 }
 
 export function Wheel(user:User) {
   defaultScroll()
 
+  const contextData = useContext(userContext);
   const token = localStorage.getItem('jwt-token');
-  const role = user.role
+  const role = contextData.role
 
   const gameNumber = 3
   const [amount, setAmount] = useState(0);
@@ -58,7 +59,7 @@ export function Wheel(user:User) {
   const wheelLose = new Audio(wheelLoseSound);
 
   function patchUser(newMoney:number) {
-    axios.put(`http://localhost:3000/api/v1/users/${user.id}`, {
+    axios.put(`http://localhost:3000/api/v1/users/${contextData.id_user}`, {
         token,
         role,
         balance: `${newMoney}`,
@@ -70,7 +71,7 @@ export function Wheel(user:User) {
         token,
         role,
         id_game: gameNumber,
-        id_user: user.id,
+        id_user: contextData.id_user,
         bet: bet,
         winning: win
     })

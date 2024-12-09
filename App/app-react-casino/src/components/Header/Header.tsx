@@ -21,13 +21,11 @@ import './Header.css';
 interface HeaderProps {
     balance: number;
     profile: string;
-    role: string;
-    username: string;
     setMoney: React.Dispatch<React.SetStateAction<number>>;
-    idUser: string;
 }
 
-export function Header({ balance, profile, role, username, setMoney, idUser }: HeaderProps) {
+export function Header({ balance, profile, setMoney }: HeaderProps) {
+    const contextData = useContext(userContext);
     const [modalOpen, setModalOpen] = useState(false);
     const [open, setMenuOpen] = useState(false);
     const navigate = useNavigate()
@@ -50,7 +48,7 @@ export function Header({ balance, profile, role, username, setMoney, idUser }: H
         }
     };
 
-    if (role === 'user') {
+    if (contextData.role === 'user') {
         return (
             <>
             <button onClick={() => setIsActive(!isActive)} className={isActive ? "mobile-button-hide mobile-button" : "mobile-button"}><LuMenu /></button>
@@ -85,7 +83,7 @@ export function Header({ balance, profile, role, username, setMoney, idUser }: H
                 </header>
 
                 <div className='nav-item menu-open'>
-                    <HeaderMenu open={open} username={username} profile={profile} />
+                    <HeaderMenu open={open} username={contextData.username} profile={profile} />
                 </div>
 
                 <header className='header'>
@@ -106,10 +104,10 @@ export function Header({ balance, profile, role, username, setMoney, idUser }: H
 
                 
 
-                {modalOpen && <BalanceModal onClose={handleModalClose} setMoney={setMoney} idUser={idUser} balance={balance} role={role}/>}
+                {modalOpen && <BalanceModal onClose={handleModalClose} setMoney={setMoney} idUser={contextData.id_user} balance={balance} role={contextData.role}/>}
             </>
         );
-    } if (role === 'admin'){
+    } if (contextData.role === 'admin'){
         return (
         <>
         <button onClick={() => setIsActive(!isActive)} className={isActive ? "mobile-button-hide mobile-button" : "mobile-button"}><LuMenu /></button>
@@ -149,7 +147,7 @@ export function Header({ balance, profile, role, username, setMoney, idUser }: H
         </header>
 
         <div className='nav-item menu-open'>
-            <HeaderMenu open={open} username={username} profile={profile} />
+            <HeaderMenu open={open} username={contextData.username} profile={profile} />
         </div>
 
         <header className='header'>

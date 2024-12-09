@@ -12,21 +12,18 @@ import axios from 'axios';
 import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 interface User{
-    id: string
     balance: number
     setMoney: React.Dispatch<React.SetStateAction<number>>;
-    role: string
 }
 
 export function Slots(user:User) {
     defaultScroll()
     
     const token = localStorage.getItem('jwt-token');
-    const role = user.role
     const contextData = useContext(userContext);
+    const role = contextData.role
 
     const gameNumber = 2
-    var id = user.id
     const slotSpin = new Audio(slotSpinSound)
     const slotStart = new Audio(slotSpinStart)
     const slotWin = new Audio(slotWinSound)
@@ -34,7 +31,7 @@ export function Slots(user:User) {
     const instructionRef = useRef<HTMLDivElement>(null);
 
     function patchUser(newMoney:number) {
-        axios.put(`http://localhost:3000/api/v1/users/${id}`, {
+        axios.put(`http://localhost:3000/api/v1/users/${contextData.id_user}`, {
             token,
             role,
             balance: `${newMoney}`,
@@ -46,7 +43,7 @@ export function Slots(user:User) {
             token,
             role,
             id_game: gameNumber,
-            id_user: id,
+            id_user: contextData.id_user,
             bet: bet,
             winning: win
         })
@@ -232,7 +229,6 @@ export function Slots(user:User) {
                 <p className="gameInstructionText"> - If the figures are IN LINE, the award is your bet multiplied by four</p>
                 <p className="gameInstructionText"> - If the figures are IN DIAGONALLY, the award is your bet multiplied by two</p>
                 <p className="gameInstructionText"> - Enjoy the game and good luck!</p>
-                <p>{contextData.email}</p>
             </div>
         </>
     

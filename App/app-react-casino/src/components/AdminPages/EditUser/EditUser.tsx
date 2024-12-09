@@ -3,6 +3,8 @@ import './EditUser.css';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { useContext } from "react";
+import { userContext } from "../../../App.tsx";
 
 interface UserType {
     first_name: string;
@@ -13,11 +15,8 @@ interface UserType {
     role:string;
 }
 
-interface parameters {
-    role: string;
-}
-
-export function EditUser({role}:parameters) {
+export function EditUser() {
+    const contextData = useContext(userContext);
     const navigate = useNavigate()
     const {id} = useParams<{ id: string }>();;
     const [user, setUser] = useState<UserType | null>(null);
@@ -27,6 +26,7 @@ export function EditUser({role}:parameters) {
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [balance, setBalance] = useState("");
+    const role = contextData.role
 
     const token = localStorage.getItem('jwt-token');
 

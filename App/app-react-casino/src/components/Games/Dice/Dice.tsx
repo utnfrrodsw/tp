@@ -1,6 +1,8 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { GamesSideBar } from '../SideBar/GamesSideBar.tsx';
 import axios from 'axios';
+import { useContext } from "react";
+import { userContext } from "../../../App.tsx";
 import { toast } from 'sonner';
 import { useNavigate } from "react-router-dom";
 import { defaultScroll } from "../../../libs/globalFunctions.tsx";
@@ -10,20 +12,18 @@ import diceSound from "../../../assets/sounds/dice.mp3";
 import './Dice.css';
 
 interface User{
-    id: string
     balance: number
     setMoney: React.Dispatch<React.SetStateAction<number>>
-    role: string
 }
 
 export function Dice(user:User) {
     defaultScroll()
 
     const gameNumber = 1
+    const contextData = useContext(userContext);
     const navigate = useNavigate()
     const token = localStorage.getItem('jwt-token');
-    const role = user.role
-    var id = user.id
+    const role = contextData.role
     const [data, setData] = useState<number>(2);
     const [amount, setAmount] = useState(0);
     const [multi, setMulti] = useState(0);
@@ -40,7 +40,7 @@ export function Dice(user:User) {
     }
 
     function patchUser(newMoney:number) {
-        axios.put(`http://localhost:3000/api/v1/users/${id}`, {
+        axios.put(`http://localhost:3000/api/v1/users/${contextData.id_user}`, {
             token,
             role,
             balance: `${newMoney}`,
@@ -58,7 +58,7 @@ export function Dice(user:User) {
             token,
             role,
             id_game: gameNumber,
-            id_user: id,
+            id_user: contextData.id_user,
             bet: bet,
             winning: win
         })
