@@ -9,7 +9,6 @@ interface BalanceModalProps {
     idUser: String;
     balance: number;
     role: string;
-    addMoney: () => void
 }
 
 export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, idUser, balance, role }) => {

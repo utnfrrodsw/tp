@@ -98,20 +98,20 @@ export function Slots(user:User) {
     
     const bet50 = () => {
         bet = 50
-        Play()
+        play()
     }
 
     const bet150 = () => {
         bet = 150
-        Play()
+        play()
     }
 
     const bet300 = () => {
         bet = 300
-        Play()
+        play()
     }
 
-    const Play = () => {
+    const play = () => {
         setIsActive(false)
         setWin("")
         if(user.balance < bet) {

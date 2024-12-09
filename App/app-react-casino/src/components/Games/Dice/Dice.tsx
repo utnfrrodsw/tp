@@ -134,7 +134,7 @@ export function Dice(user:User) {
         }
     }
 
-    const GenerateNumber = () => {
+    const generateNumber = () => {
         setIsButtonDisabled(true);
         setTimeout(() => setIsButtonDisabled(false), 500);
         const min = 2;
@@ -183,7 +183,7 @@ export function Dice(user:User) {
                     <input step="0.01" className="bg-[color:var(--white)] text-black rounded-[20px] p-2 w-[80%] mb-2" min="0" value={amount} onChange={betAmount}/>
                     <label className="">Win amount</label>
                     <input className="text-black rounded-[20px] p-2 w-[80%]" type="number" inputMode="decimal" placeholder="0.00" value={winAmount} disabled/>
-                    <button onClick={GenerateNumber} className="bg-[color:var(--yellow)] hover:bg-yellow-600 text-[color:var(--black)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]" disabled={isButtonDisabled}>PLAY</button>
+                    <button onClick={generateNumber} className="bg-[color:var(--yellow)] hover:bg-yellow-600 text-[color:var(--black)] py-3 w-[80%] mt-[20px] text-bold max-lg:mb-[20px]" disabled={isButtonDisabled}>PLAY</button>
                     <p className="winningMessage">{playMessage}</p>
                     <button className={isMuted ? "mutedButton mutedEnabled" : "mutedButton"} onClick={handleToggle}><img src={mutedIcon} alt="mutedIcon"/></button>
                 </div>

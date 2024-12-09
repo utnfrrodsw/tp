@@ -216,10 +216,7 @@
     background-color: var(--yellow);
     border: none;
     border-radius: .3rem;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 10px 5px 10px;
     color: var(--black);
     cursor: pointer;
     margin-top: 1rem;
@@ -236,10 +233,7 @@
     background-color: var(--red);
     border: none;
     border-radius: .3rem;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 10px 5px 10px;
     color: var(--black);
     cursor: pointer;
     margin-top: 1rem;

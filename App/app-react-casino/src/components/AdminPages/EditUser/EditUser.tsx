@@ -59,12 +59,8 @@ export function EditUser({role}:parameters) {
             balance: form.current.balance.value,
         })
         .then((response) => {
-            console.log(response);
             navigate("/userlist")
         })
-        .catch((error) => {
-            console.log(error);
-        });
     }
 
     function back() {
