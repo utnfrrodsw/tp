@@ -24,10 +24,10 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
 
     const [LoadMsg, setLoadMsg] = useState("")
     
-    /* Mercado pago
+
     const createPreference = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/create_preference", {
+            const response = await axios.post("http://localhost:3000/create_preference/", {
                 title: "Tip",
                 quantity: 1,
                 price: 100,
@@ -39,14 +39,14 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
             console.log(error);
         }
     };
-    /*
+
     const handleBuy = async () => {
         const id = await createPreference();
         if (id) {
             setPreferenceId(id);
         }
     };
-    */
+
 
     function addMoney(adding: number) {
         setMoney(balance + adding);
@@ -69,11 +69,11 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
                 <div className="modal-body">
                     <h2>Deposit Options</h2>
                     <div className="tips">
-                        <button onClick={() => addMoney(1000)} className="tip">$1000</button>
-                        <button onClick={() => addMoney(2000)} className="tip">$2000</button>
-                        <button onClick={() => addMoney(5000)} className="tip">$5000</button>
-                        <button onClick={() => addMoney(10000)} className="tip">$10.000</button>
-                        <button onClick={() => addMoney(25000)} className="tip">$25.000</button>
+                        <button onClick={handleBuy} className="tip">$1000</button>
+                        <button onClick={handleBuy} className="tip">$2000</button>
+                        <button onClick={handleBuy} className="tip">$5000</button>
+                        <button onClick={handleBuy} className="tip">$10.000</button>
+                        <button onClick={handleBuy} className="tip">$25.000</button>
                         {preferenceId && <Wallet initialization={{ preferenceId }} />}
                         <p className='tipAdvertise'>{LoadMsg}</p>
                     </div>

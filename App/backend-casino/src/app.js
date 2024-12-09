@@ -38,12 +38,11 @@ app.post('/create_preference', async (req, res) => {
                 },
             ],
             back_urls: {
-                success: process.env.URL_CORS2,
-                failure: process.env.URL_CORS2,
-                pending: process.env.URL_CORS,
+                success: process.env.URL_CORS,
+                failure: process.env.URL_CORS_FAIL,
+                pending: process.env.URL_CORS_PENDING,
             },
             auto_return: 'approved',
-            notification_url: process.env.URL_CORS2, // Reemplaza con tu URL de webhook
         };
 
         const preference = new Preference(client);
