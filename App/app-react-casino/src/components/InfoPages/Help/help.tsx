@@ -3,6 +3,9 @@ import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 import emailjs from '@emailjs/browser';
 import { toast } from 'sonner';
 import './Help.css';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export function Help() {
     defaultScroll()
@@ -12,8 +15,8 @@ export function Help() {
     const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         emailjs
-            .sendForm('service_ypyb48j', 'template_iejz0rb', form.current!, {
-                publicKey: 'cO0nIpEJQcJ5Fdgqc',
+            .sendForm(process.env.SERIVICE_ID_HELP, process.env.TEMPLATE_ID_HELP, form.current!, {
+                publicKey: process.env.PUBLIC_KEY_HELP,
             })
             .then(
                 () => {
