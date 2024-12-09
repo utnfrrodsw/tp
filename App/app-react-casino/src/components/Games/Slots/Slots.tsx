@@ -95,25 +95,11 @@ export function Slots(user:User) {
     function getRandomInt(min:number, max:number) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    
-    const bet50 = () => {
-        bet = 50
-        play()
-    }
 
-    const bet150 = () => {
-        bet = 150
-        play()
-    }
-
-    const bet300 = () => {
-        bet = 300
-        play()
-    }
-
-    const play = () => {
+    const play = (amount:number) => {
         setIsActive(false)
         setWin("")
+        bet = amount
         if(user.balance < bet) {
             setError("Insufficient Balance")
             setIsActive(true)
@@ -238,9 +224,9 @@ export function Slots(user:User) {
                         <div className="reel" id="reel3"></div>
                     </div>
                     <div className="buttonsBet">
-                        <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={bet50} id="boton">Bet 50 Credits</button>
-                        <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={bet150} id="boton">Bet 150 Credits</button>
-                        <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={bet300} id="boton">Bet 300 Credits</button>
+                        <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={() => play(50)} id="boton">Bet 50 Credits</button>
+                        <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={() => play(150)} id="boton">Bet 150 Credits</button>
+                        <button className={isActive ? "buttonTragamonedas" : "buttonTragamonedas buttonDisabled"} onClick={() => play(300)} id="boton">Bet 300 Credits</button>
                     </div>
                     <div className="slotsMessages" ref={instructionRef}>
                         <p className="message">{Win}</p>
