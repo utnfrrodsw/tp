@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import { Toaster } from 'sonner'
 import { createContext } from 'react'
+import axios from './libs/axios.tsx'
 
 import { UserList } from './components/AdminPages/UserList/UserList.tsx'
 import { Details } from './components/AdminPages/Details/Details.tsx'
@@ -34,7 +35,6 @@ export const userContext = createContext({
     phone: "",
     email: "",
     role: "",
-    balance: 0
 });
 
 export function App() {
@@ -44,7 +44,6 @@ export function App() {
         phone: "",
         email: "",
         role: "",
-        balance: 0
     });
     const [money, setMoney] = useState(0);
 
@@ -65,12 +64,20 @@ export function App() {
 
         if (decoded) {
             setUser(decoded.data)
-            setMoney(decoded.data.balance);
+            getBalance(decoded.data.id_user, token, decoded.data.role);
         }
         
     };
 
     const profile = '/profile/'+ user.username
+
+    const getBalance = (id:string, token:string, role:string) => {
+        axios.get(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then((response) => {
+            setMoney(response.data.balance);
+            console.log(response)
+        });
+    };
+
 
     return(
         <>

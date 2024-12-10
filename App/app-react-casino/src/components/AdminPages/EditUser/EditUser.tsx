@@ -16,6 +16,7 @@ export function EditUser() {
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [balance, setBalance] = useState("");
+    const [roleUser, setRoleUser] = useState("")
     const role = contextData.role
 
     const token = localStorage.getItem('jwt-token');
@@ -27,6 +28,7 @@ export function EditUser() {
             setPhone(response.data.phone);
             setEmail(response.data.email);
             setBalance(response.data.balance);
+            setRoleUser(response.data.role)
         });
     };
 
@@ -39,7 +41,7 @@ export function EditUser() {
         if (!form.current) return; 
         axios.put(`http://localhost:3000/api/v1/users/${id}`, {
             token,
-            role,
+            role: roleUser,
             first_name: form.current.first_name.value,
             last_name: form.current.last_name.value,
             phone: form.current.phone.value,
