@@ -29,7 +29,7 @@ export function Details() {
     const token = localStorage.getItem('jwt-token');
 
     const GetData = () => {
-        axios.get(`http://localhost:3000/api/v1/users/read/${id}`, { params: { token, role } }).then((response) => {
+        axios.get(`/users/read/${id}`, { params: { token, role } }).then((response) => {
             setUser(response.data[0])
         });
     };

@@ -32,7 +32,7 @@ export function UserList() {
     const GetUser = async () => {
         try{
             const response = 
-            await axios.get('http://localhost:3000/api/v1/users', { params: { token, role } } )
+            await axios.get('/users', { params: { token, role } } )
             setUser(response.data)
         } catch(error) {
             toast.error(error.response.data, {
@@ -45,7 +45,7 @@ export function UserList() {
     }
 
     function DeleteUser(id:number) {
-        axios.delete(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then(() =>
+        axios.delete(`/users/${id}`, { params: { token, role } }).then(() =>
             navigate("/")
         );
     };

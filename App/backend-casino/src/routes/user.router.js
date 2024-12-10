@@ -10,6 +10,7 @@ router
     .post("/", adminMiddleware.adminPost, userController.create)
     .put("/:id", userMiddleware.postAuth, userController.update)
     .delete("/:id", adminMiddleware.adminAuth, userController._delete)
-    .get("/read/:id", adminMiddleware.adminAuth, userController.read);
+    .get("/read/:id", adminMiddleware.adminAuth, userController.read)
+    .get("/readBalance/:id", userMiddleware.userAuth, userController.readBalance);
 
 module.exports = router;

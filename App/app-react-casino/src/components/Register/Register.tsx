@@ -24,7 +24,7 @@ export function Register(){
         if (password === confirmpass){
         try{
             const response = 
-                await axios.post('http://localhost:3000/api/v1/register',
+                await axios.post('/register',
                     {username, first_name, last_name, birthday, phone, email, password, id_country});
             toast.success(response.data, {
                 description: 'Redirecting to home page',

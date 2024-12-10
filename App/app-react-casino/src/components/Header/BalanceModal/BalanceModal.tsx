@@ -55,7 +55,7 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
     }
 
     function patchUser(newMoney:number) {
-        axios.put(`http://localhost:3000/api/v1/users/${idUser}`, {
+        axios.put(`/users/${idUser}`, {
             token,
             role,
             balance: `${newMoney}`,

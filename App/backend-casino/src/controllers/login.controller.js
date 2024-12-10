@@ -18,7 +18,6 @@ const signInUser = async (req, res) => {
         id_user: user.id_user,
         role: user.role,
         username: user.username,
-        balance: user.balance,
         email: user.email,
         phone: user.phone,
 

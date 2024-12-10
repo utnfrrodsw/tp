@@ -31,7 +31,7 @@ export function Leaderboard() {
     const GetUser = async () => {
         try{
             const response = 
-            await axios.get('http://localhost:3000/api/v1/userGames/leaderboards', { params: { token, role } } )
+            await axios.get('/userGames/leaderboards', { params: { token, role } } )
             setUser(response.data)
         } catch(error) {
             toast.error(error.response.data, {

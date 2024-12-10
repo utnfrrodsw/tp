@@ -27,7 +27,7 @@ export function BettingHistory() {
     const token = localStorage.getItem('jwt-token');
 
     const GetUser = () => {
-        axios.get(`http://localhost:3000/api/v1/userGames/history/${contextData.id_user}`, {params: {token, role}}).then((response) =>
+        axios.get(`/userGames/history/${contextData.id_user}`, {params: {token, role}}).then((response) =>
             setUser(response.data)
         );
     };

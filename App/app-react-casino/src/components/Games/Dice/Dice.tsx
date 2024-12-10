@@ -40,7 +40,7 @@ export function Dice(user:User) {
     }
 
     function patchUser(newMoney:number) {
-        axios.put(`http://localhost:3000/api/v1/users/${contextData.id_user}`, {
+        axios.put(`/users/${contextData.id_user}`, {
             token,
             role,
             balance: `${newMoney}`,
@@ -54,7 +54,7 @@ export function Dice(user:User) {
     }
 
     function postGame(bet:number, win:number) {
-        axios.post(`http://localhost:3000/api/v1/usergames`, {
+        axios.post(`/usergames`, {
             token,
             role,
             id_game: gameNumber,

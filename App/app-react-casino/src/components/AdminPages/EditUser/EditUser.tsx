@@ -22,7 +22,7 @@ export function EditUser() {
     const token = localStorage.getItem('jwt-token');
 
     const GetData = () => {
-        axios.get(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then((response) => {
+        axios.get(`/users/${id}`, { params: { token, role } }).then((response) => {
             setFirstName(response.data.first_name);
             setLastName(response.data.last_name);
             setPhone(response.data.phone);
@@ -39,7 +39,7 @@ export function EditUser() {
 
     function patchUser() {
         if (!form.current) return; 
-        axios.put(`http://localhost:3000/api/v1/users/${id}`, {
+        axios.put(`/users/${id}`, {
             token,
             role: roleUser,
             first_name: form.current.first_name.value,

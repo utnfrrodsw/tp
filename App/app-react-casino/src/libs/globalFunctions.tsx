@@ -5,3 +5,9 @@ export function defaultScroll() {
         window.scrollTo(0, 0)
       }, [])
 }
+
+// Log Out
+
+// Redirect to homepage???
+
+// 

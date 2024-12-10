@@ -9,7 +9,6 @@ const userAuth = (req, res, next) => {
     if (token) {
         jwt.verify(token, 'UTimbaN', (err) => {
             if (err) {
-                console.log(err);
             } else {
                 if (role == 'user' || role == 'admin'){
                     next()
@@ -31,7 +30,6 @@ const postAuth = (req, res, next) => {
     if(token){
         jwt.verify(token, process.env.TOKEN_KEY, (err) => {
             if (err){
-                console.log(err)
             } else {
                 if (role === 'user' || role === 'admin'){
                     next()

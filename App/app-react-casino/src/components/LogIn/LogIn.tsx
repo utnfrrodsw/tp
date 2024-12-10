@@ -13,7 +13,7 @@ export const LogIn = ({onClose}: {onClose: Function}) => {
     const handleSubmit = async () => {
         try{
             const response = 
-                await axios.post('http://localhost:3000/api/v1/login',
+                await axios.post('/login',
                     { username, password });
             setMessage(response.data);
             navigate("/")

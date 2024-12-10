@@ -40,6 +40,14 @@ class UserService{
             where u.id_user =` + id, {type: QueryTypes.SELECT})
         return res;
     }
+
+    async readBalance(id) {
+        const res = await models.User.sequelize.query(
+            `select balance from Users
+            where id_user =` + id, {type: QueryTypes.SELECT})
+        return res;
+    }
+
 }
 
 module.exports = UserService;

@@ -20,6 +20,10 @@ import { Help } from './components/InfoPages/Help/help.tsx'
 import { Fair } from './components/InfoPages/Fair/fair.tsx'
 import { GamePolicy } from './components/InfoPages/GamePolicy/gamePolicy.tsx'
 
+import { FailPage } from './components/MercadoPagoPages/FailPage/FailPage.tsx'
+import { PendingPage } from './components/MercadoPagoPages/PendingPage/PendingPage.tsx'
+import { SuccessPage } from './components/MercadoPagoPages/SuccessPage/SuccessPage.tsx'
+
 import { Header } from './components/Header/Header.tsx'
 import { Footer } from './components/Footer/Footer.tsx'
 import { HomePage } from './components/HomePage/HomePage.tsx'
@@ -71,10 +75,9 @@ export function App() {
 
     const profile = '/profile/'+ user.username
 
-    const getBalance = (id:string, token:string, role:string) => {
-        axios.get(`http://localhost:3000/api/v1/users/${id}`, { params: { token, role } }).then((response) => {
-            setMoney(response.data.balance);
-            console.log(response)
+    const getBalance = (id: string, token: string, role: string) => {
+        axios.get(`/users/readBalance/${id}`, { params: { token, role } }).then((response) => {
+            setMoney(response.data[0].balance);
         });
     };
 
@@ -100,6 +103,10 @@ export function App() {
 
                         <Route path="/userlist/details/:id" element={<Details/>} />
                         <Route path="/userlist/edituser/:id" element={<EditUser/>} />
+
+                        <Route path='/fail' element={<FailPage/>} />
+                        <Route path='/pending' element={<PendingPage />} />
+                        <Route path='/success' element={<SuccessPage />} />
 
                         <Route path="/terms-and-conditions" element={<Terms />} />
                         <Route path='/about-us' element={<AboutUs />} />

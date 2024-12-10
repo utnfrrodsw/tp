@@ -60,6 +60,16 @@ const read = async (req,res) => {
     }
 }
 
+const readBalance = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const response = await service.readBalance(id);
+        res.json(response)
+    } catch (error) {
+        res.status(500).send({ success: false, message: error.message })
+    }
+}
+
 module.exports = {
-    create, get, getById, _delete, update, read
+    create, get, getById, _delete, update, read, readBalance
 };

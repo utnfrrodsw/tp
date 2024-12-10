@@ -61,25 +61,24 @@
 - [x] Borrar todos los Console Log
 - [x] Agregar Constantes (en Dice: id_game )
 - [ ] Funcion para redirijir a la pagina principal
-- [ ] Nombres de las funciones en minuscula
+- [x] Nombres de las funciones en minuscula
 - [ ] Utilizar CSS en Dice
 - [x] Eliminar las cosas que no se utilizan/comentadas
 - [x] BalanceModal texto en ingles
 - [x] Utilizar parametros para agregar balances
 - [ ] handleLogout como una funcion
 - [x] funcion ScrollToTop como una global""
-- [ ] Utilizar padding con ShortHand
+- [x] Utilizar padding con ShortHand
 - [x] Espacio en blanco en el Register
-- [ ] Utilizar variables para clases en Register
+- [x] Utilizar variables para clases en Register
 - [x] Eliminar todos los index
 - [ ] utilizar rem en vez de px (FALTAN DESDE HEADERMENU)
 - [ ] usar variables para colores
 - [ ] nombre de las clases css con guion medio
 - [x] usar const en vez de let
 
-- [ ] La firma del jwtToken deberia estar en un ENV
-- [ ] El URL de el origen no deberia estar Hardocde en el backend
-- [ ] Borrar los services y utilizar solamente los Controladores?
+- [x] La firma del jwtToken deberia estar en un ENV
+- [x] El URL de el origen no deberia estar Hardocde en el backend
 
 
 
