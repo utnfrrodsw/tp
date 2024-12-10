@@ -43,6 +43,7 @@ app.post('/create_preference', async (req, res) => {
                 pending: process.env.URL_CORS_PENDING,
             },
             auto_return: 'approved',
+            notification_url:"https://c018-186-158-145-120.ngrok-free.app/webhook"
         };
 
         const preference = new Preference(client);
@@ -58,6 +59,34 @@ app.post('/create_preference', async (req, res) => {
         });
     }
 });
+
+app.post("/webhook", async function (req, res) {
+    console.log("Se realizo el pago")
+
+    const paymentId = req.query.id;
+    console.log({payment});
+
+    try{
+        const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
+            method: 'GET',
+            headers:{
+                'Authorization': `Bearer ${client.accessToken}`
+            }
+        });
+        
+        if(response.ok) {
+            const data = await response.json();
+            console.log(data);
+        }
+        
+        res.sendStatus(200);
+        }catch (error) {
+            console.error('Error:', error);
+            res.sendStatus(500);
+        }
+})
+
+
 
 // Middleware
 

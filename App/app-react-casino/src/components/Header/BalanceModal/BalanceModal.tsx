@@ -13,6 +13,7 @@ interface BalanceModalProps {
 
 export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, idUser, balance, role }) => {
     const [preferenceId, setPreferenceId] = useState<string | null>(null);
+    const [selectedPrice, setSelectedPrice] = useState<number>(0);
 
     const token = localStorage.getItem('jwt-token');
 
@@ -25,12 +26,12 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
     const [LoadMsg, setLoadMsg] = useState("")
     
 
-    const createPreference = async () => {
+    const createPreference = async (price:number) => {
         try {
             const response = await axios.post("http://localhost:3000/create_preference/", {
-                title: "Tip",
+                title: "Deposit",
                 quantity: 1,
-                price: 100,
+                price,
             });
 
             const { id } = response.data;
@@ -40,8 +41,9 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
         }
     };
 
-    const handleBuy = async () => {
-        const id = await createPreference();
+    const handleBuy = async (price:number) => {
+        setSelectedPrice(price);
+        const id = await createPreference(price);
         if (id) {
             setPreferenceId(id);
         }
@@ -69,11 +71,11 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
                 <div className="modal-body">
                     <h2>Deposit Options</h2>
                     <div className="tips">
-                        <button onClick={handleBuy} className="tip">$1000</button>
-                        <button onClick={handleBuy} className="tip">$2000</button>
-                        <button onClick={handleBuy} className="tip">$5000</button>
-                        <button onClick={handleBuy} className="tip">$10.000</button>
-                        <button onClick={handleBuy} className="tip">$25.000</button>
+                        <button onClick={() => handleBuy(1000)} className="tip">$1000</button>
+                        <button onClick={() => handleBuy(2000)} className="tip">$2000</button>
+                        <button onClick={() => handleBuy(5000)} className="tip">$5000</button>
+                        <button onClick={() => handleBuy(10000)} className="tip">$10.000</button>
+                        <button onClick={() => handleBuy(25000)} className="tip">$25.000</button>
                         {preferenceId && <Wallet initialization={{ preferenceId }} />}
                         <p className='tipAdvertise'>{LoadMsg}</p>
                     </div>
