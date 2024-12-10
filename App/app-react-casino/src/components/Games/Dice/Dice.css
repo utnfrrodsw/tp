@@ -85,7 +85,8 @@
     flex-direction: row;
     width: 90%;
     background-color: var(--purple);
-    padding: 5px;
+    padding: 20px;
+
 }
 
 @media (max-width: 1024px) {
