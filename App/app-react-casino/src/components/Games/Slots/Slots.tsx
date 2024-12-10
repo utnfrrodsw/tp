@@ -149,13 +149,7 @@ export function Slots(user:User) {
         slotSpin.pause()
         slotSpin.currentTime = 0
         if((Reels[x1] == Reels[y1]) && (Reels[z1] == Reels[x1]) && (Reels[z1] == Reels[y1])) {
-            if (bet == 50) {
-                setWin("You win 200 credits!")
-            } else if (bet == 150) {
-                setWin("You win 600 credits!")
-            } else if (bet == 300) {
-                setWin("You win 1200 credits!")
-            }
+            setWin(`You win ${bet * 4} credits!`)
             if(isMuted == false) {
                 slotWin.play() 
             }
@@ -163,13 +157,7 @@ export function Slots(user:User) {
             user.setMoney(user.balance + (bet * 4))
             patchUser(user.balance + (bet * 4))
         } else if ((Reels[x2] == Reels[y1]) && (Reels[z0] == Reels[y1]) && (Reels[x2] == Reels[z0])) {
-            if (bet == 50) {
-                setWin("You win 100 credits!")
-            } else if (bet == 150) {
-                setWin("You win 300 credits!")
-            } else if (bet == 300) {
-                setWin("You win 600 credits!")
-            }
+            setWin(`You win ${bet * 2} credits!`)
             if(isMuted == false) {
                 slotWin.play() 
             }
@@ -177,13 +165,7 @@ export function Slots(user:User) {
             user.setMoney(user.balance + (bet * 2))
             patchUser(user.balance + (bet * 2))
         } else if ((Reels[x0] == Reels[y1]) && (Reels[z2] == Reels[y1]) && (Reels[x0] == Reels[z2])) {
-            if (bet == 50) {
-                setWin("You win 100 credits!")
-            } else if (bet == 150) {
-                setWin("You win 300 credits!")
-            } else if (bet == 300) {
-                setWin("You win 600 credits!")
-            }
+            setWin(`You win ${bet * 2} credits!`)
             if(isMuted == false) {
                 slotWin.play() 
             }
