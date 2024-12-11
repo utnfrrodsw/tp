@@ -43,7 +43,7 @@ CRUD:
 
 Listado:
 
-•	Listado de usuarios filtrados por nivel. Muestra Nombre, Nivel y Puntuación. Detalle muestra listado de reseñas en el perfil de dicho usuario.
+•	Listado de usuarios ordenados por nombre de usuario. Muestra Nombre, Nivel y Puntuación. Detalle muestra listado de reseñas en el perfil de dicho usuario.
 
 •	Listado de reseñas muestra Nombre(Juego) Puntuación, Fecha_Redaccion y Estado. Detalle muestra Cuerpo.
 
