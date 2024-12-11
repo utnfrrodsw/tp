@@ -42,7 +42,7 @@ export function BettingHistory() {
 
     return (
         <>
-        <div className="list-main">
+        <div className="bh-list-main">
             <div className='title'>
                 <h2 className='title-user font-bold '>Betting History</h2>
                 <div className="new-user-main">

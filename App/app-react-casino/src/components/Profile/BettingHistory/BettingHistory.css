@@ -23,6 +23,11 @@
     padding-bottom: 1rem;
 }
 
+.bh-list-main {
+    padding: 6rem 1rem 5rem 1rem;
+    width: 100%;
+}
+
 .filter-balance {
     display: flex;
     justify-content: space-between;
@@ -33,7 +38,7 @@
     display: flex;
     align-items: center;
     background-color: #710991;
-    color: #fff;
+    color: var(--white);
     padding: 5px 10px;
     border: none;
     border-radius: 4px; 
