@@ -58,7 +58,7 @@ export function Leaderboard() {
     };
 
     return (
-        <div className="list-main">
+        <div className="leaderboard-list-main">
             <div className='title'>
                 <h2 className='title-user'>Leaderboard</h2>
                 <div className="new-user-main">
