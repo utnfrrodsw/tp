@@ -43,7 +43,7 @@ app.post('/create_preference', async (req, res) => {
                 pending: process.env.URL_CORS_PENDING,
             },
             auto_return: 'approved',
-            notification_url:"https://3c83-186-158-145-120.ngrok-free.app"
+            notification_url:"https://bd50-186-158-145-120.ngrok-free.app/webhook"
         };
 
         const preference = new Preference(client);
@@ -63,10 +63,8 @@ app.post('/create_preference', async (req, res) => {
 
 app.post("/webhook", async function (req, res) {
     console.log("Se realizo el pago")
-
-    const paymentId = req.query.id;
-    console.log({payment});
-
+    
+    const paymentId = req.query['data.id'];
     try{
         const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
             method: 'GET',
