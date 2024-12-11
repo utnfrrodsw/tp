@@ -43,7 +43,7 @@ app.post('/create_preference', async (req, res) => {
                 pending: process.env.URL_CORS_PENDING,
             },
             auto_return: 'approved',
-            notification_url:"https://df65-186-158-145-120.ngrok-free.app"
+            notification_url:"https://3c83-186-158-145-120.ngrok-free.app"
         };
 
         const preference = new Preference(client);
