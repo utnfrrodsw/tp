@@ -167,7 +167,7 @@ export function Slots(user:User) {
         } else if ((Reels[x0] == Reels[y1]) && (Reels[z2] == Reels[y1]) && (Reels[x0] == Reels[z2])) {
             setWin(`You win ${bet * 2} credits!`)
             if(isMuted == false) {
-                slotWin.play() 
+                slotWin.play()
             }
             postGame(bet, bet*2)
             user.setMoney(user.balance + (bet * 2))
