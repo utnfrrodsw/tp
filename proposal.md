@@ -18,7 +18,7 @@ Realización de una página web de reseña de videojuegos hechas por usuarios, d
 ### Modelo
 [ModeloDominio.png](https://github.com/angelofaraci/tp/blob/db26bb9a40f49eabd76474fadd07283ecde9d922/ModeloDominio.png)
 
-## Alcance Funcional 
+## Alcance Funcional
 
 Casos de uso:
 
@@ -33,18 +33,9 @@ CRUD:
 
 •	CRUD Usuario
 
-•	CRUD Empresa
-
 •	CRUD Reseña
 
 •	CRUD Administrador
-
-•	CRUD Nivelación
-
-•	CRUD Interacción
-
-•	CRUD Categoría
-
 
 
 
@@ -52,9 +43,9 @@ CRUD:
 
 Listado:
 
-•	Listado de usuarios filtrados por nivel. Muestra ID_Usuario, Nombre y Puntuación. Detalle muestra listado de reseñas.
+•	Listado de usuarios filtrados por nivel. Muestra Nombre, Nivel y Puntuación. Detalle muestra listado de reseñas en el perfil de dicho usuario.
 
-•	Listado de reseñas muestra Nombre(Juego) ID_Reseña, Puntuación, Fecha_Redaccion y Estado. Detalle muestra Cuerpo e Interacciones.
+•	Listado de reseñas muestra Nombre(Juego) Puntuación, Fecha_Redaccion y Estado. Detalle muestra Cuerpo.
 
 
 
