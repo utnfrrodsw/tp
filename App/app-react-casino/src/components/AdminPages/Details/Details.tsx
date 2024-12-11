@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../../libs/axios.tsx'
 import './Details.css';
 import { useState } from 'react';
 import { useEffect } from 'react';

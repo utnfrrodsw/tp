@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../libs/axios'
 import { useContext } from "react";
 import { userContext } from '../../App';
 import { useEffect, useState } from 'react';

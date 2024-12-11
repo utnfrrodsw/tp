@@ -1,6 +1,6 @@
 import './BalanceModal.css';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
-import axios from "axios";
+import axios from '../../../libs/axios'
 import { useState, useEffect } from 'react';
 
 interface BalanceModalProps {

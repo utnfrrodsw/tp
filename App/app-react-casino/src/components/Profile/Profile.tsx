@@ -3,7 +3,7 @@ import { defaultScroll } from "../../libs/globalFunctions.tsx";
 import { useDropzone } from 'react-dropzone';
 import { useContext } from "react";
 import { userContext } from '../../App.tsx';
-import axios from 'axios';
+import axios from '../../libs/axios.tsx'
 import { useNavigate } from 'react-router-dom';
 import { NavLink as Link } from 'react-router-dom';
 import './Profile.css';

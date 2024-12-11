@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink as Link, useNavigate} from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../libs/axios.tsx'
 import './Register.css';
 import { toast } from 'sonner';
 import { defaultScroll } from "../../libs/globalFunctions.tsx";

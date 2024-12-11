@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import axios from 'axios'
+import axios from '../../../libs/axios.tsx'
 import { useContext } from "react";
 import { userContext } from "../../../App.tsx";
 import { defaultScroll } from "../../../libs/globalFunctions.tsx";

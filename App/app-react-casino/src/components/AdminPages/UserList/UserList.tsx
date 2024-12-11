@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../../libs/axios.tsx'
 import { useEffect, useState } from 'react';
 import './UserList.css';
 import { NavLink as Link, useNavigate } from 'react-router-dom'

@@ -1,6 +1,6 @@
 import { useState, useEffect, ChangeEvent, useRef } from "react";
 import { GamesSideBar } from '../SideBar/GamesSideBar.tsx';
-import axios from 'axios';
+import axios from '../../../libs/axios.tsx'
 import { useContext } from "react";
 import { userContext } from "../../../App.tsx";
 import { toast } from 'sonner';

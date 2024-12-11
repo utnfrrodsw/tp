@@ -8,7 +8,7 @@ import slotSpinStart from "../../../assets/sounds/slotStart.mp3"
 import slotWinSound from "../../../assets/sounds/SlotWin.mp3"
 import clickSound from "../../../assets/sounds/click.mp3"
 import mutedIcon from "../../../assets/images/mutedIcon.png"
-import axios from 'axios';
+import axios from '../../../libs/axios.tsx'
 import { defaultScroll } from "../../../libs/globalFunctions.tsx";
 
 interface User{
