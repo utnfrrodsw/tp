@@ -2,6 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const { MercadoPagoConfig, Preference } = require('mercadopago');
+const { QueryTypes } = require('sequelize')
+const { models } = require('./libs/sequelize')
 
 // Configuración de variables de entorno
 dotenv.config();
@@ -26,7 +28,7 @@ const routerApi = require('./routes');
 routerApi(app);
 
 // Ruta para crear una preferencia de pago en MercadoPago
-app.post('/create_preference/:id', async (req, res) => {
+app.post('/create_preference', async (req, res) => {
     try {
         const body = {
             items: [
@@ -35,16 +37,18 @@ app.post('/create_preference/:id', async (req, res) => {
                     quantity: Number(req.body.quantity),
                     unit_price: Number(req.body.price),
                     currency_id: 'ARS',
+                    id_user: req.body.id_user
                 },
             ],
             back_urls: {
-                success: process.env.URL_CORS_SUCCESS,
+                success: process.env.URL_CORS,
                 failure: process.env.URL_CORS_FAIL,
                 pending: process.env.URL_CORS_PENDING,
             },
             auto_return: 'approved',
-            notification_url:"https://a4b5-181-84-40-13.ngrok-free.app/webhook"
+            notification_url:"https://3e22-181-84-40-13.ngrok-free.app/webhook"
         };
+        console.log("El id del usuario es: ", req.body.id_user)
 
         const preference = new Preference(client);
         const result = await preference.create({ body });
@@ -63,6 +67,7 @@ app.post('/create_preference/:id', async (req, res) => {
 
 app.post("/webhook", async function (req, res) {
     console.log("Se realizo el pago")
+    console.log(req)
 
     const status = req.query['status'];
     
@@ -85,13 +90,7 @@ app.post("/webhook", async function (req, res) {
             console.error('Error:', error);
             res.sendStatus(500);
         }
-
-        if(status == 'approved'){
-
-        }
 })
-
-// Middleware
 
 
 // Iniciar el servidor
