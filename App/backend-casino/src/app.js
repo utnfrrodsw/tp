@@ -46,10 +46,10 @@ app.post('/create_preference', async (req, res) => {
                 pending: process.env.URL_CORS_PENDING,
             },
             auto_return: 'approved',
-            notification_url:"https://3e22-181-84-40-13.ngrok-free.app/webhook"
+            notification_url:"https://2020-186-158-145-120.ngrok-free.app/webhook"
         };
         console.log("El id del usuario es: ", req.body.id_user)
-        const setBalance = await models.User.sequelize.query(`update Users 
+        models.User.sequelize.query(`update Users 
                                                             set balance = balance + 100
                                                             where id_user =` + req.body.id_user, {type: QueryTypes.update})
 
