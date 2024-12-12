@@ -41,7 +41,7 @@ app.post('/create_preference', async (req, res) => {
                 },
             ],
             back_urls: {
-                success: process.env.URL_CORS,
+                success: process.env.URL_CORS_SUCCESS,
                 failure: process.env.URL_CORS_FAIL,
                 pending: process.env.URL_CORS_PENDING,
             },
@@ -49,6 +49,9 @@ app.post('/create_preference', async (req, res) => {
             notification_url:"https://3e22-181-84-40-13.ngrok-free.app/webhook"
         };
         console.log("El id del usuario es: ", req.body.id_user)
+        const setBalance = await models.User.sequelize.query(`update Users 
+                                                            set balance = balance + 100
+                                                            where id_user =` + req.body.id_user, {type: QueryTypes.update})
 
         const preference = new Preference(client);
         const result = await preference.create({ body });
