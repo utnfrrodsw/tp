@@ -28,10 +28,10 @@ export const BalanceModal: React.FC<BalanceModalProps> = ({ onClose, setMoney, i
 
     const createPreference = async (price:number) => {
         try {
-            const response = await axios.post("http://localhost:3000/create_preference/", {
+            const response = await axios.post(`http://localhost:3000/create_preference/${idUser}`, {
                 title: "Deposit",
                 quantity: 1,
-                price: 5,
+                price: 5
             });
 
             const { id } = response.data;

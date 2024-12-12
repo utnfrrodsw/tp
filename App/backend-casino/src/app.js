@@ -26,7 +26,7 @@ const routerApi = require('./routes');
 routerApi(app);
 
 // Ruta para crear una preferencia de pago en MercadoPago
-app.post('/create_preference', async (req, res) => {
+app.post('/create_preference/:id', async (req, res) => {
     try {
         const body = {
             items: [
@@ -63,6 +63,8 @@ app.post('/create_preference', async (req, res) => {
 
 app.post("/webhook", async function (req, res) {
     console.log("Se realizo el pago")
+
+    const status = req.query['status'];
     
     const paymentId = req.query['data.id'];
     try{
@@ -82,6 +84,10 @@ app.post("/webhook", async function (req, res) {
         }catch (error) {
             console.error('Error:', error);
             res.sendStatus(500);
+        }
+
+        if(status == 'approved'){
+
         }
 })
 
