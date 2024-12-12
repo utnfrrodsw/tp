@@ -66,7 +66,6 @@
 - [x] Eliminar las cosas que no se utilizan/comentadas
 - [x] BalanceModal texto en ingles
 - [x] Utilizar parametros para agregar balances
-- [ ] handleLogout como una funcion
 - [x] funcion ScrollToTop como una global""
 - [x] Utilizar padding con ShortHand
 - [x] Espacio en blanco en el Register

@@ -32,6 +32,13 @@ export function Dice(user: User) {
     const [playMessage, setPlayMessage] = useState("");
     const [isMuted, setIsMuted] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    
+    function handleRedirect() {
+        toast.error('We encountered an error...', { description: 'Redirecting to home page' })
+        setTimeout(() => {
+            navigate("/")
+        }, 1000);
+    }
 
     const sliderRef = useRef<HTMLInputElement | null>(null);
     const thumbRef = useRef<HTMLDivElement | null>(null);
@@ -48,11 +55,8 @@ export function Dice(user: User) {
             role,
             balance: `${newMoney}`,
         })
-        .catch((error) => {
-            toast.error(error.reponse.data, { description: 'Redirecting to home page' })
-                setTimeout(() => {
-                navigate("/")
-                }, 1000);
+        .catch(() => {
+            handleRedirect()
         });
     }
 
@@ -65,11 +69,8 @@ export function Dice(user: User) {
             bet: bet,
             winning: win
         })
-        .catch((error) => {
-            toast.error(error.reponse.data, { description: 'Redirecting to home page' })
-            setTimeout(() => {
-                navigate("/")
-            }, 1000);
+        .catch(() => {
+            handleRedirect()
         });
     }
 
