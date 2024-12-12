@@ -1,10 +1,15 @@
 import { NavLink as Link } from 'react-router-dom'
 import './SuccessPage.css';
 import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useLocation } from 'react-router-dom';
 
 
 export function SuccessPage(){
     defaultScroll()
+
+    let location = useLocation()
+    console.log(location)
+
     return(
         <>
         <div className="error-container">

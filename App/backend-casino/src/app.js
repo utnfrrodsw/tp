@@ -38,12 +38,12 @@ app.post('/create_preference/:id', async (req, res) => {
                 },
             ],
             back_urls: {
-                success: process.env.URL_CORS,
+                success: process.env.URL_CORS_SUCCESS,
                 failure: process.env.URL_CORS_FAIL,
                 pending: process.env.URL_CORS_PENDING,
             },
             auto_return: 'approved',
-            notification_url:"https://bd50-186-158-145-120.ngrok-free.app/webhook"
+            notification_url:"https://a4b5-181-84-40-13.ngrok-free.app/webhook"
         };
 
         const preference = new Preference(client);
