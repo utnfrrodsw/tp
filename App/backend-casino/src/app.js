@@ -70,8 +70,6 @@ app.post('/create_preference', async (req, res) => {
 
 app.post("/webhook", async function (req, res) {
 
-    const status = req.query['status'];
-    
     const paymentId = req.query['data.id'];
     try{
         const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
@@ -89,6 +87,7 @@ app.post("/webhook", async function (req, res) {
                     where id_user = ` + userID, {type: QueryTypes.update})
             }
         }
+
         
         res.sendStatus(200);
         }catch (error) {
