@@ -17,12 +17,10 @@ export function Help() {
             })
             .then(
                 () => {
-                    console.log('SUCCESS');
                     return toast.success('Mail enviado con éxito!');
                 },
                 (error) => {
-                    console.log('FAILED', error.text);
-                    return toast.error('Ocurrió un error al enviar el Mail');
+                    return toast.error(error, { description: 'Ocurrió un error al enviar el Mail' });
                 },
             );
     };
