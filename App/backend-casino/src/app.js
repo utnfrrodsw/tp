@@ -5,6 +5,9 @@ const { MercadoPagoConfig, Preference } = require('mercadopago');
 const { QueryTypes } = require('sequelize')
 const { models } = require('./libs/sequelize')
 
+let idUser = "";
+let price = 0;
+
 // Configuración de variables de entorno
 dotenv.config();
 
@@ -49,9 +52,8 @@ app.post('/create_preference', async (req, res) => {
             notification_url:"https://2020-186-158-145-120.ngrok-free.app/webhook"
         };
         console.log("El id del usuario es: ", req.body.id_user)
-        models.User.sequelize.query(`update Users 
-                                                            set balance = balance + 100
-                                                            where id_user =` + req.body.id_user, {type: QueryTypes.update})
+        idUser = req.body.id_user;
+        price =  Number(req.body.price);
 
         const preference = new Preference(client);
         const result = await preference.create({ body });
@@ -72,8 +74,6 @@ app.post("/webhook", async function (req, res) {
     console.log("Se realizo el pago")
     console.log(req)
 
-    const status = req.query['status'];
-    
     const paymentId = req.query['data.id'];
     try{
         const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
@@ -86,7 +86,13 @@ app.post("/webhook", async function (req, res) {
         if(response.ok) {
             const data = await response.json();
             console.log(data);
+            if(status == 'approved'){
+                models.User.sequelize.query(`update Users 
+                    set balance = balance + 100
+                    where id_user =` + idUser, {type: QueryTypes.update})
+            }
         }
+
         
         res.sendStatus(200);
         }catch (error) {
