@@ -45,7 +45,6 @@ const registerUser = async(req,res) => {
         }
         );
         res.status(200).send('Registrado Correctamente');
-        console.log('Registrado')
     } catch(err){
         res.status(500).json('Ocurrio un error al registrarse')
         console.log(err)

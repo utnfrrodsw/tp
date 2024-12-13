@@ -11,8 +11,7 @@ const adminAuth = (req, res, next) => {
                 console.log(err);
             } else {
                 if (role == 'admin'){
-                    console.log('')
-                    next()
+                        next()
                 }
                 else {
                     return res.status(400).send("Error al verificar Admin")
