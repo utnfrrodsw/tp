@@ -48,7 +48,7 @@ app.post('/create_preference', async (req, res) => {
                 pending: process.env.URL_CORS_PENDING,
             },
             auto_return: 'approved',
-            notification_url:"https://a8f5-181-84-40-13.ngrok-free.app/webhook"
+            notification_url:"https://57a0-186-158-145-120.ngrok-free.app/webhook"
         };
 
         userID = req.body.id_user
@@ -70,6 +70,7 @@ app.post('/create_preference', async (req, res) => {
 
 app.post("/webhook", async function (req, res) {
 
+
     const paymentId = req.query['data.id'];
     try{
         const response = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
@@ -78,19 +79,25 @@ app.post("/webhook", async function (req, res) {
                 'Authorization': `Bearer ${client.accessToken}`
             }
         });
-
+        
         if(response.ok) {
             const data = await response.json();
-            if(data.status = "approved") {
-                models.User.sequelize.query(`update Users 
-                    set balance = balance + ` + price + `
-                    where id_user = ` + userID, {type: QueryTypes.update})
-            }
+            console.log("esto es el data", data)
+            
+            try {
+                if(data.status === "approved") {
+                    models.User.sequelize.query(`update Users 
+                        set balance = balance + ` + price + `
+                        where id_user = ` + userID, {type: QueryTypes.update})
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
         }
 
         
         res.sendStatus(200);
-        }catch (error) {
+    }catch (error) {
             console.error('Error:', error);
             res.sendStatus(500);
         }
