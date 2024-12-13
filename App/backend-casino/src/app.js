@@ -82,7 +82,6 @@ app.post("/webhook", async function (req, res) {
         
         if(response.ok) {
             const data = await response.json();
-            console.log("esto es el data", data)
             
             try {
                 if(data.status === "approved") {
