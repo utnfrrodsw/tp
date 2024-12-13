@@ -104,7 +104,7 @@ export function Header({ balance, profile, setMoney }: HeaderProps) {
 
                 
 
-                {modalOpen && <BalanceModal onClose={handleModalClose} setMoney={setMoney} idUser={contextData.id_user} balance={balance} role={contextData.role}/>}
+                {modalOpen && <BalanceModal onClose={handleModalClose} idUser={contextData.id_user}/>}
             </>
         );
     } if (contextData.role === 'admin'){

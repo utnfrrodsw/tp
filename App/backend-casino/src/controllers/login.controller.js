@@ -34,7 +34,7 @@ const signInUser = async (req, res) => {
         }
 
         //Autentificar con JWT
-        const token = jwt.sign({data}, process.env.TOKEN_KEY, { expiresIn: '1h'});
+        const token = jwt.sign({data}, process.env.TOKEN_KEY, { expiresIn: '72h'});
 
         //Send status
         res.status(200).send({ message: 'success', accessToken: token })
