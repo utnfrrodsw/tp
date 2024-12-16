@@ -1,10 +1,10 @@
 import { NavLink as Link } from 'react-router-dom'
 import './PendingPage.css';
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 
 
 export function PendingPage(){
-    defaultScroll()
+    useDefaultScroll()
     return(
         <>
         <div className="error-container">

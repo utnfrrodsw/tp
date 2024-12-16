@@ -1,9 +1,9 @@
 import { NavLink as Link } from 'react-router-dom'
 import './SuccessPage.css';
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 
 export function SuccessPage(){
-    defaultScroll()
+    useDefaultScroll()
 
     return(
         <>

@@ -1,9 +1,9 @@
 
 import './AboutUs.css';
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 
 export function AboutUs() {
-    defaultScroll()
+    useDefaultScroll()
 
     return (
         <div className="au-container">

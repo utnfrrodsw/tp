@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router-dom'
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 import { useContext } from "react";
 import { userContext } from "../../../App.tsx";
 
 export function Details() {
-    defaultScroll()
+    useDefaultScroll()
 
     const contextData = useContext(userContext);
     const navigate = useNavigate()

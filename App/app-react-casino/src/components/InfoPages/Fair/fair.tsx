@@ -1,8 +1,8 @@
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 import './fair.css';
 
 export function Fair(){
-    defaultScroll()
+    useDefaultScroll()
 
     return(
         <>

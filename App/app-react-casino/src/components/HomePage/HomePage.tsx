@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import './HomePage.css'
-import { defaultScroll } from "../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../libs/globalFunctions.tsx";
 
 export function HomePage() {
-    defaultScroll()
+    useDefaultScroll()
 
 
     return(

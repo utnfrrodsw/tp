@@ -3,10 +3,10 @@ import { NavLink as Link, useNavigate} from 'react-router-dom';
 import axios from '../../libs/axios.tsx'
 import './Register.css';
 import { toast } from 'sonner';
-import { defaultScroll } from "../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../libs/globalFunctions.tsx";
 
 export function Register(){
-    defaultScroll()
+    useDefaultScroll()
 
       const[username, setUsername] = useState('');
       const[first_name, setFirstName] = useState('');
@@ -40,8 +40,9 @@ export function Register(){
     } }
 
     function handleCountryChange(e: React.ChangeEvent<HTMLSelectElement>) {
-        setCountry(e.currentTarget.value);
+        setCountry(parseInt(e.currentTarget.value));
     }
+    
 
     return(
         <div className="mt-[88px] lg:relative">

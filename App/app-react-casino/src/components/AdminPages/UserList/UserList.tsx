@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import './UserList.css';
 import { NavLink as Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner';
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 import { useContext } from "react";
 import { userContext } from "../../../App.tsx";
 
@@ -17,7 +17,7 @@ interface UserType {
 
 
 export function UserList() {
-    defaultScroll()
+    useDefaultScroll()
     const navigate = useNavigate()
 
     const contextData = useContext(userContext);

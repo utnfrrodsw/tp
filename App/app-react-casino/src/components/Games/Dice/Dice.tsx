@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { userContext } from "../../../App.tsx";
 import { toast } from 'sonner';
 import { useNavigate } from "react-router-dom";
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 
 import mutedIcon from "../../../assets/images/mutedIcon.png";
 import diceSound from "../../../assets/sounds/dice.mp3";
@@ -17,7 +17,7 @@ interface User {
 }
 
 export function Dice(user: User) {
-    defaultScroll()
+    useDefaultScroll()
 
     const gameNumber = 1
     const contextData = useContext(userContext);

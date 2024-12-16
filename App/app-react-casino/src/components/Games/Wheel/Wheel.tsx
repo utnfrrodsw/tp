@@ -2,7 +2,7 @@ import { useState, ChangeEvent } from 'react';
 import axios from '../../../libs/axios.tsx'
 import { useContext } from "react";
 import { userContext } from "../../../App.tsx";
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 
 import './Wheel.css';
 import { GamesSideBar } from '../SideBar/GamesSideBar.tsx';
@@ -31,7 +31,7 @@ interface User{
 }
 
 export function Wheel(user:User) {
-  defaultScroll()
+  useDefaultScroll()
 
   const contextData = useContext(userContext);
   const token = localStorage.getItem('jwt-token');

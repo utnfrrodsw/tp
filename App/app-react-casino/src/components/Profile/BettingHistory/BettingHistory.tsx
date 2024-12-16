@@ -5,7 +5,7 @@ import { userContext } from "../../../App.tsx";
 import './BettingHistory.css';
 import { NavLink as Link } from 'react-router-dom';
 import '../Profile.css';
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 
 interface UserType {
     id_user: number;
@@ -20,7 +20,7 @@ interface UserType {
 export function BettingHistory() {
     const contextData = useContext(userContext);
     const role = contextData.role
-    defaultScroll()
+    useDefaultScroll()
 
     const [user, setUser] = useState<UserType[]>([]);
 

@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 import emailjs from '@emailjs/browser';
 import { toast } from 'sonner';
 import './Help.css';
 
 export function Help() {
-    defaultScroll()
+    useDefaultScroll()
     
 
     const form = useRef<HTMLFormElement | null>(null);

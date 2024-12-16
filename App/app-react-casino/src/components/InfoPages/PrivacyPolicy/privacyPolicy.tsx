@@ -1,8 +1,8 @@
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 import './privacyPolicy.css';
 
 export function PrivacyPolicy(){
-    defaultScroll()
+    useDefaultScroll()
 
     return(
         <>

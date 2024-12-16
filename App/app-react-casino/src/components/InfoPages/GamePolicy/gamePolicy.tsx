@@ -1,8 +1,8 @@
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 import './gamePolicy.css';
 
 export function GamePolicy() {
-    defaultScroll()
+    useDefaultScroll()
       
     return (
         <div className="gp-container"> 

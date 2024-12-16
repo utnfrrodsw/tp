@@ -1,8 +1,8 @@
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 import './Terms.css';
 
 export function Terms() {
-    defaultScroll()
+    useDefaultScroll()
     return(
         <>
         <div className="terms-container">

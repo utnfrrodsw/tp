@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 
 
-export function defaultScroll() { 
+export function useDefaultScroll() { 
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
 }
+
+export default useDefaultScroll;

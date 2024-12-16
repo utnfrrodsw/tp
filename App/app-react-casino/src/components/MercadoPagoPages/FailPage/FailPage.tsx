@@ -1,10 +1,10 @@
 import { NavLink as Link } from 'react-router-dom'
 import './FailPage.css';
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 
 
 export function FailPage(){
-    defaultScroll()
+    useDefaultScroll()
     return(
         <>
         <div className="error-container">
