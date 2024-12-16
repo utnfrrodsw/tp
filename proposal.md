@@ -37,7 +37,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Alumno<br>2. CRUD Profesor<br>3. CRUD Curso<br>4. CRUD Parcial<br>5. CRUD Certificado<br>6. CRUD TP<br>7. CRUD RtaParcial<br>8. CRUD Inscripcion<br>9. CRUD RtaTP|
-|CUU/Epic|1. Seleccionar un curso para la inscripcion<br>2. Crear cuenta en el programa<br>3. Dar de alta un Curso siendo Profesor<br>4. Emititr un Certificado de un Alumno en un Curso por el Profesor|
+|CUU/Epic|1. Seleccionar un curso para la inscripcion<br>2. Crear cuenta en el programa<br>3. Realizar un parcial de un curso del alumno<br>4. Emitir un Certificado de un Alumno en un Curso por el Profesor|
 
 
 ### Alcance Adicional Voluntario
@@ -46,7 +46,6 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
+|Listados |1. Listado de los certificados emitidos del alumno logueado<br> 2. Listado de los alumnos inscriptos de un curso del profesor logueado <br> 3. Listado de todos los cursos del profesor logueado <br>4. Listado de los cursos a los que el alumno logueado esta inscripto <br>5. Listado de todos los cursos que el alumno logueado puede inscribirse <br>6. Listado de las Rtas de los TPs del curso seleccionado del profesor logueado <br>7. Listado de las Rtas del Parcial del curso seleccionado del profesor logueado <br>8. Listado de los materiales sin asignar a ningun curso <br>9. Listado de los materiales de un curso seleccionado del profesor <br>10. Listado de todos los materiales |
 |CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
 
