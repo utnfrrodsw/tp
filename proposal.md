@@ -47,5 +47,5 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |Listados |1. Listado de los certificados emitidos del alumno logueado<br> 2. Listado de los alumnos inscriptos de un curso del profesor logueado <br> 3. Listado de todos los cursos del profesor logueado <br>4. Listado de los cursos a los que el alumno logueado esta inscripto <br>5. Listado de todos los cursos que el alumno logueado puede inscribirse <br>6. Listado de las Rtas de los TPs del curso seleccionado del profesor logueado <br>7. Listado de las Rtas del Parcial del curso seleccionado del profesor logueado <br>8. Listado de los materiales sin asignar a ningun curso <br>9. Listado de los materiales de un curso seleccionado del profesor <br>10. Listado de todos los materiales |
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
+|CUU/Epic|1. Generar una Rta TP del curso seleccionado por el alumno logueado <br> 2. Generar el Parcial del curso seleccionado del profesor logueado <br>3. Generar el TP del curso seleccionado del profesor logueado <br>4. Asociar Materiales a un curso del profesor logueado <br>5. Generar un listado de todos los Certificados <br> 6. Cambiar contraseña del usuario loguedo (implementando encriptacion)<br> 7. Genarar nuevos Materiales|
 
