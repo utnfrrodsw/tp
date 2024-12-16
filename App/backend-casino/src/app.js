@@ -48,7 +48,7 @@ app.post('/create_preference', async (req, res) => {
                 pending: process.env.URL_CORS_PENDING,
             },
             auto_return: 'approved',
-            notification_url:"https://57a0-186-158-145-120.ngrok-free.app/webhook"
+            notification_url: process.env.URL_MP_NOTIFICATION
         };
 
         userID = req.body.id_user
