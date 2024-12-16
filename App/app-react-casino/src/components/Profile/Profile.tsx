@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { defaultScroll } from "../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../libs/globalFunctions.tsx";
 import { useDropzone } from 'react-dropzone';
 import { useContext } from "react";
 import { userContext } from '../../App.tsx';
@@ -11,7 +11,7 @@ import { toast } from 'sonner';
 
 export const Profile = () => {
     const contextData = useContext(userContext);
-    defaultScroll()
+    useDefaultScroll()
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [file, setFile] = useState<File | null>(null);

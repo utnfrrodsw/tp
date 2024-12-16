@@ -9,7 +9,7 @@ import slotWinSound from "../../../assets/sounds/SlotWin.mp3"
 import clickSound from "../../../assets/sounds/click.mp3"
 import mutedIcon from "../../../assets/images/mutedIcon.png"
 import axios from '../../../libs/axios.tsx'
-import { defaultScroll } from "../../../libs/globalFunctions.tsx";
+import { useDefaultScroll } from "../../../libs/globalFunctions.tsx";
 
 interface User{
     balance: number
@@ -17,7 +17,7 @@ interface User{
 }
 
 export function Slots(user:User) {
-    defaultScroll()
+    useDefaultScroll()
     
     const token = localStorage.getItem('jwt-token');
     const contextData = useContext(userContext);
