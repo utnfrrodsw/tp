@@ -1,0 +1,61 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="filters-card">
+    <div class="filters">
+      <h1>Filtros</h1>
+
+      <div class="filter-item">
+        <label for="precioMin">Precio Mínimo:</label>
+        <input type="number" id="precioMin" name="precioMin"  placeholder="Ingrese el precio mínimo" [(ngModel)]="precioMin">
+      </div>
+
+      <div class="filter-item">
+        <label for="precioMax">Precio Máximo:</label>
+        <input type="number" id="precioMax" name="precioMax"  placeholder="Ingrese el precio máximo" [(ngModel)]="precioMax">
+      </div>
+
+      <div class="filter-item">
+        <label for="tipoHabitacion">Tipo de Habitación:</label>
+        <select id="tipoHabitacion" name="tipoHabitacion" [(ngModel)]="tipoSeleccionado">
+          <option *ngFor="let tipo of tiposHabitacion" [value]="tipo.id">
+            {{ tipo.denominacion }}
+          </option>
+        </select>
+      </div>
+
+      <div class="filter-item">
+        <button (click)="aplicarFiltro()" class="btn-aplicar-filtro">
+          Aplicar Filtro
+        </button>
+      </div>
+
+      <div class="filter-item">
+        <button (click)="borrarFiltros()" class="btn-borrar-filtro">
+          Borrar Filtros
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card custom-card" *ngFor="let habitacion of habitaciones">
+      <img [src]="habitacion.foto" class="custom-card-img" alt="Foto de la habitación">
+      <div class="custom-card-body">
+        <h5 class="card-title">
+          Habitación N° {{ habitacion.nroHabitacion }} - {{ getTipoNombre(habitacion.idTipo) }}
+        </h5>
+        <p class="card-text">
+          Descripción: {{ habitacion.descripcion }} <br>
+          Capacidad: {{ habitacion.capacidadPersonas }} personas <br>
+          Precio por día: ${{ habitacion.precioXdia }} <br>
+          Provincia: {{ provincia?.nombre }} <br>
+          Localidad: {{ localidad?.nombre }} <br>
+        </p>
+        <button class="btn-reservar" (click)="reservarHabitacion(habitacion.nroHabitacion)">
+          Reservar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

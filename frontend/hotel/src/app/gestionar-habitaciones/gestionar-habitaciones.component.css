@@ -1,0 +1,127 @@
+/* Contenedor para la barra de búsqueda y el botón de nueva habitación */
+.search-and-add-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 90px;
+}
+
+/* Estilos para el botón "+ Nueva Habitación" */
+.add-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: #2aaf49; 
+    transition: background-color 0.3s ease;
+    height: 40px;
+}
+
+.add-button:hover {
+    background-color: #218838;
+}
+
+/* Barra de búsqueda */
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    width: 350px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-icon {
+    font-size: 24px;
+    color: #888;
+    margin-right: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 8px;
+}
+
+input[type="text"]::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+
+.tabla {
+    width: 90%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cabeza {
+    background-color: #3fb6e6;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+}
+
+.cabeza th {
+    padding: 12px;
+    font-size: 16px;
+    border-bottom: 2px solid #e0e0e0;
+    text-align: center;
+}
+
+.cuerpo tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.cuerpo tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.cuerpo th {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #d0d0d0;
+}
+
+
+button {
+    padding: 6px 12px;
+    margin: 0 4px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: #007bff;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Específico para el botón de eliminar */
+button:nth-child(2) {
+    background-color: #dc3545;
+}
+
+button:nth-child(2):hover {
+    background-color: #c82333;
+}
+
+/* Título */
+h4 {
+    text-align: center;
+    margin-top: 20px;
+}

@@ -1,0 +1,57 @@
+.alert-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .alert-title {
+    font-size: 24px;
+    margin: 0 0 10px;
+    text-align: center;
+  }
+  
+  .alert-content {
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .alert-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .cancelar-button,
+  .checkin-button {
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  
+  .cancelar-button {
+    background-color: #f44336; /* Rojo */
+    color: white;
+  }
+  
+  .cancelar-button:hover {
+    background-color: #d32f2f; /* Rojo más oscuro */
+    transform: scale(1.05);
+  }
+  
+  .checkin-button {
+    background-color: #4caf50; /* Verde */
+    color: white;
+  }
+  
+  .checkin-button:hover {
+    background-color: #388e3c; /* Verde más oscuro */
+    transform: scale(1.05);
+  }
+  

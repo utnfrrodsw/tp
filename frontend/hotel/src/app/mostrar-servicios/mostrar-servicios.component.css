@@ -1,0 +1,72 @@
+.title {
+    font-family: 'Poppins', sans-serif;
+    text-align: center; 
+    margin: 20px 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+.card { 
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px; 
+    height: auto;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.card ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card li {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+}
+
+.card .price {
+    font-weight: bold; 
+    font-size: 25px;
+}
+
+.card h2 {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+    font-size: 30px;
+}
+
+.inscribirme-button {
+    background-color: #90d66a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.inscribirme-button:hover {
+    background-color: #7fbf5b;
+}

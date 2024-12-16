@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; 
+}
+
+app-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000; 
+}
+
+.container {
+  display: flex;
+  height: 100vh; 
+  width: 100%;
+}
+
+.left-section {
+  flex: 0 0 70%;
+  position: relative;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.right-section {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box; 
+  height: calc(100vh - 50px);
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px; 
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px; 
+}
+
+label {
+  text-align: left;
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+input[type="text"], input[type="password"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  width: 100%;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.remember-forgot a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.sign-in-btn {
+  padding: 10px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.sign-up {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.sign-up a {
+  color: #007BFF;
+  text-decoration: none;
+}

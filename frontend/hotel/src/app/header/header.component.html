@@ -1,0 +1,64 @@
+<header>
+  <div class="logo">
+    <a (click)="navigateTo('/')">
+      <h2>LUXURY HOTELES</h2>
+    </a>
+  </div>
+  <nav>
+    <ul>
+      <li *ngIf="!isLoggedIn && !isEmployee || isLoggedIn && !isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+      </li>
+      <li *ngIf="isLoggedIn && isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/dashboard/empleado']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+      </li>
+      <li *ngIf="!isLoggedIn && !isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/habitaciones']" routerLinkActive="active">Habitaciones</a>
+      </li>
+      <li *ngIf="!isLoggedIn && !isEmployee || isLoggedIn && !isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/servicios']" routerLinkActive="active">Servicios</a>
+      </li>
+      <li *ngIf="!isLoggedIn && !isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/about']" routerLinkActive="active">Nosotros</a>
+      </li>
+      <li *ngIf="isLoggedIn && !isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/misreservas']" routerLinkActive="active">Mis reservas</a>
+      </li>
+      <li *ngIf="isLoggedIn && !isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/miperfil']" routerLinkActive="active">Mi Perfil</a>
+      </li>
+      <li *ngIf="isLoggedIn && isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/gestionar-reservas']" routerLinkActive="active">Gestionar Reservas</a>
+      </li>
+      <li *ngIf="isLoggedIn && isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/gestionar-servicios']" routerLinkActive="active">Gestionar Servicios</a>
+      </li>
+      <li *ngIf="isLoggedIn && isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/gestionar-clientes']" routerLinkActive="active">Gestionar Clientes</a>
+      </li>
+
+      <li *ngIf="isLoggedIn && isEmployee">
+        <a (click)="onHeaderClick($event)" [routerLink]="['/gestionar-habitaciones']" routerLinkActive="active">Gestionar Habitaciones</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="auth-buttons" *ngIf="!isLoggedIn">
+    <a (click)="onHeaderClick($event)" [routerLink]="['/login']" class="login-button">Iniciar sesión</a>
+    <a (click)="onHeaderClick($event)" [routerLink]="['/registro']" class="register-button">Registrarse</a>
+  </div>
+  
+  <div class="user-info" *ngIf="isLoggedIn">
+    <div class="user-info-container">
+      <div class="dropdown">
+        <button class="dropbtn">
+          {{ userName }} <span class="arrow-down">&#9660;</span>
+        </button>
+        <div class="dropdown-content">
+          <a *ngIf="isEmployee">Actualizar perfil</a>
+          <a (click)="logout()">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

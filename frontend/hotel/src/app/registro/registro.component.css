@@ -1,0 +1,116 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+app-header {
+  position: fixed; 
+  width: 100%; 
+  left: 0;
+  background-color: #fff; 
+  z-index: 1000; 
+}
+
+.container {
+  display: flex;
+  height: 100vh; /* Asegúrate de que el contenedor ocupe toda la altura de la ventana */
+}
+
+img {
+  width: 65vw; 
+  height: 100vh; 
+  object-fit: cover;
+}
+
+.form-container {
+  width: 35vw; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  padding-top: 80px; /* Espacio superior para evitar que el encabezado lo cubra */
+  box-sizing: border-box;
+  background-color: #ffffff;
+  overflow: hidden; /* Evita el desplazamiento dentro del contenedor del formulario */
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif; 
+  font-weight: 600; 
+  margin-bottom: 20px;
+  font-size: 2em;
+  text-align: center; 
+  color: #333; /* Asegúrate de que el color del texto sea visible */
+  z-index: 1; /* Asegúrate de que esté por encima de otros elementos */
+  position: relative; /* Permite que el z-index funcione */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center; 
+}
+
+.field-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center; 
+  margin-bottom: 15px; 
+}
+
+input, select {
+  width: 350px; 
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+input[type="date"] {
+  padding: 8px; 
+  font-size: 1em; 
+}
+
+.type-dni, .gender {
+  width: 350px; 
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  width: 400px; 
+  height: 50px; 
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2990fd;
+}
+
+.login-link {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.login-link a {
+  font-family: 'Poppins', sans-serif;
+  color: #3897f0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

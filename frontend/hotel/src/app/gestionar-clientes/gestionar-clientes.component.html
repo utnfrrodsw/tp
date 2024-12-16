@@ -1,0 +1,37 @@
+<app-header></app-header>
+<h4 class="nombre">Tabla de clientes</h4>
+
+<div class="search-container">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input type="text" [(ngModel)]="searchId" placeholder="Buscar por nro de DNI" (input)="searchClientes()" />
+</div>
+
+<table class="tabla-clientes">
+    <thead>
+      <tr>
+        <th>Nro DNI</th>
+        <th>Tipo DNI</th>
+        <th>Apellido y Nombre</th>
+        <th>Sexo</th>
+        <th>Fecha Nacimiento</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="clientesFiltrados.length === 0">
+          <td colspan="7">No se encontro ese cliente para el dni ingresado</td> 
+      </tr>
+      <tr *ngFor="let cliente of clientesFiltrados">
+        <td>{{ cliente.nroDni }}</td>
+        <td>{{ cliente.tipoDni }}</td>
+        <td>{{ cliente.apellidoYnombre }}</td>
+        <td>{{ cliente.sexo }}</td>
+        <td>{{ cliente.fechaNac }}</td>
+        <td>{{ cliente.email }}</td>
+        <td><button>Bloquear</button></td>
+      </tr>
+    </tbody>
+</table>
+  
+

@@ -1,0 +1,146 @@
+header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  justify-content: space-between;
+  flex-wrap: wrap; 
+}
+
+.logo a {
+  text-decoration: none; 
+  cursor: default;
+}
+
+.logo h2 {
+  margin: 0;
+  font-weight: 700;
+  color: #E0B973;
+  text-decoration: none;
+  font-size: 35px;
+}
+
+nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap; /* Permitir que la lista se envuelva */
+}
+
+nav ul li {
+  margin: 0 15px; /* Reducción del margen para pantallas pequeñas */
+}
+
+nav ul li a {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  font-weight: 600;
+  color: #2c3e50;
+  position: relative;
+  transition: color 0.3s, border-bottom 0.9s; 
+}
+
+nav ul li a:hover {
+  color: #E0B973;
+}
+
+nav ul li a.active {
+  color: #E0B973;
+  border-bottom: 2px solid #E0B973;
+  transition: color 0.3s, border-bottom 0.9s; 
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.login-button, .register-button {
+  font-family: 'Poppins', sans-serif;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-button {
+  background-color: #E0B973;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #d0a973;
+}
+
+.register-button {
+  background-color: transparent;
+  color: #000000;
+  border: 2px solid #000;
+  transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+}
+
+.register-button:hover {
+  color: #fff;
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-left: auto; 
+}
+
+.user-info-container {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  color: #000000;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}

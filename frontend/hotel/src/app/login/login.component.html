@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div class="container">
+  <div class="left-section">
+    <img src="/assets/familia.jpg" alt="Imagen de fondo" class="background-image">
+  </div>
+  <div class="right-section">
+    <h1>Iniciar sesión</h1>
+
+    <form (ngSubmit)="onSubmit()">
+      <label for="login"></label>
+      <input type="text" id="login" placeholder="Email" [(ngModel)]="email" name="email" required>
+      
+      <label for="password"></label>
+      <input type="password" id="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required>
+
+      <div class="remember-forgot">
+        <div>
+          <input type="checkbox" id="remember-me">
+          <label for="remember-me"> Recuérdame</label>
+        </div>
+        <a href="#">¿Olvidaste la contraseña?</a>
+      </div>
+
+      <button type="submit" class="sign-in-btn">Ingresar</button>
+    </form>
+
+    <div class="sign-up">
+      <p>¿No tienes una cuenta? <a [routerLink]="['/registro']">Regístrate</a></p>
+    </div>
+  </div>
+</div>

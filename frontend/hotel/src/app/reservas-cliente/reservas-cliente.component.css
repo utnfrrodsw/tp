@@ -1,0 +1,65 @@
+.container {
+    margin-top: 30px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.finalizado {
+    background-color: #a0d66a; 
+}
+
+.cancelado {
+    background-color: #d66a6a; 
+}
+
+.reservado {
+    background-color: #f9f9f9; 
+}
+
+.activo {
+    background-color: #42c1e7; 
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table thead {
+    background-color: #007bff; 
+    color: white; 
+}
+
+.table th, .table td {
+    padding: 12px; 
+    text-align: center; 
+}
+
+.table th {
+    font-weight: bold; 
+}
+
+.table tbody tr:not(.finalizado):not(.cancelado):hover {
+    background-color: #f1f1f1; 
+}
+
+.btn-danger {
+    background-color: #dc3545; 
+    border: none; 
+    color: white; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px; 
+    transition: background-color 0.3s ease; 
+}
+
+.btn-danger:hover {
+    background-color: #c82333; 
+    cursor: pointer; 
+}

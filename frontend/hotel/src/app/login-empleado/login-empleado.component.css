@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  background-color: #f4f4f4; /* Color de fondo neutral para mejorar el contraste */
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.left-section {
+  flex: 0 0 70%;
+  position: relative;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #555;
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+.right-section {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para resaltar el formulario */
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+label {
+  text-align: left;
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+input[type="email"], input[type="password"] {
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  width: 100%;
+  background-color: #fafafa;
+  transition: border 0.3s ease;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+  border-color: #007BFF; /* Color de foco */
+  outline: none;
+}
+
+.sign-in-btn {
+  padding: 12px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.sign-in-btn:hover {
+  background-color: #0056b3; /* Color al pasar el mouse */
+}
+
+.sign-up {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.register-prompt {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+.register-prompt a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.register-prompt a:hover {
+  text-decoration: underline;
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-section {
+    flex: 0 0 40%; /* Reduce el tamaño de la imagen en pantallas pequeñas */
+  }
+
+  .right-section {
+    flex: 0 0 60%;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .right-section {
+    flex: 1; 
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .sign-in-btn {
+    font-size: 14px;
+  }
+
+  form {
+    gap: 10px; 
+  }
+}

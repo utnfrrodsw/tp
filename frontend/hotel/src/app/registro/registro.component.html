@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="container">
+  <img src="/assets/stella.jpg" alt="Imagen">
+
+  <div class="form-container">
+    <h1>Registrarse</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="field-container">
+        <input formControlName="firstName" type="text" placeholder="Nombre">
+      </div>
+      <div class="field-container">
+        <input formControlName="lastName" type="text" placeholder="Apellido">
+      </div>
+      <div class="field-container">
+        <input formControlName="email" type="email" placeholder="Correo electrónico">
+      </div>
+      <div class="field-container">
+        <input formControlName="password" type="password" placeholder="Contraseña">
+      </div>
+      <div class="field-container">
+        <input formControlName="docNumber" type="text" placeholder="Número DNI">
+      </div>
+      <div class="field-container">
+        <select formControlName="docType" class="type-dni">
+          <option value="" disabled selected>Tipo DNI</option>
+          <option value="DNI">DNI</option>
+          <option value="Pasaporte">Pasaporte</option>
+        </select>
+      </div>
+      <div class="field-container">
+        <select formControlName="gender" class="gender">
+          <option value="" disabled selected>Sexo</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+      <div class="field-container">
+        <input formControlName="birthdate" type="date" placeholder="Fecha de Nacimiento">
+      </div>
+      <button type="submit">Registrarse</button>
+    </form>
+
+    <p class="login-link">¿Ya tienes una cuenta? <a [routerLink]="['/login']">Inicia sesión</a></p>
+  </div>
+</div>

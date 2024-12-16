@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>
+            <span class="welcome">BIENVENIDO A</span><br>
+            <span class="luxury">LUXURY</span><br>
+            <span class="hotels">HOTELES</span>
+        </h1>
+    </div>
+</div>
+
+<div class="search-bar">
+    <div class="search-item">
+        <label for="destination">Destino</label>
+        <input type="text" id="destination" placeholder="Ingrese localidad,provincia">
+    </div>
+    <div class="search-item">
+        <label for="checkin">Fecha Desde</label>
+        <input type="date" id="checkin" (change)="updateCheckoutMinDate($event)">
+    </div>
+    <div class="search-item">
+        <label for="checkout">Fecha Hasta</label>
+        <input type="date" id="checkout" [min]="minCheckoutDate">
+    </div>
+    <div class="search-item">
+        <label for="people">Personas</label>
+        <input type="number" id="people" min="1" value="1">
+    </div>
+    <button (click)="buscarHabitaciones()">Buscar</button>
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <h2>LUXURY HOTELS</h2>
+            <p>Experimenta la mejor estancia en nuestros hoteles.</p>
+        </div>
+        <div class="footer-links">
+            <h3>Enlaces</h3>
+            <ul>
+                
+                <li><a [routerLink]="['/habitaciones']">Habitaciones</a></li>
+                <li><a [routerLink]="['/servicios']">Servicios</a></li>
+                <li><a [routerLink]="['/about']">Nosotros</a></li>
+                <li><a [routerLink]="isEmpleadoLoggedIn() ? ['/dashboard/empleado'] : ['/login/empleados']">Empleados</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h3>Encontranos en</h3>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-contact">
+            <h3>Contactanos</h3>
+            <p>Telefono: +123 456 7890</p>
+            <p>Direccion: 123 Luxury St, Dreamland</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Luxury Hotels. All rights reserved.</p>
+    </div>
+</footer>

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="left-section">
+    
+    <img src="/assets/trabajadores.jpg" alt="Trabajadores" class="background-image" (load)="imageLoaded = true" loading="lazy">
+    <div *ngIf="!imageLoaded" class="image-placeholder">Cargando...</div>
+  </div>
+  <div class="right-section">
+    <h1>Iniciar Sesión</h1>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" required [(ngModel)]="email" name="email">
+      </div>
+      <div>
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" required [(ngModel)]="password" name="password">
+      </div>
+      <button type="submit" class="sign-in-btn">Iniciar Sesión</button>
+    </form>
+    <p class="register-prompt">¿No tienes una cuenta? <a [routerLink]="['/registro/empleados']">Regístrate</a></p>
+  </div>
+</div>
