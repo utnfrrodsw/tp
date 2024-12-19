@@ -9,6 +9,7 @@ classDiagram
         lastname: string
         dateOfBirth: date
         phoneNumber: string
+        isAdmin: boolean
     }
 
     class Opinion {
