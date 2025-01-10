@@ -3,6 +3,7 @@ import { CurrencyService } from '../../services/currency.service';
 import { Libro, LibrosService } from '../../services/libros.service';
 import { forkJoin } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-libros',
@@ -22,7 +23,8 @@ export class ListaLibrosComponent implements OnInit {
 
   constructor(
     public currencyService: CurrencyService,
-    private librosService: LibrosService
+    private librosService: LibrosService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -45,7 +47,7 @@ export class ListaLibrosComponent implements OnInit {
         return forkJoin(requests);
       })
     ).subscribe((libros) => {
-  
+
       libros.forEach(({ id, libro }) => {
         if (libro) {
           this.librosData[id] = libro;
@@ -53,6 +55,11 @@ export class ListaLibrosComponent implements OnInit {
       });
       this.actualizarLibrosAMostrar();
     });
+  }
+
+  navegarALibro(libroId: string) {
+    // Cambiar la URL sin recargar la página
+    this.router.navigate(['/libro-seleccionado', libroId]);
   }
 
   moverIzquierda() {

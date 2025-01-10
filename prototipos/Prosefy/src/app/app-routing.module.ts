@@ -38,7 +38,11 @@ const routes: Routes = [
   { path: 'autores', component: AutoresComponent },
   { path: 'ofertas', component: OfertasComponent },
   { path: 'ayuda', component: AyudaComponent },
-  { path: 'libro-seleccionado/:id', component: LibroSeleccionadoComponent },
+  {
+    path: 'libro-seleccionado/:id',
+    component: LibroSeleccionadoComponent,
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange', // Esto asegura que se recargue si el parámetro cambia
+  },
   { path: 'carrito-compras', component: CarritoComprasComponent },
   { path: 'finalizar-compra', component: FinalizarCompraComponent },
   { path: 'identificarse', component: IdentificarseComponent, canActivate: [RegistroService] },
