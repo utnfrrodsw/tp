@@ -59,7 +59,10 @@
       </p>
       <p>O retiralo <strong>GRATIS</strong> en nuestra tienda</p>
       <div class="d-flex justify-content-center mt-4">
-        <button class="btn btn-primary custom-btn-primary mx-4" (click)="comprarAhora(libro)">
+        <button class="btn btn-primary custom-btn-primary mx-4" *ngIf="isLoggedIn" (click)="comprarAhora(libro)">
+          Comprar ahora
+        </button>
+        <button class="btn btn-primary custom-btn-primary mx-4" *ngIf="!isLoggedIn" routerLink="/identificarse">
           Comprar ahora
         </button>
         <button class="btn btn-primary custom-btn-secondary mx-4" (click)="agregarAlCarrito(libro); mostrarMensaje()"
