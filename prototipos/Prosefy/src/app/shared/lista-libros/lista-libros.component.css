@@ -42,6 +42,7 @@
   justify-content: center;
   align-items: center;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 @media (max-width: 1000px) {
@@ -117,13 +118,12 @@
 }
 
 .hover-grow {
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  /* Duración más larga y función de temporización ajustada */
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
 }
 
 .hover-grow:hover {
   transform: scale(1.1);
-  /* Cambiamos el valor de escala para un efecto de agrandamiento más sutil */
 }
 
 /* Estilos para los botones modernos */

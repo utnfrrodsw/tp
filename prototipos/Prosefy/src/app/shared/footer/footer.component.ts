@@ -8,4 +8,5 @@ import { nombreSitio } from '../constants';
 })
 export class FooterComponent {
   nombreSitio = nombreSitio;
+  currentYear: number = new Date().getFullYear();
 }
