@@ -1,0 +1,175 @@
+.title-main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.title-user{
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.new-user-main{
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-user, .search-box, .filter-balance{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 1rem;
+}
+
+.bh-list-main {
+    padding: 6rem 1rem 5rem 1rem;
+    width: 100%;
+}
+
+.filter-balance {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; 
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    background-color: #710991;
+    color: var(--white);
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    font-size: 14px; 
+}
+
+.filter-btn svg {
+    margin-left: 8px; 
+    width: 16px; 
+    height: 16px; 
+}
+
+.filter-balance p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.backButton {
+    margin: 0rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+@media (min-width: 1200px) {
+    .backButton {
+        width: 7%;
+    }
+}
+
+.search-box input {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #000;
+}
+
+.subtitle-user{
+    font-size: 1.1rem;
+}
+
+.header-name3 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    background-color: var(--purple);
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+}
+
+.header-column, .column {
+    text-align: center;
+    color: #fff;
+}
+
+.header-column {
+    color: #fff;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.items3 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-info {
+    display: contents;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.edit-btn, .delete-btn, .read-btn, .add-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.add-btn, .filter-btn {
+    background-color: #710991;
+}
+
+.edit-btn {
+    background-color: var(--green);
+}
+.edit-btn {
+    background-color: var(--green);
+}
+
+.delete-btn {
+    background-color: var(--red);
+}
+
+.read-btn {
+    background-color: #daa711;
+}
+
+.edit-btn:hover {
+    background-color: #45a049;
+}
+
+.delete-btn:hover {
+    background-color: #e60000;
+}
+
+.read-btn:hover {
+    background-color: var(--yellow);
+}
+
+.rotate-90 {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.filter-btn svg {
+    transition: transform 0.3s ease-in-out;
+}

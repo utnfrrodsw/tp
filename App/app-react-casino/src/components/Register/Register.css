@@ -1,0 +1,3 @@
+.imgpreview {
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1.0) 30%, transparent 50%);
+  }

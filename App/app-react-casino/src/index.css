@@ -1,0 +1,24 @@
+:root {
+  --white : #F6EDED;
+  --white-light : #ebe9fc;
+  --white-dark: #dad2d2;
+  --black-hover: #ccc578; 
+  --black: #0D0B16;
+  --yellow: #FABC01;
+  --yellow-hover: #C99B10;
+  --green: #70AE6E;
+  --green-hover: #5A9D58;
+  --red: #D81536;
+  --red-hover: #A7112A;
+  --purple: #181529;
+  --transparent-dark: rgba(0, 0, 0, 0.8);
+  --purple-light: #23222F;
+  --purple-strong: #710991;
+  --purple-transparent: #23222f21;
+  font-family: Outfit, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+body{
+  background-color: var(--black);
+  color: var(--white)
+}
