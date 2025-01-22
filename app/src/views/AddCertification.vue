@@ -22,7 +22,7 @@
               class="mt-2"
             ></v-text-field>
           </template>
-          <v-date-picker v-model="date" @input="dateMenu = false" ></v-date-picker>
+          <v-date-picker v-model="date" @input="dateMenu = false"></v-date-picker>
         </v-menu>
       </v-col>
       <v-col cols="12" sm="6" md="3">
@@ -83,105 +83,106 @@
       <v-col cols="12">
         <v-btn color="primary" @click="submitForm">Enviar formulario</v-btn>
       </v-col>
-
       <v-row v-if="alert.show">
-      <v-col>
-        <alerts :type="alert.type" :message="alert.message" @quit="alert.show = false"></alerts>
-      </v-col>
+        <v-col>
+          <alerts :type="alert.type" :message="alert.message" @quit="alert.show = false"></alerts>
+        </v-col>
+      </v-row>
     </v-row>
-    </v-row>
-    
   </v-container>
 </template>
-<script>
-  import Alerts from '@/components/Alerts.vue'
-  import GroupTechnicianService from '../services/GroupTechnicianService'
-  import GroupService from '../services/GroupService'
-  import TaskService from '../services/TaskService'
-  import GroupTaskService from '../services/GroupTaskService'
 
-  export default {
-    name: 'AddCertification',
-    data() {
-      return {
-        date: '',
-        dateMenu: '',
-        hour: '',
-        hourMenu: '',
-        selectedGroup: null,
-        conection: '',
-        observation: '',
-        tasks: [{ id: '', name: '', quantity: '' }],
-        availableTasks: [],
-        groupOptions: [],
-        url: process.env.VUE_APP_API_URL,
-        alert: {
-          show: false,
-          message: '',
-          type: ''
-        }
+<script>
+import Alerts from '@/components/Alerts.vue'
+import GroupTechnicianService from '../services/GroupTechnicianService'
+import GroupService from '../services/GroupService'
+import TaskService from '../services/TaskService'
+import GroupTaskService from '../services/GroupTaskService'
+
+export default {
+  name: 'AddCertification',
+  data() {
+    return {
+      date: '',
+      dateMenu: '',
+      hour: '',
+      hourMenu: '',
+      selectedGroup: null,
+      conection: '',
+      observation: '',
+      tasks: [{ id: '', name: '', quantity: '' }],
+      availableTasks: [],
+      groupOptions: [],
+      url: process.env.VUE_APP_API_URL,
+      alert: {
+        show: false,
+        message: '',
+        type: ''
       }
+    }
+  },
+  async mounted() {
+    try {
+      const responseTasks = await TaskService.getAll({ size: 999 })
+      this.availableTasks = responseTasks.data.items.map((task) => ({
+        value: task.id,
+        text: task.name
+      }))
+      const responseGroups = await GroupTechnicianService.bussyGroups({ size: 999 })
+      console.log(responseGroups.data)
+      this.groupOptions = responseGroups.data
+      this.groupOptions.forEach(async (g) => {
+        g.technicians = (await GroupTechnicianService.getTechnicians(g.id)).data
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  components: {
+    Alerts
+  },
+  methods: {
+    addTask() {
+      this.tasks.push({
+        id: '',
+        name: '',
+        quantity: ''
+      })
     },
-    async mounted() {
+    deleteTask(index) {
+      this.tasks.splice(index, 1)
+    },
+    async submitForm() {
       try {
-        const responseTasks = await TaskService.getAll({size: 999})
-        this.availableTasks = responseTasks.data.items.map((task) => ({
-          value: task.id,
-          text: task.name
-        }))
-        const responseGroups = await GroupTechnicianService.bussyGroups({size: 999})
-        console.log(responseGroups.data)
-        this.groupOptions = responseGroups.data
-        this.groupOptions.forEach(async g => {
-          g.technicians = (await GroupTechnicianService.getTechnicians(g.id)).data
-        })
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    components: {
-      Alerts
-    },
-    methods: {
-      addTask() {
-        this.tasks.push({
-          id: '',
-          name: '',
-          quantity: ''
-        })
-      },
-      deleteTask(index) {
-        this.tasks.splice(index, 1)
-      },
-      async submitForm() {
-        try {
-          const data = {
-            groupId: this.selectedGroup,
-            conection: this.conection,
-            tasks: this.tasks,
-            dateCompleted: this.date,
-            hour: this.hour,
-            observation: this.observation
-          }
-          const response = await GroupTaskService.create(data)
-          this.alert.message = 'Tarea agregada correctamente'
-          this.alert.type = 'success'
-          this.alert.show = true
-          this.date = ''
-          this.dateMenu = ''
-          this.hourMenu = ''
-          this.hour = ''
-          this.description = ''
-          this.conection = ''
-          this.observations = ''
-          this.task = [{ id: '', name: '', quantity: '' }]
-        } catch (error) {
-          this.alert.message = 'No se pudo agregar la tarea'
-          this.alert.type = 'Error'
-          this.alert.show = true
-          console.error(error)
+        const data = {
+          groupId: this.selectedGroup,
+          conection: this.conection,
+          tasks: this.tasks,
+          dateCompleted: this.date,
+          hour: this.hour,
+          observation: this.observation
         }
+        const response = await GroupTaskService.create(data)
+        this.alert.message = 'Tarea agregada correctamente'
+        this.alert.type = 'success'
+        this.alert.show = true
+
+        // Restablecer todos los valores del formulario
+        this.date = ''
+        this.dateMenu = false
+        this.hour = ''
+        this.hourMenu = false
+        this.selectedGroup = null
+        this.conection = ''
+        this.observation = ''
+        this.tasks = [{ id: '', name: '', quantity: '' }]
+      } catch (error) {
+        this.alert.message = 'No se pudo agregar la tarea'
+        this.alert.type = 'error'
+        this.alert.show = true
+        console.error(error)
       }
     }
   }
+}
 </script>

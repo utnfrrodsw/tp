@@ -33,8 +33,8 @@ Technician.belongsToMany(Group, { through: { model: GroupTechnician, unique: fal
 Task.hasMany(Price)
 Price.belongsTo(Task)
 
-Group.belongsToMany(Task, { through: GroupTask })
-Task.belongsToMany(Group, { through: GroupTask })
+Group.belongsToMany(Task, { through: { model: GroupTask, unique: false }})
+Task.belongsToMany(Group, { through: { model: GroupTask, unique: false }})
 
 GroupTechnician.belongsTo(Group)
 GroupTechnician.belongsTo(Technician)
