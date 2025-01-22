@@ -1,10 +1,9 @@
 <template>
-  <div style="display: flex; justify-content: center; gap: 20px;">
-    <highcharts :options="chartOptions" style="width: 37%;"></highcharts>
-    <highcharts :options="chartOptions2" style="width: 37%;"></highcharts>
+  <div class="chart-container">
+    <highcharts :options="chartOptions" class="chart"></highcharts>
+    <highcharts :options="chartOptions2" class="chart"></highcharts>
   </div>
 </template>
-
 
 <script>
   import { Chart } from 'highcharts-vue'
@@ -22,7 +21,7 @@
             type: 'pie'
           },
           title: {
-            text: 'Tareas realizadas en los ultimos 30 dias'
+            text: 'Tareas realizadas en los últimos 30 días'
           },
           series: [],
           tooltip: {
@@ -44,7 +43,7 @@
             type: 'pie'
           },
           title: {
-            text: 'Relacion de precios por tarea'
+            text: 'Relación de precios por tarea'
           },
           series: [],
           tooltip: {
@@ -64,43 +63,67 @@
       }
     },
     mounted() {
-      this.fetchData(),
-      this.fetchData2()
+      this.fetchData();
+      this.fetchData2();
     },
     methods: {
       fetchData() {
         TaskService.sumTasks()
           .then(response => {
-            const data = response.data[0]
-            console.log(data)
+            const data = response.data[0];
+            console.log(data);
             this.chartOptions.series = [{
               name: 'Porcentaje',
               data: data.map(item => ({
                 name: item.name,
                 y: parseInt(item.total)
               }))
-            }]
+            }];
           })
           .catch(error => {
-            console.error(error)
-          })
+            console.error(error);
+          });
       },
       fetchData2() {
         TaskService.actualTaskPrice()
           .then(response => {
-            const data2 = response.data
+            const data2 = response.data;
             this.chartOptions2.series = [{
               name: 'Porcentaje',
               data: data2.map(item => ({
                 name: item.name,
                 y: parseInt(item.price)
               }))
-            }]
+            }];
           })
           .catch(error => {
-            console.error(error)
-          })
+            console.error(error);
+          });
       }
     }
   }
 </script>
+
+<style scoped>
+.chart-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Permite que los gráficos pasen a una nueva fila automáticamente */
+}
+
+.chart {
+  flex: 1 1 37%; /* Base del tamaño: 37% del contenedor */
+  max-width: 500px; /* Tamaño máximo para gráficos grandes */
+  min-width: 300px; /* Tamaño mínimo para gráficos pequeños */
+  margin: 10px 0; /* Espaciado entre filas en pantallas pequeñas */
+}
+
+/* Estilo para pantallas pequeñas */
+@media (max-width: 768px) {
+  .chart {
+    flex: 1 1 100%; /* Ocupa toda la fila cuando el ancho es pequeño */
+    max-width: none; /* Elimina restricciones de tamaño máximo */
+  }
+}
+</style>
