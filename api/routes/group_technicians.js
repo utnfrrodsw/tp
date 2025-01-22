@@ -7,6 +7,7 @@ const auth = require('../middlewares/auth')
 router.post('/', auth, groupTechniciansController.createGroupTechnician)
 router.put('/', auth, groupTechniciansController.deleteGroupTechnician)
 router.get('/', auth, groupTechniciansController.freeTechnicians)
+router.get('/bussyGroups', auth, groupTechniciansController.bussyGroups)
 router.get('/:groupId', auth, groupTechniciansController.getTechnicians)
 
 module.exports = router

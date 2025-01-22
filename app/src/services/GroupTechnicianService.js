@@ -5,6 +5,10 @@ class GroupTechnicianService {
     return http.get('/group_technicians')
   }
 
+  bussyGroups() {
+    return http.get('/group_technicians/bussyGroups')
+  }
+
   getTechnicians(groupId) {
     return http.get(`/group_technicians/${groupId}`)
   }

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const { Technician, GroupTechnician } = require('../sequelize')
+const { Technician, GroupTechnician,Group } = require('../sequelize')
 
 const createGroupTechnician = async (req, res) => {
   const { groupId, technicianId } = req.body
@@ -68,6 +68,32 @@ const freeTechnicians = async (req, res) => {
   }
 }
 
+const bussyGroups = async (req, res) => {
+  try {
+    const groupsInAssignments = await GroupTechnician.findAll({
+      attributes: ['groupId'],
+      where: {
+        date_end: null
+      },
+      raw: true
+    })
+    const technicianIdsInAssignments = groupsInAssignments.map((tech) => tech.groupId)
+
+    const bussyGroups = await Group.findAll({
+      where: {
+        id: {
+          [Sequelize.Op.in]: technicianIdsInAssignments
+        }
+      }
+    })
+
+    res.status(200).json(bussyGroups)
+  } catch (error) {
+    console.log(error)
+    res.status(400).send('Ups! Error')
+  }
+}
+
 const getTechnicians = async (req, res) => {
   const { groupId } = req.params
 
@@ -106,5 +132,6 @@ module.exports = {
   createGroupTechnician,
   deleteGroupTechnician,
   freeTechnicians,
-  getTechnicians
+  getTechnicians,
+  bussyGroups
 }

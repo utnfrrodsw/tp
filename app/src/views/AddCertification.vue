@@ -129,9 +129,9 @@
           value: task.id,
           text: task.name
         }))
-        const responseGroups = await GroupService.getAll({size: 999})
-        console.log(responseGroups.data.items)
-        this.groupOptions = responseGroups.data.items
+        const responseGroups = await GroupTechnicianService.bussyGroups({size: 999})
+        console.log(responseGroups.data)
+        this.groupOptions = responseGroups.data
         this.groupOptions.forEach(async g => {
           g.technicians = (await GroupTechnicianService.getTechnicians(g.id)).data
         })
