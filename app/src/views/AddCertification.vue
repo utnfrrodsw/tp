@@ -124,12 +124,12 @@
     },
     async mounted() {
       try {
-        const responseTasks = await TaskService.getAll()
+        const responseTasks = await TaskService.getAll({size: 999})
         this.availableTasks = responseTasks.data.items.map((task) => ({
           value: task.id,
           text: task.name
         }))
-        const responseGroups = await GroupService.getAll()
+        const responseGroups = await GroupService.getAll({size: 999})
         console.log(responseGroups.data.items)
         this.groupOptions = responseGroups.data.items
         this.groupOptions.forEach(async g => {
