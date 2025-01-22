@@ -1,0 +1,41 @@
+@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMywicm9sZSI6ImFkbWluIn0sImlhdCI6MTczNzUwMjY0NywiZXhwIjoxNzM4MTA3NDQ3fQ.Nv4WcTYz6Aw59i9Yigk3pqLJqhbtTpZRjYr6If01-Ok"
+
+# Get all groups
+GET http://localhost:4000/api/groups?page=1
+
+###
+
+# Get group by id
+GET http://localhost:4000/api/groups/1
+
+###
+
+# Update group by id
+PUT http://localhost:4000/api/groups/1
+Content-Type: application/json
+
+{
+  "description": "Prueba",
+  "token": {{token}}
+}
+
+###
+
+# Create group
+POST http://localhost:4000/api/groups
+Content-Type: application/json
+
+{
+  "description": "Prueba 123",
+  "token": {{token}}
+}
+
+###
+
+# Delete group by id
+DELETE http://localhost:4000/api/groups/1
+Content-Type: application/json
+
+{
+  "token": {{token}}
+}

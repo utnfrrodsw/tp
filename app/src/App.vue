@@ -232,7 +232,7 @@
             if (error.name !== 'NavigationDuplicated') {
               throw error
             }
-          });
+          })
         }
       },
       insertRoute(route, item) {
@@ -240,7 +240,7 @@
           if (error.name !== 'NavigationDuplicated') {
             throw error
           }
-        });
+        })
         this.closeBottomSheet()
       },
       closeBottomSheet() {

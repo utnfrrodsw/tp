@@ -10,5 +10,5 @@ export function esMayorDe18(fechaNacimiento) {
   ) {
     diferenciaAnios--
   }
-  return diferenciaAnios > 18 || (diferenciaAnios === 18 && fechaNacimientoDate.getMonth() < fechaActual.getMonth()) || (diferenciaAnios === 18 && fechaNacimientoDate.getMonth() === fechaActual.getMonth() && fechaNacimientoDate.getDate() <= fechaActual.getDate());
+  return diferenciaAnios > 18 || (diferenciaAnios === 18 && fechaNacimientoDate.getMonth() < fechaActual.getMonth()) || (diferenciaAnios === 18 && fechaNacimientoDate.getMonth() === fechaActual.getMonth() && fechaNacimientoDate.getDate() <= fechaActual.getDate())
 }

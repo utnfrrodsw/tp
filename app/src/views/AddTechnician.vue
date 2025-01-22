@@ -107,11 +107,11 @@
         // getter
         get: function () {
           if (this.technician.date_born) {
-            const date = new Date(this.technician.date_born);
+            const date = new Date(this.technician.date_born)
             const [year, month, day] = date.toISOString().substring(0, 10).split('-')
             return `${day}/${month}/${year}`
           }
-          return '';
+          return ''
         },
         // setter
         set: function (newValue) {

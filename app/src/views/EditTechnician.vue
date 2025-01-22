@@ -52,8 +52,8 @@
 
 <script>
   import Alerts from '@/components/Alerts.vue'
-  import TechnicianService from "../services/TechnicianService";
-  import { esMayorDe18 } from '@/utilities/utilities.js';
+  import TechnicianService from '../services/TechnicianService'
+  import { esMayorDe18 } from '@/utilities/utilities.js'
 
 export default {
   name: 'EditTechnician',
@@ -91,21 +91,21 @@ export default {
         type: "",
       },
       loading: false,
-    };
+    }
   },
   mounted() {
-    this.fetchData();
+    this.fetchData()
   },
   computed: {
     formattedDate: {
       // getter
       get: function () {
         if (this.technician.date_born) {
-          const date = new Date(this.technician.date_born);
+          const date = new Date(this.technician.date_born)
           const [year, month, day] = date.toISOString().substring(0, 10).split('-')
           return `${day}/${month}/${year}`
         }
-        return '';
+        return ''
       },
       // setter
       set: function (newValue) {
