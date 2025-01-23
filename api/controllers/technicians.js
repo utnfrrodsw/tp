@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const { Group, Technician } = require('../sequelize')
+const { Group, Technician, Task } = require('../sequelize')
 const { getPagination, getPaginationData } = require('../helpers/pagination')
 
 const getTechnicians = async (req, res) => {
@@ -11,9 +11,7 @@ const getTechnicians = async (req, res) => {
     where: condition,
     limit,
     offset,
-    include: {
-      model: Group
-    }
+    include: Group
   })
   .then(data => {
     const response = getPaginationData(data, page, limit)
@@ -88,8 +86,18 @@ const deleteTechnician = async (req, res) => {
   }
 
   try {
-    const technician = await Technician.destroy({ where: { id } })
-    res.json(technician)
+    const technician = await Technician.findByPk(id, {
+      include: {
+        model: Group,
+        include: Task
+      }
+    })
+    if (technician.groups.some(group => group.tasks.length > 0)) {
+      return res.status(400).send('Ups! Error')
+    } else {
+      await Technician.destroy({ where: { id } })
+      res.json(technician)
+    }
   } catch (error) {
     console.log(error)
     res.status(400).send('Ups! Error')

@@ -101,8 +101,15 @@ const deleteTask = async (req, res) => {
   }
 
   try {
-    const task = await Task.destroy({ where: { id } })
-    res.json(task)
+    const task = await Task.findByPk(id, {
+      include: Group
+    })
+    if (task.groups.length > 0) {
+      res.status(400).send('Ups! Error')
+    } else {
+      await Task.destroy({ where: { id } })
+      res.json(task)
+    }
   } catch (error) {
     console.log(error)
     res.status(400).send('Ups! Error')
@@ -129,6 +136,7 @@ const sumTasks = async (req, res) => {
     res.status(400).send('Ups! Error')
   }
 }
+
 const ActualTaskPrice = async (req, res) => {
   try {
     // Eliminar tabla temporal si existe

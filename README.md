@@ -49,3 +49,37 @@ Adicionales para Aprobación
 |Listados |1. Listar Grupos<br>2. Listar Tecnicos<br>3. Listar Tareas<br>4. Listar Precio de Tareas |
 |CUU|1. Registrar nueva Tarea<br>2. Modificar Precio de una Tarea<br>3. Modificar composición de un Grupo<br>4. Alta de nuevo Grupo|
 |Otros|1. Mostrar estadísticas en la pantalla inicial de mayor porcentaje de Tareas realizadas y Grupo y/o Tecnico con más Tareas realizadas en el último mes|
+
+## Instalación
+
+1. Clonar el repositorio
+
+```
+git clone https://github.com/gaaston14/TP_CertificacionDeTareas.git
+```
+
+2. Ejecutar un npm install en cada capa (API y APP)
+
+```
+cd api
+npm install
+cd ../app
+npm install
+```
+
+3. Configurar variables de entorno
+
+```
+api/.env.example <- ejemplo de variables de entorno para el back
+app/.env.example <- ejemplo de variables de entorno para el front
+```
+
+4. Para levantar en modo desarrollo
+
+```sh
+Adentro de /app
+npm run dev
+
+Adentro de /api
+npm run dev
+```

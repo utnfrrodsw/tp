@@ -10,6 +10,16 @@ Content-Type: application/json
 
 ###
 
+# Get all group_technicians
+GET http://localhost:4000/api/group_technicians/bussyGroups
+Content-Type: application/json
+
+{
+  "token": {{token}}
+}
+
+###
+
 # Get group_technician by group_id
 GET http://localhost:4000/api/group_technicians/1
 Content-Type: application/json

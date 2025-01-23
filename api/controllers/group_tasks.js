@@ -44,18 +44,10 @@ const getGroupTasks = async (req, res) => {
             model: Price,
             order: [['createdAt', 'DESC']]
           }
-        }],
-        where: Sequelize.literal(`NOT EXISTS (
-          SELECT 1 FROM groups_technicians AS GT
-          JOIN \`groups\` AS G ON GT.groupId = G.id
-          WHERE G.id = groups_tasks.groupId 
-          AND GT.technicianId = ${technicianId}
-          AND (GT.date_assigned > groups_tasks.date_completed OR GT.date_end < groups_tasks.date_completed)
-        )`)
+        }]
       })
 
-      const filtered = groupTask.filter(groupTask => groupTask.group != null)
-      res.status(200).json(filtered)
+      res.status(200).json(groupTask)
     }
   } catch (error) {
     console.log(error)

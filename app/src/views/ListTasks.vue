@@ -20,21 +20,36 @@
           >
             <template v-if="$isAdmin" v-slot:[`item.actions`]="{ item }">
               <v-icon small class="mr-2" @click="editTask(item.id)">
+                mdi-search-web
+              </v-icon>
+              <v-icon small class="mr-2" @click="editTask(item.id)">
                 mdi-pencil
+              </v-icon>
+              <v-icon small class="mr-2" @click="deleteTask(item.id)">
+                mdi-trash-can
               </v-icon>
             </template>
           </v-data-table>
         </v-card>
       </v-col>
     </v-row>
+    <v-row v-if="alert.show">
+      <v-col>
+        <alerts :type="alert.type" :message="alert.message" @quit="alert.show = false"></alerts>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+  import Alerts from '@/components/Alerts.vue'
   import TaskService from '../services/TaskService'
 
   export default {
     name: 'ListTechnicians',
+    components: {
+      Alerts
+    },
     data() {
       return {
         items: [],
@@ -48,6 +63,11 @@
           { text: 'Precio', value: 'price', sortable: false },
           { text: 'Opciones', value: 'actions', sortable: false },
         ],
+        alert: {
+          show: false,
+          message: '',
+          type: ''
+        }
       }
     },
     mounted() {
@@ -77,6 +97,21 @@
       },
       editTask(id) {
         this.$router.push({ name: 'EditTask', params: { id } })
+      },
+      deleteTask(id) {
+        TaskService.delete(id)
+          .then(() => {
+            this.alert.message = 'Tarea eliminada correctamente'
+            this.alert.type = 'success'
+            this.alert.show = true
+            this.retrieveTask()
+          })
+          .catch((e) => {
+            this.alert.message = 'No se pudo elimnar la tarea porque tiene certificaciones asociadas'
+            this.alert.type = 'error'
+            this.alert.show = true
+            console.log(e)
+          })
       },
       handlePageChange({ page, itemsPerPage }) {
         if (this.pageSize !== itemsPerPage || page !== this.page) {

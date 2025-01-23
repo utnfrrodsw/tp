@@ -12,7 +12,11 @@ const getGroups = async (req, res) => {
     limit,
     offset,
     include: [
-      { model: Technician },
+      {
+        model: Technician, 
+        required: false, 
+        through: { attributes: [], where: { date_end: null } } 
+      },
       { model: Task }
     ]
   })
@@ -88,10 +92,17 @@ const deleteGroup = async (req, res) => {
   }
 
   try {
-    const group = await Group.destroy({
-      where: { id }
+    const group = await Group.findByPk(id, {
+      include: Task
     })
-    res.json(group)
+    if (group.tasks.length > 0) {
+      res.status(400).send('Ups! Error')
+    } else {
+      await Group.destroy({
+        where: { id }
+      })
+      res.json(group)
+    }
   } catch (error) {
     console.log(error)
     res.status(400).send('Ups! Error')

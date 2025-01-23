@@ -23,21 +23,36 @@
           >
             <template v-if="$isAdmin" v-slot:[`item.actions`]="{ item }">
               <v-icon small class="mr-2" @click="editGroup(item.id)">
+                mdi-search-web
+              </v-icon>
+              <v-icon small class="mr-2" @click="editGroup(item.id)">
                 mdi-pencil
+              </v-icon>
+              <v-icon small class="mr-2" @click="deleteGroup(item.id)">
+                mdi-trash-can
               </v-icon>
             </template>
           </v-data-table>
         </v-card>
       </v-col>
     </v-row>
+    <v-row v-if="alert.show">
+      <v-col>
+        <alerts :type="alert.type" :message="alert.message" @quit="alert.show = false"></alerts>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+  import Alerts from '@/components/Alerts.vue'
   import GroupService from '../services/GroupService'
 
   export default {
     name: 'ListGroups',
+    components: {
+      Alerts
+    },
     data() {
       return {
         items: [],
@@ -51,6 +66,11 @@
           { text: 'Técnicos', value: 'technicians', sortable: false },
           { text: 'Opciones', value: 'actions', sortable: false },
         ],
+        alert: {
+          show: false,
+          message: '',
+          type: ''
+        }
       }
     },
     async mounted() {
@@ -71,7 +91,6 @@
         GroupService.getAll(this.requestParams)
           .then((response) => {
             const { items: groups, totalItems } = response.data
-            console.log(response.data)
             this.items = groups.map(this.getDisplayGroup)
             this.totalItems = totalItems
           })
@@ -81,6 +100,21 @@
       },
       editGroup(id) {
         this.$router.push({ name: 'EditGroup', params: { id } })
+      },
+      deleteGroup(id) {
+        GroupService.delete(id)
+          .then(() => {
+            this.alert.message = 'Grupo eliminado correctamente'
+            this.alert.type = 'success'
+            this.alert.show = true
+            this.retrieveGroup()
+          })
+          .catch((e) => {
+            this.alert.message = 'No se pudo elimnar el grupo porque tiene certificaciones asociadas'
+            this.alert.type = 'error'
+            this.alert.show = true
+            console.log(e)
+          })
       },
       handlePageChange({ page, itemsPerPage }) {
         if (this.pageSize !== itemsPerPage || page !== this.page) {

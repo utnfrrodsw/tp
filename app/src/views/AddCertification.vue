@@ -129,7 +129,6 @@ export default {
         text: task.name
       }))
       const responseGroups = await GroupTechnicianService.bussyGroups({ size: 999 })
-      console.log(responseGroups.data)
       this.groupOptions = responseGroups.data
       this.groupOptions.forEach(async (g) => {
         g.technicians = (await GroupTechnicianService.getTechnicians(g.id)).data
@@ -163,7 +162,7 @@ export default {
           observation: this.observation
         }
         const response = await GroupTaskService.create(data)
-        this.alert.message = 'Tarea agregada correctamente'
+        this.alert.message = 'Certificación agregada correctamente'
         this.alert.type = 'success'
         this.alert.show = true
 
@@ -177,7 +176,7 @@ export default {
         this.observation = ''
         this.tasks = [{ id: '', name: '', quantity: '' }]
       } catch (error) {
-        this.alert.message = 'No se pudo agregar la tarea'
+        this.alert.message = 'No se pudo agregar la certificación'
         this.alert.type = 'error'
         this.alert.show = true
         console.error(error)

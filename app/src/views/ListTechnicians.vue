@@ -20,21 +20,36 @@
           >
             <template v-if="$isAdmin" v-slot:[`item.actions`]="{ item }">
               <v-icon small class="mr-2" @click="editTechnician(item.id)">
+                mdi-search-web
+              </v-icon>
+              <v-icon small class="mr-2" @click="editTechnician(item.id)">
                 mdi-pencil
+              </v-icon>
+              <v-icon small class="mr-2" @click="deleteTechnician(item.id)">
+                mdi-trash-can
               </v-icon>
             </template>
           </v-data-table>
         </v-card>
       </v-col>
     </v-row>
+    <v-row v-if="alert.show">
+      <v-col>
+        <alerts :type="alert.type" :message="alert.message" @quit="alert.show = false"></alerts>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+  import Alerts from '@/components/Alerts.vue'
   import TechnicianService from '../services/TechnicianService'
 
   export default {
     name: 'ListTechnicians',
+    components: {
+      Alerts
+    },
     data() {
       return {
         items: [],
@@ -48,6 +63,11 @@
           { text: 'Fecha de nacimiento', value: 'date_born', sortable: false },
           { text: 'Opciones', value: 'actions', sortable: false },
         ],
+        alert: {
+          show: false,
+          message: '',
+          type: ''
+        }
       }
     },
     mounted() {
@@ -78,6 +98,21 @@
       },
       editTechnician(id) {
         this.$router.push({ name: 'EditTechnician', params: { id } })
+      },
+      deleteTechnician(id) {
+        TechnicianService.delete(id)
+          .then(() => {
+            this.alert.message = 'Técnico eliminado correctamente'
+            this.alert.type = 'success'
+            this.alert.show = true
+            this.retrieveTechnician()
+          })
+          .catch((e) => {
+            this.alert.message = 'No se pudo elimnar el técnico'
+            this.alert.type = 'error'
+            this.alert.show = true
+            console.log(e)
+          })
       },
       handlePageChange({ page, itemsPerPage }) {
         if (this.pageSize !== itemsPerPage || page !== this.page) {
