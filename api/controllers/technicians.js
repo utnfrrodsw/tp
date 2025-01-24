@@ -11,7 +11,11 @@ const getTechnicians = async (req, res) => {
     where: condition,
     limit,
     offset,
-    include: Group
+    include: {
+      model: Group, 
+      required: false, 
+      through: { attributes: [], where: { date_end: null } } 
+    },
   })
   .then(data => {
     const response = getPaginationData(data, page, limit)
@@ -33,7 +37,11 @@ const getTechnician = async (req, res) => {
 
   try {
     const technician = await Technician.findByPk(id, {
-      include: Group
+      include: {
+        model: Group, 
+        required: false, 
+        through: { attributes: [], where: { date_end: null } } 
+      }
     })
     res.status(200).json(technician)
   } catch (error) {

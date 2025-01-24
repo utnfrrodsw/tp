@@ -55,112 +55,112 @@
   import TechnicianService from '../services/TechnicianService'
   import { esMayorDe18 } from '@/utilities/utilities.js'
 
-export default {
-  name: 'EditTechnician',
-  components: {
-    Alerts,
-  },
-  data() {
-    return {
-      technician: {
-        id: this.$route.params.id,
-        name: "",
-        date_born: null,
-      },
-      validationRules: {
-        name: [
-          v => !!v || 'Nombre is required',
-          v => (v && v.length <= 10) || 'Nombre must be less than 10 characters',
-        ],
-        date_born: [
-          value => {
-            if (value) return true
-            return 'Fecha Nacimiento is required'
-          },
-          value => {
-            if (esMayorDe18(value)) return true
-            return 'Fecha Nacimiento invalida: edad minima 18'
-          },
-        ],
-      },
-      menu: false,
-      alert: {
-        show: false,
-        title: "",
-        message: "",
-        type: "",
-      },
-      loading: false,
-    }
-  },
-  mounted() {
-    this.fetchData()
-  },
-  computed: {
-    formattedDate: {
-      // getter
-      get: function () {
-        if (this.technician.date_born) {
-          const date = new Date(this.technician.date_born)
-          const [year, month, day] = date.toISOString().substring(0, 10).split('-')
-          return `${day}/${month}/${year}`
-        }
-        return ''
-      },
-      // setter
-      set: function (newValue) {
-        this.technician.date_born = newValue
+  export default {
+    name: 'EditTechnician',
+    components: {
+      Alerts,
+    },
+    data() {
+      return {
+        technician: {
+          id: this.$route.params.id,
+          name: "",
+          date_born: null,
+        },
+        validationRules: {
+          name: [
+            v => !!v || 'Nombre is required',
+            v => (v && v.length <= 10) || 'Nombre must be less than 10 characters',
+          ],
+          date_born: [
+            value => {
+              if (value) return true
+              return 'Fecha Nacimiento is required'
+            },
+            value => {
+              if (esMayorDe18(value)) return true
+              return 'Fecha Nacimiento invalida: edad minima 18'
+            },
+          ],
+        },
+        menu: false,
+        alert: {
+          show: false,
+          title: "",
+          message: "",
+          type: "",
+        },
+        loading: false,
       }
     },
-  },
-  methods: {
-    async fetchData() {
-      this.loading = true
-      try {
-        const response = await TechnicianService.get(this.technician.id)
-
-        this.technician.name = response.data.name
-        this.technician.date_born = response.data.date_born.substring(0, 10)
-      } catch (error) {
-        console.error(error)
-      }
-      this.loading = false
+    mounted() {
+      this.fetchData()
     },
-    async submitForm() {
-      if (this.$refs.form.validate()) {
-        this.loading = true
-  
-        try {
-          const data = {
-            name: this.technician.name,
-            date_born: this.technician.date_born
+    computed: {
+      formattedDate: {
+        // getter
+        get: function () {
+          if (this.technician.date_born) {
+            const date = new Date(this.technician.date_born)
+            const [year, month, day] = date.toISOString().substring(0, 10).split('-')
+            return `${day}/${month}/${year}`
           }
-          const response = await TechnicianService.update(this.technician.id, data)
-          this.alert.show = true
-          this.alert.title = 'Guardado exitoso'
-          this.alert.message = 'El cambio se realizó exitosamente'
-          this.alert.type = 'success'
-  
-          this.reset()
-          this.resetValidation()
+          return ''
+        },
+        // setter
+        set: function (newValue) {
+          this.technician.date_born = newValue
+        }
+      },
+    },
+    methods: {
+      async fetchData() {
+        this.loading = true
+        try {
+          const response = await TechnicianService.get(this.technician.id)
+
+          this.technician.name = response.data.name
+          this.technician.date_born = response.data.date_born.substring(0, 10)
         } catch (error) {
-          this.alerta.show = true
-          this.alerta.title = 'Error'
-          this.alerta.mensaje = 'Error al agregar técnico'
-          this.alerta.type = 'error'
+          console.error(error)
         }
         this.loading = false
+      },
+      async submitForm() {
+        if (this.$refs.form.validate()) {
+          this.loading = true
+    
+          try {
+            const data = {
+              name: this.technician.name,
+              date_born: this.technician.date_born
+            }
+            const response = await TechnicianService.update(this.technician.id, data)
+            this.alert.show = true
+            this.alert.title = 'Guardado exitoso'
+            this.alert.message = 'El cambio se realizó exitosamente'
+            this.alert.type = 'success'
+    
+            this.reset()
+            this.resetValidation()
+          } catch (error) {
+            this.alerta.show = true
+            this.alerta.title = 'Error'
+            this.alerta.mensaje = 'Error al agregar técnico'
+            this.alerta.type = 'error'
+          }
+          this.loading = false
+        }
+      },
+      redirectList() {
+        this.$router.push({ path: '/list-technicians' }).catch(() => {})
+      },
+      reset () {
+        this.$refs.form.reset()
+      },
+      resetValidation () {
+        this.$refs.form.resetValidation()
       }
-    },
-    redirectList() {
-      this.$router.push({ path: '/list-technicians' }).catch(() => {})
-    },
-    reset () {
-      this.$refs.form.reset()
-    },
-    resetValidation () {
-      this.$refs.form.resetValidation()
     }
   }
-}
 </script>

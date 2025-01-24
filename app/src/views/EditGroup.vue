@@ -71,7 +71,7 @@
   import Alerts from '@/components/Alerts.vue'
 
   export default {
-    name: "EditGroup",
+    name: 'EditGroup',
     components: {
       Alerts,
     },

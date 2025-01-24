@@ -22,7 +22,7 @@
             :server-items-length="totalItems"
           >
             <template v-if="$isAdmin" v-slot:[`item.actions`]="{ item }">
-              <v-icon small class="mr-2" @click="editGroup(item.id)">
+              <v-icon small class="mr-2" @click="showGroup(item.id)">
                 mdi-search-web
               </v-icon>
               <v-icon small class="mr-2" @click="editGroup(item.id)">
@@ -97,6 +97,9 @@
           .catch((e) => {
             console.log(e)
           })
+      },
+      showGroup(id) {
+        this.$router.push({ name: 'ShowGroup', params: { id } })
       },
       editGroup(id) {
         this.$router.push({ name: 'EditGroup', params: { id } })

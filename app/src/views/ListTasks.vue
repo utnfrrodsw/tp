@@ -19,7 +19,7 @@
             :currentPage="page"
           >
             <template v-if="$isAdmin" v-slot:[`item.actions`]="{ item }">
-              <v-icon small class="mr-2" @click="editTask(item.id)">
+              <v-icon small class="mr-2" @click="showTask(item.id)">
                 mdi-search-web
               </v-icon>
               <v-icon small class="mr-2" @click="editTask(item.id)">
@@ -94,6 +94,9 @@
           .catch((e) => {
             console.log(e)
           })
+      },
+      showTask(id) {
+        this.$router.push({ name: 'ShowTask', params: { id } })
       },
       editTask(id) {
         this.$router.push({ name: 'EditTask', params: { id } })

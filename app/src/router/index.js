@@ -3,14 +3,17 @@ import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
 
+import ShowGroup from '../views/ShowGroup.vue'
 import AddGroup from '../views/AddGroup.vue'
 import EditGroup from '../views/EditGroup.vue'
 import ListGroups from '../views/ListGroups.vue'
 
+import ShowTechnician from '../views/ShowTechnician.vue'
 import AddTechnician from '../views/AddTechnician.vue'
 import EditTechnician from '../views/EditTechnician.vue'
 import ListTechnicians from '../views/ListTechnicians.vue'
 
+import ShowTask from '../views/ShowTask.vue'
 import AddTask from '../views/AddTask.vue'
 import EditTask from '../views/EditTask.vue'
 import ListTasks from '../views/ListTasks.vue'
@@ -34,6 +37,12 @@ const routes = [
     beforeEnter: auth
   },
   {
+    path: '/show-group/:id',
+    name: 'ShowGroup',
+    component: ShowGroup,
+    beforeEnter: auth
+  },
+  {
     path: '/add-group',
     name: 'AddGroup',
     component: AddGroup,
@@ -52,6 +61,12 @@ const routes = [
     beforeEnter: auth
   },
   {
+    path: '/show-technician/:id',
+    name: 'ShowTechnician',
+    component: ShowTechnician,
+    beforeEnter: auth
+  },
+  {
     path: '/add-technician',
     name: 'AddTechnician',
     component: AddTechnician,
@@ -67,6 +82,12 @@ const routes = [
     path: '/list-technicians',
     name: 'ListTechnicians',
     component: ListTechnicians,
+    beforeEnter: auth
+  },
+  {
+    path: '/show-task/:id',
+    name: 'ShowTask',
+    component: ShowTask,
     beforeEnter: auth
   },
   {
