@@ -147,7 +147,7 @@
           { text: 'Conexión', value: 'conection' },
           { text: 'Observación', value: 'observation' },
           { text: 'Cantidad', value: 'quantity' },
-          { text: 'Precio', value: 'task.prices[0].price', formatter: (x) => (x ? `$ ${x}` : null) },
+          { text: 'Precio', value: 'task.price', formatter: (x) => (x ? `$ ${x}` : null) },
           { text: 'Subtotal', value: 'subtotal' }
         ]
       }
@@ -158,7 +158,7 @@
     },
     methods: {
       getSubtotal(item) {
-        return item.quantity * item.task.prices.at(-1)?.price
+        return item.quantity * item.task?.price || 0
       },
       getTotal() {
         return this.tasks.reduce((total, item) => total + this.getSubtotal(item), 0)
@@ -169,16 +169,8 @@
       },
       async fetchCertifications() {
         const responseGroupTask = await GroupTaskService.get()
-        this.tasks = responseGroupTask.data.map(gp => {
-          return {
-            ...gp,
-            task: {
-              ...gp.task,
-              prices: gp.task.prices.filter(p => p.createdAt <= gp.date_completed)
-            }
-          }
-        })
-        console.log(this.tasks)
+        console.log(responseGroupTask)
+        this.tasks = responseGroupTask.data
       },
       async queryTasks() {
         const params = {

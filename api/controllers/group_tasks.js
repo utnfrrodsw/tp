@@ -1,11 +1,12 @@
-const { Group, Task, GroupTask, Price, Technician, GroupTechnician } = require('../sequelize')
-const Sequelize = require("sequelize")
+const { Group, Task, GroupTask, Price, Technician } = require('../sequelize')
+const Sequelize = require('sequelize')
 
 const getGroupTasks = async (req, res) => {
   const { date_from, date_to, time_from, time_to, technicianId } = req.query
   try {
+    let groupTasks = []
     if (!date_from || !date_to || !time_from || !time_to || !technicianId) {
-      const groupTasks = await GroupTask.findAll({
+      groupTasks = await GroupTask.findAll({
         include: [{
           model: Group,
           include: {
@@ -19,9 +20,8 @@ const getGroupTasks = async (req, res) => {
           }
         }]
       })
-      res.status(200).json(groupTasks)
     } else {
-      const groupTask = await GroupTask.findAll({
+      groupTask = await GroupTask.findAll({
         where: {
           date_completed: {
             [Sequelize.Op.between]: [date_from, date_to]
@@ -46,9 +46,32 @@ const getGroupTasks = async (req, res) => {
           }
         }]
       })
-
-      res.status(200).json(groupTask)
     }
+    const groupTasksPrice = groupTasks.map(groupTask => {
+      const task = groupTask.task
+      const filteredPrices = task.prices.filter(price => {
+        return new Date(price.createdAt) <= new Date(groupTask.date_completed)
+      })
+      const latestPrice = filteredPrices.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0]
+
+      return {
+        groupId: groupTask.groupId,
+        conection: groupTask.conection,
+        taskId: groupTask.taskId,
+        date_completed: groupTask.date_completed,
+        quantity: groupTask.quantity,
+        hour: groupTask.hour,
+        observation: groupTask.observation,
+        group: groupTask.group,
+        task: {
+          id: task.id,
+          name: task.name,
+          prices: task.prices,
+          price: latestPrice?.price
+        }
+      }
+    })
+    res.status(200).json(groupTasksPrice)
   } catch (error) {
     console.log(error)
     res.status(400).send('Ups! Error')
