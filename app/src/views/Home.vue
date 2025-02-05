@@ -63,42 +63,42 @@
       }
     },
     mounted() {
-      this.fetchData();
-      this.fetchData2();
+      this.fetchData()
+      this.fetchData2()
     },
     methods: {
       fetchData() {
         TaskService.sumTasks()
           .then(response => {
-            const data = response.data[0];
-            console.log(data);
+            const data = response.data[0]
+            console.log(data)
             this.chartOptions.series = [{
               name: 'Porcentaje',
               data: data.map(item => ({
                 name: item.name,
                 y: parseInt(item.total)
               }))
-            }];
+            }]
           })
           .catch(error => {
-            console.error(error);
-          });
+            console.error(error)
+          })
       },
       fetchData2() {
         TaskService.actualTaskPrice()
           .then(response => {
-            const data2 = response.data;
+            const data2 = response.data
             this.chartOptions2.series = [{
               name: 'Porcentaje',
               data: data2.map(item => ({
                 name: item.name,
                 y: parseInt(item.price)
               }))
-            }];
+            }]
           })
           .catch(error => {
-            console.error(error);
-          });
+            console.error(error)
+          })
       }
     }
   }
