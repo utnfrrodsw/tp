@@ -108,13 +108,8 @@
           const responseGroups = await GroupService.get(this.group.id)
           this.group.description = responseGroups.data.description
           this.group.technicians = (await GroupTechnicianService.getTechnicians(this.group.id)).data
-
           const responseTechnicians = await GroupTechnicianService.freeTechnicians()
           this.availableTechnicians = responseTechnicians.data
-          if (this.group.technicians.length > 0) {
-            let userTechnicianIds = this.group.technicians.map((t) => t.id) // IDs de los técnicos actuales del grupo
-            this.availableTechnicians = response.data.filter((t) => !userTechnicianIds.includes(t.id)) // Filtrar los técnicos disponibles
-          }
         } catch (error) {
           console.error(error)
         }

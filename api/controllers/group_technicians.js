@@ -9,7 +9,7 @@ const createGroupTechnician = async (req, res) => {
     const groupTechnician = await GroupTechnician.create({
       groupId,
       technicianId,
-      date_assigned: Sequelize.fn('NOW')
+      date_assigned: Date.now()
     })
     res.json(groupTechnician)
   } catch (error) {
@@ -25,7 +25,7 @@ const deleteGroupTechnician = async (req, res) => {
   try {
     const groupTechnician = await GroupTechnician.update(
       { 
-        date_end: new Date()
+        date_end: Date.now()
       },
       {
         where: {

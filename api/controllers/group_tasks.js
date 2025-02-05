@@ -10,7 +10,10 @@ const getGroupTasks = async (req, res) => {
         include: [{
           model: Group,
           include: {
-            model: Technician
+            model: Technician,
+            through: {
+              attributes: ['date_assigned', 'date_end']
+            }
           }
         }, {
           model: Task,
@@ -34,6 +37,9 @@ const getGroupTasks = async (req, res) => {
           model: Group,
           include: {
             model: Technician,
+            through: {
+              attributes: ['date_assigned', 'date_end']
+            },
             where: {
               id: technicianId
             }
@@ -49,10 +55,17 @@ const getGroupTasks = async (req, res) => {
     }
     const groupTasksPrice = groupTasks.map(groupTask => {
       const task = groupTask.task
-      const filteredPrices = task.prices.filter(price => {
-        return new Date(price.createdAt) <= new Date(groupTask.date_completed)
-      })
+      const filteredPrices = task.prices.filter(price => new Date(price.createdAt) <= new Date(groupTask.date_completed))
       const latestPrice = filteredPrices.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0]
+      const filterTechnicians = groupTask.group.technicians.filter(technician => {
+        let gt = technician.groups_technicians
+        let date_assigned = new Date(gt.date_assigned)
+        let date_end = gt.date_end ? new Date(gt.date_end) : null
+        let date_completed = new Date(`${groupTask.date_completed} ${groupTask.hour}`)
+        console.log(date_assigned, date_completed, date_end)
+        return date_assigned <= date_completed && (!date_end || date_end >= date_completed)
+      })
+      if (filterTechnicians.length === 0) return null
 
       return {
         groupId: groupTask.groupId,
@@ -62,7 +75,11 @@ const getGroupTasks = async (req, res) => {
         quantity: groupTask.quantity,
         hour: groupTask.hour,
         observation: groupTask.observation,
-        group: groupTask.group,
+        group: {
+          id: groupTask.group.id,
+          technicians: filterTechnicians,
+          description: groupTask.group.description
+        },
         task: {
           id: task.id,
           name: task.name,
