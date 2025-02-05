@@ -6,7 +6,7 @@
     "start": "node ./index.js",
     "dev": "nodemon ./index.js",
     "lint": "standard --fix",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",

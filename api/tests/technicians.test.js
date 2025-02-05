@@ -1,65 +1,143 @@
-const jwt = require('jsonwebtoken');
 const request = require('supertest');
 const express = require('express');
-const techniciansController = require('../routes/technicians'); // Ajusta la ruta según tu estructura
-const { sequelize } = require('../sequelize'); // Ajusta la ruta según tu configuración
+const { getTechnicians, getTechnician, updateTechnician, createTechnician, deleteTechnician } = require('../controllers/technicians');
+const { sequelize, Technician, Group, Task } = require('../sequelize'); // Cambia la ruta a la correcta
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json());
+app.get('/technicians', getTechnicians);
+app.get('/technicians/:id', getTechnician);
+app.put('/technicians/:id', updateTechnician);
+app.post('/technicians', createTechnician);
+app.delete('/technicians/:id', deleteTechnician);
 
-// Verificar que techniciansController es un Router antes de usarlo
+jest.mock('../sequelize'); // Cambia la ruta a la correcta
 
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNzM4MTY1MjY3LCJleHAiOjE3Mzg3NzAwNjd9.yH0oOLx_8cdNkX9yWcqVekxsRB86J7EsSPhodH1eNGE"
-if (techniciansController && techniciansController.use) {
-    app.use('/api/technicians', techniciansController);
-} else {
-    throw new Error("❌ techniciansController no es un Router válido");
-}
+require('dotenv').config();
 
-describe('Technicians Controller', () => {
-    let token; // Variable para almacenar el token JWT
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SIGNATURE, { expiresIn: '1h' });
+};
 
-    beforeAll(async () => {
-        try {
-            // Conectar a la base de datos
-            await sequelize.authenticate();
-            console.log('✅ Database connected successfully');
+describe('Technician Controller with JWT', () => {
+  let token;
 
-            // Sincronizar modelos (si es necesario)
-            await sequelize.sync(); // Asegúrate de que esto se ejecute antes de cerrar la conexión
+  beforeAll(async () => {
+    token = generateToken(1); // Assuming user ID 1 for testing
+    sequelize.options.logging = false; // Desactiva el logging de Sequelize durante las pruebas
+    await sequelize.sync(); // Asegúrate de que la sincronización de Sequelize se complete antes de las pruebas
+  });
 
-            // Generar el token manualmente
-            const user = { id: 1, name: 'Test User' }; // Usuario de prueba
-            token = jwt.sign(user, 'your-secret-key', { expiresIn: '1h' }); // Generación del token
-        } catch (error) {
-            console.error('❌ Failed to connect to database:', error);
-        }
+  afterAll(async () => {
+    await new Promise(resolve => setTimeout(() => resolve(), 500)); // Espera un poco antes de cerrar la conexión
+    await sequelize.close(); // Cierra la conexión a la base de datos después de todas las pruebas
+  });
+
+  describe('getTechnicians', () => {
+    it('should return a list of technicians', async () => {
+      const technicians = [{ id: 1, name: 'John Doe' }];
+      Technician.findAndCountAll.mockResolvedValue({ rows: technicians, count: 1 });
+
+      const res = await request(app).get('/technicians').set('Authorization', `Bearer ${token}`);
+
+      expect(res.statusCode).toEqual(200);
+      expect(res.body).toHaveProperty('totalItems', 1);
+      expect(res.body).toHaveProperty('items', technicians);
     });
 
-    afterAll(async () => {
-        await sequelize.close(); // Cerrar la conexión después de completar todas las operaciones
+    it('should handle errors', async () => {
+      Technician.findAndCountAll.mockRejectedValue(new Error('Some error'));
+
+      const res = await request(app).get('/technicians').set('Authorization', `Bearer ${token}`);
+
+      expect(res.statusCode).toEqual(500);
+      expect(res.body).toHaveProperty('message', 'Some error occurred while retrieving technicians.');
+    });
+  });
+
+  describe('getTechnician', () => {
+    it('should return a technician by id', async () => {
+      const technician = { id: 1, name: 'John Doe' };
+      Technician.findByPk.mockResolvedValue(technician);
+
+      const res = await request(app).get('/technicians/1').set('Authorization', `Bearer ${token}`);
+
+      expect(res.statusCode).toEqual(200);
+      expect(res.body).toEqual(technician);
     });
 
-    it('should get all technicians', async () => {
-        const res = await request(app)
-            .get('/api/technicians')
-            .set('Authorization', `Bearer ${token}`); // Pasar el token en el encabezado
+    it('should handle errors', async () => {
+      Technician.findByPk.mockRejectedValue(new Error('Some error'));
 
-        expect(res.statusCode).toBe(200);
-        expect(res.body).toHaveProperty('items');
-        expect(Array.isArray(res.body.items)).toBe(true);
+      const res = await request(app).get('/technicians/1').set('Authorization', `Bearer ${token}`);
+
+      expect(res.statusCode).toEqual(400);
+      expect(res.text).toEqual('Ups! Error');
+    });
+  });
+
+  describe('updateTechnician', () => {
+    it('should update a technician', async () => {
+      const technician = { id: 1, name: 'John Doe', date_born: '1990-01-01' };
+      Technician.update.mockResolvedValue([1]);
+
+      const res = await request(app).put('/technicians/1').send(technician).set('Authorization', `Bearer ${token}`);
+
+      expect(res.statusCode).toEqual(200);
+      expect(res.body).toEqual([1]);
     });
 
+    it('should handle errors', async () => {
+      Technician.update.mockRejectedValue(new Error('Some error'));
+
+      const res = await request(app).put('/technicians/1').send({ name: 'John Doe', dateBorn: '1990-01-01' }).set('Authorization', `Bearer ${token}`);
+
+      expect(res.statusCode).toEqual(400);
+      expect(res.text).toEqual('Ups! Error');
+    });
+  });
+
+  describe('createTechnician', () => {
     it('should create a new technician', async () => {
-        const newTechnician = { name: 'John Doe' };
+      const technician = { id: 1, name: 'John Doe', date_born: '1990-01-01' };
+      Technician.create.mockResolvedValue(technician);
 
-        const res = await request(app)
-            .post('/api/technicians')
-            .set('Authorization', `Bearer ${token}`) // Pasar el token en el encabezado
-            .send(newTechnician); // Enviar los datos del nuevo técnico
+      const res = await request(app).post('/technicians').send(technician).set('Authorization', `Bearer ${token}`);
 
-        expect(res.statusCode).toBe(201);
-        expect(res.body).toHaveProperty('technician');
-        expect(res.body.technician).toHaveProperty('id');
+      expect(res.statusCode).toEqual(200);
+      expect(res.body).toEqual(technician);
     });
+
+    it('should handle errors', async () => {
+      Technician.create.mockRejectedValue(new Error('Some error'));
+
+      const res = await request(app).post('/technicians').send({ name: 'John Doe', date_born: '1990-01-01' }).set('Authorization', `Bearer ${token}`);
+
+      expect(res.statusCode).toEqual(400);
+      expect(res.text).toEqual('Ups! Error');
+    });
+  });
+
+  describe('deleteTechnician', () => {
+    it('should delete a technician', async () => {
+      const technician = { id: 1, name: 'John Doe', groups: [] };
+      Technician.findByPk.mockResolvedValue(technician);
+      Technician.destroy.mockResolvedValue(1);
+
+      const res = await request(app).delete('/technicians/1').set('Authorization', `Bearer ${token}`);
+
+      expect(res.statusCode).toEqual(200);
+      expect(res.body).toEqual(technician);
+    });
+
+    it('should handle errors', async () => {
+      Technician.findByPk.mockRejectedValue(new Error('Some error'));
+
+      const res = await request(app).delete('/technicians/1').set('Authorization', `Bearer ${token}`);
+
+      expect(res.statusCode).toEqual(400);
+      expect(res.text).toEqual('Ups! Error');
+    });
+  });
 });
