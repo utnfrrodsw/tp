@@ -61,7 +61,7 @@
             this.alert.show = true
             this.reset()
           } catch (error) {
-            this.alert.message = 'Error al agregar técnico'
+            this.alert.message = 'Error al crear el grupo'
             this.alert.type = 'error'
             this.alert.show = true
           }
