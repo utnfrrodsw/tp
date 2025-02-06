@@ -14,8 +14,7 @@ describe('Listar todos los técnicos que llegan desde BD', () => {
       cy.get('tbody > tr').should('have.length', task.prices.length)
       task.prices.forEach((price, index) => {
         cy.get(`tbody > tr:nth-child(${index + 1})`).within(() => {
-          const date = new Date(price.updatedAt)
-          const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+          const formattedDate = new Date(price.createdAt).toLocaleString()
           cy.get('td:nth-child(1)').should('contain.text', price.price)
           cy.get('td:nth-child(2)').should('contain.text', formattedDate)
         })

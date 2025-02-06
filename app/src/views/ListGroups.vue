@@ -25,7 +25,7 @@
               <v-icon small class="mr-2" @click="showGroup(item.id)">
                 mdi-search-web
               </v-icon>
-              <v-icon small class="mr-2" @click="editGroup(item.id)">
+              <v-icon id="editGroup" small class="mr-2" @click="editGroup(item.id)">
                 mdi-pencil
               </v-icon>
               <v-icon small class="mr-2" @click="deleteGroup(item.id)">

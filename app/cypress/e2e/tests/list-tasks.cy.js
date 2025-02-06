@@ -26,7 +26,7 @@ describe('Listar todos los técnicos que llegan desde BD', () => {
       const firstTaskId = tasks.items[0].id
       const expectedUrl = `/edit-task/${firstTaskId}`
       cy.get('tbody > tr:first-child')
-        .find('td:nth-child(4) button')
+        .find('td:nth-child(4) #editTask')
         .click()
       cy.url().should('include', expectedUrl)
     })

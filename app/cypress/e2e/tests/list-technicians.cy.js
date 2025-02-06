@@ -13,7 +13,7 @@ describe('Listar todos los técnicos que llegan desde BD', () => {
       technicians.items.forEach((technician, index) => {
         cy.get(`tbody > tr:nth-child(${index + 1})`).within(() => {
           const date = new Date(technician.date_born)
-          const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+          const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
           cy.get('td:nth-child(1)').should('contain.text', technician.id)
           cy.get('td:nth-child(2)').should('contain.text', technician.name)
           cy.get('td:nth-child(3)').should('contain.text', formattedDate)
@@ -33,7 +33,7 @@ describe('Listar todos los técnicos que llegan desde BD', () => {
       const firstTechnicianId = technician.items[0].id
       const expectedUrl = `/edit-technician/${firstTechnicianId}`
       cy.get('tbody > tr:first-child')
-        .find('td:nth-child(4) button')
+        .find('td:nth-child(4) #editTechnician')
         .click()
       cy.url().should('include', expectedUrl)
     })

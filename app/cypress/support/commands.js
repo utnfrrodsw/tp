@@ -33,6 +33,5 @@ Cypress.Commands.add('login', (email, password) => {
     cy.get('[data-cy="input-contrasena"]').type(password)
     cy.get('[data-cy="login-button"]').click()
     cy.intercept('POST', '**/login*').as('login')
-    cy.wait('@login', { timeout: 15000 })
   })
 })

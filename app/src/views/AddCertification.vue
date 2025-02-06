@@ -95,7 +95,6 @@
 <script>
 import Alerts from '@/components/Alerts.vue'
 import GroupTechnicianService from '../services/GroupTechnicianService'
-import GroupService from '../services/GroupService'
 import TaskService from '../services/TaskService'
 import GroupTaskService from '../services/GroupTaskService'
 

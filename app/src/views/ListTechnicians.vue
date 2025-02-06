@@ -22,7 +22,7 @@
               <v-icon small class="mr-2" @click="showTechnician(item.id)">
                 mdi-search-web
               </v-icon>
-              <v-icon small class="mr-2" @click="editTechnician(item.id)">
+              <v-icon id="editTechnician" small class="mr-2" @click="editTechnician(item.id)">
                 mdi-pencil
               </v-icon>
               <v-icon small class="mr-2" @click="deleteTechnician(item.id)">
