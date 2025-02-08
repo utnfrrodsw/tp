@@ -72,4 +72,19 @@ export class ReseñaRepository implements Repository<Reseña>{
         }
     }
 
+    public async findByLibro(libroId: string): Promise<Reseña[] | undefined> {
+        try {
+            const todasLasReseñas = await reseñas.find().toArray();
+
+            const reseñasFiltradas = todasLasReseñas.filter(reseña =>
+                reseña.libro.toString() === libroId
+            );
+
+            return reseñasFiltradas;
+        } catch (error) {
+            console.error("Error en findByLibro:", error);
+            throw error;
+        }
+    }
+
 }

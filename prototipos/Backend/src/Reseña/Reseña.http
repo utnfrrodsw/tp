@@ -6,5 +6,7 @@ Content-Type: application/json
 
 {
     "comentario": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium aliquid, delectu ullam nobis facere, debitis deserunt enim culpa quia nam porro. Quaerat dicta sed animi voluptate laudantium debitis amet saepe....",
-    "usuario": "6556a8c6e9f6a54f3958714a"
+    "usuario": "678fdbd17eb10f0561cccf8f",
+    "libro": "654d364a58bbd30caba73d22",
+    "calificacion": 5
 }

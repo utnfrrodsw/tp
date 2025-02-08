@@ -108,5 +108,55 @@ async function findByUsuario(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, findByUsuario };
+async function findByLibro(req, res) {
+    try {
+        const libroId = req.params.libroId;
+        const reseñas = await repository.findByLibro(libroId);
+        if (!reseñas || reseñas.length === 0) {
+            return res.status(404).send({ message: "No se encontraron reseñas para el Libro proporcionado." });
+        }
+        res.status(200).send({ message: 'Reseñas encontradas con éxito.', data: reseñas });
+    }
+    catch (error) {
+        console.error("Error en findByLibro:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getComentario(req, res) {
+    try {
+        const id = req.params.id;
+        const reseña = await repository.findOne({ id });
+        if (!reseña) {
+            return res.status(404).send({ message: "Comentrio no encontrado." });
+        }
+        res.json({ data: reseña.comentario });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getCalificacion(req, res) {
+    try {
+        const id = req.params.id;
+        const reseña = await repository.findOne({ id });
+        if (!reseña) {
+            return res.status(404).send({ message: "Calificación no encontrado." });
+        }
+        res.json({ data: reseña.calificacion });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+async function getReseñas(req, res) {
+    try {
+        const reseñas = await repository.findAll();
+        const reseñasIds = reseñas?.map((reseña) => reseña._id);
+        res.json({ data: reseñasIds });
+    }
+    catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+export { sanitizeInput, findAll, findOne, add, update, remove, findByUsuario, findByLibro, getComentario, getCalificacion, getReseñas };
 //# sourceMappingURL=Rese%C3%B1a.controller.js.map
