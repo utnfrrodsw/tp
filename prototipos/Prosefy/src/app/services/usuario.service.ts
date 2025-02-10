@@ -150,6 +150,12 @@ export class UsuarioService {
     );
   }
 
+  getUsuarioByEmail(email: string): Observable<Usuario | undefined> {
+    return this.findAll().pipe(
+      map((usuarios: Usuario[]) => usuarios.find(usuario => usuario.email === email))
+    );
+  }
+
   // SETTERS
 
   private setData<T>(setter: string, body: any): Observable<T> {

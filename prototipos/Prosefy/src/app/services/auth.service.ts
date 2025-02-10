@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  private currentUserIdSubject = new BehaviorSubject<string | null>(null);
+  currentUserId$ = this.currentUserIdSubject.asObservable();
+
   private failedLoginAttempts = 0;
   private isBlockedSubject = new BehaviorSubject<boolean>(false);
 
@@ -75,5 +78,10 @@ export class AuthService {
 
   checkToken(): void {
     this.iniciarSesionService.checkToken();
+  }
+
+  // Obtener el ID del usuario actual
+  getCurrentUserId(): string | null {
+    return this.currentUserIdSubject.value;
   }
 }

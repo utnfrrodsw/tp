@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin, map } from 'rxjs';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crud-usuarios',
@@ -11,13 +13,16 @@ export class CrudUsuariosComponent implements OnInit {
 
   usuarioEditandoId: string | null = null;
   nuevoTipo: string = '';
+  currentUserId: string | null = null;
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, private authService: AuthService) { }
 
   usuariosIds: string[] = [];
   usuariosData: { [key: string]: { username: string | undefined, nombre: string | undefined, apellido: string | undefined, email: string | undefined, avatar: string | undefined, tipo: string | undefined } } = {};
 
   ngOnInit() {
+    this.currentUserId = this.authService.getCurrentUserId(); // Obtener el ID del usuario actual
+
     this.usuarioService.getUsuariosIds().subscribe((usuariosIds: string[]) => {
       this.usuariosIds = usuariosIds;
 
@@ -58,17 +63,64 @@ export class CrudUsuariosComponent implements OnInit {
   }
 
   eliminarUsuario(usuarioId: string): void {
-    if (confirm('¿Está seguro de que desea eliminar este usuario?')) {
-      this.usuarioService.eliminarUsuario(usuarioId).subscribe(
-        () => {
-          console.log('Usuario eliminado con éxito');
-          location.reload();
-        },
-        (error) => {
-          console.error('Error al eliminar el usuario', error);
-        }
-      );
+    // Verificar si el usuario a eliminar es el mismo que el usuario actual usando su ID
+    if (usuarioId === this.currentUserId) {
+      Swal.fire({
+        icon: 'error',
+        title: '¡Error!',
+        text: 'No puede eliminar su propio usuario mientras está iniciado sesión.',
+        confirmButtonText: 'Aceptar',
+        background: '#242729',
+        color: '#fff',
+        confirmButtonColor: '#473226'
+      });
+      return;
     }
+
+    // Confirmar la eliminación si el usuario es diferente
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      background: '#242729',
+      color: '#fff',
+      confirmButtonColor: '#473226',
+      cancelButtonColor: '#181a1b',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.eliminarUsuario(usuarioId).subscribe(
+          () => {
+            // Después de la eliminación exitosa, mostramos el Swal de éxito
+            Swal.fire({
+              title: 'Eliminado!',
+              text: 'El usuario ha sido eliminado con éxito.',
+              icon: 'success',
+              background: '#242729',
+              color: '#fff',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#473226',
+            }).then(() => {
+              // Recargar la página solo después de que el usuario haga clic en "Aceptar"
+              location.reload();
+            });
+          },
+          (error) => {
+            Swal.fire({
+              title: 'Error',
+              text: 'Hubo un problema al eliminar el usuario.',
+              icon: 'error',
+              background: '#242729',
+              color: '#fff',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#473226',
+            });
+          }
+        );
+      }
+    });
   }
 
   editarUsuario(usuarioId: string): void {
