@@ -3,7 +3,7 @@ import { Resenia } from "./Resenia.js";
 import { db } from "../Shared/db/conn.mongo.js";
 import { ObjectId } from 'mongodb'
 
-const resenias = db.collection<Resenia>('Resenias')
+const resenias = db.collection<Resenia>('resenias')
 
 export class ReseniaRepository implements Repository<Resenia> {
 

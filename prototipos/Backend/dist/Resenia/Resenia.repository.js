@@ -1,6 +1,6 @@
 import { db } from "../Shared/db/conn.mongo.js";
 import { ObjectId } from 'mongodb';
-const resenias = db.collection('Resenias');
+const resenias = db.collection('resenias');
 export class ReseniaRepository {
     async findAll() {
         try {
