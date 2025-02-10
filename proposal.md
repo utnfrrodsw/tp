@@ -32,15 +32,14 @@ Sistema de atención y gestión para una hamburguesería con el objetivo de  fac
 
 ## Alcance Funcional 
 
-### Alcance Mínimo
-
 
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Hamburguesa (primer CRUD propuesta)<br>2. CRUD Cliente<br>3. CRUD Ingrediente <br>4. CRUD Precio <br>5. CRUD Pedido
+|CRUD simple|1. CRUD Hamburguesa (primer CRUD propuesta)<br>2. CRUD Cliente<br>3. CRUD Ingrediente <br>4. CRUD Precio <br>5. CRUD Pedido |
 |CRUD dependiente|1. CRUD Precio {depende de} CRUD Hamburguesa <br>2. CRUD Pedido {depende de} CRUD Hamburguesa |
-|Listado<br>+<br>detalle| 1. Listado de hamburguesas, muestra id, nombre y descripción  => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar un pedido|
+|Listado<br>+<br>detalle| 1. Listado de hamburguesas, muestra id, nombre y descripción <br> 2. Listado de clientes, muestra id, nombre, apellido, telefono, email, dirección <br> 3. Listado de ingredientes, muestra descripción y stock <br> 4. Listado de pedidos, muestra idPedido, idCliente, modalidad, monto, estado, hamburguesas(nombre, cantidad y precio) => detalle: botón de confirmación de pedido ENTREGADO 
+|CUU/Epic|1.Realizar un pedido <br>2. Rellenar y enviar formulario en Contacto|
+|Otros|1. Envío de recordatorio de reserva por email|
 
 
 ### Alcance Adicional Voluntario
