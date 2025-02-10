@@ -37,18 +37,8 @@ Sistema de atención y gestión para una hamburguesería con el objetivo de  fac
 |:-|:-|
 |CRUD simple|1. CRUD Hamburguesa (primer CRUD propuesta)<br>2. CRUD Cliente<br>3. CRUD Ingrediente <br>4. CRUD Precio <br>5. CRUD Pedido |
 |CRUD dependiente|1. CRUD Precio {depende de} CRUD Hamburguesa <br>2. CRUD Pedido {depende de} CRUD Hamburguesa |
-|Listado<br>+<br>detalle| 1. Listado de hamburguesas, muestra id, nombre y descripción <br> 2. Listado de clientes, muestra id, nombre, apellido, telefono, email, dirección <br> 3. Listado de ingredientes, muestra descripción y stock <br> 4. Listado de pedidos, muestra idPedido, idCliente, modalidad, monto, estado, hamburguesas(nombre, cantidad y precio) => detalle: botón de confirmación de pedido ENTREGADO 
+|Listado<br>+<br>detalle| 1. Listado de hamburguesas, muestra id, nombre y descripción <br> 2. Listado de clientes, muestra id, nombre, apellido, telefono, email, dirección <br> 3. Listado de ingredientes, muestra descripción y stock <br> 4. Listado de pedidos ordenados, muestra idPedido, idCliente, modalidad, monto, estado, hamburguesas(nombre, cantidad y precio) => detalle: botón de confirmación de pedido ENTREGADO 
 |CUU/Epic|1.Realizar un pedido <br>2. Rellenar y enviar formulario en Contacto|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Otros|1. Recepción del formulario rellenado en contacto <br> 2. Código de validación para ingreso del administrador al sistema <br> 3. Recepción de email al momento de finalizar un pedido
 
-
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
 
