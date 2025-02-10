@@ -3,7 +3,6 @@
 ## Grupo
 ### Integrantes
 * 48944- DIAZ, IÑAKI (com 301)
-* 50735- COSTAMAGNA, RENZO (com 301)
 * 51705- PALMIERI, AUGUSTO (com 304)
 
 ### Repositorios
@@ -20,7 +19,7 @@ Sistema de atención y gestión para una hamburguesería con el objetivo de  fac
 
 ## Reglas de Negocio
 
-* EL REGISTRO DE LOS CLIENTES ES UN NUMERO INCREMENTAL.
+* El registro de los clientes es un número incremental.
 * montoTotal es el calculo de la suma de los precios de hamburguesas.
 * El Stock no puede ser un valor negativo, stock 0 no se puede agregar la hamburguesa al pedido.
 * Si el cliente se equivoco en el pedido, la modificación solo la puede realizar el administrador a traves del sistema.
