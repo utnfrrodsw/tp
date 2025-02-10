@@ -33,7 +33,7 @@ app.use("/api/categorias", categoriaRouter);
 app.use("/api/localidades", localidadRouter);
 app.use("/api/provincias", provinciaRouter);
 app.use("/api/formatos", formatoRouter);
-app.use("/api/comentarios", reseniaRouter);
+app.use("/api/resenias", reseniaRouter);
 
 app.use((_, res) => {
 	return res.status(404).send({ message: "Resource not found" });
