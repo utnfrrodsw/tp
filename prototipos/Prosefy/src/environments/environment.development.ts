@@ -9,5 +9,5 @@ export const environment = {
     apiUrlLibros: 'http://localhost:3000/api/libros',
     apiUrlLocalidades: 'http://localhost:3000/api/localidades',
     apiUrlProvincias: 'http://localhost:3000/api/provincias',
-    apiUrlComentarios: 'http://localhost:3000/api/comentarios',
+    apiUrlResenias: 'http://localhost:3000/api/resenias',
 };

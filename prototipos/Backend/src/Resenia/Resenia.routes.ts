@@ -7,7 +7,7 @@ reseniaRouter.get('/usuarios/:usuarioId', findByUsuario);
 reseniaRouter.get('/libros/:libroId', findByLibro);
 reseniaRouter.get('/comentario/:id', getComentario);
 reseniaRouter.get('/calificacion/:id', getCalificacion);
-reseniaRouter.get('/reseñas', getResenias);
+reseniaRouter.get('/resenias', getResenias);
 
 reseniaRouter.get('/', findAll);
 reseniaRouter.get('/:id', findOne);
