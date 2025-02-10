@@ -37,7 +37,7 @@ Sistema de atención y gestión para una hamburguesería con el objetivo de  fac
 |:-|:-|
 |CRUD simple|1. CRUD Hamburguesa (primer CRUD propuesta)<br>2. CRUD Cliente<br>3. CRUD Ingrediente <br>4. CRUD Precio <br>5. CRUD Pedido |
 |CRUD dependiente|1. CRUD Precio {depende de} CRUD Hamburguesa <br>2. CRUD Pedido {depende de} CRUD Hamburguesa |
-|Listado<br>+<br>detalle| 1. Listado de hamburguesas, muestra id, nombre y descripción <br> 2. Listado de clientes, muestra id, nombre, apellido, telefono, email, dirección <br> 3. Listado de ingredientes, muestra descripción y stock <br> 4. Listado de pedidos ordenados, muestra idPedido, idCliente, modalidad, monto, estado, hamburguesas(nombre, cantidad y precio) => detalle: botón de confirmación de pedido ENTREGADO 
+|Listado<br>+<br>detalle| 1. Listado de hamburguesas, muestra id, nombre y descripción => detalle: para clientes, se visualiza la imagen de cada hamburguesa con su respectivo precio <br> 2. Listado de clientes, muestra id, nombre, apellido, telefono, email, dirección <br> 3. Listado de ingredientes, muestra descripción y stock <br> 4. Listado de pedidos ordenados, muestra idPedido, idCliente, modalidad, monto, estado, hamburguesas(nombre, cantidad y precio) => detalle: botón de confirmación de pedido ENTREGADO 
 |CUU/Epic|1.Realizar un pedido <br>2. Rellenar y enviar formulario en Contacto|
 |Otros|1. Recepción del formulario rellenado en contacto <br> 2. Código de validación para ingreso del administrador al sistema <br> 3. Recepción de email al momento de finalizar un pedido
 
