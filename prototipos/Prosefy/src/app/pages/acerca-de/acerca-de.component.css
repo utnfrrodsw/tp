@@ -1,0 +1,39 @@
+.custom-color {
+    color: #292929;
+}
+
+.custom-btn-primary {
+    background-color: #5a3f30;
+    border-color: #5a3f30;
+    transition: all .5s;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-primary:active {
+    background-color: #473226;
+    border-color: #473226;
+}
+
+/* Estilos personalizados */
+.custom-badge {
+    background-color: #f8f9fa;
+    /* Blanco */
+    color: #495057;
+    /* Gris oscuro */
+    border: 1px solid #ced4da;
+    /* Borde gris claro */
+}
+
+.custom-btn-secondary {
+    border-color: #222426;
+    /* Gris oscuro */
+    color: #222426;
+    /* Gris oscuro */
+}
+
+.custom-btn-secondary:hover {
+    background-color: #222426;
+    /* Gris oscuro */
+    color: #fff;
+    /* Texto blanco */
+}
