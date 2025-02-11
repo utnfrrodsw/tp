@@ -176,7 +176,7 @@ el envío será gratuito"
 | Req      | Detalle                                                                                                                                                                                                                                            |
 | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | CRUD     | 1. CRUD Provincia<br>2. CRUD Autor<br>3. CRUD Categoría<br>4. CRUD Editorial<br>5. CRUD Localidad<br>6. CRUD Usuario<br>7. CRUD Libro<br>8. CRUD Reseña<br>9. CRUD Oferta<br>
-| CUU/Epic | 1. Comprar libro<br>2. Reseñar libro<br>3. Registrar Editorial<br>4. Registrar Autor<br>                                                                                                                                                     |
+| CUU/Epic | 1. Comprar libro<br>2. Eliminar Usuario<br>3. Registrar Editorial<br>4. Registrar Autor<br>                                                                                                                                                     |
 
 -   **Consideraciones:**
 
