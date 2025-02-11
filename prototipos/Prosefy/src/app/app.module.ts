@@ -7,6 +7,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { DatePipe, registerLocaleData, CommonModule } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 /* BOOTSTRAP */
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -150,7 +152,8 @@ registerLocaleData(localeEs, 'es');
     { provide: LOCALE_ID, useValue: 'es' },
     AutoresService,
     CarritoComprasService,
-    IniciarSesionService
+    IniciarSesionService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
 })

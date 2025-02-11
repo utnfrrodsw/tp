@@ -149,3 +149,13 @@ Content-Type: application/json
     "perfil": "http://localhost:4200/assets/img/Autores/Ralph Johnson.jpg",
     "info": "Ralph E. Johnson es profesor asociado de investigación en el Departamento de Ciencias de la Computación de la Universidad de Illinois en Urbana-Champaign."
 }
+
+### PRUEBA
+POST http://localhost:3000/api/autores/
+Content-Type: application/json
+
+{
+    "nombreCompleto": "Autor de prueba",
+    "perfil": "http://localhost:4200/assets/img/Autores/Ralph Johnson.jpg",
+    "info": "Ralph E. Johnson es profesor asociado de investigación en el Departamento de Ciencias de la Computación de la Universidad de Illinois en Urbana-Champaign."
+}

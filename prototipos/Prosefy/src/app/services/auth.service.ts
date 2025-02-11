@@ -1,87 +1,107 @@
-import { Injectable } from '@angular/core';
-import { IniciarSesionService, IniciarSesionResponse } from './iniciar-sesion.service';
-import { RegistroService, RegistroResponse } from './registro.service';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
+import { Observable, tap, catchError, throwError } from "rxjs";
+import { environment } from "../../environments/environment.development";
+import { IniciarSesionResponse } from "./iniciar-sesion.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
+  constructor(private http: HttpClient, private router: Router) { }
 
-  private currentUserIdSubject = new BehaviorSubject<string | null>(null);
-  currentUserId$ = this.currentUserIdSubject.asObservable();
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
-  private failedLoginAttempts = 0;
-  private isBlockedSubject = new BehaviorSubject<boolean>(false);
+  private failedLoginAttempts = 0; // Contador de intentos fallidos
+  private isBlockedSubject = new BehaviorSubject<boolean>(false); // Estado de bloqueo
 
-  constructor(
-    private iniciarSesionService: IniciarSesionService,
-    private registroService: RegistroService,
-    private router: Router
-  ) { }
+  private currentRoleSubject = new BehaviorSubject<string | null>(null);
+  currentRole$ = this.currentRoleSubject.asObservable();
 
-  /* Si no está autenticado, se bloquea el acceso a ciertas rutas */
-  canActivate(): boolean {
-    const token = localStorage.getItem('token');
+  setCurrentRole(role: string): void {
+    this.currentRoleSubject.next(role);
+  }
 
+  getCurrentRole(): string | null {
+    return this.currentRoleSubject.value;
+  }
+
+  // Método para iniciar sesión
+  iniciarSesion(email: string, contraseña: string): Observable<IniciarSesionResponse> {
+    return this.http.post<IniciarSesionResponse>(`${environment.apiUrlUsuarios}/iniciar-sesion`, { email, contraseña }).pipe(
+      tap(response => {
+        localStorage.setItem("token", response.token);
+        this.setCurrentRole(response.usuario.tipo); // Guardar el rol del usuario
+      }),
+      catchError(this.handleServerError)
+    );
+  }
+
+  // Método para cerrar sesión
+  cerrarSesion() {
+    localStorage.removeItem("token");
+    this.isAuthenticatedSubject.next(false);
+    this.router.navigate(["/login"]);
+  }
+
+  // Verificar si el usuario está autenticado
+  checkAuthStatus() {
+    const token = localStorage.getItem("token");
     if (token) {
-      return true; // Hay token, permitir acceso
+      this.isAuthenticatedSubject.next(true);
     } else {
-      this.router.navigate(['/inicio']);
-      return false; // No hay token, bloquear acceso
+      this.isAuthenticatedSubject.next(false);
     }
   }
 
-  get isBlocked$(): Observable<boolean> {
-    return this.isBlockedSubject.asObservable();
+  // Obtener el ID del usuario actual desde el token
+  getCurrentUserId(): string | null {
+    const token = localStorage.getItem("token");
+    if (!token) return null;
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1])); // Decodificar el token
+      return payload.userId || null;
+    } catch (error) {
+      console.error("Error al decodificar el token:", error);
+      return null;
+    }
   }
 
+  // Intentar iniciar sesión (bloqueo temporal después de 3 intentos fallidos)
   attemptLogin(): boolean {
     if (this.failedLoginAttempts >= 3) {
-      this.blockForDuration(); // Bloquear durante 5 minutos después de 3 intentos fallidos
+      this.isBlockedSubject.next(true);
+      setTimeout(() => {
+        this.isBlockedSubject.next(false);
+        this.failedLoginAttempts = 0;
+      }, 5 * 60 * 1000); // Bloquear durante 5 minutos
       return false;
     }
     return true;
   }
 
+  // Incrementar el contador de intentos fallidos
   incrementFailedAttempts(): void {
     this.failedLoginAttempts++;
-    console.log('Número de intentos fallidos:', this.getFailedLoginAttempts());
   }
 
-  getFailedLoginAttempts(): number {
-    return this.failedLoginAttempts;
+  // Obtener el estado de bloqueo
+  get isBlocked$() {
+    return this.isBlockedSubject.asObservable();
   }
 
-  private blockForDuration(): void {
-    this.isBlockedSubject.next(true);
-    setTimeout(() => {
-      this.isBlockedSubject.next(false);
-      this.failedLoginAttempts = 0;
-    }, 5 * 60 * 1000); // Bloquear durante 5 minutos
-  }
-
-  iniciarSesion(email: string, contraseña: string): Observable<IniciarSesionResponse> {
-    return this.iniciarSesionService.iniciarSesion(email, contraseña).pipe(
-    );
-  }
-
-  registrarUsuario(usuario: any): Observable<RegistroResponse> {
-    return this.registroService.registrarUsuario(usuario).pipe(
-    );
-  }
-
-  cerrarSesion(): void {
-    this.iniciarSesionService.cerrarSesion();
-  }
-
-  checkToken(): void {
-    this.iniciarSesionService.checkToken();
-  }
-
-  // Obtener el ID del usuario actual
-  getCurrentUserId(): string | null {
-    return this.currentUserIdSubject.value;
+  // Manejo de errores
+  private handleServerError(error: any): Observable<never> {
+    console.error("Error en el inicio de sesión:", error);
+    const errorMessage = {
+      mensaje: "Error desconocido en el inicio de sesión",
+    };
+    if (error.status === 401) {
+      errorMessage.mensaje = "Credenciales inválidas";
+    }
+    return throwError(() => errorMessage);
   }
 }

@@ -10,6 +10,7 @@ export interface IniciarSesionResponse {
     id: string;
     nombre: string;
     email: string;
+    tipo: string;
   };
 }
 
