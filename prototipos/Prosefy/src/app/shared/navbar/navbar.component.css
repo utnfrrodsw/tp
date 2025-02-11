@@ -115,3 +115,18 @@
     margin-left: 1rem;
   }
 }
+
+/* Estilos personalizados para los elementos del dropdown */
+.custom-dropdown-item {
+  cursor: pointer;
+  color: var(--bs-nav-link-color) !important;
+  /* Usa el color predeterminado de Bootstrap */
+}
+
+.custom-dropdown-item:hover,
+.custom-dropdown-item:active {
+  background-color: #bd8464 !important;
+  /* Cambia el color de fondo al pasar el mouse */
+  color: white !important;
+  /* Cambia el color del texto al pasar el mouse */
+}

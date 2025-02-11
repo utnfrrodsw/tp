@@ -16,8 +16,8 @@ export class CategoriasService {
 
   constructor(private http: HttpClient) { }
 
-  getCategorias() {
-    return this.http.get<Categoria[]>(`${this.apiUrl}/descripciones`);
+  getCategorias(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/descripciones`);
   }
 
   getDescripcion(id: string): Observable<string | undefined> {

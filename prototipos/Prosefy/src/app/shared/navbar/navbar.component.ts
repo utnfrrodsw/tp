@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 import { CurrencyService } from '../../services/currency.service';
-import { Categoria, CategoriasService } from '../../services/categorias.service';
+import { CategoriasService } from '../../services/categorias.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,20 +8,24 @@ import { Categoria, CategoriasService } from '../../services/categorias.service'
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  // Propiedad para controlar si está abierta una ventana emergente (popup)
   isPopupOpen = false;
-  // Variable de estado para controlar la visibilidad de las opciones de usuario (si inició sesión)
   showUserOptions = false;
   categorias: string[] = [];
+  loading = true; // Indicador de carga
 
   constructor(public currencyService: CurrencyService, private categoriasService: CategoriasService) { }
 
   ngOnInit() {
-    this.categoriasService.getCategorias().subscribe((data: Categoria[]) => {
-      this.categorias = data.map(categoria => {
-        return categoria.descripcion;
-      });
-    });
+    this.categoriasService.getCategorias().subscribe(
+      (data: string[]) => {
+        this.categorias = data; // Asigna directamente el array de strings
+        this.loading = false; // Datos cargados
+      },
+      (error) => {
+        console.error('Error al cargar las categorías:', error);
+        this.loading = false; // Manejo de errores
+      }
+    );
   }
 
   openPopup() {

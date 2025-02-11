@@ -31,13 +31,14 @@
             Categorías
           </a>
           <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
+            <div *ngIf="loading" class="dropdown-item text-center">
+              Cargando categorías...
+            </div>
             <a *ngFor="let categoria of categorias" class="dropdown-item custom-dropdown-item" href="#">
-              <p class="dropdown-item custom-dropdown-item custom-text-color">{{
-                categoria }}</p>
+              {{ categoria }}
             </a>
           </div>
         </li>
-
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
