@@ -19,6 +19,7 @@ export class PagarComponent implements OnInit {
   mostrarLabel: boolean = true;
   noMostrarlabel: boolean = false;
   autoresNombres: any;
+  metodoSeleccionado: string | null = null;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
@@ -175,4 +176,17 @@ export class PagarComponent implements OnInit {
     this.noMostrarlabel = !this.mostrarLabel
   }
 
+  seleccionarMetodoPago(metodo: string) {
+    if (this.metodoSeleccionado === metodo) {
+      this.metodoSeleccionado = null;
+    } else {
+      this.metodoSeleccionado = metodo;
+    }
+    console.log('Método de pago seleccionado:', this.metodoSeleccionado);
+  }
+
+  
+
 }
+
+

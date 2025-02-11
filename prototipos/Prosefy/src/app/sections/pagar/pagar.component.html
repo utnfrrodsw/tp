@@ -9,15 +9,15 @@
       <div class="text-2">
         <label class="font-style">Con débito</label>
       </div>
-      <div class="container-tarjeta mt-5">
-        <div class="boton rounded-pill bg-light shadow" [ngStyle]="divStyles" (click)="changeBackgroundColor()"></div>
+      <div class="container-tarjeta mt-5" (click)="seleccionarMetodoPago('Debito')">
+        <button class="circle-button" [ngClass]="{ 'active': metodoSeleccionado === 'Debito' }"></button>
         <div class="tarjeta rounded shadow bg-light">
           <img class="img-tarjeta rounded mb-2 ml-2" src="./assets/img/Pagar/tarjeta-de-pago.png" alt="img">
           <label class="label-text font-style">Master **** 4563</label>
         </div>
       </div>
-      <div class="container-tarjeta mt-5">
-        <div class="boton rounded-pill bg-light shadow"></div>
+      <div class="container-tarjeta mt-5" (click)="seleccionarMetodoPago('NuevoDebito')">
+        <button class="circle-button" [ngClass]="{ 'active': metodoSeleccionado === 'NuevoDebito' }"></button>
         <div class="tarjeta rounded shadow bg-light">
           <img class="img-tarjeta rounded mb-2 ml-2" src="./assets/img/Pagar/tarjeta-de-pago.png" alt="img">
           <label class="label-text font-style">Nueva tarjeta de débito</label>
@@ -27,8 +27,8 @@
         <label class="font-style">Con crédito</label>
       </div>
       <label class="cuotas fw-bold">Cuotas</label>
-      <div class="container-tarjeta mt-1">
-        <div class="boton rounded-pill bg-light shadow"></div>
+      <div class="container-tarjeta mt-5" (click)="seleccionarMetodoPago('Credito')">
+        <button class="circle-button" [ngClass]="{ 'active': metodoSeleccionado === 'Credito' }"></button>
         <div class="tarjeta rounded shadow bg-light">
           <img class="img-tarjeta rounded mb-2 ml-2" src="./assets/img/Pagar/tarjeta-de-pago.png" alt="img">
           <label class="label-text font-style" *ngIf="mostrarLabel">Nueva tarjeta de crédito</label>
@@ -43,8 +43,8 @@
       <div class="text-2">
         <label class="font-style">Con otras formas de pago</label>
       </div>
-      <div class="container-tarjeta mt-5">
-        <div class="boton rounded-pill bg-light shadow"></div>
+      <div class="container-tarjeta mt-5" (click)="seleccionarMetodoPago('Efectivo')">
+        <button class="circle-button" [ngClass]="{ 'active': metodoSeleccionado === 'Efectivo' }"></button>
         <div class="tarjeta rounded shadow bg-light">
           <img class="img-tarjeta rounded mb-2 ml-2" src="./assets/img/Pagar/efectivo.png" alt="img">
           <label class="label-text font-style">Efectivo</label>

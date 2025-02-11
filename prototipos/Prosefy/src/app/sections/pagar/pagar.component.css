@@ -54,6 +54,8 @@
         flex-direction: row;
         width: auto;
         height: 60px;
+        align-items: center;
+
     }
 
     .tarjeta{
@@ -130,6 +132,22 @@
         margin-left: 75% !important;
         color: rgb(177, 177, 177);
     }
+
+    .circle-button {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        background-color: transparent;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        padding-top: 15%;
+
+    }
+
+    .circle-button.active {
+        background-color: #333; 
+    }
 }
 
 .container-pagar{
@@ -164,6 +182,7 @@
     flex-direction: row;
     width: auto;
     height: 60px;
+    align-items: center;
 }
 
 .container-contador{
@@ -315,4 +334,18 @@
     margin-left: 20px;
     margin-right: 20px;
     border-top: 1px solid gray;
+}
+
+.circle-button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.circle-button.active {
+    background-color: #333; /* Color oscuro al seleccionar */
 }
