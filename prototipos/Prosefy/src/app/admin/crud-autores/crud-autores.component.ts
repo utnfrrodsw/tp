@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { forkJoin, map } from 'rxjs';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { AutoresService, Autor, autorResponse } from 'src/app/services/autores.service';
 
 @Component({
@@ -20,8 +21,9 @@ export class CrudAutoresComponent implements OnInit {
   showRedirectButton: boolean = false;
   errorMessage: string = '';
   editingAutorId: string | null = null;
+  isAdmin: boolean = false;
 
-  constructor(private autoresService: AutoresService, private formBuilder: FormBuilder) {
+  constructor(private autoresService: AutoresService, private formBuilder: FormBuilder, private usuarioService: UsuarioService) {
     // Inicializa el formulario de creación
     this.AutorForm = this.formBuilder.group({
       nombreCompleto: [
@@ -80,16 +82,18 @@ export class CrudAutoresComponent implements OnInit {
   }
 
   openEditPopup(autorId: string): void {
+    if (!this.isAdmin) {
+      alert('No tienes permiso para editar autores.');
+      return;
+    }
     this.editingAutorId = autorId;
     this.isEditPopupOpen = true;
-
-    // Llena el formulario de edición con los datos actuales del autor
     const autor = this.autoresData[autorId];
     if (autor) {
       this.EditAutorForm.patchValue({
         editNombreCompleto: autor.nombreCompleto,
         editPerfil: autor.perfil,
-        editInfo: autor.info
+        editInfo: autor.info,
       });
     }
   }
@@ -99,19 +103,33 @@ export class CrudAutoresComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.checkAdminRole();
+    this.loadAutores();
+  }
+
+  checkAdminRole() {
+    this.usuarioService.getTipo().subscribe({
+      next: (response) => {
+        this.isAdmin = response.data && response.data.tipo === 'admin';
+      },
+      error: () => {
+        this.isAdmin = false;
+      },
+    });
+  }
+
+  loadAutores() {
     this.autoresService.getAutoresIds().subscribe((autoresIds: string[]) => {
       this.autoresIds = autoresIds;
-
-      const requests = autoresIds.map(id =>
+      const requests = autoresIds.map((id) =>
         forkJoin({
           nombreCompleto: this.autoresService.getNombreCompleto(id),
           perfil: this.autoresService.getPerfil(id),
-          info: this.autoresService.getInfo(id)
+          info: this.autoresService.getInfo(id),
         }).pipe(map(({ nombreCompleto, perfil, info }) => ({ id, nombreCompleto, perfil, info })))
       );
-
       forkJoin(requests).subscribe((autores) => {
-        autores.forEach(autor => {
+        autores.forEach((autor) => {
           this.autoresData[autor.id] = { nombreCompleto: autor.nombreCompleto, perfil: autor.perfil, info: autor.info };
         });
       });
@@ -205,23 +223,19 @@ export class CrudAutoresComponent implements OnInit {
   }
 
   actualizarAutor(): void {
+    if (!this.isAdmin) {
+      alert('No tienes permiso para actualizar autores.');
+      return;
+    }
     if (this.EditAutorForm.valid && this.editingAutorId) {
-      const editNombreCompletoControl = this.EditAutorForm.get('editNombreCompleto');
-      const editPerfilControl = this.EditAutorForm.get('editPerfil');
-      const editInfoControl = this.EditAutorForm.get('editInfo');
-
-      if (!editNombreCompletoControl || !editPerfilControl || !editInfoControl) {
-        return;
-      }
-
-      const nuevoNombreCompleto = editNombreCompletoControl.value;
-      const nuevoPerfil = editPerfilControl.value;
-      const nuevaInfo = editInfoControl.value;
+      const nuevoNombreCompleto = this.EditAutorForm.value.editNombreCompleto;
+      const nuevoPerfil = this.EditAutorForm.value.editPerfil;
+      const nuevaInfo = this.EditAutorForm.value.editInfo;
 
       this.autoresService.updateAutor(this.editingAutorId, {
         nombreCompleto: nuevoNombreCompleto,
         perfil: nuevoPerfil,
-        info: nuevaInfo
+        info: nuevaInfo,
       }).subscribe({
         next: (response) => {
           console.log('Actualización exitosa', response);
@@ -230,13 +244,7 @@ export class CrudAutoresComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al actualizar el autor', error);
-
-          if (error && error.mensaje) {
-            console.error('Detalles del error:', error.mensaje);
-          } else {
-            console.error('Error desconocido en la actualización');
-          }
-        }
+        },
       });
     }
   }

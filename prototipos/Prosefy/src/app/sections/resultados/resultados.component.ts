@@ -33,7 +33,6 @@ export class ResultadosComponent implements OnInit {
     this.librosService.getLibrosIds().pipe(
       switchMap((librosIds: string[]) => {
         this.librosIds = librosIds;
-
         const requests = librosIds.map(id =>
           forkJoin({
             libro: this.librosService.getLibro(id),
@@ -45,30 +44,29 @@ export class ResultadosComponent implements OnInit {
             })
           )
         );
-
-        // Combina todos los observables en un solo observable que emite un array de libros
         return forkJoin(requests);
       })
     ).subscribe((libros) => {
       libros.forEach(({ id, libro }) => {
         if (libro) {
           this.librosData[id] = libro;
-
           // Obtener los nombres de los autores usando el servicio AutoresService
           this.autoresService.getAutores().subscribe({
             next: (autores: Autor[]) => {
               const idsAutores = libro.autores || [];
-
               // Crear un array de observables para las solicitudes de nombres de autores
-              const observables = idsAutores.map(autorId => this.autoresService.getNombreCompleto(autorId));
-
+              const observables = idsAutores.map((autorId: string) =>
+                this.autoresService.getNombreCompleto(autorId)
+              );
               // Usar forkJoin para esperar a que todas las solicitudes se completen
-              forkJoin(observables).subscribe({
-                next: (nombres: (string | undefined)[]) => {
+              forkJoin(observables).pipe(
+                map((nombres: (string | undefined)[]) => nombres.filter(nombre => !!nombre) as string[])
+              ).subscribe({
+                next: (nombresFiltrados: string[]) => {
                   // Asignar los nombres al arreglo autoresNombres
-                  this.autoresNombres[id] = nombres.filter(nombre => !!nombre) as string[];
+                  this.autoresNombres[id] = nombresFiltrados;
                 },
-                error: (error) => {
+                error: (error: any) => {
                   console.error('Error obteniendo autores:', error);
                 }
               });

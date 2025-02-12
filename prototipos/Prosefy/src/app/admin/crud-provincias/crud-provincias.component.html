@@ -13,7 +13,7 @@
         <ng-container *ngIf="provinciasData[provinciaId]">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{ provinciasData[provinciaId]?.descripcion }}</h5>
+              <h5 class="card-title">{{ provinciasData[provinciaId].descripcion }}</h5>
               <p class="card-text mt-2"><small>ID: {{ provinciaId }}</small></p>
               <button class="btn btn-primary custom-btn-primary mx-2"
                 (click)="openEditPopup(provinciaId)">Editar</button>

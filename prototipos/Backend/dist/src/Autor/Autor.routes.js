@@ -11,8 +11,8 @@ autorRouter.get('/nombre-completo/:nombreCompleto', findOneByNombreCompleto);
 autorRouter.get('/', findAll);
 autorRouter.get('/:id', findOne);
 // Rutas protegidas (solo accesibles para admins)
-autorRouter.post("/", isAuthenticated, isAdmin, sanitizeInput, add); // Solo admin
-autorRouter.put("/:id", isAuthenticated, isAdmin, sanitizeInput, update); // Solo admin
-autorRouter.delete("/:id", isAuthenticated, isAdmin, remove); // Solo admin
+autorRouter.post("/", isAuthenticated, isAdmin, sanitizeInput, add);
+autorRouter.put("/:id", isAuthenticated, isAdmin, sanitizeInput, update);
+autorRouter.delete("/:id", isAuthenticated, isAdmin, remove);
 autorRouter.patch('/:id', isAuthenticated, isAdmin, sanitizeInput, update); // Actualizar autor parcialmente
 //# sourceMappingURL=Autor.routes.js.map

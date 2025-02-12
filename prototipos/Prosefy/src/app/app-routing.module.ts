@@ -54,7 +54,7 @@ const routes: Routes = [
   {
     path: 'perfil', component: PerfilUsuarioComponent,
     providers: [UsuarioService],
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   { path: 'crear-cuenta', component: CrearCuentaComponent, canActivate: [RegistroService] },
   { path: 'busqueda/:term', component: BusquedaComponent },

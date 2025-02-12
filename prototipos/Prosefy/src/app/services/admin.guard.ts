@@ -1,15 +1,36 @@
-import { Injectable } from "@angular/core";
-import { CanActivate, Router } from "@angular/router";
-import { AdminService } from "./admin.service";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
-    providedIn: "root",
+    providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
-    constructor(private adminService: AdminService, private router: Router) { }
+    constructor(private usuarioService: UsuarioService, private router: Router) { }
 
-    canActivate(): Observable<boolean> {
-        return this.adminService.canActivate();
+    canActivate(): Promise<boolean> {
+        return new Promise((resolve) => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                this.router.navigate(['/inicio']);
+                resolve(false);
+                return;
+            }
+
+            this.usuarioService.getTipo().subscribe({
+                next: (response) => {
+                    if (response.data && response.data.tipo === 'admin') {
+                        resolve(true); // Permite el acceso si el tipo de usuario es 'admin'
+                    } else {
+                        this.router.navigate(['/inicio']);
+                        resolve(false); // Rechaza el acceso si el tipo de usuario no es 'admin'
+                    }
+                },
+                error: () => {
+                    this.router.navigate(['/inicio']);
+                    resolve(false);
+                },
+            });
+        });
     }
 }

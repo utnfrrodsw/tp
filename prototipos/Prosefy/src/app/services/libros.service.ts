@@ -31,12 +31,6 @@ export class LibrosService {
 
   constructor(private http: HttpClient, private autoresService: AutoresService, private categoriasService: CategoriasService) { }
 
-  getLibrosIds(): Observable<string[]> {
-    return this.http.get<any>(`${this.apiUrl}/libros`).pipe(
-      map((response: any) => response.data)
-    );
-  }
-
   findByEditorial(editorialId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/editoriales/${editorialId}`);
   }
@@ -57,11 +51,22 @@ export class LibrosService {
     return this.http.get(`${this.apiUrl}/`);
   }
 
-  getLibro(id: string): Observable<Libro | undefined> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+  getLibrosIds(): Observable<any[]> {
+    console.log(`Solicitando IDs de libros desde ${this.apiUrl}/libros`);
+    return this.http.get(`${this.apiUrl}/libros`).pipe(
       map((response: any) => response.data),
       catchError((error: any) => {
-        console.error('Error en la solicitud de getLibro', error);
+        console.error('Error al obtener IDs de libros:', error);
+        return of([]);
+      })
+    );
+  }
+
+  getLibro(id: string): Observable<Libro | undefined> {
+    return this.http.get<{ data: Libro }>(`${this.apiUrl}/${id}`).pipe(
+      map(response => response.data),
+      catchError(error => {
+        console.error(`Error al obtener libro con ID ${id}:`, error);
         return of(undefined);
       })
     );
@@ -143,6 +148,14 @@ export class LibrosService {
       filter((descripciones): descripciones is string[] => descripciones.every(descripcion => descripcion !== undefined)),
       map(descripciones => descripciones.join(', '))
     );
+  }
+
+  registrarLibro(libro: Libro): Observable<any> {
+    return this.http.post(`${this.apiUrl}/`, libro);
+  }
+
+  actualizarLibro(id: string, libro: Libro): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, libro);
   }
 
   eliminarLibro(id: string): Observable<any> {

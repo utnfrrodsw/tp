@@ -121,6 +121,14 @@ export class EditorialesService {
       );
   }
 
+  getEditoriales(): Observable<Editorial[]> {
+    return this.http.get<Editorial[]>(`${this.apiUrl}/editoriales`);
+  }
+
+  getFormatos(id: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/getformatos/${id}`);
+  }
+
   private handleServerError(error: any): Observable<never> {
     console.error('Error en el registro', error);
 
