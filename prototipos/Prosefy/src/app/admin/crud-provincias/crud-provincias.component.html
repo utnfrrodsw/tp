@@ -6,8 +6,123 @@
         <h3>Todas las provincias</h3>
       </div>
     </div>
-    <button class="btn btn-primary custom-btn-primary mx-2 mb-3">Nueva Provincia</button>
+    <button class="btn btn-primary custom-btn-primary mx-2 mb-3" (click)="openPopup()">Nueva
+      Provincia</button>
     <div class="row">
+      <div *ngFor="let provinciaId of provinciasIds" class="col-md-4 mb-4">
+        <ng-container *ngIf="provinciasData[provinciaId]">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ provinciasData[provinciaId]?.descripcion }}</h5>
+              <p class="card-text mt-2"><small>ID: {{ provinciaId }}</small></p>
+              <button class="btn btn-primary custom-btn-primary mx-2"
+                (click)="openEditPopup(provinciaId)">Editar</button>
+              <button class=" btn btn-primary custom-btn-secondary mx-2"
+                (click)="eliminarProvincia(provinciaId)">Eliminar</button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Panel para Crear Provincia -->
+<div class="overlay" [ngClass]="{ active: isPopupOpen }">
+  <div class="modal " tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isPopupOpen }">
+    <div class="modal-dialog modal-lg custom-modal-panel">
+      <div class="modal-content custom-modal-panel">
+        <div class="modal-header mx-5">
+          <h4 class="modal-title text-center">Crear Provincia</h4>
+          <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body mx-5 mt-2">
+
+          <form [formGroup]="ProvinciaForm" (keydown.enter)="registrarProvincia()">
+            <div class="form-group my-4 custom-input">
+              <label for="descripcion">Descripción de la provincia</label>
+              <input type="text" id="descripcion" class="form-control" formControlName="descripcion"
+                placeholder="Ingrese la descripción" />
+
+              <!-- Mensajes de error para el campo de descripción -->
+              <div *ngIf="errorMessage" class="text-danger">
+                {{ errorMessage }}
+              </div>
+              <div
+                *ngIf="ProvinciaForm.get('descripcion')?.hasError('required') && ProvinciaForm.get('descripcion')?.touched"
+                class="text-danger">
+                La descripción es obligatoria.
+              </div>
+              <div
+                *ngIf="ProvinciaForm.get('descripcion')?.hasError('pattern') && ProvinciaForm.get('descripcion')?.touched"
+                class="text-danger">
+                La descripción solo puede contener letras, números y espacios.
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button type="button" class="btn btn-primary custom-btn-primary form-custom-btn-primary"
+                (click)="registrarProvincia()">
+                Crear
+              </button>
+              <button type="button" class="btn btn-secondary custom-btn-secondary form-custom-btn-secondary"
+                (click)="closePopup()">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Panel para Editar Provincia -->
+<div class="overlay" [ngClass]="{ active: isEditPopupOpen }">
+  <div class="modal " tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isEditPopupOpen }">
+    <div class="modal-dialog modal-lg custom-modal-panel">
+      <div class="modal-content custom-modal-panel">
+        <div class="modal-header mx-5">
+          <h4 class="modal-title text-center">Editar Provincia</h4>
+          <button type="button" class="btn-close" (click)="closeEditPopup()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body mx-5 mt-2">
+
+          <!-- Lógica y el formulario de edición -->
+
+          <form [formGroup]="EditProvinciaForm" (keydown.enter)="actualizarProvincia()">
+            <div class="form-group my-4 custom-input">
+              <label for="editDescripcion">Descripción de la provincia</label>
+              <input type="text" id="editDescripcion" class="form-control" formControlName="editDescripcion"
+                placeholder="Ingrese la nueva descripción" />
+
+              <!-- Mensajes de error para el campo de descripción -->
+              <div
+                *ngIf="EditProvinciaForm.get('editDescripcion')?.hasError('required') && EditProvinciaForm.get('editDescripcion')?.touched"
+                class="text-danger">
+                La descripción es obligatoria.
+              </div>
+              <div
+                *ngIf="EditProvinciaForm.get('editDescripcion')?.hasError('pattern') && EditProvinciaForm.get('editDescripcion')?.touched"
+                class="text-danger">
+                La descripción solo puede contener letras, números y espacios.
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button type="button" class="btn btn-primary custom-btn-primary form-custom-btn-primary"
+                (click)="actualizarProvincia()">
+                Actualizar
+              </button>
+              <button type="button" class="btn btn-secondary custom-btn-secondary form-custom-btn-secondary"
+                (click)="closeEditPopup()">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,3 +1,6 @@
+### Ver Provincias
+GET http://localhost:3000/api/provincia/provincias
+
 // CREAR PROVINCIAS
 
 ### Provincia 1
