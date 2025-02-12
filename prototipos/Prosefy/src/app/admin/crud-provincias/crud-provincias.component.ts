@@ -69,22 +69,13 @@ export class CrudProvinciasComponent implements OnInit {
     if (this.ProvinciaForm.valid) {
       const nuevaProvincia = { descripcion: this.ProvinciaForm.value.descripcion };
 
-      // Validar si la provincia ya existe
-      this.provinciasService.getProvinciaByDescripcion(nuevaProvincia.descripcion).subscribe({
-        next: (response) => {
-          if (response.data) {
-            // Si la provincia ya existe, mostrar un mensaje de error
-            this.errorMessage = 'Ya existe una provincia con esta descripción.';
-          } else {
-            // Si no existe, proceder a registrar la nueva provincia
-            this.provinciasService.registrarProvincia(nuevaProvincia).subscribe(() => {
-              location.reload();
-            });
-          }
+      this.provinciasService.registrarProvincia(nuevaProvincia).subscribe({
+        next: () => {
+          location.reload(); // Recargar la página tras el registro exitoso
         },
         error: (error) => {
-          console.error('Error al validar la provincia:', error);
-          this.errorMessage = 'Error al validar la provincia.';
+          console.error('Error al registrar la provincia:', error);
+          this.errorMessage = 'Error al registrar la provincia.';
         }
       });
     }
@@ -93,8 +84,15 @@ export class CrudProvinciasComponent implements OnInit {
   actualizarProvincia(): void {
     if (this.EditProvinciaForm.valid && this.editingProvinciaId) {
       const nuevaDescripcion = this.EditProvinciaForm.value.editDescripcion;
-      this.provinciasService.actualizarProvincia(this.editingProvinciaId, { descripcion: nuevaDescripcion }).subscribe(() => {
-        location.reload();
+
+      this.provinciasService.actualizarProvincia(this.editingProvinciaId, { descripcion: nuevaDescripcion }).subscribe({
+        next: () => {
+          location.reload(); // Recargar la página tras la actualización exitosa
+        },
+        error: (error) => {
+          console.error('Error al actualizar la provincia:', error);
+          this.errorMessage = 'Error al actualizar la provincia.';
+        }
       });
     }
   }
