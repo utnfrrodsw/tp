@@ -63,6 +63,8 @@ import { ComentarioUsuarioComponent } from './shared/comentario-usuario/comentar
 import { ListaAutoresComponent } from './shared/lista-autores/lista-autores.component';
 import { NuevoComentarioComponent } from './shared/nuevo-comentario/nuevo-comentario/nuevo-comentario.component';
 import { PanelAdminComponent } from './admin/panel-admin/panel-admin.component';
+import { CrudCategoriasComponent } from './admin/crud-categorias/crud-categorias.component';
+import { CrudProvinciasComponent } from './admin/crud-provincias/crud-provincias.component';
 
 /* ------------------------------------------------------------------- */
 
@@ -133,7 +135,9 @@ registerLocaleData(localeEs, 'es');
     CrudEditorialesComponent,
     CrudLibrosComponent,
     CrudOfertasComponent,
-    CrudUsuariosComponent
+    CrudUsuariosComponent,
+    CrudProvinciasComponent,
+    CrudCategoriasComponent
   ],
   imports: [
     BrowserModule,

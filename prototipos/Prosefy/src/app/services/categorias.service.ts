@@ -16,13 +16,31 @@ export class CategoriasService {
 
   constructor(private http: HttpClient) { }
 
-  getCategorias(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/descripciones`);
+  getCategorias(): Observable<any> {
+    return this.http.get(`${this.apiUrl}`);
   }
 
-  getDescripcion(id: string): Observable<string | undefined> {
-    return this.http.get<any>(`${this.apiUrl}/descripcion/${id}`).pipe(
-      map((response: any) => response.data)
-    );
+  getCategoria(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
+  getDescripcion(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/descripcion/${id}`);
+  }
+
+  obtenerDescripcionesCategoria(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/descripciones`);
+  }
+
+  registrarCategoria(categoria: any): Observable<any> {
+    return this.http.post(this.apiUrl, categoria);
+  }
+
+  actualizarCategoria(id: string, categoria: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, categoria);
+  }
+
+  eliminarCategoria(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

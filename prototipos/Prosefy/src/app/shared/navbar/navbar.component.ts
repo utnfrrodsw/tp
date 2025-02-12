@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   constructor(public currencyService: CurrencyService, private categoriasService: CategoriasService) { }
 
   ngOnInit() {
-    this.categoriasService.getCategorias().subscribe(
+    this.categoriasService.obtenerDescripcionesCategoria().subscribe(
       (data: string[]) => {
         this.categorias = data; // Asigna directamente el array de strings
         this.loading = false; // Datos cargados

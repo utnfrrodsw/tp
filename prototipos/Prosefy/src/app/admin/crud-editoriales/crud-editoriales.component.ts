@@ -225,7 +225,7 @@ export class CrudEditorialesComponent implements OnInit {
   }
 
   eliminarEditorial(editorialId: string): void {
-    if (confirm('¿Está seguro de que desea eliminar esta editorial?')) {
+    if (confirm('¿Está seguro/a de que desea eliminar esta editorial?')) {
       this.editorialesService.eliminarEditorial(editorialId).subscribe(
         () => {
           console.log('Editorial eliminada con éxito');

@@ -12,7 +12,9 @@ export class PanelAdminComponent {
     { title: 'Autores', link: '/panel-admin/autores', buttonText: 'Gestionar Autores' },
     { title: 'Editoriales', link: '/panel-admin/editoriales', buttonText: 'Gestionar Editoriales' },
     { title: 'Libros', link: '/panel-admin/libros', buttonText: 'Gestionar Libros' },
-    { title: 'Ofertas', link: '/panel-admin/ofertas', buttonText: 'Gestionar Ofertas' }
+    { title: 'Categorías', link: '/panel-admin/categorias', buttonText: 'Gestionar Categorías' },
+    { title: 'Ofertas', link: '/panel-admin/ofertas', buttonText: 'Gestionar Ofertas' },
+    { title: 'Provincias', link: '/panel-admin/provincias', buttonText: 'Gestionar Provincias' }
   ];
 
 }
