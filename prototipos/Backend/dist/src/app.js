@@ -1,6 +1,5 @@
-import express, { NextFunction, Request, Response } from "express";
+import express from "express";
 import cors from "cors";
-
 import { editorialRouter } from "./Editorial/Editorial.routes.js";
 import { usuarioRouter } from "./Usuario/Usuario.routes.js";
 import { autorRouter } from "./Autor/Autor.routes.js";
@@ -10,22 +9,17 @@ import { localidadRouter } from "./Localidad/Localidad.routes.js";
 import { provinciaRouter } from "./Provincia/Provincia.routes.js";
 import { formatoRouter } from "./formatoLibro/formatoLibro.routes.js";
 import { reseniaRouter } from "./Resenia/Resenia.routes.js";
-import { pedidoRouter } from "./Pedido/Pedido.routes.js"; 
-
+import { pedidoRouter } from "./Pedido/Pedido.routes.js";
 const app = express();
-
 // Configurar opciones de CORS
 const corsOptions = {
-	origin: "*",
-	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-	credentials: true,
-	optionsSuccessStatus: 204,
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
 };
-
 app.use(cors(corsOptions));
-
 app.use(express.json());
-
 app.use("/api/libros", libroRouter);
 app.use("/api/usuarios", usuarioRouter);
 app.use("/api/editoriales", editorialRouter);
@@ -36,11 +30,10 @@ app.use("/api/provincias", provinciaRouter);
 app.use("/api/formatos", formatoRouter);
 app.use("/api/resenias", reseniaRouter);
 app.use("/api/pedidos", pedidoRouter);
-
 app.use((_, res) => {
-	return res.status(404).send({ message: "Resource not found" });
+    return res.status(404).send({ message: "Resource not found" });
 });
-
 app.listen(3000, () => {
-	console.log("Server running on http://localhost:3000/");
+    console.log("Server running on http://localhost:3000/");
 });
+//# sourceMappingURL=app.js.map
