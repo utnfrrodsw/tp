@@ -1,6 +1,6 @@
 import { Double, ObjectId } from 'mongodb';
 
-export class Compra {
+export class Pedido {
     constructor(
         public libro: ObjectId[],
         public fecha: Date,

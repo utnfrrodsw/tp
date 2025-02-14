@@ -1,0 +1,9 @@
+### Pedido test
+POST http://localhost:3000/api/pedidos/
+Content-Type: application/json
+
+{
+    "libro": "654d36fe58bbd30caba73d23",
+    "fecha": "01-01-2021",
+    "usuario": "678fdbeb7eb10f0561cccf90"
+}

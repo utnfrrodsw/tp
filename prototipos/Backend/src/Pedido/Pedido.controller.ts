@@ -1,9 +1,13 @@
 import { Request, Response, NextFunction } from "express"
 import { PedidoRepository } from "./Pedido.repository.js"
+import { UsuarioRepository } from "../Usuario/Usuario.repository.js"; 
+import { LibroRepository } from "../Libro/Libro.repository.js"; 
 import { Pedido } from "./Pedido.js"
 import { ObjectId } from "mongodb"
 
 const repository = new PedidoRepository()
+const usuarioRepository = new UsuarioRepository();
+const libroRepository = new LibroRepository(); 
 
 async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
     try {
@@ -52,12 +56,72 @@ async function findOne(req: Request, res: Response) {
 async function add(req: Request, res: Response) {
     try {
         const input = req.body.sanitizedInput;
-        const pedidoInput = new Pedido(input.libro, input.usuario, input.fecha);
+
+        const usuarioExistente = await usuarioRepository.findOne({ id: input.usuario });
+        if (!usuarioExistente) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
+        }
+
+        for (const libroId of input.libro) {
+            const libroExistente = await libroRepository.findOne({ id: libroId });
+            if (!libroExistente) {
+                return res.status(404).send({ message: `Libro con ID ${libroId} no encontrado.` });
+            }
+        }
+
+        const pedidoInput = new Pedido(input.libro, input.fecha, input.usuario);
         const pedido = await repository.add(pedidoInput);
-        res.status(201).send({ message: 'Compra agregado con éxito.', data: pedido });
+
+        res.status(201).send({ message: 'Pedido creado con éxito.', data: pedido });
     } catch (error) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
 
-export { sanitizeInput, findAll, findOne, add }
+async function update(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const input = req.body.sanitizedInput;
+
+        if (input.usuario) {
+            const usuarioExistente = await usuarioRepository.findOne({ id: input.usuario });
+            if (!usuarioExistente) {
+                return res.status(404).send({ message: "Usuario no encontrado." });
+            }
+        }
+
+        if (input.libro) {
+            for (const libroId of input.libro) {
+                const libroExistente = await libroRepository.findOne({ id: libroId });
+                if (!libroExistente) {
+                    return res.status(404).send({ message: `Libro con ID ${libroId} no encontrado.` });
+                }
+            }
+        }
+
+        const pedidoActualizado = await repository.update(id, input);
+        if (!pedidoActualizado) {
+            return res.status(404).send({ message: "Pedido no encontrado." });
+        }
+
+        res.status(200).send({ message: 'Pedido actualizado con éxito.', data: pedidoActualizado });
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+async function remove(req: Request, res: Response) {
+    try {
+        const id = req.params.id;
+        const pedidoEliminado = await repository.delete({ id });
+        if (!pedidoEliminado) {
+            return res.status(404).send({ message: "Pedido no encontrado." });
+        }
+
+        res.status(200).send({ message: 'Pedido eliminado con éxito.', data: pedidoEliminado });
+    } catch (error) {
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+
+export { sanitizeInput, findAll, findOne, add, update, remove }
