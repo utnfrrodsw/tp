@@ -11,7 +11,7 @@
 * [Backend App](https://github.com/camilaspt/api-petguardian)
 
 ### Deployment
-[petGuardian](https://app-petguardian.vercel.app/login)
+[PetGuardian](https://app-petguardian.vercel.app/login)
 
 ## Tema
 
@@ -58,6 +58,14 @@ Regularidad:
 
 ### Links Trello
 [BackEnd](https://trello.com/invite/b/66020281ce119294245a4d9d/ATTId3162f8357137cdeb5c80ad67782ce17DD695109/back-pet-guardian)
+
 [FrontEnd](https://trello.com/invite/b/66fc93a33e1bfe0d5b04d09e/ATTI12aac7cb3a06942ae62109240ce7602f91157EDD/front-pet-guardian)
 
+### Videos
+[URL de los videos utilizando la app](https://drive.google.com/drive/folders/11hEbgZKew9tGXVTK-dVZ2fbDTRhLqZLY?usp=drive_link)
 
+### Tests
+[URL de los videos de los tests implementados](https://drive.google.com/drive/folders/1Jf_8sOYq2uLyr11KEuAcK5jRxTPoSFdh?usp=drive_link)
+
+### Documentación de API
+[Documentación de la API realizada con Swagger](https://api-petguardian.vercel.app/api-docs/#/)
