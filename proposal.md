@@ -68,4 +68,4 @@ Regularidad:
 [Videos de los tests implementados](https://drive.google.com/drive/folders/1Jf_8sOYq2uLyr11KEuAcK5jRxTPoSFdh?usp=drive_link)
 
 ### Documentación de API
-[Documentación de la API realizada con Swagger (solo local)](http://localhost:3000/api-docs/#/)  
+[Documentación de la API realizada con Swagger (solo en local)](http://localhost:3000/api-docs/#/)  
