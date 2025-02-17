@@ -61,11 +61,11 @@ Regularidad:
 
 [FrontEnd](https://trello.com/invite/b/66fc93a33e1bfe0d5b04d09e/ATTI12aac7cb3a06942ae62109240ce7602f91157EDD/front-pet-guardian)
 
-### Videos
-[URL de los videos utilizando la app](https://drive.google.com/drive/folders/11hEbgZKew9tGXVTK-dVZ2fbDTRhLqZLY?usp=drive_link)
+### Video APP
+[Video utilizando la app](https://drive.google.com/file/d/1RWAVZ28V57qF1fO3IsSPRupU6hvpXxHo/view?usp=drive_link)
 
-### Tests
-[URL de los videos de los tests implementados](https://drive.google.com/drive/folders/1Jf_8sOYq2uLyr11KEuAcK5jRxTPoSFdh?usp=drive_link)
+### Videos Tests
+[Videos de los tests implementados](https://drive.google.com/drive/folders/1Jf_8sOYq2uLyr11KEuAcK5jRxTPoSFdh?usp=drive_link)
 
 ### Documentación de API
-[Documentación de la API realizada con Swagger](https://api-petguardian.vercel.app/api-docs/#/)
+[Documentación de la API realizada con Swagger(solo local)](http://localhost:3000/api-docs/#/)  
