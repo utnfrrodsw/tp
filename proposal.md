@@ -12,7 +12,8 @@
 
 ## Tema
 ### Descripción
-Negocio a cargo de la venta de carteras, riñoneras, billeteras mochilas y demás, cada una pertenece a una categoría en particular y tiene asociado un proveedor. Desde el lado del cliente el mismo puede registrarse y realizar las compras que quiera, dependiendo la ciudad con la cual se alla registrado trandrá un recargo relacionado con el envio, pero puede cambiar su dirección si esos desea, al igual que ver el estado de sus órdenes relaizadas y dentro de las 24 horas cancelar si eso desea.
+Coco purse es una plataforma de ecommerce de la venta de carteras, billeteras y mochilas.
+Tenemos dos privilegios en el mismo, cliente y administrador, primero puede realizar la compra de los productos y ver las órdenes con sus estados ya realizados, y dentro de las primeras 24 horas de realizada la compra podrá cancelar el pedido. El administrador tiene acceso a todas las entidades y puede crear, editar o eliminar cualquiera de ellas siempre y cuando las mismas no tengan otras entidades hijas asociadas, de ser el caso primero se deberán de eliminar esas antes de poder eliminar las deseadas, respecto a las ordenes peude ver las de todos lo usuarios y puede cambiar a cancelado (mismas condiciones del cliente) y él solo puede cambiar a completado si lo desea( no hay restricción de tiempo)
 
 ### Modelo
 ![image](![image](https://github.com/user-attachments/assets/eb25064a-561d-4778-840e-2d14c81c3454)
