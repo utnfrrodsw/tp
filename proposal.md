@@ -7,8 +7,8 @@
 * 47942 - Gutierrez, Luisina
   
 ### Repositorios
-* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/luisinagutierrez/Desarrollo-front))
-* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/luisinagutierrez/Desarrollo-back))
+* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/luisinagutierrez/Desarrollo-front)
+* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/luisinagutierrez/Desarrollo-back)
 
 ## Tema
 ### Descripción
