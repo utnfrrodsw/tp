@@ -37,7 +37,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Clientes(dependiente de ciudad y de provincia)<br>2. CRUD Order(dependiente de usuario y de producto)<br>3. CRUD Ciudades(dependiente de provincia)<br>4. CRUD Provincias<br>5.|
+|CRUD |1. CRUD Clientes(dependiente de ciudad y de provincia)<br>2. CRUD Order(dependiente de usuario y de producto)<br>3. CRUD Ciudades(dependiente de provincia)<br>4. CRUD Provincias|
 |CUU/Epic|1. Olvidé mi contraseña<br>2. Cancelar la orden<br>|
 
 
@@ -47,6 +47,6 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Listado de pedidos filtrado por rango de fecha, muestra nombre cliente, fecha de pedido,nombre producto, cantidad de producto, precio unitario, precio total (sumando el recargo por provincia)<br>2. Listado de productos, permitiendo la edición de sus datos o borrarlo y un filtrado por proveedores
+|Listados |1. Listado de pedidos realizados por el cliente (del lado del cliente), muestra nombre cliente, fecha de pedido,nombre producto, cantidad de producto, precio unitario, precio total (sumando el recargo por provincia)<br>2. Listado de productos, permitiendo la edición de sus datos o borrarlo y un filtrado por proveedores<br>3. Filtrado de órdenes por estado y por fecha de realización (los mismos se pueden aplicar simultaneamente o por separado)
 |Otros|-|
 
