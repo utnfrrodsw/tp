@@ -7,8 +7,8 @@
 * 47942 - Gutierrez, Luisina
   
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/luisinagutierrez/Desarrollo-front))
+* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/luisinagutierrez/Desarrollo-back))
 
 ## Tema
 ### Descripción
@@ -20,7 +20,9 @@ Negocio a cargo de la venta de carteras, riñoneras, billeteras mochilas y demá
 
 ## Alcance Funcional 
 Su funcionalidad abarca desde la gestión de productos y pedidos hasta la administración de usuarios, proveedores, provincias y ciudades.
+
 ### Alcance Mínimo
+Permite la gestión básica de productos, incluyendo su creación, edición y eliminación. Los usuarios pueden registrarse, iniciar sesión y agregar productos a un carrito de compras, desde donde pueden generar pedidos y visualizar su historial. Respecto a la forma de pago de la orden es en efectivo por lo que no se contempla otra forma de pago.
 
 Regularidad:
 |Req|Detalle|
