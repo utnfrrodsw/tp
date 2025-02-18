@@ -7,8 +7,8 @@
 * 47942 - Gutierrez, Luisina
   
 ### Repositorios
-* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/luisinagutierrez/Desarrollo-front)
-* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/luisinagutierrez/Desarrollo-back)
+* [frontend app]([https://github.com/luisinagutierrez/Desarrollo-front])
+* [backend app]([https://github.com/luisinagutierrez/Desarrollo-back])
 
 ## Tema
 ### Descripción
@@ -27,17 +27,17 @@ Permite la gestión básica de productos, incluyendo su creación, edición y el
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD ProductCategory<br>2. CRUD  Supplier<br>|
-|CRUD dependiente|1. CRUD Product {depende de} CRUD ProductCategory|
-|Listado<br>+<br>detalle| 1. Listado de producto filtrado por categoría producto, muestra nombre de producto, precio, disponibilidad, detalles y medidas => CRUD product<br> |
+|CRUD simple|1. CRUD Categoría<br>2. CRUD  Proveedores<br>|
+|CRUD dependiente|1. CRUD Producto {depende de} CRUD Categoría y de CRUD de proveedores|
+|Listado<br>+<br>detalle| 1. Listado de productos filtados por categoría o por nombre de producto mostrando la infomación de esos productos (nombre - despcripció- precio)<br> |
 |CUU/Epic|1. Realizar una compra<br>|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Clients<br>2. CRUD Order<br>3. CRUD City<br>4. CRUD Province<br>5.|
-|CUU/Epic|1. Realizar la compra<br>2. Cancelar la orden<br>|
+|CRUD |1. CRUD Clientes(dependiente de ciudad y de provincia)<br>2. CRUD Order(dependiente de usuario y de producto)<br>3. CRUD Ciudades(dependiente de provincia)<br>4. CRUD Provincias<br>5.|
+|CUU/Epic|1. Olvidé mi contraseña<br>2. Cancelar la orden<br>|
 
 
 ### Alcance Adicional Voluntario
