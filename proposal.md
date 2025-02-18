@@ -15,7 +15,7 @@
 Negocio a cargo de la venta de carteras, riñoneras, billeteras mochilas y demás, cada una pertenece a una categoría en particular y tiene asociado un proveedor. Desde el lado del cliente el mismo puede registrarse y realizar las compras que quiera, dependiendo la ciudad con la cual se alla registrado trandrá un recargo relacionado con el envio, pero puede cambiar su dirección si esos desea, al igual que ver el estado de sus órdenes relaizadas y dentro de las 24 horas cancelar si eso desea.
 
 ### Modelo
-![image](https://github.com/luisinagutierrez/TpDesarrolloGriva-Gutierrez/assets/111407721/703448fe-fde7-48d7-bcbf-3d8be3025000)
+![image](![image](https://github.com/user-attachments/assets/eb25064a-561d-4778-840e-2d14c81c3454)
 (https://drive.google.com/file/d/1Qt_15EN60WmYoQoQII8v9mV3cJwoB6qz/view?usp=sharing)
 
 ## Alcance Funcional 
