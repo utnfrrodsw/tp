@@ -2,6 +2,7 @@
 
 ## Grupo
 ### Integrantes
+* 49497 - Gini, Luca
 * 49670 - Griva, Corina
 * 47942 - Gutierrez, Luisina
   
@@ -11,14 +12,14 @@
 
 ## Tema
 ### Descripción
-Negocio a cargo de la venta al por mayor y menor de carteras, riñoneras y billeteras, dentro de cada una de las mismas podemos encontrar distintas categorías que las clasifican también y también cuenta con un servicio de envío dependiendo la ciudad a la que pertenezca el cliente. Además, se lleva registro de los proveedores con los cuales se debe poner en contacto el administrador cuando el stock de cierto producto que comercializa está bajo.
+Negocio a cargo de la venta de carteras, riñoneras, billeteras mochilas y demás, cada una pertenece a una categoría en particular y tiene asociado un proveedor. Desde el lado del cliente el mismo puede registrarse y realizar las compras que quiera, dependiendo la ciudad con la cual se alla registrado trandrá un recargo relacionado con el envio, pero puede cambiar su dirección si esos desea, al igual que ver el estado de sus órdenes relaizadas y dentro de las 24 horas cancelar si eso desea.
 
 ### Modelo
 ![image](https://github.com/luisinagutierrez/TpDesarrolloGriva-Gutierrez/assets/111407721/703448fe-fde7-48d7-bcbf-3d8be3025000)
 (https://drive.google.com/file/d/1Qt_15EN60WmYoQoQII8v9mV3cJwoB6qz/view?usp=sharing)
 
 ## Alcance Funcional 
-
+Su funcionalidad abarca desde la gestión de productos y pedidos hasta la administración de usuarios, proveedores, provincias y ciudades.
 ### Alcance Mínimo
 
 Regularidad:
@@ -33,8 +34,8 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Clients<br>2. CRUD Order<br>3. CRUD City<br>4. CRUD Province<br>5. CRUD Shipment<br>|
-|CUU/Epic|1. Registrar nuevo client<br>2. Registrar nuevo supllier<br>|
+|CRUD |1. CRUD Clients<br>2. CRUD Order<br>3. CRUD City<br>4. CRUD Province<br>5.|
+|CUU/Epic|1. Realizar la compra<br>2. Cancelar la orden<br>|
 
 
 ### Alcance Adicional Voluntario
@@ -43,7 +44,6 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Listado de pedidos filtrado por rango de fecha, muestra nombre cliente, fecha de pedido, tipo de cliente, tipo de producto, cantidad de producto, precio total y ciudad<br>2. Listado de proveedores filtrado producto que provee, muestra nombre proveedor, contacto, fecha último pedido y cantidad pedida|
-|CUU/Epic|1. Actualizar el precio del producto <br>|
+|Listados |1. Listado de pedidos filtrado por rango de fecha, muestra nombre cliente, fecha de pedido,nombre producto, cantidad de producto, precio unitario, precio total (sumando el recargo por provincia)<br>2. Listado de productos, permitiendo la edición de sus datos o borrarlo y un filtrado por proveedores
 |Otros|-|
 
