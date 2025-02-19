@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="boton-abajo">
-        <a href="" class="boton-comprar rounded font-style"> Comprar</a>
+        <button class="boton-comprar rounded font-style" (click)="crearPedido()" [disabled]="!metodoSeleccionado">Comprar</button>
       </div>
     </div>
     <div class="marg"></div>
