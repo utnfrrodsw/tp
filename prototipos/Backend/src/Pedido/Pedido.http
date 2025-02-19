@@ -1,7 +1,7 @@
 // AGREGAR COMENTARIOS
 
 ### Put de reseñas
-post http://localhost:3000/api/pedidos/
+put http://localhost:3000/api/pedidos/67b6150839ec49ce8e85b61f
 Content-Type: application/json
 
 {

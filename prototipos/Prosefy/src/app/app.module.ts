@@ -80,6 +80,7 @@ import { CrudEditorialesComponent } from './admin/crud-editoriales/crud-editoria
 import { CrudLibrosComponent } from './admin/crud-libros/crud-libros.component';
 import { CrudOfertasComponent } from './admin/crud-ofertas/crud-ofertas.component';
 import { CrudUsuariosComponent } from './admin/crud-usuarios/crud-usuarios.component';
+import { ResumenPedidoComponent } from './sections/resumen-pedido/resumen-pedido.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -137,7 +138,8 @@ registerLocaleData(localeEs, 'es');
     CrudOfertasComponent,
     CrudUsuariosComponent,
     CrudProvinciasComponent,
-    CrudCategoriasComponent
+    CrudCategoriasComponent,
+    ResumenPedidoComponent
   ],
   imports: [
     BrowserModule,

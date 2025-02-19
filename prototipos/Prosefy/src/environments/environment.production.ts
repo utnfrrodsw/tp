@@ -10,5 +10,6 @@ export const environment = {
     apiUrlLocalidades: 'http://localhost:3000/api/localidades',
     apiUrlProvincias: 'http://localhost:3000/api/provincias',
     apiUrlResenias: 'http://localhost:3000/api/resenias',
-    apiUrlFormatos: 'http://localhost:3000/api/formatos'
+    apiUrlFormatos: 'http://localhost:3000/api/formatos',
+    apiUrlPedidos: 'http://localhost:3000/api/pedidos'
 };
