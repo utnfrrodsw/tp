@@ -116,15 +116,11 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body mx-5 mt-2">
-
-                    <!-- Lógica y el formulario de edición -->
-
                     <form [formGroup]="EditAutorForm" (keydown.enter)="actualizarAutor()">
                         <div class="form-group my-4 custom-input">
                             <label for="editNombreCompleto">Nombre completo del autor</label>
                             <input type="text" id="editNombreCompleto" class="form-control"
                                 formControlName="editNombreCompleto" placeholder="Ingrese el nuevo nombre completo" />
-                            <!-- Mensajes de error para el campo de nombreCompleto -->
                             <div *ngIf="EditAutorForm.get('editNombreCompleto')?.hasError('required') && EditAutorForm.get('editNombreCompleto')?.touched"
                                 class="text-danger">
                                 El nombre es obligatorio.
@@ -139,7 +135,6 @@
                             <label for="editPerfil">Perfil</label>
                             <input type="perfil" id="editPerfil" class="form-control" formControlName="editPerfil"
                                 placeholder="Ingrese la URL de la imagen" />
-                            <!-- Mensajes de error para el campo de perfil -->
                             <div *ngIf="
                             EditAutorForm.get('editPerfil')?.hasError('pattern') &&
                             EditAutorForm.get('editPerfil')?.touched
@@ -148,11 +143,9 @@
                             </div>
                         </div>
                         <div class="form-group my-4 custom-input">
-
                             <label for="editInfo">Información del autor</label>
                             <textarea type="text" id="editInfo" class="form-control" formControlName="editInfo"
                                 placeholder="Ingrese la nueva información del autor"></textarea>
-                            <!-- Mensajes de error para el campo de imagen -->
                             <div *ngIf="
                             EditAutorForm.get('editInfo')?.hasError('required') &&
                             EditAutorForm.get('editInfo')?.touched

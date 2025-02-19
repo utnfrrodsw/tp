@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LibrosService } from '../../services/libros.service';
+import { LibrosService, Libro } from '../../services/libros.service';
 import { AutoresService } from '../../services/autores.service';
 import { CategoriasService } from '../../services/categorias.service';
 import { EditorialesService } from '../../services/editoriales.service';
@@ -9,6 +9,9 @@ import { DatePipe } from '@angular/common';
 import { switchMap, map, of } from 'rxjs';
 import { FormatosService } from 'src/app/services/formatos.service';
 import { combineLatest, catchError } from 'rxjs';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-crud-libros',
@@ -91,6 +94,7 @@ export class CrudLibrosComponent implements OnInit {
           this.librosData[id] = libro;
         }
       });
+      this.loadInitialData(); // Cargar datos adicionales
     });
   }
 
@@ -100,12 +104,29 @@ export class CrudLibrosComponent implements OnInit {
       categorias: this.categoriasService.getCategorias(),
       editoriales: this.editorialesService.getEditoriales(),
       formatos: this.formatosService.getFormatos()
-    }).subscribe(({ autores, categorias, editoriales, formatos }) => {
-      this.autores = autores.map((autor: any) => ({ id: autor._id, nombre: autor.nombreCompleto }));
-      this.categorias = categorias.data.map((categoria: any) => ({ id: categoria._id, descripcion: categoria.descripcion }));
-      this.editoriales = editoriales.map((editorial: any) => ({ id: editorial._id, descripcion: editorial.descripcion }));
-      this.formatos = formatos.data.map((formato: any) => ({ id: formato._id, descripcion: formato.descripcion }));
-    });
+    }).subscribe(
+      ({ autores, categorias, editoriales, formatos }) => {
+        // Validar que los datos sean arrays antes de usar .map()
+        this.autores = Array.isArray(autores)
+          ? autores.map((autor: any) => ({ id: autor._id, nombre: autor.nombreCompleto }))
+          : [];
+
+        this.categorias = categorias?.data && Array.isArray(categorias.data)
+          ? categorias.data.map((categoria: any) => ({ id: categoria._id, descripcion: categoria.descripcion }))
+          : [];
+
+        this.editoriales = Array.isArray(editoriales)
+          ? editoriales.map((editorial: any) => ({ id: editorial._id, descripcion: editorial.descripcion }))
+          : [];
+
+        this.formatos = Array.isArray(formatos)
+          ? formatos.map((formato: any) => ({ id: formato._id, descripcion: formato.descripcion }))
+          : [];
+      },
+      (error) => {
+        console.error('Error al cargar datos iniciales:', error);
+      }
+    );
   }
 
   openPopup(): void {
@@ -117,6 +138,7 @@ export class CrudLibrosComponent implements OnInit {
   }
 
   openEditPopup(libroId: string): void {
+    console.log('Abriendo modal de edición para libro ID:', libroId);
     this.editingLibroId = libroId;
     this.isEditPopupOpen = true;
 
@@ -140,6 +162,7 @@ export class CrudLibrosComponent implements OnInit {
   }
 
   closeEditPopup(): void {
+    console.log('Cerrando modal de edición');
     this.isEditPopupOpen = false;
   }
 
@@ -155,9 +178,44 @@ export class CrudLibrosComponent implements OnInit {
 
   actualizarLibro(): void {
     if (this.EditLibroForm.valid && this.editingLibroId) {
-      const libroActualizado = this.EditLibroForm.value;
-      this.librosService.actualizarLibro(this.editingLibroId, libroActualizado).subscribe(() => {
-        location.reload();
+      const nuevoTitulo = this.EditLibroForm.value.editTitulo;
+      const nuevaDescripcion = this.EditLibroForm.value.editDescripcion;
+      const nuevoIsbn = this.EditLibroForm.value.editIsbn;
+      const nuevoIdioma = this.EditLibroForm.value.editIdioma;
+      const nuevoPrecio = this.EditLibroForm.value.editPrecio;
+      const nuevaFechaEdicion = this.EditLibroForm.value.editFechaEdicion;
+      const nuevosAutores = this.EditLibroForm.value.editAutores;
+      const nuevaEditorial = this.EditLibroForm.value.editEditorial;
+      const nuevasCategorias = this.EditLibroForm.value.editCategorias;
+      const nuevosFormatos = this.EditLibroForm.value.editFormatos;
+      const nuevaPortada = this.EditLibroForm.value.editPortada;
+      const nuevaCalificacion = this.EditLibroForm.value.editCalificacion;
+
+      const libroActualizado: Libro = {
+        _id: this.editingLibroId,
+        isbn: nuevoIsbn,
+        titulo: nuevoTitulo,
+        idioma: nuevoIdioma,
+        descripcion: nuevaDescripcion,
+        precio: nuevoPrecio,
+        fecha_edicion: nuevaFechaEdicion,
+        autores: nuevosAutores,
+        editorial: nuevaEditorial,
+        categorias: nuevasCategorias,
+        formatos: nuevosFormatos,
+        portada: nuevaPortada,
+        calificacion: nuevaCalificacion
+      };
+
+      this.librosService.actualizarLibro(this.editingLibroId, libroActualizado).subscribe({
+        next: (response) => {
+          console.log('Actualización exitosa', response);
+          this.closeEditPopup();
+          location.reload();
+        },
+        error: (error) => {
+          console.error('Error al actualizar el libro', error);
+        },
       });
     }
   }
@@ -192,6 +250,22 @@ export class CrudLibrosComponent implements OnInit {
   hasError(fieldName: string, errorType: string): boolean {
     const control = this.LibroForm.get(fieldName);
     return !!control?.hasError(errorType) && !!control?.touched;
+  }
+
+  selectedFormatos: string[] = [];
+
+  onFormatoChange(event: any): void {
+    const formatoId = event.target.value;
+    if (event.target.checked) {
+      this.selectedFormatos.push(formatoId);
+    } else {
+      this.selectedFormatos = this.selectedFormatos.filter(id => id !== formatoId);
+    }
+    this.LibroForm.get('formatos')?.setValue(this.selectedFormatos);
+  }
+
+  isFormatoSelected(formatoId: string): boolean {
+    return this.selectedFormatos.includes(formatoId);
   }
 
 }

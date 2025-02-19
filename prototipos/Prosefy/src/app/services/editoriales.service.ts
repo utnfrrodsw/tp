@@ -122,7 +122,13 @@ export class EditorialesService {
   }
 
   getEditoriales(): Observable<Editorial[]> {
-    return this.http.get<Editorial[]>(`${this.apiUrl}/editoriales`);
+    return this.http.get<any>(`${this.apiUrl}`).pipe(
+      map(response => response.data),
+      catchError(error => {
+        console.error('Error al obtener editoriales:', error);
+        return of([]);
+      })
+    );
   }
 
   getFormatos(id: string): Observable<string[]> {

@@ -85,27 +85,27 @@
                         </div>
                         <div class="form-group my-4 custom-input">
                             <label for="autores">Autores</label>
-                            <select id="autores" formControlName="autores" multiple>
+                            <select class="form-control" id="autores" formControlName="autores" multiple>
                                 <option *ngFor="let autor of autores" [value]="autor._id">{{ autor.nombre }}</option>
                             </select>
                         </div>
                         <div class="form-group my-4 custom-input">
                             <label for="editorial">Editorial</label>
-                            <select id="editorial" formControlName="editorial">
+                            <select class="form-control form-control-select" id="editorial" formControlName="editorial">
                                 <option *ngFor="let editorial of editoriales" [value]="editorial._id">{{
                                     editorial.descripcion }}</option>
                             </select>
                         </div>
                         <div class="form-group my-4 custom-input">
                             <label for="categorias">Categorías</label>
-                            <select id="categorias" formControlName="categorias" multiple>
+                            <select class="form-control" id="categorias" formControlName="categorias" multiple>
                                 <option *ngFor="let categoria of categorias" [value]="categoria._id">{{
                                     categoria.descripcion }}</option>
                             </select>
                         </div>
                         <div class="form-group my-4 custom-input">
                             <label for="formatos">Formatos</label>
-                            <select id="formatos" formControlName="formatos" multiple>
+                            <select class="form-control" id="formatos" formControlName="formatos" multiple>
                                 <option *ngFor="let formato of formatos" [value]="formato._id">{{ formato.descripcion
                                     }}</option>
                             </select>
@@ -134,87 +134,118 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Pop-up para editar un libro -->
-    <div *ngIf="isEditPopupOpen" class="overlay active">
-        <div class="custom-modal-panel">
-            <h2>Editar Libro</h2>
-            <form [formGroup]="EditLibroForm" (ngSubmit)="actualizarLibro()">
-                <div class="form-group">
-                    <label for="editIsbn">ISBN</label>
-                    <input type="text" id="editIsbn" formControlName="editIsbn" placeholder="Ingrese el ISBN" />
-                    <small *ngIf="hasError('editIsbn', 'required')">El ISBN es obligatorio.</small>
+<!-- Modal Panel para Editar Libro -->
+<div class="overlay active" [ngClass]="{ active: isEditPopupOpen }">
+    <div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isEditPopupOpen }">
+        <div class="modal-dialog modal-lg custom-modal-panel">
+            <div class="modal-content custom-modal-panel">
+                <div class="modal-header mx-5">
+                    <h4>Editar Libro</h4>
+                    <button type="button" class="btn-close btn-close-white" (click)="closeEditPopup()"
+                        aria-label="Close"></button>
                 </div>
-                <div class="form-group">
-                    <label for="editTitulo">Título</label>
-                    <input type="text" id="editTitulo" formControlName="editTitulo" placeholder="Ingrese el título" />
-                    <small *ngIf="hasError('editTitulo', 'required')">El título es obligatorio.</small>
+                <div class="modal-body mx-5 mt-2">
+                    <form [formGroup]="EditLibroForm" (keydown.enter)="actualizarLibro()">
+                        <div class="form-group my-4 custom-input">
+                            <label for="editIsbn">ISBN</label>
+                            <input type="text" id="editIsbn" formControlName="editIsbn"
+                                placeholder="Ingrese el nuevo ISBN" class="form-control
+                                " />
+                            <div *ngIf="hasError('editIsbn', 'required')" class="text-danger">El ISBN es
+                                obligatorio.</div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editTitulo">Título</label>
+                            <input type="text" id="editTitulo" formControlName="editTitulo"
+                                placeholder="Ingrese el nuevo título" class="form-control" />
+                            <small *ngIf="hasError('editTitulo', 'required')">El título es obligatorio.</small>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editIdioma">Idioma</label>
+                            <input type="text" id="editIdioma" formControlName="editIdioma"
+                                placeholder="Ingrese el nuevo idioma" class="form-control" />
+                            <div *ngIf="hasError('editIdioma', 'required')" class="text-danger">El idioma es
+                                obligatorio.</div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editDescripcion">Descripción</label>
+                            <textarea type="text" id="editDescripcion" formControlName="editDescripcion"
+                                placeholder="Ingrese la nueva descripción" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editPrecio">Precio</label>
+                            <input type="number" id="editPrecio" class="form-control" formControlName="editPrecio"
+                                placeholder="Ingrese el nuevo precio" />
+                            <div class="text-danger" *ngIf="hasError('editPrecio', 'required')">El precio es
+                                obligatorio.</div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editFechaEdicion">Fecha de Edición</label>
+                            <input class="text-danger" type="date" id="editFechaEdicion"
+                                formControlName="editFechaEdicion" class="form-control" />
+                            <div *ngIf="hasError('editFechaEdicion', 'required')" class="text-danger">La fecha de
+                                edición es
+                                obligatoria.</div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editAutores">Autores</label>
+                            <select class="form-control" id="editAutores" formControlName="editAutores" multiple>
+                                <option *ngFor="let autor of autores" [value]="autor._id">{{
+                                    autor.nombre }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editEditorial">Editorial</label>
+                            <select id="editEditorial" formControlName="editEditorial"
+                                class="form-control form-control-select">
+                                <option *ngFor="let editorial of editoriales" [value]="editorial._id">{{
+                                    editorial.descripcion }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editCategorias">Categorías</label>
+                            <select class="form-control" id="editCategorias" formControlName="editCategorias" multiple>
+                                <option *ngFor="let categoria of categorias" [value]="categoria._id">{{
+                                    categoria.descripcion }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editFormatos">Formatos</label>
+                            <select class="form-control" id="editFormatos" formControlName="editFormatos" multiple>
+                                <option *ngFor="let formato of formatos" [value]="formato._id">{{
+                                    formato.descripcion
+                                    }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editPortada">URL de Portada</label>
+                            <input class="form-control" type="text" id="editPortada" formControlName="editPortada"
+                                placeholder="Ingrese la nueva URL de la portada" />
+                            <div class="text-danger" *ngIf="hasError('editPortada', 'required')">La URL de la
+                                portada es
+                                obligatoria.</div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editCalificacion">Calificación</label>
+                            <input type="number" id="editCalificacion" formControlName="editCalificacion"
+                                class="form-control" placeholder="Ingrese la nueva calificación" />
+                            <div class="text-danger" *ngIf="hasError('editCalificacion', 'required')">La
+                                calificación es
+                                obligatoria.</div>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class=" btn btn-primary custom-btn-primary form-custom-btn-primary"
+                                (click)="actualizarLibro()">Actualizar</button>
+                            <button type="button"
+                                class="btn btn-secondary custom-btn-secondary form-custom-btn-secondary"
+                                (click)="closeEditPopup()">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="editIdioma">Idioma</label>
-                    <input type="text" id="editIdioma" formControlName="editIdioma" placeholder="Ingrese el idioma" />
-                    <small *ngIf="hasError('editIdioma', 'required')">El idioma es obligatorio.</small>
-                </div>
-                <div class="form-group">
-                    <label for="editDescripcion">Descripción</label>
-                    <textarea id="editDescripcion" formControlName="editDescripcion"
-                        placeholder="Ingrese la descripción"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="editPrecio">Precio</label>
-                    <input type="number" id="editPrecio" formControlName="editPrecio" placeholder="Ingrese el precio" />
-                    <small *ngIf="hasError('editPrecio', 'required')">El precio es obligatorio.</small>
-                </div>
-                <div class="form-group">
-                    <label for="editFechaEdicion">Fecha de Edición</label>
-                    <input type="date" id="editFechaEdicion" formControlName="editFechaEdicion" />
-                    <small *ngIf="hasError('editFechaEdicion', 'required')">La fecha de edición es
-                        obligatoria.</small>
-                </div>
-                <div class="form-group">
-                    <label for="editAutores">Autores</label>
-                    <select id="editAutores" formControlName="editAutores" multiple>
-                        <option *ngFor="let autor of autores" [value]="autor._id">{{ autor.nombre }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="editEditorial">Editorial</label>
-                    <select id="editEditorial" formControlName="editEditorial">
-                        <option *ngFor="let editorial of editoriales" [value]="editorial._id">{{
-                            editorial.descripcion }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="editCategorias">Categorías</label>
-                    <select id="editCategorias" formControlName="editCategorias" multiple>
-                        <option *ngFor="let categoria of categorias" [value]="categoria._id">{{
-                            categoria.descripcion }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="editFormatos">Formatos</label>
-                    <select id="editFormatos" formControlName="editFormatos" multiple>
-                        <option *ngFor="let formato of formatos" [value]="formato._id">{{ formato.descripcion
-                            }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="editPortada">URL de Portada</label>
-                    <input type="text" id="editPortada" formControlName="editPortada"
-                        placeholder="Ingrese la URL de la portada" />
-                    <small *ngIf="hasError('editPortada', 'required')">La URL de la portada es obligatoria.</small>
-                </div>
-                <div class="form-group">
-                    <label for="editCalificacion">Calificación</label>
-                    <input type="number" id="editCalificacion" formControlName="editCalificacion"
-                        placeholder="Ingrese la calificación" />
-                    <small *ngIf="hasError('editCalificacion', 'required')">La calificación es obligatoria.</small>
-                </div>
-                <div class="button-group">
-                    <button type="submit" class="form-custom-btn-primary">Actualizar</button>
-                    <button type="button" class="form-custom-btn-secondary" (click)="closeEditPopup()">Cancelar</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

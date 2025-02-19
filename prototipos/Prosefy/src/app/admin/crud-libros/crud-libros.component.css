@@ -71,6 +71,40 @@
     color: #938d84 !important;
 }
 
+.form-control-select {
+    background-color: #242729 !important;
+    width: 80% !important;
+    margin: 0 auto !important;
+    color: #938d84 !important;
+    border: 1px solid #343a40;
+    border-radius: 2rem;
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+    padding-left: 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23938d84'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-clip: padding-box !important;
+    border: 1px solid #ced4da !important;
+    background-size: 12px;
+}
+
+.form-control-select:hover {
+    border-color: #5a3f30;
+}
+
+.form-control-select:focus {
+    border-color: #5a3f30;
+    box-shadow: 0 0 5px rgba(90, 63, 48, 0.5);
+    outline: none;
+}
+
 .custom-input input::placeholder {
     color: #938d84;
 }
@@ -100,7 +134,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
+    z-index: 9999;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
@@ -114,8 +148,13 @@
 .custom-modal-panel {
     background-color: #181a1b;
     color: #fff;
+    z-index: 10000;
 }
 
+.crud-libros .overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
 
 .highlight-text {
     background-color: #f8f9fa;
