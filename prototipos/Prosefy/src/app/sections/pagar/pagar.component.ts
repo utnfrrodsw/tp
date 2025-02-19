@@ -1,13 +1,16 @@
-import { Component, Input, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { Libro, LibrosService } from '../../services/libros.service';
 import { CarritoComprasService } from '../../services/carrito-compras.service';
+import { PedidosService, Pedido } from '../../services/pedido.service';
+import { AuthService } from '../../services/auth.service';
 import { AutoresService } from '../../services/autores.service';
 import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-pagar',
   templateUrl: './pagar.component.html',
-  styleUrls: ['./pagar.component.css']
+  styleUrls: ['./pagar.component.css'],
 })
 export class PagarComponent implements OnInit {
   envio: number = 0;
@@ -18,8 +21,9 @@ export class PagarComponent implements OnInit {
   cantidades: { [id: string]: number } = {};
   mostrarLabel: boolean = true;
   noMostrarlabel: boolean = false;
-  autoresNombres: any;
+  autoresNombres: { [id: string]: string[] } = {};
   metodoSeleccionado: string | null = null;
+  usuarioId: string | null = null; // ID del usuario logueado
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
@@ -29,10 +33,13 @@ export class PagarComponent implements OnInit {
   constructor(
     private librosService: LibrosService,
     private carritoService: CarritoComprasService,
-    private autoresService: AutoresService
-  ) { }
+    private autoresService: AutoresService,
+    private pedidosService: PedidosService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.actualizarVisibilidadLabel();
     this.obtenerLibrosEnCarrito();
     this.libros.forEach((libro) => {
@@ -40,6 +47,15 @@ export class PagarComponent implements OnInit {
     });
     this.calculateTotal();
     this.subTotal();
+
+    // Obtener el ID del usuario logueado
+    this.usuarioId = this.authService.getCurrentUserId();
+
+    if (!this.usuarioId) {
+      console.error('Usuario no logueado');
+      // Redirigir al usuario a la página de inicio de sesión
+      this.authService.cerrarSesion();
+    }
   }
 
   obtenerLibrosEnCarrito() {
@@ -82,14 +98,12 @@ export class PagarComponent implements OnInit {
     });
   }
 
-
   eliminarDelCarrito(libroId: string) {
     this.carritoService.eliminarDelCarrito(libroId);
     this.obtenerLibrosEnCarrito();
   }
 
   calculateTotal() {
-    
     const maxCantidad = 10;
     const minCantidad = 1;
     this.total = this.libros.reduce((sum, libro) => sum + (libro.precio * this.cantidades[libro._id]), 0);
@@ -102,19 +116,17 @@ export class PagarComponent implements OnInit {
         this.cantidades[libro._id] = minCantidad;
       }
     }
-    if (this.total < 10000){
+    if (this.total < 10000) {
       this.envio = 3000;
     }
     if (this.contador == 1) {
-      this.total += 0
+      this.total += 0;
+    } else if (this.contador == 2) {
+      this.total += 2000;
+    } else if (this.contador == 3) {
+      this.total += 3000;
     }
-    else if (this.contador == 2) {
-      this.total += 2.000
-    }
-    else if (this.contador == 3) {
-      this.total += 3.000
-    }
-    this.total += this.envio
+    this.total += this.envio;
     this.envio = 0;
   }
 
@@ -148,7 +160,6 @@ export class PagarComponent implements OnInit {
     }
   }
 
-
   aumentarContador() {
     if (this.contador < 3) {
       this.contador++;
@@ -161,21 +172,6 @@ export class PagarComponent implements OnInit {
     }
   }
 
-  divStyles: any = {
-    'background-color': 'white'
-  };
-
-  changeBackgroundColor() {
-    // Cambia el color de fondo al hacer click, o no.
-    this.divStyles['background-color'] = 'lightblue'
-  };
-
-
-  private actualizarVisibilidadLabel(){
-    this.mostrarLabel = window.innerWidth > 500;
-    this.noMostrarlabel = !this.mostrarLabel
-  }
-
   seleccionarMetodoPago(metodo: string) {
     if (this.metodoSeleccionado === metodo) {
       this.metodoSeleccionado = null;
@@ -185,8 +181,37 @@ export class PagarComponent implements OnInit {
     console.log('Método de pago seleccionado:', this.metodoSeleccionado);
   }
 
-  
+  crearPedido(): void {
+    if (!this.usuarioId) {
+      console.error('Usuario no logueado');
+      return;
+    }
 
+    if (this.libros.length === 0) {
+      console.error('No hay libros en el carrito');
+      return;
+    }
+
+    const nuevoPedido: Pedido = {
+      fecha: new Date().toISOString(), // Fecha actual
+      usuario: this.usuarioId, // ID del usuario logueado
+      libro: this.libros.map(libro => libro._id), // IDs de los libros en el carrito
+    };
+
+    this.pedidosService.crearPedido(nuevoPedido).subscribe({
+      next: (response: any) => {
+        console.log('Pedido creado con éxito:', response); // Limpiar el carrito después de crear el pedido
+        this.carritoService.limpiarCarrito();
+        this.router.navigate(['/pedidos']);
+      },
+      error: (error) => {
+        console.error('Error al crear el pedido:', error);
+      },
+    });
+  }
+
+  private actualizarVisibilidadLabel() {
+    this.mostrarLabel = window.innerWidth > 500;
+    this.noMostrarlabel = !this.mostrarLabel;
+  }
 }
-
-
