@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LibrosService, Libro } from '../../services/libros.service';
+import { LibrosService, Libro, LibroInput } from '../../services/libros.service';
 import { AutoresService } from '../../services/autores.service';
 import { CategoriasService } from '../../services/categorias.service';
 import { EditorialesService } from '../../services/editoriales.service';
@@ -29,6 +29,9 @@ export class CrudLibrosComponent implements OnInit {
   editingLibroId: string | null = null;
   showErrorMessages: boolean = false;
   errorMessage: string = '';
+  selectedAutores: string[] = [];
+  selectedCategorias: string[] = [];
+  selectedFormatos: string[] = [];
 
   constructor(private fb: FormBuilder,
     private librosService: LibrosService,
@@ -62,7 +65,7 @@ export class CrudLibrosComponent implements OnInit {
       editPrecio: ['', [Validators.required, Validators.min(0)]],
       editFechaEdicion: ['', [Validators.required]],
       editAutores: [[]],
-      editEditorial: ['', [Validators.required]],
+      editEditorial: [''],
       editCategorias: [[]],
       editFormatos: [[]],
       editPortada: ['', [Validators.required]],
@@ -75,6 +78,13 @@ export class CrudLibrosComponent implements OnInit {
 
     if (this.LibroForm.valid) {
       const libroData = this.LibroForm.value;
+
+      // Asegurarse de que autores, categorías y formatos sean arrays
+      libroData.autores = Array.isArray(libroData.autores) ? libroData.autores : [libroData.autores];
+      libroData.categorias = Array.isArray(libroData.categorias) ? libroData.categorias : [libroData.categorias];
+      libroData.formatos = Array.isArray(libroData.formatos) ? libroData.formatos : [libroData.formatos];
+
+      console.log('Datos enviados al backend:', libroData); // Log detallado
 
       this.librosService.registrarLibro(libroData).subscribe({
         next: (response) => {
@@ -131,7 +141,7 @@ export class CrudLibrosComponent implements OnInit {
           ? autores.map((autor: any) => ({ id: autor._id, nombre: autor.nombreCompleto }))
           : [];
 
-        this.categorias = categorias?.data && Array.isArray(categorias.data)
+        this.categorias = Array.isArray(categorias?.data)
           ? categorias.data.map((categoria: any) => ({ id: categoria._id, descripcion: categoria.descripcion }))
           : [];
 
@@ -147,6 +157,33 @@ export class CrudLibrosComponent implements OnInit {
         console.error('Error al cargar datos iniciales:', error);
       }
     );
+  }
+
+  onAutoresChange(event: any): void {
+    const selectedOptions = Array.from(event.target.selectedOptions);
+    const selectedAutores = selectedOptions
+      .filter((option): option is HTMLOptionElement => option instanceof HTMLOptionElement)
+      .map((option) => option.value);
+
+    this.LibroForm.get('autores')?.setValue(selectedAutores);
+  }
+
+  onCategoriasChange(event: any): void {
+    const selectedOptions = Array.from(event.target.selectedOptions);
+    const selectedCategorias = selectedOptions
+      .filter((option): option is HTMLOptionElement => option instanceof HTMLOptionElement)
+      .map((option) => option.value);
+
+    this.LibroForm.get('categorias')?.setValue(selectedCategorias);
+  }
+
+  onFormatosChange(event: any): void {
+    const selectedOptions = Array.from(event.target.selectedOptions);
+    const selectedFormatos = selectedOptions
+      .filter((option): option is HTMLOptionElement => option instanceof HTMLOptionElement)
+      .map((option) => option.value);
+
+    this.LibroForm.get('formatos')?.setValue(selectedFormatos);
   }
 
   openPopup(): void {
@@ -190,19 +227,12 @@ export class CrudLibrosComponent implements OnInit {
     if (this.LibroForm.valid) {
       const nuevoLibro = this.LibroForm.value;
 
-      // Validar que los IDs sean cadenas de 24 caracteres hexadecimales
-      const validarObjectId = (id: string): boolean => /^[0-9a-fA-F]{24}$/.test(id);
+      // Asegurarse de que autores, categorías y formatos sean arrays
+      nuevoLibro.autores = Array.isArray(nuevoLibro.autores) ? nuevoLibro.autores : [nuevoLibro.autores];
+      nuevoLibro.categorias = Array.isArray(nuevoLibro.categorias) ? nuevoLibro.categorias : [nuevoLibro.categorias];
+      nuevoLibro.formatos = Array.isArray(nuevoLibro.formatos) ? nuevoLibro.formatos : [nuevoLibro.formatos];
 
-      if (
-        !nuevoLibro.autores.every(validarObjectId) ||
-        !validarObjectId(nuevoLibro.editorial) ||
-        !nuevoLibro.categorias.every(validarObjectId) ||
-        !nuevoLibro.formatos.every(validarObjectId)
-      ) {
-        console.error("Uno o más IDs no son válidos.");
-        alert("Por favor, verifica que todos los campos contengan IDs válidos.");
-        return;
-      }
+      console.log('Datos enviados al backend:', nuevoLibro); // Log detallado
 
       this.librosService.registrarLibro(nuevoLibro).subscribe({
         next: () => {
@@ -296,7 +326,25 @@ export class CrudLibrosComponent implements OnInit {
     return !!control?.hasError(errorType) && !!control?.touched;
   }
 
-  selectedFormatos: string[] = [];
+  onAutorChange(event: any): void {
+    const autorId = event.target.value;
+    if (event.target.checked) {
+      this.selectedAutores.push(autorId);
+    } else {
+      this.selectedAutores = this.selectedAutores.filter(id => id !== autorId);
+    }
+    this.LibroForm.get('autores')?.setValue(this.selectedAutores);
+  }
+
+  onCategoriaChange(event: any): void {
+    const categoriaId = event.target.value;
+    if (event.target.checked) {
+      this.selectedCategorias.push(categoriaId);
+    } else {
+      this.selectedCategorias = this.selectedCategorias.filter(id => id !== categoriaId);
+    }
+    this.LibroForm.get('categorias')?.setValue(this.selectedCategorias);
+  }
 
   onFormatoChange(event: any): void {
     const formatoId = event.target.value;

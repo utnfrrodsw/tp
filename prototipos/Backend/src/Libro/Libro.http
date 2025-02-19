@@ -1,3 +1,22 @@
+### Libro 1
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+  "isbn": "1234567890",
+  "titulo": "Mi Libro",
+  "idioma": "Español",
+  "descripcion": "Descripción del libro",
+  "precio": 19.99,
+  "fecha_edicion": "2023-10-01",
+  "autores": ["652f8e2b3d8d9c1a2c8f1d7a", "652f8e2b3d8d9c1a2c8f1d7b"],
+  "editorial": "652f8e2b3d8d9c1a2c8f1d7c",
+  "categorias": ["652f8e2b3d8d9c1a2c8f1d7d", "652f8e2b3d8d9c1a2c8f1d7e"],
+  "formatos": ["652f8e2b3d8d9c1a2c8f1d7f", "652f8e2b3d8d9c1a2c8f1d80"],
+  "portada": "url-de-la-portada",
+  "calificacion": 4.5
+}
+
 // AGREGAR LIBROS
 
 ### Libro 1

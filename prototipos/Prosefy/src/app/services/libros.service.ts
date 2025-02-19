@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
 import { Observable, forkJoin, map, of } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
 import { AutoresService } from '../services/autores.service';
 import { CategoriasService } from './categorias.service';
 import { environment } from 'src/environments/environment.development';
-environment
+import { HttpHeaders } from '@angular/common/http';
 
 export interface Libro {
   _id: string;
@@ -21,6 +21,22 @@ export interface Libro {
   formatos: string[];
   portada: string;
   calificacion: number;
+}
+
+export interface LibroInput {
+  isbn: string;
+  titulo: string;
+  idioma: string;
+  descripcion: string;
+  precio: number;
+  fecha_edicion: Date;
+  autores: string[];
+  editorial: string;
+  categorias: string[];
+  formatos: string[];
+  portada: string;
+  calificacion: number;
+  _id?: string;
 }
 
 @Injectable({
@@ -150,8 +166,24 @@ export class LibrosService {
     );
   }
 
-  registrarLibro(libro: Libro): Observable<any> {
-    return this.http.post(`${this.apiUrl}/`, libro);
+  registrarLibro(libro: LibroInput): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    // Asegurarse de que los campos sean arrays
+    libro.autores = Array.isArray(libro.autores) ? libro.autores : [libro.autores];
+    libro.categorias = Array.isArray(libro.categorias) ? libro.categorias : [libro.categorias];
+    libro.formatos = Array.isArray(libro.formatos) ? libro.formatos : [libro.formatos];
+
+    return this.http.post(this.apiUrl, libro, httpOptions).pipe(
+      catchError((error: any) => {
+        console.error('Error al registrar el libro:', error);
+        throw error;
+      })
+    );
   }
 
   actualizarLibro(id: string, libro: Libro): Observable<any> {

@@ -16,9 +16,15 @@ async function sanitizeInput(req: Request, res: Response, next: NextFunction) {
                 return res.status(400).send({ message: `Campo '${key}' es requerido.` });
             }
 
-            req.body.sanitizedInput[key] = req.body[key];
+            // Asegurarse de que autores, categorías y formatos sean arrays
+            if (['autores', 'categorias', 'formatos'].includes(key)) {
+                req.body.sanitizedInput[key] = Array.isArray(req.body[key]) ? req.body[key] : [req.body[key]];
+            } else {
+                req.body.sanitizedInput[key] = req.body[key];
+            }
         }
 
+        console.log("Datos sanitizados:", req.body.sanitizedInput); // Log detallado
         next();
     } catch (error) {
         console.error("Error en sanitizeInput:", error);
@@ -52,21 +58,11 @@ async function findOne(req: Request, res: Response) {
 
 async function add(req: Request, res: Response) {
     try {
+        console.log("Cuerpo de la solicitud recibida:", req.body); // Log para depuración
         const input = req.body.sanitizedInput;
 
-        // Función para validar ObjectId
-        const isValidObjectId = (id: string): boolean => /^[0-9a-fA-F]{24}$/.test(id);
-
-        // Validar que todos los IDs sean válidos
-        if (
-            !input.autores.every(isValidObjectId) ||
-            !isValidObjectId(input.editorial) ||
-            !input.categorias.every(isValidObjectId) ||
-            !input.formatos.every(isValidObjectId)
-        ) {
-            console.error("Uno o más IDs no son válidos:", input);
-            return res.status(400).send({ message: "Uno o más IDs no son válidos." });
-        }
+        // Imprimir los datos recibidos del frontend
+        console.log('Datos recibidos en el backend:', input);
 
         const libroInput = new Libro(
             input.isbn,

@@ -86,27 +86,27 @@
                         <div class="form-group my-4 custom-input">
                             <label for="autores">Autores</label>
                             <select class="form-control" id="autores" formControlName="autores" multiple>
-                                <option *ngFor="let autor of autores" [value]="autor._id">{{ autor.nombre }}</option>
+                                <option *ngFor="let autor of autores" [value]="autor.id">{{ autor.nombre }}</option>
                             </select>
                         </div>
                         <div class="form-group my-4 custom-input">
                             <label for="editorial">Editorial</label>
                             <select class="form-control form-control-select" id="editorial" formControlName="editorial">
-                                <option *ngFor="let editorial of editoriales" [value]="editorial._id">{{
+                                <option *ngFor="let editorial of editoriales" [value]="editorial.id">{{
                                     editorial.descripcion }}</option>
                             </select>
                         </div>
                         <div class="form-group my-4 custom-input">
                             <label for="categorias">Categorías</label>
                             <select class="form-control" id="categorias" formControlName="categorias" multiple>
-                                <option *ngFor="let categoria of categorias" [value]="categoria._id">{{
+                                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{
                                     categoria.descripcion }}</option>
                             </select>
                         </div>
                         <div class="form-group my-4 custom-input">
                             <label for="formatos">Formatos</label>
                             <select class="form-control" id="formatos" formControlName="formatos" multiple>
-                                <option *ngFor="let formato of formatos" [value]="formato._id">{{ formato.descripcion
+                                <option *ngFor="let formato of formatos" [value]="formato.id">{{ formato.descripcion
                                     }}</option>
                             </select>
                         </div>
@@ -193,7 +193,7 @@
                         <div class="form-group my-4 custom-input">
                             <label for="editAutores">Autores</label>
                             <select class="form-control" id="editAutores" formControlName="editAutores" multiple>
-                                <option *ngFor="let autor of autores" [value]="autor._id">{{
+                                <option *ngFor="let autor of autores" [value]="autor.id">{{
                                     autor.nombre }}
                                 </option>
                             </select>
@@ -202,21 +202,21 @@
                             <label for="editEditorial">Editorial</label>
                             <select id="editEditorial" formControlName="editEditorial"
                                 class="form-control form-control-select">
-                                <option *ngFor="let editorial of editoriales" [value]="editorial._id">{{
+                                <option *ngFor="let editorial of editoriales" [value]="editorial.id">{{
                                     editorial.descripcion }}</option>
                             </select>
                         </div>
                         <div class="form-group my-4 custom-input">
                             <label for="editCategorias">Categorías</label>
                             <select class="form-control" id="editCategorias" formControlName="editCategorias" multiple>
-                                <option *ngFor="let categoria of categorias" [value]="categoria._id">{{
+                                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{
                                     categoria.descripcion }}</option>
                             </select>
                         </div>
                         <div class="form-group my-4 custom-input">
                             <label for="editFormatos">Formatos</label>
                             <select class="form-control" id="editFormatos" formControlName="editFormatos" multiple>
-                                <option *ngFor="let formato of formatos" [value]="formato._id">{{
+                                <option *ngFor="let formato of formatos" [value]="formato.id">{{
                                     formato.descripcion
                                     }}</option>
                             </select>
