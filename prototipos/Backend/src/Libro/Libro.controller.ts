@@ -54,6 +54,20 @@ async function add(req: Request, res: Response) {
     try {
         const input = req.body.sanitizedInput;
 
+        // Función para validar ObjectId
+        const isValidObjectId = (id: string): boolean => /^[0-9a-fA-F]{24}$/.test(id);
+
+        // Validar que todos los IDs sean válidos
+        if (
+            !input.autores.every(isValidObjectId) ||
+            !isValidObjectId(input.editorial) ||
+            !input.categorias.every(isValidObjectId) ||
+            !input.formatos.every(isValidObjectId)
+        ) {
+            console.error("Uno o más IDs no son válidos:", input);
+            return res.status(400).send({ message: "Uno o más IDs no son válidos." });
+        }
+
         const libroInput = new Libro(
             input.isbn,
             input.titulo,

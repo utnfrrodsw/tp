@@ -9,9 +9,6 @@ import { DatePipe } from '@angular/common';
 import { switchMap, map, of } from 'rxjs';
 import { FormatosService } from 'src/app/services/formatos.service';
 import { combineLatest, catchError } from 'rxjs';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-crud-libros',
@@ -33,7 +30,7 @@ export class CrudLibrosComponent implements OnInit {
   showErrorMessages: boolean = false;
   errorMessage: string = '';
 
-  constructor(
+  constructor(private fb: FormBuilder,
     private librosService: LibrosService,
     private autoresService: AutoresService,
     private categoriasService: CategoriasService,
@@ -42,19 +39,19 @@ export class CrudLibrosComponent implements OnInit {
     private formBuilder: FormBuilder,
     private datePipe: DatePipe
   ) {
-    this.LibroForm = this.formBuilder.group({
-      isbn: ['', [Validators.required]],
-      titulo: ['', [Validators.required]],
-      idioma: ['', [Validators.required]],
-      descripcion: [''],
-      precio: ['', [Validators.required, Validators.min(0)]],
-      fecha_edicion: ['', [Validators.required]],
-      autores: [[]],
-      editorial: ['', [Validators.required]],
-      categorias: [[]],
-      formatos: [[]],
-      portada: ['', [Validators.required]],
-      calificacion: ['', [Validators.required, Validators.min(0), Validators.max(5)]]
+    this.LibroForm = this.fb.group({
+      isbn: ['', Validators.required],
+      titulo: ['', Validators.required],
+      idioma: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      precio: [null, [Validators.required, Validators.min(0)]],
+      fecha_edicion: ['', Validators.required],
+      autores: [[], Validators.required],
+      editorial: ['', Validators.required],
+      categorias: [[], Validators.required],
+      formatos: [[], Validators.required],
+      portada: ['', Validators.required],
+      calificacion: [null, [Validators.required, Validators.min(0), Validators.max(5)]]
     });
 
     this.EditLibroForm = this.formBuilder.group({
@@ -71,6 +68,29 @@ export class CrudLibrosComponent implements OnInit {
       editPortada: ['', [Validators.required]],
       editCalificacion: ['', [Validators.required, Validators.min(0), Validators.max(5)]]
     });
+  }
+
+  onSubmit() {
+    this.showErrorMessages = true;
+
+    if (this.LibroForm.valid) {
+      const libroData = this.LibroForm.value;
+
+      this.librosService.registrarLibro(libroData).subscribe({
+        next: (response) => {
+          console.log('Libro registrado exitosamente:', response);
+          alert('¡Libro registrado con éxito!');
+          this.LibroForm.reset();
+        },
+        error: (error) => {
+          console.error('Error al registrar libro:', error);
+          this.errorMessage = 'Hubo un error al registrar el libro. Por favor, inténtalo de nuevo.';
+        }
+      });
+    } else {
+      console.error('Formulario inválido:', this.LibroForm.errors);
+      this.errorMessage = 'Por favor, completa todos los campos correctamente.';
+    }
   }
 
   ngOnInit() {
@@ -167,12 +187,36 @@ export class CrudLibrosComponent implements OnInit {
   }
 
   registrarLibro(): void {
-    this.showErrorMessages = true;
     if (this.LibroForm.valid) {
       const nuevoLibro = this.LibroForm.value;
-      this.librosService.registrarLibro(nuevoLibro).subscribe(() => {
-        location.reload();
+
+      // Validar que los IDs sean cadenas de 24 caracteres hexadecimales
+      const validarObjectId = (id: string): boolean => /^[0-9a-fA-F]{24}$/.test(id);
+
+      if (
+        !nuevoLibro.autores.every(validarObjectId) ||
+        !validarObjectId(nuevoLibro.editorial) ||
+        !nuevoLibro.categorias.every(validarObjectId) ||
+        !nuevoLibro.formatos.every(validarObjectId)
+      ) {
+        console.error("Uno o más IDs no son válidos.");
+        alert("Por favor, verifica que todos los campos contengan IDs válidos.");
+        return;
+      }
+
+      this.librosService.registrarLibro(nuevoLibro).subscribe({
+        next: () => {
+          console.log("Libro registrado exitosamente.");
+          location.reload();
+        },
+        error: (error) => {
+          console.error("Error al registrar libro:", error);
+          alert("Hubo un error al registrar el libro. Por favor, inténtalo de nuevo.");
+        }
       });
+    } else {
+      console.error("Formulario inválido:", this.LibroForm.errors);
+      alert("Por favor, completa todos los campos correctamente.");
     }
   }
 

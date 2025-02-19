@@ -46,6 +46,16 @@ async function findOne(req, res) {
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
+        // Función para validar ObjectId
+        const isValidObjectId = (id) => /^[0-9a-fA-F]{24}$/.test(id);
+        // Validar que todos los IDs sean válidos
+        if (!input.autores.every(isValidObjectId) ||
+            !isValidObjectId(input.editorial) ||
+            !input.categorias.every(isValidObjectId) ||
+            !input.formatos.every(isValidObjectId)) {
+            console.error("Uno o más IDs no son válidos:", input);
+            return res.status(400).send({ message: "Uno o más IDs no son válidos." });
+        }
         const libroInput = new Libro(input.isbn, input.titulo, input.idioma, input.descripcion, input.precio, input.fecha_edicion, input.autores.map((autorId) => new ObjectId(autorId)), new ObjectId(input.editorial), input.categorias.map((categoriaId) => new ObjectId(categoriaId)), input.formatos.map((formatoId) => new ObjectId(formatoId)), input.portada, input.calificacion);
         const libro = await repository.add(libroInput);
         res.status(201).send({ message: 'Libro agregado con éxito.', data: libro });

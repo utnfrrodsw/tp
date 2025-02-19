@@ -47,7 +47,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body mx-5 mt-2">
-                    <form [formGroup]="LibroForm" (keydown.enter)="registrarLibro()">
+                    <form [formGroup]="LibroForm" (ngSubmit)="onSubmit()">
                         <div class="form-group my-4 custom-input">
                             <label for="isbn">ISBN</label>
                             <input type="text" id="isbn" formControlName="isbn" placeholder="Ingrese el ISBN"
@@ -125,6 +125,7 @@
                         <div class="button-group">
                             <button type="submit"
                                 class="btn btn-primary custom-btn-primary form-custom-btn-primary">Crear</button>
+                            <div class="text-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
                             <button type="button"
                                 class="btn btn-secondary custom-btn-secondary form-custom-btn-secondary"
                                 (click)="closePopup()">Cancelar</button>
