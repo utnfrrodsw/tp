@@ -66,6 +66,7 @@ const routes: Routes = [
   { path: 'panel-admin/ofertas', component: CrudOfertasComponent, canActivate: [AdminGuard] },
   { path: 'panel-admin/provincias', component: CrudProvinciasComponent, canActivate: [AdminGuard] },
   { path: 'panel-admin/categorias', component: CrudCategoriasComponent, canActivate: [AdminGuard] },
+  
 ];
 
 @NgModule({
