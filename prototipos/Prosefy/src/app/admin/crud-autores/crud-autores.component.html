@@ -36,7 +36,8 @@
             <div class="modal-content custom-modal-panel">
                 <div class="modal-header mx-5">
                     <h4 class="modal-title text-center">Crear Autor</h4>
-                    <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" (click)="closePopup()"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body mx-5 mt-2">
 
@@ -71,9 +72,11 @@
                             </div>
                         </div>
                         <div class="form-group my-4 custom-input">
+
                             <label for="info">Información del autor</label>
-                            <input type="text" id="info" class="form-control" formControlName="info"
-                                placeholder="Ingrese la información" />
+                            <textarea type="text" id="info" class="form-control" formControlName="info"
+                                placeholder="Ingrese la información"></textarea>
+
                             <!-- Mensajes de error para el campo info -->
                             <div *ngIf="
                               AutorForm.get('info')?.hasError('required') &&
@@ -109,7 +112,8 @@
             <div class="modal-content custom-modal-panel">
                 <div class="modal-header mx-5">
                     <h4 class="modal-title text-center">Editar Autor</h4>
-                    <button type="button" class="btn-close" (click)="closeEditPopup()" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" (click)="closeEditPopup()"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body mx-5 mt-2">
 
@@ -144,21 +148,16 @@
                             </div>
                         </div>
                         <div class="form-group my-4 custom-input">
+
                             <label for="editInfo">Información del autor</label>
-                            <input type="text" id="editInfo" class="form-control" formControlName="editInfo"
-                                placeholder="Ingrese la nueva URL de la imagen" />
+                            <textarea type="text" id="editInfo" class="form-control" formControlName="editInfo"
+                                placeholder="Ingrese la nueva información del autor"></textarea>
                             <!-- Mensajes de error para el campo de imagen -->
                             <div *ngIf="
                             EditAutorForm.get('editInfo')?.hasError('required') &&
                             EditAutorForm.get('editInfo')?.touched
                             " class="text-danger">
-                                La imagen es obligatoria.
-                            </div>
-                            <div *ngIf="
-                            EditAutorForm.get('editInfo')?.hasError('pattern') &&
-                            EditAutorForm.get('editInfo')?.touched
-                            " class="text-danger">
-                                La URL no puede contener espacios.
+                                La información del autor es obligatoria.
                             </div>
                         </div>
                         <div class="button-group">

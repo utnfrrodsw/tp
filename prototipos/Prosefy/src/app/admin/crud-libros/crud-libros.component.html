@@ -1,111 +1,137 @@
-<!-- CRUD DE LIBROS -->
-<div class="custom-background">
-    <h2>Todos los libros</h2>
-    <button class="custom-btn-primary" (click)="openPopup()">Nuevo Libro</button>
-
-    <!-- Lista de libros -->
-    <div *ngIf="librosIds.length > 0; else noLibros">
-        <div *ngFor="let libroId of librosIds" class="card">
-            <div class="card-header">
-                {{ librosData[libroId].titulo }}
+<div class="custom-background pb-5 pt-2">
+    <app-boton-volver></app-boton-volver>
+    <div class="container pt-4">
+        <div class="row mb-4">
+            <div class="col">
+                <h2>Todos los libros</h2>
             </div>
-            <div class="card-body">
-                <p>ISBN: {{ librosData[libroId].isbn }}</p>
-                <p>Idioma: {{ librosData[libroId].idioma }}</p>
-                <p>Precio: ${{ librosData[libroId].precio | number:'1.2-2' }} ARS</p>
-                <p>Fecha de Edición: {{ librosData[libroId].fecha_edicion ?
-                    formatearFecha(librosData[libroId].fecha_edicion) : 'N/A' }}</p>
-                <p>ID: {{ libroId }}</p>
-                <button class="custom-btn-secondary" (click)="openEditPopup(libroId)">Editar</button>
-                <button class="custom-btn-secondary" (click)="eliminarLibro(libroId)">Eliminar</button>
+        </div>
+        <button class="btn btn-primary custom-btn-primary mx-2 mb-3" (click)="openPopup()">Nuevo Libro</button>
+
+        <div class="row">
+            <!-- Lista de libros -->
+            <div *ngFor="let libroId of librosIds" class="col-md-4 mb-4">
+                <ng-container *ngIf="librosData[libroId]">
+                    <div class="card">
+                        <img [src]="librosData[libroId].portada" alt="Portada del libro" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ librosData[libroId].titulo }}
+                            </h5>
+                            <p class="card-text">ISBN: {{ librosData[libroId].isbn }}</p>
+                            <p class="card-text">Idioma: {{ librosData[libroId].idioma }}</p>
+                            <p class="card-text">Precio: ${{ librosData[libroId].precio | number:'1.2-2' }} ARS</p>
+                            <p class="card-text">Fecha de Edición: {{ librosData[libroId].fecha_edicion ?
+                                formatearFecha(librosData[libroId].fecha_edicion) : 'N/A' }}</p>
+                            <p class="card-text">ID: {{ libroId }}</p>
+                            <button class="btn btn-primary custom-btn-primary mx-2"
+                                (click)="openEditPopup(libroId)">Editar</button>
+                            <button class="btn btn-primary custom-btn-secondary mx-2"
+                                (click)="eliminarLibro(libroId)">Eliminar</button>
+                        </div>
+                    </div>
+                </ng-container>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Mensaje cuando no hay libros -->
-    <ng-template #noLibros>
-        <p>No hay libros disponibles.</p>
-    </ng-template>
-
-    <!-- Pop-up para crear un nuevo libro -->
-    <div *ngIf="isPopupOpen" class="overlay active">
-        <div class="custom-modal-panel">
-            <h2>Crear Nuevo Libro</h2>
-            <form [formGroup]="LibroForm" (ngSubmit)="registrarLibro()">
-                <div class="form-group">
-                    <label for="isbn">ISBN</label>
-                    <input type="text" id="isbn" formControlName="isbn" placeholder="Ingrese el ISBN" />
-                    <small *ngIf="hasError('isbn', 'required')">El ISBN es obligatorio.</small>
+<!-- Modal Panel para Crear Libro -->
+<div class="overlay" [ngClass]="{ active: isPopupOpen}">
+    <div class="modal " tabindex="-1" role="dialog" [ngClass]="{ 'd-block': isPopupOpen }">
+        <div class="modal-dialog modal-lg custom-modal-panel">
+            <div class="modal-content custom-modal-panel">
+                <div class="modal-header mx-5">
+                    <h4 class="modal-title text-center">Crear Libro</h4>
+                    <button type="button" class="btn-close btn-close-white" (click)="closePopup()"
+                        aria-label="Close"></button>
                 </div>
-                <div class="form-group">
-                    <label for="titulo">Título</label>
-                    <input type="text" id="titulo" formControlName="titulo" placeholder="Ingrese el título" />
-                    <small *ngIf="hasError('titulo', 'required')">El título es obligatorio.</small>
+                <div class="modal-body mx-5 mt-2">
+                    <form [formGroup]="LibroForm" (keydown.enter)="registrarLibro()">
+                        <div class="form-group my-4 custom-input">
+                            <label for="isbn">ISBN</label>
+                            <input type="text" id="isbn" formControlName="isbn" placeholder="Ingrese el ISBN"
+                                class="form-control" />
+                            <div *ngIf="errorMessage" class="text-danger"> {{ errorMessage }}</div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="titulo">Título</label>
+                            <input type="text" id="titulo" formControlName="titulo" placeholder="Ingrese el título"
+                                class="form-control" />
+                            <div *ngIf="hasError('titulo', 'required')">El título es obligatorio.</div>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="idioma">Idioma</label>
+                            <input type="text" class="form-control" id="idioma" formControlName="idioma"
+                                placeholder="Ingrese el idioma" />
+                            <small *ngIf="hasError('idioma', 'required')">El idioma es obligatorio.</small>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" formControlName="descripcion" class="form-control"
+                                placeholder="Ingrese la descripción"></textarea>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="precio">Precio</label>
+                            <input type="number" id="precio" formControlName="precio" class="form-control"
+                                placeholder="Ingrese el precio" />
+                            <small *ngIf="hasError('precio', 'required')">El precio es obligatorio.</small>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="fechaEdicion">Fecha de Edición</label>
+                            <input type="date" id="fechaEdicion" class="form-control" formControlName="fecha_edicion" />
+                            <small *ngIf="hasError('fecha_edicion', 'required')">La fecha de edición es
+                                obligatoria.</small>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="autores">Autores</label>
+                            <select id="autores" formControlName="autores" multiple>
+                                <option *ngFor="let autor of autores" [value]="autor._id">{{ autor.nombre }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="editorial">Editorial</label>
+                            <select id="editorial" formControlName="editorial">
+                                <option *ngFor="let editorial of editoriales" [value]="editorial._id">{{
+                                    editorial.descripcion }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="categorias">Categorías</label>
+                            <select id="categorias" formControlName="categorias" multiple>
+                                <option *ngFor="let categoria of categorias" [value]="categoria._id">{{
+                                    categoria.descripcion }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="formatos">Formatos</label>
+                            <select id="formatos" formControlName="formatos" multiple>
+                                <option *ngFor="let formato of formatos" [value]="formato._id">{{ formato.descripcion
+                                    }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="portada">URL de Portada</label>
+                            <input type="text" id="portada" formControlName="portada"
+                                placeholder="Ingrese la URL de la portada" class="form-control" />
+                            <small *ngIf="hasError('portada', 'required')">La URL de la portada es obligatoria.</small>
+                        </div>
+                        <div class="form-group my-4 custom-input">
+                            <label for="calificacion">Calificación</label>
+                            <input type="number" id="calificacion" class="form-control" formControlName="calificacion"
+                                placeholder="Ingrese la calificación" />
+                            <small *ngIf="hasError('calificacion', 'required')">La calificación es obligatoria.</small>
+                        </div>
+                        <div class="button-group">
+                            <button type="submit"
+                                class="btn btn-primary custom-btn-primary form-custom-btn-primary">Crear</button>
+                            <button type="button"
+                                class="btn btn-secondary custom-btn-secondary form-custom-btn-secondary"
+                                (click)="closePopup()">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="idioma">Idioma</label>
-                    <input type="text" id="idioma" formControlName="idioma" placeholder="Ingrese el idioma" />
-                    <small *ngIf="hasError('idioma', 'required')">El idioma es obligatorio.</small>
-                </div>
-                <div class="form-group">
-                    <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" formControlName="descripcion"
-                        placeholder="Ingrese la descripción"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="precio">Precio</label>
-                    <input type="number" id="precio" formControlName="precio" placeholder="Ingrese el precio" />
-                    <small *ngIf="hasError('precio', 'required')">El precio es obligatorio.</small>
-                </div>
-                <div class="form-group">
-                    <label for="fechaEdicion">Fecha de Edición</label>
-                    <input type="date" id="fechaEdicion" formControlName="fecha_edicion" />
-                    <small *ngIf="hasError('fecha_edicion', 'required')">La fecha de edición es obligatoria.</small>
-                </div>
-                <div class="form-group">
-                    <label for="autores">Autores</label>
-                    <select id="autores" formControlName="autores" multiple>
-                        <option *ngFor="let autor of autores" [value]="autor._id">{{ autor.nombre }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="editorial">Editorial</label>
-                    <select id="editorial" formControlName="editorial">
-                        <option *ngFor="let editorial of editoriales" [value]="editorial._id">{{
-                            editorial.descripcion }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="categorias">Categorías</label>
-                    <select id="categorias" formControlName="categorias" multiple>
-                        <option *ngFor="let categoria of categorias" [value]="categoria._id">{{
-                            categoria.descripcion }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="formatos">Formatos</label>
-                    <select id="formatos" formControlName="formatos" multiple>
-                        <option *ngFor="let formato of formatos" [value]="formato._id">{{ formato.descripcion
-                            }}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="portada">URL de Portada</label>
-                    <input type="text" id="portada" formControlName="portada"
-                        placeholder="Ingrese la URL de la portada" />
-                    <small *ngIf="hasError('portada', 'required')">La URL de la portada es obligatoria.</small>
-                </div>
-                <div class="form-group">
-                    <label for="calificacion">Calificación</label>
-                    <input type="number" id="calificacion" formControlName="calificacion"
-                        placeholder="Ingrese la calificación" />
-                    <small *ngIf="hasError('calificacion', 'required')">La calificación es obligatoria.</small>
-                </div>
-                <div class="button-group">
-                    <button type="submit" class="form-custom-btn-primary">Crear</button>
-                    <button type="button" class="form-custom-btn-secondary" (click)="closePopup()">Cancelar</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -142,7 +168,8 @@
                 <div class="form-group">
                     <label for="editFechaEdicion">Fecha de Edición</label>
                     <input type="date" id="editFechaEdicion" formControlName="editFechaEdicion" />
-                    <small *ngIf="hasError('editFechaEdicion', 'required')">La fecha de edición es obligatoria.</small>
+                    <small *ngIf="hasError('editFechaEdicion', 'required')">La fecha de edición es
+                        obligatoria.</small>
                 </div>
                 <div class="form-group">
                     <label for="editAutores">Autores</label>

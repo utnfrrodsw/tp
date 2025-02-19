@@ -27,6 +27,8 @@ export class CrudLibrosComponent implements OnInit {
   isPopupOpen: boolean = false;
   isEditPopupOpen: boolean = false;
   editingLibroId: string | null = null;
+  showErrorMessages: boolean = false;
+  errorMessage: string = '';
 
   constructor(
     private librosService: LibrosService,
@@ -142,6 +144,7 @@ export class CrudLibrosComponent implements OnInit {
   }
 
   registrarLibro(): void {
+    this.showErrorMessages = true;
     if (this.LibroForm.valid) {
       const nuevoLibro = this.LibroForm.value;
       this.librosService.registrarLibro(nuevoLibro).subscribe(() => {
