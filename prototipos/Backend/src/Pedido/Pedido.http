@@ -1,9 +1,11 @@
-### Pedido test
-POST http://localhost:3000/api/pedidos/
+// AGREGAR COMENTARIOS
+
+### Put de reseñas
+post http://localhost:3000/api/pedidos/
 Content-Type: application/json
 
 {
-    "libro": "654d36fe58bbd30caba73d23",
-    "fecha": "01-01-2021",
-    "usuario": "678fdbeb7eb10f0561cccf90"
+    "fecha": "01/01/2025",
+    "usuario": "678fdbd17eb10f0561cccf8f",
+    "libro": ["654d364a58bbd30caba73d22"]
 }

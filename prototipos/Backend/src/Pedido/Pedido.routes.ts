@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { findAll, findOne, sanitizeInput, add, update, remove } from './Pedido.controller.js';
-import { isAuthenticated, isAdmin } from '../../middlewares/auth.middleware';
+import { findAll, findOne, sanitizeInput, add, remove, update, findByUsuario, findByLibro } from './Pedido.controller.js';
 
 export const pedidoRouter = Router();
 
-// Rutas públicas (no requieren autenticación)
+pedidoRouter.get('/usuarios/:usuarioId', findByUsuario);
+pedidoRouter.get('/libros/:libroId', findByLibro);
+
 pedidoRouter.get('/', findAll);
 pedidoRouter.get('/:id', findOne);
-
-// Rutas protegidas (requieren autenticación)
-pedidoRouter.post('/', isAuthenticated, sanitizeInput, add);
-pedidoRouter.put('/:id', isAuthenticated, sanitizeInput, update);
-pedidoRouter.delete('/:id', isAuthenticated, remove);
+pedidoRouter.post('/', sanitizeInput, add);
+pedidoRouter.put('/:id', sanitizeInput, update);
+pedidoRouter.patch('/:id', sanitizeInput, update);
+pedidoRouter.delete('/:id', remove);
