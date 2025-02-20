@@ -40,7 +40,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Comentario<br>2. CRUD Admin<br>|
-|CUU/Epic|1. Realizar un comentario<br>2. Reagistrar un nuevo rango <br>3. Aumentar rango de un usuario|
+|CUU/Epic|1. Realizar un comentario<br>2. Registrar un nuevo rango <br>3. Aumentar rango de un usuario|
 
 
 ### Alcance Adicional Voluntario
@@ -49,7 +49,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. |
-|CUU/Epic|1. <br>2. |
-|Otros|1.|
+|Listados |-|
+|CUU/Epic|1. Pagar una nueva subscripcion con Mercado Pago|
+|Otros|1. Pasarela de pago de Mercado Pago<br>2. Filtro de toxicidad para reseñas|
 
