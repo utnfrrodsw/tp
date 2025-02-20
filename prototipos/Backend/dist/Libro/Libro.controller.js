@@ -10,8 +10,15 @@ async function sanitizeInput(req, res, next) {
             if (req.body[key] === undefined) {
                 return res.status(400).send({ message: `Campo '${key}' es requerido.` });
             }
-            req.body.sanitizedInput[key] = req.body[key];
+            // Asegurarse de que autores, categorías y formatos sean arrays
+            if (['autores', 'categorias', 'formatos'].includes(key)) {
+                req.body.sanitizedInput[key] = Array.isArray(req.body[key]) ? req.body[key] : [req.body[key]];
+            }
+            else {
+                req.body.sanitizedInput[key] = req.body[key];
+            }
         }
+        console.log("Datos sanitizados:", req.body.sanitizedInput); // Log detallado
         next();
     }
     catch (error) {
@@ -45,7 +52,10 @@ async function findOne(req, res) {
 }
 async function add(req, res) {
     try {
+        console.log("Cuerpo de la solicitud recibida:", req.body); // Log para depuración
         const input = req.body.sanitizedInput;
+        // Imprimir los datos recibidos del frontend
+        console.log('Datos recibidos en el backend:', input);
         const libroInput = new Libro(input.isbn, input.titulo, input.idioma, input.descripcion, input.precio, input.fecha_edicion, input.autores.map((autorId) => new ObjectId(autorId)), new ObjectId(input.editorial), input.categorias.map((categoriaId) => new ObjectId(categoriaId)), input.formatos.map((formatoId) => new ObjectId(formatoId)), input.portada, input.calificacion);
         const libro = await repository.add(libroInput);
         res.status(201).send({ message: 'Libro agregado con éxito.', data: libro });

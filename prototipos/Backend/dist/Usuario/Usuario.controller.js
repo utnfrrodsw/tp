@@ -1,9 +1,9 @@
-import { UsuarioRepositoryImpl } from "./Usuario.repository.js";
+import { UsuarioRepository } from "./Usuario.repository.js";
 import { Usuario } from "./Usuario.js";
 import { ObjectId } from "mongodb";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-const repository = new UsuarioRepositoryImpl();
+const repository = new UsuarioRepository();
 async function sanitizeInput(req, res, next) {
     try {
         const allowedKeys = ['username', 'nombre', 'apellido', 'email', 'contraseña', 'tipo', 'direccion', 'provincia'];
@@ -367,19 +367,14 @@ async function getUsername(req, res) {
 }
 async function getTipo(req, res) {
     try {
-        const token = req.header('Authorization')?.replace('Bearer ', '');
-        if (!token) {
-            return res.status(401).send({ message: 'No se proporcionó un token.' });
+        const userId = req.body.userId; // ID del usuario extraído del token
+        const usuario = await repository.findOne({ _id: new ObjectId(userId) });
+        if (!usuario) {
+            return res.status(404).send({ message: "Usuario no encontrado." });
         }
-        const decoded = jwt.verify(token, 'secretKey');
-        const usuarioCompleto = await repository.getById(decoded.userId);
-        if (!usuarioCompleto) {
-            return res.status(401).send({ message: 'No se pudo encontrar el usuario asociado con el token proporcionado.' });
-        }
-        res.json({ data: { tipo: usuarioCompleto.tipo } });
+        return res.json({ data: { tipo: usuario.tipo } });
     }
     catch (error) {
-        console.error("Error en getTipo:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }

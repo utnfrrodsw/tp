@@ -14,7 +14,8 @@ export class PanelAdminComponent {
     { title: 'Libros', link: '/panel-admin/libros', buttonText: 'Gestionar Libros' },
     { title: 'Categorías', link: '/panel-admin/categorias', buttonText: 'Gestionar Categorías' },
     { title: 'Ofertas', link: '/panel-admin/ofertas', buttonText: 'Gestionar Ofertas' },
-    { title: 'Provincias', link: '/panel-admin/provincias', buttonText: 'Gestionar Provincias' }
+    { title: 'Provincias', link: '/panel-admin/provincias', buttonText: 'Gestionar Provincias' },
+    { title: 'Pedidos', link: '/panel-admin/pedidos', buttonText: 'Gestionar Pedidos' }
   ];
 
 }

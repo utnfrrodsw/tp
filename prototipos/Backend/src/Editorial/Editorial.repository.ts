@@ -5,7 +5,7 @@ import { ObjectId } from 'mongodb'
 
 const editoriales = db.collection<Editorial>('editoriales')
 
-export class EditorialRepository implements Repository<Editorial>{
+export class EditorialRepository implements Repository<Editorial> {
 
     public async findAll(): Promise<Editorial[] | undefined> {
         try {

@@ -5,12 +5,19 @@ const repository = new PedidoRepository();
 async function sanitizeInput(req, res, next) {
     try {
         const requiredKeys = ['fecha', 'usuario', 'libro'];
+        const optionalKeys = ['estado'];
         req.body.sanitizedInput = {};
         for (const key of requiredKeys) {
             if (req.body[key] === undefined) {
                 return res.status(400).send({ message: `Campo '${key}' es requerido.` });
             }
             req.body.sanitizedInput[key] = req.body[key];
+        }
+        // Agregar campos opcionales si están presentes
+        for (const key of optionalKeys) {
+            if (req.body[key] !== undefined) {
+                req.body.sanitizedInput[key] = req.body[key];
+            }
         }
         next();
     }
@@ -32,9 +39,15 @@ async function findAll(req, res) {
 async function findOne(req, res) {
     try {
         const id = req.params.id;
+        if (!id) {
+            return res.status(400).send({ message: "ID del pedido no proporcionado." });
+        }
+        if (!ObjectId.isValid(id)) {
+            return res.status(400).send({ message: "El ID proporcionado no es válido." });
+        }
         const pedido = await repository.findOne({ id });
         if (!pedido) {
-            return res.status(404).send({ message: "Reseña no encontrada." });
+            return res.status(404).send({ message: "Pedido no encontrado." });
         }
         return res.json({ data: pedido });
     }
@@ -58,13 +71,14 @@ async function add(req, res) {
                 throw new Error(`ID de libro no válido: ${libroId}`);
             }
         });
-        const pedidoInput = new Pedido(input.fecha, usuarioId, libroIds);
+        const pedidoInput = new Pedido(input.fecha, usuarioId, libroIds, input.estado || "Pendiente" // Usa el estado proporcionado o "Pendiente" por defecto
+        );
         const pedido = await repository.add(pedidoInput);
         res.status(201).send({ message: 'Pedido agregado con éxito.', data: pedido });
     }
     catch (error) {
         console.error("Error en add:", error);
-        res.status(400).send({ message: 'Error' });
+        res.status(400).send({ message: 'Error al crear el pedido.' });
     }
 }
 async function update(req, res) {
@@ -73,19 +87,20 @@ async function update(req, res) {
         const updatedData = req.body.sanitizedInput;
         const pedidoExiste = await repository.findOne({ id: pedidoId });
         if (!pedidoExiste) {
-            const objectIdpedidoId = new ObjectId(pedidoId);
-            const pedidoInput = new Pedido(updatedData.fecha, updatedData.usuario, updatedData.libro, objectIdpedidoId);
-            const nuevopedido = await repository.add(pedidoInput);
-            if (!nuevopedido) {
-                return res.status(500).send({ message: "Error al crear la nueva reseña." });
+            const objectIdPedidoId = new ObjectId(pedidoId);
+            const pedidoInput = new Pedido(updatedData.fecha, updatedData.usuario, updatedData.libro, updatedData.estado || "Pendiente", // Usa el estado proporcionado o "Pendiente" por defecto
+            objectIdPedidoId);
+            const nuevoPedido = await repository.add(pedidoInput);
+            if (!nuevoPedido) {
+                return res.status(500).send({ message: "Error al crear el nuevo pedido." });
             }
-            return res.status(201).send({ message: 'Reseña creada con éxito.', data: nuevopedido });
+            return res.status(201).send({ message: 'Pedido creado con éxito.', data: nuevoPedido });
         }
-        const updatedpedido = await repository.update(pedidoId, updatedData);
-        if (!updatedpedido) {
-            return res.status(500).send({ message: "Error al actualizar la Reseña" });
+        const updatedPedido = await repository.update(pedidoId, updatedData);
+        if (!updatedPedido) {
+            return res.status(500).send({ message: "Error al actualizar el pedido." });
         }
-        return res.status(200).send({ message: 'Reseña actualizada con éxito.', data: updatedpedido });
+        return res.status(200).send({ message: 'Pedido actualizado con éxito.', data: updatedPedido });
     }
     catch (error) {
         console.error("Error en update:", error);
@@ -134,15 +149,31 @@ async function findByLibro(req, res) {
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-async function getpedidos(req, res) {
+async function findByEstado(req, res) {
     try {
-        const pedidos = await repository.findAll();
-        const pedidosIds = pedidos?.map((pedido) => pedido._id);
-        res.json({ data: pedidosIds });
+        const estado = req.params.estado;
+        const pedidos = await repository.findByEstado(estado);
+        if (!pedidos || pedidos.length === 0) {
+            return res.status(404).send({ message: "No se encontraron pedidos con el estado proporcionado." });
+        }
+        res.status(200).send({ message: 'Pedidos encontrados con éxito.', data: pedidos });
     }
     catch (error) {
+        console.error("Error en findByEstado:", error);
         res.status(500).send({ message: "Error interno del servidor." });
     }
 }
-export { sanitizeInput, findAll, findOne, add, update, remove, findByUsuario, findByLibro, getpedidos };
+async function getPedidos(req, res) {
+    try {
+        const pedidos = await repository.findAll();
+        console.log("Pedidos encontrados:", pedidos); // Agrega este log
+        const pedidosIds = pedidos?.map((pedido) => pedido._id?.toString());
+        res.json({ data: pedidosIds });
+    }
+    catch (error) {
+        console.error("Error en getPedidos:", error);
+        res.status(500).send({ message: "Error interno del servidor." });
+    }
+}
+export { sanitizeInput, findAll, findOne, add, update, remove, findByUsuario, findByLibro, getPedidos, findByEstado };
 //# sourceMappingURL=Pedido.controller.js.map

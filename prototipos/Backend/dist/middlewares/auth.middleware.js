@@ -1,4 +1,4 @@
-import { verifyToken } from "./auth.utils";
+import { verifyToken } from "./auth.utils.js";
 // Middleware para verificar si el usuario está autenticado
 export const isAuthenticated = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -8,7 +8,7 @@ export const isAuthenticated = (req, res, next) => {
     const token = authHeader.split(" ")[1];
     try {
         const decoded = verifyToken(token);
-        req.body.userId = decoded.userId; // Adjuntar el ID del usuario al objeto de solicitud
+        req.body.userId = decoded.userId;
         next();
     }
     catch (error) {

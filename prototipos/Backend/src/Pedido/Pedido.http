@@ -1,11 +1,12 @@
 // AGREGAR COMENTARIOS
 
 ### Put de reseñas
-put http://localhost:3000/api/pedidos/67b6150839ec49ce8e85b61f
+POST http://localhost:3000/api/pedidos
 Content-Type: application/json
 
 {
-    "fecha": "01/01/2025",
+    "fecha": "01/01/2024",
     "usuario": "678fdbd17eb10f0561cccf8f",
-    "libro": ["654d364a58bbd30caba73d22"]
+    "libro": ["654d364a58bbd30caba73d22"],
+    "estado": "Cancelado"
 }

@@ -22,6 +22,7 @@ import { CrudLibrosComponent } from './admin/crud-libros/crud-libros.component';
 import { CrudOfertasComponent } from './admin/crud-ofertas/crud-ofertas.component';
 import { CrudProvinciasComponent } from './admin/crud-provincias/crud-provincias.component';
 import { CrudCategoriasComponent } from './admin/crud-categorias/crud-categorias.component';
+import { CrudPedidosComponent } from './admin/crud-pedidos/crud-pedidos.component';
 
 /* SERVICIOS */
 import { UsuarioService } from './services/usuario.service';
@@ -66,7 +67,8 @@ const routes: Routes = [
   { path: 'panel-admin/ofertas', component: CrudOfertasComponent, canActivate: [AdminGuard] },
   { path: 'panel-admin/provincias', component: CrudProvinciasComponent, canActivate: [AdminGuard] },
   { path: 'panel-admin/categorias', component: CrudCategoriasComponent, canActivate: [AdminGuard] },
-  
+  { path: 'panel-admin/pedidos', component: CrudPedidosComponent, canActivate: [AdminGuard] },
+
 ];
 
 @NgModule({

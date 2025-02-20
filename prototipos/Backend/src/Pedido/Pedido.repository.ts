@@ -7,19 +7,24 @@ const pedidos = db.collection<Pedido>('pedidos')
 
 export class PedidoRepository implements Repository<Pedido> {
 
-    public async findAll(): Promise<Pedido[] | undefined> {
+    public async findAll(): Promise<Pedido[]> {
         try {
-            return await pedidos.find().toArray()
+            return await pedidos.find().toArray();
         } catch (error) {
             console.error("Error en findAll:", error);
             throw error;
         }
     }
 
-    public async findOne(item: { id: string; }): Promise<Pedido | undefined> {
+    public async findOne(item: { id: string; }): Promise<any> {
         try {
-            const _id = new ObjectId(item.id)
-            return (await pedidos.findOne({ _id })) || undefined
+            if (!ObjectId.isValid(item.id)) {
+                console.error("ID inválido:", item.id);
+                throw new Error("El ID proporcionado no es válido.");
+            }
+
+            const _id = new ObjectId(item.id);
+            return (await pedidos.findOne({ _id })) || undefined;
         } catch (error) {
             console.error("Error en findOne:", error);
             throw error;
@@ -68,6 +73,21 @@ export class PedidoRepository implements Repository<Pedido> {
             return pedidosFiltradas;
         } catch (error) {
             console.error("Error en findByUsuario:", error);
+            throw error;
+        }
+    }
+
+    public async findByEstado(estado: string): Promise<Pedido[]> {
+        try {
+            const todosLosPedidos = await pedidos.find().toArray();
+
+            const pedidosFiltrados = todosLosPedidos.filter(pedido =>
+                pedido.estado === estado
+            );
+
+            return pedidosFiltrados;
+        } catch (error) {
+            console.error("Error en findByEstado:", error);
             throw error;
         }
     }

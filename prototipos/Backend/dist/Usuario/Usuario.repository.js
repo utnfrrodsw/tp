@@ -1,7 +1,8 @@
 import { db } from "../Shared/db/conn.mongo.js";
 import { ObjectId } from 'mongodb';
+import bcrypt from "bcrypt";
 const usuarios = db.collection('usuarios');
-export class UsuarioRepositoryImpl {
+export class UsuarioRepository {
     async findAll() {
         try {
             return await usuarios.find().toArray();
@@ -33,6 +34,10 @@ export class UsuarioRepositoryImpl {
     }
     async add(item) {
         try {
+            // Cifrar la contraseña antes de almacenarla
+            const hashContraseña = await bcrypt.hash(item.contraseña, 10);
+            item.contraseña = hashContraseña;
+            // Insertar el usuario en la base de datos
             item._id = (await usuarios.insertOne(item)).insertedId;
             return item;
         }
@@ -74,7 +79,8 @@ export class UsuarioRepositoryImpl {
     }
     async getById(userId) {
         try {
-            const usuario = await usuarios.findOne({ _id: new ObjectId(userId) });
+            const objectId = new ObjectId(userId);
+            const usuario = await usuarios.findOne({ _id: objectId });
             return usuario || undefined;
         }
         catch (error) {

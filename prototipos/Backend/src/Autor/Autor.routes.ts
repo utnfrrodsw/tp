@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { findAll, findOne, sanitizeInput, add, remove, update, getAutores, getNombreCompleto, getPerfil, getInfo, findOneByNombreCompleto } from './Autor.controller.js';
-import { isAuthenticated, isAdmin } from '../../middlewares/auth.middleware';
+import { isAuthenticated, isAdmin } from '../middlewares/auth.middleware.js';
 
 export const autorRouter = Router();
 

@@ -13,6 +13,10 @@ export class PedidoRepository {
     }
     async findOne(item) {
         try {
+            if (!ObjectId.isValid(item.id)) {
+                console.error("ID inválido:", item.id);
+                throw new Error("El ID proporcionado no es válido.");
+            }
             const _id = new ObjectId(item.id);
             return (await pedidos.findOne({ _id })) || undefined;
         }
@@ -59,6 +63,17 @@ export class PedidoRepository {
         }
         catch (error) {
             console.error("Error en findByUsuario:", error);
+            throw error;
+        }
+    }
+    async findByEstado(estado) {
+        try {
+            const todosLosPedidos = await pedidos.find().toArray();
+            const pedidosFiltrados = todosLosPedidos.filter(pedido => pedido.estado === estado);
+            return pedidosFiltrados;
+        }
+        catch (error) {
+            console.error("Error en findByEstado:", error);
             throw error;
         }
     }

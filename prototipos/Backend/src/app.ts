@@ -10,7 +10,7 @@ import { localidadRouter } from "./Localidad/Localidad.routes.js";
 import { provinciaRouter } from "./Provincia/Provincia.routes.js";
 import { formatoRouter } from "./formatoLibro/formatoLibro.routes.js";
 import { reseniaRouter } from "./Resenia/Resenia.routes.js";
-import { pedidoRouter } from "./Pedido/Pedido.routes.js"; 
+import { pedidoRouter } from "./Pedido/Pedido.routes.js";
 
 const app = express();
 

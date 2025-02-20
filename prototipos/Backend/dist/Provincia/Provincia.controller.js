@@ -46,9 +46,14 @@ async function findOne(req, res) {
 async function add(req, res) {
     try {
         const input = req.body.sanitizedInput;
-        const provinciaInput = new Provincia(input.descripcion);
-        const provincia = await repository.add(provinciaInput);
-        res.status(201).send({ message: 'Provincia agregada con éxito.', data: provincia });
+        // Verificar si ya existe una provincia con la misma descripción
+        const provinciaExistente = await repository.findOneByDescripcion(input.descripcion);
+        if (provinciaExistente) {
+            return res.status(400).send({ message: "Ya existe una provincia con esta descripción." });
+        }
+        // Si no existe, proceder a crear la nueva provincia
+        const nuevaProvincia = await repository.add(input);
+        res.status(201).send({ message: 'Provincia agregada con éxito.', data: nuevaProvincia });
     }
     catch (error) {
         console.error("Error en add:", error);

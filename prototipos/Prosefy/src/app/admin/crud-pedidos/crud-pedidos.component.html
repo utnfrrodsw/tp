@@ -1,0 +1,45 @@
+<div class="custom-background pb-5 pt-2">
+  <app-boton-volver></app-boton-volver>
+  <div class="container pt-4">
+    <div class="row mb-4">
+      <div class="col">
+        <h3>Todos los pedidos</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let pedidoId of pedidosIds" class="col-md-4 mb-4">
+        <ng-container *ngIf="pedidosData[pedidoId]">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text highlight-text px-2 py-1 rounded-pill" *ngIf="pedidosData[pedidoId]">
+                {{
+                pedidosData[pedidoId].fecha || 'Fecha no
+                disponible' }}</p>
+              <h5 class="card-title mt-3" *ngIf="pedidosData[pedidoId]">
+                {{ (pedidosData[pedidoId].usuario || 'Usuario no disponible') }}
+              </h5>
+              <p class="card-text" *ngIf="pedidosData[pedidoId]">{{ pedidosData[pedidoId].libro ||
+                'Libro no disponible' }}</p>
+
+              <!-- Campo de desplegable para cambiar el estado del pedido -->
+              <div *ngIf="pedidoEditandoId === pedidoId" class="m-2 mb-4">
+                <label for="nuevoEstado" class="mb-2">Cambiar estado:</label>
+                <select id="nuevoEstado" [(ngModel)]="nuevoEstado" class="form-control bg-dark text-light">
+                  <option value="pendiente">Pendiente</option>
+                  <option value="completado">Completado</option>
+                  <option value="cancelado">Cancelado</option>
+                </select>
+              </div>
+
+              <button class="btn btn-primary custom-btn-primary mx-2" (click)="editarPedido(pedidoId)">
+                {{ pedidoEditandoId === pedidoId ? 'Guardar' : 'Editar' }}
+              </button>
+              <button class="btn btn-primary custom-btn-secondary mx-2"
+                (click)="eliminarPedido(pedidoId)">Eliminar</button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

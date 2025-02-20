@@ -30,15 +30,21 @@ export interface UpdatePedidoResponse {
   providedIn: 'root',
 })
 export class PedidosService {
-  private apiUrl: string = environment.apiUrlPedidos; // Asegúrate de definir esta URL en environment.ts
+  private apiUrl: string = environment.apiUrlPedidos;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Obtener todos los pedidos
   getPedidos(): Observable<Pedido[]> {
-    return this.http.get<Pedido[]>(`${this.apiUrl}/pedidos`).pipe(
+    return this.http.get<Pedido[]>(`${this.apiUrl}`).pipe(
       map((response: any) => response.data), // Ajusta según la estructura de tu backend
       catchError(this.handleServerError)
+    );
+  }
+
+  getPedidosIds(): Observable<string[]> {
+    return this.http.get<any>(`${this.apiUrl}/pedidos`).pipe(
+      map((response: any) => response.data)
     );
   }
 
@@ -108,5 +114,43 @@ export class PedidosService {
     }
 
     return throwError(() => errorMessage);
+  }
+
+  getFechaById(id: string): Observable<string | undefined> {
+    return this.http.get(`${this.apiUrl}/fecha/${id}`).pipe(
+      map((response: any) => response.data),
+      catchError(this.handleServerError)
+    );
+  }
+
+  getUsuarioById(id: string): Observable<string | undefined> {
+    return this.http.get(`${this.apiUrl}/usuario/${id}`).pipe(
+      map((response: any) => response.data),
+      catchError(this.handleServerError)
+    );
+  }
+
+  getLibroById(id: string): Observable<string[] | undefined> {
+    return this.http.get(`${this.apiUrl}/libros/${id}`).pipe(
+      map((response: any) => response.data),
+      catchError(this.handleServerError)
+    );
+  }
+
+  setTipo(id: string, estado: string): Observable<any> {
+    const url = `${this.apiUrl}/estado/${id}`;
+    const body = { estado };
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http.put(url, body, httpOptions).pipe(
+      tap((response) => {
+        console.log('Estado actualizado con éxito', response);
+      }),
+      catchError(this.handleServerError)
+    );
   }
 }

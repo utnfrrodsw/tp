@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { UsuarioRepository } from "../Usuario/Usuario.repository";
-import { generateToken } from "../../middlewares/auth.utils";
+import { UsuarioRepository } from "../Usuario/Usuario.repository.js";
+import { generateToken } from "../middlewares/auth.utils.js";
 import bcrypt from "bcrypt";
 
 const repository = new UsuarioRepository();
