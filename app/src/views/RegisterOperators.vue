@@ -76,12 +76,12 @@
             }
             const response = await AuthService.register(data)
             console.log(response)
-            this.alert.message = 'Grupo creado correctamente'
+            this.alert.message = 'Operador creado correctamente'
             this.alert.type = 'success'
             this.alert.show = true
             this.reset()
           } catch (error) {
-            this.alert.message = 'Error al agregar técnico'
+            this.alert.message = 'Error al agregar Operador'
             this.alert.type = 'error'
             this.alert.show = true
             console.error('Error al registrar el operador:', error)

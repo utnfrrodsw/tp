@@ -183,6 +183,7 @@
 
         try {
           const response = await GroupTaskService.get(params)
+          console.log(response)
           this.tasks = response.data
         } catch (error) {
           console.error(error)

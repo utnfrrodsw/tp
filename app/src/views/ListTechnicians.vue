@@ -125,10 +125,12 @@
         }
       },
       getDisplayTechnician(technician) {
+        const date = new Date(technician.date_born)
+        const [year, month, day] = date.toISOString().substring(0, 10).split('-')
         return {
           id: technician.id,
           name: technician.name,
-          date_born: new Date(technician.date_born).toLocaleDateString().substring(0,10)
+          date_born: `${day}/${month}/${year}`
         }
       }
     }

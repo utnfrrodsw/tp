@@ -3,60 +3,52 @@ const Sequelize = require('sequelize')
 
 const getGroupTasks = async (req, res) => {
   const { date_from, date_to, time_from, time_to, technicianId } = req.query
+  console.log(date_from, date_to, time_from, time_to, technicianId)
   try {
-    let groupTasks = []
-    if (!date_from || !date_to || !time_from || !time_to || !technicianId) {
-      groupTasks = await GroupTask.findAll({
-        include: [{
-          model: Group,
-          include: {
-            model: Technician,
-            through: {
-              attributes: ['date_assigned', 'date_end']
-            }
-          }
-        }, {
-          model: Task,
-          include: {
-            model: Price,
-            order: [['createdAt', 'DESC']]
-          }
-        }]
-      })
-    } else {
-      groupTask = await GroupTask.findAll({
-        where: {
-          date_completed: {
-            [Sequelize.Op.between]: [date_from, date_to]
-          },
-          hour: {
-            [Sequelize.Op.between]: [time_from, time_to]
-          }
-        },
-        include: [{
+    const whereConditions = {}
+    const groupWhereConditions = {}
+
+    if (date_from && date_to) {
+      whereConditions.date_completed = {
+        [Sequelize.Op.between]: [date_from, date_to]
+      }
+    }
+    if (time_from && time_to) {
+      whereConditions.hour = {
+        [Sequelize.Op.between]: [time_from, time_to]
+      }
+    }
+
+    if (technicianId) {
+      groupWhereConditions.id = technicianId
+    }
+    const groupTasks = await GroupTask.findAll({
+      where: whereConditions,
+      include: [
+        {
           model: Group,
           include: {
             model: Technician,
             through: {
               attributes: ['date_assigned', 'date_end']
             },
-            where: {
-              id: technicianId
-            }
+            where: Object.keys(groupWhereConditions).length ? groupWhereConditions : undefined
           }
-        }, {
+        },
+        {
           model: Task,
           include: {
             model: Price,
             order: [['createdAt', 'DESC']]
           }
-        }]
-      })
-    }
+        }
+      ]
+    })
     const groupTasksPrice = groupTasks.map(groupTask => {
       const task = groupTask.task
-      const filteredPrices = task.prices.filter(price => new Date(price.createdAt) <= new Date(groupTask.date_completed))
+      const filteredPrices = task.prices.filter(price => new Date(price.createdAt) <= new Date(`${groupTask.date_completed} ${groupTask.hour}`))
       const latestPrice = filteredPrices.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0]
+      console.log(latestPrice)
       const filterTechnicians = groupTask.group.technicians.filter(technician => {
         let gt = technician.groups_technicians
         let date_assigned = new Date(gt.date_assigned)

@@ -1,7 +1,17 @@
+@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNzQwMzYwNjg1LCJleHAiOjE3NDA5NjU0ODV9.rpzyndQ1ytqE_PMieKvRnVpgV4njnGyl7QtSaGUY65Y"
 # Get all group_tasks
 GET http://localhost:4000/api/group_tasks
 
 ###
+# Get filter group_tasks
+GET http://localhost:4000/api/group_tasks
+Content-Type: application/json
+
+{
+  "technicianId": 1,
+  "token": {{token}}
+}
+
 
 # Create group_task
 POST http://localhost:4000/api/group_tasks
