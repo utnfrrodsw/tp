@@ -8,8 +8,8 @@
 * 46310 - Martin Albertengo
 
 ### Repositorios
-* [Frontend app](https://github.com/gaaston14/TP_CertificacionDeTareas/tree/main/frontend)
-* [Backend app](https://github.com/gaaston14/TP_CertificacionDeTareas/tree/main/backend)
+* [Frontend app](https://github.com/gaaston14/TP_CertificacionDeTareas/tree/main/app)
+* [Backend app](https://github.com/gaaston14/TP_CertificacionDeTareas/tree/main/api)
 
 ## Tema
 
