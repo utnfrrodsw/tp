@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "id": 3,
+      "name": "Carlos",
+      "date_born": "1992-03-10T00:00:00.000Z",
+      "createdAt": null,
+      "updatedAt": "2024-04-30T02:59:36.000Z",
+      "groups": []
+    }
+  ],
+  "totalItems": 4,
+  "totalPages": 1,
+  "currentPage": 0
+}

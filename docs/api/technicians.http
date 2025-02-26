@@ -1,0 +1,43 @@
+@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMywicm9sZSI6ImFkbWluIn0sImlhdCI6MTczNzUwMjY0NywiZXhwIjoxNzM4MTA3NDQ3fQ.Nv4WcTYz6Aw59i9Yigk3pqLJqhbtTpZRjYr6If01-Ok"
+
+# Get all technicians
+GET http://localhost:4000/api/technicians?page=1
+
+###
+
+# Get technician by id
+GET http://localhost:4000/api/technicians/1
+
+###
+
+# Update technician by id
+PUT http://localhost:4000/api/technicians/1
+Content-Type: application/json
+
+{
+  "name": "Prueba",
+  "dateBorn": "2000-09-01",
+  "token": {{token}}
+}
+
+###
+
+# Create technician
+POST http://localhost:4000/api/technicians
+Content-Type: application/json
+
+{
+  "name": "Prueba prueba",
+  "date_born": "2000-09-01",
+  "token": {{token}}
+}
+
+###
+
+# Delete technician by id
+DELETE http://localhost:4000/api/technicians/1
+Content-Type: application/json
+
+{
+  "token": {{token}}
+}

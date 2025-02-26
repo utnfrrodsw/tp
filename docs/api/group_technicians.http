@@ -1,0 +1,51 @@
+@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNzQwMzYwNjg1LCJleHAiOjE3NDA5NjU0ODV9.rpzyndQ1ytqE_PMieKvRnVpgV4njnGyl7QtSaGUY65Y"
+
+# Get all group_technicians
+GET http://localhost:4000/api/group_technicians
+Content-Type: application/json
+
+{
+  "token": {{token}}
+}
+
+###
+
+# Get all group_technicians
+GET http://localhost:4000/api/group_technicians/bussyGroups
+Content-Type: application/json
+
+{
+  "token": {{token}}
+}
+
+###
+
+# Get group_technician by group_id
+GET http://localhost:4000/api/group_technicians/1
+Content-Type: application/json
+
+{
+  "token": {{token}}
+}
+
+###
+
+# Create group_technician
+POST http://localhost:4000/api/group_technicians
+Content-Type: application/json
+
+{
+  "groupId": 1,
+  "technicianId": 1,
+  "token": {{token}}
+}
+
+###
+
+# Delete group_technician by group_id
+DELETE http://localhost:4000/api/group_technicians/1
+Content-Type: application/json
+
+{
+  "token": {{token}}
+}

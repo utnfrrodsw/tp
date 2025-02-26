@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "description": "Group 1",
+      "createdAt": null,
+      "updatedAt": null,
+      "technicians": [],
+      "tasks": []
+    },
+    {
+      "id": 2,
+      "description": "Group 2",
+      "createdAt": null,
+      "updatedAt": null,
+      "technicians": [],
+      "tasks": []
+    },
+    {
+      "id": 3,
+      "description": "Group 3",
+      "createdAt": null,
+      "updatedAt": null,
+      "technicians": [],
+      "tasks": []
+    }
+  ],
+  "totalItems": 3,
+  "totalPages": 1,
+  "currentPage": 0
+}
