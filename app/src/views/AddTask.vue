@@ -26,6 +26,7 @@
 </template>
 
 <script>
+  import TaskService from "../services/TaskService"
   import Alerts from "@/components/Alerts.vue"
 
   export default {
@@ -52,15 +53,7 @@
       async submitForm() {
         this.loading = true
         try {
-          const token = localStorage.getItem('token')
-          const response = await fetch(`${process.env.VUE_APP_API_URL}api/tasks`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'x-access-token': token
-            },
-            body: JSON.stringify(this.task)
-          })
+          const response = await TaskService.create(this.task)
           this.alert.message = 'Tarea creada correctamente'
           this.alert.type = 'success'
           this.alert.show = true

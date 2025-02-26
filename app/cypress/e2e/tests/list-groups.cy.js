@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import { login, interceptQuery } from '../../support/utils'
-describe('Listar todos los técnicos que llegan desde BD', () => {
+describe('Listar todos los grupos que llegan desde BD', () => {
   beforeEach(() => {
     login()
     interceptQuery('groups', 'groups')

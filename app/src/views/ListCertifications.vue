@@ -124,7 +124,6 @@
 </template>
 
 <script>
-  import moment from 'moment-timezone'
   import TechnicianService from '../services/TechnicianService'
   import GroupTaskService from '../services/GroupTaskService'
 

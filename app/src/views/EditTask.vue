@@ -82,7 +82,6 @@
           price: this.task.price
         }
         try {
-          const token = localStorage.getItem('token')
           await TaskService.update(this.task.id, data)
           this.task.prices.push({
             price: this.task.price,

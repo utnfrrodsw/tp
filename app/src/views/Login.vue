@@ -49,6 +49,7 @@
 <script>
   import AuthService from '../services/AuthService'
   import Alerts from '@/components/Alerts.vue'
+
   export default {
     components:{
       Alerts,
@@ -74,7 +75,7 @@
           })
           const data = await response.data
           localStorage.setItem('token', data.token)
-          this.$router.push(redirectPath)
+          window.location = redirectPath
         } catch (error) {
           this.alert.message = 'Usuario o contraseña incorrecto'
           this.alert.type = 'error'
@@ -82,7 +83,7 @@
           console.error(error)
         }
       },
-            reset() {
+      reset() {
         this.$refs.form.reset()
       }
     }

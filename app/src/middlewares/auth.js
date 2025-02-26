@@ -1,6 +1,5 @@
 import Vue from 'vue'
 
-
 export default function auth(to, from, next) {
   const authToken = localStorage.getItem('token')
 

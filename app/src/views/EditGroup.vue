@@ -9,6 +9,7 @@
             <v-text-field 
               v-model="group.description"
               label="Descripcion"
+              readonly
             >
           </v-text-field>
         </v-col>
