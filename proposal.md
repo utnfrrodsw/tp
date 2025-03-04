@@ -25,17 +25,17 @@ https://drive.google.com/file/d/1UcI-ij5VLGGac8pcb68SJeKOiIXGjUic/view
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Catedra<br>2. CRUD Usuario Administrador<br>3. CRUD Usuario|
-|CRUD dependiente|1. CRUD Review {depende de} CRUD Catedra <br>2. CRUD Profesor {depende de} CRUD Catedra y CRUD Turno|
-|Listado<br>+<br>detalle| 1. Listado de reviews filtrado por profesor, muestra calificacion y comentario => detalle de la review<br> 2. Listado de catedras filtrado por nombre de catedra y turno, muestra nombre profesor, profesor mejor calificado, calificacion promedio de profesor de la catedra  => detalle de la catedra|
-|CUU/Epic|1. Escribir una review<br>2. Dar de alta un profesor|
+|CRUD simple|1. CRUD Area<br>2. CRUD Usuario<br>3. CRUD Profesor|
+|CRUD dependiente|1. CRUD Review {depende de} CRUD cursado y CRUD usuario <br>2. CRUD Materia {depende de} CRUD Area <br>3. CRUD Cursado {depende de} CRUD Materia y CRUD Profesor|
+|Listado<br>+<br>detalle| 1. Listado de profesores filtrado por nombre => Detalle Profesor <br> 2. Listado de reviews filtrado por peor puntuación => Detalle Review
+|CUU/Epic|1. Escribir una review<br>2. Notificar al usuario cuando su review es eliminada por un moderador|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Catedra<br>2. CRUD Usuario Administrador<br>3. CRUD Usuario<br>4. CRUD Turno<br>5. CRUD Review<br>6. CRUD Profesor<br>7. CRUD Comision|
-|CUU/Epic|1. Escribir una review<br>2. Dar de alta un profesor<br>3. Dar de alta una catedra<br> 4. Consultar reviews de un profesor/catedra|
+|CRUD |1. CRUD Area<br>2. CRUD Usuario<br>3. CRUD Profesor<br>4. CRUD Review<br>5. CRUD Materia<br>6. CRUD Cursado<br>|
+|CUU/Epic|1. Escribir una review<br>2. Recibir notificación cuando una review es eliminada por un moderador<br>3. Registrarse<br>|
 
 
 ### Alcance Adicional Voluntario
@@ -44,8 +44,8 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Listado de todas las reviews ordenas/filtradas basandose en la calificacion (positivas - negativas)|
-|CUU/Epic|1. Eliminar reviews que contengan malas palabras <br>2. Solicitar aprobacion de una review por un moderador <br>3. Registrarse como nuevo usuario|
-|Otros|1. Verificar reviews automaticamente antes de enviarlas a un moderador <br> 2. Comprobar que el alumno pertenezca a la institucion <br> 3. Comprobar que el alumno haya cursado la materia de la que escribe la review |
+|Listados|1. Listado de reviews filtrado por mejor puntuación => Detalle Review|
+|CUU/Epic|1. Censurar reviews que contengan malas palabras <br>|
+
 
 
