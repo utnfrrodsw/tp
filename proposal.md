@@ -17,14 +17,12 @@
 
 ### Descripción
 
-Se propone un sistema para la gestión de una veterinaria, cuyos objetos principales serán los clientes, animales, veterinarios, y las atenciones realizadas.
-De los animales se conocerán su raza, especie y el cliente al que pertenecen. De las atenciones se conocerán el veterinario que la realizó, el animal involucrado, los insumos usados (con tipos y precios que varían en el tiempo), y sus precios (que varía con el tiempo).
-Para calcular el costo de una atención se tiene en cuenta el valor base de esta y el valor de venta de los insumos utilizados.
-Los clientes podrán crear usuarios para ver los historiales de atenciones de sus animales.
+Se propone un sistema para la gestión de una veterinaria, que involucra animales, atenciones, clientes, especies, insumos, precios de atencion, precios de insumo, razas, tipos de insumo y veterinarios. Se divide en una seccion para clientes y otra para administradores. Los clientes podran registrarse con usuario y contraseña, y tendran la posibilidad de registrar sus mascotas y ver las atenciones realizadas. Los administradores podran registrar las atenciones, gestionar todos los registros, y acceder a listados que muestran todos los clientes con sus mascotas y un grafico de los ingresos por mes elegido, mostrando tambien maximo, minimo y promedio.
+Se cuentan con mecanismos para evitar que los clientes accedan al area de administracion y viceversa, y la identidad de cada usuario se verifica con JSON Web Tokens
 
 ### Modelo de Datos
 
-![Modelo drawio](https://github.com/user-attachments/assets/41c4b8f2-23be-48ce-99de-d29f7ebccbdc)
+![Modelo drawio](https://github.com/user-attachments/assets/4d22a9c2-86b6-4c82-b7cf-b9369c2cff46)
 
 ## Alcance Funcional
 
