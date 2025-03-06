@@ -26,26 +26,16 @@ Se cuentan con mecanismos para evitar que los clientes accedan al area de admini
 
 ## Alcance Funcional
 
-### Alcance Mínimo
-
-Regularidad:
+### Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Atencion<br>2. CRUD Especie<br>3. CRUD TipoInsumo|
 |CRUD dependiente|1. CRUD Raza {depende de} CRUD Especie<br>2. CRUD Insumo {depende de} CRUD TipoInsumo|
-|Listado<br>+<br>detalle| 1. Listado insumos filtrado por tipo de insumo, muestra información sobre los insumos => detalle CRUD Insumo<br> 2. Listado de atenciones filtrado por rango de fecha, muestra datos de cada atención => detalle muestra datos completos de atenciones|
-|CUU/Epic|determinar| 
+|Listado<br>+<br>detalle| 1. Listado de clientes y sus mascotas filtrable por DNI, muestra detalles de clientes y mascotas<br> 2. Grafico de ingesos filtrados por mes, muestra valores acumulados de las atenciones por cada dia, ingreso mas alto, mas bajo, promedio|
+|CUU/Epic|1. Registro de atencion <br> 2. Gestion de especies/razas| 
 
-Adicionales para Aprobación
+### Aprobación / Adicional
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Cliente<br>2. CRUD Animal<br>3. CRUD Raza<br>4. CRUD Especie<br>5. CRUD Atencion<br>6. CRUD Veterinario<br>7. CRUD Insumo<br>8. CRUD TipoInsumo<br>9. CRUD PrecioInsumo<br>10. CRUD PrecioAtencion<br>|
-|CUU/Epic|determinar|
-
-### Alcance Adicional Voluntario
-
-| Req      | Detalle                                                                                                                                                                                                             |
-| :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Listados | determinar |
-| CUU/Epic | determinar |                                                                                                                                                                  
-| Otros    | determinar |                                                                                                                                                                    
+|CRUD/CRUD dependientes |1. CRUD Cliente<br>2. CRUD Animal {depende de} Cliente<br>3. CRUD Raza {depende de} Especie<br>4. CRUD Especie<br>5. CRUD Atencion<br>6. CRUD Veterinario<br>7. CRUD Insumo<br>8. CRUD TipoInsumo<br>9. CRUD PrecioInsumo {depende de} Insumo<br>10. CRUD PrecioAtencion<br>|
+|CUU/Epic|1. Registro de usuario <br> 2. Gestion de mascotas <br> 3. Ver atenciones (cliente) <br> 4. Registro de atencion <br> 5. Gestion de atenciones <br> 6. Actualizar precio de atenciones <br> 7. Gestion de clientes <br> 8. Gestion de especies/razas <br> 9. Gestion de insumos <br> 10. Actualizacion de precios de insumo <br> 11. Gestion de tipos de insumos <br> 12. Gestion de veterinarios <br> 13. Consular listado de clientes y mascotas <br> 14. Consultar ingresos mensuales|                                                                                                                                                                
