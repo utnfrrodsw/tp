@@ -39,3 +39,7 @@ Se cuentan con mecanismos para evitar que los clientes accedan al area de admini
 |:-|:-|
 |CRUD/CRUD dependientes |1. CRUD Cliente<br>2. CRUD Animal {depende de} Cliente<br>3. CRUD Raza {depende de} Especie<br>4. CRUD Especie<br>5. CRUD Atencion<br>6. CRUD Veterinario<br>7. CRUD Insumo<br>8. CRUD TipoInsumo<br>9. CRUD PrecioInsumo {depende de} Insumo<br>10. CRUD PrecioAtencion<br>|
 |CUU/Epic|1. Registro de usuario <br> 2. Gestion de mascotas <br> 3. Ver atenciones (cliente) <br> 4. Registro de atencion <br> 5. Gestion de atenciones <br> 6. Actualizar precio de atenciones <br> 7. Gestion de clientes <br> 8. Gestion de especies/razas <br> 9. Gestion de insumos <br> 10. Actualizacion de precios de insumo <br> 11. Gestion de tipos de insumos <br> 12. Gestion de veterinarios <br> 13. Consular listado de clientes y mascotas <br> 14. Consultar ingresos mensuales|                                                                                                                                                                
+
+## Videos del funcionamiento de la app y tests
+
+- [Playlist](https://www.youtube.com/playlist?list=PLdWy_B847IroDTHz9b-ORhTDOxP3Iw-1B)
