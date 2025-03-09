@@ -18,7 +18,7 @@
 
 ### Descripción
 
-[nombre_app] es una plataforma de alquiler de propiedades temporales que ofrece a los viajeros y/o turistas una amplia gama de opciones de alojamiento para estancias cortas.
+Escapeo es una plataforma de alquiler de propiedades temporales que ofrece a los viajeros y/o turistas una amplia gama de opciones de alojamiento para estancias cortas.
 
 ### Modelo
 
@@ -30,8 +30,8 @@
 
 | Req               | Detalle                                                                                                                                                                                                                                                                                                                |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CRUD Simple       | 1. CRUD TIPO_INMUEBLE<br>2. CRUD LOCALIDAD <br>3. CRUD SERVICIO <br>                                                                                                                                                                                                     |
-| CRUD Dependiente  | 1. CRUD INMUEBLE {depende de} CRUD TIPO_INMUEBLE <br>2. CRUD INMUEBLE {depende de} CRUD LOCALIDAD, CRUD PROPIETARIO <br>3. CRUD PERSONA {depende de} CRUD LOCALIDAD<br> 4. CRUD HUESPED {depende de} CRUD PERSONA <br> 5. CRUD PROPIETARIO {depende de} CRUD PERSONA <br> 6. CRUD servicio_inmueble {depende de} CRUD INMUEBLE, CRUD SERVICIO <br> 7. CRUD FOTO {depende de} CRUD INMUEBLE                                                                     |
+| CRUD Simple       | 1. CRUD TIPOINMUEBLE<br>2. CRUD LOCALIDAD <br>3. CRUD SERVICIO <br>                                                                                                                                                                                                     |
+| CRUD Dependiente  | 1. CRUD INMUEBLE {depende de} CRUD TIPOINMUEBLE, CRUD LOCALIDAD, CRUD PROPIETARIO <br>2. CRUD HUESPED {depende de} CRUD PERSONA <br> 3. CRUD PROPIETARIO {depende de} CRUD PERSONA <br> 4. CRUD SERVICIO_INMUEBLE {depende de} CRUD INMUEBLE, CRUD SERVICIO <br> 5. CRUD FOTO {depende de} CRUD INMUEBLE <br> 6. CRUD RESERVA {depende de} CRUD INMUEBLE, CRUD HUESPED                                                                    |
 | Listado + Detalle | 1. Listado de inmuebles filtrado por tipo de inmueble, muestra cod y tipo de inmueble => detalle CRUD Inmueble <br>2. Listado de reservas filtrado por rango de fecha, muestra cod de inmueble, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente |
 | CUU / Epic        | 1. Reservar un inmueble para la estadía <br>2. Realizar el check-in de una reserva                                                                                                                                                                                                                                     |
 
