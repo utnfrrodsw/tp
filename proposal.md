@@ -22,7 +22,7 @@
 
 ### Modelo
 
-[imagen del modelo](https://drive.google.com/file/d/1TExBj5nnbc0cjQYcC1L4PKS_Z_T8oNC8/view)
+[imagen del modelo](https://drive.google.com/file/d/1IRO3Cx9h3HiHvZ64rknnYzsTmzShukU6/view)
 
 ## Alcance Funcional
 
