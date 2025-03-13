@@ -125,7 +125,9 @@ En la entrega se debe:
 **Muestra de avance**: Inicio del segundo cuatrimestre
 
 **Primer Entrega de Regularidad/AD**: 17/10/2025
+
 **Primer Recuperatorio/Globalizador de Regularidad/AD**: 31/10/2025
+
 **Ultima instancia Recuperatorio/Globalizador de Regularidad/AD**: 14/11/2025
 
 ### 3.4 Documentación
