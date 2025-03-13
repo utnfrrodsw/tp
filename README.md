@@ -58,7 +58,7 @@ El frontend debe cumplir con las siguientes condiciones para regularidad y aprob
 * Utilizar CSS según las directrices de alguna biblioteca de componentes, guía de estilo o framework de CSS y la metodología propuesta por el framework de frontend elegido. Se sugiere el uso de biblioteca de componentes;  preprocesadores: sass, scss, less, stylus, etc o frameworks de css: Pico.css, Bulma, Material, Tailwind, Bootstrap, etc.
 * Aplicar la estrategia mobile-first para la escritura del código css de la aplicación
 * La app debe visualizarse correctamente en al menos 3 diferentes breakpoints: SM, MD, LG
-* Seguir buenas prácticas de UX/UI ( Que no requiera manual de usuario o explicaciones específicas para utilizar la interfaz )
+* Seguir buenas prácticas de UX/UI (Que no requiera manual de usuario o explicaciones específicas para utilizar la interfaz)
 * Las app debe mostrar las siguientes características entre sus componentes:
 	* Manejo de eventos del usuario: click, input, etc
 	* Ante una posibilidad de fallo, manejar el/los errores adecuadamente y de manera amigable al usuario
@@ -119,16 +119,13 @@ En la entrega se debe:
 * Coordinar una defensa grupal con los profesores.
 
 #### Fechas de entrega
-**TODO: A definir**
-**Propuesta**: 23/06/2023
+**Propuesta**: Durante Abril
 
-**Muestra de avance**: TBD
+**Muestra de avance**: Inicio del segundo cuatrimestre
 
-**Entrega de Regularidad**: TBD
-
-**Entrega de Aprobación**: TBD
-* **Directa**:
-* **En examen**:
+**Primer Entrega de Regularidad/AD**: 17/10/2025
+**Primer Recuperatorio/Globalizador de Regularidad/AD**: 31/10/2025
+**Ultima instancia Recuperatorio/Globalizador de Regularidad/AD**: 14/11/2025
 
 ### 3.4 Documentación
 La documentación debe presentarse para la instancia de defensa.
