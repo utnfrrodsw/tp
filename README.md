@@ -149,7 +149,6 @@ Es de libre elección del alumno la herramienta a utilizar para el trackeo. Se r
 
 
 ## 5. Evaluación
-**TODO: En revisión.**
 
 Durante la evaluación de cada entrega se considerarán:
 * Requisitos técnicos y funcionales de la etapa.
@@ -161,6 +160,7 @@ Durante la evaluación de cada entrega se considerarán:
 * Defensa oral del trabajo práctico.
 * Gestión y seguimiento del desarrollo de la app.
 * Innovación, investigación y desafíos asumidos.
+* Documentación solicitada.
 
 ## 6. FAQ
 

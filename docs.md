@@ -13,8 +13,8 @@ A continuación se detalla la documentación mínima a incluir para cada entrega
 |Contenido - Secciones|Regularidad|Aprobación|
 |:-|:-:|:-:|
 |proposal actualizada|X|X|
-|instrucciones de instalacion|X|X|
 |links a los PR/MR|X|X|
+|instrucciones de instalacion|X|X|
 |minutas de reunión y avance|X|X|
 |tracking de features, bug e issues|X|X|
 |documentacion de la API||X|
