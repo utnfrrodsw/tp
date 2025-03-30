@@ -1,0 +1,150 @@
+@keyframes Opacity{
+    0%{
+        opacity: 100%;
+    }
+    50%{
+        opacity: 50%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+.animated-hover:hover{
+    animation-name: Opacity;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.video-container {
+    display: flex; 
+    flex-direction: column; 
+    gap: 4rem; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    height: 100vh; 
+}
+
+.casino-image {
+    display: flex; 
+    margin-left: 2rem;
+    margin-right: 2rem; 
+    margin-top: 5rem;
+    margin-bottom: 5rem; 
+    flex-direction: column; 
+    gap: 3rem; 
+}
+
+.games-section {
+    padding-left: 1rem;
+    padding-right: 1rem; 
+}
+
+@media (min-width: 1024px) { 
+    .games-section {
+        padding-left: 5rem;
+        padding-right: 5rem; 
+    }
+}
+
+.games-title {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem; 
+    font-size: 3rem;
+    line-height: 1; 
+    font-weight: 600; 
+}
+
+.game {
+    border-width: 2px; 
+    background-position: center; 
+    background-size: cover; 
+    background-size: contain; 
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms; 
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
+    height: 175px;
+    border-color: var(--yellow);
+    border-radius: 1rem;
+}
+
+.slots-img {
+    background: url("../../../src/assets/images/games-slots.png");
+    background-position: center center;
+    background-size: cover;
+}
+
+.wheel-img {
+    background: url("../../../src/assets/images/games-wheel.png");
+    background-position: center center;
+    background-size: cover;
+}
+
+.dice-img {
+    background: url("../../../src/assets/images/games-dice.png");
+    background-position: center center;
+    background-size: cover;
+}
+
+@media (min-width: 1024px) { 
+    .game {
+        grid-column: span 1 / span 1; 
+    }
+}
+
+.game:hover {
+    transform: scale(1.03)
+}
+
+.games-container {
+    display: grid;
+    padding-bottom: 5rem; 
+    column-gap: 2rem; 
+    row-gap: 1rem; 
+    border-radius: 0.75rem; 
+    text-align: center; 
+    grid-template-columns: repeat(1, minmax(0, 1fr)); 
+}
+
+@media (min-width: 1024px) { 
+    .games-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    }
+}
+
+.video {
+    position: absolute; 
+    top: 0; 
+    z-index: -10;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.cooming-soon {
+    border-width: 2px; 
+    color: #ffffff; 
+    background-color: #ffffff; 
+    background-position: center; 
+    background-size: cover; 
+    background-size: contain; 
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms; 
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
+    border-color: #e19400;
+    height: 175px;
+    background: url("./src/assets/images/games-roulette.png");
+    background-position: center center;
+    background-size: cover;
+    border-radius: 1rem;
+}
+
+@media (min-width: 1024px) { 
+    .cooming-soon {
+        grid-column: span 1 / span 1;
+    }
+}

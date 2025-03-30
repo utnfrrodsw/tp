@@ -1,0 +1,147 @@
+.main-container{
+    display: grid;
+    place-items: center;
+    border: 20px solid var(--purple);
+    border-radius: 30px;
+    margin: 150px 200px 50px;
+    height: 500px;
+    gap: 0;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.container-div-pri{
+    grid-column: span 1;
+    grid-row: span 2;
+    background-color: var(--purple);
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-bet{
+    background-color: var(--white);
+    color: black;
+    border-radius: 20px;
+    padding: 0.5rem;
+    width: 80%;
+    margin-bottom: 0.5rem;
+}
+
+.input-win{
+    color: black;
+    border-radius: 20px;
+    padding: 0.5rem;
+    width: 80%;
+}
+
+.btn-play{
+    background-color: var(--yellow);
+    color: var(--black);
+    padding: 0.75rem;
+    width: 80%;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-play:hover{
+    background-color: #fbbf24;
+}
+
+@media (max-width: 768px) {
+    .btn-play {
+        margin-bottom: 20px;
+    }
+}
+
+.slider-div{
+    grid-column: span 2;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .slider-div {
+        margin-bottom: 10px;
+    }
+}
+
+.h1-slider{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.container-multiplier{
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: row;
+    width: 90%;
+    background-color: var(--purple);
+    padding: 20px;
+
+}
+
+@media (max-width: 1024px) {
+    .container-multiplier {
+        display: block;
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.input-multiplier{
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 20px;
+    padding: 2px;
+    width: 80%;
+}
+
+.icon-ml {
+    width: 1.5rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.icon-ml:hover {
+    transform: rotate(90deg);
+}
+
+.slider{
+    appearance: none;
+    -webkit-appearance: none;
+    width: 70%;
+    height: 1.25rem;
+    border-radius: 1.563rem;
+
+}
+
+.slider::-webkit-slider-thumb{
+    cursor: pointer;
+    appearance: none;
+    height: 2.188rem;
+    width: 2.188rem;
+    background-color: var(--red);
+    border-radius: 50%;
+    border: 0.438rem solid var(--white);
+}
+
+.winningMessage {
+    margin-top: 1rem;
+    display: hidden;
+    width: 100%;
+    height: 1.25rem;
+    text-align: center;
+}
