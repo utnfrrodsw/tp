@@ -2,16 +2,17 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 48096 - Ruiz Aldea, Bautista
+* 48011 - Gonzales del Cerro, Iñaki
+* 48813 - Ricobelli, Tomas
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+*Aplicacion para dividir los gastos de un grupo de personas de la forma mas eficiente posible. Con esta aplicación los usuarios podran agregar sus gastos y saldar mediante transferencias los gastos de otros usuarios dentro del grupo. Dentro de esta se podran ver los montos y las razones de cada gasto*
 
 ### Modelo
 ![imagen del modelo]()
@@ -22,22 +23,21 @@
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD Grupo<br>3. CRUD Gasto|
+|CRUD dependiente|1. CRUD Categoria de Gasto {depende de} CRUD Tipo Usuario<br>2. CRUD Recordatorio de Pago {depende de} CRUD Gasto|
+|Listado<br>+<br>detalle| 1. Listado de balances filtrado por grupo,periodo de tiempo,estado de deuda,usuario,categoria => detalle ...<br> 2. Listado de Análisis de Gastos filtrado por periodo,grupo,categoria,tipo de gasto,vista,pagador => detalle ...|
+|CUU/Epic|1. Simplificacion de Deudas<br>2. Analisis de Gastos y reportes personalizados|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD|1. CRUD Usuario<br>2. CRUD Grupo<br>3. CRUD Gasto<br>4. CRUD Liquidácion<br>5. CRUD Categoria de Gasto<br>6. CRUD Recordatorio de Pago<br>|
+|CUU/Epic|1. Simplificacion de Deudas<br>2. Analisis de Gastos y reportes personalizados|
 
 
 ### Alcance Adicional Voluntario
