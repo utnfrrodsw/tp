@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 52133 - Alfieri, Agustín
+* 51871 - Toloza, Laureano Yoel
+* 52726 - Garrido, Alejo
+* xxxxx - Santos, Juan Pablo
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
