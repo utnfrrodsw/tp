@@ -10,9 +10,9 @@
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
 
-## Tema
+## Software para gestión de gastos compartidos
 ### Descripción
-*Aplicacion para dividir los gastos de un grupo de personas de la forma mas eficiente posible. Con esta aplicación los usuarios podran agregar sus gastos y saldar mediante transferencias los gastos de otros usuarios dentro del grupo. Dentro de esta se podran ver los montos y las razones de cada gasto*
+*Esta aplicación permite a los usuarios registrar y dividir gastos dentro de un grupo de manera eficiente y equitativa. Los integrantes pueden agregar sus gastos, visualizar deudas y saldar montos a través de transferencias dentro de la plataforma. Nuestra app ofrece a su vez un historial detallado con los montos y motivos de cada gasto, brindando un control organizado de las finanzas compartidas para el día a día.*
 
 ### Modelo
 ![imagen del modelo]()
