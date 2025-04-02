@@ -3,7 +3,7 @@
 ## Grupo
 ### Integrantes
 * 48096 - Ruiz Aldea, Bautista
-* 48011 - Gonzales del Cerro, Iñaki
+* 48011 - Gonzalez del Cerro, Iñaki
 * 48813 - Ricobelli, Tomas
 
 ### Repositorios
