@@ -16,6 +16,9 @@
 ### Descripción
 *2 a 6 líneas describiendo el negocio (menos es más)*
 
+Sistema de gestión de turnos de una clínica de salud.
+
+
 ### Modelo
 ![imagen del modelo]()
 
