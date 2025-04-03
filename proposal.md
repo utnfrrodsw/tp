@@ -5,7 +5,7 @@
 * 52133 - Alfieri, Agustín
 * 51871 - Toloza, Laureano Yoel
 * 52726 - Garrido, Alejo
-* xxxxx - Santos, Juan Pablo
+* 51086 - Santos, Juan Pablo
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -13,8 +13,10 @@
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
+Sistema de gestión de turnos de un consultorio médico.
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+La solución web permitirá la gestión de turnos de un consultorio medico, con profesionales de diversas especialidades. Incluyendo la gestión de los profesionales, las especialidades, los horarios de consulta, prácticas médicas y cobertura por parte de las obras sociales. Contará con distintos perfiles de usuario para los pacientes, médicos, administrativos y cargos gerenciales, con los permisos correspondientes.
+
 
 ### Modelo
 ![imagen del modelo]()
