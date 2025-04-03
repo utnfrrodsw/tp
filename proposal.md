@@ -5,7 +5,7 @@
 * 52133 - Alfieri, Agustín
 * 51871 - Toloza, Laureano Yoel
 * 52726 - Garrido, Alejo
-* xxxxx - Santos, Juan Pablo
+* 51086 - Santos, Juan Pablo
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
