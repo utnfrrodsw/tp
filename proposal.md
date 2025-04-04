@@ -2,43 +2,31 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 50301 - Franco Sartirana
+* 50735 - Renzo Costamagna
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [fullstack](https://github.com/francosartirana/viajesgalacticos)
 
 ## Tema
+* Viajes Galacticos
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+* Explora la galaxia con Viajes Galacticos, el sitio definitivo para reservar tus aventuras interestelares en el universo de Star Wars. Creá tu cuenta, iniciá sesión y elegí entre destinos icónicos como Tatooine, Naboo o Coruscant. Comprá viajes individuales o armá tu paquete galáctico personalizado. Viví la experiencia de cruzar el hiperespacio con total seguridad y comodidad. ¡Tu próxima misión empieza acá!
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![Viajes Galacticos drawio](https://github.com/user-attachments/assets/9186d2d6-4cda-4e98-910e-0f82a5a703b6)
 
 ## Alcance Funcional 
+Filtrar entre los diferentes paquetes y destinos, teniendo en cuenta la fecha, cantidad de personas, etc.<br>
+Que los usuarios pueda reservar los viajes y que puedan verlos dentro de su perfil.<br>
+Agregar, editar o eliminar los paquetes y viajes indiviales por parte de algun administrador.<br>
+Visualizar con imagenes cada paquete mostrando los destinos.<br>
 
 ### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
-Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
-
-
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
+|CRUD |1. CRUD Usuarios<br>2. CRUD Reservas<br>
+|ADMINISTRADOR |1. CRUD Individuales<br>2. CRUD Paquetes<br>
+|CUU/Epic|1. Reservar un viaje en una fecha determinada<br>2. Asignar una butaca<br>3. Realizar el pago y facturación|
 
 ### Alcance Adicional Voluntario
 
