@@ -3,6 +3,7 @@
 ## Grupo
 ### Integrantes
 * legajo - Apellido(s), Nombre(s)
+* 51499 - Lier, Lautaro
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
