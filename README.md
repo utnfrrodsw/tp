@@ -1,11 +1,9 @@
 # TP DSW
 tags: #dsw #tp
 
-Status: draft
+Status: test
 
 ## 1. Objetivo
-
-Desarrollar en grupo una aplicación web full stack en base a un alcance propuesto por los integrantes.
 
 Durante dicho desarrollo se deberá aplicar todo lo aprendido en la materia Desarrollo de Software.
 
