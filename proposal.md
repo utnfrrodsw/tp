@@ -17,7 +17,7 @@ El proyecto consiste en el desarrollo de una aplicación web full stack para una
 
 
 ### Modelo
-MD: https://drive.google.com/file/d/1iek_qDW-8F3gFotKHa4lPs-oUbzSqK1u/view?usp=sharing 
+MD: https://drive.google.com/file/d/1fIw_y52k2I7hz1cHX3uEgDLWok7ewhlU/view?usp=sharing 
 
 ## Alcance Funcional 
 cuus para los crud
