@@ -9,9 +9,8 @@
 
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [fullstack app]((https://github.com/agusfabbri/DSW2025-Fabbri_Morganti_DelPopolo_Gianotto))
+
 
 ## Tema
 ### Descripción
