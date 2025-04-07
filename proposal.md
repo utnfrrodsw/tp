@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-Tienda de indumentaria online, para realizar compras con envio a domicilio. 
+Tienda de indumentaria online, para realizar compras con envío a domicilio en la ciudad de Rosario. 
 
 ### Modelo
 https://drive.google.com/file/d/16wx9dorp1LS-VKZn0KN8y0uN5ydn0qPg/view?usp=sharing
@@ -23,15 +23,13 @@ https://drive.google.com/file/d/16wx9dorp1LS-VKZn0KN8y0uN5ydn0qPg/view?usp=shari
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Categoria <br>2. CRUD Pedido<br>3. CRUD Cliente|
+|CRUD dependiente|1. CRUD Indumentaria {depende de} CRUD Categoria <br>2. CRUD Envio {depende de} CRUD Pedido <br>3. CRUD Pago {depende de} CRUD Pedido|
+|Listado<br>+<br>detalle| 1. Listado de indumentaria filtrado por categoria, muestra nombre y descripción => detalle CRUD indumentaria <br> 2. Listado de pedidos filtrado por rango de fecha, muestra id de pedido, fecha, estado y nombre del usuario => detalle muestra datos completos del pedido y del usuario|
+|CUU/Epic|1. Realizar un pedido <br>2. Realizar el pago|
 
 
 Adicionales para Aprobación
