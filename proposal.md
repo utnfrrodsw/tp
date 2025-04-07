@@ -3,6 +3,10 @@
 ## Grupo
 ### Integrantes
 * legajo - Apellido(s), Nombre(s)
+* legajo - Apellido(s), Nombre(s)
+* legajo - Apellido(s), Nombre(s)
+* 52901 - Morganti, Candela
+
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
