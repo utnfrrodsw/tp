@@ -9,7 +9,7 @@
 
 
 ### Repositorios
-* [fullstack app]((https://github.com/agusfabbri/DSW2025-Fabbri_Morganti_DelPopolo_Gianotto))
+* [fullstack app](https://github.com/agusfabbri/DSW2025-Fabbri_Morganti_DelPopolo_Gianotto)
 
 
 ## Tema
