@@ -2,10 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
-* legajo - Apellido(s), Nombre(s)
-* legajo - Apellido(s), Nombre(s)
 * 52901 - Morganti, Candela
+* 53497 - Fabbri, Agustin Leonel
+* 49941 - Del Popolo, Chiara
+* 49853 - Gianotto, Leandro
 
 
 ### Repositorios
