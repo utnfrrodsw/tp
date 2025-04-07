@@ -1,24 +1,36 @@
-# Propuesta TP DSW
+{# Propuesta TP DSW
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 53477 - Fornells, Nuria Belen
+* 52812 - Gerbaudo Milena Luz
+
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/nuriafornells/frontendTP.git)
+* [backend app](https://github.com/nuriafornells/backendTP.git)
+
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+El proyecto consiste en el desarrollo de una aplicación web full stack para una agencia de viajes. Los usuarios podrán ver distintos paquetes turísticos con destinos nacionales e internacionales, con su precio, fechas de salida/llegada, y detalles de los servicios incluidos, junto a las formas de contacto disponibles para realizar la reserva o consultas. La app también incluirá funciones para que los administradores puedan gestionar los paquetes disponibles. 
+
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+MD: https://drive.google.com/file/d/1iek_qDW-8F3gFotKHa4lPs-oUbzSqK1u/view?usp=sharing 
 
 ## Alcance Funcional 
+cuus para los crud
+CUU 1.1 Seleccionar paquete
+CUU 1.2 Consultar viajes reservados
+CUU 1.3 Confirmar viaje
+CUU 1.4 Ingresar cliente
+CUU 1.5 Registrar cliente
+
+Casos de Uso adicionales o de Mantenimiento
+CUU 2.1 Gestionar paquetes de viajes(hotel, actividades, duracion)
+CUU 2.2 Gestiónar categorias
+CUU 2.3 Gestionar destinos(destino, paquetes de viaje)
 
 ### Alcance Mínimo
 
