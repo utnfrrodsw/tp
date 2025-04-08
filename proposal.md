@@ -31,13 +31,38 @@ Casos de Uso adicionales o de Mantenimiento
 CUU 2.1 Gestionar paquetes de viajes(hotel, duracion)
 CUU 2.2 Gestionar destinos(destino, paquetes de viaje)
 
+
 | Clase Conceptual | U.1.1 | U.1.2 | U.1.3 | U.1.4 | U.1.5 | U.2.1 | U.2.2 |
 |------------------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-| Paquete_viaje    |   R   |   R   |   -   |   -   | CRUD  | CRUD  |
-| Reserva          |  CU   |   R   |  RUD  |   -   |   -   |   -   |
-| Usuario          |   R   |   C   |   -   |   -   |   -   |   -   |
-| Hotel            |   R   |   R   |   -   |   -   | CRUD  | CRUD  |
-| Destino          |   R   |   R   |   -   |   -   |  RU   | CRUD  |
+| Paquete_viaje    |   R   |   R   |   R   |   -   |   -   | CRUD  |  CRUD |
+| Reserva          |  CU   |   R   |  RUD  |   -   |   -   |   -   |   -   |
+| Usuario          |   R   |   R   |   R   |   R   |   C   |   -   |   -   |
+| Hotel            |   R   |   R   |   R   |   -   |   -   | CRUD  |  CRUD |
+| Destino          |   R   |   R   |   R   |   -   |   -   |  RU   | CRUD  |
+
+CASO DE USO: CUU 1.1 Seleccionar paquete
+| nivel   | estructura      | alcance | caja | instanciacion | interaccion |
+| usuario | sin-estructurar | sistema | negra|       real    |  semantica  |
+
+Meta del CASO DE USO:  Obtener reserva
+Actor Primario: Cliente
+
+precondiciones de sistema: destinos, paquetes de viajes y hoteles registrados,cliente registrado e ingresado.
+
+DISPARADOR: Cliente quiere hacer reserva de viaje
+
+camino basico:
+1. Cliente ingresa destino o filtro de precio.Sistema informa paquetes de viajes.
+2. Paciente selecciona paquete de viajes e ingresa cantidad de personas.Sistema informa detalles del paquete y valida cupo.
+3. Cliente confirma reserva.Sistema registra.
+
+camino alternativo:
+1.a No hay paquetes disponibles que cumplan reestriccion.
+  1.a.1 Sistema informa.
+2.a No hay cupo suficiente.
+  2.a.1 Sistema informa.Vuelve al paso 2.
+3.a Cliente no hace reserva.
+  3.a.1 Cliente desiste de hacer reserva.fin cu
 
 
 ### Alcance Mínimo
