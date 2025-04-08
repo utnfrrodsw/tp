@@ -2,51 +2,124 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51754 - Mondelli, Lucio
+* 51497 - Plenza, Liam
+* 51543 - Wardoloff,Tomás 
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/Tomas-Wardoloff/TP_DSW_FrontEnd)
+* [backend app](https://github.com/Tomas-Wardoloff/TP_DSW_BackEnd)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Nuestro proyecto consiste en una aplicación web enfocada en dar visibilidad a jugadores de diferentes deportes a nivel a amateur y a los reclutadores y clubes la posibilidad de adquirir nuevos refuerzos. Ofreciendo un entorno similar a LinkedIn pero abocado al deporte, nuestra plataforma fomenta las conexiones entre atletas y oportunidades de crecimiento en sus respectivos campos.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+```mermaid
+erDiagram
+ USERS {
+        INT id PK
+        VARCHAR email
+        VARCHAR password
+        VARCHAR phone_number
+        ENUM user_type
+        TIMESTAMP created_at
+        BOOLEAN is_active
+        TIMESTAMP last_login
+    }
+
+    ATHLETES {
+        INT id PK
+        VARCHAR first_name
+        VARCHAR last_name
+        VARCHAR nationality
+        DATE birth_date
+        VARCHAR sport
+        VARCHAR position
+        BOOLEAN is_signed
+    }
+
+    CLUBS {
+        INT id PK
+        VARCHAR club_name
+        VARCHAR country
+        YEAR founded
+        VARCHAR stadium
+    }
+
+    AGENTS {
+        INT id PK
+        VARCHAR first_name
+        VARCHAR last_name
+        VARCHAR agency
+    }
+
+    MESSAGES {
+        INT id PK
+        INT sender_id FK
+        INT receiver_id FK
+        TEXT message
+        TIMESTAMP created_at
+    }
+
+    POSTS {
+        INT id PK
+        INT author_id FK
+        VARCHAR title
+        TEXT content
+        TIMESTAMP created_at
+    }
+
+    PROFILES {
+        INT id PK
+        INT user_id FK
+        TEXT bio
+    }
+
+    FRIEND_REQUESTS {
+        INT id PK
+        INT sender_id FK
+        INT receiver_id FK
+        ENUM status
+        TIMESTAMP created_at
+    }
+
+    USERS ||--|{ ATHLETES: id
+    USERS ||--|{ CLUBS: id
+    USERS ||--|{ AGENTS: id
+    USERS ||--o{ MESSAGES: sender_id
+    USERS ||--o{ MESSAGES: receiver_id
+    USERS ||--o{ POSTS: author_id
+    USERS ||--o{ PROFILES: user_id
+    USERS ||--o{ FRIEND_REQUESTS: sender_id
+    USERS ||--o{ FRIEND_REQUESTS: receiver_id
+```
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD User<br>2. CRUD Agente<br>3. CRUD Club|
+|CRUD dependiente|1. CRUD Publicacion {depende de} CRUD User<br>2. CRUD Atleta {depende de} CRUD User|
+|Listado<br>+<br>detalle| 1. Listado de Clubes filtrado por nombre, muestra perfil del club => detalle CRUD Club<br> 2. Listado de Atletas filtrado por deporte, posicion, nacionalidad, estado de contrato => muestra perfiles de atletas que coincidan con la busqueda|
+|CUU/Epic|1. Realizar una publicación<br>2. Crear un usuario con su respectivo perfil|
 
-
-Adicionales para Aprobación
+Adicionales para Aprobación:
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Atleta<br>2. CRUD Agente<br>3. CRUD Club<br>4. CRUD Estadisticas<br>5. CRUD Publicación<br>6. CRUD Solicitud<br>7. CRUD Mensaje|
+|CUU/Epic|1. Realizar una publicación<br>2. Mandar una solicitud de conexión<br>3. Realizar una convecatoria a un evento|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Listado de convocatorias filtrado por Club <br>2. Listado de publicaciones filtrado por Deporte|
+|CUU/Epic|1. Inscribirse a una convocatoria<br>2. Republicar una publicación de otro usuario|
+|Otros|1. Envio de recordatorio y confirmación de inscripción a una convocatoria via mail|
 
