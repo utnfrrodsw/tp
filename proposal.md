@@ -1,52 +1,139 @@
 # Propuesta TP DSW
 
 ## Grupo
+
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+- 49704 - Boggio Valentino
+- 50025 - Larrauri Martina
+- 49640 - Leali Bruno
+- 48840 - Zapata Nicolas
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+
+- [frontend app](https://github.com/NicoZapata28/frontend-tp-dsw-2024)
+- [backend app](https://github.com/valentttino/backend-tp-dsw-2024)
 
 ## Tema
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Se realizará un sitio para poder llevar a cabo una gestión de clientes, sus pedidos y sus pagos. A su vez, se podrá acceder a la información de los materiales y balances de pago.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+```mermaid
+erDiagram
 
-## Alcance Funcional 
+Customer{
+string id PK
+string dni
+string name
+string address
+string email
+string phone
+string idOrder FK
+}
+
+Employee{
+string id PK
+string cuil
+string dni
+string name
+string address
+string email
+string phone
+string role
+string password
+string idOrder FK
+}
+
+Order{
+string idOrder PK
+string idEmployee FK
+string idCustomer FK
+float totalCost
+date orderDate
+string paymentMethod
+IOrderDetail[] Details
+string id
+}
+
+IOrderDetails{
+string idProduct FK
+number quantity
+number price
+}
+
+Material{
+string id PK
+string description
+string name
+string brand
+string category
+number stock
+number cost
+string image
+}
+
+MaterialCosts{
+  string id PK
+  string idMaterial FK
+  costHistory[] costHistory
+}
+
+CostHistory{
+  string _id PK
+  date updateDate
+  number cost
+}
+
+Payments{
+string id PK
+string idOrder FK
+string paid
+number numberOfInstallments
+InstallmentsDetails[] installmentsDetails
+}
+
+InstalmentsDetails{
+string _id
+number installmentN
+date paymentDate
+number amount
+string paid
+}
+
+Customer ||--|| Order:idCustomer
+Employee ||--|| Order:idEmployee
+Payments ||--|| InstalmentsDetails:i
+Material ||--|| MaterialCosts:idMaterial
+MaterialCosts ||--|| CostHistory:i
+Order ||--|| IOrderDetails:idOrder
+Order ||--|| Material:idMaterial
+Order ||--|| Payments:idOrder
+```
+
+_Se analizará crear nuevas clases y/o atributos según se vea conveniente._
+
+## Alcance Funcional
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
+**_Regularidad_**
 
-Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+| Req | Detalle |
+|--|--|
+| CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Product <br> CRUD Employee |
+|CRUD dependiente|CRUD Product_Cost <br> CRUD Payments |
+|Listado + detalle|1. Listado de productos. <br> 2. Listado de pedidos.|
+|CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado.|
 
+**_Aprobación_**
 
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
-
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+| Req | Detalle |
+|--|--|
+| CRUD simple | CRUD Customer <br> CRUD Order <br> CRUD Product <br> CRUD Employee |
+|CRUD dependiente|CRUD Product_Cost <br> CRUD Payments |
+|Listado + detalle|1. Listado de productos. <br> 2. Listado de pedidos.|
+|CUU/Epic|1. Registrar un cliente. <br> 2. Registrar un pedido para un cliente determinado. <br> 3. Registrar el modo de pago del pedido. <br> 4. Actualizar stock o precio de los productos. |
