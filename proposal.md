@@ -31,12 +31,14 @@ Casos de Uso adicionales o de Mantenimiento
 CUU 2.1 Gestionar paquetes de viajes(hotel, duracion)
 CUU 2.2 Gestionar destinos(destino, paquetes de viaje)
 
-Clase Conceptual	U.1.1	U.1.2	U.1.3	U.1.4	U.1.5	U.2.1	U.2.2	
-Paquete_viaje	      R		  R		  R        -      -     CRUD     CRUD
-Reserva	             CU       R      RUD      -       -       -        -		
-Usuario	              R		  R       R       R       C       -        -       
-Hotel	  			  R	      R       R       -       -     CRUD     CRUD
-Destino	              R       R       R       -       -      RU      CRUD
+| Clase Conceptual | U.1.1 | U.1.2 | U.1.3 | U.1.4 | U.1.5 | U.2.1 | U.2.2 |
+|------------------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+| Paquete_viaje    |   R   |   R   |   -   |   -   | CRUD  | CRUD  |
+| Reserva          |  CU   |   R   |  RUD  |   -   |   -   |   -   |
+| Usuario          |   R   |   C   |   -   |   -   |   -   |   -   |
+| Hotel            |   R   |   R   |   -   |   -   | CRUD  | CRUD  |
+| Destino          |   R   |   R   |   -   |   -   |  RU   | CRUD  |
+
 
 ### Alcance Mínimo
 
