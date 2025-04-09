@@ -17,14 +17,14 @@ El proyecto consiste en el desarrollo de una aplicación web full stack para una
 
 
 ### Modelo
-![alt text](image.png)
+![imagen md](assets/mdDsw.png)
 
 MD en draw.io: https://drive.google.com/file/d/1fIw_y52k2I7hz1cHX3uEgDLWok7ewhlU/view?usp=sharing
 
 ## Alcance funcional
 ### Alcance minimo
+![imagen alcance](assets/alcminDsw.png)
 
-![alt text](image-1.png)
 
 Casos de Uso adicionales o de Mantenimiento
 * CUU 2.1 Gestionar paquetes de viajes(hotel, duracion)
