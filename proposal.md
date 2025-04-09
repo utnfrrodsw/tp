@@ -21,30 +21,10 @@ El proyecto consiste en el desarrollo de una aplicación web full stack para una
 
 MD en draw.io: https://drive.google.com/file/d/1fIw_y52k2I7hz1cHX3uEgDLWok7ewhlU/view?usp=sharing
 
-## Alcance 
+## Alcance funcional
+### Alcance minimo
 
-CRUD simple	
-1. CRUD Paquete_viaje
-2. CRUD Reserva
-3. CRUD Destino
-4. CRUD Hotel
-5. CRUD Usuario
-
-CRUD dependiente	
-1. CRUD Paquete_viaje dependiente de Destino
-2. CRUD Hotel dependiente de Paque_viaje
-
-Listado + detalle	
-1. Listado de paquetes d viaje disponibles filtrado por destino o precio, muestra destino, precio, descripcion.Detalle muestra fechaInicio, fechaFin, hotel
-
-2. Listado de reservas a confirmar, muestra usuario, estado, idReserva, cantidad, fecha.
-
-CUU/Epic	
-* CUU 1.1 Seleccionar paquete
-* CUU 1.2 Consultar viajes reservados
-* CUU 1.3 Confirmar/cancelar viaje
-* CUU 1.4 Ingresar cliente
-* CUU 1.5 Registrar cliente
+![alt text](image-1.png)
 
 Casos de Uso adicionales o de Mantenimiento
 * CUU 2.1 Gestionar paquetes de viajes(hotel, duracion)
