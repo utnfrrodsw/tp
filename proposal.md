@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-El proyecto consiste en el desarrollo de una aplicación web full stack para una agencia de viajes. Los usuarios podrán ver distintos paquetes turísticos con destinos nacionales e internacionales, con su precio, fechas de salida/llegada, y detalles de los servicios incluidos, junto a las formas de contacto disponibles para realizar la reserva o consultas. La app también incluirá funciones para que los administradores puedan gestionar los paquetes disponibles. 
+El proyecto consiste en el desarrollo de una aplicación web full stack para una agencia de viajes. Los usuarios podrán ver distintos paquetes turísticos con destinos nacionales e internacionales, con su precio, fechas de salida/llegada, y detalles de los servicios incluidos,y hacer su reserva junto a las formas de contacto disponibles para realizar la confirmacion o cancelacion de la misma. La app también incluirá funciones para que los administradores puedan gestionar los paquetes y destinos disponibles. 
 
 
 ### Modelo
@@ -38,14 +38,14 @@ Listado + detalle
 2. Listado de reservas a confirmar, muestra usuario, estado, idReserva, cantidad, fecha.
 
 CUU/Epic	
-CUU 1.1 Seleccionar paquete
-CUU 1.2 Consultar viajes reservados
-CUU 1.3 Confirmar viaje
-CUU 1.4 Ingresar cliente
-CUU 1.5 Registrar cliente
+* CUU 1.1 Seleccionar paquete
+* CUU 1.2 Consultar viajes reservados
+* CUU 1.3 Confirmar viaje
+* CUU 1.4 Ingresar cliente
+* CUU 1.5 Registrar cliente
 
 Casos de Uso adicionales o de Mantenimiento
-CUU 2.1 Gestionar paquetes de viajes(hotel, duracion)
-CUU 2.2 Gestionar destinos(destino, paquetes de viaje)
+* CUU 2.1 Gestionar paquetes de viajes(hotel, duracion)
+* CUU 2.2 Gestionar destinos(destino, paquetes de viaje)
 
 
