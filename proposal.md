@@ -19,9 +19,7 @@ La solución web permitirá la gestión de turnos de un consultorio medico, con 
 
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+Modelo de Dominio: https://drive.google.com/file/d/1nqZl5GwQ2lXWgGXlvLleDH2HjLkMAd4C/view?usp=sharing
 
 ## Alcance Funcional 
 
