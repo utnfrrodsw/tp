@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 52240 - Ferrero, Santiago
+* 52916 - Corvino, Lucas
+* 53247 - Weng, Carlos
+* 52282 - Constante, Gonzalo
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
