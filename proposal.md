@@ -32,7 +32,7 @@ _Nota_: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistem
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Juego<br>2. CRUD Usurio<br>3. Administrador|
+|CRUD simple|1. CRUD Juego<br>2. CRUD Usurio<br>3. CRUD Administrador|
 |CRUD dependiente|1. CRUD Reseña {depende de} CRUD Usuario<br>2. CRUD Moderador {depende de} CRUD Administrador|
 |Listado<br>+<br>detalle| 1. Listado de juegos filtrado por género, nombre y descripción => detalle CRUD Juegos<br> 2. Listado de reseñas filtrado por rango de fecha y juego => detalle muestra datos del usuario que hizo la reseña y el contenido de la reseña|
 |CUU/Epic|1. Usuario realiza reseña<br>2. Moderador edita juego|
