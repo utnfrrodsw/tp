@@ -9,18 +9,20 @@
 
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* Frontend
+* Backend
+
 
 ## Tema
+Software para implementar en un sanatorio
 ### Descripción
 *2 a 6 líneas describiendo el negocio (menos es más)*
+Esta aplicacion web buscará facilitar el orden de los datos, la generacion de turnos, y resolucion de consultas generales tanto para usuarios finales como para el personal interno
+Esta aplicacion contará con los listados y la informacion de usuarios, pacientes, profesionales, horarios y obras sociales entre otros.
+
 
 ### Modelo
 ![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
 
@@ -31,10 +33,22 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
+|CRUD simple|1.Pacientes<br>2. Pacientes<br>3. Profesionales| <br>Especialidades
 |CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
 |Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+
+crud simple
+Pacientes
+Profesionales
+Consultorios
+Especialidades
+
+Crud dependiente
+turnos
+Estudios_de_laboratorio
+Obra social
+
 
 
 Adicionales para Aprobación
