@@ -15,7 +15,87 @@
 *Esta aplicación permite a los usuarios registrar y dividir gastos dentro de un grupo de manera eficiente y equitativa. Los integrantes pueden agregar sus gastos, visualizar deudas y saldar montos a través de transferencias dentro de la plataforma. Nuestra app ofrece a su vez un historial detallado con los montos y motivos de cada gasto, brindando un control organizado de las finanzas compartidas para el día a día.*
 
 ### Modelo
-![imagen del modelo]()
+
+# Paym8 - Diagrama de Clases
+
+```mermaid
+%%{init: {'theme': 'neutral', 'fontFamily': 'Arial'}}%%
+
+classDiagram
+    direction LR
+    
+    %% ------------------ Clases ------------------
+    class User {
+        +UUID id
+        +string name
+        +string email
+        +string passwordHash
+        +Date createdAt
+        +Date updatedAt
+        +authenticate(password)
+        +updateProfile(data)
+    }
+
+    class Group {
+        +UUID id
+        +string name
+        +string description
+        +Date createdAt
+        +addMember(user)
+        +removeMember(user)
+    }
+
+    class Expense {
+        +UUID id
+        +string title
+        +number amount
+        +Date date
+        +SplitType splitType
+        +calculateBalances()
+    }
+
+    class Payment {
+        +UUID id
+        +number amount
+        +PaymentStatus status
+        +Date createdAt
+        +processPayment()
+    }
+
+    class Balance {
+        +User fromUser
+        +User toUser
+        +number amount
+    }
+
+    %% ------------------ Enums ------------------
+    class SplitType {
+        <<enumeration>>
+        EQUALLY
+        PERCENTAGE
+        SHARES
+    }
+
+    class PaymentStatus {
+        <<enumeration>>
+        PENDING
+        PAID
+        FAILED
+    }
+
+    %% ------------------ Relaciones ------------------
+    User "1" --> "*" Group : Crea >
+    Group "1" --> "*" User : Miembros >
+    Group "1" --> "*" Expense : Contiene >
+    Expense "1" --> "1" User : Pagado por
+    Expense "1" --> "*" User : Participantes
+    Payment "1" --> "1" User : Deudor
+    Payment "1" --> "1" User : Acreedor
+    Group "1" --> "*" Payment : Registra >
+    Expense ..> SplitType : Usa
+    Payment ..> PaymentStatus : Usa
+    Expense ..> Balance : Genera
+```
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
