@@ -20,11 +20,7 @@
 El presente proyecto tiene como objetivo desarrollar una solución de software para optimizar la gestión y el control operativo de una empresa ferroviaria. El sistema se centralizará en la documentación de cada viaje, el seguimiento de las cargas transportadas, la gestión del mantenimiento de parte de la infraestructura ferroviaria (licencias, estado de los trenes y vías), y demás información crítica del recorrido realizado. Todo esto con el fin de proporcionar una visión unificada y en tiempo real del sistema, permitiendo una toma de decisiones de mayor calidad y asegurando una incrementalidad del sistema en el tiempo. 
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
-
-
+(https://drive.google.com/file/d/1IbZ9P7yzzhSUfyCJc0J5GBW8NrObI2it/view?usp=sharing)
 
 ## Alcance Funcional
 
