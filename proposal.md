@@ -8,8 +8,8 @@
 52429 - Pennice Gastón<br>
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/valentinbustos03/backend-app))
+* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/valentinbustos03/frontend-app))
 
 ## Tema
 ### Descripción
