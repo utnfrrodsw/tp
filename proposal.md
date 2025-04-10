@@ -24,9 +24,7 @@ El presente proyecto tiene como objetivo desarrollar una solución de software p
 
 ## Alcance Funcional
 
-### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
+### Alcance Mínimo 
 
 Regularidad:
 |Req|Detalle|
