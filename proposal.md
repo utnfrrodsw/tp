@@ -107,10 +107,10 @@ classDiagram
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD Grupo<br>3. CRUD Gasto|
-|CRUD dependiente|1. CRUD Categoria de Gasto {depende de} CRUD Tipo Usuario<br>2. CRUD Recordatorio de Pago {depende de} CRUD Gasto|
-|Listado<br>+<br>detalle| 1. Listado de balances filtrado por grupo,periodo de tiempo,estado de deuda,usuario,categoria => detalle ...<br> 2. Listado de Análisis de Gastos filtrado por periodo,grupo,categoria,tipo de gasto,vista,pagador => detalle ...|
-|CUU/Epic|1. Simplificacion de Deudas<br>2. Analisis de Gastos y reportes personalizados|
+|CRUD simple|1. CRUD User<br>2. CRUD Group<br>3. CRUD Expense<br>4. CRUD Payment|
+|CRUD dependiente|1. CRUD Balance {depende de} CRUD Tipo Expense<br>2. CRUD SplitType {depende de} CRUD Expense<br>3. CRUD PaymentStatus {depende de} CRUD Payment|
+|Listado<br>+<br>detalle| 1. Listado de Gastos filtrado por monto, periodo de tiempo, usuarios y categoría => detalle CRUD Expense<br>2. Listado de Deudas filtrado por estado, usuario y tipo de gasto => detalle CRUD Payment|
+|CUU/Epic|1. Visualización unificada de deudores y acreedores para facilitar el seguimiento y saldar cuentas<br>2. Analisis de Gastos y reportes personalizados|
 
 
 Adicionales para Aprobación
