@@ -50,5 +50,4 @@ Adicionales para Aprobación
 |:-|:-|
 |Listados |1. Listar codigo, nombre y cantidad por cada una de las cargas que fueron transportadas en un rango de fechas dado <br>2. Cantidad de kilometros totales recorridos por cada uno de los trenes. Por cada tren mostrar su codigo y modelo|
 |CUU/Epic|1. Asignar conductor a un viaje<br>2. Validar estado del tren|
-|Otros|1. Envío de recordatorio de reserva por email|
 
