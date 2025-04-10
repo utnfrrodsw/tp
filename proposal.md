@@ -8,10 +8,9 @@
 * 51086 - Santos, Juan Pablo
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
-
+* [Frontend app](https://github.com/AgustinAlfieri/Frontend_Clinica)
+* [Backend app](https://github.com/AgustinAlfieri/Backend_Clinica)
+  
 ## Tema
 Sistema de gestión de turnos de un consultorio médico.
 ### Descripción
@@ -19,37 +18,32 @@ La solución web permitirá la gestión de turnos de un consultorio medico, con 
 
 
 ### Modelo
-Modelo de Dominio: https://drive.google.com/file/d/1nqZl5GwQ2lXWgGXlvLleDH2HjLkMAd4C/view?usp=sharing
+* [Modelo de dominio](https://drive.google.com/file/d/1nqZl5GwQ2lXWgGXlvLleDH2HjLkMAd4C/view?usp=sharing)
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Especialidad médica<br>2. CRUD Obra social<br>3. CRUD Profesional<br>4. CRUD Paciente|
-|CRUD dependiente|1. CRUD Práctica {depende de} CRUD Especialidad médica<br>2. CRUD Turno {depende de}  CRUD Profesional/CRUD Paciente/CRUD Práctica<br>3.CRUD Estado turno {depende de} CRUD turno|
-|Listado<br>+<br>detalle| 1. Listado de turnos realizados filtrado por rango de fechas, muestra fecha del turno, profesional y práctica => detalle CRUD Turno<br> 2. Listado de pacientes que poseen un turno |
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD dependiente|1. CRUD Práctica {depende de} CRUD Especialidad médica<br>2. CRUD Turno {depende de}  CRUD Profesional/CRUD Paciente/CRUD Práctica.|
+|Listado<br>+<br>detalle| 1. Listado de turnos filtrado por dni del paciente, muestra fecha_hora_consulta del turno, nombre y fecha_hora del estado actual del turno, nombre_apellido del profesional y nombre y descripción de la/s práctica/s.<br> 2. Listado de turnos filtrados por matricula del profesional y codigo de estado del turno, muestra dni y nombre_apellido del paciente y nombre, fecha_hora y observaciones del estado actual del turno. |
+|CUU/Epic|1. Solicitar Turno<br>2. Admitir paciente en sala|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |5. CRUD Administrativo<br>CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
+|CRUD |1. CRUD Especialidad médica<br>2. CRUD Obra social<br>3. CRUD Profesional<br>4. CRUD Paciente<br>5. CRUD Administrativo<br>6. CRUD Práctica<br>7. CRUD Turno <br>7. CRUD Afiliado<br> 8. CRUD Estado turno {depende de} CRUD turno|
+|CUU/Epic|1. Registrar usuario<br>2. Solicitar turno<br>3. Admitir paciente en sala <br>3. Modificar turno |
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. nombre_apellido Profesional filtrado por codigo_especialidad de Especialidad Medica|
+|CUU/Epic|1. Dar de baja usuario<br>2. Cancelar turno <br>2. Cancelar turno|
+|Otros|1. Envío de solicitud de confirmación de turno por email <br> 2. Envío de recordatorio de turno 24hs antes por email|
 
