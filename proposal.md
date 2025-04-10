@@ -48,7 +48,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
+|Listados |1. Listar codigo, nombre y cantidad por cada una de las cargas que fueron transportadas en un rango de fechas dado <br>2. Cantidad de kilometros totales recorridos por cada uno de los trenes. Por cada tren mostrar su codigo y modelo|
+|CUU/Epic|1. Asignar conductor a un viaje<br>2. Validar estado del tren|
 |Otros|1. Envío de recordatorio de reserva por email|
 
