@@ -33,38 +33,17 @@ Esta aplicacion contará con los listados y la informacion de usuarios, paciente
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1.Pacientes<br>2. Pacientes<br>3. Profesionales| <br>Especialidades
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1.Pacientes<br>2. Pacientes<br>3. Profesionales| <br>Especialidades<br>Consultorios
+|CRUD dependiente|1.turnos depende de profesional <br>2. Estudios_de_laboratorio depende de paciente<br>Obra social depende de paciente|
+|Listado<br>+<br>detalle| 1. Listado de turnos disponibles filtrado por especialidad<br> 2. Listado de profesionales filtrado por rango horario y por especialidad|
+|CUU/Epic|1. Reservar un turno con un profesional<br>2. Descargar resultados(estudios) de laboratorio|
 
-crud simple
-Pacientes
-Profesionales
-Consultorios
-Especialidades
-
-Crud dependiente
-turnos
-Estudios_de_laboratorio
-Obra social
 
 
 
 Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
+*no definido aún
 
 ### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+*no definido aún
 
