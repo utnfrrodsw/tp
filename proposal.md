@@ -2,10 +2,10 @@
 
 ## Grupo
 ### Integrantes
-52378 - Bustos Valentin
-52224 - Gambotto Angel Uriel
-52407 - Maidana Lucca
-52429 - Pennice Gaston
+52378 - Bustos Valentín<br>
+52224 - Gambotto Angel Uriel<br>
+52407 - Maidana Lucca<br>
+52429 - Pennice Gastón<br>
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
