@@ -5,8 +5,8 @@
 ### Integrantes
 * 47791 - Gomez Manna, Joaquina Esperanza
 * 51095 - Carloni, Nahuel Iván
-* 50980 - Chacón, Agustina Celeste
-* 49938 - Joaquín Mierez
+* 50980 - Chacón, Agustina Celeste (com 301)
+* 49938 - Mierez, Joaquín 
 
 ## Tema
 ### Descripción
