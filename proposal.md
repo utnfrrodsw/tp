@@ -2,10 +2,10 @@
 
 ## Grupo
 ### Integrantes
-44946 Martinez Jorge
-50992 Cordoba Lucía
-51512 Rossi Lisandro
-44094 Ponce Micaela
+44946 Martinez Jorge<br>
+50992 Cordoba Lucía<br>
+51512 Rossi Lisandro<br>
+44094 Ponce Micaela<br>
 
 
 ### Repositorios
