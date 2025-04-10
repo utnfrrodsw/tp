@@ -2,7 +2,11 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+44946 Martinez Jorge
+50992 Cordoba Lucía
+51512 Rossi Lisandro
+44094 Ponce Micaela
+
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
