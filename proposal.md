@@ -12,10 +12,10 @@
 * Viajes Galacticos
 
 ### Descripción
-* Explora la galaxia con Viajes Galacticos, el sitio definitivo para reservar tus aventuras interestelares en el universo de Star Wars. Creá tu cuenta, iniciá sesión y elegí entre destinos icónicos como Tatooine, Naboo o Coruscant. Comprá viajes individuales o armá tu paquete galáctico personalizado. Viví la experiencia de cruzar el hiperespacio con total seguridad y comodidad. ¡Tu próxima misión empieza acá!
+* Creá tu cuenta, iniciá sesión y elegí entre destinos alucinantes como Miller, Mann o Edmunds, planetas que desafían el tiempo y el espacio. Reservá viajes individuales o diseñá tu propia misión intergaláctica personalizada. Viví la emoción de cruzar galaxias en busca de un nuevo hogar para la humanidad, con total seguridad y tecnología de punta. ¡El futuro de la exploración espacial comienza acá!
 
 ### Modelo
-![Viajes Galacticos drawio](https://github.com/user-attachments/assets/9186d2d6-4cda-4e98-910e-0f82a5a703b6)
+![HoloViajes drawio](https://github.com/user-attachments/assets/6684ad60-c2ee-421c-a1e1-e77d369c7286)
 
 ## Alcance Funcional 
 Filtrar entre los diferentes paquetes y destinos, teniendo en cuenta la fecha, cantidad de personas, etc.<br>
@@ -24,8 +24,8 @@ Agregar, editar o eliminar los paquetes y viajes indiviales por parte de algun a
 Visualizar con imagenes cada paquete mostrando los destinos.<br>
 
 ### Alcance Mínimo
-|CRUD |1. CRUD Usuarios<br>2. CRUD Reservas<br>
-|ADMINISTRADOR |1. CRUD Individuales<br>2. CRUD Paquetes<br>
+|CRUD |1. CRUD Usuarios<br>2. CRUD Viajes<br>
+|ADMINISTRADOR |1. CRUD Destinos<br>
 |CUU/Epic|1. Reservar un viaje en una fecha determinada<br>2. Asignar una butaca<br>3. Realizar el pago y facturación|
 
 ### Alcance Adicional Voluntario
