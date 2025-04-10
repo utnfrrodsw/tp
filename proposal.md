@@ -32,16 +32,16 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Tipo<br>2. CRUD Licencia<br>3. CRUD Conductor<br>4. CRUD Viajes<br>5. CRUD Tren<br>6. CRUD Carga<br>7. CRUD Recorrido|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD dependiente|1. CRUD Licencia {depende de} CRUD Conductor<br>2. CRUD Viaje {depende de} CRUD Conductor|
+|Listado<br>+<br>detalle| 1. Listar los conductores con licencia vigente<br>2. Listar los conductores con licencia vigente (detalle)<br>3. Listar cargas de un tipo (detalle)<br>4. Listar recorridos ordenados por kilometros (detalle)|
+|CUU/Epic|1. Renovar licencia<br>2. (cancelar viaje)<br>3. (revocar licencia)<br>4. (dar de baja un tren)|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Tipo<br>2. CRUD Licencia<br>3. CRUD Conductor<br>4. CRUD Viajes<br>5. CRUD Tren<br>6. CRUD Carga<br>7. CRUD Recorrido|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CUU/Epic|1. Ver los kilometros de cada tren|
 
 
 ### Alcance Adicional Voluntario (por completar)
