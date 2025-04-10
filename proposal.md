@@ -20,6 +20,8 @@ La solución web permitirá la gestión de turnos de un consultorio medico, con 
 ### Modelo
 * [Modelo de dominio](https://drive.google.com/file/d/1nqZl5GwQ2lXWgGXlvLleDH2HjLkMAd4C/view?usp=sharing)
 
+* [Diagrama Entidad Relación (DER)](https://drive.google.com/file/d/1akrs0uNtQeMN1Mb4DokaErI3F0sG7fDa/view?usp=sharing)
+
 ## Alcance Funcional 
 
 ### Alcance Mínimo
