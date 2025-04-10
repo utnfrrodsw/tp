@@ -8,10 +8,10 @@
 * 53247 - Weng, Carlos
 * 52282 - Constante, Gonzalo
 
-### Repositorios
+### Repositorios (?)
 * [frontend app](http://hyperlinkToGithubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+*Nota*: si utiliza un monorepo, indicar un solo link con fullstack app.
 
 
 
