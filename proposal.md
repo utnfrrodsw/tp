@@ -41,7 +41,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|CRUD|1. CRUD Alumnos<br>2. CRUD Instructores<br>3. CRUD Tipos de Cursos<br>4. CRUD Instituciones<br>5. CRUD Cursos<br>6. CRUD Foros<br>7. CRUD Novedades<br>8. CRUD Actividades<br>9. CRUD Tareas<br>10. CRUD Material<br>11. CRUD Solicitudes<br>12. CRUD Reporte<br>13. CRUD Tipo Reporte|
+|CRUD|1. CRUD Alumnos<br>2. CRUD Instructores<br>3. CRUD Tipos de Cursos<br>4. CRUD Instituciones<br>5. CRUD Cursos<br>6. CRUD Foros<br>7. CRUD Novedades<br>8. CRUD Actividades<br>9. CRUD Tareas<br>10. CRUD Material<br>11. CRUD Solicitudes<br>12. CRUD Reporte<br>13. CRUD Tipo Reporte<br>14. CRUD Tipos de Novedad|
 |CUU/Epic|1. Matricularse a un curso nuevo para ser publicado en la plataforma<br>2. Publicar actividad en el curso para los alumnos<br>3. Asignar tareas a los alumnos del curso<br>4. Corregir tareas entregadas por los alumnos|
 
 
