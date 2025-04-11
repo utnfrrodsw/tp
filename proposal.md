@@ -10,24 +10,30 @@
 
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/carlex74/Front-End-DSW))
+* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/carlex74/Back-End-DSW))
+
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Desarrollaremos una plataforma de aprendizaje virtual. La solución consistirá en una página web con acceso a cursos donde los estudiantes podrán acceder, examinar recursos y realizar actividades.
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+[link del modelo](https://drive.google.com/file/d/1le9JNA73D_ulgn7CgIJh6w_V4lcplNSn/view?usp=sharing)
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
+| Requerimiento     | Detalle                                                                 |
+|-------------------|-------------------------------------------------------------------------|
+| CRUD simple       | 1. CRUD Alumnos  
+                   2. CRUD Instructores  
+                   3. CRUD Tipos de Cursos  
+                   4. CRUD Instituciones |
+| CRUD dependiente  | 1. CRUD Cursos depende del Tipo de Cursos e Instructores  
+                   2. CRUD Solicitud depende de Instructor |
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
