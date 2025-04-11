@@ -21,7 +21,7 @@ Desarrollaremos una plataforma de aprendizaje virtual. La solución consistirá 
 
 ### Modelo
 
-![Proposal MD](https://github.com/user-attachments/assets/28dbefab-46c5-41c0-a577-8ebc114561f4)
+![Proposal MD](https://github.com/user-attachments/assets/dcda08fe-8d17-451d-8019-4abddb94c475)
 
 [link del modelo](https://drive.google.com/file/d/1le9JNA73D_ulgn7CgIJh6w_V4lcplNSn/view?usp=sharing)
 
@@ -44,8 +44,8 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|CRUD|1. CRUD Alumnos<br>2. CRUD Instructores<br>3. CRUD Tipos de Cursos<br>4. CRUD Instituciones<br>5. CRUD Cursos<br>6. CRUD Actividades<br>7. CRUD Material<br>8. CRUD Solicitudes<br>9.Unidad|
-|CUU/Epic|1. Matricularse a un curso nuevo para ser publicado en la plataforma<br>2. Publicar actividad en el curso para los alumnos<br>3. Resolver actividad del curso<br>4. Dar de baja una unidad|
+|CRUD|1. CRUD Alumnos<br>2. CRUD Instructores<br>3. CRUD Tipos de Cursos<br>4. CRUD Instituciones<br>5. CRUD Cursos<br>6. CRUD Actividades<br>7. CRUD Material<br>8. CRUD Solicitudes<br>9. CRUD Unidad<br>10. CRUD ClaveMatricula|
+|CUU/Epic|1. Matricularse a un nuevo curso<br>2. Publicar actividad en el curso para los alumnos<br>3. Completar actividad del curso<br>4. Dar de baja una unidad|
 
 
 
@@ -53,7 +53,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados|1. Listado de instituciones<br>2. Listado de resoluciones de actividades|
-|CUU/Epic|1. Dar de baja un curso<br>2. Publicar Material<br>3. Dar de baja un tipo de curso<br>4. Dar de baja un profesor|
+|Listados|1. Listado de instituciones<br>2. Listado de resoluciones de actividad|
+|CUU/Epic|1. Dar de baja un curso<br>2. Publicar Material<br>3. Dar de baja un tipo de curso<br>4. Dar de baja un instructor|
 |Otros|1. Envío de recordatorio de vencimiento de tareas por mail|
 
