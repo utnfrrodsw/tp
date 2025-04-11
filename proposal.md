@@ -24,17 +24,15 @@ Agregar, editar o eliminar los paquetes y viajes indiviales por parte de algun a
 Visualizar con imagenes cada paquete mostrando los destinos.<br>
 
 ### Alcance Mínimo
-|CRUD |1. CRUD Usuarios<br>2. CRUD Viajes<br>
-|ADMINISTRADOR |1. CRUD Destinos<br>
-|CUU/Epic|1. Reservar un viaje en una fecha determinada<br>2. Asignar una butaca<br>3. Realizar el pago y facturación|
+|CRUD |1. CRUD Usuarios<br>2. CRUD Destinos<br>
+|CRUD DEPENDIENTE |1. Viajes<br>
+|CUU/Epic|1. Venta de un viaje<br>
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|CRUD |1. Transporte <br>2. Butacas<br>
+|CUU/Epic|1. Pago (MP)<br>
+|Otros|1. Envío de recordatorio de reserva por email<br>
 
