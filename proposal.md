@@ -2,7 +2,12 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+* 52154 - Gugliermino Zuñiga, Carlos Ricardo
+* 52451 - Pedemonte, Nicolás
+* 52325 - Trincavelli, Luca
+* 53110 - Zariaga, Franco
+
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
