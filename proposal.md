@@ -9,7 +9,7 @@
 * [fullstack](https://github.com/francosartirana/viajesgalacticos)
 
 ## Tema
-* Viajes Galacticos
+* HoloViajes
 
 ### Descripción
 * Creá tu cuenta, iniciá sesión y elegí entre destinos alucinantes como Miller, Mann o Edmunds, planetas que desafían el tiempo y el espacio. Reservá viajes individuales o diseñá tu propia misión intergaláctica personalizada. Viví la emoción de cruzar galaxias en busca de un nuevo hogar para la humanidad, con total seguridad y tecnología de punta. ¡El futuro de la exploración espacial comienza acá!
