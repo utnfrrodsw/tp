@@ -17,7 +17,7 @@
 ## Tema
 ### Descripción
 
-Desarrollaremos una plataforma de aprendizaje virtual. La solución consistirá en una página web con acceso a cursos donde los estudiantes podrán acceder, examinar recursos y realizar actividades.
+Desarrollaremos una plataforma de aprendizaje virtual. La solución consistirá en una página web con acceso a cursos donde los estudiantes podrán acceder, examinar recursos y realizar actividades. Estos cursos podrán ser gratuitos o pagos, depende como lo prefiera el instructor.
 
 ### Modelo
 
