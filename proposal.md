@@ -2,23 +2,30 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 48028 Bertone Valentin
+* 47779 Lotar Baigorria
+* 48026 Ignacio Di Martino
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [Backend App](https://github.com/Lotar17/TPbackend)
+
+* [Frontend App](https://github.com/Lotar17/TPFrontend)
+
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Representa una plataforma web de compra y venta de productos que se diseñó para facilitar a los usuarios ya sea para solicitar o publicar productos, además es una herramienta util para aquellos empleados de correos para llevar los productos a su destino de forma optima. Nuestra plataforma se esfuerza por brindar una eficiente y efectiva tanto para los solicitantes de productos como para los que proveen dichos productos.
 
 ### Modelo
-![imagen del modelo]()
+(https://github.com/Lotar17/tp/assets/137341989/fffcc425-2544-44f5-8dcf-2366df99f838)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
+
+##Primer CRUD a desarrollar
+1. CRUD Persona
 
 ### Alcance Mínimo
 
@@ -27,9 +34,9 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
+|CRUD simple|1. CRUD Persona <br>2. CRUD Producto<br>3. CRUD  Empleado|
+|CRUD dependiente|1. CRUD Historico precio {depende de} CRUD Producto<br>2. CRUD Cliente {depende de} CRUD Localidad|
+|Listado<br>+<br>detalle| 1. Listado de productos filtrado por descripcion, muestra descripcion y precio => detalle CRUD Producto<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
 
