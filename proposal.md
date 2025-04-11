@@ -21,7 +21,7 @@ Desarrollaremos una plataforma de aprendizaje virtual. La solución consistirá 
 
 ### Modelo
 
-![Proposal MD](https://github.com/user-attachments/assets/dcda08fe-8d17-451d-8019-4abddb94c475)
+![Proposal MD](https://github.com/user-attachments/assets/90899d01-8de4-4a2d-a44d-42ed2b67a1f7)
 
 [link del modelo](https://drive.google.com/file/d/1le9JNA73D_ulgn7CgIJh6w_V4lcplNSn/view?usp=sharing)
 
@@ -54,6 +54,6 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |Listados|1. Listado de instituciones<br>2. Listado de resoluciones de actividad|
-|CUU/Epic|1. Dar de baja un curso<br>2. Publicar Material<br>3. Dar de baja un tipo de curso<br>4. Dar de baja un instructor|
-|Otros|1. Envío de recordatorio de vencimiento de tareas por mail|
+|CUU/Epic|1. Dar de baja un curso<br>2. Publicar Material<br>3. Dar de baja un tipo de curso<br>4. Dar de baja un instructor<br>5. Pagar curso|
+|Otros|1. Envío de recordatorio de vencimiento de tareas por mail<br>2. Permitir pago de curso via Mercado Pago|
 
