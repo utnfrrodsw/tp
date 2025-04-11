@@ -1,9 +1,10 @@
 # Propuesta TP DSW
 
-## Grupo
+## Grupo gestor de ventas online para un supermercado
 ### Integrantes
 * 53566 - Corsalini, ignacio
-
+* 52365 - Echeveste, Luciana
+* 52216 - Ramos, Tomás 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
@@ -11,12 +12,10 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+*Este sistema está diseñado para optimizar la gestión de ventas en supermercados, permitiendo a los usuarios registrarse y realizar compras desde la comodidad de su hogar. Además, cada cliente puede ser asignado a un distribuidor específico, mejorando así la eficiencia en la entrega y la organización interna del negocio.*
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![Tp_Desarrollo drawio](https://github.com/user-attachments/assets/1373ba47-a48d-4a46-a160-c81ebc6b0a3a)
 
 ## Alcance Funcional 
 
@@ -27,26 +26,24 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. 1. CRUD Cliente<br>2. CRUD Categoría<br>3. CRUD Zona|
+|CRUD dependiente|1. CRUD Distribuidor  {depende de zona} <br>2. CRUD Artículo {depende de categoría} |
+|Listado<br>+<br>detalle| 1. Listado de productos filtrados por categoría <br> 2. Listado de ventas filtrado por precio|
+|CUU/Epic|1. Realizar pedido<br>2. Actualizar stock|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Cliente<br>2. CRUD Artículo<br>3. CRUD Categoría<br>4. CRUD Zona<br>5. CRUD Distribuidor<br>6. CRUD Pedido
+|CUU/Epic|1. Realizar pedido<br>2. Actualizar stock<br>3. Realizar o cancelar pago|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. listado articulos sin stock|
+|CUU/Epic|1. Cancelar venta|
+|Otros|1. Enviar email de pedido enviado|
 
