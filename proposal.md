@@ -12,7 +12,8 @@
 La página web tiene como objetivo ayudar a los usuarios a planificar sus vacaciones de manera eficiente en torno a un presupuesto disponible, permite a los usuarios ingresar el presupuesto disponible para sus vacaciones, y el sistema sugiere una variedad de destinos turísticos que se ajustan al presupuesto ingresado con posibilidad de compra.
 
 ### Modelo
-![image](https://github.com/user-attachments/assets/ab1d4596-0dc8-46fb-8fb6-cb8f3f3b573b)
+![image](https://github.com/user-attachments/assets/9b13db1a-9078-4d18-97ec-71d931d78a3b)
+
 
 
 
@@ -42,6 +43,6 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
+|Listados |-|
 |CUU/Epic|1. Gestionar usuario<br>|
 |Otros|1. notificacion de descuento|
