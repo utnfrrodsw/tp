@@ -44,8 +44,8 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|CRUD|1. CRUD Alumnos<br>2. CRUD Instructores<br>3. CRUD Tipos de Cursos<br>4. CRUD Instituciones<br>5. CRUD Cursos<br>6. CRUD Actividades<br>7. CRUD Material<br>8. CRUD Solicitudes<br>9. CRUD Unidad|
-|CUU/Epic|1. Matricularse a un nuevo curso<br>2. Publicar actividad en el curso para los alumnos<br>3. Completar actividad del curso<br>4. Dar de baja una unidad|
+|CRUD|1. CRUD Alumnos<br>2. CRUD Instructores<br>3. CRUD Tipos de Cursos<br>4. CRUD Instituciones<br>5. CRUD Cursos<br>6. CRUD Actividades<br>7. CRUD Material<br>8. CRUD Solicitudes<br>9. CRUD Unidad<br>10. CRUD Pago|
+|CUU/Epic|1. Matricularse a un nuevo curso<br>2. Publicar actividad en el curso para los alumnos<br>3. Completar actividad del curso<br>4. Dar de baja una unidad<br>5. Pagar curso|
 
 
 
@@ -54,6 +54,6 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |Listados|1. Listado de instituciones<br>2. Listado de resoluciones de actividad|
-|CUU/Epic|1. Dar de baja un curso<br>2. Publicar Material<br>3. Dar de baja un tipo de curso<br>4. Dar de baja un instructor<br>5. Pagar curso|
-|Otros|1. Envío de recordatorio de vencimiento de tareas por mail<br>2. Permitir pago de curso via Mercado Pago|
+|CUU/Epic|1. Dar de baja un curso<br>2. Publicar Material<br>3. Dar de baja un tipo de curso<br>4. Dar de baja un instructor|
+|Otros|1. Envío de recordatorio de vencimiento de tareas por mail|
 
