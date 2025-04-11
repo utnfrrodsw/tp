@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 53566 - Corsalini, ignacio
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
