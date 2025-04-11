@@ -1,5 +1,5 @@
 # Documentación
-**TODO: En revisión.**
+**La documentación se irá incluyendo conforme al avance del proyecto.**
 
 ## Formato
 * La documentación debe estar disponible en un directorio **docs** en el primer nivel de el/los repositorios.
