@@ -35,7 +35,7 @@ Regularidad:
 |CRUD |1. CRUD completo de todos los elementos|
 |CRUD dependiente |1. Todas las relaciones establecidas|
 |CUU/Epic|1. Reseñas con Comentarios<br>2. Reacciones a Reseñas<br>3. Listado de Libros por Género<br>4. Búsqueda de Libros por Autor|
-|Relaciones|1. Las reseñas populares pueden mostrarse primero en el listado<br>2. Los autores y los géneros permiten buscar libros fácilmente en la plataforma|
+|Relaciones|1. Las reseñas populares pueden mostrarse primero en el listado<br>2. Los autores y las categorías permiten buscar libros fácilmente en la plataforma|
 
 ### Clases
 
