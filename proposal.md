@@ -20,6 +20,8 @@
 Desarrollaremos una plataforma de aprendizaje virtual. La solución consistirá en una página web con acceso a cursos donde los estudiantes podrán acceder, examinar recursos y realizar actividades.
 
 ### Modelo
+
+![Proposal MD](https://github.com/user-attachments/assets/5d173591-bb85-444c-a5a6-1c392321fed6)
 [link del modelo](https://drive.google.com/file/d/1le9JNA73D_ulgn7CgIJh6w_V4lcplNSn/view?usp=sharing)
 
 ## Alcance Funcional 
