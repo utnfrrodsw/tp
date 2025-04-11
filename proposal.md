@@ -30,7 +30,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Tipo<br>2. CRUD Licencia<br>3. CRUD Conductor<br>4. CRUD Viajes<br>5. CRUD Tren<br>6. CRUD Carga<br>7. CRUD Recorrido|
-|CRUD dependiente|1. CRUD Licencia {depende de} CRUD Conductor?<br>2. CRUD Viaje {depende de} CRUD Conductor|
+|CRUD dependiente|1. CRUD Licencia {depende de} CRUD Conductor<br>2. CRUD Viaje {depende de} CRUD Conductor|
 |Listado<br>+<br>detalle| 1. Listar los conductores con licencia vigente<br>2. Listar los conductores con licencia vigente (detalle)<br>3. Listar cargas de un tipo (detalle)<br>4. Listar recorridos ordenados por kilometros (detalle)|
 |CUU/Epic|1. Renovar licencia<br>2. (cancelar viaje)<br>3. (revocar licencia)<br>4. (dar de baja un tren)|
 
