@@ -23,7 +23,15 @@ Sistema de registro de gastos. El usuario puede registrar sus gastos e ingresos 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD CategoriaIngreso<br>3. CRUD CategoriaGasto<br>4. CRUD Notificacion<br> 5. Metodo de pago|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD CategoriaIngreso<br>3. CRUD CategoriaGasto<br>|
+|CRUD dependiente|1. CRUD Wallet {depende de} CRUD Usuario<br>2. CRUD Gasto {depende de} CRUD Movimiento<br>3. CRUD Ingreso {depende de} CRUD Movimiento|
+|Listado<br>+<br>detalle| 1. Listado de gastos filtrado por categoria, muestra total de dinero gastado en cada categoria => detalle CRUD Gasto<br>|
+|CUU/Epic|1. Registrar movimiento<br>2. Registrar un usuario<br>3. Consultar balance de gastos<br>|
+
+Aprobacion directa:
+|Req|Detalle|
+|:-|:-|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD CategoriaIngreso<br>3. CRUD CategoriaGasto<br>4. CRUD Notificacion<br> 5. CRUD Metodo de pago|
 |CRUD dependiente|1. CRUD Wallet {depende de} CRUD Usuario<br>2. CRUD Gasto {depende de} CRUD Movimiento<br>3. CRUD Ingreso {depende de} CRUD Movimiento|
 |Listado<br>+<br>detalle| 1. Listado de gastos filtrado por categoria, muestra total de dinero gastado en cada categoria => detalle CRUD Gasto<br> 2. Listado de ingresos y egresos de dinero, muestra fecha, monto y categoria|
-|CUU/Epic|1. Registrar movimiento<br>2. Registrar un usuario<br>3. Consultar balance de gastos<br>4. Enviar notificacion de gasto mensual por mail.|
+|CUU/Epic|1. Registrar movimiento<br>2. Registrar un usuario<br>3. Consultar balance de gastos<br>4. Enviar notificacion de gasto mensual por mail.
