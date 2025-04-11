@@ -29,14 +29,14 @@ Regularidad:
 |CRUD simple|1. CRUD Categoria <br>2. CRUD Pedido<br>3. CRUD Cliente|
 |CRUD dependiente|1. CRUD Indumentaria {depende de} CRUD Categoria <br>2. CRUD Envio {depende de} CRUD Pedido <br>3. CRUD Pago {depende de} CRUD Pedido|
 |Listado<br>+<br>detalle| 1. Listado de indumentaria filtrado por categoria, muestra nombre y descripción => detalle CRUD indumentaria <br> 2. Listado de pedidos filtrado por rango de fecha, muestra id de pedido, fecha, estado y nombre del usuario => detalle muestra datos completos del pedido y del usuario|
-|CUU/Epic|1. Realizar un pedido <br>2. Realizar el pago|
+|CUU/Epic|1. Realizar un pedido <br>2. Realizar un pago|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Categoria<br>2. CRUD Pedido<br>3. CRUD Cliente<br>4. CRUD Indumentaria<br>5. CRUD Envio<br>6. CRUD Pago<br>7. CRUD Empleado|
+|CUU/Epic|1. Realizar un pedido<br>2. Realizar un pago<br>3. Mostar recomendaciones|
 
 
 ### Alcance Adicional Voluntario
