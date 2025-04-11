@@ -25,6 +25,9 @@ Desarrollaremos una plataforma de aprendizaje virtual. La solución consistirá 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
+
+Regularidad:
+
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Alumnos<br>2. CRUD Instructores<br>3. CRUD Tipos de Cursos<br>4. CRUD Instituciones|
@@ -32,29 +35,22 @@ Desarrollaremos una plataforma de aprendizaje virtual. La solución consistirá 
 |Listado<br>+<br>detalle|1. Listado de cursos filtrado por nombre, institución, instructor y tipo de curso => detalle Información de los contenidos<br>2. Listado de solicitudes filtrado por fecha de solicitud => detalle Texto de la Solicitud|
 |CUU/Epic|1. Crear un curso nuevo para ser publicado en la plataforma<br>2. Habilitar cuenta del Instructor|
 
-Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
 
 Adicionales para Aprobación
+
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD|1. CRUD Alumnos<br>2. CRUD Instructores<br>3. CRUD Tipos de Cursos<br>4. CRUD Instituciones<br>5. CRUD Cursos<br>6. CRUD Foros<br>7. CRUD Novedades<br>8. CRUD Actividades<br>9. CRUD Tareas<br>10. CRUD Material<br>11. CRUD Solicitudes<br>12. CRUD Reporte<br>13. CRUD Tipo Reporte|
+|CUU/Epic|1. Matricularse a un curso nuevo para ser publicado en la plataforma<br>2. Publicar actividad en el curso para los alumnos<br>3. Asignar tareas a los alumnos del curso<br>4. Corregir tareas entregadas por los alumnos|
+
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados|1. Listado de descripción tipo de reporte<br>2. Listado de cursos con reportes => detalle desestimar o dar de baja|
+|CUU/Epic|1. Dar de baja un curso<br>2. Publicar Material<br>3. Reportar Curso<br>4. Publicar mensaje en Foro<br>5. Resolver actividades<br>6. Publicar Novedad|
+|Otros|1. Envío de recordatorio de vencimiento de tareas por mail|
 
