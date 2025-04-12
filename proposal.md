@@ -8,18 +8,17 @@
 
 
 ### Repositorios
-* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/SebaCinalli/FrontEnd-tp-dsw.git))
-* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/SebaCinalli/BackEnd-tp-dsw.git))
+* [frontend app](https://github.com/SebaCinalli/FrontEnd-tp-dsw.git)
+* [backend app](https://github.com/SebaCinalli/BackEnd-tp-dsw.git)
 
 ## Tema
 ### Descripción
 Sitio web interactivo donde el usuario pueda seleccionar paso a paso los servicios necesarios para el armado de un evento.
 
 ### Modelo
-![![image](https://github.com/user-attachments/assets/db8ef458-caf4-4f14-92a8-beb132f331db)
-]()
+![image](https://github.com/user-attachments/assets/db8ef458-caf4-4f14-92a8-beb132f331db)
 
-[](https://drive.google.com/file/d/10gddmn0Piiaaxf0Mnc5eGESThUVNHqKU/view?usp=sharing)
+[Drawio](https://drive.google.com/file/d/10gddmn0Piiaaxf0Mnc5eGESThUVNHqKU/view?usp=sharing)
 
 ## Alcance Funcional 
 
