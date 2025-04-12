@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 49841 - Chiesa, Máximo
+* 50022 - Goya, Santiago
+* 50221 - Marini, Luciano
+* 50374 - Teglia Staseri, Lisandro
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,7 +14,7 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+*Plataforma de simracing competitivo que conecta a pilotos virtuales con eventos organizados en distintos simuladores. Permite crear, gestionar e inscribirse a carreras, llevar un historial de resultados. Su objetivo es profesionalizar la experiencia del automovilismo virtual, combinando tecnología, comunidad y competitividad.*
 
 ### Modelo
 ![imagen del modelo]()
@@ -27,8 +30,8 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
+|CRUD simple|1. CRUD Simulador<br>2. CRUD Circuito<br>3. CRUD Categoria<br>4. CRUD Usuario<br>|
+|CRUD dependiente|1. CRUD Combinación {depende de} CRUD Simulador, CRUD Circuito, CRUD Categoria<br>2. CRUD Carrera {depende de} CRUD Combinación|
 |Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
@@ -36,7 +39,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
+|CRUD |1. CRUD Simulador<br>2. CRUD Circuito<br>3. CRUD Categoria<br>4. CRUD Usuario<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
 
 
