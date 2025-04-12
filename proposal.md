@@ -18,7 +18,7 @@ Este es un sistema web full stack diseñado para la administración de gimnasios
 Sistema web para la gestión de gimnasios. Permite la administración de usuarios (socios, entrenadores ), reservas de clases y control de pagos .
 
 ### Modelo
-![imagen del modelo]([Imag/archivo.md](https://github.com/luciabolcatto/DSW-TP-GYM/blob/main/Imag/GYM.png))
+![imagen del modelo](Imag/GYM.png)
 
 
 
