@@ -28,7 +28,7 @@ Un dueño de una o más canchas de fútbol se da de alta de sistema siendo habil
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD <br>2. CRUD Categoría<br>3. CRUD Localidades|
+|CRUD simple|1. CRUD Cupon <br>2. CRUD Categoría<br>3. CRUD Localidades|
 |CRUD dependiente|1. CRUD Cancha {depende de} CRUD Negocio<br>2. CRUD Negocio {depende de} CRUD Usuario y CRUD Habilitaciones|
 |Listado<br>+<br>detalle| 1. Listado de canchas filtrado por características (tamaño, techo, etc) => detalle CRUD Cancha<br> 2. Listado de negocios filtrado por average rating => detalle CRUD Negocio|
 |CUU/Epic|1. Reservar una cancha para jugar<br>2. Habilitar negocio|
@@ -37,7 +37,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Usuario<br>2. CRUD Negocios<br>3. CRUD Habilitaciones<br>4. CRUD Categorías<br>5. CRUD Canchas<br> 6. CRUD Localidades<br> 7. CRUD Turnos<br> 8. CRUD Dirección|
+|CRUD |1. CRUD Usuario<br>2. CRUD Negocios<br>3. CRUD Habilitaciones<br>4. CRUD Categorías<br>5. CRUD Canchas<br> 6. CRUD Localidades<br> 7. CRUD Turnos<br> 8. CRUD Dirección <br> 9. Cupones|
 |CUU/Epic|1. Reservar una cancha<br>2. Habilitar negocio<br>3. Realizar pago de la reserva|
 
 
