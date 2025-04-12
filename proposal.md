@@ -5,6 +5,7 @@
 * 52533 - Giusti, Santiago.
 * 54646 - Faraone, Samuel.
 * 45210 - Sandoval, Ezequiel.
+* 52218 - Irisarri, Magalí.
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
