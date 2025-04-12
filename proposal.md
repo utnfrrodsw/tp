@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 52533 - Giusti, Santiago
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
