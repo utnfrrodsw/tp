@@ -15,7 +15,7 @@
 Un dueño de una o más canchas de fútbol se da de alta de sistema siendo habilitado por un administrador dependiendo la legitimidad de la cancha. Una vez sea habilitado, da de alta las canchas disponibles. El usuario se da de alta y consulta los negocios registrados con canchas disponibles y su descripción. El usuario reserva la cancha preferida, abona la seña según indique la empresa. Al finalizar el turno, el resto del precio total será abonado y se le sugiere al usuario realizar una reseña del servicio. 
 
 ### Modelo
-![imagen del modelo]()
+![imagen del modelo](https://github.com/Alberto-ll/TP-DSW-2025-Acosta-Lier-Finelli/blob/main/Modelo%20de%20dominio.jpg)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
