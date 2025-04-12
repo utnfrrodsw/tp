@@ -23,10 +23,10 @@ El sistema permitirá a los usuarios ingresar a la página web y observar difere
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD de Usuarios<br>2. CRUD de Libros<br>3. CRUD de Categorías<br>4. CRUD de Autores|
-|CRUD dependiente|1. Libro depende de la Categoría<br>2. Libro depende del Autor|
+|CRUD simple|1. CRUD de Usuario<br>2. CRUD de Editorial<br>3. CRUD de Categoría<br>4. CRUD de Autor|
+|CRUD dependiente|1. Libro depende del Autor<br>2. Las Sagas dependen de un Autor, y estan compuestas por varios Libros.|
 |Listado + Detalle|1. Ingresando una categoría, se muestra un listado de libros coincidentes<br>2. Filtrado de libros por mayor cantidad de estrellas|
-|CUU/Epic|1. Marcado de Libros como “Leído”<br>2. Marcado de Libros como “Ver más tarde”<br>3. Un usuario puede mover un libro de "Pendientes" a "Leído" cuando lo termine|
+|CUU/Epic|1. Listas de "Leído", "Ver más tarde", "Pendientes".<br>2. Reseñas de los Libros.|
 
 ### Adicionales para Aprobación
 
@@ -34,8 +34,8 @@ Regularidad:
 |:-|:-|
 |CRUD |1. CRUD completo de todos los elementos|
 |CRUD dependiente |1. Todas las relaciones establecidas|
-|CUU/Epic|1. Reseñas con Comentarios<br>2. Reacciones a Reseñas<br>3. Listado de Libros por Género<br>4. Búsqueda de Libros por Autor|
-|Relaciones|1. Las reseñas populares pueden mostrarse primero en el listado<br>2. Los autores y las categorías permiten buscar libros fácilmente en la plataforma|
+|CUU/Epic|1. Implementar un sistema automático para revisar y moderar reseñas de usuarios usando inteligencia artificial o alguna librería especializada.<br>2. Permitir a los usuarios reaccionar a reseñas (ej. likes)<br>3. Mostrar recomendaciones personalizadas<br>4. Implementar la funcionalidad de "seguir" para que los usuarios puedan seguir a otros y ver sus actividades o reseñas.|
+|Relaciones|1. Las reseñas populares pueden mostrarse primero en el listado<br>2.  Las categorías y autores permiten filtrar y buscar libros fácilmente en la plataforma<br>3.Los usuarios pueden seguir a otros usuarios, estableciendo una relación recursiva muchos a muchos dentro de la entidad Usuario|
 
 ### Clases
 
