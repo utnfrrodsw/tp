@@ -6,13 +6,13 @@
 * 51499 - Lier, Lautaro
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app](https://github.com/lucianoacosta23/frontend)
+* [backend app](https://github.com/ConstanFinelli/back-dsw)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Un dueño de una o más canchas de fútbol se da de alta de sistema siendo habilitado por un administrador dependiendo la legitimidad de la cancha. Una vez sea habilitado, da de alta las canchas disponibles. El usuario se da de alta y consulta los negocios registrados con canchas disponibles y su descripción. El usuario reserva la cancha preferida, abona la seña según indique la empresa. Al finalizar el turno, el resto del precio total será abonado y se le sugiere al usuario realizar una reseña del servicio. 
 
 ### Modelo
 ![imagen del modelo]()
@@ -22,8 +22,6 @@
 ## Alcance Funcional 
 
 ### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
