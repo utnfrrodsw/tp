@@ -6,22 +6,33 @@
   "main": "app.js",
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
-    "start:dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/index.js\""
+    "start:dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/index.js\"",
+    "start": "npm run start:dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.8.0",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "22.14.1",
+    "ts-node": "^10.9.2",
     "tsc-watch": "6.0.4",
     "typescript": "5.8.3"
   },
   "dependencies": {
     "@mikro-orm/core": "6.4.12",
     "@mikro-orm/mysql": "6.4.12",
+    "@mikro-orm/postgresql": "^6.4.12",
+    "@mikro-orm/sql-highlighter": "^1.0.1",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
+    "class-validator": "^0.14.1",
     "express": "5.1.0",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
     "reflect-metadata": "0.2.2"
   }
 }
