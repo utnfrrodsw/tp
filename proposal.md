@@ -2,7 +2,8 @@
 
 ## Grupo
 ### Integrantes
-* 52533 - Giusti, Santiago
+* 52533 - Giusti, Santiago.
+* 54646 - Faraone, Samuel.
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
