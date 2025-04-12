@@ -1,0 +1,183 @@
+---
+title: Juego de cartas
+---
+classDiagram
+
+namespace Usuario_y_posesiones {  
+    class Usuario{
+        String nick
+        String correo
+        String contraseña
+        List~Mazo~ mazos
+        List~Carta~ cartas
+    }
+
+    class Mazo{
+        String nombre
+        List~Combatiente~ combatientes
+        Terreno terreno
+        List~equipamiento~ equipamientos
+        List~Objeto~ objetos
+        getCantidadCartas()
+    }
+
+    class Código{
+        String código
+        Carta carta
+        bool esFísica
+        Jugador dueño
+    }
+
+}
+    Mazo -- Combatiente
+    Mazo -- Terreno
+    Mazo -- Equipamiento
+    Mazo -- Objeto
+    Usuario -- Mazo
+    Usuario -- Carta
+    Código -- Carta
+    Código -- Usuario
+
+namespace Clases Cartas {
+    class Carta{
+        String nombre
+        String imagen
+        List~Habilidad~ habilidades
+    }
+
+    class Objeto{
+        
+    }
+    
+    class Combatiente{
+        int vida
+        int poderMagico
+        int fuerza
+        int tamaño
+    }
+
+    class Mago{
+
+    }
+
+    class Luchador{
+
+    }
+
+    class Arquero{
+
+    }
+
+    class Asesino{
+
+    }
+
+
+    class Equipamiento{
+        List~Class~?~~ clasesPermitidas :Clases de combatiente
+    }
+
+    class Armadura{
+        int defensa
+        parteCuerpo
+
+    }
+
+    class Arma{
+        int poderMagico
+        int fuerza
+        
+        bool dosManos
+    }
+
+    class Terreno{
+    }
+
+    class Habilidad{
+        <<Interface>>
+        String texto
+        bool pasiva
+        int duración
+        int usos
+        String objetivoAlcance :Propio, rival, global
+        List~Class~?~~ objetivoTipoCarta :Clases de carta
+        String atributoAfectado
+        Int valor
+        String tipoDeDaño
+        int usosActuales
+        int duraciónActual
+
+        ejecutar()
+    }
+}
+    Carta <|-- Combatiente
+    Carta <|-- Equipamiento
+    Carta <|-- Objeto
+    Carta <|-- Terreno
+    Carta -- Habilidad
+
+    Combatiente <|-- Mago
+    Combatiente <|-- Luchador
+    Combatiente <|-- Asesino
+    Combatiente <|-- Arquero
+    Equipamiento <|-- Armadura
+    Equipamiento <|-- Arma
+
+
+
+namespace Lógica_Partida {
+
+    class Combate{
+        Jugador local
+        Jugador visitante
+        Jugador ganador
+        String resultado
+        List~Turno~ turnos
+        Campo campo
+    }
+
+    class Jugador{
+        Usuario usuario
+        List~Carta~ mazo
+        List~Carta~ mano
+        List~Carta~ pilaDeUsados
+        mezclar()
+        robar()
+        terminarTurno()
+        rendirse()
+    }
+
+    class Turno{
+        int número
+        Jugador atacante
+        Jugador defensor
+    }
+
+    class CombatienteEnJuego{
+        Jugador jugador
+        Combatiente combatiente
+        List~Armas~ armas
+        List~Armadura~ armaduras
+        calcularDaño()
+    }
+
+    class Campo{
+        List~CombatienteEnJuego~ combatientesLocal
+        List~CombatienteEnJuego~ combatientesVisitante
+        Terreno terreno
+    }
+
+}
+    Combate -- Jugador
+    Combate -- Jugador
+    Combate -- Jugador
+    Combate -- Turno
+    Combate -- Campo
+    Turno -- Jugador
+    Turno -- Jugador
+    Jugador -- Usuario
+    CombatienteEnJuego -- Jugador
+    Campo -- CombatienteEnJuego
+    Campo -- CombatienteEnJuego
+
+
