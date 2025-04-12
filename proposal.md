@@ -16,7 +16,7 @@ Plataforma web que gestiona la experiencia de un campamento temático mitológic
 
 ### Modelo
 DIAGRAMA ENTIDAD-RELACIÓN (DER)
-<img src="https://i.imgur.com/cLrmdJY" alt="Diagrama Entidad Relación">
+https://imgur.com/a/cLrmdJY
 
 
 ## Alcance Funcional 
