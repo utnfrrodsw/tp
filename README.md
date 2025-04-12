@@ -35,7 +35,6 @@ Regularidad:
 |CRUD |1. CRUD completo de todos los elementos|
 |CRUD dependiente |1. Todas las relaciones establecidas|
 |CUU/Epic|1. Implementar un sistema automático para revisar y moderar reseñas de usuarios usando alguna librería especifica.<br>2. Permitir a los usuarios reaccionar a reseñas (ej. likes)<br>3. Mostrar recomendaciones personalizadas<br>4. Implementar la funcionalidad de "seguir" para que los usuarios puedan seguir a otros y ver sus actividades o reseñas.|
-|Relaciones|1. Las reseñas populares pueden mostrarse primero en el listado<br>2.  Las categorías y autores permiten filtrar y buscar libros fácilmente en la plataforma<br>3.Los usuarios pueden seguir a otros usuarios, estableciendo una relación recursiva dentro de la entidad Usuario|
 
 ### Clases
 
