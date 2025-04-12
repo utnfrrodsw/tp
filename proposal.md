@@ -2,9 +2,9 @@
 
 ## Grupo
 ### Integrantes
-52604 Abbate,Thiago 
-48866 Montes, Alejandro 
-52957 Stella, Camila 
+* 52604 Abbate,Thiago 
+* 48866 Montes, Alejandro 
+* 52957 Stella, Camila 
 
 ### Repositorios
 * frontend app
@@ -16,7 +16,7 @@ Plataforma web que gestiona la experiencia de un campamento temático mitológic
 
 ### Modelo
 DIAGRAMA ENTIDAD-RELACIÓN (DER)
-https://imgur.com/a/cLrmdJY
+![DER](https://imgur.com/a/cLrmdJY)
 
 ## Alcance Funcional 
 
@@ -29,8 +29,7 @@ Regularidad:
 |CRUD simple|1. CRUD Deidades<br>2.CRUD Talleres: Crear (via solicitud), editar y eliminar/suspender talleres<br>3. CRUD  Cabañas: Gestión de cabañas y asignación automática. |
 |CRUD dependiente|1. CRUD de Usuario (si es un campista) depende de deidad<br>2. CRUD Misiones depende de administrador |
 |Listado<br>+<br>detalle| 1.Listado de cabañas: filtrar por tipo (Hermes u otro), ver integrantes.<br> 2. Listado de solicitudes: filtrar por tipo(taller,estadía,upgrade) estado (pendiente, aceptado, rechazado).|
-|CUU/Epic|1. Asignacion de misiones a los campistas
-<br>2.Inscripción  a talleres|
+|CUU/Epic|1. Asignacion de misiones a los campistas<br>2.Inscripción  a talleres|
 
 
 Adicionales para Aprobación
