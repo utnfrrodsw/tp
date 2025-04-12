@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 52242 - Finelli, Constantino
 * 51499 - Lier, Lautaro
 
 ### Repositorios
