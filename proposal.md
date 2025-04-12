@@ -2,21 +2,19 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 44178 - Moreal, Franco
+* 43700 - Molinari, Andrés
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [fullstack app](https://github.com/FrancoMoreal/dsw-tp-agro)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Aplicación web para la gestión de trabajos de una empresa rural.
 
 ### Modelo
-![imagen del modelo]()
+![imagen del modelo](https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=tp-dsw-agro.drawio#R7VxLc%2BI4EP4te6Bq58CWbdkGjiGZ2dmqfUxVUrWZ05SwBGhjLI8QIZlfvxKWjS2J2EMwhpATth5tqb%2FP6la3TA9cL55%2BZzCd%2F0URjnueg5564Kbnea4%2FGIgfWfKclYT%2BKCuYMYJUo23BLfmBVaGjSlcE4WWlIac05iStFkY0SXDEK2WQMbquNpvSuPrUFM6wUXAbwdgs%2FZcgPs9Kh95gW%2F4Zk9k8f7IbqvktYN5YzWQ5h4iuS0XgYw9cM0p5drV4usaxVF6ul6zfpx21xcAYTniTDl%2B%2B30%2FGfQRi5k6%2FgdT7dkdGfZBJeYTxSk34OiZCoFB5Nmj%2BnGuC0VWCsBTm9sAYskiBJZAC4%2FWccHybwkiWrAUVRNmcL%2BK8dUxmibiOpGgmCtRjMeP4aed83EJLgl6YLjBnz6KJ6gByxSpmDdXteguT66iyeQkiX5VBxYxZIXmrPHGh9PcTugxMXcJFSk9fk2FwYpocGJr8k54DJXVFFhTtTJMjQ5P%2FMIQTvPx2x%2BAE%2FkdPXqfe6NR0mpumklIJ2qi10GkYi0GMEXkUlzN5OcXRHP6RkIgUteLZpQa7%2BnwiSeMOEV1yekc5jHd10bAWkxV2FHcDrDuoAuuFQxNYYAF20BqwrgGsqbIEXUm3QtwlNMFVNW3fHfmy4CfC71WNvP4qy38L1N3NU6nZzbO6yZ6HkeGUaFoVY6IrFuEXZqO0ySGbYV632JooMRxDTh6r47CpXHX9QokYYYGuD7TXVn8ds%2FGrXmW3RRMUuDWCsgkagjYMKObzClJ4b4kUo4akGLZCCqCv5fuSwjC0RybFsJ4Twt1P5SWb08VkJYY1TjEj4sFy%2FcxLv2yLuliC%2FVBTo2uxrZ5lCQ5bW4LNDYmY%2FJVrqFdMmtcoSKqGiJ3clapYEIRk9zHDS%2FIDTjai5PuVSppsZhKMe8GNlLXidKn8HnG75Iw%2B4GsaU7Z9xackjrWiA0AS6sudBRLfgghoDRHfisjfF4MIGGqIOKafclxEzI3mqyxSIgZ1vzVD8vZrbqHkzdYobe5asEphQ6sUtGOVNGNi7Bz2dVUMQW27KuFbI8agITHCVogxcHZsPX%2BWGLogVxfUMjEa8OIc3JXQ19Q46txdMSNVl2UcdWZ7FkiOaxxN1%2FzCHEhtj%2BW6Hbsr3oGjKoVVKtukkonaYZU63nj77y7OISxZzp3LJhNoSCa%2FHTLpK4yzJ5n0KI4hqGUymTvbs3SLfC2QPujaK%2FLMIA5BKq9sSVskQokMN85yLCDZmd8wGnMc4ylNmiddEGE4ightnnWJqXARCIKocY%2BU0UeSRASeQ5rG09LsgYVdtvSbscc5HL3M91bQS6baX0%2Bu1UQ4fC%2FBf0rQDLT105ZAs0ETem0hY0amCJKpexswjJZrapGZ40iYAyzGfIbIWAPrNmiC1l4ac6d6TZcyw2xo7tROALiaz%2Bnnc%2BnsBIDXIP%2BzR04wv27iTRaeaxGNa%2Ba59g7nhXpNw7ZeOylmoMUefF9b15r6oXoazBDU9qbGPKVzEDoVFCqitvV00mK9zsHoVM%2BSdoK4xvkh3fo1ZYkuKPCOzJI3EsX1gkBbzj1jOR8c0zTmka%2BSYm8JFm7j6ZtGkGdndU52ZhpBO2eoTmstqw%2FQNI3QAMeO72tN46DKi71NYwBqBLW86AHvAuhUzxLQDkvCKrh7m0Zd0LFNIzADTmdpGkHuCZ6MaTQ39HfkHD5p8HVNDjs3jAc%2BnHGSK1m9YWx6Khm0kwjzD2UYw64NoxnPOQSd3BMiUz1HjnRKeV%2Bz6HdtFt%2FKMWVf81NGXZtFM2BDUBFONULXYp6ILGT6q3keKmX4hW%2BF9Be90%2B94tOCZa4JjD3UHLaHjm%2Ft5i4KFCKtyHyEjuJTNK1U9kJjuTD%2BcMYKeHkXIT%2BHXQjhsC0JbFKExhCmjaBVxWzoQ0SV5ixAGur8b2nIkrglh2BqE5s79sg7iGQuj5cPVox7E8y%2F92xqg53m6Pqya%2BzUXi4ivfVtTZOI6Q8QMeFzWgW5P%2FySwc0RscZPMIC9TmFRQCb%2Bv5L%2BpjKNMLVdyLzib%2FCqGJp7t5D8fNppypjTh%2FSlckPg5a%2FoZx49YIlaqz0CQta6XPpUrsofKmoSyBYxLddKFhOJX4A75ism%2Fr3mxXQTTXU3WSsWy0ney%2FbMTYy4Y1hfTj0gyM3tSls5hokR6WZnka19RVBaXnI%2BsjiRoQxFZ6eRT3dRwJoRNhfz8SYprkhKb%2F9cpPWZNGaoOrJAl5jJ5IEKclJkxuq9IVWm38Z42Mgr9Kh9KXE9g9DDbhC76GsjCa83wLV98KE0D4YgyyAlN%2BnxOoocEL9XYSUI4yZWnty0B%2FWK70nAq7RBZpjF8zmtiIrTnOb%2BQRUoZhwlXYMcUck2%2FOZtzj1MtRIUzmtF%2Fhzeq1qcaV%2FQQRhWMtAXD3P8Fxwy0%2Braox%2FuC8b5gvC8Yp7Fg7AqvdrZgmNG8C%2FPCtZ3qoOMvxgIzgHdZTrj%2BJxCWLzoOBIi43f4DYZZ32P6PI%2Fj4Pw%3D%3D)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
 
@@ -27,26 +25,14 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Cliente<br>2. CRUD Campo<br>
+|CRUD dependiente|1. CRUD Lote {depende de} CRUD Campo<br>
+|Listado<br>+<br>detalle| 1. Listado de trabajos realizados, filtrado por tipo de trabajo. Mostrando los detalles de los trabajos
+|CUU/Epic|1. Contratar un trabajo
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
-
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+|CRUD |1. CRUD Cosecha
+|CUU/Epic|1. Facturación y Cobranza(con la finalización del trabajo)
