@@ -18,7 +18,7 @@ La idea del Trabajo Practico es hacer una web que permite a la gente contratar s
 Los prestatarios de los servicios van a poder registrarse en la página para indicar que servicios van a brindar.
 
 ### Modelo
-![ modelo ](https://app.diagrams.net/#G1rKTdFM0r134sMtxcFLbaQx926Cvg2ucL#%7B%22pageId%22%3A%22kqA0DOtl2Mj1x9Ki2wMO%22%7D)  
+![ modelo ](MD.drawio.png)  
  
 
 ## Alcance Funcional 
