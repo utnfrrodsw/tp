@@ -1,7 +1,6 @@
-// src/entities/resena.entity.ts
 import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core';
-import { Libro } from './libro.entity';
 import { Usuario } from './usuario.entity';
+import { Libro } from './libro.entity';
 
 @Entity()
 export class Resena {
@@ -9,20 +8,17 @@ export class Resena {
   id!: number;
 
   @Property()
-  nombre!: string;
+  comentario!: string;
+
+  @Property()
+  estrellas!: number;
 
   @Property()
   fechaResena!: Date;
 
-  @Property()
-  comentario!: string;
-
-  @Property()
-  calificacion!: number; // Calificación entre 1-5
+  @ManyToOne(() => Usuario)
+  usuario!: Usuario;
 
   @ManyToOne(() => Libro)
   libro!: Libro;
-
-  @ManyToOne(() => Usuario)
-  usuario!: Usuario;
 }

@@ -1,4 +1,8 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+// src/entities/libro.entity.ts
+import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core';
+import { Categoria } from './categoria.entity';
+import { Editorial } from './editorial.entity';
+import { Autor } from './autor.entity';
 
 @Entity()
 export class Libro {
@@ -6,18 +10,17 @@ export class Libro {
   id!: number;
 
   @Property()
-  title!: string;
+  nombre!: string;
 
   @Property()
-  author!: string;
+  sinopsis!: string;
 
-  @Property()
-  publicationYear!: number;
+  @ManyToOne(() => Autor)
+  autor!: Autor;
 
-  @Property({ nullable: true })
-  genre?: string;
+  @ManyToOne(() => Categoria)
+  categoria!: Categoria;  // Relación con Categoria
 
-  // Agrega más propiedades según lo que necesites para tu modelo de Libro
+  @ManyToOne(() => Editorial)
+  editorial!: Editorial;  // Relación con Editorial
 }
-
-export { Libro as Book };  // Aquí exportamos Libro como Book

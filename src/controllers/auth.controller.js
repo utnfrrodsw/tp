@@ -1,33 +1,29 @@
 import { Usuario } from '../entities/usuario.entity';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { initORM } from '../shared/db/orm'; // Asegúrate de importar 'initORM'
 export const register = async (req, res) => {
-    const orm = req.app.get('orm');
-    const { nombre, email, password } = req.body;
-    const username = email.split('@')[0]; // Lógica para generar el username
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const nuevoUsuario = orm.em.create(Usuario, {
-        username,
-        nombre,
-        email,
-        password: hashedPassword,
-    });
-    await orm.em.persistAndFlush(nuevoUsuario);
-    return res.status(201).json({ mensaje: 'Usuario registrado exitosamente' });
+    const { email, username, password } = req.body;
+    try {
+        const ormInstance = await initORM(); // Esperamos a que se resuelva la promesa
+        console.log('Conectado a la base de datos');
+        const usuario = ormInstance.em.create(Usuario, { email, username, password });
+        await ormInstance.em.persistAndFlush(usuario);
+        res.status(201).json({ message: 'Usuario registrado exitosamente', usuario });
+    }
+    catch (error) {
+        res.status(500).json({ error: error instanceof Error ? error.message : 'Error desconocido' });
+    }
 };
 export const login = async (req, res) => {
-    const orm = req.app.get('orm');
     const { email, password } = req.body;
-    const usuario = await orm.em.findOne(Usuario, { email });
-    if (!usuario) {
-        return res.status(400).json({ error: 'Credenciales inválidas' });
+    try {
+        const ormInstance = await initORM(); // Esperamos a que se resuelva la promesa
+        const usuario = await ormInstance.em.findOne(Usuario, { email, password });
+        if (!usuario) {
+            return res.status(400).json({ error: 'Credenciales incorrectas' });
+        }
+        res.status(200).json({ message: 'Inicio de sesión exitoso', usuario });
     }
-    const validPassword = await bcrypt.compare(password, usuario.password);
-    if (!validPassword) {
-        return res.status(400).json({ error: 'Credenciales inválidas' });
+    catch (error) {
+        res.status(500).json({ error: error instanceof Error ? error.message : 'Error desconocido' });
     }
-    const token = jwt.sign({ id: usuario.id, email: usuario.email }, 'your_jwt_secret', {
-        expiresIn: '1h',
-    });
-    return res.json({ token });
 };

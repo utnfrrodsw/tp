@@ -7,7 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+// src/entities/libro.entity.ts
+import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core';
+import { Categoria } from './categoria.entity';
+import { Editorial } from './editorial.entity';
+import { Autor } from './autor.entity';
 let Libro = class Libro {
 };
 __decorate([
@@ -17,21 +21,24 @@ __decorate([
 __decorate([
     Property(),
     __metadata("design:type", String)
-], Libro.prototype, "title", void 0);
+], Libro.prototype, "nombre", void 0);
 __decorate([
     Property(),
     __metadata("design:type", String)
-], Libro.prototype, "author", void 0);
+], Libro.prototype, "sinopsis", void 0);
 __decorate([
-    Property(),
-    __metadata("design:type", Number)
-], Libro.prototype, "publicationYear", void 0);
+    ManyToOne(() => Autor),
+    __metadata("design:type", Autor)
+], Libro.prototype, "autor", void 0);
 __decorate([
-    Property({ nullable: true }),
-    __metadata("design:type", String)
-], Libro.prototype, "genre", void 0);
+    ManyToOne(() => Categoria),
+    __metadata("design:type", Categoria)
+], Libro.prototype, "categoria", void 0);
+__decorate([
+    ManyToOne(() => Editorial),
+    __metadata("design:type", Editorial)
+], Libro.prototype, "editorial", void 0);
 Libro = __decorate([
     Entity()
 ], Libro);
 export { Libro };
-export { Libro as Book }; // Aquí exportamos Libro como Book

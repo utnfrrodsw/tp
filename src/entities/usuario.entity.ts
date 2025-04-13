@@ -1,4 +1,4 @@
-// src/entities/usuario.entity.ts
+// src/shared/entities/usuario.entity.ts
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity()
@@ -6,15 +6,12 @@ export class Usuario {
   @PrimaryKey()
   id!: number;
 
-  @Property({ unique: true })
+  @Property()
   username!: string;
 
-  @Property({ unique: true })
+  @Property()
   email!: string;
 
   @Property()
   password!: string;
-
-  @Property()
-  nombre!: string;
 }

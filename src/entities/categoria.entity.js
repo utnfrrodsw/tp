@@ -7,9 +7,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// src/entities/categoria.entity.ts
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property, OneToMany } from '@mikro-orm/core';
+import { Libro } from './libro.entity';
+import { Collection } from '@mikro-orm/core'; // Importar Collection
 let Categoria = class Categoria {
+    constructor() {
+        this.libros = new Collection(this); // Usar Collection
+    }
 };
 __decorate([
     PrimaryKey(),
@@ -19,6 +23,10 @@ __decorate([
     Property(),
     __metadata("design:type", String)
 ], Categoria.prototype, "nombre", void 0);
+__decorate([
+    OneToMany(() => Libro, libro => libro.categoria),
+    __metadata("design:type", Object)
+], Categoria.prototype, "libros", void 0);
 Categoria = __decorate([
     Entity()
 ], Categoria);

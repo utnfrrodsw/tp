@@ -7,31 +7,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// src/entities/autor.entity.ts
-import { Entity, PrimaryKey, Property, OneToMany, Collection } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property, OneToMany } from '@mikro-orm/core';
 import { Libro } from './libro.entity';
-let Autor = class Autor {
+import { Collection } from '@mikro-orm/core'; // Importar Collection
+let Editorial = class Editorial {
     constructor() {
-        this.libros = new Collection(this);
+        this.libros = new Collection(this); // Usar Collection
     }
 };
 __decorate([
     PrimaryKey(),
     __metadata("design:type", Number)
-], Autor.prototype, "id", void 0);
+], Editorial.prototype, "id", void 0);
 __decorate([
     Property(),
     __metadata("design:type", String)
-], Autor.prototype, "nombre", void 0);
+], Editorial.prototype, "nombre", void 0);
 __decorate([
-    Property(),
-    __metadata("design:type", String)
-], Autor.prototype, "apellido", void 0);
-__decorate([
-    OneToMany(() => Libro, libro => libro.autor),
+    OneToMany(() => Libro, libro => libro.editorial),
     __metadata("design:type", Object)
-], Autor.prototype, "libros", void 0);
-Autor = __decorate([
+], Editorial.prototype, "libros", void 0);
+Editorial = __decorate([
     Entity()
-], Autor);
-export { Autor };
+], Editorial);
+export { Editorial };

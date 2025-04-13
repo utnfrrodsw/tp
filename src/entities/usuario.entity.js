@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// src/entities/usuario.entity.ts
+// src/shared/entities/usuario.entity.ts
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 let Usuario = class Usuario {
 };
@@ -16,21 +16,17 @@ __decorate([
     __metadata("design:type", Number)
 ], Usuario.prototype, "id", void 0);
 __decorate([
-    Property({ unique: true }),
+    Property(),
     __metadata("design:type", String)
 ], Usuario.prototype, "username", void 0);
 __decorate([
-    Property({ unique: true }),
+    Property(),
     __metadata("design:type", String)
 ], Usuario.prototype, "email", void 0);
 __decorate([
     Property(),
     __metadata("design:type", String)
 ], Usuario.prototype, "password", void 0);
-__decorate([
-    Property(),
-    __metadata("design:type", String)
-], Usuario.prototype, "nombre", void 0);
 Usuario = __decorate([
     Entity()
 ], Usuario);
