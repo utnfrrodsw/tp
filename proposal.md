@@ -19,7 +19,8 @@ CineCritic es una plataforma web donde los usuarios pueden calificar y reseñar 
 La página permitirá buscar por categorías, actores, directores etc. Y se podrá guardar las películas y series como favoritas y/o como ya vistas.
 
 ### Modelo
-![imagen del modelo]()
+![image](https://github.com/user-attachments/assets/ef1142b5-3436-4a15-8c35-286c825744e2)
+
 
 ## Alcance Funcional 
 
