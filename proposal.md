@@ -23,11 +23,21 @@ MD en draw.io: https://drive.google.com/file/d/1fIw_y52k2I7hz1cHX3uEgDLWok7ewhlU
 
 ## Alcance funcional
 ### Alcance minimo
-![imagen alcance](assets/alcminDsw.png)
+# regularidad
+| req | Detalles |
+|:-|:-|
+|CRUD simple| 1. CRUD usuario <br> 2. CRUD destino|
+|CRUD dependiente|CRUD paquete_viaje {depende de} CRUD destino|
+|Listado + detalle| 1. Listado de paquetes de viaje disponibles filtrados por destino, muestra destino, precio, descripcion.Detalle muestra fechaInicio, fechaFin y hotel.|
+|CUU/Epic|1. Hacer reserva|
+
+# aprobacion:
+| req | Detalles |
+|:-|:-|
+|CRUD |1. CRUD usuario <br> 2. CRUD destino <br> 3. CRUD paquete_viaje <br> 4. CRUD hotel|
+|Listado + detalle| 1. Listado de paquetes de viaje disponibles filtrados por destino, muestra destino, precio, descripcion.Detalle muestra fechaInicio, fechaFin y hotel. <br> 2. Listado de reservas a confirmar, muestra datos usuario, estado de reserva,idReserva, cantidad y fecha|
+|CUU/Epic| 1. Hacer reserva <br> 2. Confirmar o cancelar reserva|
 
 
-Casos de Uso adicionales o de Mantenimiento
-* CUU 2.1 Gestionar paquetes de viajes(hotel, duracion)
-* CUU 2.2 Gestionar destinos(destino, paquetes de viaje)
 
 
