@@ -2,42 +2,47 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51565 - Bonaroti, Francisco
+* 49539 - Salerno, Nicolás
+* 50708 - Vacs, Francisco
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/FranciscoVacs/Bohemia_FE)
+* [backend app](https://github.com/FranciscoVacs/Bohemia_BE)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Es una página de una fiesta la cual tiene publicadas todas las fechas/eventos que se van a realizar en el futuro.Puede haber eventos en distintas ciudades de Argentina. Cada evento se realiza en una locación y una locación puede utilizarse para varios eventos a lo largo del tiempo.
+Ingresando a uno de estos eventos se puede ver una breve descripción junto con la fecha y hora de inicio y la fecha y hora de finalización, si el usuario/cliente quiere ir al evento debe comprar una entrada, para comprar una entrada debe estar registrado. 
+En la compra de entradas hay diferentes métodos de pago y la opción de ingresar un código de descuento por cada entrada  a comprar. A medida que pasa el tiempo las entradas aumentan su precio estando divididas en tandas, la preventa, la primera tanda, la segunda tanda, etc. Una vez que el usuario realiza la compra le llega un recibode la misma al correo junto con todas las entradas con su respectivo código qr.
 
-### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+### Modelo![BohemiaPageDER](https://github.com/user-attachments/assets/9e5c26c1-59d9-47f8-b360-f31b5da2419f)
+
+
+
+
+
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Ciudad <br>2. CRUD Usuario<br>3. CRUD Djs|
+|CRUD dependiente|1. CRUD Tipo de Entrada {depende de} CRUD Evento <br>2. CRUD Locacion {depende de} CRUD Ciudad|
+|Listado<br>+<br>detalle| 1. Listado de eventos filtrado por ciudad, muestra nombre de ciudad, nombre y descripción del evento=> detalle muestra datos completos del evento<br> 2. Listado de tipos de entrada filtrado por stock, muestra disponibilidad, precio => detalle muestra cantidad disponible para comprar|
+|CUU/Epic|1. Registrarse <br>2. Comprar entrada|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Tipo entrada<br>2. CRUD Usuario<br>3. CRUD Ciudad<br>4. CRUD Entrada<br>5. CRUD Evento<br>6. CRUD Compra<br>7. CRUD Codigo Descuento<br>8. CRUD Djs<br>9. CRUD Locacion
+|CUU/Epic|1. Registrarse<br>2. Comprar entrada<br>3. Crear evento con tipo de entrada|
 
 
 ### Alcance Adicional Voluntario
@@ -46,7 +51,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados ||
+|CUU/Epic||
+|Otros||
 
