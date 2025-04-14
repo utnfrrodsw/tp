@@ -1,0 +1,307 @@
+
+.solicprincipal-card {
+  display: flex;
+  position: relative;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 20% 60% 10%;
+  gap: 00px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    " titulo fecha"
+    "nombre  ubicacion"
+    ".   boton";
+  height: 14rem;
+  width: 55%;
+  padding: 15px;
+  /* Aumenta el espacio interno para pantallas de PC */
+  background-color: #213555;
+  border-radius: 12px;
+  margin: 0 auto;
+  margin-top: 15vh;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  
+}
+
+.solicprincipal-card:hover {
+  background-color: #506f99;
+  border-radius: 10px;
+}
+
+.solicprincipal-fullcontent {
+  height: 24rem;
+  display: grid;
+  width: 60%;
+  padding: 15px;
+  /* Aumenta el espacio interno para pantallas de PC */
+  background-color: #213555;
+  border-radius: 12px;
+  margin: 0 auto;
+  /* Centra horizontalmente en la pantalla */
+  margin-top: 15vh;
+  /* Centra verticalmente en la mitad de la pantalla */
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+}
+
+
+.titulo-solicitud {
+  grid-area: titulo;
+  font-family: 'Times New Roman', serif;
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.fecha-solicitud {
+  grid-area: fecha;
+  color: #ffffff;
+  font-size: 0.9rem;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.ubicacion-solicitud {
+  color: #ffffff;
+  font-size: 0.9rem;
+  text-align: left;
+  grid-area: ubicacion;
+  margin-bottom: auto;
+}
+
+.foto-solicitud {
+  max-width: 100%; /* Las imágenes se ajustarán al ancho de su contenedor */
+  height: auto;    /* Mantener la proporción original de la imagen */
+  margin: 5px;     /* Añadir un margen de 5px alrededor de cada imagen */
+}
+
+
+.nombre-solicitud {
+  grid-area: titulo;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: left;
+  /* Alinea el texto del título a la izquierda */
+  margin-left: 10px;
+  /* Agrega un margen a la izquierda del título */
+}
+
+.descripcion-solicitud {
+  color: #dee0f1d8;
+  grid-area: descripcion;
+  font-size: 1rem;
+  text-align: center;
+}
+
+
+.botones button {
+  margin: 5px;
+}
+
+.botones .fotos{
+  background-color: #6ac26a;
+  border: 1px solid #ffffff;
+}
+
+.cancelar{
+  width: 10%;
+  font-size: 0.8rem;
+  background-color: #993737;
+  border: 1px solid #ffffff;
+  align-self: self-end;
+}
+
+.botones .ver-presupuestos-button{
+  background-color: #2d745c;
+  border: 1px solid #ffffff;
+}
+
+
+/* Estilos para los botones "Ver más" y "Cancelar Solicitud" */
+.boton-solicitud {
+  background-color: #007bff;
+  width: 20%;
+  align-self: center;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.boton-solicitud:hover {
+  background-color: #0056b3;
+}
+
+
+/* Estilo para el encabezado h1 */
+.h1-heading {
+  color: white;
+  /* Cambia el color según tus preferencias */
+  font-size: 16px;
+  /* Cambia el tamaño de fuente según tus preferencias */
+  /* Otros estilos */
+}
+
+/* Estilo para el encabezado h2 */
+.h2-heading {
+  color: white;
+  /* Cambia el color según tus preferencias */
+  font-size: 16px;
+  /* Cambia el tamaño de fuente según tus preferencias */
+  /* Otros estilos */
+}
+
+/* Estilo para el encabezado h3 */
+.h3-heading {
+  color: white;
+  /* Cambia el color según tus preferencias */
+  font-size: 16px;
+  /* Cambia el tamaño de fuente según tus preferencias */
+  /* Otros estilos */
+}
+
+.fotos-solicitud{
+  display: flex;
+  width: 600px;
+  height: 430px; 
+}
+
+.fotos-solicitud img {
+  margin:10px;
+}
+
+.estado-solicitud {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.estado-activa {
+  background-color: #369336; /* Verde para estado "activa" */
+}
+
+.estado-progreso {
+  background-color: #cea500; /* Amarillo para estado "en proceso" */
+}
+
+.estado-terminado {
+  background-color: #ff0000; /* Rojo para estado "finalizado" */
+}
+
+.estado-aConfirmar {
+  background-color: #ff8800; /* naranja para estado del servicio "aConfirmar" */
+}
+
+section.botones-confirmacion-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%
+}
+
+.botones-confirmacion-container button{
+  width: 10%;
+  align-self: center;
+}
+
+section.botones-confirmacion-container button.button-confirmar{
+  background-color: #2d745c;
+  border: 1px solid #ffffff;
+}
+
+section.botones-confirmacion-container button.button-rechazar{
+  background-color: #742d2d;
+  border: 1px solid #ffffff;
+}
+
+
+
+/* imagenes */
+
+ 
+ul,
+li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+}
+
+img {
+  margin-top: -16px;
+}
+
+/* Main container */
+
+.main-container {
+  width: 500px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+/* Slider container */
+.slider-container {
+  position: relative;
+  height: 100%
+}
+
+/* dots carrusel */
+.dots-container {
+  display: flex;
+  justify-content: center;
+}
+
+.dot-container-item {
+  margin: 8px 3px;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Arrows */
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 32px;
+  font-size: 50px;
+  font-weight: 700;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 32px;
+  font-size: 50px;
+  font-weight: 700;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.container-images {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+.contenedor-presupuestos{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}

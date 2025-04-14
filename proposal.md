@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 48059, Taborra Facundo
+* 48271, Buschittari Nahuel
+* 47793, Obiedo Agustín
+* 48026, Ignacio Di Martino
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,42 +14,41 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Es una aplicación móvil para ayudar a los clientes a encontrar servicios específicos, como plomeros, electricistas, servicios de internet, y más. Con esta aplicación, los usuarios podrán buscar y comparar presupuestos, conocer los tiempos de trabajo estimados y coordinar una fecha y hora para llevar a cabo sus proyectos. Esto proporcionará una gran facilidad a los clientes al permitirles encontrar el mejor servicio para sus necesidades, al tiempo que fomenta una competencia directa entre diferentes empresas. Además, los clientes podrán dejar reseñas sobre los servicios recibidos, lo que ayudará a mejorar la calidad del trabajo de las empresas involucradas.
 
 ### Modelo
-![imagen del modelo]()
+![der](https://github.com/FacuTaborra/FastServices/assets/102264888/4db3e9dd-f0e2-4ce7-83bb-626dd7a93dbb)
+
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
 
-### Alcance Mínimo
+Desde el registro de cliente y/o prestador de servicios hasta el pedido y pago de dicho servicio de la reseña del lado del cliente. Del lado del presetador tendremos la posibilidad de armar presupuestos, enviarlos y recibir los pagos.
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
+### Alcance Mínimo
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Localidad <br>2. CRUD Profesion (por el cliente)<br>3. CRUD Solicitud|
+|CRUD dependiente|1. CRUD Presupuesto {depende de} CRUD Solicitud<br>2. CRUD Cliente y Prestador {depende de} CRUD Localidad<br>3. CRUD Prestador {depende de} CRUD Profesion|
+|Listado<br>+<br>detalle| 1. Listado de Servicios Requeridos filtrado por localidad y especialidad => detalle CRUD Servicio<br> 2. Listado de presupuestos filtrado por precio de menor a mayor y por la cantidad de estrellas del prestador (evaluado por reseñas de trabajo), o podemos filtras por horas de trabajo estimadas => detalle muestra los datos del presupuesto con el precio de la mano de obra, materiales requeridos con su precio y un monto total de todo el trabajo|
+|CUU/Epic|1. Realizar un presupuesto<br>2. Realizar una reseña a un prestador|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Cliente<br>2. CRUD Servicio requerido<br>3. CRUD Localidad<br>4. CRUD Materiales<br>5. CRUD Reseña<br>6. CRUD Presupuesto<br>7. CRUD Prestador|
+|CUU/Epic|1. Hacer pedido de servicio por el cliente <br>2. Realizar presupuesto (prestador) para el cliente <br>3. Confirmación del presupuesto eligiendo fecha y hora y cobrando el monto requerido|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
+|Listados |1. Servicios requeridos anteriormente filtrados por precios y por la reseña dada a dicho prestador, esto le serviria al cliente para evaluar prestadores ya contratados<br>2. Servicios dados por el prestador filtrado por precio, fecha|
+|CUU/Epic|1. Confirmar presupuesto<br>2. Cancelación un servicio pedido para una fecha futura|
 |Otros|1. Envío de recordatorio de reserva por email|
 

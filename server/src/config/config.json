@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "userRemote",
+    "password": "remote321",
+    "database": "fastservices",
+    "host": "100.93.197.20",
+    "port": "33061",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "facu2323",
+    "database": "fastservices",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "facu2323",
+    "database": "fastservices",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
