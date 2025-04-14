@@ -2,51 +2,50 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* Foresi, Alejandro
+* Pecoraro, Lucio
+* Berto, Leandro
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
-## Tema
+
+## Sistema de gestión de reservas de restaurantes
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Los clientes realizan reservas a través del sistema, ingresando su información personal y registrándose en el restaurante.
+Una vez registrados, para reservar seleccionan la fecha y hora deseadas y cantidad de personas; se verifica si hay mesas disponibles en el momento solicitado, confirmando o rechazando la reserva.
+La administración interna permite gestionar las reservaciones existentes y modificarlas según sea necesario, además de poder registrar la llegada del cliente para evaluar cuantas reservas son incumplidas.
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![restaurante-model](https://github.com/chipcasla/tp/assets/103225088/1c4beaa9-14e0-40e0-9a4a-3420bc7a5e6f)
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
-
+|CRUD simple|1. CRUD Categoría<br>2. CRUD Cliente<br>3. CRUD Mesa|
+|CRUD dependiente|1. CRUD Reserva {depende de} CRUD Mesa y Cliente<br>2.|
+|Listado<br>+<br>detalle| 1. Lista de reservas filtrado por dia/rango horario, muestra datos de reserva=> detalles completos de cliente.<br> 2. Listado de mesas filtrado por día/hora y estado, muestra nombre de cliente(si está reservada), capacidad y ubicacion => detalle adicionales como cantidad de personas, hora|
+|CUU/Epic|1. Reservar una mesa en el restaurante(cliente)<br>2. Realizar el registro de cumplimiento de una reserva(restaurante)|
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Cliente<br>2. CRUD Reseña<br>3. CRUD Plato|
+|Listados | 1. Listado de calificaciones filtrado por puntaje, muestra titulo y puntaje => detalle adicional del comentario completo|
+|CUU/Epic|1. Reservar una mesa en el restaurante<br>2. Realizar el registro de cumplimiento de una reserva<br>3. Realizar reseña de restaurante(cliente)<br>4. Cancelación de reserva|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|CRUD |1. CRUD Promociones |
+|Listados | 1. Listado con promociones o descuentos disponibles en un momento dado del restaurantes.<br>2. Listado de menú del restaurante, muestra todos los platos con su descripción breve => detalle adicional de ingredientes, método, imagen.<br>3. Reservas filtradas por cliente muestra datos del cliente y de cada reserva fechas, estado, cantidad de personas|
+|CUU/Epic|1. Realizar reserva de evento especial (aniversario,cumpleaños,etc)(cliente)|
+|Otros|1. Envío de confirmacion/recordatorio de reserva por email|
 
