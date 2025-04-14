@@ -1,0 +1,177 @@
+
+.title-user{
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+@media (min-width: 600px) {
+    .title-user{
+        text-align: left;
+    }
+}
+
+.new-user-main{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+@media (min-width: 600px) {
+    .new-user-main{
+        flex-direction: row;
+    }
+}
+
+.new-user, .search-box, .filter-balance{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 1rem;
+}
+
+@media (min-width: 600px) {
+    .search-box{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.filter-balance {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    background-color: var(--purple-strong);
+    color: var(--white);
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    font-size: 14px; 
+}
+
+.filter-btn svg {
+    margin-left: 8px; 
+    width: 16px; 
+    height: 16px; 
+}
+
+.filter-balance p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.search-box input {
+    padding: 5px 10px;
+    border: 1px solid var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--black);
+}
+
+.subtitle-user{
+    font-size: 1.1rem;
+}
+
+.leaderboard-list-main {
+    padding: 6rem 1rem 5rem 1rem;
+    width: 100%;
+}
+
+.header-name2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    background-color: var(--purple);
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+}
+
+.header-column, .column {
+    text-align: center;
+    color: var(--white);
+}
+
+.header-column {
+    color: var(--white);
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.items2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--white);
+}
+
+.user-info {
+    display: contents;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.edit-btn, .delete-btn, .read-btn, .add-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--white);
+}
+
+.add-btn, .filter-btn {
+    background-color: var(--purple-strong);
+}
+
+.edit-btn {
+    background-color: var(--green);
+}
+.edit-btn {
+    background-color: var(--green);
+}
+
+.delete-btn {
+    background-color: var(--red);
+}
+
+.read-btn {
+    background-color: var(--yellow);
+}
+
+.edit-btn:hover {
+    background-color: var(--green);
+}
+
+.delete-btn:hover {
+    background-color: var(--red);
+}
+
+.read-btn:hover {
+    background-color: var(--yellow);
+}
+
+.rotate-90 {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.filter-btn svg {
+    transition: transform 0.3s ease-in-out;
+}

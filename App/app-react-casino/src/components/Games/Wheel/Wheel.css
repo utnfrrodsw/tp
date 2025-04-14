@@ -1,0 +1,30 @@
+.wheel {
+  max-width: 31.25rem; 
+  width: 100%;    
+  height: auto;
+  transform: rotate(0deg);
+  transition-property: transform;
+  transition-duration: 5.5s;
+  transition-timing-function: cubic-bezier(.08,.33,0,1);
+  pointer-events: none;
+}
+
+.button {
+  margin: 1.25rem 0 0 0;
+  padding: 0.625rem 3.125rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: var(--yellow);
+  width: 100%;
+  max-width: 18.75rem;
+}
+
+.mutedButton {
+  margin-left: 2rem;
+}
+
+.py-5 {
+  color: var(--red);
+  font-size: 1.5rem;
+}
+
