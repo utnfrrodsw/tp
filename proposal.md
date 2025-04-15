@@ -3,7 +3,7 @@
 ## Grupo
 ### Integrantes
 * legajo - Apellido(s), Nombre(s)
-*   - Vivas, Magali
+* 48177 - Vivas, Magali
 * 47987 - Contreras Márquez, María Victoria
 
 ### Repositorios
