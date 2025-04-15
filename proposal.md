@@ -3,11 +3,12 @@
 ## Grupo
 ### Integrantes
 * legajo - Apellido(s), Nombre(s)
+*   - Vivas, Magali
+* 47987 - Contreras Márquez, María Victoria
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/mariavictoriacontreras/frontend_app)
+* [backend app](https://github.com/mariavictoriacontreras/backend_app)
 
 ## Tema
 ### Descripción
