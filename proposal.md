@@ -2,51 +2,43 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 52805 - Laveggi, Valentino (Comisión 303)
+* 53402 - Murúa, Joaquín Tomás (Comisión 303)
+* 52937 - Romero, Gabriel Tobías (Comisión 304)
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/Evenaut7/TP_DSW_FrontendApp.git)
+* [backend app](https://github.com/Evenaut7/TP_DSW_BackendApp.git)
+
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+El sistema propuesto es una plataforma web que permite a los usuarios descubrir puntos de interés, actividades y eventos disponibles en distintas localidades, priorizando experiencias significativas, inclusivas y con propósito social. 
 
 ### Modelo
-![imagen del modelo]()
+![image](Modelo_de_dominio.png)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+* [Draw.io](https://drive.google.com/file/d/1lk8nXVs_xaIrwI9erYk_CGOQRLd_-vMT/view?usp=sharing)
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Localidad <br>2. CRUD Tag<br>
+|CRUD dependiente|1. CRUD Usuario {depende de} CRUD ? <br>2. CRUD PuntoInteres{depende de} CRUD Localidad <br> 3. CRUD Evento {depende de} CRUD PuntoInteres|
+|Listado<br>+<br>detalle| 1. Listado de Evento  => Detalle muestra nombre del evento, una imagen de la actividad, tipo de evento, fecha más próxima y horario.<br>2. Listado de Puntos de interés => Detalle muestra una imagen del punto de interés, nombre, y breve descripción|
+|CUU/Epic|1. Evento (crear + notificación)<br>2. Valoración|
 
 
-Adicionales para Aprobación
+Adicionales para Aprobación:
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Festividad <br>2. CRUD Historia<br>3. CRUD Provincia<br>4. CRUD Localidad<br>5. CRUD Tag<br>6. CRUD Cliente<br>7. CRUD Creador <br>8. CRUD Evento<br>9. CRUD Comentario<br>10. CRUD Municipal<br>11. CRUD Privado<br>12. CRUD Favorito<br>13. CRUD Agenda<br>14. CRUD PuntoDeInteres|
+|CUU/Epic|1.Realizar un comentario sobre un punto de interés.<br> 2. Guardar un evento en la agenda.<br>3. Guardar un punto de interés en favoritos.|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+*Nota*: (A definir)
