@@ -30,9 +30,9 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Localidad <br>2. CRUD Tag<br>
-|CRUD dependiente|1. CRUD Usuario {depende de} CRUD ? <br>2. CRUD PuntoInteres{depende de} CRUD Localidad| <br>2. CRUD Evento {depende de} CRUD PuntoInteres|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD dependiente|1. CRUD Usuario {depende de} CRUD ? <br>2. CRUD PuntoInteres{depende de} CRUD Localidad <br> 3. CRUD Evento {depende de} CRUD PuntoInteres|
+|Listado<br>+<br>detalle| 1. Listado de Evento para una localidad y un rango de fechas determinado => Detalle muestra nombre del evento, una imagen de la actividad, su nombre, tipo de evento, fecha más próxima y horario.<br>2. Listado de Puntos de interés para una localidad determinada => Detalle muestra una imagen del punto de interés, nombre, y breve descripción|
+|CUU/Epic|1. Evento (crear + notificación)<br>2. Valoración|
 
 
 Adicionales para Aprobación
