@@ -14,9 +14,7 @@
       "date_born": "1985-08-20T00:00:00.000Z",
       "createdAt": null,
       "updatedAt": null,
-      "groups": [
-        "1"
-      ]
+      "groups": []
     },
     {
       "id": 3,
