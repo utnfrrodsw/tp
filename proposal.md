@@ -7,9 +7,9 @@
 * 52937 - Romero, Gabriel Tobías (Comisión 304)
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app]( https://github.com/Evenaut7/TP_DSW_FrontendApp.git)
+* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/Evenaut7/TP_DSW_BackendApp.git))
+
 
 ## Tema
 ### Descripción
