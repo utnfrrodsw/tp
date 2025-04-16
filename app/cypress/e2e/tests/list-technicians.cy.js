@@ -13,7 +13,9 @@ describe('Listar todos los técnicos que llegan desde BD', () => {
       technicians.items.forEach((technician, index) => {
         cy.get(`tbody > tr:nth-child(${index + 1})`).within(() => {
           const date = new Date(technician.date_born)
-          const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+          const rawMonth = date.getMonth() + 1
+          const month = rawMonth < 10 ? '0' + rawMonth : rawMonth
+          const formattedDate = `${date.getDate() + 1}/${month}/${date.getFullYear()}`
           cy.get('td:nth-child(1)').should('contain.text', technician.id)
           cy.get('td:nth-child(2)').should('contain.text', technician.name)
           cy.get('td:nth-child(3)').should('contain.text', formattedDate)

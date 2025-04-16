@@ -6,7 +6,7 @@ describe('Listar todos los técnicos que llegan desde BD', () => {
     interceptQuery('technician1', 'technicians/1')
     cy.visit('/edit-technician/1')
   })
-  it('Comprobar que se carguen los datos de la tarea en el formulario', () => {
+  it('Comprobar que se carguen los datos del técnico en el formulario', () => {
     cy.wait('@gettechnicians/1', { timeout: 3000 })
     cy.get('@technician1Data').then((technician) => {
       const date = new Date(technician.date_born)

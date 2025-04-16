@@ -23,7 +23,7 @@ const getGroupTasks = async (req, res) => {
       groupWhereConditions.id = technicianId
     }
     const groupTasks = await GroupTask.findAll({
-      where: whereConditions,
+      where: Object.keys(whereConditions).length ? whereConditions : undefined,
       include: [
         {
           model: Group,
