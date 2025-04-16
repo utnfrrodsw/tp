@@ -2,8 +2,8 @@
 
 ## Grupo
 ### Integrantes
-* 52805 - Laveggi, Valentino 
-* 53402 - Murúa, Joaquín Tomás
+* 52805 - Laveggi, Valentino (Comisión 303)
+* 53402 - Murúa, Joaquín Tomás (Comisión 303)
 * 52937 - Romero, Gabriel Tobías (Comisión 304)
 
 ### Repositorios
@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-El modelo de negocio planteado permite a un usuario conocer los puntos de interés de una localidad , actividades disponibles para realizar, su historia y los comentarios de otros usuarios acerca de dicha localidad. 
+El sistema propuesto es una plataforma web que permite a los usuarios descubrir puntos de interés, actividades y eventos disponibles en distintas localidades, priorizando experiencias significativas, inclusivas y con propósito social. 
 
 ### Modelo
 ![image](Modelo_de_dominio-Page-2.png)
@@ -23,9 +23,6 @@ El modelo de negocio planteado permite a un usuario conocer los puntos de inter�
 ## Alcance Funcional 
 
 ### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
