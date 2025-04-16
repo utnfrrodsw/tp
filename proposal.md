@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 52805 - Laveggi, Valentino 
+* 53402 - Murúa, Joaquín Tomás
+* 52937 - Romero, Gabriel Tobías (Comisión 304)
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
