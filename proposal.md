@@ -7,13 +7,13 @@
 * 52937 - Romero, Gabriel Tobías (Comisión 304)
 
 ### Repositorios
-* [frontend app]( https://github.com/Evenaut7/TP_DSW_FrontendApp.git)
-* [backend app](http://hyperlinkToGihubOrGitlab](https://github.com/Evenaut7/TP_DSW_BackendApp.git))
+* [frontend app](https://github.com/Evenaut7/TP_DSW_FrontendApp.git)
+* [backend app](https://github.com/Evenaut7/TP_DSW_BackendApp.git)
 
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+El modelo de negocio planteado permite a un usuario conocer los puntos de interés de una localidad , actividades disponibles para realizar, su historia y los comentarios de otros usuarios acerca de dicha localidad. 
 
 ### Modelo
 ![imagen del modelo]()
