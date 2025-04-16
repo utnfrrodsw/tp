@@ -8,7 +8,7 @@
 
 ### Repositorios
 * [frontend app]( https://github.com/Evenaut7/TP_DSW_FrontendApp.git)
-* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/Evenaut7/TP_DSW_BackendApp.git))
+* [backend app](http://hyperlinkToGihubOrGitlab](https://github.com/Evenaut7/TP_DSW_BackendApp.git))
 
 
 ## Tema
