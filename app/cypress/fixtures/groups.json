@@ -21,7 +21,7 @@
       "description": "Group 3",
       "createdAt": null,
       "updatedAt": null,
-      "technicians": [],
+      "technicians": ["Técnico"],
       "tasks": []
     }
   ],
