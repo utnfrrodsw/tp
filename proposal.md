@@ -14,7 +14,7 @@
 El sistema de gestión de inventarios permitirá a un local de informática llevar un control de sus productos, registrar ingresos, egresos y niveles de stock. Además, incluirá una funcionalidad que permitirá la emisión de un listado filtrando por tipo de producto, disponibilidad, marca. Asimismo el usuario podrá registrar nuevos pedidos, cancelar pedidos ya realizados y ver un historial de los mismos.
 
 ### Modelo
-![imagen del modelo](https://drive.google.com/file/d/1ks3dxN0PM8-Mzz7eZO3CZOSj_YKoR3yz/view?usp=drive_link)
+![imagen del modelo](ModeloE-R.jpg)
 
 ## Alcance Funcional 
 |Req|Detalle|
