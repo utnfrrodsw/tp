@@ -16,7 +16,8 @@
 El modelo de negocio planteado permite a un usuario conocer los puntos de interés de una localidad , actividades disponibles para realizar, su historia y los comentarios de otros usuarios acerca de dicha localidad. 
 
 ### Modelo
-![imagen del modelo]()
+![image](Modelo_de_dominio-Page-2.png)
+/Modelo_de_dominio-Page-2.png
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
