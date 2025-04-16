@@ -16,7 +16,7 @@
 El sistema propuesto es una plataforma web que permite a los usuarios descubrir puntos de interés, actividades y eventos disponibles en distintas localidades, priorizando experiencias significativas, inclusivas y con propósito social. 
 
 ### Modelo
-![image](Modelo_de_dominio-Page-2.png)
+![image](Modelo_de_dominio.png)
 
 * [Draw.io](https://drive.google.com/file/d/1lk8nXVs_xaIrwI9erYk_CGOQRLd_-vMT/view?usp=sharing)
 
