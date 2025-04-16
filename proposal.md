@@ -2,7 +2,41 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51403 - Ramirez, Juan Nicolás
+* 46752 - Pace, Matías Emanuel
+* 
+
+1 CRUD simple por integrante:
+
+Crud simples:
+- Retail: Maestro de comercios.
+- Category: Maestro de categorías de productos.
+- ShoppingList: Cabecera de la lista de compras del usuario.
+
+Crud dependientes:
+- SubCategory: Maestro de sub-categorías de productos (Referencia 'Category').
+- Product: Maestro de productos (Referencia 'SubCategory')
+- RetailProduct: Listado de productos disponibles en un comercio (Referencia 'Retail' y 'Product').
+- ShoppingListItem (Referencia 'Product')
+- PriceList (Referencia 'Retail')
+- Price (Referencia 'PriceList' y 'Product')
+
+Listados:
+- Productos y precios con filtro (Categoría, nombre, disponible en tal comercio, etc.).
+- Histórico de precios por producto y comercio.
+- Histórico de carritos generados por el usuario, para volver a ejecutar la comparación.
+
+Casos de uso:
+- Cargar lista de compras
+- Comparar precios de lista de compras.
+- Comparar precios a través del tiempo.
+
+Adicionales:
+- Keyword: Maestro de palabras clave para definir substitutos de un producto.
+- ProductKeyword (Referencia 'Keyword' y 'Product')
+
+Caso de uso:
+- Seleccionar artículo sustituto cuando no se encuentra el producto deseado.
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
