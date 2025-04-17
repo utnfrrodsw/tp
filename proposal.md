@@ -22,7 +22,7 @@ Sistema para gestión de turnos de una peluqueria. Le permitira al peluquero pod
 
 ### Modelo
 
-![imagen del modelo]()
+![Imagen de WhatsApp 2025-04-17 a las 11 03 33_aacc23dd](https://github.com/user-attachments/assets/ede23fc5-e4ee-4777-adbc-94f298767b5b)
 
 ## Alcance Funcional
 
