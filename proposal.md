@@ -29,25 +29,14 @@ El presente proyecto tiene como objetivo desarrollar una solución de software p
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo<br>2. CRUD Licencia<br>3. CRUD Conductor<br>4. CRUD Viajes<br>5. CRUD Tren<br>6. CRUD Carga<br>7. CRUD Recorrido|
-|CRUD dependiente|1. CRUD Licencia {depende de} CRUD Conductor<br>2. CRUD Viaje {depende de} CRUD Conductor|
-|Listado<br>+<br>detalle| 1. Listar los conductores con licencia vigente<br>2. Listar los conductores con licencia vigente (detalle)<br>3. Listar cargas de un tipo (detalle)<br>4. Listar recorridos ordenados por kilometros (detalle)|
-|CUU/Epic|1. Renovar licencia<br>2. Cancelar viaje<br>3. Revocar licencia<br>4. Dar de baja un tren|
+|CRUD simple|1. CRUD TipoCarga<br>2.CRUD Conductor<br>3.CRUD Recorrido<br>4.CRUD Estado<br>5. Categoria|
+|CRUD dependiente|1. CRUD Licencia {depende de} CRUD Conductor<br>2. CRUD Tren {depende de} CRUD TipoCarga y CRUD Estado<br>3. CRUD Denuncia {depende de} CRUD Categoria|
+|Listado<br>+<br>detalle| 1. Listar los conductores con licencia vigente<br>2. Listar los conductores con licencia vigente (detalle)<br>3. Listar cargas de un tipo (detalle)<br>4. Listar recorridos ordenados por kilometros (detalle)<br>5. Listar codigo, nombre y cantidad por cada una de las cargas que fueron transportadas en un rango de fechas dado <br>6. Cantidad de kilometros totales recorridos por cada uno de los trenes. Por cada tren mostrar su codigo y modelo|
+|CUU/Epic|1. Programar viaje<br>2. Modificar viaje|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo<br>2. CRUD Licencia<br>3. CRUD Conductor<br>4. CRUD Viajes<br>5. CRUD Tren<br>6. CRUD Carga<br>7. CRUD Recorrido|
-|CUU/Epic|1. Ver los kilometros de cada tren|
-
-
-### Alcance Adicional Voluntario (por completar)
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Listar codigo, nombre y cantidad por cada una de las cargas que fueron transportadas en un rango de fechas dado <br>2. Cantidad de kilometros totales recorridos por cada uno de los trenes. Por cada tren mostrar su codigo y modelo|
-|CUU/Epic|1. Validar estado del tren | 
-
+|CRUD|1. CRUD TipoCarga<br>2.CRUD Conductor<br>3.CRUD Recorrido<br>4.CRUD Estado<br>5. Categoria<br>6. Licencia<br>7. Tren<br>8. Denuncia|
+|CUU/Epic|1. Programar viaje<br>2. Modificar viaje<br>3. Generar denuncia<br>4. Asignar conductor|
