@@ -10,8 +10,8 @@
 
 
 ### Repositorios
-* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/carlex74/Front-End-DSW))
-* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/carlex74/Back-End-DSW))
+[frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/carlex74/Front-End-DSW))
+[backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/carlex74/Back-End-DSW))
 
 
 ## Tema
