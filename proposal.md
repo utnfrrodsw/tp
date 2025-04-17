@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51955 - Coria, Grecia Nicol
+* 50468 - Ravera, Camila Denisse
+* 51013 - Rodriguez, Maria Julieta
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,12 +13,12 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Nuestro Software se basa en una pagina de asesoramiento de imagen en donde utilizamos tags para identificar imagenes (prendas) y relacionarlo con otras. En ella los usuarios podran acceder de forma gratuita para poder buscar una prenda y encontrar posibles combinaciones con ella, además de poder guardarse conjuntos.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+(https://drive.google.com/file/d/17QlhmLbA_85BeA9a9HWqCJ0liveBjBF4/view?usp=sharing)
 
 ## Alcance Funcional 
 
