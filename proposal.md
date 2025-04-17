@@ -2,16 +2,18 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 53526, Luca Gritti
+* 53529, Felipe Sosa Bianciotto
+* 53528. Matias Estevez
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app](https://github.com/felisosa/TP-Frontend-Estevez-Gritti-Sosa.git)
+* [backend app](https://github.com/felisosa/TP-Back-Estevez-Sosa-Gritti.git)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Consiste en un sitio web para equipos deportivos donde pueden llevar registro de los datos de sus jugadores (número, nombre,posición,minutos jugados, goles, tarjetas,lesiones, etc.), partidos(resultado, fecha, 11 inicial,etc.),estadísticas generales( racha de victorias,goleador, asistidor,etc).
 
 ### Modelo
 ![imagen del modelo]()
@@ -27,26 +29,17 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD jugador<br>2. CRUD partido<br>3. CRUD equipo|
+|CRUD dependiente|1. CRUD estadísticas generales de jugador {depende de} CRUD jugador<br>2. CRUD Estadisticas de equipo {depende de} CRUD partido y CRUD equipo|
+|Listado<br>+<br>detalle| 1. listado de jugadores filtrado por posición y número mostrando nombre => detalle CRUD jugador<br> 2. listado de partido filtrado por rango de fecha mostrando resultado y rival => detalle muestra datos de los partidos jugados|
+|CUU/Epic|1. registrar jugador en el equipo<br>2. registrar datos del jugador|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD lesiones<br>2. CRUD tarjetas<br>3. CRUD goles<br>4. CRUD asistencias<br>5. CRUD entrenadores<br>6. CRUD vallas invictas<br>7. CRUD minutos jugados|
+|CUU/Epic|1. registrar entrenadores y su rol<br>2. registrar goles y asistencias<br>3. registrar lesiones|
 
 
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
 
