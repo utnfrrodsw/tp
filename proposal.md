@@ -41,7 +41,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Material<br>    * CRUD Insumo<br>    * CRUD Herramienta<br>2. CRUD Precio<br>3. CRUD Seña<br> |
+|CRUD |1. CRUD Material<br>2. CRUD Insumo<br>3. CRUD Herramienta<br>4. CRUD Precio<br>5. CRUD Seña<br> |
 |CUU/Epic| |
 
 
