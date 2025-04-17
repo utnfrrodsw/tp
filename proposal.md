@@ -33,7 +33,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Horario<br>2. CRUD Tipo de servicio<br>3. CRUD Cliente<br>4. CRUD Promoción|
-|CRUD dependiente|1. CRUD Turno {depende de} CRUD Horario<br>2. CRUD Srvicio {depende de} CRUD Tipo de servicio|
+|CRUD dependiente|1. CRUD Turno {depende de} CRUD Horario<br>2. CRUD Servicio {depende de} CRUD Tipo de servicio|
 |Listado<br>+<br>detalle| |
 |CUU/Epic| |
 
