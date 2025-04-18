@@ -18,7 +18,7 @@
 
 
 ### Modelo
-![Diagrama DER](./DER-v3.png)
+![Diagrama DER](./DER-v4.png)
 Ver diagrama en [Draw.io](https://drive.google.com/file/d/1aHBuIdu2SuQJKwL8StDEmREH56euT88r/view?usp=sharing)
 
 **Nota:** la division de las varitas entre *madera* y *núcleo* es dada por la [wiki de Harry Potter](https://harrypotter.fandom.com/es/wiki/Varita)
