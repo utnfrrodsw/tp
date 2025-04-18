@@ -42,7 +42,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Material<br>2. CRUD Insumo<br>3. CRUD Herramienta<br>4. CRUD Precio<br>5. CRUD Seña<br> |
-|CUU/Epic|1. Registrar un horario<br>2. Reservar un turno<br>3. Modificar turno<br>4. Cancelar turno|
+|CUU/Epic|3. Modificar turno<br>4. Cancelar turno|
 
 
 ### Alcance Adicional Voluntario
