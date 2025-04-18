@@ -14,8 +14,8 @@
  Sistema de e-commerce para carnicería. Los clientes podrán explorar cortes de carne disponibles, hacer pedidos, programar envíos o retiros, y ver el historial de compras. Los administradores podrán gestionar productos, clientes y pedidos.
 
 ### Modelo
-![imagen del modelo]()
 
+![image](https://github.com/user-attachments/assets/992020ed-d164-49c0-a6e0-95754dcc94d3)
 
 ## Alcance Funcional 
 
