@@ -3,10 +3,10 @@
 ## Grupo
 ### Integrantes
 
-Vera Agostina, 51021 (comisión 305)
-Collaud María Victoria, 51766 (comision 304)
-Etchecopar Olivia, 51120 (comision 304)
-Talia Milagros, 51406 (comision 305)
+* Vera Agostina, 51021 (comisión 305)
+* Collaud María Victoria, 51766 (comision 304)
+* Etchecopar Olivia, 51120 (comision 304)
+* Talia Milagros, 51406 (comision 305)
 
 
 ### Repositorios
