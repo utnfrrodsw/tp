@@ -2,51 +2,48 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+Vera Agostina, 51021 (comisión 305)
+Collaud María Victoria, 51766 (comision 304)
+Etchecopar Olivia, 51120 (comision 304)
+Talia Milagros, 51406 (comision 305)
+
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
-
+* [frontend app] git@github.com:MilagrosTalia/Backend-Protectora.git
+* [backend app] git@github.com:MilagrosTalia/Frontend-Protectora.git
+  
 ## Tema
+
+Protectora de animales. 
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Nuestro proyecto se basará en una protectora de animales, los usuarios podrán registrarse en nuestra página y tendrán diferentes posibilidades para interactuar con nuestros animalitos. Se podrá realizar el proceso de adopción y/o tránsito de animales. Además, contará con una sección de e-commerce, donde podrán adquirir una serie de productos, como alimentos, y juguetes para nuestros amiguitos.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![Protectora de animales drawio](https://github.com/user-attachments/assets/b14cae83-61fa-440d-9eab-9192ac4c2798)
+
+
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Tipo Animal <br>2. CRUD Adopción <br>3. CRUD Transito <br> 4. CRUD Zona 
+|CRUD dependiente|1. CRUD Animal {depende de} CRUD Tipo Animal <br>2. CRUD Usuario {depende de} CRUD Zona|
+|Listado<br>+<br>detalle| 1. Listado de Animales filtrado por Tipos de Animales, muestra los animales en espera de adopción según su especie <br> 2. Listado de productos disponibles filtrado por categoría|
+|CUU/Epic|1. Realizar adopción <br>2. Realizar transito|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. 1. CRUD Tipo Animal <br>2. CRUD Adopción <br>3. CRUD Transito <br>4. CRUD Zona <br>5. CRUD Categoría Producto <br>6. CRUD Pedido|
+|CUU/Epic|1. Realizar adopción <br>2. Realizar transito<br>3. Realizar la compra de productos<br> 4.Realizar donaciones ?|
 
-
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
 
