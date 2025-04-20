@@ -9,8 +9,8 @@ Este es un sistema web full stack diseñado para la administración de gimnasios
 * 51392 - Rallip Sánchez Ismael
   
 ### Repositorios
-* [frontend ap](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend ap](https://github.com/luciabolcatto/frontendAppGym.git)
+* [backend app](https://github.com/luciabolcatto/backendAppGym.git)
 
 
 ## Tema
