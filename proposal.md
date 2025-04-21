@@ -37,7 +37,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Usuario<br>2. CRUD Negocios<br>3. CRUD Habilitaciones<br>4. CRUD Categorías<br>5. CRUD Canchas<br> 6. CRUD Localidades<br> 7. CRUD Turnos<br> 8. CRUD Dirección <br> 9. Cupones|
+|CRUD |1. CRUD Usuario<br>2. CRUD Negocios<br>3. CRUD Habilitaciones<br>4. CRUD Categorías<br>5. CRUD Canchas<br> 6. CRUD Localidades<br> 7. CRUD Turnos<br> 8. CRUD Dirección <br> 9. CRUD Cupones|
 |CUU/Epic|1. Reservar una cancha<br>2. Habilitar negocio<br>3. Realizar pago de la reserva|
 
 
