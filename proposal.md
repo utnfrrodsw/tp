@@ -2,7 +2,10 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 47216 - Rindello, Mateo Miguel
+* 47539 - Riquelme, Patricio
+* 43833 - Romagnoli, Julieta
+* 42704 - Ariati Servio, Juan Cruz
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,12 +14,10 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Este sistema modela el funcionamiento de una plataforma de alquileres temporarios de propiedades, similar a servicios como Airbnb, donde usuarios pueden reservar estancias en propiedades ofrecidas por anfitriones particulares. La plataforma se encarga de gestionar la disponibilidad, reservas, pagos y valoraciones tanto de los huéspedes como de los anfitriones.
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+[draw.io](https://drive.google.com/file/d/1FgWUKIjy_D_iMDXbeRd3oQTgtm5AbhMP/view?usp=sharing)
 
 ## Alcance Funcional 
 
