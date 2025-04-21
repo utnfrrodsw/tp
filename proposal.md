@@ -7,8 +7,8 @@
 * - Speranza, Facundo
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app]([http://hyperlinkToGihubOrGitlab](https://github.com/pacematiase/frontend-retail-prices-comparer))
+* [backend app]([http://hyperlinkToGihubOrGitlab](https://github.com/pacematiase/backend-retail-prices-comparer))
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
