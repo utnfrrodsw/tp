@@ -9,7 +9,6 @@
 ### Repositorios
 * ([frontend app](https://github.com/pacematiase/frontend-retail-prices-comparer))
 * ([backend app](https://github.com/pacematiase/backend-retail-prices-comparer))
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
@@ -24,8 +23,6 @@ La aplicación permitirá realizar la carga de listas de compras para realizar e
 
 ### Alcance
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
@@ -35,8 +32,6 @@ Regularidad:
 |CUU/Epic|1. Cargar lista de compras<br>2. Comparar precios de lista de compras<br>3. Comparar precios a través del tiempo|
 
 ### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
 
 |Req|Detalle|
 |:-|:-|
