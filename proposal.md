@@ -15,7 +15,7 @@
 La aplicación permitirá realizar la carga de listas de compras para realizar en un comercio (en principio supermercado). Para cada lista de compras, la aplicación realizará una comparación de los precios de lista vigentes en los distintos comercios cargados en la aplicación y recomendará el comercio más barato.
 
 ### Modelo
-![ModeloDeDominio.png](https://github.com/pacematiase/tp/blob/main/ModeoDeDominio.png)
+![ModeloDeDominio.png](https://github.com/pacematiase/tp/blob/main/ModeloDeDominio.png)
 
 ## Alcance Funcional 
 
