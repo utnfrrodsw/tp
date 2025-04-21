@@ -4,7 +4,7 @@
 ### Integrantes
 * 51403 - Ramirez, Juan Nicolás
 * 46752 - Pace, Matías Emanuel
-* - Speranza, Facundo
+* 48711 - Speranza, Facundo
 
 ### Repositorios
 * ([frontend app](https://github.com/pacematiase/frontend-retail-prices-comparer))
