@@ -25,8 +25,8 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. Retail: Maestro de comercios<br>2. Category: Maestro de categorías de productos<br>3. ShoppingList: Cabecera de la lista de compras del usuario|
-|CRUD dependiente|1. SubCategory: Maestro de sub-categorías de productos {depende de} CRUD Category<br>2. Product: Maestro de productos {depende de} SubCategory<br>3. RetailProduct: Listado de productos disponibles en un comercio {depende de} Retail y Product<br>4. ShoppingListItem: Línea de lista de compras {depende de} ShoppingList y Product<br>5. PriceList: Cabecera de la lista de precios {depende de} Product y ShoppingList<br>6. Price: Ítem de lista de precios {depende de} PriceList y Product|
-|Listado<br>+<br>detalle| 1. Productos y precios filtrado por categoría, subcategoría, nombre, disponibilidad y comercio<br> 2. Histórico de precios filtrado por producto y comercio<br> 2. Histórico de carritos generados por el usuario|
+|CRUD dependiente|1. SubCategory: Maestro de sub-categorías de productos {depende de} CRUD Category<br>2. Product: Maestro de productos {depende de} SubCategory<br>3. RetailProduct: Listado de productos disponibles en un comercio {depende de} Retail y Product<br>4. ShoppingListItem: Línea de lista de compras {depende de} ShoppingList y Product<br>5. Price: Ítem de lista de precios {depende de} RetailProduct|
+|Listado<br>+<br>detalle| 1. Productos y precios filtrado por categoría, subcategoría, nombre, disponibilidad y comercio<br> 2. Histórico de precios filtrado por producto y comercio<br> 3. Histórico de carritos generados por el usuario|
 |CUU/Epic|1. Cargar lista de compras<br>2. Comparar precios de lista de compras<br>3. Comparar precios a través del tiempo|
 
 ### Alcance Adicional Voluntario
