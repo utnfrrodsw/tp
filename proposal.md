@@ -3,7 +3,7 @@
 ## Grupo
 ### Integrantes
 * 45198 - Romo, Matías
-* 1 - a
+*  - Heidel, Alan
 * 2 - b
 
 ### Repositorios
