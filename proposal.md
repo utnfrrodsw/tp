@@ -14,7 +14,7 @@
 ## Tema
 ### Descripción
 
-Nuestro Software se basa en una pagina de asesoramiento de imagen en donde utilizamos tags para identificar imagenes (prendas) y relacionarlo con otras. En ella los usuarios podran acceder de forma gratuita para poder buscar una prenda y encontrar posibles combinaciones con ella, además de poder guardarse conjuntos.
+Nuestro software se basa en una página de adopción de mascotas que utiliza etiquetas (tags) para identificar tanto a las mascotas como a los usuarios registrados, con el objetivo de relacionarlos entre sí. En la plataforma, los usuarios podrán cargar mascotas en adopción y también completar un perfil con información relevante que permitirá encontrar coincidencias automáticas con mascotas compatibles.
 
 ### Modelo
 
