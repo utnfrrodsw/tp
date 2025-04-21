@@ -2,16 +2,18 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 41980 - Valenti, Sofia
+* 48318 - Merino, Federico
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Aplicación web que permite a propietarios publicar alojamientos para alquiler temporario, y a usuarios consultar disponibilidad, buscar por ubicación o fechas, y realizar reservas de forma directa.
 
 ### Modelo
 ![imagen del modelo]()
@@ -27,10 +29,10 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Tipo de alojamientos<br>2. CRUD Provincias<br>3. CRUD Localidades<br>4. CRUD Usuarios
+|CRUD dependiente|1. CRUD Publicaciones {depende de} CRUD Tipo de alojamientos, provincia, ciudad, usuario<br>2. CRUD Reservas {depende de} CRUD Publicaciones<br>3. CRUD Review de alojamientos {depende de} Publicaciones|
+|Listado<br>+<br>detalle| 1. Listado de publicaciones filtrado por localidad, fecha y cantidad de huéspedes <br> 2. Listado de alojamientos favoritos (*)
+|CUU/Epic|1. Reservar un alojamiento para la estadía<br>2. Cancelar una reserva<br>3. Publicar una propiedad<br>4. Modificar una publicación<br>5. Remover una publicación<br>6. Realizar una consulta sobre una publicación<br>7. Registrar un usuario (*) |
 
 
 Adicionales para Aprobación
