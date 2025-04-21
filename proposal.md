@@ -8,9 +8,8 @@
 * 42704 - Ariati Servio, Juan Cruz
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/mateorindello1/DSW2025-TPI-FE)
+* [backend app](https://github.com/mateorindello1/DSW2025-TPI-BE)
 
 ## Tema
 ### Descripción
