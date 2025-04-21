@@ -2,21 +2,26 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 47216 - Rindello, Mateo Miguel
+* 47539 - Riquelme, Patricio
+* 43833 - Romagnoli, Julieta
+* 42704 - Ariati Servio, Juan Cruz
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/mateorindello1/DSW2025-TPI-FE)
+* [backend app](https://github.com/mateorindello1/DSW2025-TPI-BE)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Este sistema modela el funcionamiento de una plataforma de alquileres temporarios de propiedades, similar a servicios como Airbnb, donde usuarios pueden reservar estancias en propiedades ofrecidas por anfitriones particulares. La plataforma se encarga de gestionar la disponibilidad, reservas, pagos y valoraciones tanto de los huéspedes como de los anfitriones.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+[Link de draw.io](https://drive.google.com/file/d/1FgWUKIjy_D_iMDXbeRd3oQTgtm5AbhMP/view?usp=sharing)
+
+![imagen del modelo](https://github.com/Patricionrp/tp-dsw-2025/blob/main/AlquileresTemporarios.drawio%20(1).png)
+
+
 
 ## Alcance Funcional 
 
