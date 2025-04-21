@@ -16,7 +16,12 @@
 Este sistema modela el funcionamiento de una plataforma de alquileres temporarios de propiedades, similar a servicios como Airbnb, donde usuarios pueden reservar estancias en propiedades ofrecidas por anfitriones particulares. La plataforma se encarga de gestionar la disponibilidad, reservas, pagos y valoraciones tanto de los huéspedes como de los anfitriones.
 
 ### Modelo
-[draw.io](https://drive.google.com/file/d/1FgWUKIjy_D_iMDXbeRd3oQTgtm5AbhMP/view?usp=sharing)
+
+[Link de draw.io](https://drive.google.com/file/d/1FgWUKIjy_D_iMDXbeRd3oQTgtm5AbhMP/view?usp=sharing)
+
+![imagen del modelo](https://github.com/Patricionrp/tp-dsw-2025/blob/main/AlquileresTemporarios.drawio%20(1).png)
+
+
 
 ## Alcance Funcional 
 
