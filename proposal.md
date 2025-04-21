@@ -6,8 +6,8 @@
 * 48318 - Merino, Federico
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app](https://github.com/fedemerino/dsw-frontend)
+* [backend app](https://github.com/fedemerino/dsw-backend)
 
 ## Tema
 
