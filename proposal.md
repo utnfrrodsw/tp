@@ -15,9 +15,7 @@
 La aplicación permitirá realizar la carga de listas de compras para realizar en un comercio (en principio supermercado). Para cada lista de compras, la aplicación realizará una comparación de los precios de lista vigentes en los distintos comercios cargados en la aplicación y recomendará el comercio más barato.
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![ModeloDeDominio.png](https://github.com/pacematiase/tp/blob/main/ModeoDeDominio.png)
 
 ## Alcance Funcional 
 
