@@ -3,8 +3,8 @@
 ## Grupo
 ### Integrantes
 * 45198 - Romo, Matías
-*  - Heidel, Alan
-* 2 - b
+*  Heidel, Alan
+* 49953 - Fracassi, Santiago
 
 ### Repositorios
 * [frontend app](https://github.com/matiusuario/utnfrrodsw-frontend)
