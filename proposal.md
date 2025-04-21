@@ -4,6 +4,7 @@
 ### Integrantes
 * 41980 - Valenti, Sofia
 * 48318 - Merino, Federico
+* 
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
