@@ -35,7 +35,7 @@ Regularidad:
 |CRUD simple|1. CRUD Horario<br>2. CRUD Tipo de servicio<br>3. CRUD Cliente<br>4. CRUD Promoción|
 |CRUD dependiente|1. CRUD Turno {depende de} CRUD Horario<br>2. CRUD Servicio {depende de} CRUD Tipo de servicio|
 |Listado<br>+<br>detalle|1. Listado de turnos filtrado por fecha, muestra nro cliente, horario de inicio y horario de fin => detalle CRUD Servicios<br>2. Listado de servicios por tipo, muestra tipo, codigo, nombre, y descripción => detalle CRUD Servicio|
-|CUU/Epic|1. Registrar un horario<br>2. Reservar un turno|
+|CUU/Epic|1. Registrar un horario (no va)<br>2. Reservar un turno<br>3. Registrar un turno como terminado|
 
 
 Adicionales para Aprobación
