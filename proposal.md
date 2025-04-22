@@ -2,16 +2,19 @@
 
 ## Grupo
 ### Integrantes
- 52588 -Peppino, Valentin
+ 52588 - Peppino, Valentin<br>
+ 52211 - Santinelli, Agustin<br>
+ 52425 - Zabaleta, Gianlucas<br>
+ 52398 - Ratti, Martin<br>
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [Frontend](https://github.com/valenpeppi/FrontEnd-Venta-de-Entradas)
+* [Backend](https://github.com/valenpeppi/BackEnd-Venta-de-Entradas)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+La pagina constaria de esquema de venta de entrada a determinados evento, donde el organizador solicita la creacion de un evento en local precargado, el cual queda pendiente de la aprobacion de un administrador. Una vez aprobada la solicitud, se crea el evento donde los usuarios podran compran sus determinadas entrada para dicho evento.
 
 ### Modelo
 ![imagen del modelo]()
