@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* 52588 -Peppino, Valentin
+ 52588 -Peppino, Valentin
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
