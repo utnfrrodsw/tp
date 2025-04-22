@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 52588 -Peppino, Valentin
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
