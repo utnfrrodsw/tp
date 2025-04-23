@@ -10,7 +10,6 @@
 ### Repositorios
 * [Frontend](https://github.com/valenpeppi/FrontEnd-Venta-de-Entradas)
 * [Backend](https://github.com/valenpeppi/BackEnd-Venta-de-Entradas)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
@@ -19,13 +18,11 @@
 ![image](https://github.com/user-attachments/assets/3f1c2f8a-96d1-4c19-b137-ea4af53c3eaa)
 
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
@@ -45,7 +42,6 @@ Adicionales para Aprobación
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
 
 |Req|Detalle|
 |:-|:-|
