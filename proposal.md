@@ -17,7 +17,7 @@
     previamente cargado en el sistema y completando los datos requeridos. Una vez enviada la solicitud, esta solicitud queda en estado pendiente y debe ser revisada y aprobada por un administrador. Cuando el evento es aprobado, se publica automáticamente en la plataforma y pasa a estar disponible para que los usuarios registrados puedan adquirir entradas.
 
 ## Modelo    
-![image](https://github.com/user-attachments/assets/3f1c2f8a-96d1-4c19-b137-ea4af53c3eaa)
+![image](https://github.com/user-attachments/assets/d4eed8b0-1d41-4484-9ba2-eefed77615c4)
 
 
 
