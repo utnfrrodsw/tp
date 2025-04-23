@@ -15,6 +15,8 @@
 ### Descripción
   La plataforma consiste en un sistema de venta de entradas para eventos. Los organizadores pueden solicitar la creación de un evento, seleccionando un estadio
     previamente cargado en el sistema y completando los datos requeridos. Una vez enviada la solicitud, esta solicitud queda en estado pendiente y debe ser revisada y aprobada por un administrador. Cuando el evento es aprobado, se publica automáticamente en la plataforma y pasa a estar disponible para que los usuarios registrados puedan adquirir entradas.
+
+## Modelo    
 ![image](https://github.com/user-attachments/assets/3f1c2f8a-96d1-4c19-b137-ea4af53c3eaa)
 
 
@@ -27,7 +29,7 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Estadio<br>2. CRUD Zona <br>3. CRUD Entrada|
+|CRUD simple|1. CRUD Estadio<br>2. CRUD Zona <br>3. CRUD Entrada <br>4. CRUD Usuario|
 |CRUD dependiente|1. CRUD Precio {depende de} CRUD Ubicacion y CRUD Evento<br>2. CRUD Cliente {depende de} CRUD Localidad|
 |Listado<br>+<br>detalle| 1. Listado de Eventos filtrado por fecha, muestra nombre de evento, descripcion, precio y fecha => detalle muestra genero y espacio libre.<br> 2. Listado de eventos filtrado por genero, muestra nombre de evento, genero, descripcion y precio => detalle muestraespacio libre y fecha.|
 |CUU/Epic|1. Comprar una entrada para un evento habilitado.<br>2. Crear un evento para una fecha determinada.|
