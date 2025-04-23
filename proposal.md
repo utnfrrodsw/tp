@@ -1,4 +1,4 @@
-# Propuesta TP DSW
+# Propuesta TP DSW - Sistema de gestión general educativo nivel secundario
 
 ## Grupo
 ### Integrantes
