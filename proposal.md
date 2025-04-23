@@ -19,7 +19,6 @@ La aplicación permitirá realizar la carga de listas de compras para realizar e
 
 ## Alcance Funcional 
 ### Alcance
-Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. Retail: Maestro de comercios<br>2. Category: Maestro de categorías de productos<br>3. User: Usuarios del sistema|
