@@ -26,7 +26,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Materia<br>2. CRUD Alumno<br>3. CRUD Curso|
-|CRUD dependiente|1. CRUD Docente {depende de CRUD Materia}<br>2. CRUD Evaluación {depende de Materia}<br>3. CRUD Inscripción {depende de CRUD Alumno y CRUD Curso}|
+|CRUD dependiente|1. CRUD Docente {depende de CRUD Materia}<br>2. CRUD Evaluación {depende de CRUD Materia}<br>3. CRUD Inscripción {depende de CRUD Alumno y CRUD Curso}|
 |Listado<br>+<br>detalle| 1. Listado de Alumnos filtrado por Curso, muestra nombre, apellido, curso => detalle CRUD Alumno<br> 2. Listado de Evaluaciones filtrado por Materia, muestra título, fecha, alumno, nota => detalle CRUD Evaluación|
 |CUU/Epic|1. Registrar Asistencia de Alumnos<br>2. Gestionar Calificaciones de Evaluaciones|
 
