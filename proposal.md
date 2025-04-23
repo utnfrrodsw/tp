@@ -17,7 +17,8 @@
 La pagina constaria de esquema de venta de entrada a determinados evento, donde el organizador solicita la creacion de un evento en local precargado, el cual queda pendiente de la aprobacion de un administrador. Una vez aprobada la solicitud, se crea el evento donde los usuarios podran compran sus determinadas entrada para dicho evento.
 
 ### Modelo
-![imagen del modelo]()
+![image](https://github.com/user-attachments/assets/3f1c2f8a-96d1-4c19-b137-ea4af53c3eaa)
+
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
@@ -30,7 +31,7 @@ La pagina constaria de esquema de venta de entrada a determinados evento, donde 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD Servicio<br>3. CRUD Localidad|
+|CRUD simple|1. CRUD Estadio<br>2. CRUD <br>3. CRUD Localidad|
 |CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
 |Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
