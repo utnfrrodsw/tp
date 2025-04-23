@@ -34,7 +34,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Materia<br>2. CRUD Alumno<br>3. CRUD Curso<br>4. CRUD Docente {depende de CRUD Materia}<br>5. CRUD Evaluación {depende de Materia}<br>6. CRUD Inscripción {depende de CRUD Alumno y CRUD Curso}<br>7. CRUD Personal<br>8. CRUD Material de Estudio {depende de Materia}<br>9. CRUD Foro<br>10. CRUD Aviso|
+|CRUD |1. CRUD Materia<br>2. CRUD Alumno<br>3. CRUD Curso<br>4. CRUD Docente {depende de CRUD Materia}<br>5. CRUD Evaluación {depende de CRUD Materia}<br>6. CRUD Inscripción {depende de CRUD Alumno y CRUD Curso}<br>7. CRUD Personal<br>8. CRUD Material de Estudio {depende de CRUD Materia}<br>9. CRUD Foro<br>10. CRUD Aviso|
 |CUU/Epic|1. Registrar Asistencia de Alumnos<br>2. Gestionar Calificaciones de Evaluaciones<br>3. Generar Certificados Digitales con verificación<br>4. Realizar Inscripción de Alumno a Año en lote|
 
 
