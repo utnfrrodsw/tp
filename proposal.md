@@ -22,7 +22,9 @@ En Rosario están ocurriendo Anomalías producidas por Fantasmas. Para soluciona
 
 ### Modelo
 
-[Imagen del modelo (Draw.io)](https://app.diagrams.net#G1-IVL3tP7jw7QF192Rc02GROQfhCnMEic)
+<img src="./images/DC-Proposal-MD.png" alt="Modelo de Dominio" />
+
+[Link del modelo (Draw.io)](https://app.diagrams.net#G1-IVL3tP7jw7QF192Rc02GROQfhCnMEic)
 
 ## Alcance Funcional
 
