@@ -31,13 +31,13 @@ En Rosario están ocurriendo Anomalías producidas por Fantasmas. Para soluciona
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo de Anomalía<br>2. CRUD Zona|
-|CRUD dependiente|1. CRUD Cazador {depende de} CRUD Zona|
+|CRUD simple|1. CRUD Tipo de Anomalía<br>2. CRUD Localidad<br>3. CRUD Operador|
+|CRUD dependiente|1. CRUD Cazador {depende de} CRUD Zona<br>2. CRUD Zona {depende de} CRUD Localidad|
 |Listado<br>+<br>detalle| 1. Listado de Pedidos de Resolución filtrado por su dificultad, muestra código del pedido de resolución y dificultad de la anomalía => detalle CRUD Pedido de Resolución<br> 2. Listado de Inspecciones filtrado por su resultado, muestra código del pedido de resolución y resultado de la Inspección => detalle CRUD Inspección|
-|CUU/Epic|1. Generar Pedido de Resolución|
+|CUU/Epic|1. Generar Pedido de Resolución<br>2. Registrar Inspección|
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Operador<br>2. CRUD Cazador|
-|CUU/Epic|1. Registrar Inspección Generar<br>2. Pedido de Agregación de Anomalía|
+|CRUD |-|
+|CUU/Epic|1. Generar Pedido de Agregación de Anomalía|
