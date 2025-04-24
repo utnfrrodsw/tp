@@ -10,8 +10,8 @@
 
 ### Repositorios
 
-- [frontend app](http://hyperlinkToGihubOrGitlab)
-- [backend app](http://hyperlinkToGihubOrGitlab)
+- [frontend app](https://github.com/tomasinoalvaro48/DSWTP_FrontEnd)
+- [backend app](https://github.com/tomasinoalvaro48/DSWTP_BackEnd)
 
 ## Tema
 
