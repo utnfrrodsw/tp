@@ -41,7 +41,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD | CRUD Precio <br><br>|
-|CUU/Epic|1. . <br>2. Contratar Membresia (Con restriccion y pago digital) <br>3. Valoración de Entrenadores <br>|
+|CUU/Epic|1. Cancelar reserva. <br>2. Contratar Membresia (Con restriccion y pago digital) <br>3. Valoración de Entrenadores <br>|
 
 
 ### Alcance Adicional Voluntario
@@ -50,5 +50,5 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |Listados | A definir <br>|
-|CUU/Epic|1. Cancelar reserva <br><br>|
+|CUU/Epic|1.  <br><br>|
 |Otros|1. Notificación previa a turno <br>2. Pago digital con stripe <br>3. Chatbot |
