@@ -38,13 +38,13 @@ Regularidad:
 |CRUD simple|1. CRUD Tipo Animal <br>2. CRUD Zona <br>3. CRUD Estado <br> 4. CRUD Salud
 |CRUD dependiente|1. CRUD Animal {depende de} CRUD Tipo Animal <br>2. CRUD Usuario {depende de} CRUD Zona|
 |Listado<br>+<br>detalle| 1. Listado de Animales filtrado por Tipos de Animales, muestra los animales en espera de adopción según su especie <br> 2. Listado de productos disponibles filtrado por categoría|
-|CUU/Epic|1. Realizar adopción <br>2. Realizar transito <br> 3.Realizar Petición de Apoyo <br> 4. Relizar Donaciones??|
+|CUU/Epic|1. Realizar adopción <br>2. Realizar transito|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. 1. CRUD Tipo Animal <br>2. CRUD Adopción <br>3. CRUD Transito <br>4. CRUD Zona|
-|CUU/Epic|1. Realizar adopción <br>2. Realizar transito<br>3. Realizar donaciones <br> 4. ?|
+|CUU/Epic|1. Realizar adopción <br>2. Realizar transito<br>3.Realizar Petición de Apoyo <br> 4. Relizar Donaciones|
 
 
