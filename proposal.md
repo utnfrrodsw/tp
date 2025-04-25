@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-Sitio web interactivo donde el usuario pueda seleccionar paso a paso los servicios necesarios para el armado de un evento.
+Sitio web interactivo donde el usuario pueda seleccionar paso a paso los servicios necesarios para el armado de un evento, por el momento solo en la localidad de Rosario.
 
 ### Modelo
 [Drawio](https://drive.google.com/file/d/10gddmn0Piiaaxf0Mnc5eGESThUVNHqKU/view?usp=sharing)
@@ -26,7 +26,7 @@ Sitio web interactivo donde el usuario pueda seleccionar paso a paso los servici
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Cliente<br>2. CRUD Servicio<br>3. CRUD Zona|
+|CRUD simple|1. CRUD Cliente<br>2. CRUD Gastronomico<br>3. CRUD Barra<br>4. CRUD Zona|
 |CRUD dependiente|1. CRUD Solicitud {depende de} CRUD Cliente<br>2. CRUD Salon {depende de} CRUD Zona|
 |Listado<br>+<br>detalle| 1. Listado de Salones filtrado por Zonas, se muestra el IdSalon, nombre, idZona, foto.<br> 2. Listado de Dj y Servicios disponibles para un determinado Salon, se muestra el nombre artístico y foto del Dj, nombre y foto del servicio.|
 |CUU/Epic|1. Realizar solicitud de reserva<br>2. Alta y/o baja de elementos|
@@ -35,7 +35,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Cliente<br>2. CRUD Servicio<br>3. CRUD Zona<br>4. CRUD Dj<br>5. CRUD Administrador<br>6. CRUD Precio<br>7. CRUD Salon|
+|CRUD |1. CRUD Cliente<br>2. CRUD Barra<br>3. CRUD Zona<br>4. CRUD Dj<br>5. CRUD Administrador<br>6. CRUD Salon<br>7. CRUD Gastronomico|
 |CUU/Epic|1. Realizar solicitud de reserva<br>2. Alta y/o baja de elementos<br>3. Epic pago (con MP)|
 
 
