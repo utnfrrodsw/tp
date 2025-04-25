@@ -15,9 +15,7 @@
 
 ## Tema
 ### Descripción
-El sistema consiste en una web diseñada para la búsqueda, reserva, valoración y presentación de un restaurante. Donde un usuario busca la disponibilidad para un restaurante en el día y hora que desee, permitiéndole buscar por zona, según la valoración de los restaurantes y por precios. 
-El cliente podrá suscribirse para poder acceder a los descuentos y beneficios de los restaurantes. Luego de cumplir la reserva del cliente, el sistema le enviará un mail para que registre su valoración del restaurante. 
-El dueño del restaurante podrá gestionar penalidades a los clientes dependiendo del comportamiento del cliente en la reserva y las repetidas ausencias a la misma.
+El sistema consiste en una web diseñada para la búsqueda, reserva, valoración y presentación de un restaurante. Donde un usuario busca la disponibilidad para un restaurante en el día y hora que desee, permitiéndole buscar por zona, según la valoración de los restaurantes y por precios.<br>El cliente podrá suscribirse para poder acceder a los descuentos y beneficios de los restaurantes. Luego de cumplir la reserva del cliente, el sistema le enviará un mail para que registre su valoración del restaurante.<br>El dueño del restaurante podrá gestionar penalidades a los clientes dependiendo del comportamiento del cliente en la reserva y las repetidas ausencias a la misma.
 
 
 ### Modelo
