@@ -44,7 +44,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. 1. CRUD Tipo Animal <br>2. CRUD Adopción <br>3. CRUD Transito <br>4. CRUD Zona <br>5. CRUD Categoría Producto <br>6. CRUD Pedido|
+|CRUD |1. 1. CRUD Tipo Animal <br>2. CRUD Adopción <br>3. CRUD Transito <br>4. CRUD Zona|
 |CUU/Epic|1. Realizar adopción <br>2. Realizar transito<br>3. Realizar donaciones <br> 4. ?|
 
 
