@@ -13,8 +13,16 @@
 
 ## Tema
 ### Descripción
-  La plataforma consiste en un sistema de venta de entradas para eventos. Los organizadores pueden solicitar la creación de un evento, seleccionando un estadio
-    previamente cargado en el sistema y completando los datos requeridos. Una vez enviada la solicitud, esta solicitud queda en estado pendiente y debe ser revisada y aprobada por un administrador. Cuando el evento es aprobado, se publica automáticamente en la plataforma y pasa a estar disponible para que los usuarios registrados puedan adquirir entradas.
+La plataforma consiste en un sistema de venta de entradas para eventos. Los organizadores pueden solicitar la creación de un evento, seleccionando un estadio
+    previamente cargado en el sistema y completando los datos requeridos. Una vez enviada la solicitud, esta solicitud queda en estado pendiente y debe ser revisada y aprobada por un administrador.<br>
+    
+Cuando el evento es aprobado, se publica automáticamente en la plataforma y pasa a estar disponible para que los todos los usuarios puedan ver los eventos disponibles. Todos los eventos estarán organizados según su tipo, con el objetivo de facilitar la búsqueda. En caso de requerir información adicional sobre un evento, se proporcionará un detalle completo con todos los datos disponibles.<br>
+
+En caso que un usuario se decida a realizar la compra de entradas para un determinado evento, deberá registrarse en la página si aun no lo ha hecho. A continuación, el proceso de selección variará según si el estadio cuenta con asientos numerados o no.<br>
+   -Si el estadio es numerado, se mostrará primero la selección de sector y luego un mapa interactivo con los asientos disponibles dentro de ese sector.<br>
+   -Si el estadio no es numerado, el usuario solo deberá elegir el sector deseado.<br>
+
+Al momento de confirmar la compra, se solicitarán los datos necesarios y se procederá con el pago a través de los medios habilitados. Una vez finalizado el proceso, se mostrará al usuario un resumen detallado de su compra.
 
 ## Modelo    
 ![image](https://github.com/user-attachments/assets/d4eed8b0-1d41-4484-9ba2-eefed77615c4)
