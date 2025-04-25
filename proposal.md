@@ -37,16 +37,16 @@ Al momento de confirmar la compra, se solicitarán los datos necesarios y se pro
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Estadio<br>2. CRUD Zona <br>3. CRUD Entrada <br>4. CRUD Usuario|
-|CRUD dependiente|1. CRUD Precio {depende de} CRUD Ubicacion y CRUD Evento<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de Eventos filtrado por fecha, muestra nombre de evento, descripcion, precio y fecha => detalle muestra genero y espacio libre.<br> 2. Listado de eventos filtrado por genero, muestra nombre de evento, genero, descripcion y precio => detalle muestraespacio libre y fecha.|
-|CUU/Epic|1. Comprar una entrada para un evento habilitado.<br>2. Crear un evento para una fecha determinada.|
+|CRUD simple|1. CRUD TipoEvento<br>2. CRUD Usuario <br>3. CRUD Lugar <br>4. CRUD ComisionEntrada|
+|CRUD dependiente|1. CRUD Precio {depende de} CRUD Sector y CRUD Evento<br>2. CRUD Evento {depende de} CRUD Lugar y CRUD TipoEvento|
+|Listado<br>+<br>detalle| 1. Listado de Eventos filtrado por fecha, muestra nombre de evento, descripcion, precio y fecha => detalle muestra tipo de evento y espacio libre.<br> 2. Listado de eventos filtrado por tipo del evento, muestra nombre de evento, tipo del evento, descripcion y precio => detalle muestra espacio libre y fecha.|
+|CUU/Epic|1. Comprar una entrada para un evento habilitado de un tipo de evento.<br>2. Crear un evento de un tipo y para una fecha determinada.|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Usuario<br>2. CRUD Entrada<br>3. CRUD Evento<br>4. CRUD Ubicacion<br>5. CRUD Venta<br>6. CRUD Precio<br>7. CRUD Estadio<br>8. CRUD Zona|
+|CRUD |1. CRUD Usuario<br>2. CRUD Entrada<br>3. CRUD Evento<br>4. CRUD Sector<br>5. CRUD Venta<br>6. CRUD Precio<br>7. CRUD Lugar<br>8. CRUD ComisionEntrada<br>9. CRUD TipoEvento<br>10. CRUD Butaca<br>11. CRUD LineaVenta|
 |CUU/Epic|1. Comprar una entrada para un evento habilitado<br>2. Crear un evento para una fecha determinada<br>3. Evaluar evento pendiente|
 
 
@@ -55,7 +55,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Eventos filtrados por zonas, muestra los datos del evento. <br>2. Eventos filtrados por nombre de estadio, muestra todos los datos de estadio.|
+|Listados |1. Eventos filtrados por Lugar, muestra los datos del evento.|
 |CUU/Epic|1. Cancelar evento<br>2. Modificar evento|
 |Otros|1. Envío de recordatorio de evento (cancelaciòn, modificaciòn y dìas antes de la fecha) por email.|
 
