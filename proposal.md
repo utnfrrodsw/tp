@@ -25,8 +25,8 @@ En caso que un usuario se decida a realizar la compra de entradas para un determ
 Al momento de confirmar la compra, se solicitarán los datos necesarios y se procederá con el pago a través de los medios habilitados. Una vez finalizado el proceso, se mostrará al usuario un resumen detallado de su compra.
 
 ## Modelo    
-![image](https://github.com/user-attachments/assets/d4eed8b0-1d41-4484-9ba2-eefed77615c4)
-
+![image](https://github.com/user-attachments/assets/cf02fb56-28b6-4ffa-b3a1-fdee9038f472)
+Link de Draw.io: https://app.diagrams.net/#G1JQ4jZBuJwJ3PSq4Bxjy0-jp5qHoPxyZK#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D
 
 
 ## Alcance Funcional 
