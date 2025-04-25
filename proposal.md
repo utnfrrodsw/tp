@@ -16,7 +16,7 @@
 La plataforma consiste en un sistema de venta de entradas para eventos. Los organizadores pueden solicitar la creación de un evento, seleccionando un estadio
     previamente cargado en el sistema y completando los datos requeridos. Una vez enviada la solicitud, esta solicitud queda en estado pendiente y debe ser revisada y aprobada por un administrador.<br>
     
-Cuando el evento es aprobado, se publica automáticamente en la plataforma y pasa a estar disponible para que los todos los usuarios puedan ver los eventos disponibles. Todos los eventos estarán organizados según su tipo, con el objetivo de facilitar la búsqueda. En caso de requerir información adicional sobre un evento, se proporcionará un detalle completo con todos los datos disponibles.<br>
+Cuando el evento es aprobado por el administrador, el evento quedará en estado pendiente para su publicación hasta que el organizador decida publicarlo. Una vez publicado en la plataforma, pasa a estar disponible para que los todos los usuarios puedan ver los eventos disponibles. Todos los eventos estarán organizados según su tipo, con el objetivo de facilitar la búsqueda. En caso de requerir información adicional sobre un evento, se proporcionará un detalle completo con todos los datos disponibles.<br>
 
 En caso que un usuario se decida a realizar la compra de entradas para un determinado evento, deberá registrarse en la página si aun no lo ha hecho. A continuación, el proceso de selección variará según si el estadio cuenta con asientos numerados o no.<br>
    -Si el estadio es numerado, se mostrará primero la selección de sector y luego un mapa interactivo con los asientos disponibles dentro de ese sector.<br>
