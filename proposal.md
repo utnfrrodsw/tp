@@ -47,6 +47,6 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |Listados |1. Listado de materiales por servicio, muestra herramientas e insumos => detalle CRUD Herramientas y CRUD Insumos|
-|CUU/Epic||5. Registrar pago
+|CUU/Epic|5. Registrar pago|
 |Otros| 1. Recordatorio SMS o Mail de reserva de turno|
 
