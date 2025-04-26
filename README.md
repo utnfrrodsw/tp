@@ -14,7 +14,7 @@ El sistema permitirá a los usuarios ingresar a la página web y observar difere
 
 ### Modelo
 
-[Modelo de Dominio](https://drive.google.com/file/d/19oo2OMIBkmHHlL8IWxTLiJujF6Z2ven8/view?usp=sharing)
+[Modelo de Dominio](https://drive.google.com/file/d/10CZM5P55DNUaeEiIdEiqubp5iLLYt8Ha/view?usp=sharing)
 
 ## Alcance Funcional 
 
@@ -47,9 +47,9 @@ Regularidad:
 - Tipo
 
 #### Reseña
-- Nombre
 - IdReseña
 - FechaReseña
+- Reaccion[0..1]
 
 #### Categoría
 - Nombre
@@ -61,10 +61,28 @@ Regularidad:
 - Sinopsis
 
 #### Favoritos
-- idLibro
 - IdAutor
+- FechaAgregado
+
 
 #### Autor
 - Nombre
-- Apellido
+- ApellidoAutor
 - IdAutor
+
+#### Autor
+- NombreLista
+- UltimaFechaModificacion
+
+ #### ContenidoLista
+ - IdLibro
+ - NombreLibro
+
+#### Saga
+- IdSaga
+- NombreSaga
+
+#### Editorial
+- IdEditorial
+- NombreEditorial
+- Idioma
