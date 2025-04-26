@@ -107,10 +107,10 @@ classDiagram
 Aprobación Directa:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD User<br>2. CRUD Group<br>3. CRUD Expense<br>4. CRUD Payment|
-|CRUD dependiente|1. CRUD Balance {depende de} CRUD Expense<br>2. CRUD SplitType {depende de} CRUD Expense<br>3. CRUD PaymentStatus {depende de} CRUD Payment|
+|CRUD simple|1. CRUD User<br>2. CRUD Group<br>3. CRUD SplitType<br>4. CRUD PaymentStatus|
+|CRUD dependiente|1. CRUD Expense {depende de} CRUD User,Group<br><br>3. CRUD ****** {depende de} CRUD ******|
 |Listado<br>+<br>detalle| 1. Listado de Gastos filtrado por monto, periodo de tiempo, usuarios y categoría => detalle CRUD Expense<br>2. Listado de Deudas filtrado por estado, usuario y tipo de gasto => detalle CRUD Payment|
-|CUU/Epic|1. Visualización unificada de deudores y acreedores para facilitar el seguimiento y saldar cuentas<br>2. Analisis de Gastos y reportes personalizados<br>3. Gestión colaborativa de grupos<br>4. Historial de transacciones con filtros personalizados|
+|CUU/Epic|1. Visualización unificada de deudores y acreedores para facilitar el seguimiento y saldar cuentas<br>2. Analisis de Gastos y reportes personalizados<br>3. Gestión colaborativa de grupos<br>4. Historial de transacciones con filtros personalizados<br>4. Procesamiento de pagos de expensas|
 
 
 Adicionales para Aprobación
