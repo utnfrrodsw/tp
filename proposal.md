@@ -37,7 +37,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1.CRUD Precio<br>2.Promocion|
+|CRUD |1.CRUD Precio<br>2. CRUD Promocion|
 |CUU/Epic|3. Modificar turno<br>4. Cancelar turno|
 
 
