@@ -37,7 +37,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1.CRUD Precio<br>2. CRUD Promocion|
+|CRUD |1. CRUD Precio<br>2. CRUD Promocion|
 |CUU/Epic|3. Modificar turno<br>4. Cancelar turno|
 
 
@@ -47,6 +47,6 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |Listados |1. Listado de materiales por servicio, muestra herramientas e insumos => detalle CRUD Herramientas y CRUD Insumos|
-|CUU/Epic||
+|CUU/Epic||5. Registrar pago
 |Otros| 1. Recordatorio SMS o Mail de reserva de turno|
 
