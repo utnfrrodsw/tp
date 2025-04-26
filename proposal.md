@@ -28,16 +28,16 @@ Como última instancia, también se implementará un sistema de gestión de prom
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Horario<br>2. CRUD Tipo de servicio<br>3. CRUD Cliente<br>4. CRUD Promoción|
-|CRUD dependiente|1. CRUD Turno {depende de} CRUD Horario<br>2. CRUD Servicio {depende de} CRUD Tipo de servicio|
+|CRUD simple|1. CRUD Horario<br>2. CRUD Tipo de servicio<br>3. CRUD Cliente<br>4. CRUD Material|
+|CRUD dependiente|1. CRUD Insumo {depende de} CRUD Material<br>2. CRUD Servicio {depende de} CRUD Tipo de servicio<br>3.CRUD Herramienta {depende de} CRUD Material|
 |Listado<br>+<br>detalle|1. Listado de turnos filtrado por fecha, muestra nro cliente, horario de inicio y horario de fin => detalle CRUD Servicios<br>2. Listado de servicios por tipo, muestra tipo, codigo, nombre, y descripción => detalle CRUD Servicio|
-|CUU/Epic|1. Registrar un horario (no va)<br>2. Reservar un turno<br>3. Registrar un turno como terminado|
+|CUU/Epic|1.Reservar un turno<br>3. Registrar seña|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Material<br>2. CRUD Insumo<br>3. CRUD Herramienta<br>4. CRUD Precio<br>5. CRUD Seña<br> |
+|CRUD |1.CRUD Precio<br>2.Promocion|
 |CUU/Epic|3. Modificar turno<br>4. Cancelar turno|
 
 
@@ -47,6 +47,6 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |Listados |1. Listado de materiales por servicio, muestra herramientas e insumos => detalle CRUD Herramientas y CRUD Insumos|
-|CUU/Epic|1. Registrar una Herramienta<br>2. Actualizar Herramienta<br>3. Registrar Insumo<br>4. Actualizar stock Insumo<br>|
+|CUU/Epic||
 |Otros| 1. Recordatorio SMS o Mail de reserva de turno|
 
