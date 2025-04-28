@@ -21,12 +21,11 @@
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. 1. CRUD Cliente<br>2. CRUD Categoría<br>3. CRUD Zona|
+|CRUD simple|1. CRUD Cliente<br>2. CRUD Categoría<br>3. CRUD Zona|
 |CRUD dependiente|1. CRUD Distribuidor  {depende de zona} <br>2. CRUD Artículo {depende de categoría} |
 |Listado<br>+<br>detalle| 1. Listado de productos filtrados por categoría <br> 2. Listado de ventas filtrado por precio|
 |CUU/Epic|1. Realizar pedido<br>2. Actualizar stock|
