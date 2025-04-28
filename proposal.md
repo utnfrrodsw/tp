@@ -15,7 +15,8 @@
 *Este sistema está diseñado para optimizar la gestión de ventas en supermercados, permitiendo a los usuarios registrarse y realizar compras desde la comodidad de su hogar. Además, cada cliente puede ser asignado a un distribuidor específico, mejorando así la eficiencia en la entrega y la organización interna del negocio.*
 
 ### Modelo
-![Tp_Desarrollo drawio](https://github.com/user-attachments/assets/1373ba47-a48d-4a46-a160-c81ebc6b0a3a)
+![Tp_DesarrolloFinal](https://github.com/user-attachments/assets/a8636253-781b-4743-8e0c-c12c355a5b5c)
+
 
 ## Alcance Funcional 
 
@@ -28,14 +29,14 @@ Regularidad:
 |CRUD simple|1. CRUD Cliente<br>2. CRUD Categoría<br>3. CRUD Zona|
 |CRUD dependiente|1. CRUD Distribuidor  {depende de zona} <br>2. CRUD Artículo {depende de categoría} |
 |Listado<br>+<br>detalle| 1. Listado de productos filtrados por categoría <br> 2. Listado de ventas filtrado por precio|
-|CUU/Epic|1. Realizar pedido<br>2. Actualizar stock|
+|CUU/Epic|1. Realizar pedido<br>2. Gestionar stock|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Cliente<br>2. CRUD Artículo<br>3. CRUD Categoría<br>4. CRUD Zona<br>5. CRUD Distribuidor<br>6. CRUD Pedido
-|CUU/Epic|1. Realizar pedido<br>2. Actualizar stock<br>3. Realizar o cancelar pago|
+|CUU/Epic|1. Realizar pedido<br>2. Gestionar stock<br>3. Realizar o cancelar pago|
 
 
 ### Alcance Adicional Voluntario
