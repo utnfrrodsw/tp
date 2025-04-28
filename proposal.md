@@ -2,51 +2,48 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 46876 Zinni, Gonzalo
+* 44963 Decaroli, Alejandro
+
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [Backend app](https://github.com/alejandro-decaroli/Velzia_backend)
+* [Frontend app](https://github.com/alejandro-decaroli/Velzia_frontend)
+
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Velzia es un mini ERP para ventas simple y funcional.
 
 ### Modelo
-![imagen del modelo]()
+![imagen] ![Screenshot 2025-04-28 at 15-48-22 BBD drawio - draw io](https://github.com/user-attachments/assets/488b233f-9c41-44ac-8d28-d24af897476f)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+
+
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Caja<br>2. CRUD Cliente<br>3. CRUD Tasa|
+|CRUD dependiente|1. CRUD Venta {depende de} CRUD Cliente|
+|Listado<br>+<br>detalle| 1. Listado de clientes terminados filtrados por estado=> detalle descripcion de cliente<br> 2. Listado de costos fijos filtrados por fecha => detalle muestra detalle de cada costo|
+|CUU/Epic|1. Calcular ganancia marginal<br>2. Calcular proyección|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
+|CRUD |1. CRUD Caja<br>2. CRUD Cliente<br>3. CRUD Tasa<br>4. CRUD Venta<br>5. CRUD Pago<br>6. CRUD CostoVariable<br>7. CRUD CostoFijo<br>8. CRUD Transferencia<br>9. CRUD Ajuste<br>10. CRUD DividendoSocio<br>11. CRUD AporteSocio|
+|CUU/Epic|1. Calcular ganancia marginal<br>2. Calcular proyección<br>3. Calcular cuentas por cobrar|
 
 ### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listado<br>+<br>detalle| 3. Listado de ajustes de una caja<br> 4. Listado de ventas de un cliente<br> 5. Listado de transferencias de una caja<br> 6. Listado de aportes de socio por caja<br> 7. Listado de dividendos de socio caja|
+|CUU/Epic|4. Calcular cuentas por gastar<br>5. Calcular punto de equilibrio<br>6. Mostrar movimientos de una caja|
+
 
