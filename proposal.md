@@ -20,7 +20,7 @@ El sistema resuelve el problema de no saber qué actividades realizar en un dest
 
 ### Modelo
 
-![Modelo de dominio]([MD_ItinerarIA.drawio.png](https://github.com/TomasSanchezMachado/TP-Desarrollo-de-Software/blob/main/modelo_del_dominio.md))
+![Modelo de dominio](MD-itinerarIA.png)
 
 ## Alcance Funcional 
 
