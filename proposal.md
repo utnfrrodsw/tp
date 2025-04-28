@@ -7,7 +7,7 @@
 - 47403 - Gómez, Agustín
 - 46804 - Pitavino, Tomás
 - 52967 - Bertotti, Santino
-- 49806 - Zajarías Enzo
+- 49806 - Zajarías, Enzo
 
 ### Repositorios
 
