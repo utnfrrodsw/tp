@@ -17,28 +17,26 @@
 
 ### Descripción
 
-Crear una plataforma donde los usuarios puedan llevar un registro de los videojuegos que han jugado, están jugando o desean jugar, con la posibilidad de calificarlos, reseñarlos y organizarlos en listas. El sistema también permite ver reseñas de otros usuarios y explorar juegos populares.
+Sistema de gestion de torneos en diferentes plataformas y juegos. Donde usuarios y equipos puedan inscribirse.
 
 ### Modelo
 
-![Image](https://github.com/user-attachments/assets/77be59b4-531e-41ca-98a3-7da8b60881b8)
+![Image](https://github.com/user-attachments/assets/a5907095-e36f-4d32-a3ad-a059c7a0f4bd)
 
 ## Alcance Funcional
 
 ### Alcance Mínimo
 
-_Nota_: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Juego<br>2. CRUD Usurio<br>3. CRUD Administrador|
-|CRUD dependiente|1. CRUD Reseña {depende de} CRUD Usuario<br>2. CRUD Moderador {depende de} CRUD Administrador|
-|Listado<br>+<br>detalle| 1. Listado de juegos filtrado por género, nombre y descripción => detalle CRUD Juegos<br> 2. Listado de reseñas filtrado por rango de fecha y juego => detalle muestra datos del usuario que hizo la reseña y el contenido de la reseña|
-|CUU/Epic|1. Usuario realiza reseña<br>2. Moderador edita juego|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD TipoDeJuego <br>3. CRUD TipoDeTorneo|
+|CRUD dependiente|1. CRUD Juego {depende de} CRUD TipoDeJuego <br>2. CRUD Torneo {depende de} CRUD Usuario, CRUD Juego y CRUD TipoDeTorneo|
+|Listado<br>+<br>detalle| 1. Listado de torneos filtrado por tipo de torneo, muestra nombre, fecha de inicio, fecha fin, tipo de torneo => detalle CRUD Torneo<br> 2. Listado de juegos filtrado por tipo de juego, muestra nombre, y descripcion => detalle CRUD Juego|
+|CUU/Epic|1. Usuario se inscribe un torneo<br>2. Organizador crea torneo|
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Juego<br>2. CRUD Usurio<br>3. Administrador<br>4. CRUD Reseña<br>5. CRUD Moderador<br>6. CRUD Comentario<br>7. CRUD Categoria|
-|CUU/Epic|1. Usuario realiza reseña<br>2. Moderador edita juego<br>3. Usuario realiza comentario en una reseña|
+|CRUD |1. CRUD Usuario<br>2. CRUD TipoDeJuego <br>3. CRUD TipoDeTorneo<br> 5. CRUD Juego <br> 6. CRUD Plataforma <br> 7. CRUD Region <br> 8. CRUD EstadoDeTorneo <br> 9. CRUD Inscripcion <br> 10. CRUD Equipo|
+|CUU/Epic|1. Usuario se inscribe un torneo<br>2. Organizador crea torneo <br> 3. Usuario crea un equipo|
