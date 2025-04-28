@@ -20,7 +20,7 @@ El sistema resuelve el problema de no saber qué actividades realizar en un dest
 
 ### Modelo
 
-![Modelo de dominio](MD_ItinerarIA.drawio.png)
+![Modelo de dominio]([MD_ItinerarIA.drawio.png](https://github.com/TomasSanchezMachado/TP-Desarrollo-de-Software/blob/main/modelo_del_dominio.md))
 
 ## Alcance Funcional 
 
@@ -29,8 +29,8 @@ El sistema resuelve el problema de no saber qué actividades realizar en un dest
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. Usuario<br>2. Lugar <br> 3. Preferencia <br> 4.Itinerario <br>|
-|CRUD dependiente|1. CRUD actividad {depende de} CRUD lugar<br>2. CRUD servicioExterno {depende de} CRUD lugar<br>3. CRUD participante {depende de} CRUD itinerario y/o de CRUD de usuario <br>CRUD de opinión {depende de} CRUD usuario|
+|CRUD simple|1. Usuario<br>2. Lugar <br> 3. Preferencia <br> 4. Itinerario <br>|
+|CRUD dependiente|1. CRUD actividad {depende de} CRUD lugar<br>2. CRUD servicioExterno {depende de} CRUD lugar<br>3. CRUD participante {depende de} CRUD itinerario y/o de CRUD de usuario <br>4.CRUD de opinión {depende de} CRUD usuario|
 |Listado<br>+<br>detalle| 1. Listado de itinerarios filtrado por lugares: Muestra lugar, duracion y usuario creador => Detalle: Muestra servicios externos del lugar y sus participantes<br>2. Listado de actividades filtrado por lugar, tipo de actividad y transporte => Detalle: CRUD de actividad |
 |CUU/Epic|1. Crear itinerario<br>2. Registrar opinión del usuario|
 
