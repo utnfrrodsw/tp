@@ -2,19 +2,100 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 48096 - Ruiz Aldea, Bautista
+* 48011 - Gonzalez del Cerro, Iñaki
+* 48813 - Ricobelli, Tomas
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
-## Tema
+## Software para gestión de gastos compartidos
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+*Esta aplicación permite a los usuarios registrar y dividir gastos dentro de un grupo de manera eficiente y equitativa. Los integrantes pueden agregar sus gastos, visualizar deudas y saldar montos a través de transferencias dentro de la plataforma. Nuestra app ofrece a su vez un historial detallado con los montos y motivos de cada gasto, brindando un control organizado de las finanzas compartidas para el día a día.*
 
 ### Modelo
-![imagen del modelo]()
+
+# Paym8 - Diagrama de Clases
+
+```mermaid
+%%{init: {'theme': 'neutral', 'fontFamily': 'Arial'}}%%
+
+classDiagram
+    direction LR
+    
+    %% ------------------ Clases ------------------
+    class User {
+        +UUID id
+        +string name
+        +string email
+        +string passwordHash
+        +Date createdAt
+        +Date updatedAt
+        +authenticate(password)
+        +updateProfile(data)
+    }
+
+    class Group {
+        +UUID id
+        +string name
+        +string description
+        +Date createdAt
+        +addMember(user)
+        +removeMember(user)
+    }
+
+    class Expense {
+        +UUID id
+        +string title
+        +number amount
+        +Date date
+        +SplitType splitType
+        +calculateBalances()
+    }
+
+    class Payment {
+        +UUID id
+        +number amount
+        +PaymentStatus status
+        +Date createdAt
+        +processPayment()
+    }
+
+    class Balance {
+        +User fromUser
+        +User toUser
+        +number amount
+    }
+
+    %% ------------------ Enums ------------------
+    class SplitType {
+        <<enumeration>>
+        EQUALLY
+        PERCENTAGE
+        SHARES
+    }
+
+    class PaymentStatus {
+        <<enumeration>>
+        PENDING
+        PAID
+        FAILED
+    }
+
+    %% ------------------ Relaciones ------------------
+    User "1" --> "*" Group : Crea >
+    Group "1" --> "*" User : Miembros >
+    Group "1" --> "*" Expense : Contiene >
+    Expense "1" --> "1" User : Pagado por
+    Expense "1" --> "*" User : Participantes
+    Payment "1" --> "1" User : Deudor
+    Payment "1" --> "1" User : Acreedor
+    Group "1" --> "*" Payment : Registra >
+    Expense ..> SplitType : Usa
+    Payment ..> PaymentStatus : Usa
+    Expense ..> Balance : Genera
+```
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
@@ -22,22 +103,21 @@
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
-Regularidad:
+Aprobación Directa:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD User<br>2. CRUD Group<br>3. CRUD SplitType<br>4. CRUD PaymentStatus|
+|CRUD dependiente|1. CRUD Expense {depende de} CRUD User,Group<br><br>3. CRUD ****** {depende de} CRUD ******|
+|Listado<br>+<br>detalle| 1. Listado de Gastos filtrado por monto, periodo de tiempo, usuarios y categoría => detalle CRUD Expense<br>2. Listado de Deudas filtrado por estado, usuario y tipo de gasto => detalle CRUD Payment|
+|CUU/Epic|1. Visualización unificada de deudores y acreedores para facilitar el seguimiento y saldar cuentas<br>2. Analisis de Gastos y reportes personalizados<br>3. Gestión colaborativa de grupos<br>4. Historial de transacciones con filtros personalizados<br>4. Procesamiento de pagos de expensas|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD|1. CRUD <br>2. CRUD <br>3. CRUD <br>4. CRUD <br>5. CRUD <br>6. CRUD <br>|
+|CUU/Epic|1. <br>2. |
 
 
 ### Alcance Adicional Voluntario
