@@ -1,52 +1,48 @@
 # Propuesta TP DSW
 
-## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 44123-Milanesi Renzo
+* 46291-Gamba Emiliano Francisco
+
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+*  [FRONTEND app](https://github.com/gitgamba/DSW-302-FRONTEND)
+* [BACKEND app](https://github.com/gitgamba/DSW-302-BACKEND)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Vamos a crear un Sistema de Gestion Web que va a permitir administrar una agenda de operadores de una empresa de hospedaje.
+Las funcionalidades que van a tener son conectarse a aplicaciones como booking o airbnb para obtener datos de las reservas y luego armar una agenda de check-ins y check-outs. Definir usuarios y roles para los distintos operadores.
+
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![Imgur](https://i.imgur.com/ZGDGsTk.png)
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD usuario<br>2. CRUD tipo de usuario|
+|CRUD dependiente|1-CRUD Movimientos que depende de CRUD Usuario|
+|Listado<br>+<br>detalle| 1-Listado de reservas, filtrado por fecha, departamento y usuario asignado => detalle CRUD<br>2-Listado de hoja de ruta por usuario|
+|CUU/Epic|1-Generar agenda por usuario<br>2-Emitir notificaciones a los responsables de las reservas|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Huesped<br>2. CRUD inmueble<br>3. CRUD Movimientos<br>4. CRUD Notificacion que depende de CRUD Movimiento<br>5. CRUD Reserva depende de CRUD inmueble y crud huesped|
+|CUU/Epic|1-Generar agenda de check-in y check-out<br>2-Asignar usuarios a distintas reservar (puede darse el caso de un usuario no pueda ir a hacer check.in y deba asignarse otro)<br>3-Notificar al usuario los datos del chech-in check-out|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+|Listados |1-Resumen mensual (Inmuebles mas alquilados, promedio de duracion de reservas)<br>2-Listado de reservas por inmueble o usuario|
+|CUU/Epic||
+|Otros|1-Incluir permisos por usuario o tipos de usuario|
