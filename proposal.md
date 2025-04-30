@@ -43,7 +43,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD - Categoría<br>2. CRUD - Distrito<br>3. CRUD - Usuario<br>4. CRUD - Alimento<br>5. CRUD - Reserva<br>6. CRUD - Plato<br>7. CRUD - Restaurante<br>8. CRUD - Reseña<br>9. CRUD - Políticas<br>10. CRUD - Suscripción<br>11. CRUD - Penalidad|
-|CUU/Epic|1. Gestionar sesion de usuario<br>2. Gestionar asistencia de reserva.<br>3.Realizar reseña de restaurante<br>4. Realizar suscripción.|
+|CUU/Epic|1. Gestionar sesion de usuario<br>2. Gestionar asistencia de reserva.<br>3.Realizar reseña de restaurante<br>4. Realizar suscripción (Mediante mercado pago).|
 
 
 ### Alcance Adicional Voluntario
