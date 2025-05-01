@@ -11,7 +11,7 @@
 
 ### Repositorios
 
-- [frontend app](http://hyperlinkToGihubOrGitlab)
+- [frontend app](https://github.com/lordagustin22/ECommerce-dsw-frontend)
 - [backend app](https://github.com/lordagustin22/ECommerce-dsw-backend)
 
 ## Tema
