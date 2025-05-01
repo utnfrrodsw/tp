@@ -18,7 +18,7 @@ Como última instancia, también se implementará un sistema de gestión de prom
 *
 
 ### Modelo
-![Captura de pantalla 2025-04-23 100723](https://github.com/user-attachments/assets/ba9ee26f-d98b-4f8e-b77a-9598b78a62f7)
+![Captura de pantalla 2025-04-30 225526](https://github.com/user-attachments/assets/9ec13394-cdbd-41f9-ab83-765d1af850ee)
 
 
 ## Alcance Funcional 
