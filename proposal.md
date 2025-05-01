@@ -12,13 +12,14 @@
 
 ## Tema
 ### Descripción
-*Esta web será diseñada con el objetivo de automatizar e independizar el pedido de turnos para una peluquería (que también ofrece servicios de manicura), mostrando los horarios disponibles, los servicios ofrecidos y sus precios.
+Esta web será diseñada con el objetivo de automatizar e independizar el pedido de turnos para una peluquería (que también ofrece servicios de manicura), mostrando los horarios disponibles, los servicios ofrecidos y sus precios.
 Además de esto, se desea gestionar los procesos de pago, haciendo que también sean automáticos; es decir, que puedan realizarse mediante la página sin necesidad de que la dueña del local intervenga.
 Como última instancia, también se implementará un sistema de gestión de promociones, las cuales estarán disponibles en un apartado de nuestra página.
-*
+
 
 ### Modelo
-![Captura de pantalla 2025-04-30 225526](https://github.com/user-attachments/assets/9ec13394-cdbd-41f9-ab83-765d1af850ee)
+![image](https://github.com/user-attachments/assets/76674017-83d3-4d55-b30f-bbfba55963a3)
+
 
 
 ## Alcance Funcional 
