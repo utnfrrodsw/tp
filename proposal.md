@@ -17,7 +17,7 @@ Las funcionalidades que van a tener son conectarse a aplicaciones como booking o
 
 ### Modelo
 
-![Imgur](https://i.imgur.com/ZGDGsTk.png)
+![Imgur](https://imgur.com/3ZKWwuJ)
 
 ## Alcance Funcional 
 
