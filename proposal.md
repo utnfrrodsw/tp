@@ -34,17 +34,17 @@ Representa una plataforma web de compra y venta de productos que se diseñó par
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Persona <br>2. CRUD Producto<br>3. CRUD  Empleado|
+|CRUD simple|1. CRUD Persona <br>2. CRUD Producto<br>3. CRUD  Categoria<br>4. CRUD Categoria<br>|
 |CRUD dependiente|1. CRUD Historico precio {depende de} CRUD Producto<br>2. CRUD Cliente {depende de} CRUD Localidad|
 |Listado<br>+<br>detalle| 1. Listado de productos filtrado por descripcion, muestra descripcion y precio => detalle CRUD Producto<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CUU/Epic|1. Realizar una compra<br>|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Personas<br>2. CRUD Productos<br>3. CRUD Categoria<br>4. CRUD Localidades<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
+|CUU/Epic|1. Realizar compra de un producto a traves de carrito o de forma directa<br>2. Realizar devolucion de item/s de la compra<br>3. Realizar seguimiento de el/los items de una compra
 
 
 ### Alcance Adicional Voluntario
@@ -53,7 +53,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Listado de compras,ventas, devoluciones comprador, devoluciones vendedor, estados seguimiento asociados al empleado <br>2. Producto filtrados por descripcion<br>3. Compras filtradas por mes, vendedor y no materializadas <br>4.Devoluciones filtradas por estado y codigo devolucion <br>5.Ventas filtradas por mes|
+
+|Otros|1. Comunicacion en una compra via mail, proceso de seguimiento entre empleados via mail, proceso de devolucion entre vendedor y cliente via mail|
 
