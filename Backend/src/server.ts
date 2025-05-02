@@ -22,4 +22,4 @@ const startServer = async () => {
   }
 };
 
-startServe r();
+startServer();
