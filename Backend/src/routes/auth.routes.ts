@@ -6,5 +6,5 @@ const router = Router();
 router.post('/login', login);
 router.post('/refresh-token', refreshToken);
 
-export default router;
+export { router as authRoutes };
 

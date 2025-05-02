@@ -1,7 +1,7 @@
 // src/shared/db/mikro-orm.config.ts
 import { Options } from '@mikro-orm/core';
 import { MySqlDriver } from '@mikro-orm/mysql';
-import { Usuario } from './entities/usuario.entity'; // Asegúrate de que la ruta de las entidades sea correcta
+import { Usuario } from '../entities/usuario.entity'; // Asegúrate de que la ruta de las entidades sea correcta
 
 const config: Options<MySqlDriver> = {
   host: 'localhost',

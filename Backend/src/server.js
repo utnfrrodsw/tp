@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import express from 'express';
 import { MikroORM } from '@mikro-orm/core';
-import mikroOrmConfig from './mikro-orm.config.ts'; // Ruta ajustada si lo moviste
+import mikroOrmConfig from './shared/mikro-orm.config'; // Ruta ajustada si lo moviste
 const app = express();
 app.use(express.json());
 const startServer = async () => {

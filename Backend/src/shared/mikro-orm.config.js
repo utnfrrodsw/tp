@@ -1,4 +1,4 @@
-import { Usuario } from './entities/usuario.entity'; // Asegúrate de que la ruta de las entidades sea correcta
+import { Usuario } from '../entities/usuario.entity'; // Asegúrate de que la ruta de las entidades sea correcta
 const config = {
     host: 'localhost',
     port: 3306,

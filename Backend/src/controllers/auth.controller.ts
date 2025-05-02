@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { Usuario } from '../entities/usuario.entity';
 import { MikroORM } from '@mikro-orm/core';
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response): Promise<Response> => {
   const { email, password } = req.body;
   try {
     const orm = req.app.get('orm') as MikroORM;
@@ -20,13 +20,13 @@ export const login = async (req: Request, res: Response) => {
     }
 
     const token = generateToken(usuario); // Asegúrate de que generateToken esté definido
-    res.json({ message: 'Inicio de sesión exitoso', token });
+    return res.json({ message: 'Inicio de sesión exitoso', token });
   } catch (error) {
-    res.status(500).json({ error: error instanceof Error ? error.message : 'Error desconocido' });
+    return res.status(500).json({ error: error instanceof Error ? error.message : 'Error desconocido' });
   }
 };
 
-export const refreshToken = async (req: Request, res: Response) => {
+export const refreshToken = async (req: Request, res: Response): Promise<Response> => {
   const { refreshToken } = req.body;
 
   if (!refreshToken) {
@@ -48,7 +48,7 @@ export const refreshToken = async (req: Request, res: Response) => {
       { expiresIn: '1h' }
     );
 
-    res.json({ accessToken: newAccessToken });
+    return res.json({ accessToken: newAccessToken });
   } catch (error) {
     return res.status(403).json({ error: 'Refresh token inválido o expirado' });
   }

@@ -13,10 +13,10 @@ export const login = async (req, res) => {
             return res.status(400).json({ error: 'Credenciales incorrectas' });
         }
         const token = generateToken(usuario); // Asegúrate de que generateToken esté definido
-        res.json({ message: 'Inicio de sesión exitoso', token });
+        return res.json({ message: 'Inicio de sesión exitoso', token });
     }
     catch (error) {
-        res.status(500).json({ error: error instanceof Error ? error.message : 'Error desconocido' });
+        return res.status(500).json({ error: error instanceof Error ? error.message : 'Error desconocido' });
     }
 };
 export const refreshToken = async (req, res) => {
@@ -32,7 +32,7 @@ export const refreshToken = async (req, res) => {
             return res.status(401).json({ error: 'Usuario no encontrado' });
         }
         const newAccessToken = jwt.sign({ userId: usuario.id, email: usuario.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.json({ accessToken: newAccessToken });
+        return res.json({ accessToken: newAccessToken });
     }
     catch (error) {
         return res.status(403).json({ error: 'Refresh token inválido o expirado' });
