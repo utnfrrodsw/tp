@@ -25,8 +25,8 @@ Desarrollo de una plataforma digital de gestión académica para instituciones d
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Materia<br>2. CRUD Alumno<br>3. CRUD Curso|
-|CRUD dependiente|1. CRUD Docente {depende de CRUD Materia}<br>2. CRUD Evaluación {depende de CRUD Materia}<br>3. CRUD Inscripción {depende de CRUD Alumno y CRUD Curso}|
+|CRUD simple|1. CRUD Materia<br>2. CRUD Alumno<br>3. CRUD Docente<br>4. CRUD Curso|
+|CRUD dependiente|1. CRUD Evaluación {depende de CRUD Materia}<br>2. CRUD Inscripción {depende de CRUD Alumno y CRUD Curso}|
 |Listado<br>+<br>detalle| 1. Listado de Alumnos filtrado por Curso, muestra nombre, apellido, curso => detalle CRUD Alumno<br> 2. Listado de Evaluaciones filtrado por Materia, muestra título, fecha, alumno, nota => detalle CRUD Evaluación|
 |CUU/Epic|1. Registrar Asistencia de Alumnos<br>2. Gestionar Calificaciones de Evaluaciones|
 
@@ -34,8 +34,8 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Materia<br>2. CRUD Alumno<br>3. CRUD Curso<br>4. CRUD Docente {depende de CRUD Materia}<br>5. CRUD Evaluación {depende de CRUD Materia}<br>6. CRUD Inscripción {depende de CRUD Alumno y CRUD Curso}<br>7. CRUD Personal<br>8. CRUD Material de Estudio {depende de CRUD Materia}<br>9. CRUD Foro<br>10. CRUD Aviso|
-|CUU/Epic|1. Registrar Asistencia de Alumnos<br>2. Gestionar Calificaciones de Evaluaciones<br>3. Generar Certificados Digitales con verificación<br>4. Realizar Inscripción de Alumno a Año en lote|
+|CRUD |1. CRUD Personal<br>2. CRUD Material de Estudio {depende de CRUD Materia}<br>3. CRUD Foro<br>4. CRUD Aviso|
+|CUU/Epic|1. Generar Certificados Digitales con verificación<br>2. Realizar Inscripción de Alumno a Año en lote|
 
 
 ### Alcance Adicional Voluntario
