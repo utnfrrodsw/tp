@@ -26,8 +26,8 @@ https://drive.google.com/file/d/16wx9dorp1LS-VKZn0KN8y0uN5ydn0qPg/view?usp=shari
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Categoria <br>2. CRUD Pedido<br>3. CRUD Cliente|
-|CRUD dependiente|1. CRUD Indumentaria {depende de} CRUD Categoria <br>2. CRUD Envio {depende de} CRUD Pedido <br>3. CRUD Pago {depende de} CRUD Pedido|
+|CRUD simple|1. CRUD Categoria <br>2. CRUD Marca<br>3. CRUD Localidad|
+|CRUD dependiente|1. CRUD Indumentaria {depende de} CRUD Categoria <br>2. CRUD Envio {depende de} CRUD Pedido <br>3. CRUD Usuario {depende de} CRUD Localidad|
 |Listado<br>+<br>detalle| 1. Listado de indumentaria filtrado por categoria, muestra nombre y descripción => detalle CRUD indumentaria <br> 2. Listado de pedidos filtrado por rango de fecha, muestra id de pedido, fecha, estado y nombre del usuario => detalle muestra datos completos del pedido y del usuario|
 |CUU/Epic|1. Realizar un pedido <br>2. Realizar un pago|
 
@@ -35,7 +35,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Categoria<br>2. CRUD Pedido<br>3. CRUD Cliente<br>4. CRUD Indumentaria<br>5. CRUD Envio<br>6. CRUD Pago<br>7. CRUD Empleado|
+|CRUD |1. CRUD Categoria<br>2. CRUD Marca<br>3. CRUD Usuario<br>4. CRUD Indumentaria<br>5. CRUD Envio<br>6. CRUD Localidad<br>7. CRUD Empleado|
 |CUU/Epic|1. Realizar un pedido<br>2. Realizar un pago<br>3. Mostar recomendaciones|
 
 
