@@ -8,16 +8,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
-import bcrypt from 'bcryptjs';
 let Usuario = class Usuario {
+    // Método para validar la contraseña
+    async validatePassword(password) {
+        // Lógica de validación de la contraseña (puedes usar bcrypt)
+        return this.password === password; // Simplificado para ejemplo
+    }
     // Método para encriptar la contraseña
     async hashPassword() {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
-    }
-    // Método para verificar la contraseña
-    async validatePassword(password) {
-        return bcrypt.compare(password, this.password);
+        // Aquí va la lógica para hash de contraseñas (puedes usar bcrypt o cualquier librería)
     }
 };
 __decorate([
@@ -27,15 +26,19 @@ __decorate([
 __decorate([
     Property(),
     __metadata("design:type", String)
-], Usuario.prototype, "username", void 0);
-__decorate([
-    Property(),
-    __metadata("design:type", String)
 ], Usuario.prototype, "email", void 0);
 __decorate([
     Property(),
     __metadata("design:type", String)
 ], Usuario.prototype, "password", void 0);
+__decorate([
+    Property(),
+    __metadata("design:type", String)
+], Usuario.prototype, "username", void 0);
+__decorate([
+    Property({ nullable: true }),
+    __metadata("design:type", String)
+], Usuario.prototype, "refreshToken", void 0);
 Usuario = __decorate([
     Entity()
 ], Usuario);

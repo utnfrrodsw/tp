@@ -1,13 +1,15 @@
-// src/app.ts
 import express from 'express';
-import { initORM } from './shared/db/orm'; // Asegúrate de importar 'initORM'
+import 'reflect-metadata';
+import { initORM } from './shared/orm'; // Asegúrate de importar 'initORM'
+import authRoutes from './routes/auth.routes'; // Importa las rutas de autenticación
 const app = express();
 app.use(express.json());
 const startServer = async () => {
     try {
         const ormInstance = await initORM(); // Esperamos que ORM se inicie correctamente
         console.log('Base de datos conectada');
-        // Ahora, puedes usar ormInstance para acceder a la base de datos
+        // Registra las rutas de autenticación
+        app.use('/auth', authRoutes); // Esto añade el prefijo '/auth' a todas las rutas definidas en authRoutes
         app.listen(3000, () => {
             console.log('Servidor en el puerto 3000');
         });

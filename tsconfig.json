@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ES2020",  // Puede ser ES2020 o superior
-    "module": "ESNext",  // Usar ESNext para poder usar decoradores y top-level await
+    "target": "ES2020",
+    "module": "ESNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true,  // Habilitar soporte para decoradores
-    "emitDecoratorMetadata": true,   // Emitir metadatos para decoradores
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "baseUrl": "./",
     "paths": {
-      "*": ["node_modules/*", "src/*"]
+      "*": ["node_modules/*", "Backend/src/*"]
     }
   },
-  "include": [
-    "src/**/*.ts"
-  ]
+  "include": ["Backend/src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

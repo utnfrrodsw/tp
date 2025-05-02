@@ -1,18 +1,15 @@
-import jwt from 'jsonwebtoken'; // Asegúrate de tenerlo instalado
-export const authMiddleware = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1]; // Se espera que el token venga como 'Bearer <token>'
+import jwt from 'jsonwebtoken';
+export const authenticateJWT = (req, res, next) => {
+    const token = req.header('Authorization')?.replace('Bearer ', '');
     if (!token) {
-        return res.status(401).json({ error: 'No token provided' }); // Si no hay token, retornamos un error y la ejecución se detiene aquí
+        return res.status(401).json({ error: 'No token provided' });
     }
-    try {
-        // Verifica el token con tu clave secreta
-        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        // Si el token es válido, se agrega el payload al request para que los controladores puedan acceder a él
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ error: 'Invalid token' });
+        }
+        // Ahora TypeScript reconoce que req.user puede ser un JwtPayload
         req.user = decoded;
-        next(); // Llama a next() para que el flujo continúe
-    }
-    catch (error) {
-        // Si el token no es válido, respondemos con un error
-        return res.status(401).json({ error: 'Invalid token' });
-    }
+        next();
+    });
 };

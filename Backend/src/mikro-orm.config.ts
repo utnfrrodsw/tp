@@ -1,12 +1,21 @@
-// src/mikro-orm.config.ts
-import { defineConfig } from '@mikro-orm/postgresql';
-import { Usuario } from './entities/usuario.entity'; // Ajusta la ruta si es necesario
+// src/shared/db/mikro-orm.config.ts
+import { Options } from '@mikro-orm/core';
+import { MySqlDriver } from '@mikro-orm/mysql';
+import { Usuario } from './entities/usuario.entity'; // Asegúrate de que la ruta de las entidades sea correcta
 
-export default defineConfig({
-  entities: [Usuario],  // Asegúrate de que Usuario esté incluido aquí
-  dbName: 'your-database-name',  // El nombre de tu base de datos
-  user: 'libro',    // El usuario de la base de datos
-  password: '123456789',  // La contraseña de la base de datos
-  host: 'localhost',   // O la dirección de tu servidor de base de datos
-  port: 5432,  // El puerto por defecto de PostgreSQL
-});
+const config: Options<MySqlDriver> = {
+  host: 'localhost',
+  port: 3306,
+  user: 'root',  // Cambia por tu usuario
+  password: 'tu_contraseña',  // Cambia por tu contraseña
+  dbName: 'tu_base_de_datos', // Cambia por tu base de datos
+  entities: [Usuario],
+  entitiesTs: ['./src/entities'], // Soporta tus entidades TypeScript
+  debug: true,
+  migrations: {
+    path: './migrations',
+    pathTs: './src/migrations',
+  },
+};
+
+export default config;

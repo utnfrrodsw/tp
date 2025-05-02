@@ -1,7 +1,8 @@
+// src/routes/usuario.routes.ts
 import { Router } from 'express';
-import * as usuarioController from '../controllers/usuario.controller';
-import { authMiddleware } from '../middleware/auth.middleware'; // Asegúrate de importar el middleware correctamente
 const router = Router();
-// Definir las rutas para los usuarios y aplicar el middleware de autenticación
-router.get('/', authMiddleware, usuarioController.getUsuarios); // La ruta ahora requerirá autenticación
+// Ruta de login
+router.post('/login', authController.login); // Asegúrate de que `login` esté exportada en el controlador
+// Ruta para obtener un nuevo access token usando el refresh token
+router.post('/refresh-token', authController.refreshToken); // Asegúrate de que `refreshToken` esté exportada en el controlador
 export { router as usuarioRoutes };
