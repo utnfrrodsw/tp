@@ -1,21 +1,26 @@
-// src/middleware/auth.middleware.ts
 import { Request, Response, NextFunction } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
+import jwtConfig from '../config/jwt.config';
 
-export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
+interface CustomRequest extends Request {
+  user?: any;
+}
+
+const verifyToken = (req: CustomRequest, res: Response, next: NextFunction) => {
+  const token = req.headers['authorization']?.split(' ')[1];
 
   if (!token) {
-    return res.status(401).json({ error: 'No token provided' });
+    return res.status(403).json({ message: 'Token no proporcionado' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET as string, (err, decoded) => {
+  jwt.verify(token, jwtConfig.secret, (err, decoded) => {
     if (err) {
-      return res.status(401).json({ error: 'Invalid token' });
+      return res.status(403).json({ message: 'Token inválido' });
     }
 
-    // Ahora TypeScript reconoce que req.user puede ser un JwtPayload
-    req.user = decoded as JwtPayload;
+    req.user = decoded;  // Guardamos el usuario decodificado en la solicitud
     next();
   });
 };
+
+export default verifyToken;
