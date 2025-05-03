@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-Desarrollo de una plataforma digital de gestión académica para instituciones de nivel secundario, que optimiza los trámites académicos y potencia la experiencia educativa de alumnos, docentes y personal administrativo mediante un entorno virtual interactivo y accesible.
+Desarrollo de un sistema de campus virtual para colegio secundario el cual cuenta con: módulo de gestión administrativa para inscripción de alumnos/docentes y control de los demás apartados, repositorio educativo donde docentes publican material de estudio organizado por materias, plataforma para entrega de actividades, evaluaciones, registro de calificaciones y asistencias, foros, trámites y avisos con accesos personalizados según el rol del usuario (alumno, docente o personal administrativo).
 
 ### Modelo
 ![imagen del modelo]()
