@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7,27 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, PrimaryKey, Property, OneToMany } from '@mikro-orm/core';
-import { Libro } from './libro.entity';
-import { Collection } from '@mikro-orm/core'; // Importar Collection
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Categoria = void 0;
+const core_1 = require("@mikro-orm/core");
+const libro_entity_1 = require("./libro.entity");
+const core_2 = require("@mikro-orm/core"); // Importar Collection
 let Categoria = class Categoria {
     constructor() {
-        this.libros = new Collection(this); // Usar Collection
+        this.libros = new core_2.Collection(this); // Usar Collection
     }
 };
+exports.Categoria = Categoria;
 __decorate([
-    PrimaryKey(),
+    (0, core_1.PrimaryKey)(),
     __metadata("design:type", Number)
 ], Categoria.prototype, "id", void 0);
 __decorate([
-    Property(),
+    (0, core_1.Property)(),
     __metadata("design:type", String)
 ], Categoria.prototype, "nombre", void 0);
 __decorate([
-    OneToMany(() => Libro, libro => libro.categoria),
+    (0, core_1.OneToMany)(() => libro_entity_1.Libro, libro => libro.categoria),
     __metadata("design:type", Object)
 ], Categoria.prototype, "libros", void 0);
-Categoria = __decorate([
-    Entity()
+exports.Categoria = Categoria = __decorate([
+    (0, core_1.Entity)()
 ], Categoria);
-export { Categoria };

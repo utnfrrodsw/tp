@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7,7 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Usuario = void 0;
+const core_1 = require("@mikro-orm/core");
 let Usuario = class Usuario {
     // Método para validar la contraseña
     async validatePassword(password) {
@@ -19,27 +22,27 @@ let Usuario = class Usuario {
         // Aquí va la lógica para hash de contraseñas (puedes usar bcrypt o cualquier librería)
     }
 };
+exports.Usuario = Usuario;
 __decorate([
-    PrimaryKey(),
+    (0, core_1.PrimaryKey)(),
     __metadata("design:type", Number)
 ], Usuario.prototype, "id", void 0);
 __decorate([
-    Property(),
+    (0, core_1.Property)(),
     __metadata("design:type", String)
 ], Usuario.prototype, "email", void 0);
 __decorate([
-    Property(),
+    (0, core_1.Property)(),
     __metadata("design:type", String)
 ], Usuario.prototype, "password", void 0);
 __decorate([
-    Property(),
+    (0, core_1.Property)(),
     __metadata("design:type", String)
 ], Usuario.prototype, "username", void 0);
 __decorate([
-    Property({ nullable: true }),
+    (0, core_1.Property)({ nullable: true }),
     __metadata("design:type", String)
 ], Usuario.prototype, "refreshToken", void 0);
-Usuario = __decorate([
-    Entity()
+exports.Usuario = Usuario = __decorate([
+    (0, core_1.Entity)()
 ], Usuario);
-export { Usuario };

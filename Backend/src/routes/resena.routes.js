@@ -1,10 +1,12 @@
-import { Router } from 'express';
-import { resenaController } from '../controllers/resena.controller';
-const router = Router();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const resena_controller_1 = require("../controllers/resena.controller");
+const router = (0, express_1.Router)();
 // Usa async/await correctamente con Express y pasa la función de manejo de errores
 router.get('/:id', async (req, res, next) => {
     try {
-        await resenaController.getResenaById(req, res);
+        await resena_controller_1.resenaController.getResenaById(req, res);
     }
     catch (err) {
         next(err); // Pasa el error al manejador global de errores de Express
@@ -12,7 +14,7 @@ router.get('/:id', async (req, res, next) => {
 });
 router.post('/', async (req, res, next) => {
     try {
-        await resenaController.createResena(req, res);
+        await resena_controller_1.resenaController.createResena(req, res);
     }
     catch (err) {
         next(err);
@@ -20,7 +22,7 @@ router.post('/', async (req, res, next) => {
 });
 router.put('/:id', async (req, res, next) => {
     try {
-        await resenaController.updateResena(req, res);
+        await resena_controller_1.resenaController.updateResena(req, res);
     }
     catch (err) {
         next(err);
@@ -28,10 +30,10 @@ router.put('/:id', async (req, res, next) => {
 });
 router.delete('/:id', async (req, res, next) => {
     try {
-        await resenaController.deleteResena(req, res);
+        await resena_controller_1.resenaController.deleteResena(req, res);
     }
     catch (err) {
         next(err);
     }
 });
-export default router;
+exports.default = router;

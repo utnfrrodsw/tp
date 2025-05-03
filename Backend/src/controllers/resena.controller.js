@@ -1,4 +1,7 @@
-export const resenaController = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.resenaController = void 0;
+exports.resenaController = {
     getResenaById: async (req, res) => {
         // Tu lógica aquí
         return res.send('Reseña obtenida');
