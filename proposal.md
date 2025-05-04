@@ -2,23 +2,30 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 48028 Bertone Valentin
+* 47779 Lotar Baigorria
+* 48026 Ignacio Di Martino
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [Backend App](https://github.com/Lotar17/TPbackend)
+
+* [Frontend App](https://github.com/Lotar17/TPFrontend)
+
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Representa una plataforma web de compra y venta de productos que se diseñó para facilitar a los usuarios ya sea para solicitar o publicar productos, además es una herramienta util para aquellos empleados de correos para llevar los productos a su destino de forma optima. Nuestra plataforma se esfuerza por brindar una eficiente y efectiva tanto para los solicitantes de productos como para los que proveen dichos productos.
 
 ### Modelo
-![imagen del modelo]()
+(https://github.com/Lotar17/tp/assets/137341989/fffcc425-2544-44f5-8dcf-2366df99f838)
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
+
+##Primer CRUD a desarrollar
+1. CRUD Persona
 
 ### Alcance Mínimo
 
@@ -27,17 +34,17 @@
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Persona <br>2. CRUD Producto<br>3. CRUD  Categoria<br>4. CRUD Categoria<br>|
+|CRUD dependiente|1. CRUD Historico precio {depende de} CRUD Producto<br>2. CRUD Cliente {depende de} CRUD Localidad|
+|Listado<br>+<br>detalle| 1. Listado de productos filtrado por descripcion, muestra descripcion y precio => detalle CRUD Producto<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
+|CUU/Epic|1. Realizar una compra<br>|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Personas<br>2. CRUD Productos<br>3. CRUD Categoria<br>4. CRUD Localidades<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
+|CUU/Epic|1. Realizar compra de un producto a traves de carrito o de forma directa<br>2. Realizar devolucion de item/s de la compra<br>3. Realizar seguimiento de el/los items de una compra
 
 
 ### Alcance Adicional Voluntario
@@ -46,7 +53,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Listado de compras,ventas, devoluciones comprador, devoluciones vendedor, estados seguimiento asociados al empleado <br>2. Producto filtrados por descripcion<br>3. Compras filtradas por mes, vendedor y no materializadas <br>4.Devoluciones filtradas por estado y codigo devolucion <br>5.Ventas filtradas por mes|
+
+|Otros|1. Comunicacion en una compra via mail, proceso de seguimiento entre empleados via mail, proceso de devolucion entre vendedor y cliente via mail|
 
