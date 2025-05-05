@@ -12,7 +12,7 @@
 
 ## Tema
 ### Descripción
-Emprendimiento digital de venta de camisetas de futbol retro. El administrador del negocio podrá publicar articulos para la venta, gestionar stock y ofrecer descuentos y promociones a los usuarios. El usuario podrá realizar busquedas del articulo deseado y flitar según sus preferencias, añadir los articulos a un pedido y realizarlo. 
+Emprendimiento digital de venta de camisetas de futbol retro. El administrador del negocio podrá publicar articulos para la venta, gestionar stock y ofrecer descuentos y promociones a los usuarios. Las publicaciones podran tener dos opciones de precios: Fijos o subastados. En caso de ser subastado se gestionaran las ofertas que los usuarios realicen sobre un articulo y el precio final resultante. Ademas, el usuario podrá realizar busquedas del articulo deseado y flitar según sus preferencias, añadir los articulos a un pedido y realizarlo. 
 
 ### Modelo
 [![imagen del modelo]()]
