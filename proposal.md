@@ -34,11 +34,8 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Usuario<br>2. CRUD Especie<br>3. CRUD Veterinario|
-
 |CRUD dependiente|1. CRUD SolicitudAdopción {depende de} CRUD Usuario y Mascota<br>2. CRUD Especie {depende de} CRUD Mascota<br>|
-
 |Listado<br>+<br>detalle| 1. Listado de mascotas filtrado por mascotas elegibles para un usuario => id, , edad, compatibleNiños, compatibleMascotas, vacunas, castrado, CRUD Mascota<br> 2. Listado de Patologías de una Mascota => observación, CRUD Patología<br>|
-
 |CUU/Epic|1. Subir una nueva mascota elegible para ser adoptada<br>2. Adoptar una mascota|
 
 Adicionales para Aprobación
