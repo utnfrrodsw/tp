@@ -29,17 +29,26 @@ Nuestro software se basa en una página de adopción de mascotas que utiliza eti
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD Especie<br>3. CRUD Patología|
-|CRUD dependiente|1. CRUD SolicitudAdopción {depende de} CRUD Usuario y Mascota<br>2. CRUD Especie {depende de} CRUD Mascota|
-|Listado<br>+<br>detalle| 1. Listado de mascotas filtrado por mascotas elegibles para un usuario => detalle CRUD Mascota<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD Especie<br>3. CRUD Veterinario|
+
+
+|CRUD dependiente|1. CRUD SolicitudAdopción {depende de} CRUD Usuario y Mascota<br>2. CRUD Especie {depende de} CRUD Mascota<br>|
+
+
+######################################################################################################3. CRUD Consulta {depende de} CRUD Veterinario y CRUD Mascota|
+
+
+|Listado<br>+<br>detalle| 1. Listado de mascotas filtrado por mascotas elegibles para un usuario => id, , edad, compatibleNiños, compatibleMascotas, vacunas, castrado, CRUD Mascota<br> 2. Listado de Patologías de una Mascota => observación, CRUD Patología<br>|
+
+
 |CUU/Epic|1. Subir una nueva mascota elegible para ser adoptada<br>2. Adoptar una mascota|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Usuario<br>2. CRUD Mascota<br>3. CRUD Especie<br>4. CRUD Patología<br>5. CRUD solicitudAdopción|
-|CUU/Epic|1. Subir una nueva mascota elegible para ser adoptada<br>2. Adoptar una mascota<br>3. Aceptar o denegar una adopción|
+|CRUD |1. CRUD Tipo Usuario<br>2. CRUD Mascota<br>3. CRUD Especie<br>4. CRUD Patología<br>5. CRUD solicitudAdopción<br>6. CRUD Veterinario<br>7. CRUD consultaVeterinaria|
+|CUU/Epic|1. CRUD SolicitudAdopción => CRUD Usuario y CRUD Mascota<br>2. CRUD Patología => CRUD Mascota y CRUD Especie<br>3. CRUD ConsultaVeterinaria => CRUD Veterinario y CRUD Mascota|
 
 
 ### Alcance Adicional Voluntario
@@ -48,7 +57,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Listado de ConsultasVeterinarias de una Mascota, mostrando ID, fecha, observación y del Veterinario id, nombre, apellido y matricula => detalle muestra datos completos de la ConsultaVeterinaria y del Veterinario|
+|CUU/Epic|1. --------------|
+|Otros|1. -------------|
 
