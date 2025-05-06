@@ -38,4 +38,4 @@ Adicionales para Aprobación Directa:
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Clave Token<br> 2. CRUD Cuestionario<br> 3. CRUD Venta|
-|CUU/Epic |1. Reseñar compra<br>2. Cobrar con MercadoPago|
+|CUU/Epic |1. Reseñar compra<br>2. Moderar reseñas con Gemini AI de Google|
