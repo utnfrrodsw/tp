@@ -2,7 +2,9 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 50347 - Tasselli Tomás
+* 50556 - Gutierrez Ramiro
+* 51857 - Nicolás Pedro
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,33 +13,30 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Tienda de indumentaria online, para realizar compras con envío a domicilio en la ciudad de Rosario. 
 
 ### Modelo
-![imagen del modelo]()
+https://drive.google.com/file/d/16wx9dorp1LS-VKZn0KN8y0uN5ydn0qPg/view?usp=sharing
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Categoria <br>2. CRUD Marca<br>3. CRUD Localidad|
+|CRUD dependiente|1. CRUD Indumentaria {depende de} CRUD Categoria <br>2. CRUD Envio {depende de} CRUD Pedido <br>3. CRUD Usuario {depende de} CRUD Localidad|
+|Listado<br>+<br>detalle| 1. Listado de indumentaria filtrado por categoria, muestra nombre y descripción => detalle CRUD indumentaria <br> 2. Listado de pedidos filtrado por rango de fecha, muestra id de pedido, fecha, estado y nombre del usuario => detalle muestra datos completos del pedido y del usuario|
+|CUU/Epic|1. Realizar un pedido <br>2. Realizar un pago|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Categoria<br>2. CRUD Marca<br>3. CRUD Usuario<br>4. CRUD Indumentaria<br>5. CRUD Envio<br>6. CRUD Localidad<br>7. CRUD Empleado|
+|CUU/Epic|1. Realizar un pedido<br>2. Realizar un pago<br>3. Mostar recomendaciones|
 
 
 ### Alcance Adicional Voluntario
