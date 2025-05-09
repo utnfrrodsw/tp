@@ -33,7 +33,7 @@ Esta aplicacion contará con los listados y la informacion de usuarios, paciente
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1.Especialidad medica<br>2. obra social<br>3. estado de turno| <br>Especialidades<br>Consultorios
+|CRUD simple|1.Especialidad medica<br>2. obra social<br>3. estado de turno|
 |CRUD dependiente|1.turnos depende de profesional <br>2. Estudios_de_laboratorio depende de paciente<br>Obra social depende de paciente|
 |Listado<br>+<br>detalle| 1. Listado de turnos disponibles filtrado por especialidad<br> 2. Listado de profesionales filtrado por rango horario y por especialidad|
 |CUU/Epic|1. Reservar un turno con un profesional<br>2. Descargar resultados(estudios) de laboratorio|
