@@ -34,16 +34,15 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1.Especialidad medica<br>2. obra social<br>3. estado de turno|
-|CRUD dependiente|1.turnos depende de profesional <br>2. Estudios_de_laboratorio depende de paciente<br>Obra social depende de paciente|
+|CRUD dependiente|1.CRUDprofesional {depende de} CRUDespecialidad <br>2. CRUDPaciente depende de CRUD_Obra_social<br>CRUD_Practica depende de CRUD_Profesional y CRUD_Obra_social<br>CRUD_Turno depende de CRUD_Estado_de_turno|
 |Listado<br>+<br>detalle| 1. Listado de turnos disponibles filtrado por especialidad<br> 2. Listado de profesionales filtrado por rango horario y por especialidad|
-|CUU/Epic|1. Reservar un turno con un profesional<br>2. Descargar resultados(estudios) de laboratorio|
-
+|CUU/Epic|1. Solicitud de turno<br>2.Modificacion/cancelacion de turno|
 
 
 
 Adicionales para Aprobación
-*no definido aún
+Atencion
+Notificacion mail wp
 
 ### Alcance Adicional Voluntario
-*no definido aún
 
