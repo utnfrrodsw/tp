@@ -2,51 +2,112 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 51070 - Rivero, Tomás
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [frontend app](https://github.com/tmsrivero/front-SDJ)
+* [backend app](https://github.com/tmsrivero/back-SDJ)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Sistema para reproducir música en bares o espacios públicos donde el público puede votar en tiempo real cuál será el siguiente tema. Las canciones disponibles provienen de una playlist de Spotify y los usuarios pueden también proponer nuevas canciones, que se agregan a dicha lista para futuras votaciones.
 
 ### Modelo
-![imagen del modelo]()
+```mermaid
+erDiagram
+    USUARIO {
+      int id PK
+      string nombre
+      string correo
+    }
+    SESION {
+      int id PK
+      datetime hora_inicio
+      datetime hora_fin
+      string estado
+    }
+    PLAYLIST {
+      int id PK
+      string id_spotify
+      string nombre
+      int sesion_id FK
+    }
+    CANCION {
+      int id PK
+      string id_spotify
+      string titulo
+      string artista
+      int duracion
+    }
+    LISTA_CANCION {
+      int lista_id FK
+      int cancion_id FK
+    }
+    PROPUESTA_CANCION {
+      int id PK
+      int usuario_id FK
+      int sesion_id FK
+      int cancion_id FK
+      string estado
+    }
+    VOTO {
+      int id PK
+      int usuario_id FK
+      int sesion_id FK
+      int cancion_id FK
+      datetime fecha_voto
+    }
+    REPRODUCCION {
+      int id PK
+      int sesion_id FK
+      int cancion_id FK
+      datetime fecha_reproduccion
+    }
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+    %% Relaciones principales
+    USUARIO ||--o{ PROPUESTA_CANCION : hace
+    USUARIO ||--o{ VOTO              : emite
+    USUARIO ||--o{ SESION            : crea 
+
+    SESION ||--|| PLAYLIST            : tiene
+    SESION ||--o{ PROPUESTA_CANCION   : aloja
+    SESION ||--o{ VOTO                : recopila
+
+    PLAYLIST ||--o{ LISTA_CANCION     : contiene
+    CANCION  ||--o{ LISTA_CANCION     : aparece_en
+
+    PROPUESTA_CANCION }o--|| CANCION  : sugiere
+
+    VOTO }o--|| CANCION                : por
+
+    REPRODUCCION }o--|| CANCION        : reproduce
+    REPRODUCCION }o--|| SESION         : en
+```
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD Playlist<br>3. CRUD Canción|
+|CRUD dependiente|1. CRUD Voto {depende de} Usuario y Canción<br>
+|Listado<br>+<br>detalle| 1. Listado de canciones con votos actuales => detalle con nombre, artista, duración<br> 2. Listado de historial de canciones|
+|CUU/Epic|1. Votar por una canción<br>2. Reproducir la canción votada|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Usuario<br>2. CRUD Playlist<br>3. CRUD Canción<br>4. CRUD Voto<br>5. CRUD PropuestaDeCanción<br>6. Crud Sesión|
+|CUU/Epic|1. Crear una sesión<br>2. Votar por una canción<br>3. Proponer canción desde Spotify<br>4. Reproducir automáticamente la canción ganadora en Spotify|
 
 
 ### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Ranking de canciones más votadas del día<br>2. Listado de canciones propuestas con preview|
+|CUU/Epic|1. Rechazar una propuesta de canción (administrador)|
+|Otros|1. Integración con Spotify: agregar automáticamente propuestas aprobadas a la playlist real<br>2. Reproducción automática del tema con más votos usando el reproductor web de Spotify|
 
