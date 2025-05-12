@@ -27,8 +27,25 @@ export class MovieDAO {
 
   
   static async getAll(): Promise<Movie[]> {
-    //query
+    //query select
     return [...moviesDB]; // Devolvemos copia del array
   }
+
+  static async create(movie: Omit<Movie, 'id'>): Promise<Movie> {
+    const newMovie = { 
+      ...movie, 
+      id: moviesDB.length > 0 ? Math.max(...moviesDB.map(m => m.id)) + 1 : 1 
+    };
+    moviesDB.push(newMovie);
+    return newMovie;
+  }
+
+  static async getById(id: number): Promise<Movie | null> {
+    const movie = moviesDB.find(m => m.id === id);
+    return movie || null;
+  }
+
 }
+
+
 
