@@ -37,7 +37,7 @@ Regularidad:
 |:-|:-|
 |CRUD simple|1. CRUD Persona <br>2. CRUD Producto<br>3. CRUD  Categoria<br>4. CRUD Categoria<br>|
 |CRUD dependiente|1. CRUD Historico precio {depende de} CRUD Producto<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de productos filtrado por descripcion, muestra descripcion y precio => detalle CRUD Producto<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
+|Listado<br>+<br>detalle| 1. Listado de productos filtrado por descripcion, muestra descripcion y precio => detalle CRUD Producto<br> 2. Listado de compras filtrado por rango de fecha, por vendedor y por compras aun no materializadas |
 |CUU/Epic|1. Realizar una compra<br>|
 
 
