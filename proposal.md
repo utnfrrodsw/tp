@@ -12,10 +12,10 @@
 ## Tema
 ### Descripción
 Tienda Online de Productos para Gimnasio.
-Se desarrollará una aplicación para la venta de productos enfocados al ámbito del fitness y gimnasio. En la tienda listaremos suplementos, ropa deportiva, accesorios y otros productos relacionados, y nos encargaremos de ofrecer distintas formas de pago con el fin de facilitar la compra online y la gestión de pedidos.
+Es una plataforma de comercio electrónico especializada en la venta de productos enfocados al ámbito del fitness y gimnasio, en la cual se listarán de manera categorizada suplementos, ropa deportiva, accesorios y otros productos relacionados. Se contará con funcionalidades que mejorarán tanto la experiencia de los clientes como la de los administradores, como pueden ser la gestión de productos, pedidos, pagos, revisiones, etc.
 
 ### Modelo
-![imagen](https://github.com/user-attachments/assets/c558e9aa-f5d8-47fc-ad8a-59486acd48bc)
+![Modelo de Dominio 1 0 2](https://github.com/user-attachments/assets/7f2393e5-8351-4688-bd5c-67755fb30e37)
 
 ## Alcance Funcional 
 
@@ -27,13 +27,13 @@ Regularidad:
 |CRUD simple|1. CRUD Categoria<br>2. CRUD Usuario|
 |CRUD dependiente|1. CRUD Producto {depende de} CRUD Categoria|
 |Listado<br>+<br>detalle| 1. Listado de Producto filtrado por Categoria, muestra nombre de Categoria => nombre, precio e imagen CRUD Producto|
-|CUU/Epic|1. Realizar orden<br>2.|
+|CUU/Epic|1. Realizar orden<br>|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Producto<br>2. CRUD Categoria<br>3. CRUD Proveedor<br>4. CRUD DetalleCarrito<br>5. CRUD Carrito<br>6. CRUD Usuario<br>7. CRUD Revision<br>8. CRUD DetalleOrden<br>9. CRUD Orden<br>10. CRUD Cupon <br>11. CRUD Pago|
+|CRUD |1. CRUD Producto<br>2. CRUD Categoria<br>3. CRUD Usuario<br>4. CRUD Revision<br>5. CRUD DetalleOrden<br>6. CRUD Orden<br>7. CRUD Cupon <br>8. CRUD Pago|
 |CUU/Epic|1. Realizar orden<br>2. Realizar pago<br>3. (Dar alta producto) demas|
 
 
