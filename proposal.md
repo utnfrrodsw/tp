@@ -6,8 +6,8 @@
 * 51277 - Gonzalez, Valetin
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app] (https://github.com/Valentingonza1/frontend-dsw)
+* [backend app] (https://github.com/Valentingonza1/backend-dsw)
 
 ## Tema
 ### Descripción
