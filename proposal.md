@@ -18,7 +18,8 @@
 Representa una plataforma web de compra y venta de productos que se diseñó para facilitar a los usuarios ya sea para solicitar o publicar productos, además es una herramienta util para aquellos empleados de correos para llevar los productos a su destino de forma optima. Nuestra plataforma se esfuerza por brindar una eficiente y efectiva tanto para los solicitantes de productos como para los que proveen dichos productos.
 
 ### Modelo
-(https://github.com/Lotar17/tp/assets/137341989/fffcc425-2544-44f5-8dcf-2366df99f838)
+![GAUCHO BUY_DER](https://github.com/user-attachments/assets/9875978c-3739-4939-9712-640011c5ae8a)
+
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
 
