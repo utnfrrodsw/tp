@@ -52,4 +52,3 @@ Adicionales para Aprobación
 |CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
 |Otros|1. Envío de recordatorio de reserva por email|
 
-Prueba git en vsc
