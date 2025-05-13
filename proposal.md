@@ -20,7 +20,8 @@ Esta aplicacion contará con los listados y la informacion de usuarios, paciente
 
 
 ### Modelo
-![imagen del modelo]()
+![MODELOS-DER.drawio.png]()![MODELOS-DER drawio](https://github.com/user-attachments/assets/aaca84b6-f563-4a88-ac3c-db1594a42f2e)
+
 
 ## Alcance Funcional 
 
