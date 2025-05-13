@@ -27,7 +27,8 @@ Nuestro grupo va a enfocar el Trabajo Practico en crear un Sistema de administra
 
    
 ### Diagrama de clase
-![Modelo de Clase - Sysacad drawio](https://github.com/user-attachments/assets/06dc6243-bf84-40a5-bb41-3ac78a15446a)
+![image](https://github.com/user-attachments/assets/fa6ed897-d438-490d-8ada-d6b80354b818)
+
 
 ## Alcance Funcional
 
