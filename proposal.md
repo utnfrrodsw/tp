@@ -2,7 +2,8 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+*53169 - Navos, Juan Ignacio.
+*52238 - Crocenzi, Mateo Santiago.
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,12 +12,13 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Emprendimiento digital de venta de camisetas de futbol retro. El administrador del negocio podrá publicar articulos para la venta, gestionar stock y ofrecer descuentos y promociones a los usuarios. Las publicaciones podran tener dos opciones de precios: Fijos o subastados. En caso de ser subastado se gestionaran las ofertas que los usuarios realicen sobre un articulo y el precio final resultante. Ademas, el usuario podrá realizar busquedas del articulo deseado y flitar según sus preferencias, añadir los articulos a un pedido y realizarlo. 
 
 ### Modelo
-![imagen del modelo]()
+[![imagen del modelo]()]
+https://drive.google.com/drive/folders/1uHB4GVj3cE49v5StdFB6z5nS-QJeoHe6?usp=sharing
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+
 
 ## Alcance Funcional 
 
