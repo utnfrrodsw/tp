@@ -13,12 +13,12 @@
 
 ## Tema
 ### Descripción
-El sistema propuesto es una plataforma web que permite a los usuarios descubrir puntos de interés, actividades y eventos disponibles en distintas localidades, priorizando experiencias significativas, inclusivas y con propósito social. 
+El modelo de negocio planteado permite a un usuario conocer los puntos de interés de una localidad , actividades disponibles para realizar, su historia y los comentarios de otros usuarios acerca de dicha localidad. 
 
 ### Modelo
-![image](Modelo_de_dominio.png)
+![image](DER_Proyecto.png)
 
-* [Draw.io](https://drive.google.com/file/d/1lk8nXVs_xaIrwI9erYk_CGOQRLd_-vMT/view?usp=sharing)
+* [Draw.io](https://drive.google.com/file/d/1wmEwmmVv6VVJS08DoNGEGxvJpjB_NxlN/view?usp=sharing)
 
 ## Alcance Funcional 
 
