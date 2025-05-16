@@ -24,15 +24,14 @@ Sistema de registro de gastos. El usuario puede registrar sus gastos e ingresos 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD CategoriaIngreso<br>3. CRUD CategoriaGasto<br>|
-|CRUD dependiente|1. CRUD Wallet {depende de} CRUD Usuario<br>2. CRUD Gasto {depende de} CRUD Movimiento<br>3. CRUD Ingreso {depende de} CRUD Movimiento|
-|Listado<br>+<br>detalle| 1. Listado de gastos filtrado por categoria, muestra total de dinero gastado en cada categoria => detalle CRUD Gasto<br>|
-|CUU/Epic|1. Registrar movimiento<br>2. Registrar un usuario<br>3. Consultar balance de gastos<br>|
+|CRUD simple|1. CRUD Usuario<br>2. CRUD Categoría<br>3. CRUD Método de Pago<br>|
+|CRUD dependiente|1. CRUD Wallet {depende de} CRUD Usuario<br>2. CRUD Movimiento {depende de} CRUD Wallet<br>3. CRUD Notificación {depende de} CRUD Movimiento|
+|Listado<br>+<br>detalle| 1. Listado de gastos filtrado por categoría, muestra total de dinero gastado en cada categoría => detalle CRUD Gasto<br>|
+|CUU/Epic|1. Registrar movimiento<br>2. Importar Movimientos<br>3. Crear Wallet<br>|
 
 Aprobacion directa:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD CategoriaIngreso<br>3. CRUD CategoriaGasto<br>4. CRUD Notificacion<br> 5. CRUD Metodo de pago|
-|CRUD dependiente|1. CRUD Wallet {depende de} CRUD Usuario<br>2. CRUD Gasto {depende de} CRUD Movimiento<br>3. CRUD Ingreso {depende de} CRUD Movimiento|
-|Listado<br>+<br>detalle| 1. Listado de gastos filtrado por categoria, muestra total de dinero gastado en cada categoria => detalle CRUD Gasto<br> 2. Listado de ingresos y egresos de dinero, muestra fecha, monto y categoria|
-|CUU/Epic|1. Registrar movimiento<br>2. Registrar un usuario<br>3. Consultar balance de gastos<br>4. Enviar notificacion de gasto mensual por mail.
+|CRUD simple|1. CRUD Usuario<br>2. CRUD Categoria<br>3. CRUD Notificacion<br> 4. CRUD Metodo de pago|
+|CRUD dependiente|1. CRUD Wallet {depende de} CRUD Usuario<br>2. CRUD Movimiento {depende de} CRUD Wallet<br>3. CRUD Notificación {depende de} CRUD Movimiento| 1. Listado de gastos filtrado por categoria, muestra total de dinero gastado en cada categoria => detalle CRUD Gasto<br> 2. Listado de movimientos filtrados por tipo => detalle CRUD Movimiento|
+|CUU/Epic|1. Registrar movimiento<br>2. Importar Movimientos<br>3. Crear Wallet<br>4. Enviar notificación de gasto fijo.
