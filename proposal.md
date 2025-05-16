@@ -24,14 +24,14 @@ https://drive.google.com/file/d/1hfN_84HRdzsZLP-DmqMR-2_YcM8cXIp6/view?usp=shari
 ## Alcance Funcional 
 
 ### Alcance Mínimo
+ARTÍCULO 28.- Potenciales jurados. Juramento preliminar y examen. Los potenciales jurados deben prestar juramento individual o colectivamente, según dispusiera el juez, de contestar veraz y fielmente todas las preguntas que se les hiciesen en relación con su capacidad para actuar como jurado.
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
+Las partes pueden acordar o solicitar al juez que, antes de comenzar la audiencia, autorice que los potenciales jurados llenen por escrito un cuestionario de preguntas con información relevante a fin de agilizar el trámite de la audiencia de selección. Una vez en la audiencia, las partes pueden formular preguntas a los potenciales jurados sobre posibles circunstancias que pudieran afectar su imparcialidad. La audiencia será dirigida por el juez, que moderará las preguntas
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Persona<br>2. CRUD Materia<br>3. CRUD Proyecto|
-|CRUD dependiente|1. CRUD Entrega {depende de} CRUD Proyecto<br>2. CRUD Corrección {depende de} CRUD Entrega|
+|CRUD simple|1. CRUD Persona<br>2. CRUD Tipo Material<br>3. CRUD Tipo Proyecto|
+|CRUD dependiente|1. CRUD Entrega {depende de} CRUD Proyecto<br>2. CRUD Proyecto {depende de} CRUD Materia / Persona|
 |Listado<br>+<br>detalle| 1. Listado de proyectos con entregas aprobadas en un rango de fechas determinadas => detalle CRUD Proyecto <br> 2. Listado de proyectos pendientes de entrega que tiene un alumno => detalle CRUD Entrega|
 |CUU/Epic|1. Crear proyecto<br>2. Realizar entrega|
 
@@ -39,7 +39,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Persona<br>2. CRUD Materia<br>3. CRUD Proyecto<br>4. CRUD Entrega<br>5. CRUD Corrección<br>6. CRUD Bibliografia<br>7. CRUD Grupo|
+|CRUD |1. CRUD Persona<br>2. CRUD Tipo Material<br>3. CRUD Tipo Proyecto<br>4. CRUD Entrega<br>5. CRUD Corrección<br>6. CRUD Materia<br>7. CRUD Grupo|
 |CUU/Epic|1. Realizar matriculacion a materia<br>2. Crear proyecto<br>3. Realizar entrega|
 
 
