@@ -4,14 +4,12 @@
 ### Integrantes
 * Levrand, Tomas - 52206
 * Peralta, Joaquin - 52151
-* Suarez, Abril - 49958
 * Waniewski, Albano - 52706
 
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
@@ -19,7 +17,7 @@ El sistema consiste en una web diseñada para la búsqueda, reserva, valoración
 
 
 ### Modelo
-![Imagen de WhatsApp 2025-04-25 a las 20 32 50_63929374](https://github.com/user-attachments/assets/2ecbf248-5d58-478b-8db1-08b9319c8ed8)
+![MD Dsw drawio](https://github.com/user-attachments/assets/25caf521-3cb6-4d67-94fb-44b96c44a608)
 
 
 
@@ -33,7 +31,7 @@ El sistema consiste en una web diseñada para la búsqueda, reserva, valoración
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD - Categoría<br>2. CRUD - Distrito<br>3. CRUD - Usuario<br>4. CRUD - Alimento<br>5. CRUD - Politicas|
+|CRUD simple|1. CRUD - Categoría<br>2. CRUD - Distrito<br>3. CRUD - Usuario<br>4. CRUD - Politicas|
 |CRUD dependiente|1. CRUD - Restaurante {depende de} CRUD Usuario>dueño<br>2. CRUD - Reserva {depende de} CRUD Usuario y CRUD restaurante|
 |Listado<br>+<br>detalle| 1. Listado de restaurantes filtrados por alimento, valoración, distrito y categoria. Muestra Restaurante => detalle CRUD Restaurante.<br> 2. Listado de platos filtrados por alimento. Muestra platos => detalle muestra datos completos de los platos.|
 |CUU/Epic|1. Gestionar sesion de usuario<br>2. Gestionar asistencia de reserva|
@@ -42,7 +40,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD - Categoría<br>2. CRUD - Distrito<br>3. CRUD - Usuario<br>4. CRUD - Alimento<br>5. CRUD - Reserva<br>6. CRUD - Plato<br>7. CRUD - Restaurante<br>8. CRUD - Reseña<br>9. CRUD - Políticas<br>10. CRUD - Suscripción<br>11. CRUD - Penalidad|
+|CRUD |1. CRUD - Categoría<br>2. CRUD - Distrito<br>3. CRUD - Usuario<br>4. CRUD - Reserva<br>5. CRUD - Plato<br>6. CRUD - Restaurante<br>7. CRUD - Reseña<br>8. CRUD - Políticas<br>9. CRUD - Suscripción<br>10. CRUD - Penalidad|
 |CUU/Epic|1. Gestionar sesion de usuario<br>2. Gestionar asistencia de reserva.<br>3.Realizar reseña de restaurante<br>4. Realizar suscripción (Mediante mercado pago).|
 
 
