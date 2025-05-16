@@ -33,5 +33,5 @@ Aprobacion directa:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Usuario<br>2. CRUD Categoria<br>3. CRUD Notificacion<br> 4. CRUD Metodo de pago|
-|CRUD dependiente|1. CRUD Wallet {depende de} CRUD Usuario<br>2. CRUD Movimiento {depende de} CRUD Wallet<br>3. CRUD Notificación {depende de} CRUD Movimiento| 1. Listado de gastos filtrado por categoria, muestra total de dinero gastado en cada categoria => detalle CRUD Gasto<br> 2. Listado de movimientos filtrados por tipo => detalle CRUD Movimiento|
+|CRUD dependiente|1. CRUD Wallet {depende de} CRUD Usuario<br>2. CRUD Movimiento {depende de} CRUD Wallet<br>3. CRUD Notificación {depende de} CRUD Movimiento| Listado <br>+<br>detalle| 1. Listado de gastos filtrado por categoria, muestra total de dinero gastado en cada categoria => detalle CRUD Gasto<br> 2. Listado de movimientos filtrados por tipo => detalle CRUD Movimiento|
 |CUU/Epic|1. Registrar movimiento<br>2. Importar Movimientos<br>3. Crear Wallet<br>4. Enviar notificación de gasto fijo.
