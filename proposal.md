@@ -2,42 +2,45 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+52594 - Garcia, Candela
+52547 - Vega, Lucila Bianca
+52958 - Cassina, Fiorella
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [Frontend] https://github.com/fiocassina/Backend-TP-DS.git
+* [Backend] https://github.com/fiocassina/Backend-TP-DS.git
+
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Una plataforma diseñada para que los docentes puedan crear, asignar y realizar un seguimiento de proyectos académicos, organizada por materias y grupos de estudiantes. Cada alumno, deberá matricularse a una materia donde podrá unirse o crear un grupo, el cual subirá entregas de proyectos, visualizará correcciones y permitirá ver un seguimiento claro del progreso general del equipo.
+
+
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+https://drive.google.com/file/d/1hfN_84HRdzsZLP-DmqMR-2_YcM8cXIp6/view?usp=sharing
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
+ARTÍCULO 28.- Potenciales jurados. Juramento preliminar y examen. Los potenciales jurados deben prestar juramento individual o colectivamente, según dispusiera el juez, de contestar veraz y fielmente todas las preguntas que se les hiciesen en relación con su capacidad para actuar como jurado.
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
+Las partes pueden acordar o solicitar al juez que, antes de comenzar la audiencia, autorice que los potenciales jurados llenen por escrito un cuestionario de preguntas con información relevante a fin de agilizar el trámite de la audiencia de selección. Una vez en la audiencia, las partes pueden formular preguntas a los potenciales jurados sobre posibles circunstancias que pudieran afectar su imparcialidad. La audiencia será dirigida por el juez, que moderará las preguntas
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Persona<br>2. CRUD Tipo Material<br>3. CRUD Tipo Proyecto|
+|CRUD dependiente|1. CRUD Entrega {depende de} CRUD Proyecto<br>2. CRUD Proyecto {depende de} CRUD Materia / Persona|
+|Listado<br>+<br>detalle| 1. Listado de proyectos con entregas aprobadas en un rango de fechas determinadas => detalle CRUD Proyecto <br> 2. Listado de proyectos pendientes de entrega que tiene un alumno => detalle CRUD Entrega|
+|CUU/Epic|1. Crear proyecto<br>2. Realizar entrega|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD Persona<br>2. CRUD Tipo Material<br>3. CRUD Tipo Proyecto<br>4. CRUD Entrega<br>5. CRUD Corrección<br>6. CRUD Materia<br>7. CRUD Grupo|
+|CUU/Epic|1. Realizar matriculacion a materia<br>2. Crear proyecto<br>3. Realizar entrega|
 
 
 ### Alcance Adicional Voluntario
@@ -46,7 +49,7 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados | |
+|CUU/Epic|1. Crear grupo<br>2.Realizar correccion de entrega<br>3. Modificar entrega|
+|Otros|1. Envío de recordatorio de entrega pendiente proximo a fecha limite de proyecto|
 
