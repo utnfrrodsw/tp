@@ -1,55 +1,53 @@
 # Propuesta TP DSW
 
 ## Grupo
+
 ### Integrantes
-* 41980 - Valenti, Sofia
-* 48318 - Merino, Federico
-* 
+- 41980 - Valenti, Sofía  
+- 48318 - Merino, Federico  
 
 ### Repositorios
-* [frontend app](https://github.com/fedemerino/dsw-frontend)
-* [backend app](https://github.com/fedemerino/dsw-backend)
+- [Frontend App](https://github.com/fedemerino/dsw-frontend)  
+- [Backend App](https://github.com/fedemerino/dsw-backend)  
+
+---
 
 ## Tema
 
 ### Descripción
 
-Aplicación web que permite a propietarios publicar alojamientos para alquiler temporario, y a usuarios consultar disponibilidad, buscar por ubicación o fechas, y realizar reservas de forma directa.
+Aplicación web que permite a usuarios publicar alojamientos para alquiler temporario y a otros usuarios realizar reservas. Se podrán buscar alojamientos según fecha, localidad y cantidad de huéspedes, ver detalles de cada publicación, dejar reseñas, y gestionar reservas.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+![DER](LINK_A_TU_IMAGEN_DER)
 
-## Alcance Funcional 
+## Alcance Funcional
 
-### Alcance Mínimo
+### Alcance Mínimo (Regularidad)
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
+| Req              | Detalle |
+|------------------|---------|
+| CRUD simple      | 1. CRUD Usuarios<br>2. CRUD Provincias<br>3. CRUD Localidades <br>4. CRUD Métodos de Pago |
+| CRUD dependiente | 1. CRUD Propiedades (depende de Usuario, Localidad)<br>2. CRUD Imágenes (depende de Propiedad)<br>3. CRUD Reservas (depende de Usuario y Propiedad)<br>4. CRUD Reseñas (depende de Usuario y Propiedad) |
+| Listado + detalle| 1. Listado de propiedades filtrado por localidad, fechas y cantidad de huéspedes<br>2. Detalle de cada propiedad seleccionada |
+| CUU / Epic       | 1. Publicar una propiedad<br>2. Reservar un alojamiento<br>3. Cancelar una reserva<br>4. Modificar o eliminar una publicación<br>5. Dejar una reseña |
 
-Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo de alojamientos<br>2. CRUD Provincias<br>3. CRUD Localidades<br>4. CRUD Usuarios
-|CRUD dependiente|1. CRUD Publicaciones {depende de} CRUD Tipo de alojamientos, provincia, ciudad, usuario<br>2. CRUD Reservas {depende de} CRUD Publicaciones<br>3. CRUD Review de alojamientos {depende de} Publicaciones|
-|Listado<br>+<br>detalle| 1. Listado de publicaciones filtrado por localidad, fecha y cantidad de huéspedes <br> 2. Listado de alojamientos favoritos (*)
-|CUU/Epic|1. Reservar un alojamiento para la estadía<br>2. Cancelar una reserva<br>3. Publicar una propiedad<br>4. Modificar una publicación<br>5. Remover una publicación<br>6. Realizar una consulta sobre una publicación<br>7. Registrar un usuario (*) |
+---
 
+### Alcance para Aprobación Directa
 
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+| Req     | Detalle |
+|---------|---------|
+| CRUDs   | CRUD completo de todas las entidades necesarias (Usuarios, Propiedades, Reservas, Reseñas, Imágenes, Provincias, Localidades) |
+| CUUs    | 1. Publicación de propiedad<br>2. Reserva y cancelación<br>3. Dejar reseña<br>4. Gestión de propiedades propias<br>5. Autenticación y niveles de acceso<br>6. Registro y login de usuario |
 
+---
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+| Req     | Detalle |
+|---------|---------|
+| CUUs    | 1. Envío de recordatorio de reserva por email<br>2. Marcado de favoritos<br>3. Reporte de publicaciones inadecuadas por usuarios |
+| Otros   | 1. Sistema de reputación con promedio de calificaciones<br>2. Vista de reservas realizadas y próximas<br>3. Dashboard para anfitriones |
 
