@@ -33,7 +33,7 @@ Los administradores pueden subir, actualizar, gestionar y borrar cada uno de los
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Cliente<br>2. CRUD Mueble|
+|CRUD simple|1. CRUD Cliente<br>2. CRUD Mueble<br>3. CRUD Pago<br>4. CRUD Categoría|
 |CRUD dependiente|1. CRUD Tipo Mueble {depende de} CRUD Mueble<br>2. CRUD Favoritos {depende de} CRUD Cliente<br> 3. Crud Tipo Material {depende de} CRUD Mueble|
 |Listado<br>+<br>detalle| 1. Listado de muebles filtrado por categoría y etiqueta de mueble, muestra nombre, precio y stock => detalle CRUD Mueble<br> 2. Listado de productos en carrito filtrado por rango de fecha, muestra nro de producto, cantidad pedida, descuento si es aplicable, estado y nombre del cliente => detalle muestra datos completos del pedido y del cliente|
 |CUU/Epic|1. Agregar un producto al carrito <br>2. Realizar el pago del pedido <br> 3. Quitar producto del pedido|
@@ -41,7 +41,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Cliente<br>2. CRUD Mueble<br>3. CRUD Pago<br>4. CRUD Descuento<br>5. CRUD Favorito<br>6. Historial|
+|CRUD |1. CRUD Cliente<br>2. CRUD Mueble<br>3. CRUD Pago<br>4. CRUD Categoría<br>5. CRUD Favorito<br>6. CRUD Historial<br>7. CRUD Descuento|
 |CUU/Epic|1. Agregar un producto al carrito <br>2. Realizar pago del pedido<br> 3. Quitar producto del pedido<br> 4. Otorgar puntos en base a la cantidad de compras del cliente|
 
 ### Alcance Adicional Voluntario
