@@ -20,7 +20,7 @@ Aplicación web que permite a usuarios publicar alojamientos para alquiler tempo
 
 ### Modelo
 
-![DER](LINK_A_TU_IMAGEN_DER)
+![DER](./modelo.png)
 
 ## Alcance Funcional
 
@@ -29,9 +29,9 @@ Aplicación web que permite a usuarios publicar alojamientos para alquiler tempo
 | Req              | Detalle |
 |------------------|---------|
 | CRUD simple      | 1. CRUD Usuarios<br>2. CRUD Provincias<br>3. CRUD Localidades <br>4. CRUD Métodos de Pago |
-| CRUD dependiente | 1. CRUD Propiedades (depende de Usuario, Localidad)<br>2. CRUD Imágenes (depende de Propiedad)<br>3. CRUD Reservas (depende de Usuario y Propiedad)<br>4. CRUD Reseñas (depende de Usuario y Propiedad) |
-| Listado + detalle| 1. Listado de propiedades filtrado por localidad, fechas y cantidad de huéspedes<br>2. Detalle de cada propiedad seleccionada |
-| CUU / Epic       | 1. Publicar una propiedad<br>2. Reservar un alojamiento<br>3. Cancelar una reserva<br>4. Modificar o eliminar una publicación<br>5. Dejar una reseña |
+| CRUD dependiente | 1. CRUD Publicaciones (depende de Usuario, Localidad)<br>2. CRUD Imágenes (depende de Publicación)<br>3. CRUD Reservas (depende de Usuario y Publicación)<br>4. CRUD Reseñas (depende de Usuario y Publicación) |
+| Listado + detalle| 1. Listado de publicaciones filtrado por localidad, fechas y cantidad de huéspedes<br>2. Detalle de cada publicación seleccionada |
+| CUU / Epic       | 1. Registrar un usuario<br>2. Iniciar sesión<br>3. Realizar una publicación<br>4. Modificar o eliminar una publicación<br>5. Realizar una reserva |
 
 ---
 
@@ -39,8 +39,8 @@ Aplicación web que permite a usuarios publicar alojamientos para alquiler tempo
 
 | Req     | Detalle |
 |---------|---------|
-| CRUDs   | CRUD completo de todas las entidades necesarias (Usuarios, Propiedades, Reservas, Reseñas, Imágenes, Provincias, Localidades) |
-| CUUs    | 1. Publicación de propiedad<br>2. Reserva y cancelación<br>3. Dejar reseña<br>4. Gestión de propiedades propias<br>5. Autenticación y niveles de acceso<br>6. Registro y login de usuario |
+| CRUDs   | CRUD completo de todas las entidades necesarias (Usuarios, Publicaciones, Reservas, Reseñas, Favoritos, Imágenes, Provincias, Localidades) |
+| CUUs    | 1. Cancelar una reserva<br>2. Reseñar una publicación<br>3. Gestionar publicaciones propias<br>4. Agregar una publicación a favoritos<br>5. Bloquear un usuario<br>|
 
 ---
 
@@ -48,6 +48,5 @@ Aplicación web que permite a usuarios publicar alojamientos para alquiler tempo
 
 | Req     | Detalle |
 |---------|---------|
-| CUUs    | 1. Envío de recordatorio de reserva por email<br>2. Marcado de favoritos<br>3. Reporte de publicaciones inadecuadas por usuarios |
-| Otros   | 1. Sistema de reputación con promedio de calificaciones<br>2. Vista de reservas realizadas y próximas<br>3. Dashboard para anfitriones |
-
+| CUUs    | 1. Envío de recordatorio de reserva por email<br>2. Recuperar contraseña |
+| Otros   | 1. Dashboard para anfitriones<br>2. Vista de reservas realizadas y próximas
