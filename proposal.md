@@ -34,7 +34,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Personal<br>2. CRUD Material de Estudio {depende de CRUD Materia}<br>3. CRUD Foro<br>4. CRUD Aviso|
+|CRUD |1. CRUD Personal<br>2. CRUD Dictado {depende de CRUD Materia, CRUD Curso y CRUD Docente}<br>3. CRUD Material de Estudio {depende de CRUD Materia}<br>4. CRUD Foro<br>5. CRUD Aviso|
 |CUU/Epic|1. Generar Certificados Digitales con verificación<br>2. Realizar Inscripción de Alumno a Año en lote|
 
 
