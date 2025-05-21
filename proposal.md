@@ -26,7 +26,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Materia<br>2. CRUD Alumno<br>3. CRUD Docente<br>4. CRUD Curso|
-|CRUD dependiente|1. CRUD Evaluación {depende de CRUD Materia}<br>2. CRUD Inscripción {depende de CRUD Alumno y CRUD Curso}|
+|CRUD dependiente|1. CRUD Material {depende de CRUD Materia}<br>2. CRUD Inscripción {depende de CRUD Alumno y CRUD Curso}|
 |Listado<br>+<br>detalle| 1. Listado de Alumnos filtrado por Curso, muestra nombre, apellido, curso => detalle CRUD Alumno<br> 2. Listado de Evaluaciones filtrado por Materia, muestra título, fecha, alumno, nota => detalle CRUD Evaluación|
 |CUU/Epic|1. Registrar Asistencia de Alumnos<br>2. Gestionar Calificaciones de Evaluaciones|
 
@@ -34,7 +34,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Personal<br>2. CRUD Dictado {depende de CRUD Materia, CRUD Curso y CRUD Docente}<br>3. CRUD Material de Estudio {depende de CRUD Materia}<br>4. CRUD Foro<br>5. CRUD Aviso|
+|CRUD |1. CRUD Personal<br>2. CRUD Dictado {depende de CRUD Materia, CRUD Curso y CRUD Docente}<br>3. CRUD Evaluación {depende de CRUD Dictado}<br>4. CRUD Foro<br>5. CRUD Aviso|
 |CUU/Epic|1. Generar Certificados Digitales con verificación<br>2. Realizar Inscripción de Alumno a Año en lote|
 
 
