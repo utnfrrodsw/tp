@@ -1,11 +1,11 @@
-# Propuesta TP DSW - Sistema de gestión general educativo nivel secundario
+# Propuesta TP DSW - Campus virtual para gestión de institutos secundarios
 
 ## Grupo
 ### Integrantes
-* 50851 - Achares, Jonatan Francisco Angel
-* 52858 - Correa, Martiniano León
-* 53109 - Lopez, Evelyn Milagros
-* 52572 - Varrenti, Lara
+* 50851 - Achares, Jonatan Francisco Angel (Com304-2025)
+* 52858 - Correa, Martiniano León (Com304-2025)
+* 53109 - Lopez, Evelyn Milagros (Com301-2025)
+* 52572 - Varrenti, Lara (Com304-2025)
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-Desarrollo de un sistema de campus virtual para colegio secundario el cual cuenta con: módulo de gestión administrativa para inscripción de alumnos/docentes y control de los demás apartados, repositorio educativo donde docentes publican material de estudio organizado por materias, plataforma para entrega de actividades, evaluaciones, registro de calificaciones y asistencias, foros, trámites y avisos con accesos personalizados según el rol del usuario (alumno, docente o personal administrativo).
+Proponemos desarrollar un sistema de campus virtual para institutos secundarios que este conformado por: un sector de gestión administrativa para la inscripción de alumnos y control de más apartados, un repositorio disponible en donde docentes publiquen material de estudio organizado por materias, un sector para la entrega de actividades, registros de calificaciones y asistencias de los alumnos, foros para cada materia, y avisos generales, todo esto con accesos personalizados según el rol que tenga el usuario (puede ser alumno, docente o personal administrativo).
 
 ### Modelo
 ![imagen del modelo]()
