@@ -8,8 +8,8 @@
 * 50374 - Teglia Staseri, Lisandro
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [Frontend MyRacing](https://github.com/goya02-ops/MyRacing-Frontend)
+* [Backend MyRacing](https://github.com/goya02-ops/MyRacing-Backend)
 
 ## Tema
 ### Descripción
