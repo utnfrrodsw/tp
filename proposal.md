@@ -29,20 +29,20 @@ Regularidad:
 |CRUD simple|1. CRUD Localidad <br>2. CRUD Tag<br>3. CRUD Provincia <br>
 |CRUD dependiente|1. CRUD Usuario (Regularidad simple. Luego se amplia a privado y municipal en AD){depende de} CRUD Localidad <br>2. CRUD PuntoInteres{depende de} CRUD Localidad, Creador y Tag <br> 3. CRUD Evento {depende de} CRUD Tag, PuntoInteres|
 |Listado<br>+<br>detalle| 1. Listado de Evento  => Detalle muestra nombre del evento, una imagen de la actividad, tipo de evento, fecha más próxima y horario.<br>2. Listado de Puntos de interés => Detalle muestra una imagen del punto de interés, nombre, y breve descripción <br>3. Búsqueda de eventos y puntos de intereses mediante tags.|
-|CUU/Epic|1. Evento (crear + notificación)<br>2. Realizar una valoración sobre un punto de interés.|
+|CUU/Epic|1. Evento (crear + notificación)<br>2. Realizar lista favoritos de eventos.|
 
 
 Adicionales para Aprobación:
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Festividad <br>2. CRUD Historia<br>3. CRUD Provincia<br>4. CRUD Localidad<br>5. CRUD Tag<br>6. CRUD Cliente<br>7. CRUD Creador <br>8. CRUD Evento<br>9. CRUD Comentario<br>10. CRUD Municipal<br>11. CRUD Privado<br>12. CRUD Favorito<br>13. CRUD Agenda<br>14. CRUD PuntoDeInteres|
-|CUU/Epic|1. Visualizar recomendaciones personalizadas.<br> 2. Guardar un evento en la agenda.<br>3. Guardar un punto de interés en favoritos.|
+|CUU/Epic|1. Guardar en agenda con Calendar.<br> 2. Integrar PDI y eventos con Google Maps.<br>3. Guardar un punto de interés en favoritos.|
 
 
 ### Alcance Adicional Voluntario
 |Req|Detalle|
 |:-|:-|
-|Listados|1. Buscar eventos y puntos de interés por tags <br>2. Listar historial de eventos en un punto de interés par un creador<br>
+|Listados|1. Buscar eventos y puntos de interés por tags <br>2. Listar historial de eventos en un punto de interés par un creador<br>3.Visualizar recomendaciones personalizadas.|
 
 ## Reglas de Negocio (RN)
 
