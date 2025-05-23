@@ -27,7 +27,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Localidad <br>2. CRUD Tag<br>3. CRUD Provincia <br>
-|CRUD dependiente|1. CRUD Usuario {depende de} CRUD Localidad <br>2. CRUD PuntoInteres{depende de} CRUD Localidad, Creador y Tag <br> 3. CRUD Evento {depende de} CRUD Tag, PuntoInteres|
+|CRUD dependiente|1. CRUD Usuario (regularidad simple.Luego se amplia a privado y municipal en AD){depende de} CRUD Localidad <br>2. CRUD PuntoInteres{depende de} CRUD Localidad, Creador y Tag <br> 3. CRUD Evento {depende de} CRUD Tag, PuntoInteres|
 |Listado<br>+<br>detalle| 1. Listado de Evento  => Detalle muestra nombre del evento, una imagen de la actividad, tipo de evento, fecha más próxima y horario.<br>2. Listado de Puntos de interés => Detalle muestra una imagen del punto de interés, nombre, y breve descripción <br>3. Búsqueda de eventos y puntos de intereses mediante tags.|
 |CUU/Epic|1. Evento (crear + notificación)<br>2. Realizar una valoración sobre un punto de interés.|
 
