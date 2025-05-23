@@ -23,9 +23,9 @@ En la provincia de Santa Fe están ocurriendo Anomalías producidas por Fantasma
 
 ### Modelo
 
-<img src="./images/DC-Proposal-MD.png" alt="Modelo de Dominio" />
+<img src="./images/DC-Proposal-MD.jpg" alt="Modelo de Dominio" />
 
-[Link del modelo (Draw.io)](https://app.diagrams.net/#G1-IVL3tP7jw7QF192Rc02GROQfhCnMEic#%7B%22pageId%22%3A%22sb1di8dJ7n65exqrUiIW%22%7D)
+[Link del modelo (Draw.io)](https://app.diagrams.net/#G1-IVL3tP7jw7QF192Rc02GROQfhCnMEic#%7B%22pageId%22%3A%22ytz_YsIWZ9DYHRH7kDpo%22%7D)
 
 ## Alcance Funcional
 
