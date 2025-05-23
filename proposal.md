@@ -24,7 +24,7 @@ Los administradores pueden subir, actualizar, gestionar y borrar cada uno de los
 
 ### Modelo
 
-![imagen del modelo](./Modelo-Dominio-Muebleria.jpg)
+![imagen del modelo](Modelo-de-Dominio-Muebleria-E-Commerce.jpg)
 
 ## Alcance Funcional
 
