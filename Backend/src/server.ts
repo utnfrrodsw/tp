@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { MikroORM } from '@mikro-orm/core';
+import { MikroORM } from '@mikro-orm/mysql';
 import mikroOrmConfig from './shared/mikro-orm.config';
 import app from './app'; // 👈 importante: export default en app.ts
 

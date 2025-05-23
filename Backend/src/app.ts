@@ -1,11 +1,11 @@
-// src/app.ts
 import express from 'express';
 import { authRoutes } from './routes/auth.routes';
-// si querés agregar otras rutas luego, importalas acá
+import { usuarioRoutes } from './routes/usuario.routes';
 
-const app = express();
+const app = express(); 
 app.use(express.json());
 
-app.use('/api/auth', authRoutes); // por ejemplo
+app.use('/api/auth', authRoutes);
+app.use('/api/usuarios', usuarioRoutes); 
 
 export default app;

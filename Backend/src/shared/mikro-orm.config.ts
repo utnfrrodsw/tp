@@ -1,21 +1,18 @@
-// src/shared/db/mikro-orm.config.ts
-import { Options } from '@mikro-orm/core';
-import { MySqlDriver } from '@mikro-orm/mysql';
-import { Usuario } from '../entities/usuario.entity'; // Asegúrate de que la ruta de las entidades sea correcta
+// Backend/src/shared/mikro-orm.config.ts
 
-const config: Options<MySqlDriver> = {
+import { defineConfig } from '@mikro-orm/mysql';
+import { Usuario } from '../entities/usuario.entity';
+
+export default defineConfig({
   host: 'localhost',
   port: 3306,
-  user: 'root',  // Cambia por tu usuario
-  password: 'tu_contraseña',  // Cambia por tu contraseña
-  dbName: 'tu_base_de_datos', // Cambia por tu base de datos
-  entities: [Usuario],
-  entitiesTs: ['./src/entities'], // Soporta tus entidades TypeScript
+  user: 'root',
+  password: 'Utenianos2025',
+  dbName: 'tp_dsw304',
+  entities: [Usuario], // entidades en ejecución
   debug: true,
   migrations: {
-    path: './migrations',
-    pathTs: './src/migrations',
+    path: 'dist/migrations',    // compilado
+    pathTs: 'Backend/src/migrations',  // fuente TS
   },
-};
-
-export default config;
+});
