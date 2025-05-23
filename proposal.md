@@ -42,5 +42,4 @@ Regularidad:
 Adicionales para Aprobación:
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo de Anomalía<br>2. CRUD Localidad<br>3. CRUD Operador|
-|CUU/Epic|1. Generar Pedido de Resolución<br>2. Registrar Inspección<br>3. Generar Pedido de Agregación de Anomalía|
+|CUU/Epic|1. Generar Pedido de Agregación de Anomalía|
