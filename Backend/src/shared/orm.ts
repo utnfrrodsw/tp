@@ -1,18 +1,17 @@
 // src/shared/orm.ts
 import { MikroORM } from '@mikro-orm/core';
 import { MySqlDriver } from '@mikro-orm/mysql';
-import { Usuario } from '../entities/usuario.entity'; // Ruta correcta a las entidades
+import { Usuario } from '../entities/usuario.entity';
 
 export const initORM = async () => {
   const ormInstance = await MikroORM.init<MySqlDriver>({
     entities: [Usuario],
-    dbName: 'tu_base_de_datos', // Asegúrate de tener el nombre correcto de la base de datos
-    user: 'root', // Cambia por tu usuario de la base de datos
-    password: 'tu_contraseña', // Cambia por tu contraseña
+    dbName: 'tp_dsw304',
+    user: 'root',
+    password: 'Utenianos2025',
     host: 'localhost',
-    port: 3306, // Puerto de MySQL
-    driver: MySqlDriver, // Usamos MySQLDriver en lugar de PostgreSqlDriver
+    port: 3306,
   });
-  
-  return ormInstance; // Retornamos la instancia del ORM
+
+  return ormInstance;
 };

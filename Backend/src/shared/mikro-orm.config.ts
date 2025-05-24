@@ -1,18 +1,14 @@
-// Backend/src/shared/mikro-orm.config.ts
-
-import { defineConfig } from '@mikro-orm/mysql';
+import { Options } from '@mikro-orm/core';
 import { Usuario } from '../entities/usuario.entity';
 
-export default defineConfig({
+const config: Options = {
+  type: 'mysql',
   host: 'localhost',
   port: 3306,
-  user: 'root',
-  password: 'Utenianos2025',
-  dbName: 'tp_dsw304',
-  entities: [Usuario], // entidades en ejecución
-  debug: true,
-  migrations: {
-    path: 'dist/migrations',    // compilado
-    pathTs: 'Backend/src/migrations',  // fuente TS
-  },
-});
+  user: 'tu_usuario',
+  password: 'tu_password',
+  dbName: 'tu_base_de_datos',
+  entities: [Usuario], // ✅ Import directo (no usar string)
+};
+
+export default config;

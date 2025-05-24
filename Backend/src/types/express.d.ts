@@ -1,7 +1,14 @@
+// src/types/express.d.ts
+import { JwtPayload } from 'jsonwebtoken';
+import { MikroORM } from '@mikro-orm/mysql';
+
 declare global {
   namespace Express {
     interface Request {
-      user?: import('jsonwebtoken').JwtPayload;
+      user?: JwtPayload;
+      app: {
+        get(name: 'orm'): MikroORM;
+      };
     }
   }
 }
