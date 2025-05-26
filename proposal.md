@@ -6,8 +6,8 @@
 * 50249 - Papaolo, Francisco
 
 ### Repositorios
-* [frontend app]()
-* [backend app]()
+* [frontend app](https://github.com/AlvaroRen/frontend-tp-dsw-2025.git)
+* [backend app](https://github.com/Papaolofran/backend-tp-dsw-2025.git)
 
 ## Tema
 ### Descripción
