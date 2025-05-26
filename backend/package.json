@@ -1,15 +1,24 @@
 {
-  "name": "Confpnpm",
-  "type":"module",
+  "name": "backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "build":"tsc -p ./tsconfig.json",
-    "start:dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node dist/index.js\""
+    "build": "tsc -p ./tsconfig.json",
+    "start:dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node dist/app.js\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.8.0"
+  "packageManager": "pnpm@10.6.5",
+  "devDependencies": {
+    "@types/express": "5.0.2",
+    "@types/node": "22.15.21",
+    "tsc-watch": "6.0.4",
+    "typescript": "5.1.3"
+  },
+  "dependencies": {
+    "express": "5.1.0"
+  }
 }
