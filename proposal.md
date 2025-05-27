@@ -15,7 +15,7 @@
 Teniamos pensado hacer un sistema para gestionar cocheras en una estacionamiento, con perfiles de administrador y usuario. El administrador puede crear cocheras y modificar las tarifas según el tipo de vehiculo (Auto/Moto) y el tipo de servicio (Anual/Mensual/xHora). Se registrará con la patente al vehículo y el tipo en el sistema el cual calculará las tarifas a abonar. Cualquier servicio que sea fijo, se solicitará dni, nombre, etc al cliente.
 
 ### Modelo
-![imagen del modelo](file:///C:/Users/Felipe/Downloads/MD-DSW.drawio.png)
+![imagen del modelo]([file:///C:/Users/Felipe/Downloads/MD-DSW.drawio.png](https://github.com/SantiagoCarboUTN/TP-DSW/blob/main/proposal.md))
 
 
 ## Alcance Funcional 
