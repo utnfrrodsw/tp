@@ -67,7 +67,7 @@ app.post('/api/usuarios', sanitizeUsuarioInput, (req, res) => {
     input.apellido,
     input.fechaNacimiento,
     input.nombreFantasia,
-    input.foto
+    input.descripcion
   );
   usuarios.push(usuario);
   res.status(201).send({
@@ -85,12 +85,10 @@ app.put('/api/usuarios/:id', sanitizeUsuarioInput, (req, res) => {
     return;
   }
   usuarios[usurioIdx] = { ...usuarios[usurioIdx], ...req.body.sanitizedInput };
-  res
-    .status(200)
-    .send({
-      message: 'Usuario actualizado exitosamente',
-      data: usuarios[usurioIdx],
-    });
+  res.status(200).send({
+    message: 'Usuario actualizado exitosamente',
+    data: usuarios[usurioIdx],
+  });
 });
 
 app.patch('/api/usuarios/:id', sanitizeUsuarioInput, (req, res) => {
@@ -105,12 +103,10 @@ app.patch('/api/usuarios/:id', sanitizeUsuarioInput, (req, res) => {
 
   Object.assign(usuarios[usuarioId], req.body.sanitizedInput);
 
-  res
-    .status(200)
-    .send({
-      message: 'Usuario modificado con écito',
-      data: usuarios[usuarioId],
-    });
+  res.status(200).send({
+    message: 'Usuario modificado con écito',
+    data: usuarios[usuarioId],
+  });
   return;
 });
 
