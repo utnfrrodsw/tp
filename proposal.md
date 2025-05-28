@@ -35,7 +35,7 @@ Regularidad:
 |CRUD dependiente|1.CRUD Horarios depende de Prestatario <br>2. CRUD Prestatario depende de Tipo de Servicios y de Horarios <br>|
 |Listado<br>+<br>detalle| 1. Listado de prestatario filtrado por tipo de servicios, tarifa, puntuacion y horarios <br> 2. Historial de reservas realizadas para volver a contactar a algun prestatario|
 |CUU/Epic|1. Realizar reserva de un servicio con un prestatario <br> 2. Realizar una reseña de una reserva con un Prestatario|
-Adicionales para Aprobación
+### Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Usuario <br>2. CRUD TipoServicio <br>3. CRUD Turno <br>4.CRUD Zona <br> 5. CRUD Servicio |
