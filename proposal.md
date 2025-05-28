@@ -36,7 +36,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Usuario <br>2. CRUD Talleres<br>3. CRUD Cabañas <br>4. CRUD Tipo solicitud<br>5. CRUD Libreta de notas<br>6. CRUD Misiones<br>7. CRUD Obituario|
+|CRUD |1. CRUD Deidades <br>2. CRUD Talleres<br>3. CRUD Cabañas <br>4. CRUD Tipo solicitud<br>5. CRUD Libreta de notas<br>6. CRUD Misiones<br>7. CRUD Obituario|
 |CUU/Epic|1. Asignacion de misiones a los campistas<br>2. Inscripción  a talleres<br>3.Asignación de notas suministradas por los instructores a los campistas<br>4.Evaluación de Talleres por parte de Campistas|
 
 
