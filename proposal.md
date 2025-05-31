@@ -3,15 +3,19 @@
 ## Grupo
 ### Integrantes
 * legajo - Apellido(s), Nombre(s)
+* 52571 - Ferzola, Ornella Fiama
+* 52115 - Soria, Marian Luz
+* 52362 - Baistroqui, Lucas
+* 53009 - Oliva, Ivan
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
-## Tema
+## Menú-Inclusivo
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
 
 ### Modelo
 ![imagen del modelo]()
