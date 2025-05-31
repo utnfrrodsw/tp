@@ -2,7 +2,6 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
 * 52571 - Ferzola, Ornella Fiama
 * 52115 - Soria, Marian Luz
 * 52362 - Baistroqui, Lucas
@@ -15,7 +14,7 @@
 
 ## Menú-Inclusivo
 ### Descripción
-
+Menú-Inclusivo es una plataforma web diseñada para conectar a las personas con necesidades alimenticias específicas con restaurantes que ofrecen opciones adaptadas a sus dietas. Para poder realizar pedidos en línea a través de la plataforma, solo necesitás crear tu usuario. Esto nos permite personalizar tu experiencia, guardar tus preferencias y mostrarte recomendaciones acordes a tus necesidades.
 
 ### Modelo
 ![imagen del modelo]()
