@@ -16,7 +16,8 @@
 Velzia es un mini ERP para ventas simple y funcional.
 
 ### Modelo
-![imagen] ![Screenshot 2025-04-28 at 15-48-22 BBD drawio - draw io](https://github.com/user-attachments/assets/488b233f-9c41-44ac-8d28-d24af897476f)
+![BBD drawio](https://github.com/user-attachments/assets/86220edc-618f-4ab9-913f-f5dc0dbaff60)
+
 
 
 
