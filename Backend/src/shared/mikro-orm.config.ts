@@ -1,8 +1,8 @@
 import { Options } from '@mikro-orm/core';
 import { Usuario } from '../entities/usuario.entity';
+import { MySqlConnection } from '@mikro-orm/mysql';
 
 const config: Options = {
-  type: 'mysql',
   host: 'localhost',
   port: 3306,
   user: 'tu_usuario',
