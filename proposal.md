@@ -34,8 +34,8 @@ En la provincia de Santa Fe están ocurriendo Anomalías producidas por Fantasma
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo de Anomalía<br>2. CRUD Localidad<br>3. CRUD Operador|
-|CRUD dependiente|1. CRUD Cazador {depende de} CRUD Zona<br>2. CRUD Zona {depende de} CRUD Localidad|
+|CRUD simple|1. CRUD Tipo de Anomalía<br>2. CRUD Localidad<br>3. CRUD Denunciante|
+|CRUD dependiente|1. CRUD Usuario {depende de} CRUD Zona<br>2. CRUD Zona {depende de} CRUD Localidad|
 |Listado<br>+<br>detalle| 1. Listado de Pedidos de Resolución filtrado por su dificultad, muestra código del pedido de resolución y dificultad de la anomalía => detalle CRUD Pedido de Resolución<br> 2. Listado de Inspecciones filtrado por su resultado, muestra código del pedido de resolución y resultado de la Inspección => detalle CRUD Inspección|
 |CUU/Epic|1. Generar Pedido de Resolución<br>2. Registrar Inspección|
 
