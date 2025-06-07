@@ -9,18 +9,15 @@
 * 52282 - Constante, Gonzalo
 
 ### Repositorios (?)
-* [frontend app](http://hyperlinkToGithubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo, indicar un solo link con fullstack app.
-
-
+* [FE APP](https://github.com/santifnob/FE-app)
+* [BE APP](https://github.com/santifnob/BE-app)
 
 ## Tema
 ### Descripción
 El presente proyecto tiene como objetivo desarrollar una solución de software para optimizar la gestión y el control operativo de una empresa ferroviaria. El sistema se centralizará en la documentación de cada viaje, el seguimiento de las cargas transportadas, la gestión del mantenimiento de parte de la infraestructura ferroviaria (licencias, estado de los trenes y vías), y demás información crítica del recorrido realizado. Todo esto con el fin de proporcionar una visión unificada y en tiempo real del sistema, permitiendo una toma de decisiones de mayor calidad y asegurando una incrementalidad del sistema en el tiempo. 
 
 ### Modelo
-(https://app.diagrams.net/#G1CbL1amhzWdO4Q_SigsjlzUsf7KscJk_t#%7B"pageId"%3A"KFOGIdaJm5DWyXvSNqt7"%7D)
+[MODELO DE DOMINIO](https://app.diagrams.net/#G1CbL1amhzWdO4Q_SigsjlzUsf7KscJk_t#%7B"pageId"%3A"KFOGIdaJm5DWyXvSNqt7"%7D)
 
 ## Alcance Funcional
 
