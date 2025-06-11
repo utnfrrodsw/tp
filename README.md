@@ -1,4 +1,4 @@
-# Propuesta de Trabajo Práctico - Desarrollo de Software - Sistema de campus virtual para gestionar institutos secundarios
+# Propuesta de Trabajo Práctico - Desarrollo de Software - Plataforma digital de gestión académica para institutos secundarios
 
 ## Grupo
 ### Integrantes
@@ -13,7 +13,7 @@
 
 ## Tema
 ### Descripción
-Proponemos desarrollar un sistema de campus virtual para institutos secundarios que este conformado por: un sector de gestión administrativa para la inscripción de alumnos y control de más apartados, un repositorio disponible en donde docentes publiquen material de estudio organizado por materias, un sector para la entrega de actividades, registros de calificaciones y asistencias de los alumnos, foros para cada materia, y avisos generales, todo esto con accesos personalizados según el rol que tenga el usuario (puede ser alumno, docente o personal administrativo).
+Proponemos desarrollar una plataforma digital para institutos secundarios que este conformada por: un sector de gestión administrativa para la inscripción de alumnos y control de más apartados, un repositorio disponible en donde docentes publiquen material de estudio organizado por materias, un sector para la entrega de actividades, registros de calificaciones y asistencias de los alumnos, foros para cada materia, y avisos generales, todo esto con accesos personalizados según el rol que tenga el usuario (puede ser alumno, docente o personal administrativo).
 
 ### Modelo
 ![Image](https://github.com/user-attachments/assets/8f86117f-ce58-475f-8b83-0fd159e40d0b)
