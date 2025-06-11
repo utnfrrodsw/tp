@@ -16,7 +16,7 @@
 Proponemos desarrollar una plataforma digital para institutos secundarios que este conformada por: un sector de gestión administrativa para la inscripción de alumnos y control de más apartados, un repositorio disponible en donde docentes publiquen material de estudio organizado por materias, un sector para la entrega de actividades, registros de calificaciones y asistencias de los alumnos, foros para cada materia, y avisos generales, todo esto con accesos personalizados según el rol que tenga el usuario (puede ser alumno, docente o personal administrativo).
 
 ### Modelo
-![Image](https://github.com/user-attachments/assets/8f86117f-ce58-475f-8b83-0fd159e40d0b)
+![Image](https://github.com/user-attachments/assets/10ef82c9-71ac-4367-a414-6653e2f1fe03)
 
 ## Alcance Funcional 
 
