@@ -8,8 +8,8 @@
 * 52572 - Varrenti, Lara (Com304-2025)
 
 ### Repositorios
-* [frontend app](https://github.com/MartinianoLeonCorrea/frontend_app_hsm.git)
-* [backend app](https://github.com/MartinianoLeonCorrea/backend_app_hsm.git)
+* [frontend app](https://github.com/MartinianoLeonCorrea/frontendapp_tpGS.git)
+* [backend app](https://github.com/MartinianoLeonCorrea/backendapp_tpGS.git)
 
 ## Tema
 ### Descripción
