@@ -8,8 +8,8 @@
 * 52572 - Varrenti, Lara (Com304-2025)
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab](https://github.com/MartinianoLeonCorrea/frontend_app_hsm.git)
-* [backend app](http://hyperlinkToGihubOrGitlab](https://github.com/MartinianoLeonCorrea/backend_app_hsm.git)
+* [frontend app](http://hyperlinkToGihubOrGitlab](https://github.com/MartinianoLeonCorrea/frontend_app_hsm.git))
+* [backend app](http://hyperlinkToGihubOrGitlab](https://github.com/MartinianoLeonCorrea/backend_app_hsm.git))
 
 ## Tema
 ### Descripción
