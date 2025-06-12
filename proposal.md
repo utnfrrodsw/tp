@@ -2,51 +2,55 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* Levrand, Tomas - 52206
+* Peralta, Joaquin - 52151
+* Waniewski, Albano - 52706
+
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
 * [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+El sistema consiste en una web diseñada para la búsqueda, reserva, valoración y presentación de un restaurante. Donde un usuario busca la disponibilidad para un restaurante en el día y hora que desee, permitiéndole buscar por zona, según la valoración de los restaurantes y por precios.<br>El cliente podrá suscribirse, pagando un monto por mercado pago, para poder acceder a los descuentos y beneficios de los restaurantes. Luego de cumplir la reserva del cliente, el sistema le enviará un mail para que registre su valoración del restaurante.<br>El dueño del restaurante podrá gestionar penalidades a los clientes dependiendo del comportamiento del cliente en la reserva y las repetidas ausencias a la misma.
+
 
 ### Modelo
-![imagen del modelo]()
+![MD Dsw drawio](https://github.com/user-attachments/assets/25caf521-3cb6-4d67-94fb-44b96c44a608)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+
+
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
+
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD - Categoría<br>2. CRUD - Distrito<br>3. CRUD - Usuario<br>4. CRUD - Politicas|
+|CRUD dependiente|1. CRUD - Restaurante {depende de} CRUD Usuario>dueño<br>2. CRUD - Reserva {depende de} CRUD Usuario y CRUD restaurante|
+|Listado<br>+<br>detalle| 1. Listado de restaurantes filtrados por alimento, valoración, distrito y categoria. Muestra Restaurante => detalle CRUD Restaurante.<br> 2. Listado de platos filtrados por alimento. Muestra platos => detalle muestra datos completos de los platos.|
+|CUU/Epic|1. Gestionar sesion de usuario<br>2. Gestionar asistencia de reserva|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD |1. CRUD - Categoría<br>2. CRUD - Distrito<br>3. CRUD - Usuario<br>4. CRUD - Reserva<br>5. CRUD - Plato<br>6. CRUD - Restaurante<br>7. CRUD - Reseña<br>8. CRUD - Políticas<br>9. CRUD - Suscripción<br>10. CRUD - Penalidad|
+|CUU/Epic|1. Gestionar sesion de usuario<br>2. Gestionar asistencia de reserva.<br>3.Realizar reseña de restaurante<br>4. Realizar suscripción (Mediante mercado pago).|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
+
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listados |1. Listado de categoría (para dueño) al querer crear el restaurante.<br>2. Listado Reporte cantidad de veces asistidas a restaurante (para dueño).<br>3. Listado de reservas de restaurantes ordenadas por cantidad de cancelaciones (para admin,y para dueño del mismo restaurante).<br>4. Listado de clientes con más cancelaciones en el mes (para Dueño)|
+|CUU/Epic|1. Cancelación reserva<br>2. Cancelación suscripción|
+|Otros|1. Envío de recordatorio de reseña por email<br>2. Envío de recordatorio de renovación de suscripción por mail.|
 
