@@ -1,6 +1,0 @@
-[submodule "FrontEnd"]
-	path = FrontEnd
-	url = https://github.com/MartinianoLeonCorrea/frontendapp_tpGS.git
-[submodule "BackEnd"]
-	path = BackEnd
-	url = https://github.com/MartinianoLeonCorrea/backendapp_tpGS.git
