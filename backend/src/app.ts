@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { Usuario } from './usuario.js';
+import { Usuario } from './usuario/usuario.js';
 import { it } from 'node:test';
 
 const app = express();
