@@ -21,7 +21,7 @@ Sistema de gestion de torneos en diferentes plataformas y juegos. Donde usuarios
 
 ### Modelo
 
-![Image](https://github.com/user-attachments/assets/a5907095-e36f-4d32-a3ad-a059c7a0f4bd)
+![Image](https://github.com/user-attachments/assets/dd25ddb9-0e21-4b28-acbe-d0c9e2647d28)
 
 ## Alcance Funcional
 
@@ -33,10 +33,10 @@ Regularidad:
 |CRUD simple|1. CRUD Usuario<br>2. CRUD TipoDeJuego <br>3. CRUD TipoDeTorneo|
 |CRUD dependiente|1. CRUD Juego {depende de} CRUD TipoDeJuego <br>2. CRUD Torneo {depende de} CRUD Usuario, CRUD Juego y CRUD TipoDeTorneo|
 |Listado<br>+<br>detalle| 1. Listado de torneos filtrado por tipo de torneo, muestra nombre, fecha de inicio, fecha fin, tipo de torneo => detalle CRUD Torneo<br> 2. Listado de juegos filtrado por tipo de juego, muestra nombre, y descripcion => detalle CRUD Juego|
-|CUU/Epic|1. Usuario se inscribe un torneo<br>2. Organizador crea torneo|
+|CUU/Epic|1. Usuario se inscribe un torneo<br>2. Usuario crea un equipo|
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Usuario<br>2. CRUD TipoDeJuego <br>3. CRUD TipoDeTorneo<br> 5. CRUD Juego <br> 6. CRUD Plataforma <br> 7. CRUD Region <br> 8. CRUD EstadoDeTorneo <br> 9. CRUD Inscripcion <br> 10. CRUD Equipo|
-|CUU/Epic|1. Usuario se inscribe un torneo<br>2. Organizador crea torneo <br> 3. Usuario crea un equipo|
+|CRUD |<br> 1. CRUD Juego <br> 2. CRUD Plataforma <br> 3. CRUD <br> 4. CRUD Inscripcion <br> 5. CRUD Equipo|
+|CUU/Epic|<br> 1. Envio por un email sobre informacion de torneo/equipo|
