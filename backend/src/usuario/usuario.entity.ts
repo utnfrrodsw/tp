@@ -1,37 +1,40 @@
 import { Entity, Property, ManyToOne, Cascade } from '@mikro-orm/core';
-
-export abstract class Usuario {
-  
+import { BaseEntity } from '../shared/db/baseEntity.entity';
+export abstract class Usuario extends BaseEntity {
   //id 
-  @Propery()  
+  @Property()  
   mail!: string;
-  @Propery()
+  @Property()
   contrasena!: string;
-  @Propery()
-  TipoDoc!: string;
-  @Propery()
-  NumeroDoc!: number;
+  @Property()
+  tipoDoc!: string;
+  @Property()
+  numeroDoc!: number;
 
 }
 
-@Emtity()
+@Entity()
 export class Cliente extends Usuario {
-  @Propery()
+  @Property()
   telefono?: number;
-  @Propery()
+  @Property()
   nombre?: string;
-  @Propery()
+  @Property()
   apellido?: string;
-  @Propery()
+  @Property()
   direccion?: string;
+  // many to many
+  // turno?  
 }
 
-@Emtity()
+@Entity()
 export class Prestatario extends Usuario {
-  @Propery()
+  @Property()
   nombreFantasia?: string;
-  @Propery()
+  @Property()
   descripcion?: string;
-  @Propery()
+  @Property()
   foto?: string; // aca se pone la ruta de la foto
+  //many to many
+  //Tarea
 }
