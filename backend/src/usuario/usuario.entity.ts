@@ -10,11 +10,7 @@ export abstract class Usuario extends BaseEntity {
   tipoDoc!: string;
   @Property()
   numeroDoc!: number;
-
-}
-
-@Entity()
-export class Cliente extends Usuario {
+  // Este es un campo opcional de cliente
   @Property()
   telefono?: number;
   @Property()
@@ -25,10 +21,7 @@ export class Cliente extends Usuario {
   direccion?: string;
   // many to many
   // turno?  
-}
-
-@Entity()
-export class Prestatario extends Usuario {
+  // Este es un campo opcional de prestatario
   @Property()
   nombreFantasia?: string;
   @Property()
@@ -36,5 +29,6 @@ export class Prestatario extends Usuario {
   @Property()
   foto?: string; // aca se pone la ruta de la foto
   //many to many
-  //Tarea
+  // @ManyToMany(() => Tarea, { nullable: true, cascade: [Cascade.ALL] })
+  // tareas?: Rel<Tarea>
 }
