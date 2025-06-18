@@ -5,6 +5,8 @@ coverage
 .env
 
 # dependency directory
+backend/node_modules
+frontend/node_modules
 node_modules
 
 # OS metadata
@@ -13,7 +15,8 @@ Thumbs.db
 
 # ignore built ts files
 dist/**/*
-
+backend/dist/**/*
+frontend/dist/**/*
 # vscode
 .vscode/*
 !.vscode/settings.json
