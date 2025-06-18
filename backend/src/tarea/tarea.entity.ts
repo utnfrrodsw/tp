@@ -6,7 +6,7 @@ import {
   ManyToOne,
   Rel,
 } from '@mikro-orm/core'
-import { BaseEntity } from '../shared/db/baseEntity.entity';
+import { BaseEntity } from '../shared/db/baseEntity.entity.js';
 
 @Entity()
 export class Tarea extends BaseEntity {

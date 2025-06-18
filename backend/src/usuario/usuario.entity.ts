@@ -1,6 +1,7 @@
 import { Entity, Property, ManyToOne, Cascade } from '@mikro-orm/core';
-import { BaseEntity } from '../shared/db/baseEntity.entity';
-export abstract class Usuario extends BaseEntity {
+import { BaseEntity } from '../shared/db/baseEntity.entity.js';
+@Entity()
+export class Usuario extends BaseEntity {
   //id 
   @Property()  
   mail!: string;
