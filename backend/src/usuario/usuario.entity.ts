@@ -34,5 +34,5 @@ export class Usuario extends BaseEntity {
   @ManyToMany(() => Servicio,(servicio) => servicio.usuarios, { cascade: [Cascade.ALL], owner: true, nullable: true })
   servicios?: Rel<Servicio>[];
   @OneToMany(() => Turno, turno => turno.usuario, {cascade: [Cascade.ALL], nullable: true})
-  turno?: Turno[];
+  turnos?: Turno[];
 }
