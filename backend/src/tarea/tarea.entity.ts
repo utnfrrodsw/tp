@@ -5,20 +5,22 @@ import {
   Cascade,
   ManyToOne,
   Rel,
+  Collection,
+  rel,
+  OneToOne
+  
 } from '@mikro-orm/core'
 import { BaseEntity } from '../shared/db/baseEntity.entity.js';
+import { Servicio } from '../servicio/servicio.entity.js';
 
 @Entity()
 export class Tarea extends BaseEntity {
-  @Property()
+  @Property({nullable: false})
   nombreTarea!: string
-  @Property()
+  @Property({nullable: false})
   descripcionTarea!: string
-  @Property()
+  @Property({nullable: false})
   duracionTarea!: number
-// many to many esta necesita una tabla intermedia para poder poner los atributos 
-//@ManytoMany(() => Usuario,(),{nullable: true})
-// usuarios?: Rel<Usuario>
-//@ManyToOne(() => TipoServicio, { nullable: true, cascade: [Cascade.ALL] })
-// tipoServicio?: Rel<TipoServicio>
+  @OneToOne(() => Servicio, (servicio) => servicio.tarea, { nullable: false })
+  servicio!: Servicio
 }
