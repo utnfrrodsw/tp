@@ -1,0 +1,27 @@
+### Obtener todos los usuarios
+
+GET http://localhost:3000/api/turno
+
+###Obtener usuario por id
+
+GET http://localhost:3000/api/turno
+
+### Cargamos un usuario
+
+POST http://localhost:3000/api/turno
+Content-Type: application/json
+
+
+###Hacemos un PUT
+
+PUT http://localhost:3000/api/tuno///
+Content-Type: application/json
+
+
+### Hacemos un patch
+PATCH http://localhost:3000/api/turno
+Content-Type: application/json
+
+
+###HAcemos un delete
+DELETE http://localhost:3000/api/turno

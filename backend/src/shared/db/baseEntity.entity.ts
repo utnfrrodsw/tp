@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import { PrimaryKey } from '@mikro-orm/core';
 
 export abstract class BaseEntity {
   @PrimaryKey()
   id?: number;
+=======
+import { PrimaryKey } from '@mikro-orm/core'
+
+export abstract class BaseEntity {
+  @PrimaryKey()
+  id?: number
+>>>>>>> origin/luis
 
   /*
 

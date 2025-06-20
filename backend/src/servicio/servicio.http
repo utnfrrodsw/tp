@@ -1,0 +1,36 @@
+### Obtener todos los servicios
+GET http://localhost:3000/api/servicio
+
+### Obtener servicio por id
+GET http://localhost:3000/api/servicio/1
+
+### Crear un servicio
+POST http://localhost:3000/api/servicio
+Content-Type: application/json
+
+{
+  "precio": 100,
+  "tarea": 1,
+  "usuarios": [1]
+}
+
+### Actualizar un servicio (PUT)
+PUT http://localhost:3000/api/servicio/1
+Content-Type: application/json
+
+{
+  "precio": 120,
+  "tarea": 1,
+  "usuarios": [1]
+}
+
+### Actualizar parcialmente un servicio (PATCH)
+PATCH http://localhost:3000/api/servicio/1
+Content-Type: application/json
+
+{
+  "precio": 130
+}
+
+### Eliminar un servicio
+DELETE http://localhost:3000/api/servicio/1
