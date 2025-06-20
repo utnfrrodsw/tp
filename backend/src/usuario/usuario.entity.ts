@@ -8,15 +8,9 @@ import {
   PrimaryKey,
 } from '@mikro-orm/core';
 import { BaseEntity } from '../shared/db/baseEntity.entity.js';
-import { CharacterClass } from './characterClass.entity.js';
 import { v4 as uuidv4 } from 'uuid';
 @Entity()
-export class Character extends BaseEntity {
-  @PrimaryKey({ nullable: false })
-  id = uuidv4();
-
-  /*   @ManyToOne(() => CharacterClass, { nullable: false })
-  characterClass!: Rel<CharacterClass>; */
+export class Usuario extends BaseEntity {
   //*Atributos del Usuario
   @Property({ nullable: false })
   email!: string;
@@ -25,12 +19,9 @@ export class Character extends BaseEntity {
   contrasena!: string;
 
   @Property({ nullable: false })
-  mana!: number;
-
-  @Property({ nullable: false })
   tipoDoc!: string;
   @Property({ nullable: false })
-  nroDoc!: number;
+  nroDoc!: string;
   @Property({ nullable: false })
   direccion!: string;
 
