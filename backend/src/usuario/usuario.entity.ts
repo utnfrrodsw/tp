@@ -2,6 +2,7 @@ import { Entity, Property, OneToOne , Cascade,Rel, ManyToMany, OneToMany } from 
 import { BaseEntity } from '../shared/db/baseEntity.entity.js';
 import { Servicio } from '../servicio/servicio.entity.js';
 import { Turno } from '../turno/turno.entity.js';
+import { Zona } from '../zona/zona.entity.js'
 @Entity()
 export class Usuario extends BaseEntity {
   //id 
@@ -33,6 +34,8 @@ export class Usuario extends BaseEntity {
   foto?: string; // aca se pone la ruta de la foto
   @ManyToMany(() => Servicio,(servicio) => servicio.usuarios, { cascade: [Cascade.ALL], owner: true, nullable: true })
   servicios?: Rel<Servicio>[];
-  @OneToMany(() => Turno, turno => turno.usuario, {cascade: [Cascade.ALL], nullable: true})
+  @OneToMany(() => Turno, turno => turno.usuario, {cascade: [Cascade.ALL], nullable: true,})
   turnos?: Turno[];
+  @ManyToMany(() => Zona, zona => zona.usuarios, {nullable:false,owner:true}) //no se si agregarle el cascade o no, ya que eliminar un prestatario no afectaria ala zona
+  zonas!: Zona[];
 }

@@ -7,28 +7,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Property, OneToOne } from '@mikro-orm/core';
-import { BaseEntity } from '../shared/db/baseEntity.entity.js';
-import { Servicio } from '../servicio/servicio.entity.js';
-export let Tarea = class Tarea extends BaseEntity {
-};
+import { Property, ManyToMany, PrimaryKey } from '@mikro-orm/core';
+import { Usuario } from "../usuario/usuario.entity.js";
+export class Zona {
+}
 __decorate([
-    Property({ nullable: false }),
-    __metadata("design:type", String)
-], Tarea.prototype, "nombreTarea", void 0);
-__decorate([
-    Property({ nullable: false }),
-    __metadata("design:type", String)
-], Tarea.prototype, "descripcionTarea", void 0);
-__decorate([
-    Property({ nullable: false }),
+    PrimaryKey(),
     __metadata("design:type", Number)
-], Tarea.prototype, "duracionTarea", void 0);
+], Zona.prototype, "codZona", void 0);
 __decorate([
-    OneToOne(() => Servicio, (servicio) => servicio.tarea, { nullable: false }),
-    __metadata("design:type", Servicio)
-], Tarea.prototype, "servicio", void 0);
-Tarea = __decorate([
-    Entity()
-], Tarea);
-//# sourceMappingURL=tarea.entity.js.map
+    Property({ nullable: false }),
+    __metadata("design:type", String)
+], Zona.prototype, "descripcionZona", void 0);
+__decorate([
+    ManyToMany(() => Usuario, usuario => usuario.zonas),
+    __metadata("design:type", Array)
+], Zona.prototype, "usuarios", void 0);
+//# sourceMappingURL=zona.entity.js.map

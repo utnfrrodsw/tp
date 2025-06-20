@@ -4,6 +4,7 @@ import { usuarioRouter }  from './usuario/usuario.route.js';
 import { tareaRouter } from './tarea/tarea.route.js'
 import { orm, syncSchema } from './shared/db/orm.js'
 import { RequestContext } from '@mikro-orm/core'
+import { zonaRouter } from './zona/zona.route.js'
 
 const app = express()
 app.use(express.json())
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
 
 app.use('/api/usuario', usuarioRouter)
 app.use('/api/tarea', tareaRouter)
+app.use('/api/zona', zonaRouter)
 
 app.use((req, res, next) => {
   res.status(404).send({ message: 'Resource not found' });
