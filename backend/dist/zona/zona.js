@@ -1,8 +1,7 @@
-import crypto from 'crypto';
 export class zona {
     constructor(
     // tiene sentido de que el id de la zona lo hagamos con crypto? 🙂
-    codZona = crypto.randomUUID(), descripcionZona) {
+    codZona, descripcionZona) {
         this.codZona = codZona;
         this.descripcionZona = descripcionZona;
     }

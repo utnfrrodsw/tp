@@ -27,7 +27,7 @@ async function findOne(req: Request, res: Response){
         const zona = await em.findOneOrFail(Zona,{/*id*/})
         res
             .status(200)
-            .json({message: "found zona",data:zona})
+            .json({message: "found zon",data:zona})
    }catch(error:any){
         res.status(500).json({message:error.message})
    }
@@ -42,22 +42,22 @@ async function add(req: Request, res: Response){
     }
 }
 async function update(req: Request, res: Response){
-    try{
-        //id
-        const zona = em.getReference(Zona,/*id*/)
-        em.assign(zona, req.body.sanitizedInput)
-        await em.flush()
-        res
-            .status(200)
-            .json({message: "zona actualizada"})
-    }catch(error:any){res.status(500).json({message:error.message})}
+    // try{
+    //     //id
+    //     const zona = em.getReference(Zona,/*id*/)
+    //     em.assign(zona, req.body.sanitizedInput)
+    //     await em.flush()
+    //     res
+    //         .status(200)
+    //         .json({message: "zona actualizada"})
+    // }catch(error:any){res.status(500).json({message:error.message})}
 }
 async function remove(req: Request, res: Response){
-     try{
-        //id
-        const zona = em.getReference(Zona, /*id*/)
-        await em.removeAndFlush(zona);
-        res.status(200).send({message:'zona borrada'})
-    }catch(error:any){res.status(500).json({message:error.message})}
+    //  try{
+    //     //id
+    //     const zona = em.getReference(Zona, /*id*/)
+    //     await em.removeAndFlush(zona);
+    //     res.status(200).send({message:'zona borrada'})
+    // }catch(error:any){res.status(500).json({message:error.message})}
 }
 export { findAll, findOne, add, update, remove, sanitizeZonaInput}

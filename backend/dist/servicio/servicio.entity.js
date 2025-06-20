@@ -8,9 +8,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Entity, OneToMany, Property, Collection, Cascade, ManyToMany, OneToOne } from '@mikro-orm/core';
-import { Tarea } from '../tarea/tarea.entity';
-import { Usuario } from '../usuario/usuario.entity';
-import { Turno } from '../turno/turno.entity';
+import { Tarea } from '../tarea/tarea.entity.js';
+import { Usuario } from '../usuario/usuario.entity.js';
+import { Turno } from '../turno/turno.entity.js';
 export let Servicio = class Servicio {
     constructor() {
         this.usuarios = new Collection(this);

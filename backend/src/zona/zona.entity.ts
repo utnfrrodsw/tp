@@ -2,9 +2,8 @@ import { Entity, Property, ManyToMany,Cascade,Rel, Collection,rel, PrimaryKey , 
 import { Usuario } from "../usuario/usuario.entity.js"
 
 
-export class Zona{
-    @PrimaryKey()
-    codZona !: number
+export class Zona extends BaseEntity{
+  
 
 
   @Property({nullable: false})
