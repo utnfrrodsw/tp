@@ -45,8 +45,18 @@ async function findall(req: Request, res: Response) {
 // Find one turn by date and hour
 async function findone(req: Request, res: Response) {
   try {
-    const { fecha, hora } = req.params
-    const turn = await em.findOne(Turno, { fecha, hora }, { populate: ['usuario', 'servicio'] })
+    const { fecha, hora, usuario, servicio } = req.params
+
+    const turn = await em.findOne(
+      Turno,
+      {
+        fecha,
+        hora,
+        usuario: Number(usuario),
+        servicio: Number(servicio)
+      },
+      { populate: ['usuario', 'servicio'] }
+    )
     if (!turn) {
       return res.status(404).json({ message: 'Turn not found' })
     }
@@ -54,11 +64,11 @@ async function findone(req: Request, res: Response) {
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
-} 
+}
 
 
 // Create a new turn
-async function create(req: Request, res: Response) {
+async function add(req: Request, res: Response) {
   try {
     const sanitizedInput = req.body.sanitizeTurnoInput
     const newTurn = em.create(Turno, sanitizedInput)
@@ -104,7 +114,7 @@ export {
   sanitizeTurnoInput,
   findall,
   findone,
-  create,
+  add,
   update,
   remove
 }

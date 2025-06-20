@@ -1,39 +1,36 @@
-### Obtener todos los usuarios
+### Obtener todos los servicios
+GET http://localhost:3000/api/servicio
 
-GET http://localhost:3000/api/tarea
+### Obtener servicio por id
+GET http://localhost:3000/api/servicio/1
 
-###Obtener usuario por id
-
-GET http://localhost:3000/api/tarea/
-
-### Cargamos un usuario
-
-POST http://localhost:3000/api/tarea
+### Crear un servicio
+POST http://localhost:3000/api/servicio
 Content-Type: application/json
 
 {
-  "precio" : 100,
-  "tarea" : "Tarea 1",
-  "usuario" : "a02b91bc-3769-4221-beb1-d7a3aeba7dad",
-  
+  "precio": 100,
+  "tarea": 1,
+  "usuarios": [1]
 }
 
-###Hacemos un PUT
-
-PUT http://localhost:3000/api/tarea/
+### Actualizar un servicio (PUT)
+PUT http://localhost:3000/api/servicio/1
 Content-Type: application/json
 
 {
-  
+  "precio": 120,
+  "tarea": 1,
+  "usuarios": [1]
 }
 
-### Hacemos un patch
-PATCH http://localhost:3000/api/tarea/
+### Actualizar parcialmente un servicio (PATCH)
+PATCH http://localhost:3000/api/servicio/1
 Content-Type: application/json
 
 {
-  
+  "precio": 130
 }
 
-###HAcemos un delete
-DELETE http://localhost:3000/api/tarea/
+### Eliminar un servicio
+DELETE http://localhost:3000/api/servicio/1

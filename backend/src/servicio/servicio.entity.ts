@@ -11,13 +11,13 @@ export class Servicio   {
   precio!: number;
 
   @OneToOne(() => Tarea)
-  tarea?: Rel<Tarea>;
+  tarea!: Rel<Tarea>;
 
   @ManyToMany(() => Usuario,(usuario) => usuario.servicios, { nullable: true, cascade: [Cascade.ALL] })
   usuarios = new Collection<Usuario>(this);
 
   @OneToMany(() => Turno, turno => turno.servicio, {cascade: [Cascade.ALL], nullable: true})
-  turnos = new Collection<Turno>(this);
+  turnos?: Rel<Turno>[];
 }
 
 

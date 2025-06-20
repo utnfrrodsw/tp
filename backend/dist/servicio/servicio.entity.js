@@ -14,7 +14,6 @@ import { Turno } from '../turno/turno.entity.js';
 export let Servicio = class Servicio {
     constructor() {
         this.usuarios = new Collection(this);
-        this.turnos = new Collection(this);
     }
 };
 __decorate([
@@ -35,7 +34,7 @@ __decorate([
 ], Servicio.prototype, "usuarios", void 0);
 __decorate([
     OneToMany(() => Turno, turno => turno.servicio, { cascade: [Cascade.ALL], nullable: true }),
-    __metadata("design:type", Object)
+    __metadata("design:type", Array)
 ], Servicio.prototype, "turnos", void 0);
 Servicio = __decorate([
     Entity()

@@ -94,4 +94,4 @@ async function remove(req, res) {
     }
 }
 export { sanitizeTurnoInput, findall, findone, add, update, remove };
-//# sourceMappingURL=turno.controler.js.map
+//# sourceMappingURL=turno.controller.js.map
