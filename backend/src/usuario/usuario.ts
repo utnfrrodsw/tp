@@ -21,10 +21,6 @@ export class Usuario {
     public fechaNacimiento?: Date,
     //Atributos Prestatario
     public nombreFantasia?: string,
-    public descripcion?: string
-  ) 
-  //! Por el momento dejamos de lado el tema de la foto. Por lo que hablamos
-  //! Generalmente se guarda en una carpeta en nuestro host y después guardamos el string de la ruta
-  //public foto?: string
-  {}
+    public descripcion?: string //! Por el momento dejamos de lado el tema de la foto. Por lo que hablamos //! Generalmente se guarda en una carpeta en nuestro host y después guardamos el string de la ruta //public foto?: string
+  ) {}
 }
