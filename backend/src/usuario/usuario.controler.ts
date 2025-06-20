@@ -21,8 +21,8 @@ function sanitizeUsuarioInput(
     nombreFantasia: req.body.nombreFantasia,
     descripcion: req.body.descripcion,
     foto: req.body.foto,
-    // turno 
-    // tarea
+    turno: req.body.turno,
+    tarea: req.body.tarea
   }
   Object.keys(req.body.sanitizeUsuarioInput).forEach((key) => {
     if (req.body.sanitizeUsuarioInput[key] === undefined) {
@@ -37,7 +37,7 @@ async function findall(req: Request, res: Response) {
     const users = await em.find(
       Usuario,
       {},
-      //{ populate: ['turnos', 'tareas'] }
+      { populate: ['turnos', 'servicios'] }
     )
     res.status(200).json({message: 'found all Usuarios', data: users})
   }catch (error:any) {
@@ -51,7 +51,7 @@ async function findone(req: Request, res: Response) {
     const user = await em.findOneOrFail(
       Usuario,
       { id },
-      //{ populate: ['turnos', 'tareas'] }
+      { populate: ['turnos', 'servicios'] }
     )
     res.status(200).json({message: 'found one usuario', data: user})
   }catch (error:any) {
@@ -63,7 +63,7 @@ async function add(req: Request, res: Response) {
   try{
     const newUser = em.create(
       Usuario,
-      req.body.sanitizeInput,
+      req.body.sanitizeUsuarioInput,
     )
     await em.flush()
     res.status(201).json({message: 'created new usuario', data: newUser})
@@ -78,7 +78,7 @@ async function update(req: Request, res: Response) {
       Usuario,
       { id }
     )
-    em.assign(updateUser, req.body.sanitizeInput)
+    em.assign(updateUser, req.body.sanitizeUsuarioInput)
     await em.flush()
     res.status(200).json({message: 'updated usuario', data: updateUser})
   }catch (error:any) {

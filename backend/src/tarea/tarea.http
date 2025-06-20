@@ -12,9 +12,9 @@ POST http://localhost:3000/api/tarea
 Content-Type: application/json
 
 {
-  "nombreTarea":"Tarea 1",
-  "descripcionTarea":"Descripcion de la tarea 1",
-  "duracionTarea": 60,
+  "nombreTarea": "Tarea 1",
+  "descripcionTarea": "Descripcion de la tarea 1",
+  "duracionTarea": 60
 }
 
 ###Hacemos un PUT
@@ -23,9 +23,10 @@ PUT http://localhost:3000/api/tarea/a02b91bc-3769-4221-beb1-d7a3aeba7dad
 Content-Type: application/json
 
 {
-  "nombreTarea":"Tarea 1",
-  "descripcionTarea":"Descripcion Cambiada de la tarea 1",
+  "nombreTarea": "Tarea 1",
+  "descripcionTarea": "Descripcion Cambiada de la tarea 1",
   "duracionTarea": 160,
+  "servicio": 1
 }
 
 ### Hacemos un patch
@@ -33,9 +34,9 @@ PATCH http://localhost:3000/api/tarea/a02b91bc-3769-4221-beb1-d7a3aeba7dad
 Content-Type: application/json
 
 {
-  "nombreTarea":"Tarea 1",
-  "descripcionTarea":"Descripcion Cambiada de la tarea 3",
-  "duracionTarea": 620,
+  "nombreTarea": "Tarea 1",
+  "descripcionTarea": "Descripcion Cambiada de la tarea 3",
+  "duracionTarea": 620
 }
 
 ###HAcemos un delete

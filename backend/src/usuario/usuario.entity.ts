@@ -1,4 +1,4 @@
-import { Entity, Property, OneToOne , Cascade,Rel, ManyToMany, OneToMany } from '@mikro-orm/core';
+import { Entity, Property, OneToOne , Cascade,Rel, ManyToMany, OneToMany, Collection } from '@mikro-orm/core';
 import { BaseEntity } from '../shared/db/baseEntity.entity.js';
 import { Servicio } from '../servicio/servicio.entity.js';
 import { Turno } from '../turno/turno.entity.js';
@@ -32,7 +32,7 @@ export class Usuario extends BaseEntity {
   @Property({nullable: true})
   foto?: string; // aca se pone la ruta de la foto
   @ManyToMany(() => Servicio,(servicio) => servicio.usuarios, { cascade: [Cascade.ALL], owner: true, nullable: true })
-  servicios?: Rel<Servicio>[];
+  servicios =  new Collection<Servicio>(this);
   @OneToMany(() => Turno, turno => turno.usuario, {cascade: [Cascade.ALL], nullable: true})
-  turnos?: Turno[];
+  turnos = new Collection<Turno>(this);
 }

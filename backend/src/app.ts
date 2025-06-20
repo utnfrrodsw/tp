@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 app.use('/api/usuario', usuarioRouter)
 app.use('/api/tarea', tareaRouter)
 
+
 app.use((req, res, next) => {
   res.status(404).send({ message: 'Resource not found' });
 });

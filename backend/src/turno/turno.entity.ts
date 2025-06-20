@@ -1,6 +1,6 @@
 import {Entity, Property, OneToOne, PrimaryKey, Cascade, ManyToOne,Rel} from '@mikro-orm/core';
-import { Usuario } from '../usuario/usuario.entity';
-import { Servicio } from '../servicio/servicio.entity';
+import { Usuario } from '../usuario/usuario.entity.js';
+import { Servicio } from '../servicio/servicio.entity.js';
 
 
 @Entity()

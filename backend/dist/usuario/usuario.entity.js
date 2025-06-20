@@ -7,54 +7,69 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Property } from '@mikro-orm/core';
+import { Entity, Property, Cascade, ManyToMany, OneToMany, Collection } from '@mikro-orm/core';
 import { BaseEntity } from '../shared/db/baseEntity.entity.js';
+import { Servicio } from '../servicio/servicio.entity.js';
+import { Turno } from '../turno/turno.entity.js';
 export let Usuario = class Usuario extends BaseEntity {
+    constructor() {
+        super(...arguments);
+        this.servicios = new Collection(this);
+        this.turnos = new Collection(this);
+    }
 };
 __decorate([
-    Property(),
+    Property({ nullable: false }),
     __metadata("design:type", String)
 ], Usuario.prototype, "mail", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: false }),
     __metadata("design:type", String)
 ], Usuario.prototype, "contrasena", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: false }),
     __metadata("design:type", String)
 ], Usuario.prototype, "tipoDoc", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: false }),
     __metadata("design:type", Number)
 ], Usuario.prototype, "numeroDoc", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", Number)
 ], Usuario.prototype, "telefono", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Usuario.prototype, "nombre", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Usuario.prototype, "apellido", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Usuario.prototype, "direccion", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Usuario.prototype, "nombreFantasia", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Usuario.prototype, "descripcion", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Usuario.prototype, "foto", void 0);
+__decorate([
+    ManyToMany(() => Servicio, (servicio) => servicio.usuarios, { cascade: [Cascade.ALL], owner: true, nullable: true }),
+    __metadata("design:type", Object)
+], Usuario.prototype, "servicios", void 0);
+__decorate([
+    OneToMany(() => Turno, turno => turno.usuario, { cascade: [Cascade.ALL], nullable: true }),
+    __metadata("design:type", Object)
+], Usuario.prototype, "turnos", void 0);
 Usuario = __decorate([
     Entity()
 ], Usuario);

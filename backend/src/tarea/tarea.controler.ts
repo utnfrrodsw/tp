@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { Tarea } from './tarea.entity.js'
 import { orm } from '../shared/db/orm.js'
+import { Servicio } from '../servicio/servicio.entity.js'
 
 const em = orm.em
 
@@ -13,6 +14,7 @@ function sanitizeTareaInput(
     nombreTarea: req.body.nombreTarea,
     descripcionTarea: req.body.descripcionTarea,
     duracionTarea: req.body.duracionTarea,
+    servicio: req.body.servicio 
   }
   Object.keys(req.body.sanitizeTareaInput).forEach((key) => {
     if (req.body.sanitizeTareaInput[key] === undefined) {
@@ -26,7 +28,7 @@ async function findall(req: Request, res: Response) {
     const tasks = await em.find(
       Tarea,
       {},
-      //{ 'Prestatarios', TipoServicio' }
+      { populate: ['servicio'] }
     )
     res.status(200).json({ message: 'found all tasks', data: tasks })
   } catch (error: any) {
@@ -40,7 +42,7 @@ async function findone(req: Request, res: Response) {
     const task = await em.findOneOrFail(
       Tarea,
       { id },
-      //{ 'Prestatarios', TipoServicio' }
+      { populate: ['servicio'] }
     )
     res.status(200).json({ message: 'found one task', data: task })
   } catch (error: any) {

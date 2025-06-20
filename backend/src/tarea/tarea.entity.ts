@@ -1,14 +1,10 @@
 import {
   Entity,
   Property,
-  ManyToMany,
-  Cascade,
-  ManyToOne,
   Rel,
-  Collection,
-  rel,
-  OneToOne
-  
+  OneToOne,
+  Cascade,
+  Collection
 } from '@mikro-orm/core'
 import { BaseEntity } from '../shared/db/baseEntity.entity.js';
 import { Servicio } from '../servicio/servicio.entity.js';
@@ -21,6 +17,6 @@ export class Tarea extends BaseEntity {
   descripcionTarea!: string
   @Property({nullable: false})
   duracionTarea!: number
-  @OneToOne(() => Servicio, (servicio) => servicio.tarea, { nullable: false })
-  servicio!: Servicio
+  @OneToOne(() => Servicio, (servicio) => servicio.tarea, { nullable: true,cascade: [Cascade.ALL] })
+  servicio ?:Rel<Servicio>;
 }
