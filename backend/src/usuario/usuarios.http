@@ -1,10 +1,10 @@
 ### Obtener todos los usuarios
 
-GET http://localhost:3000/api/usuarios
+GET http://localhost:3000/api/usuario
 
 ###Obtener usuario por id
 
-GET http://localhost:3000/api/usuarios/
+GET http://localhost:3000/api/usuario/
 
 ### Cargamos un usuario
 
@@ -23,22 +23,23 @@ Content-Type: application/json
 }
 ###Hacemos un PUT
 
-PUT http://localhost:3000/api/usuario/
+PUT http://localhost:3000/api/usuario/1
 Content-Type: application/json
 
 {
-  "nombre":"Luis Parmigiani",
-  "telefono":5493413946996,
+  
+  "nombre":"Luis Parmani",
+  "telefono":3413946,
   "mail":"luisParmi123123@gmail.com"
 }
 
 ### Hacemos un patch
-PATCH http://localhost:3000/api/usuario/
+PATCH http://localhost:3000/api/usuario/1
 Content-Type: application/json
 
 {
   "nombre":"Agustin Ivan",
-  "telefono":5493413946996,
+  "telefono":5493496,
   "mail":"agutindana@hotmail.com"
 }
 
