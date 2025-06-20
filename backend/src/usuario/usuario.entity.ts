@@ -11,6 +11,7 @@ import {
 import { BaseEntity } from '../shared/db/baseEntity.entity.js';
 import { Servicio } from '../servicio/servicio.entity.js';
 import { Turno } from '../turno/turno.entity.js';
+import { TipoServicio } from '../tipoServicio/tipoServ.entity.js';
 @Entity()
 export class Usuario extends BaseEntity {
   //id
@@ -51,4 +52,10 @@ export class Usuario extends BaseEntity {
     nullable: true,
   })
   turnos = new Collection<Turno>(this);
+  @ManyToMany(() => TipoServicio, (tipoServ) => tipoServ.users, {
+    cascade: [Cascade.ALL],
+    owner: false,
+    nullable: true,
+  })
+  services = new Collection<TipoServicio>(this);
 }
