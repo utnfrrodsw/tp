@@ -1,52 +1,116 @@
-# Propuesta TP DSW
+# desarrollo-de-software
+TP Desarrollo de Software
+# Propuesta TP DSW - Buscador de Locales
 
 ## Grupo
-### Integrantes
-* legajo - Apellido(s), Nombre(s)
+**Integrantes:**
+- [39233] - Rohr, Claudio
+- [52243] - Paz Alvarez, José
 
-### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+## Repositorios
+
 
 ## Tema
-### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+**Buscador de Locales: Plataforma de descubrimiento locales dentro de tu ciudad**
 
-### Modelo
-![imagen del modelo]()
+## Descripción
+Buscador de locales es una aplicación que permite a usuarios descubrir y compartir lugares de interés en su localidad. Los usuarios pueden explorar restaurantes, tiendas, etc. organizados por categorías, además de contribuir con reseñas y recomendaciones propias. El sistema distingue entre usuarios normales y administradores.
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+## Modelo
 
-## Alcance Funcional 
+```mermaid
+classDiagram
+    Usuario <|-- Administrador : es un
+    Usuario "1" -- "*" Reseña : escribe
+    Usuario "1" -- "*" Lugar : registra
+    Usuario "*" -- "*" Lugar : guarda como favorito
+    Lugar "1" -- "*" Reseña : tiene
+    Lugar "*" -- "1" Categoría : pertenece a
+    Lugar "*" -- "1" Ciudad : ubicado en
+    Lugar "*" -- "*" Tag : tiene
+    Ciudad "*" -- "1" Provincia : pertenece a
+    Usuario "*" -- "*" Favorito : tiene
+    Favorito "*" -- "1" Lugar : referencia
+    
+    class Usuario {
+       
+    }
+    
+    class Administrador {
+    }
+    
+    class Lugar {
+     
+    }
+    
+    class Categoría {
+        
+    }
+    
+    class Reseña {
+     
+    }
+    
+    class Ciudad {
+       
+    }
+    
+    class Provincia {
+       
+    }
+    
+    class Favorito {
+      
+    }
+    
+    class Tag {
+      
+    }
 
-### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
-Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+```
 
 
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+## Alcance Funcional
 
+### Alcance Mínimo (Regularidad)
 
+| Req | Detalle |
+|-----|---------|
+| CRUD simple | 1. CRUD Categoría<br>2. CRUD Provincia<br>3. CRUD Usuario |
+| CRUD dependiente | 1. CRUD Lugar {depende de} CRUD Categoría y CRUD Ciudad<br>2. CRUD Reseña {depende de} CRUD Usuario y CRUD Lugar |
+| Listado + detalle | **1. Listado de lugares filtrado por categoría**, muestra nombre, dirección y calificación promedio => detalle muestra información completa del lugar<br> ej: Filtro por "Restaurantes" → muestra "La Pizzería del Centro" (Av. San Martín 123, ⭐4.2), "Burger Palace" (Pellegrini 456, ⭐3.8) → detalle de "La Pizzería del Centro" muestra descripción completa, horarios (Lun-Dom 18:00-00:00), mapa de ubicación, fotos y todas sus reseñas<br> **2. Listado de reseñas filtrado por lugar**, muestra calificación, fecha y nombre de usuario => detalle muestra contenido completo de la reseña y datos del usuario ej: Reseñas de "La Pizzería del Centro" → muestra reseña de Juan P. (⭐5, 15/05/2024), María L. (⭐4, 10/05/2024) → detalle de reseña de Juan P. muestra comentario completo "Excelente pizza a la piedra, ambiente familiar..." y perfil del usuario (Juan Pérez, miembro desde 2023) |
+| CUU/Epic | 1. Buscar lugares cercanos por geolocalización<br>|
+
+### Adicionales para Aprobación
+
+| Req | Detalle |
+|-----|---------|
+| CRUD | 1. CRUD Ciudad<br>2. CRUD Favorito (Usuario guarda lugares favoritos)<br>3. CRUD Tag (etiquetas para lugares: "WiFi gratis", "Pet-friendly", "Estacionamiento") |
+| CUU/Epic | 1. Guardar lugares en lista de favoritos<br>2. Sistema de moderación automática (bot) y manual por administradores |
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
+| Req | Detalle |
+|-----|---------|
+| Listados | 1. Lugares populares filtrados por calificación promedio, muestra nombre, categoría y calificación<br>2. Reseñas recientes filtradas por usuario, muestra lugar, calificación y fecha |
+| CUU/Epic | 1. Registrar un nuevo lugar en la plataforma<br>2. Panel de administración con estadísticas y moderación de contenido<br>3. Notificaciones por email para nuevas reseñas |
 
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+## Roles de Usuario
 
+El sistema contempla dos roles principales:
+
+### 1. Usuario Regular
+- Puede explorar lugares y leer reseñas
+- Puede crear y gestionar su perfil personal
+- Puede registrar nuevos lugares en la plataforma
+- Puede publicar reseñas sobre lugares visitados
+- Puede guardar lugares en su lista de favoritos
+- Puede buscar lugares por ubicación, categoría o nombre
+
+### 2. Administrador
+- Hereda todas las capacidades del usuario regular
+- Puede gestionar categorías (crear, modificar, eliminar)
+- Puede moderar reseñas (aprobar, rechazar, eliminar)
+- Puede verificar y actualizar información de lugares
+- Puede gestionar usuarios (activar, desactivar cuentas)
+- Acceso al panel de administración con estadísticas
+- Puede gestionar provincias y ciudades del sistema
