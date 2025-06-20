@@ -1,37 +1,44 @@
-import { Entity, Property, ManyToOne, Cascade } from '@mikro-orm/core';
+import {
+  Entity,
+  Property,
+  ManyToMany,
+  Cascade,
+  ManyToOne,
+  Rel,
+  PrimaryKey,
+} from '@mikro-orm/core';
+import { BaseEntity } from '../shared/db/baseEntity.entity.js';
+import { v4 as uuidv4 } from 'uuid';
+@Entity()
+export class Usuario extends BaseEntity {
+  //*Atributos del Usuario
+  @Property({ nullable: false })
+  email!: string;
 
-export abstract class Usuario {
-  
-  //id 
-  @Propery()  
-  mail!: string;
-  @Propery()
+  @Property({ nullable: false })
   contrasena!: string;
-  @Propery()
-  TipoDoc!: string;
-  @Propery()
-  NumeroDoc!: number;
 
-}
+  @Property({ nullable: false })
+  tipoDoc!: string;
+  @Property({ nullable: false })
+  nroDoc!: string;
+  @Property({ nullable: false })
+  direccion!: string;
 
-@Emtity()
-export class Cliente extends Usuario {
-  @Propery()
+  //*Atributos del cliente
+  @Property({ nullable: true })
   telefono?: number;
-  @Propery()
+  @Property({ nullable: true })
   nombre?: string;
-  @Propery()
+  @Property({ nullable: true })
   apellido?: string;
-  @Propery()
-  direccion?: string;
-}
+  @Property({ nullable: true })
+  fechaNacimiento?: Date;
 
-@Emtity()
-export class Prestatario extends Usuario {
-  @Propery()
+  //*Atributos del Prestatario
+
+  @Property({ nullable: true })
   nombreFantasia?: string;
-  @Propery()
+  @Property({ nullable: true })
   descripcion?: string;
-  @Propery()
-  foto?: string; // aca se pone la ruta de la foto
 }
