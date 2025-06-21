@@ -19,9 +19,8 @@ export class TipoServicio extends BaseEntity {
   @Property({ nullable: false })
   descripcionTipo!: string;
 
-  @ManyToMany(() => Usuario, (user) => user.services, {
-    cascade: [Cascade.ALL],
-    owner: true, //*Por el momento ponemos que es el owner. Pero es debatible
+  @ManyToMany(() => Usuario, (user) => user.tiposDeServicio, {
+    mappedBy: 'tiposDeServicio',
   })
   users = new Collection<Usuario>(this);
 

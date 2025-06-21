@@ -17,8 +17,11 @@ function sanitizeUsuarioInput(req: Request, res: Response, next: NextFunction) {
     nombreFantasia: req.body.nombreFantasia,
     descripcion: req.body.descripcion,
     foto: req.body.foto,
-    turno: req.body.turno,
-    tarea: req.body.tarea,
+    turnos: req.body.turnos,
+    tareas: req.body.tareas,
+    servicios: req.body.servicios,
+    tiposDeServicio: req.body.tiposDeServicio,
+    horarios: req.body.horarios,
   };
   Object.keys(req.body.sanitizeUsuarioInput).forEach((key) => {
     if (req.body.sanitizeUsuarioInput[key] === undefined) {
@@ -33,7 +36,7 @@ async function findall(req: Request, res: Response) {
     const users = await em.find(
       Usuario,
       {},
-      { populate: ['turnos', 'servicios'] }
+      { populate: ['turnos', 'servicios', 'tiposDeServicio', 'horarios'] }
     );
     res.status(200).json({ message: 'found all Usuarios', data: users });
   } catch (error: any) {

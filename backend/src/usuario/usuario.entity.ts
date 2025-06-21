@@ -34,7 +34,6 @@ export class Usuario extends BaseEntity {
   @Property({ nullable: true })
   direccion?: string;
   // many to many
-  // turno?
   // Este es un campo opcional de prestatario
   @Property({ nullable: true })
   nombreFantasia?: string;
@@ -59,10 +58,10 @@ export class Usuario extends BaseEntity {
   //Relación con TipoServicio
   @ManyToMany(() => TipoServicio, (tipoServ) => tipoServ.users, {
     cascade: [Cascade.ALL],
-    owner: false,
+    owner: true,
     nullable: true,
   })
-  services = new Collection<TipoServicio>(this);
+  tiposDeServicio = new Collection<TipoServicio>(this);
 
   @OneToMany(() => Horario, (horario) => horario.usuario, {
     cascade: [Cascade.ALL],

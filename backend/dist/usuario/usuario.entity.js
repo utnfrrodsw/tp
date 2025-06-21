@@ -21,7 +21,7 @@ export let Usuario = class Usuario extends BaseEntity {
         //Relación con Turno
         this.turnos = new Collection(this);
         //Relación con TipoServicio
-        this.services = new Collection(this);
+        this.tiposDeServicio = new Collection(this);
         this.horarios = new Collection(this);
     }
 };
@@ -87,11 +87,11 @@ __decorate([
 __decorate([
     ManyToMany(() => TipoServicio, (tipoServ) => tipoServ.users, {
         cascade: [Cascade.ALL],
-        owner: false,
+        owner: true,
         nullable: true,
     }),
     __metadata("design:type", Object)
-], Usuario.prototype, "services", void 0);
+], Usuario.prototype, "tiposDeServicio", void 0);
 __decorate([
     OneToMany(() => Horario, (horario) => horario.usuario, {
         cascade: [Cascade.ALL],

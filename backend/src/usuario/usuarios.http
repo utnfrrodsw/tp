@@ -16,7 +16,11 @@ Content-Type: application/json
   "direccion": "Tenis 7884",
   "telefono": 341123456,
   "nombre": "Luis",
-  "apellido":"Parmigiani"
+  "apellido":"Parmigiani",
+  "tiposDeServicio": [
+    1
+  ]
+
 }
 ###Hacemos un PUT
 
@@ -41,4 +45,5 @@ Content-Type: application/json
 }
 
 ###HAcemos un delete
-DELETE http://localhost:3000/api/usuario/
+DELETE http://localhost:3000/api/usuario/2
+
