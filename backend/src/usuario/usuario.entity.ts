@@ -12,6 +12,7 @@ import { BaseEntity } from '../shared/db/baseEntity.entity.js';
 import { Servicio } from '../servicio/servicio.entity.js';
 import { Turno } from '../turno/turno.entity.js';
 import { TipoServicio } from '../tipoServicio/tipoServ.entity.js';
+import { Horario } from '../horario/horario.entity.js';
 @Entity()
 export class Usuario extends BaseEntity {
   //id
@@ -41,21 +42,31 @@ export class Usuario extends BaseEntity {
   descripcion?: string;
   @Property({ nullable: true })
   foto?: string; // aca se pone la ruta de la foto
+
+  // Relación con Servicio
   @ManyToMany(() => Servicio, (servicio) => servicio.usuarios, {
     cascade: [Cascade.ALL],
     owner: true,
     nullable: true,
   })
   servicios = new Collection<Servicio>(this);
+  //Relación con Turno
   @OneToMany(() => Turno, (turno) => turno.usuario, {
     cascade: [Cascade.ALL],
     nullable: true,
   })
   turnos = new Collection<Turno>(this);
+  //Relación con TipoServicio
   @ManyToMany(() => TipoServicio, (tipoServ) => tipoServ.users, {
     cascade: [Cascade.ALL],
     owner: false,
     nullable: true,
   })
   services = new Collection<TipoServicio>(this);
+
+  @OneToMany(() => Horario, (horario) => horario.usuario, {
+    cascade: [Cascade.ALL],
+    nullable: true,
+  })
+  horarios = new Collection<Horario>(this);
 }

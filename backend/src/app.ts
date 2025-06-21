@@ -7,6 +7,7 @@ import 'reflect-metadata';
 import { orm, syncSchema } from './shared/db/orm.js';
 import { RequestContext } from '@mikro-orm/core';
 import { serviceTypeRouter } from './tipoServicio/tipoServ.route.js';
+import { horarioRouter } from './horario/horario.routes.js';
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use('/api/usuario', usuarioRouter);
 app.use('/api/tarea', tareaRouter);
 app.use('/api/servicio', servicioRouter);
 app.use('/api/turno', turnoRouter);
+app.use('/api/horario', horarioRouter);
 
 app.use((_, res) => {
   return res.status(404).send({ message: 'Resource not found' });
@@ -28,10 +30,10 @@ app.use((_, res) => {
 
 await syncSchema(); //nunca en producción
 
-/* app.listen(3006, () => {
-  console.log('Server runnning on http://localhost:3006/');
-}); */
-
 app.listen(3000, () => {
-  console.log('Server runnning on http://localhost:3000/asdasdasdasdasd');
+  console.log('Server runnning on http://localhost:3000/');
 });
+
+/* app.listen(3000, () => {
+  console.log('Server runnning on http://localhost:3000');
+}); */

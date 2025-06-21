@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, OneToMany, Property, Collection, Cascade, ManyToMany, OneToOne, PrimaryKey } from '@mikro-orm/core';
+import { Entity, OneToMany, Property, Collection, Cascade, ManyToMany, OneToOne, PrimaryKey, } from '@mikro-orm/core';
 import { Tarea } from '../tarea/tarea.entity.js';
 import { Usuario } from '../usuario/usuario.entity.js';
 import { Turno } from '../turno/turno.entity.js';
@@ -29,11 +29,17 @@ __decorate([
     __metadata("design:type", Object)
 ], Servicio.prototype, "tarea", void 0);
 __decorate([
-    ManyToMany(() => Usuario, (usuario) => usuario.servicios, { nullable: true, cascade: [Cascade.ALL] }),
+    ManyToMany(() => Usuario, (usuario) => usuario.servicios, {
+        nullable: true,
+        cascade: [Cascade.ALL],
+    }),
     __metadata("design:type", Object)
 ], Servicio.prototype, "usuarios", void 0);
 __decorate([
-    OneToMany(() => Turno, turno => turno.servicio, { cascade: [Cascade.ALL], nullable: true }),
+    OneToMany(() => Turno, (turno) => turno.servicio, {
+        cascade: [Cascade.ALL],
+        nullable: true,
+    }),
     __metadata("design:type", Array)
 ], Servicio.prototype, "turnos", void 0);
 Servicio = __decorate([

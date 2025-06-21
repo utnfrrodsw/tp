@@ -1,0 +1,29 @@
+
+### Traigo todos los horarios cargados en la tabla con sus usuarios
+
+GET http://localhost:3000/api/horario
+
+### Busco horarios por idDeUsuario
+GET http://localhost:3000/api/horario/1
+
+### Cargamos un horario
+POST http://localhost:3000/api/horario
+Content-Type: application/json
+
+{
+  "diaSemana": 1,
+  "horaDesde": "08:00:00",
+  "horaHasta": "10:00:00",
+  "usuario": 1
+}
+
+### Cargamos un horario
+POST http://localhost:3000/api/horario
+Content-Type: application/json
+
+{
+  "diaSemana": 1,
+  "horaDesde": "15:00:00",
+  "horaHasta": "20:00:00",
+  "usuario": 1
+}

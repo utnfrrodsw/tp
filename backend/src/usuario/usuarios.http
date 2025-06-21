@@ -2,9 +2,6 @@
 
 GET http://localhost:3000/api/usuario
 
-###Obtener usuario por id
-
-GET http://localhost:3000/api/usuario/
 
 ### Cargamos un usuario
 

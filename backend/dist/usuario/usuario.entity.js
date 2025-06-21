@@ -7,15 +7,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Property, Cascade, ManyToMany, OneToMany, Collection } from '@mikro-orm/core';
+import { Entity, Property, Cascade, ManyToMany, OneToMany, Collection, } from '@mikro-orm/core';
 import { BaseEntity } from '../shared/db/baseEntity.entity.js';
 import { Servicio } from '../servicio/servicio.entity.js';
 import { Turno } from '../turno/turno.entity.js';
+import { TipoServicio } from '../tipoServicio/tipoServ.entity.js';
+import { Horario } from '../horario/horario.entity.js';
 export let Usuario = class Usuario extends BaseEntity {
     constructor() {
         super(...arguments);
+        // Relación con Servicio
         this.servicios = new Collection(this);
+        //Relación con Turno
         this.turnos = new Collection(this);
+        //Relación con TipoServicio
+        this.services = new Collection(this);
+        this.horarios = new Collection(this);
     }
 };
 __decorate([
@@ -63,13 +70,35 @@ __decorate([
     __metadata("design:type", String)
 ], Usuario.prototype, "foto", void 0);
 __decorate([
-    ManyToMany(() => Servicio, (servicio) => servicio.usuarios, { cascade: [Cascade.ALL], owner: true, nullable: true }),
+    ManyToMany(() => Servicio, (servicio) => servicio.usuarios, {
+        cascade: [Cascade.ALL],
+        owner: true,
+        nullable: true,
+    }),
     __metadata("design:type", Object)
 ], Usuario.prototype, "servicios", void 0);
 __decorate([
-    OneToMany(() => Turno, turno => turno.usuario, { cascade: [Cascade.ALL], nullable: true }),
+    OneToMany(() => Turno, (turno) => turno.usuario, {
+        cascade: [Cascade.ALL],
+        nullable: true,
+    }),
     __metadata("design:type", Object)
 ], Usuario.prototype, "turnos", void 0);
+__decorate([
+    ManyToMany(() => TipoServicio, (tipoServ) => tipoServ.users, {
+        cascade: [Cascade.ALL],
+        owner: false,
+        nullable: true,
+    }),
+    __metadata("design:type", Object)
+], Usuario.prototype, "services", void 0);
+__decorate([
+    OneToMany(() => Horario, (horario) => horario.usuario, {
+        cascade: [Cascade.ALL],
+        nullable: true,
+    }),
+    __metadata("design:type", Object)
+], Usuario.prototype, "horarios", void 0);
 Usuario = __decorate([
     Entity()
 ], Usuario);

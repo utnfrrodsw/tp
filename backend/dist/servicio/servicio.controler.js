@@ -6,7 +6,7 @@ function sanitizeServicioInput(req, res, next) {
         precio: req.body.precio,
         tarea: req.body.tarea,
         usuarios: req.body.usuarios,
-        turnos: req.body.turnos
+        turnos: req.body.turnos,
     };
     Object.keys(req.body.sanitizeServicioInput).forEach((key) => {
         if (req.body.sanitizeServicioInput[key] === undefined) {

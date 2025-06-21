@@ -11,7 +11,7 @@ function sanitizeTurnoInput(req, res, next) {
         montoFinal: req.body.montoFinal,
         fechaPago: req.body.fechaPago,
         servicio: req.body.servicio,
-        usuario: req.body.usuario
+        usuario: req.body.usuario,
     };
     Object.keys(req.body.sanitizeTurnoInput).forEach((key) => {
         if (req.body.sanitizeTurnoInput[key] === undefined) {
@@ -38,7 +38,7 @@ async function findone(req, res) {
             fecha,
             hora,
             usuario: Number(usuario),
-            servicio: Number(servicio)
+            servicio: Number(servicio),
         }, { populate: ['usuario', 'servicio'] });
         if (!turn) {
             return res.status(404).json({ message: 'Turn not found' });
@@ -55,7 +55,9 @@ async function add(req, res) {
         const sanitizedInput = req.body.sanitizeTurnoInput;
         const newTurn = em.create(Turno, sanitizedInput);
         await em.persistAndFlush(newTurn);
-        res.status(201).json({ message: 'Turn created successfully', data: newTurn });
+        res
+            .status(201)
+            .json({ message: 'Turn created successfully', data: newTurn });
     }
     catch (error) {
         res.status(500).json({ message: error.message });

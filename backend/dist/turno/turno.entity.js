@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Property, PrimaryKey, Cascade, ManyToOne } from '@mikro-orm/core';
+import { Entity, Property, PrimaryKey, Cascade, ManyToOne, } from '@mikro-orm/core';
 import { Usuario } from '../usuario/usuario.entity.js';
 import { Servicio } from '../servicio/servicio.entity.js';
 export let Turno = class Turno {

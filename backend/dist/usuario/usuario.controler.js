@@ -15,7 +15,7 @@ function sanitizeUsuarioInput(req, res, next) {
         descripcion: req.body.descripcion,
         foto: req.body.foto,
         turno: req.body.turno,
-        tarea: req.body.tarea
+        tarea: req.body.tarea,
     };
     Object.keys(req.body.sanitizeUsuarioInput).forEach((key) => {
         if (req.body.sanitizeUsuarioInput[key] === undefined) {
