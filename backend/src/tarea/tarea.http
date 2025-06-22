@@ -12,10 +12,17 @@ POST http://localhost:3000/api/tarea
 Content-Type: application/json
 
 {
-  "nombreTarea": "Tarea 1",
-  "descripcionTarea": "Descripcion de la tarea 1",
-  "duracionTarea": 60
-}
+  "nombreTarea": "Destapar cañerias",
+  "descripcionTarea": "Se debe destapar las cañerias de la cocina",
+  "duracionTarea": 60,
+  "tipoServicio": 
+    {
+      //Podemos crear el tipo de servicio en el momento de crear la tarea
+      "id": 1,
+      "nombreTipo":"Plomeria",
+      "descripcionTipo":"Sevicios de plomeria y fontaneria para toda la casa"
+    }
+}LLLL
 
 ###Hacemos un PUT
 

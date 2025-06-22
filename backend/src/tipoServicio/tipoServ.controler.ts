@@ -11,6 +11,8 @@ function sanitizeServiceTypeInput(
   req.body.sanitizedInput = {
     nombreTipo: req.body.nombreTipo,
     descripcionTipo: req.body.descripcionTipo,
+    users: req.body.users,
+    tareas: req.body.tareas,
   };
   //*Checkeamos que no haya campos vacíos
   Object.keys(req.body.sanitizedInput).forEach((key) => {
@@ -25,8 +27,8 @@ async function findAll(_req: Request, res: Response) {
   try {
     const types = await em.find(
       TipoServicio,
-      {}
-      // { populate:['users'] }
+      {},
+      { populate: ['users', 'tareas'] }
     );
     res.status(200).json({ message: 'found all services', data: types });
   } catch (error: any) {
@@ -75,10 +77,17 @@ async function update(req: Request, res: Response) {
 }
 
 async function remove(req: Request, res: Response) {
+  const em = orm.em.fork(); //Aseguramos que si la operación falla, no se afecte el contexto de persistencia original
   try {
     const id = Number.parseInt(req.params.id);
-    const serviceType = em.getReference(TipoServicio, id);
+    const serviceType = await em.findOneOrFail(TipoServicio, id, {
+      populate: ['tareas'],
+    });
     await em.removeAndFlush(serviceType);
+    em.remove(serviceType);
+    res
+      .status(200)
+      .json({ message: 'Service type deleted', data: serviceType });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }

@@ -26,9 +26,9 @@ export class Turno {
   montoFinal?: number;
   @Property()
   fechaPago?: Date;
-  @ManyToOne(() => Servicio, { cascade: [Cascade.ALL], nullable: true })
+  @ManyToOne(() => Servicio, { nullable: true })
   servicio?: Rel<Servicio>;
 
-  @ManyToOne(() => Usuario, { cascade: [Cascade.ALL], nullable: true })
+  @ManyToOne(() => Usuario, { cascade: [Cascade.PERSIST], nullable: true })
   usuario?: Rel<Usuario>;
 }

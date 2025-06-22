@@ -16,11 +16,7 @@ Content-Type: application/json
   "direccion": "Tenis 7884",
   "telefono": 341123456,
   "nombre": "Luis",
-  "apellido":"Parmigiani",
-  "tiposDeServicio": [
-    1
-  ]
-
+  "apellido":"Parmigiani"
 }
 ###Hacemos un PUT
 
@@ -28,10 +24,9 @@ PUT http://localhost:3000/api/usuario/1
 Content-Type: application/json
 
 {
-  
-  "nombre":"Luis Parmani",
-  "telefono":3413946,
-  "mail":"luisParmi123123@gmail.com"
+  "tiposDeServicio": [
+    1
+  ]
 }
 
 ### Hacemos un patch

@@ -25,7 +25,7 @@ export class Servicio {
 
   @ManyToMany(() => Usuario, (usuario) => usuario.servicios, {
     nullable: true,
-    cascade: [Cascade.ALL],
+    //cascade: [Cascade.ALL], Creo que no conviene que se borren los usuarios al borrar un servicio
   })
   usuarios = new Collection<Usuario>(this);
 

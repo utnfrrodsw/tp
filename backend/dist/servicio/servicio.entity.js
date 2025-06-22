@@ -31,7 +31,7 @@ __decorate([
 __decorate([
     ManyToMany(() => Usuario, (usuario) => usuario.servicios, {
         nullable: true,
-        cascade: [Cascade.ALL],
+        //cascade: [Cascade.ALL], Creo que no conviene que se borren los usuarios al borrar un servicio
     }),
     __metadata("design:type", Object)
 ], Servicio.prototype, "usuarios", void 0);

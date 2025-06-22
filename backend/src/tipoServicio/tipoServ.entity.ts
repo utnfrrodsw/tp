@@ -26,6 +26,8 @@ export class TipoServicio extends BaseEntity {
 
   @OneToMany(() => Tarea, (tarea) => tarea.tipoServicio, {
     cascade: [Cascade.ALL],
+    orphanRemoval: true,
+    nullable: true,
   })
   tareas = new Collection<Tarea>(this);
 }

@@ -7,6 +7,7 @@ function sanitizeTareaInput(req, res, next) {
         descripcionTarea: req.body.descripcionTarea,
         duracionTarea: req.body.duracionTarea,
         servicio: req.body.servicio,
+        tipoServicio: req.body.tipoServicio,
     };
     Object.keys(req.body.sanitizeTareaInput).forEach((key) => {
         if (req.body.sanitizeTareaInput[key] === undefined) {

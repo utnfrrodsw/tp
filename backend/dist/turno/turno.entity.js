@@ -41,11 +41,11 @@ __decorate([
     __metadata("design:type", Date)
 ], Turno.prototype, "fechaPago", void 0);
 __decorate([
-    ManyToOne(() => Servicio, { cascade: [Cascade.ALL], nullable: true }),
+    ManyToOne(() => Servicio, { nullable: true }),
     __metadata("design:type", Object)
 ], Turno.prototype, "servicio", void 0);
 __decorate([
-    ManyToOne(() => Usuario, { cascade: [Cascade.ALL], nullable: true }),
+    ManyToOne(() => Usuario, { cascade: [Cascade.PERSIST], nullable: true }),
     __metadata("design:type", Object)
 ], Turno.prototype, "usuario", void 0);
 Turno = __decorate([

@@ -14,7 +14,7 @@ import { TipoServicio } from '../tipoServicio/tipoServ.entity.js';
 export let Tarea = class Tarea extends BaseEntity {
 };
 __decorate([
-    Property({ nullable: false }),
+    Property({ nullable: false, unique: true }),
     __metadata("design:type", String)
 ], Tarea.prototype, "nombreTarea", void 0);
 __decorate([
@@ -35,7 +35,7 @@ __decorate([
 __decorate([
     ManyToOne(() => TipoServicio, {
         nullable: false,
-        cascade: [Cascade.PERSIST],
+        //cascade: [Cascade.PERSIST], //Esto nos va a permitir que al crear una tarea, se cree el tipo de servicio si no existeHHHH
     }),
     __metadata("design:type", Object)
 ], Tarea.prototype, "tipoServicio", void 0);

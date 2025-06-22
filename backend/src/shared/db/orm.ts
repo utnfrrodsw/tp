@@ -21,8 +21,9 @@ export const orm = await MikroORM.init({
 export const syncSchema = async () => {
   const generator = orm.getSchemaGenerator();
 
-  await generator.dropSchema();
-  await generator.createSchema();
+  //Lineas para borrar y crear la base de datos
+  /*   await generator.dropSchema();
+  await generator.createSchema(); */
 
   await generator.updateSchema();
 };

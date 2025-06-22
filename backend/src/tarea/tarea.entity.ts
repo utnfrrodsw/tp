@@ -14,12 +14,12 @@ import { TipoServicio } from '../tipoServicio/tipoServ.entity.js';
 
 @Entity()
 export class Tarea extends BaseEntity {
-  @Property({ nullable: false })
+  @Property({ nullable: false, unique: true })
   nombreTarea!: string;
   @Property({ nullable: false })
   descripcionTarea!: string;
   @Property({ nullable: false })
-  duracionTarea!: number;
+  duracionTarea!: number; // en minutos
   @OneToOne(() => Servicio, (servicio) => servicio.tarea, {
     nullable: true,
     cascade: [Cascade.ALL],
@@ -27,7 +27,7 @@ export class Tarea extends BaseEntity {
   servicio?: Rel<Servicio>;
   @ManyToOne(() => TipoServicio, {
     nullable: false,
-    cascade: [Cascade.PERSIST],
+    //cascade: [Cascade.PERSIST], //Esto nos va a permitir que al crear una tarea, se cree el tipo de servicio si no existeHHHH
   })
   tipoServicio!: Rel<TipoServicio>;
 }

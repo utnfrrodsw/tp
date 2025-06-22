@@ -1,11 +1,11 @@
 ### GET all tipos de servicio 
-http://localhost:3006/api/serviceTypes
+http://localhost:3000/api/serviceTypes
 
 
 ### POST a character
 
 # @name createPlomeria
-POST http://localhost:3006/api/serviceTypes
+POST http://localhost:3000/api/serviceTypes
 Content-Type: application/json
 
 {
@@ -16,22 +16,23 @@ Content-Type: application/json
 ### ID
 @id = {{createPlomeria.response.body.data.id}}
 
-### GET one character
-http://localhost:3006/api/serviceTypes/{{id}}
+### GET one Tipo de Servicio
+http://localhost:3000/api/serviceTypes/{{id}}
 
 ### PUT a character
-PUT http://localhost:3006/api/serviceTypes/{{id}}
+PUT http://localhost:3000/api/serviceTypes/{{id}}
 Content-Type: application/json
 
 {
-  "nombreTipo": "albañileria",
-  "descripcionTipo": "Servicios de pintura y reparaciones de pintura"
+  "users": [
+    1
+  ]
 }
 
 
 ### POST a character
 # @name createTipoToDelete
-POST http://localhost:3006/api/serviceTypes
+POST http://localhost:3000/api/serviceTypes
 Content-Type: application/json
 
 {
@@ -40,10 +41,10 @@ Content-Type: application/json
 }
 ### DELETE a character
 @idToDelete = {{createTipoToDelete.response.body.data.id}}
-DELETE http://localhost:3006/api/serviceTypes/{{idToDelete}}
+DELETE http://localhost:3000/api/serviceTypes/{{idToDelete}}
 
 ### PATCH a character
-PATCH http://localhost:3006/api/serviceTypes/5
+PATCH http://localhost:3000/api/serviceTypes/5
 Content-Type: application/json
 
 {
