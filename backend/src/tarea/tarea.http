@@ -22,7 +22,7 @@ Content-Type: application/json
       "nombreTipo":"Plomeria",
       "descripcionTipo":"Sevicios de plomeria y fontaneria para toda la casa"
     }
-}LLLL
+}
 
 ###Hacemos un PUT
 

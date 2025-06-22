@@ -41,7 +41,7 @@ Content-Type: application/json
 }
 ### DELETE a character
 @idToDelete = {{createTipoToDelete.response.body.data.id}}
-DELETE http://localhost:3000/api/serviceTypes/{{idToDelete}}
+DELETE http://localhost:3000/api/serviceTypes/1
 
 ### PATCH a character
 PATCH http://localhost:3000/api/serviceTypes/5
