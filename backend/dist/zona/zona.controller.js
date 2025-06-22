@@ -2,8 +2,10 @@ import { Zona } from './zona.entity.js';
 import { orm } from '../shared/db/orm.js';
 const em = orm.em;
 function sanitizeZonaInput(req, res, next) {
+    if (!req.body)
+        req.body = {};
     req.body.sanitizeZonaInput = {
-        descripcionZona: req.body.descripcionZona
+        descripcionZona: req.body.descripcionZona,
     };
     Object.keys(req.body.sanitizeZonaInput).forEach((key) => {
         if (req.body.sanitizeZonaInput[key] === undefined) {
@@ -33,8 +35,8 @@ async function add(req, res) {
 }
 async function findOne(req, res) {
     try {
-        // const codZona = Number.parseInt(req.params.id);
-        const zona = await em.findOneOrFail(Zona, { /*codZona*/});
+        const codZona = Number.parseInt(req.params.id);
+        const zona = await em.findOneOrFail(Zona, { codZona }, { populate: ['usuarios'] });
         res
             .status(200)
             .json({ message: "found zon", data: zona });

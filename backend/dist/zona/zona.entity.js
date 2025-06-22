@@ -7,9 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Property, ManyToMany, PrimaryKey, BaseEntity } from '@mikro-orm/core';
+import { Entity, Property, ManyToMany, Collection, PrimaryKey, BaseEntity } from '@mikro-orm/core';
 import { Usuario } from "../usuario/usuario.entity.js";
 export let Zona = class Zona extends BaseEntity {
+    constructor() {
+        super(...arguments);
+        //apunta a usuario? como hago apuntarla a prestatario?
+        this.usuarios = new Collection(this);
+    }
 };
 __decorate([
     PrimaryKey(),
@@ -21,8 +26,8 @@ __decorate([
     __metadata("design:type", String)
 ], Zona.prototype, "descripcionZona", void 0);
 __decorate([
-    ManyToMany(() => Usuario, usuario => usuario.zonas, { mappedBy: 'zonas', nullable: true }),
-    __metadata("design:type", Array)
+    ManyToMany(() => Usuario, usuario => usuario.zonas, { nullable: true }),
+    __metadata("design:type", Object)
 ], Zona.prototype, "usuarios", void 0);
 Zona = __decorate([
     Entity()

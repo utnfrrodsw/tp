@@ -6,8 +6,10 @@ import { orm } from '../shared/db/orm.js'
 const em = orm.em;
 
 function sanitizeZonaInput(req: Request, res: Response, next: NextFunction) {
+    if (!req.body) req.body = {};
     req.body.sanitizeZonaInput = {
-        descripcionZona: req.body.descripcionZona
+        descripcionZona: req.body.descripcionZona,
+        
     };
 
     Object.keys(req.body.sanitizeZonaInput).forEach((key) => {
@@ -30,17 +32,17 @@ async function findAll(req: Request, res: Response){
 }
 async function add(req: Request, res: Response) {
   try {
-    const zona = em.create(Zona, req.body.sanitizeZonaInput);
-    await em.flush();
-    res.status(201).json({ message: 'zona creada', data: zona });
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
+      const zona = em.create(Zona, req.body.sanitizeZonaInput);
+      await em.flush();
+      res.status(201).json({ message: 'zona creada', data: zona });
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function findOne(req: Request, res: Response){
-   try{
-       // const codZona = Number.parseInt(req.params.id);
-        const zona = await em.findOneOrFail(Zona,{/*codZona*/})
+    try{
+        const codZona = Number.parseInt(req.params.id);
+        const zona = await em.findOneOrFail(Zona,{ codZona }, {populate: ['usuarios']});
         res
             .status(200)
             .json({message: "found zon",data:zona})

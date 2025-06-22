@@ -3,8 +3,6 @@
 GET http://localhost:3000/api/zona
 
 
-### obtener zona por id
-GET http://localhost:3000/api/zona/1
 
 ### cargar una zona
 # @name createZona
@@ -12,8 +10,11 @@ POST http://localhost:3000/api/zona
 Content-Type: application/json
 
 {
-  "descripcionZona": "asdsad"
+  "descripcionZona": "tesast zona"
 } 
+### codZona
 
+### obtener zona por id
+GET http://localhost:3000/api/zona/5
 
 

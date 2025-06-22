@@ -13,6 +13,6 @@ export class Zona extends BaseEntity {
 
   //apunta a usuario? como hago apuntarla a prestatario?
 
-  @ManyToMany(()=> Usuario, usuario=>usuario.zonas, {mappedBy: 'zonas',nullable: true})
-  usuarios?: Usuario[]
+  @ManyToMany(()=> Usuario, usuario=>usuario.zonas, {nullable: true})
+  usuarios = new Collection<Usuario>(this);
 }
