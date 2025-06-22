@@ -6,6 +6,7 @@ function sanitizeTareaInput(req, res, next) {
         nombreTarea: req.body.nombreTarea,
         descripcionTarea: req.body.descripcionTarea,
         duracionTarea: req.body.duracionTarea,
+        servicio: req.body.servicio,
     };
     Object.keys(req.body.sanitizeTareaInput).forEach((key) => {
         if (req.body.sanitizeTareaInput[key] === undefined) {
@@ -16,7 +17,7 @@ function sanitizeTareaInput(req, res, next) {
 }
 async function findall(req, res) {
     try {
-        const tasks = await em.find(Tarea, {});
+        const tasks = await em.find(Tarea, {}, { populate: ['servicio'] });
         res.status(200).json({ message: 'found all tasks', data: tasks });
     }
     catch (error) {
@@ -26,7 +27,7 @@ async function findall(req, res) {
 async function findone(req, res) {
     try {
         const id = Number.parseInt(req.params.id);
-        const task = await em.findOneOrFail(Tarea, { id });
+        const task = await em.findOneOrFail(Tarea, { id }, { populate: ['servicio'] });
         res.status(200).json({ message: 'found one task', data: task });
     }
     catch (error) {

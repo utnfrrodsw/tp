@@ -7,16 +7,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Property, ManyToMany, BaseEntity } from '@mikro-orm/core';
+import { Entity, Property, ManyToMany, PrimaryKey, BaseEntity } from '@mikro-orm/core';
 import { Usuario } from "../usuario/usuario.entity.js";
-export class Zona extends BaseEntity {
-}
+export let Zona = class Zona extends BaseEntity {
+};
+__decorate([
+    PrimaryKey(),
+    __metadata("design:type", Number)
+], Zona.prototype, "codZona", void 0);
 __decorate([
     Property({ nullable: false }),
     __metadata("design:type", String)
 ], Zona.prototype, "descripcionZona", void 0);
 __decorate([
-    ManyToMany(() => Usuario, usuario => usuario.zonas),
+    ManyToMany(() => Usuario, usuario => usuario.zonas, { mappedBy: 'zonas' }),
     __metadata("design:type", Array)
 ], Zona.prototype, "usuarios", void 0);
+Zona = __decorate([
+    Entity()
+], Zona);
 //# sourceMappingURL=zona.entity.js.map

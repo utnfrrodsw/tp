@@ -11,7 +11,7 @@ function sanitizeTurnoInput(req, res, next) {
         montoFinal: req.body.montoFinal,
         fechaPago: req.body.fechaPago,
         servicio: req.body.servicio,
-        usuario: req.body.usuario
+        usuario: req.body.usuario,
     };
     Object.keys(req.body.sanitizeTurnoInput).forEach((key) => {
         if (req.body.sanitizeTurnoInput[key] === undefined) {
@@ -33,8 +33,13 @@ async function findall(req, res) {
 // Find one turn by date and hour
 async function findone(req, res) {
     try {
-        const { fecha, hora } = req.params;
-        const turn = await em.findOne(Turno, { fecha, hora }, { populate: ['usuario', 'servicio'] });
+        const { fecha, hora, usuario, servicio } = req.params;
+        const turn = await em.findOne(Turno, {
+            fecha,
+            hora,
+            usuario: Number(usuario),
+            servicio: Number(servicio),
+        }, { populate: ['usuario', 'servicio'] });
         if (!turn) {
             return res.status(404).json({ message: 'Turn not found' });
         }
@@ -45,12 +50,14 @@ async function findone(req, res) {
     }
 }
 // Create a new turn
-async function create(req, res) {
+async function add(req, res) {
     try {
         const sanitizedInput = req.body.sanitizeTurnoInput;
         const newTurn = em.create(Turno, sanitizedInput);
         await em.persistAndFlush(newTurn);
-        res.status(201).json({ message: 'Turn created successfully', data: newTurn });
+        res
+            .status(201)
+            .json({ message: 'Turn created successfully', data: newTurn });
     }
     catch (error) {
         res.status(500).json({ message: error.message });
@@ -88,5 +95,5 @@ async function remove(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-export { sanitizeTurnoInput, findall, findone, create, update, remove };
+export { sanitizeTurnoInput, findall, findone, add, update, remove };
 //# sourceMappingURL=turno.controler.js.map

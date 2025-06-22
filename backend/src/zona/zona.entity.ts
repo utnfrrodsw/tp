@@ -2,15 +2,17 @@ import { Entity, Property, ManyToMany,Cascade,Rel, Collection,rel, PrimaryKey , 
 import { Usuario } from "../usuario/usuario.entity.js"
 
 
-export class Zona extends BaseEntity{
+@Entity()
+export class Zona extends BaseEntity {
   
-
+  @PrimaryKey()
+  codZona!: number;
 
   @Property({nullable: false})
   descripcionZona!: string;
 
   //apunta a usuario? como hago apuntarla a prestatario?
 
-  @ManyToMany(()=> Usuario, usuario=>usuario.zonas)
+  @ManyToMany(()=> Usuario, usuario=>usuario.zonas, {mappedBy: 'zonas'})
   usuarios?: Usuario[]
 }

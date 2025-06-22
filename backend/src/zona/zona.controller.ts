@@ -23,8 +23,8 @@ async function findAll(req: Request, res: Response){
 }
 async function findOne(req: Request, res: Response){
    try{
-        //id
-        const zona = await em.findOneOrFail(Zona,{/*id*/})
+       // const codZona = Number.parseInt(req.params.id);
+        const zona = await em.findOneOrFail(Zona,{/*codZona*/})
         res
             .status(200)
             .json({message: "found zon",data:zona})

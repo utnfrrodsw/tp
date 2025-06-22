@@ -14,8 +14,8 @@ function sanitizeUsuarioInput(req, res, next) {
         nombreFantasia: req.body.nombreFantasia,
         descripcion: req.body.descripcion,
         foto: req.body.foto,
-        // turno 
-        // tarea
+        turno: req.body.turno,
+        tarea: req.body.tarea,
     };
     Object.keys(req.body.sanitizeUsuarioInput).forEach((key) => {
         if (req.body.sanitizeUsuarioInput[key] === undefined) {
@@ -26,7 +26,7 @@ function sanitizeUsuarioInput(req, res, next) {
 }
 async function findall(req, res) {
     try {
-        const users = await em.find(Usuario, {});
+        const users = await em.find(Usuario, {}, { populate: ['turnos', 'servicios'] });
         res.status(200).json({ message: 'found all Usuarios', data: users });
     }
     catch (error) {
@@ -36,7 +36,7 @@ async function findall(req, res) {
 async function findone(req, res) {
     try {
         const id = Number.parseInt(req.params.id);
-        const user = await em.findOneOrFail(Usuario, { id });
+        const user = await em.findOneOrFail(Usuario, { id }, { populate: ['turnos', 'servicios'] });
         res.status(200).json({ message: 'found one usuario', data: user });
     }
     catch (error) {
@@ -45,7 +45,7 @@ async function findone(req, res) {
 }
 async function add(req, res) {
     try {
-        const newUser = em.create(Usuario, req.body.sanitizeInput);
+        const newUser = em.create(Usuario, req.body.sanitizeUsuarioInput);
         await em.flush();
         res.status(201).json({ message: 'created new usuario', data: newUser });
     }
@@ -57,7 +57,7 @@ async function update(req, res) {
     try {
         const id = Number.parseInt(req.params.id);
         const updateUser = await em.findOneOrFail(Usuario, { id });
-        em.assign(updateUser, req.body.sanitizeInput);
+        em.assign(updateUser, req.body.sanitizeUsuarioInput);
         await em.flush();
         res.status(200).json({ message: 'updated usuario', data: updateUser });
     }

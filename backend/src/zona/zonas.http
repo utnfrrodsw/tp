@@ -1,22 +1,21 @@
 ### obtener todas las zonas
 
-##id???
-//@id = {{createZona.response.body.data.id}} 
-//ehhh??
-
 GET http://localhost:3000/api/zonas
 
 ###obtener zona por id
 //falta el id al lado de zonas
-GET http://localhost:3000/api/zonas/
+GET http://localhost:3000/api/zonas
 ###crear una zona
 
-POST http://localhost:3000/api/zonas
+### Crear zona
+@name createZona
+POST http://localhost:3000/api/zonas/
 Content-Type: application/json
 
 {
-    "descripcionZona": "Centro, Avenida Pellegrini"
+  "descripcionZona": "Centro"
 }
+//@codZona = {{createZona.response.body.data.id}}
 
 #### modificar zona
 

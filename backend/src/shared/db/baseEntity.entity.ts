@@ -1,8 +1,8 @@
-import { PrimaryKey } from '@mikro-orm/core'
+import { PrimaryKey } from '@mikro-orm/core';
 
 export abstract class BaseEntity {
   @PrimaryKey()
-  id?: number
+  id?: number;
 
   /*
 

@@ -9,7 +9,8 @@ export class Usuario {
     //Atributos Cliente
     telefono, nombre, apellido, fechaNacimiento, 
     //Atributos Prestatario
-    nombreFantasia, descripcion) {
+    nombreFantasia, descripcion //! Por el momento dejamos de lado el tema de la foto. Por lo que hablamos //! Generalmente se guarda en una carpeta en nuestro host y después guardamos el string de la ruta //public foto?: string
+    ) {
         this.id = id;
         this.email = email;
         this.contrasena = contrasena;

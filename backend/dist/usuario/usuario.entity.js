@@ -7,12 +7,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Property, Cascade, ManyToMany, OneToMany } from '@mikro-orm/core';
+import { Entity, Property, Cascade, ManyToMany, OneToMany, Collection, } from '@mikro-orm/core';
 import { BaseEntity } from '../shared/db/baseEntity.entity.js';
 import { Servicio } from '../servicio/servicio.entity.js';
 import { Turno } from '../turno/turno.entity.js';
 import { Zona } from '../zona/zona.entity.js';
+import { TipoServicio } from '../tipoServicio/tipoServ.entity.js';
 export let Usuario = class Usuario extends BaseEntity {
+    constructor() {
+        super(...arguments);
+        this.servicios = new Collection(this);
+        this.tiposServicio = new Collection(this);
+        this.turnos = new Collection(this);
+        this.zonas = new Collection(this);
+    }
 };
 __decorate([
     Property({ nullable: false }),
@@ -59,17 +67,34 @@ __decorate([
     __metadata("design:type", String)
 ], Usuario.prototype, "foto", void 0);
 __decorate([
-    ManyToMany(() => Servicio, (servicio) => servicio.usuarios, { cascade: [Cascade.ALL], owner: true, nullable: true }),
-    __metadata("design:type", Array)
+    ManyToMany(() => Servicio, (servicio) => servicio.usuarios, {
+        cascade: [Cascade.ALL],
+        owner: true,
+        nullable: true,
+    }),
+    __metadata("design:type", Object)
 ], Usuario.prototype, "servicios", void 0);
 __decorate([
-    OneToMany(() => Turno, turno => turno.usuario, { cascade: [Cascade.ALL], nullable: true, }),
-    __metadata("design:type", Array)
+    ManyToMany(() => TipoServicio, (tipoServicio) => tipoServicio.usuarios, {
+        cascade: [Cascade.ALL],
+        nullable: false
+    }),
+    __metadata("design:type", Object)
+], Usuario.prototype, "tiposServicio", void 0);
+__decorate([
+    OneToMany(() => Turno, (turno) => turno.usuario, {
+        cascade: [Cascade.ALL],
+        nullable: true,
+    }),
+    __metadata("design:type", Object)
 ], Usuario.prototype, "turnos", void 0);
 __decorate([
-    ManyToMany(() => Zona, zona => zona.usuarios, { nullable: false, owner: true }) //no se si agregarle el cascade o no, ya que eliminar un prestatario no afectaria ala zona
-    ,
-    __metadata("design:type", Array)
+    ManyToMany(() => Zona, (zona) => zona.usuarios, {
+        cascade: [Cascade.ALL],
+        nullable: false,
+        owner: true,
+    }),
+    __metadata("design:type", Object)
 ], Usuario.prototype, "zonas", void 0);
 Usuario = __decorate([
     Entity()

@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, Property, OneToOne } from '@mikro-orm/core';
+import { Entity, Property, OneToOne, Cascade, } from '@mikro-orm/core';
 import { BaseEntity } from '../shared/db/baseEntity.entity.js';
 import { Servicio } from '../servicio/servicio.entity.js';
 export let Tarea = class Tarea extends BaseEntity {
@@ -25,8 +25,11 @@ __decorate([
     __metadata("design:type", Number)
 ], Tarea.prototype, "duracionTarea", void 0);
 __decorate([
-    OneToOne(() => Servicio, (servicio) => servicio.tarea, { nullable: false }),
-    __metadata("design:type", Servicio)
+    OneToOne(() => Servicio, (servicio) => servicio.tarea, {
+        nullable: true,
+        cascade: [Cascade.ALL],
+    }),
+    __metadata("design:type", Object)
 ], Tarea.prototype, "servicio", void 0);
 Tarea = __decorate([
     Entity()
