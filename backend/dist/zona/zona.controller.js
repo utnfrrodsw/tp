@@ -46,15 +46,16 @@ async function findOne(req, res) {
     }
 }
 async function update(req, res) {
-    // try{
-    //     //id
-    //     const zona = em.getReference(Zona,/*id*/)
-    //     em.assign(zona, req.body.sanitizeZonaInput)
-    //     await em.flush()
-    //     res
-    //         .status(200)
-    //         .json({message: "zona actualizada"})
-    // }catch(error:any){res.status(500).json({message:error.message})}
+    try {
+        const codZona = Number.parseInt(req.params.id);
+        const zonaToUpdate = await em.findOneOrFail(Zona, { codZona });
+        em.assign(zonaToUpdate, req.body.sanitizeZonaInput);
+        await em.flush();
+        res.status(200).json({ message: "zona actualizada", data: zonaToUpdate });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 async function remove(req, res) {
     try {

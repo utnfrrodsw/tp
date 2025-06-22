@@ -10,13 +10,20 @@ POST http://localhost:3000/api/zona
 Content-Type: application/json
 
 {
-  "descripcionZona": "tesast zona"
+  "descripcionZona": "Arroyito"
 } 
-### codZona
+
 
 ### obtener zona por id
-GET http://localhost:3000/api/zona/5
+GET http://localhost:3000/api/zona/6
 
 ### borrar zona por id
-DELETE http://localhost:3000/api/zona/7
+DELETE http://localhost:3000/api/zona/8
 
+### actualizar zona por id
+PUT http://localhost:3000/api/zona/6
+Content-Type: application/json
+
+{
+  "descripcionZona": "zona nueva"
+}
