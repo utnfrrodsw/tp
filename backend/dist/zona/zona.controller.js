@@ -57,12 +57,15 @@ async function update(req, res) {
     // }catch(error:any){res.status(500).json({message:error.message})}
 }
 async function remove(req, res) {
-    //  try{
-    //     //id
-    //     const zona = em.getReference(Zona, /*id*/)
-    //     await em.removeAndFlush(zona);
-    //     res.status(200).send({message:'zona borrada'})
-    // }catch(error:any){res.status(500).json({message:error.message})}
+    try {
+        const codZona = Number.parseInt(req.params.id);
+        const zona = await em.findOneOrFail(Zona, { codZona }); //el get reference no funciona porque no lee correctamente codZona, utilizo esto y funciona capaz
+        await em.removeAndFlush(zona);
+        res.status(200).json({ message: "zona eliminada" });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 export { findAll, findOne, add, update, remove, sanitizeZonaInput };
 //# sourceMappingURL=zona.controller.js.map
