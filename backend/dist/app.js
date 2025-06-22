@@ -5,6 +5,7 @@ import { servicioRouter } from './servicio/servicio.route.js';
 import { turnoRouter } from './turno/turno.route.js';
 import 'reflect-metadata';
 import { orm, syncSchema } from './shared/db/orm.js';
+import { zonaRouter } from './zona/zona.route.js';
 import { RequestContext } from '@mikro-orm/core';
 import { serviceTypeRouter } from './tipoServicio/tipoServ.route.js';
 const app = express();
@@ -17,10 +18,11 @@ app.use('/api/usuario', usuarioRouter);
 app.use('/api/tarea', tareaRouter);
 app.use('/api/servicio', servicioRouter);
 app.use('/api/turno', turnoRouter);
+app.use('/api/zona', zonaRouter);
 // app.use((req, res) => {
 //   console.log(req)
 //   return res.status(404).send({ message: 'Resource not found' });
-// });
+// }); comente esto pq me tiraba error
 await syncSchema(); //nunca en producción
 /* app.listen(3006, () => {
   console.log('Server runnning on http://localhost:3006/');

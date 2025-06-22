@@ -16,11 +16,12 @@ __decorate([
     __metadata("design:type", Number)
 ], Zona.prototype, "codZona", void 0);
 __decorate([
-    Property({ nullable: false }),
+    Property({ nullable: false }) //no va nullable es para  testear
+    ,
     __metadata("design:type", String)
 ], Zona.prototype, "descripcionZona", void 0);
 __decorate([
-    ManyToMany(() => Usuario, usuario => usuario.zonas, { mappedBy: 'zonas' }),
+    ManyToMany(() => Usuario, usuario => usuario.zonas, { mappedBy: 'zonas', nullable: true }),
     __metadata("design:type", Array)
 ], Zona.prototype, "usuarios", void 0);
 Zona = __decorate([

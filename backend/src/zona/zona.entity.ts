@@ -8,11 +8,11 @@ export class Zona extends BaseEntity {
   @PrimaryKey()
   codZona!: number;
 
-  @Property({nullable: false})
+  @Property({nullable: false}) //no va nullable es para  testear
   descripcionZona!: string;
 
   //apunta a usuario? como hago apuntarla a prestatario?
 
-  @ManyToMany(()=> Usuario, usuario=>usuario.zonas, {mappedBy: 'zonas'})
+  @ManyToMany(()=> Usuario, usuario=>usuario.zonas, {mappedBy: 'zonas',nullable: true})
   usuarios?: Usuario[]
 }

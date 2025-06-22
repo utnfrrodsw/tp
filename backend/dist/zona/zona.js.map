@@ -1,1 +1,1 @@
-{"version":3,"file":"zona.js","sourceRoot":"","sources":["../../src/zona/zona.ts"],"names":[],"mappings":"AAEA,MAAM,OAAO,IAAI;IACjB;IACI,kEAAkE;IAC3D,OAAe,EACf,eAAuB;QADvB,YAAO,GAAP,OAAO,CAAQ;QACf,oBAAe,GAAf,eAAe,CAAQ;IAChC,CAAC;CACF"}
+{"version":3,"file":"zona.js","sourceRoot":"","sources":["../../src/zona/zona.ts"],"names":[],"mappings":";AACA,+BAA+B;AAC/B,sBAAsB;AACtB,eAAe;AACf,yEAAyE;AACzE,8BAA8B;AAC9B,qCAAqC;AACrC,MAAM;AACN,IAAI"}

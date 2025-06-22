@@ -2,15 +2,30 @@ import { Zona } from './zona.entity.js';
 import { orm } from '../shared/db/orm.js';
 const em = orm.em;
 function sanitizeZonaInput(req, res, next) {
-    req.body.sanitizedInput = {
+    req.body.sanitizeZonaInput = {
         descripcionZona: req.body.descripcionZona
     };
+    Object.keys(req.body.sanitizeZonaInput).forEach((key) => {
+        if (req.body.sanitizeZonaInput[key] === undefined) {
+            delete req.body.sanitizeZonaInput[key];
+        }
+    });
     next();
 }
 async function findAll(req, res) {
     try {
-        const zona = await em.find(Zona, {});
-        res.status(200).json({ message: 'find all zonas exitoso', data: Zona });
+        const zona = await em.find(Zona, {}, { populate: ['usuarios'] });
+        res.status(200).json({ message: 'find all zonas exitoso', data: zona });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+async function add(req, res) {
+    try {
+        const zona = em.create(Zona, req.body.sanitizeZonaInput);
+        await em.flush();
+        res.status(201).json({ message: 'zona creada', data: zona });
     }
     catch (error) {
         res.status(500).json({ message: error.message });
@@ -28,21 +43,11 @@ async function findOne(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-async function add(req, res) {
-    try {
-        const zona = em.create(Zona, req.body.sanitizedInput);
-        await em.flush();
-        res.status(201).json({ message: 'zona creada', data: zona });
-    }
-    catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-}
 async function update(req, res) {
     // try{
     //     //id
     //     const zona = em.getReference(Zona,/*id*/)
-    //     em.assign(zona, req.body.sanitizedInput)
+    //     em.assign(zona, req.body.sanitizeZonaInput)
     //     await em.flush()
     //     res
     //         .status(200)

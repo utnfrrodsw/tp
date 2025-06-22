@@ -1,39 +1,19 @@
 ### obtener todas las zonas
 
-GET http://localhost:3000/api/zonas
+GET http://localhost:3000/api/zona
 
-###obtener zona por id
-//falta el id al lado de zonas
-GET http://localhost:3000/api/zonas
-###crear una zona
 
-### Crear zona
-@name createZona
-POST http://localhost:3000/api/zonas/
+### obtener zona por id
+GET http://localhost:3000/api/zona/1
+
+### cargar una zona
+# @name createZona
+POST http://localhost:3000/api/zona
 Content-Type: application/json
 
 {
-  "descripcionZona": "Centro"
-}
-//@codZona = {{createZona.response.body.data.id}}
+  "descripcionZona": "asdsad"
+} 
 
-#### modificar zona
 
-//falta el id al lado de zonas
-PUT http://localhost:3000/api/zonas/ 
-Content-Type: application/json
 
-{
-  "descripcionZona":"Pichincha, Cerca de oronio",
-}
-### patchear zona (modificar pero no idempotente)
-//falta el id al lado de zonas
-PATCH http://localhost:3000/api/zonas/
-Content-Type: application/json
-
-{
-  "descripcionZona": "Arroyito, Cancha de Central (el mas grande del interior y me lo llora dana)"
-}
-###borrar zona
-//falta el id al lado de zonas
-DELETE http://localhost:3000/api/zonas/

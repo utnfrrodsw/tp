@@ -5,14 +5,15 @@ import {
     add,
     update,
     remove,
+    sanitizeZonaInput,
 } from './zona.controller.js'
 
 export const zonaRouter = Router();
 
 
-zonaRouter.get("/", findAll);
-zonaRouter.get("/:id", findOne);
-zonaRouter.post("/", add);
-zonaRouter.put("/:id", update);
-zonaRouter.patch("/:id", update);
-zonaRouter.delete("/:id", remove);
+zonaRouter.get("/", sanitizeZonaInput, findAll);
+zonaRouter.get("/:id",sanitizeZonaInput, findOne);
+zonaRouter.post("/",sanitizeZonaInput, add);
+zonaRouter.put("/:id",sanitizeZonaInput, update);
+zonaRouter.patch("/:id", sanitizeZonaInput,update);
+zonaRouter.delete("/:id", sanitizeZonaInput,remove);
