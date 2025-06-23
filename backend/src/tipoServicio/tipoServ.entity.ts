@@ -13,7 +13,7 @@ import { Tarea } from '../tarea/tarea.entity.js';
 //import { Tarea } from './../tarea.entity.js'
 @Entity()
 export class TipoServicio extends BaseEntity {
-  @Property({ nullable: false })
+  @Property({ nullable: false,unique: true })
   nombreTipo!: string;
 
   @Property({ nullable: false })

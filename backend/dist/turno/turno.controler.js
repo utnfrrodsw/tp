@@ -1,7 +1,7 @@
 import { Turno } from './turno.entity.js';
 import { orm } from '../shared/db/orm.js';
-import { Servicio } from '../servicio/servicio.entity.js';
 import { Usuario } from '../usuario/usuario.entity.js';
+import { Servicio } from '../servicio/servicio.entity.js';
 const em = orm.em;
 function sanitizeTurnoInput(req, res, next) {
     req.body.sanitizeTurnoInput = {
@@ -43,13 +43,8 @@ async function findone(req, res) {
         const turn = await em.findOne(Turno, {
             fecha: fechaObj,
             hora,
-<<<<<<< HEAD
-            usuario: Number(usuario),
-            servicio: Number(servicio),
-=======
             usuario: usuarioEntity,
             servicio: servicioEntity
->>>>>>> luis
         }, { populate: ['usuario', 'servicio'] });
         if (!turn) {
             return res.status(404).json({ message: 'Turn not found' });

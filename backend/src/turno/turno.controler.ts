@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import { Turno } from './turno.entity.js'
 import { orm } from '../shared/db/orm.js'
-
+import { Usuario } from '../usuario/usuario.entity.js'
+import { Servicio } from '../servicio/servicio.entity.js'
 
 const em = orm.em;
 function sanitizeTurnoInput(req: Request, res: Response, next: NextFunction) {

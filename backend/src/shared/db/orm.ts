@@ -3,11 +3,12 @@ import { MySqlDriver } from '@mikro-orm/mysql';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 
 export const orm = await MikroORM.init({
+  driver: MySqlDriver, // <--- AGREGA ESTA LÍNEA
   entities: ['dist/**/*.entity.js'],
   entitiesTs: ['src/**/*.entity.ts'],
   dbName: 'homeService',
   //clientUrl: 'mysql://dsw:dsw@localhost:3306/homeService',
-  clientUrl: 'mysql://root:root@localhost:3300/homeService',
+  clientUrl: 'mysql://root:root@localhost:3306/homeService',
   highlighter: new SqlHighlighter(),
   debug: true,
   schemaGenerator: {
