@@ -9,8 +9,8 @@
 
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+* [frontend app]()
+* [backend app](https://github.com/JuanBonadeo/Backend-TPDSW)
 *Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
 
 ## Tema
