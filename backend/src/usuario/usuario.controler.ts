@@ -31,7 +31,7 @@ function sanitizeUsuarioInput(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-async function findall(req: Request, res: Response) {
+async function findAll(req: Request, res: Response) {
   try {
     const users = await em.find(
       Usuario,
@@ -44,7 +44,7 @@ async function findall(req: Request, res: Response) {
   }
 }
 
-async function findone(req: Request, res: Response) {
+async function findOne(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
     const user = await em.findOneOrFail(
@@ -90,4 +90,4 @@ async function remove(req: Request, res: Response) {
   }
 }
 
-export { sanitizeUsuarioInput, findall, findone, add, update, remove };
+export { sanitizeUsuarioInput, findAll, findOne, add, update, remove };

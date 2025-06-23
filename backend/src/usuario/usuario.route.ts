@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import {
   sanitizeUsuarioInput,
-  findall,
-  findone,
+  findAll,
+  findOne,
   add,
   update,
   remove,
@@ -10,8 +10,8 @@ import {
 
 export const usuarioRouter = Router();
 
-usuarioRouter.get('/', findall);
-usuarioRouter.get('/:id', findone);
+usuarioRouter.get('/', findAll);
+usuarioRouter.get('/:id', findOne);
 usuarioRouter.post('/', sanitizeUsuarioInput, add);
 usuarioRouter.put('/:id', sanitizeUsuarioInput, update);
 usuarioRouter.patch('/:id', sanitizeUsuarioInput, update);

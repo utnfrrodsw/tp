@@ -27,7 +27,7 @@ function sanitizeUsuarioInput(req, res, next) {
     });
     next();
 }
-async function findall(req, res) {
+async function findAll(req, res) {
     try {
         const users = await em.find(Usuario, {}, { populate: ['turnos', 'servicios', 'tiposDeServicio', 'horarios'] });
         res.status(200).json({ message: 'found all Usuarios', data: users });
@@ -36,7 +36,7 @@ async function findall(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-async function findone(req, res) {
+async function findOne(req, res) {
     try {
         const id = Number.parseInt(req.params.id);
         const user = await em.findOneOrFail(Usuario, { id }, { populate: ['turnos', 'servicios'] });
@@ -79,5 +79,5 @@ async function remove(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-export { sanitizeUsuarioInput, findall, findone, add, update, remove };
+export { sanitizeUsuarioInput, findAll, findOne, add, update, remove };
 //# sourceMappingURL=usuario.controler.js.map
