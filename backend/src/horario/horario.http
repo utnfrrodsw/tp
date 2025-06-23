@@ -27,3 +27,16 @@ Content-Type: application/json
   "horaHasta": "20:00:00",
   "usuario": 1
 }
+### Cambio un horario por id
+PUT http://localhost:3000/api/horario/2
+Content-Type: application/json
+
+{
+  "diaSemana": 2,
+  "horaDesde": "09:00:00",
+  "horaHasta": "10:00:00",
+  "usuario": 1
+}
+### Borro un horario por id
+DELETE http://localhost:3000/api/horario/2
+
