@@ -4,7 +4,7 @@ GET http://localhost:3000/api/usuario
 
 
 ### Cargamos un usuario
-
+´
 POST http://localhost:3000/api/usuario
 Content-Type: application/json
 

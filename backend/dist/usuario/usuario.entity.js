@@ -13,6 +13,7 @@ import { Servicio } from '../servicio/servicio.entity.js';
 import { Turno } from '../turno/turno.entity.js';
 import { TipoServicio } from '../tipoServicio/tipoServ.entity.js';
 import { Horario } from '../horario/horario.entity.js';
+import { Zona } from '../zona/zona.entity.js';
 export let Usuario = class Usuario extends BaseEntity {
     constructor() {
         super(...arguments);
@@ -23,6 +24,7 @@ export let Usuario = class Usuario extends BaseEntity {
         //Relación con TipoServicio
         this.tiposDeServicio = new Collection(this);
         this.horarios = new Collection(this);
+        this.zonas = new Collection(this);
     }
 };
 __decorate([
@@ -99,6 +101,14 @@ __decorate([
     }),
     __metadata("design:type", Object)
 ], Usuario.prototype, "horarios", void 0);
+__decorate([
+    ManyToMany(() => Zona, (zona) => zona.usuarios, {
+        cascade: [Cascade.ALL],
+        nullable: false,
+        owner: true,
+    }),
+    __metadata("design:type", Object)
+], Usuario.prototype, "zonas", void 0);
 Usuario = __decorate([
     Entity()
 ], Usuario);

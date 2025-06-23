@@ -1,0 +1,30 @@
+### obtener todas las zonas
+
+GET http://localhost:3000/api/zona
+
+
+
+### cargar una zona
+# @name createZona
+POST http://localhost:3000/api/zona
+Content-Type: application/json
+
+{
+  "descripcionZona": "Arroyito",
+  "usuarios":[1]
+} 
+
+
+### obtener zona por id
+GET http://localhost:3000/api/zona/6
+
+### borrar zona por id
+DELETE http://localhost:3000/api/zona/1
+
+### actualizar zona por id
+PUT http://localhost:3000/api/zona/6
+Content-Type: application/json
+
+{
+  "descripcionZona": "zona nueva"
+}

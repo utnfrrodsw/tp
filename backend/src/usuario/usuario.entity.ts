@@ -13,6 +13,7 @@ import { Servicio } from '../servicio/servicio.entity.js';
 import { Turno } from '../turno/turno.entity.js';
 import { TipoServicio } from '../tipoServicio/tipoServ.entity.js';
 import { Horario } from '../horario/horario.entity.js';
+import { Zona } from '../zona/zona.entity.js';
 @Entity()
 export class Usuario extends BaseEntity {
   //id
@@ -68,4 +69,10 @@ export class Usuario extends BaseEntity {
     nullable: true,
   })
   horarios = new Collection<Horario>(this);
+  @ManyToMany(() => Zona, (zona) => zona.usuarios, {
+    cascade: [Cascade.ALL],
+    nullable: false,
+    owner: true,
+  })
+  zonas = new Collection<Zona>(this);
 }
