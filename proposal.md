@@ -29,8 +29,8 @@ La página permitirá buscar por categorías, actores, directores etc. Y se podr
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD Pelicula<br>3. CRUD Serie<br>4. CRUD Genero/Categoria|
-|CRUD dependiente|1. CRUD Reseña {depende de} CRUD Tipo Usuario y Pelicula/Serie<br>2. CRUD Favorito {depende de} CRUD Usuuario y Pelicula/Serie|
+|CRUD simple|1. CRUD Pelicula<br>2. CRUD Director<br>3. CRUD Actor<br>4. CRUD Categoria|
+|CRUD dependiente|1. CRUD Reseña  CRUD Pelicula <br>2. CRUD Favorito |
 |Listado<br>+<br>detalle| 1. Listado de películas filtrado por categoría, o actor, o director<br> 2. Listado de películas favoritas|
 |CUU/Epic|1. Reseñar pelicula/serie<br>2. Calificar reseña de otro usuario|
 
@@ -38,8 +38,8 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD <br>2. CRUD <br>3. CRUD <br>4. CRUD <br>5. CRUD <br>6. CRUD <br>7. CRUD |
-|CUU/Epic|1. <br>2. <br>3. |
+|CRUD |1. CRUD Usuario <br>2. CRUD WatchList <br>3. CRUD <br>4. CRUD <br>5. CRUD <br>6. CRUD <br>7. CRUD |
+|CUU/Epic|1. Moderar Resenia <br>2. Agregar Pelicula Con api IMDB <br>3.   |
 
 
 ### Alcance Adicional Voluntario
