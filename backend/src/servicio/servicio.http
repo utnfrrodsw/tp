@@ -2,7 +2,7 @@
 GET http://localhost:3000/api/servicio
 
 ### Obtener servicio por id
-GET http://localhost:3000/api/servicio/1
+GET http://localhost:3000/api/servicio/3
 
 ### Crear un servicio
 POST http://localhost:3000/api/servicio
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### Actualizar un servicio (PUT)
-PUT http://localhost:3000/api/servicio/1
+PUT http://localhost:3000/api/servicio/3
 Content-Type: application/json
 
 {
@@ -25,7 +25,7 @@ Content-Type: application/json
 }
 
 ### Actualizar parcialmente un servicio (PATCH)
-PATCH http://localhost:3000/api/servicio/1
+PATCH http://localhost:3000/api/servicio/3
 Content-Type: application/json
 
 {

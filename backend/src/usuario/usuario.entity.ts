@@ -8,16 +8,16 @@ import { Zona } from '../zona/zona.entity.js';
 @Entity()
 export class Usuario extends BaseEntity {
   //id
-  @Property({ nullable: false })
+  @Property({ nullable: false, unique: true })
   mail!: string;
   @Property({ nullable: false })
   contrasena!: string;
   @Property({ nullable: false })
   tipoDoc!: string;
-  @Property({ nullable: false })
+  @Property({ nullable: false,unique: true })
   numeroDoc!: number;
   // Este es un campo opcional de cliente
-  @Property({ nullable: true })
+  @Property({ nullable: true,unique: true })
   telefono?: number;
   @Property({ nullable: true })
   nombre?: string;
