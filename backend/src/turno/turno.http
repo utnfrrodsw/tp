@@ -4,19 +4,29 @@ GET http://localhost:3000/api/turno
 
 ###Obtener usuario por id
 
-GET http://localhost:3000/api/turno
+GET http://localhost:3000/api/turno/2023-10-01/10:00/5/3
 
 ### Cargamos un usuario
 
 POST http://localhost:3000/api/turno
 Content-Type: application/json
 
+{
+  "fecha": "2023-10-01",
+  "hora": "11:00",
+  "estado": "pendiente",
+  "servicio": 3,
+  "usuario": 5
+}
 
 ###Hacemos un PUT
 
-PUT http://localhost:3000/api/tuno///
+PUT http://localhost:3000/api/turno/2023-10-01/10:00/5/3
 Content-Type: application/json
 
+{
+  "calificacion": 500
+}
 
 ### Hacemos un patch
 PATCH http://localhost:3000/api/turno

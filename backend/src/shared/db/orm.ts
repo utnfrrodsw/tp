@@ -6,11 +6,10 @@ export const orm = await MikroORM.init({
   entities: ['dist/**/*.entity.js'],
   entitiesTs: ['src/**/*.entity.ts'],
   dbName: 'homeService',
-  clientUrl: 'mysql://dsw:dsw@localhost:3306/homeService',
-  //clientUrl: 'mysql://root:root@localhost:3306/homeService',
+  //clientUrl: 'mysql://dsw:dsw@localhost:3306/homeService',
+  clientUrl: 'mysql://root:root@localhost:3300/homeService',
   highlighter: new SqlHighlighter(),
   debug: true,
-  driver: MySqlDriver,
   schemaGenerator: {
     disableForeignKeys: true,
     createForeignKeyConstraints: true,

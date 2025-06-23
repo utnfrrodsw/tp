@@ -21,23 +21,23 @@ __decorate([
     __metadata("design:type", String)
 ], Turno.prototype, "hora", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: false }),
     __metadata("design:type", String)
 ], Turno.prototype, "estado", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", Number)
 ], Turno.prototype, "calificacion", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", String)
 ], Turno.prototype, "comentario", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", Number)
 ], Turno.prototype, "montoFinal", void 0);
 __decorate([
-    Property(),
+    Property({ nullable: true }),
     __metadata("design:type", Date)
 ], Turno.prototype, "fechaPago", void 0);
 __decorate([

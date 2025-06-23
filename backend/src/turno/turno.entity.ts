@@ -16,15 +16,15 @@ export class Turno {
   fecha!: Date;
   @PrimaryKey()
   hora!: string;
-  @Property()
+  @Property({nullable: false})
   estado!: string;
-  @Property()
+  @Property({nullable: true})
   calificacion?: number;
-  @Property()
+  @Property({nullable: true})
   comentario?: string;
-  @Property()
+  @Property({nullable: true})
   montoFinal?: number;
-  @Property()
+  @Property({nullable: true})
   fechaPago?: Date;
   @ManyToOne(() => Servicio, { nullable: true })
   servicio?: Rel<Servicio>;

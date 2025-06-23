@@ -1,5 +1,7 @@
 import { Turno } from './turno.entity.js';
 import { orm } from '../shared/db/orm.js';
+import { Servicio } from '../servicio/servicio.entity.js';
+import { Usuario } from '../usuario/usuario.entity.js';
 const em = orm.em;
 function sanitizeTurnoInput(req, res, next) {
     req.body.sanitizeTurnoInput = {
@@ -34,11 +36,20 @@ async function findall(req, res) {
 async function findone(req, res) {
     try {
         const { fecha, hora, usuario, servicio } = req.params;
+        const sanitizedInput = req.body.sanitizeTurnoInput;
+        const fechaObj = new Date(fecha);
+        const usuarioEntity = await em.findOneOrFail(Usuario, Number(usuario));
+        const servicioEntity = await em.findOneOrFail(Servicio, Number(servicio));
         const turn = await em.findOne(Turno, {
-            fecha,
+            fecha: fechaObj,
             hora,
+<<<<<<< HEAD
             usuario: Number(usuario),
             servicio: Number(servicio),
+=======
+            usuario: usuarioEntity,
+            servicio: servicioEntity
+>>>>>>> luis
         }, { populate: ['usuario', 'servicio'] });
         if (!turn) {
             return res.status(404).json({ message: 'Turn not found' });
@@ -66,9 +77,17 @@ async function add(req, res) {
 // Update an existing turn
 async function update(req, res) {
     try {
-        const { fecha, hora } = req.params;
+        const { fecha, hora, usuario, servicio } = req.params;
         const sanitizedInput = req.body.sanitizeTurnoInput;
-        const turn = await em.findOne(Turno, { fecha, hora });
+        const fechaObj = new Date(fecha);
+        const usuarioEntity = await em.findOneOrFail(Usuario, Number(usuario));
+        const servicioEntity = await em.findOneOrFail(Servicio, Number(servicio));
+        const turn = await em.findOne(Turno, {
+            fecha: fechaObj,
+            hora,
+            usuario: usuarioEntity,
+            servicio: servicioEntity
+        }, { populate: ['usuario', 'servicio'] });
         if (!turn) {
             return res.status(404).json({ message: 'Turn not found' });
         }
@@ -83,8 +102,17 @@ async function update(req, res) {
 // Delete a turn
 async function remove(req, res) {
     try {
-        const { fecha, hora } = req.params;
-        const turn = await em.findOne(Turno, { fecha, hora });
+        const { fecha, hora, usuario, servicio } = req.params;
+        const sanitizedInput = req.body.sanitizeTurnoInput;
+        const fechaObj = new Date(fecha);
+        const usuarioEntity = await em.findOneOrFail(Usuario, Number(usuario));
+        const servicioEntity = await em.findOneOrFail(Servicio, Number(servicio));
+        const turn = await em.findOne(Turno, {
+            fecha: fechaObj,
+            hora,
+            usuario: usuarioEntity,
+            servicio: servicioEntity
+        }, { populate: ['usuario', 'servicio'] });
         if (!turn) {
             return res.status(404).json({ message: 'Turn not found' });
         }

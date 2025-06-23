@@ -1,5 +1,4 @@
-import { MikroORM } from '@mikro-orm/core';
-import { MySqlDriver } from '@mikro-orm/mysql';
+import { MikroORM } from '@mikro-orm/mysql';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 export const orm = await MikroORM.init({
     entities: ['dist/**/*.entity.js'],
@@ -9,7 +8,6 @@ export const orm = await MikroORM.init({
     //clientUrl: 'mysql://root:root@localhost:3306/homeService',
     highlighter: new SqlHighlighter(),
     debug: true,
-    driver: MySqlDriver,
     schemaGenerator: {
         disableForeignKeys: true,
         createForeignKeyConstraints: true,
