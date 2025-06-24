@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-const Category = require('./category');
+
 
 const Product = sequelize.define('Product', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -11,6 +11,6 @@ const Product = sequelize.define('Product', {
   stock: { type: DataTypes.INTEGER, defaultValue: 0 }
 }, { timestamps: false });
 
-Product.belongsTo(Category, { foreignKey: 'categoryId', onDelete: 'CASCADE' });
+
 
 module.exports = Product;

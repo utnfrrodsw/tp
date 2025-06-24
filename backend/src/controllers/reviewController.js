@@ -19,14 +19,43 @@ const getReviewById = async (req, res) => {
   }
 };
 
+const getReviewsByProduct = async (req, res) => {
+  try {
+    const productId = req.params.productId;
+
+    const reviews = await Review.findAll({
+      where: { productId },
+      include: ['User'], // Si tu modelo Review tiene asociación con User
+    });
+
+    res.json(reviews);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al obtener reseñas del producto' });
+  }
+};
+
+
+
 const createReview = async (req, res) => {
   try {
-    const review = await Review.create(req.body);
+    const userId = req.user.id; 
+    const { productId, rating, comment } = req.body;
+
+    const review = await Review.create({
+      userId,
+      productId,
+      rating,
+      comment,
+    });
+
     res.status(201).json(review);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: 'Error al crear reseña' });
   }
 };
+
 
 const updateReview = async (req, res) => {
   try {
@@ -56,4 +85,5 @@ module.exports = {
   createReview,
   updateReview,
   deleteReview,
+  getReviewsByProduct,
 };

@@ -10,6 +10,8 @@ router.post('/',authenticate, reviewController.createReview);
 router.delete('/:id', authenticate, reviewController.deleteReview);
 
 // Obtener reseñas (público)
+router.get('/product/:productId', reviewController.getReviewsByProduct);
+
 router.get('/:id', reviewController.getReviewById);
 router.put('/:id', reviewController.updateReview);
 

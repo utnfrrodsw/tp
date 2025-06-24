@@ -2,8 +2,8 @@ const Order = require('../models/order');
 
 const createOrder = async (req, res) => {
   try {
-    const { userId, total } = req.body;
-    const order = await Order.create({ userId, total });
+    const { userId, totalAmount } = req.body; // cambio total por totalAmount
+    const order = await Order.create({ userId, totalAmount }); //x2
     res.status(201).json(order);
   } catch (err) {
     console.error(err);
@@ -39,7 +39,7 @@ const updateOrder = async (req, res) => {
     if (!order) return res.status(404).json({ message: 'Pedido no encontrado' });
 
     const { status } = req.body;
-    if (!['pendiente', 'enviado', 'entregado'].includes(status)) {
+    if (!['pendiente', 'enviado', 'entregado'].includes(status)) { // ver idioma aca
       return res.status(400).json({ message: 'Estado inválido' });
     }
 

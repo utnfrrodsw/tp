@@ -1,15 +1,42 @@
-const Product = require('../models/Product');
+const Product = require('../models/product');
 const Category = require('../models/category');
+
+
 
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.findAll({ include: Category });
+    const { categoryId } = req.query;
+
+    const options = {
+      include: Category,
+    };
+
+    if (categoryId) {
+      options.where = { categoryId }; // Esto hace el filtrado
+    }
+
+    const products = await Product.findAll(options);
     res.json(products);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Error al obtener productos' });
   }
 };
+
+const getProductsByCategory = async (req, res) => {
+  const { categoryId } = req.params;
+  try {
+    const products = await Product.findAll({
+      where: { categoryId },
+      include: Category,
+    });
+    res.json(products);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al obtener productos por categoría' });
+  }
+};
+
 
 const getProductById = async (req, res) => {
   try {
@@ -61,5 +88,6 @@ module.exports = {
   getProductById,
   createProduct,
   updateProduct,
-  deleteProduct,
+  deleteProduct, 
+  getProductsByCategory,
 };
