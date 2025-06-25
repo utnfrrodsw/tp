@@ -1,24 +1,23 @@
-// src/controllers/usuario.controller.ts
-import { Response } from 'express';
+import { Request, Response } from 'express';
+import { MikroORM } from '@mikro-orm/mysql';
 import { Usuario } from '../entities/usuario.entity';
-import { RequestWithOrm } from '../types/express.d';
 
-export const getUsuarios = async (req: RequestWithOrm, res: Response) => {
-  const orm = req.app.get('orm');
+export const getUsuarios = async (req: Request, res: Response) => {
+  const orm = req.app.get('orm') as MikroORM;
   const usuarios = await orm.em.find(Usuario, {});
   res.json(usuarios);
 };
 
-export const getUsuarioById = async (req: RequestWithOrm, res: Response) => {
-  const orm = req.app.get('orm');
-  const usuario = await orm.em.findOne(Usuario, { id: parseInt(req.params.id) });
+export const getUsuarioById = async (req: Request, res: Response) => {
+  const orm = req.app.get('orm') as MikroORM;
+  const usuario = await orm.em.findOne(Usuario, { id: +req.params.id });
   if (!usuario) return res.status(404).json({ error: 'Usuario no encontrado' });
   res.json(usuario);
 };
 
-export const updateUsuario = async (req: RequestWithOrm, res: Response) => {
-  const orm = req.app.get('orm');
-  const usuario = await orm.em.findOne(Usuario, { id: parseInt(req.params.id) });
+export const updateUsuario = async (req: Request, res: Response) => {
+  const orm = req.app.get('orm') as MikroORM;
+  const usuario = await orm.em.findOne(Usuario, { id: +req.params.id });
   if (!usuario) return res.status(404).json({ error: 'Usuario no encontrado' });
 
   orm.em.assign(usuario, req.body);
@@ -26,9 +25,9 @@ export const updateUsuario = async (req: RequestWithOrm, res: Response) => {
   res.json({ message: 'Usuario actualizado', usuario });
 };
 
-export const deleteUsuario = async (req: RequestWithOrm, res: Response) => {
-  const orm = req.app.get('orm');
-  const usuario = await orm.em.findOne(Usuario, { id: parseInt(req.params.id) });
+export const deleteUsuario = async (req: Request, res: Response) => {
+  const orm = req.app.get('orm') as MikroORM;
+  const usuario = await orm.em.findOne(Usuario, { id: +req.params.id });
   if (!usuario) return res.status(404).json({ error: 'Usuario no encontrado' });
 
   await orm.em.removeAndFlush(usuario);

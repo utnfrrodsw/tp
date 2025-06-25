@@ -17,6 +17,6 @@
     "typeRoots": ["./node_modules/@types", "./Backend/src/types"], 
     "outDir": "./dist"
   },
-  "include": ["./Backend/src/**/*.ts"],
+  "include": ["./Backend/src/**/*.ts", "Backend/src/shared/mikro-orm.config.ts"],
   "exclude": ["./node_modules", "dist"]
 }
