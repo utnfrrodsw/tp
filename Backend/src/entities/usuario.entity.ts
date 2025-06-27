@@ -1,7 +1,11 @@
+// src/entities/usuario.entity.ts
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+
+export type RolUsuario = 'usuario' | 'admin';
 
 @Entity()
 export class Usuario {
+
   @PrimaryKey()
   id!: number;
 
@@ -12,19 +16,22 @@ export class Usuario {
   password!: string;
 
   @Property()
-  username!: string;  // Asegúrate de tener esta propiedad
+  username!: string;
 
-  @Property({ nullable: true })  
+  // 👇 Nuevo campo de rol, con valor por defecto “usuario”
+  @Property({ columnType: 'varchar(20)' })
+  rol: RolUsuario = 'usuario';
+
+  @Property({ nullable: true })
   refreshToken?: string;
 
-  // Método para validar la contraseña
+  /* ---------- Métodos utilitarios ---------- */
   async validatePassword(password: string): Promise<boolean> {
-    // Lógica de validación de la contraseña (puedes usar bcrypt)
-    return this.password === password;  // Simplificado para ejemplo
+    // Aquí deberías usar bcrypt.compare
+    return this.password === password;
   }
 
-  // Método para encriptar la contraseña
   async hashPassword() {
-    // Aquí va la lógica para hash de contraseñas (puedes usar bcrypt o cualquier librería)
+    // Aquí deberías usar bcrypt.hash
   }
 }

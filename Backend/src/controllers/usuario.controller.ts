@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { MikroORM } from '@mikro-orm/mysql';
 import { Usuario } from '../entities/usuario.entity';
+import { RolUsuario } from '../entities/usuario.entity'; // ajusta la importación según dónde esté el enum
 
 export const getUsuarios = async (req: Request, res: Response) => {
   const orm = req.app.get('orm') as MikroORM;
@@ -18,7 +19,7 @@ export const getUsuarioById = async (req: Request, res: Response) => {
 export const createUsuario = async (req: Request, res: Response) => {
   try {
     const orm = req.app.get('orm') as MikroORM;
-    const { email, username, password } = req.body;
+    const { email, username, password, rol } = req.body;
 
     // Validar que no exista usuario con el mismo email
     const usuarioExistente = await orm.em.findOne(Usuario, { email });
@@ -26,7 +27,10 @@ export const createUsuario = async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'El email ya está registrado' });
     }
 
-    const nuevoUsuario = orm.em.create(Usuario, { email, username, password });
+    // Si no envían rol, asignar uno por defecto
+    const rolUsuario = rol ?? RolUsuario.USER; 
+
+    const nuevoUsuario = orm.em.create(Usuario, { email, username, password, rol: rolUsuario });
 
     // Encriptar contraseña si el método está definido en la entidad Usuario
     if (nuevoUsuario.hashPassword) {

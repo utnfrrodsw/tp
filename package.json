@@ -8,8 +8,8 @@
     "build": "tsc -p ./tsconfig.json",
     "dev": "ts-node-dev --respawn --transpile-only Backend/src/server.ts",
     "start": "node ./dist/index.js",
-    "migration:create": "mikro-orm migration:create",
-    "migration:up": "mikro-orm migration:up"
+    "migration:create": "mikro-orm migration:create --config Backend/src/shared/mikro-orm.config.ts",
+    "migration:up": "mikro-orm migration:up --config Backend/src/shared/mikro-orm.config.ts"
   },
   "keywords": [
     "typescript",
@@ -24,7 +24,9 @@
   "packageManager": "pnpm@10.8.0",
   "devDependencies": {
     "@mikro-orm/cli": "6.4.12",
+    "@mikro-orm/migrations": "6.4.12",
     "@types/bcrypt": "^5.0.2",
+    "@types/dotenv": "^8.2.3",
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "22.14.1",
@@ -41,6 +43,7 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "class-validator": "^0.14.1",
+    "dotenv": "^16.6.0",
     "express": "^4.17.1",
     "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
