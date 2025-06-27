@@ -7,7 +7,7 @@
 * 52937 - Romero, Gabriel Tobías (Comisión 304)
 
 ### Repositorios
-* [frontend app](https://github.com/Evenaut7/tp_dsw_frontendapp.git)
+* [frontend app](https://github.com/Evenaut7/TP_DSW_FrontendApp)
 * [backend app](https://github.com/Evenaut7/TP_DSW_BackendApp.git)
 
 
