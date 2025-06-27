@@ -1,3 +1,4 @@
+// src/routes/contenidoLista.routes.ts
 import { Router } from 'express';
 import { getContenidoLista, addLibroALista, removeLibroDeLista } from '../controllers/contenidoLista.controller';
 

@@ -8,6 +8,9 @@ import { categoriaRoutes } from './routes/categoria.routes';
 import { autorRoutes } from './routes/autor.routes';
 import { libroRoutes } from './routes/libro.routes';
 import { resenaRoutes } from './routes/resena.routes';
+import { contenidoListaRoutes } from './routes/contenidoLista.routes';
+import { reaccionRoutes } from './routes/reaccion.routes';
+import { seguimientoRoutes } from './routes/seguimiento.routes';
 
 const app = express(); 
 app.use(express.json());
@@ -21,5 +24,9 @@ app.use('/api/categoria', categoriaRoutes);
 app.use('/api/autor', autorRoutes);
 app.use('/api/libro', libroRoutes);
 app.use('/api/resena', resenaRoutes);
+app.use('/api/contenido-lista', contenidoListaRoutes);
+app.use('/api/reacciones', reaccionRoutes);
+app.use('/api/seguimientos', seguimientoRoutes);
+
 
 export default app;

@@ -1,4 +1,3 @@
-// src/routes/favoritos.routes.ts
 import { Router } from 'express';
 import { getFavoritos, addFavorito, deleteFavorito } from '../controllers/favorito.controller';
 
