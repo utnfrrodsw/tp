@@ -1,9 +1,5 @@
 import { Router } from 'express';
-import {
-  getContenidoLista,
-  addLibroALista,
-  removeLibroDeLista
-} from '../controllers/contenidoLista.controller';
+import { getContenidoLista, addLibroALista, removeLibroDeLista } from '../controllers/contenidoLista.controller';
 
 const router = Router();
 

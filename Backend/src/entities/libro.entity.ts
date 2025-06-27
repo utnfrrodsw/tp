@@ -3,6 +3,7 @@ import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core';
 import { Categoria } from './categoria.entity';
 import { Editorial } from './editorial.entity';
 import { Autor } from './autor.entity';
+import { Saga } from './saga.entity'; 
 
 @Entity()
 export class Libro {
@@ -23,4 +24,7 @@ export class Libro {
 
   @ManyToOne(() => Editorial)
   editorial!: Editorial;  // Relación con Editorial
+
+  @ManyToOne(() => Saga, { nullable: true })  
+  saga?: Saga;
 }

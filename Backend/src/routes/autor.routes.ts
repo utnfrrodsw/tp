@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import * as autorController from '../controllers/autor.controller';
+import { getAutores, getAutorById, createAutor, updateAutor, deleteAutor } from '../controllers/autor.controller';
 
 const router = Router();
 
-// Definir las rutas para los autores
-router.get('/', autorController.getAutores);
+router.get('/', getAutores);
+router.get('/:id', getAutorById);
+router.post('/', createAutor);
+router.put('/:id', updateAutor);
+router.delete('/:id', deleteAutor);
 
 export { router as autorRoutes };

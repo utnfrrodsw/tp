@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import * as libroController from '../controllers/libro.controller';
+import { getLibros, getLibroById, createLibro, updateLibro, deleteLibro } from '../controllers/libro.controller';
 
 const router = Router();
 
-// Definir las rutas para los libros
-router.get('/', libroController.getLibros);
+router.get('/', getLibros);
+router.get('/:id', getLibroById);
+router.post('/', createLibro);
+router.put('/:id', updateLibro);
+router.delete('/:id', deleteLibro);
 
 export { router as libroRoutes };

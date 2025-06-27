@@ -1,11 +1,5 @@
 import { Router } from 'express';
-import {
-  getEditoriales,
-  getEditorialById,
-  createEditorial,
-  updateEditorial,
-  deleteEditorial
-} from '../controllers/editorial.controller';
+import { getEditoriales, getEditorialById, createEditorial, updateEditorial, deleteEditorial } from '../controllers/editorial.controller';
 
 const router = Router();
 

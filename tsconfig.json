@@ -11,12 +11,12 @@
     "emitDecoratorMetadata": true,
     "baseUrl": "./",
     "paths": {
-      "*": ["./node_modules/*", "./Backend/src/*"]
+      "*": ["node_modules/*", "Backend/src/*"]
     },
     "types": ["node", "express"],
-    "typeRoots": ["./node_modules/@types", "./Backend/src/types"], 
+    "typeRoots": ["./node_modules/@types", "./Backend/src/types"],
     "outDir": "./dist"
   },
-  "include": ["./Backend/src/**/*.ts", "Backend/src/shared/mikro-orm.config.ts"],
-  "exclude": ["./node_modules", "dist"]
+  "include": ["Backend/src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
