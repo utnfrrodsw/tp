@@ -1,7 +1,9 @@
-// src/entities/usuario.entity.ts
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
-export type RolUsuario = 'usuario' | 'admin';
+export enum RolUsuario {
+  USUARIO = 'usuario',
+  ADMIN = 'admin',
+}
 
 @Entity()
 export class Usuario {
@@ -18,16 +20,13 @@ export class Usuario {
   @Property()
   username!: string;
 
-  // 👇 Nuevo campo de rol, con valor por defecto “usuario”
   @Property({ columnType: 'varchar(20)' })
-  rol: RolUsuario = 'usuario';
+  rol: RolUsuario = RolUsuario.USUARIO;
 
   @Property({ nullable: true })
   refreshToken?: string;
 
-  /* ---------- Métodos utilitarios ---------- */
   async validatePassword(password: string): Promise<boolean> {
-    // Aquí deberías usar bcrypt.compare
     return this.password === password;
   }
 
