@@ -1,6 +1,6 @@
 
 const OrderProducts = require('../models/orderProducts');
-const { Order, User, Product } = require('../models');
+const { Order, User } = require('../models');
 
 const createOrder = async (req, res) => {
   try {
@@ -39,26 +39,14 @@ const createOrder = async (req, res) => {
 const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['id', 'name'],
-        },
-        {
-          model: Product,
-          as: 'productos', 
-          attributes: ['id', 'name', 'price'],
-          through: {
-            attributes: ['quantity'], 
-          },
-        },
-      ],
-      order: [['createdAt', 'DESC']],
+      include: {
+        model: User,
+        attributes: ['id', 'name', 'email'], // solo los campos que querés enviar
+      },
     });
-
     res.json(orders);
   } catch (err) {
-    console.error('Error al obtener pedidos:', err);
+    console.error(err);
     res.status(500).json({ message: 'Error al obtener pedidos' });
   }
 };

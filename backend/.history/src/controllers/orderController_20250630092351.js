@@ -1,6 +1,6 @@
 
 const OrderProducts = require('../models/orderProducts');
-const { Order, User, Product } = require('../models');
+const { Order, User } = require('../models');
 
 const createOrder = async (req, res) => {
   try {
@@ -39,27 +39,14 @@ const createOrder = async (req, res) => {
 const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['id', 'name'],
-        },
-        {
-          model: Product,
-          as: 'productos', 
-          attributes: ['id', 'name', 'price'],
-          through: {
-            attributes: ['quantity'], 
-          },
-        },
-      ],
-      order: [['createdAt', 'DESC']],
+      include: {
+        model: User,
+        attributes: ['id', 'name', 'email'], // lo que querés traer
+      },
     });
-
     res.json(orders);
   } catch (err) {
-    console.error('Error al obtener pedidos:', err);
-    res.status(500).json({ message: 'Error al obtener pedidos' });
+    res.status(500).json({ error: 'Error al obtener pedidos' });
   }
 };
   
@@ -81,7 +68,7 @@ const updateOrder = async (req, res) => {
     if (!order) return res.status(404).json({ message: 'Pedido no encontrado' });
 
     const { status } = req.body;
-    if (!['pendiente', 'enviado', 'entregado', 'cancelado'].includes(status)) { // ver idioma aca
+    if (!['pendiente', 'enviado', 'entregado'].includes(status)) { // ver idioma aca
       return res.status(400).json({ message: 'Estado inválido' });
     }
 

@@ -12,8 +12,6 @@ const Review = require('./review');
 
 // Relaciones User
 User.hasMany(Order, { foreignKey: 'userId' });
-Order.belongsTo(User, { foreignKey: 'userId' }); // FALTABA ESTA
-
 User.hasMany(Review, { foreignKey: 'userId' });
 Review.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' });
 
@@ -41,7 +39,6 @@ Product.belongsToMany(Order, {
 
 // Relaciones con la tabla intermedia directamente
 Order.hasMany(OrderProducts, { foreignKey: 'orderId' });
-
 Product.hasMany(OrderProducts, { foreignKey: 'productId' });
 OrderProducts.belongsTo(Order, { foreignKey: 'orderId' });
 OrderProducts.belongsTo(Product, { foreignKey: 'productId' });

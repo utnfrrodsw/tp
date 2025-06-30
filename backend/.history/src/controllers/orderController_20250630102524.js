@@ -46,10 +46,10 @@ const getAllOrders = async (req, res) => {
         },
         {
           model: Product,
-          as: 'productos', 
+          as: 'productos', // debe coincidir con el alias definido en models/index.js
           attributes: ['id', 'name', 'price'],
           through: {
-            attributes: ['quantity'], 
+            attributes: ['quantity'], // esto es clave para acceder a OrderProducts.quantity
           },
         },
       ],

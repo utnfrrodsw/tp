@@ -1,19 +1,4 @@
 const OrderProducts = require('../models/orderProducts');
-const { Order, Product } = require('../models');
-
-const actualizarTotalOrden = async (orderId) => {
-  const productos = await OrderProducts.findAll({
-    where: { orderId },
-    include: [Product],
-  });
-
-  const nuevoTotal = productos.reduce((acc, item) => {
-    const precio = item.Product?.price || 0;
-    return acc + item.quantity * precio;
-  }, 0);
-
-  await Order.update({ totalAmount: nuevoTotal }, { where: { id: orderId } });
-};
 
 // Obtener todos los productos de todas las órdenes
 const getAllOrderProducts = async (req, res) => {
@@ -59,17 +44,12 @@ const updateOrderProduct = async (req, res) => {
     }
 
     await orderProduct.update({ quantity, unitPrice });
-
-    //  Recalcular total de la orden
-    await actualizarTotalOrden(orderId);
-
     res.json(orderProduct);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Error al actualizar order-product' });
   }
 };
-
 
 // Eliminar
 const deleteOrderProduct = async (req, res) => {
@@ -85,17 +65,12 @@ const deleteOrderProduct = async (req, res) => {
     }
 
     await orderProduct.destroy();
-
-    //  Recalcular total de la orden
-    await actualizarTotalOrden(orderId);
-
     res.json({ message: 'OrderProduct eliminado' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Error al eliminar order-product' });
   }
 };
-
 
 module.exports = {
   getAllOrderProducts,

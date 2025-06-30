@@ -15,10 +15,9 @@ router.get('/', getAllOrderProducts);
 router.post('/', createOrderProduct);
 
 // Actualizar  (cantidad o precio)
-router.put('/:orderId/:productId', updateOrderProduct);
+router.put('/:order_id/:product_id', updateOrderProduct);
+
 // Eliminar 
-router.delete('/:orderId/:productId', deleteOrderProduct);
-
-
+router.delete('/:order_id/:product_id', deleteOrderProduct);
 
 module.exports = router;
