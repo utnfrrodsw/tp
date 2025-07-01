@@ -1,5 +1,6 @@
 // backend/index.js
 require('dotenv').config();
+console.log(process.env.MP_ACCESS_TOKEN)
 const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/db');
@@ -24,6 +25,7 @@ const orderRoutes = require('./routes/orderRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const orderProductRoutes = require('./routes/orderProductRoutes');
+const checkoutRoutes = require('./routes/checkoutRoutes');
 
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
@@ -31,6 +33,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/orderProducts', orderProductRoutes);
+app.use('/api/checkout', checkoutRoutes);
 
 // Conexión a la base de datos
 sequelize.authenticate()

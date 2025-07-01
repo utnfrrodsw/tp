@@ -1,6 +1,6 @@
 const OrderProduct = require('../models/orderProduct');
 const Order = require('../models/order');
-const Product = require('../models/product');
+const Product = require('../models/Product');
 
 // Crear una relación pedido-producto
 exports.create = async (req, res) => {
