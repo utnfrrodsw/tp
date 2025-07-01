@@ -28,8 +28,6 @@ const orderRoutes = require('./routes/orderRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const orderProductsRoutes = require('./routes/orderProductsRoutes');
-const paymentRoutes = require('./routes/payment');
-
 
 
 
@@ -40,7 +38,6 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/order-products', orderProductsRoutes);
-app.use('/api/payments', paymentRoutes);
 
 // Conexión a la base de datos
 sequelize.authenticate()
