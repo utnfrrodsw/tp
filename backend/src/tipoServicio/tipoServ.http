@@ -9,7 +9,7 @@ POST http://localhost:3000/api/serviceTypes
 Content-Type: application/json
 
 {
-  "nombreTipo":"Plomeria",
+  "nombreTipo":"3Plomeria",
   "descripcionTipo":"Sevicios de plomeria y fontaneria para toda la casa"
 }
 

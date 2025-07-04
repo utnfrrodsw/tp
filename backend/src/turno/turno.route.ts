@@ -10,9 +10,9 @@ import {
 export const turnoRouter = Router();
 
 turnoRouter.get("/", findall);
-turnoRouter.get("/:fecha/:hora/:usuario/:servicio", findone);
+turnoRouter.get("/:id", findone);
 turnoRouter.post("/", sanitizeTurnoInput, add);
-turnoRouter.put("/:fecha/:hora/:usuario/:servicio", sanitizeTurnoInput, update);
-turnoRouter.patch("/:fecha/:hora/:usuario/:servicio", sanitizeTurnoInput, update);
-turnoRouter.delete("/:fecha/:hora/:usuario/:servicio", remove);
+turnoRouter.put("/:id", sanitizeTurnoInput, update);
+turnoRouter.patch("/:id", sanitizeTurnoInput, update);
+turnoRouter.delete("/:id", remove);
 

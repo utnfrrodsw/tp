@@ -1,21 +1,19 @@
 import {
   Entity,
   Property,
-  OneToOne,
-  PrimaryKey,
   Cascade,
   ManyToOne,
   Rel,
+
 } from '@mikro-orm/core';
 import { Usuario } from '../usuario/usuario.entity.js';
 import { Servicio } from '../servicio/servicio.entity.js';
+import { BaseEntity } from '../shared/db/baseEntity.entity.js';
 
 @Entity()
-export class Turno {
-  @PrimaryKey()
-  fecha!: Date;
-  @PrimaryKey()
-  hora!: string;
+export class Turno extends BaseEntity {
+  @Property({nullable: false})
+  fechaHora!: Date;
   @Property({nullable: false})
   estado!: string;
   @Property({nullable: true})

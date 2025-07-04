@@ -15,10 +15,10 @@ export class Usuario extends BaseEntity {
   @Property({ nullable: false })
   tipoDoc!: string;
   @Property({ nullable: false,unique: true })
-  numeroDoc!: number;
+  numeroDoc!: string;
   // Este es un campo opcional de cliente
   @Property({ nullable: true,unique: true })
-  telefono?: number;
+  telefono?: string;
   @Property({ nullable: true })
   nombre?: string;
   @Property({ nullable: true })

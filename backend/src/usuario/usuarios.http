@@ -3,21 +3,25 @@
 GET http://localhost:3000/api/usuario
 
 
+GET http://localhost:3000/api/usuario/1
+
 ### Cargamos un usuario
 
 POST http://localhost:3000/api/usuario
 Content-Type: application/json
 
 {
-  "mail": "luisParmi@gmail.com",
+  "mail": "4luisParmigia@gmail.com",
   "contrasena": "123489sdfafgdfjasdhjahsd",
   "tipoDoc": "DNI",
-  "numeroDoc": 45800900,
+  "numeroDoc": "1234567",
   "direccion": "Tenis 7884",
-  "telefono": 341123456,
-  "nombre": "Luis",
-  "apellido":"Parmigiani"
+  "telefono": "12345689",
+  "nombre": "4Luis",
+  "apellido":"4Parmigiani"
 }
+
+
 ###Hacemos un PUT
 
 PUT http://localhost:3000/api/usuario/1
@@ -35,10 +39,10 @@ Content-Type: application/json
 
 {
   "nombre":"Agustin Ivan",
-  "telefono":5493496,
+  "telefono":"5493496",
   "mail":"agutindana@hotmail.com"
 }
 
-###HAcemos un delete
+### Hacemos un delete
 DELETE http://localhost:3000/api/usuario/2
 
