@@ -24,13 +24,14 @@ Los administradores pueden subir, actualizar, gestionar y borrar cada uno de los
 
 ### Modelo
 
-![imagen del modelo](E-Commerce-DER.jpg)
+![imagen del modelo](E-Commerce-DER.png)
 
 ## Alcance Funcional
 
 ### Alcance Mínimo
 
 Regularidad:
+
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Cliente<br>2. CRUD Material<br>3. CRUD Descuento<br>4. CRUD Categoría|
@@ -39,6 +40,7 @@ Regularidad:
 |CUU/Epic|1. Realizar pedido <br>2. Realizar el pago del pedido <br> 3. Gestión del pedido (estado de realización y/o entrega)|
 
 Adicionales para Aprobación
+
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Cliente<br>2. CRUD Mueble<br>3. CRUD Categoría<br>4. CRUD Lista de Favoritos<br>5. CRUD Historial<br>7. CRUD Descuento|
@@ -55,17 +57,13 @@ Adicionales para Aprobación
 1. Modelado del Negocio
 
 - Clientes:
-
   - Compradores de muebles
 
 - Administradores:
-
   - Gestionan catálogo, pedidos y usuarios.
 
 2. Requisitos Funcionales
-
    - Para Clientes:
-
      - Registro/login (email o redes sociales).
      - Catálogo de muebles con filtros (categoría, precio, material).
      - Carrito de compras + checkout
@@ -73,14 +71,12 @@ Adicionales para Aprobación
      - Reseñas y ratings.
 
    - Para Administradores:
-
      - Panel de control (CRUD de productos, usuarios).
      - Gestión de inventarios
      - Dashboard de ventas
      - Gestión de envíos
 
 3. MVP (Mínimo Producto Viable)
-
    - Fase 1: Catálogo + carrito + checkout básico.
    - Fase 2: Administrador + Usuario + Autenticación + panel de administrador.
    - Fase 3 (opcional): Dashboard de ventas + reseñas + integración con logística.
