@@ -28,7 +28,7 @@ Regularidad:
 |:-|:-|
 |CRUD simple|1. CRUD Cliente<br>2. CRUD Gastronomico<br>3. CRUD Barra<br>4. CRUD Zona|
 |CRUD dependiente|1. CRUD Solicitud {depende de} CRUD Cliente<br>2. CRUD Salon {depende de} CRUD Zona|
-|Listado<br>+<br>detalle| 1. Listado de Salones filtrado por Zonas, se muestra el IdSalon, nombre, idZona, foto.<br> 2. Listado de Dj y Servicios disponibles para un determinado Salon, se muestra el nombre artístico y foto del Dj, nombre y foto del servicio.|
+|Listado<br>+<br>detalle| 1. Listado de Salones, Dj, Barra y Gastronomico, filtrado por Zonas, se muestra el IdSalon, nombre, idZona, foto.<br> 2. Listado de solicitudes de todos los clientes, con posibilidad de rechazar o cancelar dicha solicitud.|
 |CUU/Epic|1. Realizar solicitud de reserva<br>2. Alta y/o baja de elementos|
 
 
