@@ -3,9 +3,8 @@ TP Desarrollo de Software
 # Propuesta TP DSW - Buscador de Locales
 
 ## Grupo
-**Integrantes:**
+**Integrante:**
 - [39233] - Rohr, Claudio
-- [52243] - Paz Alvarez, José
 
 ## Repositorios
 
