@@ -4,7 +4,7 @@ Bievenidos a la documentación del proyecto
 
 ## Pasos para el Set Up
 
-Para minimizar la cantidad de pasos para el setup, decidimos pushear los archivos .env que teníamos
+Para minimizar la cantidad de pasos para el setup, decidimos incluir aquí el contenido de los archivos .env que teníamos para levantar el proyecto en local.
 
 1. Crea los archivos .env El del front con la informacion: [env_front](./README-front.md) y el del root con la informacion [env_root](./README-root.md).
 
@@ -50,14 +50,15 @@ EjBQNz0yZ5oiBU
 Desde el root:
 
 - `pnpm run test`: (**Con el proyecto levantado**) Lleva a cabo todos los test existentes
-- `pnpm run test:e2e:report`:(**Con el proyecto levantado**) Lleva a cabo el test del login y levanta el reporte en localhost
+- `pnpm run test:e2e:report`:(**Con el proyecto levantado **) Lleva a cabo el test del login y levanta el reporte en localhost
 
 ### Para documentar la API
 
 Desde el back
 (** Sin tener el back levantado, ya que usa el mismo puerto**)
 
-- `pnpm run generate-docs`: genera los documentos de salida, tanto el html como el json -`pnpm run docs:serve`: levanta el resultado de swagger solo.
+- `pnpm run generate-docs`: genera los documentos de salida, tanto el html como el json
+- `pnpm run docs:serve`: levanta el resultado de swagger solo.
 
 ## Documentación de la API
 
@@ -65,7 +66,8 @@ La **documentación de la API** la realizamos a través de swagger ui. Nosotros 
 
 1. api-documentation.html
 2. api-documentation.json
-   Para tener la _mejor experiencia_ de visualización, nosotros recomendamos levantar el archivo html resultante de la documentación con la extensión **live-server**
+
+Para tener la _mejor experiencia_ de visualización, nosotros recomendamos levantar el archivo html resultante de la documentación con la extensión **live-server**
 
 ## Testing
 
