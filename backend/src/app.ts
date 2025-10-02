@@ -207,28 +207,12 @@ export async function initializeApp() {
   const { syncSchema } = await import('./shared/db/orm.js');
   const { CronManager } = await import('./shared/cron/cronManager.js');
 
-  console.log('📁 Static serving path:', staticPath);
-  console.log('📁 Directory exists:', fs.existsSync(staticPath));
-
-  // Environment configuration logging
   const local = isLocalEnv;
-  console.log('🔧 Configuración del entorno:');
-  console.log('   Archivo .env encontrado:', isLocalEnv);
-  console.log('   Modo local:', local);
-  console.log('   process.env.LOCAL:', process.env.LOCAL);
-  console.log('   process.env.NODE_ENV:', process.env.NODE_ENV);
-
   const rawOrigins = local
     ? 'http://localhost:5173'
     : process.env.FRONTEND_ORIGIN ||
       'http://reformix.site,https://www.reformix.site';
   const allowedOrigins = rawOrigins.split(',').map((o: string) => o.trim());
-
-  console.log('🌐 Configuración CORS:', {
-    local,
-    rawOrigins,
-    allowedOrigins,
-  });
 
   // Create upload directories and default avatar
   try {
@@ -251,9 +235,6 @@ export async function initializeApp() {
     console.log('LOCAL_MODE=true -> syncSchema habilitado');
     await syncSchema();
   } else if (process.env.RUN_SYNC_SCHEMA === '1') {
-    console.log(
-      'RUN_SYNC_SCHEMA=1 (override) -> ejecutando syncSchema una vez'
-    );
     await syncSchema();
   } else {
     console.log('Producción -> syncSchema omitido');

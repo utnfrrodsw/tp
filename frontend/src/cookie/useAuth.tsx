@@ -25,10 +25,10 @@ const useAuth = () => {
       const local = import.meta.env.VITE_LOCAL === 'true';
       const API_BASE_URL = local
         ? 'http://localhost:3000/api'
-        : 'https://backend-patient-morning-1303.fly.dev/api';
+        : 'https://backend-nameless-dream-346.fly.dev/api';
 
       const token = localStorage.getItem('token'); // 🔑 tomamos el token guardado
-      
+
       if (!token) {
         setUsuario(null);
         setLoading(false);

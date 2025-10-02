@@ -1,13 +1,11 @@
-# fly.toml app configuration file generated for backend-nameless-dream-346 on 2025-10-02T14:56:53-03:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
+# fly.toml app configuration file for backend-nameless-dream-346
 
 app = 'backend-nameless-dream-346'
 primary_region = 'gru'
 
 [build]
   dockerfile = 'Dockerfile'
+  context = '.'
 
 [env]
   NODE_ENV = 'production'
@@ -32,9 +30,9 @@ primary_region = 'gru'
     path = '/health'
 
 [[services]]
-  protocol = ''
-  internal_port = 0
-  ports = []
+  protocol = 'tcp'
+  internal_port = 8080
+  ports = [{ port = 80, handlers = ["http"] }, { port = 443, handlers = ["tls", "http"] }]
 
   [[services.http_checks]]
     interval = '15s'
@@ -45,4 +43,7 @@ primary_region = 'gru'
     protocol = 'http'
 
 [[vm]]
-  size = 'shared-cpu-1x'
+  memory = '256mb'  
+  cpu_kind = 'shared'
+  cpus = 1
+  soft_limit = 40
