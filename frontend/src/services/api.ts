@@ -6,7 +6,7 @@ const token = localStorage.getItem('token');
 const local = import.meta.env.VITE_LOCAL === 'true';
 export const API_BASE_URL = local
   ? 'http://localhost:3000/api'
-  : 'https://backend-patient-morning-1303.fly.dev/api';
+  : 'https://backend-nameless-dream-346.fly.dev/api';
 
 console.log('API_BASE_URL:', API_BASE_URL);
 // ====== INTERFACES Y TIPOS ======

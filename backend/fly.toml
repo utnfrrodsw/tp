@@ -1,52 +1,48 @@
-# =============================================================
-# Configuración de Fly.io para backend-patient-morning-1303
-# Ajustado para que la app escuche en el puerto 8080
-# =============================================================
+# fly.toml app configuration file generated for backend-nameless-dream-346 on 2025-10-02T14:56:53-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = 'backend-patient-morning-1303'
-primary_region = 'eze'
+app = 'backend-nameless-dream-346'
+primary_region = 'gru'
 
 [build]
   dockerfile = 'Dockerfile'
-  context = '.'
 
 [env]
   NODE_ENV = 'production'
 
 [[mounts]]
-  source = "uploads"
-  destination = "/app/public/uploads"
+  source = 'uploads'
+  destination = '/app/public/uploads'
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
-  processes = ["app"]
+  processes = ['app']
 
-[[http_service.checks]]
-  grace_period = "10s"
-  interval = "30s"
-  method = "GET"
-  timeout = "5s"
-  path = "/health"
+  [[http_service.checks]]
+    interval = '30s'
+    timeout = '5s'
+    grace_period = '10s'
+    method = 'GET'
+    path = '/health'
 
-[[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
-    soft_limit = 40
+[[services]]
+  protocol = ''
+  internal_port = 0
+  ports = []
 
   [[services.http_checks]]
     interval = '15s'
     timeout = '2s'
     grace_period = '10s'
-  method = 'get'
-  path = '/health'
-  protocol = 'http'
+    method = 'get'
+    path = '/health'
+    protocol = 'http'
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
+  size = 'shared-cpu-1x'

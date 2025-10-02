@@ -95,7 +95,7 @@ async function ensureDefaultAvatar() {
     }
 
     const baseUrl = isProduction
-      ? process.env.BASE_URL || 'https://backend-patient-morning-1303.fly.dev'
+      ? process.env.BASE_URL || 'https://backend-nameless-dream-346.fly.dev'
       : 'http://localhost:3000';
 
     console.log(
