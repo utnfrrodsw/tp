@@ -25,6 +25,26 @@ Cuenta con panel de administración para gestionar los usuarios registrados.
 ### Modelo
 ```mermaid
 classDiagram
+    %% Entidades principales en la parte superior
+    class Category {
+        +Int id_category PK
+        +String name
+        +String description
+        +Int tmdb_id
+    }
+
+    class Director {
+        +Int id_director PK
+        +String first_name
+        +String last_name
+        +String nationality
+        +Int tmdb_id
+        +String profile_path
+        +String biography
+        +DateTime birth_date
+        +String birth_place
+    }
+
     class Movie {
         +Int id_movie PK
         +String title
@@ -43,34 +63,6 @@ classDiagram
         +Int id_category FK
         +Decimal averageScore
         +Int totalReviews
-        +DateTime created_at
-        +DateTime updated_at
-        +DateTime deleted_at
-    }
-
-    class Category {
-        +Int id_category PK
-        +String name
-        +String description
-        +Int tmdb_id
-        +DateTime created_at
-        +DateTime updated_at
-        +DateTime deleted_at
-    }
-
-    class Director {
-        +Int id_director PK
-        +String first_name
-        +String last_name
-        +String nationality
-        +Int tmdb_id
-        +String profile_path
-        +String biography
-        +DateTime birth_date
-        +String birth_place
-        +DateTime created_at
-        +DateTime updated_at
-        +DateTime deleted_at
     }
 
     class Actor {
@@ -83,11 +75,18 @@ classDiagram
         +String biography
         +String birth_place
         +Int gender
-        +DateTime created_at
-        +DateTime updated_at
-        +DateTime deleted_at
     }
 
+    %% Tabla intermedia
+    class Movie_Actor {
+        +Int id_movie PK,FK
+        +Int id_actor PK,FK
+        +String role
+        +String character
+        +Int order
+    }
+
+    %% Usuario y sus relaciones
     class User {
         +String id PK
         +String name
@@ -99,47 +98,6 @@ classDiagram
         +String password
         +UserRole role
         +String bio
-        +DateTime created_at
-        +DateTime updated_at
-        +DateTime deleted_at
-    }
-
-    class Review {
-        +Int id_review PK
-        +String id_user FK
-        +Int id_movie FK
-        +Decimal score
-        +String comment
-        +DateTime review_date
-        +DateTime updated_at
-        +DateTime deleted_at
-    }
-
-    class Favorite {
-        +String id_user PK,FK
-        +Int id_movie PK,FK
-        +DateTime created_at
-        +DateTime updated_at
-        +DateTime deleted_at
-    }
-
-    class ToWatch {
-        +String id_user PK,FK
-        +Int id_movie PK,FK
-        +DateTime created_at
-        +DateTime updated_at
-        +DateTime deleted_at
-    }
-
-    class Movie_Actor {
-        +Int id_movie PK,FK
-        +Int id_actor PK,FK
-        +String role
-        +String character
-        +Int order
-        +DateTime created_at
-        +DateTime updated_at
-        +DateTime deleted_at
     }
 
     class UserRole {
@@ -149,18 +107,45 @@ classDiagram
         MODERATOR
     }
 
-    %% Relaciones
-    Category "1" --> "*" Movie : tiene
-    Director "1" --> "*" Movie : dirige
-    Movie "1" --> "*" Review : tiene
-    Movie "1" --> "*" Favorite : está en
-    Movie "1" --> "*" ToWatch : está en
-    Movie "*" --> "*" Actor : actúa en
-    Movie "1" --> "*" Movie_Actor : tiene
-    Actor "1" --> "*" Movie_Actor : participa en
-    User "1" --> "*" Review : escribe
-    User "1" --> "*" Favorite : marca
-    User "1" --> "*" ToWatch : guarda
+    class Review {
+        +Int id_review PK
+        +String id_user FK
+        +Int id_movie FK
+        +Decimal score
+        +String comment
+        +DateTime review_date
+    }
+
+    class Favorite {
+        +String id_user PK,FK
+        +Int id_movie PK,FK
+    }
+
+    class ToWatch {
+        +String id_user PK,FK
+        +Int id_movie PK,FK
+    }
+
+    %% Relaciones - Agrupadas lógicamente
+    %% Movie como entidad central
+    Category "1" --> "0..*" Movie : tiene
+    Director "1" --> "0..*" Movie : dirige
+    
+    %% Relación Many-to-Many Movie-Actor
+    Movie "1" --> "0..*" Movie_Actor : tiene
+    Actor "1" --> "0..*" Movie_Actor : participa en
+    
+    %% Relaciones User-Movie
+    User "1" --> "0..*" Review : escribe
+    Movie "1" --> "0..*" Review : tiene
+    
+    User "1" --> "0..*" Favorite : marca
+    Movie "1" --> "0..*" Favorite : está en
+    
+    User "1" --> "0..*" ToWatch : guarda
+    Movie "1" --> "0..*" ToWatch : está en
+    
+    %% Enum
     User --> UserRole : tiene rol
 ```
 
