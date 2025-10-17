@@ -1,0 +1,222 @@
+### Variables base para testing beneficios
+### NOTA: Asegúrate de tener wallets, rubros y localidades creadas primero
+### Los beneficios requieren walletId y rubroId como obligatorios
+### Los beneficios pueden estar asociados a múltiples provincias (localidades) vía ManyToMany
+@baseUrl = http://localhost:3000/api/beneficios
+
+### 1. GET all beneficios
+GET {{baseUrl}}
+
+###
+
+### 2. POST - Crear un nuevo beneficio con wallet, rubro y localidades
+# @name createBeneficio1
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Descuento Café con merca",
+    "discount": 20,
+    "discountType": "reintegro",
+    "icon": "coffee",
+    "category": "Alimentos",
+    "walletId": "68f196974411f78ae5f2be68",
+    "rubroId": "68e2d4911283f2746bd4c80e",
+    "localidades": ["68e5b58603cec7b6df2b5e19"],
+    "availableDays": [1,2,3,4,5],
+    "validity": "Válido durante todo septiembre",
+    "fecha_desde": "2025-09-01",
+    "fecha_hasta": "2025-09-30",
+    "limit": "Máximo 1 vez por día",
+    "tope_reintegro": 500,
+    "imageUrl": "https://example.com/images/coffee.png"
+}
+
+###
+
+### 3. Capturar ID del beneficio creado
+@beneficioId1 = {{createBeneficio1.response.body.data.id}}
+
+### 4. GET - Obtener beneficio por ID
+GET {{baseUrl}}/{{beneficioId1}}
+
+###
+
+### 5. PUT - Actualizar beneficio completo con localidades
+PUT {{baseUrl}}/{{beneficioId1}}
+Content-Type: application/json
+
+{
+    "name": "Descuento Café Premium",
+    "discount": 25,
+    "discountType": "reintegro",
+    "icon": "coffee-premium",
+    "category": "Alimentos Premium",
+    "walletId": "673f123456789012345678a1",
+    "rubroId": "68e1e130f63328dc654c67b5",
+    "localidades": ["68e1e2a0f63328dc654c67c1", "68e1e2a0f63328dc654c67c3"],
+    "availableDays": [1,2,3,4,5,6],
+    "validity": "Válido durante octubre",
+    "fecha_desde": "2025-10-01",
+    "fecha_hasta": "2025-10-31",
+    "limit": "Máximo 2 veces por día",
+    "tope_reintegro": 750,
+    "imageUrl": "https://example.com/images/coffee-premium.png"
+}
+
+###
+
+### 6. POST - Crear segundo beneficio para testing con localidades
+# @name createBeneficio2
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Cashback Supermercado",
+    "discount": 15,
+    "discountType": "reintegro",
+    "icon": "shopping-cart",
+    "category": "Supermercados",
+    "walletId": "673f123456789012345678a2",
+    "rubroId": "68e1e130f63328dc654c67b6",
+    "localidades": ["68e1e2a0f63328dc654c67c1"],
+    "availableDays": [0,1,2,3,4,5,6],
+    "validity": "Válido todos los días",
+    "fecha_desde": "2025-01-01",
+    "fecha_hasta": "2025-12-31",
+    "limit": "Sin límite",
+    "tope_reintegro": 1000
+}
+
+###
+
+### 7. Capturar ID del segundo beneficio
+@beneficioId2 = {{createBeneficio2.response.body.data.id}}
+
+### 8. PATCH - Actualización parcial
+PATCH {{baseUrl}}/{{beneficioId2}}
+Content-Type: application/json
+
+{
+    "discount": 18,
+    "tope_reintegro": 1200,
+    "validity": "Válido todos los días con aumento"
+}
+
+###
+
+### 9. POST - Crear beneficio con datos mínimos
+# @name createBeneficioMinimo
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Descuento Básico",
+    "discount": 10,
+    "discountType": "off",
+    "category": "General",
+    "walletId": "673f123456789012345678a3",
+    "rubroId": "68e1e130f63328dc654c67b7",
+    "availableDays": [1,2,3,4,5],
+    "validity": "Válido solo días hábiles",
+    "fecha_desde": "2025-11-01",
+    "fecha_hasta": "2025-11-30",
+    "limit": "Una vez por semana"
+}
+
+###
+
+### 10. Capturar ID beneficio mínimo
+@beneficioIdMinimo = {{createBeneficioMinimo.response.body.data.id}}
+
+### 11. GET - Verificar beneficio mínimo
+GET {{baseUrl}}/{{beneficioIdMinimo}}
+
+###
+
+### 12. POST - Crear beneficio de cuotas
+# @name createBeneficioCuotas
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Cuotas sin Interés Electro",
+    "discount": 0,
+    "discountType": "cuota",
+    "icon": "credit-card",
+    "category": "Electrónicos",
+    "walletId": "673f123456789012345678a4",
+    "availableDays": [1,2,3,4,5,6],
+    "validity": "12 cuotas sin interés",
+    "fecha_desde": "2025-12-01",
+    "fecha_hasta": "2025-12-31",
+    "limit": "Compras mayores a $50.000",
+    "imageUrl": "https://example.com/images/electronics.png"
+}
+
+###
+
+### 13. Capturar ID beneficio cuotas
+@beneficioIdCuotas = {{createBeneficioCuotas.response.body.data.id}}
+
+### 14. GET - Verificar todos los beneficios creados
+GET {{baseUrl}}/{{beneficioId1}}
+
+###
+
+### 15. PUT - Test con beneficio de transporte
+PUT {{baseUrl}}/{{beneficioIdCuotas}}
+Content-Type: application/json
+
+{
+    "name": "Descuento Transporte Público",
+    "discount": 30,
+    "discountType": "reintegro",
+    "icon": "bus",
+    "category": "Transporte",
+    "walletId": "673f123456789012345678a5",
+    "availableDays": [1,2,3,4,5],
+    "validity": "Solo días hábiles",
+    "fecha_desde": "2025-01-15",
+    "fecha_hasta": "2025-06-15",
+    "limit": "Máximo 4 viajes por día",
+    "tope_reintegro": 200,
+    "imageUrl": "https://example.com/images/transport.png"
+}
+
+###
+
+### 16. DELETE - Eliminar beneficio de prueba
+DELETE {{baseUrl}}/{{beneficioIdMinimo}}
+
+###
+
+### 17. GET - Verificar eliminación (debería dar error 500)
+GET {{baseUrl}}/{{beneficioIdMinimo}}
+
+###
+
+### 18. GET - Estado final de todos los beneficios
+GET {{baseUrl}}
+
+###
+
+### 19. DELETE - Limpiar datos de prueba
+DELETE {{baseUrl}}/{{beneficioId1}}
+
+###
+
+### 20. DELETE - Limpiar más datos de prueba  
+DELETE {{baseUrl}}/{{beneficioId2}}
+
+###
+
+### 21. DELETE - Limpiar último beneficio
+DELETE {{baseUrl}}/{{beneficioIdCuotas}}
+
+###
+
+### 22. GET - Verificar limpieza final
+GET {{baseUrl}}
+
+###

@@ -1,0 +1,210 @@
+### FLUJO COMPLETO DE TESTING - ORDEN RECOMENDADO
+### Ejecutar en este orden para probar todas las relaciones
+
+### PASO 1: Crear Localidades (Provincias)
+### Ejecutar primero: localidad.http
+
+### PASO 2: Crear Ciudades
+### Ejecutar segundo: ciudad.http (usando IDs de localidades creadas)
+
+### PASO 3: Crear Wallets  
+### Ejecutar tercero: wallet.http
+
+### PASO 4: Crear Rubros
+### Ejecutar cuarto: rubros.http
+
+### PASO 5: Crear Beneficios
+### Ejecutar quinto: beneficios.http (usando IDs de wallets y rubros)
+
+### PASO 6: Crear Personas
+### Ejecutar sexto: personas.http (usando IDs de ciudades y wallets)
+
+##################################################
+### EJEMPLO DE FLUJO COMPLETO CON IDs REALES
+##################################################
+
+### Variables base
+@baseLocalidades = http://localhost:3000/api/localidades
+@baseCiudades = http://localhost:3000/api/ciudades
+@baseWallets = http://localhost:3000/api/wallets
+@baseRubros = http://localhost:3000/api/rubros
+@baseBeneficios = http://localhost:3000/api/beneficios
+@basePersonas = http://localhost:3000/api/personas
+
+### 1. Crear Localidad (Provincia)
+# @name createProvincia
+POST {{baseLocalidades}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Buenos Aires",
+    "pais": "Argentina"
+}
+
+###
+
+### 2. Capturar ID de la provincia
+@provinciaId = {{createProvincia.response.body.data.id}}
+
+### 3. Crear Ciudad
+# @name createCiudad
+POST {{baseCiudades}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "La Plata",
+    "codigoPostal": "1900",
+    "latitud": -34.9214,
+    "longitud": -57.9544,
+    "localidadId": "{{provinciaId}}"
+}
+
+###
+
+### 4. Capturar ID de la ciudad
+@ciudadId = {{createCiudad.response.body.data.id}}
+
+### 5. Crear Wallet
+# @name createWallet
+POST {{baseWallets}}
+Content-Type: application/json
+
+{
+    "name": "MercadoPago Test",
+    "descripcion": "Billetera para testing",
+    "interes_anual": 12
+}
+
+###
+
+### 6. Capturar ID de la wallet
+@walletId = {{createWallet.response.body.data.id}}
+
+### 7. Crear Rubro
+# @name createRubro
+POST {{baseRubros}}
+Content-Type: application/json
+
+{
+    "nombre": "Gastronomía",
+    "descripcion": "Restaurantes y cafeterías"
+}
+
+###
+
+### 8. Capturar ID del rubro
+@rubroId = {{createRubro.response.body.data.id}}
+
+### 9. Crear Beneficio
+# @name createBeneficio
+POST {{baseBeneficios}}
+Content-Type: application/json
+
+{
+    "name": "Descuento Restaurantes",
+    "discount": 15,
+    "discountType": "reintegro",
+    "icon": "restaurant",
+    "category": "Gastronomía",
+    "walletId": "{{walletId}}",
+    "rubroId": "{{rubroId}}",
+    "availableDays": [1,2,3,4,5,6,7],
+    "validity": "Válido todo el año",
+    "fecha_desde": "2025-01-01",
+    "fecha_hasta": "2025-12-31",
+    "limit": "Máximo 3 veces por semana",
+    "tope_reintegro": 1000,
+    "imageUrl": "https://example.com/restaurant.png"
+}
+
+###
+
+### 10. Capturar ID del beneficio
+@beneficioId = {{createBeneficio.response.body.data.id}}
+
+### 11. Crear Persona
+# @name createPersona
+POST {{basePersonas}}
+Content-Type: application/json
+
+{
+    "name": "Juan",
+    "apellido": "Pérez",
+    "email": "juan.perez@example.com",
+    "tel": 1123456789,
+    "dni": 12345678,
+    "direccion": "Calle Falsa 123",
+    "ciudadId": "{{ciudadId}}"
+}
+
+###
+
+### 12. Capturar ID de la persona
+@personaId = {{createPersona.response.body.data.id}}
+
+### 13. Verificar datos creados
+GET {{baseLocalidades}}/{{provinciaId}}
+
+###
+
+GET {{baseCiudades}}/{{ciudadId}}
+
+###
+
+GET {{baseWallets}}/{{walletId}}
+
+###
+
+GET {{baseRubros}}/{{rubroId}}
+
+###
+
+GET {{baseBeneficios}}/{{beneficioId}}
+
+###
+
+### 14. Verificar relaciones
+### Ver provincia con sus ciudades
+GET {{baseLocalidades}}/{{provinciaId}}
+
+###
+
+### Ver ciudad con su provincia y personas
+GET {{baseCiudades}}/{{ciudadId}}
+
+###
+
+### Ver beneficio con wallet y rubro
+GET {{baseBeneficios}}/{{beneficioId}}
+
+###
+
+##################################################
+### LIMPIEZA - Ejecutar al final para limpiar datos
+##################################################
+
+### Eliminar en orden inverso para evitar problemas de FK
+
+DELETE {{basePersonas}}/{{personaId}}
+
+###
+
+DELETE {{baseBeneficios}}/{{beneficioId}}
+
+###
+
+DELETE {{baseRubros}}/{{rubroId}}
+
+###
+
+DELETE {{baseWallets}}/{{walletId}}
+
+###
+
+DELETE {{baseCiudades}}/{{ciudadId}}
+
+###
+
+DELETE {{baseLocalidades}}/{{provinciaId}}
+
+###

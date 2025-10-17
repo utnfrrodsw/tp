@@ -1,0 +1,37 @@
+[33mcb04602[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{0}: checkout: moving from main to cb046021385947f744826422edd0f9a4d4b9b397
+[33mcb04602[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{1}: pull --tags origin main: Fast-forward
+[33m6219c3c[m HEAD@{2}: checkout: moving from front-prueba to main
+[33m45f005a[m[33m ([m[1;31morigin/front-prueba[m[33m, [m[1;32mfront-prueba[m[33m)[m HEAD@{3}: checkout: moving from 8d2f2df7088ba8248daa85150923df4f68d0561f to front-prueba
+[33m8d2f2df[m HEAD@{4}: commit: arreglue el tema del id
+[33mc4e5f3b[m HEAD@{5}: commit: Update item and persona HTTP requests with new sample data and improved input sanitization
+[33ma441516[m HEAD@{6}: commit: en prueba todabia
+[33md4d578f[m HEAD@{7}: commit: prolemas de los puertos resuelto y cree un scrip que me inyecta datos en la base de datos de mongodb
+[33m9784770[m HEAD@{8}: commit: arregle las imagenes y agrue la fecha hasta
+[33m304e147[m HEAD@{9}: commit: nose
+[33mc868a32[m HEAD@{10}: commit: notificacion esta echa la parte visual y hagregye al momo bailando
+[33m73579ac[m HEAD@{11}: commit: cambien el acount de una pagina a un model
+[33m581e00c[m HEAD@{12}: commit: fronted funcionando ahora toca conectar todo
+[33m5830d0c[m HEAD@{13}: commit: front funcionando pero falta arreglar algunas cosas
+[33ma5932de[m HEAD@{14}: commit: hise dos crud mas ademas del de persona que funciona con mongodb
+[33m310b17f[m HEAD@{15}: checkout: moving from 9175006658b6b5226dcaa81d46479f025d821cfa to 310b17f9eb0928acef872d4fe809aa88995e2bc6
+[33m9175006[m HEAD@{16}: checkout: moving from front-prueba to 9175006658b6b5226dcaa81d46479f025d821cfa
+[33m45f005a[m[33m ([m[1;31morigin/front-prueba[m[33m, [m[1;32mfront-prueba[m[33m)[m HEAD@{17}: commit: respaldo
+[33m6d76628[m HEAD@{18}: checkout: moving from front-prueba to front-prueba
+[33m6d76628[m HEAD@{19}: commit: front
+[33m223de5f[m HEAD@{20}: commit: fron incluido
+[33m0bf26f2[m[33m ([m[1;31morigin/feature/mongodb-authentication[m[33m, [m[1;32mfeature/mongodb-authentication[m[33m)[m HEAD@{21}: checkout: moving from feature/mongodb-authentication to front-prueba
+[33m0bf26f2[m[33m ([m[1;31morigin/feature/mongodb-authentication[m[33m, [m[1;32mfeature/mongodb-authentication[m[33m)[m HEAD@{22}: commit: cree una carpeta llamada nose proque literal no sabia que nombre ponerle mano ahi pase el front ese viejo que teniamos voy a implementar este nuevo que hice
+[33me27636d[m HEAD@{23}: checkout: moving from feature/mongodb-authentication to feature/mongodb-authentication
+[33me27636d[m HEAD@{24}: checkout: moving from main to feature/mongodb-authentication
+[33m6219c3c[m HEAD@{25}: checkout: moving from feature/mongodb-authentication to main
+[33me27636d[m HEAD@{26}: checkout: moving from main to feature/mongodb-authentication
+[33m6219c3c[m HEAD@{27}: pull --tags origin main: Merge made by the 'ort' strategy.
+[33mbcec2fa[m HEAD@{28}: commit: s
+[33m310b17f[m HEAD@{29}: pull --tags origin main: Fast-forward
+[33mb23496f[m HEAD@{30}: commit: asdads
+[33ma78ac1d[m HEAD@{31}: commit: NOSE
+[33m2744dff[m HEAD@{32}: commit: dale santi
+[33m09d95b1[m HEAD@{33}: commit: dale santi
+[33m616e8bc[m HEAD@{34}: commit: nose
+[33mff28cf5[m HEAD@{35}: commit: dale santi termina lo del rendimiento
+[33md513401[m HEAD@{36}: clone: from https://github.com/laureanolanselotto/tp-descuentos.git

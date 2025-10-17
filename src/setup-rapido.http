@@ -1,0 +1,124 @@
+### SETUP RÁPIDO PARA TESTING
+### Use este archivo para crear datos base rápidamente
+
+### Variables base
+@baseLocalidades = http://localhost:3000/api/localidades
+@baseCiudades = http://localhost:3000/api/ciudades
+@baseWallets = http://localhost:3000/api/wallets
+@baseRubros = http://localhost:3000/api/rubros
+
+### 1. Crear múltiples provincias
+# @name createBuenosAires
+POST {{baseLocalidades}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Buenos Aires",
+    "pais": "Argentina"
+}
+
+###
+
+# @name createCordoba
+POST {{baseLocalidades}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Córdoba", 
+    "pais": "Argentina"
+}
+
+###
+
+# @name createSantaFe
+POST {{baseLocalidades}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Santa Fe",
+    "pais": "Argentina"
+}
+
+###
+
+### 2. Crear múltiples wallets
+# @name createMercadoPago
+POST {{baseWallets}}
+Content-Type: application/json
+
+{
+    "name": "MercadoPago",
+    "descripcion": "Billetera digital para pagos",
+    "interes_anual": 12
+}
+
+###
+
+# @name createUala
+POST {{baseWallets}}
+Content-Type: application/json
+
+{
+    "name": "Ualá",
+    "descripcion": "Tarjeta prepaga y billetera",
+    "interes_anual": 8
+}
+
+###
+
+### 3. Crear múltiples rubros
+# @name createGastronomia
+POST {{baseRubros}}
+Content-Type: application/json
+
+{
+    "nombre": "Gastronomía",
+    "descripcion": "Restaurantes, cafeterías y bares"
+}
+
+###
+
+# @name createTransporte
+POST {{baseRubros}}
+Content-Type: application/json
+
+{
+    "nombre": "Transporte",
+    "descripcion": "Taxis, Uber, transporte público"
+}
+
+###
+
+# @name createSupermercados
+POST {{baseRubros}}
+Content-Type: application/json
+
+{
+    "nombre": "Supermercados",
+    "descripcion": "Compras en supermercados y almacenes"
+}
+
+###
+
+### 4. Verificar datos creados
+GET {{baseLocalidades}}
+
+###
+
+GET {{baseWallets}}
+
+###
+
+GET {{baseRubros}}
+
+###
+
+### IDs para copiar y usar en otros archivos HTTP:
+### Buenos Aires ID: {{createBuenosAires.response.body.data.id}}
+### Córdoba ID: {{createCordoba.response.body.data.id}}
+### Santa Fe ID: {{createSantaFe.response.body.data.id}}
+### MercadoPago ID: {{createMercadoPago.response.body.data.id}}
+### Ualá ID: {{createUala.response.body.data.id}}
+### Gastronomía ID: {{createGastronomia.response.body.data.id}}
+### Transporte ID: {{createTransporte.response.body.data.id}}
+### Supermercados ID: {{createSupermercados.response.body.data.id}}

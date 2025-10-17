@@ -1,0 +1,70 @@
+### Variables base para testing tRPC personas
+@baseUrl = http://localhost:3000/trpc
+
+### Variables para IDs de ejemplo - reemplazar con IDs reales de tu DB
+@localidadRosarioId = 68e5b58603cec7b6df2b5e19
+@walletMercadoPagoId = 68e5b6e003cec7b6df2b5e1c
+@walletUalaId = 68e48baded6d35261b611518
+@testPersonaId = 68e6766654d1d6b433ae175a
+
+###
+# 1. Obtener todas las personas
+GET {{baseUrl}}/persona.getAll
+Content-Type: application/json
+
+###
+# 2. Crear una nueva persona con localidad y wallets
+# @name createPersona
+POST {{baseUrl}}/persona.create
+Content-Type: application/json
+
+{
+  "json": {
+    "name": "Juan Carlos",
+    "apellido": "Rodríguez",
+    "email": "juan.rodriguez@email.com",
+    "tel": "1123456789",
+    "dni": "23456789",
+    "direccion": "Av. Corrientes 1234",
+    "localidadId": "{{localidadRosarioId}}",
+    "wallets": ["{{walletMercadoPagoId}}", "{{walletUalaId}}"]
+  }
+}
+
+###buscar a es persona por id
+get {{baseUrl}}/persona.getById
+Content-Type: application/json
+
+{
+  "json": "68e66841ab532878c16dcb7e"
+}
+
+### 3. Capturar ID de la persona creada
+@personaId = {{createPersona.response.body.result.data.id}}
+
+### 4. Obtener la persona creada por ID
+GET {{baseUrl}}/persona.getById
+Content-Type: application/json
+
+###
+# Test adicional - obtener persona específica con relaciones
+GET {{baseUrl}}/persona.getById?input={"json":"68e5b71103cec7b6df2b5e1d"}
+
+###
+# Test adicional - actualizar persona existente
+POST {{baseUrl}}/persona.update
+Content-Type: application/json
+
+{
+  "json": {
+    "id": "68e66701ab532878c16dcb7c",
+    "data": {
+      "name": "Juan Test ACTUALIZADO",
+      "apellido": "Prueba Actualizada"
+    }
+  }
+}
+
+###
+# Test adicional - test de error con ID inválido
+GET {{baseUrl}}/persona.getById?input={"json":"invalid-id-123"}

@@ -1,0 +1,60 @@
+{
+  "name": "tp-descuentos",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "tags: #dsw #tp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p ./tsconfig.json",
+    "front:install": "npm --prefix ./fronted ci || npm --prefix ./fronted install",
+    "front:dev": "npm --prefix ./fronted run dev",
+    "front:build": "npm --prefix ./fronted run build",
+    "dev": "npm run front:dev",
+    "start": "node ./dist/app.js",
+    "start:dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/app.js\"",
+    "seed": "node ./scripts/seed.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laureanolanselotto/tp-descuentos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laureanolanselotto/tp-descuentos/issues"
+  },
+  "homepage": "https://github.com/laureanolanselotto/tp-descuentos#readme",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/express": "5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "24.0.7",
+    "autoprefixer": "^10.4.21",
+    "jsonwebtoken": "^9.0.2",
+    "ngrok": "^5.0.0-beta.2",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
+    "tsc-watch": "^6.3.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@mikro-orm/core": "6.5.4",
+    "@mikro-orm/mongo-highlighter": "1.0.0",
+    "@mikro-orm/mongodb": "6.5.4",
+    "@tanstack/react-query": "^5.89.0",
+    "@trpc/client": "^11.5.1",
+    "@trpc/next": "^11.5.1",
+    "@trpc/react-query": "^11.5.1",
+    "@trpc/server": "^11.6.0",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "reflect-metadata": "0.2.2",
+    "superjson": "^2.2.2",
+    "zod": "3.23.8"
+  }
+}

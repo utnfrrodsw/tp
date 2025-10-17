@@ -1,0 +1,489 @@
+### tRPC API Tests - Usando atributos reales de las entidades y ejemplos de la base de datos
+### Variables base para testing tRPC endpoints
+@baseUrl = http://localhost:3000/trpc
+
+### Content-Type header for all requests
+@contentType = application/json
+
+### Health Check (REST endpoint que quedó)
+GET http://localhost:3000/health
+
+###
+### WALLET TESTS - Usando atributos reales: name, descripcion, interes_anual
+###
+GET http://localhost:3000/trpc/wallet.getAll
+###
+GET http://localhost:3000/trpc/rubro.getAll
+###
+GET http://localhost:3000/trpc/persona.getAll
+###
+GET http://localhost:3000/trpc/localidad.getAll
+
+### 1. Wallet - Get All Wallets (Query - usar POST en tRPC)
+# @name walletGetAll
+POST {{baseUrl}}/wallet.getAll
+Content-Type: {{contentType}}
+
+{}
+
+###
+
+### 2. Wallet - Get by ID (usando ID real de la base de datos)
+# @name walletGetById
+POST {{baseUrl}}/wallet.getById
+Content-Type: {{contentType}}
+
+{
+  "input": {
+    "json": {
+      "id": "68e48baded6d35261b611518"
+    }
+  }
+}
+
+###
+
+### 3. Wallet - Create New Wallet (usando atributos correctos)
+# @name walletCreate
+### CREATE wallet
+POST http://localhost:3000/trpc/routers/wallet.create
+Content-Type: application/json
+
+{
+  "input": {
+    "nombre": "Wallet Test",
+    "descripcion": "Wallet de prueba",
+    "personaId": "68e33f5b7028f5c32cc8a16"
+  }
+}
+###
+
+### 4. Capture new wallet ID - tRPC response structure
+@newWalletId = {{walletCreate.response.body.result.data.id}}
+
+### 5. Wallet - Update Wallet
+# @name walletUpdate
+POST {{baseUrl}}/wallet.update
+Content-Type: {{contentType}}
+
+{
+  "input": {
+    "json": {
+      "id": "{{newWalletId}}",
+      "name": "Ualá tRPC Updated",
+      "descripcion": "Billetera actualizada con mejor tasa de interés",
+      "interes_anual": 50.0
+    }
+  }
+}
+
+###
+### PERSONA TESTS - Usando atributos reales: name, apellido, email, tel, dni, direccion, wallets, localidadId
+###
+
+### 6. Persona - Get All Personas
+# @name personaGetAll
+POST {{baseUrl}}/persona.getAll
+Content-Type: {{contentType}}
+
+{}
+
+###
+
+### 7. Persona - Create New Persona (usando IDs reales de wallets y localidad)
+# @name personaCreate
+POST {{baseUrl}}/persona.create
+Content-Type: {{contentType}}
+
+{
+  "input": {
+    "json": {
+      "name": "Laureano tRPC",
+      "apellido": "Lanselotto",
+      "email": "laureano.trpc@gmail.com",
+      "tel": "2477309919",
+      "dni": "87654321",
+      "direccion": "Avenida tRPC 456",
+      "wallets": ["68e48baded6d35261b611518", "68e5b6e003cec7b6df2b5e1c"],
+      "localidadId": "68e5b58603cec7b6df2b5e19"
+    }
+  }
+}
+
+###
+
+### 8. Capture new persona ID
+@newPersonaId = {{personaCreate.response.body.result.data.id}}
+
+###
+### LOCALIDAD TESTS - Usando atributos reales: nombre_localidad, pais
+###
+
+### 9. Localidad - Get All Localidades
+# @name localidadGetAll
+POST {{baseUrl}}/localidad.getAll
+Content-Type: {{contentType}}
+
+{}
+
+###
+
+### 10. Localidad - Create New Localidad
+# @name localidadCreate
+POST {{baseUrl}}/localidad.create
+Content-Type: {{contentType}}
+
+{
+  "nombre_localidad": "Santa Fe tRPC",
+  "pais": "Argentina"
+}
+
+###
+
+### 11. Capture new localidad ID
+@newLocalidadId = {{localidadCreate.response.body.result.data.id}}
+
+###
+### RUBRO TESTS - Usando atributos reales: nombre, descripcion
+###
+
+### 12. Rubro - Get All Rubros
+# @name rubroGetAll
+POST {{baseUrl}}/rubro.getAll
+Content-Type: {{contentType}}
+
+{}
+
+###
+
+### 13. Rubro - Create New Rubro
+# @name rubroCreate
+POST {{baseUrl}}/rubro.create
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Tecnología tRPC",
+  "descripcion": "Tiendas de tecnología y electrónicos via tRPC"
+}
+
+###
+
+### 14. Capture new rubro ID
+@newRubroId = {{rubroCreate.response.body.result.data.id}}
+
+###
+### CIUDAD TESTS - Usando atributos reales: nombreCiudad, codigoPostal, latitud, longitud, localidadId
+###
+
+### 15. Ciudad - Get All Ciudades
+# @name ciudadGetAll
+POST {{baseUrl}}/ciudad.getAll
+Content-Type: {{contentType}}
+
+{}
+
+###
+
+### 16. Ciudad - Create New Ciudad (usando localidadId real)
+# @name ciudadCreate
+POST {{baseUrl}}/ciudad.create
+Content-Type: {{contentType}}
+
+{
+  "nombreCiudad": "Tandil tRPC",
+  "codigoPostal": "7000",
+  "latitud": -37.3217,
+  "longitud": -59.1332,
+  "localidadId": "68e5b58603cec7b6df2b5e19"
+}
+
+###
+
+### 17. Capture new ciudad ID
+@newCiudadId = {{ciudadCreate.response.body.result.data.id}}
+
+###
+### BENEFICIO TESTS - Usando atributos reales y IDs de base de datos existentes
+###
+
+### 18. Beneficio - Get All Beneficios
+# @name beneficioGetAll
+POST {{baseUrl}}/beneficio.getAll
+Content-Type: {{contentType}}
+
+{}
+
+###
+
+### 19. Beneficio - Create New Beneficio (usando IDs reales)
+# @name beneficioCreate
+POST {{baseUrl}}/beneficio.create
+Content-Type: {{contentType}}
+
+{
+  "name": "Descuento Café tRPC",
+  "discount": 25,
+  "discountType": "reintegro",
+  "icon": "coffee",
+  "category": "Gastronomía",
+  "walletId": "68e48baded6d35261b611518",
+  "rubroId": "68e2d4911283f2746bd4c80e",
+  "localidades": ["68e5b58603cec7b6df2b5e19"],
+  "availableDays": [1,2,3,4,5],
+  "validity": "Válido durante enero 2025",
+  "fecha_desde": "2025-01-01",
+  "fecha_hasta": "2025-01-31",
+  "limit": "Máximo 1 vez por día",
+  "tope_reintegro": 500,
+  "imageUrl": "https://example.com/coffee-trpc.png"
+}
+
+###
+
+### 20. Capture new beneficio ID
+@newBeneficioId = {{beneficioCreate.response.body.result.data.id}}
+
+###
+### UPDATE TESTS - Usando IDs capturados
+###
+
+### 21. Persona - Update Persona
+# @name personaUpdate
+POST {{baseUrl}}/persona.update
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newPersonaId}}",
+  "name": "Laureano Updated",
+  "apellido": "Lanselotto Test",
+  "email": "laureano.updated@gmail.com",
+  "tel": "2477999888",
+  "dni": "87654321",
+  "direccion": "Avenida tRPC Actualizada 789",
+  "wallets": ["68e48baded6d35261b611518"],
+  "localidadId": "{{newLocalidadId}}"
+}
+
+###
+
+### 22. Beneficio - Update Beneficio
+# @name beneficioUpdate
+POST {{baseUrl}}/beneficio.update
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newBeneficioId}}",
+  "name": "Descuento Café Premium tRPC",
+  "discount": 30,
+  "discountType": "reintegro",
+  "icon": "coffee-premium",
+  "category": "Gastronomía Premium",
+  "walletId": "{{newWalletId}}",
+  "rubroId": "{{newRubroId}}",
+  "localidades": ["{{newLocalidadId}}"],
+  "availableDays": [1,2,3,4,5,6],
+  "validity": "Válido todo febrero 2025",
+  "fecha_desde": "2025-02-01",
+  "fecha_hasta": "2025-02-28",
+  "limit": "Máximo 2 veces por día",
+  "tope_reintegro": 750
+}
+
+###
+### GET BY ID TESTS - Usando IDs capturados
+###
+
+### 23. Persona - Get by ID
+# @name personaGetById
+POST {{baseUrl}}/persona.getById
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newPersonaId}}"
+}
+
+###
+
+### 24. Beneficio - Get by ID
+# @name beneficioGetById
+POST {{baseUrl}}/beneficio.getById
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newBeneficioId}}"
+}
+
+###
+
+### 25. Localidad - Get by ID
+# @name localidadGetById
+POST {{baseUrl}}/localidad.getById
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newLocalidadId}}"
+}
+
+###
+
+### 26. Rubro - Get by ID
+# @name rubroGetById
+POST {{baseUrl}}/rubro.getById
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newRubroId}}"
+}
+
+###
+
+### 27. Ciudad - Get by ID
+# @name ciudadGetById
+POST {{baseUrl}}/ciudad.getById
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newCiudadId}}"
+}
+
+###
+### DELETE TESTS - Usando IDs capturados (en orden correcto para evitar dependencias)
+###
+
+### 28. Beneficio - Delete Beneficio (primero porque depende de wallet y rubro)
+# @name beneficioDelete
+POST {{baseUrl}}/beneficio.delete
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newBeneficioId}}"
+}
+
+###
+
+### 29. Ciudad - Delete Ciudad (antes que localidad)
+# @name ciudadDelete
+POST {{baseUrl}}/ciudad.delete
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newCiudadId}}"
+}
+
+###
+
+### 30. Persona - Delete Persona (antes que wallet y localidad)
+# @name personaDelete
+POST {{baseUrl}}/persona.delete
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newPersonaId}}"
+}
+
+###
+
+### 31. Rubro - Delete Rubro
+# @name rubroDelete
+POST {{baseUrl}}/rubro.delete
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newRubroId}}"
+}
+
+###
+
+### 32. Localidad - Delete Localidad
+# @name localidadDelete
+POST {{baseUrl}}/localidad.delete
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newLocalidadId}}"
+}
+
+###
+
+### 33. Wallet - Delete Wallet (al final porque otras entidades dependen)
+# @name walletDelete
+POST {{baseUrl}}/wallet.delete
+Content-Type: {{contentType}}
+
+{
+  "id": "{{newWalletId}}"
+}
+
+###
+### TESTS CON IDS REALES DE LA BASE DE DATOS
+###
+
+### 34. Test con Wallet existente
+POST {{baseUrl}}/wallet.getById
+Content-Type: {{contentType}}
+
+{
+  "id": "68e48baded6d35261b611518"
+}
+
+###
+
+### 35. Test con Localidad existente
+POST {{baseUrl}}/localidad.getById
+Content-Type: {{contentType}}
+
+{
+  "id": "68e5b58603cec7b6df2b5e19"
+}
+
+###
+
+### 36. Test con Rubro existente
+POST {{baseUrl}}/rubro.getById
+Content-Type: {{contentType}}
+
+{
+  "id": "68e2d4911283f2746bd4c80e"
+}
+
+###
+
+### 37. Crear Persona con relaciones existentes reales
+# @name personaConRelacionesReales
+POST {{baseUrl}}/persona.create
+Content-Type: {{contentType}}
+
+{
+  "name": "Test Relaciones",
+  "apellido": "Reales DB",
+  "email": "test.relaciones@real.com",
+  "tel": "123456789",
+  "dni": "99999999",
+  "direccion": "Test Real Address 123",
+  "wallets": ["68e48baded6d35261b611518", "68e5b6e003cec7b6df2b5e1c"],
+  "localidadId": "68e5b58603cec7b6df2b5e19"
+}
+
+###
+
+### 38. Crear Beneficio con todas las relaciones reales
+# @name beneficioConRelacionesReales
+POST {{baseUrl}}/beneficio.create
+Content-Type: {{contentType}}
+
+{
+  "name": "Beneficio Real DB Test",
+  "discount": 15,
+  "discountType": "reintegro",
+  "icon": "database",
+  "category": "Testing Real DB",
+  "walletId": "68e48baded6d35261b611518",
+  "rubroId": "68e2d4911283f2746bd4c80e",
+  "localidades": ["68e5b58603cec7b6df2b5e19"],
+  "availableDays": [1,2,3,4,5,6,0],
+  "validity": "Test con datos reales de DB",
+  "fecha_desde": "2025-01-01",
+  "fecha_hasta": "2025-12-31",
+  "limit": "Testing real relationships",
+  "tope_reintegro": 999
+}

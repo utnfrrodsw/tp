@@ -1,0 +1,25 @@
+### Login de usuario
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "brainrot@gmail.com",
+  "password": "1234"
+}
+
+### Logout de usuario
+POST http://localhost:3000/api/auth/logout
+
+
+### Profile de usuario (requiere token)
+# Primero haz login y copia el token de la respuesta
+# Luego reemplaza TU_TOKEN_AQUI con el token real
+GET http://localhost:3000/api/auth/profile
+### Test de login con credenciales de prueba para fallar
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "123456"
+}

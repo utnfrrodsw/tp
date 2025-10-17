@@ -1,0 +1,148 @@
+### Variables base para testing localidades (provincias)
+@baseUrl = http://localhost:3000/api/localidades
+
+### 1. GET all localidades
+GET {{baseUrl}}
+
+###
+
+### 2. POST - Crear una nueva localidad (provincia)
+# @name createLocalidad1
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Rosario",
+    "pais": "Argentina"
+}
+
+###
+DELETE {{baseUrl}}/{{localidadId1}} 
+### 3. Capturar ID de la localidad creada
+@localidadId1 = {{createLocalidad1.response.body.data.id}}
+
+### 4. GET - Obtener localidad por ID
+GET {{baseUrl}}/{{localidadId1}}
+
+###
+
+### 5. PUT - Actualizar localidad completa
+PUT {{baseUrl}}/{{localidadId1}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Provincia de Buenos Aires",
+    "pais": "Argentina"
+}
+
+###
+
+### 6. POST - Crear segunda localidad para testing
+# @name createLocalidad2
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Córdoba",
+    "pais": "Argentina"
+}
+
+###
+
+### 7. Capturar ID de la segunda localidad
+@localidadId2 = {{createLocalidad2.response.body.data.id}}
+
+### 8. PATCH - Actualización parcial
+PATCH {{baseUrl}}/{{localidadId2}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Provincia de Córdoba"
+}
+
+###
+
+### 9. POST - Crear localidad con país diferente
+# @name createLocalidadUruguay
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Montevideo",
+    "pais": "Uruguay"
+}
+
+###
+
+### 10. Capturar ID localidad Uruguay
+@localidadIdUruguay = {{createLocalidadUruguay.response.body.data.id}}
+
+### 11. GET - Verificar localidad Uruguay
+GET {{baseUrl}}/{{localidadIdUruguay}}
+
+###
+
+### 12. POST - Crear localidad solo con nombre (pais por defecto)
+# @name createLocalidadMinima
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Santa Fe"
+}
+
+###
+
+### 13. Capturar ID localidad mínima
+@localidadIdMinima = {{createLocalidadMinima.response.body.data.id}}
+
+### 14. GET - Verificar todas las localidades creadas
+GET {{baseUrl}}
+
+###
+
+### 15. PUT - Test de actualización con todos los campos
+PUT {{baseUrl}}/{{localidadIdMinima}}
+Content-Type: application/json
+
+{
+    "nombre_localidad": "Provincia de Santa Fe",
+    "pais": "Argentina"
+}
+
+###
+
+### 16. DELETE - Eliminar localidad de prueba
+DELETE {{baseUrl}}/{{localidadIdUruguay}}
+
+###
+
+### 17. GET - Verificar eliminación (debería dar error 500)
+GET {{baseUrl}}/{{localidadIdUruguay}}
+
+###
+
+### 18. GET - Estado final de todas las localidades
+GET {{baseUrl}}
+
+###
+
+### 19. DELETE - Limpiar datos de prueba
+DELETE {{baseUrl}}/{{localidadId1}}
+
+###
+
+### 20. DELETE - Limpiar más datos de prueba  
+DELETE {{baseUrl}}/{{localidadId2}}
+
+###
+
+### 21. DELETE - Limpiar última localidad
+DELETE {{baseUrl}}/{{localidadIdMinima}}
+
+###
+
+### 22. GET - Verificar limpieza final
+GET {{baseUrl}}
+
+###

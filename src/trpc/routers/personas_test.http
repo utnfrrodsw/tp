@@ -1,0 +1,82 @@
+### Variables base para testing tRPC personas  
+@baseUrl = http://localhost:3000/trpc
+
+### IDs de ejemplo para testing
+@localidadRosarioId = 68e5b58603cec7b6df2b5e19
+@walletMercadoPagoId = 68e48baded6d35261b611518
+@walletUalaId = 68e5b6e003cec7b6df2b5e1c
+
+###
+# 1. Obtener todas las personas (GET)
+GET {{baseUrl}}/persona.getAll
+
+###  
+# 2. Crear una nueva persona (POST) - Funcionando ✅
+# @name createPersona
+POST {{baseUrl}}/persona.create
+Content-Type: application/json
+
+{
+  "json": {
+    "name": "Test Router Simplificado", 
+    "apellido": "Funciona Bien",
+    "email": "test.router@email.com",
+    "tel": "3333333333",
+    "dni": "77777777",
+    "direccion": "Router Simple 789"
+  }
+}
+
+###
+# 3. Obtener persona por ID (GET con query string) - ID existente  
+GET {{baseUrl}}/persona.getById?input={"json":{"id":"68e5b71103cec7b6df2b5e1d"}}
+
+###
+# 4. Obtener persona recién creada por ID - usar ID de arriba
+GET {{baseUrl}}/persona.getById?input={"json":{"id":"68e671628141a3ff6f14e782"}}
+
+###
+# 5. Actualizar persona existente (POST - tRPC solo permite POST para mutations)
+PUT  {{baseUrl}}/persona.update
+Content-Type: application/json
+
+{
+  "json": {
+    "id": "68e6799f54d1d6b433ae175e",
+    "data": {
+      "name": "Test ACTUALIZADO con POST",
+      "apellido": "Router MODIFICADO",
+      "email": "test.updated@email.com"
+    }
+  }
+}
+
+###
+# 5b. Segundo update (PATCH style - solo algunos campos)
+PATCH {{baseUrl}}/persona.update
+Content-Type: application/json
+
+{
+  "json": {
+    "id": "68e6787054d1d6b433ae175d",
+    "data": {
+      "name": "PATCH Style Update",
+      "direccion": "Nueva direccion PATCH"
+    }
+  }
+}
+
+###
+# 6. Eliminar persona (POST)
+DELETE  {{baseUrl}}/persona.delete
+Content-Type: application/json
+
+{
+  "json": {
+    "id": "68e6766654d1d6b433ae175a"
+  }
+}
+
+### 
+# 7. Test de error - ID inexistente
+GET {{baseUrl}}/persona.getById?input={"json":{"id":"000000000000000000000000"}}

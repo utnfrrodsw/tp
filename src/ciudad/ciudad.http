@@ -1,0 +1,384 @@
+### Variables base para testing ciudades
+### NOTA: EJECUTAR PRIMERO localidad.http para crear provincias
+### Luego reemplazar los IDs de ejemplo con los IDs reales obtenidos
+@baseUrl = http://localhost:3000/api/ciudades
+
+### IDs de ejemplo - REEMPLAZAR con IDs reales de localidades existentes
+### Ejecutar localidad.http primero y copiar los IDs aquí
+
+// ID de la localidad "Provincia de Buenos Aires"
+@localidadBuenosAiresId = 68e3203a6786fad99429be7c
+// ID de la localidad "Córdoba"
+@localidadCordobaId = 68e338076786fad99429be7e
+// ID de la localidad "Santa Fe"
+@localidadSantaFeId = 68e3238d6786fad99429be7d
+### ============ TESTING CIUDADES ============
+
+### 1. GET all ciudades
+GET {{baseUrl}}
+
+###
+
+### 2. POST - Crear La Plata en Buenos Aires
+# @name createCiudad1
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "La Plata",
+    "codigoPostal": "1900",
+    "latitud": -34.9214,
+    "longitud": -57.9544,
+    "localidadId": "68e5b58603cec7b6df2b5e19"
+}
+
+###
+
+### 3. Capturar ID de La Plata
+@ciudadId1 = {{createCiudad1.response.body.data.id}}
+
+### 4. GET - Obtener La Plata con su provincia poblada
+GET {{baseUrl}}/{{ciudadId1}}
+
+###
+
+### 5. POST - Crear Córdoba Capital
+# @name createCiudad2
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Córdoba Capital",
+    "codigoPostal": "5000",
+    "latitud": -31.4201,
+    "longitud": -64.1888,
+    "localidadId": "{{localidadCordobaId}}"
+}
+
+###
+
+### 6. Capturar ID de Córdoba Capital
+@ciudadId2 = {{createCiudad2.response.body.data.id}}
+
+### 7. POST - Crear Santa Fe Capital
+# @name createCiudad3
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Santa Fe Capital",
+    "codigoPostal": "3000",
+    "latitud": -31.6333,
+    "longitud": -60.7000,
+    "localidadId": "{{localidadSantaFeId}}"
+}
+
+###
+
+### 8. Capturar ID de Santa Fe Capital
+@ciudadId3 = {{createCiudad3.response.body.data.id}}
+
+### 9. POST - Crear Mar del Plata en Buenos Aires
+# @name createCiudad4
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Mar del Plata",
+    "codigoPostal": "7600",
+    "latitud": -38.0023,
+    "longitud": -57.5575,
+    "localidadId": "{{localidadBuenosAiresId}}"
+}
+
+###
+
+### 10. Capturar ID de Mar del Plata
+@ciudadId4 = {{createCiudad4.response.body.data.id}}
+
+### 11. GET - Ver todas las ciudades con sus provincias
+GET {{baseUrl}}
+
+###
+
+### 12. PUT - Actualizar La Plata con información completa
+PUT {{baseUrl}}/{{ciudadId1}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "La Plata Capital",
+    "codigoPostal": "1900",
+    "latitud": -34.9214,
+    "longitud": -57.9544,
+    "localidadId": "{{localidadBuenosAiresId}}"
+}
+
+###
+
+### 13. PATCH - Actualización parcial de Córdoba
+PATCH {{baseUrl}}/{{ciudadId2}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Córdoba Capital - Ciudad de la Docta",
+    "codigoPostal": "5000"
+}
+
+###
+
+### 14. POST - Crear ciudad con datos mínimos
+# @name createCiudadMinima
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Rosario",
+    "localidadId": "{{localidadSantaFeId}}"
+}
+
+###
+
+### 15. Capturar ID ciudad mínima
+@ciudadIdMinima = {{createCiudadMinima.response.body.data.id}}
+
+### 16. GET - Verificar ciudad con datos mínimos
+GET {{baseUrl}}/{{ciudadIdMinima}}
+
+###
+
+### 17. POST - Test de error: ciudad sin localidadId (debería fallar)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Ciudad Inválida"
+}
+
+###
+
+### 18. POST - Test de error: localidadId inválido (debería fallar)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Ciudad con ID Inválido",
+    "localidadId": "60000000000000000000000"
+}
+
+###
+
+### 19. GET - Listado final de todas las ciudades
+GET {{baseUrl}}
+
+###
+
+### ============ CLEANUP - ELIMINAR DATOS DE PRUEBA ============
+
+### 20. DELETE - Eliminar Rosario
+DELETE {{baseUrl}}/{{ciudadIdMinima}}
+
+###
+
+### 21. DELETE - Eliminar Mar del Plata
+DELETE {{baseUrl}}/{{ciudadId4}}
+
+###
+
+### 22. DELETE - Eliminar Santa Fe Capital
+DELETE {{baseUrl}}/{{ciudadId3}}
+
+###
+
+### 23. DELETE - Eliminar Córdoba Capital
+DELETE {{baseUrl}}/{{ciudadId2}}
+
+###
+
+### 24. DELETE - Eliminar La Plata
+DELETE {{baseUrl}}/{{ciudadId1}}
+
+###
+
+### 25. GET - Verificar que ciudades fueron eliminadas
+GET {{baseUrl}}
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Córdoba Capital",
+    "codigoPostal": "5000",
+    "latitud": -31.4201,
+    "longitud": -64.1888,
+    "localidadId": "{{localidadCordobaId}}"
+}
+
+###
+
+### 11. Capturar ID de Córdoba Capital
+@ciudadId2 = {{createCiudad2.response.body.data.id}}
+
+### 12. POST - Crear Santa Fe Capital
+# @name createCiudad3
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Santa Fe Capital",
+    "codigoPostal": "3000",
+    "latitud": -31.6333,
+    "longitud": -60.7000,
+    "localidadId": "{{localidadSantaFeId}}"
+}
+
+###
+
+### 13. Capturar ID de Santa Fe Capital
+@ciudadId3 = {{createCiudad3.response.body.data.id}}
+
+### 14. POST - Crear Mar del Plata en Buenos Aires
+# @name createCiudad4
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Mar del Plata",
+    "codigoPostal": "7600",
+    "latitud": -38.0023,
+    "longitud": -57.5575,
+    "localidadId": "{{localidadBuenosAiresId}}"
+}
+
+###
+
+### 15. Capturar ID de Mar del Plata
+@ciudadId4 = {{createCiudad4.response.body.data.id}}
+
+### 16. GET - Ver todas las ciudades con sus provincias
+GET {{baseUrl}}
+
+###
+
+### 17. PUT - Actualizar La Plata con información completa
+PUT {{baseUrl}}/{{ciudadId1}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "La Plata Capital",
+    "codigoPostal": "1900",
+    "latitud": -34.9214,
+    "longitud": -57.9544,
+    "localidadId": "{{localidadBuenosAiresId}}"
+}
+
+###
+
+### 18. PATCH - Actualización parcial de Córdoba
+PATCH {{baseUrl}}/{{ciudadId2}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Córdoba Capital - Ciudad de la Docta",
+    "codigoPostal": "5000"
+}
+
+###
+
+### 19. POST - Crear ciudad con datos mínimos
+# @name createCiudadMinima
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Rosario",
+    "localidadId": "{{localidadSantaFeId}}"
+}
+
+###
+
+### 20. Capturar ID ciudad mínima
+@ciudadIdMinima = {{createCiudadMinima.response.body.data.id}}
+
+### 21. GET - Verificar ciudad con datos mínimos
+GET {{baseUrl}}/{{ciudadIdMinima}}
+
+###
+
+### 22. POST - Test de error: ciudad sin localidadId (debería fallar)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Ciudad Inválida"
+}
+
+###
+
+### 23. POST - Test de error: localidadId inválido (debería fallar)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "nombreCiudad": "Ciudad con ID Inválido",
+    "localidadId": "60000000000000000000000"
+}
+
+###
+
+### 24. GET - Listado final de todas las ciudades
+GET {{baseUrl}}
+
+###
+
+### ============ CLEANUP - ELIMINAR DATOS DE PRUEBA ============
+
+### 25. DELETE - Eliminar Rosario
+DELETE {{baseUrl}}/{{ciudadIdMinima}}
+
+###
+
+### 26. DELETE - Eliminar Mar del Plata
+DELETE {{baseUrl}}/{{ciudadId4}}
+
+###
+
+### 27. DELETE - Eliminar Santa Fe Capital
+DELETE {{baseUrl}}/{{ciudadId3}}
+
+###
+
+### 28. DELETE - Eliminar Córdoba Capital
+DELETE {{baseUrl}}/{{ciudadId2}}
+
+###
+
+### 29. DELETE - Eliminar La Plata
+DELETE {{baseUrl}}/{{ciudadId1}}
+
+###
+
+### 30. GET - Verificar que ciudades fueron eliminadas
+GET {{baseUrl}}
+
+###
+
+### 31. DELETE - Limpiar localidad Buenos Aires
+DELETE http://localhost:3000/api/localidades/{{localidadBuenosAiresId}}
+
+###
+
+### 32. DELETE - Limpiar localidad Córdoba
+DELETE http://localhost:3000/api/localidades/{{localidadCordobaId}}
+
+###
+
+### 33. DELETE - Limpiar localidad Santa Fe
+DELETE http://localhost:3000/api/localidades/{{localidadSantaFeId}}
+
+###
+
+### 34. GET - Verificar limpieza final de localidades
+GET http://localhost:3000/api/localidades
+
+###

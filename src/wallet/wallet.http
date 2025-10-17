@@ -1,0 +1,124 @@
+### Variables base para testing wallets
+@baseUrl = http://localhost:3000/api/wallets
+
+### 1. GET all wallets
+GET {{baseUrl}}
+
+###
+
+### 2. POST - Crear una nueva wallet
+# @name createWallet1
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Ualá",
+    "descripcion": "Tarjeta prepaga y billetera digital",
+    "interes_anual": 8.76
+}
+###
+
+### 3. Capturar ID de la wallet creada
+@walletId1 = {{createWallet1.response.body.data.id}}
+
+#Deleted
+
+DELETE {{baseUrl}}/{{walletId1}}
+
+### 4. GET - Obtener wallet por ID
+GET {{baseUrl}}/68e599b52802cc80e131a7d3
+
+###
+
+### 5. PUT - Actualizar wallet completa
+PUT {{baseUrl}}/{{walletId1}}
+Content-Type: application/json
+
+{
+    "name": "MercadoPago Premium",
+    "descripcion": "Billetera digital premium con beneficios exclusivos",
+    "interes_anual": 15.0
+}
+
+###
+
+### 6. POST - Crear segunda wallet para testing
+# @name createWallet2
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "mercado pago",
+    "descripcion": "Tarjeta prepaga y billetera digital",
+    "interes_anual": 8.76
+}
+
+###
+
+### 7. Capturar ID de la segunda wallet
+@walletId2 = {{createWallet2.response.body.data.id}}
+
+### 8. PATCH - Actualización parcial
+PATCH {{baseUrl}}/{{walletId2}}
+Content-Type: application/json
+
+{
+    "name": "mercado pago",
+    "interes_anual": 10.0,
+    "descripcion": "Tarjeta prepaga y billetera digital con nuevos beneficios"
+}
+
+###
+
+### 9. POST - Crear wallet con datos mínimos (sin interes_anual)
+# @name createWalletMinima
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Brubank",
+    "descripcion": "Banco 100% digital",
+    "interes_anual": 12
+}
+
+###
+
+### 10. Capturar ID wallet mínima
+@walletIdMinima = {{createWalletMinima.response.body.data.id}}
+
+### 11. GET - Verificar wallet mínima
+GET {{baseUrl}}/{{walletIdMinima}}
+
+###
+
+### 12. POST - Crear wallet con datos completos
+# @name createWalletCompleta
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Naranja X",
+    "descripcion": "Súper app financiera con múltiples servicios",
+    "interes_anual": 18.5
+}
+
+###
+
+### 13. Capturar ID wallet completa
+@walletIdCompleta = {{createWalletCompleta.response.body.data.id}}
+
+### 14. GET - Verificar todas las wallets creadas
+GET {{baseUrl}}
+
+###
+
+### 15. PUT - Test de actualización con todos los campos
+PUT {{baseUrl}}/{{walletIdCompleta}}
+Content-Type: application/json
+
+{
+    "name": "Naranja X Premium",
+    "descripcion": "Súper app financiera premium con beneficios exclusivos",
+    "interes_anual": 22.0
+}
+

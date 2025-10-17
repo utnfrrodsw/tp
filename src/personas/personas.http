@@ -1,0 +1,138 @@
+GET http://localhost:3000/api/personas
+
+// ciudad = 68e3391749cdc20f677c8ca3
+### POST a character
+# @name createVader
+POST http://localhost:3000/api/personas
+Content-Type: application/json
+
+{
+    "name": "laureano",
+    "apellido": "tralala",
+    "password": "123456",
+    "email": "1123@ose.com",
+    "tel": "2477309913",
+    "direccion": "Calle narnia 123",
+    "wallets": [ "68f196974411f78ae5f2be68","68f196a04411f78ae5f2be69"],
+    "localidad": "68e5b58603cec7b6df2b5e19"
+}
+
+### get the id
+@Id = {{ createVader.response.body.data.id }}
+### GET one character
+GET http://localhost:3000/api/personas/{{id}}
+
+### delete
+DELETE http://localhost:3000/api/personas/{{id}}
+### Login con Auth Controller (Corregido)
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "asdad4@ose.com",
+  "password": "123456"
+}
+
+### prueba de logout
+POST http://localhost:3000/api/auth/logout
+Content-Type: application/json
+
+{
+  "email": "brainrot@gmail.com",
+  "password": "1234"
+}
+
+### Login con JWT Token (Nueva ruta de auth)
+POST  http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "laureanolanselotto@gmail.com",
+  "password": "123456"
+}
+
+### Login con credenciales incorrectas (Test error)
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "laureanolanselotto@gmail.com",
+  "password": "wrongpassword"
+}
+
+### Login con tRPC
+POST http://localhost:3000/api/trpc/persona.login
+Content-Type: application/json
+
+{
+  "email": "laureanolanselotto@gmail.com",
+  "password": "123456"
+}
+### ID
+@id = {{createVader.response.body.data.id}}
+
+### DELETE url HTTP/1.1
+DELETE http://localhost:3000/api/personas/{{id}}
+
+### GET one character
+GET http://localhost:3000/api/personas/{{id}}
+
+### PUT a character
+PUT http://localhost:3000/api/personas/{{id}}
+Content-Type: application/json
+
+{
+    "name": "lirili larila",
+    "apellido": "gay",
+    "email": "tralalerito@gmail.com",
+    "tel": 2477309919,
+    "direccion": "Calle Falsa 123",
+    "wallets": ["68e18d8f646f6244dd9f0d21"]
+}
+
+### POST a character (Corregido)
+POST http://localhost:3000/api/personas
+Content-Type: application/json
+
+{
+    "name": "123",
+    "apellido": "kuka",
+    "password": "123456",
+    "email": "kuka@gmail.com",
+    "tel": "24773099",
+    "dni": "12345678",
+    "direccion": "Calle narnia 123",
+    "wallets": ["68e18d8f646f6244dd9f0d21", "68e18e16646f6244dd9f0d23"]
+}
+
+
+### POST a character
+# @name createCharacterToDelete
+POST http://localhost:3000/api/personas
+Content-Type: application/json
+
+{
+    "name": "tun tun sajur",
+    "apellido": "no",
+    "password": "123456",
+    "email": "tuntun@gmail.com",
+    "tel": 2477309919,
+    "dni": 12345680,
+    "direccion": "Calle prueba 123",
+    "wallets": ["68e18d8f646f6244dd9f0d21"]
+}
+### DELETE a character
+@idToDelete = {{createCharacterToDelete.response.body.data.id}}
+DELETE http://localhost:3000/api/personas/{{idToDelete}}
+
+### PATCH a character
+PATCH http://localhost:3000/api/personas/{{idToDelete}}
+Content-Type: application/json
+
+{
+  "tel": 2477309999,
+  "wallets": ["68e18e16646f6244dd9f0d23"]
+}
+
+### DELETE a character
+DELETE http://localhost:3000/api/personas/{{idToDelete}}

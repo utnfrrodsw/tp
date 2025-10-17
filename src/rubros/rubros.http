@@ -1,0 +1,41 @@
+GET http://localhost:3000/api/rubros
+
+
+### POST a rubro
+# @name createRubro1
+POST http://localhost:3000/api/rubros
+Content-Type: application/json
+
+{
+    "nombre": "Gastronomía",
+    "descripcion": "Restaurantes, bares y lugares de comida"
+}
+
+### ID
+@id = {{createRubro1.response.body.data.id}}
+
+### GET one rubro
+GET  http://localhost:3000/api/rubros/68e1e130f63328dc654c67b5
+
+### PUT a rubro
+PUT http://localhost:3000/api/rubros/{{id}}
+Content-Type: application/json
+
+{
+    "nombre": "Entretenimiento",
+    "descripcion": "Cines, teatros, eventos y espectáculos"
+}
+
+## DELETE a rubro
+
+DELETE http://localhost:3000/api/rubros/{{id}}
+
+### POST otro rubro
+POST http://localhost:3000/api/rubros
+Content-Type: application/json
+
+{
+    "nombre": "Salud",
+    "descripcion": "Farmacias, clínicas y servicios médicos"
+}
+
