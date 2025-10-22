@@ -27,7 +27,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 |CRUD simple|1. CRUD Materia<br>2. CRUD Persona<br>3. CRUD Curso|
-|CRUD dependiente|1. CRUD Dictado {depende de CRUD Materia, CRUD Curso y CRUD Persona}<br>2. CRUD Examen {depende de CRUD Dictado y CRUD Persona}|
+|CRUD dependiente|1. CRUD Dictado {depende de CRUD Materia, CRUD Curso y CRUD Persona}<br>2. CRUD Examen {depende de CRUD Dictado y CRUD Persona}<br>2. CRUD Evaluación {depende de CRUD Exámen y CRUD Persona}|
 |Listado<br>+<br>detalle| 1. Listado de Alumnos filtrado por Curso, muestra nombre, apellido, curso => detalle CRUD Alumno y CRUD Curso<br> 2. Listado de Examenes filtrado por Materia, muestra materia, fecha, temas, docente, notas de alumnos => detalle CRUD Examen y CRUD Dictado|
 |CUU/Epic|1. Anotar alumno a un Curso<br>2. Registrar Notas de Exámenes de cada Alumno|
 
@@ -35,7 +35,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD TrayectoriaEscolar {depende de CRUD Curso y CRUD Persona}<br>2. CRUD Material {depende de CRUD Materia}<br>3. CRUD Foro {depende de CRUD Materia}<br>4. CRUD Aviso {depende de CRUD Persona}|
+|CRUD |1. CRUD Material {depende de CRUD Materia}<br>2. CRUD Foro {depende de CRUD Materia}<br>3. CRUD Aviso {depende de CRUD Persona}|
 |CUU/Epic|1. Generar Certificados Digitales con verificación<br>2. Realizar Inscripción de Alumno a Año en lote|
 
 
