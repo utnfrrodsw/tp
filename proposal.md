@@ -2,13 +2,11 @@
 
 ## Grupo
 ### Integrantes
-* 48096 - Ruiz Aldea, Bautista
 * 48011 - Gonzalez del Cerro, Iñaki
-* 48813 - Ricobelli, Tomas
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+- Frontend: https://github.com/GitIGDC/paym8-frontend-entrega
+- Backend:  https://github.com/GitIGDC/paym8-backend-entrega
 
 ## Software para gestión de gastos compartidos
 ### Descripción
