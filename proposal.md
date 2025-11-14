@@ -3,9 +3,7 @@
 ## Grupo
 
 ### Integrantes
-- 41980 - Valenti, Sofía  
-- 48318 - Merino, Federico  
-- 49195 - Brassart, Selene
+- 48318 - Merino, Federico
 
 ### Repositorios
 - [Frontend App](https://github.com/fedemerino/dsw-frontend)  
