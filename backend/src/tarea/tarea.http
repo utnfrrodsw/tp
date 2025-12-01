@@ -1,0 +1,44 @@
+### Obtener todos los usuarios
+
+GET http://localhost:3000/api/tarea
+
+###Obtener usuario por id
+
+GET http://localhost:3000/api/tarea/1
+
+### Cargamos un usuario
+
+POST http://localhost:3000/api/tarea
+Content-Type: application/json
+
+{
+  "nombreTarea": "Deatar caias",
+  "descripcionTarea": "Se debe destapar las cañerias de la cocina",
+  "duracionTarea": 60,
+  "tipoServicio": 10
+}
+
+###Hacemos un PUT
+
+PUT http://localhost:3000/api/tarea/1
+Content-Type: application/json
+
+{
+  "nombreTarea": "Tafdpsfposdfopjodsfopdosjfsdjrea 1",
+  "descripcionTarea": "Descripcion Cambiada de la tarea 1",
+  "duracionTarea": 160,
+  "servicio": 2
+}
+
+### Hacemos un patch
+PATCH http://localhost:3000/api/tarea/1
+Content-Type: application/json
+
+{
+  "nombreTarea": "Taoiioshkjbskldbasljdlsajkbdksabldkjbasdassdrea 1",
+  "descripcionTarea": "Descrdsadsadasdasdasdasipcion Cambiada de la tarea 3",
+  "duracionTarea": 620
+}
+
+###HAcemos un delete
+DELETE http://localhost:3000/api/tarea/1

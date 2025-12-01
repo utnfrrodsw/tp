@@ -1,0 +1,39 @@
+### Crear un nuevo pago
+POST http://localhost:3000/api/pago
+Content-Type: application/json
+
+{
+  "paymentIntentId": "pi_1JAAaaXXaaakSAkXXXX",
+  "amount": 10000,
+  "currency": "usd",
+  "estado": "succeeded",
+  "sellerStripeId": "acct_1JXXXXXX",
+  "amountReceived": 9500,
+  "applicationFeeAmount": 500,
+  "buyerEmail": "buyer@example.com",
+  "metadata": {
+    "productId": "prod_123",
+    "orderId": "ord_456"
+  },
+  "turno": 20,
+  "createdAt": "2025-09-11T13:55:00.000Z",
+  "updatedAt": "2025-09-11T13:55:00.000Z"
+}
+### Obtener todos los pagos
+GET http://localhost:3000/api/pago/estadisticas/81
+
+### Obtener un pago por ID
+GET http://localhost:3000/api/pago
+
+### Actualizar un pago existente
+PUT http://localhost:3000/api/pago/3
+Content-Type: application/json
+
+{
+  "estado": "succeeded",
+  "amountReceived": 10000,
+  "applicationFeeAmount": 0
+}
+
+### Eliminar un pago por ID
+DELETE http://localhost:3000/api/pago/6

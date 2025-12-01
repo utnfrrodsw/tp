@@ -1,0 +1,51 @@
+/* Search container */
+
+.clearSearchBtn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.clearSearchBtn:hover {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+/* Filters section */
+.filtersSection {
+  margin-bottom: 30px;
+}
+.filtros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background: #fff5f2;
+  box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25);
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filtros select {
+  border-radius: 7px;
+  border: 1px solid rgba(255, 72, 1, 0.28);
+  background: #fff;
+  padding: 10px;
+  height: 50px;
+  padding: 6px 17px;
+  color: #000;
+  margin-right: 10px;
+  min-width: 150px;
+}

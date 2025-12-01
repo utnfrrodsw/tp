@@ -1,0 +1,59 @@
+###Obtener la foto de un usuario
+GET http://localhost:3000
+### Obtener turnos de usuario por ID y fecha
+GET http://localhost:3000/api/usuario
+
+### Obtener un usuario específico
+GET http://localhost:3000/api/usuario/onlyInfo/77
+
+GET http://localhost:3000/api/usuario/comments/47
+
+### Obtengo los prestatarios por tipo de servicio y zona
+GET http://localhost:3000/api/usuario/prestatarios/Plomeria/ /Todas/Calificacion?maxItems=6&page=1
+
+### Cargamos un usuario
+POST http://localhost:3000/api/usuario
+Content-Type: application/json
+
+{
+  "mail": "4luisPrmigia@gmail.com",
+  "contrasena": "12429sdfafgdfjasdhjahsd",
+  "tipoDoc": "DNI",
+  "numeroDoc": "1234267",
+  "direccion": "Tenis 78824",
+  "telefono": "12345689",
+  "nombre": "4Luis",
+  "apellido":"4Parmigiani"
+  
+}
+
+
+###Hacemos un PUT
+
+PUT http://localhost:3000/api/usuario/1
+Content-Type: application/json
+
+{
+  "nombre": "Luis",
+  "apellido": "Parmigiani"
+}
+
+### Hacemos un patch
+PATCH http://localhost:3000/api/usuario/13
+Content-Type: application/json
+
+{
+  "tiposDeServicio": [
+    1,
+    2
+  ]
+}
+
+### Hacemos un delete
+DELETE http://localhost:3000/api/usuario/2
+
+
+GET http://localhost:3000/api/usuario/comments/1
+
+###Traer todos
+GET http://localhost:3000/api/usuario

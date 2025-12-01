@@ -1,0 +1,26 @@
+# Este archivo `.dockerignore` especifica los archivos y carpetas que deben ser ignorados 
+# al construir una imagen de Docker. Esto ayuda a reducir el tamaño de la imagen y 
+# Ignora la carpeta de dependencias de Node.js.
+
+# mejora la eficiencia del proceso de construcción.
+node_modules      
+# Ignora la carpeta de salida de compilación.
+dist               
+# Ignora todos los archivos de registro.
+*.log              
+# Ignora los archivos de información de compilación de TypeScript.
+*.tsbuildinfo      
+# Ignora cualquier archivo que comience con "Dockerfile".
+Dockerfile*        
+# Ignora el archivo de configuración de Fly.io.
+fly.toml           
+# Ignora la carpeta de caché de pnpm.
+pnpm-store         
+# Ignora la carpeta del repositorio Git.
+.git               
+# Ignora el archivo `.gitignore`.
+.gitignore         
+# Ignora el archivo de documentación README.
+README.md          
+# Ignora los archivos `.DS_Store` generados por macOS.
+**/.DS_Store       

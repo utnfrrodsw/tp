@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body{
+    font-family: 'Inter';
+    margin:0;
+    padding:0;
+}
+
+
+
+.aboutContainer{
+    padding: 10em 20em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    background-color: hsl(20, 100%, 97%);
+}
+
+.aboutContainer:first-of-type{
+    background: linear-gradient(0deg,hsl(20, 100%, 97%), hsla(216, 33%, 97%, 1));
+}
+.aboutContent{
+    display: flex;
+    flex-direction:row ;
+    gap: 3em;
+}
+
+.aboutImageRight{
+    max-height: 522px;
+    width: 200%;
+    overflow: hidden;
+    display: flex;
+    border-radius: 15px;
+    box-shadow: #00000025 0px 0px 15px;
+}
+
+.aboutImageLeft{
+    max-height: 522px;
+    width: 200%;
+    overflow: hidden;
+    display: flex;
+    border-radius: 15px;
+    box-shadow: #00000025 0px 0px 15px;
+    order: -1;
+}
+
+.aboutImageContent{
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* solo para ver el contenedor */
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+.aboutTextRight{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2em;
+    text-align: end;
+}
+
+.aboutTextLeft{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2em;
+    text-align: start;
+}
+
+
+
+.aboutTextTitleRight{
+    font-size: 5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.aboutTextTitleLeft{
+    font-size: 5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.aboutTextDescriptionRight{
+    font-size: 1.7rem;
+    text-align: right;
+    margin:0;
+}
+
+.aboutTextDescriptionLeft{
+    font-size: 1.7rem;
+    text-align: left;
+    margin:0;
+}

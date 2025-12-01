@@ -1,0 +1,44 @@
+{
+  "name": "tpDSW",
+  "private": true,
+  "dependencies": {
+    "@radix-ui/react-tooltip": "^1.2.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/body-parser": "^1.19.6",
+    "@types/connect": "^3.4.38",
+    "@types/express-serve-static-core": "^5.0.7",
+    "@types/http-errors": "^2.0.5",
+    "@types/mime": "^4.0.0",
+    "@types/node": "^24.3.3",
+    "@types/qs": "^6.14.0",
+    "@types/range-parser": "^1.2.7",
+    "@types/send": "^0.17.5",
+    "@types/serve-static": "^1.15.8",
+    "concurrently": "^8.2.2",
+    "mime": "^4.0.7"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
+      "esbuild"
+    ]
+  },
+  "scripts": {
+    "install:both": "concurrently \"pnpm --filter frontend install\" \"pnpm --filter backend install\"",
+    "dev": "concurrently \"pnpm --filter frontend dev\" \"pnpm --filter backend start:dev\"",
+    "build": "concurrently \"pnpm --filter frontend build\" \"pnpm --filter backend build\"",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend start:dev",
+    "test": "concurrently \"pnpm --filter backend test:run\" \"pnpm --filter frontend test:run\" \"pnpm run test:e2e\"",
+    "test:backend": "pnpm --filter backend test:run",
+    "test:frontend": "pnpm --filter frontend test:run",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright test --reporter=html && playwright show-report",
+    "show-report": "playwright show-report",
+    "start:backend": "pnpm --filter backend start",
+    "preview:frontend": "pnpm --filter frontend preview"
+  }
+}

@@ -1,0 +1,48 @@
+### Obtener todos los turnos
+
+GET http://localhost:3000/api/turno/turnosPorDia/48/2025-08-28
+
+
+###Obtener turno por id
+
+GET http://localhost:3000/api/turno/909
+### Cargamos un turno
+
+
+POST http://localhost:3000/api/turno
+Content-Type: application/json
+
+{
+  "fechaHora": "2025-08-29T18:16:00.000Z",
+  "estado": "pendiente",
+  "montoFinal": 1500,
+  "servicio": 1,
+  "usuario": 2
+}
+
+
+
+
+
+###Hacemos un PUT
+
+PUT http://localhost:3000/api/turno/1
+Content-Type: application/json
+
+{
+  "calificacion": 4,
+  "comentario": "Go to hell"
+}
+
+### Hacemos un patch
+PATCH http://localhost:3000/api/turno/1
+Content-Type: application/json
+
+{
+  "estado": "completado",
+  "fechaHora": "2025-08-01T16:45:00.000Z"
+}
+
+
+###Hacemos un delete
+DELETE http://localhost:3000/api/turno/1

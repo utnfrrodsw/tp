@@ -1,0 +1,308 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Backend Tests
+  backend-tests:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: homeservice_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+      - name: Run backend tests
+        env:
+          NODE_ENV: test
+          DB_URL: mysql://root:root@localhost:3306/homeservice_test
+          OPENAI_API_KEY: test-dummy-key
+        run: pnpm run test:backend
+
+  # Frontend Tests
+  frontend-tests:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Install workspace deps
+        run: pnpm install --no-frozen-lockfile --recursive
+      - name: Debug deps
+        run: |
+          pnpm list vite --filter frontend || true
+          ls -la frontend/node_modules/.bin/ | grep vite || echo "vite bin missing"
+      - name: Run frontend tests
+        run: pnpm --filter frontend test:run
+
+  # Deploy Backend (after unit tests pass)
+  deploy-backend:
+    name: Deploy Backend
+    needs: [backend-tests, frontend-tests]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Install deps (prod + build)
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Install Fly CLI
+        run: |
+          curl -L https://fly.io/install.sh | sh
+          echo "${HOME}/.fly/bin" >> $GITHUB_PATH
+
+      - name: Deploy
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          export FLYCTL_INSTALL="$HOME/.fly"
+          export PATH="$FLYCTL_INSTALL/bin:$PATH"
+          if ! command -v flyctl >/dev/null; then echo "Fly CLI no instalado"; exit 1; fi
+          sed -i "s/REEMPLAZA_CON_NOMBRE_APP_FLY/${{ secrets.FLY_APP_NAME }}/" fly.toml
+          flyctl deploy --config fly.toml --remote-only --strategy immediate
+
+      - name: Post URL
+        if: always()
+        run: |
+          echo "App: ${{ secrets.FLY_APP_NAME }}"
+          echo "https://${{ secrets.FLY_APP_NAME }}.fly.dev" || true
+
+  # Deploy Frontend (after backend is deployed)
+  deploy-frontend:
+    name: Deploy Frontend
+    needs: [deploy-backend]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Diagnostic FTP login (fail fast)
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -e
+          RAW_SERVER="$FTP_SERVER"
+          CLEAN_SERVER="${RAW_SERVER#ftp://}" # quita prefijo si lo tiene
+          echo "Server (raw): $RAW_SERVER"
+          echo "Server (clean): $CLEAN_SERVER"
+          echo -n "Server HEX: "; echo -n "$CLEAN_SERVER" | xxd -p
+          echo "Testing login as user: $FTP_USERNAME"
+          echo -n "Username HEX: "; echo -n "$FTP_USERNAME" | xxd -p
+          echo -n "Password length: "; echo -n "$FTP_PASSWORD" | wc -c
+          echo -n "Password SHA256: "; echo -n "$FTP_PASSWORD" | sha256sum | cut -d' ' -f1
+          echo "---- CURL (plain FTP) ----"
+          if curl -s --disable-epsv ftp://$CLEAN_SERVER -u "$FTP_USERNAME:$FTP_PASSWORD" -Q "QUIT" >/dev/null 2>&1; then
+            echo "FTP credentials OK (curl/plain)";
+            echo "PLAIN_OK=true" >> $GITHUB_ENV
+          else
+            echo "FTP credentials FAIL (curl/plain)";
+            echo "PLAIN_OK=false" >> $GITHUB_ENV
+          fi
+          echo "Instalando lftp para pruebas adicionales..."
+          sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends lftp >/dev/null
+          echo "---- LFTP (plain FTP) ----"
+          if lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -e "set ftp:ssl-allow no; set net:max-retries 1; pwd; bye" "$CLEAN_SERVER"; then
+            echo "LFTP plain OK"; echo "LFTP_PLAIN_OK=true" >> $GITHUB_ENV
+          else
+            echo "LFTP plain FAIL"; echo "LFTP_PLAIN_OK=false" >> $GITHUB_ENV
+          fi
+          echo "---- LFTP (FTPS explicit) ----"
+          if lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -e "set ftp:ssl-force yes; set ftp:ssl-protect-data yes; set net:max-retries 1; pwd; bye" "$CLEAN_SERVER"; then
+            echo "LFTP FTPS OK"; echo "LFTP_FTPS_OK=true" >> $GITHUB_ENV
+          else
+            echo "LFTP FTPS FAIL"; echo "LFTP_FTPS_OK=false" >> $GITHUB_ENV
+          fi
+          echo "---- Diagnóstico final ----"
+          echo "Si TODOS fallan => credenciales incorrectas o cuenta bloqueada. Si sólo FTPS OK => fuerza TLS y debes cambiar protocol a ftps."
+          # No abortar todavía; dejaremos que el usuario analice.
+
+      - name: Detectar carpeta destino remota
+        if: success()
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -e
+          RAW_SERVER="$FTP_SERVER"
+          CLEAN_SERVER="${RAW_SERVER#ftp://}"
+          echo "Listando root remoto (sin TLS)..."
+          LIST=$(lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -e "set ftp:ssl-allow no; cls -1; bye" "$CLEAN_SERVER" 2>/dev/null || true)
+          echo "Entradas root:"; printf '%s\n' "$LIST"
+          if echo "$LIST" | grep -qx public_html; then
+            echo "Detectado public_html"; echo "SERVER_DIR=public_html/" >> $GITHUB_ENV
+          else
+            echo "No existe public_html -> usar raíz"; echo "SERVER_DIR=./" >> $GITHUB_ENV
+          fi
+
+      - name: Determinar protocolo y validar credenciales
+        if: success()
+        run: |
+          echo "LFTP_PLAIN_OK=${LFTP_PLAIN_OK} | LFTP_FTPS_OK=${LFTP_FTPS_OK} | PLAIN_OK=${PLAIN_OK}"
+          # Prioridad: si plain funciona usamos ftp, si sólo FTPS funciona usamos ftps, si ninguno falla
+          if [ "${LFTP_PLAIN_OK}" = "true" ]; then
+            echo "Elegido protocolo ftp (plain OK)"; echo "PROTOCOL=ftp" >> $GITHUB_ENV
+          elif [ "${LFTP_FTPS_OK}" = "true" ]; then
+            echo "Plain falló pero FTPS OK -> usando ftps"; echo "PROTOCOL=ftps" >> $GITHUB_ENV
+          else
+            echo "ERROR: Ningún método FTP autenticó correctamente; abortando." >&2
+            exit 2
+          fi
+          echo "Protocolo final: $(grep PROTOCOL= $GITHUB_ENV | tail -1 | cut -d= -f2)"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Configure pnpm for deployment
+        working-directory: frontend
+        run: |
+          pnpm config set registry https://registry.npmjs.org/
+          pnpm config set fetch-retries 5
+          pnpm config set fetch-retry-factor 2
+          pnpm config set fetch-retry-mintimeout 10000
+          pnpm config set fetch-retry-maxtimeout 60000
+
+      - name: Install deps
+        working-directory: frontend
+        run: pnpm install --no-frozen-lockfile --prefer-offline
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Build
+        working-directory: frontend
+        run: pnpm build
+
+      - name: List dist
+        run: |
+          echo "Dist files:"; find frontend/dist -maxdepth 3 -type f -print | sed 's/^/ - /'
+
+      - name: Deploy via FTP
+        if: success()
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ env.PROTOCOL }}
+          local-dir: frontend/dist/
+          server-dir: ${{ env.SERVER_DIR }}
+          exclude: |
+            **/.git*
+            **/node_modules/**
+            **/*.map
+            **/story*/**
+          log-level: verbose
+          dangerous-clean-slate: false
+
+  # E2E Tests AFTER deployment (Production Testing)
+  e2e-tests:
+    name: Production E2E Tests
+    needs: [deploy-frontend]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium firefox webkit --with-deps
+
+      # Wait for deployment to be fully ready
+      - name: Wait for production deployment
+        run: |
+          timeout 300 bash -c 'until curl -f https://${{ secrets.FRONTEND_URL }} 2>/dev/null; do sleep 10; done'
+          timeout 300 bash -c 'until curl -f https://${{ secrets.FLY_APP_NAME }}.fly.dev/health 2>/dev/null; do sleep 10; done'
+
+      # Run E2E tests against production
+      - name: Run Production E2E tests
+        env:
+          PLAYWRIGHT_BASE_URL: https://${{ secrets.FRONTEND_URL }}
+          API_BASE_URL: https://${{ secrets.FLY_APP_NAME }}.fly.dev
+        run: pnpm run test:e2e
+
+      - name: Upload Playwright Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-production
+          path: playwright-report/
+          retention-days: 30
+
+  # Rollback on E2E failure (optional)
+  rollback-on-failure:
+    name: Rollback on E2E Failure
+    needs: [e2e-tests]
+    runs-on: ubuntu-latest
+    if: failure() && github.ref == 'refs/heads/main'
+    steps:
+      - name: Notify E2E Test Failure
+        run: |
+          echo "⚠️ E2E tests failed in production!"
+          echo "Consider rolling back deployment or fixing issues immediately."
+      # Add actual rollback logic here if needed

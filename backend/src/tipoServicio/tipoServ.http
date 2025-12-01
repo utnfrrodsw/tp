@@ -1,0 +1,85 @@
+### GET all tipos de servicio 
+GET http://localhost:3000/api/serviceTypes
+
+### GET con tareas
+GET http://localhost:3000/api/serviceTypes/with-tareas
+
+### POST un tipo de servicio
+# @name createPlomeria
+POST http://localhost:3000/api/serviceTypes
+Content-Type: application/json
+
+{
+  "nombreTipo": "Ploaamaaeria",
+  "descripcionTipo": "Servicios de plomería y fontanería para toda la casa"
+}
+
+### ID
+@id = {{createPlomeria.response.body.data.id}}
+
+### GET un tipo de servicio por ID
+GET http://localhost:3000/api/serviceTypes/{{id}}
+
+### PUT un tipo de servicio
+PUT http://localhost:3000/api/serviceTypes/1
+Content-Type: application/json
+
+{
+  "nombreTipo": "Plomeria Actualizada",
+  "descripcionTipo": "Servicios de plomería actualizados"
+}
+
+### POST un tipo de servicio para eliminar
+# @name createTipoToDelete
+POST http://localhost:3000/api/serviceTypes
+Content-Type: application/json
+
+{
+  "nombreTipo": "Electricidad",
+  "descripcionTipo": "Servicios de electricidad y reparaciones eléctricas"
+}
+
+### DELETE un tipo de servicio
+@idToDelete = {{createTipoToDelete.response.body.data.id}}
+DELETE http://localhost:3000/api/serviceTypes/1
+
+### PATCH un tipo de servicio
+PATCH http://localhost:3000/api/serviceTypes/6
+Content-Type: application/json
+
+{
+  "descripcionTipo": "Servicios de fontanería y reparaciones actualizadas"
+}
+
+### DELETE a character
+
+### POST un tipo de servicio sin tareas ni usuarios
+POST http://localhost:3000/api/serviceTypes
+Content-Type: application/json
+
+{
+  "nombreTipo": "Jardinería",
+  "descripcionTipo": "Servicios de mantenimiento de jardines"
+}
+
+### POST un tipo de servicio con tareas y usuarios
+POST http://localhost:3000/api/serviceTypes
+Content-Type: application/json
+
+{
+  "nombreTipo": "Electricidad",
+  "descripcionTipo": "Servicios eléctricos",
+  "usuarios": [
+    {
+      "id": 1
+    }
+  ],
+  "tareas": [
+    {
+      "nombreTarea": "Instalación de lámparas",
+      "descripcionTarea": "Instalación de lámparas en el hogar",
+      "duracionTarea": 30,
+      "tipoServicio": 1
+    }
+  ]
+}
