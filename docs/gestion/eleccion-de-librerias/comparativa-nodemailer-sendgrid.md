@@ -1,0 +1,18 @@
+#### Comparación de Librerías para: Envío de Correos Transaccionales
+
+**Problema:** Necesitamos un método fiable y flexible para enviar correos electrónicos transaccionales (ej. confirmación de registro, restablecimiento de contraseña, notificaciones).
+
+| Criterio                       | [![Email Library - Nodemailer](https://img.shields.io/badge/Nodemailer-2A7D6F?style=for-the-badge&logoColor=white)](https://nodemailer.com) | [![Email Service - SendGrid](https://img.shields.io/badge/SendGrid-1A82E2?style=for-the-badge&logo=sendgrid&logoColor=white)](https://sendgrid.com) |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Popularidad/Comunidad**      | **El estándar de facto** para el envío de correos en Node.js. Comunidad inmensa, documentación exhaustiva y décadas de fiabilidad probada.             | Uno de los líderes del mercado para APIs de correo. Muy popular en el ámbito empresarial, con un gran respaldo y comunidad de usuarios.                          |
+| **Setup y Configuración**      | Requiere configurar un "transporte" SMTP. Puede ser un servicio como Gmail (para desarrollo) o un proveedor profesional (SendGrid, Mailgun, SES).      | **Muy simple.** Solo se necesita registrarse, obtener una clave de API y usar su librería cliente (`@sendgrid/mail`).                                      |
+| **Flexibilidad y Control**     | **Máxima flexibilidad.** Es agnóstico al proveedor. Se puede cambiar de servicio SMTP (de Gmail a AWS SES, por ejemplo) sin cambiar el código de la aplicación. | Menor flexibilidad. El código está acoplado al ecosistema y la API de SendGrid. Migrar a otro proveedor requeriría una reescritura del código de envío.     |
+| **Dependencias y Costo**       | **La librería es 100% gratuita y de código abierto.** Los costos dependen enteramente del proveedor SMTP que se elija (que puede ser gratuito).     | El servicio funciona con un modelo *freemium*. Ofrece un generoso nivel gratuito, pero los costos escalan con el volumen de envío, creando un posible "vendor lock-in". |
+| **Características Avanzadas**  | Se enfoca puramente en el envío de correos. Para analíticas, seguimiento de aperturas o plantillas complejas se necesitarían herramientas externas.    | **Suite completa.** Ofrece analíticas avanzadas, seguimiento de clics y aperturas, gestión de plantillas, pruebas A/B y reportes de entregabilidad integrados. |
+| **Veredicto Rápido**           | La navaja suiza para el envío de emails. Versátil, robusta y te da el control total.                                                                | La plataforma "todo en uno". Potente y fácil de usar, pero a costa de un acoplamiento al proveedor.                                                          |
+
+---
+
+**🏆 Decisión Final:** Se elige **Nodemailer**.
+
+**Justificación Principal:** La elección de Nodemailer está impulsada por su **enorme valor pedagógico**. A diferencia de los servicios de API que abstraen toda la complejidad, Nodemailer nos obliga a interactuar directamente con los fundamentos del envío de correos, como el **protocolo SMTP**. Configurar un "transporte", entender la diferencia entre puertos y manejar la autenticación nos proporciona una comprensión mucho más profunda de cómo funciona realmente una parte esencial de la infraestructura de internet.

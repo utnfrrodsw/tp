@@ -1,174 +1,123 @@
-# TP DSW
-tags: #dsw #tp
+<div align="center">
+  <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/graduation-cap.svg" alt="Logo de UpSkill" width="100" style="filter: invert(0.5) sepia(1) saturate(5) hue-rotate(200deg);"/>
+  <h1>UpSkill: Plataforma de Aprendizaje Virtual</h1>
+  <p>
+    <strong>Proyecto final para la cátedra de Desarrollo de Software - UTN FRRo.</strong>
+  </p>
+  <p>
+    <img src="https://img.shields.io/badge/estado-en%20desarrollo-yellowgreen?style=for-the-badge" alt="Estado del Proyecto">
+  </p>
+</div>
 
-Status: draft
+---
 
-## 1. Objetivo
+## 📖 Acerca del Proyecto
 
-Desarrollar en grupo una aplicación web full stack en base a un alcance propuesto por los integrantes.
+Este proyecto es una aplicación web full-stack desarrollada como trabajo práctico final para la asignatura **Desarrollo de Software** de la **Universidad Tecnológica Nacional, Facultad Regional Rosario (UTN-FRRo)**.
 
-Durante dicho desarrollo se deberá aplicar todo lo aprendido en la materia Desarrollo de Software.
+La aplicación, llamada **UpSkill**, es una plataforma de aprendizaje virtual diseñada para conectar a instructores y estudiantes. La solución consiste en una aplicación web que permite a los instructores crear y gestionar cursos (tanto gratuitos como de pago) y a los estudiantes inscribirse, acceder a recursos educativos y completar actividades.
 
-## 2. Tema y Alcance
-El grupo debe deberá proponer a los docentes un tema para el trabajo práctico de su preferencia utilizando la [plantilla de propuesta](proposal.md)
+<details>
+  <summary><strong>Ver más detalles sobre el objetivo académico</strong></summary>
+  <br>
+  <blockquote>
+    El objetivo principal es aplicar de manera práctica los conocimientos, tecnologías y metodologías de desarrollo de software adquiridos durante el cursado. Este repositorio centraliza toda la documentación, la gestión y los artefactos comunes del proyecto, sirviendo como el eje principal para los repositorios de Frontend y Backend.
+  </blockquote>
+</details>
 
-## 3. Requisitos
-El desarrollo de la aplicación debe:
-1. Desarrollarse en 2 partes: Frontend y Backend; agnósticas entre si, comunicadas mediante una API.
-2. Cumplir con los requisitos:  [técnicos](#3.1%20Requisitos%20técnicos) y [funcionales](#3.2%20Requisitos%20funcionales).
-3. Desarrollarse en grupo utilizando metodologías de gestión de proyecto y llevar evidencia de ello.
-4. Cumplir con las [entregas](#3.3%20Entregas) estipuladas.
-5. Utilizar github o gitlab para gestión del código fuente.
-6. Realizar una defensa oral del trabajo práctico para regularidad.
-7. Realizar otra defensa oral del trabajo práctico para la aprobación.
-8. Enviar la 
-9. Presentar la [documentación](#3.4%20Documentación) durante la defensa.
+<br>
 
-### 3.1 Requisitos técnicos
-La app cuenta con 2 partes: Backend y Frontend agnósticas entre si que se comunican mediante una API.
-
-#### 3.1.1 Backend
-El backend debe cumplir con las siguientes condiciones para regularidad y aprobación.
-
-##### Regularidad
-* Desarrollarse en JavaScript.
-* Utilizar un framework web que permita integrarse a las demás.
-* herramientas a través de middlewares, pluggins o modulos.
-* Exponer una API web (rest, tRPC o gRPC) para interactuar con el frontend.
-* Utilizar una base de datos persistente que acceda a través de un servicio externo (es decir que no sea una base de datos embebida).
-* La persistencia a la base de datos debe realizarse mediante un mapper (ORM/ODM/OXM). En caso que la base de datos utilizada no tenga un mapper disponible para JavaScript se deberá implementar la persistencai utilizando un patron Repository.
-* Realizarse mediante capas.
-* Validar entrada de datos, manejar e informar apropiadamente los errores a través de la API.
-* Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
-
-##### Aprobación Directa o en Examen
-* Cumplir con todas las condiciones de regularidad.
-* Implementar 1 test automatizado por integrante.
-* Implementar 1 test de integración.
-* Implementar un login con autenticación propia o de third-party y al menos 2 niveles de acceso diferentes.
-* Proteger las diferentes rutas en base al nivel de acceso requerido.
-* Definir ambientes, ya sea mediante environment del framework o .env
-
-#### 3.1.2 Frontend
-El frontend debe cumplir con las siguientes condiciones para regularidad y aprobación.
-
-##### Regularidad
-* Desarrollarse utilizando un framework de Frontend.
-* Utilizar HTML5
-* Utilizar CSS según las directrices de alguna biblioteca de componentes, guía de estilo o framework de CSS y la metodología propuesta por el framework de frontend elegido. Se sugiere el uso de biblioteca de componentes;  preprocesadores: sass, scss, less, stylus, etc o frameworks de css: Pico.css, Bulma, Material, Tailwind, Bootstrap, etc.
-* Guía de estilos sugerida Airbnb Javascript https://github.com/airbnb/javascript
-* Aplicar la estrategia mobile-first para la escritura del código css de la aplicación
-* La app debe visualizarse correctamente en al menos 3 diferentes breakpoints: SM, MD, LG
-* Seguir buenas prácticas de UX/UI (Que no requiera manual de usuario o explicaciones específicas para utilizar la interfaz)
-* Las app debe mostrar las siguientes características entre sus componentes:
-	* Manejo de eventos del usuario: click, input, etc
-	* Ante una posibilidad de fallo, manejar el/los errores adecuadamente y de manera amigable al usuario
-	* Reactividad ante un estado
-	* Input property
-	* Output property
-* Implementar al menos un servicio.
-* Para el manejo de la información, por ej una respuesta de un endpoint o los datos a enviar en una request, representar en el código los modelos de objetos con clases, interfaces y tipos de datos custom.
-* De ser posible, implementar algún patrón de diseño orientado a objetos.
-* Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
-
-##### Aprobación Directa o en Examen
-* Cumplir con las condiciones de regularidad.
-* Realizar al menos 1 test unitario de un componente.
-* Realizar al menos 1 test de end-to-end.
-* Implementar el login y proteger el acceso a las distintas partes del frontend en base a los niveles de usuarios del backend.
-* Definir ambientes, ya sea mediante environment del framework o .env
-
-### 3.2 Requisitos funcionales
-La app debe cumplir con los siguientes requisitos.
-
-#### Regularidad
-* 1 CRUD Simple por integrante
-* 1 CRUD Dependiente cada 2 integrantes o fracción.
-* 1 Listado con filtro (al menos un atributo) cada 2 integrantes o fracción.
-* Para cada listado, al seleccionar un elemento, se debe mostrar un detalle.
-* Debe implementar un caso de uso de usuario o epic, con valor para el negocio, cada 2 integrantes o fracción.
-
-#### Aprobación Directa o en Examen
-* CRUDs de todas las clases de negocio necesarias para el funcionamiento de la app.
-* Implementar 1 caso de uso usuario o epic, con valor para el negocio, por cada integrante.
-  Se deben implementar un mínimo de 2 relacionados entre si. Es decir que la data registrada por uno CU o epic sirva de input para otro.
-
-#### Alcance Adicional Voluntario
-De forma **opcional** y **voluntaria** los grupos podrán realizar CUU o epics, listados más complejos de los solicitados u otros requisitos como notificaciones, logs, etc; adicionales para completar la funcionalidad del sistema propuesto.
-
-Esto será considerado en la nota final en función de la complejidad y esfuerzo relativos a lo ya realizado.
+<img width="1748" height="899" alt="image" src="https://github.com/user-attachments/assets/d7ff00ea-060c-42d2-9865-996f1fa8aa9d" />
 
 
-### 3.3 Entregas
-#### Propuesta del enunciado
-En la entrega se debe entregar a los profesores la [plantilla de propuesta](./proposal.md) actualizada con las condiciones de Regularidad y de Aprobación. Los profesores analizarán la propuesta y de ser necesario sugerirán ajustes hasta que esté correcta y sea aceptada.
+---
 
-#### Regularidad
-En la entrega se debe entregar:
-* El README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
-* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front mediante el form publicado para cada año.
+## 🛠️ Stack Tecnológico
 
-Coordinar una defensa grupal con los profesores.
+La aplicación sigue una arquitectura desacoplada con un frontend y un backend independientes. A continuación se detallan las tecnologías clave utilizadas en cada capa del proyecto:
 
-#### Aprobación Directa o en Examen
-En la entrega se debe enviar:
-* Video explicando el funcionamiento del sistema
-* Documentación de la API de backend (según la tecnología y standard utilizados).
-* Evidencia del resultado de la ejecución de los tests automáticos.
-* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front.
-* Incluir en el README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
-* Links de Deploy
-* Credenciales para utilizar la aplicación deployada
-* Contacto para coordinar la defensa
+### Frontend
 
-El envío se debe realizar por el form https://kutt.it/DSWEntregaSistemaFinal y coordinar con el docente una defensa grupal con los profesores.
+<p>
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+</p>
 
-Para la Aprobación Directa la defensa debe pactarse con los docentes dentro de los plazos indicados a continuación.
-Para la Aprobación en Examen la defensa debe pactarse con los docentes y realizarse antes de la fecha de la mesa de examen.
+### Backend
 
-#### Fechas de entrega
-**Propuesta**: Durante Abril
+<p>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/MikroORM-6B46C1?style=for-the-badge&logoColor=white" alt="MikroORM">
+</p>
 
-**Muestra de avance**: Inicio del segundo cuatrimestre
+### Base de Datos
 
-**Primer Entrega de Regularidad/AD**: 17/10/2025
+<p>
+  <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
+</p>
 
-**Primer Recuperatorio/Globalizador de Regularidad/AD**: 31/10/2025
+### Gestión y Herramientas
 
-**Ultima instancia Recuperatorio/Globalizador de Regularidad/AD**: 14/11/2025
+<p>
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git">
+  <img src="https://img.shields.io/badge/Kanban-blue?style=for-the-badge" alt="Metodología Ágil">
+</p>
 
-### 3.4 Documentación
-La documentación debe presentarse para la instancia de defensa.
+---
 
-Para conocer el detalle de la documentación referirse a [docs](docs.md).
+## 🚀 Ecosistema del Proyecto
 
-## 4. Gestión del proyecto
-**TODO: En revisión**
+Este repositorio central es el núcleo de **UpSkill**, pero el desarrollo se distribuye en varios componentes clave. A continuación se describe el acceso rápido a cada parte del ecosistema.
 
-El desarrollo de la app debe realizarse utilizando metodologías ágiles para la gestión del proyecto (Scrum, XP, etc).
+| Componente                     | Descripción                                                       |                           Enlace Rápido                            |
+| :----------------------------- | :---------------------------------------------------------------- | :----------------------------------------------------------------: |
+| 📂 **Repositorio Frontend**    | Código fuente de la interfaz de usuario (React/TypeScript).       | [Ir al Repositorio](https://github.com/upskill-team/Front-End-DSW) |
+| 📂 **Repositorio Backend**     | Código fuente de la API del servidor (Node.js/MikroORM).          | [Ir al Repositorio](https://github.com/upskill-team/Back-End-DSW)  |
+| 📊 **Tablero de Proyecto**     | Nuestro tablero Kanban para el seguimiento de tareas y sprints.   |   [Ver Tablero](https://github.com/orgs/upskill-team/projects/4)   |
+| 📚 **Portal de Documentación** | El punto de entrada a toda la documentación técnica y de gestión. |             [Explorar Documentación](./docs/README.md)             |
 
-El grupo deberá llevar un registro de lo realizado, el mismo debe incluir como mínimo:
-* Tipo de metodología a utilizar para el seguimiento. ( Scrum, XP, etc.)
-* Minutas de avances o reuniones de coordinación del equipo.
-* Documentación de trackeo como desarrollo de features y bugfix, asignación de tareas, etc.
+---
 
-Es de libre elección del alumno la herramienta a utilizar para el trackeo. Se recomienda el uso de github/gitlab proyects para integrar con el desarrollo de la misma pero en caso de utilizar otra en la documentación deberán incluirse los links a la tool para ello.
+## Estructura del Repositorio
 
+```
+propuesta-DSW/
+├── README.md
+└── docs/
+    ├── README.md
+    ├── backend-setup.md
+    ├── frontend-setup.md
+    ├── work-in-progress.md
+    ├── api/
+    │   ├── endPoints.md
+    │   ├── formatoRespuesta.md
+    │   └── seguridad.md
+    ├── gestion/
+    │   ├── reglas-de-trabajo.md
+    │   ├── estandares/
+    │   ├── eleccion-de-librerias/
+    │   ├── listado-de-pr/
+    │   ├── minutas/
+    │   └── plantillas/
+    └── proyecto/
+        ├── arquitectura.md
+        ├── model.md
+        └── proposal.md
+```
 
-## 5. Evaluación
+**Enlaces rápidos:**
+- [Documentación](docs/README.md) | [API](docs/api/README.md) | [Gestión](docs/gestion/README.md) | [Arquitectura](docs/proyecto/arquitectura.md) | [Modelo de datos](docs/proyecto/model.md)
 
-Durante la evaluación de cada entrega se considerarán:
-* Requisitos técnicos y funcionales de la etapa.
-* Adhesión a las directrices de UX/UI y buenas prácticas de programación.
-* Uso apropiado de la tecnología: librerías, frameworks, patrones, etc.
-* Documentación requerida.
-* Participación de los miembros del grupo.
-* Uso de git para el desarrollo.
-* Defensa oral del trabajo práctico.
-* Gestión y seguimiento del desarrollo de la app.
-* Innovación, investigación y desafíos asumidos.
-* Documentación solicitada.
+---
 
-## 6. FAQ
+## 👥 Nuestro Equipo
 
-En la sección de [FAQ](FAQ.md) podrán encontrar respuestas a las consultas más frecuentes que se van realizando.
+Este proyecto es el resultado del esfuerzo colaborativo de nuestro equipo.
+
+|                                                    Avatar                                                    | Nombre Completo                   |                                                         Perfil de GitHub                                                          |
+| :----------------------------------------------------------------------------------------------------------: | :-------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------: |
+|  <img src="https://github.com/carlex74.png" width="50" alt="Avatar de Carlos" style="border-radius: 50%;">   | Carlos Ricardo Gugliermino Zuñiga |   [![GitHub: carlex74](https://img.shields.io/badge/GitHub-Profile-blue?style=social&logo=github)](https://github.com/carlex74)   |
+| <img src="https://github.com/NiconiKImg.png" width="50" alt="Avatar de Nicolás" style="border-radius: 50%;"> | Nicolás Pedemonte                 | [![GitHub: NiconiKImg](https://img.shields.io/badge/GitHub-Profile-blue?style=social&logo=github)](https://github.com/NiconiKImg) |
+|    <img src="https://github.com/LucaTvl.png" width="50" alt="Avatar de Luca" style="border-radius: 50%;">    | Luca Trincavelli                  |    [![GitHub: LucaTvl](https://img.shields.io/badge/GitHub-Profile-blue?style=social&logo=github)](https://github.com/LucaTvl)    |
+| <img src="https://github.com/Frasquito3.png" width="50" alt="Avatar de Franco" style="border-radius: 50%;">  | Franco Zariaga                    | [![GitHub: Frasquito3](https://img.shields.io/badge/GitHub-Profile-blue?style=social&logo=github)](https://github.com/Frasquito3) |

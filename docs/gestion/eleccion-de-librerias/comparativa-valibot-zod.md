@@ -1,0 +1,19 @@
+#### Comparación de Librerías para: Validación de Esquemas y Tipado
+
+**Problema:** Necesitamos una librería robusta para la validación de datos en tiempo de ejecución (ej. payloads de API, formularios) que se integre de forma nativa con TypeScript para inferir tipos estáticos. Esto es crucial para garantizar la integridad de los datos y prevenir errores en los límites de nuestra aplicación.
+
+| Criterio                       | [![Validation Library - Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)](https://zod.dev) | [![Validation Library - Valibot](https://img.shields.io/badge/Valibot-6F52E4?style=for-the-badge&logoColor=white)](https://valibot.dev) |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Popularidad/Comunidad**      | El estándar de facto en el ecosistema TypeScript. Comunidad masiva, innumerables recursos y tutoriales.                              | Comunidad en rápido crecimiento. Creada por Fabian Hiller (core team de SolidJS), lo que le da una gran credibilidad y un enfoque moderno.             |
+| **Tamaño del Paquete**         | Robusto pero de mayor tamaño. Incluye una gran cantidad de funcionalidades en el paquete principal.                                  | **Excepcionalmente ligero.** Su diseño es 100% modular y "tree-shakable", importando solo el código que realmente se utiliza.                     |
+| **Rendimiento**                | Muy buen rendimiento, aunque su API prioriza la ergonomía del desarrollador sobre la velocidad pura.                                  | **Rendimiento superior.** Diseñado desde cero para ser una de las librerías de validación más rápidas disponibles, superando a Zod en benchmarks.     |
+| **API y Ergonomía**            | API muy fluida y expresiva, famosa por su encadenamiento de métodos (`.string().min(5).email()`).                                     | API funcional y componible, basada en "pipelines" (`string([email(), minLength(5)])`). **Clara, predecible** y sin métodos encadenados.            |
+| **"Boilerplate" / Verbosidad** | **Mínima.** La sintaxis encadenada es muy concisa y fácil de leer para validaciones complejas.                                       | Ligeramente más verbosa debido a su naturaleza funcional (requiere importar cada función de validación), pero esto mejora la optimización del bundle. |
+| **Ecosistema / Características** | **Ecosistema maduro y extenso.** Gran cantidad de librerías de terceros para formularios, generación de mocks, etc.                  | En expansión. Cubre todas las necesidades fundamentales de validación con una calidad excelente. Su modularidad es su principal característica.       |
+| **Veredicto Rápido**           | El gigante confiable. La opción segura y probada con un ecosistema inmenso.                                                         | El retador ágil y performante. Ideal para proyectos donde el tamaño del bundle y la velocidad son críticos.                                        |
+
+---
+
+**🏆 Decisión Final:** Se elige **Valibot**.
+
+**Justificación Principal:** La elección de Valibot se basa en su aumento masivo en popularidad, ya que esto permitirá mantener el sistema con amyor facilidad. Otro factor en el que nos basamos para realizar esta elección es que, si bien la sintaxis de valibot es más compleja, es similar a la de zod, permitiendo utilizar lo extensa documentación de Zod para la implementación de Valibot.
