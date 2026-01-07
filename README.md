@@ -1,154 +1,154 @@
-# TP-Desarrollo-Software
+<div align="center">
 
-## Información del Grupo
+  <h1>🎟️ EventLife</h1>
+  <p><strong>Plataforma Integral de Gestión de Eventos y Venta de Entradas</strong></p>
 
-**Integrantes del grupo:** Tomas Yasparra (48083), Facundo Picia (48072)  🎓✨
-**Profesores:** Adrián Meca & Julián Butti  **Comisión:** 3k01 
+  [![Angular](https://img.shields.io/badge/Angular-17-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/)
+  [![Node.js](https://img.shields.io/badge/Node.js-18-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+  [![Redis](https://img.shields.io/badge/Redis-Cache-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-## Repositorio Fullstack
+  <p>
+    <a href="https://event-life.netlify.app">🚀 Ver Demo</a> •
+    <a href="https://github.com/cufardixx/TP_DSW_2024_3K1">📂 Repositorio</a> •
+    <a href="#instalación">⚙️ Instalación</a>
+  </p>
 
-[Repositorio en GitHub](https://github.com/cufardixx/TP_DSW_2024_3K1) 📁💻
-
-## Video de las principales funcionalidades de la aplicación
-
-[Video de demostración](https://www.youtube.com/watch?v=4b8GKbPP0IY) 📽️🎥
-
----
-
-## Descripción del Trabajo
-
-**EventLife** es una aplicación web diseñada para facilitar la compra y venta de entradas para diversos tipos de eventos, como recitales, fiestas, festivales o bares nocturnos. 🎟️🎉
-
-La plataforma cuenta con dos tipos de usuarios: **clientes** y **administradores**. 
-
-### Funcionalidades para Clientes
-
-1. **Registro e Inicio de Sesión:** Registro con datos personales o inicio de sesión con correo y contraseña.
-2. **Gestión de Eventos:**
-   - Crear eventos con detalles como título, descripción, fecha, ubicación, categoría y capacidad.
-   - Visualizar, editar, eliminar y ordenar eventos creados.
-3. **Compra de Entradas:**
-   - Buscar eventos mediante filtros por categoría o utilizando una barra de búsqueda.
-   - Finalizar la compra con un correo de confirmación y un código QR como entrada al evento.
-   - Visualizar entradas adquiridas en un apartado personal.
-
-### Funcionalidades para Administradores
-
-1. **Gestión de Categorías:** Crear y administrar las categorías de los eventos.
-2. **Gestión de Usuarios:** Panel para ver y gestionar a los usuarios registrados en la plataforma.
-
-EventLife ofrece una experiencia cómoda y centralizada para organizar eventos, comprar entradas y gestionar actividades relacionadas. 🌐🤝
+</div>
 
 ---
 
-## Tecnologías Utilizadas
+## 📖 Descripción
 
-### Backend
+**EventLife** es una solución Full-Stack moderna para la organización y asistencia a eventos. Permite a los usuarios descubrir experiencias únicas, adquirir entradas de forma segura con **MercadoPago** y acceder mediante **códigos QR**. Para los organizadores, ofrece un panel de control robusto con estadísticas en tiempo real y gestión de audiencia.
 
-- **Framework:** Express.js con TypeScript 
-- **Base de datos:** MySQL (alojada en Clever Cloud)  🗄️☁️
-- **ORM:** TypeORM
-- **Autenticación:** JSON Web Tokens (JWT)
-- **Encriptación:** bcrypt 🔐
-- **Validación de Datos:** Zod
-- **Envío de Correos:** Nodemailer 📧
-- **Generación de Códigos QR:** QRCode 📱
-- **Configuración:** dotenv 🛠️
+El proyecto destaca por su arquitectura escalable, seguridad robusta y una experiencia de usuario fluida y responsiva.
 
-### Frontend
+## ✨ Características Principales
 
-- **Framework:** Angular con TypeScript 🌐
-- **Estilo:** Bootstrap 🎨
+### 👤 Usuarios y Seguridad
+*   **Autenticación Híbrida:** Registro tradicional y Login social con **Google OAuth**.
+*   **Seguridad:** Protección JWT, encriptación Bcrypt y validación de esquemas con Zod.
+*   **Roles:** Sistema RBAC (Cliente, Organizador, Administrador).
 
-### Despliegue
+### 🎟️ Eventos y Entradas
+*   **Exploración:** Búsqueda avanzada con filtros por categoría y ubicación.
+*   **Compra Segura:** Integración con **MercadoPago** (Webhooks e Idempotencia).
+*   **Entradas Digitales:** Generación automática de Tickets PDF y códigos QR únicos.
 
-- **Frontend:** Netlify 🌍   [Link](https://event-life.netlify.app)
-- **Backend:** Render.com 🚀 [Link](https://backend-eventlife.onrender.com)
-- - **BD:** Clever Cloud 💿  [Link](https://www.clever-cloud.com/)
+### 📊 Gestión y Dashboard
+*   **Estadísticas:** Gráficos interactivos con **ApexCharts**.
+*   **Escáner QR:** Validación de accesos en tiempo real para control de puerta.
+*   **Mapas:** Geolocalización de eventos con **Leaflet**.
 
----
+## 🛠️ Stack Tecnológico
 
-## Instrucciones de Instalación y Ejecución 🚀📥
+### Frontend (Client-Side)
+*   **Framework:** Angular 17 (Standalone Components)
+*   **Estilos:** Tailwind CSS (Diseño Responsivo)
+*   **Librerías:** Leaflet (Mapas), ApexCharts (Gráficos), ZXing (Escáner QR), HTML2Canvas (PDF).
 
-### Clonar el repositorio
+### Backend (Server-Side)
+*   **Runtime:** Node.js & Express
+*   **Base de Datos:** PostgreSQL (NeonDB) con TypeORM.
+*   **Caché:** Redis (Optimización de consultas frecuentes).
+*   **Validación:** Zod.
+*   **Documentación:** Swagger UI.
 
-```sh
+### Infraestructura
+*   **Frontend:** Netlify
+*   **Backend:** Render
+*   **DB:** Neon (PostgreSQL)
+
+## 📸 Capturas y Demos
+
+| Compra de Entradas | Inicio de Sesión |
+|:------------------:|:----------------:|
+| ![Compra](https://github.com/user-attachments/assets/8b8ab58c-cb85-45e2-af85-b192b3887248) | ![Login](https://github.com/user-attachments/assets/3464a6b6-ba78-46a9-b594-2b9a95c90f96) |
+
+## ⚙️ Instalación y Ejecución
+
+### Prerrequisitos
+*   Node.js (v18+)
+*   PostgreSQL
+*   Redis (Opcional para desarrollo, recomendado para prod)
+
+### 1. Clonar el repositorio
+```bash
 git clone https://github.com/cufardixx/TP_DSW_2024_3K1.git
+cd TP_DSW_2024_3K1
 ```
 
-### Configuración del Backend
+### 2. Configurar Backend
+```bash
+cd Backend
+npm install
+```
 
-1. Navega hacia la carpeta del backend:
-   ```sh
-   cd backend
-   ```
-2. Instala las dependencias:
-   ```sh
-   npm install
-   ```
-3. Crea un archivo `.env` en la carpeta `backend` con el siguiente contenido:
-   ```plaintext
-   DB_HOST=<tu-host>
-   DB_PORT=<tu-puerto>
-   DB_USER=<tu-usuario>
-   DB_PASSWORD=<tu-contraseña>
-   DB_NAME=<nombre-de-tu-bd>
-   JWT_SECRET=<tu-secreto-jwt>
-   EMAIL_HOST=<smtp-host>
-   EMAIL_PORT=<smtp-puerto>
-   EMAIL_USER=<smtp-usuario>
-   EMAIL_PASSWORD=<smtp-contraseña>
-   ```
-4. Ejecuta el servidor en modo desarrollo:
-   ```sh
-   npm run dev
-   ```
+Crea un archivo `.env` en `Backend/` basado en `.env.example`:
+```env
+CLIENT_URL=
+CLIENT_URLS=
 
-### Configuración del Frontend
+DATABASE_URL=
 
-1. Navega hacia la carpeta del frontend:
-   ```sh
-   cd frontend
-   ```
-2. Instala las dependencias:
-   ```sh
-   npm install
-   ```
-3. Ejecuta el frontend:
-   ```sh
-   npm start
-   ```
-
----
-
-## Endpoints del Backend 🔄🛠️
-
-[Docuemtacion de API (posman)](https://documenter.getpostman.com/view/17463908/2sAYHzF2YC)
+PGHOST=
+PGPORT=
+PGUSER=
+PGPASSWORD=
+PGDATABASE=
 
 
-## Modelo de Datos 🗂️📝
+
+MAIL_FROM=
+MAIL_HOST=
+MAIL_PASSWORD=
+MAIL_PORT=
+MAIL_USER=
+
+BREVO_API_KEY=
+
+
+MP_ACCESS_TOKEN=
+MP_NOTIFICATION_URL=
+MP_WEBHOOK_SECRET=
+
+SECRET_KEY=
+
+ID_CLIENT_GOOGLE_OAUTH=
+```
+
+Ejecutar en desarrollo:
+```bash
+npm run dev
+```
+
+### 3. Configurar Frontend
+```bash
+cd ../Frontend
+npm install
+npm start
+```
+Accede a `http://localhost:4200`.
+
+## 🗂️ Modelo de Datos
 
 ![BD-model](https://github.com/user-attachments/assets/b9073a30-146a-48f5-a714-da181598b182)
 
+## 👥 Autores
+
+| Nombre | Legajo | Rol |
+|--------|--------|-----|
+| **Facundo Picia** | 48072 | Full Stack Developer |
 
 ---
 
-## Capturas de Pantalla 📸🖼️
-
-GIFs de algunas funcionalidades
-
-![funcion de compra](https://github.com/user-attachments/assets/8b8ab58c-cb85-45e2-af85-b192b3887248)
-![inicio de sesion (2)](https://github.com/user-attachments/assets/3464a6b6-ba78-46a9-b594-2b9a95c90f96)
-
-
-
----
-
-## Próximos Pasos (Roadmap) 🛤️✨
-
-
-
----
-
+<div align="center">
+  <p>Desarrollado para la cátedra de Desarrollo de Software - 2024</p>
+  <p>Universidad Tecnológica Nacional</p>
+  <p>Actualizado al año 2026</p>
+</div>
 
 
