@@ -1,0 +1,66 @@
+.App {
+  min-height: 100vh;
+}
+
+.card-camiseta {
+  transition: transform 0.2s;
+  border: 1px solid #dee2e6;
+}
+
+.card-camiseta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.precio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #28a745;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.skeleton-img {
+  background: linear-gradient(90deg, #e9ecef 25%, #f8f9fa 50%, #e9ecef 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+.skeleton-line {
+  height: 12px;
+  background: linear-gradient(90deg, #e9ecef 25%, #f8f9fa 50%, #e9ecef 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (max-width: 768px) {
+  .precio {
+    font-size: 1.25rem;
+  }
+  
+  .card-camiseta {
+    margin-bottom: 1rem;
+  }
+
+  /* Menú responsive */
+  .nav-links {
+    width: 100%;
+    padding-top: 12px;
+  }
+  .nav-links a,
+  .nav-links button {
+    display: inline-block;
+  }
+}

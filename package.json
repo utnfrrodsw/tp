@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "react-datepicker": "^8.9.0",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
