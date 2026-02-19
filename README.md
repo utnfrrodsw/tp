@@ -1,174 +1,307 @@
-# TP DSW
-tags: #dsw #tp
+<h1 align="center">🏠 TicketApp – Repositorio Central</h1>
 
-Status: draft
+<p align="center">
+  <a href="https://github.com/valenpeppi/FrontEnd-Venta-de-Entradas" target="_blank" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/💻%20Ir%20al%20Frontend-React%20%7C%20Vite-0b7285?style=for-the-badge&logo=react&logoColor=white" alt="Repo Frontend"/>
+  </a>
+  <a href="https://github.com/valenpeppi/BackEnd-Venta-de-Entradas" target="_blank" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/⚙️%20Ir%20al%20Backend-Node.js%20%7C%20Express-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Repo Backend"/>
+  </a>
+  <a href="https://drive.google.com/file/d/1JQ4jZBuJwJ3PSq4Bxjy0-jp5qHoPxyZK/view" target="_blank" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/🗺️%20Ver%20Modelo%20DER-DER-ff9800?style=for-the-badge&logo=googledrive&logoColor=white" alt="DER TicketApp"/>
+  </a>
+  <a href="https://github.com/valenpeppi/tp/blob/main/docs.md" target="_blank" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/📄%20Documentación%20API-Docs-4C51BF?style=for-the-badge&logo=readme&logoColor=white" alt="Docs API"/>
+  </a>
+</p>
 
-## 1. Objetivo
+<p align="center">
+  <a href="https://github.com/agussantinelli" target="_blank" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/👤%20Agustín%20Santinelli-agussantinelli-000000?style=for-the-badge&logo=github&logoColor=white" alt="Agus"/>
+  </a>
+  <a href="https://github.com/martin-ratti" target="_blank" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/👤%20Martín%20Ratti-martin--ratti-000000?style=for-the-badge&logo=github&logoColor=white" alt="Martín"/>
+  </a>
+  <a href="https://github.com/gianzaba" target="_blank" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/👤%20Gianlucas%20Zabaleta-gianzaba-000000?style=for-the-badge&logo=github&logoColor=white" alt="Gianlucas"/>
+  </a>
+  <a href="https://github.com/valenpeppi" target="_blank" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/👤%20Valentín%20Peppino-valenpeppi-000000?style=for-the-badge&logo=github&logoColor=white" alt="Valentín"/>
+  </a>
+</p>
 
-Desarrollar en grupo una aplicación web full stack en base a un alcance propuesto por los integrantes.
+<div align="center">
+  <img src="https://img.shields.io/badge/Copyright-All_Rights_Reserved-red?style=for-the-badge&logo=copyright&logoColor=white" alt="Copyright Badge"/>
+</div>
+<hr/>
 
-Durante dicho desarrollo se deberá aplicar todo lo aprendido en la materia Desarrollo de Software.
+<h2>🎯 Visión General</h2>
 
-## 2. Tema y Alcance
-El grupo debe deberá proponer a los docentes un tema para el trabajo práctico de su preferencia utilizando la [plantilla de propuesta](proposal.md)
+<p>
+  <strong>TicketApp</strong> es una solución integral para la <strong>venta y gestión de entradas</strong> desarrollada como trabajo práctico final para la cátedra <strong>Desarrollo de Software (DSW) – UTN FRRO 2025</strong>.
+</p>
+<p>
+  El sistema está compuesto por dos grandes módulos desacoplados (Frontend y Backend) que interactúan mediante una API RESTful, permitiendo a usuarios comprar entradas, a empresas organizar eventos y a administradores gestionar la plataforma.
+</p>
 
-## 3. Requisitos
-El desarrollo de la aplicación debe:
-1. Desarrollarse en 2 partes: Frontend y Backend; agnósticas entre si, comunicadas mediante una API.
-2. Cumplir con los requisitos:  [técnicos](#3.1%20Requisitos%20técnicos) y [funcionales](#3.2%20Requisitos%20funcionales).
-3. Desarrollarse en grupo utilizando metodologías de gestión de proyecto y llevar evidencia de ello.
-4. Cumplir con las [entregas](#3.3%20Entregas) estipuladas.
-5. Utilizar github o gitlab para gestión del código fuente.
-6. Realizar una defensa oral del trabajo práctico para regularidad.
-7. Realizar otra defensa oral del trabajo práctico para la aprobación.
-8. Enviar la 
-9. Presentar la [documentación](#3.4%20Documentación) durante la defensa.
+<hr/>
 
-### 3.1 Requisitos técnicos
-La app cuenta con 2 partes: Backend y Frontend agnósticas entre si que se comunican mediante una API.
+<h2>🏗️ Arquitectura y Tecnologías</h2>
 
-#### 3.1.1 Backend
-El backend debe cumplir con las siguientes condiciones para regularidad y aprobación.
+<table>
+  <thead>
+    <tr>
+      <th align="left">Capa</th>
+      <th align="left">Stack Tecnológico</th>
+      <th align="left">Detalles de Implementación</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>🎨 Frontend</strong></td>
+      <td>
+        <code>React 19</code>
+        <code>TypeScript</code>
+        <code>Vite</code>
+        <code>React Router</code>
+        <code>Axios</code>
+      </td>
+      <td>SPA con arquitectura modular. Uso de <strong>Context API</strong> para estado global y hooks personalizados. Diseño responsivo sin frameworks CSS pesados.</td>
+    </tr>
+    <tr>
+      <td><strong>⚙️ Backend</strong></td>
+      <td>
+        <code>Node.js</code>
+        <code>Express</code>
+        <code>TypeScript</code>
+        <code>Prisma ORM</code>
+        <code>Zod</code>
+      </td>
+      <td>API RESTful escalable. Validaciones estrictas de entrada, manejo centralizado de errores y arquitectura MVC.</td>
+    </tr>
+    <tr>
+      <td><strong>🗄️ Base de Datos</strong></td>
+      <td>
+        <code>MySQL 8</code>
+      </td>
+      <td>Modelo relacional para gestión compleja de eventos, sectores enumerados, reservas y ventas.</td>
+    </tr>
+    <tr>
+      <td><strong>🔒 Seguridad</strong></td>
+      <td>
+        <code>JWT</code>
+        <code>Bcrypt</code>
+        <code>Google reCAPTCHA</code>
+      </td>
+      <td>Autenticación basada en tokens, protección de rutas y prevención de bots en formularios públicos.</td>
+    </tr>
+    <tr>
+      <td><strong>💳 Pagos</strong></td>
+      <td>
+        <code>Stripe Checkout</code>
+      </td>
+      <td>Integración de pasarela de pagos con gestión de webhooks para confirmación asíncrona de transacciones.</td>
+    </tr>
+    <tr>
+      <td><strong>🧪 Testing</strong></td>
+      <td>
+        <code>Vitest</code>
+        <code>Playwright</code>
+        <code>Jest</code>
+        <code>Supertest</code>
+      </td>
+      <td>Estrategia completa de pruebas: Unitarias, de Integración y End-to-End (E2E).</td>
+    </tr>
+  </tbody>
+</table>
 
-##### Regularidad
-* Desarrollarse en JavaScript.
-* Utilizar un framework web que permita integrarse a las demás.
-* herramientas a través de middlewares, pluggins o modulos.
-* Exponer una API web (rest, tRPC o gRPC) para interactuar con el frontend.
-* Utilizar una base de datos persistente que acceda a través de un servicio externo (es decir que no sea una base de datos embebida).
-* La persistencia a la base de datos debe realizarse mediante un mapper (ORM/ODM/OXM). En caso que la base de datos utilizada no tenga un mapper disponible para JavaScript se deberá implementar la persistencai utilizando un patron Repository.
-* Realizarse mediante capas.
-* Validar entrada de datos, manejar e informar apropiadamente los errores a través de la API.
-* Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
+<hr/>
 
-##### Aprobación Directa o en Examen
-* Cumplir con todas las condiciones de regularidad.
-* Implementar 1 test automatizado por integrante.
-* Implementar 1 test de integración.
-* Implementar un login con autenticación propia o de third-party y al menos 2 niveles de acceso diferentes.
-* Proteger las diferentes rutas en base al nivel de acceso requerido.
-* Definir ambientes, ya sea mediante environment del framework o .env
+<h2>⚡ Instalación y Despliegue Local</h2>
 
-#### 3.1.2 Frontend
-El frontend debe cumplir con las siguientes condiciones para regularidad y aprobación.
+<h3>1️⃣ Requisitos Previos</h3>
+<ul>
+  <li><strong>Node.js</strong> (v18 o superior).</li>
+  <li><strong>MySQL</strong> (v8 o superior).</li>
+  <li><strong>Git</strong>.</li>
+</ul>
 
-##### Regularidad
-* Desarrollarse utilizando un framework de Frontend.
-* Utilizar HTML5
-* Utilizar CSS según las directrices de alguna biblioteca de componentes, guía de estilo o framework de CSS y la metodología propuesta por el framework de frontend elegido. Se sugiere el uso de biblioteca de componentes;  preprocesadores: sass, scss, less, stylus, etc o frameworks de css: Pico.css, Bulma, Material, Tailwind, Bootstrap, etc.
-* Guía de estilos sugerida Airbnb Javascript https://github.com/airbnb/javascript
-* Aplicar la estrategia mobile-first para la escritura del código css de la aplicación
-* La app debe visualizarse correctamente en al menos 3 diferentes breakpoints: SM, MD, LG
-* Seguir buenas prácticas de UX/UI (Que no requiera manual de usuario o explicaciones específicas para utilizar la interfaz)
-* Las app debe mostrar las siguientes características entre sus componentes:
-	* Manejo de eventos del usuario: click, input, etc
-	* Ante una posibilidad de fallo, manejar el/los errores adecuadamente y de manera amigable al usuario
-	* Reactividad ante un estado
-	* Input property
-	* Output property
-* Implementar al menos un servicio.
-* Para el manejo de la información, por ej una respuesta de un endpoint o los datos a enviar en una request, representar en el código los modelos de objetos con clases, interfaces y tipos de datos custom.
-* De ser posible, implementar algún patrón de diseño orientado a objetos.
-* Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
+<h3>2️⃣ Clonar Repositorios</h3>
+<p>Debes clonar ambos repositorios en carpetas adyacentes:</p>
 
-##### Aprobación Directa o en Examen
-* Cumplir con las condiciones de regularidad.
-* Realizar al menos 1 test unitario de un componente.
-* Realizar al menos 1 test de end-to-end.
-* Implementar el login y proteger el acceso a las distintas partes del frontend en base a los niveles de usuarios del backend.
-* Definir ambientes, ya sea mediante environment del framework o .env
+<pre><code># Clonar Frontend
+git clone https://github.com/valenpeppi/FrontEnd-Venta-de-Entradas.git
 
-### 3.2 Requisitos funcionales
-La app debe cumplir con los siguientes requisitos.
+# Clonar Backend
+git clone https://github.com/valenpeppi/BackEnd-Venta-de-Entradas.git
+</code></pre>
 
-#### Regularidad
-* 1 CRUD Simple por integrante
-* 1 CRUD Dependiente cada 2 integrantes o fracción.
-* 1 Listado con filtro (al menos un atributo) cada 2 integrantes o fracción.
-* Para cada listado, al seleccionar un elemento, se debe mostrar un detalle.
-* Debe implementar un caso de uso de usuario o epic, con valor para el negocio, cada 2 integrantes o fracción.
+<h3>3️⃣ Configuración del Backend</h3>
+<p>Crea un archivo <code>.env</code> en la raíz de la carpeta <strong>BackEnd-Venta-de-Entradas</strong>:</p>
 
-#### Aprobación Directa o en Examen
-* CRUDs de todas las clases de negocio necesarias para el funcionamiento de la app.
-* Implementar 1 caso de uso usuario o epic, con valor para el negocio, por cada integrante.
-  Se deben implementar un mínimo de 2 relacionados entre si. Es decir que la data registrada por uno CU o epic sirva de input para otro.
+<pre><code># Servidor y Base de Datos
+PORT=3000
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=password
+DB_NAME=ticketapp
+DATABASE_URL="mysql://root:password@localhost:3306/ticketapp"
 
-#### Alcance Adicional Voluntario
-De forma **opcional** y **voluntaria** los grupos podrán realizar CUU o epics, listados más complejos de los solicitados u otros requisitos como notificaciones, logs, etc; adicionales para completar la funcionalidad del sistema propuesto.
+# URLs del Ecosistema
+FRONTEND_URL=http://localhost:5173
+BACKEND_URL=http://localhost:3000
 
-Esto será considerado en la nota final en función de la complejidad y esfuerzo relativos a lo ya realizado.
+# Integraciones Externas
+OPENROUTER_API_KEY=tu_api_key_ai
+RECAPTCHA_SECRET_KEY=tu_recaptcha_secret
+STRIPE_SECRET_KEY=tu_stripe_secret
+STRIPE_WEBHOOK_SECRET=tu_stripe_webhook_secret
+GOOGLE_CLIENT_ID=tu_google_client_id
 
+# Servicio de Email
+EMAIL_USER=ticketapp15@gmail.com
+EMAIL_PASS=""
+</code></pre>
 
-### 3.3 Entregas
-#### Propuesta del enunciado
-En la entrega se debe entregar a los profesores la [plantilla de propuesta](./proposal.md) actualizada con las condiciones de Regularidad y de Aprobación. Los profesores analizarán la propuesta y de ser necesario sugerirán ajustes hasta que esté correcta y sea aceptada.
+<h3>4️⃣ Configuración del Frontend</h3>
+<p>Crea un archivo <code>.env</code> en la raíz de la carpeta <strong>FrontEnd-Venta-de-Entradas</strong>:</p>
 
-#### Regularidad
-En la entrega se debe entregar:
-* El README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
-* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front mediante el form publicado para cada año.
+<pre><code># Configuración Base
+VITE_API_BASE=http://localhost:3000/api
+VITE_BACKEND_URL=http://localhost:3000
 
-Coordinar una defensa grupal con los profesores.
+# Integraciones
+VITE_GOOGLE_CLIENT_ID=tu_google_client_id
+VITE_RECAPTCHA_SITE_KEY=tu_recaptcha_site_key
+</code></pre>
 
-#### Aprobación Directa o en Examen
-En la entrega se debe enviar:
-* Video explicando el funcionamiento del sistema
-* Documentación de la API de backend (según la tecnología y standard utilizados).
-* Evidencia del resultado de la ejecución de los tests automáticos.
-* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front.
-* Incluir en el README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
-* Links de Deploy
-* Credenciales para utilizar la aplicación deployada
-* Contacto para coordinar la defensa
+<p><strong>Ejecutar migraciones y seeds (datos iniciales):</strong></p>
+<pre><code>cd BackEnd-Venta-de-Entradas
+npm install
+npx prisma migrate reset
+</code></pre>
 
-El envío se debe realizar por el form https://kutt.it/DSWEntregaSistemaFinal y coordinar con el docente una defensa grupal con los profesores.
+<h3>4️⃣ Ejecución</h3>
 
-Para la Aprobación Directa la defensa debe pactarse con los docentes dentro de los plazos indicados a continuación.
-Para la Aprobación en Examen la defensa debe pactarse con los docentes y realizarse antes de la fecha de la mesa de examen.
+<strong>Terminal 1 - Backend:</strong>
+<pre><code>cd BackEnd-Venta-de-Entradas
+npm run dev
+</code></pre>
 
-#### Fechas de entrega
-**Propuesta**: Durante Abril
+<strong>Terminal 2 - Frontend:</strong>
+<pre><code>cd FrontEnd-Venta-de-Entradas
+npm install
+npm run dev
+</code></pre>
 
-**Muestra de avance**: Inicio del segundo cuatrimestre
+<hr/>
 
-**Primer Entrega de Regularidad/AD**: 17/10/2025
+<h2>🔑 Credenciales de Acceso (Demo)</h2>
 
-**Primer Recuperatorio/Globalizador de Regularidad/AD**: 31/10/2025
+<table>
+  <thead>
+    <tr>
+      <th>Rol</th>
+      <th>Email</th>
+      <th>Contraseña</th>
+      <th>Permisos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Usuario</strong></td>
+      <td><code>gian@hotmail.com</code></td>
+      <td><code>gian</code></td>
+      <td>Comprar entradas, ver historial, chat IA.</td>
+    </tr>
+    <tr>
+      <td><strong>Organizador</strong></td>
+      <td><code>sbrolla@gmail.com</code></td>
+      <td><code>peppi</code></td>
+      <td>Crear eventos, gestionar ventas.</td>
+    </tr>
+    <tr>
+      <td><strong>Administrador</strong></td>
+      <td><code>peppi@gmail.com</code></td>
+      <td><code>peppi</code></td>
+      <td>Aprobar eventos, destacar eventos, gestión global.</td>
+    </tr>
+  </tbody>
+</table>
 
-**Ultima instancia Recuperatorio/Globalizador de Regularidad/AD**: 14/11/2025
+<hr/>
 
-### 3.4 Documentación
-La documentación debe presentarse para la instancia de defensa.
+<h2>🧪 Ejecución de Pruebas</h2>
 
-Para conocer el detalle de la documentación referirse a [docs](docs.md).
+<p>Comandos para verificar la integridad del sistema:</p>
 
-## 4. Gestión del proyecto
-**TODO: En revisión**
+<h3>Backend (Jest + Supertest)</h3>
 
-El desarrollo de la app debe realizarse utilizando metodologías ágiles para la gestión del proyecto (Scrum, XP, etc).
+```bash
+# Unitarios
+npm run test:unit
 
-El grupo deberá llevar un registro de lo realizado, el mismo debe incluir como mínimo:
-* Tipo de metodología a utilizar para el seguimiento. ( Scrum, XP, etc.)
-* Minutas de avances o reuniones de coordinación del equipo.
-* Documentación de trackeo como desarrollo de features y bugfix, asignación de tareas, etc.
+# Integración
+npm run test:integration
+```
 
-Es de libre elección del alumno la herramienta a utilizar para el trackeo. Se recomienda el uso de github/gitlab proyects para integrar con el desarrollo de la misma pero en caso de utilizar otra en la documentación deberán incluirse los links a la tool para ello.
+<h3>Frontend (Vitest + Playwright)</h3>
 
+```bash
+# Unitarios (Componentes/Hooks)
+npm run test:unit
 
-## 5. Evaluación
+# End-to-End (Flujos completos)
+npm run test:e2e
+```
 
-Durante la evaluación de cada entrega se considerarán:
-* Requisitos técnicos y funcionales de la etapa.
-* Adhesión a las directrices de UX/UI y buenas prácticas de programación.
-* Uso apropiado de la tecnología: librerías, frameworks, patrones, etc.
-* Documentación requerida.
-* Participación de los miembros del grupo.
-* Uso de git para el desarrollo.
-* Defensa oral del trabajo práctico.
-* Gestión y seguimiento del desarrollo de la app.
-* Innovación, investigación y desafíos asumidos.
-* Documentación solicitada.
+<hr/>
 
-## 6. FAQ
+<h2>📺 Demo y Documentación</h2>
 
-En la sección de [FAQ](FAQ.md) podrán encontrar respuestas a las consultas más frecuentes que se van realizando.
+<p align="center">
+  <a href="https://youtu.be/UICpO64qw9c" target="_blank">
+    <img src="https://img.shields.io/badge/🎥%20Ver%20Video%20Demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Video Demo"/>
+  </a>
+  <a href="https://github.com/valenpeppi/tp/blob/main/docs.md" target="_blank">
+    <img src="https://img.shields.io/badge/📄%20Documentación%20Técnica-Leer-blue?style=for-the-badge&logo=markdown&logoColor=white" alt="Docs"/>
+  </a>
+</p>
+
+<hr/>
+
+<h2>📞 Contacto</h2>
+
+| Nombre | Email | GitHub |
+| :--- | :--- | :--- |
+| **Gianlucas Zabaleta** | gianzabaleta6@hotmail.com | [@gianzaba](https://github.com/gianzaba) |
+| **Valentín Peppino** | peppinovalentin@gmail.com | [@valenpeppi](https://github.com/valenpeppi) |
+| **Agustín Santinelli** | agustinsantinelli@gmail.com | [@agussantinelli](https://github.com/agussantinelli) |
+| **Martín Ratti** | martinratti10@gmail.com | [@martin-ratti](https://github.com/martin-ratti) |
+
+<hr/>
+<h2 align="left">⚖️ Licencia y Propiedad Intelectual</h2>
+
+<p align="left">
+  Este proyecto es <b>propiedad intelectual privada</b> de Agustín Santinelli, Martin Ratti, Valentin Peppino y Gianlucas Zabaleta. No se otorga ninguna licencia de uso abierto. Puedes consultar los términos detallados en el archivo 
+  <a href="LICENSE"><code>LICENSE</code></a> incluido en este repositorio.
+</p>
+
+<p align="left">
+  <i>
+    ⚠️ <b>Restricción Firme:</b> Queda terminantemente prohibida la copia, reproducción, distribución o modificación de este código sin autorización expresa del autor. Este repositorio se publica exclusivamente como exhibición de portafolio profesional.
+  </i>
+</p>
+<hr />
+
+<h2 align="left">🚫 Copyright Total</h2>
+
+<p align="left">
+  Este proyecto es propiedad intelectual exclusiva de <b>Agustín Santinelli, Martin Ratti, Valentin Peppino y Gianlucas Zabaleta</b>. No se aceptan contribuciones externas o forks para su uso público sin previo acuerdo por escrito.
+</p>
+
+<p align="left">
+  Si tienes sugerencias directas o deseas explorar colaboraciones comerciales, por favor contacta a: 
+  <a href="mailto:agustinsantinelli@gmail.com">agustinsantinelli@gmail.com</a>.
+</p>
