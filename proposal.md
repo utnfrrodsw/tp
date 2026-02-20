@@ -21,8 +21,7 @@ Experiencia de Usuario: Incluye registro de perfiles, historial de compras y gen
 Visualizacion de albumes de fotos de los eventos pasados.
 Tecnológicamente, es una aplicación full-stack construida con Angular y Tailwindcss en el frontend y Node.js/Express con MySQL en el backend.
 
-### Modelo![BohemiaPageDER](https://github.com/user-attachments/assets/9e5c26c1-59d9-47f8-b360-f31b5da2419f)
-
+### Modelo
 <img width="1509" height="739" alt="bohemia_DER drawio" src="https://github.com/user-attachments/assets/c3cb4745-11f7-4b2a-94f6-0e8877a0884c" />
 
 
