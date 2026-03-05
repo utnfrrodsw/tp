@@ -20,7 +20,7 @@ Funciones principales:
 * Organización de tareas: Las tareas se pueden organizar en diferentes tableros, listas o categorías, según el flujo de trabajo del proyecto.
 * Seguimiento del progreso: Permite realizar un seguimiento del progreso de las tareas, incluyendo su estado actual, avance y tiempo restante.
 * Colaboración: Facilita la colaboración entre equipos y usuarios, permitiendo la comunicación y el intercambio de información sobre las tareas.
-* Informes y análisis: Ofrece informes y análisis para ayudar a los equipos a mejorar su rendimiento.*
+* Informes y análisis: Ofrece informes y análisis para ayudar a los equipos a mejorar su rendimiento.
 
 ### Modelo
 Desde Draw.io con las diferentes versiones --> https://drive.google.com/file/d/1Miob85r-dn_M9zWg0FZaVY0_oawiB9GY/view?usp=drive_link
@@ -47,16 +47,12 @@ erDiagram
 		string projectDescription  ""  
 	}
 
-	USER_PROJECT {
-		number idUser FK ""  
-		number idProject FK ""  
-	}
-
 	SPRINT {
-		number sprintId PK ""  
-		date sprintStartDate  ""  
-		date sprintEndDate  ""  
-		string sprintDescription  ""  
+		number idSprint PK ""  
+		number nroSprint
+		date startDate  ""  
+		date endDate  ""  
+		string description  ""  
 		int idProject FK ""  
 	}
 
@@ -74,9 +70,9 @@ erDiagram
 	}
 
 	COMMENT {
-		number commentId PK ""  
-		date commentCreateDate  ""  
-		string commentDescription  ""  
+		number idComment PK ""  
+		date createDate  ""  
+		string description  ""  
 		int idIssue FK ""  
 		int idUser FK ""  
 	}
@@ -86,8 +82,6 @@ erDiagram
 		string typeIssueDescription  ""  
 	}
 
-	USERS||--o{USER_PROJECT:"participates"
-	PROJECT||--o{USER_PROJECT:"includes"
 	PROJECT||--|{SPRINT:"has"
 	PROJECT||--|{ISSUE:"contains"
 	SPRINT||--o{ISSUE:"includes"
@@ -124,7 +118,6 @@ Adicionales para Aprobación
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1.  <br>2. |
-|CUU/Epic|1. <br>2. |
-|Otros|1. |
+|Listados |1. Listado de incidencias filtrado por usuario asignado mostrando detalles como título, prioridad, estado y fecha creación  <br>2. Listado de tareas de un Sprints de un determinado proyecto.|
+|CUU/Epic|1. Dashboard de progreso de un Sprint: visualiza el total de incidencias del Sprint, distribuidas por estado y prioridad <br>2. Mover una incidencia entre estados del Sprint, actualizando su estado automáticamente según el destino |
 
