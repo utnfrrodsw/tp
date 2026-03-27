@@ -2,51 +2,44 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 46155 - Avila, Marisol
+* 47868 - Silva, Alejo Lautaro
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [Frontend App](https://github.com/alejosilvalau/olivenders-frontend)
+* [Backend App](https://github.com/alejosilvalau/olivenders-backend)
+
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+*Olivenders es una plataforma web donde los magos pueden comprar varitas mágicas de manera fácil y segura. Además, les permite reseñar sus compras para ayudar a otros magos con la elección de su varita. Ya sea desde la versión de escritorio o a través del portal móvil, Olivenders te ayuda a encontrar la varita perfecta, sin importar en qué rincón del mundo mágico te encuentres.*
+
 
 ### Modelo
-![imagen del modelo]()
+![Diagrama DER](./DER-v6.png)
+Ver diagrama en [Draw.io](https://drive.google.com/file/d/1aHBuIdu2SuQJKwL8StDEmREH56euT88r/view?usp=sharing)
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+**Nota:** la division de las varitas entre *madera* y *núcleo* es dada por la [wiki de Harry Potter](https://harrypotter.fandom.com/es/wiki/Varita)
 
-## Alcance Funcional 
-
+## Alcance Funcional
 ### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD **School**<br>2. CRUD **Core**<br>|
+|CRUD dependiente |1. CRUD **Wizard** {depende de} CRUD **School**|
+|Listado<br>+<br>Detalle | 1. Listado de **Wands** filtrado por **Wood**, **Core**, precio y largo. Muestra imagen, nombre y precio => Detalle muestra nombre, longitud, descripción, **Wood**, **Core**|
+|CUU/Epic|1. Vender una **Wand**|
 
 
-Adicionales para Aprobación
+Adicionales para Aprobación Directa:
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CRUD | 1. CRUD **Wood** <br/> 2. CRUD **Order** <br/> 3. CRUD **Wand** {depende de} CRUD **Wood** y CRUD **Core**|
+|CUU/Epic |1. Reseñar compra |
 
-
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
+Alcance Adicional Voluntario:
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+|Listado<br>+<br>Detalle | 1. Listado de reseñas donde se muestra fecha de compra, comentario de la reseña y usuario que realizó la compra => Detalle muestra nombre, longitud, descripción, **Wood**, **Core**.|
+|CUU/Epic |1. Moderar reseñas con IA (OpenAI - ChatGPT) <br/> 2. Subir imagenes mediante una interfaz drag-and-drop a través de un servicio de Blob Storage (Cloudinary)|
