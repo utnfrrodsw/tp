@@ -1,0 +1,14 @@
+:root {
+  --blanco: #F0F0D8;
+  --negro: #0D0B16;
+  --amarillo: #FABC01;
+  --verde: #70AE6E;
+  --rojo: #D81536;
+  --violeta: #181529;
+  font-family: Outfit, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+body{
+  background-color: var(--negro);
+  color: var(--blanco)
+}
