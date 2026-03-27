@@ -1,0 +1,113 @@
+.anuncio-Content{
+  width: 90%;
+  height: 15rem;
+display: grid;
+  grid-template-columns: 50% 50%;
+  /* Divide la tarjeta en dos columnas */
+  grid-template-rows: auto auto 1fr;
+  /* Ajusta automáticamente la altura de las filas */
+  /* Espaciado entre elementos */
+  grid-auto-flow: row;
+  grid-template-areas:
+    " datos ."
+    " datos  ."
+    " datos  descripcion";
+  padding: 2px;
+  /* Aumenta el espacio interno para pantallas de PC */
+  background-color: #213555;
+  color:white;
+  border-radius: 12px;
+  margin: 0 auto;
+  /* Centra horizontalmente en la pantalla */
+  margin-top: 5vh;
+  /* Centra verticalmente en la mitad de la pantalla */
+}
+
+.datos{
+grid-area:datos;
+margin-left: 2%;  
+text-align: left;
+}
+.descripcion{
+  margin-top: 40px;
+}
+
+.presupuesto-Content{
+  width: 90%; 
+  display: grid;
+    grid-template-columns: 50% 50%;
+    /* Divide la tarjeta en dos columnas */
+    grid-template-rows: auto 1fr;
+    /* Ajusta automáticamente la altura de las filas */
+    /* Espaciado entre elementos */
+    grid-auto-flow: row;
+    grid-template-areas:
+      " campo horario "
+      " campo horario ";
+    padding: 2px;
+    /* Aumenta el espacio interno para pantallas de PC */
+    background-color: #213555;
+    color: aliceblue;
+    border-radius: 12px;
+    margin: 0 auto;
+    /* Centra horizontalmente en la pantalla */
+    margin-top: 1vh;
+    /* Centra verticalmente en la mitad de la pantalla */
+}
+.campos{
+  grid-area: campo;
+  display: grid;
+  grid-template-columns: 50% 50%;
+    /* Divide la tarjeta en dos columnas */
+    grid-template-rows: auto 1fr;
+    /* Ajusta automáticamente la altura de las filas */
+    /* Espaciado entre elementos */
+    grid-auto-flow: row;
+    grid-template-areas:
+      "listaMat listaMat"
+      "textoCampos entradasCampos";
+  margin-left: 2%;
+    text-align: left;
+}
+.textoCampos{
+  grid-area: textoCampos;
+}
+.listaMat{
+  grid-area: listaMat;
+}
+.entradasCampos{
+  grid-area: entradasCampos;
+}
+.horarios{
+  grid-area: horario;
+  margin-left: 2%;
+    text-align: left;
+}
+
+textarea{
+ border-radius: 12px;
+ background-color: #213555;
+ color: aliceblue; 
+}
+
+input{
+border-radius: 12px;
+  background-color: #213555;
+  color: aliceblue;
+}
+
+button{
+  border-radius: 6px;
+  background-color: gray;
+  color: aliceblue;
+}
+
+.scroll-container {
+  max-height: 80vh;
+  /* Ajusta la altura máxima según tus necesidades */
+  overflow-y: auto;
+  padding: 10px;
+  /* Puedes ajustar el espaciado según tus necesidades */
+}
+
+/* Agrega cualquier otro estilo que desees para el scroll-container */

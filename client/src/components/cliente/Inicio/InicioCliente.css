@@ -1,0 +1,302 @@
+/* Estilos generales */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(45deg, #000000, #213555, #4F709C, #213555, #000000);
+  overflow-x: hidden; /* Evita desbordamiento horizontal en pantallas pequeñas */
+}
+
+/* Encabezado */
+.header-home-client {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido en todos los dispositivos */
+  padding: 10px;
+  color: white;
+  text-align: center; /* Centra el texto en todos los dispositivos */
+   
+}
+
+.header-home-client h1 {
+  font-size: 30px;
+  margin: 0;
+}
+
+.header-home-client p {
+  font-size: 18px; /* Ajusta el tamaño de fuente para mejorar la legibilidad */
+}
+
+.header-home-client div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; /* Centra los elementos horizontalmente */
+}
+
+/* Logo */
+.logo2 {
+  width: 100%; /* Haz que el logo sea 100% del ancho del contenedor */
+  max-width: 400px; /* Establece un ancho máximo para el logo */
+}
+
+/* Bloques */
+.blocks {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los bloques fluyan en varias líneas en pantallas pequeñas */
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem 1rem 1rem;
+  margin-bottom: 4rem;
+}
+
+.block {
+  text-align: center;
+  padding: 4%;
+  background-color: #213555;
+  border-radius: 1rem;
+  border: solid 1px #ffffff;
+   
+  transition: transform 0.3s ease-in-out;
+  margin: 10px; /* Agrega un margen entre los bloques */
+  flex: 1; /* Hace que los bloques ocupen el mismo espacio en el contenedor */
+  max-width: 300px; /* Limita el ancho máximo de los bloques */
+}
+
+.block:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.747);
+}
+
+.block h2 {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+/* Enlaces */
+a {
+  color: #dee0f1d8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+/* Menú */
+.menu {
+  position: fixed;
+  margin: 10px;
+  bottom: 90px; /* Ajusta la posición */
+  right: 20px; /* Ajusta la posición */
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  padding: 15px;
+  display: none; /* Oculta el menú por defecto en pantallas grandes */
+  transition: bottom 0.3s ease-in-out;
+}
+
+.menu-option {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.menu-option:hover {
+  background-color: #383838;
+}
+
+/* Paginación */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #4F709C;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #757474;
+}
+
+.pagination span {
+  font-size: 14px;
+  margin: 0 10px;
+}
+
+/*estiloNuevaSolicitud*/
+/* NuevaSolicitud.css */
+/* Estilo para el botón "+" */
+.floating-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 110px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: background-color 0.3s, transform 0.3s; /* Efecto de transición suave */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none; /* Evita la selección de texto en el botón */
+}
+ 
+
+/* Estilo de hover para el botón "+" */
+.floating-button:hover {
+  transform: scale(1.1); /* Escala ligeramente el botón al pasar el cursor */
+}
+
+/* Estilos para el botón "Nueva Solicitud" */
+.modal-alert {
+  position: absolute;
+  bottom: 170px; /* Ajusta la posición vertical según sea necesario */
+  right: 0;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+  z-index: 1; /* Asegura que esté sobre el botón "+" */
+}
+
+/* Estilo de hover para el botón "Nueva Solicitud" */
+.modal-alert:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el modal */
+.modal {
+  margin: none;
+}
+
+/* Fondo oscurecido */
+.Backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo oscurecido */
+  z-index: 999;
+}
+
+/* Título del modal */
+#transition-modal-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.form-group label {
+  color: #000000;
+}
+
+/* Formularios y elementos dentro del modal */
+.form-group {
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 2rem 1rem 1rem;
+}
+
+input[type="text"],
+input[type="file"],
+.select-especialidad {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Botones del modal */
+Button.buttonModal {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+Button:hover {
+  background-color: #0056b3;
+}
+
+/* Botón de Cancelar del modal */
+.Button .cancel {
+  background-color: #007bff;
+  color: black;
+}
+
+.Button.cancel:hover {
+  background-color: #999;
+}
+
+/* Elementos dentro del modal */
+.modal-content {
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centrar elementos en el modal */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.btn-cls{
+  margin: 1rem;
+}
+
+/* Estilos para pantallas de hasta 768px de ancho (tamaño de tabletas y móviles) */
+@media (max-width: 768px) {
+  .header-home-client {
+    padding: 10px;
+  }
+
+  .block{
+    display: block;
+  }
+
+  .floating-button {
+    font-size: 20px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .menu {
+    bottom: 80px;
+  }
+}
+
+
+
+
+
+
