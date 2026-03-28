@@ -1,0 +1,38 @@
+.terms-container {
+    display: flex; 
+    padding: 1.25rem; 
+    flex-direction: column; 
+    gap: 1.25rem; 
+    margin-top: 100px;
+    color: var(--white-light);
+}
+
+.terms-title {
+    font-size: 1.5rem;
+    line-height: 2rem; 
+    font-weight: 700; 
+}
+
+.terms-data {
+    padding: 1.25rem; 
+    background: var(--purple-light);
+    border-radius: 1rem;
+}
+
+.sub-title {
+    padding-top: 1.25rem; 
+    font-size: 1.5rem;
+    line-height: 2rem; 
+    font-weight: 700; 
+}
+
+@media (min-width: 768px) { 
+    .sub-title {
+        font-size: 1.875rem;
+        line-height: 2.25rem; 
+    }
+}
+
+.p-bottom {
+    padding-bottom: 0.5rem; 
+}

@@ -1,0 +1,92 @@
+.edituser{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 7rem 0rem 2rem 0rem;
+}
+
+.formEdit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1.2rem;
+    margin: 0rem 0rem 0rem 2rem;
+}
+
+.formSubmit {
+    background-color: var(--yellow);
+    width: 7.5rem;
+    padding: .5rem;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--black);
+    margin: 0 0 0 2rem;
+}
+
+.formSubmit:hover {
+    background-color: var(--yellow-hover);
+}
+
+.back {
+    background-color: var(--red);
+    width: 6.25rem;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 0 2rem;
+}
+
+.back:hover {
+    background-color: var(--red-hover);
+}
+
+.formInput {
+    width: 35%;
+    padding: .5rem;
+    border-radius: .5rem;
+    color: var(--black);
+}
+
+.formInput:focus {
+    outline: none;
+}
+
+.modified {
+    color: var(--red);
+}
+
+.formButtons {
+    display: flex;
+}
+
+@media (max-width: 62.5rem) {
+    .formButtons  {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    .back {
+        width: 80%;
+        padding: 1rem;
+        margin: 0;
+    }
+    .formSubmit {
+        width: 80%;
+        padding: 1rem;
+        margin: 0;
+    }
+    .formEdit {
+        align-items: center;
+        margin: 0;
+    }
+    .formInput {
+        width: 80%;
+    }
+}

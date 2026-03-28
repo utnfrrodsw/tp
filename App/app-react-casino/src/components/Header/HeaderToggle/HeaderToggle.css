@@ -1,0 +1,24 @@
+.headerToggle{
+    display: flex;
+    align-items: center;
+    object-position: center;
+    padding: .3rem;
+    cursor: pointer;
+}
+
+.icon{
+    rotate: 0deg;
+    transition: rotate .3s ease-in-out;
+
+}
+
+.icon-open{
+    
+    rotate: -90deg;
+    transition: rotate .3s ease-in-out;
+
+    @starting-style{
+        rotate: 0deg
+    }
+
+}

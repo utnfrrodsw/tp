@@ -1,0 +1,48 @@
+.details {
+    margin-top: 7rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .9rem;
+}
+
+.detail-element {
+    font-size: 1.2rem;
+    background-color: var(--purple-light);
+    padding: 1rem;
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 1rem;
+}
+
+.backDetails {
+    background-color: var(--red);
+    width: 90%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.backDetails:hover {
+    background-color: var(--red-hover);
+}
+
+@media (min-width: 1200px) {
+    .detail-element {
+        margin: .5rem;
+        width: 30%;
+        text-align: left;
+    }
+    .backDetails {
+        width: 20%;
+        margin: .5rem;
+        text-align: center;
+    }
+}

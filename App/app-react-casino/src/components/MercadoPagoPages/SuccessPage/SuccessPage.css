@@ -1,0 +1,32 @@
+.error-container {
+    display: flex; 
+    padding: 1.25rem; 
+    flex-direction: column; 
+    gap: 1rem; 
+    align-items: center; 
+    margin: 6.25rem 0 0 0;
+    padding: 0 0 25rem 0;
+}
+
+.error-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem; 
+    font-weight: 700; 
+}
+
+.error-title:hover {
+    color: var(--yellow-hover);
+}
+
+.error-text {
+    line-height: 1.5rem; 
+    text-align: center; 
+}
+
+.error-back {
+    text-decoration: underline; 
+}
+
+.error-back:hover {
+    color: var(--yellow-hover);
+}

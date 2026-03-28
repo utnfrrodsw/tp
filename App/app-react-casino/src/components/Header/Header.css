@@ -1,0 +1,251 @@
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes select {
+    0% {
+        color: var(--white);
+    }
+    50% {
+        color: var(--white-hover);
+    }
+    100%{
+        color: var(--white);
+    }
+}
+
+.spinner{
+    max-height: 4rem;
+}
+
+.spinner:hover {
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.13,.46,.85,.6);
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+}
+
+
+.gold-button {
+    color: #C2752E;
+    padding: 5px 16px 7px 16px;
+    background: linear-gradient(to right, #D8751A, #FFB341 10%, #FFD076 30%, #F3B131 60%, #FFC961 80%, #D8751A 100%) padding-box, 
+    linear-gradient(#FFD976, #D8751A) border-box;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    text-shadow: 0px 1px #814c19;
+}
+
+.nav-item:hover {
+    animation-name: select;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.41,.54,.54,.41);
+    transition: 10ms;
+    transition-timing-function: ease-in-out;
+}
+
+.gold-button:hover {
+    background: linear-gradient(to left, #D8751A, #FFB341 10%, #FFD076 30%, #F3B131 60%, #FFC961 80%, #D8751A 100%) padding-box,
+                linear-gradient(to top, #FFD976, #D8751A) border-box;
+}
+
+.nav{
+    padding: .75rem;
+    backdrop-filter: blur(5px);
+    background-color: var(--purple-transparent);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-open {
+    position: fixed; 
+    right: 0; 
+    z-index: 50; 
+    height: 0.5rem; 
+    top: 88px;
+    width: 15%;
+}
+
+
+.header-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.space-x-10 {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    margin-left: auto; 
+}
+
+.balance {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: auto;
+    border: 2px solid var(--yellow); 
+    background-color: rgba(106, 13, 173, 0.3);
+    border-radius: 5px; 
+    padding: 5px;
+    width: auto;
+    min-width: 120px;
+    height: 44px;
+}
+
+.balance:hover{
+    cursor: pointer;
+}
+
+.balance-img {
+    margin-left: 5px;
+    height: 25px;
+    width: auto;
+}
+
+.header-responsive {
+    height: 100vh;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: inline-block;
+    background-color: rgba(43, 43, 43, 0.3);
+    z-index: 10;
+    transition: backdrop-filter .2s ease-in-out;
+
+    @starting-style{
+        backdrop-filter: blur(0px)
+    }
+}
+
+.spinner-responsive {
+    margin: auto;
+}
+
+.nav-responsive {
+    margin-top: 20px;
+}
+
+.balance-responsive{
+    padding: 20px;
+    margin: 20px 5px 20px 5px
+}
+
+.items-responsive{
+    display: grid;
+    grid-row: 3;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+.items2-responsive{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    gap: .5rem;
+}
+
+.icon-text{
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+
+.nav-item-responsive{
+    background-color: rgba(209, 209, 209, 0.3);
+    color: var(--white);
+    padding: 10px;
+    border-radius: .5rem;
+    gap: .5rem;
+    transition: 100ms ease-in-out
+}
+
+.nav-item-responsive:hover{
+    background-color: rgba(35, 19, 56, 0.3);
+    transition: 100ms ease-in-out;
+}
+
+.header-responsive-hide {
+    display: none;
+}
+
+.mobile-button {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    background-color: #F8F8F8;
+    color: var(--black);
+    border-radius: 3px;
+    transform: scale(3);
+    z-index: 10;
+    transition: 100ms ease-in-out;
+}
+
+.mobile-button:hover{
+    transform: scale(3.2);
+    transition: 100ms ease-in-out;
+}
+
+.mobile-button-hide{
+    transform: translateX(100px);
+    display: block;
+    transition: 100ms ease-in-out;
+
+    @starting-style{
+        transform: translateX(0px);
+        display: none;
+        transition: 100ms ease-in-out;
+    }
+}
+
+.close-button-responsive{
+    position: fixed;
+    right: 5%;
+    color: var(--white);
+    background-color: #e6e6be2f;
+    border-radius: 20px;
+    transform: scale(3);
+    z-index: 10;
+    transition: 100ms ease-in-out;
+}
+
+.gold-button-responsive{
+    padding: 10px;
+    margin: 20px 5px 10px 5px
+}
+
+@media only screen and (max-width: 500px) {
+    .nav{
+    display: none;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .header-responsive{
+        display: none;
+    }
+    .mobile-button{
+        display: none;
+    }
+}
+

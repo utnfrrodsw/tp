@@ -1,0 +1,87 @@
+.gameSideBar {
+    position: fixed;
+    padding: 7.2rem 0.5rem 0.5rem 0.5rem;
+    width: 50%;
+    gap: 1.5rem;
+    height: 100vh;
+    background-color: var(--purple-transparent);
+    left: -49%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition-property: left;
+    transition-duration: .75s;
+    z-index: 10;
+    min-width: 6.25rem;
+}
+
+
+.gameSideBar:hover {
+    left: 0;
+}
+
+.SideBarMobileButton {
+    width: 3.125rem;
+    height: 3.125rem;
+    background-color: var(--purple-transparent);
+    position: fixed;
+    bottom: 0;
+    left: 0rem;
+}
+
+@media (min-width: 600px) {
+    .gameSideBar {
+        width: 30%;
+        left: -29%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .gameSideBar {
+        width: 190px;
+        left: -185px;
+    }
+    .SideBarMobileButton {
+        display: none;
+    }
+}
+
+.dice-sidebar {
+    padding: 1.5rem; 
+    background-position: center; 
+    background-size: cover; 
+    background-size: contain; 
+    height: 10rem;
+    width: 10rem;
+    background: url("./src/assets/images/games-dice.png");
+    background-position: center center;
+    background-size: cover;
+    border-radius: 1rem;
+}
+
+.wheel-sidebar {
+    padding: 1.5rem; 
+    background-position: center; 
+    background-size: cover; 
+    background-size: contain; 
+    height: 10rem;
+    width: 10rem;
+    background: url("./src/assets/images/games-wheel.png");
+    background-position: center center;
+    background-size: cover;
+    border-radius: 1rem;
+}
+
+.slot-sidebar {
+    padding: 1.5rem; 
+    background-position: center; 
+    background-size: cover; 
+    background-size: contain; 
+    height: 10rem;
+    width: 10rem;
+    background: url("./src/assets/images/games-slots.png");
+    background-position: center center;
+    background-size: cover;
+    border-radius: 1rem;
+}
