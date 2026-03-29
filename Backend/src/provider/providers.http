@@ -1,0 +1,43 @@
+### obtener todos los proveedores
+GET http://localhost:3000/api/providers
+
+
+### obtener un proveedor
+GET http://localhost:3000/api/providers/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+
+### crear un nuevo proveedor
+POST http://localhost:3000/api/providers
+Content-Type: application/json
+
+{
+  "businessName": "Traigame Eso",
+  "email": "testcrud@example.com",
+  "phoneNum": "+54 341 11111111",
+  "address": "ejemplo 1234",
+  "cuit": "30-21008765-5"
+}
+
+### modificar un proveedor PUT
+PUT http://localhost:3000/api/providers/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+Content-Type: application/json
+
+{
+  "businessName": "Viejos amigos PUT",
+  "email": "testcrud@example.com",
+  "phoneNum": "+54 341 11111111",
+  "address": "ejemplo 1234",
+  "cuit": "30-21008765-5"
+}
+
+### modificar un proveedor PATCH
+PATCH http://localhost:3000/api/providers/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+Content-Type: application/json
+
+{
+  "businessName": "Viejos amigos PATCH ",
+  "email": "testcrud@example.com",
+  "phoneNum": "+54 341 11111111"
+}
+
+### borrar un proveedor
+DELETE http://localhost:3000/api/providers/a02b91bc-3769-4221-beb1-d7a3aeba7dad

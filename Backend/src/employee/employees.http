@@ -1,0 +1,43 @@
+### obtener todos los empleados
+GET http://localhost:3000/api/employees
+
+
+### obtener un empleado
+GET http://localhost:3000/api/employees/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+
+### crear un nuevo empleado
+POST http://localhost:3000/api/employees
+Content-Type: application/json
+
+{
+  "name": "Ricardo Tabacman 2",
+  "email": "testcrud@example2.com",
+  "phoneNum": "+54 341 11111111",
+  "address": "ejemplo 1234",
+  "salary": 100
+}
+
+### modificar un empleado PUT
+PUT http://localhost:3000/api/employees/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+Content-Type: application/json
+
+{
+  "name": "Armando Esteban Quito",
+  "email": "testcrud@example.com",
+  "phoneNum": "+54 341 11111111",
+  "address": "ejemplo 123",
+  "salary": 100000
+}
+
+### modificar un empleado PATCH
+PATCH http://localhost:3000/api/employees/a02b91bc-3769-4221-beb1-d7a3aeba7dad
+Content-Type: application/json
+
+{
+  "name": "Armando Esteban Quito PATCH",
+  "email": "testcrud@example.com",
+  "phoneNum": "+54 341 11111111"
+}
+
+### borrar un empleado
+DELETE http://localhost:3000/api/employees/a02b91bc-3769-4221-beb1-d7a3aeba7dad
