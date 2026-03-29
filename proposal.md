@@ -2,51 +2,145 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 44987 - Cabanellas, Ignacio
+* 45091 - Cordoba, Lucas
+* 45090 - Nicola, Francisco
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [fullstack app] (https://github.com/IgnacioCabanellas/trading-platform)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+El sistema propuesto consiste en una plataforma web destinada al manejo de operaciones de compra y venta de activos financieros, simulando el funcionamiento de un order book. El usuario final podrá colocar órdenes de compraventa y ver el historial de sus operaciones a traves de los distintos activos que se ofrecen.
 
 ### Modelo
-![imagen del modelo]()
+```mermaid
+erDiagram
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+  user {
+    UUID id PK
+    string email
+    string password
+    Role role
+    UUID limit_id FK
+    boolean enabled
+    Date created_at
+    Date updated_at
+  }
+
+  order {
+    UUID id PK
+    UUID user_id FK
+    OrderType type
+    UUID trading_pair_id FK
+    float quote_price
+    float base_quantity
+    float base_available
+    OrderStatus status
+    boolean enabled
+    UUID created_by FK
+    Date created_at
+    Date updated_at
+  }
+
+  order_match {
+    UUID buy_order FK
+    UUID sell_order FK
+    float base_amount
+    Date created_at
+  }
+
+  movement {
+    UUID id PK
+    float amount
+    UUID wallet_id FK
+    Date created_at
+  }
+
+  asset {
+    UUID id PK
+    string symbol
+    string name
+    string description
+    boolean enabled
+    UUID created_by FK
+    Date created_at
+    Date updated_at
+  }
+
+  traiding_pair {
+    UUID id PK
+    UUID base_asset_id FK
+    UUID quote_asset_id FK
+    UUID created_by FK
+    boolean enabled
+    Date created_at
+    Date updated_at
+  }
+
+  wallet {
+    UUID id PK
+    UUID user_id FK
+    UUID asset_id FK
+    float amount
+    boolean enabled
+    UUID created_by FK
+    Date created_at
+    Date updated_at
+  }
+
+  limit {
+    UUID id PK
+    string name
+    float max_amount
+    int max_daily_orders
+    boolean enabled
+    UUID created_by FK
+    Date created_at
+    Date updated_at
+  }
+
+  %% Relaciones
+  user ||--o{ order : places
+  user ||--o{ wallet : holds
+  user ||--o{ limit : has
+  order }o--|| traiding_pair : uses
+  traiding_pair }o--|| asset : base_asset
+  traiding_pair }o--|| asset : quote_asset
+  asset }o--|| user : created_by
+  traiding_pair }o--|| user : created_by
+  wallet }o--|| asset : asset
+  wallet }o--|| user : created_by
+  limit }o--|| user : created_by
+  wallet }o--|| movement : has
+  order_match }o--|| order : sell
+  order_match }o--|| order : buy
+  order_match ||--|| movement : generates
+```
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
-Regularidad:
+#### Regularidad
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Activos<br>2. CRUD Límites<br>3.|
+|CRUD dependiente|1. CRUD Usuarios<br>2. CRUD Traiding Pairs<br>|
+|Listado<br>+ detalle|1. Listado de ordenes vigentes de una paridad<br>→ Muestra tipo, precio, cantidad<br>→ Detalla muestra la orden completa y su activo asociado <br>2. Listado de activos<br>→ Filtrable parcial por nombre<br>→ Muestra nombre y símbolo<br>→ Detalla nombre, descripción, fecha de alta|
+|CUU/Epic|1. Ingresar activos a la cuenta <br> 2. Colocar una orden de compra o venta|
 
 
-Adicionales para Aprobación
+#### Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+|CUU/Epic|1. Cancelar ordenes pendientes|
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+|Listados |1. Historial de movimientos del usuario <br> → Ordenado por fecha filtrable por activo <br> → Muestra ingreso y egreso de activos<br>→ Detalla fecha <br> 2. Listado de saldos por usuario <br> → Muestra activo, saldo disponible y bloqueado <br> → Detalle permite ver historial de movimientos|
+|CUU/Epic|1. Generar un reporte donde se detallen las operaciones|
