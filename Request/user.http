@@ -1,0 +1,53 @@
+@TOKEN= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDllM2U3ZGM2YmJmZGJlYzQyNDI0ODciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODgwOTI5ODZ9.X39DAKZOTX_-hquz5ff4uKoV6KyuKon0eX01o9TDT0Y
+@host=localhost:3000
+### Login de usuario
+POST http://{{host}}/api/login
+Content-Type: application/json
+
+{
+    "email":"marianoAdmin@gmail.com",
+    "password": "123456"
+}
+
+### Crear Administrator
+POST http://{{host}}/api/user
+Content-Type: application/json
+
+{
+    "email":"marianoAdmin2@gmail.com",
+    "password": "123456",
+    "telefono": "123456",
+    "direccion": "micasa 123",
+    "role": "admin"
+}
+
+
+### Crear Usuario
+POST http://{{host}}/api/user
+Content-Type: application/json
+
+{
+    "email":"carlos@gmail.com",
+    "password": "123456",
+    "telefono": "123456",
+    "direccion": "micasa 123",
+    "role": "user"
+}
+### GetAll
+GET http://{{host}}/api/users
+Authorization: Bearer {{TOKEN}}
+
+
+
+### UpdateUser 
+PUT http://{{host}}/api/user-info
+Authorization: Bearer {{TOKEN}}
+
+{
+    "email":"marianoAdmin@gmail.com",
+    "telefono": "9999",
+    "direccion": "123 casita"
+}
+
+
+
