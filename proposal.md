@@ -2,7 +2,7 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+Martin Ignacio - 48257. Porta Lautaro - 51400.
 
 ### Repositorios
 * [frontend app](http://hyperlinkToGihubOrGitlab)
@@ -11,12 +11,13 @@
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+FitLab asesorias, es una pagina donde podras obtener asesorias de acuerdo a tu tipo de entrenamiento, incluso podras obtener tu plan Vip donde tendras muchas mejores beneficios.
 
 ### Modelo
 ![imagen del modelo]()
 
 *Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+(https://drive.google.com/file/d/1d_OcCneHl_HQ8M9uyAKu8a06bcg-SZIf/view?usp=drive_link)
 
 ## Alcance Funcional 
 
@@ -32,6 +33,10 @@ Regularidad:
 |Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
+|CRUD simple|1. CRUD ejercio<br>2. CRUD musculo.
+|CRUD dependiente|1. CRUD rutina {depende de cliente} 2. CRUD serie {depende de rutina y ejercico}|
+|Listado<br>+<br>detalle| 1. Listado de rutinas filtrado por tipo, y frecuencia => detalle con precio, nombre y tipo. Listado de ejercico filtrado por tipo musculo=> detalle muestra datos completos|
+|CUU/Epic|1. adquirir una rutina<br>2. dar de baja usuario.
 
 Adicionales para Aprobación
 |Req|Detalle|
@@ -39,7 +44,11 @@ Adicionales para Aprobación
 |CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
 |CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
 
-
+Adicionales para Aprobación
+|Req|Detalle|
+|:-|:-|
+|CRUD |1. CRUD cliente<br>2. CRUD rutina<br>3. CRUD ejercico<br>4. CRUD serie<br>5. CRUD seguimiento<br>6. CRUD musculo.
+|CUU/Epic|1. adquirir una rutina<br>2. cargar seguimiento<br>3. dar de baja usuario|
 ### Alcance Adicional Voluntario
 
 *Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
@@ -50,3 +59,8 @@ Adicionales para Aprobación
 |CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
 |Otros|1. Envío de recordatorio de reserva por email|
 
+|Req|Detalle|
+|:-|:-|
+|Listados |1. rutina del dia filtrada por tipo, muestra ejercicios y series <br>2. Rutinas filtradas por numero de clientes muestra rutinas mas populares por tipo y precio.|
+ | 1. Enviar confirmación de pedido por email<br>2. Recomendaciones según otros clientes.
+|Otros|1. Envío de recordatorio de dia de entrenamiento|
