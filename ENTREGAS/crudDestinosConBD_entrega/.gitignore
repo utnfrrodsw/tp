@@ -1,0 +1,11 @@
+#para excluir las dependencias:
+node_modules/   
+#el env es para que no se vea mi contra y usu de la bd, lo excluyo tmb:
+.env          
+#estos los agrego x si a caso:
+#Archivos de log
+*.log
+npm-debug.log*
+.DS_Store
+#Ignorar sistema operativo
+Thumbs.db
