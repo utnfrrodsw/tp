@@ -1,52 +1,56 @@
 # Propuesta TP DSW
 
 ## Grupo
+
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+- 45198 - Romo, Matías
+- Heidel, Alan
+- 49953 - Fracassi, Santiago
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+
+- [frontend app](https://github.com/matiusuario/utnfrrodsw-frontend)
+- [backend app](https://github.com/matiusuario/utnfrrodsw-backend)
 
 ## Tema
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Se trata del sistema para gestionar los pedidos en un bar o restaurante. Los clientes al sentarse en una mesa pueden ingresar y hacer un pedido que será visualizado por un administrador, eventualmente aceptado y posteriormente servido por un mozo. Adicionalmente se permitirá realizar reservas de las mesas por parte de los clientes.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+[![imagen del modelo](mermaid-diagram-2025-04-30-130119.png)](https://mermaid.live/edit#pako:eNqNVE2P2yAQ_SvWHKvY8kfsJL5uValSV1ptt5fKF2omzqgYLIyrdqP89-KPJDabbMsJ3hveY5iBI5SKI-Tg-34hDRmBufeRWKVZzTyOXilYi20hB75ftBNbSE4aS0NKel-eC-nZMfDegyCUBr3jCPaD-ATmHklzxaWqf2gLtkaTrK441ozEW9igwL2Sasmc5uZPyImrpfeIOdZ7LA_M5soMXsGD0hP2QjXekH_GFvUvNte_K_RZUknKlTuzn0i-6_SkFe9K46YyoU4yHNtSU2Pt5Ntba2yZSH2TZJjuz7MXipkbjo_YLhIrmTRfSVjOrVpX97EOKrqK6Xcq80KNup3UnPnfxJYnV68LyXttxRoUYmgFlyHeazjmF6dxcu7rAsIgiArwfN_OP9jJ2GBu1CJkapx_KfX3OsacO23Eh4BoETCUa8YO220SIzu9A4c_3_IUc66G4zGvxz2161lgBZUmDvmeiRZXUKO2r9euYahIAeaAtsMht1PO9M8CCnmymxomvytVQ250Z7dp1VWHi0jXcPs0pq_mEoKSo35QnTSQR2k8aEB-hN-Qx9s0yMIsXm83cbJO19kK_kCeRUGabXdptonDbZhuouy0gtfBNQyyTZhGSRbvdlGSJGG0ApulUfpx_BGHj_H0F_a9hik)
 
-## Alcance Funcional 
+<!-- [![](https://mermaid.ink/img/pako:eNqNVE2P2yAQ_SvWHKvY8kfsJL5uValSV1ptt5fKF2omzqgYLIyrdqP89-KPJDabbMsJ3hveY5iBI5SKI-Tg-34hDRmBufeRWKVZzTyOXilYi20hB75ftBNbSE4aS0NKel-eC-nZMfDegyCUBr3jCPaD-ATmHklzxaWqf2gLtkaTrK441ozEW9igwL2Sasmc5uZPyImrpfeIOdZ7LA_M5soMXsGD0hP2QjXekH_GFvUvNte_K_RZUknKlTuzn0i-6_SkFe9K46YyoU4yHNtSU2Pt5Ntba2yZSH2TZJjuz7MXipkbjo_YLhIrmTRfSVjOrVpX97EOKrqK6Xcq80KNup3UnPnfxJYnV68LyXttxRoUYmgFlyHeazjmF6dxcu7rAsIgiArwfN_OP9jJ2GBu1CJkapx_KfX3OsacO23Eh4BoETCUa8YO220SIzu9A4c_3_IUc66G4zGvxz2161lgBZUmDvmeiRZXUKO2r9euYahIAeaAtsMht1PO9M8CCnmymxomvytVQ250Z7dp1VWHi0jXcPs0pq_mEoKSo35QnTSQR2k8aEB-hN-Qx9s0yMIsXm83cbJO19kK_kCeRUGabXdptonDbZhuouy0gtfBNQyyTZhGSRbvdlGSJGG0ApulUfpx_BGHj_H0F_a9hik?type=png)](https://mermaid.live/edit#pako:eNqNVE2P2yAQ_SvWHKvY8kfsJL5uValSV1ptt5fKF2omzqgYLIyrdqP89-KPJDabbMsJ3hveY5iBI5SKI-Tg-34hDRmBufeRWKVZzTyOXilYi20hB75ftBNbSE4aS0NKel-eC-nZMfDegyCUBr3jCPaD-ATmHklzxaWqf2gLtkaTrK441ozEW9igwL2Sasmc5uZPyImrpfeIOdZ7LA_M5soMXsGD0hP2QjXekH_GFvUvNte_K_RZUknKlTuzn0i-6_SkFe9K46YyoU4yHNtSU2Pt5Ntba2yZSH2TZJjuz7MXipkbjo_YLhIrmTRfSVjOrVpX97EOKrqK6Xcq80KNup3UnPnfxJYnV68LyXttxRoUYmgFlyHeazjmF6dxcu7rAsIgiArwfN_OP9jJ2GBu1CJkapx_KfX3OsacO23Eh4BoETCUa8YO220SIzu9A4c_3_IUc66G4zGvxz2161lgBZUmDvmeiRZXUKO2r9euYahIAeaAtsMht1PO9M8CCnmymxomvytVQ250Z7dp1VWHi0jXcPs0pq_mEoKSo35QnTSQR2k8aEB-hN-Qx9s0yMIsXm83cbJO19kK_kCeRUGabXdptonDbZhuouy0gtfBNQyyTZhGSRbvdlGSJGG0ApulUfpx_BGHj_H0F_a9hik) -->
+
+<!-- [![link de la imagen del modelo](https://mermaid.ink/img/pako:eNp9UkFugzAQ_Iq1xwoiHCAQX9NjI1VRT5UvFt4kSGBHxlRtIv5egyFFEY1P652Z9Yy1Nyi0RGAQhiFXtrQVMvJaipMRtSASSVGJBhuuBry_NCPKlSwNFrbUirwduCLuDDjZVSUqi-Tmm90ce0dZSr0IHbBB8yWWZUbLtrDLwj02y6qP8qKfK_V1Dvhiss-BciBh6IoXV3jnTyljAs-Z4nho4PTk3qwnDLZnaF_0hjw6ftQDPqUZOVO2hzfmuf-b9ucFAjiZUgI7iqrBAGo0tejvMPwMB3vGGjkwV0o8irayHLjqnO4i1KfWNTBrWqc0uj2d73PaixQWx225dw0qiWanW2WBZckwA9gNvoHR9Xa1TlK6jZOcJkkaB_DjuildUZpkURTTLM7XeRfAdXg0WmWpa21puqFxnkbZJgCX02qz9zs9rHb3C2pu3Zs?type=png)](https://mermaid.live/edit#pako:eNp9UkFugzAQ_Iq1xwoiHCAQX9NjI1VRT5UvFt4kSGBHxlRtIv5egyFFEY1P652Z9Yy1Nyi0RGAQhiFXtrQVMvJaipMRtSASSVGJBhuuBry_NCPKlSwNFrbUirwduCLuDDjZVSUqi-Tmm90ce0dZSr0IHbBB8yWWZUbLtrDLwj02y6qP8qKfK_V1Dvhiss-BciBh6IoXV3jnTyljAs-Z4nho4PTk3qwnDLZnaF_0hjw6ftQDPqUZOVO2hzfmuf-b9ucFAjiZUgI7iqrBAGo0tejvMPwMB3vGGjkwV0o8irayHLjqnO4i1KfWNTBrWqc0uj2d73PaixQWx225dw0qiWanW2WBZckwA9gNvoHR9Xa1TlK6jZOcJkkaB_DjuildUZpkURTTLM7XeRfAdXg0WmWpa21puqFxnkbZJgCX02qz9zs9rHb3C2pu3Zs) -->
+
+## Alcance Funcional
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
+| Req                     | Detalle                                                                                                                                                                                                                                                                              |
+| :---------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CRUD simple             | 1. CRUD Cliente<br>2. CRUD Mesa<br>3. CRUD Mozo                                                                                                                                                                                                                                      |
+| CRUD dependiente        | 1. CRUD Pedido {depende de} CRUD Cliente<br>2. CRUD Reserva {depende de} CRUD Mesa y Cliente                                                                                                                                                                                         |
+| Listado<br>+<br>detalle | 1. Listado de mesas filtrado por estado, muestra nro de sillas y estado de ocupación => detalle CRUD Mesa<br> 2. Listado de pedidos filtrado por mesa y tipo de producto, muestra estado, nombre y tipo de producto => detalle muestra datos completos de los productos y de la mesa |
+| CUU/Epic                | 1. Reservar una mesa del bar<br>2. Realizar un pedido                                                                                                                                                                                                                                |
 
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+Adicionales para Aprobación:
 
+| Req      | Detalle                                                                                                                                                       |
+| :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| CRUD     | 1. CRUD Cliente<br>2. CRUD Mesa<br>3. CRUD Mozo<br>4. CRUD Tipo Producto <br>5. CRUD Producto {depende de} CRUD Pedido                                        |
+| CUU/Epic | 1. Reservar una mesa del bar<br>2. Realizar un pedido<br>3. Realizar el pago de uno o más pedidos<br>4. Cancelar reserva (compensa CRUD dependiente faltante) |
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+| Req      | Detalle                                                                                                                                                                                                    |
+| :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Listados | 1. Pedidos filtrados por Tipo Producto y Cliente, muestra el estado y el nombre de los productos y sus tipos<br>2. Reservas filtradas por fecha muestra datos de la mesa, la fecha y el nombre del cliente |
+| CUU/Epic | 1. Solicitar mozo                                                                                                                                                                                          |
+| Otros    | 1. Envío de recordatorio de reserva por email                                                                                                                                                              |
