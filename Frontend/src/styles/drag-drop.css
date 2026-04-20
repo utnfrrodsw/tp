@@ -1,0 +1,195 @@
+/* Estilos para drag & drop - Preparado para @dnd-kit */
+
+/* Estilos base para items draggables */
+.draggable-item {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.draggable-item:active {
+  cursor: grabbing !important;
+}
+
+/* Estado durante drag */
+.dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+/* Estado de hover sobre drop zone */
+.drag-over {
+  border: 2px dashed #8b5cf6;
+  background-color: rgba(139, 92, 246, 0.05);
+}
+
+/* Indicador visual de posición de drop */
+.drop-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  border-radius: 2px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scaleY(1.5);
+  }
+}
+
+/* Handle de drag */
+.drag-handle {
+  cursor: grab;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.drag-handle:hover {
+  opacity: 1;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Animación suave para reordenamiento */
+.reordering {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Grid con drag & drop */
+.draggable-grid {
+  display: grid;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Lista con drag & drop */
+.draggable-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Placeholder durante drag en grid */
+.drag-placeholder {
+  background: linear-gradient(135deg, #f0f0f0 25%, transparent 25%),
+              linear-gradient(225deg, #f0f0f0 25%, transparent 25%),
+              linear-gradient(315deg, #f0f0f0 25%, transparent 25%),
+              linear-gradient(45deg, #f0f0f0 25%, #e0e0e0 25%);
+  background-size: 20px 20px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 1rem;
+  animation: placeholder-pulse 2s infinite;
+}
+
+@keyframes placeholder-pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Sombra animada durante drag */
+.drag-shadow {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 4px rgba(139, 92, 246, 0.2);
+  animation: shadow-pulse 1.5s infinite;
+}
+
+@keyframes shadow-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04),
+      0 0 0 4px rgba(139, 92, 246, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 25px 35px -5px rgba(0, 0, 0, 0.15),
+      0 15px 15px -5px rgba(0, 0, 0, 0.06),
+      0 0 0 6px rgba(139, 92, 246, 0.3);
+  }
+}
+
+/* Transición suave al soltar */
+.drop-animation {
+  animation: drop-bounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes drop-bounce {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Efecto de éxito al reordenar */
+.reorder-success {
+  animation: success-flash 0.6s ease-out;
+}
+
+@keyframes success-flash {
+  0% {
+    background-color: rgba(34, 197, 94, 0);
+  }
+  50% {
+    background-color: rgba(34, 197, 94, 0.2);
+  }
+  100% {
+    background-color: rgba(34, 197, 94, 0);
+  }
+}
+
+/* Deshabilitado para elementos no draggables */
+.not-draggable {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Responsive - reducir efectos en mobile para performance */
+@media (max-width: 768px) {
+  .dragging {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+  
+  .drag-shadow {
+    animation: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Modo oscuro (opcional para futuro) */
+@media (prefers-color-scheme: dark) {
+  .drag-over {
+    border-color: #a78bfa;
+    background-color: rgba(167, 139, 250, 0.1);
+  }
+  
+  .drag-placeholder {
+    background: linear-gradient(135deg, #2d2d2d 25%, transparent 25%),
+                linear-gradient(225deg, #2d2d2d 25%, transparent 25%),
+                linear-gradient(315deg, #2d2d2d 25%, transparent 25%),
+                linear-gradient(45deg, #2d2d2d 25%, #1d1d1d 25%);
+    border-color: #4b5563;
+  }
+}

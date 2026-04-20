@@ -1,0 +1,40 @@
+# Node
+node_modules/
+pnpm-lock.yaml
+
+# Compilación de TypeScript
+dist/
+*.js
+*.js.map
+*.d.ts
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Entorno
+.env
+.env.local
+
+# IDEs / Sistemas Operativos
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Backend/empty-favorites.ts
+
+# Coverage reports
+coverage/
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Vercel
+.vercel/
+
+# Misc
+*.tsbuildinfo
