@@ -14,10 +14,10 @@
 
 ## Tema
 ### Descripción
-El proyecto consiste en desarrollar una tienda online especializada en la venta de camisetas de fútbol, tanto retro como actuales, de distintos clubes y selecciones. El sistema permitirá visualizar el catálogo, filtrar camisetas por club, país, época, o tipo (retro/actual), agregar productos al carrito, realizar compras y gestionar usuarios administradores para la carga y edición de productos.
+El proyecto consiste en desarrollar un sistema web de gestión de stock para una tienda gastronomica con 3 sucursales. Permite a los administradores registrar productos e ingredientes, cargar ventas, ingresos de mercadería y elaboraciones internas. Los empleados pueden consultar el stock disponible en tiempo real desde cualquier dispositivo y registrar ventas y elaboraciones internas. El sistema centraliza la información de las tres sucursales, permitiendo al dueño tener visibilidad global del negocio desde cualquier lugar.
 
 ### Modelo
-[![Modelo-Dominio-Tp-DSW.png](https://i.postimg.cc/7L0Lq6mt/Modelo-Dominio-Tp-DSW.png)](https://postimg.cc/Ty2x9R8n)
+[![Modelo-Dominio-Tp-DSW.png](https://i.postimg.cc/4325L0jw/DSW1-drawio-(1).png)](https://postimg.cc/rdWxzfVt)
 
 
 
@@ -28,17 +28,17 @@ El proyecto consiste en desarrollar una tienda online especializada en la venta 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Distribuidor<br>2. CRUD TipoCamiseta<br>3. CRUD Usuario|
-|CRUD dependiente|1. CRUD Camiseta {depende de} CRUD TipoCamiseta<br>2. CRUD Compra {depende de}  Usuario/Camiseta|
-|Listado<br>+<br>detalle| 1.Lista de camisetas filtradas por club, país o época<br> 2.Historial de compra de Usuario
-|CUU/Epic|1. Cargar camisetas<br>2. Realizar compra<br>|
+|CRUD simple|1. CRUD Producto<br>2. CRUD Ingrediente<br>3. CRUD Usuario|
+|CRUD dependiente|1. CRUD SumaProducto {depende de} CRUD Producto<br>2. CRUD Compra {depende de}  Usuario/Producto|
+|Listado<br>+<br>detalle| 1.Lista de Productos filtrado por nombre, muestra stock y precio actuales<br> 2.Historial de ingresos de stock por producto
+|CUU/Epic|1. Registrar una venta(descuenta stock y genera detalle de compra)<br>2. Ingresar mercaderia al stock(crea o agrega producto)<br>|
 
 
 Adicionales para Aprobación:
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Camiseta<br>2. CRUD TipoProducto<br>3. CRUD Usuario<br>4. CRUD Distribuidor<br>5. CRUD Precio<br>6. CRUD Reseña<br>7. CRUD Compra|
-|CUU/Epic|1. Cargar camisetas<br>2.Realizar compra<br>3.Cancelar compra|
+|CRUD |1. CRUD SumaProducto<br>2. CRUD SumaIngrediente<br>3. CRUD Compra<br>4. CRUD Elaboracion<br>5. CRUD PrecioProducto<br>6. CRUD PrecioIngrediente<br>|
+|CUU/Epic|1. Registrar elaboracion interna(Registra elaboracion + Detalla ingrediente, descuenta ingrediente y suma producto|
 
 ### Alcance Adicional Voluntario
 
@@ -46,9 +46,8 @@ Adicionales para Aprobación:
 
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Lista de camisetas filtradas por club, país o época <br>2. Historial de compra de Usuario <br>3. Lista de distribuidores <br>4. Lista de Usuarios filtrado por Nombre y Apellido|
-|CUU/Epic|1. Cargar camisetas <br>2. Realizar compra <br>3. Eliminar Usuario|
-|Otros|1. Eliminar Camiseta <br>2. Agregar reseña de camiseta|
+|Listados |1. Reporte de precios de compra de ingredientes y de productos <br>2. lista de elaboraciones filtrada por fecha y sucursal|
+|CUU/Epic|1. Registrar usuario <br>2. Eliminar Usuario <br>3.Notificacion de stock bajo |
 
 
 
