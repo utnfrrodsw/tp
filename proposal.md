@@ -1,52 +1,51 @@
 # Propuesta TP DSW
 
 ## Grupo
+
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+- 53082 - Tomasino, Alvaro
+- 52058 - Aronson, Melina
+- 53227 - Aguilera, Tomas
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+
+- [frontend app](https://github.com/tomasinoalvaro48/DSWTP_FrontEnd)
+- [backend app](https://github.com/tomasinoalvaro48/DSWTP_BackEnd)
 
 ## Tema
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+#### Resolución de anomalías
+
+En el país, están ocurriendo Anomalías producidas por Fantasmas. Para solucionarlo, se crea un sistema capaz de asignar Avistamientos de Anomalías a Cazadores. Estos Avistamientos son cargados al sistema por un Denunciante, que se registra y genera un Pedido de Resolución, donde detalla la/s Anomalía/s y el lugar del avistamiento. Luego, el Cazador acepta un Pedido de Resolución, según su localidad y su zona y, una vez resuelto, detalla su información.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+<img src="./images/DC-Proposal-MD.jpg" alt="Modelo de Dominio" />
 
-## Alcance Funcional 
+[Link del modelo (Draw.io)](https://drive.google.com/file/d/1HeMkrRZlK2XFopvsYgOCOr_etJiKIp7_/view?usp=sharing)
+
+## Alcance Funcional
 
 ### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Tipo de Anomalía<br>2. CRUD Localidad<br>3. CRUD Denunciante|
+|CRUD dependiente|1. CRUD Zona {depende de} CRUD Localidad<br>2. CRUD Usuario {depende de} CRUD Zona|
+|Listado<br>+<br>detalle| 1. Listado de Pedidos de Resolución filtrado por su dificultad y/o localidad, muestra localidad, zona, dificultad y fecha del pedido => detalle CRUD Pedido de Resolución<br> 2. Listado de Pedidos de Agregación filtrado por su estado y/o dificultad, muestra descripción, dificultad y estado del pedido => detalle CRUD Pedido de Agregación|
+|CUU/Epic|1. Generar Pedido de Resolución<br>2. Generar Pedido de Agregación de Anomalía|
 
-
-Adicionales para Aprobación
+Adicionales para Aprobación:
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
+|CUU/Epic|1. Registrar Inspección|
 
 ### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+|CUU/Epic|1. Tomar Pedido de Resolución<br>2. Aceptar/Rechazar Pedido de Agregación de Anomalía<br>3. Aprobar cuenta de nuevo cazador<br>4. Finalizar Pedido de Resolución|
+|Otros|1. Subida de archivos como evidencia de un pedido de agregación de anomalía|
