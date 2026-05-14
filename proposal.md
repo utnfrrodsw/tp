@@ -8,8 +8,8 @@
 
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](https://github.com/BenjaPonzano/TP-backend-dsw-2025)
+* [frontend app](https://github.com/BenjaPonzano/stock-app-frontend)
+* [backend app](https://github.com/BenjaPonzano/stock-app-backend)
 
 
 ## Tema
