@@ -17,7 +17,7 @@ Sistema de gestión de recursos humanos orientado al control de horas laborales 
 
 ### Modelo
 
-<img width="743" height="691" alt="DER_TP_DSW_2026" src="https://github.com/user-attachments/assets/327247cc-2797-4b14-86be-e25ff800d627" />
+<img width="743" height="691" alt="DER_TP_DSW_2026" src="https://github.com/user-attachments/assets/0b447dba-263e-4ff0-ac8b-315dd6ce34a0" />
 
 ## Alcance Funcional 
 
@@ -27,7 +27,7 @@ Regularidad:
 |Req|Detalle|
 |:-|:-|
 | CRUD simple | 1. CRUD Cliente<br>  2. CRUD Tipo de Proyecto<br>  3. CRUD Categoría de Empleado<br> 4. CRUD Area |
-| CRUD dependiente | 1. CRUD Empleado {depende de} CRUD Categoría de Empleado<br>2. CRUD Proyecto {depende de} CRUD Cliente y CRUD Tipo de Proyecto |
+| CRUD dependiente | 1. CRUD Empleado {depende de} CRUD Categoría de Empleado y CRUD Area<br>2. CRUD Proyecto {depende de} CRUD Cliente y CRUD Tipo de Proyecto |
 | Listado<br>+<br>detalle | 1. Listado de proyectos filtrado por cliente, muestra nombre del proyecto, fechas y horas estimadas => detalle muestra datos completos del proyecto, cliente y empleados asignados<br>  2. Listado de registros de horas filtrado por empleado y rango de fecha, muestra nombre del empleado, proyecto, fecha y horas cargadas => detalle muestra descripción completa de la tarea |
 | CUU/Epic | 1. Registrar horas trabajadas en un proyecto (Empleado)<br>  2. Asignar empleado a un proyecto (Admin RRHH) |
 
