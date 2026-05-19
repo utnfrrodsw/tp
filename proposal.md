@@ -17,7 +17,7 @@ Sistema de gestión de recursos humanos orientado al control de horas laborales 
 
 ### Modelo
 
-<img width="708" height="452" alt="image" src="https://github.com/user-attachments/assets/87efcbb9-ffe4-479f-bc00-4793013ab5b6" />
+<img width="743" height="691" alt="DER_TP_DSW_2026" src="https://github.com/user-attachments/assets/327247cc-2797-4b14-86be-e25ff800d627" />
 
 ## Alcance Funcional 
 
