@@ -36,7 +36,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 | CRUD | 1. CRUD Asignación {depende de} CRUD Empleado y CRUD Proyecto<br>2. CRUD Registro de Horas {depende de} CRUD Empleado y CRUD Proyecto |
-| CUU/Epic | 1. Verificar y aprobar carga horaria de un empleado (Admin RRHH)<br>2. Consultar reporte de horas por proyecto: muestra el total de horas registradas por empleado, el porcentaje de avance respecto a las horas estimadas del proyecto y permite filtrar por rango de fechas (Admin RRHH)<br>3. Registrar horas trabajadas en un proyecto (Empleado)<br>4. Asignar empleado a un proyecto (Admin RRHH) |
+| CUU/Epic | 1. Verificar y aprobar carga horaria de un empleado (Admin RRHH)<br>2. Consultar reporte de horas por proyecto: muestra el total de horas registradas por empleado, el porcentaje de avance respecto a las horas estimadas del proyecto y permite filtrar por rango de fechas (Admin RRHH)<br>3. Rechazar registro de horas con observación (Admin RRHH)<br>4. Cerrar proyecto y generar resumen final de horas (Admin RRHH) |
 
 
 ### Alcance Adicional Voluntario
@@ -44,6 +44,6 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 | Listados | 1. Historial de asignaciones de un empleado, muestra proyectos en los que participó con fechas y horas totales registradas |
-| CUU/Epic | 1. Exportar reporte de horas de un proyecto en formato CSV|
+| CUU/Epic | 1. Exportar reporte de horas de un proyecto en formato CSV<br>2. Dar de baja / desactivar un empleado (Admin RRHH)<br>3. Consultar historial de asignaciones de un empleado (Admin RRHH) |
 | Otros | 1. Notificación por email al empleado cuando es asignado a un proyecto<br>2. Notificación por email al empleado confirmando aprobación de horas laborales<br>3. Notificación por correo para restablecer la contraseña<br>4. Contador de horas diarias disponibles por empleado con alerta visual al superar el límite |
 
