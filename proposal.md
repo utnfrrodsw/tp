@@ -35,7 +35,7 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Huesped<br>2. CRUD inmueble<br>3. CRUD Movimientos<br>4. CRUD Notificacion que depende de CRUD Movimiento<br>5. CRUD Reserva depende de CRUD inmueble y crud huesped|
+|CRUD |1. CRUD Huesped<br>2. CRUD inmueble<br>3. CRUD Movimientos<br>4. CRUD Notificacion que depende de CRUD Movimiento<br>5. CRUD Reserva depende de CRUD inmueble y CRUD huesped|
 |CUU/Epic|1-Generar agenda de check-in y check-out<br>2-Asignar usuarios a distintas reservar (puede darse el caso de un usuario no pueda ir a hacer check.in y deba asignarse otro)<br>3-Notificar al usuario los datos del chech-in check-out|
 
 
