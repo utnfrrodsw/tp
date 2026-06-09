@@ -7,9 +7,8 @@
 * 42786 - Cuesta, Juan Ignacio
 * 41421 - Romero, Emmanuel Nicolas
 
-### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
+### Repositorio
+* [GesThor - GitHub](https://github.com/lucastisocco/GesThor)
 
 ## Tema
 ### Descripción
