@@ -1,52 +1,48 @@
-# Propuesta TP DSW
+# Propuesta TP DSW 2026 - COM 305 - GesThor
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 43187 - Tisocco, Lucas Maximiliano
+* 51315 - Pontelli, Juan Martin
+* 42786 - Cuesta, Juan Ignacio
+* 41421 - Romero, Emmanuel Nicolas
 
-### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+### Repositorio
+* [GesThor - GitHub](https://github.com/lucastisocco/GesThor)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Sistema de gestión de recursos humanos orientado al control de horas laborales en entornos de consultoría y servicios profesionales. El sistema contempla dos perfiles de usuario: administrador (RRHH) y empleado, cada uno con credenciales de acceso propias y funcionalidades diferenciadas según su rol. Los empleados registran sus horas laborales diarias asociadas a proyectos de clientes, mientras que el administrador supervisa y valida dichas cargas horarias, monitorea el estado de avance de los proyectos y gestiona la asignación de personal. El sistema incluye además un contador de horas diarias disponibles por empleado, facilitando el seguimiento de la capacidad operativa del equipo.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+<img width="743" height="691" alt="DER_TP_DSW_2026" src="https://github.com/user-attachments/assets/0b447dba-263e-4ff0-ac8b-315dd6ce34a0" />
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+| CRUD simple | 1. CRUD Cliente<br>  2. CRUD Tipo de Proyecto<br>  3. CRUD Categoría de Empleado<br> 4. CRUD Area |
+| CRUD dependiente | 1. CRUD Empleado {depende de} CRUD Categoría de Empleado y CRUD Area<br>2. CRUD Proyecto {depende de} CRUD Cliente y CRUD Tipo de Proyecto |
+| Listado<br>+<br>detalle | 1. Listado de proyectos filtrado por cliente, muestra nombre del proyecto, fechas y horas estimadas => detalle muestra datos completos del proyecto, cliente y empleados asignados<br>  2. Listado de registros de horas filtrado por empleado y rango de fecha, muestra nombre del empleado, proyecto, fecha y horas cargadas => detalle muestra descripción completa de la tarea |
+| CUU/Epic | 1. Registrar horas trabajadas en un proyecto (Empleado)<br>  2. Asignar empleado a un proyecto (Admin RRHH) |
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+| CRUD | 1. CRUD Asignación {depende de} CRUD Empleado y CRUD Proyecto<br>2. CRUD Registro de Horas {depende de} CRUD Empleado y CRUD Proyecto |
+| CUU/Epic | 1. Verificar y aprobar carga horaria de un empleado (Admin RRHH)<br>2. Consultar reporte de horas por proyecto: muestra el total de horas registradas por empleado, el porcentaje de avance respecto a las horas estimadas del proyecto y permite filtrar por rango de fechas (Admin RRHH)<br>3. Rechazar registro de horas con observación (Admin RRHH)<br>4. Cerrar proyecto y generar resumen final de horas (Admin RRHH) |
 
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+| Listados | 1. Historial de asignaciones de un empleado, muestra proyectos en los que participó con fechas y horas totales registradas |
+| CUU/Epic | 1. Exportar reporte de horas de un proyecto en formato CSV<br>2. Dar de baja / desactivar un empleado (Admin RRHH)<br>3. Consultar historial de asignaciones de un empleado (Admin RRHH) |
+| Otros | 1. Notificación por email al empleado cuando es asignado a un proyecto<br>2. Notificación por email al empleado confirmando aprobación de horas laborales<br>3. Notificación por correo para restablecer la contraseña<br>4. Contador de horas diarias disponibles por empleado con alerta visual al superar el límite |
 
