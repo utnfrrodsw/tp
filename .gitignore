@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Build outputs
+dist/
+*/dist/
+
+# Environment variables
+.env.development
+.env.production
+.env
+*/.env
+
+# Logs
+*.log
+
+#volumenes de los contenedores
+.volumes
+
+server/src/generated/

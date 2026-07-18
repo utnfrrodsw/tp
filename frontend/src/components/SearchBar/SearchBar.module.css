@@ -1,0 +1,216 @@
+/* ─── SearchBar.module.css ───────────────────────────────────────────────── */
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  background: #eaf4fb;
+  border-radius: 16px;
+}
+
+/* ── Search box ── */
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  background: #ffffff;
+  border: 1.5px solid #d6eaf8;
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.searchBox:focus-within {
+  border-color: #5dade2;
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.15);
+}
+
+.searchIcon {
+  color: #7fb3d3;
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #1a2a3a;
+  background: transparent;
+}
+
+.searchInput::placeholder {
+  color: #a9cce3;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #d6eaf8;
+  border-top-color: #5dade2;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.clearBtn {
+  background: none;
+  border: none;
+  color: #a9cce3;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.clearBtn:hover {
+  color: #5dade2;
+}
+
+/* ── Filter button ── */
+.filterWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.filterBtn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  background: #d6eaf8;
+  color: #2980b9;
+  border: 1.5px solid #a9cce3;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.filterBtn:hover {
+  background: #c2d9f0;
+  border-color: #7fb3d3;
+}
+
+.filterBtnActive {
+  background: #2980b9;
+  color: #ffffff;
+  border-color: #2471a3;
+}
+
+.filterBtnActive:hover {
+  background: #2471a3;
+}
+
+.filterBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  color: #2980b9;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.filterBtnActive .filterBadge {
+  background: #ffffff;
+  color: #2980b9;
+}
+
+/* ── Dropdown ── */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 280px;
+  background: #ffffff;
+  border: 1.5px solid #d6eaf8;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(41, 128, 185, 0.12);
+  z-index: 100;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid #eaf4fb;
+}
+
+.dropdownTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a2a3a;
+}
+
+.clearFiltersBtn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: #2980b9;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+}
+
+.clearFiltersBtn:hover {
+  text-decoration: underline;
+}
+
+.dropdownBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.filterField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filterLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #5d8aa8;
+}
+
+.filterSelect {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 13px;
+  border: 1.5px solid #d6eaf8;
+  border-radius: 8px;
+  color: #1a2a3a;
+  background: #f7fbfd;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+}
+
+.filterSelect:focus {
+  border-color: #5dade2;
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.12);
+}

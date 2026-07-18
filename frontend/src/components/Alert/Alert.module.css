@@ -1,0 +1,37 @@
+.alertContainer {
+  display: flex;
+  align-items: center;
+  background-color: #fef2f2; /* Rojo muy suave */
+  border: 1px solid #fecaca; /* Borde rojo pastel */
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: #dc2626; /* Rojo alerta */
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.message {
+  color: #991b1b; /* Rojo oscuro para que sea legible */
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+/* Animación suave para que no aparezca de golpe */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

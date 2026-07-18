@@ -1,52 +1,186 @@
 # Propuesta TP DSW
 
 ## Grupo
+
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+* 53769 - Rego, Matias Miguel Angel.
+* 54822 - Bautista, Isaac Juan.
+* 55425 - Vigistain, Tomas.
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+
+* [fullstack app.](https://github.com/Matias-rego/TP-DS-Isaac-Rego-Vigistain)(monorepo).
 
 ## Tema
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+El negocio consiste en un taller de reparaciones de dispositivos electrónicos que brinda servicios de reparación y mantenimiento de equipos. A partir de esto se propone desarrollar un sistema web de gestión para digitalizar y centralizar las operaciones del taller. El sistema permitirá registrar órdenes de trabajo, controlar el estado de las reparaciones, gestionar clientes y administrar el inventario, con el objetivo de mejorar la organización y el seguimiento del servicio.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+```mermaid
+classDiagram
+  class Cliente {
+    - id_cliente: int PK AI
+    - id_tipo_cliente: int FK
+    - nombre: varchar[100]
+    - dni_cuit: varchar[20] UNIQUE
+    - telefono: varchar[20]
+    - mail: varchar[100]
+    - fecha_registro: DATETIME
+    - activo: boolean
+    + altaCliente()
+    + bajaCliente()
+    + modificacionCliente()
+    + eliminacionCliente()
+  }
 
-## Alcance Funcional 
+  class Tipo_Cliente {
+    - id_tipo_cliente: int PK AI
+    - pteDescuento: DECIMAL[5,2]
+    - cantOrdenesPara: int
+  }
+
+  class Equipo {
+    - id_equipo: int PK AI
+    - id_cliente: int FK
+    - tipo_equipo: ENUM*
+    - observaciones: TEXT
+    + altaEquipo()
+    + modificacionEquipo()
+    + bajaEquipo()
+  }
+
+  class Falla {
+    - id_falla: int PK AI
+    - id_equipo: int FK
+    - id_tipo_falla: int FK
+    - descripcion: VARCHAR[200]
+    - tipo_falla: VARCHAR[100]
+    - estado: ENUM['resuelta','diagnosticada']
+    + cargaFalla()
+  }
+
+  class Tipo_falla {
+    - id_tipo_falla: int PK AI
+    - descripcion: VARCHAR[200]
+    - importe_estimado: DECIMAL[10,2]
+    + altaTipoFalla()
+    + bajaTipoFalla()
+    + modificacionTipoFalla()
+  }
+
+  class Orden {
+    - id_orden: int PK AI
+    - id_equipo: int FK
+    - id_usuario: INT FK NULL
+    - estado: ENUM**
+    - falla_reportada: TEXT
+    - diagnostico_tecnico: TEXT
+    - fecha_ingreso: DATETIME
+    - fecha_estimada: DATE NULL
+    - fecha_entrega: DATETIME
+    - total_cobrado: DECIMAL[10,2]
+    + altaOrden()
+    + modificacionOrden()
+    + bajaOrden()
+    + eliminaOrden()
+    + generaPresupuesto()
+  }
+
+  class Historial_estados {
+    - id_historial: int PK AI
+    - id_orden: int FK
+    - estado_anterior: VARCHAR[30]
+    - estado_nuevo: VARCHAR[30]
+    - id_usuario: int FK
+    - fecha_cambio: DATETIME
+    - comentario: TEXT
+    + altaEstados()
+  }
+
+  class Presupuesto {
+    - id_presupuesto: int PK AI
+    - id_orden: int FK UNIQUE
+    - mano_de_obra: DECIMAL[10,2]
+    - descuento: DECIMAL[10,2]
+    - total_estimado: DECIMAL[10,2]
+    - estado: ENUM***
+    + altaPresupuesto()
+    + modificacionPresupuesto()
+    + bajaPresupuesto()
+  }
+
+  class Pago {
+    - id_pago: int PK AI
+    - id_tipo_pago: int FK
+    - id_presupuesto: int FK
+    - fecha_pago: DATETIME
+    - monto: DECIMAL[10,2]
+  }
+
+  class Tipo_Pago {
+    - id_tipo_pago: int PK AI
+    - pteDescuento: DECIMAL[5,2]
+    - pteRecargo: DECIMAL[5,2]
+    - medioPago: ENUM****
+  }
+
+  class Usuario {
+    - id_usuario: int PK AI
+    - nombre_usuario: VARCHAR[100]
+    - email: VARCHAR[100]
+    - password_hash: VARCHAR[255]
+    - rol: ENUM['admin','tecnico']
+    - activo: BOOLEAN
+    + altaUsuario()
+    + modificacionUsuario()
+    + bajaUsuario()
+  }
+
+  Cliente "1" --> "0:*" Equipo
+  Cliente "1:*" --> "1" Tipo_Cliente
+  Equipo "1" --> "0:*" Falla
+  Falla "0:*" --> "1" Tipo_falla
+  Equipo "1" --> "1:*" Orden
+  Orden "0:*" --> "0:1" Usuario
+  Orden "1" --> "1:*" Historial_estados
+  Orden "1" --> "0:1" Presupuesto
+  Presupuesto "1" --> "0:*" Pago
+  Pago "0:*" --> "1" Tipo_Pago
+
+  note for Equipo "ENUM*: ('celular','computadora','tablet','consola','otro')"
+  note for Orden "ENUM**: ('recibido','diagnostico','presupuestado','aprobado','reparacion','listo','entregado','cancelado')"
+  note for Presupuesto "ENUM***: ('pendiente','aprobado','rechazado')"
+  note for Tipo_Pago "ENUM****: ('DEBITO','MP','EFECTIVO','CREDITO')"
+```
+
+## Alcance Funcional
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
+| Req                         | Detalle                                                                                                                                                                                                                                                                                                                                                                                |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CRUD simple                 | 1\. CRUD Tipo_Falla<br />2. CRUD Tipo_Cliente<br />3. CRUD Tipo_Pago                                                                                                                                                                                                                                                                                                                             |
+| CRUD dependiente            | 1\. CRUD falla {depende de} CRUD Tipo_falla y CRUD Equipo<br />2. CRUD Cliente {depende de} CRUD Tipo_Pago                                                                                                                                                                                                                                                        |
+| Listado<br />+<br />detalle | 1\. Fallas de los equipos ordenadas segun su frecuencia de  ocurrencia => detalle CRUD Fallas<br /> 2. Equipos que se encuentran en un determinado estado posible, muestra estado anterior, fecha de cambio de estado, tecnico a cargo, informacion del equipo correspondiente. => detalle muestra datos completos del cambio de estado, del equipo en cuestion y del tecnico a cargo. |
+| CUU/Epic                    | 1\. Generar orden de trabajo<br />2. Realizar presupuesto de reparacion y realizacion de pago/s                                                                                                                                                                                                                                                                                        |
 
 Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
 
+| Req      | Detalle                                                                                                                                                                                                                                                                                                               |
+|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CRUD     | 1\. CRUD Tipo_Falla<br />2. CRUD Equipo<br />3. CRUD Tipo_Cliente<br />4. CRUD Usuario <br />5. CRUD Cliente<br />6. CRUD Falla {depende de} CRUD Tipo_falla y CRUD Equipo <br />
+| CUU/Epic | 1\. Generar orden de trabajo <br />2. Realizar presupuesto de reparacion y realizacion de pago/s <br />3.  Generar Reportes estadistidos de fallas                                                                                                                                                                    |
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+| Req      | Detalle                                                                                                                                                                                                                 |
+|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Listados | 1\. Clientes registrados ordenados por antiguedad de los mismos  <br />2. Equipos que ya hayan cumplido su fecha estimada de entrega o se encuentren a pocos dias de cumplirla                                          |
+| CUU/Epic | 1\. Consultar estados de una orden <br />2. Cancelación de Orden                                                                                                                                                        |
+| Otros    | 1\. Enviar mail acerca del cambio de estado de una orden a su respectivo cliente <br /> 2. Enviar presupuesto de la orden a traves del mail registrado a cada cliente y esperar la respuesta de confirmacion del mismo. |

@@ -1,0 +1,113 @@
+/* ─── ClientCard.module.css ──────────────────────────────────────────────── */
+
+.card {
+  background: #ffffff;
+  border: 1.5px solid #e8f4fb;
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  cursor: pointer;
+  transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
+  position: relative;
+}
+
+.card:hover {
+  box-shadow: 0 6px 24px rgba(93, 173, 226, 0.14);
+  transform: translateY(-2px);
+  border-color: #a9cce3;
+}
+
+.inactive {
+  opacity: 0.55;
+  filter: grayscale(0.3);
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.nombre {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a2a3a;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.dni {
+  font-size: 0.78rem;
+  color: #e8825a;
+  font-weight: 500;
+}
+
+/* ── Info box ── */
+.infoBox {
+  background: #eaf4fb;
+  border-radius: 10px;
+  padding: 10px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #2471a3;
+  font-weight: 500;
+}
+
+.infoRow svg {
+  color: #5dade2;
+  flex-shrink: 0;
+}
+
+/* ── Tags ── */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #5d8aa8;
+  background: #eaf4fb;
+  border: 1px solid #c2d9f0;
+  border-radius: 999px;
+  padding: 3px 10px;
+  letter-spacing: 0.3px;
+}
+
+.tagCategory {
+  color: #2471a3;
+  background: #d6eaf8;
+  border-color: #a9cce3;
+}

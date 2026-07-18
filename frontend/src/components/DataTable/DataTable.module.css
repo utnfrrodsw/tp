@@ -1,0 +1,152 @@
+/* TableRtl.module.css */
+
+.tableContainer {
+    width: 100%;
+    overflow-x: auto;
+    max-height: 350px;
+    overflow-y: auto;
+    border-radius: 24px;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.95),
+        rgba(221, 221, 221, 0.92),
+        
+    );
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px);
+    /*box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        */
+    padding: 1rem;
+}
+.tableBody {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #f8fafc;
+  font-family: "Geist Variable", sans-serif;
+}
+
+.caption {
+  caption-side: bottom;
+  padding-top: 1rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.header {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.headerRow {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.head {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #616161;
+  font-weight: 700;
+}
+
+.bodyRow {
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bodyRow:hover {
+  background: rgba(59, 130, 246, 0.08);
+  transform: scale(1.002);
+}
+
+.cell {
+    padding: 1rem;
+    font-size: 0.95rem;
+    color: rgb(172, 176, 182);
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.invoice {
+  font-weight: 700;
+  color: #000000;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.method {
+  color: #93c5fd;
+  font-weight: 500;
+}
+
+.amount {
+  text-align: right;
+  font-weight: 700;
+  color: #4e4e4e;
+}
+
+.footer {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.footerRow {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footerCell {
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #616161;
+}
+
+.total {
+  text-align: right;
+  color: #38bdf8;
+  font-size: 1.05rem;
+}
+
+/* Scrollbar */
+
+.tableContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 999px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.7);
+}

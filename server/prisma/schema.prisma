@@ -1,0 +1,179 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url=  env("DATABASE_URL") 
+}
+
+enum EnumRol {
+  admin
+  tecnico
+}
+
+enum EnumEquipmentType {
+  celular
+  computadora
+  tablet
+  consola
+  otro
+}
+
+enum EnumOrderStatus {
+  recibido
+  diagnostico
+  presupuestado
+  aprobado
+  reparacion
+  listo
+  entregado
+  cancelado
+}
+
+enum EnumBudgetStatus {
+  pendiente
+  aprobado
+  rechazado
+}
+
+enum EnumPaymentMethod {
+  DEBITO
+  MP
+  EFECTIVO
+  CREDITO
+}
+enum EnumPaymentType {
+  Descuento
+  Recargo
+}
+
+enum EnumFailureStatus {
+  resuelta
+  diagnosticada
+}
+
+
+
+
+model User {
+  id_user        Int           @id @default(autoincrement())
+  userName       String        @unique
+  email          String        @unique
+  password_hash  String
+  rol            EnumRol
+  status         Boolean       @default(true)
+  urlPicture     String        @default("https://res.cloudinary.com/dcgvogduy/image/upload/v1778239413/taller-mecanico/j4fv1vtqqrhskyw0owms.png")  
+  orders         Order[]
+  statusHistory  Status_History[]
+}
+
+model Client {
+  id_client           Int             @id @default(autoincrement())
+  clientName          String          @unique
+  clientEmail         String          @unique
+  clientPhone         String
+  dniCuit             String          @unique
+  dateOfRegistration  DateTime        @default(now())
+  status              Boolean         @default(true)
+  category_client     Category_Client @relation(fields: [id_category_client], references: [id_category_client])
+  id_category_client  Int
+  equipments          Equipment[]
+}
+
+model Category_Client {
+  id_category_client    Int     @id @default(autoincrement())
+  categoryClientName    String  @unique
+  amountForCategoryUp   Int
+  clients               Client[]
+}
+
+model Failure_Type {
+  id_failure_type    Int     @id @default(autoincrement())
+  failureDescription String  @unique
+  estimatedImport    Float
+  failures           Failure[]
+}
+
+model Failure {
+  id_failure      Int          @id @default(autoincrement())
+  failureType     Failure_Type @relation(fields: [id_failure_type], references: [id_failure_type])
+  id_failure_type Int
+  equipment       Equipment    @relation(fields: [id_equipment], references: [id_equipment])
+  id_equipment    Int
+  description     String
+  dateOfFailure   DateTime     @default(now())
+  status          EnumFailureStatus @default(diagnosticada)
+}
+
+model Equipment {
+  id_equipment    Int               @id @default(autoincrement())
+  equipmentName   String            @unique
+  tipo_equipment  EnumEquipmentType
+  observations    String
+  client          Client            @relation(fields: [id_client], references: [id_client])
+  id_client       Int
+  failures        Failure[]
+  orders          Order[]
+}
+model Order {
+  id_order           Int             @id @default(autoincrement())
+  equipment          Equipment       @relation(fields: [id_equipment], references: [id_equipment])
+  id_equipment       Int
+  user               User?           @relation(fields: [id_user], references: [id_user])
+  id_user            Int?
+  status             EnumOrderStatus @default(recibido)
+  failureReported    String
+  technicianDiagnosis String?
+  dateOfEntry        DateTime        @default(now())
+  estimatedDate      DateTime?
+  deliveryDate       DateTime?
+  totalCharged       Float?
+  statusHistory      Status_History[]
+  budget             Budget?
+}
+model Status_History {
+  id_status_history Int      @id @default(autoincrement())
+  order             Order    @relation(fields: [id_order], references: [id_order])
+  id_order          Int
+  previousStatus    String
+  newStatus         String
+  user              User     @relation(fields: [id_user], references: [id_user])
+  id_user           Int
+  dateOfChange      DateTime @default(now())
+  comment           String?
+}
+model Budget {
+  id_budget       Int              @id @default(autoincrement())
+  order           Order            @relation(fields: [id_order], references: [id_order])
+  id_order        Int              @unique
+  laborCost       Float
+  discount        Float            @default(0)
+  estimatedTotal  Float
+  status          EnumBudgetStatus @default(pendiente)
+  payments        Payment[]
+}
+model Payment_Type {
+  id_payment_type  Int               @id @default(autoincrement())
+  paymentTypeName String            @unique
+  paymentMethod   EnumPaymentMethod 
+  type_of_payment EnumPaymentType  
+  percentaje     Float             @default(0)
+  payments        Payment[]
+}
+
+model Payment {
+  id_payment       Int          @id @default(autoincrement())
+  paymentType      Payment_Type @relation(fields: [id_payment_type], references: [id_payment_type])
+  id_payment_type  Int
+  budget           Budget       @relation(fields: [id_budget], references: [id_budget])
+  id_budget        Int
+  dateOfPayment    DateTime     @default(now())
+  amount           Float
+}

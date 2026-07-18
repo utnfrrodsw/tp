@@ -1,0 +1,232 @@
+
+.containerContent {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
+  background-color: rgba(248, 250, 252, 0.856);
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+
+.cajaTitulo {
+  position: relative;
+  height: 18rem;
+  overflow: hidden;
+  isolation: isolate;
+  flex-shrink: 0;
+}
+
+.imagenTitulo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  opacity: 0.75;
+  filter: brightness(0.9) saturate(0.9);
+}
+
+.tituloDecorativo {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.15) 0%,
+      rgba(0,0,0,0) 40%,
+      rgba(248,250,252,0.719) 85%,
+      rgba(248,250,252,1) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(15,23,42,0.75),
+      rgba(15,23,42,0.25),
+      rgba(248,250,252,1)
+    );
+  z-index: 1;
+}
+
+.tituloDecorativo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(2px);
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.15)
+  );
+}
+
+.tituloContent {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  padding: 2rem;
+}
+
+.titulo {
+  color: white;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -2px;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+
+.descripcion {
+  padding: 1.25rem 1.25rem 0;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+
+.botonVerTabla {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 1.25rem 0;
+  padding: 0.75rem 1.2rem;
+  border: 2px solid #1565C0;
+  border-radius: 14px;
+  background: transparent;
+  color: #1565C0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.botonVerTabla:hover {
+  background: #E3F2FD;
+  transform: translateY(-1px);
+}
+
+.botonVerTabla:active {
+  transform: scale(0.98);
+}
+
+/* En desktop se oculta */
+@media (min-width: 1024px) {
+  .botonVerTabla {
+    display: none;
+  }
+}
+
+
+.tablaBotones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem 1.25rem;
+}
+
+.botonesFilaSecundaria {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.botonesFilaSecundaria > * {
+  flex: 1;
+}
+
+.btnAccion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.btnAccion:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.btnAccion:active {
+  transform: translateY(1px);
+}
+
+.btnGestionar {
+  background: linear-gradient(135deg, #2e7d32 0%, #43a047 50%, #66bb6a 100%);
+  color: #f1f5f9;
+  box-shadow: 0 4px 15px rgba(67,160,71,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.btnGestionar:hover {
+  box-shadow: 0 8px 25px rgba(67,160,71,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.btnEliminar {
+  background: linear-gradient(135deg, #b71c1c 0%, #e53935 50%, #ef5350 100%);
+  color: #f1f5f9;
+  box-shadow: 0 4px 15px rgba(229,57,53,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.btnEliminar:hover {
+  box-shadow: 0 8px 25px rgba(229,57,53,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.btnEditar {
+  background: linear-gradient(135deg, #f57f17 0%, #ffc107 50%, #ffd54f 100%);
+  color: #4e342e;
+  box-shadow: 0 4px 15px rgba(255,193,7,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+.btnEditar:hover {
+  box-shadow: 0 8px 25px rgba(255,193,7,0.55), inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+.tablaDesktop {
+  display: none;
+  padding: 0 1.25rem 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .tablaDesktop {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .containerContent {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .columnaIzquierda {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    flex-shrink: 0;
+    border-right: 1px solid #e5e7eb;
+  }
+  .columnaDerecha {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem;
+    overflow: auto;
+  }
+
+  .titulo {
+    font-size: 3.5rem;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",         // Subimos de 2020 a 2022 para mejor soporte
+    "module": "NodeNext",       // <--- CAMBIÁ ESTO (antes decía CommonJS)
+    "moduleResolution": "NodeNext", // <--- AGREGÁ ESTO
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*", "generated"]
+}

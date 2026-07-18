@@ -1,0 +1,127 @@
+/* Login.module.css */
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  padding: 1rem;
+  font-family: sans-serif;
+}
+
+.card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Esto cumple con el diseño para escritorio */
+}
+
+.title {
+  font-size: 2 rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #1f2937;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.input {
+  padding: 0.5rem 1rem !important;
+  border: 1px solid #191a1b !important;
+  border-radius: 4px !important;
+  outline: none !important;
+  background-color: white !important;
+  color: #1f2937 !important;
+  width: 100% !important;
+  padding: 0.5rem 2.5rem 0.5rem 1rem !important;
+}
+
+.input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.caja_password {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.caja_password input {
+  width: 100%;
+  padding-right: 2.5rem;
+
+}
+
+.caja_password button {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  margin-top: 0.5rem;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #1d4ed8;
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+.footerText {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #64748b; /* Un gris azulado suave */
+  font-size: 0.9rem;
+}
+
+.link {
+  color: #2563eb; /* Azul corporativo */
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-left: 5px;
+}
+
+.link:hover {
+  color: #1d4ed8; /* Un azul un poco más oscuro al pasar el mouse */
+  text-decoration: underline;
+}

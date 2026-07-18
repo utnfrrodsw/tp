@@ -1,0 +1,233 @@
+/* ─── AltaForm.module.css ─────────────────────────────────────────────────── */
+/* Usado por AltaForm, AltaTipoFalla, AltaCliente y cualquier otro Alta.      */
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+.card {
+  background: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: 2rem 2.25rem;
+  width: 100%;
+  max-width: 480px;
+  transition: box-shadow var(--transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-medium);
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1.75rem;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--tf-text);
+  margin: 0 0 0.15rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 0.82rem;
+  color: var(--tf-muted);
+  margin: 0;
+}
+
+/* ── Alerts ── */
+.alertError,
+.alertSuccess {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  animation: slideDown 0.2s ease;
+}
+
+.alertError {
+  background: #fef2f2;
+  color: var(--tf-danger);
+  border: 1px solid #fecaca;
+}
+
+.alertSuccess {
+  background: #f0fdf4;
+  color: var(--tf-success-dark);
+  border: 1px solid #bbf7d0;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Form ── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--tf-text);
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.required {
+  color: var(--tf-danger);
+  font-size: 0.9rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.65rem 0.875rem;
+  border: 1.5px solid var(--tf-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--tf-text);
+  background: var(--tf-bg);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: var(--tf-neutral);
+}
+
+.input:focus {
+  border-color: var(--tf-primary);
+  background: var(--tf-white);
+  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Campo con error */
+.fieldError .input {
+  border-color: var(--tf-danger);
+  background: #fff5f5;
+}
+
+.fieldError .input:focus {
+  border-color: var(--tf-danger);
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+}
+
+.errorMsg {
+  font-size: 0.78rem;
+  color: var(--tf-danger);
+  font-weight: 500;
+  animation: slideDown 0.15s ease;
+}
+
+/* ── Input con prefijo ($, @, etc.) ── */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.prefix {
+  position: absolute;
+  left: 0.875rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--tf-muted);
+  pointer-events: none;
+  user-select: none;
+}
+
+.inputWithPrefix {
+  padding-left: 1.75rem;
+}
+
+/* ── Botón submit ── */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--tf-primary);
+  color: var(--tf-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  margin-top: 0.25rem;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--tf-primary-dark);
+  box-shadow: 0 14px 36px rgba(21, 101, 192, 0.32);
+  transform: translateY(-1px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Spinner ── */
+.spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
