@@ -9,8 +9,7 @@
 
 ### Repositorios
 * [frontend app](https://github.com/ChocobarCM/tp-dsw-frontend.git)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [backend app](https://github.com/ChocobarCM/tp-dsw-backend.git)
 
 ## Tema- Gestión de Casos Criminales-
 
