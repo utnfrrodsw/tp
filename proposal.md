@@ -41,7 +41,7 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |CRUD |1-Tipo de evidencia.<br>2.Estado de caso.<br> 3- Fiscalias.<br> 4- Turnos |
-|CUU/Epic|a definir|
+|CUU/Epic|1. **Gestión de Análisis Forenses:** Un detective solicita un análisis sobre una evidencia vinculada a un caso. Un usuario con rol "Perito" procesa la solicitud, carga los resultados técnicos y cierra el dictamen.<br>2. **Solicitud y Aprobación de Órdenes Judiciales:** El detective redacta una solicitud de allanamiento o arresto justificada por evidencia/peritajes. Un usuario con rol "Juez/Fiscal" la evalúa en su bandeja y la marca como Aprobada o Rechazada.<br>3. **Motor de Búsqueda Forense (Simulación CODIS):** A partir del análisis forense, el sistema escanea la base de datos de criminales registrados, aplicando un algoritmo de coincidencia genética para identificar sospechosos y calculando el porcentaje de compatibilidad.|
 
 
 ### Alcance Adicional Voluntario
