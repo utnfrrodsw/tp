@@ -1,0 +1,15 @@
+info:
+  name: DELETE clientes
+  type: http
+  seq: 19
+
+http:
+  method: DELETE
+  url: http://localhost:3000/api/clientes/40111222
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

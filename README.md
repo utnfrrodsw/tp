@@ -172,3 +172,77 @@ Durante la evaluación de cada entrega se considerarán:
 ## 6. FAQ
 
 En la sección de [FAQ](FAQ.md) podrán encontrar respuestas a las consultas más frecuentes que se van realizando.
+
+## 7. Configuración del Backend
+
+El backend usa **Sequelize** con **PostgreSQL** (Supabase).
+
+1. Instalar dependencias: `cd backend && pnpm install`
+2. Copiar `backend/.env.example` a `backend/.env` y completar las variables:
+
+| Variable | Descripción |
+| --- | --- |
+| `DATABASE_URL` | Connection string de Supabase (recomendado) |
+| `DB_NAME` / `DB_USER` / `DB_PASS` / `DB_HOST` / `DB_PORT` | Alternativa por variables individuales |
+
+3. Ejecutar: `pnpm start` o `pnpm dev`
+
+Ejemplo de `.env`:
+```
+DATABASE_URL=postgresql://postgres.xxxx:password@aws-0-xx.pooler.supabase.com:6543/postgres
+```
+
+## 8. Autenticación
+
+El backend usa login propio con **JWT guardado en una cookie httpOnly** (JavaScript no puede leerla, así que un XSS no puede robar la sesión). Las contraseñas se guardan hasheadas con bcrypt.
+
+### Roles
+| Rol | Permisos actuales |
+| --- | --- |
+| `admin` | Todo: gestión de usuarios, alta/baja/modificación de profesores y especialidades |
+| `profesor` | Consultar profesores, especialidades y clientes (su cuenta está vinculada a un profesor por `dniProfesor`) |
+| `cliente` | Consultar profesores y especialidades (su cuenta está vinculada a un cliente por `clientes.idUsuario`) |
+
+No hay registro público: las cuentas las crea un admin.
+- **Clientes:** al darlo de alta con `POST /api/clientes` y `crearCuenta: true` (necesita email), o después con `POST /api/clientes/:dni/cuenta`. El email del cliente es el usuario con el que entra.
+- **Profesores:** al darlo de alta con `POST /api/profesores` y `crearCuenta: true`, o después con `POST /api/profesores/:dni/cuenta`.
+- **Admins:** desde `POST /api/usuarios`.
+
+**Primer ingreso:** si no se indica otra, la contraseña inicial de clientes y profesores es su **DNI**. Toda cuenta creada por un admin queda con `debeCambiarPassword: true` (lo devuelven `login` y `GET /api/auth/me`), y lo mismo pasa si el admin le cambia la contraseña a alguien. No bloquea nada: el frontend lo usa para recordarle al usuario que elija su propia contraseña desde Configuración (`PUT /api/auth/password`), y al hacerlo vuelve a `false`.
+
+### Crear el primer admin
+1. En `backend/.env` completar `JWT_SECRET` (ver `.env.example`), `ADMIN_EMAIL` y `ADMIN_PASSWORD` (mínimo 8 caracteres).
+2. Ejecutar `pnpm run create-admin`.
+3. Borrar `ADMIN_PASSWORD` del `.env`.
+
+### Endpoints
+| Método | Ruta | Acceso |
+| --- | --- | --- |
+| POST | `/api/auth/login` `{ email, password }` | Público (máx. 10 intentos fallidos cada 15 min) |
+| POST | `/api/auth/logout` | Público |
+| GET | `/api/auth/me` | Autenticado |
+| PUT | `/api/auth/password` `{ passwordActual, passwordNueva }` | Autenticado |
+| GET/POST/PUT/DELETE | `/api/usuarios` | Admin |
+| GET | `/api/clientes`, `/api/clientes/:dni` | Admin, profesor |
+| POST | `/api/clientes` `{ dni, nombre, apellido, telefono?, email?, estado?, crearCuenta? }` (con `crearCuenta: true` también crea su cuenta) | Admin |
+| POST | `/api/clientes/:dni/cuenta` (da acceso a un cliente existente) | Admin |
+| PUT | `/api/clientes/:dni` `{ nombre?, apellido?, telefono?, email?, estado?, password?, activo? }` (`password` y `activo` solo si tiene cuenta) | Admin |
+| DELETE | `/api/clientes/:dni` (borra también su cuenta, si tiene) | Admin |
+| POST | `/api/profesores` `{ ..., crearCuenta? }` (con `crearCuenta: true` también crea su cuenta) | Admin |
+| POST | `/api/profesores/:dni/cuenta` (da acceso a un profesor existente) | Admin |
+| DELETE | `/api/profesores/:dni` (borra también su cuenta, si tiene) | Admin |
+
+### Integración con el frontend
+- `FRONTEND_ORIGIN` en el `.env` del backend tiene que ser exactamente el origen del frontend (ej. `http://localhost:5173`). Cualquier otro origen recibe `403` en los métodos que modifican datos.
+- Todas las requests tienen que enviar la cookie: `fetch(url, { credentials: 'include' })` (o `withCredentials: true` en Axios/Angular HttpClient).
+- Al cargar la app, llamar a `GET /api/auth/me` para saber si hay sesión: `401` significa que no la hay o que expiró.
+- El frontend no llama al backend directo: pide todo a su propio origen en `/api` y Vite (en local) o Vercel (en producción, ver `vercel.json` del frontend) lo reenvían. Así la cookie es del mismo sitio y se puede dejar `COOKIE_SAMESITE=lax`. Si se llamara directo de `vercel.app` a `onrender.com`, la cookie sería de terceros y Safari la bloquearía.
+
+### Variables en el deploy (Render)
+| Variable | Valor |
+| --- | --- |
+| `NODE_ENV` | `production` |
+| `JWT_SECRET` | uno nuevo, distinto del de desarrollo |
+| `FRONTEND_ORIGIN` | la URL del frontend en Vercel, ej. `https://mi-app.vercel.app` |
+| `COOKIE_SAMESITE` | `lax` |
+| `TRUST_PROXY` | cantidad de proxies delante del server. Hay dos (Vercel y Render), así que probablemente `2`. Verificarlo: si queda mal, el límite de intentos de login se aplica a todos los usuarios juntos. |

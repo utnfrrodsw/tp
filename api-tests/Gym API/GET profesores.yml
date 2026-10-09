@@ -1,0 +1,15 @@
+info:
+  name: GET profesores
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:3000/api/profesores
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
