@@ -192,8 +192,11 @@ las tarjetas del explorador: con sesión navega, y sin sesión abre el modal de
 registro. Así un enlace compartido se lee entero y desde ahí se entra al sitio, en
 vez de rebotar contra una pantalla de login.
 
-Las columnas de "más reseñas" son la única parte que no se muestra sin sesión: el
-listado de reseñas sí exige token. En su lugar va la invitación a registrarse.
+Las columnas de "más reseñas" son la única parte que no se muestra sin sesión. No
+es una restricción de la API (el listado de reseñas también es público): es una
+decisión de la pantalla. Quien llega por un enlace compartido lee la reseña
+entera, y en vez de seguir navegando reseñas sin cuenta ve la invitación a
+registrarse.
 
 La ficha de una lista (`/lists/:id`) es pública por el mismo motivo: también tiene
 botón "Compartir". Lo que cambia con sesión son los controles del dueño y el

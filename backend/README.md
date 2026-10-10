@@ -145,24 +145,31 @@ a la API sin levantar el servidor en un puerto. Viven en `tests/`, fuera de
 ```
 tests/
 ├── unit/          una función pura por vez, sin base ni red
-│   ├── auth.schema.test.ts     Santino Gallo
-│   ├── album.schema.test.ts    Juan Ignacio Esterri
-│   ├── review.schema.test.ts   Santiago Siena
+│   ├── auth.schema.test.ts      Santino Gallo
+│   ├── album.schema.test.ts     Juan Ignacio Esterri
+│   ├── review.schema.test.ts    Santiago Siena
 │   ├── follow.schema.test.ts
-│   └── list.schema.test.ts     Santiago Siena
+│   ├── list.schema.test.ts      Santiago Siena
+│   ├── user.schema.test.ts      Juan Ignacio Esterri
+│   ├── payment.schema.test.ts   Santino Gallo
+│   └── ad.schema.test.ts        Santiago Siena
 └── integration/
-    └── auth.test.ts            la app entera, contra MySQL
+    └── auth.test.ts             la app entera, contra MySQL
 ```
 
-Los tres primeros son el test por integrante que pide la cátedra; los dos últimos
+Los tres primeros son el test por integrante que pide la cátedra; los otros cinco
 se sumaron después, con las features que los estrenaron.
 
 **Los unitarios** prueban los schemas de Zod, que son las reglas de validación de
 la API: la normalización del email y el mínimo de la contraseña (`auth`), el año
 vacío que se guarda como `NULL` y el artista obligatorio (`album`), la escala de
-media estrella más el XOR álbum/canción (`review`), y el tipo obligatorio de una
-lista con el tope de su paginado (`list`). Son funciones puras, así que no
-necesitan base de datos ni variables de entorno:
+media estrella más el XOR álbum/canción (`review`), el valor por defecto y el tope
+del ranking de usuarios (`follow`), el tipo obligatorio de una lista con el tope
+de su paginado (`list`), la paleta cerrada del color de perfil y el banner vacío
+que vuelve a `NULL` (`user`), el año de las métricas del dashboard (`payment`), y
+el título y la imagen obligatorios de un anuncio con su enlace externo o interno
+(`ad`). Son funciones puras, así que no necesitan base de datos ni variables de
+entorno:
 
 ```bash
 npm test -- tests/unit
@@ -606,7 +613,7 @@ catálogo, donde el alta exige `PRO`.
 
 | Método | Ruta | Acceso |
 |:-|:-|:-|
-| GET | `/api/reviews` | logueado |
+| GET | `/api/reviews` | **público**, con `optionalAuth` |
 | GET | `/api/reviews/mine` | logueado |
 | GET | `/api/reviews/stats/me?year=` | PRO o ADMIN |
 | GET | `/api/reviews/stats` | público |
@@ -621,8 +628,8 @@ catálogo, donde el alta exige `PRO`.
 ### Filtros del listado
 
 `GET /api/reviews` acepta `id_album`, `id_song`, `target`, `id_user`, `state`,
-`min_rating`, `limit` y `offset`. Con esos filtros, una sola consulta alimenta
-cuatro pantallas:
+`min_rating`, `following`, `exclude_mine`, `limit` y `offset`. Con esos filtros,
+una sola consulta alimenta seis pantallas:
 
 | Para qué | Query |
 |:-|:-|
@@ -630,6 +637,17 @@ cuatro pantallas:
 | Reseñas de un usuario, de 4 estrellas para arriba | `?id_user=2&min_rating=4` |
 | Álbumes que calificó un usuario | `?id_user=2&target=album` |
 | Canciones que calificó | `?id_user=2&target=song` |
+| Solapa "Comunidad" de `/reviews` | `?exclude_mine=true` |
+| Solapa "Amigos" de `/reviews` | `?following=true` |
+
+El listado es **público** porque el feed de la comunidad se ve sin cuenta. Va con
+`optionalAuth` porque la respuesta mejora con sesión: `liked_by_me` dice si el que
+mira ya le dio "me gusta", y `following` (el feed de amigos) solo existe sabiendo
+quién pregunta, así que sin token responde 401. Sin sesión, `exclude_mine` no
+excluye nada.
+
+`following` y `exclude_mine` filtran por autor, igual que `id_user`, así que no se
+combinan entre sí ni con él: el schema rechaza esas combinaciones con un 400.
 
 `target` (`album` \| `song`) no se pisa con `id_album` / `id_song`: aquellos
 apuntan a **un** ítem y este a **todo un tipo**. En la tabla, a qué apunta una
