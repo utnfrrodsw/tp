@@ -76,8 +76,8 @@ npm run seed
 ```
 
 Deja la base usable de una: los 2 planes de membresía, el catálogo completo
-(11 géneros, 88 artistas, 263 álbumes y 3.618 canciones) y el usuario
-administrador. **No necesita conexión a internet**: el catálogo se lee de
+(11 géneros, 88 artistas, 263 álbumes y 3.618 canciones), el usuario
+administrador y los 5 anuncios que ve un usuario `FREE`. **No necesita conexión a internet**: el catálogo se lee de
 archivos JSON versionados en el repositorio. Es idempotente, se puede correr las
 veces que haga falta.
 

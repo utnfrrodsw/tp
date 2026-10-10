@@ -45,8 +45,9 @@ El resumen de los cuatro comandos para arrancar de cero está en el
 
 ## Modelo de datos
 
-El DER está en la [propuesta](../proposal.md#modelo), junto con los ajustes que
-se le hicieron al modelo original y el motivo de cada uno. La descripción de las
+El DER vigente está en [der.md](der.md), en Mermaid. La
+[propuesta](../proposal.md#modelo) tiene la imagen del DER aprobado, junto con
+los ajustes que se le hicieron al modelo original y el motivo de cada uno. La descripción de las
 tablas ya creadas, las reglas de negocio que viven en el modelo y los desvíos
 respecto del pasaje a tablas están en la sección
 [Modelo de datos](../backend/README.md#modelo-de-datos) del README del backend.

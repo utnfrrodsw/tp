@@ -94,7 +94,8 @@ npm run seed
 ```
 
 Un solo comando deja la base usable: los 2 planes de membresía, el catálogo completo
-(11 géneros, 88 artistas, 263 álbumes y 3.618 canciones) y el usuario administrador.
+(11 géneros, 88 artistas, 263 álbumes y 3.618 canciones), el usuario administrador
+y los 5 anuncios que ve un usuario `FREE`.
 
 **No necesita conexión a internet.** El catálogo se lee de archivos JSON versionados
 en el repositorio, no de una API externa. Ver [Catálogo inicial](#catálogo-inicial).
@@ -108,10 +109,15 @@ Tarda alrededor de un minuto y termina con un resumen de lo insertado:
 [seed] Canciones: 3618 nuevas.
 [seed] Vínculos género-álbum: 405 nuevos.
 [seed] Usuario ADMIN creado: admin@musicboxd.com (usuario: admin)
+[seed] Anuncio creado: Auriculares Sonar X
+...
+[seed] Anuncio creado: Musicboxd Pro
 ```
 
 Todos los seeds son **idempotentes**: se pueden correr las veces que haga falta sin
-duplicar registros. Al correrlo una segunda vez, todos los contadores dan cero.
+duplicar registros. Al correrlo una segunda vez, los contadores del catálogo dan
+cero y los anuncios figuran como "actualizados": ese seed no saltea los que ya
+están, los deja tal como están escritos en `seed-ads.ts`.
 
 Las credenciales del administrador salen de `SEED_ADMIN_*` en el `.env`. Por defecto:
 
@@ -133,8 +139,16 @@ Las credenciales del administrador salen de `SEED_ADMIN_*` en el `.env`. Por def
 | `npm run seed:plans` | Corre solo el seed de planes Free / Pro |
 | `npm run seed:catalog` | Corre solo el seed del catálogo |
 | `npm run seed:admin` | Corre solo el seed del usuario administrador |
+| `npm run seed:ads` | Corre solo el seed de los 5 anuncios. Con `-- --prune` borra además los anuncios que no son de ese seed, incluidos los que un ADMIN cargó a mano |
 | `npm run seed:fetch` | **Descarga el catálogo de Deezer.** Es el único script que sale a internet, y no hace falta correrlo para levantar el proyecto |
+| `npm run seed:demo-sales` | **Demo.** 10 ventas de la membresía para el dashboard de administración. Se borran con `-- --clean` |
+| `npm run seed:demo-lists` | **Demo.** 6 usuarios `PRO` con 30 listas y "me gusta" cruzados, para que `/lists` tenga contenido. Se borran con `-- --clean` |
 | `npm run db:reset` | Borra la base local, la recrea y corre todos los seeds |
+
+Los dos seeds de demo **no** corren con `npm run seed` ni con `db:reset`: hay que
+pedirlos a mano. **Hay que limpiar los dos con `-- --clean` antes del deploy**; si
+no, la app publicada mostraría ventas que nunca se cobraron y usuarios que no
+existen.
 
 ## Tests
 
@@ -335,6 +349,7 @@ src/
     review/          CRUD de reseña, likes, comentarios y estadísticas
     list/            CRUD de listas personalizadas
     plan/  subscription/  payment/   Membresías y pasarela de pago
+    ad/              CRUD de los anuncios que ve un usuario FREE
 
   entities/          Modelos de Sequelize (uno por tabla del DER) +
                      index.ts con TODAS las asociaciones
@@ -508,9 +523,11 @@ header `Authorization` en cada request.
 | :----- | :------------------- | :-------- | :---------------------------------------------- |
 | POST   | `/api/auth/register` | público   | Crea la cuenta (siempre `FREE`) y devuelve token |
 | POST   | `/api/auth/login`    | público   | Valida credenciales y devuelve token             |
+| POST   | `/api/auth/refresh`  | logueado  | Relee el usuario y emite un token con el rol al día |
 | GET    | `/api/auth/me`       | logueado  | Datos del usuario dueño del token                |
 
-`register` y `login` responden lo mismo: el usuario y su token.
+`register`, `login` y `refresh` responden lo mismo: el usuario y su token. Para
+qué sirve `refresh` está en [El rol vive dentro del token](#el-rol-vive-dentro-del-token).
 
 ```json
 {
@@ -699,6 +716,7 @@ para no tocar el CRUD de `user`.
 | Método | Ruta | Acceso |
 |:-|:-|:-|
 | GET | `/api/users/suggestions?limit=` | público, con `optionalAuth` |
+| GET | `/api/users/ranking?limit=` | público, con `optionalAuth` |
 | GET | `/api/users/search?q=&limit=` | público, con `optionalAuth` |
 | POST · DELETE | `/api/users/:id/follow` | logueado |
 | GET | `/api/users/:id/follow-stats` | público, con `optionalAuth` |
@@ -958,16 +976,16 @@ con un `localhost` rechaza la preference entera.
 
 ## Modelo de datos
 
-Diecisiete tablas. Las diez primeras salen del pasaje a tablas del DER original:
+Dieciocho tablas. Las diez primeras salen del pasaje a tablas del DER original:
 
 `users`, `plan`, `subscription`, `payments`, `artist`, `albums`, `genres`,
 `genres_albums`, `song`, `review`.
 
-Las siete últimas son los agregados al DER, documentados y justificados uno por
+Las ocho últimas son los agregados al DER, documentados y justificados uno por
 uno en la [propuesta](../proposal.md#modelo):
 
 `review_likes`, `review_comments`, `follows`, `lists`, `list_albums`,
-`list_songs`, `list_likes`.
+`list_songs`, `list_likes`, `ads`.
 
 El diagrama completo, con las restricciones y el comportamiento ante borrados,
 está en [`docs/der.md`](../docs/der.md).

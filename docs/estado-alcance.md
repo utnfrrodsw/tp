@@ -4,7 +4,7 @@ Qué está terminado y qué falta, punto por punto, contra el alcance comprometi
 en la [propuesta](../proposal.md) y los requisitos del
 [enunciado](enunciado.md).
 
-Última revisión: **03/10/2026**.
+Última revisión: **10/10/2026**.
 
 ## Requisitos técnicos
 

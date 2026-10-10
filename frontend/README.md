@@ -92,8 +92,11 @@ src/
     components/     Componentes reutilizables por todas las features
                     (Navbar, Footer, Loader, ProtectedRoute, Tabs, ...)
     context/        Estado global: AuthContext (sesión), AuthModalContext (modal)
+    hooks/          Hooks compartidos: useFetch y usePagedFetch (carga de datos
+                    con loading y error), useShowMore, useCopyLink, ...
     services/       httpClient (único punto de salida HTTP) y tokenStorage
-    utils/          ApiError y traducción de errores a mensajes de pantalla
+    utils/          ApiError y traducción de errores a mensajes de pantalla,
+                    reglas de validación de formularios (validators)
   features/<x>/     Una carpeta por entidad del dominio:
     components/     Componentes propios de la feature, uno por carpeta con su .scss
     models/         Clases que representan los datos de la API
