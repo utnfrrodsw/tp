@@ -20,6 +20,7 @@ consulta ninguna API externa, todo sale de nuestra propia API.
 | Variable       | Descripción                                                   |
 | :------------- | :------------------------------------------------------------ |
 | `VITE_API_URL` | URL base de la API, incluyendo `/api`. Nunca se hardcodea la URL |
+| `VITE_WEB3FORMS_URL` | Endpoint de Web3Forms al que se manda el formulario de `/contact` (`https://api.web3forms.com/submit`) |
 | `VITE_WEB3FORMS_ACCESS_KEY` | Access key de [Web3Forms](https://web3forms.com), que recibe el formulario de `/contact` y lo reenvía por mail. Se pide gratis con la casilla que va a recibir los mensajes. Sin ella, el formulario avisa que no está configurado |
 
 ## Scripts
@@ -48,7 +49,7 @@ verificar leyendo el backend:
 | `core/components/SegmentedControl/SegmentedControl.test.tsx` | Una opción por cada `option`, `aria-pressed` solo en la elegida y el aviso al padre al hacer click |
 | `features/membership/components/MembershipPanel/MembershipPanel.test.tsx` | La regla del pago único: el panel no ofrece renovar ni dar de baja |
 | `features/membership/components/RevenueDashboard/RevenueDashboard.test.tsx` | El tablero de métricas con ventas y sin ninguna |
-| `features/membership/components/PlanForm/PlanForm.test.tsx` | La validación propia del formulario de planes |
+| `features/membership/components/PlanForm/PlanForm.test.tsx` | La validación propia del formulario de precio de un plan (no deja guardar un precio vacío o en cero) |
 | `features/user/components/CreateUserForm/CreateUserForm.test.tsx` | La validación del alta de usuarios |
 | `features/home/pages/ContactPage/ContactPage.test.tsx` | El formulario de contacto, incluido el caso sin access key |
 | `features/ad/components/AdModal/AdModal.test.tsx` | El anuncio no se puede saltar antes de los 5 segundos, y su imagen se envuelve en un enlace solo si tiene destino |
@@ -83,10 +84,15 @@ npm run test:e2e
 
 Con `npm run test:e2e -- --headed` se ve el navegador haciendo el recorrido.
 
+Las URLs y el usuario del test salen del entorno de la terminal, con los valores
+locales y el admin del seed como default: `E2E_FRONTEND_URL`, `E2E_BACKEND_URL`,
+`E2E_ADMIN_EMAIL` y `E2E_ADMIN_PASSWORD` (ver `.env.example`). Solo hace falta
+definirlas si tu entorno usa otros puertos u otro `SEED_ADMIN_*`.
+
 ## Deploy
 
 En producción el frontend se publica en **Vercel** como sitio estático: Root
-Directory `frontend`, y las dos variables `VITE_*` cargadas en el panel. Van en el
+Directory `frontend`, y las variables `VITE_*` cargadas en el panel. Van en el
 build, así que cambiarlas exige volver a deployar.
 
 [`vercel.json`](vercel.json) existe por una sola razón: las rutas las resuelve

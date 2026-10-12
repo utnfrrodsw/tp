@@ -108,23 +108,6 @@ export class Plan {
   get priceLabel(): string {
     return this.isPaid ? formatArs(this.amount) : 'Gratis';
   }
-
-  /** Cuántos suscriptores tiene, en singular o plural, para la tabla del panel. */
-  get subscribersLabel(): string {
-    return this.subscribers === 1 ? '1 suscripción' : `${this.subscribers} suscripciones`;
-  }
-
-  /**
-   * ¿Se puede eliminar?
-   *
-   * La API rechaza la baja con un 409 mientras el plan tenga suscripciones,
-   * incluso vencidas o canceladas: son el historial de facturación del usuario y
-   * de ellas cuelgan los pagos. Saberlo de antemano es lo que le permite al panel
-   * explicar el motivo en vez de mostrar el error después de intentarlo.
-   */
-  get canBeDeleted(): boolean {
-    return this.subscribers === 0;
-  }
 }
 
 /** La suscripción de un usuario a un plan, con su vigencia. */

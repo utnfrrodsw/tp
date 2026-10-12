@@ -1,169 +1,85 @@
-// Sección "Planes" del panel de administración: el ABM completo de los planes de
-// membresía del sistema (alta, edición y baja).
+// Sección "Planes" del panel de administración: lista los planes de membresía y
+// permite cambiar el precio del plan pago, que es lo único editable de un plan.
+//
+// Los planes son dos y fijos (Free y Pro, los crea el seed): el sistema busca el
+// Pro por su nombre y la página /pro está armada para esos dos, así que no hay
+// alta, baja ni cambio de nombre o descripción. El backend lo restringe igual.
 //
 // Concentra el estado y las llamadas a la API, y delega el dibujo en PlanForm y
 // PlanAdminTable. Vive en la feature membership y no en la feature user para que
 // el panel (AdminPage) solo tenga que montarla, igual que GenreAdminSection.
-//
-// Es el mismo caso que el ABM de géneros y por eso sigue su misma forma: un plan
-// no lo aporta ningún usuario, es la definición comercial del sistema, así que no
-// tiene circuito de moderación, ni filtro por estado, ni buscador. Toda la
-// escritura la restringe el backend a ADMIN.
-//
-// La diferencia con los géneros está en la baja: un género se bloquea por los
-// álbumes que tiene asignados; un plan, por las suscripciones que lo apuntan,
-// incluidas las vencidas y canceladas, porque son el historial de facturación de
-// los usuarios y de ellas cuelgan los pagos.
 import { useState } from 'react';
-import { Plus } from 'lucide-react';
 import { Alert } from '../../../../core/components/Alert';
-import { Button } from '../../../../core/components/Button';
 import { Card } from '../../../../core/components/Card';
 import { FormModal } from '../../../../core/components/FormModal';
 import { RefreshableBody } from '../../../../core/components/RefreshableBody';
-import { ConfirmDialog } from '../../../../core/components/Modal';
 import { useFetch } from '../../../../core/hooks/useFetch';
 import { getErrorMessage } from '../../../../core/utils/errorHandler';
 import { membershipService } from '../../services/membershipService';
-import type { PlanInput } from '../../services/membershipService';
 import type { Plan } from '../../models/Membership';
 import { PlanForm } from '../PlanForm';
-import type { PlanFormValues } from '../PlanForm';
 import { PlanAdminTable } from '../PlanAdminTable';
 import './PlanAdminSection.scss';
 
 /**
- * Arma el texto del cartel de confirmación de la baja.
- *
- * Si el plan tiene suscripciones, el diálogo deja de ser una confirmación y pasa
- * a explicar por qué no se puede borrar: la API rechaza la baja con un 409
- * mientras existan, para que eliminar un plan no se lleve en silencio el
- * historial de facturación de sus usuarios.
- *
- * @param plan plan que se eligió eliminar.
- */
-function buildDeleteMessage(plan: Plan): string {
-  if (plan.canBeDeleted) {
-    return `¿Seguro que querés eliminar el plan "${plan.name}"? No tiene suscripciones asociadas y la acción no se puede deshacer.`;
-  }
-
-  return `El plan "${plan.name}" no se puede eliminar: tiene ${plan.subscribersLabel} asociadas, que son el historial de facturación de esos usuarios. Se puede editar su precio o su descripción, pero no darlo de baja.`;
-}
-
-/**
- * Pasa un plan a los valores que espera el formulario de edición.
- *
- * El monto vuelve a texto, con el punto como separador decimal, que es lo que la
- * API espera de vuelta. Los centavos se escriben completos: un plan de 1750.5
- * tiene que mostrarse "1750.50", porque "1750.5" se lee como otro precio.
+ * Pasa el precio de un plan al texto que muestra el campo, con el punto como
+ * separador decimal, que es lo que la API espera de vuelta. Los centavos se
+ * escriben completos: 1750.5 se muestra "1750.50", porque "1750.5" se lee como
+ * otro precio.
  *
  * @param plan plan que se está editando.
  */
-function toFormValues(plan: Plan): PlanFormValues {
-  return {
-    name: plan.name,
-    amount: Number.isInteger(plan.amount) ? String(plan.amount) : plan.amount.toFixed(2),
-    description: plan.description ?? '',
-  };
+function toAmountText(plan: Plan): string {
+  return Number.isInteger(plan.amount) ? String(plan.amount) : plan.amount.toFixed(2);
 }
 
 export const PlanAdminSection = () => {
-  const {
-    data,
-    isLoading,
-    error,
-    reload: loadPlans,
-    setError,
-  } = useFetch(() => membershipService.listPlans());
+  const { data, isLoading, error, reload: loadPlans } = useFetch(() =>
+    membershipService.listPlans()
+  );
   const plans = data ?? [];
 
   const [feedback, setFeedback] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // Plan que se está editando: si es null, el formulario es de alta.
+  // Plan al que se le está cambiando el precio: si es null, el modal está cerrado.
   const [editingPlan, setEditingPlan] = useState<Plan | null>(null);
-  // Fila con una operación en curso: deshabilita solo sus botones, no toda la tabla.
-  const [busyPlanId, setBusyPlanId] = useState<number | null>(null);
-  // Plan elegido para eliminar, a la espera de que confirmen el diálogo.
-  const [planToDelete, setPlanToDelete] = useState<Plan | null>(null);
-
-  // El formulario vive en un modal: al panel se entra a mirar mucho más seguido
-  // que a cargar, así que el alta espera detrás de un botón en vez de ocupar el
-  // lugar de arriba de la tabla.
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  // Error del alta o de la edición. Va aparte del error de la sección porque se
-  // muestra DENTRO del modal: si se mostrara afuera, quedaría tapado por el
-  // propio formulario.
+  // Error del guardado. Se muestra DENTRO del modal: afuera quedaría tapado por
+  // el propio formulario.
   const [formError, setFormError] = useState<string | null>(null);
 
-  /**
-   * Abre el modal del formulario.
-   * @param plan plan a editar, o null para cargar uno nuevo.
-   */
-  const handleOpenForm = (plan: Plan | null) => {
+  /** Abre el modal para cambiar el precio de un plan. */
+  const handleEditPrice = (plan: Plan) => {
     setEditingPlan(plan);
     setFormError(null);
     setFeedback(null);
-    setIsFormOpen(true);
   };
 
-  /** Guarda el formulario: edita si hay un plan elegido, si no da de alta uno nuevo. */
-  const handleSubmit = async (input: PlanInput): Promise<boolean> => {
+  /** Guarda el precio nuevo y recarga la tabla. Devuelve si salió bien. */
+  const handleSubmit = async (amount: number): Promise<boolean> => {
+    if (!editingPlan) return false;
+
     setIsSubmitting(true);
-    setError(null);
     setFormError(null);
-    setFeedback(null);
 
     try {
-      if (editingPlan) {
-        await membershipService.updatePlan(editingPlan.id, input);
-        // Cambiar el precio no toca lo ya cobrado: cada pago quedó registrado con
-        // el importe del momento. Se aclara acá porque es lo primero que se
-        // pregunta al editar un plan que ya tiene suscriptores.
-        setFeedback(
-          'Los cambios se guardaron. El monto nuevo rige para las próximas contrataciones: los pagos ya registrados no se modifican.'
-        );
-      } else {
-        const created = await membershipService.createPlan(input);
-        setFeedback(`Se agregó el plan "${created.name}".`);
-      }
-      // Se recarga en vez de tocar la lista a mano: la API la devuelve ordenada
-      // por monto y así el plan aparece en su lugar.
+      await membershipService.updatePlanPrice(editingPlan.id, amount);
+      // Cambiar el precio no toca lo ya cobrado: cada pago quedó registrado con
+      // el importe del momento. Se aclara acá porque es lo primero que se
+      // pregunta al editar un plan que ya tiene suscriptores.
+      setFeedback(
+        `Se actualizó el precio de "${editingPlan.name}". Rige para las próximas compras: los pagos ya registrados no se modifican.`
+      );
       await loadPlans();
-      setIsFormOpen(false);
+      setEditingPlan(null);
       return true;
     } catch (err) {
-      // El modal queda abierto con lo que se había escrito: cerrarlo obligaría a
-      // tipear todo de nuevo por un nombre repetido.
+      // El modal queda abierto con el precio escrito, para poder corregirlo.
       setFormError(getErrorMessage(err));
       return false;
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  const handleConfirmDelete = async () => {
-    if (!planToDelete) return;
-
-    const { id, name } = planToDelete;
-    setPlanToDelete(null);
-    setBusyPlanId(id);
-    setError(null);
-    setFeedback(null);
-
-    try {
-      await membershipService.removePlan(id);
-      // Si se estaba editando justo ese plan, el formulario ya no aplica.
-      setEditingPlan((current) => (current?.id === id ? null : current));
-      await loadPlans();
-      setFeedback(`Se eliminó el plan "${name}".`);
-    } catch (err) {
-      setError(getErrorMessage(err));
-    } finally {
-      setBusyPlanId(null);
-    }
-  };
-
-  const blocksDelete = planToDelete !== null && !planToDelete.canBeDeleted;
 
   return (
     // La Card exterior es la que le da el marco al panel, igual que en
@@ -172,20 +88,11 @@ export const PlanAdminSection = () => {
     // este fondo más claro detrás se vuelven invisibles.
     <Card
       title="Planes de membresía"
-      subtitle="Alta, edición y baja de los planes que se ofrecen en la página Pro."
+      subtitle="Precio de los planes que se ofrecen en la página Pro."
     >
       <div className="plan-admin">
         {error && <Alert tone="error">{error}</Alert>}
         {feedback && <Alert tone="success">{feedback}</Alert>}
-
-        <div className="plan-admin__toolbar">
-          <h3 className="plan-admin__list-title">Planes del sistema ({plans.length})</h3>
-
-          <Button onClick={() => handleOpenForm(null)}>
-            <Plus size={16} aria-hidden="true" />
-            Agregar plan
-          </Button>
-        </div>
 
         <RefreshableBody
           isLoading={isLoading}
@@ -193,50 +100,32 @@ export const PlanAdminSection = () => {
           isEmpty={plans.length === 0}
           empty={
             <p className="plan-admin__empty">
-              Todavía no hay planes cargados. Agregá el primero con el formulario de arriba.
+              No hay planes cargados. Se crean con el seed: npm run seed:plans.
             </p>
           }
         >
-          <PlanAdminTable
-            plans={plans}
-            busyPlanId={busyPlanId}
-            onEdit={handleOpenForm}
-            onDelete={setPlanToDelete}
-          />
+          <PlanAdminTable plans={plans} onEditPrice={handleEditPrice} />
         </RefreshableBody>
 
-        {/* El mismo modal sirve para el alta y para la edición: lo que cambia
-            son el título, los valores iniciales y a qué handler se manda. La key
-            lo remonta al pasar de uno a otro. */}
+        {/* La key remonta el formulario al pasar de un plan a otro, para que
+            arranque con el precio del plan elegido. */}
         <FormModal
-          isOpen={isFormOpen}
-          title={editingPlan ? `Editando "${editingPlan.name}"` : 'Agregar plan'}
+          isOpen={editingPlan !== null}
+          title={editingPlan ? `Precio de "${editingPlan.name}"` : ''}
           error={formError}
           isBusy={isSubmitting}
-          onClose={() => setIsFormOpen(false)}
+          onClose={() => setEditingPlan(null)}
         >
-          <PlanForm
-            key={editingPlan?.id ?? 'new'}
-            initialValues={editingPlan ? toFormValues(editingPlan) : undefined}
-            isSubmitting={isSubmitting}
-            submitLabel={editingPlan ? 'Guardar cambios' : undefined}
-            onSubmit={handleSubmit}
-            onCancel={() => setIsFormOpen(false)}
-          />
+          {editingPlan && (
+            <PlanForm
+              key={editingPlan.id}
+              initialAmount={toAmountText(editingPlan)}
+              isSubmitting={isSubmitting}
+              onSubmit={handleSubmit}
+              onCancel={() => setEditingPlan(null)}
+            />
+          )}
         </FormModal>
-
-        {/* Con suscripciones asociadas el diálogo solo informa: confirmar no
-            borraría nada, porque la API rechaza la baja mientras existan. */}
-        <ConfirmDialog
-          isOpen={planToDelete !== null}
-          title={blocksDelete ? 'No se puede eliminar el plan' : 'Eliminar plan'}
-          message={planToDelete ? buildDeleteMessage(planToDelete) : ''}
-          confirmLabel={blocksDelete ? 'Entendido' : 'Eliminar'}
-          cancelLabel={blocksDelete ? 'Cerrar' : 'Cancelar'}
-          isDestructive={!blocksDelete}
-          onConfirm={blocksDelete ? () => setPlanToDelete(null) : handleConfirmDelete}
-          onCancel={() => setPlanToDelete(null)}
-        />
       </div>
     </Card>
   );

@@ -43,7 +43,8 @@ const urlCoverSchema = z
       .string()
       .trim()
       .max(500, 'La URL de la portada no puede tener más de 500 caracteres.')
-      .pipe(z.url('La URL de la portada no es válida.')),
+      // Solo http(s): z.url() a secas acepta "javascript:" y "data:".
+      .pipe(z.url({ protocol: /^https?$/, error: 'La URL de la portada no es válida.' })),
   ])
   .transform((value) => (value === '' ? null : value));
 
@@ -183,7 +184,8 @@ export const exploreAlbumsQuerySchema = z.object({
     .int()
     .min(1, 'El tope tiene que ser mayor a cero.')
     .max(MAX_EXPLORE_LIMIT, `El tope no puede ser mayor a ${MAX_EXPLORE_LIMIT}.`)
-    .optional(),
+    // Sin tope, un pedido anónimo traería el catálogo entero de una sola vez.
+    .default(MAX_EXPLORE_LIMIT),
   // Desde qué fila arranca. Junto con el tope arma el paginado del listado: la
   // primera tanda va sin offset y la siguiente con el total ya mostrado. No hace
   // falta devolver un total: el botón "Ver más" se muestra mientras la última

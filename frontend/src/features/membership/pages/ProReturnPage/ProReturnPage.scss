@@ -35,8 +35,8 @@
 }
 
 .pro-return__panel--pending {
-  border-color: rgba(#e0a53f, 0.4);
-  color: #e0a53f;
+  border-color: rgba($color-amber, 0.4);
+  color: $color-amber;
 }
 
 .pro-return__panel--error {

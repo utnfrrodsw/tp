@@ -77,7 +77,7 @@
     height: 100%;
     object-fit: cover;
     // Se ve mientras la portada carga.
-    background-color: #222;
+    background-color: $color-placeholder;
 
     // Slot vacío: una lista con menos de cinco álbumes no manda portada para
     // esa posición. Queda como un hueco oscuro, sin la imagen rota del

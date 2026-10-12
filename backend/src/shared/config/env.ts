@@ -35,9 +35,31 @@ function list(name: string, fallback: string): string[] {
     .filter((item) => item !== '');
 }
 
+const isProduction = optional('NODE_ENV', 'development') === 'production';
+
+// Valor de JWT_SECRET que trae .env.example. Sirve para desarrollar, pero
+// cualquiera que lea el repo lo conoce: en producción equivale a no tener secreto.
+const EXAMPLE_JWT_SECRET = 'dev-secret-cambiar-antes-de-produccion';
+const MIN_PRODUCTION_SECRET_LENGTH = 32;
+
+/**
+ * Devuelve el secreto del JWT. En producción además exige que no sea el de
+ * ejemplo y que sea largo: con un secreto adivinable, cualquiera podría firmarse
+ * un token de ADMIN.
+ */
+function jwtSecret(): string {
+  const secret = required('JWT_SECRET');
+  if (isProduction && (secret === EXAMPLE_JWT_SECRET || secret.length < MIN_PRODUCTION_SECRET_LENGTH)) {
+    throw new Error(
+      `JWT_SECRET es inseguro para producción: generá uno aleatorio de al menos ${MIN_PRODUCTION_SECRET_LENGTH} caracteres (ver backend/.env.example).`
+    );
+  }
+  return secret;
+}
+
 export const env = {
   nodeEnv: optional('NODE_ENV', 'development'),
-  isProduction: optional('NODE_ENV', 'development') === 'production',
+  isProduction,
   port: Number(optional('PORT', '3000')),
   // Orígenes habilitados para CORS, separados por coma. Se aceptan varios porque
   // Vite se corre al siguiente puerto libre (5174, 5175...) si el 5173 está
@@ -103,7 +125,7 @@ export const env = {
   // con una clave vacía y cualquiera podría fabricarse uno de ADMIN. Preferimos
   // que el servidor no arranque a que arranque inseguro.
   auth: {
-    jwtSecret: required('JWT_SECRET'),
+    jwtSecret: jwtSecret(),
     jwtExpiresIn: optional('JWT_EXPIRES_IN', '7d'),
   },
 } as const;

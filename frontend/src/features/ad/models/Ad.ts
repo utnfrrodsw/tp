@@ -37,9 +37,13 @@ export class Ad {
    * ¿El enlace es una ruta del propio sitio ("/pro") en vez de una dirección de
    * afuera? Es lo que decide si se navega con React Router o se abre una pestaña
    * nueva. Hoy el único caso es el anuncio de la membresía Pro.
+   *
+   * "//otro.com" empieza con barra pero NO es una ruta del sitio: el navegador lo
+   * lee como un dominio externo. Por eso se exige una sola barra al principio.
    */
   get isInternalLink(): boolean {
-    return this.hasLink && (this.targetUrl as string).startsWith('/');
+    const target = this.targetUrl as string;
+    return this.hasLink && target.startsWith('/') && !target.startsWith('//');
   }
 
   /** ¿Tiene texto de apoyo debajo del título? */

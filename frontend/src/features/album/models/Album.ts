@@ -4,6 +4,15 @@
 import type { BadgeTone } from '../../../core/components/Badge';
 
 /**
+ * Rango de años de lanzamiento que admite un álbum. Son los mismos topes que
+ * MIN_RELEASE_YEAR / MAX_RELEASE_YEAR de backend/src/features/album/album.schema.ts:
+ * el formulario los usa para avisar antes y los listados para titular las décadas
+ * de los extremos (2100 no es un año real: es "hasta el presente").
+ */
+export const MIN_RELEASE_YEAR = 1900;
+export const MAX_RELEASE_YEAR = 2100;
+
+/**
  * Estados de moderación del catálogo, igual que el enum ALBUMS.state del backend.
  * Se declara acá y no se importa de la feature artist para que las features sigan
  * siendo independientes entre sí (mismo criterio que models/Genre.ts).
@@ -75,8 +84,8 @@ export class Decade {
    * es un año real de nada: ahí se dice "Presente".
    */
   get yearsLabel(): string {
-    if (this.to >= 2100) return `${this.from} – Presente`;
-    if (this.from <= 1900) return `Antes de ${this.to + 1}`;
+    if (this.to >= MAX_RELEASE_YEAR) return `${this.from} – Presente`;
+    if (this.from <= MIN_RELEASE_YEAR) return `Antes de ${this.to + 1}`;
     return `${this.from} – ${this.to}`;
   }
 }

@@ -10,6 +10,25 @@ import { router } from './routes';
 
 export const app = express();
 
+// Express anuncia por defecto "X-Powered-By: Express": no le sirve a nadie salvo
+// a quien busca vulnerabilidades conocidas de esa tecnología.
+app.disable('x-powered-by');
+
+// En producción la API corre detrás del proxy del hosting, y sin esto req.ip
+// sería siempre la IP del proxy: el rate limit trataría a todos los usuarios
+// como uno solo. En desarrollo no hay proxy y se deja como viene.
+if (env.isProduction) app.set('trust proxy', 1);
+
+// Headers de seguridad básicos para una API que solo devuelve JSON: que el
+// navegador no adivine el tipo de contenido, que nadie la meta en un iframe y que
+// no se filtre la URL de origen en el Referer.
+app.use((_req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'no-referrer');
+  next();
+});
+
 // El frontend corre en otro origen (Vite en 5173 y siguientes), así que necesita
 // CORS explícito. env.corsOrigin es una lista: el paquete cors acepta el array y
 // habilita cualquiera de esos orígenes.

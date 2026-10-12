@@ -102,6 +102,15 @@ export const paymentRepository = {
     return payments as PaymentWithSubscription[];
   },
 
+  /** Cambia el estado de un pago ya registrado (hoy, solo para anularlo por reembolso). */
+  updateState: async (
+    payment: PaymentWithSubscription,
+    state: PaymentState,
+    transaction?: Transaction
+  ): Promise<void> => {
+    await payment.update({ state }, { transaction });
+  },
+
   create: async (
     data: CreatePaymentData,
     transaction?: Transaction

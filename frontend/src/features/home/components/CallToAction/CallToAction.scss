@@ -28,7 +28,7 @@
     // Solo contraste: el fondo se aclara. Antes la caja se levantaba y tiraba
     // sombra; ahora nada del sitio se mueve con el mouse encima.
     &:hover {
-      background-color: color.adjust(#181818, $lightness: 3%);
+      background-color: color.adjust($color-bg-light, $lightness: 3%);
     }
   }
 
@@ -92,7 +92,7 @@
       border: 1px solid $color-primary;
       
       &:hover {
-        background-color: color.adjust(#1ED760, $lightness: 5%);
+        background-color: color.adjust($color-primary, $lightness: 5%);
       }
     }
   }

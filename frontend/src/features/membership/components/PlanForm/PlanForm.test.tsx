@@ -1,49 +1,60 @@
-// Test unitario del formulario de planes del panel de administración.
+// Test unitario del formulario de precio de un plan del panel de administración.
 //
-// Prueba la validación propia: con datos inválidos el formulario muestra los
-// mensajes y NO llama a onSubmit (no gasta una request); con datos válidos sí,
-// y con el monto ya convertido a número.
+// Prueba la validación propia: con un precio inválido el formulario muestra el
+// mensaje y NO llama a onSubmit (no gasta una request); con uno válido sí, y con
+// el monto ya convertido a número.
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { PlanForm } from './PlanForm';
 
+const AMOUNT_ERROR = 'El monto tiene que ser mayor a cero y como máximo 99.999.999,99.';
+
+/** Monta el formulario con el precio inicial indicado. */
+function renderForm(initialAmount: string, onSubmit = vi.fn().mockResolvedValue(true)) {
+  render(
+    <PlanForm
+      initialAmount={initialAmount}
+      isSubmitting={false}
+      onSubmit={onSubmit}
+      onCancel={vi.fn()}
+    />
+  );
+  return onSubmit;
+}
+
 describe('PlanForm', () => {
-  it('vacío muestra los errores de nombre y monto sin llamar a onSubmit', () => {
-    const onSubmit = vi.fn().mockResolvedValue(true);
-    render(<PlanForm isSubmitting={false} onSubmit={onSubmit} />);
+  it('vacío muestra el error del precio sin llamar a onSubmit', () => {
+    const onSubmit = renderForm('');
 
-    fireEvent.click(screen.getByRole('button', { name: 'Guardar plan' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Guardar precio' }));
 
-    expect(screen.getByText('El nombre del plan no puede estar vacío.')).toBeInTheDocument();
-    expect(screen.getByText('Ingresá el monto (0 si el plan es gratis).')).toBeInTheDocument();
-    expect(screen.getByLabelText('Nombre')).toHaveAttribute('aria-invalid', 'true');
+    expect(screen.getByText('Ingresá el precio del plan.')).toBeInTheDocument();
+    expect(screen.getByLabelText(/Precio/)).toHaveAttribute('aria-invalid', 'true');
+    expect(onSubmit).not.toHaveBeenCalled();
+  });
+
+  it('rechaza un precio de cero: el plan pago no puede quedar gratis', () => {
+    const onSubmit = renderForm('0');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Guardar precio' }));
+
+    expect(screen.getByText(AMOUNT_ERROR)).toBeInTheDocument();
     expect(onSubmit).not.toHaveBeenCalled();
   });
 
   it('no muestra errores antes del primer intento de guardar', () => {
-    render(<PlanForm isSubmitting={false} onSubmit={vi.fn()} />);
+    renderForm('');
 
-    expect(screen.queryByText('El nombre del plan no puede estar vacío.')).not.toBeInTheDocument();
+    expect(screen.queryByText('Ingresá el precio del plan.')).not.toBeInTheDocument();
   });
 
-  it('el error se va apenas el campo queda bien', () => {
-    render(<PlanForm isSubmitting={false} onSubmit={vi.fn().mockResolvedValue(true)} />);
+  it('con un precio válido llama a onSubmit con el monto como número', () => {
+    const onSubmit = renderForm('3500');
 
-    fireEvent.click(screen.getByRole('button', { name: 'Guardar plan' }));
-    fireEvent.change(screen.getByLabelText('Nombre'), { target: { value: 'Pro' } });
-
-    expect(screen.queryByText('El nombre del plan no puede estar vacío.')).not.toBeInTheDocument();
-  });
-
-  it('con datos válidos llama a onSubmit con el monto como número', () => {
-    const onSubmit = vi.fn().mockResolvedValue(true);
-    render(<PlanForm isSubmitting={false} onSubmit={onSubmit} />);
-
-    fireEvent.change(screen.getByLabelText('Nombre'), { target: { value: '  Pro  ' } });
     // La coma se acepta y se traduce a punto, como escribe un monto un argentino.
-    fireEvent.change(screen.getByLabelText(/Monto/), { target: { value: '3500,50' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Guardar plan' }));
+    fireEvent.change(screen.getByLabelText(/Precio/), { target: { value: '4200,50' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Guardar precio' }));
 
-    expect(onSubmit).toHaveBeenCalledWith({ name: 'Pro', amount: 3500.5, description: null });
+    expect(onSubmit).toHaveBeenCalledWith(4200.5);
   });
 });

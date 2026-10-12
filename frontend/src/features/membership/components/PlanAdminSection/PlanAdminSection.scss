@@ -1,40 +1,17 @@
 // Estilos de la pestaña "Planes" del panel de administración.
 @use '../../../../styles/abstracts/variable' as *;
 
-// ─── ABM de planes en el panel de administración ────────────
-//
-// Es la pestaña "Planes" de /admin (ver components/PlanAdminSection). Vive en
-// este parcial y no en _admin.scss por la misma razón que el ABM de géneros vive
-// en _genre.scss: los estilos acompañan a la feature dueña del componente.
-//
 // La caja de cada bloque la ponen Card y DataTable; acá van solo el ritmo
-// vertical de la sección y las dos celdas que necesitan algo propio.
-
+// vertical de la sección y el texto de "sin planes".
 .plan-admin {
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
   min-width: 0;
 
-  &__list-title {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 700;
-    color: $color-text;
-  }
-
-  &__toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: $spacing-sm;
-  }
-
   &__empty {
     margin: 0;
     font-size: 0.9rem;
     color: $color-text-secondary;
   }
-
 }

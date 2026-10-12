@@ -20,6 +20,7 @@ import { ExploreListing } from '../../../music/components/ExploreListing';
 import { songToExploreItem } from '../../../music/models/ExploreItem';
 import { songService } from '../../services/songService';
 import type { SongSort } from '../../models/Song';
+import { MAX_RELEASE_YEAR, MIN_RELEASE_YEAR } from '../../../album/models/Album';
 
 /** Cómo se titula cada criterio de orden. */
 const SORT_TITLES: Record<SongSort, string> = {
@@ -59,8 +60,8 @@ function readYear(raw: string | null): number | null {
 function buildYearTitle(from: number | null, to: number | null): string | null {
   if (from === null && to === null) return null;
   if (from !== null && to !== null) {
-    if (to >= 2100) return `Canciones de ${from} en adelante`;
-    if (from <= 1900) return `Canciones hasta ${to}`;
+    if (to >= MAX_RELEASE_YEAR) return `Canciones de ${from} en adelante`;
+    if (from <= MIN_RELEASE_YEAR) return `Canciones hasta ${to}`;
     return `Canciones de ${from} a ${to}`;
   }
 

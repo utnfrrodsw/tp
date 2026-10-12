@@ -8,18 +8,4 @@
     align-items: center;
     gap: $spacing-sm;
   }
-
-  // La descripción es el campo más largo de la fila. Sin un tope se lleva todo el
-  // ancho de la tabla y deja las demás columnas apretadas contra el borde.
-  &__description-cell {
-    display: inline-block;
-    max-width: 32ch;
-    font-size: 0.85rem;
-    color: $color-text-secondary;
-  }
-
-  &__no-description {
-    font-style: italic;
-    opacity: 0.7;
-  }
 }

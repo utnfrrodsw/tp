@@ -19,6 +19,11 @@ import { LoginInput, RegisterInput } from './auth.schema';
 // rápido como para no trabar el login.
 const SALT_ROUNDS = 10;
 
+// Hash de una contraseña cualquiera, calculado una sola vez al cargar el módulo.
+// El login lo compara cuando el email no existe, para que esa respuesta tarde lo
+// mismo que la de un email registrado (ver login()).
+const DUMMY_HASH = bcrypt.hashSync('contraseña-de-relleno', SALT_ROUNDS);
+
 /** Vista pública de un usuario: es lo único que sale en las respuestas de la API. */
 type PublicUser = {
   id_user: number;
@@ -117,10 +122,11 @@ export const authService = {
     // registrados en el sistema.
     const invalidCredentials = new UnauthorizedError('El email o la contraseña son incorrectos.');
 
-    if (!user) throw invalidCredentials;
-
-    const passwordMatches = await bcrypt.compare(data.password, user.password);
-    if (!passwordMatches) throw invalidCredentials;
+    // bcrypt se corre SIEMPRE, aunque el email no exista: si en ese caso se
+    // respondiera al instante, medir cuánto tarda el login alcanzaría para saber
+    // qué emails están registrados, por más que el mensaje sea el mismo.
+    const passwordMatches = await bcrypt.compare(data.password, user?.password ?? DUMMY_HASH);
+    if (!user || !passwordMatches) throw invalidCredentials;
 
     // Recién acá se avisa que la cuenta está suspendida: si se chequeara antes de
     // la contraseña, cualquiera podría averiguar qué emails están registrados.
@@ -135,11 +141,11 @@ export const authService = {
   /**
    * Emite un token nuevo con el rol actualizado del usuario.
    *
-   * Existe por una razón puntual: el rol viaja DENTRO del token y requireRole lo
-   * lee de ahí, no de la base. Cuando un usuario paga y pasa a PRO, su token
-   * sigue diciendo FREE hasta que vence, así que el backend le rechazaría con 403
-   * justo las rutas que acaba de comprar. Pedir un token nuevo es lo que cierra
-   * ese circuito sin obligarlo a cerrar sesión y volver a entrar.
+   * El backend ya no depende del rol del token para autorizar (requireAuth lo
+   * relee de la base, ver shared/auth/session.ts), pero el token y el usuario que
+   * guarda el frontend sí lo llevan: cuando alguien paga y pasa a PRO, pedir un
+   * token nuevo es lo que deja al frontend al día sin obligarlo a cerrar sesión y
+   * volver a entrar.
    *
    * No es una "renovación" de la sesión en el sentido de estirar su vencimiento
    * indefinidamente: se emite contra un token que todavía es válido, y el nuevo

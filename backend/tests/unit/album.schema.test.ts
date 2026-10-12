@@ -28,6 +28,14 @@ describe('createAlbumSchema', () => {
     expect(result.success).toBe(false);
   });
 
+  it('acepta una portada https y rechaza una javascript:', () => {
+    const https = createAlbumSchema.safeParse({ ...validAlbum, url_cover: 'https://example.com/a.jpg' });
+    const script = createAlbumSchema.safeParse({ ...validAlbum, url_cover: 'javascript:alert(1)' });
+
+    expect(https.success).toBe(true);
+    expect(script.success).toBe(false);
+  });
+
   it('exige el artista, porque la FK de ALBUMS es NOT NULL', () => {
     const result = createAlbumSchema.safeParse({ title: 'Nevermind' });
 

@@ -13,12 +13,12 @@ const FAQ_ITEMS = [
   {
     question: '¿Qué métodos de pago aceptan?',
     answer:
-      'Aceptamos tarjetas de crédito y débito (Visa, Mastercard, American Express), PayPal y MercadoPago.',
+      'El pago se hace por MercadoPago: ahí podés usar tarjeta de crédito, débito o el dinero de tu cuenta.',
   },
   {
     question: '¿Puedo perder el acceso Pro?',
     answer:
-      'No por el paso del tiempo: lo que pagaste no vence. Un administrador solo puede quitarlo si la cuenta incumple las reglas de la comunidad, y en ese caso tus reseñas, calificaciones y listas se mantienen igual.',
+      'No por el paso del tiempo: lo que pagaste no vence. Se pierde si el pago se devuelve (un reembolso o un contracargo) o si un administrador lo quita porque la cuenta incumple las reglas de la comunidad; en ese caso tus reseñas, calificaciones y listas se mantienen igual.',
   },
   {
     question: '¿Qué pasa con los artistas y álbumes que aporté?',

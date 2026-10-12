@@ -23,7 +23,7 @@
     aspect-ratio: 1;
     border-radius: $radius;
     overflow: hidden;
-    background-color: #222;
+    background-color: $color-placeholder;
 
     img {
       width: 100%;
@@ -67,7 +67,7 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    color: #feca57;
+    color: $color-warning;
     font-size: 0.85rem;
     font-weight: 700;
   }

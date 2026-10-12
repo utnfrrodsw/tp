@@ -203,6 +203,25 @@ export const subscriptionService = {
   },
 
   /**
+   * Revoca la membresía que pagó un pago reembolsado o contracargado: cancela la
+   * suscripción y devuelve al usuario a FREE (un ADMIN conserva su rol, ver
+   * subscriptionRepository.updateUserRole).
+   *
+   * Sin esto, alguien podría pagar, quedar PRO, pedir la devolución de la plata y
+   * seguir siendo PRO para siempre, porque el acceso no vence.
+   *
+   * @param id_subscription suscripción que había activado el pago.
+   * @param transaction la transacción abierta por quien llama.
+   */
+  async revoke(id_subscription: number, transaction: Transaction): Promise<void> {
+    const subscription = await subscriptionRepository.findById(id_subscription, transaction);
+    if (!subscription || subscription.state !== 'active') return;
+
+    await subscriptionRepository.updateState(subscription, 'cancelled', transaction);
+    await subscriptionRepository.updateUserRole(subscription.id_user, 'FREE', transaction);
+  },
+
+  /**
    * Listado de todas las suscripciones del sistema. Solo ADMIN, que es lo que
    * corta requireRole en la ruta.
    * @param filters id_user y state que hayan llegado por query string.

@@ -2,6 +2,7 @@
 // del catálogo. Es la única capa que habla con Sequelize.
 import { Op } from 'sequelize';
 import { Album, Artist, Genre } from '../../entities';
+import { escapeLike } from '../../shared/db/like';
 import { ContentState } from '../../shared/types/enums';
 
 /**
@@ -103,7 +104,7 @@ const albumsDetailInclude = {
 function buildWhere(filters: GenreFilters) {
   // La colación de la base (utf8mb4_unicode_ci) ya ignora mayúsculas y
   // minúsculas, así que un LIKE común encuentra "Rock" buscando "rock".
-  return filters.name ? { name: { [Op.like]: `%${filters.name}%` } } : {};
+  return filters.name ? { name: { [Op.like]: `%${escapeLike(filters.name)}%` } } : {};
 }
 
 export const genreRepository = {

@@ -60,7 +60,7 @@
     aspect-ratio: 1;
     border-radius: $radius;
     overflow: hidden;
-    background-color: #222;
+    background-color: $color-placeholder;
     cursor: pointer;
     // El borde marca cuál está señalada: antes la portada se agrandaba, y en
     // todo el sitio el hover pasó a ser solo un cambio de color.

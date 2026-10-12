@@ -50,7 +50,9 @@ const urlAvatarSchema = z
       .string()
       .trim()
       .max(500, 'La URL de la imagen no puede tener más de 500 caracteres.')
-      .pipe(z.url('La URL de la imagen no es válida.')),
+      // Solo http(s): z.url() a secas acepta cualquier esquema, incluidos
+      // "javascript:" y "data:", que no son una imagen y pueden ejecutar código.
+      .pipe(z.url({ protocol: /^https?$/, error: 'La URL de la imagen no es válida.' })),
   ])
   .transform((value) => (value === '' ? null : value));
 

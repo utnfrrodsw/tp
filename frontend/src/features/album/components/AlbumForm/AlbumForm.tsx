@@ -30,6 +30,7 @@ import {
 import type { FieldErrors } from '../../../../core/utils/validators';
 import { artistService } from '../../../artist/services/artistService';
 import { genreService } from '../../../genre/services/genreService';
+import { MAX_RELEASE_YEAR, MIN_RELEASE_YEAR } from '../../models/Album';
 import type { AlbumInput } from '../../services/albumService';
 import './AlbumForm.scss';
 
@@ -76,7 +77,11 @@ function validateAlbumForm(form: AlbumInput): FieldErrors<AlbumField> {
     ]),
     id_artist: form.id_artist === NO_ARTIST ? 'Hay que elegir el artista del álbum.' : undefined,
     release_year: validateField(form.release_year ?? '', [
-      isIntegerBetween(1900, 2100, 'El año de lanzamiento tiene que estar entre 1900 y 2100.'),
+      isIntegerBetween(
+        MIN_RELEASE_YEAR,
+        MAX_RELEASE_YEAR,
+        `El año de lanzamiento tiene que estar entre ${MIN_RELEASE_YEAR} y ${MAX_RELEASE_YEAR}.`
+      ),
     ]),
     url_cover: validateField(form.url_cover ?? '', [
       maxLength(500, 'La URL de la portada no puede tener más de 500 caracteres.'),

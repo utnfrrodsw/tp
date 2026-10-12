@@ -10,10 +10,11 @@
 // navegación, así que el recorrido arranca en la home.
 import { expect, test } from '@playwright/test';
 
-// El usuario administrador que crea `npm run seed`. Son los mismos valores por
-// defecto que documenta el README del proyecto.
-const ADMIN_EMAIL = 'admin@musicboxd.com';
-const ADMIN_PASSWORD = 'Admin1234!';
+// El usuario administrador que crea `npm run seed`. Si alguien cambió el
+// SEED_ADMIN_* de su backend, lo pasa con E2E_ADMIN_EMAIL / E2E_ADMIN_PASSWORD;
+// si no, se usan los valores por defecto que documenta el README del proyecto.
+const ADMIN_EMAIL = process.env.E2E_ADMIN_EMAIL ?? 'admin@musicboxd.com';
+const ADMIN_PASSWORD = process.env.E2E_ADMIN_PASSWORD ?? 'Admin1234!';
 
 test('un usuario registrado inicia sesión y la barra pasa a mostrar su cuenta', async ({
   page,

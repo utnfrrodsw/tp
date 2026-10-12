@@ -23,6 +23,7 @@ import { songService } from '../../services/songService';
 import type { SongInput } from '../../services/songService';
 import type { Song } from '../../models/Song';
 import { SongCard } from '../SongCard';
+import { MAX_PENDING_PROPOSALS } from '../../../../core/utils/catalogRules';
 import { SongProposalModal } from '../SongProposalModal';
 import './SongContributionsList.scss';
 
@@ -37,11 +38,6 @@ type SongContributionsListProps = {
 // Cuántos aportes se ven de entrada y cuántos suma cada "Ver más". Mismo
 // criterio que ArtistContributionsList, su hermana.
 const PAGE_SIZE = 12;
-
-// Tope de propuestas pendientes que puede tener un mismo usuario a la vez.
-// Tiene que coincidir con MAX_PENDING_PROPOSALS de song.service.ts: acá solo
-// se usa para avisar ANTES de intentarlo; el límite real lo impone la API.
-const MAX_PENDING_PROPOSALS = 6;
 
 export const SongContributionsList = ({
   userId,

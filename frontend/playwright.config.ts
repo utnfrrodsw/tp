@@ -6,8 +6,10 @@
 // hecho, porque el login busca al usuario administrador en la base.
 import { defineConfig, devices } from '@playwright/test';
 
-const FRONTEND_URL = 'http://localhost:5173';
-const BACKEND_URL = 'http://localhost:3000';
+// Las URLs se pueden cambiar desde el entorno (por ejemplo, si Vite levantó en
+// otro puerto); sin variables se usan las de desarrollo local.
+const FRONTEND_URL = process.env.E2E_FRONTEND_URL ?? 'http://localhost:5173';
+const BACKEND_URL = process.env.E2E_BACKEND_URL ?? 'http://localhost:3000';
 
 export default defineConfig({
   testDir: './e2e',

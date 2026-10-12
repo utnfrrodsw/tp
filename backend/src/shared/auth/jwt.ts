@@ -9,6 +9,9 @@ import jwt, { SignOptions } from 'jsonwebtoken';
 import { env } from '../config/env';
 import { UserRole } from '../types/enums';
 
+/** Algoritmo de firma: HMAC con SHA-256 y el JWT_SECRET como clave. */
+const JWT_ALGORITHM = 'HS256';
+
 /**
  * Datos que viajan dentro del token.
  *
@@ -31,6 +34,7 @@ export function signToken(payload: TokenPayload): string {
   // El cast hace falta porque los tipos de jsonwebtoken esperan una duración
   // literal ('7d', '1h', ...) y JWT_EXPIRES_IN llega del .env como string común.
   return jwt.sign(payload, env.auth.jwtSecret, {
+    algorithm: JWT_ALGORITHM,
     expiresIn: env.auth.jwtExpiresIn,
   } as SignOptions);
 }
@@ -42,5 +46,7 @@ export function signToken(payload: TokenPayload): string {
  * @throws si el token está vencido, mal firmado o adulterado (lo maneja requireAuth).
  */
 export function verifyToken(token: string): TokenPayload {
-  return jwt.verify(token, env.auth.jwtSecret) as TokenPayload;
+  // Se fija el algoritmo: así un token que diga venir firmado con otro (por
+  // ejemplo "none") se rechaza aunque la librería cambie su comportamiento.
+  return jwt.verify(token, env.auth.jwtSecret, { algorithms: [JWT_ALGORITHM] }) as TokenPayload;
 }

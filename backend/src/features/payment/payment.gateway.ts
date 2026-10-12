@@ -45,6 +45,8 @@ export type GatewayPayment = {
   /** 'approved', 'pending', 'rejected', 'cancelled', 'refunded'... */
   status: string;
   amount: number;
+  /** Moneda del importe ('ARS'...). */
+  currency: string | null;
   /** La referencia que mandamos al crear la preference. */
   externalReference: string | null;
 };
@@ -57,10 +59,10 @@ export type GatewayPayment = {
  */
 function requireAccessToken(): string {
   if (!env.mercadopago.accessToken) {
-    throw new AppError(
-      'La pasarela de pago no está configurada. Falta cargar MERCADOPAGO_ACCESS_TOKEN en el .env del backend.',
-      500
-    );
+    // Qué variable falta es un dato para nosotros, no para el usuario: va al log
+    // del servidor y la respuesta queda genérica.
+    console.error('[mercadopago] Falta cargar MERCADOPAGO_ACCESS_TOKEN en el .env del backend.');
+    throw new AppError('La pasarela de pago no está disponible en este momento.', 500);
   }
   return env.mercadopago.accessToken;
 }
@@ -196,6 +198,7 @@ export const paymentGateway = {
       id?: number | string;
       status?: string;
       transaction_amount?: number;
+      currency_id?: string | null;
       external_reference?: string | null;
     };
 
@@ -205,6 +208,7 @@ export const paymentGateway = {
       id: String(data.id),
       status: data.status,
       amount: data.transaction_amount ?? 0,
+      currency: data.currency_id ?? null,
       externalReference: data.external_reference ?? null,
     };
   },

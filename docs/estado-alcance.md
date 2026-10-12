@@ -70,7 +70,7 @@ en la [propuesta](../proposal.md) y los requisitos del
 | Álbum | ✅ | ✅ |
 | Canción | ✅ | ✅ |
 | Reseña | ✅ | ✅ |
-| Plan de membresía | ✅ | ✅ Pestaña "Planes" del panel de administración |
+| Plan de membresía | ⚠️ Lectura + cambio de precio | ⚠️ Pestaña "Planes" del panel de administración: solo lista los planes y cambia el precio del Pro. Desde el 12/10 no hay alta, baja ni cambio de nombre o descripción (los dos planes los crea el seed), así que ya no es un CRUD completo como figura en la propuesta |
 
 ### Listados con filtro y detalle
 

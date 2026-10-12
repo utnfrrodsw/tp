@@ -34,8 +34,8 @@
   // (no se rechazó nada) ni una confirmación, así que no le pega ni el rojo ni
   // el verde de los otros dos tonos.
   &--warning {
-    background-color: rgba(#FECA57, 0.12);
-    border-color: rgba(#FECA57, 0.4);
-    color: #FECA57;
+    background-color: rgba($color-warning, 0.12);
+    border-color: rgba($color-warning, 0.4);
+    color: $color-warning;
   }
 }

@@ -22,12 +22,15 @@
 //
 // Las tres se ven sin cuenta —son la vitrina de /reviews— pero con sesión suman
 // el estado del que mira: qué reseñas ya le gustaron y a quiénes ya sigue.
+//
+// Igual que requireAuth, el rol se lee de la base (ver shared/auth/session.ts):
+// así un ADMIN al que le sacaron el rol deja de ver reseñas ocultas al instante.
 import { NextFunction, Request, Response } from 'express';
-import { verifyToken } from '../auth/jwt';
+import { resolveSessionUser } from '../auth/session';
 
 const BEARER_PREFIX = 'Bearer ';
 
-export function optionalAuth(req: Request, _res: Response, next: NextFunction): void {
+export async function optionalAuth(req: Request, _res: Response, next: NextFunction): Promise<void> {
   const header = req.headers.authorization;
 
   if (!header || !header.startsWith(BEARER_PREFIX)) {
@@ -38,12 +41,12 @@ export function optionalAuth(req: Request, _res: Response, next: NextFunction): 
   const token = header.slice(BEARER_PREFIX.length).trim();
 
   try {
-    req.user = verifyToken(token);
+    req.user = await resolveSessionUser(token);
   } catch {
-    // Un token vencido o inválido se trata como si no hubiera venido ninguno, en
-    // vez de responder 401: la ruta es pública, así que el pedido se puede
-    // atender igual. Devolver un error dejaría sin ver una reseña pública a
-    // alguien que simplemente tiene guardada una sesión vieja.
+    // Un token vencido, inválido o de una cuenta suspendida se trata como si no
+    // hubiera venido ninguno, en vez de responder 401: la ruta es pública, así
+    // que el pedido se puede atender igual. Devolver un error dejaría sin ver una
+    // reseña pública a alguien que simplemente tiene guardada una sesión vieja.
   }
 
   next();

@@ -189,7 +189,7 @@ function buildWhere(filters: AlbumFilters) {
     ...(filters.state ? { state: filters.state } : {}),
     // La colación de la base (utf8mb4_unicode_ci) ya ignora mayúsculas y
     // minúsculas, así que un LIKE común encuentra "Nevermind" buscando "nevermind".
-    ...(filters.title ? { title: { [Op.like]: `%${filters.title}%` } } : {}),
+    ...(filters.title ? { title: { [Op.like]: `%${escapeLike(filters.title)}%` } } : {}),
     ...(filters.idArtist !== undefined ? { id_artist: filters.idArtist } : {}),
     ...buildCreatedByFilter(filters),
   };

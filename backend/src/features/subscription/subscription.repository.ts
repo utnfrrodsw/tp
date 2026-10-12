@@ -4,7 +4,7 @@
 // Varios métodos reciben una `transaction` opcional. La necesita el circuito de
 // pago: cancelar la membresía anterior, crear la nueva y subir el rol del usuario
 // tienen que pasar todas juntas o ninguna (ver subscription.service.activate).
-import { Transaction } from 'sequelize';
+import { Op, Transaction } from 'sequelize';
 import { Plan, Subscription, User } from '../../entities';
 import { SubscriptionState, UserRole } from '../../shared/types/enums';
 
@@ -163,12 +163,25 @@ export const subscriptionRepository = {
    * estuviera en el repositorio de user, la transacción tendría que cruzar el
    * límite de dos features y cualquier corte dejaría a alguien pagando un plan
    * cuyos beneficios no tiene, o al revés.
+   *
+   * Nunca toca a un ADMIN: su rol no sale de una membresía (ver
+   * subscription.service). Sin este filtro, un ADMIN que comprara Pro quedaría
+   * degradado a PRO, y uno que pidiera el reembolso, a FREE.
    */
   updateUserRole: async (
     id_user: number,
     rol: UserRole,
     transaction?: Transaction
   ): Promise<void> => {
-    await User.update({ rol }, { where: { id_user }, transaction });
+    await User.update({ rol }, { where: { id_user, rol: { [Op.ne]: 'ADMIN' } }, transaction });
+  },
+
+  /** Busca una suscripción por su id, o null si no existe. */
+  findById: async (
+    id_subscription: number,
+    transaction?: Transaction
+  ): Promise<SubscriptionWithPlan | null> => {
+    const subscription = await Subscription.findByPk(id_subscription, { transaction });
+    return subscription as SubscriptionWithPlan | null;
   },
 };

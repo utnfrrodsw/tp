@@ -24,6 +24,7 @@ import { artistService } from '../../services/artistService';
 import type { ArtistInput } from '../../services/artistService';
 import type { Artist } from '../../models/Artist';
 import { ArtistCard } from '../ArtistCard';
+import { MAX_PENDING_PROPOSALS } from '../../../../core/utils/catalogRules';
 import { ArtistProposalModal } from '../ArtistProposalModal';
 import './ArtistContributionsList.scss';
 
@@ -39,11 +40,6 @@ type ArtistContributionsListProps = {
 // usuario con muchos aportes hace una página larguísima de una sola vez (mismo
 // criterio que ArtistAdminSection, la tabla del catálogo completo).
 const PAGE_SIZE = 12;
-
-// Tope de propuestas pendientes que puede tener un mismo usuario a la vez.
-// Tiene que coincidir con MAX_PENDING_PROPOSALS de artist.service.ts: acá solo
-// se usa para avisar ANTES de intentarlo; el límite real lo impone la API.
-const MAX_PENDING_PROPOSALS = 6;
 
 export const ArtistContributionsList = ({
   userId,

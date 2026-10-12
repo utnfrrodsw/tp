@@ -23,6 +23,7 @@ import { albumService } from '../../services/albumService';
 import type { AlbumInput } from '../../services/albumService';
 import type { Album } from '../../models/Album';
 import { AlbumCard } from '../AlbumCard';
+import { MAX_PENDING_PROPOSALS } from '../../../../core/utils/catalogRules';
 import { AlbumProposalModal } from '../AlbumProposalModal';
 import './AlbumContributionsList.scss';
 
@@ -37,11 +38,6 @@ type AlbumContributionsListProps = {
 // Cuántos aportes se ven de entrada y cuántos suma cada "Ver más". Mismo
 // criterio que ArtistContributionsList, su hermana.
 const PAGE_SIZE = 12;
-
-// Tope de propuestas pendientes que puede tener un mismo usuario a la vez.
-// Tiene que coincidir con MAX_PENDING_PROPOSALS de album.service.ts: acá solo
-// se usa para avisar ANTES de intentarlo; el límite real lo impone la API.
-const MAX_PENDING_PROPOSALS = 6;
 
 export const AlbumContributionsList = ({
   userId,

@@ -20,6 +20,7 @@
 // borra. Es el registro contable del sistema, y de él depende el historial que ve
 // el usuario.
 import { Router } from 'express';
+import { rateLimit } from '../../shared/middlewares/rate-limit';
 import { requireAuth } from '../../shared/middlewares/require-auth';
 import { requireRole } from '../../shared/middlewares/require-role';
 import { validate } from '../../shared/middlewares/validate';
@@ -42,7 +43,14 @@ paymentRouter.post(
   paymentController.confirm
 );
 
-paymentRouter.post('/webhook', paymentController.webhook);
+// Cada aviso hace una consulta a MercadoPago con nuestro access token: el límite
+// evita que alguien lo use para gastar nuestro cupo de la API o llenar el log.
+// 60 por minuto está muy por encima de lo que manda MercadoPago de verdad.
+paymentRouter.post(
+  '/webhook',
+  rateLimit({ windowMs: 60_000, max: 60 }),
+  paymentController.webhook
+);
 
 paymentRouter.get('/mine', requireAuth, paymentController.getMine);
 

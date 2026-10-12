@@ -44,6 +44,13 @@ describe('updateUserSchema — personalización Pro', () => {
     expect(result.success).toBe(false);
   });
 
+  it('rechaza URLs que no son http(s), como javascript: o data:', () => {
+    // Son URLs "válidas" para el parser, pero no son una imagen y el navegador
+    // podría ejecutarlas: solo se aceptan direcciones web.
+    expect(updateUserSchema.safeParse({ url_avatar: 'javascript:alert(1)' }).success).toBe(false);
+    expect(updateUserSchema.safeParse({ url_banner: 'data:text/html,hola' }).success).toBe(false);
+  });
+
   it('acepta la posición del banner en los dos extremos', () => {
     expect(updateUserSchema.safeParse({ banner_position: 0 }).success).toBe(true);
     expect(updateUserSchema.safeParse({ banner_position: 100 }).success).toBe(true);

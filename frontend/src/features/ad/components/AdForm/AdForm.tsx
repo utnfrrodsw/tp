@@ -66,8 +66,12 @@ const TARGET_MESSAGE = 'El enlace tiene que ser una URL (https://...) o una ruta
  * una ruta del propio sitio ("/pro"), que es lo que lleva el anuncio de la
  * membresía. Es el mismo refine de targetUrlSchema en ad.schema.ts.
  */
-const isUrlOrSitePath: Rule = (value) =>
-  value.trim().startsWith('/') ? null : isUrl(TARGET_MESSAGE)(value);
+const isUrlOrSitePath: Rule = (value) => {
+  const target = value.trim();
+  // Una sola barra: "//otro.com" es un dominio externo, no una ruta del sitio.
+  const isSitePath = target.startsWith('/') && !target.startsWith('//');
+  return isSitePath ? null : isUrl(TARGET_MESSAGE)(value);
+};
 
 /** Valida el anuncio con las mismas reglas y mensajes que ad.schema.ts del backend. */
 function validateAdForm(values: AdFormValues): FieldErrors<keyof AdFormValues> {

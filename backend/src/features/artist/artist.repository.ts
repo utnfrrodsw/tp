@@ -2,6 +2,7 @@
 // del catálogo. Es la única capa que habla con Sequelize.
 import { Op } from 'sequelize';
 import { Album, Artist, User } from '../../entities';
+import { escapeLike } from '../../shared/db/like';
 import { ContentState } from '../../shared/types/enums';
 
 /** Álbum reducido a lo mínimo que hace falta para mostrar la ficha de un artista. */
@@ -104,7 +105,7 @@ function buildWhere(filters: ArtistFilters) {
     ...(filters.state ? { state: filters.state } : {}),
     // La colación de la base (utf8mb4_unicode_ci) ya ignora mayúsculas y
     // minúsculas, así que un LIKE común encuentra "Nirvana" buscando "nirvana".
-    ...(filters.name ? { name: { [Op.like]: `%${filters.name}%` } } : {}),
+    ...(filters.name ? { name: { [Op.like]: `%${escapeLike(filters.name)}%` } } : {}),
     ...buildCreatedByFilter(filters),
   };
 }

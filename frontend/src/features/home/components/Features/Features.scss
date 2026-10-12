@@ -48,7 +48,7 @@
   // Solo contraste: el fondo se aclara. Antes la tarjeta se levantaba y tiraba
   // sombra; en todo el sitio el hover es un cambio de color, sin movimiento.
   &:hover {
-    background-color: color.adjust(#181818, $lightness: 3%);
+    background-color: color.adjust($color-bg-light, $lightness: 3%);
   }
   
   &__icon {
@@ -88,7 +88,7 @@
   }
   
   &__text {
-    color: #FFFFFF;
+    color: $color-text;
     font-size: 1.1rem;
     line-height: 1.5;
     margin: 0;

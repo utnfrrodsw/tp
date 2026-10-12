@@ -6,7 +6,7 @@
 
 // Color de las estrellas. Es el amarillo de una calificación, no el verde de la
 // marca: se usa en las dos versiones (lectura y selección), así que va una vez.
-$star-color: #f5c518;
+$star-color: $color-star;
 
 // --- Tablero ------------------------------------------------------------------
 // La grilla decide sus columnas por el ancho del TABLERO, no de la pantalla: en

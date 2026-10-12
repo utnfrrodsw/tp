@@ -7,6 +7,10 @@ $color-text-secondary: #B3B3B3;
 $color-nav-bg: #000000;
 $color-nav-border: #282828;
 $color-error: #E2564A; // Mensajes de error de formularios y de la API
+$color-warning: #FECA57; // Avisos (alertas de advertencia, insignias destacadas)
+$color-amber: #E0A53F; // Avisos de la membresía (pago pendiente, nota del panel)
+$color-star: #F5C518; // Estrellas de las calificaciones
+$color-placeholder: #222222; // Fondo de una portada mientras carga o si no tiene imagen
 
 // Colores de acento que un PRO puede elegir para su perfil. Las claves son los
 // valores del enum USERS.profile_color: la base guarda el nombre y el tono exacto
@@ -18,7 +22,7 @@ $profile-accents: (
   'purple': #9B6BF2,
   'pink': #F062A8,
   'orange': #FF6B35,
-  'gold': #FECA57,
+  'gold': $color-warning,
 );
 
 // Typography

@@ -22,6 +22,15 @@ type ErrorResponse = {
   errors?: unknown;
 };
 
+/**
+ * ¿Es un error HTTP 4xx de un middleware de Express (por ejemplo express.json)?
+ * Esos errores traen el código en `status`.
+ */
+function isClientHttpError(error: unknown): error is { status: number } {
+  const status = (error as { status?: unknown } | null)?.status;
+  return typeof status === 'number' && status >= 400 && status < 500;
+}
+
 // Express identifica a este middleware como manejador de errores por tener 4 parámetros:
 // si se saca `next`, deja de funcionar aunque no se use.
 export function errorHandler(
@@ -94,14 +103,24 @@ export function errorHandler(
     body = { message: 'Error al acceder a la base de datos.' };
   }
 
+  // 7) Errores de express.json() (JSON mal formado, body demasiado grande): traen
+  //    su propio status 4xx. Sin este caso saldrían como 500, como si la culpa
+  //    fuera del servidor y no del pedido.
+  else if (isClientHttpError(error)) {
+    status = error.status;
+    body = { message: 'El cuerpo de la request no es válido.' };
+  }
+
   // Los 5xx se loguean completos en el servidor: es el único lugar donde queremos
   // ver el stack. Los 4xx son errores esperables del cliente y no ensucian el log.
   if (status >= 500) {
     console.error('[error]', error);
   }
 
-  // En desarrollo se agrega el detalle técnico para poder depurar sin mirar la consola.
-  if (!env.isProduction && status >= 500 && error instanceof Error) {
+  // En desarrollo se agrega el detalle técnico para poder depurar sin mirar la
+  // consola. Se pide NODE_ENV=development explícito (y no "no es producción"):
+  // un deploy que olvide setear NODE_ENV no tiene que mostrar errores de MySQL.
+  if (env.nodeEnv === 'development' && status >= 500 && error instanceof Error) {
     body.errors = { name: error.name, detail: error.message };
   }
 

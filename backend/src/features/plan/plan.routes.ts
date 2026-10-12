@@ -1,16 +1,13 @@
-// Rutas del CRUD de planes de membresía, montadas en /api/plans.
+// Rutas de los planes de membresía, montadas en /api/plans.
 //
 //   GET    /api/plans      listado de los planes, PÚBLICO
 //   GET    /api/plans/:id  ficha de un plan, PÚBLICO
-//   POST   /api/plans      alta de un plan, solo ADMIN
-//   PATCH  /api/plans/:id  edita nombre, monto o descripción, solo ADMIN
-//   DELETE /api/plans/:id  elimina el plan, solo ADMIN
+//   PATCH  /api/plans/:id  cambia el precio de un plan pago, solo ADMIN
 //
-// Mismo criterio que el CRUD de géneros: toda la escritura es de ADMIN y no hay
-// circuito de moderación, porque un plan no es contenido que aporte un usuario
-// sino la definición comercial del sistema. Como el permiso depende solo del rol,
-// lo resuelve entero requireRole y al service no le queda ningún chequeo de
-// acceso.
+// Los planes son dos y fijos (Free y Pro, los crea el seed): el sistema los busca
+// por nombre y la página /pro está armada para ellos. Por eso no hay alta, baja ni
+// cambio de nombre o descripción: lo único que el ADMIN puede tocar es el precio.
+// Como el permiso depende solo del rol, lo resuelve entero requireRole.
 //
 // Las dos lecturas son públicas porque la página /pro es lo primero que ve
 // alguien que todavía no tiene cuenta, y es justamente donde hay que mostrarle
@@ -21,17 +18,9 @@ import { requireAuth } from '../../shared/middlewares/require-auth';
 import { requireRole } from '../../shared/middlewares/require-role';
 import { validate } from '../../shared/middlewares/validate';
 import { planController } from './plan.controller';
-import { createPlanSchema, planIdParamSchema, updatePlanSchema } from './plan.schema';
+import { planIdParamSchema, updatePlanPriceSchema } from './plan.schema';
 
 export const planRouter = Router();
-
-planRouter.post(
-  '/',
-  requireAuth,
-  requireRole('ADMIN'),
-  validate({ body: createPlanSchema }),
-  planController.create
-);
 
 planRouter.get('/', planController.list);
 
@@ -41,14 +30,6 @@ planRouter.patch(
   '/:id',
   requireAuth,
   requireRole('ADMIN'),
-  validate({ params: planIdParamSchema, body: updatePlanSchema }),
-  planController.update
-);
-
-planRouter.delete(
-  '/:id',
-  requireAuth,
-  requireRole('ADMIN'),
-  validate({ params: planIdParamSchema }),
-  planController.remove
+  validate({ params: planIdParamSchema, body: updatePlanPriceSchema }),
+  planController.updatePrice
 );

@@ -2,6 +2,10 @@
 import { Link } from 'react-router-dom';
 import './Footer.scss';
 
+// El año del copyright se calcula en vez de escribirse a mano: así no queda
+// desactualizado cada enero.
+const CURRENT_YEAR = new Date().getFullYear();
+
 export const Footer = () => {
   return (
     <footer className="footer">
@@ -33,7 +37,7 @@ export const Footer = () => {
         </div>
 
         <div className="footer__bottom">
-          <p className="footer__copyright">© 2026 Musicboxd AB. Todos los derechos reservados.</p>
+          <p className="footer__copyright">© {CURRENT_YEAR} Musicboxd AB. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

@@ -1,33 +1,10 @@
-// Estilos del formulario de alta y edición de un plan.
+// Estilos del formulario de cambio de precio de un plan.
 @use '../../../../styles/abstracts/variable' as *;
-@use '../../../../styles/abstracts/breakpoints' as *;
 
 .plan-form {
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
-
-  // Mobile-first: los campos van uno abajo del otro y recién en MD el nombre y
-  // el monto comparten la fila, que es donde entran los dos sin apretarse.
-  &__row {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-md;
-
-    @media (min-width: $bp-md) {
-      flex-direction: row;
-
-      // El nombre se lleva el espacio sobrante: un monto nunca pasa de unos
-      // pocos caracteres y no gana nada con ser más ancho.
-      > *:first-child {
-        flex: 2 1 0;
-      }
-
-      > *:last-child {
-        flex: 1 1 0;
-      }
-    }
-  }
 
   &__actions {
     display: flex;

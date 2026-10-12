@@ -47,11 +47,26 @@ const targetUrlSchema = z
       .trim()
       .max(500, 'El enlace del anuncio no puede tener más de 500 caracteres.')
       .refine(
-        (value) => value.startsWith('/') || URL.canParse(value),
+        (value) => isSitePath(value) || isHttpUrl(value),
         'El enlace tiene que ser una URL (https://...) o una ruta del sitio (/pro).'
       ),
   ])
   .transform((value) => (value === '' ? null : value));
+
+/**
+ * ¿Es una ruta del propio sitio? Empieza con una sola barra: "//otro.com" es un
+ * dominio externo disfrazado de ruta, y el navegador lo trataría como tal.
+ */
+function isSitePath(value: string): boolean {
+  return value.startsWith('/') && !value.startsWith('//');
+}
+
+/** ¿Es una URL http(s)? Descarta "javascript:", "data:" y compañía. */
+function isHttpUrl(value: string): boolean {
+  if (!URL.canParse(value)) return false;
+  const { protocol } = new URL(value);
+  return protocol === 'http:' || protocol === 'https:';
+}
 
 // El :id de la URL llega siempre como string; se valida y convierte a número acá,
 // así el resto de las capas ya lo reciben tipado como number.

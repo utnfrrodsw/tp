@@ -18,6 +18,7 @@ import { Footer } from '../../../../core/components/Footer';
 import { ExploreListing } from '../../../music/components/ExploreListing';
 import { albumToExploreItem } from '../../../music/models/ExploreItem';
 import { albumService } from '../../services/albumService';
+import { MAX_RELEASE_YEAR, MIN_RELEASE_YEAR } from '../../models/Album';
 import type { AlbumSort } from '../../models/Album';
 
 /** Cómo se titula cada criterio de orden. */
@@ -66,8 +67,8 @@ function readYear(raw: string | null): number | null {
 function buildYearTitle(from: number | null, to: number | null): string | null {
   if (from === null && to === null) return null;
   if (from !== null && to !== null) {
-    if (to >= 2100) return `Álbumes de ${from} en adelante`;
-    if (from <= 1900) return `Álbumes hasta ${to}`;
+    if (to >= MAX_RELEASE_YEAR) return `Álbumes de ${from} en adelante`;
+    if (from <= MIN_RELEASE_YEAR) return `Álbumes hasta ${to}`;
     return `Álbumes de ${from} a ${to}`;
   }
 

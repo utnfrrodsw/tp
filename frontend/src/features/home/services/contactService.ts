@@ -7,8 +7,6 @@
 // Por eso este servicio usa fetch directo, sin headers de autenticación.
 import { ApiError } from '../../../core/utils/errorHandler';
 
-const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
-
 /** Lo que escribe el usuario en /contact. */
 export type ContactInput = {
   name: string;
@@ -34,17 +32,20 @@ export const contactService = {
    * @throws ApiError si falta la access key, si no hay conexión o si Web3Forms lo rechaza.
    */
   async send(input: ContactInput): Promise<void> {
+    // La URL y la key vienen del .env, igual que la de nuestra API: ninguna URL
+    // se hardcodea en el código.
+    const url = import.meta.env.VITE_WEB3FORMS_URL;
     const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
-    // Sin la key el envío fallaría igual; así el mensaje explica qué falta.
-    if (!accessKey) {
+    // Sin alguna de las dos el envío fallaría igual; así el mensaje explica qué falta.
+    if (!url || !accessKey) {
       // Status 500 y no 0: el 0 lo reserva ApiError para 'sin conexión'.
       throw new ApiError('El formulario de contacto no está configurado todavía.', 500);
     }
 
     let response: Response;
     try {
-      response = await fetch(WEB3FORMS_URL, {
+      response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({

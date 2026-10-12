@@ -103,6 +103,15 @@ describe('createAdSchema', () => {
     );
   });
 
+  it('rechaza un enlace javascript: y uno que empieza con // (dominio externo)', () => {
+    const base = { title: 'Vinilos Club', url_image: '/images/ads/ads-vinilos.jpg' };
+
+    expect(createAdSchema.safeParse({ ...base, target_url: 'javascript:alert(1)' }).success).toBe(
+      false
+    );
+    expect(createAdSchema.safeParse({ ...base, target_url: '//evil.com' }).success).toBe(false);
+  });
+
   it('convierte el enlace vacío a null: un anuncio puede ser solo gráfico', () => {
     const result = createAdSchema.safeParse({
       title: 'Vinilos Club',

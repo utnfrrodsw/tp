@@ -29,7 +29,7 @@ export const PopularAlbums = () => {
   return (
     <section className="popular-albums">
       <div className="popular-albums__container">
-        <h2 className="popular-albums__title">Popular Esta Semana</h2>
+        <h2 className="popular-albums__title">Más Reseñados</h2>
 
         {isLoading ? (
           <Loader message="Cargando álbumes..." />

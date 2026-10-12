@@ -613,10 +613,19 @@ desde su propio perfil).
 - **La contraseña no sale nunca en una respuesta.** El `defaultScope` de la entidad
   `User` la excluye de toda consulta; el login es el único lugar que usa
   `User.scope('withPassword')`, y aun ahí el service arma la respuesta campo por campo.
-- **Login fallido: siempre el mismo mensaje**, exista o no el email. Distinguir los
-  casos le permitiría a un atacante averiguar qué cuentas están registradas.
+- **Login fallido: siempre el mismo mensaje y el mismo tiempo**, exista o no el email.
+  Si el email no existe, bcrypt se corre igual contra un hash de relleno: si no,
+  medir cuánto tarda la respuesta delataría qué cuentas están registradas.
+- **El rol y el estado se leen de la base en cada request.** El token prueba quién
+  es el usuario, pero `requireAuth` (con `shared/auth/session.ts`) relee su rol y
+  su estado: una cuenta suspendida o a la que un ADMIN le bajó el rol pierde los
+  permisos en la request siguiente, sin esperar a que venza el token.
+- **Límite de intentos por IP** (`shared/middlewares/rate-limit.ts`, sin librerías):
+  10 logins cada 15 minutos, 5 registros por hora y 60 avisos por minuto al webhook
+  de pagos. Al pasarse responde `429`.
 - **`JWT_SECRET` es obligatorio.** Si falta, el servidor no arranca: con una clave
-  vacía cualquiera podría fabricarse un token de `ADMIN`.
+  vacía cualquiera podría fabricarse un token de `ADMIN`. Con `NODE_ENV=production`
+  tampoco arranca si es el valor de ejemplo o tiene menos de 32 caracteres.
 - El frontend replica estos permisos con `ProtectedRoute`, pero eso es solo para la
   navegación: **la validación real es la del backend**.
 
@@ -898,17 +907,20 @@ Consecuencias en el código:
 
 - `createCheckout` corta con 400 si el usuario ya tiene la membresía activa: no
   hay nada que volver a comprar.
-- No existe la baja voluntaria. La única baja posible la aplica un ADMIN al
-  cambiarle el rol a FREE a un usuario, y ahí `subscriptionService.cancelForUser`
-  deja la fila como `cancelled`.
+- No existe la baja voluntaria. La membresía se da de baja en dos casos: cuando un
+  ADMIN le cambia el rol a FREE a un usuario (`subscriptionService.cancelForUser`
+  deja la fila como `cancelled`), o cuando MercadoPago informa que el pago se
+  devolvió (`refunded` o `charged_back`): el pago pasa a `cancelled`, la
+  suscripción también y el usuario vuelve a FREE.
 - El estado `expired` se eliminó del enum: era inalcanzable.
 
-### El rol vive dentro del token
+### El rol también viaja dentro del token
 
-`requireRole` lee el rol del JWT, no de la base. Entonces, después de pagar, el
-token guardado sigue diciendo `FREE` y el backend rechazaría las rutas que el
-usuario acaba de comprar. Por eso existe `POST /api/auth/refresh`: relee el
-usuario y emite un token nuevo. El frontend lo llama al confirmar un pago.
+El backend no depende de él para autorizar: `requireAuth` relee el rol de la base
+en cada request, así que las rutas Pro se habilitan apenas se confirma el pago.
+Pero el token y el usuario que guarda el frontend siguen diciendo `FREE`, y por
+eso existe `POST /api/auth/refresh`: relee el usuario y emite un token nuevo. El
+frontend lo llama al confirmar un pago.
 
 ### Endpoints
 
@@ -916,7 +928,7 @@ usuario y emite un token nuevo. El frontend lo llama al confirmar un pago.
 |:-|:-|:-|
 | GET | `/api/plans` | público |
 | GET | `/api/plans/:id` | público |
-| POST · PATCH · DELETE | `/api/plans` · `/api/plans/:id` | ADMIN |
+| PATCH | `/api/plans/:id` (solo el precio de un plan pago) | ADMIN |
 | GET | `/api/subscriptions/mine` | logueado |
 | GET | `/api/subscriptions` | ADMIN |
 | POST | `/api/payments/checkout` | logueado |

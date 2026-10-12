@@ -25,6 +25,7 @@
 // estado 'pending' donde dejarla esperando. Guardar los rechazos obligaría a crear
 // una suscripción que nunca estuvo vigente. Un rechazo, entonces, no deja fila: el
 // usuario lo ve en la pantalla de retorno y puede volver a intentar.
+import { env } from '../../shared/config/env';
 import { sequelize } from '../../shared/db/sequelize';
 import { BadRequestError, NotFoundError } from '../../shared/errors/app-error';
 import { USER_ROLES, UserRole } from '../../shared/types/enums';
@@ -39,6 +40,9 @@ import { paymentRepository, PaymentWithSubscription } from './payment.repository
 
 /** Estado con el que MercadoPago informa un pago aceptado. */
 const APPROVED_STATUS = 'approved';
+
+/** Estados con los que MercadoPago informa que la plata volvió al comprador. */
+const REVERSED_STATUSES = ['refunded', 'charged_back'];
 
 /** Lo que devuelve el arranque del checkout: a dónde mandar al usuario. */
 type CheckoutResult = {
@@ -252,6 +256,13 @@ export const paymentService = {
       throw new NotFoundError('El pago informado');
     }
 
+    // Un pago que se devolvió (reembolso o contracargo) tiene que sacar la
+    // membresía que había dado; si no, alguien podría pagar, quedar PRO y pedir la
+    // plata de vuelta.
+    if (REVERSED_STATUSES.includes(payment.status)) {
+      return paymentService.revokeReversed(payment.id, payment.status);
+    }
+
     if (payment.status !== APPROVED_STATUS) {
       // Ni error ni activación: el pago existe pero no prosperó. La pantalla de
       // retorno usa este estado para explicarle al usuario qué pasó.
@@ -273,6 +284,16 @@ export const paymentService = {
     }
 
     const { id_user, id_plan } = parseExternalReference(payment.externalReference);
+
+    // La referencia sola no alcanza: cualquier pago aprobado en nuestra cuenta de
+    // MercadoPago con el formato "x:y" activaría una membresía. Se exige además
+    // que el plan exista y que se haya cobrado su precio, en nuestra moneda.
+    const plan = await planRepository.findById(id_plan);
+    if (!plan) throw new NotFoundError('El plan del pago');
+
+    if (payment.currency !== env.mercadopago.currency || payment.amount < plan.amount) {
+      throw new BadRequestError('El importe del pago no corresponde al precio del plan.');
+    }
 
     await sequelize.transaction(async (t) => {
       // Activar crea la suscripción —sin vencimiento, porque es un pago único—
@@ -299,6 +320,29 @@ export const paymentService = {
       status: payment.status,
       message: '¡Listo! Tu membresía Pro quedó activa.',
     };
+  },
+
+  /**
+   * Anula un pago que MercadoPago informó como devuelto y revoca la membresía
+   * que había activado, todo en una transacción. Si el pago nunca se registró o
+   * ya estaba anulado, no hace nada: el aviso puede llegar repetido.
+   *
+   * @param gatewayPaymentId id del pago en MercadoPago.
+   * @param status estado informado ('refunded' o 'charged_back').
+   */
+  async revokeReversed(gatewayPaymentId: string, status: string): Promise<ConfirmResult> {
+    const existing = await paymentRepository.findByGatewayId(gatewayPaymentId);
+
+    if (!existing || existing.state !== 'approved') {
+      return { applied: false, status, message: 'No había una membresía activa por este pago.' };
+    }
+
+    await sequelize.transaction(async (t) => {
+      await paymentRepository.updateState(existing, 'cancelled', t);
+      await subscriptionService.revoke(existing.id_subscription, t);
+    });
+
+    return { applied: true, status, message: 'El pago se devolvió y la membresía Pro se dio de baja.' };
   },
 
   /**

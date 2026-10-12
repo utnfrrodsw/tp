@@ -152,7 +152,7 @@ function buildWhere(filters: SongFilters) {
     ...(filters.state ? { state: filters.state } : {}),
     // La colación de la base (utf8mb4_unicode_ci) ya ignora mayúsculas y
     // minúsculas, así que un LIKE común encuentra "Come As You Are" buscando "come".
-    ...(filters.title ? { song_title: { [Op.like]: `%${filters.title}%` } } : {}),
+    ...(filters.title ? { song_title: { [Op.like]: `%${escapeLike(filters.title)}%` } } : {}),
     ...(filters.idAlbum !== undefined ? { id_album: filters.idAlbum } : {}),
     ...buildCreatedByFilter(filters),
   };

@@ -27,6 +27,12 @@ const SALT_ROUNDS = 10;
 export async function seedAdminUser(): Promise<void> {
   const { username, email, password } = env.seedAdmin;
 
+  // La contraseña por defecto está escrita en el repo: sirve para desarrollar,
+  // pero en producción dejaría un ADMIN con una clave que conoce cualquiera.
+  if (env.isProduction && !process.env.SEED_ADMIN_PASSWORD) {
+    throw new Error('En producción hay que definir SEED_ADMIN_PASSWORD en el .env antes de crear el admin.');
+  }
+
   const existing = await User.findOne({ where: { email } });
   if (existing) {
     console.log(`[seed] El usuario admin ya existe, se omite: ${email}`);
