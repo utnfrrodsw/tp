@@ -83,6 +83,20 @@ npm run test:e2e
 
 Con `npm run test:e2e -- --headed` se ve el navegador haciendo el recorrido.
 
+## Deploy
+
+En producción el frontend se publica en **Vercel** como sitio estático: Root
+Directory `frontend`, y las dos variables `VITE_*` cargadas en el panel. Van en el
+build, así que cambiarlas exige volver a deployar.
+
+[`vercel.json`](vercel.json) existe por una sola razón: las rutas las resuelve
+React Router en el navegador, y en el servidor solo hay un `index.html`. Sin la
+regla de `rewrites`, entrar directo o recargar con F5 en `/albums` o `/pro/return`
+le pide a Vercel un archivo que no existe y devuelve 404. Con la regla, toda ruta
+sirve `index.html` y React Router dibuja la pantalla que corresponde. `/pro/return`
+es el caso que no puede fallar: es a donde MercadoPago devuelve al usuario después
+de pagar.
+
 ## Estructura
 
 ```
