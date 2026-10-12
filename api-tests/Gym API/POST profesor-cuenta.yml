@@ -1,0 +1,15 @@
+info:
+  name: POST profesor-cuenta
+  type: http
+  seq: 20
+
+http:
+  method: POST
+  url: http://localhost:3000/api/profesores/11111111/cuenta
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

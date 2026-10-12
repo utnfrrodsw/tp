@@ -1,0 +1,15 @@
+info:
+  name: POST cliente-cuenta
+  type: http
+  seq: 21
+
+http:
+  method: POST
+  url: http://localhost:3000/api/clientes/40111222/cuenta
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

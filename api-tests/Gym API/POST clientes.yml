@@ -1,0 +1,26 @@
+info:
+  name: POST clientes
+  type: http
+  seq: 17
+
+http:
+  method: POST
+  url: http://localhost:3000/api/clientes
+  body:
+    type: json
+    data: |-
+      {
+        "dni": 40111222,
+        "nombre": "Juan",
+        "apellido": "Pérez",
+        "telefono": "3415551234",
+        "email": "cliente@powertrainer.test",
+        "crearCuenta": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

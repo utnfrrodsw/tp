@@ -1,0 +1,21 @@
+info:
+  name: PUT especialidades
+  type: http
+  seq: 8
+
+http:
+  method: PUT
+  url: http://localhost:3000/api/especialidades/3
+  body:
+    type: json
+    data: |-
+      {
+        "nombre": "Boxeo"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
