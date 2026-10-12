@@ -14,7 +14,6 @@ import { ProBenefits } from '../ProBenefits';
 import { ProComparison } from '../ProComparison';
 import { ProFaq } from '../ProFaq';
 import { CtaBackdrop } from '../../../home/components/CtaBackdrop';
-import { FloatingCovers } from '../../../album/components/FloatingCovers';
 import {
   Crown,
   BarChart3,
@@ -71,9 +70,14 @@ export const ProSalesView = ({ isAuthenticated }: ProSalesViewProps) => {
       {/* ── Hero: imagen de fondo con título y CTAs ──── */}
       <FadeInSection delay={100}>
         <section className="pro-hero">
-          {/* Portadas del catálogo flotando como fondo visual */}
+          {/* Álbumes flotantes como fondo visual (las mismas imágenes fijas del Hero de la home) */}
           <div className="pro-hero__bg">
-            <FloatingCovers itemClassName="pro-hero__bg-album" />
+            <img src="/images/abbey-road.jpg" alt="" className="pro-hero__bg-album pro-hero__bg-album--1" />
+            <img src="/images/audioslave.jpeg" alt="" className="pro-hero__bg-album pro-hero__bg-album--2" />
+            <img src="/images/wish-you-where-here.jpeg" alt="" className="pro-hero__bg-album pro-hero__bg-album--3" />
+            <img src="/images/oktubre.jpg" alt="" className="pro-hero__bg-album pro-hero__bg-album--4" />
+            <img src="/images/frank-sinatra.webp" alt="" className="pro-hero__bg-album pro-hero__bg-album--5" />
+            <img src="/images/ahi-vamos.jpg" alt="" className="pro-hero__bg-album pro-hero__bg-album--6" />
           </div>
           <div className="pro-hero__overlay" />
           <div className="pro-hero__content">

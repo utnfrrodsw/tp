@@ -2,7 +2,6 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../../core/context/AuthContext';
 import { useAuthModal } from '../../../../core/context/AuthModalContext';
-import { FloatingCovers } from '../../../album/components/FloatingCovers';
 import './Hero.scss';
 
 export const Hero = () => {
@@ -17,9 +16,16 @@ export const Hero = () => {
     <section className="hero">
       <div className="hero__background"></div>
 
-      {/* Portadas del catálogo flotando de fondo */}
+      {/* Portadas flotando de fondo. Son imágenes fijas de public/ y no del
+          catálogo: es decoración elegida a mano, y con la API el fondo
+          cambiaría según qué álbumes tengan más reseñas. */}
       <div className="hero__floating-albums">
-        <FloatingCovers itemClassName="floating-album" />
+        <img src="/images/abbey-road.jpg" alt="Abbey Road" className="floating-album floating-album--1" />
+        <img src="/images/ahi-vamos.jpg" alt="Ahi Vamos" className="floating-album floating-album--2" />
+        <img src="/images/audioslave.jpeg" alt="Audioslave" className="floating-album floating-album--3" />
+        <img src="/images/frank-sinatra.webp" alt="Frank Sinatra" className="floating-album floating-album--4" />
+        <img src="/images/oktubre.jpg" alt="Oktubre" className="floating-album floating-album--5" />
+        <img src="/images/wish-you-where-here.jpeg" alt="Wish You Were Here" className="floating-album floating-album--6" />
       </div>
 
       <div className="hero__content">
