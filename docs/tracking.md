@@ -110,9 +110,10 @@ Lo que falta del alcance y todavía no tiene issue. El detalle de cada uno está
 > entrega, que dependen de `.env` y de las credenciales de MercadoPago que él
 > configuró.
 
-> Los tests automatizados (5 unitarios + integración en el backend, unitario de
+> Los tests automatizados (8 unitarios + integración en el backend, unitarios de
 > componente + E2E en el frontend) estaban en esta lista y **ya están hechos**:
-> entraron por el PR #15 y se sumaron los de `follow` y `list` después. Lo que
+> entraron por el PR #15 y después se sumaron los de `follow` (PR #16), `list`
+> (PR #17), `payment` (PR #20), `user` (PR #22) y `ad` (PR #27). Lo que
 > falta de ese ítem es la *evidencia de ejecución*, que es un entregable de
 > documentación aparte.
 >
@@ -154,6 +155,7 @@ Gallo.
 | [#26](https://github.com/SantiiDev/DSW-TP/pull/26) | `refactor/tech-debt` | Los beneficios Pro dejan de prometer lo que no existe: se corrigieron `ProComparison`, `ProBenefits`, `ProSalesView`, `ProCheckoutPage`, `ProMemberView` y las preguntas frecuentes | 30/09 | Santino Gallo |
 | [#27](https://github.com/SantiiDev/DSW-TP/pull/27) | `feature/ads-3` | Ajustes sobre los anuncios: intervalo de 20 segundos, rotación que arranca en un anuncio al azar, el anuncio no aparece sobre un modal abierto, vista previa de la imagen en el alta y los dos tests de la feature (`ad.schema` y `AdModal`) | 30/09 | Santiago Siena |
 | [#28](https://github.com/SantiiDev/DSW-TP/pull/28) | `feature/admin-panel-improvements` | Buscador en vivo y recargas sin parpadeo en el panel de administración | 30/09 | Juan Ignacio Esterri |
+| [#29](https://github.com/SantiiDev/DSW-TP/pull/29) | `fixissues` | Actualización de la documentación: los PR #19 a #28 en la propuesta, este archivo y la revisión del estado del alcance | 03/10 | Santiago Siena |
 
 > Las ramas `custom-lists`, `fixed-list` y `fixed-list2` se borraron después de
 > mergearse, así que el trabajo se sigue por su pull request y no por la rama.
@@ -176,8 +178,8 @@ Gallo.
 | El borrado de usuario eliminaba la fila y se llevaba puestas sus reseñas | Se cambió por baja lógica (`state = 'suspended'`) con un endpoint inverso para reactivar | 21/08 |
 | PR #6 mergeado contra `main` en lugar de `develop` | Se revirtió el merge en `main` y el contenido se reincorporó por `develop` | 26/08 |
 | Errores de maquetado en el explorador de música y en el listado de álbumes | Corrección de CSS (centrado, componentes, contenedores) | 25/08 y 01/09 |
-| El índice único de la base quedaba mal armado al recrear las tablas | Script de mantenimiento `npm run db:fix-indexes` | — |
-| Bases creadas con el nivel `PATRON`, que se eliminó del modelo | Script de migración `npm run db:migrate:patron` | — |
+| El índice único de la base quedaba mal armado al recrear las tablas: con `sync({ alter: true })`, cada arranque duplicaba los índices sin nombre hasta el límite de 64 de MySQL | Los índices únicos se declaran con nombre en las entidades (ver `user.entity.ts`), así `sync` los reconoce y no los duplica. El script `npm run db:fix-indexes` que limpiaba las bases afectadas se eliminó el 18/09 (`8e208f2`); una base vieja se rehace con `npm run db:reset` | — |
+| Bases creadas con el nivel `PATRON`, que se eliminó del modelo | Se migraban con el script `npm run db:migrate:patron`, que se eliminó el 18/09 (`8e208f2`). Una base anterior a ese cambio se rehace con `npm run db:reset` | — |
 | Dos integrantes escribieron `optional-auth.ts` en paralelo, con comportamientos opuestos ante un token inválido | Se resolvió a favor de **ignorar el token inválido y seguir como visitante**, en lugar de cortar con 401. El `httpClient` no maneja el 401, así que cortar dejaría a alguien con la sesión vencida viendo un error en una página pública (`/reviews`) en vez del contenido | 10/09 |
 | El precio de un plan con centavos se mostraba redondeado ($1.750,50 salía como "$ 1.751") | `Plan.priceLabel` muestra los decimales solo cuando el monto los tiene | 10/09 |
 | `.review-card` estaba definida dos veces (`_review.scss` y `_members-explore.scss`) y solo se resolvía bien por el orden de los imports | La colisión desapareció al eliminar `/members` y su hoja de estilos | 10/09 |
@@ -217,8 +219,10 @@ trazabilidad del trabajo:
   `12fdf81` ("Fix error load") y `da1b944` ("Fix css errors"), los dos del 30/09.
   Mismo caso que los anteriores: son correcciones, pero tendrían que haber salido
   por una rama.
-- **`main` está 98 commits atrás de `develop`.** La entrega de regularidad tiene
-  que salir de un merge de `develop` a `main`.
+- **`main` está 81 commits atrás de `develop`** (54 sin contar los merges),
+  medido el 10/10/2026 sobre las ramas de GitHub con
+  `git rev-list --count origin/main..origin/develop`. La entrega de regularidad
+  tiene que salir de un merge de `develop` a `main`.
 - **La carga de trabajo está repartida de forma despareja** en el historial: de
   los 72 commits del desarrollo (sin contar merges ni el historial heredado del
   fork), 44 son de Santino Gallo, 18 de Juan Ignacio Esterri y 10 de Santiago

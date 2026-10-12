@@ -94,7 +94,8 @@ npm run seed
 ```
 
 Un solo comando deja la base usable: los 2 planes de membresía, el catálogo completo
-(11 géneros, 88 artistas, 263 álbumes y 3.618 canciones) y el usuario administrador.
+(11 géneros, 88 artistas, 263 álbumes y 3.618 canciones), el usuario administrador
+y los 5 anuncios que ve un usuario `FREE`.
 
 **No necesita conexión a internet.** El catálogo se lee de archivos JSON versionados
 en el repositorio, no de una API externa. Ver [Catálogo inicial](#catálogo-inicial).
@@ -108,10 +109,15 @@ Tarda alrededor de un minuto y termina con un resumen de lo insertado:
 [seed] Canciones: 3618 nuevas.
 [seed] Vínculos género-álbum: 405 nuevos.
 [seed] Usuario ADMIN creado: admin@musicboxd.com (usuario: admin)
+[seed] Anuncio creado: Auriculares Sonar X
+...
+[seed] Anuncio creado: Musicboxd Pro
 ```
 
 Todos los seeds son **idempotentes**: se pueden correr las veces que haga falta sin
-duplicar registros. Al correrlo una segunda vez, todos los contadores dan cero.
+duplicar registros. Al correrlo una segunda vez, los contadores del catálogo dan
+cero y los anuncios figuran como "actualizados": ese seed no saltea los que ya
+están, los deja tal como están escritos en `seed-ads.ts`.
 
 Las credenciales del administrador salen de `SEED_ADMIN_*` en el `.env`. Por defecto:
 
@@ -133,8 +139,16 @@ Las credenciales del administrador salen de `SEED_ADMIN_*` en el `.env`. Por def
 | `npm run seed:plans` | Corre solo el seed de planes Free / Pro |
 | `npm run seed:catalog` | Corre solo el seed del catálogo |
 | `npm run seed:admin` | Corre solo el seed del usuario administrador |
+| `npm run seed:ads` | Corre solo el seed de los 5 anuncios. Con `-- --prune` borra además los anuncios que no son de ese seed, incluidos los que un ADMIN cargó a mano |
 | `npm run seed:fetch` | **Descarga el catálogo de Deezer.** Es el único script que sale a internet, y no hace falta correrlo para levantar el proyecto |
+| `npm run seed:demo-sales` | **Demo.** 10 ventas de la membresía para el dashboard de administración. Se borran con `-- --clean` |
+| `npm run seed:demo-lists` | **Demo.** 6 usuarios `PRO` con 30 listas y "me gusta" cruzados, para que `/lists` tenga contenido. Se borran con `-- --clean` |
 | `npm run db:reset` | Borra la base local, la recrea y corre todos los seeds |
+
+Los dos seeds de demo **no** corren con `npm run seed` ni con `db:reset`: hay que
+pedirlos a mano. **Hay que limpiar los dos con `-- --clean` antes del deploy**; si
+no, la app publicada mostraría ventas que nunca se cobraron y usuarios que no
+existen.
 
 ## Tests
 
@@ -145,24 +159,31 @@ a la API sin levantar el servidor en un puerto. Viven en `tests/`, fuera de
 ```
 tests/
 ├── unit/          una función pura por vez, sin base ni red
-│   ├── auth.schema.test.ts     Santino Gallo
-│   ├── album.schema.test.ts    Juan Ignacio Esterri
-│   ├── review.schema.test.ts   Santiago Siena
+│   ├── auth.schema.test.ts      Santino Gallo
+│   ├── album.schema.test.ts     Juan Ignacio Esterri
+│   ├── review.schema.test.ts    Santiago Siena
 │   ├── follow.schema.test.ts
-│   └── list.schema.test.ts     Santiago Siena
+│   ├── list.schema.test.ts      Santiago Siena
+│   ├── user.schema.test.ts      Juan Ignacio Esterri
+│   ├── payment.schema.test.ts   Santino Gallo
+│   └── ad.schema.test.ts        Santiago Siena
 └── integration/
-    └── auth.test.ts            la app entera, contra MySQL
+    └── auth.test.ts             la app entera, contra MySQL
 ```
 
-Los tres primeros son el test por integrante que pide la cátedra; los dos últimos
+Los tres primeros son el test por integrante que pide la cátedra; los otros cinco
 se sumaron después, con las features que los estrenaron.
 
 **Los unitarios** prueban los schemas de Zod, que son las reglas de validación de
 la API: la normalización del email y el mínimo de la contraseña (`auth`), el año
 vacío que se guarda como `NULL` y el artista obligatorio (`album`), la escala de
-media estrella más el XOR álbum/canción (`review`), y el tipo obligatorio de una
-lista con el tope de su paginado (`list`). Son funciones puras, así que no
-necesitan base de datos ni variables de entorno:
+media estrella más el XOR álbum/canción (`review`), el valor por defecto y el tope
+del ranking de usuarios (`follow`), el tipo obligatorio de una lista con el tope
+de su paginado (`list`), la paleta cerrada del color de perfil y el banner vacío
+que vuelve a `NULL` (`user`), el año de las métricas del dashboard (`payment`), y
+el título y la imagen obligatorios de un anuncio con su enlace externo o interno
+(`ad`). Son funciones puras, así que no necesitan base de datos ni variables de
+entorno:
 
 ```bash
 npm test -- tests/unit
@@ -328,6 +349,7 @@ src/
     review/          CRUD de reseña, likes, comentarios y estadísticas
     list/            CRUD de listas personalizadas
     plan/  subscription/  payment/   Membresías y pasarela de pago
+    ad/              CRUD de los anuncios que ve un usuario FREE
 
   entities/          Modelos de Sequelize (uno por tabla del DER) +
                      index.ts con TODAS las asociaciones
@@ -501,9 +523,11 @@ header `Authorization` en cada request.
 | :----- | :------------------- | :-------- | :---------------------------------------------- |
 | POST   | `/api/auth/register` | público   | Crea la cuenta (siempre `FREE`) y devuelve token |
 | POST   | `/api/auth/login`    | público   | Valida credenciales y devuelve token             |
+| POST   | `/api/auth/refresh`  | logueado  | Relee el usuario y emite un token con el rol al día |
 | GET    | `/api/auth/me`       | logueado  | Datos del usuario dueño del token                |
 
-`register` y `login` responden lo mismo: el usuario y su token.
+`register`, `login` y `refresh` responden lo mismo: el usuario y su token. Para
+qué sirve `refresh` está en [El rol vive dentro del token](#el-rol-vive-dentro-del-token).
 
 ```json
 {
@@ -606,7 +630,7 @@ catálogo, donde el alta exige `PRO`.
 
 | Método | Ruta | Acceso |
 |:-|:-|:-|
-| GET | `/api/reviews` | logueado |
+| GET | `/api/reviews` | **público**, con `optionalAuth` |
 | GET | `/api/reviews/mine` | logueado |
 | GET | `/api/reviews/stats/me?year=` | PRO o ADMIN |
 | GET | `/api/reviews/stats` | público |
@@ -621,8 +645,8 @@ catálogo, donde el alta exige `PRO`.
 ### Filtros del listado
 
 `GET /api/reviews` acepta `id_album`, `id_song`, `target`, `id_user`, `state`,
-`min_rating`, `limit` y `offset`. Con esos filtros, una sola consulta alimenta
-cuatro pantallas:
+`min_rating`, `following`, `exclude_mine`, `limit` y `offset`. Con esos filtros,
+una sola consulta alimenta seis pantallas:
 
 | Para qué | Query |
 |:-|:-|
@@ -630,6 +654,17 @@ cuatro pantallas:
 | Reseñas de un usuario, de 4 estrellas para arriba | `?id_user=2&min_rating=4` |
 | Álbumes que calificó un usuario | `?id_user=2&target=album` |
 | Canciones que calificó | `?id_user=2&target=song` |
+| Solapa "Comunidad" de `/reviews` | `?exclude_mine=true` |
+| Solapa "Amigos" de `/reviews` | `?following=true` |
+
+El listado es **público** porque el feed de la comunidad se ve sin cuenta. Va con
+`optionalAuth` porque la respuesta mejora con sesión: `liked_by_me` dice si el que
+mira ya le dio "me gusta", y `following` (el feed de amigos) solo existe sabiendo
+quién pregunta, así que sin token responde 401. Sin sesión, `exclude_mine` no
+excluye nada.
+
+`following` y `exclude_mine` filtran por autor, igual que `id_user`, así que no se
+combinan entre sí ni con él: el schema rechaza esas combinaciones con un 400.
 
 `target` (`album` \| `song`) no se pisa con `id_album` / `id_song`: aquellos
 apuntan a **un** ítem y este a **todo un tipo**. En la tabla, a qué apunta una
@@ -681,6 +716,7 @@ para no tocar el CRUD de `user`.
 | Método | Ruta | Acceso |
 |:-|:-|:-|
 | GET | `/api/users/suggestions?limit=` | público, con `optionalAuth` |
+| GET | `/api/users/ranking?limit=` | público, con `optionalAuth` |
 | GET | `/api/users/search?q=&limit=` | público, con `optionalAuth` |
 | POST · DELETE | `/api/users/:id/follow` | logueado |
 | GET | `/api/users/:id/follow-stats` | público, con `optionalAuth` |
@@ -940,16 +976,16 @@ con un `localhost` rechaza la preference entera.
 
 ## Modelo de datos
 
-Diecisiete tablas. Las diez primeras salen del pasaje a tablas del DER original:
+Dieciocho tablas. Las diez primeras salen del pasaje a tablas del DER original:
 
 `users`, `plan`, `subscription`, `payments`, `artist`, `albums`, `genres`,
 `genres_albums`, `song`, `review`.
 
-Las siete últimas son los agregados al DER, documentados y justificados uno por
+Las ocho últimas son los agregados al DER, documentados y justificados uno por
 uno en la [propuesta](../proposal.md#modelo):
 
 `review_likes`, `review_comments`, `follows`, `lists`, `list_albums`,
-`list_songs`, `list_likes`.
+`list_songs`, `list_likes`, `ads`.
 
 El diagrama completo, con las restricciones y el comportamiento ante borrados,
 está en [`docs/der.md`](../docs/der.md).

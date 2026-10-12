@@ -181,9 +181,10 @@ export const ReviewDetailPage = () => {
               onToggleVisibility={handleToggleVisibility}
             />
 
-            {/* El listado de reseñas exige token, así que sin sesión estos dos
-                bloques darían 401. En su lugar va la invitación a registrarse,
-                que es lo que corresponde en una pantalla pública. */}
+            {/* Sin sesión estos dos bloques no se muestran, aunque la API del
+                listado sea pública: quien llegó por un enlace compartido ya leyó
+                la reseña, y en vez de seguir navegando sin cuenta ve la
+                invitación a registrarse. */}
             {isLogged ? (
               <>
                 {review.author && (

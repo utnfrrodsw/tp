@@ -92,8 +92,11 @@ src/
     components/     Componentes reutilizables por todas las features
                     (Navbar, Footer, Loader, ProtectedRoute, Tabs, ...)
     context/        Estado global: AuthContext (sesión), AuthModalContext (modal)
+    hooks/          Hooks compartidos: useFetch y usePagedFetch (carga de datos
+                    con loading y error), useShowMore, useCopyLink, ...
     services/       httpClient (único punto de salida HTTP) y tokenStorage
-    utils/          ApiError y traducción de errores a mensajes de pantalla
+    utils/          ApiError y traducción de errores a mensajes de pantalla,
+                    reglas de validación de formularios (validators)
   features/<x>/     Una carpeta por entidad del dominio:
     components/     Componentes propios de la feature, uno por carpeta con su .scss
     models/         Clases que representan los datos de la API
@@ -192,8 +195,11 @@ las tarjetas del explorador: con sesión navega, y sin sesión abre el modal de
 registro. Así un enlace compartido se lee entero y desde ahí se entra al sitio, en
 vez de rebotar contra una pantalla de login.
 
-Las columnas de "más reseñas" son la única parte que no se muestra sin sesión: el
-listado de reseñas sí exige token. En su lugar va la invitación a registrarse.
+Las columnas de "más reseñas" son la única parte que no se muestra sin sesión. No
+es una restricción de la API (el listado de reseñas también es público): es una
+decisión de la pantalla. Quien llega por un enlace compartido lee la reseña
+entera, y en vez de seguir navegando reseñas sin cuenta ve la invitación a
+registrarse.
 
 La ficha de una lista (`/lists/:id`) es pública por el mismo motivo: también tiene
 botón "Compartir". Lo que cambia con sesión son los controles del dueño y el

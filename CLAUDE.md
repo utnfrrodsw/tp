@@ -121,13 +121,15 @@ backend/src/
   features/          una carpeta por entidad, con sus cinco capas:
     <feature>/       <x>.routes.ts, <x>.controller.ts, <x>.service.ts,
                      <x>.repository.ts, <x>.schema.ts
-  entities/          modelos de Sequelize (User, Plan, Subscription, Payment,
-                     Artist, Genre, Album, Song, Review) + index.ts con TODAS
+  entities/          modelos de Sequelize, uno por tabla del DER (User, Plan,
+                     Subscription, Payment, Artist, Genre, GenreAlbum, Album,
+                     Song, Review, ReviewLike, ReviewComment, Follow, List,
+                     ListAlbum, ListSong, ListLike, Ad) + index.ts con TODAS
                      las asociaciones
   shared/            middlewares (auth, requireRole, validate, errorHandler),
                      config de la DB, errores, tipos comunes
   seed/              carga inicial de datos + data/*.json
-  scripts/           mantenimiento de la base (reset, índices, migraciones)
+  scripts/           mantenimiento de la base (hoy, solo reset-db)
 ```
 
 Separación de capas estricta: **routes → controller → service → repository → entity**.
@@ -141,7 +143,7 @@ Dos reglas de ubicación que no son obvias:
   en las features haría que `review` importe de `album`, `song` y `user`, y `album` de
   `artist` y `genre`.
 - **`seed/` no es `scripts/`**: en `seed/` va lo que carga datos iniciales; en `scripts/`,
-  las tareas de mantenimiento de la base (borrar y recrear, arreglar índices, migraciones).
+  las tareas de mantenimiento de la base (hoy, borrar y recrear con `db:reset`).
 
 ## Nomenclatura
 
@@ -241,8 +243,10 @@ Dos reglas de ubicación que no son obvias:
 ## Variables de entorno
 
 - Frontend: `.env` con prefijo `VITE_` para la URL base de la API. Nunca hardcodear URLs.
-- Backend: `.env` con `DATABASE_URL`, `JWT_SECRET`, `PORT`, credenciales de MercadoPago y del
-  servicio de metadata usado por el seed.
+- Backend: `.env` con la conexión a la base (`DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`,
+  `DB_PASSWORD`, `DB_SSL`, `DB_SSL_CA`, `DB_SYNC`), `JWT_SECRET`, `PORT`, credenciales de
+  MercadoPago, el usuario admin del seed (`SEED_ADMIN_*`) y el servicio de metadata usado por
+  el seed (`METADATA_*`).
 - Mantener siempre un `.env.example` actualizado y **nunca** commitear el `.env` real.
 
 ## Testing

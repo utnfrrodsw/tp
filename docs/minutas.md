@@ -73,6 +73,16 @@ está en [tracking.md](tracking.md).
 | 21/09/2026 | Listas de canciones (`LISTS.type` + `LIST_SONGS`) y alta de listas restringida a `PRO`/`ADMIN` (PR #19) | `d28a56e` |
 | 22/09/2026 | Filtro de género y criterio real de "en tendencia" en listas, paginado del panel de administración y de las contribuciones del perfil, y corrección de la colisión de clases CSS en la home | `34a713a`, `323e3f0` |
 | 22/09/2026 | La membresía Pro pasa a ser un **pago único**: se elimina el vencimiento, la renovación, el estado `expired` y la baja voluntaria, en las dos apps y en la documentación | `587ca90` |
+| 24/09/2026 | Dashboard de administración con métricas de ingresos y el seed de ventas de demo (PR #20) | `5dd0458` |
+| 27/09/2026 | Tope de filas del panel lateral y del ranking, `z-index` del `Select` sobre los modales y limpieza del alcance voluntario en la documentación (PR #21) | `21c9e96`, `33f6ec8`, `eec181d` |
+| 28/09/2026 | Personalización de perfil Pro: banner, color de acento y badge Pro (PR #22) | `33fb859`, `1eb150c`, `2e076c2` |
+| 29/09/2026 | Publicidad para usuarios Free: tabla `ADS`, CRUD de administración y panel rotativo (PR #23) | `4e971cc` |
+| 29/09/2026 | Una carpeta por componente en todo el frontend (PR #24) | `81aebc2`, `ef9a908` |
+| 30/09/2026 | Validación de formularios propia, sin la del navegador (PR #25) | `a801449` |
+| 30/09/2026 | Los beneficios Pro dejan de prometer lo que no existe (PR #26), más dos correcciones directas a `develop` | `00246f0`, `12fdf81`, `da1b944` |
+| 30/09/2026 | Ajustes de anuncios y los dos tests de la feature (PR #27) | `98da30e` |
+| 30/09/2026 | Buscador en vivo y recargas sin parpadeo en el panel de administración (PR #28) | `39adb2e` |
+| 03/10/2026 | Actualización de la documentación de la entrega (PR #29) | `311925f` |
 
 ## Decisiones tomadas
 
