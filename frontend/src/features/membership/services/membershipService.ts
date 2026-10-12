@@ -143,6 +143,17 @@ export const membershipService = {
   },
 
   /**
+   * Le pide al backend que busque en MercadoPago un pago aprobado del usuario
+   * logueado que no se haya registrado (por ejemplo, si no volvió al sitio
+   * después de pagar). Si lo encuentra, la membresía queda activa.
+   * @returns si este llamado activó la membresía.
+   */
+  async syncMyPayment(): Promise<boolean> {
+    const result = await httpClient.post<ConfirmApiResponse>('/payments/sync', {});
+    return result.applied;
+  },
+
+  /**
    * Métricas del dashboard de administración. Solo ADMIN: la API corta con 403
    * a cualquier otro rol aunque alguien fuerce la URL.
    * @param year año elegido; sin él, la API usa el año en curso.

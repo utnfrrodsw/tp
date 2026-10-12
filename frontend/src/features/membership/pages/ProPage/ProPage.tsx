@@ -6,7 +6,9 @@
 //
 // A quien ya pagó no tiene sentido volver a venderle el plan, igual que no tiene
 // sentido ofrecerle registrarse a quien ya inició sesión.
+import { useEffect } from 'react';
 import { useAuth } from '../../../../core/context/AuthContext';
+import { membershipService } from '../../services/membershipService';
 import { Navbar } from '../../../../core/components/Navbar';
 import { Footer } from '../../../../core/components/Footer';
 import { Loader } from '../../../../core/components/Loader';
@@ -16,10 +18,31 @@ import { ProSalesView } from '../../components/ProSalesView';
 import './ProPage.scss';
 
 export const ProPage = () => {
-  const { state: authState } = useAuth();
+  const { state: authState, refreshSession } = useAuth();
 
   const isAuthenticated = authState.status === 'authenticated';
   const user = isAuthenticated ? authState.user : null;
+  const needsPaymentCheck = user !== null && !user.isPro;
+
+  // Respaldo de la confirmación del pago: si un usuario logueado que no es Pro
+  // abre /pro, se le pregunta al backend si tiene un pago aprobado sin
+  // registrar. Pasa cuando pagó pero no volvió al sitio desde MercadoPago (y en
+  // local el webhook no llega). Si aparece, la membresía se activa y se pide un
+  // token nuevo: la página pasa sola a la vista de socio.
+  //
+  // Los errores se ignoran a propósito: es una verificación silenciosa y, si
+  // falla, la página de venta se ve igual que siempre.
+  useEffect(() => {
+    if (!needsPaymentCheck) return;
+
+    membershipService
+      .syncMyPayment()
+      .then((activated) => (activated ? refreshSession() : false))
+      .catch(() => false);
+    // refreshSession cambia en cada render del contexto: incluirlo repetiría la
+    // consulta sin necesidad. Alcanza con volver a mirar cuando cambia el usuario.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [needsPaymentCheck, user?.id]);
 
   return (
     <>

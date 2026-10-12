@@ -17,6 +17,9 @@
 //        - la pantalla de retorno, cuando el navegador del usuario vuelve al sitio.
 //      Los dos pueden llegar, en cualquier orden, o puede llegar uno solo. Por eso
 //      confirmPayment() es idempotente: el segundo en llegar no duplica nada.
+//      Y si no llega ninguno (en local no hay webhook, y el usuario puede no
+//      volver al sitio), syncMine() lo busca en MercadoPago cuando el usuario
+//      abre /pro.
 //   4. confirmPayment() le pregunta a MercadoPago cómo terminó el pago y, si está
 //      aprobado, activa la membresía y registra el pago EN UNA TRANSACCIÓN.
 //
@@ -222,6 +225,16 @@ export const paymentService = {
       throw new BadRequestError('Ya tenés la membresía Pro activa: es un pago único.');
     }
 
+    // Puede haber pagado antes sin que el pago se registrara (no volvió al sitio
+    // y no llegó el webhook). Antes de cobrarle otra vez se busca ese pago: si
+    // aparece, se activa la membresía y no se arma una orden nueva.
+    const synced = await paymentService.syncMine(id_user);
+    if (synced.applied) {
+      throw new BadRequestError(
+        'Ya tenías un pago aprobado: activamos tu membresía Pro, no hace falta pagar de nuevo.'
+      );
+    }
+
     return paymentGateway.createPreference({
       title: `Musicboxd — Membresía ${plan.name}`,
       amount: plan.amount,
@@ -319,6 +332,48 @@ export const paymentService = {
       applied: true,
       status: payment.status,
       message: '¡Listo! Tu membresía Pro quedó activa.',
+    };
+  },
+
+  /**
+   * Busca en MercadoPago si el usuario tiene un pago aprobado que todavía no se
+   * registró, y si lo encuentra lo confirma.
+   *
+   * Es el tercer camino hacia confirmPayment(), y el respaldo de los otros dos:
+   * en desarrollo el webhook no llega a localhost, y la pantalla de retorno solo
+   * se ve si el usuario vuelve desde MercadoPago (puede cerrar la pestaña, o el
+   * checkout puede no ofrecerle volver). Sin esto, ese usuario quedaría pagado y
+   * FREE. El frontend lo llama al abrir /pro con un usuario que no es Pro.
+   *
+   * Es seguro por lo mismo que confirmPayment(): el estado del pago lo dice
+   * MercadoPago, y la referencia "<id_user>:<id_plan>" sale del token del que
+   * pregunta, así que nadie puede buscar ni activar pagos de otro.
+   *
+   * @param id_user usuario sacado del token.
+   * @returns el resultado de la confirmación, o applied: false si no había nada.
+   */
+  async syncMine(id_user: number): Promise<ConfirmResult> {
+    // Con la membresía activa no hay nada que buscar: se ahorra la consulta a
+    // MercadoPago.
+    if (await subscriptionService.getActive(id_user)) {
+      return { applied: false, status: 'active', message: 'Tu membresía Pro ya está activa.' };
+    }
+
+    const plan = await subscriptionService.getProPlan();
+    const paymentIds = await paymentGateway.searchApprovedIds(`${id_user}:${plan.id_plan}`);
+
+    // confirmPayment() es idempotente: un pago ya registrado (por ejemplo, el de
+    // una membresía que un ADMIN dio de baja) vuelve con applied: false y no
+    // reactiva nada. Se corta en el primero que sí activa.
+    for (const paymentId of paymentIds) {
+      const result = await paymentService.confirmPayment(paymentId);
+      if (result.applied) return result;
+    }
+
+    return {
+      applied: false,
+      status: 'none',
+      message: 'No hay pagos aprobados pendientes de registrar.',
     };
   },
 

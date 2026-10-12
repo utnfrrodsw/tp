@@ -933,6 +933,7 @@ frontend lo llama al confirmar un pago.
 | GET | `/api/subscriptions` | ADMIN |
 | POST | `/api/payments/checkout` | logueado |
 | POST | `/api/payments/confirm` | logueado |
+| POST | `/api/payments/sync` | logueado (busca en MercadoPago un pago aprobado propio sin registrar) |
 | POST | `/api/payments/webhook` | **público** (lo llama MercadoPago) |
 | GET | `/api/payments/mine` | logueado |
 | GET | `/api/payments/stats?year=` | ADMIN |
@@ -982,6 +983,12 @@ la app publicada mostraría ingresos que nunca se cobraron.
    no le llega ningún webhook, y la confirmación la resuelve la pantalla de
    retorno. Para probar el webhook de verdad hay que exponer el backend (por
    ejemplo con ngrok) y poner ahí `https://<host>/api/payments/webhook`.
+4. Con la URL de retorno en `localhost`, MercadoPago no vuelve solo al sitio y a
+   veces ni ofrece el botón. No hace falta: al abrir `/pro` con el usuario que
+   pagó, el frontend llama a `POST /api/payments/sync`, que busca en MercadoPago
+   los pagos aprobados con la referencia `<id_user>:<id_plan>` de ese usuario y
+   activa la membresía. El checkout hace la misma búsqueda antes de cobrar, para
+   que nadie pague dos veces.
 
 `auto_return` solo se le manda a MercadoPago si la URL de retorno es pública:
 con un `localhost` rechaza la preference entera.

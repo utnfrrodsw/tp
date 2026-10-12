@@ -2,6 +2,7 @@
 //
 //   POST /api/payments/checkout  arranca el pago de un plan, logueado
 //   POST /api/payments/confirm   confirma el pago al volver del checkout, logueado
+//   POST /api/payments/sync      busca un pago aprobado sin registrar, logueado
 //   POST /api/payments/webhook   aviso de MercadoPago, PÚBLICO
 //   GET  /api/payments/mine      mi historial de pagos, logueado
 //   GET  /api/payments/stats     métricas del dashboard de administración, ADMIN
@@ -41,6 +42,15 @@ paymentRouter.post(
   requireAuth,
   validate({ body: confirmPaymentSchema }),
   paymentController.confirm
+);
+
+// Cada llamada consulta a MercadoPago: el límite evita que una pestaña recargada
+// sin parar le gaste el cupo a la API.
+paymentRouter.post(
+  '/sync',
+  requireAuth,
+  rateLimit({ windowMs: 60_000, max: 10 }),
+  paymentController.sync
 );
 
 // Cada aviso hace una consulta a MercadoPago con nuestro access token: el límite

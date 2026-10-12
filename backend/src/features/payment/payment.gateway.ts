@@ -1,8 +1,10 @@
-// Cliente HTTP de MercadoPago: las DOS únicas llamadas que el sistema le hace a
+// Cliente HTTP de MercadoPago: las TRES únicas llamadas que el sistema le hace a
 // la pasarela.
 //
-//   createPreference()  crea la orden de pago y devuelve el link del checkout.
-//   getPayment()        consulta cómo terminó un pago.
+//   createPreference()   crea la orden de pago y devuelve el link del checkout.
+//   getPayment()         consulta cómo terminó un pago.
+//   searchApprovedIds()  busca los pagos aprobados de una orden nuestra, por si
+//                        no llegó ningún aviso (ver payment.service.syncMine).
 //
 // Es un archivo aparte de las cinco capas habituales de una feature, y no una
 // sexta capa "por las dudas". El motivo es concreto: el repositorio habla con
@@ -11,7 +13,7 @@
 // imposible escribir el test de integración del webhook sin pegarle de verdad a
 // MercadoPago. Con el gateway aislado, el test reemplaza este módulo y listo.
 //
-// Se usa fetch, que viene con Node: no hace falta el SDK de MercadoPago para dos
+// Se usa fetch, que viene con Node: no hace falta el SDK de MercadoPago para tres
 // requests, y así se ve exactamente qué se manda y qué vuelve.
 import { env } from '../../shared/config/env';
 import { AppError, BadRequestError } from '../../shared/errors/app-error';
@@ -211,6 +213,29 @@ export const paymentGateway = {
       currency: data.currency_id ?? null,
       externalReference: data.external_reference ?? null,
     };
+  },
+
+  /**
+   * Busca en MercadoPago los pagos aprobados con una referencia externa dada.
+   *
+   * Es el respaldo de los dos avisos (webhook y pantalla de retorno): si el
+   * usuario pagó pero cerró la pestaña, o MercadoPago no le ofreció volver al
+   * sitio, ningún aviso llega. Preguntar por la referencia "<id_user>:<id_plan>"
+   * encuentra igual el pago, porque esa referencia la pusimos nosotros al crear
+   * la orden.
+   *
+   * @param externalReference la referencia que se mandó al crear la preference.
+   * @returns los ids de los pagos aprobados con esa referencia (puede no haber ninguno).
+   */
+  async searchApprovedIds(externalReference: string): Promise<string[]> {
+    const query = new URLSearchParams({ external_reference: externalReference, status: 'approved' });
+    const data = (await request(`/v1/payments/search?${query.toString()}`)) as {
+      results?: { id?: number | string }[];
+    };
+
+    return (data.results ?? [])
+      .filter((payment) => payment.id !== undefined)
+      .map((payment) => String(payment.id));
   },
 };
 

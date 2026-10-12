@@ -60,6 +60,17 @@ export const paymentController = {
   },
 
   /**
+   * Respaldo de la confirmación: busca en MercadoPago un pago aprobado del
+   * usuario logueado que no se haya registrado (ver paymentService.syncMine).
+   */
+  async sync(req: Request, res: Response): Promise<void> {
+    if (!req.user) throw new UnauthorizedError();
+
+    const result = await paymentService.syncMine(req.user.id_user);
+    res.status(200).json(result);
+  },
+
+  /**
    * Webhook de MercadoPago. Es la única ruta pública que escribe en la base, y la
    * única con try/catch.
    *
