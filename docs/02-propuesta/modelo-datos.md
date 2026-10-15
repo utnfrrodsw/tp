@@ -64,6 +64,7 @@ erDiagram
         datetime estimatedDate "nullable"
         datetime deliveryDate "nullable"
         decimal totalCharged "nullable"
+        boolean active
     }
     Failure_Type {
         string id_failure_type PK
