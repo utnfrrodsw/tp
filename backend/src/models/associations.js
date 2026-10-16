@@ -4,7 +4,11 @@ const ProfesorEspecialidad = require('./profesorEspecialidad');
 const Usuario = require('./usuario');
 const Rutina = require('./rutina');
 const RutinaEjercicio = require('./rutinaEjercicio');
-const Cliente = require('./Cliente'); 
+const Cliente = require('./Cliente');
+const TipoClase = require('./tipoClase');
+const Turno = require('./turno');
+const TurnoProfesor = require('./turnoProfesor');
+const InscripcionTurno = require('./inscripcionTurno');
 
 // Profesor <-> Especialidad (Muchos a Muchos)
 Profesor.belongsToMany(Especialidad, {
@@ -45,12 +49,42 @@ Rutina.hasMany(RutinaEjercicio, {
 });
 RutinaEjercicio.belongsTo(Rutina, { foreignKey: 'idRutina', as: 'rutina' });
 
-module.exports = { 
-  Profesor, 
-  Especialidad, 
-  ProfesorEspecialidad, 
-  Usuario, 
-  Rutina, 
-  RutinaEjercicio, 
-  Cliente 
+// Tipos de clase <-> turnos
+TipoClase.hasMany(Turno, { foreignKey: 'idClase', as: 'turnos' });
+Turno.belongsTo(TipoClase, { foreignKey: 'idClase', as: 'tipoClase' });
+
+// Turnos <-> profesores asignados
+Turno.belongsToMany(Profesor, {
+  through: TurnoProfesor,
+  foreignKey: 'idTurno',
+  otherKey: 'dniProfesor',
+  as: 'profesores'
+});
+Profesor.belongsToMany(Turno, {
+  through: TurnoProfesor,
+  foreignKey: 'dniProfesor',
+  otherKey: 'idTurno',
+  as: 'turnos'
+});
+Turno.hasMany(TurnoProfesor, { foreignKey: 'idTurno', as: 'asignacionesProfesor' });
+TurnoProfesor.belongsTo(Turno, { foreignKey: 'idTurno', as: 'turno' });
+
+// Turnos <-> inscripciones de clientes
+Turno.hasMany(InscripcionTurno, { foreignKey: 'idTurno', as: 'inscripciones' });
+InscripcionTurno.belongsTo(Turno, { foreignKey: 'idTurno', as: 'turno' });
+InscripcionTurno.belongsTo(Cliente, { foreignKey: 'dniCliente', as: 'cliente' });
+Cliente.hasMany(InscripcionTurno, { foreignKey: 'dniCliente', as: 'inscripcionesTurno' });
+
+module.exports = {
+  Profesor,
+  Especialidad,
+  ProfesorEspecialidad,
+  Usuario,
+  Rutina,
+  RutinaEjercicio,
+  Cliente,
+  TipoClase,
+  Turno,
+  TurnoProfesor,
+  InscripcionTurno
 };
