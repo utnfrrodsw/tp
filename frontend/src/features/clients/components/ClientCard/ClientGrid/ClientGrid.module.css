@@ -1,0 +1,71 @@
+/* ─── ClientGrid.module.css ──────────────────────────────────────────────── */
+
+.grid {
+  gap: 16px;
+  width: 100%;
+  display: grid;
+}
+
+/* ── Columnas desktop ── */
+.cols4 { grid-template-columns: repeat(4, 1fr); }
+.cols3 { grid-template-columns: repeat(3, 1fr); }
+.cols2 { grid-template-columns: repeat(2, 1fr); }
+
+/* ── Tablet ── */
+@media (max-width: 1100px) {
+  .cols4 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── Mobile grande ── */
+@media (max-width: 760px) {
+  .cols4, .cols3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Mobile chico ── */
+@media (max-width: 480px) {
+  .cols4, .cols3, .cols2 { grid-template-columns: 1fr; }
+}
+
+/* ── Add card ── */
+.addCard {
+  border: 2px dashed #a9cce3;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 180px;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s;
+  background: transparent;
+}
+
+.addCard:hover {
+  border-color: #5dade2;
+  background: #eaf4fb;
+}
+
+.addIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #d6eaf8;
+  color: #2980b9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 300;
+  transition: background 0.18s;
+}
+
+.addCard:hover .addIcon {
+  background: #a9cce3;
+}
+
+.addLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #5d8aa8;
+}

@@ -1,0 +1,123 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.row .group {
+  flex: 1;
+  min-width: 0;
+}
+
+.label {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tf-text);
+}
+
+.required {
+  color: var(--tf-danger);
+}
+
+/* ── Tipo de dispositivo ── */
+
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.typeOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background-color: var(--tf-bg);
+  border: 1.5px solid var(--tf-border);
+  border-radius: var(--radius-sm, 12px);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tf-text);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.typeOption:hover {
+  border-color: var(--tf-primary);
+}
+
+.typeOptionSelected {
+  background-color: var(--tf-primary-soft);
+  border-color: var(--tf-primary);
+  color: var(--tf-primary);
+}
+
+/* Para que los iconos dentro de la opción seleccionada adopten el color del texto si son SVGs dinámicos */
+.typeOptionSelected svg {
+  stroke: var(--tf-primary);
+}
+
+/* ── Inputs ── */
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background-color: var(--tf-bg);
+  border: 1.5px solid var(--tf-border);
+  border-radius: var(--radius-sm, 10px);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--tf-text);
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--tf-muted);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--tf-primary);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 72px;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+  .row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .typeGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .typeOption {
+    padding: 12px;
+    font-size: 13px;
+  }
+}

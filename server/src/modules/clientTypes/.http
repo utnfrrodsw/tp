@@ -1,0 +1,290 @@
+@baseUrl = http://localhost:3000
+@resource = api/client-types
+
+
+### ============================================================
+### POST - Crear Client Type
+### ============================================================
+
+### ✅ VÁLIDO - Datos mínimos/correctos
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "Part3111111111111111iclar",
+  "amountForCategoryUp": 100
+}
+
+
+### ✅ VÁLIDO - amountForCategoryUp = 0
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "",
+  "amountForCategoryUp": 5
+}
+
+
+### ❌ INVÁLIDO - Falta clientTypeName
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "amountForCategoryUp": 100
+}
+
+
+### ❌ INVÁLIDO - Falta amountForCategoryUp
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "Comercio"
+}
+
+
+### ❌ INVÁLIDO - clientTypeName vacío
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "",
+  "amountForCategoryUp": 100
+}
+
+
+### ❌ INVÁLIDO - clientTypeName no es string
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "clientTypeName": 123,
+  "amountForCategoryUp": 100
+}
+
+
+### ❌ INVÁLIDO - amountForCategoryUp no es número
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "Mayorista",
+  "amountForCategoryUp": "100"
+}
+
+
+### ❌ INVÁLIDO - amountForCategoryUp negativo
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "Minorista",
+  "amountForCategoryUp": -10
+}
+
+
+### ❌ INVÁLIDO - amountForCategoryUp decimal
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "Distribuidor",
+  "amountForCategoryUp": 10.5
+}
+
+
+### ❌ INVÁLIDO - body vacío
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{}
+
+
+### ❌ INVÁLIDO - body con campos desconocidos
+POST {{baseUrl}}/{{resource}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "Prueba",
+  "amountForCategoryUp": 100,
+  "campoInventado": "hola"
+}
+
+
+### ============================================================
+### GET - Obtener todos
+### ============================================================
+
+### ✅ VÁLIDO - Sin parámetros
+GET {{baseUrl}}/{{resource}}
+
+
+### ============================================================
+### GET - Obtener todos con query
+### ============================================================
+
+### ✅ VÁLIDO - Query básica
+GET {{baseUrl}}/{{resource}}?page=1&limit=10&sortBy=id_client_type&sortOrder=desc
+
+
+### ✅ VÁLIDO - Otra página
+GET {{baseUrl}}/{{resource}}?page=0&limit=100
+
+
+### ❌ INVÁLIDO - page negativa
+GET {{baseUrl}}/{{resource}}?page=-1&limit=10
+
+
+### ❌ INVÁLIDO - limit negativo
+GET {{baseUrl}}/{{resource}}?page=1&limit=-10
+
+
+### ❌ INVÁLIDO - page no numérica
+GET {{baseUrl}}/{{resource}}?page=abc&limit=10
+
+
+### ❌ INVÁLIDO - limit no numérico
+GET {{baseUrl}}/{{resource}}?page=1&limit=abc
+
+
+### ❌ INVÁLIDO - parámetros desconocidos
+GET {{baseUrl}}/{{resource}}?page=1&limit=10&foo=bar
+
+
+### ============================================================
+### GET - Obtener por ID
+### ============================================================
+
+### ⚠️ Reemplazar por un UUID real existente
+@clientTypeId = 01a01849-d4c1-700a-890b-e5230764dc58
+
+
+### ✅ VÁLIDO - UUID con formato correcto
+GET {{baseUrl}}/{{resource}}/{{clientTypeId}}
+
+
+### ❌ INVÁLIDO - ID vacío
+GET {{baseUrl}}/{{resource}}/
+
+
+### ❌ INVÁLIDO - ID que no es UUID
+GET {{baseUrl}}/{{resource}}/123
+
+
+### ❌ INVÁLIDO - ID con texto
+GET {{baseUrl}}/{{resource}}/abc
+
+
+### ❌ INVÁLIDO - UUID mal formado
+GET {{baseUrl}}/{{resource}}/550e8400-e29b-41d4-a716
+
+
+### ❌ VÁLIDO EN FORMATO PERO INEXISTENTE
+GET {{baseUrl}}/{{resource}}/550e8400-e29b-41d4-a716-446655440000
+
+
+### ============================================================
+### PUT - Modificar
+### ============================================================
+
+### ⚠️ Reemplazar por un UUID real existente
+@updateId = 01a01849-d4c1-700a-890b-e5230764dc58
+
+
+### ✅ VÁLIDO - Modificar ambos campos
+PUT {{baseUrl}}/{{resource}}/{{updateId}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "Particular Modificado",
+  "amountForCategoryUp": 150
+}
+
+
+### ✅ VÁLIDO - Modificar solo clientTypeName
+PUT {{baseUrl}}/{{resource}}/{{updateId}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "Empresa Modificada",
+  "id_client_type": "01a01849-d4c1-700a-890b-e5230764dc58"
+}
+
+
+### ✅ VÁLIDO - Modificar solo amountForCategoryUp
+PUT {{baseUrl}}/{{resource}}/{{updateId}}
+Content-Type: application/json
+
+{
+  "amountForCategoryUp": 250
+}
+
+
+### ❌ INVÁLIDO - ID incorrecto
+PUT {{baseUrl}}/{{resource}}/123
+Content-Type: application/json
+
+{
+  "clientTypeName": "Prueba",
+  "amountForCategoryUp": 100
+}
+
+
+### ❌ INVÁLIDO - clientTypeName vacío
+PUT {{baseUrl}}/{{resource}}/{{updateId}}
+Content-Type: application/json
+
+{
+  "clientTypeName": "",
+  "amountForCategoryUp": 100
+}
+
+
+### ❌ INVÁLIDO - amountForCategoryUp negativo
+PUT {{baseUrl}}/{{resource}}/{{updateId}}
+Content-Type: application/json
+
+{
+  "amountForCategoryUp": -50
+}
+
+
+### ❌ INVÁLIDO - amountForCategoryUp string
+PUT {{baseUrl}}/{{resource}}/{{updateId}}
+Content-Type: application/json
+
+{
+  "amountForCategoryUp": "500"
+}
+
+
+### ✅ INVÁLIDO - body vacío
+PUT {{baseUrl}}/{{resource}}/{{updateId}}
+Content-Type: application/json
+
+{}
+
+
+### ============================================================
+### DELETE - Eliminar
+### ============================================================
+
+### ⚠️ Reemplazar por un UUID real existente
+@deleteId = 01a01854-3adf-720d-88d3-118c78660bb9
+
+
+### ✅ VÁLIDO - ID con formato correcto
+DELETE {{baseUrl}}/{{resource}}/{{deleteId}}
+
+
+### ❌ INVÁLIDO - ID no UUID
+DELETE {{baseUrl}}/{{resource}}/123
+
+
+### ❌ INVÁLIDO - ID con texto
+DELETE {{baseUrl}}/{{resource}}/abc
+
+
+### ❌ VÁLIDO EN FORMATO PERO INEXISTENTE
+DELETE {{baseUrl}}/{{resource}}/550e8400-e29b-41d4-a716-446655440000

@@ -1,0 +1,122 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-md, 14px);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm, 8px);
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tf-text);
+}
+
+.vipBadge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--tf-primary) 16%, transparent);
+  color: var(--tf-primary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--tf-muted);
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--tf-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm, 8px);
+}
+
+.editButton:hover {
+  background: var(--tf-bg);
+  color: var(--tf-primary);
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--tf-border);
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.infoIcon {
+  color: var(--tf-muted);
+  flex-shrink: 0;
+}
+
+.infoLabel {
+  color: var(--tf-muted);
+  min-width: 64px;
+}
+
+.infoValue {
+  color: var(--tf-text);
+  font-weight: 600;
+}
+
+.infoValueLink {
+  color: var(--tf-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.infoValueLink:hover {
+  text-decoration: underline;
+}

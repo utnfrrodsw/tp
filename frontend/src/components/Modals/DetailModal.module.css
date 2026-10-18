@@ -1,0 +1,326 @@
+/* ============================================================================
+   CONTENEDORES PRINCIPALES Y ESTRUCTURA
+   ============================================================================ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(15, 23, 42, 0.4);
+  padding: 1rem;
+}
+
+.modal {
+  width: 100%;
+  border-radius: 1.5rem; /* rounded-3xl */
+  background-color: var(--tf-card);
+  box-shadow: var(--shadow-medium, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04));
+  overflow: hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.maxW-lg {
+  max-width: 32rem; /* max-w-lg */
+}
+
+.maxW-md {
+  max-width: 28rem; /* max-w-md */
+}
+
+/* ============================================================================
+   HEADER
+   ============================================================================ */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem; /* px-6 py-5 */
+  border-bottom: 1px solid var(--tf-border);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.headerIcon {
+  color: var(--tf-primary);
+}
+
+.title {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 700;
+  color: var(--tf-text);
+  line-height: 1.25;
+}
+
+.subtitle {
+  font-size: 0.875rem; /* text-sm */
+  color: var(--tf-muted);
+}
+
+.closeButton {
+  color: var(--tf-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: var(--tf-text);
+}
+
+/* ============================================================================
+   BODY & SECCIONES
+   ============================================================================ */
+
+.body {
+  padding: 1.25rem 1.5rem; /* px-6 py-5 */
+  overflow-y: auto;
+}
+
+.bodySection {
+  margin-bottom: 1.5rem;
+}
+
+.bodySection:last-child {
+  margin-bottom: 0;
+}
+
+.statusWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2rem; /* gap-x-8 */
+  row-gap: 1.25rem; /* gap-y-5 */
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* space-y-5 */
+}
+
+.fieldLabel {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--tf-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.fieldValue {
+  color: var(--tf-text);
+  font-size: 15px;
+  line-height: 1.375; /* leading-snug */
+}
+
+.fieldEmpty {
+  color: color-mix(in srgb, var(--tf-muted) 55%, transparent);
+}
+
+/* ============================================================================
+   ELEMENTOS ASOCIADOS (LISTA)
+   ============================================================================ */
+
+.listTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--tf-text);
+  margin-bottom: 0.75rem;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--tf-border);
+  margin-bottom: 1rem;
+}
+
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* space-y-2 */
+}
+
+.emptyLabel {
+  font-size: 0.875rem; /* text-sm */
+  color: var(--tf-muted);
+}
+
+/* Fila de Item */
+.itemRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 1rem; /* rounded-2xl */
+  background-color: color-mix(in srgb, var(--tf-primary) 8%, var(--tf-card));
+  padding: 0.75rem 1rem; /* px-4 py-3 */
+  transition: background-color 0.2s ease;
+}
+
+.itemRowClickable {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.itemRowClickable:hover {
+  background-color: color-mix(in srgb, var(--tf-primary) 16%, var(--tf-card));
+}
+
+.itemRowClickable:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--tf-primary) 45%, transparent);
+}
+
+.itemIconWrapper {
+  display: flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--tf-border);
+  color: var(--tf-muted);
+}
+
+.itemContent {
+  min-width: 0;
+  flex: 1 1 0%;
+}
+
+.itemPrimary {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tf-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* truncate */
+}
+
+.itemSecondary {
+  font-size: 12px;
+  color: var(--tf-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* truncate */
+}
+
+.chevron {
+  color: color-mix(in srgb, var(--tf-muted) 55%, transparent);
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+   FOOTER Y ACCIONES
+   ============================================================================ */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem; /* px-6 py-4 */
+  border-top: 1px solid var(--tf-border);
+  background-color: color-mix(in srgb, var(--tf-bg) 50%, transparent);
+}
+
+.cancelButton {
+  color: var(--tf-muted);
+  background: none;
+  border: none;
+  font-weight: 500;
+  font-size: 0.875rem; /* text-sm */
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.cancelButton:hover {
+  color: var(--tf-text);
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500;
+  padding: 0.625rem 1.25rem; /* px-5 py-2.5 */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Variantes de Botones */
+.actionPrimary {
+  background-color: var(--tf-primary);
+  color: #ffffff;
+}
+.actionPrimary:hover {
+  background-color: color-mix(in srgb, var(--tf-primary) 85%, black);
+}
+
+.actionSecondary {
+  background-color: var(--tf-bg);
+  color: var(--tf-text);
+}
+.actionSecondary:hover {
+  background-color: var(--tf-border);
+}
+
+.actionDanger {
+  background-color: var(--tf-danger);
+  color: #ffffff;
+}
+.actionDanger:hover {
+  background-color: color-mix(in srgb, var(--tf-danger) 85%, black);
+}
+
+/* ============================================================================
+   BADGE
+   ============================================================================ */
+.badgeBase {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+/* ── Responsive mobile ── */
+@media (max-width: 640px) {
+  /* de 2 columnas a 1: los campos quedaban muy apretados en celular */
+  .grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 1rem;
+  }
+  .header {
+    padding: 1rem 1.1rem;
+  }
+  .body {
+    padding: 1rem 1.1rem;
+  }
+  .footer {
+    padding: 0.85rem 1.1rem;
+    flex-wrap: wrap;
+  }
+}

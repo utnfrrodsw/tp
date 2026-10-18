@@ -1,0 +1,126 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal {
+  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 380px;
+  padding: 32px 24px 24px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-top: 4px solid var(--fm-accent, #64748b);
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+}
+
+.closeButton:hover {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.iconWrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  background: var(--fm-icon-bg, #f1f5f9);
+  color: var(--fm-icon-color, #64748b);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 8px;
+}
+
+.message {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 24px;
+}
+
+.footer {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.cancelButton {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background: #f8fafc;
+}
+
+.actionButton {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background: var(--fm-accent, #64748b);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actionButton:hover {
+  filter: brightness(0.92);
+}
+
+.success {
+  --fm-accent: #16a34a;
+  --fm-icon-bg: #dcfce7;
+  --fm-icon-color: #16a34a;
+}
+
+.error {
+  --fm-accent: #dc2626;
+  --fm-icon-bg: #fee2e2;
+  --fm-icon-color: #dc2626;
+}
+
+.warning {
+  --fm-accent: #d97706;
+  --fm-icon-bg: #fef3c7;
+  --fm-icon-color: #d97706;
+}
+
+.info {
+  --fm-accent: #0284c7;
+  --fm-icon-bg: #dbeafe;
+  --fm-icon-color: #0284c7;
+}

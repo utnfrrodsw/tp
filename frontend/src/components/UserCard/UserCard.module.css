@@ -1,0 +1,151 @@
+.card {
+  --card-bg: #ffffff;
+  --card-border: #ececec;
+  --card-text-primary: #1f1f1f;
+  --card-text-secondary: #8a8a8a;
+  --infobox-bg: #f8f8f8;
+  --infobox-text: #555555;
+  --infobox-icon: #9a9a9a;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.15s ease, background-color 0.2s ease;
+}
+
+:global([data-theme='dark']) .card,
+:global(.dark) .card {
+  --card-bg: #111827;           
+  --card-border: #1f293d;        
+  --card-text-primary: #f3f4f6;   
+  --card-text-secondary: #9ca3af; 
+  --infobox-bg: #1f2937;         
+  --infobox-text: #d1d5db;    
+  --infobox-icon: #6b7280;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.card.inactive {
+  opacity: 0.55;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.avatarImg {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nombre {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--card-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.email {
+  font-size: 12.5px;
+  color: var(--card-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.infoBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--infobox-bg);
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--infobox-text);
+}
+
+.infoRow svg {
+  flex-shrink: 0;
+  color: var(--infobox-icon);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f0f0f0;
+  color: #666666;
+}
+
+/* Badges adaptadas con contraste claro/oscuro */
+.tagCategory {
+  background: #e6f0fb;
+  color: #3f7ab8;
+}
+
+:global([data-theme='dark']) .tagCategory,
+:global(.dark) .tagCategory {
+  background: rgba(63, 122, 184, 0.2);
+  color: #93c5fd;
+}
+
+.tagWarning {
+  background: #fdeee0;
+  color: #c9781f;
+}
+
+:global([data-theme='dark']) .tagWarning,
+:global(.dark) .tagWarning {
+  background: rgba(201, 120, 31, 0.2);
+  color: #fdba74;
+}

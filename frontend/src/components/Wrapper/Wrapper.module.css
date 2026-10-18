@@ -1,0 +1,34 @@
+.wrapper {
+  container-name: wrapper;
+  container-type: inline-size;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  background: var(--tf-primary-soft);
+  border-radius: 8px;
+  transition: height 220ms ease;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+@container wrapper (max-width: 420px) {
+  .content {
+    justify-content: space-between;
+  }
+
+  .content> :first-child {
+    flex-basis: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrapper {
+    transition: none;
+  }
+}

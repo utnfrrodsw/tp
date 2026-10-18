@@ -1,0 +1,32 @@
+.editFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inputLabel {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #666666;
+}
+
+.formInput {
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid #dddddd;
+  font-size: 14px;
+  color: #1f1f1f;
+  background: #ffffff;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #5dade2;
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.15);
+}

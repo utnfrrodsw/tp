@@ -1,0 +1,86 @@
+/* ============================================================
+   FOOTER - compacto y limpio
+   Mobile-first: en celular se apila y centra; en 768px la marca
+   queda a la izquierda y los links a la derecha, en una sola fila.
+   ============================================================ */
+
+.footerContainer {
+    background-color: #0f172a;
+    border-top: 1px solid #1e293b;
+    padding: 1.5rem 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ---------- Fila principal: marca + links ---------- */
+.footerTop {
+    display: flex;
+    flex-direction: column;   /* celular: apilado y centrado */
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.brandBlock {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.footerLogo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+}
+
+.brandText {
+    text-align: left;
+}
+
+.footerBrand {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.footerTagline {
+    margin: 0.1rem 0 0;
+    color: #94a3b8;
+    font-size: 0.78rem;
+}
+
+/* ---------- Links en FILA (acostados) ---------- */
+.linkContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* ---------- Linea inferior: copyright ---------- */
+.footerBottom {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid #1e293b;
+    text-align: center;
+}
+
+.footerCopy {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.78rem;
+}
+
+/* ============================================================
+   RESPONSIVE: en pantallas medianas o mas, marca y links
+   en una sola fila (marca izquierda, links derecha)
+   ============================================================ */
+@media (min-width: 768px) {
+    .footerTop {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}

@@ -1,0 +1,174 @@
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  color: var(--tf-text);
+  font-family: "Geist Variable", sans-serif;
+}
+
+.caption {
+  caption-side: bottom;
+  padding-top: 1rem;
+  color: var(--tf-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.header {
+  background: var(--tf-primary-soft);
+}
+
+.headerRow {
+  border-bottom: none;
+}
+
+.head {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--tf-muted);
+  font-weight: 700;
+}
+
+.selectionHead {
+  width: 36px;
+  min-width: 36px;
+  padding: 0.5rem;
+}
+
+.head:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.head:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* ── Filas ── */
+.bodyRow {
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid var(--tf-border);
+}
+
+.bodyRow:hover {
+  background: var(--tf-primary-soft);
+}
+
+.clickableRow {
+  cursor: pointer;
+}
+
+.selectedRow,
+.selectedRow:hover {
+  background: var(--tf-primary-soft);
+  box-shadow: inset 3px 0 0 var(--tf-primary);
+}
+
+.individuallySelectedRow,
+.individuallySelectedRow:hover {
+  background: var(--tf-primary-soft);
+}
+
+.cell {
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: var(--tf-text);
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selectionCell {
+  width: 36px;
+  min-width: 36px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.selectionCheckbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 5px;
+  background: transparent;
+  color: #ffffff;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.selectionCheckbox:not(:disabled) {
+  cursor: pointer;
+}
+
+.selectionCheckbox:disabled {
+  cursor: not-allowed;
+}
+
+.selectionCheckbox[aria-pressed='true'] {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.selectionCheckbox img {
+  width: 12px;
+  height: 12px;
+}
+
+.selectionIndeterminate {
+  width: 8px;
+  height: 2px;
+  border-radius: 1px;
+  background: #ffffff;
+}
+
+/* ── Pie ── */
+.footerRow {
+  border-top: 1.5px solid var(--tf-border);
+}
+
+.footerCell {
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tf-muted);
+}
+
+.total {
+  text-align: right;
+  color: var(--tf-primary);
+  font-size: 1.05rem;
+}
+
+/* ── Scrollbar ── */
+.tableContainer::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  background: var(--tf-primary-soft);
+  border-radius: 999px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background: var(--tf-primary);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}

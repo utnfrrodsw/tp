@@ -1,0 +1,197 @@
+.document {
+  padding: 1.5rem;
+  color: #0f172a;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.document p {
+  margin: 0 0 0.2rem;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.companyName {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.tagline {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+}
+
+.docType {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #2563eb;
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.badge {
+  margin-top: 0.25rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+.status_pendiente {
+  background: #e7f9ee;
+  color: #16a34a;
+}
+
+.status_aprobado {
+  background: #e7f0fe;
+  color: #2563eb;
+}
+
+.status_rechazado {
+  background: #fde8e8;
+  color: #dc2626;
+}
+
+.divider {
+  margin: 1rem 0;
+  border: none;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Cliente / Equipo */
+.infoRow {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.infoBlock {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.infoTitle {
+  margin: 0 0 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+/* Tabla */
+.sectionTitle {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.table th {
+  background: #f8fafc;
+  font-size: 0.7rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.colAmount {
+  width: 130px;
+  text-align: right !important;
+  white-space: nowrap;
+}
+
+.discountRow td {
+  color: #dc2626;
+}
+
+/* Total */
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 2px solid #0f172a;
+}
+
+.totalLabel {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.totalValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.footerNote {
+  margin-top: 1.5rem !important;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .document {
+    padding: 1rem 0.25rem;
+  }
+
+  .header,
+  .infoRow {
+    flex-direction: column;
+  }
+
+  .headerRight {
+    align-items: flex-start;
+  }
+
+  .colAmount {
+    width: auto;
+  }
+
+  .totalValue {
+    font-size: 1.2rem;
+  }
+}

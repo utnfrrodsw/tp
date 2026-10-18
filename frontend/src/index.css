@@ -1,0 +1,348 @@
+
+@import "@fontsource-variable/geist";
+
+html {
+  /* clave en mobile: el drawer off-canvas (position:fixed) se sale a la derecha;
+     body overflow-x no alcanza a recortarlo, html sí. Mata el scroll horizontal global */
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+:root {
+  /* TechFix branding */
+  /* width: 100%; */
+  /* TechFix branding - renombradas para no chocar con Tailwind/shadcn */
+  min-height: 100vh;
+  --tf-primary: #1565C0;        /* antes: --color-primary */
+  --tf-primary-dark: #0D47A1;   /* antes: --color-primary-dark */
+  --tf-primary-soft: #E3F2FD;   /* antes: --color-primary-soft */
+
+  --tf-accent: #FFC107;         /* antes: --color-accent */
+  --tf-accent-dark: #F9A825;    /* antes: --color-accent-dark */
+  --tf-accent-soft: #FFF8E1;    /* antes: --color-accent-soft */
+
+  --tf-white: #FFFFFF;          /* antes: --color-white */
+  --tf-bg: #F5F7FA;             /* antes: --color-bg */
+  --tf-card: #FFFFFF;           /* antes: --color-card */
+
+  --tf-text: #1E293B;           /* antes: --color-text */
+  --tf-muted: #64748B;          /* antes: --color-muted */
+  --tf-border: #E2E8F0;         /* antes: --color-border */
+
+  --tf-success: #43A047;        /* antes: --color-success */
+  --tf-success-dark: #2E7D32;   /* antes: --color-success-dark */
+  --tf-danger: #E53935;         /* antes: --color-danger */
+  --tf-neutral: #9E9E9E;        /* antes: --color-neutral */
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 10px 30px rgba(21, 101, 192, 0.08);
+  --shadow-medium: 0 18px 50px rgba(21, 101, 192, 0.14);
+  --shadow-primary: 0 12px 32px rgba(21, 101, 192, 0.28);
+  --shadow-accent: 0 10px 26px rgba(255, 193, 7, 0.28);
+
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.25s ease;
+
+  /* shadcn — no tocar */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(21, 101, 192, 0.10), transparent 30%),
+    radial-gradient(circle at top right, rgba(255, 193, 7, 0.10), transparent 28%),
+    linear-gradient(180deg, #FFFFFF 0%, #F5F7FA 100%);
+  color: var(--tf-text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Fondo del body en MODO OSCURO (antes quedaba claro) */
+.dark body {
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 30%),
+    radial-gradient(circle at top right, rgba(255, 193, 7, 0.05), transparent 28%),
+    linear-gradient(180deg, #0f172a 0%, #0b1120 100%);
+}
+
+/* Transición suave al cambiar entre claro y oscuro */
+*,
+*::before,
+*::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+}
+
+/* Modo oscuro: campos de texto legibles (arregla inputs que quedaban
+   blancos con el texto invisible al escribir) */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: var(--tf-card);
+  color: var(--tf-text);
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: var(--tf-muted);
+}
+
+/* Evita que el autocompletado del navegador pinte el input de blanco en oscuro */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--tf-text);
+  -webkit-box-shadow: 0 0 0 1000px var(--tf-card) inset;
+  caret-color: var(--tf-text);
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+button {
+  user-select: none;
+}
+
+a {
+  color: inherit;
+}
+
+/* Botones globales TechFix */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 0.72rem 1.15rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(21, 101, 192, 0.36);
+}
+
+.btn-secondary {
+  background: var(--color-accent);
+  color: #1E293B;
+  box-shadow: var(--shadow-accent);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--color-accent-dark);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-muted);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #EF4444 0%, var(--color-danger) 100%);
+  color: white;
+  box-shadow: 0 12px 30px rgba(229, 57, 53, 0.25);
+}
+
+.btn-danger:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(229, 57, 53, 0.32);
+}
+
+:root {
+  --font-heading: var(--font-sans);
+  --font-sans: 'Geist Variable', sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+.dark {
+  /* TechFix - valores para MODO OSCURO (las mismas variables --tf-*, otro color) */
+  --tf-primary: #3b82f6;
+  --tf-primary-dark: #2563eb;
+  --tf-primary-soft: #1e3a5f;
+  --tf-accent: #FFC107;
+  --tf-accent-dark: #F9A825;
+  --tf-accent-soft: #3a3320;
+  --tf-white: #FFFFFF;
+  --tf-bg: #0f172a;
+  --tf-card: #1e293b;
+  --tf-text: #e2e8f0;
+  --tf-muted: #94a3b8;
+  --tf-border: #334155;
+
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+     @layer base {
+       * {
+         border-color: var(--border);
+       }
+  
+       html {
+         font-family: var(--font-sans, 'Geist Variable', sans-serif);
+       }
+     }
+
+[data-radix-popper-content-wrapper] {
+  z-index: 99999 !important;
+}
+[data-side="bottom-center"] {
+  bottom: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+[data-slot="badge"] {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+}

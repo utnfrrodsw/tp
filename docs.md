@@ -21,3 +21,46 @@ A continuación se detalla la documentación mínima a incluir para cada entrega
 |evidencia de ejecución de test automáticos||X|
 |demo de app en video|TBD|X|
 |deploy|TBD|TBD|
+
+```text
+
+📁 docs
+│
+├── 📄 README.md
+│
+├── 📁 01-metodologia
+│   ├── metodologia.md
+│   ├── equipo.md
+│   └── proceso.md
+│
+├── 📁 02-propuesta
+│   └── propuesta.md
+│
+├── 📁 03-reuniones
+│   ├── README.md
+│   └── YYYY-MM-DD-reunion.md
+│
+├── 📁 04-tracking
+│   ├── features.md
+│   ├── bugs.md
+│   └── issues.md
+│
+├── 📁 05-pull-requests
+│   └── README.md
+│
+├── 📁 06-instalacion
+│   └── instalacion.md
+│
+├── 📁 07-api
+│   ├── README.md
+│   └── api-doc.md
+│
+├── 📁 08-testing
+│   └── testing.md
+│
+├── 📁 09-demo
+│   └── demo.md
+│
+└── 📁 10-deploy
+    └── deploy.md
+```

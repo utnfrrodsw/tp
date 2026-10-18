@@ -1,0 +1,104 @@
+/* SectionCard.module.css */
+.card {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--tf-card);
+  color: var(--tf-text);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-medium);
+}
+
+.cardHeader {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--tf-border);
+}
+
+.cardContent {
+  padding: 24px;
+}
+
+/* Variante tabla: va después de .cardContent para ganar en la cascada */
+.tableContent {
+  padding: 0 24px 20px;
+  overflow-x: auto;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px 20px;
+  border-top: 1px solid var(--tf-border);
+  flex-wrap: wrap;
+}
+
+.cardFooterBetween {
+  justify-content: space-between;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.sectionIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background-color: var(--tf-primary-soft);
+  color: var(--tf-primary);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.sectionIconImage {
+  padding: 8px;
+}
+
+.sectionIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cardTitle {
+  margin: 0;
+  color: var(--tf-text);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  margin-top: 5px;
+  color: var(--tf-muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+@media (max-width: 576px) {
+  .cardHeader,
+  .cardContent {
+    padding: 16px;
+  }
+
+  .tableContent {
+    padding: 0 16px 16px;
+  }
+
+  .cardFooter {
+    padding: 14px 16px 16px;
+  }
+}

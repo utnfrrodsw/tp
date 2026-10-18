@@ -1,0 +1,75 @@
+/* ─── LimitInput.module.css (modo oscuro vía var(--tf-*)) ─── */
+
+.box {
+  position: relative; /* ancla de la lista desplegable */
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 13px;
+  background: var(--tf-card);
+  border: 1.5px solid var(--tf-border);
+  border-radius: 8px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.box:focus-within {
+  border-color: var(--tf-primary);
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.15);
+}
+
+.input {
+  min-width: 1ch;
+  padding: 0;
+  font: inherit;
+  text-align: right; /* pegado a la barra */
+  color: var(--tf-text);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.total {
+  color: var(--tf-muted);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ── Sugerencias ── */
+.list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 100%;
+  margin: 0;
+  padding: 3px;
+  list-style: none;
+  background: var(--tf-card);
+  border: 1.5px solid var(--tf-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(41, 128, 185, 0.12);
+  z-index: 100;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.option {
+  padding: 4px 10px;
+  font-size: 13px;
+  text-align: center;
+  color: var(--tf-text);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.optionActive {
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+}
+
+.optionCurrent {
+  font-weight: 700;
+}

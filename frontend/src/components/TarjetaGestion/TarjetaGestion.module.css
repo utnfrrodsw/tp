@@ -1,0 +1,155 @@
+/* ============================================================
+   TARJETA DE GESTIÓN - limpia + MODO OSCURO (var(--tf-*))
+   ============================================================ */
+
+.containerContent {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--tf-border);
+  background-color: var(--tf-card);
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* ── Título limpio ── */
+.cajaTitulo {
+  padding: 1.5rem 1.25rem 0;
+}
+
+.titulo {
+  margin: 0;
+  color: var(--tf-text);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.descripcion {
+  padding: 0.75rem 1.25rem 0;
+  font-size: 0.95rem;
+  color: var(--tf-muted);
+  line-height: 1.6;
+}
+
+/* ── Botón "Ver tabla" (solo mobile) ── */
+.botonVerTabla {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 1.25rem 0;
+  padding: 0.7rem 1.2rem;
+  border: 1px solid var(--tf-primary);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--tf-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.botonVerTabla:hover {
+  background: var(--tf-primary-soft);
+}
+
+@media (min-width: 1024px) {
+  .botonVerTabla {
+    display: none;
+  }
+}
+
+/* ── Botones de acción ── */
+.tablaBotones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem 1.25rem;
+}
+
+.botonesFilaSecundaria {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.botonesFilaSecundaria > * {
+  flex: 1;
+}
+
+.btnAccion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+/* Gestionar = acción principal (azul) */
+.btnGestionar {
+  background: var(--tf-primary);
+  color: var(--tf-white);
+}
+.btnGestionar:hover {
+  background: var(--tf-primary-dark);
+}
+
+/* Eliminar = peligro (rojo, igual en ambos temas) */
+.btnEliminar {
+  background: #dc2626;
+  color: var(--tf-white);
+}
+.btnEliminar:hover {
+  background: #b91c1c;
+}
+
+/* Editar = ámbar */
+.btnEditar {
+  background: #f59e0b;
+  color: #422006;
+}
+.btnEditar:hover {
+  background: #d97706;
+}
+
+/* ── Tabla (desktop) ── */
+.tablaDesktop {
+  display: none;
+  padding: 0 1.25rem 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .tablaDesktop {
+    display: block;
+  }
+
+  .containerContent {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .columnaIzquierda {
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--tf-border);
+  }
+
+  .columnaDerecha {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem;
+    overflow: auto;
+  }
+}

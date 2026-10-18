@@ -1,0 +1,128 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-md, 14px);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm, 8px);
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tf-text);
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--tf-muted);
+}
+
+.imeiBadge {
+  flex-shrink: 0;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--tf-bg);
+  border: 1px solid var(--tf-border);
+  color: var(--tf-muted);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--tf-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm, 8px);
+}
+
+.editButton:hover {
+  background: var(--tf-bg);
+  color: var(--tf-primary);
+}
+
+.infoGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--tf-border);
+}
+
+.infoRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.infoLabel {
+  color: var(--tf-muted);
+  white-space: nowrap;
+}
+
+.infoValue {
+  color: var(--tf-text);
+  font-weight: 600;
+  text-align: right;
+}
+
+.observations {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: var(--tf-bg);
+  border-radius: var(--radius-sm, 8px);
+}
+
+.observationsLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--tf-text);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.observationsText {
+  margin: 0;
+  font-size: 12px;
+  color: var(--tf-muted);
+  line-height: 1.5;
+}

@@ -1,0 +1,245 @@
+/* ─── EntityHeader.module.css (modo oscuro vía var(--tf-*)) ─── */
+
+.title {
+  margin: 0;
+  /* el margen por defecto del h1 infla el alto de la fila */
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--tf-text);
+  white-space: nowrap;
+}
+
+.actionGroup {
+  position: relative;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+}
+
+.actions {
+  display: flex;
+  flex: 1;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  gap: 8px;
+}
+
+.actions>* {
+  flex-shrink: 0;
+}
+
+.actions>button {
+  width: 100px;
+  justify-content: center;
+  text-align: center;
+}
+
+.mobileActionsTrigger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 8px 10px;
+  color: var(--tf-text);
+  background: var(--tf-card);
+  border: 1.5px solid var(--tf-border);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.mobileActionsTrigger:focus-visible {
+  border-color: var(--tf-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.12);
+}
+
+.actionsChevron,
+.actionsChevronOpen {
+  flex: 0 0 auto;
+  transition: transform 180ms ease;
+}
+
+.actionsChevronOpen {
+  transform: rotate(180deg);
+}
+
+.actionMenuMode .mobileActionsTrigger {
+  display: inline-flex;
+}
+
+.actionMenuMode .actions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: min(220px, calc(100vw - 32px));
+  min-width: min(220px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  max-height: min(60vh, 360px);
+  box-sizing: border-box;
+  overflow-y: auto;
+  margin: 0;
+  padding: 5px;
+  color: var(--tf-text);
+  background: var(--tf-card);
+  border: 1.5px solid var(--tf-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(41, 128, 185, 0.12);
+  transform: translateX(-50%);
+  animation: actionsMenuIn 150ms ease;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.actionMenuMode .actionsMenuOpen {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.actionMenuMode .actions button {
+  width: 100%;
+  max-width: 100%;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+@keyframes actionsMenuIn {
+  from {
+    opacity: 0;
+    translate: -50% -4px;
+  }
+
+  to {
+    opacity: 1;
+    translate: -50% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .actionMenuMode .actions,
+  .actionsChevron,
+  .actionsChevronOpen {
+    animation-duration: 1ms;
+    transition-duration: 1ms;
+  }
+}
+
+@container wrapper (max-width: 420px) {
+  .title.title {
+    flex-basis: auto;
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* ── Botones ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--tf-primary);
+  background: var(--tf-card);
+  border: 1.5px solid var(--tf-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--tf-border);
+  border-color: var(--tf-muted);
+}
+
+.btn:focus-visible,
+.toggleBtn:focus-visible {
+  outline: 2px solid var(--tf-primary);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  color: var(--tf-white);
+  background: var(--tf-primary);
+  border-color: var(--tf-primary-dark);
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background: var(--tf-primary-dark);
+  border-color: var(--tf-primary-dark);
+}
+
+/* --tf-danger no la vi en tu tema: si no existe, usa el rojo de respaldo */
+.btnDanger {
+  color: var(--tf-danger, #e5484d);
+}
+
+.btnDanger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--tf-danger, #e5484d) 12%, transparent);
+  border-color: var(--tf-danger, #e5484d);
+}
+
+/* ── Selector de vista ── */
+.toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 40px;
+  padding: 3px;
+  box-sizing: border-box;
+  background: var(--tf-card);
+  border: 1.5px solid var(--tf-border);
+  border-radius: 10px;
+}
+
+.toggleBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 100%;
+  padding: 0;
+  color: var(--tf-muted);
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.toggleBtn:hover:not(.toggleBtnActive) {
+  color: var(--tf-primary);
+}
+
+.toggleBtnActive {
+  color: var(--tf-white);
+  background: var(--tf-primary);
+  cursor: default;
+}

@@ -1,0 +1,227 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum EnumRol {
+  admin
+  tecnico
+}
+
+enum EnumEquipmentType {
+  celular
+  computadora
+  tablet
+  consola
+  notebook
+  impresora
+  televisor
+  otro
+}
+
+enum EnumOrderStatus {
+  recibido
+  diagnostico
+  presupuestado
+  aprobado
+  reparacion
+  listo
+  entregado
+  cancelado
+}
+
+enum EnumBudgetStatus {
+  pendiente
+  aprobado
+  rechazado
+}
+
+enum EnumPaymentMethod {
+  DEBITO
+  MP
+  EFECTIVO
+  CREDITO
+}
+
+enum EnumPaymentType {
+  Descuento
+  Recargo
+}
+
+enum EnumFailureStatus {
+  resuelta
+  diagnosticada
+}
+enum EnumTypeAddedCost {
+  repuesto
+  procedimientoEspecial
+  garantia
+  reparacionExpress
+  limpiezaPuestaAPunto
+  serviciosSoftware
+}
+
+model User {
+  id_user                 String                @id @db.Char(36)
+  userName                String                @unique
+  email                   String                @unique
+  password_hash           String
+  rol                     EnumRol
+  status                  Boolean               @default(false)
+  validationStatus        Boolean               @default(false)
+  urlPicture              String                @default("https://res.cloudinary.com/dcgvogduy/image/upload/v1778239413/taller-mecanico/j4fv1vtqqrhskyw0owms.png")
+  orders                  Order[]
+  statusHistory           Status_History[]
+
+  @@map("User")
+}
+
+model Client {
+  id_client               String                @id @db.Char(36)
+  clientName              String
+  clientEmail             String                @unique
+  clientPhone             String
+  cuit                    String                @unique
+  dateOfRegistration      DateTime              @default(now())
+  status                  Boolean               @default(true)
+  client_type             Client_Type           @relation(fields: [id_client_type], references: [id_client_type])
+  id_client_type          String                @db.Char(36)
+  equipments              Equipment[]
+
+  @@map("Client")
+}
+
+model Client_Type {
+  id_client_type          String                @id @db.Char(36)
+  clientTypeName          String                @unique
+  amountForCategoryUp     Int
+  clients                 Client[]
+
+  @@map("Client_Type")
+}
+
+model Failure_Type {
+  id_failure_type         String                @id @db.Char(36)
+  failureDescription      String                @unique
+  estimatedImport         Decimal               @db.Decimal(12, 2)
+  failures                Failure[]
+
+  @@map("Failure_Type")
+}
+
+model Failure {
+  id_failure              String                @id @db.Char(36)
+  failureType             Failure_Type          @relation(fields: [id_failure_type], references: [id_failure_type])
+  id_failure_type         String                @db.Char(36)
+  order                   Order                @relation(fields: [id_order], references: [id_order])
+  id_order                String               @db.Char(36)
+  description             String
+  dateOfFailure           DateTime              @default(now())
+  status                  EnumFailureStatus     @default(diagnosticada)
+
+  @@map("Failure")
+}
+
+model Equipment {
+  id_equipment            String                @id @db.Char(36)
+  tipo_equipment          EnumEquipmentType
+  brand                   String
+  model                   String
+  observations            String?
+  client                  Client                @relation(fields: [id_client], references: [id_client])
+  id_client               String                @db.Char(36)
+  orders                  Order[]
+
+  @@map("Equipment")
+}
+
+model Order {
+  id_order                String                @id @db.Char(36)
+  nroOrder                Int                   @unique 
+  equipment               Equipment             @relation(fields: [id_equipment], references: [id_equipment])
+  id_equipment            String                @db.Char(36)
+  user                    User?                 @relation(fields: [id_user], references: [id_user])
+  id_user                 String?               @db.Char(36)
+  status                  EnumOrderStatus       @default(recibido)
+  observations            String?
+  equipmentPhotoUrl       String?
+  dateOfEntry             DateTime              @default(now())
+  estimatedDate           DateTime?
+  deliveryDate            DateTime?
+  totalCharged            Decimal?              @db.Decimal(12, 2)
+  statusHistory           Status_History[]
+  budget                  Budget?
+  failures                Failure[]
+  active                  Boolean               @default(true)
+
+  @@map("Order")
+}
+
+model Status_History {
+  id_status_history       String                @id @db.Char(36) 
+  order                   Order                 @relation(fields: [id_order], references: [id_order])
+  id_order                String                @db.Char(36)
+  status                  EnumOrderStatus       @default(recibido)
+  user                    User                  @relation(fields: [id_user], references: [id_user])
+  id_user                 String                @db.Char(36)
+  dateOfChange            DateTime              @default(now())
+  comment                 String?
+
+  @@map("Status_History")
+}
+
+model Budget {
+  id_budget               String                @id @db.Char(36)
+  nroBudget               Int                   @unique 
+  order                   Order                 @relation(fields: [id_order], references: [id_order])
+  id_order                String                @unique @db.Char(36)
+  laborCost               Decimal               @db.Decimal(12, 2)
+  discount                Decimal               @db.Decimal(12, 2) @default(0)
+  status                  EnumBudgetStatus      @default(pendiente)
+  payments                Payment[]
+  addedCosts              AddedCost[]
+  budgetDate              DateTime              @default(now())
+  clientSuggestion        String?               
+  @@map("Budget")
+}
+
+model AddedCost{
+  id_addedCost            String                @id @db.Char(36)
+  id_budget               String                @db.Char(36)
+  budget                  Budget                @relation(fields: [id_budget], references: [id_budget])
+  type_addedCost          EnumTypeAddedCost 
+  addedCostDescription    String                
+  addedCostAmount         Decimal               @db.Decimal(12, 2)
+  @@map("AddedCost")
+}
+
+model Payment_Type {
+  id_payment_type         String                @id @db.Char(36)
+  paymentTypeName         String                @unique
+  paymentMethod           EnumPaymentMethod
+  type_of_payment         EnumPaymentType
+  percentage              Decimal               @db.Decimal(5, 2) @default(0)
+  payments                Payment[]
+
+  @@map("Payment_Type")
+}
+
+model Payment {
+  id_payment              String                @id @db.Char(36)
+  paymentType             Payment_Type          @relation(fields: [id_payment_type], references: [id_payment_type])
+  id_payment_type         String                @db.Char(36)
+  budget                  Budget                @relation(fields: [id_budget], references: [id_budget])
+  id_budget               String                @db.Char(36)
+  dateOfPayment           DateTime              @default(now())
+  amount                  Decimal               @db.Decimal(12, 2)
+}

@@ -1,0 +1,90 @@
+/* OrderDescription.module.css */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 400px;
+  color: var(--tf-text);
+}
+
+/* --- Header --- */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.orderId {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--tf-text);
+}
+
+.clientName {
+  font-size: 14px;
+  color: var(--tf-muted);
+}
+
+.closeBtn {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  color: var(--tf-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.closeBtn:hover {
+  background-color: var(--tf-primary-soft);
+  color: var(--tf-text);
+}
+
+/* --- Secciones --- */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sectionLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tf-primary);
+}
+
+/* La card de equipo nace inline-flex con max-width propio (pensada para vivir suelta
+   en un grid); acá ocupa todo el ancho del panel, igual que hicimos con .cardSlot
+   en StatusHistoryTimeline. */
+.equipmentSlot {
+  display: flex;
+}
+
+.equipmentSlot > * {
+  display: flex;
+  width: 100%;
+  max-width: none;
+}
+
+/* --- Footer / acción --- */
+.footer {
+  padding-top: 4px;
+  align-self: center;
+}

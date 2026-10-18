@@ -1,0 +1,81 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tf-primary);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  gap: 12px;
+}
+
+/* --- Columna de puntos + línea --- */
+.trackColumn {
+  flex-shrink: 0;
+  width: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  min-height: 12px;
+  border-radius: 50%;
+  margin-top: 14px;
+  background: var(--tf-muted);
+  border: 2px solid var(--tf-card);
+  box-shadow: 0 0 0 1px var(--tf-border);
+}
+
+.dotActive {
+  width: 14px;
+  height: 14px;
+  min-height: 14px;
+  margin-top: 12px;
+  background: var(--tf-success);
+  box-shadow: 0 0 0 1px var(--tf-success), 0 0 0 4px color-mix(in srgb, var(--tf-success) 20%, transparent);
+}
+
+.line {
+  flex: 1;
+  width: 2px;
+  min-height: 12px;
+  background: var(--tf-border);
+}
+
+.cardSlot {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 14px;
+}
+
+.cardSlot .card,
+.cardSlot > * {
+  max-width: none; /* dentro del timeline la card ocupa todo el ancho disponible */
+}
+
+.emptyText {
+  font-size: 13px;
+  color: var(--tf-muted);
+  margin: 0;
+  font-style: italic;
+  padding: 8px 12px;
+  background-color: var(--tf-bg);
+  border: 1px dashed var(--tf-border);
+  border-radius: var(--radius-sm, 8px);
+}

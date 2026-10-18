@@ -1,0 +1,91 @@
+/* LaborCostCard.module.css */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  color: var(--tf-text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  height: 42px;
+  padding-right: 52px;
+  background-color: var(--tf-bg);
+  color: var(--tf-text);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+}
+
+.input::placeholder {
+  color: var(--tf-muted);
+}
+
+.input:focus {
+  border-color: var(--tf-primary);
+  box-shadow: 0 0 0 3px var(--tf-primary-soft);
+}
+
+.inputSuffix {
+  position: absolute;
+  right: 14px;
+  color: var(--tf-muted);
+  font-size: 12px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.helperText {
+  margin: 0;
+  color: var(--tf-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.errorText {
+  margin: 0;
+  color: var(--tf-danger);
+  font-size: 12px;
+}
+
+.savedValue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  background-color: var(--tf-bg);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-sm);
+}
+
+.savedValue span {
+  color: var(--tf-muted);
+  font-size: 12px;
+}
+
+.savedValue strong {
+  color: var(--tf-text);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+@media (max-width: 576px) {
+  .savedValue {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+}

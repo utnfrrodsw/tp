@@ -1,0 +1,120 @@
+.card {
+  background-color: transparent; /* Permite integrarse transparentemente en la customCard */
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  background-color: var(--tf-primary-soft);
+  color: var(--tf-primary);
+  border-radius: 50%;
+}
+
+.title {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tf-text);
+  margin: 0;
+}
+
+.textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: var(--tf-bg);
+  border: 1.5px solid var(--tf-border);
+  border-radius: var(--radius-sm, 14px);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--tf-text);
+  resize: vertical;
+  min-height: 80px;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.textarea::placeholder {
+  color: var(--tf-muted);
+}
+
+.textarea:focus {
+  border-color: var(--tf-primary);
+}
+
+.tagsSection {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tagsLabel {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tf-muted);
+}
+
+.tagsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 10px 18px;
+  background-color: var(--tf-primary-soft);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-pill, 999px);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--tf-text);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.tag:hover {
+  background-color: var(--tf-border);
+}
+
+.tagSelected {
+  background-color: var(--tf-primary) !important;
+  border-color: var(--tf-primary) !important;
+  color: #ffffff !important;
+}
+
+.tagSelected:hover {
+  background-color: var(--tf-primary-dark) !important;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 0;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .tag {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+}

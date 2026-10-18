@@ -1,0 +1,450 @@
+/* ============================================================
+   HOME - estilos (rediseno limpio, MOBILE-FIRST + MODO OSCURO)
+   Usa variables --tf-* (definidas en index.css). En modo oscuro
+   esas variables cambian de valor y todo se adapta solo.
+   Breakpoints: SM 640px, MD 768px, LG 1024px.
+   ============================================================ */
+
+.page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  background: var(--tf-bg);
+}
+
+.main {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+}
+
+/* ---------- Toast "sesion iniciada" ---------- */
+.toast {
+  position: fixed;
+  top: 84px;
+  left: 16px;
+  right: 16px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  border-left: 4px solid var(--tf-primary);
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.10);
+  animation: toastIn 0.28s ease-out;
+}
+
+.toastExit {
+  animation: toastOut 0.55s ease-in forwards;
+}
+
+.toastIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--tf-primary);
+  color: var(--tf-white);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.toastTitle {
+  margin: 0;
+  color: var(--tf-text);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.toastText {
+  margin: 0.1rem 0 0;
+  color: var(--tf-muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+/* ---------- Hero (bienvenida) ---------- */
+.heroCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  background: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.heroContent,
+.heroVisual {
+  position: relative;
+}
+
+.badge {
+  display: inline-block;
+  width: fit-content;
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+  border: 1px solid var(--tf-border);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.title {
+  color: var(--tf-text);
+  font-size: 1.7rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+  font-weight: 700;
+}
+
+.description {
+  color: var(--tf-muted);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0.85rem 0 0;
+}
+
+/* ---------- Botones de accion del hero ---------- */
+.primaryActions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.mainAction,
+.secondaryAction {
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+/* Boton principal: solido azul */
+.mainAction {
+  background: var(--tf-primary);
+  border: 1px solid var(--tf-primary);
+  color: var(--tf-white);
+}
+
+.mainAction:hover {
+  background: var(--tf-primary-dark);
+  border-color: var(--tf-primary-dark);
+}
+
+/* Boton secundario: con contorno */
+.secondaryAction {
+  background: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  color: var(--tf-text);
+}
+
+.secondaryAction:hover {
+  background: var(--tf-bg);
+  border-color: var(--tf-muted);
+}
+
+.mainAction strong,
+.secondaryAction strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.mainAction small,
+.secondaryAction small {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 0.1rem;
+}
+
+.actionIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.mainAction .actionIcon {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--tf-white);
+}
+
+.secondaryAction .actionIcon {
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+}
+
+/* ---------- Mensaje para usuarios sin rol tecnico ---------- */
+.userMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+  background: var(--tf-accent-soft);
+  color: var(--tf-text);
+  border: 1px solid var(--tf-border);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.userMessageIcon {
+  display: grid;
+  place-items: center;
+  color: var(--tf-accent-dark);
+  flex-shrink: 0;
+}
+
+/* ---------- Panel de accesos rapidos ---------- */
+.heroVisual {
+  display: block;
+}
+
+.quickPanel {
+  width: 100%;
+  background: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  border-radius: 16px;
+  padding: 1.1rem;
+}
+
+.quickPanelHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.quickPanelIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.quickPanelTitle {
+  margin: 0;
+  color: var(--tf-text);
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.quickPanelText {
+  margin: 0.15rem 0 0;
+  color: var(--tf-muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.quickPanelList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.quickPanelItem {
+  width: 100%;
+  border: none;
+  border-top: 1px solid var(--tf-border);
+  background: transparent;
+  color: var(--tf-text);
+  padding: 0.7rem 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s ease;
+}
+
+.quickPanelItem:hover {
+  color: var(--tf-primary);
+}
+
+.quickPanelItem span {
+  display: grid;
+  place-items: center;
+  color: var(--tf-primary);
+  flex-shrink: 0;
+}
+
+.quickPanelItem strong {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* ---------- Tarjetas de estadisticas ---------- */
+.quickGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+/* ---------- Sección "Últimas órdenes" (tarjetas informativas) ---------- */
+.ordenesSection {
+  margin-top: 2rem;
+}
+
+.ordenesHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.ordenesTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--tf-text);
+  margin: 0;
+}
+
+.ordenesVerTodas {
+  background: none;
+  border: none;
+  color: var(--tf-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 8px;
+  transition: background-color 0.18s ease;
+}
+
+.ordenesVerTodas:hover {
+  background-color: var(--tf-primary-soft);
+}
+
+.ordenesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.quickCard {
+  background: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  transition: border-color 0.18s ease;
+  cursor: pointer;
+}
+
+.quickCard:hover {
+  border-color: var(--tf-muted);
+}
+
+.quickIcon {
+  display: block;
+  color: var(--tf-muted);
+  margin-bottom: 0.35rem;
+}
+
+.quickNumber {
+  display: block;
+  color: var(--tf-text);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.quickLabel {
+  display: block;
+  color: var(--tf-muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-top: 0.15rem;
+}
+
+/* ============================================================
+   ANIMACIONES del toast
+   ============================================================ */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+
+/* ============================================================
+   RESPONSIVE (mobile-first): de chico a grande
+   ============================================================ */
+
+/* SM - 640px */
+@media (min-width: 640px) {
+  .main {
+    padding: 2rem 1.5rem;
+  }
+
+  .toast {
+    left: auto;
+    right: 24px;
+    width: auto;
+    max-width: 340px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .primaryActions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* MD - 768px */
+@media (min-width: 768px) {
+  .main {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .heroCard {
+    padding: 1.75rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+/* LG - 1024px */
+@media (min-width: 1024px) {
+  .heroCard {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    padding: 2.25rem;
+    align-items: center;
+  }
+
+  .title {
+    font-size: 2.4rem;
+  }
+}

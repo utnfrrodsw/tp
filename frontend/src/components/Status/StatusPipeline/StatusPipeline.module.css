@@ -1,0 +1,206 @@
+.wrap {
+  background: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-md, 14px);
+  padding: 16px 22px;
+  box-shadow: var(--shadow-soft);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.titleDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tf-primary);
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tf-text);
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+
+.elapsedPill {
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.advanceButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--tf-primary);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 2px;
+}
+
+.advanceButton:hover {
+  text-decoration: underline;
+}
+
+.cancelledBanner {
+  background: color-mix(in srgb, var(--tf-danger) 12%, transparent);
+  color: var(--tf-danger);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm, 8px);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =====================================================
+   STEPPER
+   ===================================================== */
+
+.steps {
+  display: flex;
+  align-items: flex-start;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.trackColumn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  z-index: 1;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dotDone {
+  background: var(--tf-success);
+  color: #fff;
+}
+
+.dotCurrent {
+  background: var(--tf-primary);
+  color: #fff;
+  box-shadow: 0 0 0 4px var(--tf-primary-soft);
+}
+
+.dotPending {
+  background: var(--tf-bg);
+  color: var(--tf-muted);
+  border: 1px solid var(--tf-border);
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background: var(--tf-border);
+  margin: 0 2px;
+  transition: background-color 0.2s ease;
+}
+
+.lineDone {
+  background: var(--tf-success);
+}
+
+.stepInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 8px;
+  text-align: center;
+  padding: 0 4px;
+}
+
+.stepLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tf-text);
+  white-space: nowrap;
+}
+
+.stepLabelCurrent {
+  color: var(--tf-primary);
+  font-weight: 700;
+}
+
+.stepDate {
+  font-size: 11px;
+  color: var(--tf-muted);
+  white-space: nowrap;
+}
+
+.stepStatusCurrent {
+  font-size: 11px;
+  color: var(--tf-primary);
+  font-weight: 700;
+}
+
+.stepStatusPending {
+  font-size: 11px;
+  color: var(--tf-muted);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 700px) {
+  .steps {
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .step {
+    min-width: 90px;
+  }
+
+  .stepLabel,
+  .stepDate,
+  .stepStatusCurrent,
+  .stepStatusPending {
+    white-space: normal;
+  }
+}

@@ -1,0 +1,85 @@
+.titleWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.cardIconImg { width: 32px; height: 32px; flex-shrink: 0; }
+.eyeIconImg { width: 18px; height: 18px; }
+.buttonIcons { width: 20px; height: 20px; }
+
+.cardTitleText {
+  color: var(--tf-text) !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.5px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.titleWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardIconImg {
+  width: 20px;
+  height: 20px;
+}
+
+.cardTitleText {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--tf-text, #1f2937);
+  margin: 0;
+}
+
+.emptyText {
+  font-size: 0.875rem;
+  color: var(--tf-muted);
+  margin: 4px 0 8px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--tf-border, #e5e7eb);
+  border-radius: 10px;
+  background: var(--tf-card);
+}
+
+.savingText {
+  font-size: 0.85rem;
+  color: var(--tf-muted);
+  margin: 0;
+}
+
+.errorMessage {
+  font-size: 0.85rem;
+  color: var(--tf-danger, #dc2626);
+  background: color-mix(in srgb, var(--tf-success) 15%, var(--tf-card));
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin: 0;
+}
+
+.successMessage {
+  font-size: 0.85rem;
+  color: var(--tf-success, #16a34a);
+  background: color-mix(in srgb, var(--tf-success) 15%, var(--tf-card));
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin: 0;
+}

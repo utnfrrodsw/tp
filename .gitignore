@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Build outputs
+dist/
+*/dist/
+
+# Environment variables
+.env.development
+.env.production
+.env
+*/.env
+
+# Logs
+*.log
+
+#volumenes de los contenedores
+.volumes
+
+server/src/generated/
+
+.vscode/
+
+# Apuntes de estudio de Bauti (no son parte del proyecto, no subir a git)
+GUIA-BAUTI.md
+CONCEPTOS-BAUTI.md
+MIS-NOTAS-CODIGO.md
+RESUMEN-CAMBIOS.md
+APUNTES-BAUTI.md

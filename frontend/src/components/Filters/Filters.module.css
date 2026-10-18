@@ -1,0 +1,296 @@
+/* ─── Filters.module.css (modo oscuro vía var(--tf-*)) ─── */
+
+/* ── Botón (igual que SearchBar) ── */
+.filterBtnWrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0fr);
+  width: 160px;
+  height: 40px;
+  flex: 0 0 160px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1.5px solid var(--tf-border);
+  border-radius: 8px;
+  transition: grid-template-columns 220ms ease;
+}
+
+.filterBtnWrapperActive {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+}
+
+.filterIcon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  background-color: currentColor;
+  mask: url('@/assets/FiltersIcon.svg') center / contain no-repeat;
+}
+
+.filterBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 10px 8px;
+  height: 100%;
+  background: var(--tf-card);
+  color: var(--tf-text);
+  border: 0;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.filterBtnActive {
+  background: var(--tf-primary);
+  color: var(--tf-white);
+}
+
+.filterBtnActive {
+  border-color: var(--tf-primary-dark);
+}
+
+@media (hover: hover) {
+  .filterBtn:hover {
+    background: var(--tf-primary-soft);
+    color: var(--tf-primary);
+  }
+
+  .filterBtnActive:hover {
+    background: var(--tf-primary-dark);
+    color: var(--tf-white);
+  }
+
+  .clearFiltersControl:hover {
+    color: var(--tf-danger);
+    background: color-mix(in srgb, var(--tf-danger) 12%, var(--tf-card));
+  }
+}
+
+.filterBtn:active {
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+}
+
+.filterBtnActive:active {
+  background: var(--tf-primary);
+  color: var(--tf-white);
+}
+
+.filterBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: var(--tf-card);
+  color: var(--tf-primary);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.clearFiltersControl {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  color: var(--tf-danger);
+  background: color-mix(in srgb, var(--tf-danger) 12%, var(--tf-card));
+  border: 0;
+  border-left: 0;
+  opacity: 0;
+  transform: translateX(100%);
+  pointer-events: none;
+  cursor: pointer;
+  transition: opacity 180ms ease, transform 220ms ease, background 0.15s, color 0.15s;
+}
+
+.filterBtnWrapperActive .clearFiltersControl {
+  border-left: 1.5px solid var(--tf-border);
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.clearFiltersControl:disabled {
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .filterBtnWrapper,
+  .clearFiltersControl {
+    transition: none;
+  }
+}
+
+/* ── Panel (segunda línea del Wrapper) ── */
+.panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 16px;
+  flex: 0 0 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 12px;
+  border-top: 1.5px solid var(--tf-border);
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.clearFiltersBtn {
+  padding: 8px 4px;
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--tf-primary);
+  cursor: pointer;
+}
+
+.clearFiltersBtn:hover {
+  text-decoration: underline;
+}
+
+/* ── Campos (igual que SearchBar) ── */
+.filterField {
+  display: flex;
+  flex: 1 1 150px;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.filterLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tf-muted);
+}
+
+.filterSelect {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  font-size: 13px;
+  border: 1.5px solid var(--tf-border);
+  border-radius: 8px;
+  color: var(--tf-text);
+  background: var(--tf-card);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+}
+
+.filterSelect:focus {
+  border-color: var(--tf-primary);
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.12);
+}
+
+.filterSelectBox {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.filterSelectTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 36px;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  color: var(--tf-text);
+  background: var(--tf-card);
+  border: 1.5px solid var(--tf-border);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.filterSelectTrigger:focus-visible {
+  border-color: var(--tf-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.12);
+}
+
+.filterSelectPlaceholder {
+  color: var(--tf-muted);
+}
+
+.filterChevron {
+  flex: 0 0 auto;
+  transition: transform 180ms ease;
+}
+
+.filterChevronOpen {
+  transform: rotate(180deg);
+}
+
+.filterOptions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  max-height: 220px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  margin: 0;
+  padding: 3px;
+  list-style: none;
+  background: var(--tf-card);
+  border: 1.5px solid var(--tf-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(41, 128, 185, 0.12);
+  animation: fadeIn 0.15s ease;
+}
+
+.filterOption {
+  padding: 6px 10px;
+  color: var(--tf-text);
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.filterOptionActive {
+  color: var(--tf-primary);
+  background: var(--tf-primary-soft);
+}
+
+.filterOptionCurrent {
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filterChevron {
+    transition: none;
+  }
+}

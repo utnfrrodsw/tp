@@ -1,0 +1,169 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tf-text);
+}
+
+.combo {
+  position: relative;
+  width: 100%;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--tf-border);
+  background-color: var(--tf-card);
+  color: var(--tf-text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, background-color 0.35s ease;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--tf-primary);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--tf-muted);
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.dropdown {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background-color: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 50;
+  list-style: none;
+  padding: 4px 0;
+  margin: 4px 0 0;
+}
+
+.option {
+  padding: 9px 12px;
+  font-size: 14px;
+  color: var(--tf-text);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.option:hover {
+  background-color: var(--tf-primary-soft);
+}
+
+.empty {
+  padding: 9px 12px;
+  font-size: 13px;
+  color: var(--tf-muted);
+}
+
+.error {
+  font-size: 13px;
+  color: var(--tf-danger);
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.saveBtn {
+  padding: 9px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--tf-primary);
+  background-color: var(--tf-primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.saveBtn:hover {
+  background-color: var(--tf-primary-dark);
+}
+
+.cancelBtn {
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--tf-border);
+  background-color: var(--tf-card);
+  color: var(--tf-muted);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.cancelBtn:hover {
+  color: var(--tf-text);
+  border-color: var(--tf-primary);
+}
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  position: relative;
+  background: var(--tf-card);
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modalClose {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+}
+
+.modalClose:hover {
+  color: #000;
+}

@@ -1,0 +1,102 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.select,
+.input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--tf-border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--tf-muted);
+  background: var(--tf-bg);
+  outline: none;
+}
+
+.select:focus,
+.input:focus,
+.amountInput:focus {
+  border-color: var(--tf-border);
+}
+
+.select:disabled,
+.input:disabled,
+.amountInput:disabled {
+  background: var(--tf-bg);
+  color: var(--tf-muted);
+  cursor: not-allowed;
+}
+
+.amountWrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--tf-border);
+  border-radius: 8px;
+  padding: 0 10px;
+  max-width: 140px;
+  margin-left: auto;
+}
+
+.currencyPrefix {
+  color: var(--tf-muted);
+  font-size: 14px;
+}
+
+.amountInput {
+  border: none;
+  padding: 6px 0;
+  text-align: right;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--tf-muted);
+  outline: none;
+  width: 100%;
+  -moz-appearance: textfield; 
+}
+
+.amountInput::-webkit-outer-spin-button,
+.amountInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--tf-primary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: var(--tf-bg);
+}
+
+.deleteButton:disabled {
+  color: var(--tf-bg);
+  cursor: not-allowed;
+}
+
+.addButton {
+  align-self: flex-start;
+  background: none;
+  border: 1px dashed var(--tf-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  color: var(--tf-muted);
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background: var(--tf-bg);
+}

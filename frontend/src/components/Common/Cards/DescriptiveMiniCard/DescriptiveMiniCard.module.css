@@ -1,0 +1,99 @@
+/* DescriptiveMiniCard.module.css */
+
+.card {
+  --tone: var(--tf-primary);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-md, 14px);
+  background: var(--tf-card);
+  box-shadow: var(--shadow-soft);
+  min-width: 160px;
+  transition: background-color 0.35s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--tone) 45%, var(--tf-border));
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--tone);
+  outline-offset: 2px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tf-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.value {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--tf-text);
+}
+
+.iconWrap {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--tone) 18%, var(--tf-card));
+  border: 1px solid color-mix(in srgb, var(--tone) 30%, transparent);
+}
+
+.icon {
+  color: var(--tone);
+}
+
+/* --- Tones --- */
+.neutral {
+  --tone: var(--tf-primary);
+}
+
+.info {
+  --tone: #2563eb;
+}
+
+.warning {
+  --tone: #d97706;
+}
+
+.success {
+  --tone: var(--tf-success);
+}
+
+.danger {
+  --tone: var(--tf-danger);
+
+  border-color: color-mix(in srgb, var(--tone) 45%, var(--tf-border));
+}
+
+.danger .value {
+  color: var(--tone);
+}

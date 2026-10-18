@@ -1,0 +1,374 @@
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--tf-card);
+  border: 1px solid var(--tf-border);
+  border-radius: 22px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  font-family: inherit;
+  color: var(--tf-text);
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--tf-text);
+}
+
+.badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.badge_live {
+  background: transparent;
+  color: var(--tf-success);
+}
+
+.badge_approved {
+  background: var(--tf-bg);
+  color: var(--tf-primary);
+}
+
+.badge_rejected {
+  background: transparent;
+  color: var(--tf-danger);
+}
+
+.badge_neutral {
+  background: transparent;
+  color: var(--tf-muted);
+}
+
+/* ─── Dividers ───────────────────────────────────────────── */
+
+.divider {
+  height: 1px;
+  background: var(--tf-border);
+  margin: 16px 0;
+}
+
+.errorText {
+  margin: 0 0 12px;
+  font-size: 12.5px;
+  color: var(--tf-danger);
+}
+
+/* ─── Line-item rows ─────────────────────────────────────── */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rowLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--tf-muted);
+}
+
+.rowIcon {
+  display: flex;
+  color: var(--tf-muted);
+  flex-shrink: 0;
+}
+
+.rowValue {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tf-text);
+  white-space: nowrap;
+}
+
+.rowValueDiscount {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tf-danger);
+  white-space: nowrap;
+}
+
+.promoTag {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--tf-danger);
+  background: var(--tf-bg);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin-left: 4px;
+}
+
+/* ─── Total ──────────────────────────────────────────────── */
+
+.totalBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.totalCaption {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tf-muted);
+}
+
+.totalRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.totalLabel {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tf-text);
+}
+
+.totalValue {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--tf-primary);
+  letter-spacing: -0.01em;
+}
+
+.formula {
+  margin: 0;
+  font-size: 11px;
+  color: var(--tf-muted);
+  line-height: 1.4;
+}
+
+/* ─── Anticipo / Saldo box ───────────────────────────────── */
+
+.balanceBox {
+  margin-top: 16px;
+  background: transparent;
+  border: 1px solid var(--tf-border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.balanceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.balanceLabel {
+  font-size: 13px;
+  color: var(--tf-muted);
+}
+
+.balanceLabelStrong {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--tf-text);
+}
+
+.balancePaid {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tf-success);
+}
+
+.balancePending {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--tf-primary);
+}
+
+/* ─── Comunicación ───────────────────────────────────────── */
+
+.commSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.commTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tf-muted);
+  margin-bottom: 2px;
+}
+
+.commRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.commRow:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid var(--tf-border);
+  color: var(--tf-card);
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.checkboxGreen {
+  background: var(--tf-success);
+  border-color: var(--tf-success);
+}
+
+.checkboxBlue {
+  background: var(--tf-primary);
+  border-color: var(--tf-primary);
+}
+
+.commIcon {
+  display: flex;
+  color: var(--tf-primary);
+  flex-shrink: 0;
+}
+
+.commText {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--tf-primary);
+}
+
+.commMuted {
+  font-weight: 500;
+  color: var(--tf-muted);
+}
+
+
+.suggSection {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  background-color: #f8fafc; /* Fondo gris claro muy limpio */
+  border-left: 4px solid #3b82f6; /* Acento azul en el borde izquierdo */
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.suggTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #1e40af;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.suggTitle::before {
+  content: "💬";
+  font-size: 0.875rem;
+}
+.suggText{
+  font-size: 0.938rem;
+  line-height: 1.5;
+  color: #334155;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word; 
+  font-style: italic;
+}
+
+/* ─── Actions ────────────────────────────────────────────── */
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.actionsRow {
+  display: flex;
+  gap: 10px;
+}
+
+.actionsRow > * {
+  flex: 1;
+}
+
+
+
+
+
+/* ─── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 420px) {
+  .card {
+    max-width: 100%;
+    padding: 18px;
+  }
+
+  .totalValue {
+    font-size: 22px;
+  }
+}

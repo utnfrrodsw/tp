@@ -1,0 +1,47 @@
+/* AddedCostsCard.module.css */
+.errorText {
+  margin: 0 0 8px;
+  color: var(--tf-danger);
+  font-size: 12px;
+}
+
+.tableHelper {
+  color: var(--tf-muted);
+  font-size: 12px;
+}
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--tf-text);
+  font-size: 13px;
+}
+
+.table thead {
+  background-color: var(--tf-bg);
+}
+
+.table th {
+  padding: 12px;
+  color: var(--tf-muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--tf-border);
+}
+
+.table td {
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--tf-border);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background-color: var(--tf-primary-soft);
+}

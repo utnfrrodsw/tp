@@ -1,0 +1,39 @@
+.link-footer {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;   /* reset de boton */
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: #a8bdd4;
+    font-size: 0.95rem;        /* antes decia 1,5rem (con coma) y el navegador lo ignoraba */
+    font-family: inherit;      /* usa la misma tipografia sans que el resto */
+    letter-spacing: 0.01em;
+    padding: 0 0 2px;
+    transition: color 0.25s ease;
+    gap: 2px;
+}
+
+.link-footer:hover {
+    color: #ffffff;
+}
+
+.link-footer__text {
+    position: relative;
+    z-index: 1;
+}
+
+.link-footer__underline {
+    display: block;
+    height: 1px;
+    width: 0%;
+    background-color: #5b9bd5;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
+}
+
+.link-footer:hover .link-footer__underline {
+    width: 100%;
+}

@@ -1,0 +1,79 @@
+/* ─── SearchInput.module.css ─── */
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  box-sizing: border-box;
+  background: var(--tf-card);
+  border: 1.5px solid var(--tf-border);
+  border-radius: 8px;
+  padding: 0 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.searchBox:focus-within {
+  border-color: var(--tf-primary);
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.15);
+}
+
+@container wrapper (max-width: 560px) {
+  .searchBox {
+    gap: 8px;
+    padding-inline: 10px;
+  }
+}
+
+.searchIcon {
+  color: var(--tf-muted);
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--tf-text);
+  background: transparent;
+}
+
+.searchInput::placeholder {
+  color: var(--tf-muted);
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--tf-border);
+  border-top-color: var(--tf-primary);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.clearBtn {
+  background: none;
+  border: none;
+  color: var(--tf-muted);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.clearBtn:hover {
+  color: var(--tf-primary);
+}

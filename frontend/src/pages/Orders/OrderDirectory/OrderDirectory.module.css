@@ -1,0 +1,200 @@
+/* --- Layout general: Nav / contenido / Footer, footer siempre al piso --- */
+.page {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Nav | contenido (crece) | Footer */
+  grid-template-columns: minmax(0, 1fr); /* la columna nunca crece más que la pantalla (si no, la tabla ancha arrastra toda la página) */
+  min-height: 100dvh; /* dvh > vh en mobile: ignora la barra de direcciones del navegador */
+  overflow-x: hidden; /* la página nunca scrollea horizontal; el scroll va en la caja de la tabla */
+}
+
+.main {
+  min-width: 0; /* evita overflow horizontal si algún hijo con texto largo empuja el grid */
+}
+
+.title {
+  font-family: inherit;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--tf-text);
+  margin: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .title { font-size: 32px; }
+}
+@media (min-width: 1024px) {
+  .title { font-size: 38px; }
+}
+
+/* --- Cards de stats --- */
+.cardSector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 0.75rem;
+}
+
+@media (max-width: 420px) {
+  .cardSector {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Sección orden: search + tabla + panel --- */
+.orderSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0.75rem;
+  min-width: 0;
+}
+
+.searchOrderSection {
+  width: 100%;
+}
+
+.dataOrderSection {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+}
+
+.tableOrderSection {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto; /* solo caja de scroll; el marco/card lo pone la propia tabla (si no, quedaba doble borde) */
+}
+
+/* La tabla de órdenes mantiene un ancho mínimo cómodo para sus 6 columnas (~800px).
+   En desktop la tabla ocupa todo el ancho (width:100%); cuando la pantalla es más
+   angosta que ~800px, la tabla desborda su caja y aparece la barra de scroll
+   horizontal (azul, abajo de la tabla) para deslizar y llegar a Gestión.
+   Así el scroll se ACTIVA justo cuando la tabla deja de entrar, sin aplastar columnas. */
+.tableOrderSection table {
+  min-width: 800px;
+}
+
+.loadingText {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--tf-muted);
+  font-style: italic;
+}
+
+.selectedOrderOption {
+  flex: 0 0 0;
+  overflow: hidden;
+  transition: flex-basis 0.2s ease;
+}
+
+.selectedOrderOption:has(> *) {
+  flex: 0 0 380px;
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-md, 14px);
+  background: var(--tf-card);
+  box-shadow: var(--shadow-soft);
+}
+.selectedOrderContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.updateButtonWrap {
+  align-self: center;
+}
+
+/* --- Pills de estado en la tabla --- */
+.statusPill {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.info {
+  --status: #2563eb;
+  background: color-mix(in srgb, var(--status) 18%, var(--tf-card));
+  border-color: color-mix(in srgb, var(--status) 35%, transparent);
+  color: var(--status);
+}
+.warning {
+  --status: #d97706;
+  background: color-mix(in srgb, var(--status) 18%, var(--tf-card));
+  border-color: color-mix(in srgb, var(--status) 35%, transparent);
+  color: var(--status);
+}
+.success {
+  background: color-mix(in srgb, var(--tf-success) 18%, var(--tf-card));
+  border-color: color-mix(in srgb, var(--tf-success) 35%, transparent);
+  color: var(--tf-success);
+}
+.danger {
+  background: color-mix(in srgb, var(--tf-danger) 18%, var(--tf-card));
+  border-color: color-mix(in srgb, var(--tf-danger) 35%, transparent);
+  color: var(--tf-danger);
+}
+
+/* --- Responsive: el panel de detalle baja ABAJO de la tabla hasta que hay lugar
+   cómodo para los dos (≥1280px). Antes se ponía al lado desde 900px y dejaba la
+   tabla apretada; ahora, por debajo de 1280, el panel va abajo y la tabla queda
+   a ancho completo. --- */
+@media (max-width: 1280px) {
+  .dataOrderSection {
+    flex-direction: column;
+    /* En columna, estirar los hijos al ANCHO disponible (no al ancho del contenido).
+       Sin esto, align-items:flex-start dejaba la tabla clavada en su min-width (800px):
+       no crecía con la pantalla y, al no desbordar su caja, nunca salía la barra de scroll.
+       Con stretch, la caja mide lo que la pantalla → la tabla de 800px desborda y aparece la barra. */
+    align-items: stretch;
+  }
+  .selectedOrderOption:has(> *) {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+/* --- Tabla responsive en mobile (sin tarjetas) ---
+   Mantenemos la tabla. En pantallas angostas conserva TODAS sus columnas
+   (min-width viene del DataTable) y se desliza horizontalmente dentro de su caja
+   (overflow-x en .tableContainer). En celular real se scrollea con el dedo. */
+
+@media (max-width: 480px) {
+  .page {
+    /* En mobile chico, si el contenido es más alto que la pantalla, dejamos que
+       crezca en vez de forzar min-height, para no cortar contenido */
+    min-height: 100dvh;
+  }
+  .cardSector,
+  .orderSection {
+    margin: 0.5rem;
+  }
+}
+
+.filterBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0.75rem 12px;
+  padding: 8px 14px;
+  background: var(--tf-primary-soft);
+  color: var(--tf-text);
+  border: 1px solid var(--tf-border);
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.filterBanner button {
+  background: none;
+  border: none;
+  color: var(--tf-primary);
+  cursor: pointer;
+  font-weight: 700;
+}

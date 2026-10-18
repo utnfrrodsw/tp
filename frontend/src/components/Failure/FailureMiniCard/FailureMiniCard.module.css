@@ -1,0 +1,259 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-md, 14px);
+  background: var(--tf-card);
+  box-shadow: var(--shadow-soft);
+  max-width: 320px;
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  border-color: var(--tf-primary);
+  background: var(--tf-primary-soft);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--tf-primary);
+  outline-offset: 2px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tf-text);
+  line-height: 1.3;
+}
+
+.badge {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.pending {
+  --status: #d97706;
+  background: color-mix(in srgb, var(--status) 18%, var(--tf-card));
+  border-color: color-mix(in srgb, var(--status) 35%, transparent);
+  color: var(--status);
+}
+
+.inProgress {
+  --status: #2563eb;
+  background: color-mix(in srgb, var(--status) 18%, var(--tf-card));
+  border-color: color-mix(in srgb, var(--status) 35%, transparent);
+  color: var(--status);
+}
+
+.resolved {
+  background: color-mix(in srgb, var(--tf-success) 18%, var(--tf-card));
+  border-color: color-mix(in srgb, var(--tf-success) 35%, transparent);
+  color: var(--tf-success);
+}
+
+.cancelled {
+  background: color-mix(in srgb, var(--tf-danger) 18%, var(--tf-card));
+  border-color: color-mix(in srgb, var(--tf-danger) 35%, transparent);
+  color: var(--tf-danger);
+}
+
+.description {
+  font-size: 13px;
+  color: var(--tf-muted);
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--tf-muted);
+}
+
+.amount {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tf-success);
+}
+
+.editFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem; /* gap-4 */
+}
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--tf-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.formInput {
+  width: 100%;
+  border: 1px solid var(--tf-border);
+  padding: 0.625rem 0.75rem; /* p-2.5 */
+  border-radius: 0.75rem; /* rounded-xl */
+  font-size: 0.875rem; /* text-sm */
+  color: var(--tf-text);
+  background-color: var(--tf-bg);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.35s ease;
+}
+
+.formInput::placeholder {
+  color: var(--tf-muted);
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--tf-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--tf-primary) 20%, transparent);
+}
+.confirmDelete {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.confirmDeleteText {
+  font-size: 0.9rem;
+  color: var(--tf-text, #1f2937);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.confirmDeleteActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cancelBtn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--tf-border, #e5e7eb);
+  background: transparent;
+  color: var(--tf-text, #1f2937);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background: var(--tf-card);
+}
+
+.cancelBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.deleteBtn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background: var(--tf-danger, #dc2626);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.deleteBtn:hover:not(:disabled) {
+  background: var(--tf-danger-hover, #b91c1c);
+}
+
+.deleteBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+.confirmDeleteText {
+  font-size: 0.9rem;
+  color: var(--tf-text, #1f2937);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.confirmDeleteActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cancelBtn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--tf-border, #e5e7eb);
+  background: transparent;
+  color: var(--tf-text, #1f2937);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background: var(--tf-card);
+}
+
+.cancelBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.deleteBtn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background: var(--tf-danger, #dc2626);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.deleteBtn:hover:not(:disabled) {
+  background: var(--tf-danger-hover, #b91c1c);
+}
+
+.deleteBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

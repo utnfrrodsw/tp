@@ -1,0 +1,103 @@
+/* ─── PageControls.module.css (compacto, modo oscuro vía var(--tf-*)) ─── */
+
+.controls {
+  display: inline-flex;
+  align-self: stretch;
+  /* toma el alto de la fila (el del buscador) */
+  align-items: stretch;
+  gap: 8px;
+  height: 40px;
+  min-height: 40px;
+}
+
+/* ── Navegación: grilla 3x2, el hueco entre celdas hace de línea ── */
+.nav {
+  display: grid;
+  grid-template-columns: 20px 30px 20px;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.5px;
+  /* grosor de las líneas internas */
+  background: var(--tf-border);
+  /* color de las líneas internas */
+  border: 1.5px solid var(--tf-border);
+  border-radius: 8px;
+  overflow: hidden;
+  /* el redondeo recorta las celdas de las esquinas */
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.nav:has(.pageInput:focus) {
+  border-color: var(--tf-primary);
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.15);
+}
+
+/* todas las celdas con el fondo de la tarjeta */
+.navBtn,
+.pageInput {
+  background: var(--tf-card);
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--tf-text);
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.navBtn:hover:not(:disabled) {
+  background: var(--tf-primary-soft);
+  color: var(--tf-primary);
+}
+
+/* se atenúa el ícono, no la celda (si no, se transparentaría la línea) */
+.navBtn:disabled {
+  color: var(--tf-muted);
+  cursor: not-allowed;
+}
+
+.navBtn:disabled svg {
+  opacity: 0.4;
+}
+
+.prev {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.first {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.next {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.last {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.pageInput {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  /* ocupa las dos filas */
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  font-size: 13px;
+  text-align: center;
+  color: var(--tf-text);
+  border: none;
+  outline: none;
+}
+
+.pageInput:disabled {
+  color: var(--tf-muted);
+  cursor: not-allowed;
+}

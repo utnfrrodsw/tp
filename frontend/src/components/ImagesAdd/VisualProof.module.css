@@ -1,0 +1,175 @@
+/* Contenedor tipo tarjeta (Integrado transparentemente) */
+.card {
+  background-color: transparent;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Encabezado con título e ícono */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--tf-text);
+  margin: 0 0 4px 0;
+}
+
+.subtitle {
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--tf-muted);
+  margin: 0;
+}
+
+.headerIcon {
+  color: var(--tf-primary);
+  opacity: 0.9;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+/* Área de la foto / Dropzone vacía */
+.dropzone {
+  width: 100%;
+  height: 200px;
+  border: 2px dashed var(--tf-border);
+  border-radius: var(--radius-sm, 12px);
+  background-color: var(--tf-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s ease, background-color 0.35s ease;
+}
+
+/* Estado sin foto */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--tf-muted);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+/* Envoltura e imagen cargada */
+.previewWrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.previewImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay de carga semitransparente adaptable a dark mode */
+.uploadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Spinner de carga */
+.spinner {
+  color: var(--tf-accent);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Botón flotante 'X' para remover imagen */
+.removeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(15, 23, 42, 0.8);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.removeBtn:hover {
+  background-color: var(--tf-danger);
+  transform: scale(1.05);
+}
+
+/* Mensaje de error */
+.error {
+  color: var(--tf-danger);
+  font-size: 13px;
+  margin: 12px 0 0 0;
+  text-align: left;
+  font-family: inherit;
+}
+
+/* Fila de botones "Elegir archivo" y "Tomar foto" */
+.buttonsRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.actionBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  background-color: var(--tf-primary-soft);
+  color: var(--tf-text);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--radius-sm, 8px);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.actionBtn:hover:not(:disabled) {
+  background-color: var(--tf-border);
+  border-color: var(--tf-primary);
+  color: var(--tf-primary);
+}
+
+.actionBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Inputs nativos ocultos */
+.hiddenInput {
+  display: none;
+}

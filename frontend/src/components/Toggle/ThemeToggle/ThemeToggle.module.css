@@ -1,0 +1,19 @@
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--tf-border);
+  background: transparent;
+  color: var(--tf-text);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.toggle:hover {
+  background: var(--tf-primary-soft);
+  border-color: var(--tf-primary);
+  color: var(--tf-primary);
+}

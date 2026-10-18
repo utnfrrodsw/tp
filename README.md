@@ -3,6 +3,20 @@ tags: #dsw #tp
 
 Status: draft
 
+## Sistema de gestión del taller
+
+Aplicación web full stack para gestionar clientes, equipos, órdenes de reparación, fallas, estados, presupuestos y pagos de un taller de reparación de dispositivos electrónicos.
+
+- Frontend: React, TypeScript y Vite (`frontend/`).
+- Backend: Node.js, Express, TypeScript y Prisma (`server/`).
+- Base de datos: MySQL.
+- API REST: prefijo `/api`; referencia completa en [server/api-doc.md](server/api-doc.md).
+- Documentación del proyecto: [índice de documentación](docs/README.MD).
+- Instalación local: [guía de instalación y configuración](docs/05-instalacion/instalacion-configuracion.md).
+- Propuesta y modelo de datos: [propuesta](docs/02-propuesta/proposal.md) y [schema vigente](docs/02-propuesta/modelo-datos.md).
+
+Para iniciar el frontend y backend en desarrollo, configurar primero sus archivos `.env` según los `.env.example` incluidos en cada directorio. Luego instalar dependencias con `pnpm install` desde `frontend/` y `server/`, y ejecutar `pnpm dev` en cada uno. Los pasos y requisitos completos se detallan en la guía de instalación.
+
 ## 1. Objetivo
 
 Desarrollar en grupo una aplicación web full stack en base a un alcance propuesto por los integrantes.
@@ -10,7 +24,7 @@ Desarrollar en grupo una aplicación web full stack en base a un alcance propues
 Durante dicho desarrollo se deberá aplicar todo lo aprendido en la materia Desarrollo de Software.
 
 ## 2. Tema y Alcance
-El grupo debe deberá proponer a los docentes un tema para el trabajo práctico de su preferencia utilizando la [plantilla de propuesta](proposal.md)
+El grupo debe deberá proponer a los docentes un tema para el trabajo práctico de su preferencia utilizando la [propuesta del proyecto](docs/02-propuesta/proposal.md).
 
 ## 3. Requisitos
 El desarrollo de la aplicación debe:
@@ -101,12 +115,12 @@ Esto será considerado en la nota final en función de la complejidad y esfuerzo
 
 ### 3.3 Entregas
 #### Propuesta del enunciado
-En la entrega se debe entregar a los profesores la [plantilla de propuesta](./proposal.md) actualizada con las condiciones de Regularidad y de Aprobación. Los profesores analizarán la propuesta y de ser necesario sugerirán ajustes hasta que esté correcta y sea aceptada.
+En la entrega se debe entregar a los profesores la [propuesta](./docs/02-propuesta/proposal.md) actualizada con las condiciones de Regularidad y de Aprobación. Los profesores analizarán la propuesta y de ser necesario sugerirán ajustes hasta que esté correcta y sea aceptada.
 
 #### Regularidad
 En la entrega se debe entregar:
 * El README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
-* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front mediante el form publicado para cada año.
+* Entregar la [propuesta](./docs/02-propuesta/proposal.md) actualizada con links al pull request de back y/o front mediante el form publicado para cada año.
 
 Coordinar una defensa grupal con los profesores.
 
@@ -115,7 +129,7 @@ En la entrega se debe enviar:
 * Video explicando el funcionamiento del sistema
 * Documentación de la API de backend (según la tecnología y standard utilizados).
 * Evidencia del resultado de la ejecución de los tests automáticos.
-* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front.
+* Entregar la [propuesta](./docs/02-propuesta/proposal.md) actualizada con links al pull request de back y/o front.
 * Incluir en el README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
 * Links de Deploy
 * Credenciales para utilizar la aplicación deployada
