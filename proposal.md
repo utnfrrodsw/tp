@@ -2,51 +2,52 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 46876 Zinni, Gonzalo
+* 44963 Decaroli, Alejandro
+
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [Backend app](https://github.com/alejandro-decaroli/Velzia_backend)
+* [Frontend app](https://github.com/alejandro-decaroli/Velzia_frontend)
+
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+Velzia es una herramienta para registrar ventas, pedidos, pagos, cobros, transferencias y entidades de un negocio pequeño, a fin de: 
+1) Auditar los registros para tener una trazabilidad del flujo de dinero del negocio.
+2) Tener datos con los cuales analizar, y extraer información valiosa para el dueño del negocio. 
 
 ### Modelo
-![imagen del modelo]()
+<img width="1306" height="722" alt="BBD_Velzia2" src="https://github.com/user-attachments/assets/c3344983-d57e-4b35-aa0f-f67b88645f7b" />
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+
+
+
+
 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+|CRUD simple|1. CRUD Proveedor<br>2. CRUD Cliente<br>3. CRUD Caja<br>4. CRUD Costo<br>5. CRUD Producto|
+|CRUD dependiente|1. CRUD Pedido {depende de} CRUD Producto<br>2. CRUD Venta {depende de} CRUD cliente|
+|Listado<br>+<br>detalle| 1. Listado de ventas "Pagas" filtrados por fecha=> detalle descripcion de venta<br> 2. Listado de costos filtrados por fecha => detalle muestra detalle de cada costo|
+|CUU/Epic|1. Efectuar una venta<br>2. Efectuar un Pedido|
 
 
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
-
+|CRUD |1. CRUD Caja<br>2. CRUD Cliente<br>3. CRUD mov_financiero<br>4. CRUD Venta<br>5. CRUD Pedido<br>6. CRUD Costo<br>7. CRUD Proveedor<br>8. CRUD linea_venta<br>9. CRUD linea_pedido<br>10. CRUD Producto<br>11. CRUD Usuario |
+|CUU/Epic|1. Efectuar una venta<br>2. Efectuar un pedido|
 
 ### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
 |Req|Detalle|
 |:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
+|Listado<br>+<br>detalle| 1. Calcular costos y pedidos por pagar => muestra únicamente los detalles de los costos con estado 'Pendiente' por pagar y la sumatoria de los gastos<br>2. Calcular proyección => Muestra la sumatoria de los ingresos y los egresos, tanto actuales como por cobrar, ademas el total de dinero en cajas<br>3. Calcular cuentas por cobrar => Muestra los detalles de las ventas que todavia no estan 'Pagas' y la sumatoria de los pagos pendientes de las mismas.<br>4. Reporte de ventas general => Muestra Producto mas vendido, mas rentable, ingreso actual, ingreso pendiente, porcentajes de ventas|
+
+
 
