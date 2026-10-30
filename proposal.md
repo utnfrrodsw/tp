@@ -28,6 +28,7 @@ No hay registro público: el primer administrador se crea con un seed y es quien
 
 
 ### Modelo
+![Imgur](./Modelo.png)
 
 ### Tecnologías
 
