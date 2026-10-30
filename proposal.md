@@ -28,11 +28,6 @@ No hay registro público: el primer administrador se crea con un seed y es quien
 
 
 ### Modelo
-Cambios respecto al [modelo original](./Modelo.png):
-* `staysId` en Inmueble, Huésped y Reserva: es el id del registro en Stays, para no duplicarlo al sincronizar.
-* La relación Usuario–Reserva indica quién creó la reserva (queda vacía si vino de Stays).
-* El operador se asigna por Movimiento, así el check-in y el check-out pueden hacerlos personas distintas.
-* Movimiento tiene un `tipo` (check-in o check-out). Se quitaron dirección, teléfono y email de Movimiento y Reserva porque ya están en Inmueble y Huésped.
 
 ### Tecnologías
 
