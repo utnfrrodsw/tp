@@ -1,0 +1,22 @@
+info:
+  name: PUT clientes
+  type: http
+  seq: 18
+
+http:
+  method: PUT
+  url: http://localhost:3000/api/clientes/40111222
+  body:
+    type: json
+    data: |-
+      {
+        "telefono": "3415559999",
+        "activo": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

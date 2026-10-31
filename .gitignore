@@ -1,0 +1,5 @@
+backend/node_modules/
+backend/.env           
+
+# Grafo de graphify (se regenera con `graphify update .`)
+graphify-out/

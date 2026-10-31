@@ -1,0 +1,25 @@
+info:
+  name: POST profesores
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:3000/api/profesores
+  body:
+    type: json
+    data: |
+      {
+        "dni": 46537620,
+        "nombre": "Ian",
+        "apellido": "Kasperczak",
+        "telefono": 3333333,
+        "email": "iankasperczak@gmail.com"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

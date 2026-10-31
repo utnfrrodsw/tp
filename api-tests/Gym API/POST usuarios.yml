@@ -1,0 +1,24 @@
+info:
+  name: POST usuarios
+  type: http
+  seq: 15
+
+http:
+  method: POST
+  url: http://localhost:3000/api/usuarios
+  body:
+    type: json
+    data: |-
+      {
+        "email": "profesor@powertrainer.com",
+        "password": "reemplazar-por-una-contraseña",
+        "rol": "profesor",
+        "dniProfesor": 46537620
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

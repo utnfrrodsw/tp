@@ -1,0 +1,22 @@
+info:
+  name: POST especialidades
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: http://localhost:3000/api/especialidades
+  body:
+    type: json
+    data: |
+      {
+        "id": 4,
+        "nombre": "Aura master"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,15 @@
+info:
+  name: POST auth-logout
+  type: http
+  seq: 13
+
+http:
+  method: POST
+  url: http://localhost:3000/api/auth/logout
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

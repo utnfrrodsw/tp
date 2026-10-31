@@ -1,0 +1,22 @@
+info:
+  name: POST auth-login
+  type: http
+  seq: 10
+
+http:
+  method: POST
+  url: http://localhost:3000/api/auth/login
+  body:
+    type: json
+    data: |-
+      {
+        "email": "admin@powertrainer.com",
+        "password": "reemplazar-por-la-contraseña"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
