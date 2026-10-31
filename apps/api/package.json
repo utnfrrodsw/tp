@@ -1,0 +1,41 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Backend API para planIt",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc && node tools/postbuild.mjs",
+    "db:check": "node tools/db-check.mjs",
+    "seed:demo": "tsx src/scripts/seed-demo.ts",
+    "start": "node dist/server.js",
+    "test": "vitest run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@mikro-orm/core": "^7.2.3",
+    "@mikro-orm/decorators": "^7.2.3",
+    "@mikro-orm/postgresql": "^7.2.3",
+    "@mikro-orm/reflection": "^7.2.3",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.20.4",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "reflect-metadata": "^0.2.2",
+    "typescript": "~5.9.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@mikro-orm/cli": "^7.2.3",
+    "tsx": "^4.23.13",
+    "vitest": "^5.0.3"
+  }
+}

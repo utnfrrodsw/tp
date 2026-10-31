@@ -1,0 +1,63 @@
+@use '../styles/variables' as vars;
+
+.card-container {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  overflow: hidden;
+
+  background-color: vars.$color-blanco;
+  border: 1px solid vars.$color-borde;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: sans-serif;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .card-accent {
+    width: 6px;
+    flex-shrink: 0;
+  }
+
+  .card-body {
+    flex: 1;
+    min-width: 0;
+    padding: 1rem 1.25rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-amount {
+    font-size: 26px;
+    font-weight: bold;
+    color: vars.$color-texto;
+  }
+
+  .card-label {
+    margin-top: 4px;
+    font-size: 14px;
+    color: vars.$color-texto-secundario;
+  }
+
+  .card-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .card-icon-lucide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: vars.$color-blanco;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+}

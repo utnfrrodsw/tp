@@ -1,0 +1,331 @@
+/* Estilos del dashboard de la empresa */
+/* Use los mismos colores que la pantalla de login para que no desentone */
+
+h2{
+  color:#1a237e;
+}
+
+.pagina-empresa {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Barra de arriba */
+/* Le pongo wrap para que en el celular el boton baje y no se achique */
+.barra-superior-empresa {
+  background-color: #0e0541;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titulo-pagina-empresa {
+  font-size: 20px;
+  margin: 0;
+}
+
+.boton-salir-empresa {
+  background-color: #ffffff;
+  color: #0e0541;
+  border: 1px solid #ffffff;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* Contenido principal de la pagina */
+/* Lo centro con margin auto y el text-align para que quede todo en el medio */
+.contenido-empresa {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+/* El fondo es oscuro asi que las letras de afuera van en blanco */
+.bienvenida-empresa {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #1a237e;
+}
+
+/* Alerta del resultado de Mercado Pago, afuera del menu */
+.alerta-pago-empresa {
+  max-width: 640px;
+  margin: 0 auto 24px;
+  padding: 16px 18px;
+  border: 2px solid;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.alerta-pago-titulo {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.alerta-pago-texto {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.alerta-pago-exito {
+  background-color: #e8f5e9;
+  border-color: #2e7d32;
+  color: #1b5e20;
+}
+
+.alerta-pago-error {
+  background-color: #ffebee;
+  border-color: #c62828;
+  color: #b71c1c;
+}
+
+/* Botones del menu */
+/* Mobile first: en el celular van uno abajo del otro */
+.menu-empresa {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 48px;
+}
+
+.boton-menu-empresa {
+  background-color: #0e0541;
+  color: white;
+  border: 1px solid #ffffff;
+  padding: 14px 26px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.boton-menu-empresa:hover {
+  background-color: #1a237e;
+}
+
+/* De 768px para arriba (tablet y compu) los pongo uno al lado del otro */
+@media (min-width: 768px) {
+  .menu-empresa {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* Mensajes */
+.mensaje-error-empresa {
+  color: #d70d0d;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.texto-ayuda-empresa {
+  color: #1a237e;
+  font-size: 15px;
+}
+
+/* Adentro de la caja el fondo es claro asi que el texto va mas oscuro */
+.caja-empresa .texto-ayuda-empresa {
+  color: #424242;
+}
+
+/* Caja gris clarita como la del login */
+/* Aca vuelvo a alinear a la izquierda porque arriba centre todo */
+.caja-empresa {
+  background-color: rgb(227, 225, 225);
+  border: 1px solid #cccccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.subtitulo-empresa {
+  font-size: 19px;
+  margin-top: 0;
+  color: #1a237e;
+}
+
+.boton-nuevo-empresa {
+  background-color: #1a237e;
+  color: white;
+  border: none;
+  padding: 9px 16px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.boton-nuevo-empresa:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.acciones-servicios-empresa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+/* Formulario para crear o editar */
+.formulario-empresa {
+  border: 1px dashed #aaaaaa;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.formulario-empresa label {
+  display: block;
+  margin-top: 8px;
+  font-size: 15px;
+  color: #424242;
+}
+
+.formulario-empresa input[type="text"],
+.formulario-empresa textarea,
+.formulario-empresa select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.formulario-empresa textarea {
+  height: 60px;
+}
+
+.formulario-empresa input[type="file"] {
+  color: #000000;
+}
+
+/* La imagen que subo la muestro chiquita */
+.imagen-previa-empresa {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 1px solid #cccccc;
+  margin-top: 8px;
+}
+
+.detalle-item-empresa {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  width: 100%;
+}
+
+.imagen-servicio-empresa {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid #e5e4e7;
+  border-radius: 12px;
+  background-color: #f7f6f4;
+}
+
+.lista-servicios-empresa {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+/* El checkbox va al lado del texto, por eso lo pongo inline */
+.label-check-empresa {
+  margin-top: 10px;
+}
+
+.label-check-empresa input {
+  width: auto;
+  margin-right: 5px;
+}
+
+.botones-formulario-empresa {
+  margin-top: 12px;
+}
+
+.botones-formulario-empresa button {
+  background-color: #0e0541;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* Lista de servicios */
+.lista-empresa {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Cada fila de la lista */
+/* Mobile first: el texto arriba y los botones abajo asi no se aplastan */
+.item-lista-empresa {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border-bottom: 1px solid #cccccc;
+  padding: 10px 0;
+  font-size: 15px;
+}
+
+/* Los botones no se achican ni se cortan */
+.botones-item-empresa {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 6px;
+}
+
+.botones-item-empresa button {
+  background-color: #0e0541;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* En compu el texto y los botones van en la misma linea */
+@media (min-width: 768px) {
+  .item-lista-empresa {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .detalle-item-empresa {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .imagen-servicio-empresa {
+    width: 180px;
+    height: 140px;
+  }
+
+  .card-servicio-empresa {
+    align-items: stretch;
+  }
+}
+
+.card-servicio-empresa {
+  background-color: #ffffff;
+  border: 1px solid #e5e4e7;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}

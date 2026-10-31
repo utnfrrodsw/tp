@@ -1,0 +1,315 @@
+/* Estilos del dashboard del cliente */
+/* Use los mismos colores que la pantalla de login para que no desentone */
+
+h2{
+  color: #1a237e;
+}
+
+.pagina-cliente {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Barra de arriba */
+/* Le pongo wrap para que en el celular el boton baje y no se achique */
+.barra-superior-cliente {
+  background-color: #0e0541;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titulo-pagina-cliente {
+  font-size: 20px;
+  margin: 0;
+}
+
+.boton-salir-cliente {
+  background-color: #ffffff;
+  color: #0e0541;
+  border: 1px solid #ffffff;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* Contenido principal de la pagina */
+/* Lo centro con margin auto y el text-align para que quede todo en el medio */
+.contenido-cliente {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+/* El fondo es oscuro asi que las letras de afuera van en blanco */
+.bienvenida-cliente {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #1a237e;
+}
+
+/* Los botones del menu */
+/* Mobile first: en el celular van uno abajo del otro */
+.menu-cliente {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 48px;
+}
+
+.boton-menu-cliente {
+  background-color: #0e0541;
+  color: white;
+  border: 1px solid #ffffff;
+  padding: 14px 26px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.boton-menu-cliente:hover {
+  background-color: #1a237e;
+}
+
+/* De 768px para arriba (tablet y compu) los pongo uno al lado del otro */
+/* Les pongo wrap porque son 4 botones y en tablet no entran todos */
+@media (min-width: 768px) {
+  .menu-cliente {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Mensajes */
+.mensaje-error-cliente {
+  color: #d70d0d;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.texto-ayuda-cliente {
+  color: #1a237e;
+  font-size: 15px;
+}
+
+/* Adentro de la caja el fondo es claro asi que el texto va mas oscuro */
+.caja-cliente .texto-ayuda-cliente {
+  color: #424242;
+}
+
+/* Caja gris clarita como la del login */
+/* Aca vuelvo a alinear a la izquierda porque arriba centre todo */
+.caja-cliente {
+  background-color: rgb(227, 225, 225);
+  border: 1px solid #cccccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.subtitulo-cliente {
+  font-size: 19px;
+  margin-top: 0;
+  color: #1a237e;
+}
+
+.boton-volver-cliente {
+  background-color: #424242;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.boton-nuevo-cliente {
+  background-color: #1a237e;
+  color: white;
+  border: none;
+  padding: 9px 16px;
+  margin-bottom: 15px;
+  margin-left: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* Formularios (el buscador y el de tableros) */
+.formulario-cliente {
+  border: 1px dashed #aaaaaa;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.formulario-cliente label {
+  display: block;
+  margin-top: 8px;
+  font-size: 15px;
+  color: #424242;
+}
+
+.formulario-cliente input[type="text"],
+.formulario-cliente select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.botones-formulario-cliente {
+  margin-top: 12px;
+}
+
+.botones-formulario-cliente button {
+  background-color: #0e0541;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* Listas de servicios, categorias, eventos y tableros */
+.lista-cliente {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detalle-item-cliente {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  width: 100%;
+}
+
+.imagen-servicio-cliente {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid #e5e4e7;
+  border-radius: 12px;
+  background-color: #f7f6f4;
+}
+
+.lista-servicios-cliente {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+/* Cada fila de la lista */
+/* Mobile first: el texto arriba y los botones abajo asi no se aplastan */
+.item-lista-cliente {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border-bottom: 1px solid #cccccc;
+  padding: 10px 0;
+  font-size: 15px;
+}
+
+/* Los botones no se achican ni se cortan */
+.botones-item-cliente {
+  display: flex;
+  flex-shrink: 0;
+  gap: 6px;
+}
+
+.botones-item-cliente button {
+  background-color: #0e0541;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* En compu el texto y los botones van en la misma linea */
+@media (min-width: 768px) {
+  .item-lista-cliente {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .detalle-item-cliente {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .imagen-servicio-cliente {
+    width: 180px;
+    height: 140px;
+  }
+
+  .card-servicio-cliente {
+    align-items: center;
+  }
+}
+
+.card-servicio-cliente .botones-item-cliente {
+  align-self: center;
+  width: auto;
+}
+
+.card-servicio-cliente .botones-item-cliente button {
+  height: auto;
+  background-color: transparent;
+  color: #0e0541;
+  border: 1px solid #c5c3d4;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.card-servicio-cliente .botones-item-cliente button:hover {
+  background-color: #0e0541;
+  color: #ffffff;
+  border-color: #0e0541;
+}
+
+.card-servicio-cliente {
+  background-color: #ffffff;
+  border: 1px solid #e5e4e7;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* El select para guardar un servicio en un tablero */
+.guardar-tablero-cliente {
+  display: block;
+  margin-top: 6px;
+}
+
+.guardar-tablero-cliente select {
+  padding: 4px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  color: #000000;
+  color-scheme: light;
+  margin-right: 6px;
+}
+
+/* Cada tablero con sus servicios adentro */
+.tablero-cliente {
+  border: 1px solid #aaaaaa;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}

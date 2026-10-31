@@ -1,0 +1,11 @@
+node_modules
+.env
+apps/web/.env
+
+# apps/api/dist se regenera en cada build (tsc). Se ignora, salvo el
+# entrypoint: Vercel Services (beta) valida que exista ANTES de correr el
+# buildCommand (ver https://github.com/vercel/vercel/issues/17651), así que
+# necesitamos un placeholder versionado en esa ruta puntual.
+apps/api/dist/*
+!apps/api/dist/server.js
+

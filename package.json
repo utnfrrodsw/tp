@@ -1,0 +1,23 @@
+{
+  "name": "planit",
+  "private": true,
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev -w api\" \"npm run dev -w web -- --open\""
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mercadopago": "^3.6.1"
+  },
+  "overrides": {
+    "pg": "8.23.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.20.4",
+    "concurrently": "^10.0.5"
+  }
+}

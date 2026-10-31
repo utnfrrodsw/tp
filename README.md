@@ -1,174 +1,91 @@
-# TP DSW
-tags: #dsw #tp
+# Contactos para coordinar la defensa:
+Franco Collado: 341 252 2600
+Franco Massagli: 341 371 5847
+Tomas Agustin Aleart: 341 394 9024
 
-Status: draft
+# Link al deploy ( sin necesidad levantar local )
+https://planit-8k5i.vercel.app/
 
-## 1. Objetivo
+# Links al modelo y video (demo del sistema)
+https://drive.google.com/drive/folders/1pC8MOQ4j7PGTVeKOBd9cnFKYB3b6aRF_?usp=drive_link
 
-Desarrollar en grupo una aplicación web full stack en base a un alcance propuesto por los integrantes.
+# Credenciales del deploy
+   CLIENTE
+Usuario: cliente@gmail.com
+Contraseña: 123
 
-Durante dicho desarrollo se deberá aplicar todo lo aprendido en la materia Desarrollo de Software.
+   EMPRESA
+Usuario: empresa@gmail.com
+Contraseña: 123
 
-## 2. Tema y Alcance
-El grupo debe deberá proponer a los docentes un tema para el trabajo práctico de su preferencia utilizando la [plantilla de propuesta](proposal.md)
+   ADMINISTRADOR
+Usuario: administrador@gmail.com
+Contraseña: 123
 
-## 3. Requisitos
-El desarrollo de la aplicación debe:
-1. Desarrollarse en 2 partes: Frontend y Backend; agnósticas entre si, comunicadas mediante una API.
-2. Cumplir con los requisitos:  [técnicos](#3.1%20Requisitos%20técnicos) y [funcionales](#3.2%20Requisitos%20funcionales).
-3. Desarrollarse en grupo utilizando metodologías de gestión de proyecto y llevar evidencia de ello.
-4. Cumplir con las [entregas](#3.3%20Entregas) estipuladas.
-5. Utilizar github o gitlab para gestión del código fuente.
-6. Realizar una defensa oral del trabajo práctico para regularidad.
-7. Realizar otra defensa oral del trabajo práctico para la aprobación.
-8. Enviar la 
-9. Presentar la [documentación](#3.4%20Documentación) durante la defensa.
+# PlanIt
 
-### 3.1 Requisitos técnicos
-La app cuenta con 2 partes: Backend y Frontend agnósticas entre si que se comunican mediante una API.
+Marketplace para organizar eventos: las empresas publican servicios y los clientes los guardan en un tablero.
 
-#### 3.1.1 Backend
-El backend debe cumplir con las siguientes condiciones para regularidad y aprobación.
+## Qué necesitás antes
 
-##### Regularidad
-* Desarrollarse en JavaScript.
-* Utilizar un framework web que permita integrarse a las demás.
-* herramientas a través de middlewares, pluggins o modulos.
-* Exponer una API web (rest, tRPC o gRPC) para interactuar con el frontend.
-* Utilizar una base de datos persistente que acceda a través de un servicio externo (es decir que no sea una base de datos embebida).
-* La persistencia a la base de datos debe realizarse mediante un mapper (ORM/ODM/OXM). En caso que la base de datos utilizada no tenga un mapper disponible para JavaScript se deberá implementar la persistencai utilizando un patron Repository.
-* Realizarse mediante capas.
-* Validar entrada de datos, manejar e informar apropiadamente los errores a través de la API.
-* Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
+Instalá [Node.js](https://nodejs.org) 20 o más nuevo. Al instalarlo también queda `npm`, que es lo que usa el proyecto para bajar las librerías.
 
-##### Aprobación Directa o en Examen
-* Cumplir con todas las condiciones de regularidad.
-* Implementar 1 test automatizado por integrante.
-* Implementar 1 test de integración.
-* Implementar un login con autenticación propia o de third-party y al menos 2 niveles de acceso diferentes.
-* Proteger las diferentes rutas en base al nivel de acceso requerido.
-* Definir ambientes, ya sea mediante environment del framework o .env
+## Cómo levantarlo
 
-#### 3.1.2 Frontend
-El frontend debe cumplir con las siguientes condiciones para regularidad y aprobación.
+1. Abrí una terminal en la carpeta del proyecto (la que tiene este archivo).
+2. Instalá las dependencias, una sola vez:
 
-##### Regularidad
-* Desarrollarse utilizando un framework de Frontend.
-* Utilizar HTML5
-* Utilizar CSS según las directrices de alguna biblioteca de componentes, guía de estilo o framework de CSS y la metodología propuesta por el framework de frontend elegido. Se sugiere el uso de biblioteca de componentes;  preprocesadores: sass, scss, less, stylus, etc o frameworks de css: Pico.css, Bulma, Material, Tailwind, Bootstrap, etc.
-* Guía de estilos sugerida Airbnb Javascript https://github.com/airbnb/javascript
-* Aplicar la estrategia mobile-first para la escritura del código css de la aplicación
-* La app debe visualizarse correctamente en al menos 3 diferentes breakpoints: SM, MD, LG
-* Seguir buenas prácticas de UX/UI (Que no requiera manual de usuario o explicaciones específicas para utilizar la interfaz)
-* Las app debe mostrar las siguientes características entre sus componentes:
-	* Manejo de eventos del usuario: click, input, etc
-	* Ante una posibilidad de fallo, manejar el/los errores adecuadamente y de manera amigable al usuario
-	* Reactividad ante un estado
-	* Input property
-	* Output property
-* Implementar al menos un servicio.
-* Para el manejo de la información, por ej una respuesta de un endpoint o los datos a enviar en una request, representar en el código los modelos de objetos con clases, interfaces y tipos de datos custom.
-* De ser posible, implementar algún patrón de diseño orientado a objetos.
-* Las dependencias para ejecución, desarrollo y test deben estar correctamente registradas para ser instaladas automáticamente (e.j. package.json).
+   ```bash
+   npm install
+   ```
 
-##### Aprobación Directa o en Examen
-* Cumplir con las condiciones de regularidad.
-* Realizar al menos 1 test unitario de un componente.
-* Realizar al menos 1 test de end-to-end.
-* Implementar el login y proteger el acceso a las distintas partes del frontend en base a los niveles de usuarios del backend.
-* Definir ambientes, ya sea mediante environment del framework o .env
+3. Creá estos dos archivos de configuración en las ubicaciones indicadas. Reemplazá los valores de ejemplo por los datos de tu base de datos, tu proyecto de Supabase y tu cuenta de Mercado Pago. 
 
-### 3.2 Requisitos funcionales
-La app debe cumplir con los siguientes requisitos.
+   **`.env` — en la raíz del proyecto**, al mismo nivel que este `README.md`:
 
-#### Regularidad
-* 1 CRUD Simple por integrante
-* 1 CRUD Dependiente cada 2 integrantes o fracción.
-* 1 Listado con filtro (al menos un atributo) cada 2 integrantes o fracción.
-* Para cada listado, al seleccionar un elemento, se debe mostrar un detalle.
-* Debe implementar un caso de uso de usuario o epic, con valor para el negocio, cada 2 integrantes o fracción.
+ (Si bien estas credenciales no se deberían de subir a efectos del trabajo se detallan a continuación:)
+   ```dotenv
+   # Base de datos local PostgreSQL
+   DB_HOST=aws-0-us-west-2.pooler.supabase.com
+   DB_PORT=6543
+   DB_USER=postgres.ecsqswzerzgcjohokrnx
+   DB_PASSWORD=cumbianinja123_
+   DB_NAME=postgres
+  
 
-#### Aprobación Directa o en Examen
-* CRUDs de todas las clases de negocio necesarias para el funcionamiento de la app.
-* Implementar 1 caso de uso usuario o epic, con valor para el negocio, por cada integrante.
-  Se deben implementar un mínimo de 2 relacionados entre si. Es decir que la data registrada por uno CU o epic sirva de input para otro.
+   # API
+   PORT=4000
+   NODE_ENV=development
+   
+   #JWT_SECRET: clave secreta para firmar los tokens de sesión.#
+   JWT_SECRET=2f4d3ea5e443a39bdf9ad044927f49171d25f414d7ad895a5caac76f86d29349
 
-#### Alcance Adicional Voluntario
-De forma **opcional** y **voluntaria** los grupos podrán realizar CUU o epics, listados más complejos de los solicitados u otros requisitos como notificaciones, logs, etc; adicionales para completar la funcionalidad del sistema propuesto.
+   mp_apikey=APP_USR-8ca4ab93-6d79-4a6a-bdcf-6e485265c7d0
+   MP_ACCESS_TOKEN=APP_USR-3365520313045830-102515-3c9b62869008456b17d338426386933e-3793278414
 
-Esto será considerado en la nota final en función de la complejidad y esfuerzo relativos a lo ya realizado.
+   **`apps/web/.env` — dentro de la carpeta `apps/web/`**:
+
+   ```dotenv
+   # Dejar vacío en desarrollo: Vite envía /api a http://localhost:4000
+   VITE_API_URL=
+
+   # URL y clave anon/public de tu proyecto Supabase
+   VITE_SUPABASE_URL=https://ecsqswzerzgcjohokrnx.supabase.co
+   VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjc3Fzd3plcnpnY2pvaG9rcm54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA5NjEzNTUsImV4cCI6MjEwNjUzNzM1NX0.DpbUJog2YSfItjb20a2s0QRA6Rl56_5v1UZHUwMGncM
+   ```
 
 
-### 3.3 Entregas
-#### Propuesta del enunciado
-En la entrega se debe entregar a los profesores la [plantilla de propuesta](./proposal.md) actualizada con las condiciones de Regularidad y de Aprobación. Los profesores analizarán la propuesta y de ser necesario sugerirán ajustes hasta que esté correcta y sea aceptada.
+4. Arrancá el proyecto:
 
-#### Regularidad
-En la entrega se debe entregar:
-* El README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
-* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front mediante el form publicado para cada año.
+   ```bash
+   npm run dev
+   ```
 
-Coordinar una defensa grupal con los profesores.
+Eso prende la API y la página al mismo tiempo, y abre el navegador. La página queda en http://localhost:5173 y la API en http://localhost:4000.
 
-#### Aprobación Directa o en Examen
-En la entrega se debe enviar:
-* Video explicando el funcionamiento del sistema
-* Documentación de la API de backend (según la tecnología y standard utilizados).
-* Evidencia del resultado de la ejecución de los tests automáticos.
-* Entregar la [proposal](./proposal.md) actualizada con links al pull request de back y/o front.
-* Incluir en el README.md (o con un link) las instrucciones para instalar y ejecutar el proyecto sin conocimientos de cómo está desarrollado. El proyecto debe poder ejecutarse con scripts y las herramientas según las convenciones del lenguaje y/o framework utilizado (scripts en package.json, o tools específicas del framework).
-* Links de Deploy
-* Credenciales para utilizar la aplicación deployada
-* Contacto para coordinar la defensa
-
-El envío se debe realizar por el form https://kutt.to/DSWEntregaSistemaFinal o https://bit.ly/DSWEntregaSistemaFinal y coordinar con el docente una defensa grupal con los profesores.
-
-Para la Aprobación Directa la defensa debe pactarse con los docentes dentro de los plazos indicados a continuación.
-Para la Aprobación en Examen la defensa debe pactarse con los docentes y realizarse antes de la fecha de la mesa de examen.
-
-#### Fechas de entrega
-**Propuesta**: Durante Abril
-
-**Muestra de avance**: Inicio del segundo cuatrimestre
-
-**Primer Entrega de Regularidad/AD**: 12/10 al 16/10
-
-**Primer Recuperatorio/Globalizador de Regularidad/AD**: 26/10 al 30/10
-
-**Ultima instancia Recuperatorio/Globalizador de Regularidad/AD**: 9/11 al 13/11
-
-### 3.4 Documentación
-La documentación debe presentarse para la instancia de defensa.
-
-Para conocer el detalle de la documentación referirse a [docs](docs.md).
-
-## 4. Gestión del proyecto
-**TODO: En revisión**
-
-El desarrollo de la app debe realizarse utilizando metodologías ágiles para la gestión del proyecto (Scrum, XP, etc).
-
-El grupo deberá llevar un registro de lo realizado, el mismo debe incluir como mínimo:
-* Tipo de metodología a utilizar para el seguimiento. ( Scrum, XP, etc.)
-* Minutas de avances o reuniones de coordinación del equipo.
-* Documentación de trackeo como desarrollo de features y bugfix, asignación de tareas, etc.
-
-Es de libre elección del alumno la herramienta a utilizar para el trackeo. Se recomienda el uso de github/gitlab proyects para integrar con el desarrollo de la misma pero en caso de utilizar otra en la documentación deberán incluirse los links a la tool para ello.
+Para frenarlo, volvé a esa terminal y apretá `Ctrl + C`.
 
 
-## 5. Evaluación
 
-Durante la evaluación de cada entrega se considerarán:
-* Requisitos técnicos y funcionales de la etapa.
-* Adhesión a las directrices de UX/UI y buenas prácticas de programación.
-* Uso apropiado de la tecnología: librerías, frameworks, patrones, etc.
-* Documentación requerida.
-* Participación de los miembros del grupo.
-* Uso de git para el desarrollo.
-* Defensa oral del trabajo práctico.
-* Gestión y seguimiento del desarrollo de la app.
-* Innovación, investigación y desafíos asumidos.
-* Documentación solicitada.
-
-## 6. FAQ
-
-En la sección de [FAQ](FAQ.md) podrán encontrar respuestas a las consultas más frecuentes que se van realizando.
+# Link del (PR)
+https://github.com/utnfrrodsw/tp/pull/271

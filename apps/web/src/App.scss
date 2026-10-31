@@ -1,0 +1,17 @@
+.contenedor-app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Las pantallas de dashboard manejan su propio layout a pantalla completa (header + contenido),
+   así que este contenedor no debe limitar ni centrar su ancho: solo asegura que ocupen
+   como mínimo toda la altura disponible. */
+.contenedor-dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  > * {
+    flex: 1;
+  }
+}

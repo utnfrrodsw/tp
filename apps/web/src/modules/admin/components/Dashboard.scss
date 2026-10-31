@@ -1,0 +1,278 @@
+/* Estilos del dashboard del administrador */
+/* Use los mismos colores que la pantalla de login para que no desentone */
+
+span{
+  color:black;
+}
+
+h2{
+  color:#1a237e;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.pagina-admin {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Barra de arriba */
+/* Le pongo wrap para que en el celular el boton baje y no se achique */
+.barra-superior {
+  background-color: #0e0541;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titulo-pagina {
+  font-size: 20px;
+  margin: 0;
+}
+
+.boton-salir {
+  background-color: #ffffff;
+  color: #0e0541;
+  border: 1px solid #ffffff;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* Contenido principal de la pagina */
+/* Lo centro con margin auto y el text-align para que quede todo en el medio */
+.contenido {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+/* El titulo de bienvenida va en el azul del login */
+.bienvenida {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #1a237e;
+}
+
+/* Los 3 botones del menu */
+/* Mobile first: en el celular van uno abajo del otro */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 48px;
+}
+
+.boton-menu {
+  background-color: #0e0541;
+  color: white;
+  border: 1px solid #ffffff;
+  padding: 14px 26px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.boton-menu:hover {
+  background-color: #1a237e;
+}
+
+/* De 768px para arriba (tablet y compu) los pongo uno al lado del otro */
+@media (min-width: 768px) {
+  .menu {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* Mensajes */
+.mensaje-error {
+  color: #d70d0d;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.texto-ayuda {
+  color: #1a237e;
+  font-size: 15px;
+}
+
+/* Adentro de la caja el fondo es claro asi que el texto va mas oscuro */
+.caja .texto-ayuda {
+  color: #424242;
+}
+
+/* Caja gris clarita como la del login */
+/* Aca vuelvo a alinear a la izquierda porque arriba centre todo */
+.caja {
+  background-color: rgb(227, 225, 225);
+  border: 1px solid #cccccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.subtitulo {
+  font-size: 19px;
+  margin-top: 0;
+  color: #1a237e;
+}
+
+.boton-nuevo {
+  background-color: #1a237e;
+  color: white;
+  border: none;
+  padding: 9px 16px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* Formulario para crear o editar */
+.formulario {
+  border: 1px dashed #aaaaaa;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.formulario label {
+  display: block;
+  margin-top: 8px;
+  font-size: 15px;
+  color: #424242;
+}
+
+.formulario input[type="text"],
+.formulario textarea,
+.formulario select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.formulario textarea {
+  height: 60px;
+}
+
+/* El checkbox va al lado del texto, por eso lo pongo inline */
+.label-check {
+  margin-top: 10px;
+}
+
+.label-check input {
+  width: auto;
+  margin-right: 5px;
+}
+
+.botones-formulario {
+  margin-top: 12px;
+}
+
+.botones-formulario button {
+  background-color: #0e0541;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* Listas de eventos, categorias y empresas */
+.lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detalle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  width: 100%;
+}
+
+.imagen-servicio {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid #e5e4e7;
+  border-radius: 12px;
+  background-color: #f7f6f4;
+}
+
+.lista-servicios {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+/* Cada fila de la lista */
+/* Mobile first: el texto arriba y los botones abajo asi no se aplastan */
+.item-lista {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border-bottom: 1px solid #cccccc;
+  padding: 10px 0;
+  font-size: 15px;
+}
+
+/* Los botones no se achican ni se cortan */
+.botones-item {
+  display: flex;
+  flex-shrink: 0;
+  gap: 6px;
+}
+
+.botones-item button {
+  background-color: #0e0541;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* En compu el texto y los botones van en la misma linea */
+@media (min-width: 768px) {
+  .item-lista {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .detalle-item {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .imagen-servicio {
+    width: 180px;
+    height: 140px;
+  }
+
+  .card-servicio {
+    align-items: stretch;
+  }
+}
+
+.card-servicio {
+  background-color: #ffffff;
+  border: 1px solid #e5e4e7;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
