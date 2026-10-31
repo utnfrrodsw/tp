@@ -1,52 +1,89 @@
-# Propuesta TP DSW
+# Propuesta TP DSW — Manitas
 
 ## Grupo
+
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+
+* 56821 - Arias, Francisco José
+* 54456 - Baremboum, Micaela
+* 42062 - Coria, Lautaro
+* 52098 - Monzón, Maximiliano Nicolás
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+
+* [fullstack app (monorepo)](https://github.com/MaxiNMonzon/Manitas): `manitas-backend` (API) y `manitas-frontend` (SPA)
+
 
 ## Tema
+
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+
+Aplicación que conecta clientes con profesionales de oficios para resolver tareas del hogar. El cliente busca un
+profesional por oficio y zona, le pide presupuesto eligiendo un turno libre para la visita (o pide una urgencia que le
+llega a todos los profesionales cercanos), acepta el presupuesto, paga por Mercado Pago y califica. Cada profesional
+define sus tarifas, su horario y sus zonas. Se informan las promociones bancarias del mes según el método de pago.
 
 ### Modelo
-![imagen del modelo]()
 
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+```mermaid
+erDiagram
+    PROVINCIA ||--o{ LOCALIDAD : tiene
+    LOCALIDAD ||--o{ ZONA : tiene
+    ZONA ||--o{ CLIENTE : "residencia de"
+    PROFESIONAL }o--o{ ZONA : "trabaja en"
+    PROFESIONAL }o--o{ ESPECIALIDAD : hace
+    ESPECIALIDAD ||--o{ TIPO_DE_SERVICIO : agrupa
+    PROFESIONAL }o--o{ TIPO_DE_SERVICIO : "habilidades"
+    PROFESIONAL ||--o{ MATRICULA : tiene
+    ESPECIALIDAD ||--o{ MATRICULA : "habilita"
+    PROFESIONAL ||--o{ HORARIO_LABORAL : "horario fijo"
+    CLIENTE ||--o{ SOLICITUD_DE_SERVICIO : pide
+    PROFESIONAL ||--o{ SOLICITUD_DE_SERVICIO : atiende
+    ESPECIALIDAD ||--o{ SOLICITUD_DE_SERVICIO : "de"
+    SOLICITUD_DE_SERVICIO ||--o{ TURNO : reserva
+    PROFESIONAL ||--o{ TURNO : "ocupado en"
+    METODO_DE_PAGO }o--o{ PROMOCION : "tiene"
 
-## Alcance Funcional 
+    SOLICITUD_DE_SERVICIO {
+        enum estadoServicio "solicitado, agendado, presupuestado, contratado, reprogramacion, finalizado, rechazado, cancelado, expirado"
+        boolean urgente
+        datetime fechaVisita
+        datetime fechaInicio
+        decimal costoVisita
+        decimal costoFinal
+        int horasTrabajo
+        int calificacionServicio
+        string idPagoMercadoPago
+    }
+```
+
+Además: `CONSULTA` (consultas de la sección Ayuda, las lee el administrador). Diagrama original:
+[modelo de dominio](https://drive.google.com/file/d/1yA9dty0EUn0jITPk4veSDCFWdFEMilrt/view).
+
+## Alcance Funcional
 
 ### Alcance Mínimo
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
-
 Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
 
+| Req | Detalle | Dónde está |
+| :- | :- | :- |
+| CRUD simple | 1. CRUD Usuario (cliente y profesional)<br>2. CRUD Tipo de Servicio<br>3. CRUD Localidad<br>4. CRUD Método de Pago | 1. Registro + Mi perfil (ver, editar, dar de baja) y listado del admin<br>2–4. Panel de administración → Catálogos |
+| CRUD dependiente | 1. CRUD Zona {depende de} CRUD Localidad<br>2. CRUD Profesional {depende de} CRUD Especialidad | 1. Panel de administración → Zonas<br>2. Registro / Mi perfil del profesional (elige especialidades, habilidades y zonas) |
+| Listado + detalle | 1. Tipos de servicio filtrados por especialidad → detalle del tipo de servicio y su especialidad<br>2. Profesionales filtrados por especialidad (y zona) → detalle del perfil con especialidades, zonas, costo de visita y reseñas | 1. Admin → Tipos de servicio<br>2. Cliente → Profesionales |
+| CUU/Epic | 1. Solicitar servicio (pedir presupuesto con turno)<br>2. Calificar servicio | Cliente → Profesionales / Mis solicitudes |
 
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+Adicionales para Aprobación:
 
+| Req | Detalle | Dónde está |
+| :- | :- | :- |
+| CRUD | CRUD de todas las clases de negocio necesarias: Usuario (Cliente, Profesional), Especialidad, Tipo de Servicio, Provincia, Localidad, Zona, Método de Pago, Promoción, Horario laboral | Admin → Catálogos (Especialidad, Tipo de servicio, Provincia, Localidad, Zona, Método de pago, Promoción; Clientes y Profesionales en consulta); Profesional → Agenda → Mi horario; Usuario desde Mi perfil |
+| CUU/Epic | 1. Solicitar presupuesto / servicio (también urgente)<br>2. Coordinar visita (turnos libres, aceptar y reprogramar)<br>3. Confirmar servicio (presupuesto + aceptación con reserva de horas)<br>4. Abonar servicio (Mercado Pago)<br>5. Calificar profesional<br>6. Informar promociones bancarias del mes<br>7. Notificar próximas visitas (avisos) | Encadenados: la solicitud (1) genera la visita (2), que habilita el presupuesto (3), que habilita el pago (4), que habilita la calificación (5), que alimenta el perfil del profesional que ve el próximo cliente (1) |
 
 ### Alcance Adicional Voluntario
 
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+| Req | Detalle |
+| :- | :- |
+| Listados | 1. Mis solicitudes del cliente por estado (en curso / completadas) con detalle<br>2. Solicitudes del profesional por estado (nuevas / en curso / historial) agrupadas en carpetas<br>3. Agenda mensual del profesional<br>4. Cobros del profesional (pendientes y depositados) |
+| CUU/Epic | 1. Servicio urgente: le llega a todos los profesionales de la zona y el primero que acepta indica cuándo llega<br>2. Reprogramación de visita o trabajo con contrapropuestas<br>3. Consultas de Ayuda al administrador |
+| Otros | 1. Pago con Mercado Pago Checkout Pro (sandbox) con verificación del pago en el servidor<br>2. Avisos dentro de la app (polling)<br>3. Vencimiento automático de solicitudes sin respuesta<br>4. Datos de prueba (`seed:demo`) y catálogo geográfico real (`seed:georef`, API Georef)<br>5. Documentación OpenAPI/Swagger |
