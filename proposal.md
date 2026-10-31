@@ -8,6 +8,7 @@
 ### Repositorios
 *  [FRONTEND app](https://github.com/gitgamba/DSW-FRONTEND-2026)
 * [BACKEND app](https://github.com/gitgamba/DSW-BACKEND-2026)
+* [Video de muestra](https://drive.google.com/file/d/1mR5La6TuBtTh3pgdFKk5MSmzHmg5TrIQ/view?usp=sharing)
 
 ## Tema
 ### Descripción
