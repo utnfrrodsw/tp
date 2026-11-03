@@ -18,7 +18,7 @@ Plataforma web full-stack diseñada para la centralización y seguimiento de inv
 
 ### Modelo De Relacion
 
-![DER](tpdsw.drawio.png)
+![DER](tpdswSGCR.png)
 
 
 ## Alcance Funcional 
