@@ -1,5 +1,8 @@
 # Propuesta TP DSW
 
+> Propuesta actualizada para revisión del equipo y del docente. La clasificación de CRUD
+> y el ciclo automático de notificaciones deben validarse antes de presentar la entrega.
+
 ### Integrantes
 * 44123-Milanesi Renzo
 * 46291-Gamba Emiliano Francisco
@@ -9,7 +12,8 @@
 *  [FRONTEND app](https://github.com/gitgamba/DSW-FRONTEND-2026)
 * [BACKEND app](https://github.com/gitgamba/DSW-BACKEND-2026)
 * [Video de muestra](https://drive.google.com/file/d/1mR5La6TuBtTh3pgdFKk5MSmzHmg5TrIQ/view?usp=sharing)
-* El link a la pagina es -->  https://dsw-frontend-2026.vercel.app/login
+* [Aplicación publicada](https://dsw-frontend-2026.vercel.app/login)
+
 ## Tema
 ### Descripción
 Vamos a crear un Sistema de Gestión Web que va a permitir administrar una agenda de operadores de una empresa de hospedaje.
@@ -18,18 +22,27 @@ Las reservas, inmuebles y huéspedes se obtienen de [Stays](https://stays.net), 
 
 Con esas reservas se arma una agenda de check-ins y check-outs: cada reserva genera dos movimientos (check-in y check-out) y cada movimiento se asigna a un operador, que recibe una notificación dentro de la aplicación.
 
-#### Tipos de usuario
+#### Roles base y tipos de usuario
 |Tipo|Qué puede hacer|
 |:-|:-|
-|Administrador|Crear usuarios, crear y sincronizar reservas, crear y asignar movimientos a cualquier usuario.|
-|Supervisor|Crear y asignar movimientos.|
-|Limpieza|Ver su agenda, recibir las notificaciones de los movimientos asignados y marcarlos como realizados.|
+|Administrador|Administrar usuarios, tipos, inmuebles, huéspedes y reservas; sincronizar Stays y gestionar/asignar movimientos.|
+|Supervisor|Consultar reservas y gestionar/asignar movimientos.|
+|Operador|Ver su agenda, recibir las notificaciones de los movimientos asignados y marcarlos como realizados.|
+
+Los roles base son tres valores fijos de `TipoUsuario.rolBase`, no tablas ni nombres de puestos.
+Cada tipo conserva una descripción editable (por ejemplo Limpieza, Recepción o Mantenimiento).
+Los tipos iniciales también se pueden editar, pero no se puede dejar al sistema sin administradores.
+Un cambio de rol se aplica a sus usuarios al volver a iniciar sesión.
 
 No hay registro público: el primer administrador se crea con un seed y es quien da de alta al resto de los usuarios.
 
 
 ### Modelo
 ![Imgur](./Modelo.png)
+
+La imagen conserva el diagrama publicado anteriormente. La implementación actual
+incorpora `TipoUsuario.rolBase`, `Usuario.passwordHash`, moneda de la estadía y
+reservas con cero o más huéspedes; estas precisiones se describen en esta propuesta.
 
 ### Tecnologías
 
@@ -41,8 +54,8 @@ No hay registro público: el primer administrador se crea con un seed y es quien
 |Integración|API externa de Stays|
 
 Tecnologías distintas a las dadas en la cátedra :
-* **Prisma** en lugar de MikroORM: es un ORM para TypeScript que soporta SQL Server y genera el cliente tipado a partir de un único archivo de esquema.
-* **SQL Server (Azure SQL)** en lugar de MySQL: es la base que ya conocemos; Azure ofrece una base gratuita en la nube, así que no corre en local y la compartimos los dos.
+* **Prisma 6** en lugar de MikroORM: el equipo ya lo conoce y utiliza su esquema central para generar el cliente tipado, definir relaciones y versionar migraciones. Su conector SQL Server permite trabajar con la base elegida. Esta elección no implica que MikroORM carezca de soporte para SQL Server.
+* **SQL Server (Azure SQL)** en lugar de MySQL: es la base que ya conocemos; utilizamos una instancia compartida en la nube dentro de la oferta gratuita configurada para el proyecto.
 
 ## Alcance Funcional
 
@@ -51,8 +64,8 @@ Tecnologías distintas a las dadas en la cátedra :
 Regularidad:
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Usuario<br>2. CRUD Tipo de usuario|
-|CRUD dependiente|1. CRUD Movimiento que depende de CRUD Usuario|
+|CRUD simple|1. CRUD Tipo de usuario<br>2. CRUD Inmueble|
+|CRUD dependiente|1. CRUD Usuario que depende de Tipo de usuario<br>2. CRUD Movimiento que depende de Reserva y del Usuario asignado|
 |Listado<br>+<br>detalle| 1. Listado de reservas, filtrado por fecha, inmueble y usuario asignado => detalle CRUD<br>2. Listado de hoja de ruta por usuario|
 |CUU/Epic|1. Generar agenda por usuario<br>2. Emitir notificaciones a los responsables de los movimientos|
 
@@ -60,15 +73,27 @@ Regularidad:
 Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
-|CRUD |1. CRUD Huésped<br>2. CRUD Inmueble<br>3. CRUD Notificación que depende de CRUD Movimiento<br>4. CRUD Reserva que depende de CRUD Inmueble y CRUD Huésped|
+|CRUD |1. CRUD Huésped<br>2. CRUD Reserva que depende de Inmueble y permite asociar huéspedes<br>3. Gestión automática de Notificación dependiente de Movimiento: emisión, reasignación, consulta, marcado de lectura y eliminación al desasignar o borrar el movimiento|
 |CUU/Epic|1. Sincronizar reservas, inmuebles y huéspedes desde Stays<br>2. Generar agenda de check-in y check-out (vista de lista por día y vista de calendario)<br>3. Asignar y reasignar usuarios a los movimientos (puede darse el caso de que un usuario no pueda ir a hacer el check-in y deba asignarse otro)<br>4. Notificar al usuario los datos del check-in / check-out|
-|Otros|1. Login y permisos por tipo de usuario (Administrador, Supervisor, Limpieza)|
+|Otros|1. Login y permisos por tipo de usuario (Administrador, Supervisor, Operador)|
 
 
 ### Alcance Adicional Voluntario
+
+Las funcionalidades de esta sección no forman parte de la implementación actual.
 
 |Req|Detalle|
 |:-|:-|
 |Listados |1. Resumen mensual (inmuebles más alquilados, promedio de duración de reservas)<br>2. Listado de reservas por inmueble o usuario|
 |CUU/Epic||
 |Otros|1. Permisos por usuario (además de por tipo de usuario)|
+
+## Validación y entrega
+
+- Tests backend: unitarios y una integración de asignación/notificación.
+- Tests frontend obligatorios para aprobación: componente con Vitest y E2E con Playwright contra API local real.
+- La documentación complementaria de instalación, API y pruebas está preparada como contexto local; su publicación académica debe confirmarse por separado.
+- [Frontend publicado](https://dsw-frontend-2026.vercel.app).
+- [Health de API publicada](https://dsw-backend-2026.onrender.com/api/health).
+- El 30/10/2026 se verificaron los despliegues del frontend y del backend y el acceso del Administrador. Esa evidencia corresponde a esa fecha y no constituye una nueva comprobación del estado actual.
+- Pendientes del equipo: validación docente de los puntos indicados, enlaces a PR, seguimiento, minutas auténticas y publicación de la documentación complementaria. El video de muestra ya está enlazado arriba.
