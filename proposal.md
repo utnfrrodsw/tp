@@ -32,7 +32,7 @@ Regularidad:
 |:-|:-|
 |CRUD simple|1. CRUD Tipo de Delito<br>2. CRUD Oficial/Detective<br>3. CRUD Ubicación/Zona|
 |CRUD dependiente|1. CRUD Caso Criminal (depende de Tipo de Delito) <br>2. CRUD Evidencia (depende de Caso Criminal)|
-|Listado<br>+<br>detalle| Listado de Casos filtrado por Zona => detalle del Caso y Oficial asignado.<br> 2. Listado de Oficiales por Estado (Activo/Inactivo) => detalle de casos resueltos por el oficial.|
+|Listado<br>+<br>detalle| Listado de Casos filtrado por Zona => detalle del Caso.<br> 2. Listado de Oficiales por Estado (Activo/Inactivo) => detalle de casos resueltos por el oficial.|
 |CUU/Epic|1. Confección, Apertura de nuevo expediente criminal, Auditoría de movimientos y cambios de estado en un caso. <br>2. **Solicitud y Aprobación de Órdenes Judiciales:** El detective redacta una solicitud de allanamiento o arresto justificada por evidencia/peritajes. Un usuario con rol "Juez/Fiscal" la evalúa en su bandeja y la marca como Aprobada o Rechazada.|
 
 
