@@ -1,8 +1,5 @@
 # Propuesta TP DSW
 
-> Propuesta actualizada para revisión del equipo y del docente. La clasificación de CRUD
-> y el ciclo automático de notificaciones deben validarse antes de presentar la entrega.
-
 ### Integrantes
 * 44123-Milanesi Renzo
 * 46291-Gamba Emiliano Francisco
@@ -92,8 +89,5 @@ Las funcionalidades de esta sección no forman parte de la implementación actua
 
 - Tests backend: unitarios y una integración de asignación/notificación.
 - Tests frontend obligatorios para aprobación: componente con Vitest y E2E con Playwright contra API local real.
-- La documentación complementaria de instalación, API y pruebas está preparada como contexto local; su publicación académica debe confirmarse por separado.
 - [Frontend publicado](https://dsw-frontend-2026.vercel.app).
 - [Health de API publicada](https://dsw-backend-2026.onrender.com/api/health).
-- El 30/10/2026 se verificaron los despliegues del frontend y del backend y el acceso del Administrador. Esa evidencia corresponde a esa fecha y no constituye una nueva comprobación del estado actual.
-- Pendientes del equipo: validación docente de los puntos indicados, enlaces a PR, seguimiento, minutas auténticas y publicación de la documentación complementaria. El video de muestra ya está enlazado arriba.
