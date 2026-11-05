@@ -11,6 +11,15 @@
 * [Video de muestra](https://drive.google.com/file/d/1mR5La6TuBtTh3pgdFKk5MSmzHmg5TrIQ/view?usp=sharing)
 * [Aplicación publicada](https://dsw-frontend-2026.vercel.app/login)
 
+### Credenciales de prueba
+|Rol base|Usuario|Contraseña|
+|:-|:-|:-|
+|Administrador|admin|admin123|
+|Supervisor|supervisor|supervisor|
+|Operador (Limpieza)|limpieza|limpieza|
+
+> La API y la base están en planes gratuitos: el primer login puede tardar hasta un minuto mientras se despiertan.
+
 ## Tema
 ### Descripción
 Vamos a crear un Sistema de Gestión Web que va a permitir administrar una agenda de operadores de una empresa de hospedaje.
