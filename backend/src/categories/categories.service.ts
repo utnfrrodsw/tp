@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  HttpException,
   Injectable,
   InternalServerErrorException,
   Logger,
@@ -20,26 +21,17 @@ export class CategoriesService {
   constructor(
     @InjectRepository(Category)
     private readonly categoryRepository: Repository<Category>,
-  ) {}
+  ) { }
 
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
+    const { parentId, ...categoryData } = createCategoryDto;
+    const category = this.categoryRepository.create(categoryData);
+
+    if (parentId) {
+      category.parent = await this.findActiveParent(parentId);
+    }
+
     try {
-      const { parentId, ...categoryData } = createCategoryDto;
-
-      const category = this.categoryRepository.create(categoryData);
-
-      if (parentId) {
-        const parent = await this.categoryRepository.findOneBy({
-          id: parentId,
-        });
-        if (!parent) {
-          throw new NotFoundException(
-            `Parent category with id "${parentId}" not found`,
-          );
-        }
-        category.parent = parent;
-      }
-
       return await this.categoryRepository.save(category);
     } catch (error) {
       this.handleDBExceptions(error);
@@ -47,33 +39,46 @@ export class CategoriesService {
   }
 
   async findAll(): Promise<Category[]> {
-    // Retorna categorías raíz (sin padre) con sus subcategorías anidadas
-    return this.categoryRepository.find({
-      where: { isActive: true },
-      relations: { children: true, parent: true },
-      order: { name: 'ASC' },
-    });
+    return this.categoryRepository
+      .createQueryBuilder('cat')
+      .leftJoinAndSelect(
+        'cat.children',
+        'children',
+        'children.isActive = :isActive',
+        { isActive: true },
+      )
+      .leftJoinAndSelect('cat.parent', 'parent', 'parent.isActive = :isActive', {
+        isActive: true,
+      })
+      .where('cat.isActive = :isActive', { isActive: true })
+      .orderBy('cat.name', 'ASC')
+      .getMany();
   }
 
   async findOne(term: string): Promise<Category> {
-    let category: Category | null;
+    const qb = this.categoryRepository
+      .createQueryBuilder('cat')
+      .leftJoinAndSelect(
+        'cat.children',
+        'children',
+        'children.isActive = :isActive',
+        { isActive: true },
+      )
+      .leftJoinAndSelect('cat.parent', 'parent', 'parent.isActive = :isActive', {
+        isActive: true,
+      })
+      .where('cat.isActive = :isActive', { isActive: true });
 
     if (isUUID(term)) {
-      category = await this.categoryRepository.findOne({
-        where: { id: term },
-        relations: { children: true, parent: true },
-      });
+      qb.andWhere('cat.id = :id', { id: term });
     } else {
-      category = await this.categoryRepository
-        .createQueryBuilder('cat')
-        .leftJoinAndSelect('cat.children', 'children')
-        .leftJoinAndSelect('cat.parent', 'parent')
-        .where('UPPER(cat.name) = :name OR cat.slug = :slug', {
-          name: term.toUpperCase(),
-          slug: term.toLowerCase(),
-        })
-        .getOne();
+      qb.andWhere('(UPPER(cat.name) = :name OR cat.slug = :slug)', {
+        name: term.toUpperCase(),
+        slug: term.toLowerCase(),
+      });
     }
+
+    const category = await qb.getOne();
 
     if (!category) {
       throw new NotFoundException(`Category with term "${term}" not found`);
@@ -93,23 +98,18 @@ export class CategoriesService {
       ...toUpdate,
     });
 
-    if (!category) {
+    if (!category || !category.isActive) {
       throw new NotFoundException(`Category with id "${id}" not found`);
     }
 
     if (parentId !== undefined) {
-      if (!parentId) {
-        category.parent = undefined;
+      if (parentId === null) {
+        category.parent = null;
       } else {
-        const parent = await this.categoryRepository.findOneBy({
-          id: parentId,
-        });
-        if (!parent) {
-          throw new NotFoundException(
-            `Parent category with id "${parentId}" not found`,
-          );
+        if (parentId === id) {
+          throw new BadRequestException('A category cannot be its own parent');
         }
-        category.parent = parent;
+        category.parent = await this.findActiveParent(parentId);
       }
     }
 
@@ -135,7 +135,23 @@ export class CategoriesService {
       .execute();
   }
 
+  private async findActiveParent(parentId: string): Promise<Category> {
+    const parent = await this.categoryRepository.findOneBy({
+      id: parentId,
+      isActive: true,
+    });
+    if (!parent) {
+      throw new NotFoundException(
+        `Parent category with id "${parentId}" not found`,
+      );
+    }
+    return parent;
+  }
+
   private handleDBExceptions(error: any): never {
+    if (error instanceof HttpException) {
+      throw error;
+    }
     if (error.code === '23505') {
       throw new BadRequestException(error.detail);
     }
@@ -145,4 +161,3 @@ export class CategoriesService {
     );
   }
 }
-

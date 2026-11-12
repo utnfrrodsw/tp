@@ -62,7 +62,7 @@ export class Category {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'parent_id' })
-  parent?: Category;
+  parent?: Category | null;
 
   @ApiProperty({ type: () => [Category], description: 'Subcategories list' })
   @OneToMany(() => Category, (category) => category.parent)
@@ -70,12 +70,8 @@ export class Category {
 
   // Relación con Product: se vinculará al implementar ProductsModule
 
-  @BeforeInsert()
-  checkSlugInsert() {
-    if (!this.slug) {
-      this.slug = this.name;
-    }
-    this.slug = this.slug
+  private normalizeSlug(value: string): string {
+    return value
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '') // quita tildes
@@ -83,14 +79,19 @@ export class Category {
       .replaceAll("'", '');
   }
 
+  @BeforeInsert()
+  checkSlugInsert() {
+    if (!this.slug) {
+      this.slug = this.name;
+    }
+    this.slug = this.normalizeSlug(this.slug);
+  }
+
   @BeforeUpdate()
   checkSlugUpdate() {
-    this.slug = this.slug
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replaceAll(' ', '_')
-      .replaceAll("'", '');
+    if (this.slug) {
+      this.slug = this.normalizeSlug(this.slug);
+    }
   }
 }
 

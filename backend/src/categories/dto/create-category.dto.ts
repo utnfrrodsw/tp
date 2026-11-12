@@ -48,9 +48,10 @@ export class CreateCategoryDto {
     description: 'Parent category UUID if this is a subcategory',
     example: 'cd533345-f1f3-48c9-a62e-7dc2da50c8f8',
     required: false,
+    nullable: true,
   })
   @IsUUID()
   @IsOptional()
-  parentId?: string;
+  parentId?: string | null;
 }
 
