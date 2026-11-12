@@ -13,7 +13,7 @@
 
 * **Backend (API):** https://backend-production-9a08dbe2.up.railway.app/api
 * **Documentación de la API (Swagger):** https://backend-production-9a08dbe2.up.railway.app/api-docs
-* **Frontend (aplicación):** <link del deploy del front>
+* **Frontend (aplicación):** https://fluffy-front.netlify.app/
 
 ## Credenciales para probar la aplicación deployada
 
