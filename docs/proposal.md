@@ -9,6 +9,20 @@
 * Frontend: https://github.com/dsw-2026/frontend
 * Backend: https://github.com/dsw-2026/backend
 
+## Deploy
+
+* **Backend (API):** https://backend-production-9a08dbe2.up.railway.app/api
+* **Documentación de la API (Swagger):** https://backend-production-9a08dbe2.up.railway.app/api-docs
+* **Frontend (aplicación):** <link del deploy del front>
+
+## Credenciales para probar la aplicación deployada
+
+| Rol | Email | Contraseña |
+|---|---|---|
+| Admin | admin@fluffy.com | admin123 |
+| Publisher | huellitas@fluffy.com | huellitas123 |
+| Adopter | valen@fluffy.com | valen123 |
+
 ## Tema: Adopción de Mascotas
 ### Descripción
 
