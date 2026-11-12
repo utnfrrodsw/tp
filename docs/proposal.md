@@ -56,6 +56,6 @@ Adicionales para Aprobación
 |Req|Detalle|
 |:-|:-|
 |Listados|1. Listado de solicitudes propias del adoptante (historial), mostrando el estado de cada una (pendiente / aprobada / rechazada)|
-|CUU/Epic|1. Cancelar una solicitud de adopción (por parte del adoptante)<br>2. Marcar mascotas como favoritas y consultarlas luego|
+|CUU/Epic|1. Cancelar una solicitud de adopción (por parte del adoptante)|
 |Otros|1. Envío de email al adoptante confirmando la creación de su solicitud de adopción<br>2. Notificación al publicador cuando recibe una nueva solicitud sobre una de sus mascotas|
 
