@@ -2,51 +2,42 @@
 
 ## Grupo
 ### Integrantes
-* legajo - Apellido(s), Nombre(s)
+* 40533 - ALICE, Mauro Elias
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [fullstack app](https://github.com/maualice/TP-DSW-ALICE)
 
 ## Tema
 ### Descripción
-*2 a 6 líneas describiendo el negocio (menos es más)*
+La ferretería se dedica a la comercialización de herramientas, materiales de construcción y artículos para el hogar, electricidad y plomería. El proyecto propone desarrollar una tienda online que permita gestionar productos, categorías, pedidos y clientes, incorporando pagos digitales, un sistema de beneficios por puntos y herramientas de administración, automatización y asistencia virtual para mejorar la experiencia de compra y la gestión del negocio
 
 ### Modelo
-![imagen del modelo]()
-
-*Nota*: incluir un link con la imagen de un modelo, puede ser modelo de dominio, diagrama de clases, DER. Si lo prefieren pueden utilizar diagramas con [Mermaid](https://mermaid.js.org) en lugar de imágenes.
+* [Modelo de dominio](https://github.com/maualice/TP-DSW-ALICE/blob/main/Modelo.png)
 
 ## Alcance Funcional 
 
-### Alcance Mínimo
+## 1. Alcance Mínimo — Regularidad
 
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
+| Req. | Detalle |
+|---|---|
+| CRUD simple | 1. CRUD de Categoría.<br>2. CRUD de Producto. |
+| CRUD dependiente | 1. CRUD de Producto (depende de Categoría). |
+| Listado + detalle | 1. Listado de productos filtrado por categoría, nombre y disponibilidad de stock; muestra nombre, precio, categoría y stock.<br>2. Listado de órdenes del usuario autenticado, mostrando número, fecha, estado y total; el detalle muestra los productos, cantidades, precios y datos de pago. |
+| CUU / Epic | 1. Registrarse e iniciar sesión.<br>2. Agregar productos al carrito y gestionar sus cantidades.<br>3. Confirmar una compra y generar una orden.<br>4. Realizar el pago mediante Mercado Pago. |
 
-Regularidad:
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad|
-|CRUD dependiente|1. CRUD Habitación {depende de} CRUD Tipo Habitacion<br>2. CRUD Cliente {depende de} CRUD Localidad|
-|Listado<br>+<br>detalle| 1. Listado de habitaciones filtrado por tipo de habitación, muestra nro y tipo de habitación => detalle CRUD Habitacion<br> 2. Listado de reservas filtrado por rango de fecha, muestra nro de habitación, fecha inicio y fin estadía, estado y nombre del cliente => detalle muestra datos completos de la reserva y del cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva|
+## 2. Adicionales para Aprobación
 
+| Req. | Detalle |
+|---|---|
+| CRUD | 1. CRUD de Usuario (administración).<br>2. CRUD de Categoría.<br>3. CRUD de Producto.<br>4. CRUD de Descuento. |
+| Listados | 1. Listado de órdenes filtrado por fecha, estado y cliente, con acceso al detalle de cada orden.<br>2. Listado de productos con stock crítico.<br>3. Panel administrativo con métricas de ventas, órdenes y productos. |
+| CUU / Epic | 1. Gestionar órdenes desde el panel administrativo.<br>2. Administrar usuarios y asignar roles de acceso (`user` y `admin`).<br>3. Consultar el estado de los pagos y su asociación con las órdenes.<br>4. Acumular puntos por compras y canjearlos por descuentos. |
 
-Adicionales para Aprobación
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Tipo Habitacion<br>2. CRUD Servicio<br>3. CRUD Localidad<br>4. CRUD Provincia<br>5. CRUD Habitación<br>6. CRUD Empleado<br>7. CRUD Cliente|
-|CUU/Epic|1. Reservar una habitación para la estadía<br>2. Realizar el check-in de una reserva<br>3. Realizar el check-out y facturación de estadía y servicios|
+## 3. Alcance Adicional Voluntario
 
-
-### Alcance Adicional Voluntario
-
-*Nota*: El Alcance Adicional Voluntario es opcional, pero ayuda a que la funcionalidad del sistema esté completa y será considerado en la nota en función de su complejidad y esfuerzo.
-
-|Req|Detalle|
-|:-|:-|
-|Listados |1. Estadía del día filtrado por fecha muestra, cliente, habitaciones y estado <br>2. Reservas filtradas por cliente muestra datos del cliente y de cada reserve fechas, estado cantidad de habitaciones y huespedes|
-|CUU/Epic|1. Consumir servicios<br>2. Cancelación de reserva|
-|Otros|1. Envío de recordatorio de reserva por email|
-
+| Req. | Detalle |
+|---|---|
+| Listados y reportes | 1. Generación de reportes de ventas por período.<br>2. Reporte de productos más vendidos y niveles de stock. |
+| CUU / Epic | 1. Asistente conversacional para elaborar presupuestos según los productos y cantidades solicitados por el cliente.<br>2. Aplicación de descuentos mediante el canje de puntos. |
+| Automatización | 1. Envío de notificaciones de stock crítico mediante n8n.<br>2. Notificaciones sobre cambios de estado de las órdenes y confirmaciones de pago. |
+| Otros | 1. Historial de puntos acumulados y canjeados.<br>2. Validación de permisos según el rol del usuario. |
