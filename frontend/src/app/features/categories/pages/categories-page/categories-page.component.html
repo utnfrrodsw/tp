@@ -1,0 +1,171 @@
+<div class="min-h-[calc(100vh-4rem)] bg-base-200/40 py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+
+    <!-- Header & Resumen Métrico (Mobile First) -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 border-b border-base-200">
+      <div>
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold tracking-wider uppercase mb-2 sm:mb-3">
+          <svg lucideTag class="w-3.5 h-3.5"></svg>
+          Catálogo Industrial
+        </div>
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
+          Categorías de Ferretería
+        </h1>
+        <p class="mt-1.5 sm:mt-2 text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-2xl">
+          Clasificación de productos y materiales
+        </p>
+      </div>
+
+      <!-- Métricas y botón de refresco -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div
+          class="flex items-center gap-2 px-3.5 py-2 min-h-11 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm text-xs sm:text-sm">
+          <span class="text-slate-500">Total:</span>
+          <span class="font-bold text-slate-800 dark:text-slate-100">{{ categories().length }}</span>
+        </div>
+        <button (click)="refresh()" [disabled]="isLoading()" title="Recargar desde la API"
+          class="btn btn-square min-h-11 min-w-11 btn-ghost border border-slate-200 dark:border-slate-700 hover:border-amber-500 hover:text-amber-500 transition-all duration-200"
+          aria-label="Recargar categorías">
+          <svg lucideRefreshCw class="w-4 h-4" [class.animate-spin]="isLoading()"></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Barra de Búsqueda y Filtros (text-base en móvil para evitar zoom en iOS) -->
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-between">
+      <div class="relative w-full sm:max-w-md">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 z-10">
+          <svg lucideSearch class="w-4 h-4"></svg>
+        </div>
+        <input type="text" [ngModel]="searchTerm()" (ngModelChange)="updateSearch($event)"
+          placeholder="Buscar por nombre, slug o descripción..."
+          class="input input-bordered w-full pl-10 pr-16 min-h-11 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-base sm:text-sm" />
+        @if (searchTerm()) {
+        <button (click)="updateSearch('')"
+          class="absolute inset-y-0 right-0 px-3 min-h-11 flex items-center text-xs font-semibold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+          aria-label="Limpiar búsqueda">
+          Limpiar
+        </button>
+        }
+      </div>
+
+      <span class="text-xs text-slate-500 self-end sm:self-auto">
+        Mostrando <strong>{{ filteredCategories().length }}</strong> de {{ categories().length }} categorías
+      </span>
+    </div>
+
+    <!-- Alerta de Error si el Backend no responde -->
+    @if (error()) {
+    <div class="alert alert-error shadow-lg p-4 rounded-xl flex-col sm:flex-row items-start sm:items-center gap-3">
+      <div class="flex items-center gap-3 w-full sm:w-auto">
+        <svg lucideAlertTriangle class="w-5 h-5 shrink-0"></svg>
+        <div>
+          <h3 class="font-bold text-sm sm:text-base">No se pudieron cargar las categorías</h3>
+          <div class="text-xs opacity-90">{{ error() }}</div>
+        </div>
+      </div>
+      <button (click)="refresh()" class="btn btn-sm btn-outline min-h-10 w-full sm:w-auto sm:ml-auto">
+        Reintentar
+      </button>
+    </div>
+    }
+
+    <!-- Skeletons durante la carga -->
+    @if (isLoading() && categories().length === 0) {
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      @for (item of [1, 2, 3, 4, 5, 6]; track item) {
+      <div
+        class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-4 animate-pulse">
+        <div class="h-6 w-3/4 bg-slate-200 dark:bg-slate-700 rounded-lg"></div>
+        <div class="h-4 w-1/2 bg-slate-100 dark:bg-slate-700/60 rounded"></div>
+        <div class="h-16 w-full bg-slate-100 dark:bg-slate-700/40 rounded-xl"></div>
+        <div class="h-8 w-1/3 bg-slate-200 dark:bg-slate-700 rounded-lg"></div>
+      </div>
+      }
+    </div>
+    }
+
+    <!-- Grid de Tarjetas de Categorías con Micro-interacciones Hover y Touch Friendly -->
+    @if (!isLoading() || categories().length > 0) {
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      @for (category of filteredCategories(); track category.id) {
+      <div
+        class="group relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 hover:border-amber-500/80 transition-all duration-300">
+
+        <!-- Barra superior decorativa al hacer hover -->
+        <div
+          class="absolute top-0 left-6 right-6 h-1 bg-transparent group-hover:bg-amber-500 rounded-t-full transition-colors duration-300">
+        </div>
+
+        <div class="space-y-3">
+          <!-- Top: Estado e Icono -->
+          <div class="flex items-center justify-between">
+            <div
+              class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-slate-900 group-hover:scale-110 transition-all duration-300">
+              <svg lucideFolderTree class="w-5 h-5"></svg>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold"
+              [ngClass]="category.isActive ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400' : 'bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400'">
+              <span class="w-1.5 h-1.5 rounded-full"
+                [ngClass]="category.isActive ? 'bg-emerald-500' : 'bg-slate-400'"></span>
+              {{ category.isActive ? 'Activa' : 'Inactiva' }}
+            </span>
+          </div>
+
+          <!-- Nombre y Slug -->
+          <div>
+            <h3
+              class="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+              {{ category.name }}
+            </h3>
+            <code class="text-[11px] text-slate-400 bg-slate-100 dark:bg-slate-900 px-2 py-0.5 rounded font-mono">
+              /{{ category.slug }}
+            </code>
+          </div>
+
+          <!-- Descripción -->
+          <p class="text-sm text-slate-600 dark:text-slate-300 line-clamp-2 min-h-[2.5rem]">
+            {{ category.description || 'Sin descripción detallada disponible.' }}
+          </p>
+        </div>
+
+        <!-- Footer de la tarjeta con touch target amigable -->
+        <div
+          class="mt-5 sm:mt-6 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs text-slate-500">
+          <div class="flex items-center gap-1.5">
+            <svg lucideLayers class="w-3.5 h-3.5 text-amber-500"></svg>
+            <span>{{ category.children?.length ?? 0 }} subcategorías</span>
+          </div>
+          <span
+            class="flex items-center gap-1 py-1 font-semibold text-slate-700 dark:text-slate-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all">
+            Explorar
+            <svg lucideArrowRight class="w-3.5 h-3.5"></svg>
+          </span>
+        </div>
+
+      </div>
+      }
+    </div>
+    }
+
+    <!-- Estado Vacío cuando no hay coincidencias -->
+    @if (!isLoading() && filteredCategories().length === 0 && !error()) {
+    <div
+      class="text-center py-12 sm:py-16 px-4 rounded-2xl bg-white dark:bg-slate-800 border border-dashed border-slate-300 dark:border-slate-700">
+      <div
+        class="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-400 mb-4">
+        <svg lucideSearch class="w-7 h-7 sm:w-8 sm:h-8"></svg>
+      </div>
+      <h3 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-200">No se encontraron categorías</h3>
+      <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-sm mx-auto">
+        No hay elementos que coincidan con "{{ searchTerm() }}". Probá buscando con otro término o recargando.
+      </p>
+      <button (click)="updateSearch('')" class="btn btn-sm btn-outline min-h-[40px] mt-4">
+        Limpiar búsqueda
+      </button>
+    </div>
+    }
+
+  </div>
+</div>
