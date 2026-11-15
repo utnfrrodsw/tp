@@ -1,7 +1,11 @@
 import { inject, Injectable, signal, computed } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { Category, CreateCategoryDto } from '../interfaces/category.interface';
+import {
+  Category,
+  CreateCategoryDto,
+  UpdateCategoryDto,
+} from '../interfaces/category.interface';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({
@@ -42,8 +46,9 @@ export class CategoriesService {
           this._categories.set(data);
           this._isLoading.set(false);
         },
-        error: (err: unknown) => {
-          this._error.set(this.formatErrorMessage(err));
+        error: (err: Error) => {
+          // El mensaje ya viene formateado amigablemente por el errorInterceptor centralizado
+          this._error.set(err.message);
           this._isLoading.set(false);
         },
       })
@@ -62,35 +67,21 @@ export class CategoriesService {
     );
   }
 
-  /**
-   * Transforma errores técnicos de HTTP en mensajes legibles y amigables para el usuario
-   */
-  private formatErrorMessage(err: unknown): string {
-    if (err instanceof HttpErrorResponse) {
-      if (err.status === 0) {
-        return 'No se pudo conectar con el servidor. Verificá tu conexión a internet o que el backend esté en ejecución.';
-      }
+  updateCategory(id: string, dto: UpdateCategoryDto): Observable<Category> {
+    return this.http.patch<Category>(`${this.baseUrl}/${id}`, dto).pipe(
+      tap((updatedCategory) => {
+        this._categories.update((prev) =>
+          prev.map((c) => (c.id === id ? { ...c, ...updatedCategory } : c))
+        );
+      })
+    );
+  }
 
-      if (err.status === 400) {
-        if (Array.isArray(err.error?.message)) {
-          return err.error.message.join('. ');
-        }
-        return err.error?.message ?? 'Solicitud incorrecta o datos inválidos.';
-      }
-
-      if (err.status === 404) {
-        return 'No se encontraron las categorías solicitadas.';
-      }
-
-      if (err.status === 500) {
-        return 'Ocurrió un error interno en el servidor. Por favor, intentá nuevamente más tarde.';
-      }
-
-      if (err.error?.message && typeof err.error.message === 'string') {
-        return err.error.message;
-      }
-    }
-
-    return 'Ocurrió un error inesperado al procesar la solicitud.';
+  deleteCategory(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`).pipe(
+      tap(() => {
+        this._categories.update((prev) => prev.filter((c) => c.id !== id));
+      })
+    );
   }
 }
