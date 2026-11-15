@@ -1,0 +1,65 @@
+<header class="bg-base-100/80 backdrop-blur-md border-b border-base-200/80 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Marca / Logo con micro-interacción hover -->
+      <a routerLink="/" (click)="closeMobileMenu()"
+        class="group flex items-center gap-3 transition-transform duration-200 hover:scale-105 min-h-11">
+        <div
+          class="w-10 h-10 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center font-bold shadow-md shadow-amber-500/20 group-hover:bg-amber-400 group-hover:rotate-6 transition-all duration-300">
+          <svg lucideWrench class="w-5 h-5"></svg>
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="text-lg font-black tracking-tight uppercase text-slate-800 dark:text-slate-100 group-hover:text-amber-600 transition-colors">
+            Ferretería <span class="text-amber-500">Pro</span>
+          </span>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 -mt-1">
+            Plataforma Digital
+          </span>
+        </div>
+      </a>
+
+      <!-- Navegación Principal (Desktop) -->
+      <nav class="hidden md:flex items-center gap-1">
+        <a routerLink="/categories"
+          routerLinkActive="bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400 font-semibold"
+          class="flex items-center gap-2 px-4 py-2 min-h-11 rounded-lg text-sm text-slate-600 dark:text-slate-300 hover:bg-base-200 hover:text-slate-900 transition-all duration-200">
+          <svg lucideLayers class="w-4 h-4"></svg>
+          Categorías
+        </a>
+      </nav>
+
+      <!-- Acciones / Menú Móvil -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Botón Hamburguesa para Smartphone (Mobile First: visible en < md con 44x44px touch target) -->
+        <button type="button" (click)="toggleMobileMenu()"
+          class="md:hidden flex items-center justify-center w-11 h-11 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-base-200 focus:outline-none focus:ring-2 focus:ring-amber-500/40 transition-colors"
+          [attr.aria-expanded]="isMobileMenuOpen()" aria-label="Abrir menú de navegación">
+          @if (isMobileMenuOpen()) {
+          <svg lucideX class="w-6 h-6"></svg>
+          } @else {
+          <svg lucideMenu class="w-6 h-6"></svg>
+          }
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Menú Desplegable Móvil (Mobile First) -->
+  @if (isMobileMenuOpen()) {
+  <div
+    class="md:hidden border-t border-base-200 bg-base-100/90 backdrop-blur-md px-4 pt-3 pb-4 space-y-2 animate-in fade-in slide-in-from-top-2 duration-200">
+    <div class="py-1 text-xs text-slate-400 font-medium border-b border-base-200 mb-2">
+      <span>Navegación</span>
+    </div>
+    <a routerLink="/categories" (click)="closeMobileMenu()"
+      routerLinkActive="bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400 font-bold"
+      class="flex items-center gap-3 px-4 py-3 min-h-12 rounded-xl text-base text-slate-700 dark:text-slate-200 hover:bg-base-200 active:bg-base-300 transition-colors">
+      <svg lucideLayers class="w-5 h-5 text-amber-500"></svg>
+      <span>Categorías de Ferretería</span>
+    </a>
+  </div>
+  }
+</header>
